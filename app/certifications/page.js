@@ -3,12 +3,11 @@ import Reveal from "../components/Reveal";
 import Equalizer from "../components/Equalizer";
 import CountUp from "../components/CountUp";
 import {
-  COUNTRIES, albums, singles, features, awardsByYear,
+  COUNTRIES, albums, singles, features,
   tierOf, totalAwards, certifiedReleaseCount, countryCount,
 } from "../data/certifications";
 
 const total = totalAwards();
-const years = Object.keys(awardsByYear).sort((a, b) => Number(b) - Number(a));
 
 // A small flag + level badge.
 function Badge({ cert }) {
@@ -25,7 +24,7 @@ function Badge({ cert }) {
   );
 }
 
-// One release card (all-time catalogue): title + a badge per country.
+// One release card: title + a badge per country it's certified in.
 function CertCard({ item }) {
   return (
     <div className={styles.certCard}>
@@ -81,64 +80,30 @@ export default function CertificationsPage() {
           ))}
         </div>
 
-        {/* ============ CERTIFICATIONS BY YEAR ============ */}
-        <h2 className={`secTitle ${styles.group}`}>Certifications by Year</h2>
-        <p className={styles.byYearIntro}>
-          New certifications &amp; upgrades, by the year they were announced
-          (newest first). The complete all-time catalogue is below.
-        </p>
-        {years.map((year) => (
-          <div key={year} className={styles.yearBlock}>
-            <h3 className={styles.yearHead}>
-              {year} <span className={styles.count}>({awardsByYear[year].length})</span>
-            </h3>
-            <Reveal>
-              <div className={styles.yearGrid}>
-                {awardsByYear[year].map((e, i) => (
-                  <div className={styles.yearItem} key={`${e.title}-${e.c}-${e.level}-${i}`}>
-                    <span className={styles.yearItemTitle}>
-                      {e.title}
-                      {e.credit && (
-                        <span className={styles.yearItemCredit}> · {e.credit}</span>
-                      )}
-                    </span>
-                    <Badge cert={e} />
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        ))}
-
-        {/* ============ COMPLETE ALL-TIME CATALOGUE ============ */}
-        <h2 className={`secTitle ${styles.group}`} style={{ marginTop: 64 }}>
-          Complete all-time catalogue
-        </h2>
-        <p className={styles.byYearIntro}>
-          Every certified release with its current level in each country.
-        </p>
-
-        <h3 className={styles.subGroup}>
+        {/* ALBUMS */}
+        <h2 className={`secTitle ${styles.group}`}>
           Albums <span className={styles.count}>({albums.length})</span>
-        </h3>
+        </h2>
         <Reveal>
           <div className={styles.certGrid}>
             {albums.map((a) => <CertCard key={a.title} item={a} />)}
           </div>
         </Reveal>
 
-        <h3 className={styles.subGroup}>
+        {/* SINGLES */}
+        <h2 className={`secTitle ${styles.group}`}>
           Singles <span className={styles.count}>({singles.length})</span>
-        </h3>
+        </h2>
         <Reveal>
           <div className={styles.certGrid}>
             {singles.map((s) => <CertCard key={s.title} item={s} />)}
           </div>
         </Reveal>
 
-        <h3 className={styles.subGroup}>
+        {/* FEATURES */}
+        <h2 className={`secTitle ${styles.group}`}>
           Featured Appearances <span className={styles.count}>({features.length})</span>
-        </h3>
+        </h2>
         <Reveal>
           <div className={styles.certGrid}>
             {features.map((f) => <CertCard key={f.title} item={f} />)}
@@ -149,10 +114,9 @@ export default function CertificationsPage() {
           Sources: RIAA (US), BPI (UK), Music Canada, SNEP (France), BVMI
           (Germany), NVPI (Netherlands), ARIA (Australia), RMNZ (New Zealand),
           Promusicae (Spain), IFPI Denmark &amp; IFPI Norway — via Wikipedia and
-          dated news reports, as of June 2026. The year shows when an award was
-          announced; the catalogue shows each song&apos;s current level. Silver,
-          Gold, Platinum and Diamond reflect each country&apos;s own thresholds;
-          “×” denotes multi-platinum.
+          national charts, as of June 2026. Each card shows a song&apos;s current
+          level in every country. Silver, Gold, Platinum and Diamond reflect each
+          country&apos;s own thresholds; “×” denotes multi-platinum.
         </p>
       </div>
     </main>

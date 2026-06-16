@@ -144,49 +144,6 @@ export const features = [
   ] },
 ];
 
-// Certifications grouped by the year the award was announced (from dated
-// news reports). Newer levels for the same song/country can appear across two
-// years — that's an upgrade, not a duplicate (e.g. On the Low: Gold 2025 → Platinum 2026).
-export const awardsByYear = {
-  2026: [
-    { title: "Location", credit: "Dave ft. Burna Boy", c: "FR", level: "Diamond" },
-    { title: "Last Last", c: "CA", level: "Platinum", x: 4 },
-    { title: "Last Last", c: "NZ", level: "Platinum", x: 3 },
-    { title: "Location", credit: "Dave ft. Burna Boy", c: "NZ", level: "Platinum", x: 3 },
-    { title: "For My Hand", credit: "feat. Ed Sheeran", c: "CA", level: "Platinum", x: 2 },
-    { title: "On the Low", c: "CA", level: "Platinum", x: 2 },
-    { title: "On the Low", c: "UK", level: "Platinum" },
-    { title: "On the Low", c: "NZ", level: "Platinum" },
-    { title: "Love, Damini", c: "CA", level: "Platinum" },
-    { title: "It's Plenty", c: "CA", level: "Platinum" },
-    { title: "It's Plenty", c: "NZ", level: "Platinum" },
-    { title: "Gbona", c: "CA", level: "Platinum" },
-    { title: "City Boys", c: "CA", level: "Platinum" },
-    { title: "We Pray", credit: "Coldplay ft. Burna Boy", c: "ES", level: "Platinum" },
-    { title: "Location", credit: "Dave ft. Burna Boy", c: "NO", level: "Platinum" },
-    { title: "I Told Them...", c: "CA", level: "Gold" },
-    { title: "Kilometre", c: "CA", level: "Gold" },
-    { title: "Toni-Ann Singh", credit: "feat. Popcaan", c: "CA", level: "Gold" },
-    { title: "Alone", c: "US", level: "Gold" },
-    { title: "Sittin' on Top of the World", c: "CA", level: "Gold" },
-    { title: "Tested, Approved & Trusted", c: "CA", level: "Gold" },
-    { title: "Talibans II", c: "CA", level: "Gold" },
-    { title: "Gbona", c: "DK", level: "Gold" },
-    { title: "WGFT", credit: "Gunna ft. Burna Boy", c: "NZ", level: "Gold" },
-    { title: "WGFT", credit: "Gunna ft. Burna Boy", c: "UK", level: "Gold" },
-    { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", c: "FR", level: "Gold" },
-  ],
-  2025: [
-    { title: "Donne-moi l'accord", credit: "Dadju ft. Burna Boy", c: "FR", level: "Platinum" },
-    { title: "City Boys", c: "FR", level: "Platinum" },
-    { title: "On the Low", c: "UK", level: "Gold" },
-    { title: "It's Plenty", c: "FR", level: "Gold" },
-    { title: "City Boys", c: "US", level: "Gold" },
-    { title: "Secret", credit: "feat. Jeremih & Serani", c: "UK", level: "Silver" },
-    { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", c: "UK", level: "Silver" },
-  ],
-};
-
 // Helpers
 export function tierOf(level) {
   if (level === "Diamond") return "diamond";
