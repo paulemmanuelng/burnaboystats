@@ -405,6 +405,59 @@ a.fact:hover {
   .split { grid-template-columns: 1fr; gap: 32px; }
 }
 
+/* Generative album covers (Music page) */
+.coverGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 20px;
+  margin-top: 12px;
+}
+.albumCover {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.albumCover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 72% 22%, rgba(255, 255, 255, 0.4), transparent 45%);
+}
+.albumCover::after {
+  content: "";
+  position: absolute;
+  right: -38px;
+  top: -38px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+}
+.albumCoverYear {
+  position: relative;
+  z-index: 1;
+  font-size: 0.72rem;
+  font-weight: 600;
+  opacity: 0.85;
+  letter-spacing: 0.05em;
+}
+.albumCoverTitle {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.1;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
 /* ===========================================================
    SCROLL-REVEAL  (toggled by the <Reveal> component)
    =========================================================== */

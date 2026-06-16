@@ -7,18 +7,21 @@ import Vinyl from "./components/Vinyl";
 import Marquee from "./components/Marquee";
 import Reveal from "./components/Reveal";
 import CountUp from "./components/CountUp";
+import { totalAwards, countryCount } from "./data/certifications";
 
-// The four biggest UK certifications, shown as a teaser on the homepage.
+const total = totalAwards();
+
+// His most decorated tracks (flagship certification shown on each).
 const topCerts = [
   { title: "Location", credit: "Dave ft. Burna Boy", cert: "5× Platinum", tier: "platinum" },
+  { title: "Last Last", credit: "Diamond 🇫🇷 · 4× Platinum 🇨🇦", cert: "Diamond", tier: "diamond" },
+  { title: "On the Low", credit: "Diamond in France", cert: "Diamond", tier: "diamond" },
   { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", cert: "3× Platinum", tier: "platinum" },
-  { title: "Last Last", credit: "Burna Boy", cert: "2× Platinum", tier: "platinum" },
-  { title: "Ye", credit: "Burna Boy", cert: "Platinum", tier: "platinum" },
 ];
 
 const marqueeItems = [
-  "African Giant", "23× UK Certified", "Grammy Winner", "Odogwu",
-  "Afro-Fusion", "5× Platinum", "Twice as Tall", "Outside",
+  "African Giant", "FIFA World Cup 2026", "Grammy Winner", "Odogwu",
+  "Red Rocks Headliner", "Diamond in France", "Afro-Fusion", "Twice as Tall",
 ];
 
 export default function Home() {
@@ -43,7 +46,7 @@ export default function Home() {
           </p>
           <div className={styles.heroButtons}>
             <Link href="/certifications" className="btn btnPrimary">
-              View Certified Songs
+              View Certifications
             </Link>
             <Link href="/music" className="btn btnSecondary">
               Explore the Music
@@ -53,6 +56,16 @@ export default function Home() {
 
         <Waveform bars={80} className={styles.heroWave} />
         <span className={styles.scrollCue} aria-hidden="true">scroll</span>
+      </section>
+
+      {/* ================= WORLD CUP NEWS BANNER ================= */}
+      <section className={styles.newsBannerWrap}>
+        <div className="container">
+          <div className={styles.newsBanner}>
+            <span className={styles.newsTag}>New</span>
+            Headlined the 2026 FIFA World Cup Opening Ceremony with Shakira — “Dai Dai”
+          </div>
+        </div>
       </section>
 
       {/* ================= MARQUEE ================= */}
@@ -73,26 +86,26 @@ export default function Home() {
           <div className={styles.statGrid}>
             <Reveal delay={0}>
               <div className={styles.statCard}>
-                <span className={styles.statNum}><CountUp end={23} /></span>
-                <span className={styles.statLabel}>UK Certifications</span>
+                <span className={styles.statNum}><CountUp end={total} /></span>
+                <span className={styles.statLabel}>Certifications worldwide</span>
               </div>
             </Reveal>
             <Reveal delay={100}>
               <div className={styles.statCard}>
-                <span className={styles.statNum}><CountUp end={5} suffix="×" /></span>
-                <span className={styles.statLabel}>Platinum — “Location”</span>
+                <span className={styles.statNum}><CountUp end={countryCount} /></span>
+                <span className={styles.statLabel}>Countries certified</span>
               </div>
             </Reveal>
             <Reveal delay={200}>
               <div className={styles.statCard}>
                 <span className={styles.statNum}><CountUp end={8} /></span>
-                <span className={styles.statLabel}>Studio Albums</span>
+                <span className={styles.statLabel}>Studio albums</span>
               </div>
             </Reveal>
             <Reveal delay={300}>
               <div className={styles.statCard}>
                 <span className={styles.statNum}>2021</span>
-                <span className={styles.statLabel}>Grammy Winner</span>
+                <span className={styles.statLabel}>Grammy winner</span>
               </div>
             </Reveal>
           </div>
@@ -109,11 +122,11 @@ export default function Home() {
 
           <div>
             <Reveal>
-              <p className={styles.eyebrow}>Certified Heat</p>
+              <p className={styles.eyebrow}>Certified Worldwide</p>
             </Reveal>
             <Reveal delay={80}>
               <h2 className={styles.sectionTitle}>
-                His biggest <span className="goldText">UK certifications</span>
+                His biggest <span className="goldText">certifications</span>
               </h2>
             </Reveal>
             <Reveal delay={140}>
@@ -133,7 +146,7 @@ export default function Home() {
             </Reveal>
             <Reveal delay={200}>
               <Link href="/certifications" className={styles.textLink}>
-                View all 23 certifications →
+                Explore all {total} certifications →
               </Link>
             </Reveal>
           </div>
@@ -149,8 +162,8 @@ export default function Home() {
                 Dive into the <span className="goldText">data</span>
               </h2>
               <p className={styles.ctaText}>
-                Explore the full discography, certifications and milestones of
-                the African Giant.
+                Explore the full discography, global certifications and milestones
+                of the African Giant.
               </p>
               <Link href="/certifications" className="btn btnPrimary">
                 Explore the Stats

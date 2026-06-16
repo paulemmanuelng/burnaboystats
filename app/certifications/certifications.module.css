@@ -1,156 +1,162 @@
-/* Styles scoped to the Certifications page only. */
+/* Global certifications page */
 
-.sectionTitle {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin: 48px 0 20px;
-}
-
-.count {
-  color: var(--text-muted);
-  font-weight: 400;
-  font-size: 1.1rem;
-}
-
-.headerEq {
-  display: flex;
-  justify-content: center;
-  margin-top: 22px;
-  height: 26px;
-}
-
-/* ---------- ALBUMS (card grid) ---------- */
-.albumGrid {
+/* Live summary */
+.summary {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+  margin-top: 8px;
 }
-
-.albumCard {
+.sumCard {
   background: var(--bg-soft);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px;
-  transition: 0.18s ease;
+  border-radius: var(--radius);
+  padding: 26px 20px;
+  text-align: center;
 }
-
-.albumCard:hover {
-  border-color: var(--gold-dim);
-  transform: translateY(-3px);
+.sumNum {
+  display: block;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
 }
-
-.albumCard h3 {
-  margin-top: 14px;
-  font-size: 1.15rem;
-}
-
-.albumCard p {
+.sumLabel {
+  display: block;
+  margin-top: 8px;
   color: var(--text-muted);
   font-size: 0.9rem;
 }
 
-/* ---------- SINGLES TABLE ---------- */
-.tableWrap {
-  overflow-x: auto;          /* horizontal scroll on small screens */
-  border: 1px solid var(--border);
-  border-radius: 14px;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 560px;
-}
-
-.table th {
-  text-align: left;
-  padding: 16px 20px;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
+/* Country legend */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 20px;
+  margin: 26px 0 8px;
+  padding: 16px 18px;
   background: var(--bg-soft);
-  border-bottom: 1px solid var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.legendItem em {
+  font-style: normal;
+  opacity: 0.6;
 }
 
-.table td {
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: middle;
+/* Group headings */
+.group {
+  margin: 48px 0 18px;
+}
+.count {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 1.05rem;
 }
 
-.table tbody tr:last-child td {
-  border-bottom: none;
+/* Cards grid */
+.certGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 16px;
 }
-
-.table tbody tr:hover {
-  background: var(--bg-soft-2);
+.certCard {
+  position: relative;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 20px 18px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
-
-.songTitle {
+.certCard:hover {
+  border-color: var(--gold-dim);
+  transform: translateY(-3px);
+}
+.certHead {
+  margin-bottom: 14px;
+  padding-right: 48px;
+}
+.certTitle {
   display: block;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1.05rem;
 }
-
-.credit {
+.certCredit {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   margin-top: 2px;
 }
-
-.role {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-}
-
-.center {
-  text-align: center;
-}
-
-.right {
-  text-align: right;
-}
-
-/* ---------- CERTIFICATION BADGES ---------- */
-.badge {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 999px;
+.certYear {
+  position: absolute;
+  top: 18px;
+  right: 20px;
   font-size: 0.78rem;
-  font-weight: 700;
+  color: var(--text-muted);
+  font-family: var(--font-display), sans-serif;
+}
+
+/* Country badges */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
   white-space: nowrap;
   border: 1px solid transparent;
 }
-
-.platinum {
-  background: rgba(229, 231, 235, 0.12);
-  color: #e5e7eb;
-  border-color: rgba(229, 231, 235, 0.4);
+.flag {
+  font-size: 0.9rem;
+  line-height: 1;
 }
 
-.gold {
-  background: rgba(232, 176, 75, 0.14);
-  color: var(--gold);
-  border-color: rgba(232, 176, 75, 0.45);
-}
-
+/* Tier colours */
 .silver {
   background: rgba(148, 163, 184, 0.12);
   color: #cbd5e1;
-  border-color: rgba(148, 163, 184, 0.35);
+  border-color: rgba(148, 163, 184, 0.32);
+}
+.gold {
+  background: rgba(232, 176, 75, 0.14);
+  color: var(--gold);
+  border-color: rgba(232, 176, 75, 0.42);
+}
+.platinum {
+  background: rgba(229, 231, 235, 0.12);
+  color: #e8e8ea;
+  border-color: rgba(229, 231, 235, 0.4);
+}
+.diamond {
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.18), rgba(196, 181, 253, 0.16));
+  color: #cfeeff;
+  border-color: rgba(125, 211, 252, 0.5);
 }
 
-/* ---------- SOURCE NOTE ---------- */
 .source {
-  margin: 28px 0 80px;
+  margin: 36px 0 80px;
   font-size: 0.82rem;
   color: var(--text-muted);
   line-height: 1.7;
 }
 
-@media (max-width: 760px) {
-  .albumGrid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 560px) {
+  .summary {
+    grid-template-columns: 1fr;
   }
 }

@@ -32,8 +32,14 @@ const navItems = [
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${spaceGrotesk.variable}`}>
-      <body>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${geistSans.variable} ${spaceGrotesk.variable}`}
+    >
+      {/* suppressHydrationWarning: some browser extensions (e.g. Grammarly)
+          add attributes to <body> before React loads, which is harmless. */}
+      <body suppressHydrationWarning>
         {/* NAVIGATION BAR — shown on every page */}
         <header className="navbar">
           <nav className="navInner container">

@@ -1,25 +1,25 @@
 import Reveal from "../components/Reveal";
-import Vinyl from "../components/Vinyl";
+import AlbumCover from "../components/AlbumCover";
 
 export const metadata = { title: "Music — Burna Boy Stats" };
 
 // Verified studio-album discography (sources: Wikipedia, Apple Music, Billboard).
 const albums = [
-  { n: 1, title: "L.I.F.E", year: 2013, label: "Aristokrat Records" },
-  { n: 2, title: "On a Spaceship", year: 2015, label: "Spaceship" },
-  { n: 3, title: "Outside", year: 2018, label: "Atlantic · Spaceship" },
-  { n: 4, title: "African Giant", year: 2019, label: "Atlantic · Spaceship" },
-  { n: 5, title: "Twice as Tall", year: 2020, label: "Atlantic · Spaceship" },
-  { n: 6, title: "Love, Damini", year: 2022, label: "Atlantic · Spaceship" },
-  { n: 7, title: "I Told Them…", year: 2023, label: "Atlantic · Spaceship" },
-  { n: 8, title: "No Sign of Weakness", year: 2025, label: "Atlantic · Spaceship · Bad Habit" },
+  { title: "L.I.F.E", year: 2013, label: "Aristokrat Records" },
+  { title: "On a Spaceship", year: 2015, label: "Spaceship" },
+  { title: "Outside", year: 2018, label: "Atlantic · Spaceship" },
+  { title: "African Giant", year: 2019, label: "Atlantic · Spaceship" },
+  { title: "Twice as Tall", year: 2020, label: "Atlantic · Spaceship" },
+  { title: "Love, Damini", year: 2022, label: "Atlantic · Spaceship" },
+  { title: "I Told Them…", year: 2023, label: "Atlantic · Spaceship" },
+  { title: "No Sign of Weakness", year: 2025, label: "Atlantic · Spaceship · Bad Habit" },
 ];
 
-// A selection of his best-known singles across the years.
+// A selection of his best-known songs across the years.
 const songs = [
   "Ye", "On the Low", "Anybody", "Gbona", "Kilometre", "Last Last",
   "Common Person", "City Boys", "Sittin’ on Top of the World", "Higher",
-  "TaTaTa", "Update",
+  "TaTaTa", "Update", "Dai Dai",
 ];
 
 export default function MusicPage() {
@@ -33,13 +33,20 @@ export default function MusicPage() {
       </header>
 
       <div className="container">
-        {/* SPINNING VINYL FEATURE */}
+        {/* LATEST ALBUM */}
         <Reveal>
-          <div className="centerCol block">
-            <Vinyl size={190} />
-            <p className="lead" style={{ maxWidth: 460 }}>
-              From a Port Harcourt debut to chart-topping global records — explore
-              the discography of the African Giant.
+          <div className="panel block">
+            <p className="eyebrow" style={{ marginBottom: 8 }}>Latest Album</p>
+            <h2 className="secTitle">
+              No Sign of Weakness{" "}
+              <span style={{ color: "var(--text-muted)", fontWeight: 400, fontSize: "1rem" }}>
+                (2025)
+              </span>
+            </h2>
+            <p className="lead" style={{ marginTop: 12 }}>
+              His eighth studio album — 16 tracks featuring Travis Scott,
+              Shaboozey, Mick Jagger and Stromae. In 2026 he followed it with
+              “Dai Dai” alongside Shakira, the official FIFA World Cup 2026 song.
             </p>
           </div>
         </Reveal>
@@ -55,14 +62,11 @@ export default function MusicPage() {
             </h2>
           </Reveal>
           <Reveal delay={140}>
-            <div className="cardGrid">
-              {albums.map((a) => (
-                <div className="card" key={a.title}>
-                  <span className="cardNum">{String(a.n).padStart(2, "0")}</span>
-                  <h3 style={{ marginTop: 6 }}>{a.title}</h3>
-                  <p className="cardMeta">
-                    {a.year} · {a.label}
-                  </p>
+            <div className="coverGrid">
+              {albums.map((a, i) => (
+                <div key={a.title}>
+                  <AlbumCover title={a.title} year={a.year} index={i} />
+                  <p className="cardMeta" style={{ marginTop: 10 }}>{a.label}</p>
                 </div>
               ))}
             </div>
@@ -82,9 +86,7 @@ export default function MusicPage() {
           <Reveal delay={140}>
             <div className="chips">
               {songs.map((s) => (
-                <span className="chip" key={s}>
-                  {s}
-                </span>
+                <span className="chip" key={s}>{s}</span>
               ))}
             </div>
           </Reveal>
@@ -94,7 +96,7 @@ export default function MusicPage() {
               <a href="/certifications" style={{ color: "var(--gold)" }}>
                 Certifications
               </a>{" "}
-              page for his officially certified tracks.
+              page for his certified tracks across the world.
             </p>
           </Reveal>
         </div>

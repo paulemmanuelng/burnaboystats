@@ -1,125 +1,119 @@
 import styles from "./certifications.module.css";
 import Reveal from "../components/Reveal";
 import Equalizer from "../components/Equalizer";
+import CountUp from "../components/CountUp";
+import {
+  COUNTRIES, albums, singles, features,
+  tierOf, totalAwards, certifiedReleaseCount, countryCount,
+} from "../data/certifications";
 
-// ============================================================
-//  THE DATA
-//  All UK (BPI) certifications, verified June 2026.
-//  This is just a list (an "array") of objects. To add or edit
-//  a certification later, you only touch this data — not the
-//  layout code below. That separation is a core skill.
-// ============================================================
+const total = totalAwards();
 
-const albums = [
-  { title: "African Giant", year: 2019, cert: "Gold" },
-  { title: "Twice as Tall", year: 2020, cert: "Gold" },
-  { title: "Love, Damini", year: 2022, cert: "Gold" },
-  { title: "I Told Them...", year: 2023, cert: "Gold" },
-];
-
-// "tier" decides the badge colour; "cert" is the text we show.
-// The list is ordered from highest certification to lowest.
-const singles = [
-  { title: "Location", credit: "Dave ft. Burna Boy", role: "Featured", year: 2019, cert: "5× Platinum", tier: "platinum" },
-  { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", role: "Featured", year: 2019, cert: "3× Platinum", tier: "platinum" },
-  { title: "Last Last", role: "Lead", year: 2022, cert: "2× Platinum", tier: "platinum" },
-  { title: "Ye", role: "Lead", year: 2018, cert: "Platinum", tier: "platinum" },
-  { title: "For My Hand", credit: "ft. Ed Sheeran", role: "Lead", year: 2022, cert: "Platinum", tier: "platinum" },
-  { title: "Be Honest", credit: "Jorja Smith ft. Burna Boy", role: "Featured", year: 2019, cert: "Platinum", tier: "platinum" },
-  { title: "Play Play", credit: "J Hus ft. Burna Boy", role: "Featured", year: 2020, cert: "Platinum", tier: "platinum" },
-  { title: "On the Low", role: "Lead", year: 2018, cert: "Gold", tier: "gold" },
-  { title: "City Boys", role: "Lead", year: 2023, cert: "Gold", tier: "gold" },
-  { title: "Gbona", role: "Lead", year: 2018, cert: "Silver", tier: "silver" },
-  { title: "Anybody", role: "Lead", year: 2019, cert: "Silver", tier: "silver" },
-  { title: "Gum Body", credit: "ft. Jorja Smith", role: "Lead", year: 2019, cert: "Silver", tier: "silver" },
-  { title: "Secret", credit: "ft. Jeremih & Serani", role: "Lead", year: 2018, cert: "Silver", tier: "silver" },
-  { title: "Sittin' on Top of the World", credit: "ft. 21 Savage", role: "Lead", year: 2023, cert: "Silver", tier: "silver" },
-  { title: "Cheat on Me", credit: "ft. Dave", role: "Lead", year: 2023, cert: "Silver", tier: "silver" },
-  { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", role: "Featured", year: 2020, cert: "Silver", tier: "silver" },
-  { title: "Real Life", credit: "Stormzy ft. Burna Boy", role: "Featured", year: 2020, cert: "Silver", tier: "silver" },
-  { title: "Ginger", credit: "Wizkid ft. Burna Boy", role: "Featured", year: 2020, cert: "Silver", tier: "silver" },
-  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", role: "Featured", year: 2024, cert: "Silver", tier: "silver" },
-];
+// One release card: title + a flag badge for every country it's certified in.
+function CertCard({ item }) {
+  return (
+    <div className={styles.certCard}>
+      {item.year && <span className={styles.certYear}>{item.year}</span>}
+      <div className={styles.certHead}>
+        <span className={styles.certTitle}>{item.title}</span>
+        {item.credit && <span className={styles.certCredit}>{item.credit}</span>}
+      </div>
+      <div className={styles.badges}>
+        {item.certs.map((cert) => {
+          const country = COUNTRIES[cert.c];
+          return (
+            <span
+              key={cert.c}
+              className={`${styles.cBadge} ${styles[tierOf(cert.level)]}`}
+              title={`${country.name} — ${country.body}`}
+            >
+              <span className={styles.flag}>{country.flag}</span>
+              {cert.x ? `${cert.x}× ` : ""}
+              {cert.level}
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 export default function CertificationsPage() {
   return (
     <main>
-      {/* Page heading with an animated equalizer accent */}
       <header className="pageHeader container">
         <h1>
-          Certified <span className="accent">Songs</span>
+          Global <span className="accent">Certifications</span>
         </h1>
-        <p>Every Burna Boy track &amp; album certified by the UK&apos;s BPI</p>
-        <div className={styles.headerEq}>
+        <p>Every Burna Boy album &amp; single certified around the world</p>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: 22, height: 24 }}>
           <Equalizer bars={11} />
         </div>
       </header>
 
       <div className="container">
-        {/* -------------------- ALBUMS -------------------- */}
-        <h2 className={styles.sectionTitle}>Albums</h2>
+        {/* LIVE SUMMARY (numbers come straight from the data) */}
+        <div className={styles.summary}>
+          <div className={styles.sumCard}>
+            <span className={styles.sumNum}><CountUp end={total} /></span>
+            <span className={styles.sumLabel}>Total certifications</span>
+          </div>
+          <div className={styles.sumCard}>
+            <span className={styles.sumNum}><CountUp end={countryCount} /></span>
+            <span className={styles.sumLabel}>Countries</span>
+          </div>
+          <div className={styles.sumCard}>
+            <span className={styles.sumNum}><CountUp end={certifiedReleaseCount} /></span>
+            <span className={styles.sumLabel}>Certified releases</span>
+          </div>
+        </div>
+
+        {/* COUNTRY LEGEND */}
+        <div className={styles.legend}>
+          {Object.entries(COUNTRIES).map(([code, c]) => (
+            <span key={code} className={styles.legendItem}>
+              <span className={styles.flag}>{c.flag}</span>
+              {c.name} <em>({c.body})</em>
+            </span>
+          ))}
+        </div>
+
+        {/* ALBUMS */}
+        <h2 className={`secTitle ${styles.group}`}>
+          Albums <span className={styles.count}>({albums.length})</span>
+        </h2>
         <Reveal>
-          <div className={styles.albumGrid}>
-            {albums.map((album) => (
-              <div key={album.title} className={styles.albumCard}>
-                <span className={`${styles.badge} ${styles.gold}`}>
-                  {album.cert}
-                </span>
-                <h3>{album.title}</h3>
-                <p>{album.year}</p>
-              </div>
-            ))}
+          <div className={styles.certGrid}>
+            {albums.map((a) => <CertCard key={a.title} item={a} />)}
           </div>
         </Reveal>
 
-        {/* -------------------- SINGLES -------------------- */}
-        <h2 className={styles.sectionTitle}>
+        {/* SINGLES */}
+        <h2 className={`secTitle ${styles.group}`}>
           Singles <span className={styles.count}>({singles.length})</span>
         </h2>
-
-        {/* The wrapper lets the table scroll sideways on small phones */}
         <Reveal>
-          <div className={styles.tableWrap}>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>Song</th>
-                  <th>Role</th>
-                  <th className={styles.center}>Year</th>
-                  <th className={styles.right}>Certification</th>
-                </tr>
-              </thead>
-              <tbody>
-                {singles.map((song) => (
-                  <tr key={song.title}>
-                    <td>
-                      <span className={styles.songTitle}>{song.title}</span>
-                      {song.credit && (
-                        <span className={styles.credit}>{song.credit}</span>
-                      )}
-                    </td>
-                    <td>
-                      <span className={styles.role}>{song.role}</span>
-                    </td>
-                    <td className={styles.center}>{song.year}</td>
-                    <td className={styles.right}>
-                      <span className={`${styles.badge} ${styles[song.tier]}`}>
-                        {song.cert}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className={styles.certGrid}>
+            {singles.map((s) => <CertCard key={s.title} item={s} />)}
           </div>
         </Reveal>
 
-        {/* Source note — good practice for any data you present */}
+        {/* FEATURES */}
+        <h2 className={`secTitle ${styles.group}`}>
+          Featured Appearances <span className={styles.count}>({features.length})</span>
+        </h2>
+        <Reveal>
+          <div className={styles.certGrid}>
+            {features.map((f) => <CertCard key={f.title} item={f} />)}
+          </div>
+        </Reveal>
+
         <p className={styles.source}>
-          Data: British Phonographic Industry (BPI) certifications, verified
-          June 2026. Silver = 200,000 units · Gold = 400,000 · Platinum =
-          600,000. Burna Boy is also certified in the US, Canada, France,
-          Australia and beyond.
+          Sources: RIAA (US), BPI (UK), Music Canada, SNEP (France), BVMI
+          (Germany), NVPI (Netherlands), ARIA (Australia) &amp; RMNZ (New
+          Zealand), via Wikipedia — as of June 2026. Silver, Gold, Platinum and
+          Diamond reflect each country&apos;s own sales thresholds; “×” denotes
+          multi-platinum.
         </p>
       </div>
     </main>

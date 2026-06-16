@@ -3,12 +3,14 @@ import Waveform from "../components/Waveform";
 
 export const metadata = { title: "Tour — Burna Boy Stats" };
 
-// Verified, historic live milestones (sources: OkayAfrica, Pulse, Billboard).
+// Verified live milestones (sources: Billboard, Rolling Stone, OkayAfrica, Pulse).
 const moments = [
   { year: "2019", title: "SSE Arena, Wembley", text: "First Afrobeats artist to sell out the iconic London arena." },
-  { year: "2023", title: "London Stadium", text: "First African artist to sell out the 80,000-capacity stadium (3 June 2023), during the Love, Damini tour." },
-  { year: "2023", title: "Citi Field, New York", text: "First African artist to headline and sell out a stadium in the United States." },
+  { year: "2023", title: "London Stadium (sold out)", text: "First African artist to sell out the 80,000-capacity stadium (3 June 2023), on the Love, Damini tour." },
+  { year: "2023", title: "Citi Field, New York (sold out)", text: "First African artist to headline and sell out a stadium in the United States." },
   { year: "2023", title: "UEFA Champions League Final", text: "First African artist to perform at the Champions League final kick-off show, in Istanbul." },
+  { year: "2025", title: "Red Rocks Amphitheatre", text: "First Nigerian artist to headline the legendary Colorado venue, opening his biggest North American tour — which sold out shows including Toronto and wrapped in December 2025." },
+  { year: "2026", title: "FIFA World Cup Opening Ceremony", text: "Headlined the opener in Mexico City with Shakira, performing the official tournament song “Dai Dai.”" },
 ];
 
 export default function TourPage() {
@@ -16,44 +18,52 @@ export default function TourPage() {
     <main>
       <header className="pageHeader container">
         <h1>
-          Live &amp; <span className="accent">On Tour</span>
+          Live &amp; <span className="accent">On Stage</span>
         </h1>
-        <p>Where the African Giant has made history — and where he’s headed</p>
+        <p>From sold-out stadiums to the World Cup — the African Giant live</p>
       </header>
 
       <div className="container">
-        {/* CURRENT TOUR — link out to official sources (dates change often) */}
+        {/* MOST RECENT — WORLD CUP */}
         <Reveal>
-          <div className="panel block" style={{ padding: 34 }}>
-            <p className="eyebrow" style={{ marginBottom: 8 }}>Current Tour</p>
-            <h2 className="secTitle">No Sign of Weakness Tour</h2>
+          <div className="panel block">
+            <p className="eyebrow" style={{ marginBottom: 8 }}>Most Recent</p>
+            <h2 className="secTitle">2026 FIFA World Cup Opening Ceremony</h2>
             <p className="lead" style={{ marginTop: 12 }}>
-              Burna Boy is touring his eighth album across the world. Tour dates
-              change often, so we don’t list them here — always confirm the
-              latest dates and tickets on his official channels before booking.
+              On 11 June 2026, Burna Boy headlined the World Cup opening ceremony
+              in Mexico City alongside Shakira, performing “Dai Dai” — the
+              official song of the tournament, on one of the biggest stages in
+              the world.
+            </p>
+          </div>
+        </Reveal>
+
+        {/* TOUR STATUS */}
+        <Reveal>
+          <div className="block">
+            <p className="eyebrow">Touring</p>
+            <h2 className="secTitle">
+              The <span className="goldText">No Sign of Weakness</span> Tour
+            </h2>
+            <p className="lead" style={{ marginTop: 12 }}>
+              His most recent tour, supporting the 2025 album of the same name,
+              has wrapped. It was his biggest North American run to date — he
+              became the first Nigerian artist to headline Red Rocks Amphitheatre
+              and sold out arenas including back-to-back nights in Toronto,
+              finishing in December 2025.
             </p>
             <div className="panelActions">
-              <a
-                className="btn btnPrimary"
-                href="https://www.ticketmaster.com/burna-boy-tickets/artist/2486272"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Find Tickets ↗
+              <a className="btn btnPrimary" href="https://www.ticketmaster.com/burna-boy-tickets/artist/2486272" target="_blank" rel="noopener noreferrer">
+                Future Dates ↗
               </a>
-              <a
-                className="btn btnSecondary"
-                href="https://www.onaspaceship.com/tour"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Official Tour Page ↗
+              <a className="btn btnSecondary" href="https://www.onaspaceship.com/tour" target="_blank" rel="noopener noreferrer">
+                Official Site ↗
               </a>
             </div>
           </div>
         </Reveal>
 
-        {/* HISTORIC LIVE MOMENTS */}
+        {/* HISTORIC MOMENTS */}
         <div className="block">
           <Reveal>
             <p className="eyebrow">Legendary Live Moments</p>
@@ -79,14 +89,13 @@ export default function TourPage() {
         </div>
 
         <Reveal>
-          <div style={{ opacity: 0.5, padding: "8px 0 40px" }}>
+          <div style={{ opacity: 0.5, padding: "8px 0 24px" }}>
             <Waveform bars={56} />
           </div>
         </Reveal>
-
         <p className="lead" style={{ fontSize: "0.85rem", paddingBottom: 40 }}>
-          Live information correct as of June 2026. Always verify dates on
-          official ticketing before making travel plans.
+          Live information correct as of June 2026. Always verify any future
+          dates on official ticketing before making travel plans.
         </p>
       </div>
     </main>
