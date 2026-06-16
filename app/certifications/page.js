@@ -110,9 +110,10 @@ export default function CertificationsPage() {
 
         <p className={styles.source}>
           Sources: RIAA (US), BPI (UK), Music Canada, SNEP (France), BVMI
-          (Germany), NVPI (Netherlands), ARIA (Australia) &amp; RMNZ (New
-          Zealand), via Wikipedia — as of June 2026. Silver, Gold, Platinum and
-          Diamond reflect each country&apos;s own sales thresholds; “×” denotes
+          (Germany), NVPI (Netherlands), ARIA (Australia), RMNZ (New Zealand),
+          Promusicae (Spain), IFPI Denmark &amp; IFPI Norway — via Wikipedia and
+          national charts, as of June 2026. Silver, Gold, Platinum and Diamond
+          reflect each country&apos;s own sales thresholds; “×” denotes
           multi-platinum.
         </p>
       </div>

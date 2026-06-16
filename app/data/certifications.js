@@ -1,7 +1,8 @@
 // ============================================================
 //  GLOBAL CERTIFICATIONS DATA
 //  Sources: RIAA, BPI, Music Canada, SNEP, BVMI, NVPI, ARIA,
-//  RMNZ (via Wikipedia), verified June 2026.
+//  RMNZ, Promusicae, IFPI Denmark, IFPI Norway (via Wikipedia
+//  and national charts), verified June 2026.
 //  Each cert: { c: countryCode, level, x?: multiplier }
 // ============================================================
 
@@ -14,6 +15,9 @@ export const COUNTRIES = {
   NL: { name: "Netherlands", flag: "🇳🇱", body: "NVPI" },
   AU: { name: "Australia", flag: "🇦🇺", body: "ARIA" },
   NZ: { name: "New Zealand", flag: "🇳🇿", body: "RMNZ" },
+  ES: { name: "Spain", flag: "🇪🇸", body: "Promusicae" },
+  DK: { name: "Denmark", flag: "🇩🇰", body: "IFPI Denmark" },
+  NO: { name: "Norway", flag: "🇳🇴", body: "IFPI Norway" },
 };
 
 export const albums = [
@@ -29,7 +33,7 @@ export const albums = [
     { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" },
   ] },
   { title: "Twice as Tall", year: 2020, certs: [
-    { c: "UK", level: "Gold" },
+    { c: "UK", level: "Silver" },
   ] },
 ];
 
@@ -40,8 +44,8 @@ export const singles = [
     { c: "US", level: "Platinum" }, { c: "AU", level: "Platinum" }, { c: "DE", level: "Platinum" }, { c: "FR", level: "Diamond" },
   ] },
   { title: "On the Low", year: 2018, certs: [
-    { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum", x: 2 }, { c: "DE", level: "Platinum" },
-    { c: "NZ", level: "Platinum" }, { c: "UK", level: "Gold" }, { c: "US", level: "Gold" }, { c: "AU", level: "Gold" },
+    { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" },
+    { c: "DE", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "AU", level: "Gold" },
   ] },
   { title: "Ye", year: 2018, certs: [
     { c: "US", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "DE", level: "Platinum" },
@@ -56,10 +60,11 @@ export const singles = [
     { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" },
   ] },
   { title: "Gbona", year: 2018, certs: [
-    { c: "CA", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "UK", level: "Silver" },
+    { c: "CA", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "DE", level: "Gold" },
+    { c: "DK", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "It's Plenty", year: 2022, certs: [
-    { c: "CA", level: "Platinum" }, { c: "NZ", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" },
+    { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "Alone", year: 2022, certs: [
     { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" },
@@ -75,6 +80,12 @@ export const singles = [
   ] },
   { title: "Tested, Approved & Trusted", year: 2024, certs: [
     { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" },
+  ] },
+  { title: "Kilometre", year: 2021, certs: [
+    { c: "CA", level: "Gold" },
+  ] },
+  { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, certs: [
+    { c: "CA", level: "Gold" },
   ] },
   { title: "Talibans II", credit: "with Byron Messia", year: 2023, certs: [
     { c: "CA", level: "Gold" },
@@ -93,8 +104,12 @@ export const singles = [
 // Songs where Burna Boy is a featured/guest artist.
 export const features = [
   { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, certs: [
-    { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum" },
-    { c: "FR", level: "Platinum" }, { c: "US", level: "Gold" },
+    { c: "FR", level: "Diamond" }, { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 },
+    { c: "CA", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "US", level: "Gold" },
+  ] },
+  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", year: 2024, certs: [
+    { c: "FR", level: "Diamond" }, { c: "ES", level: "Platinum" }, { c: "AU", level: "Gold" },
+    { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "Be Honest", credit: "Jorja Smith ft. Burna Boy", year: 2019, certs: [
     { c: "FR", level: "Diamond" }, { c: "AU", level: "Platinum" }, { c: "UK", level: "Platinum" },
@@ -102,9 +117,6 @@ export const features = [
   ] },
   { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", year: 2019, certs: [
     { c: "UK", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum" }, { c: "AU", level: "Gold" },
-  ] },
-  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", year: 2024, certs: [
-    { c: "FR", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, certs: [
     { c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" },
@@ -125,7 +137,7 @@ export const features = [
     { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" },
   ] },
   { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2025, certs: [
-    { c: "UK", level: "Gold" },
+    { c: "UK", level: "Gold" }, { c: "NZ", level: "Gold" },
   ] },
   { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", year: 2024, certs: [
     { c: "FR", level: "Gold" },
