@@ -1,66 +1,164 @@
-import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
+import FloatingNotes from "./components/FloatingNotes";
+import Waveform from "./components/Waveform";
+import Equalizer from "./components/Equalizer";
+import Vinyl from "./components/Vinyl";
+import Marquee from "./components/Marquee";
+import Reveal from "./components/Reveal";
+import CountUp from "./components/CountUp";
+
+// The four biggest UK certifications, shown as a teaser on the homepage.
+const topCerts = [
+  { title: "Location", credit: "Dave ft. Burna Boy", cert: "5× Platinum", tier: "platinum" },
+  { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", cert: "3× Platinum", tier: "platinum" },
+  { title: "Last Last", credit: "Burna Boy", cert: "2× Platinum", tier: "platinum" },
+  { title: "Ye", credit: "Burna Boy", cert: "Platinum", tier: "platinum" },
+];
+
+const marqueeItems = [
+  "African Giant", "23× UK Certified", "Grammy Winner", "Odogwu",
+  "Afro-Fusion", "5× Platinum", "Twice as Tall", "Outside",
+];
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main>
+      {/* ================= HERO ================= */}
+      <section className={styles.hero}>
+        <div className={styles.heroBg} aria-hidden="true" />
+        <FloatingNotes />
+
+        <div className={`container ${styles.heroInner}`}>
+          <p className={styles.kicker}>
+            <Equalizer bars={4} className={styles.kickerEq} />
+            Grammy-Winning · Afro-Fusion Pioneer
           </p>
+          <h1 className={styles.title}>
+            BURNA <span className="goldText">BOY</span>
+          </h1>
+          <p className={styles.tagline}>
+            The African Giant — by the numbers. Every certified hit, every
+            milestone, one Afrobeats legend.
+          </p>
+          <div className={styles.heroButtons}>
+            <Link href="/certifications" className="btn btnPrimary">
+              View Certified Songs
+            </Link>
+            <Link href="/music" className="btn btnSecondary">
+              Explore the Music
+            </Link>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <Waveform bars={80} className={styles.heroWave} />
+        <span className={styles.scrollCue} aria-hidden="true">scroll</span>
+      </section>
+
+      {/* ================= MARQUEE ================= */}
+      <Marquee items={marqueeItems} />
+
+      {/* ================= STATS ================= */}
+      <section className={styles.section} id="stats">
+        <div className="container">
+          <Reveal>
+            <p className={styles.eyebrow}>By the Numbers</p>
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 className={styles.sectionTitle}>
+              A career in <span className="goldText">record-breaking</span> figures
+            </h2>
+          </Reveal>
+
+          <div className={styles.statGrid}>
+            <Reveal delay={0}>
+              <div className={styles.statCard}>
+                <span className={styles.statNum}><CountUp end={23} /></span>
+                <span className={styles.statLabel}>UK Certifications</span>
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <div className={styles.statCard}>
+                <span className={styles.statNum}><CountUp end={5} suffix="×" /></span>
+                <span className={styles.statLabel}>Platinum — “Location”</span>
+              </div>
+            </Reveal>
+            <Reveal delay={200}>
+              <div className={styles.statCard}>
+                <span className={styles.statNum}><CountUp end={8} /></span>
+                <span className={styles.statLabel}>Studio Albums</span>
+              </div>
+            </Reveal>
+            <Reveal delay={300}>
+              <div className={styles.statCard}>
+                <span className={styles.statNum}>2021</span>
+                <span className={styles.statLabel}>Grammy Winner</span>
+              </div>
+            </Reveal>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* ================= CERTIFICATIONS HIGHLIGHT ================= */}
+      <section className={styles.section}>
+        <div className={`container ${styles.certWrap}`}>
+          <div className={styles.certArt} aria-hidden="true">
+            <Vinyl size={300} />
+            <Equalizer bars={9} className={styles.certEq} />
+          </div>
+
+          <div>
+            <Reveal>
+              <p className={styles.eyebrow}>Certified Heat</p>
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 className={styles.sectionTitle}>
+                His biggest <span className="goldText">UK certifications</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <ul className={styles.certList}>
+                {topCerts.map((c) => (
+                  <li key={c.title} className={styles.certRow}>
+                    <div>
+                      <span className={styles.certTitle}>{c.title}</span>
+                      <span className={styles.certCredit}>{c.credit}</span>
+                    </div>
+                    <span className={`${styles.badge} ${styles[c.tier]}`}>
+                      {c.cert}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal delay={200}>
+              <Link href="/certifications" className={styles.textLink}>
+                View all 23 certifications →
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= CALL TO ACTION ================= */}
+      <section className={styles.cta}>
+        <div className="container">
+          <Reveal>
+            <div className={styles.ctaInner}>
+              <h2 className={styles.ctaTitle}>
+                Dive into the <span className="goldText">data</span>
+              </h2>
+              <p className={styles.ctaText}>
+                Explore the full discography, certifications and milestones of
+                the African Giant.
+              </p>
+              <Link href="/certifications" className="btn btnPrimary">
+                Explore the Stats
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </main>
   );
 }

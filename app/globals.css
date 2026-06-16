@@ -1,34 +1,36 @@
+/* ===========================================================
+   DESIGN SYSTEM  —  applies to every page
+   "Design tokens" (the variables below) keep the whole site
+   consistent: change a value once, it updates everywhere.
+   =========================================================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Surfaces */
+  --bg: #09090b;
+  --bg-soft: #131316;
+  --bg-soft-2: #1c1c21;
+  --border: #2a2a31;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+  /* Text */
+  --text: #f6f6f7;
+  --text-muted: #a1a1aa;
 
-html {
-  height: 100%;
-}
+  /* Brand accent — Burna Boy "African Giant" gold */
+  --gold: #e8b04b;
+  --gold-bright: #ffcf6b;
+  --gold-dim: #b8863a;
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+  /* Warm gradient used in backgrounds/art */
+  --grad-a: #e8b04b;
+  --grad-b: #ff7a3d;
+  --grad-c: #c0392b;
 
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Shape & depth */
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  --glow: 0 0 40px rgba(232, 176, 75, 0.25);
+
+  --max-width: 1160px;
 }
 
 * {
@@ -37,13 +39,333 @@ body {
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+  background: var(--bg);
+  font-family: var(--font-geist-sans), system-ui, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display), var(--font-geist-sans), sans-serif;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* Center content and cap its width. */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* A reusable text-gradient (used on accent words). */
+.goldText {
+  background: linear-gradient(120deg, var(--gold-bright), var(--gold), var(--grad-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* -----------------------------------------------------------
+   BUTTONS  (reusable across pages)
+   ----------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 52px;
+  padding: 0 30px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.btnPrimary {
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+  color: #1a1303;
+  box-shadow: 0 8px 30px rgba(232, 176, 75, 0.22);
+}
+.btnPrimary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 44px rgba(232, 176, 75, 0.4);
+}
+.btnSecondary {
+  border-color: var(--border);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.02);
+}
+.btnSecondary:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* -----------------------------------------------------------
+   NAVIGATION BAR
+   ----------------------------------------------------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(9, 9, 11, 0.7);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.navInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.brand {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+.brand span {
+  color: var(--gold);
+}
+.navLinks {
+  display: flex;
+  gap: 26px;
+  list-style: none;
+}
+.navLinks a {
+  position: relative;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+}
+.navLinks a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.2s ease;
+}
+.navLinks a:hover {
+  color: var(--text);
+}
+.navLinks a:hover::after {
+  width: 100%;
+}
+
+/* -----------------------------------------------------------
+   FOOTER
+   ----------------------------------------------------------- */
+.footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding: 36px 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+.footer .disclaimer {
+  max-width: 680px;
+  margin: 8px auto 0;
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+/* -----------------------------------------------------------
+   SHARED PAGE HEADER (used by the simpler pages)
+   ----------------------------------------------------------- */
+.pageHeader {
+  padding: 80px 0 36px;
+  text-align: center;
+}
+.pageHeader h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700;
+}
+.pageHeader h1 .accent {
+  color: var(--gold);
+}
+.pageHeader p {
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* ===========================================================
+   SCROLL-REVEAL  (toggled by the <Reveal> component)
+   =========================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===========================================================
+   ANIMATED MUSIC GRAPHICS  (reusable decorative components)
+   =========================================================== */
+
+/* Equalizer — bouncing bars */
+.equalizer {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 30px;
+}
+.equalizer span {
+  display: block;
+  width: 4px;
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(var(--gold-bright), var(--gold));
+  transform-origin: bottom;
+  animation: eqBounce 1s ease-in-out infinite;
+}
+
+/* Waveform — a long row of pulsing bars */
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  width: 100%;
+  height: 70px;
+}
+.waveform span {
+  flex: 1;
+  border-radius: 4px;
+  background: linear-gradient(var(--gold), var(--grad-b));
+  transform-origin: center;
+  animation: wavePulse 1.5s ease-in-out infinite;
+  opacity: 0.85;
+}
+
+/* Floating notes — drift upward in the background */
+.floatingNotes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.floatingNotes span {
+  position: absolute;
+  bottom: -40px;
+  color: rgba(232, 176, 75, 0.22);
+  animation: floatNote linear infinite;
+}
+
+/* Spinning vinyl record */
+.vinyl {
+  animation: spin 9s linear infinite;
+}
+
+/* Marquee — infinite horizontal scroller */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-soft);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marqueeTrack {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding: 16px 0;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+.marqueeItem {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.marqueeStar {
+  color: var(--gold);
+}
+
+/* ===========================================================
+   KEYFRAMES
+   =========================================================== */
+@keyframes eqBounce {
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
+}
+@keyframes wavePulse {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+@keyframes floatNote {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  12% { opacity: 0.7; }
+  88% { opacity: 0.7; }
+  100% { transform: translateY(-115vh) rotate(25deg); opacity: 0; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+@keyframes meshDrift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-4%, -3%) scale(1.12); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+/* ===========================================================
+   ACCESSIBILITY — respect users who prefer less motion
+   =========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .navLinks {
+    gap: 14px;
+    font-size: 0.82rem;
   }
 }

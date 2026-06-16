@@ -1,142 +1,271 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
+/* Styles for the HOMEPAGE only (scoped via the CSS module). */
 
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
+/* ================= HERO ================= */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 88vh;
   display: flex;
-  flex: 1;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  padding: 70px 0 130px;
 }
 
-.main {
+/* Animated, blurred colour blobs behind the hero (the "mesh"). */
+.heroBg {
+  position: absolute;
+  inset: -25%;
+  z-index: 0;
+  background:
+    radial-gradient(38% 38% at 25% 30%, rgba(232, 176, 75, 0.22), transparent 60%),
+    radial-gradient(42% 42% at 80% 22%, rgba(255, 122, 61, 0.16), transparent 60%),
+    radial-gradient(48% 48% at 60% 82%, rgba(192, 57, 43, 0.14), transparent 60%);
+  filter: blur(18px);
+  animation: meshDrift 18s ease-in-out infinite;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 22px;
+}
+.kickerEq {
+  height: 16px;
+}
+
+.title {
+  font-size: clamp(3.5rem, 14vw, 9rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.tagline {
+  max-width: 600px;
+  margin: 24px auto 0;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+.heroButtons {
   display: flex;
-  flex: 1;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
-}
-
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
   gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
   justify-content: center;
+  margin-top: 38px;
+  flex-wrap: wrap;
+}
+
+/* Waveform pinned along the bottom of the hero. */
+.heroWave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+  padding: 0 24px;
+  opacity: 0.55;
+  z-index: 1;
+}
+
+.scrollCue {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  z-index: 3;
+  animation: bob 2s ease-in-out infinite;
+}
+
+/* ================= GENERIC SECTION ================= */
+.section {
+  padding: 90px 0;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.sectionTitle {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  max-width: 20ch;
+}
+
+/* ================= STATS ================= */
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 48px;
+}
+
+.statCard {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 38px 24px;
+  text-align: center;
+  height: 100%;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.statCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-dim);
+}
+
+.statNum {
+  display: block;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.statLabel {
+  display: block;
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+/* ================= CERTIFICATIONS HIGHLIGHT ================= */
+.certWrap {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
+}
+
+.certArt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.certEq {
+  height: 38px;
+}
+
+.certList {
+  list-style: none;
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.certRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.certRow:hover {
+  border-color: var(--gold-dim);
+  transform: translateX(4px);
+}
+.certTitle {
+  display: block;
+  font-weight: 600;
+}
+.certCredit {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.textLink {
+  display: inline-block;
+  margin-top: 24px;
+  color: var(--gold);
+  font-weight: 600;
+}
+.textLink:hover {
+  text-decoration: underline;
+}
+
+/* Certification badges (same colour language as the full table). */
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
   border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+}
+.platinum {
+  background: rgba(229, 231, 235, 0.12);
+  color: #e5e7eb;
+  border-color: rgba(229, 231, 235, 0.4);
+}
+.gold {
+  background: rgba(232, 176, 75, 0.14);
+  color: var(--gold);
+  border-color: rgba(232, 176, 75, 0.45);
+}
+.silver {
+  background: rgba(148, 163, 184, 0.12);
+  color: #cbd5e1;
+  border-color: rgba(148, 163, 184, 0.35);
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+/* ================= CTA ================= */
+.cta {
+  padding: 30px 0 110px;
+}
+.ctaInner {
+  background: linear-gradient(135deg, rgba(232, 176, 75, 0.12), rgba(192, 57, 43, 0.1));
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 72px 40px;
+  text-align: center;
+}
+.ctaTitle {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+}
+.ctaText {
+  max-width: 520px;
+  margin: 16px auto 30px;
+  color: var(--text-muted);
+  font-size: 1.1rem;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+/* ================= RESPONSIVE ================= */
+@media (max-width: 880px) {
+  .certWrap {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  .statGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+@media (max-width: 520px) {
+  .statGrid {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,0 +1,156 @@
+/* Styles scoped to the Certifications page only. */
+
+.sectionTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 48px 0 20px;
+}
+
+.count {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.headerEq {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+  height: 26px;
+}
+
+/* ---------- ALBUMS (card grid) ---------- */
+.albumGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.albumCard {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  transition: 0.18s ease;
+}
+
+.albumCard:hover {
+  border-color: var(--gold-dim);
+  transform: translateY(-3px);
+}
+
+.albumCard h3 {
+  margin-top: 14px;
+  font-size: 1.15rem;
+}
+
+.albumCard p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- SINGLES TABLE ---------- */
+.tableWrap {
+  overflow-x: auto;          /* horizontal scroll on small screens */
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+
+.table th {
+  text-align: left;
+  padding: 16px 20px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+}
+
+.table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background: var(--bg-soft-2);
+}
+
+.songTitle {
+  display: block;
+  font-weight: 600;
+}
+
+.credit {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.role {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+/* ---------- CERTIFICATION BADGES ---------- */
+.badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.platinum {
+  background: rgba(229, 231, 235, 0.12);
+  color: #e5e7eb;
+  border-color: rgba(229, 231, 235, 0.4);
+}
+
+.gold {
+  background: rgba(232, 176, 75, 0.14);
+  color: var(--gold);
+  border-color: rgba(232, 176, 75, 0.45);
+}
+
+.silver {
+  background: rgba(148, 163, 184, 0.12);
+  color: #cbd5e1;
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+/* ---------- SOURCE NOTE ---------- */
+.source {
+  margin: 28px 0 80px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 760px) {
+  .albumGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
