@@ -1,24 +1,13 @@
 import Reveal from "../components/Reveal";
-import AlbumCover from "../components/AlbumCover";
+import Discography from "../components/Discography";
+import { albums } from "../data/albums";
 
 export const metadata = { title: "Music — Burna Boy Stats" };
-
-// Verified studio-album discography (sources: Wikipedia, Apple Music, Billboard).
-const albums = [
-  { title: "L.I.F.E", year: 2013, label: "Aristokrat Records" },
-  { title: "On a Spaceship", year: 2015, label: "Spaceship" },
-  { title: "Outside", year: 2018, label: "Atlantic · Spaceship" },
-  { title: "African Giant", year: 2019, label: "Atlantic · Spaceship" },
-  { title: "Twice as Tall", year: 2020, label: "Atlantic · Spaceship" },
-  { title: "Love, Damini", year: 2022, label: "Atlantic · Spaceship" },
-  { title: "I Told Them…", year: 2023, label: "Atlantic · Spaceship" },
-  { title: "No Sign of Weakness", year: 2025, label: "Atlantic · Spaceship · Bad Habit" },
-];
 
 // A selection of his best-known songs across the years.
 const songs = [
   "Ye", "On the Low", "Anybody", "Gbona", "Kilometre", "Last Last",
-  "Common Person", "City Boys", "Sittin’ on Top of the World", "Higher",
+  "Common Person", "City Boys", "Sittin' on Top of the World", "Higher",
   "TaTaTa", "Update", "Dai Dai",
 ];
 
@@ -61,16 +50,10 @@ export default function MusicPage() {
               Studio <span className="goldText">albums</span>
             </h2>
           </Reveal>
-          <Reveal delay={140}>
-            <div className="coverGrid">
-              {albums.map((a, i) => (
-                <div key={a.title}>
-                  <AlbumCover title={a.title} year={a.year} index={i} />
-                  <p className="cardMeta" style={{ marginTop: 10 }}>{a.label}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
+          <p className="cardMeta" style={{ marginTop: 6, marginBottom: 6 }}>
+            Tap an album to see its full tracklist.
+          </p>
+          <Discography albums={albums} />
         </div>
 
         {/* SIGNATURE SONGS */}

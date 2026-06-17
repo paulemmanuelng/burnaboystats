@@ -11,15 +11,16 @@ const PALETTES = [
   ["#8b5cf6", "#312e81"],
 ];
 
-export default function AlbumCover({ title, year, index = 0 }) {
+export default function AlbumCover({ title, year, index = 0, compact = false }) {
   const [a, b] = PALETTES[index % PALETTES.length];
   return (
     <div
       className="albumCover"
       style={{ backgroundImage: `linear-gradient(135deg, ${a}, ${b})` }}
     >
-      <span className="albumCoverYear">{year}</span>
-      <span className="albumCoverTitle">{title}</span>
+      {/* compact = a plain gradient swatch (used as a small thumbnail) */}
+      {!compact && <span className="albumCoverYear">{year}</span>}
+      {!compact && <span className="albumCoverTitle">{title}</span>}
     </div>
   );
 }

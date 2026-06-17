@@ -55,6 +55,28 @@ body {
   overflow-x: hidden;
 }
 
+/* Cinematic atmosphere behind everything: a warm top glow + deep-red base
+   glow, then a soft vignette darkening the screen edges. (position:fixed
+   keeps these pseudo-elements out of the body's flex flow.) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(110% 70% at 50% -10%, rgba(232, 176, 75, 0.10), transparent 55%),
+    radial-gradient(100% 80% at 50% 115%, rgba(192, 57, 43, 0.10), transparent 55%);
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  box-shadow: inset 0 0 200px 40px rgba(0, 0, 0, 0.7);
+}
+
 h1, h2, h3 {
   font-family: var(--font-display), var(--font-geist-sans), sans-serif;
   line-height: 1.05;
@@ -126,9 +148,8 @@ a {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(9, 9, 11, 0.7);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(to bottom, rgba(9, 9, 11, 0.9), rgba(9, 9, 11, 0));
+  border-bottom: none;
 }
 .navInner {
   display: flex;
@@ -141,6 +162,7 @@ a {
   font-weight: 700;
   font-size: 1.3rem;
   letter-spacing: 0.02em;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
 }
 .brand span {
   color: var(--gold);
@@ -152,8 +174,11 @@ a {
 }
 .navLinks a {
   position: relative;
-  font-size: 0.95rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   color: var(--text-muted);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
   transition: color 0.15s ease;
 }
 .navLinks a::after {
@@ -456,6 +481,120 @@ a.fact:hover {
   font-size: 1.05rem;
   line-height: 1.1;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
+/* Clickable album cover button (resets default button styling) */
+.coverBtn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: transform 0.2s ease;
+}
+.coverBtn:hover {
+  transform: translateY(-5px);
+}
+.coverBtn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* ---- Tracklist modal ---- */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.2s ease;
+}
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  animation: modalPop 0.25s ease;
+}
+.modalClose {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-soft-2);
+  color: var(--text);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.modalClose:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.modalHead {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 22px;
+  padding-right: 40px;
+}
+.modalCover {
+  width: 104px;
+  flex-shrink: 0;
+}
+.modalTitle {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.trackList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.track {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--border);
+}
+.track:last-child {
+  border-bottom: none;
+}
+.trackNum {
+  font-family: var(--font-display), sans-serif;
+  color: var(--gold);
+  font-size: 0.82rem;
+  min-width: 22px;
+  text-align: right;
+}
+.trackName {
+  font-size: 0.95rem;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes modalPop {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: none; }
 }
 
 /* ===========================================================

@@ -4,10 +4,11 @@
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: 88vh;
+  min-height: 100vh;
+  margin-top: -68px; /* slide the art up behind the transparent nav */
   display: flex;
   align-items: center;
-  padding: 70px 0 130px;
+  padding: 130px 0 150px;
 }
 
 /* Animated, blurred colour blobs behind the hero (the "mesh"). */
@@ -16,11 +17,22 @@
   inset: -25%;
   z-index: 0;
   background:
-    radial-gradient(38% 38% at 25% 30%, rgba(232, 176, 75, 0.22), transparent 60%),
-    radial-gradient(42% 42% at 80% 22%, rgba(255, 122, 61, 0.16), transparent 60%),
-    radial-gradient(48% 48% at 60% 82%, rgba(192, 57, 43, 0.14), transparent 60%);
-  filter: blur(18px);
+    radial-gradient(38% 38% at 22% 28%, rgba(232, 176, 75, 0.30), transparent 60%),
+    radial-gradient(44% 44% at 82% 20%, rgba(255, 122, 61, 0.22), transparent 60%),
+    radial-gradient(55% 55% at 60% 85%, rgba(192, 57, 43, 0.20), transparent 60%),
+    radial-gradient(40% 40% at 50% 50%, rgba(232, 176, 75, 0.10), transparent 70%);
+  filter: blur(20px);
   animation: meshDrift 18s ease-in-out infinite;
+}
+
+/* Cinematic vignette darkening the hero edges. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(115% 85% at 50% 38%, transparent 42%, rgba(0, 0, 0, 0.7) 100%);
 }
 
 .heroInner {
@@ -44,9 +56,11 @@
 }
 
 .title {
-  font-size: clamp(3.5rem, 14vw, 9rem);
+  font-size: clamp(4rem, 16vw, 10.5rem);
   font-weight: 700;
   letter-spacing: -0.04em;
+  line-height: 0.92;
+  text-shadow: 0 0 80px rgba(232, 176, 75, 0.18);
 }
 
 .tagline {
