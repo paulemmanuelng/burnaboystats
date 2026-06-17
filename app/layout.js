@@ -69,6 +69,17 @@ export default function RootLayout({ children }) {
               connected to Burna Boy or his representatives. All graphics are
               original; no copyrighted images or audio are used.
             </p>
+            <p className="builtBy">
+              Built by{" "}
+              <a
+                href="https://www.tiktok.com/@paulemmanuelng"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footerLink"
+              >
+                Paul Emmanuel
+              </a>
+            </p>
           </div>
         </footer>
       </body>

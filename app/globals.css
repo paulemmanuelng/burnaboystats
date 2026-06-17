@@ -215,6 +215,17 @@ a {
   font-size: 0.78rem;
   opacity: 0.7;
 }
+.footer .builtBy {
+  margin-top: 14px;
+  font-size: 0.85rem;
+}
+.footerLink {
+  color: var(--gold);
+  font-weight: 600;
+}
+.footerLink:hover {
+  text-decoration: underline;
+}
 
 /* -----------------------------------------------------------
    SHARED PAGE HEADER (used by the simpler pages)
