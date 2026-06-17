@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import AlbumCover from "./AlbumCover";
 
-export default function Discography({ albums }) {
+export default function Discography({ albums, indexOffset = 0 }) {
   // Which album's tracklist is open (index), or null for none.
   const [open, setOpen] = useState(null);
   const album = open !== null ? albums[open] : null;
@@ -32,7 +32,7 @@ export default function Discography({ albums }) {
               onClick={() => setOpen(i)}
               aria-label={`View the tracklist for ${a.title}`}
             >
-              <AlbumCover title={a.title} year={a.year} index={i} />
+              <AlbumCover title={a.title} year={a.year} index={indexOffset + i} />
             </button>
             <p className="cardMeta" style={{ marginTop: 10 }}>{a.label}</p>
           </div>
@@ -55,7 +55,7 @@ export default function Discography({ albums }) {
             </button>
             <div className="modalHead">
               <div className="modalCover">
-                <AlbumCover title={album.title} year={album.year} index={open} compact />
+                <AlbumCover title={album.title} year={album.year} index={indexOffset + open} compact />
               </div>
               <div>
                 <p className="eyebrow" style={{ marginBottom: 6 }}>Album · {album.year}</p>

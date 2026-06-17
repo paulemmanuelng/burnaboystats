@@ -102,3 +102,22 @@ export const albums = [
     ],
   },
 ];
+
+// Extended plays (EPs), with verified tracklists.
+export const eps = [
+  {
+    title: "Redemption",
+    year: 2016,
+    label: "Spaceship",
+    tracks: [
+      "Mary Jane", "Body to Body", "We On", "Plenty Song",
+      "Fa So La Ti Do", "Pree Me", "Boshe Nlo",
+    ],
+  },
+  {
+    title: "Steel & Copper",
+    year: 2019,
+    label: "with DJDS · Spaceship",
+    tracks: ["34", "Innocent Man", "Darko", "Thuggin"],
+  },
+];

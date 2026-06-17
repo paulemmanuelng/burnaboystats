@@ -1,6 +1,6 @@
 import Reveal from "../components/Reveal";
 import Discography from "../components/Discography";
-import { albums } from "../data/albums";
+import { albums, eps } from "../data/albums";
 
 export const metadata = { title: "Music — Burna Boy Stats" };
 
@@ -54,6 +54,22 @@ export default function MusicPage() {
             Tap an album to see its full tracklist.
           </p>
           <Discography albums={albums} />
+        </div>
+
+        {/* EPs */}
+        <div className="block">
+          <Reveal>
+            <p className="eyebrow">Also Released</p>
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 className="secTitle">
+              <span className="goldText">EPs</span>
+            </h2>
+          </Reveal>
+          <p className="cardMeta" style={{ marginTop: 6, marginBottom: 6 }}>
+            Tap an EP to see its tracklist.
+          </p>
+          <Discography albums={eps} indexOffset={4} />
         </div>
 
         {/* SIGNATURE SONGS */}
