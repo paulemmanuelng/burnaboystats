@@ -3,6 +3,7 @@
 export const albums = [
   {
     title: "L.I.F.E",
+    spotify: "https://open.spotify.com/album/7pqUKMWH6P7AJPIjUiphTS",
     year: 2013,
     label: "Aristokrat Records",
     tracks: [
@@ -16,6 +17,7 @@ export const albums = [
   },
   {
     title: "On a Spaceship",
+    spotify: "https://open.spotify.com/album/6NW4thIIMVcb6Wedxqu6ev",
     year: 2015,
     label: "Spaceship",
     tracks: [
@@ -29,6 +31,7 @@ export const albums = [
   },
   {
     title: "Outside",
+    spotify: "https://open.spotify.com/album/5SCK5p3Rqgg0FwTmAurrcp",
     year: 2018,
     label: "Atlantic · Spaceship",
     tracks: [
@@ -40,6 +43,7 @@ export const albums = [
   },
   {
     title: "African Giant",
+    spotify: "https://open.spotify.com/album/79lrrUvUyIuOD12b5taQVP",
     year: 2019,
     label: "Atlantic · Spaceship",
     tracks: [
@@ -53,6 +57,7 @@ export const albums = [
   },
   {
     title: "Twice as Tall",
+    spotify: "https://open.spotify.com/album/218CJKDCszsQQj7Amk7vIu",
     year: 2020,
     label: "Atlantic · Spaceship",
     tracks: [
@@ -65,6 +70,7 @@ export const albums = [
   },
   {
     title: "Love, Damini",
+    spotify: "https://open.spotify.com/album/6kgDkAupBVRSqbJPUaTJwQ",
     year: 2022,
     label: "Atlantic · Spaceship",
     tracks: [
@@ -79,6 +85,7 @@ export const albums = [
   },
   {
     title: "I Told Them…",
+    spotify: "https://open.spotify.com/album/1JzjwUKkPsdHg1SQ7qa5hc",
     year: 2023,
     label: "Atlantic · Spaceship",
     tracks: [
@@ -91,6 +98,7 @@ export const albums = [
   },
   {
     title: "No Sign of Weakness",
+    spotify: "https://open.spotify.com/album/35EMM8QwKJ2qXmoUJnUSNf",
     year: 2025,
     label: "Atlantic · Spaceship · Bad Habit",
     tracks: [
@@ -107,6 +115,7 @@ export const albums = [
 export const eps = [
   {
     title: "Redemption",
+    spotify: "https://open.spotify.com/album/50qNx4v7MKypMx5wGynQ8j",
     year: 2016,
     label: "Spaceship",
     tracks: [
@@ -116,6 +125,7 @@ export const eps = [
   },
   {
     title: "Steel & Copper",
+    spotify: "https://open.spotify.com/album/7z1KSudQMWVOFpSjhxL6Qm",
     year: 2019,
     label: "with DJDS · Spaceship",
     tracks: ["34", "Innocent Man", "Darko", "Thuggin"],
