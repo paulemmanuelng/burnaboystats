@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styles from "./page.module.css";
-import FloatingNotes from "./components/FloatingNotes";
 import Waveform from "./components/Waveform";
 import Equalizer from "./components/Equalizer";
 import Vinyl from "./components/Vinyl";
@@ -27,35 +26,47 @@ const marqueeItems = [
 export default function Home() {
   return (
     <main>
-      {/* ================= HERO ================= */}
+      {/* ================= HERO (festival poster) ================= */}
       <section className={styles.hero}>
         <div className={styles.heroBg} aria-hidden="true" />
-        <FloatingNotes />
+        <span className={styles.heroWatermark} aria-hidden="true">Odogwu</span>
 
         <div className={`container ${styles.heroInner}`}>
-          <p className={styles.kicker}>
-            <Equalizer bars={4} className={styles.kickerEq} />
-            Grammy-Winning · Afro-Fusion Pioneer
-          </p>
+          <div className={styles.heroTop}>
+            <span className={styles.metaLabel}>01 — Afro-Fusion</span>
+            <span className={styles.metaLabel}>Est. 2013 · Grammy Winner</span>
+          </div>
+
           <h1 className={styles.title}>
-            BURNA <span className="goldText">BOY</span>
+            Burna <span className="goldText">Boy</span>
           </h1>
-          <p className={styles.tagline}>
-            The African Giant — by the numbers. Every certified hit, every
-            milestone, one Afrobeats legend.
-          </p>
-          <div className={styles.heroButtons}>
-            <Link href="/certifications" className="btn btnPrimary">
-              View Certifications
-            </Link>
-            <Link href="/music" className="btn btnSecondary">
-              Explore the Music
-            </Link>
+
+          <div className={styles.heroRule} aria-hidden="true" />
+
+          <div className={styles.heroFoot}>
+            <p className={styles.tagline}>
+              The African Giant — every certified hit, every milestone, by the
+              numbers.
+            </p>
+            <div className={styles.heroButtons}>
+              <Link href="/certifications" className="btn btnPrimary">
+                View Certifications
+              </Link>
+              <Link href="/music" className="btn btnSecondary">
+                Explore Music
+              </Link>
+            </div>
+          </div>
+
+          <div className={styles.heroStats}>
+            <span className={styles.heroStat}><b>{total}</b> Certifications</span>
+            <span className={styles.heroStat}><b>8</b> Albums</span>
+            <span className={styles.heroStat}><b>{countryCount}</b> Countries</span>
+            <span className={styles.heroStat}><b>2021</b> Grammy</span>
           </div>
         </div>
 
-        <Waveform bars={80} className={styles.heroWave} />
-        <span className={styles.scrollCue} aria-hidden="true">scroll</span>
+        <Waveform bars={90} className={styles.heroWave} />
       </section>
 
       {/* ================= WORLD CUP NEWS BANNER ================= */}

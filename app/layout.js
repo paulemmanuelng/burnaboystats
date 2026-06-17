@@ -1,4 +1,4 @@
-import { Geist, Space_Grotesk } from "next/font/google";
+import { Geist, Space_Grotesk, Anton, Space_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
@@ -8,10 +8,24 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-// Display font — bold and modern, used for big headings.
+// Display font — mid-level headings.
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-display",
   subsets: ["latin"],
+});
+
+// Poster font — huge condensed type for the festival-poster headlines.
+const anton = Anton({
+  variable: "--font-anton",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+// Monospace — editorial labels, tickers and buttons.
+const spaceMono = Space_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata = {
@@ -35,11 +49,14 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${spaceGrotesk.variable}`}
+      className={`${geistSans.variable} ${spaceGrotesk.variable} ${anton.variable} ${spaceMono.variable}`}
     >
       {/* suppressHydrationWarning: some browser extensions (e.g. Grammarly)
           add attributes to <body> before React loads, which is harmless. */}
       <body suppressHydrationWarning>
+        {/* Subtle film-grain texture overlay (sits behind content) */}
+        <div className="grain" aria-hidden="true" />
+
         {/* NAVIGATION BAR — shown on every page */}
         <header className="navbar">
           <nav className="navInner container">

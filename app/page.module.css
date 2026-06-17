@@ -17,12 +17,10 @@
   inset: -25%;
   z-index: 0;
   background:
-    radial-gradient(38% 38% at 22% 28%, rgba(232, 176, 75, 0.30), transparent 60%),
-    radial-gradient(44% 44% at 82% 20%, rgba(255, 122, 61, 0.22), transparent 60%),
-    radial-gradient(55% 55% at 60% 85%, rgba(192, 57, 43, 0.20), transparent 60%),
-    radial-gradient(40% 40% at 50% 50%, rgba(232, 176, 75, 0.10), transparent 70%);
-  filter: blur(20px);
-  animation: meshDrift 18s ease-in-out infinite;
+    radial-gradient(45% 50% at 80% 16%, rgba(232, 176, 75, 0.18), transparent 60%),
+    radial-gradient(42% 46% at 10% 90%, rgba(192, 57, 43, 0.14), transparent 60%);
+  filter: blur(24px);
+  animation: meshDrift 20s ease-in-out infinite;
 }
 
 /* Cinematic vignette darkening the hero edges. */
@@ -38,7 +36,7 @@
 .heroInner {
   position: relative;
   z-index: 2;
-  text-align: center;
+  text-align: left;
 }
 
 .kicker {
@@ -56,18 +54,21 @@
 }
 
 .title {
-  font-size: clamp(4rem, 16vw, 10.5rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 0.92;
-  text-shadow: 0 0 80px rgba(232, 176, 75, 0.18);
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(4.5rem, 19vw, 13rem);
+  line-height: 0.82;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  margin: 18px 0 0;
+  text-shadow: 0 0 90px rgba(232, 176, 75, 0.15);
 }
 
 .tagline {
-  max-width: 600px;
-  margin: 24px auto 0;
+  max-width: 480px;
+  margin: 0;
   color: var(--text-muted);
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
 }
 
 .heroButtons {
@@ -104,23 +105,89 @@
   animation: bob 2s ease-in-out infinite;
 }
 
+/* ---- Festival-poster hero pieces ---- */
+.heroTop {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+}
+.metaLabel {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.heroRule {
+  height: 1px;
+  background: var(--border);
+  margin: 26px 0;
+}
+.heroFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.heroStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 36px;
+}
+.heroStat {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.heroStat b {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-right: 8px;
+}
+.heroWatermark {
+  position: absolute;
+  right: -2%;
+  bottom: -7%;
+  z-index: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-size: 28vw;
+  line-height: 1;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.025);
+  pointer-events: none;
+  letter-spacing: 0.02em;
+}
+
 /* ================= GENERIC SECTION ================= */
 .section {
   padding: 90px 0;
 }
 
 .eyebrow {
+  font-family: var(--font-mono), monospace;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
   color: var(--gold);
   margin-bottom: 14px;
 }
 
 .sectionTitle {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 700;
-  max-width: 20ch;
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  max-width: 22ch;
 }
 
 /* ================= STATS ================= */
@@ -147,9 +214,9 @@
 
 .statNum {
   display: block;
-  font-family: var(--font-display), sans-serif;
-  font-size: clamp(2.4rem, 6vw, 3.4rem);
-  font-weight: 700;
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(2.8rem, 7vw, 4rem);
+  font-weight: 400;
   color: var(--gold);
   line-height: 1;
 }
@@ -157,7 +224,10 @@
   display: block;
   margin-top: 12px;
   color: var(--text-muted);
-  font-size: 0.92rem;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
 }
 
 /* ================= CERTIFICATIONS HIGHLIGHT ================= */
