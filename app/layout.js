@@ -1,5 +1,6 @@
 import { Geist, Space_Grotesk, Anton, Space_Mono } from "next/font/google";
 import Nav from "./components/Nav";
+import { siteUrl } from "./site";
 import "./globals.css";
 
 // Body font — clean and readable.
@@ -29,7 +30,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://burnaboystats.com"),
+  metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
   title: "Burna Boy Stats — Unofficial Fan Site",
   description:
@@ -53,7 +54,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Burna Boy Stats",
-  url: "https://burnaboystats.com",
+  url: siteUrl,
   description:
     "An unofficial fan site tracking the certifications, discography and milestones of Grammy-winning Nigerian superstar Burna Boy.",
   about: {
