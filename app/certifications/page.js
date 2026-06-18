@@ -7,6 +7,17 @@ import {
   tierOf, totalAwards, certifiedReleaseCount, countryCount,
 } from "../data/certifications";
 
+export const metadata = {
+  title: "Burna Boy Certifications — Gold, Platinum & Diamond Awards Worldwide",
+  description:
+    "The complete list of Burna Boy's music certifications — 130+ Gold, Platinum and Diamond awards across 17 countries (RIAA, BPI, SNEP, Music Canada, TCSN and more).",
+  alternates: { canonical: "/certifications" },
+  openGraph: {
+    title: "Burna Boy Certifications — Every Gold, Platinum & Diamond",
+    description: "Every certified Burna Boy song and album across 17 countries.",
+  },
+};
+
 const total = totalAwards();
 
 // A small flag + level badge.

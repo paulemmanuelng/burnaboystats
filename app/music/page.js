@@ -2,7 +2,13 @@ import Reveal from "../components/Reveal";
 import Discography from "../components/Discography";
 import { albums, eps } from "../data/albums";
 
-export const metadata = { title: "Music — Burna Boy Stats" };
+export const metadata = {
+  title: "Burna Boy Discography — Albums, EPs & Songs",
+  description:
+    "Burna Boy's full discography: 8 studio albums (L.I.F.E to No Sign of Weakness), 2 EPs, tracklists, biggest hits and guest features.",
+  alternates: { canonical: "/music" },
+  openGraph: { title: "Burna Boy Discography", description: "Albums, EPs, tracklists and hits." },
+};
 
 // A selection of his best-known songs across the years.
 const songs = [

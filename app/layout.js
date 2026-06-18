@@ -30,6 +30,7 @@ const spaceMono = Space_Mono({
 
 export const metadata = {
   metadataBase: new URL("https://burnaboystats.com"),
+  alternates: { canonical: "/" },
   title: "Burna Boy Stats — Unofficial Fan Site",
   description:
     "Burna Boy Stats: an unofficial fan site tracking the certifications, music and stats of Grammy-winning Nigerian superstar Burna Boy.",
@@ -47,6 +48,22 @@ export const metadata = {
   },
 };
 
+// Structured data (JSON-LD) so Google understands the site and its subject.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Burna Boy Stats",
+  url: "https://burnaboystats.com",
+  description:
+    "An unofficial fan site tracking the certifications, discography and milestones of Grammy-winning Nigerian superstar Burna Boy.",
+  about: {
+    "@type": "MusicGroup",
+    name: "Burna Boy",
+    alternateName: "Damini Ebunoluwa Ogulu",
+    genre: ["Afrobeats", "Afro-fusion"],
+  },
+};
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -59,6 +76,12 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning>
         {/* Subtle film-grain texture overlay (sits behind content) */}
         <div className="grain" aria-hidden="true" />
+
+        {/* Structured data for search engines */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
 
         {/* NAVIGATION BAR — shown on every page */}
         <Nav />

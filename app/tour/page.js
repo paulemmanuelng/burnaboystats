@@ -1,7 +1,13 @@
 import Reveal from "../components/Reveal";
 import Waveform from "../components/Waveform";
 
-export const metadata = { title: "Tour — Burna Boy Stats" };
+export const metadata = {
+  title: "Burna Boy Live — Tour & Historic Performances",
+  description:
+    "Burna Boy's biggest live moments: sold-out stadiums (London Stadium, Citi Field), the Grammys, and the 2026 FIFA World Cup opening ceremony.",
+  alternates: { canonical: "/tour" },
+  openGraph: { title: "Burna Boy Live", description: "Stadiums, Grammys and the World Cup." },
+};
 
 // Verified live milestones (sources: Billboard, Rolling Stone, OkayAfrica, Pulse).
 const moments = [
