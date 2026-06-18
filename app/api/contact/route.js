@@ -1,7 +1,7 @@
 import { siteUrl } from "../../site";
 
 // Recipient lives on the SERVER only — never shipped to the browser.
-// Override it in Vercel with a CONTACT_EMAIL env var to keep it out of the repo too.
+// Override in Vercel with a CONTACT_EMAIL env var to keep it out of the repo too.
 const TO = process.env.CONTACT_EMAIL || "ukpakaemmanuel@gmail.com";
 
 export async function POST(req) {
@@ -23,6 +23,7 @@ export async function POST(req) {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        "User-Agent": "Mozilla/5.0 (BurnaBoyStats contact form)",
         Origin: siteUrl,
         Referer: `${siteUrl}/contact`,
       },
@@ -33,9 +34,15 @@ export async function POST(req) {
         _subject: "New message from Burna Boy Stats",
       }),
     });
-    if (!res.ok) throw new Error("Upstream error");
-    return Response.json({ ok: true });
-  } catch {
-    return Response.json({ error: "Failed to send" }, { status: 502 });
+    const out = await res.json().catch(() => ({}));
+    if (out && out.success === "true") {
+      return Response.json({ ok: true });
+    }
+    return Response.json(
+      { error: out.message || "Send failed", upstreamStatus: res.status },
+      { status: 502 }
+    );
+  } catch (e) {
+    return Response.json({ error: `Network error: ${e.message}` }, { status: 502 });
   }
 }
