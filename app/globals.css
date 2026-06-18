@@ -195,11 +195,11 @@ a {
 .navLinks a {
   position: relative;
   font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--text-muted);
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
   transition: color 0.15s ease;
 }
 .navLinks a::after {
@@ -213,7 +213,7 @@ a {
   transition: width 0.2s ease;
 }
 .navLinks a:hover {
-  color: var(--text);
+  color: var(--gold);
 }
 .navLinks a:hover::after {
   width: 100%;
