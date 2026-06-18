@@ -195,6 +195,15 @@ export const features = [
   { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, certs: [
     { c: "AU", level: "Gold" },
   ] },
+  { title: "Enjoy Yourself (Remix)", credit: "Pop Smoke ft. Burna Boy", year: 2020, certs: [
+    { c: "NZ", level: "Gold" },
+  ] },
+  { title: "Rollin'", credit: "Mist ft. Burna Boy", year: 2021, certs: [
+    { c: "UK", level: "Silver" },
+  ] },
+  { title: "Baddest", credit: "AKA ft. Burna Boy, Khuli Chana & Yanga Chief", year: 2019, certs: [
+    { c: "ZA", level: "Gold" },
+  ] },
   { title: "All Eyes on Me", credit: "AKA ft. Burna Boy, Da L.E.S & JR", year: 2014, certs: [
     { c: "ZA", level: "Platinum" },
   ] },
