@@ -32,7 +32,12 @@ const spaceMono = Space_Mono({
 export const metadata = {
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
-  verification: { google: "2XOJ-X5bZw0xz0FThjWumiTpcwV3GOVU37g7M_NpxbE" },
+  verification: {
+    google: [
+      "2XOJ-X5bZw0xz0FThjWumiTpcwV3GOVU37g7M_NpxbE",
+      "FVrWwEIrAzlM4eureFu-RMjQhgQOvVKRmNRwPjJ5b8I",
+    ],
+  },
   title: "Burna Boy Stats — Unofficial Fan Site",
   description:
     "Burna Boy Stats: an unofficial fan site tracking the certifications, music and stats of Grammy-winning Nigerian superstar Burna Boy.",
