@@ -219,6 +219,37 @@ a {
   width: 100%;
 }
 
+/* Hamburger toggle — hidden on desktop, shown on mobile */
+.navToggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 9px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.navToggleBar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.navToggle[aria-expanded="true"] .navToggleBar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navToggle[aria-expanded="true"] .navToggleBar:nth-child(2) {
+  opacity: 0;
+}
+.navToggle[aria-expanded="true"] .navToggleBar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 /* -----------------------------------------------------------
    FOOTER
    ----------------------------------------------------------- */
@@ -619,6 +650,71 @@ a.fact:hover {
   width: 18px;
   height: 18px;
 }
+
+/* EPs + Features folder (Music page) */
+.epsFeaturesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.featuresFolder {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 22px 18px;
+}
+.folderTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+.featureList {
+  list-style: none;
+  max-height: 360px;
+  overflow-y: auto;
+  margin: 0 -4px 16px;
+  padding: 0 4px;
+}
+.featureRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 9px 2px;
+  border-bottom: 1px solid var(--border);
+}
+.featureRow:last-child {
+  border-bottom: none;
+}
+.fNum {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  color: var(--gold);
+  min-width: 20px;
+}
+.fTitle {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.fArtist {
+  margin-left: auto;
+  text-align: right;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+.folderSpotify {
+  width: 100%;
+  justify-content: center;
+}
+@media (max-width: 880px) {
+  .epsFeaturesGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
 .trackList {
   list-style: none;
   display: flex;
@@ -805,9 +901,33 @@ a.fact:hover {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 860px) {
+  .navToggle { display: flex; }
   .navLinks {
-    gap: 14px;
-    font-size: 0.82rem;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(9, 9, 11, 0.98);
+    border-bottom: 1px solid var(--border);
+    padding: 6px 0 10px;
+    opacity: 0;
+    transform: translateY(-12px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
+  .navLinks.navOpen {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .navLinks li { width: 100%; }
+  .navLinks a {
+    display: block;
+    padding: 14px 24px;
+    font-size: 0.85rem;
+  }
+  .navLinks a::after { display: none; }
 }

@@ -82,7 +82,7 @@ export const singles = [
   { title: "Gum Body", credit: "feat. Jorja Smith", year: 2019, certs: [
     { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
-  { title: "Tested, Approved & Trusted", year: 2024, certs: [
+  { title: "Tested, Approved & Trusted", year: 2023, certs: [
     { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" },
   ] },
   { title: "Kilometre", year: 2021, certs: [
@@ -97,10 +97,10 @@ export const singles = [
   { title: "Talibans II", credit: "with Byron Messia", year: 2023, certs: [
     { c: "CA", level: "Gold" },
   ] },
-  { title: "Collateral Damage", year: 2022, certs: [
+  { title: "Collateral Damage", year: 2019, certs: [
     { c: "FR", level: "Gold" },
   ] },
-  { title: "Secret", credit: "feat. Jeremih & Serani", year: 2018, certs: [
+  { title: "Secret", credit: "feat. Jeremih & Serani", year: 2019, certs: [
     { c: "UK", level: "Silver" },
   ] },
   { title: "Cheat on Me", credit: "feat. Dave", year: 2023, certs: [
@@ -134,7 +134,7 @@ export const features = [
   { title: "Jerusalema (Remix)", credit: "Master KG, Nomcebo & Burna Boy", year: 2020, certs: [
     { c: "FR", level: "Diamond" },
   ] },
-  { title: "Donne-moi l'accord", credit: "Dadju ft. Burna Boy", year: 2020, certs: [
+  { title: "Donne-moi l'accord", credit: "Dadju ft. Burna Boy", year: 2019, certs: [
     { c: "FR", level: "Platinum" },
   ] },
   { title: "Play Play", credit: "J Hus ft. Burna Boy", year: 2020, certs: [
@@ -146,7 +146,7 @@ export const features = [
   { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2025, certs: [
     { c: "UK", level: "Gold" }, { c: "NZ", level: "Gold" },
   ] },
-  { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", year: 2024, certs: [
+  { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", year: 2025, certs: [
     { c: "FR", level: "Gold" },
   ] },
   { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, certs: [

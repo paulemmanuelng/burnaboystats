@@ -5,11 +5,10 @@ export const metadata = { title: "Tour — Burna Boy Stats" };
 
 // Verified live milestones (sources: Billboard, Rolling Stone, OkayAfrica, Pulse).
 const moments = [
-  { year: "2019", title: "SSE Arena, Wembley", text: "First Afrobeats artist to sell out the iconic London arena." },
   { year: "2023", title: "London Stadium (sold out)", text: "First African artist to sell out the 80,000-capacity stadium (3 June 2023), on the Love, Damini tour." },
   { year: "2023", title: "Citi Field, New York (sold out)", text: "First African artist to headline and sell out a stadium in the United States." },
   { year: "2023", title: "UEFA Champions League Final", text: "First African artist to perform at the Champions League final kick-off show, in Istanbul." },
-  { year: "2025", title: "Red Rocks Amphitheatre", text: "First Nigerian artist to headline the legendary Colorado venue, opening his biggest North American tour — which sold out shows including Toronto and wrapped in December 2025." },
+  { year: "2024", title: "Grammy Awards Stage", text: "First African artist to perform on the Grammy Awards stage — a medley from I Told Them… with Brandy and 21 Savage." },
   { year: "2026", title: "FIFA World Cup Opening Ceremony", text: "Headlined the opener in Mexico City with Shakira, performing the official tournament song “Dai Dai.”" },
 ];
 

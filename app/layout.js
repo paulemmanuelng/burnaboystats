@@ -1,5 +1,5 @@
 import { Geist, Space_Grotesk, Anton, Space_Mono } from "next/font/google";
-import Link from "next/link";
+import Nav from "./components/Nav";
 import "./globals.css";
 
 // Body font — clean and readable.
@@ -34,16 +34,6 @@ export const metadata = {
     "Burna Boy Stats: an unofficial fan site tracking the certifications, music and stats of Grammy-winning Nigerian superstar Burna Boy.",
 };
 
-// The links in the top navigation bar. Add a page here to add a menu item.
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/music", label: "Music" },
-  { href: "/certifications", label: "Certifications" },
-  { href: "/tour", label: "Tour" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
-
 export default function RootLayout({ children }) {
   return (
     <html
@@ -58,20 +48,7 @@ export default function RootLayout({ children }) {
         <div className="grain" aria-hidden="true" />
 
         {/* NAVIGATION BAR — shown on every page */}
-        <header className="navbar">
-          <nav className="navInner container">
-            <Link href="/" className="brand">
-              BurnaBoy<span>Stats</span>
-            </Link>
-            <ul className="navLinks">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href}>{item.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </header>
+        <Nav />
 
         {/* THE ACTUAL PAGE CONTENT gets slotted in here */}
         {children}

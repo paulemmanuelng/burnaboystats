@@ -61,7 +61,6 @@ export default function Home() {
           <div className={styles.heroStats}>
             <span className={styles.heroStat}><b>{total}</b> Certifications</span>
             <span className={styles.heroStat}><b>8</b> Albums</span>
-            <span className={styles.heroStat}><b>{countryCount}</b> Countries</span>
             <span className={styles.heroStat}><b>2021</b> Grammy</span>
           </div>
         </div>

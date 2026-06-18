@@ -1,30 +1,49 @@
-"use client"; // runs in the browser because it tracks what you type
+"use client"; // runs in the browser (tracks input + submits)
 
 import { useState } from "react";
 
+// Submissions are emailed to Paul via FormSubmit (free, no backend).
+const ENDPOINT = "https://formsubmit.co/ajax/ukpakaemmanuel@gmail.com";
+
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  // Update the matching field as the user types.
   function update(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  // On submit we just show a thank-you (a fan site has no server to send to).
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    setSent(true);
+    setSending(true);
+    setError("");
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          _subject: "New message from Burna Boy Stats",
+        }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setSent(true);
+    } catch {
+      setError("Something went wrong — please try again in a moment.");
+    } finally {
+      setSending(false);
+    }
   }
 
   if (sent) {
     return (
       <div className="success">
         <h3>Thanks, {form.name || "friend"}! 🎉</h3>
-        <p>
-          Your message has been received. (This is a demo form on a fan site, so
-          it isn’t actually delivered anywhere — but we appreciate you stopping by!)
-        </p>
+        <p>Your message has been sent — it&apos;ll land in our inbox. We&apos;ll get back to you soon.</p>
       </div>
     );
   }
@@ -33,14 +52,7 @@ export default function ContactForm() {
     <form className="form" onSubmit={handleSubmit}>
       <div className="field">
         <label className="label" htmlFor="name">Name</label>
-        <input
-          className="input"
-          id="name"
-          name="name"
-          value={form.name}
-          onChange={update}
-          required
-        />
+        <input className="input" id="name" name="name" value={form.name} onChange={update} required />
       </div>
       <div className="field">
         <label className="label" htmlFor="email">Email</label>
@@ -65,8 +77,16 @@ export default function ContactForm() {
           required
         />
       </div>
-      <button type="submit" className="btn btnPrimary" style={{ alignSelf: "flex-start" }}>
-        Send message
+      {error && (
+        <p style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>{error}</p>
+      )}
+      <button
+        type="submit"
+        className="btn btnPrimary"
+        style={{ alignSelf: "flex-start" }}
+        disabled={sending}
+      >
+        {sending ? "Sending…" : "Send message"}
       </button>
     </form>
   );
