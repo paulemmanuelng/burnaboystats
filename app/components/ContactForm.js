@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 
-// Submissions are emailed to Paul via FormSubmit (free, no backend).
-const ENDPOINT = "https://formsubmit.co/ajax/ukpakaemmanuel@gmail.com";
+// Posts to our own server route, which forwards to email — so the address
+// is never exposed in the browser.
+const ENDPOINT = "/api/contact";
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
@@ -27,7 +28,6 @@ export default function ContactForm() {
           name: form.name,
           email: form.email,
           message: form.message,
-          _subject: "New message from Burna Boy Stats",
         }),
       });
       if (!res.ok) throw new Error("Request failed");
