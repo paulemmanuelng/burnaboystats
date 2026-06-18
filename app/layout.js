@@ -1,4 +1,5 @@
 import { Geist, Space_Grotesk, Anton, Space_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import Nav from "./components/Nav";
 import { siteUrl } from "./site";
 import "./globals.css";
@@ -95,6 +96,9 @@ export default function RootLayout({ children }) {
 
         {/* THE ACTUAL PAGE CONTENT gets slotted in here */}
         {children}
+
+        {/* Vercel Web Analytics — privacy-friendly visitor stats */}
+        <Analytics />
 
         {/* FOOTER — shown on every page */}
         <footer className="footer">
