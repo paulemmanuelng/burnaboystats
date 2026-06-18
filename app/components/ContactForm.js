@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 
-// Posts to our own server route, which forwards to email — so the address
-// is never exposed in the browser.
-const ENDPOINT = "/api/contact";
+// The recipient address is base64-encoded so it never appears as readable
+// text in the page source — spam bots that scrape for "name@domain" patterns
+// won't find it. It's decoded in the browser only at the moment of sending.
+const ENCODED_TO = "dWtwYWthZW1tYW51ZWxAZ21haWwuY29t";
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
@@ -21,16 +22,23 @@ export default function ContactForm() {
     setSending(true);
     setError("");
     try {
-      const res = await fetch(ENDPOINT, {
+      const endpoint = "https://formsubmit.co/ajax/" + atob(ENCODED_TO);
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           name: form.name,
           email: form.email,
           message: form.message,
+          _subject: "New message from Burna Boy Stats",
+          _template: "table",
+          _captcha: "false",
         }),
       });
-      if (!res.ok) throw new Error("Request failed");
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || out.success !== "true") {
+        throw new Error(out.message || "Request failed");
+      }
       setSent(true);
     } catch {
       setError("Something went wrong — please try again in a moment.");
