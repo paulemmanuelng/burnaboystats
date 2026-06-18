@@ -29,9 +29,22 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://burnaboystats.com"),
   title: "Burna Boy Stats — Unofficial Fan Site",
   description:
     "Burna Boy Stats: an unofficial fan site tracking the certifications, music and stats of Grammy-winning Nigerian superstar Burna Boy.",
+  openGraph: {
+    title: "Burna Boy Stats",
+    description:
+      "Certifications, discography and milestones of Grammy-winning Nigerian superstar Burna Boy.",
+    type: "website",
+    siteName: "Burna Boy Stats",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Burna Boy Stats",
+    description: "Certifications, discography and milestones of the African Giant.",
+  },
 };
 
 export default function RootLayout({ children }) {

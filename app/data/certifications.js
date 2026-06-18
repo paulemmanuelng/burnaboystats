@@ -19,6 +19,11 @@ export const COUNTRIES = {
   DK: { name: "Denmark", flag: "🇩🇰", body: "IFPI Denmark" },
   NO: { name: "Norway", flag: "🇳🇴", body: "IFPI Norway" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "RiSA" },
+  NG: { name: "Nigeria", flag: "🇳🇬", body: "TCSN" },
+  CH: { name: "Switzerland", flag: "🇨🇭", body: "IFPI" },
+  AT: { name: "Austria", flag: "🇦🇹", body: "IFPI Austria" },
+  PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV" },
+  PT: { name: "Portugal", flag: "🇵🇹", body: "AFP" },
 };
 
 export const albums = [
@@ -28,10 +33,10 @@ export const albums = [
   ] },
   { title: "Love, Damini", year: 2022, certs: [
     { c: "CA", level: "Platinum" }, { c: "UK", level: "Gold" }, { c: "SE", level: "Gold" },
-    { c: "FR", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "DK", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Platinum" },
+    { c: "FR", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "DK", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Platinum" }, { c: "NG", level: "Platinum", x: 5 },
   ] },
   { title: "I Told Them...", year: 2023, certs: [
-    { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" },
+    { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "NG", level: "Platinum" },
   ] },
   { title: "Twice as Tall", year: 2020, certs: [
     { c: "UK", level: "Gold" }, { c: "NL", level: "Gold" },
@@ -42,11 +47,11 @@ export const albums = [
 export const singles = [
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
-    { c: "US", level: "Platinum" }, { c: "AU", level: "Platinum" }, { c: "FR", level: "Diamond" },
+    { c: "US", level: "Platinum" }, { c: "AU", level: "Platinum" }, { c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum", x: 3 },
   ] },
   { title: "On the Low", year: 2018, certs: [
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" },
-    { c: "SE", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "DK", level: "Gold" },
+    { c: "SE", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "CH", level: "Platinum" }, { c: "NG", level: "Silver" },
   ] },
   { title: "Ye", year: 2018, certs: [
     { c: "US", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "SE", level: "Platinum" },
@@ -54,7 +59,7 @@ export const singles = [
   ] },
   { title: "For My Hand", credit: "feat. Ed Sheeran", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" },
-    { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "FR", level: "Gold" },
+    { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "NG", level: "Platinum", x: 2 },
   ] },
   { title: "City Boys", year: 2023, certs: [
     { c: "CA", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "UK", level: "Gold" },
@@ -65,10 +70,10 @@ export const singles = [
     { c: "DK", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "It's Plenty", year: 2022, certs: [
-    { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" },
+    { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "NG", level: "Platinum", x: 2 },
   ] },
   { title: "Alone", year: 2022, certs: [
-    { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" },
+    { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "NG", level: "Gold" },
   ] },
   { title: "Anybody", year: 2019, certs: [
     { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" },
@@ -90,6 +95,12 @@ export const singles = [
   ] },
   { title: "Higher", year: 2024, certs: [
     { c: "CA", level: "Gold" },
+  ] },
+  { title: "Common Person", year: 2022, certs: [
+    { c: "NG", level: "Platinum", x: 3 },
+  ] },
+  { title: "Different Size", credit: "feat. Vict0ny", year: 2022, certs: [
+    { c: "NG", level: "Platinum" },
   ] },
   { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, certs: [
     { c: "CA", level: "Gold" },
@@ -116,7 +127,8 @@ export const features = [
   ] },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", year: 2024, certs: [
     { c: "FR", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "AU", level: "Gold" },
-    { c: "NZ", level: "Gold" }, { c: "UK", level: "Gold" },
+    { c: "NZ", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "AT", level: "Gold" },
+    { c: "PL", level: "Gold" }, { c: "PT", level: "Gold" },
   ] },
   { title: "Be Honest", credit: "Jorja Smith ft. Burna Boy", year: 2019, certs: [
     { c: "FR", level: "Diamond" }, { c: "AU", level: "Platinum" }, { c: "UK", level: "Platinum" },
@@ -154,6 +166,9 @@ export const features = [
   ] },
   { title: "All Eyes on Me", credit: "AKA ft. Burna Boy, Da L.E.S & JR", year: 2014, certs: [
     { c: "ZA", level: "Platinum" },
+  ] },
+  { title: "B.D'or", credit: "Bramsito ft. Burna Boy", year: 2019, certs: [
+    { c: "NG", level: "Platinum" },
   ] },
 ];
 
