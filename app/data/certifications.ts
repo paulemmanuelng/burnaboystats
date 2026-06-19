@@ -180,7 +180,7 @@ export const features: Release[] = [
   ] },
   { title: "Jerusalema (Remix)", credit: "Master KG, Nomcebo & Burna Boy", year: 2020, certs: [
     { c: "FR", level: "Diamond" }, { c: "IT", level: "Platinum", x: 4 }, { c: "BE", level: "Platinum", x: 2 },
-    { c: "DE", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "AT", level: "Gold" },
+    { c: "DE", level: "Platinum" }, { c: "PT", level: "Platinum", x: 2 }, { c: "AT", level: "Gold" },
   ] },
   { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, certs: [
     { c: "ZA", level: "Platinum", x: 2 }, { c: "US", level: "Gold" }, { c: "CA", level: "Gold" },
