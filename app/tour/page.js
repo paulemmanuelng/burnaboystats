@@ -5,7 +5,7 @@ import KeepExploring from "../components/KeepExploring";
 export const metadata = {
   title: "Burna Boy Live — Tour & Historic Performances",
   description:
-    "Burna Boy's biggest live moments: sold-out stadiums (London Stadium, Citi Field), the Grammys, and the 2026 FIFA World Cup opening ceremony.",
+    "Burna Boy's biggest live moments: sold-out stadiums (London Stadium, Citi Field, Stade de France), the Grammys, and the 2026 FIFA World Cup opening ceremony.",
   alternates: { canonical: "/tour" },
   openGraph: { title: "Burna Boy Live", description: "Stadiums, Grammys and the World Cup." },
 };
@@ -16,6 +16,7 @@ const moments = [
   { year: "2023", title: "Citi Field, New York (sold out)", text: "First African artist to headline and sell out a stadium in the United States." },
   { year: "2023", title: "UEFA Champions League Final", text: "First African artist to perform at the Champions League final kick-off show, in Istanbul." },
   { year: "2024", title: "Grammy Awards Stage", text: "First African artist to perform on the Grammy Awards stage — a medley from I Told Them… with Brandy and 21 Savage." },
+  { year: "2025", title: "Stade de France, Paris (sold out)", text: "First African artist to headline and sell out the 80,000-capacity Stade de France (18 April 2025)." },
   { year: "2026", title: "FIFA World Cup Opening Ceremony", text: "Headlined the opener in Mexico City with Shakira, performing the official tournament song “Dai Dai.”" },
 ];
 
