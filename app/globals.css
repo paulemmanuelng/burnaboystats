@@ -456,7 +456,14 @@ a.fact:hover {
   color: var(--gold);
   font-size: 1.15rem;
 }
-.tContent h3 { font-size: 1.05rem; margin-top: 2px; }
+.tContent h3 {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  line-height: 1.25;
+  margin-top: 4px;
+}
 .tContent p { color: var(--text-muted); font-size: 0.92rem; margin-top: 4px; }
 
 /* Chips / tags */
