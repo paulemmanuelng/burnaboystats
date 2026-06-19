@@ -104,7 +104,7 @@ export default function Home() {
           <Reveal delay={140}>
             <ol className={styles.rankList}>
               {topCerts.map((c, i) => (
-                <li key={c.title} className={`${styles.rankRow} ${i === 0 ? styles.rankFeatured : ""}`}>
+                <li key={c.title} className={styles.rankRow}>
                   <span className={styles.rank}>{String(i + 1).padStart(2, "0")}</span>
                   <div className={styles.rankBody}>
                     <span className={styles.rankTitle}>{c.title}</span>
