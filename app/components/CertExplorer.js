@@ -23,11 +23,12 @@ function Badge({ cert, countries, dim }) {
 
 function CertCard({ item, countries, country, tier }) {
   return (
-    <div className={styles.certCard}>
-      {item.year && <span className={styles.certYear}>{item.year}</span>}
-      <div className={styles.certHead}>
+    <div className={styles.certRow}>
+      <div className={styles.certRowHead}>
         <span className={styles.certTitle}>{item.title}</span>
-        {item.credit && <span className={styles.certCredit}>{item.credit}</span>}
+        <span className={styles.certCredit}>
+          {item.credit ? `${item.credit} · ${item.year}` : item.year}
+        </span>
       </div>
       <div className={styles.badges}>
         {item.certs.map((cert) => {
