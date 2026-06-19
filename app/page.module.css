@@ -4,11 +4,8 @@
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
   margin-top: -68px; /* slide the art up behind the transparent nav */
-  display: flex;
-  align-items: center;
-  padding: 130px 0 150px;
+  padding: 156px 0 64px;
 }
 
 /* Animated, blurred colour blobs behind the hero (the "mesh"). */
@@ -65,17 +62,18 @@
 }
 
 .tagline {
-  max-width: 480px;
-  margin: 0;
+  max-width: 600px;
+  margin: 24px 0 0;
   color: var(--text-muted);
-  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  line-height: 1.55;
 }
 
 .heroButtons {
   display: flex;
-  gap: 16px;
-  justify-content: center;
-  margin-top: 38px;
+  gap: 14px;
+  justify-content: flex-start;
+  margin-top: 34px;
   flex-wrap: wrap;
 }
 
@@ -190,135 +188,112 @@
   max-width: 22ch;
 }
 
-/* ================= STATS ================= */
-.statGrid {
+/* ================= STAT SCOREBOARD ================= */
+.scoreboard {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  margin-top: 48px;
+  margin-top: 64px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
-
-.statCard {
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 38px 24px;
-  text-align: center;
-  height: 100%;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+.stat {
+  padding: 30px 28px;
+  border-right: 1px solid var(--line);
 }
-.statCard:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold-dim);
-}
-
+.scoreboard .stat:first-child { padding-left: 0; }
+.scoreboard .stat:last-child { border-right: none; padding-right: 0; }
 .statNum {
   display: block;
   font-family: var(--font-anton), sans-serif;
-  font-size: clamp(2.8rem, 7vw, 4rem);
   font-weight: 400;
+  font-size: clamp(3.2rem, 6.5vw, 5.4rem);
+  line-height: 0.86;
+  letter-spacing: -0.01em;
   color: var(--gold);
-  line-height: 1;
 }
 .statLabel {
   display: block;
-  margin-top: 12px;
+  margin-top: 14px;
   color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+}
+
+/* ================= SECTION HEAD + RANKED LIST ================= */
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.headLink {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+}
+.headLink:hover { color: var(--gold); }
+
+.rankList {
+  list-style: none;
+  margin-top: 30px;
+}
+.rankRow {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 8px;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s ease, padding-left 0.2s ease;
+}
+.rankRow:hover {
+  background: rgba(255, 255, 255, 0.025);
+  padding-left: 16px;
+}
+.rankFeatured {
+  background: linear-gradient(100deg, rgba(255, 182, 39, 0.14), rgba(226, 52, 43, 0.08));
+  border: 1px solid rgba(255, 182, 39, 0.42);
+  border-radius: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.rank {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.85rem;
+  color: var(--text-muted);
+}
+.rankFeatured .rank { color: var(--gold); }
+.rankTitle {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+.rankCredit {
+  display: block;
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.72rem;
-}
-
-/* ================= CERTIFICATIONS HIGHLIGHT ================= */
-.certWrap {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 60px;
-  align-items: center;
-}
-
-.certArt {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-}
-.certEq {
-  height: 38px;
-}
-
-.certList {
-  list-style: none;
-  margin-top: 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.certRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 16px 20px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-.certRow:hover {
-  border-color: var(--gold-dim);
-  transform: translateX(4px);
-}
-.certTitle {
-  display: block;
-  font-weight: 600;
-}
-.certCredit {
-  display: block;
-  font-size: 0.82rem;
   color: var(--text-muted);
+  margin-top: 7px;
 }
-
-.textLink {
-  display: inline-block;
-  margin-top: 24px;
-  color: var(--gold);
-  font-weight: 600;
-}
-.textLink:hover {
-  text-decoration: underline;
-}
-
-/* Certification badges (same colour language as the full table). */
-.badge {
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 0.78rem;
+.rankCert {
+  text-align: right;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
   font-weight: 700;
-  white-space: nowrap;
-  border: 1px solid transparent;
-}
-.platinum {
-  background: rgba(229, 231, 235, 0.12);
-  color: #e5e7eb;
-  border-color: rgba(229, 231, 235, 0.4);
-}
-.gold {
-  background: rgba(232, 176, 75, 0.14);
-  color: var(--gold);
-  border-color: rgba(232, 176, 75, 0.45);
-}
-.silver {
-  background: rgba(148, 163, 184, 0.12);
-  color: #cbd5e1;
-  border-color: rgba(148, 163, 184, 0.35);
-}
-.diamond {
-  background: linear-gradient(135deg, rgba(125, 211, 252, 0.18), rgba(196, 181, 253, 0.16));
-  color: #cfeeff;
-  border-color: rgba(125, 211, 252, 0.5);
+  color: var(--text);
+  max-width: 280px;
+  line-height: 1.5;
 }
 
 /* World Cup news banner */
@@ -374,17 +349,18 @@
 }
 
 /* ================= RESPONSIVE ================= */
-@media (max-width: 880px) {
-  .certWrap {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .statGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media (max-width: 760px) {
+  .scoreboard { grid-template-columns: repeat(2, 1fr); }
+  .stat { border-right: none; padding: 22px 0; }
+  .scoreboard .stat:nth-child(odd) { padding-right: 24px; }
 }
-@media (max-width: 520px) {
-  .statGrid {
-    grid-template-columns: 1fr;
+@media (max-width: 620px) {
+  .rankRow { grid-template-columns: 44px 1fr; gap: 16px; padding: 18px 8px; }
+  .rankCert {
+    grid-column: 1 / -1;
+    text-align: left;
+    max-width: none;
+    margin-top: 10px;
   }
+  .rank, .rankTitle { font-size: 1.6rem; }
 }
