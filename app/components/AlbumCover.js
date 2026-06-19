@@ -1,15 +1,17 @@
 // Generates original, abstract album-cover art with CSS gradients + an SVG
 // "music motif" per cover — so we get a varied discography wall without using
 // any copyrighted cover images.
+// Disciplined warm "African Giant" palette — golds, molten orange/red and
+// charcoal on the dark base (no rainbow), so covers stay on-brand.
 const PALETTES = [
-  ["#e8b04b", "#c0392b"],
-  ["#6d28d9", "#db2777"],
-  ["#0ea5e9", "#1e3a8a"],
-  ["#f97316", "#7c2d12"],
-  ["#10b981", "#064e3b"],
-  ["#f43f5e", "#4c0519"],
-  ["#eab308", "#713f12"],
-  ["#8b5cf6", "#312e81"],
+  ["#ffb627", "#7a3f0a"],
+  ["#ff7a1a", "#3d1402"],
+  ["#e2342b", "#3a0a08"],
+  ["#26262b", "#0a0a0b"],
+  ["#ffd24a", "#9a3412"],
+  ["#c98a2e", "#211309"],
+  ["#d94b1a", "#1a0c06"],
+  ["#3a2a12", "#0a0a0b"],
 ];
 
 // A different music-related graphic for each cover (chosen by index).

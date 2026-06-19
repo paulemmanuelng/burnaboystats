@@ -159,12 +159,12 @@ a {
 }
 .btnPrimary {
   background: linear-gradient(135deg, var(--gold-bright), var(--gold));
-  color: #1a1303;
-  box-shadow: 0 8px 30px rgba(232, 176, 75, 0.22);
+  color: #1a1206;
+  box-shadow: 0 8px 30px rgba(255, 182, 39, 0.24);
 }
 .btnPrimary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 44px rgba(232, 176, 75, 0.4);
+  box-shadow: 0 14px 44px rgba(255, 182, 39, 0.42);
 }
 .btnSecondary {
   border-color: var(--border);
@@ -272,11 +272,27 @@ a {
    ----------------------------------------------------------- */
 .footer {
   margin-top: auto;
-  border-top: 1px solid var(--border);
-  padding: 36px 0;
+  border-top: 1px solid var(--line);
+  padding: 44px 0 0;
   color: var(--text-muted);
   font-size: 0.85rem;
   text-align: center;
+  overflow: hidden;
+}
+.footerWordmark {
+  font-family: var(--font-anton), sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: clamp(3rem, 17vw, 15rem);
+  line-height: 0.72;
+  letter-spacing: 0.01em;
+  margin-top: 28px;
+  padding-top: 10px;
+  background: linear-gradient(180deg, rgba(255, 182, 39, 0.18), rgba(255, 182, 39, 0));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  user-select: none;
 }
 .footer .disclaimer {
   max-width: 680px;

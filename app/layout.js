@@ -132,6 +132,7 @@ export default function RootLayout({ children }) {
               </a>
             </p>
           </div>
+          <div className="footerWordmark" aria-hidden="true">Burna Boy</div>
         </footer>
       </body>
     </html>
