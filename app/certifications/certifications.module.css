@@ -190,7 +190,8 @@
   border: 1px solid var(--border);
   color: var(--text-muted);
   border-radius: 999px;
-  padding: 6px 12px;
+  padding: 8px 13px;
+  min-height: 38px;
   font-size: 0.78rem;
   font-weight: 600;
   font-family: inherit;
@@ -238,6 +239,36 @@
   padding: 48px 0 80px;
   text-align: center;
   color: var(--text-muted);
+}
+
+/* Mobile: collapse the filter behind a toggle so 26 chips don't dominate */
+.filterToggle {
+  display: none;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 2px;
+}
+.filterBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+@media (max-width: 640px) {
+  .filterToggle { display: flex; }
+  .filterBody { display: none; }
+  .filterBody.filterOpen { display: flex; }
+  .fChip { min-height: 44px; padding: 11px 15px; }
+  .clearBtn { min-height: 40px; }
 }
 
 @media (max-width: 560px) {

@@ -8,7 +8,28 @@
 //  Each cert: { c: countryCode, level, x?: multiplier }
 // ============================================================
 
-export const COUNTRIES = {
+export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
+
+export interface Country {
+  name: string;
+  flag: string;
+  body: string;
+}
+
+export interface Cert {
+  c: string;
+  level: Tier;
+  x?: number;
+}
+
+export interface Release {
+  title: string;
+  credit?: string;
+  year?: number;
+  certs: Cert[];
+}
+
+export const COUNTRIES: Record<string, Country> = {
   US: { name: "United States", flag: "🇺🇸", body: "RIAA" },
   UK: { name: "United Kingdom", flag: "🇬🇧", body: "BPI" },
   CA: { name: "Canada", flag: "🇨🇦", body: "Music Canada" },
@@ -32,7 +53,7 @@ export const COUNTRIES = {
   BR: { name: "Brazil", flag: "🇧🇷", body: "Pro-Música Brasil" },
 };
 
-export const albums = [
+export const albums: Release[] = [
   { title: "African Giant", year: 2019, certs: [
     { c: "FR", level: "Platinum" }, { c: "UK", level: "Gold" }, { c: "SE", level: "Gold" },
     { c: "CA", level: "Gold" }, { c: "NL", level: "Gold" },
@@ -51,7 +72,7 @@ export const albums = [
 ];
 
 // Burna Boy's own (lead) singles.
-export const singles = [
+export const singles: Release[] = [
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
     { c: "NG", level: "Platinum", x: 5 }, { c: "US", level: "Platinum" }, { c: "AU", level: "Platinum" },
@@ -138,7 +159,7 @@ export const singles = [
 ];
 
 // Songs where Burna Boy is a featured/guest artist.
-export const features = [
+export const features: Release[] = [
   { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, certs: [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 },
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "NO", level: "Platinum" },
@@ -213,14 +234,14 @@ export const features = [
 ];
 
 // Helpers
-export function tierOf(level) {
+export function tierOf(level: string): "diamond" | "platinum" | "gold" | "silver" {
   if (level === "Diamond") return "diamond";
   if (level === "Platinum") return "platinum";
   if (level === "Gold") return "gold";
   return "silver";
 }
 
-export const allItems = [...albums, ...singles, ...features];
+export const allItems: Release[] = [...albums, ...singles, ...features];
 export const certifiedReleaseCount = allItems.length;
 export const countryCount = Object.keys(COUNTRIES).length;
 export function totalAwards() {

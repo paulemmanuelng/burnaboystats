@@ -1,6 +1,14 @@
 // Studio albums + verified tracklists (sources: Wikipedia, per album).
 // Each album: title, year, label, and the standard-edition tracklist.
-export const albums = [
+export interface AlbumEntry {
+  title: string;
+  spotify?: string;
+  year: number;
+  label: string;
+  tracks: string[];
+}
+
+export const albums: AlbumEntry[] = [
   {
     title: "L.I.F.E",
     spotify: "https://open.spotify.com/album/7pqUKMWH6P7AJPIjUiphTS",
@@ -112,7 +120,7 @@ export const albums = [
 ];
 
 // Extended plays (EPs), with verified tracklists.
-export const eps = [
+export const eps: AlbumEntry[] = [
   {
     title: "Redemption",
     spotify: "https://open.spotify.com/album/50qNx4v7MKypMx5wGynQ8j",

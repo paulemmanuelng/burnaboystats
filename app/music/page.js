@@ -2,6 +2,8 @@ import Reveal from "../components/Reveal";
 import Discography from "../components/Discography";
 import { albums, eps } from "../data/albums";
 import KeepExploring from "../components/KeepExploring";
+import SpotifyIcon from "../components/SpotifyIcon";
+import { siteUrl } from "../site";
 
 export const metadata = {
   title: "Burna Boy Discography — Albums, EPs & Songs",
@@ -51,9 +53,34 @@ const topFeatures = [
 
 const SPOTIFY_ARTIST = "https://open.spotify.com/artist/3wcj11K77LjEY1PkEazffa";
 
+// Structured data: the album catalogue + breadcrumb trail for rich results.
+const musicJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MusicGroup",
+      name: "Burna Boy",
+      url: `${siteUrl}/music`,
+      album: albums.map((a) => ({
+        "@type": "MusicAlbum",
+        name: a.title,
+        datePublished: String(a.year),
+      })),
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Music", item: `${siteUrl}/music` },
+      ],
+    },
+  ],
+};
+
 export default function MusicPage() {
   return (
-    <main>
+    <main id="content">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(musicJsonLd) }} />
       <header className="pageHeader container">
         <h1>
           The <span className="accent">Music</span>
@@ -137,9 +164,7 @@ export default function MusicPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <svg className="spotifyIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.59 14.43a.62.62 0 01-.86.21c-2.35-1.44-5.3-1.76-8.79-.97a.62.62 0 11-.27-1.22c3.8-.86 7.07-.49 9.71 1.12.3.18.39.57.21.86zm1.23-2.74a.78.78 0 01-1.07.26c-2.69-1.66-6.79-2.14-9.97-1.17a.78.78 0 11-.45-1.49c3.63-1.1 8.15-.57 11.24 1.33.36.22.48.71.25 1.07zm.1-2.85C14.8 8.9 9.5 8.72 6.47 9.64a.94.94 0 11-.54-1.8c3.47-1.05 9.32-.85 13.02 1.35a.94.94 0 01-.96 1.61z" />
-                  </svg>
+                  <SpotifyIcon />
                   Listen to more on Spotify
                 </a>
               </div>
@@ -176,13 +201,7 @@ export default function MusicPage() {
         </div>
       </div>
 
-      <KeepExploring
-        links={[
-          { href: "/certifications", title: "Certifications", desc: "163 awards across 21 countries" },
-          { href: "/tour", title: "Live & Tour", desc: "Stadiums, Grammys & the World Cup" },
-          { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },
-        ]}
-      />
+      <KeepExploring current="/music" />
     </main>
   );
 }

@@ -21,7 +21,7 @@ const moments = [
 
 export default function TourPage() {
   return (
-    <main>
+    <main id="content">
       <header className="pageHeader container">
         <h1>
           Live &amp; <span className="accent">On Stage</span>
@@ -105,13 +105,7 @@ export default function TourPage() {
         </p>
       </div>
 
-      <KeepExploring
-        links={[
-          { href: "/music", title: "The Music", desc: "8 albums, EPs & every hit" },
-          { href: "/certifications", title: "Certifications", desc: "163 awards across 21 countries" },
-          { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },
-        ]}
-      />
+      <KeepExploring current="/tour" />
     </main>
   );
 }

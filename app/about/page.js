@@ -36,7 +36,7 @@ const timeline = [
 
 export default function AboutPage() {
   return (
-    <main>
+    <main id="content">
       <header className="pageHeader container">
         <h1>
           About the <span className="accent">Giant</span>
@@ -116,13 +116,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <KeepExploring
-        links={[
-          { href: "/music", title: "The Music", desc: "8 albums, EPs & every hit" },
-          { href: "/certifications", title: "Certifications", desc: "163 awards across 21 countries" },
-          { href: "/tour", title: "Live & Tour", desc: "Stadiums, Grammys & the World Cup" },
-        ]}
-      />
+      <KeepExploring current="/about" />
     </main>
   );
 }

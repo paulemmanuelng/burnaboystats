@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf } from "../data/certifications";
+import { matches } from "../lib/certs";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
 
@@ -39,15 +40,10 @@ function CertCard({ item, countries, country, tier }) {
   );
 }
 
-function matches(item, country, tier) {
-  const hasCountry = !country || item.certs.some((c) => c.c === country);
-  const hasTier = !tier || item.certs.some((c) => c.level === tier);
-  return hasCountry && hasTier;
-}
-
 export default function CertExplorer({ albums, singles, features, countries }) {
   const [country, setCountry] = useState(null);
   const [tier, setTier] = useState(null);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const groups = [
     { label: "Albums", items: albums },
@@ -62,6 +58,17 @@ export default function CertExplorer({ albums, singles, features, countries }) {
   return (
     <div>
       <div className={styles.filterBar}>
+        <button
+          type="button"
+          className={styles.filterToggle}
+          aria-expanded={filtersOpen}
+          aria-controls="cert-filters"
+          onClick={() => setFiltersOpen((o) => !o)}
+        >
+          <span>Filters{active ? ` · ${totalShown} shown` : ""}</span>
+          <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
+        </button>
+        <div id="cert-filters" className={`${styles.filterBody} ${filtersOpen ? styles.filterOpen : ""}`}>
         <div className={styles.filterRow}>
           <span className={styles.filterLabel}>Tier</span>
           <button className={`${styles.fChip} ${!tier ? styles.fChipOn : ""}`} onClick={() => setTier(null)}>All</button>
@@ -98,6 +105,7 @@ export default function CertExplorer({ albums, singles, features, countries }) {
             </button>
           </div>
         )}
+        </div>
       </div>
 
       {totalShown === 0 ? (

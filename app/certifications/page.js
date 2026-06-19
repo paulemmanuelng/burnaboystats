@@ -3,6 +3,7 @@ import Equalizer from "../components/Equalizer";
 import CountUp from "../components/CountUp";
 import CertExplorer from "../components/CertExplorer";
 import KeepExploring from "../components/KeepExploring";
+import { siteUrl } from "../site";
 import {
   COUNTRIES, albums, singles, features,
   totalAwards, certifiedReleaseCount, countryCount,
@@ -21,9 +22,19 @@ export const metadata = {
 
 const total = totalAwards();
 
+const certJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+    { "@type": "ListItem", position: 2, name: "Certifications", item: `${siteUrl}/certifications` },
+  ],
+};
+
 export default function CertificationsPage() {
   return (
-    <main>
+    <main id="content">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(certJsonLd) }} />
       <header className="pageHeader container">
         <h1>
           Global <span className="accent">Certifications</span>
@@ -71,13 +82,7 @@ export default function CertificationsPage() {
         </p>
       </div>
 
-      <KeepExploring
-        links={[
-          { href: "/music", title: "The Music", desc: "8 albums, EPs & every hit" },
-          { href: "/tour", title: "Live & Tour", desc: "Stadiums, Grammys & the World Cup" },
-          { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },
-        ]}
-      />
+      <KeepExploring current="/certifications" />
     </main>
   );
 }

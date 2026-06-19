@@ -17,7 +17,7 @@ const channels = [
 
 export default function ContactPage() {
   return (
-    <main>
+    <main id="content">
       <header className="pageHeader container">
         <h1>
           Get in <span className="accent">Touch</span>

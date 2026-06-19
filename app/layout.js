@@ -56,6 +56,10 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  themeColor: "#09090b",
+};
+
 // Structured data (JSON-LD) so Google understands the site and its subject.
 const jsonLd = {
   "@context": "https://schema.org",
@@ -69,6 +73,12 @@ const jsonLd = {
     name: "Burna Boy",
     alternateName: "Damini Ebunoluwa Ogulu",
     genre: ["Afrobeats", "Afro-fusion"],
+    sameAs: [
+      "https://en.wikipedia.org/wiki/Burna_Boy",
+      "https://www.instagram.com/burnaboygram",
+      "https://twitter.com/burnaboy",
+      "https://open.spotify.com/artist/3wcj11K77LjEY1PkEazffa",
+    ],
   },
 };
 
@@ -82,6 +92,12 @@ export default function RootLayout({ children }) {
       {/* suppressHydrationWarning: some browser extensions (e.g. Grammarly)
           add attributes to <body> before React loads, which is harmless. */}
       <body suppressHydrationWarning>
+        <a href="#content" className="skipLink">Skip to content</a>
+        {/* No-JS fallback: reveal animations are JS-driven, so without JS we must
+            show the content (otherwise it stays at opacity:0). */}
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         {/* Subtle film-grain texture overlay (sits behind content) */}
         <div className="grain" aria-hidden="true" />
 

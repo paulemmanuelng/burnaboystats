@@ -26,7 +26,7 @@ const marqueeItems = [
 
 export default function Home() {
   return (
-    <main>
+    <main id="content">
       {/* ================= HERO (festival poster) ================= */}
       <section className={styles.hero}>
         <div className={styles.heroBg} aria-hidden="true" />
@@ -184,13 +184,7 @@ export default function Home() {
         </div>
       </section>
 
-      <KeepExploring
-        links={[
-          { href: "/certifications", title: "Certifications", desc: "163 awards across 21 countries" },
-          { href: "/music", title: "The Music", desc: "8 albums, EPs & every hit" },
-          { href: "/tour", title: "Live & Tour", desc: "Stadiums, Grammys & the World Cup" },
-        ]}
-      />
+      <KeepExploring current="/" />
     </main>
   );
 }

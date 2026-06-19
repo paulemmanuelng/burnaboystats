@@ -264,8 +264,8 @@ a {
 .footer .disclaimer {
   max-width: 680px;
   margin: 8px auto 0;
-  font-size: 0.78rem;
-  opacity: 0.7;
+  font-size: 0.8rem;
+  opacity: 0.85;
 }
 .footer .builtBy {
   margin-top: 14px;
@@ -482,6 +482,11 @@ a.fact:hover {
 }
 .input:focus,
 .textarea:focus { outline: none; border-color: var(--gold); }
+.input:focus-visible,
+.textarea:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 1px;
+}
 .textarea { min-height: 140px; resize: vertical; }
 .success {
   background: rgba(232, 176, 75, 0.1);
@@ -931,3 +936,50 @@ a.fact:hover {
   }
   .navLinks a::after { display: none; }
 }
+
+/* ===========================================================
+   ACCESSIBILITY — skip link, focus rings, active nav
+   =========================================================== */
+.skipLink {
+  position: absolute;
+  left: 12px;
+  top: -64px;
+  z-index: 200;
+  background: var(--gold);
+  color: #1a1303;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: top 0.2s ease;
+}
+.skipLink:focus {
+  top: 12px;
+}
+
+/* A consistent, visible keyboard focus ring on every interactive element. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Active nav item (set via aria-current in Nav) */
+.navLinks a.navActive {
+  color: var(--gold);
+}
+.navLinks a.navActive::after {
+  width: 100%;
+}
+
+/* Small spacing utilities (replace one-off inline styles) */
+.cardMetaTop { margin-top: 10px; }
+.eyebrowTight { margin-bottom: 6px; }
+
+/* Error boundary screen */
+.errorPage { padding: 110px 24px 130px; text-align: center; }
+.errorTitle { font-size: clamp(2rem, 5vw, 3rem); margin: 10px 0 14px; }
+.errorLead { margin: 0 auto 24px; }
+.errorActions { justify-content: center; }
