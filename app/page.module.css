@@ -307,7 +307,7 @@
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--text);
-  max-width: 280px;
+  white-space: nowrap;
   line-height: 1.5;
 }
 
@@ -369,12 +369,12 @@
   .stat { border-right: none; padding: 22px 0; }
   .scoreboard .stat:nth-child(odd) { padding-right: 24px; }
 }
-@media (max-width: 620px) {
+@media (max-width: 760px) {
   .rankRow { grid-template-columns: 44px 1fr; gap: 16px; padding: 18px 8px; }
   .rankCert {
     grid-column: 1 / -1;
     text-align: left;
-    max-width: none;
+    white-space: normal;
     margin-top: 10px;
   }
   .rank, .rankTitle { font-size: 1.6rem; }
