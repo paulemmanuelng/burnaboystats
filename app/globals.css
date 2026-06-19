@@ -580,11 +580,12 @@ a.fact:hover {
 .albumCoverTitle {
   position: relative;
   z-index: 1;
-  font-family: var(--font-display), sans-serif;
-  font-weight: 700;
-  font-size: 1.05rem;
-  line-height: 1.1;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65);
 }
 
 /* Clickable album cover button (resets default button styling) */
@@ -698,8 +699,9 @@ a.fact:hover {
   align-items: start;
 }
 .featuresFolder {
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
+  background: linear-gradient(165deg, rgba(255, 182, 39, 0.12), rgba(226, 52, 43, 0.06) 55%, transparent),
+    var(--bg-soft);
+  border: 1px solid rgba(255, 182, 39, 0.22);
   border-radius: var(--radius);
   padding: 22px 22px 18px;
 }
@@ -710,6 +712,10 @@ a.fact:hover {
   letter-spacing: 0.01em;
   font-size: 1.4rem;
   margin-bottom: 12px;
+  background: linear-gradient(100deg, var(--gold-bright), var(--gold), var(--grad-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 .featureList {
   list-style: none;
