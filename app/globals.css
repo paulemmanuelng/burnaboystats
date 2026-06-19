@@ -882,17 +882,20 @@ a.fact:hover {
   mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
 }
 .marqueeTrack {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 28px;
-  padding: 16px 0;
   width: max-content;
-  animation: marquee 28s linear infinite;
+  padding: 16px 0;
+  animation: marquee 42s linear infinite;
 }
 .marquee:hover .marqueeTrack {
   animation-play-state: paused;
 }
 .marqueeItem {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding-right: 28px;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 1.35rem;
@@ -902,6 +905,7 @@ a.fact:hover {
 }
 .marqueeStar {
   color: var(--gold);
+  margin-left: 28px;
 }
 
 /* ===========================================================
