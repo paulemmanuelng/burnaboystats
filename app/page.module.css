@@ -230,14 +230,24 @@
   gap: 12px;
 }
 .headLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 0.74rem;
-  color: var(--text-muted);
-  transition: color 0.15s ease;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 16px;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
-.headLink:hover { color: var(--gold); }
+.headLink:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(255, 182, 39, 0.08);
+}
 
 .rankList {
   list-style: none;
@@ -252,9 +262,14 @@
   border-bottom: 1px solid var(--line);
   transition: background 0.2s ease, padding-left 0.2s ease;
 }
-.rankRow:hover {
-  background: rgba(255, 255, 255, 0.025);
+.rankRow:not(.rankFeatured):hover {
+  background: rgba(255, 182, 39, 0.07);
+  border-bottom-color: rgba(255, 182, 39, 0.42);
   padding-left: 16px;
+}
+.rankRow:hover .rankTitle,
+.rankRow:hover .rank {
+  color: var(--gold);
 }
 .rankFeatured {
   background: linear-gradient(100deg, rgba(255, 182, 39, 0.14), rgba(226, 52, 43, 0.08));

@@ -82,8 +82,12 @@
   transition: background 0.18s ease, padding-left 0.18s ease;
 }
 .certRow:hover {
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 182, 39, 0.06);
+  border-bottom-color: rgba(255, 182, 39, 0.4);
   padding-left: 16px;
+}
+.certRow:hover .certTitle {
+  color: var(--gold);
 }
 .certRowHead {
   min-width: 0;
