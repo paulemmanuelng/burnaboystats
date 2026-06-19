@@ -1,0 +1,45 @@
+/* Contact page — editorial pill channels */
+
+.lead2 {
+  margin: 12px 0 24px;
+}
+.lead3 {
+  margin-bottom: 18px;
+}
+
+.channels {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+.channel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 22px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.channel:hover {
+  border-color: var(--gold);
+  background: rgba(255, 182, 39, 0.06);
+}
+.channelLabel {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.channel:hover .channelLabel {
+  color: var(--gold);
+}
+.channelValue {
+  font-weight: 600;
+  font-size: 0.92rem;
+}

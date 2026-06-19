@@ -1,5 +1,6 @@
 import Reveal from "../components/Reveal";
 import ContactForm from "../components/ContactForm";
+import styles from "./contact.module.css";
 
 export const metadata = {
   title: "Contact — Burna Boy Stats",
@@ -34,7 +35,7 @@ export default function ContactPage() {
               <h2 className="secTitle">
                 Drop a <span className="goldText">line</span>
               </h2>
-              <p className="lead" style={{ margin: "12px 0 24px" }}>
+              <p className={`lead ${styles.lead2}`}>
                 Spotted something we should fix, or just want to say hi? Use the
                 form below — we love hearing from fellow fans.
               </p>
@@ -46,22 +47,22 @@ export default function ContactPage() {
           <Reveal delay={120}>
             <div>
               <p className="eyebrow">Official Channels</p>
-              <p className="lead" style={{ marginBottom: 16 }}>
+              <p className={`lead ${styles.lead3}`}>
                 This is an <strong>unofficial fan site</strong>, so we can’t pass
                 messages to Burna Boy. For official business, bookings or news,
                 use his real channels:
               </p>
-              <div className="facts">
+              <div className={styles.channels}>
                 {channels.map((c) => (
                   <a
-                    className="fact"
+                    className={styles.channel}
                     key={c.label}
                     href={c.href}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <span className="factLabel">{c.label}</span>
-                    <span className="factValue">{c.value}</span>
+                    <span className={styles.channelLabel}>{c.label}</span>
+                    <span className={styles.channelValue}>{c.value}</span>
                   </a>
                 ))}
               </div>

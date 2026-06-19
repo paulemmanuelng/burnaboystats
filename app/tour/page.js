@@ -1,6 +1,7 @@
 import Reveal from "../components/Reveal";
 import Waveform from "../components/Waveform";
 import KeepExploring from "../components/KeepExploring";
+import styles from "./tour.module.css";
 
 export const metadata = {
   title: "Burna Boy Live — Tour & Historic Performances",
@@ -34,9 +35,9 @@ export default function TourPage() {
         {/* MOST RECENT — WORLD CUP */}
         <Reveal>
           <div className="panel block">
-            <p className="eyebrow" style={{ marginBottom: 8 }}>Most Recent</p>
+            <p className="eyebrow">Most Recent</p>
             <h2 className="secTitle">2026 FIFA World Cup Opening Ceremony</h2>
-            <p className="lead" style={{ marginTop: 12 }}>
+            <p className={`lead ${styles.lead2}`}>
               On 11 June 2026, Burna Boy headlined the World Cup opening ceremony
               in Mexico City alongside Shakira, performing “Dai Dai” — the
               official song of the tournament, on one of the biggest stages in
@@ -52,7 +53,7 @@ export default function TourPage() {
             <h2 className="secTitle">
               The <span className="goldText">No Sign of Weakness</span> Tour
             </h2>
-            <p className="lead" style={{ marginTop: 12 }}>
+            <p className={`lead ${styles.lead2}`}>
               His most recent tour, supporting the 2025 album of the same name,
               has wrapped. It was his biggest North American run to date — he
               became the first Nigerian artist to headline Red Rocks Amphitheatre
@@ -81,13 +82,13 @@ export default function TourPage() {
             </h2>
           </Reveal>
           <Reveal delay={140}>
-            <div className="timeline">
+            <div className={styles.milestones}>
               {moments.map((m) => (
-                <div className="tRow" key={m.title}>
-                  <span className="tYear">{m.year}</span>
-                  <div className="tContent">
-                    <h3>{m.title}</h3>
-                    <p>{m.text}</p>
+                <div className={styles.mRow} key={m.title}>
+                  <span className={styles.mYear}>{m.year}</span>
+                  <div>
+                    <h3 className={styles.mTitle}>{m.title}</h3>
+                    <p className={styles.mText}>{m.text}</p>
                   </div>
                 </div>
               ))}
@@ -96,11 +97,11 @@ export default function TourPage() {
         </div>
 
         <Reveal>
-          <div style={{ opacity: 0.5, padding: "8px 0 24px" }}>
+          <div className={styles.wave}>
             <Waveform bars={56} />
           </div>
         </Reveal>
-        <p className="lead" style={{ fontSize: "0.85rem", paddingBottom: 40 }}>
+        <p className={styles.footnote}>
           Live information correct as of June 2026. Always verify any future
           dates on official ticketing before making travel plans.
         </p>
