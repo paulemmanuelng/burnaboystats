@@ -16,19 +16,19 @@ export default function OpengraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "#09090b",
-          color: "#f6f6f7",
+          background: "#0a0a0b",
+          color: "#f5f4f0",
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", fontSize: 140, fontWeight: 800, letterSpacing: -4 }}>
           <span>BURNA</span>
-          <span style={{ color: "#e8b04b", marginLeft: 28 }}>BOY</span>
+          <span style={{ color: "#ffb627", marginLeft: 28 }}>BOY</span>
         </div>
-        <div style={{ fontSize: 44, letterSpacing: 16, color: "#a1a1aa", marginTop: 4 }}>
+        <div style={{ fontSize: 44, letterSpacing: 16, color: "#9b9ba3", marginTop: 4 }}>
           STATS
         </div>
-        <div style={{ fontSize: 30, color: "#a1a1aa", marginTop: 36 }}>
+        <div style={{ fontSize: 30, color: "#9b9ba3", marginTop: 36 }}>
           The African Giant — by the numbers
         </div>
       </div>
