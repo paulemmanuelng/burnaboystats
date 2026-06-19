@@ -21,7 +21,7 @@ const topCerts = [
 
 const marqueeItems = [
   "African Giant", "FIFA World Cup 2026", "Grammy Winner", "Odogwu",
-  "Red Rocks Headliner", "Diamond in France", "Afro-Fusion", "Twice as Tall",
+  "BET Award Winner", "Global Superstar", "Afro-Fusion", "Twice as Tall",
 ];
 
 export default function Home() {
