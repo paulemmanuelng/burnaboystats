@@ -11,7 +11,7 @@ export const navItems = [
 ];
 
 // Which 3 sections each page points to in its "Keep exploring" block.
-export const exploreFor = {
+export const exploreFor: Record<string, string[]> = {
   "/": ["certifications", "music", "tour"],
   "/music": ["certifications", "tour", "about"],
   "/certifications": ["music", "tour", "about"],

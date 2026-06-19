@@ -3,32 +3,40 @@
 import { useEffect, useRef, useState } from "react";
 import AlbumCover from "./AlbumCover";
 import SpotifyIcon from "./SpotifyIcon";
+import type { AlbumEntry } from "../data/albums";
 
-export default function Discography({ albums, indexOffset = 0 }) {
+export default function Discography({
+  albums,
+  indexOffset = 0,
+}: {
+  albums: AlbumEntry[];
+  indexOffset?: number;
+}) {
   // Which album's tracklist is open (index), or null for none.
-  const [open, setOpen] = useState(null);
+  const [open, setOpen] = useState<number | null>(null);
   const album = open !== null ? albums[open] : null;
-  const modalRef = useRef(null);
-  const lastFocused = useRef(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const lastFocused = useRef<HTMLElement | null>(null);
 
   // While the modal is open: trap focus inside it, close on Escape, lock page
   // scroll, and restore focus to the trigger when it closes.
   useEffect(() => {
     if (!album) return;
-    lastFocused.current = document.activeElement;
+    lastFocused.current = document.activeElement as HTMLElement | null;
     const node = modalRef.current;
-    const getFocusable = () =>
+    const getFocusable = (): HTMLElement[] =>
       node
         ? Array.from(
-            node.querySelectorAll('a[href], button, input, textarea, [tabindex]:not([tabindex="-1"])')
+            node.querySelectorAll<HTMLElement>(
+              'a[href], button, input, textarea, [tabindex]:not([tabindex="-1"])'
+            )
           )
         : [];
 
-    // Move focus into the dialog.
     const focusables = getFocusable();
     if (focusables[0]) focusables[0].focus();
 
-    function onKey(e) {
+    function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") {
         setOpen(null);
         return;
@@ -53,7 +61,7 @@ export default function Discography({ albums, indexOffset = 0 }) {
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
-      if (lastFocused.current && lastFocused.current.focus) lastFocused.current.focus();
+      lastFocused.current?.focus();
     };
   }, [album]);
 
@@ -90,7 +98,7 @@ export default function Discography({ albums, indexOffset = 0 }) {
             </button>
             <div className="modalHead">
               <div className="modalCover">
-                <AlbumCover title={album.title} year={album.year} index={indexOffset + open} compact />
+                <AlbumCover title={album.title} year={album.year} index={indexOffset + (open ?? 0)} compact />
               </div>
               <div>
                 <p className="eyebrow eyebrowTight">Album · {album.year}</p>
@@ -99,12 +107,7 @@ export default function Discography({ albums, indexOffset = 0 }) {
               </div>
             </div>
             {album.spotify && (
-              <a
-                className="spotifyBtn"
-                href={album.spotify}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a className="spotifyBtn" href={album.spotify} target="_blank" rel="noopener noreferrer">
                 <SpotifyIcon />
                 Play on Spotify
               </a>

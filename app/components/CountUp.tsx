@@ -5,9 +5,19 @@ import { useEffect, useRef, useState } from "react";
 // Animates a number counting up to "end" when it scrolls into view.
 // Renders the FINAL value on the server / before JS, so no-JS users and
 // crawlers see the real number (not 0), then animates as an enhancement.
-export default function CountUp({ end, duration = 1600, prefix = "", suffix = "" }) {
+export default function CountUp({
+  end,
+  duration = 1600,
+  prefix = "",
+  suffix = "",
+}: {
+  end: number;
+  duration?: number;
+  prefix?: string;
+  suffix?: string;
+}) {
   const [value, setValue] = useState(end);
-  const ref = useRef(null);
+  const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
 
   useEffect(() => {
@@ -23,7 +33,7 @@ export default function CountUp({ end, duration = 1600, prefix = "", suffix = ""
           started.current = true;
           setValue(0);
           const start = performance.now();
-          const tick = (now) => {
+          const tick = (now: number) => {
             const p = Math.min((now - start) / duration, 1);
             const eased = 1 - Math.pow(1 - p, 3); // ease-out
             setValue(Math.round(end * eased));

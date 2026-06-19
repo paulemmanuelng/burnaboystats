@@ -4,7 +4,7 @@ import Link from "next/link";
 
 // Catches unexpected runtime errors in any page and shows a friendly recovery
 // screen instead of a blank page.
-export default function Error({ reset }) {
+export default function Error({ reset }: { error?: Error; reset: () => void }) {
   return (
     <main id="content" className="container errorPage">
       <p className="eyebrow">Error</p>

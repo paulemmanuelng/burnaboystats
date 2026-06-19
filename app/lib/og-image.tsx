@@ -5,7 +5,7 @@ import { ImageResponse } from "next/og";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export function ogImage({ kicker, title, sub }) {
+export function ogImage({ kicker, title, sub }: { kicker: string; title: string; sub?: string }) {
   return new ImageResponse(
     (
       <div

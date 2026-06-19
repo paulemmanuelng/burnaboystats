@@ -3,6 +3,8 @@
 // any copyrighted cover images.
 // Disciplined warm "African Giant" palette — golds, molten orange/red and
 // charcoal on the dark base (no rainbow), so covers stay on-brand.
+import type { ReactNode } from "react";
+
 const PALETTES = [
   ["#ffb627", "#7a3f0a"],
   ["#ff7a1a", "#3d1402"],
@@ -15,9 +17,9 @@ const PALETTES = [
 ];
 
 // A different music-related graphic for each cover (chosen by index).
-function Motif({ index }) {
+function Motif({ index }: { index: number }) {
   const W = "#ffffff";
-  const svg = (children) => (
+  const svg = (children: ReactNode) => (
     <svg
       className="albumCoverArt"
       viewBox="0 0 100 100"
@@ -113,7 +115,17 @@ function Motif({ index }) {
   }
 }
 
-export default function AlbumCover({ title, year, index = 0, compact = false }) {
+export default function AlbumCover({
+  title,
+  year,
+  index = 0,
+  compact = false,
+}: {
+  title: string;
+  year: number;
+  index?: number;
+  compact?: boolean;
+}) {
   const [a, b] = PALETTES[index % PALETTES.length];
   return (
     <div

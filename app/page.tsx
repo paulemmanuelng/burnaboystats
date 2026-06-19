@@ -69,7 +69,7 @@ export default function Home() {
           </div>
         </div>
 
-        <Waveform bars={90} className={styles.heroWave} />
+        <Waveform bars={60} className={styles.heroWave} />
       </section>
 
       {/* ================= WORLD CUP BANNER ================= */}

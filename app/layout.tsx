@@ -1,3 +1,5 @@
+import type { Metadata, Viewport } from "next";
+import type { ReactNode } from "react";
 import { Geist, Anton, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Nav from "./components/Nav";
@@ -24,7 +26,7 @@ const spaceMono = Space_Mono({
   weight: ["400", "700"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
   verification: {
@@ -50,7 +52,7 @@ export const metadata = {
   },
 };
 
-export const viewport = {
+export const viewport: Viewport = {
   themeColor: "#09090b",
 };
 
@@ -76,7 +78,7 @@ const jsonLd = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"

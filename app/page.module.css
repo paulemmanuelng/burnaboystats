@@ -17,7 +17,6 @@
     radial-gradient(45% 50% at 80% 16%, rgba(255, 182, 39, 0.18), transparent 60%),
     radial-gradient(42% 46% at 10% 90%, rgba(226, 52, 43, 0.13), transparent 60%);
   filter: blur(24px);
-  animation: meshDrift 20s ease-in-out infinite;
 }
 
 /* Cinematic vignette darkening the hero edges. */

@@ -3,9 +3,11 @@ import styles from "./KeepExploring.module.css";
 import { exploreFor } from "../lib/links";
 import { totalAwards, countryCount } from "../data/certifications";
 
+type SectionLink = { href: string; title: string; desc: string };
+
 // Server component, so importing the (large) certifications data here stays on
 // the server and is never shipped to the browser — the numbers below auto-update.
-const sectionLinks = {
+const sectionLinks: Record<string, SectionLink> = {
   home: { href: "/", title: "Home", desc: "Start here" },
   music: { href: "/music", title: "The Music", desc: "8 albums, EPs & every hit" },
   certifications: {
@@ -19,7 +21,7 @@ const sectionLinks = {
 
 // A "what to look at next" block — shown at the bottom of each page so
 // visitors click deeper into the site instead of leaving after one page.
-export default function KeepExploring({ current }) {
+export default function KeepExploring({ current }: { current: string }) {
   const keys = exploreFor[current] || ["music", "certifications", "tour"];
   const links = keys.map((k) => sectionLinks[k]);
 

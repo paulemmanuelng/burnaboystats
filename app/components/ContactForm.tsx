@@ -1,6 +1,6 @@
 "use client"; // runs in the browser (tracks input + submits)
 
-import { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 
 // The recipient address is base64-encoded so it never appears as readable
 // text in the page source — spam bots that scrape for "name@domain" patterns
@@ -13,11 +13,11 @@ export default function ContactForm() {
   const [error, setError] = useState("");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  function update(e) {
+  function update(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSending(true);
     setError("");
@@ -35,7 +35,9 @@ export default function ContactForm() {
           _captcha: "false",
         }),
       });
-      const out = await res.json().catch(() => ({}));
+      const out: { success?: string; message?: string } = await res
+        .json()
+        .catch(() => ({}));
       if (!res.ok || out.success !== "true") {
         throw new Error(out.message || "Request failed");
       }

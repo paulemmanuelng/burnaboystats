@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import styles from "../certifications/certifications.module.css";
-import { tierOf } from "../data/certifications";
+import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
 import { matches } from "../lib/certs";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
 
-function Badge({ cert, countries, dim }) {
+type Countries = Record<string, Country>;
+
+function Badge({ cert, countries, dim }: { cert: Cert; countries: Countries; dim: boolean }) {
   const country = countries[cert.c];
   return (
     <span
@@ -21,7 +23,17 @@ function Badge({ cert, countries, dim }) {
   );
 }
 
-function CertCard({ item, countries, country, tier }) {
+function CertCard({
+  item,
+  countries,
+  country,
+  tier,
+}: {
+  item: Release;
+  countries: Countries;
+  country: string | null;
+  tier: string | null;
+}) {
   return (
     <div className={styles.certRow}>
       <div className={styles.certRowHead}>
@@ -32,8 +44,7 @@ function CertCard({ item, countries, country, tier }) {
       </div>
       <div className={styles.badges}>
         {item.certs.map((cert) => {
-          const dim =
-            (country && cert.c !== country) || (tier && cert.level !== tier);
+          const dim = !!((country && cert.c !== country) || (tier && cert.level !== tier));
           return <Badge key={cert.c} cert={cert} countries={countries} dim={dim} />;
         })}
       </div>
@@ -41,9 +52,19 @@ function CertCard({ item, countries, country, tier }) {
   );
 }
 
-export default function CertExplorer({ albums, singles, features, countries }) {
-  const [country, setCountry] = useState(null);
-  const [tier, setTier] = useState(null);
+export default function CertExplorer({
+  albums,
+  singles,
+  features,
+  countries,
+}: {
+  albums: Release[];
+  singles: Release[];
+  features: Release[];
+  countries: Countries;
+}) {
+  const [country, setCountry] = useState<string | null>(null);
+  const [tier, setTier] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
 
   const groups = [
