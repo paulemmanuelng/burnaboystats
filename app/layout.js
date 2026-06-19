@@ -1,4 +1,4 @@
-import { Geist, Space_Grotesk, Anton, Space_Mono } from "next/font/google";
+import { Geist, Anton, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Nav from "./components/Nav";
 import { siteUrl } from "./site";
@@ -7,12 +7,6 @@ import "./globals.css";
 // Body font — clean and readable.
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-// Display font — mid-level headings.
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-display",
   subsets: ["latin"],
 });
 
@@ -87,7 +81,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${spaceGrotesk.variable} ${anton.variable} ${spaceMono.variable}`}
+      className={`${geistSans.variable} ${anton.variable} ${spaceMono.variable}`}
     >
       {/* suppressHydrationWarning: some browser extensions (e.g. Grammarly)
           add attributes to <body> before React loads, which is harmless. */}

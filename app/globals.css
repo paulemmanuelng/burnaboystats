@@ -5,32 +5,49 @@
    =========================================================== */
 :root {
   /* Surfaces */
-  --bg: #09090b;
-  --bg-soft: #131316;
+  --bg: #0a0a0b;
+  --bg-soft: #141416;
   --bg-soft-2: #1c1c21;
-  --border: #2a2a31;
+  --border: #26262b;
+  --line: rgba(245, 244, 240, 0.12); /* hairline rules */
 
   /* Text */
-  --text: #f6f6f7;
-  --text-muted: #a1a1aa;
+  --text: #f5f4f0;
+  --text-muted: #9b9ba3;
 
-  /* Brand accent — Burna Boy "African Giant" gold */
-  --gold: #e8b04b;
-  --gold-bright: #ffcf6b;
-  --gold-dim: #b8863a;
+  /* Brand accent — brighter "African Giant" gold (one loud accent) */
+  --gold: #ffb627;
+  --gold-bright: #ffd24a;
+  --gold-dim: #c98a2e;
 
-  /* Warm gradient used in backgrounds/art */
-  --grad-a: #e8b04b;
-  --grad-b: #ff7a3d;
-  --grad-c: #c0392b;
+  /* Warm "Afro-Fusion" flourish gradient — use once per screen */
+  --grad-a: #ffd24a;
+  --grad-b: #ff7a1a;
+  --grad-c: #e2342b;
+  --warm-grad: linear-gradient(100deg, var(--grad-a), var(--grad-b), var(--grad-c));
+
+  /* Display face → condensed poster type (was Space Grotesk) */
+  --font-display: var(--font-anton);
+
+  /* Spacing scale (4px base) */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-24: 96px;
+  --sp-32: 128px;
 
   /* Shape & depth */
   --radius: 6px;
   --radius-sm: 4px;
   --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-  --glow: 0 0 40px rgba(232, 176, 75, 0.25);
+  --glow: 0 0 40px rgba(255, 182, 39, 0.22);
 
-  --max-width: 1160px;
+  --max-width: 1280px;
 }
 
 * {
