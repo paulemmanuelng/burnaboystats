@@ -7,6 +7,7 @@ import Marquee from "./components/Marquee";
 import Reveal from "./components/Reveal";
 import CountUp from "./components/CountUp";
 import { totalAwards, countryCount } from "./data/certifications";
+import KeepExploring from "./components/KeepExploring";
 
 const total = totalAwards();
 
@@ -182,6 +183,14 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      <KeepExploring
+        links={[
+          { href: "/certifications", title: "Certifications", desc: "163 awards across 21 countries" },
+          { href: "/music", title: "The Music", desc: "8 albums, EPs & every hit" },
+          { href: "/tour", title: "Live & Tour", desc: "Stadiums, Grammys & the World Cup" },
+        ]}
+      />
     </main>
   );
 }

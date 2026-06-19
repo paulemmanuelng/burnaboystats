@@ -1,0 +1,49 @@
+.wrap {
+  margin: 64px auto 80px;
+}
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.card {
+  flex: 1 1 240px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.card:hover {
+  border-color: var(--gold-dim);
+  transform: translateY(-3px);
+}
+.title {
+  display: block;
+  font-weight: 700;
+}
+.desc {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.arrow {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 1.15rem;
+}

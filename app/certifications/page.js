@@ -1,55 +1,25 @@
 import styles from "./certifications.module.css";
-import Reveal from "../components/Reveal";
 import Equalizer from "../components/Equalizer";
 import CountUp from "../components/CountUp";
+import CertExplorer from "../components/CertExplorer";
+import KeepExploring from "../components/KeepExploring";
 import {
   COUNTRIES, albums, singles, features,
-  tierOf, totalAwards, certifiedReleaseCount, countryCount,
+  totalAwards, certifiedReleaseCount, countryCount,
 } from "../data/certifications";
 
 export const metadata = {
   title: "Burna Boy Certifications — Gold, Platinum & Diamond Awards Worldwide",
   description:
-    "The complete list of Burna Boy's music certifications — 130+ Gold, Platinum and Diamond awards across 17 countries (RIAA, BPI, SNEP, Music Canada, TCSN and more).",
+    "The complete list of Burna Boy's music certifications — 160+ Gold, Platinum and Diamond awards across 21 countries (RIAA, BPI, SNEP, Music Canada, RMNZ, TCSN and more). Filter by country or tier.",
   alternates: { canonical: "/certifications" },
   openGraph: {
     title: "Burna Boy Certifications — Every Gold, Platinum & Diamond",
-    description: "Every certified Burna Boy song and album across 17 countries.",
+    description: "Every certified Burna Boy song and album across 21 countries.",
   },
 };
 
 const total = totalAwards();
-
-// A small flag + level badge.
-function Badge({ cert }) {
-  const country = COUNTRIES[cert.c];
-  return (
-    <span
-      className={`${styles.cBadge} ${styles[tierOf(cert.level)]}`}
-      title={`${country.name} — ${country.body}`}
-    >
-      <span className={styles.flag}>{country.flag}</span>
-      {cert.x ? `${cert.x}× ` : ""}
-      {cert.level}
-    </span>
-  );
-}
-
-// One release card: title + a badge per country it's certified in.
-function CertCard({ item }) {
-  return (
-    <div className={styles.certCard}>
-      {item.year && <span className={styles.certYear}>{item.year}</span>}
-      <div className={styles.certHead}>
-        <span className={styles.certTitle}>{item.title}</span>
-        {item.credit && <span className={styles.certCredit}>{item.credit}</span>}
-      </div>
-      <div className={styles.badges}>
-        {item.certs.map((cert) => <Badge key={cert.c} cert={cert} />)}
-      </div>
-    </div>
-  );
-}
 
 export default function CertificationsPage() {
   return (
@@ -81,55 +51,33 @@ export default function CertificationsPage() {
           </div>
         </div>
 
-        {/* COUNTRY LEGEND */}
-        <div className={styles.legend}>
-          {Object.entries(COUNTRIES).map(([code, c]) => (
-            <span key={code} className={styles.legendItem}>
-              <span className={styles.flag}>{c.flag}</span>
-              {c.name} <em>({c.body})</em>
-            </span>
-          ))}
-        </div>
-
-        {/* ALBUMS */}
-        <h2 className={`secTitle ${styles.group}`}>
-          Albums <span className={styles.count}>({albums.length})</span>
-        </h2>
-        <Reveal>
-          <div className={styles.certGrid}>
-            {albums.map((a) => <CertCard key={a.title} item={a} />)}
-          </div>
-        </Reveal>
-
-        {/* SINGLES */}
-        <h2 className={`secTitle ${styles.group}`}>
-          Singles <span className={styles.count}>({singles.length})</span>
-        </h2>
-        <Reveal>
-          <div className={styles.certGrid}>
-            {singles.map((s) => <CertCard key={s.title} item={s} />)}
-          </div>
-        </Reveal>
-
-        {/* FEATURES */}
-        <h2 className={`secTitle ${styles.group}`}>
-          Featured Appearances <span className={styles.count}>({features.length})</span>
-        </h2>
-        <Reveal>
-          <div className={styles.certGrid}>
-            {features.map((f) => <CertCard key={f.title} item={f} />)}
-          </div>
-        </Reveal>
+        {/* INTERACTIVE FILTER + RESULTS */}
+        <CertExplorer
+          albums={albums}
+          singles={singles}
+          features={features}
+          countries={COUNTRIES}
+        />
 
         <p className={styles.source}>
           Sources: RIAA (US), BPI (UK), Music Canada, SNEP (France), BVMI
-          (Germany), NVPI (Netherlands), ARIA (Australia), RMNZ (New Zealand),
-          Promusicae (Spain), IFPI Denmark &amp; IFPI Norway — via Wikipedia and
-          national charts, as of June 2026. Each card shows a song&apos;s current
-          level in every country. Silver, Gold, Platinum and Diamond reflect each
-          country&apos;s own thresholds; “×” denotes multi-platinum.
+          (Germany), FIMI (Italy), BEA (Belgium), GLF (Sweden), NVPI
+          (Netherlands), ARIA (Australia), RMNZ (New Zealand), Promusicae (Spain),
+          IFPI (Denmark, Norway, Switzerland, Austria), ZPAV (Poland), AFP
+          (Portugal), RiSA (South Africa), TCSN (Nigeria) and Pro-Música Brasil —
+          cross-checked against Wikipedia&apos;s cited certification tables, as of
+          June 2026. Each card shows a song&apos;s current level in every country;
+          “×” denotes multi-platinum.
         </p>
       </div>
+
+      <KeepExploring
+        links={[
+          { href: "/music", title: "The Music", desc: "8 albums, EPs & every hit" },
+          { href: "/tour", title: "Live & Tour", desc: "Stadiums, Grammys & the World Cup" },
+          { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },
+        ]}
+      />
     </main>
   );
 }

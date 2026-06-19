@@ -1,5 +1,6 @@
 import Reveal from "../components/Reveal";
 import Equalizer from "../components/Equalizer";
+import KeepExploring from "../components/KeepExploring";
 
 export const metadata = {
   title: "About Burna Boy — Biography & Career Timeline",
@@ -114,6 +115,14 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </div>
+
+      <KeepExploring
+        links={[
+          { href: "/music", title: "The Music", desc: "8 albums, EPs & every hit" },
+          { href: "/certifications", title: "Certifications", desc: "163 awards across 21 countries" },
+          { href: "/tour", title: "Live & Tour", desc: "Stadiums, Grammys & the World Cup" },
+        ]}
+      />
     </main>
   );
 }

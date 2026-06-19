@@ -1,6 +1,7 @@
 import Reveal from "../components/Reveal";
 import Discography from "../components/Discography";
 import { albums, eps } from "../data/albums";
+import KeepExploring from "../components/KeepExploring";
 
 export const metadata = {
   title: "Burna Boy Discography — Albums, EPs & Songs",
@@ -174,6 +175,14 @@ export default function MusicPage() {
           </Reveal>
         </div>
       </div>
+
+      <KeepExploring
+        links={[
+          { href: "/certifications", title: "Certifications", desc: "163 awards across 21 countries" },
+          { href: "/tour", title: "Live & Tour", desc: "Stadiums, Grammys & the World Cup" },
+          { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },
+        ]}
+      />
     </main>
   );
 }

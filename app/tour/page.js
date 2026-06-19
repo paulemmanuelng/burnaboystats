@@ -1,5 +1,6 @@
 import Reveal from "../components/Reveal";
 import Waveform from "../components/Waveform";
+import KeepExploring from "../components/KeepExploring";
 
 export const metadata = {
   title: "Burna Boy Live — Tour & Historic Performances",
@@ -103,6 +104,14 @@ export default function TourPage() {
           dates on official ticketing before making travel plans.
         </p>
       </div>
+
+      <KeepExploring
+        links={[
+          { href: "/music", title: "The Music", desc: "8 albums, EPs & every hit" },
+          { href: "/certifications", title: "Certifications", desc: "163 awards across 21 countries" },
+          { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },
+        ]}
+      />
     </main>
   );
 }
