@@ -117,7 +117,8 @@ export default function CertExplorer({ albums, singles, features, countries }) {
             g.items.length > 0 && (
               <div key={g.label}>
                 <h2 className={`secTitle ${styles.group}`}>
-                  {g.label} <span className={styles.count}>({g.items.length})</span>
+                  <span className="goldText">{g.label}</span>{" "}
+                  <span className={styles.count}>({g.items.length})</span>
                 </h2>
                 <div className={styles.certGrid}>
                   {g.items.map((it) => (
