@@ -25,6 +25,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2020, category: "Best World Music Album", work: "African Giant", won: false },
       { year: 2021, category: "Best Global Music Album", work: "Twice as Tall", won: true },
       { year: 2022, category: "Album of the Year", work: "Justice (as featured artist)", won: false },
+      { year: 2022, category: "Best Global Music Performance", work: "Do Yourself (with Angélique Kidjo)", won: false },
       { year: 2023, category: "Best Global Music Performance", work: "Last Last", won: false },
       { year: 2023, category: "Best Global Music Album", work: "Love, Damini", won: false },
       { year: 2024, category: "Best Melodic Rap Performance", work: "Sittin' on Top of the World", won: false },

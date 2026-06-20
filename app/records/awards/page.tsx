@@ -56,7 +56,7 @@ export default function AwardsPage() {
 
         <p className={styles.source}>
           Includes a 2021 Grammy win (Best Global Music Album, <em>Twice as Tall</em>)
-          and twelve Grammy nominations in total. Compiled and verified against
+          and thirteen Grammy nominations in total. Compiled and verified against
           each ceremony&apos;s results, June 2026; nominations are listed even
           where the award went elsewhere. Upcoming-ceremony entries are added
           only once results are confirmed.
