@@ -1,68 +1,23 @@
 import Link from "next/link";
 import styles from "./charts.module.css";
 import CountUp from "../../components/CountUp";
+import ChartExplorer from "../../components/ChartExplorer";
 import {
   albumCharts,
   singleCharts,
   featureCharts,
   CHART_COUNTRIES,
-  chartTier,
   chartEntryCount,
   numberOnes,
   chartCountryCount,
-  type ChartRelease,
 } from "../../data/charts";
 
 export const metadata = {
   title: "Burna Boy Official Chart Entries — Peak Positions Worldwide",
   description:
-    "Every Burna Boy official chart entry and peak position — US Billboard, UK Official Charts, France (SNEP), Germany, Australia, Ireland and more.",
+    "Every Burna Boy official chart entry and peak position — US Billboard, UK Official Charts, France (SNEP), Germany, Australia, Ireland and more. Filter by country.",
   alternates: { canonical: "/records/charts" },
 };
-
-function Row({ item }: { item: ChartRelease }) {
-  const entries = [...item.entries].sort((a, b) => a.peak - b.peak);
-  return (
-    <div className={styles.row}>
-      <div>
-        <span className={styles.title}>{item.title}</span>
-        <span className={styles.credit}>
-          {item.credit ? `${item.credit} · ${item.year}` : item.year}
-        </span>
-      </div>
-      <div className={styles.peaks}>
-        {entries.map((e) => {
-          const country = CHART_COUNTRIES[e.c];
-          return (
-            <span
-              key={e.c}
-              className={`${styles.peak} ${styles[chartTier(e.peak)]}`}
-              title={`${country.name} — ${country.body}${e.note ? " · " + e.note : ""}`}
-            >
-              <span className={styles.flag}>{country.flag}</span>#{e.peak}
-            </span>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-function Group({ label, items }: { label: string; items: ChartRelease[] }) {
-  return (
-    <>
-      <h2 className={`secTitle ${styles.group}`}>
-        <span className="goldText">{label}</span>{" "}
-        <span className={styles.count}>({items.length})</span>
-      </h2>
-      <div className={styles.list}>
-        {items.map((it) => (
-          <Row key={it.title} item={it} />
-        ))}
-      </div>
-    </>
-  );
-}
 
 export default function ChartsPage() {
   return (
@@ -90,9 +45,12 @@ export default function ChartsPage() {
           </div>
         </div>
 
-        <Group label="Albums" items={albumCharts} />
-        <Group label="Singles" items={singleCharts} />
-        <Group label="Featured" items={featureCharts} />
+        <ChartExplorer
+          albums={albumCharts}
+          singles={singleCharts}
+          features={featureCharts}
+          countries={CHART_COUNTRIES}
+        />
 
         <p className={styles.source}>
           Peak positions on each country&apos;s principal national chart —
