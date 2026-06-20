@@ -95,12 +95,13 @@ export default function ChartsPage() {
         <Group label="Featured" items={featureCharts} />
 
         <p className={styles.source}>
-          Peak positions from each country&apos;s official chart (Billboard, the
-          Official Charts Company, SNEP, ARIA, RMNZ, IRMA, Ultratop, GfK and
-          others) via Wikipedia&apos;s cited tables, as of June 2026.
-          “Variant chart”, “Bubbling Under” and “Hot Singles” denote a
-          country&apos;s secondary singles chart. More songs and countries are
-          being added.
+          Peak positions on each country&apos;s principal national chart —
+          Billboard (Hot 100 / 200), the Official Charts Company, SNEP, GfK,
+          ARIA, Recorded Music NZ, IRMA, Ultratop, FIMI, PROMUSICAE, AFP,
+          TurnTable, The Official SA Charts and Billboard Global 200, among
+          others. Genre, airplay and below-the-main-chart &ldquo;bubbling&rdquo;
+          listings are excluded. Figures are peak-so-far, cross-checked against
+          the chart bodies&apos; cited data as of June 2026.
         </p>
         <Link href="/records" className={styles.back}>← Career Records</Link>
       </div>
