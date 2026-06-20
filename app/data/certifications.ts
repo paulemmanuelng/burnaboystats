@@ -1,10 +1,10 @@
 // ============================================================
 //  GLOBAL CERTIFICATIONS DATA
 //  Sources: RIAA, BPI, Music Canada, SNEP, GLF, NVPI, ARIA,
-//  RMNZ, Promusicae, IFPI (DK/NO/CH/AT), RiSA, TCSN, ZPAV, AFP,
-//  BVMI (Germany), FIMI (Italy), BEA (Belgium), Pro-Música Brasil
-//  — cross-checked against Wikipedia's cited certification tables,
-//  re-verified June 2026.
+//  RMNZ, Promusicae, IFPI (DK/NO/CH/AT), RiSA, TCSN (TurnTable),
+//  ZPAV, AFP, BVMI (Germany), FIMI (Italy), BEA (Belgium),
+//  Pro-Música Brasil — cross-checked against each body's cited
+//  data, re-verified June 2026. Nigeria via TurnTable (TCSN).
 //  Each cert: { c: countryCode, level, x?: multiplier }
 // ============================================================
 
@@ -49,14 +49,15 @@ export const COUNTRIES: Record<string, Country> = {
   PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV" },
   PT: { name: "Portugal", flag: "🇵🇹", body: "AFP" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "RiSA" },
-  NG: { name: "Nigeria", flag: "🇳🇬", body: "TCSN" },
+  NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable (TCSN)" },
   BR: { name: "Brazil", flag: "🇧🇷", body: "Pro-Música Brasil" },
 };
 
 export const albums: Release[] = [
   { title: "African Giant", year: 2019, certs: [
     { c: "FR", level: "Platinum" }, { c: "UK", level: "Gold" }, { c: "SE", level: "Gold" },
-    { c: "CA", level: "Gold" }, { c: "NL", level: "Gold" },
+    { c: "CA", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "CH", level: "Gold" },
+    { c: "DK", level: "Gold" },
   ] },
   { title: "Love, Damini", year: 2022, certs: [
     { c: "CA", level: "Platinum" }, { c: "UK", level: "Gold" }, { c: "SE", level: "Gold" },
@@ -87,47 +88,49 @@ export const singles: Release[] = [
   { title: "Ye", year: 2018, certs: [
     { c: "US", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "SE", level: "Platinum" },
     { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "FR", level: "Platinum" },
+    { c: "CH", level: "Platinum" }, { c: "NG", level: "Silver" },
   ] },
   { title: "For My Hand", credit: "feat. Ed Sheeran", year: 2022, certs: [
-    { c: "CA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" },
+    { c: "NG", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" },
     { c: "SE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" },
     { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "CH", level: "Gold" },
   ] },
   { title: "City Boys", year: 2023, certs: [
-    { c: "NG", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum" }, { c: "FR", level: "Platinum" },
+    { c: "NG", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum" }, { c: "FR", level: "Platinum" },
     { c: "UK", level: "Gold" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" },
   ] },
   { title: "Gbona", year: 2018, certs: [
-    { c: "CA", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "SE", level: "Gold" },
-    { c: "DK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" },
+    { c: "CA", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "CH", level: "Platinum" },
+    { c: "SE", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "It's Plenty", year: 2022, certs: [
-    { c: "NG", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum" }, { c: "FR", level: "Gold" },
-    { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" },
+    { c: "NG", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" },
+    { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "Alone", year: 2022, certs: [
-    { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "NG", level: "Gold" },
+    { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" },
+    { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "Anybody", year: 2019, certs: [
-    { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" },
+    { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "Sittin' on Top of the World", credit: "feat. 21 Savage", year: 2023, certs: [
     { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "Real Life", credit: "feat. Stormzy", year: 2020, certs: [
-    { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" },
+    { c: "NG", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "Gum Body", credit: "feat. Jorja Smith", year: 2019, certs: [
     { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "Tested, Approved & Trusted", year: 2023, certs: [
-    { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" },
+    { c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" },
   ] },
   { title: "Kilometre", year: 2021, certs: [
-    { c: "CA", level: "Gold" },
+    { c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" },
   ] },
   { title: "Higher", year: 2024, certs: [
-    { c: "NG", level: "Platinum", x: 3 }, { c: "CA", level: "Gold" },
+    { c: "NG", level: "Platinum", x: 4 }, { c: "CA", level: "Gold" },
   ] },
   { title: "Common Person", year: 2022, certs: [
     { c: "NG", level: "Platinum", x: 3 },
@@ -141,19 +144,100 @@ export const singles: Release[] = [
   { title: "Different Size", credit: "feat. Vict0ny", year: 2022, certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, certs: [
-    { c: "CA", level: "Gold" },
+  { title: "Big 7", year: 2023, certs: [
+    { c: "NG", level: "Platinum" },
   ] },
-  { title: "Talibans II", credit: "with Byron Messia", year: 2023, certs: [
-    { c: "CA", level: "Gold" },
+  { title: "Way Too Big", year: 2020, certs: [
+    { c: "NG", level: "Platinum" },
+  ] },
+  { title: "23", year: 2022, certs: [
+    { c: "NG", level: "Platinum" },
+  ] },
+  { title: "Dey Play", certs: [
+    { c: "NG", level: "Platinum" },
+  ] },
+  { title: "On Form", certs: [
+    { c: "NG", level: "Platinum" },
+  ] },
+  { title: "Bundle by Bundle", year: 2024, certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "Question", credit: "feat. Don Jazzy", year: 2021, certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "Want It All", credit: "feat. Polo G", year: 2021, certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "Cloak & Dagger", credit: "feat. J Hus", year: 2022, certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "Normal", year: 2023, certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "Science", certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "Vanilla", certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "Jagele", certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "I Told Them", year: 2023, certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "Rollercoaster", credit: "feat. J Balvin", year: 2022, certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "Cheat on Me", credit: "feat. Dave", year: 2023, certs: [
+    { c: "NG", level: "Gold" }, { c: "UK", level: "Silver" },
+  ] },
+  { title: "Wild Dreams", credit: "feat. Khalid", year: 2022, certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "Glory", credit: "feat. Ladysmith Black Mambazo", certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "Solid", credit: "feat. Kehlani & Justin Bieber", certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "Dirty Secrets", year: 2022, certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "Whiskey", year: 2020, certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "Bank On It", year: 2020, certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "If I'm Lying", certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "No Fit Vex", certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "Thanks", year: 2020, certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "Onyeka (Baby)", year: 2019, certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "How Bad Could It Be", certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "Level Up", certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "Wonderful", year: 2020, certs: [
+    { c: "NG", level: "Silver" },
+  ] },
+  { title: "Virgil", certs: [
+    { c: "NG", level: "Silver" },
   ] },
   { title: "Collateral Damage", year: 2019, certs: [
     { c: "FR", level: "Gold" },
   ] },
   { title: "Secret", credit: "feat. Jeremih & Serani", year: 2019, certs: [
-    { c: "UK", level: "Silver" },
-  ] },
-  { title: "Cheat on Me", credit: "feat. Dave", year: 2023, certs: [
     { c: "UK", level: "Silver" },
   ] },
 ];
@@ -164,6 +248,7 @@ export const features: Release[] = [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 },
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "NO", level: "Platinum" },
     { c: "DK", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "PT", level: "Gold" },
+    { c: "DE", level: "Gold" }, { c: "NG", level: "Gold" },
   ] },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", year: 2024, certs: [
     { c: "FR", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "UK", level: "Gold" },
@@ -183,8 +268,8 @@ export const features: Release[] = [
     { c: "DE", level: "Platinum" }, { c: "PT", level: "Platinum", x: 2 }, { c: "AT", level: "Gold" },
   ] },
   { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, certs: [
-    { c: "ZA", level: "Platinum", x: 2 }, { c: "US", level: "Gold" }, { c: "CA", level: "Gold" },
-    { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" },
+    { c: "ZA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" },
+    { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, certs: [
     { c: "BR", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" },
@@ -199,7 +284,7 @@ export const features: Release[] = [
     { c: "NG", level: "Platinum", x: 4 },
   ] },
   { title: "Tshwala Bam (Remix)", credit: "TitoM & Yuppe ft. S.N.E & Burna Boy", year: 2024, certs: [
-    { c: "NG", level: "Platinum", x: 3 },
+    { c: "NG", level: "Platinum", x: 4 },
   ] },
   { title: "Second Sermon (Remix)", credit: "Black Sherif ft. Burna Boy", year: 2021, certs: [
     { c: "NG", level: "Platinum" },
@@ -214,13 +299,25 @@ export const features: Release[] = [
     { c: "FR", level: "Gold" },
   ] },
   { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, certs: [
-    { c: "AU", level: "Gold" },
+    { c: "AU", level: "Gold" }, { c: "BR", level: "Gold" },
   ] },
   { title: "Enjoy Yourself (Remix)", credit: "Pop Smoke ft. Burna Boy", year: 2020, certs: [
-    { c: "NZ", level: "Gold" },
+    { c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" },
+  ] },
+  { title: "Yaba Buluku (Remix)", credit: "DJ Tarico & Burna Boy", year: 2021, certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, certs: [
+    { c: "CA", level: "Gold" }, { c: "NG", level: "Silver" },
+  ] },
+  { title: "Talibans II", credit: "with Byron Messia", year: 2023, certs: [
+    { c: "CA", level: "Gold" }, { c: "NG", level: "Gold" },
   ] },
   { title: "Rollin'", credit: "Mist ft. Burna Boy", year: 2021, certs: [
     { c: "UK", level: "Silver" },
+  ] },
+  { title: "Lenu (Remix)", certs: [
+    { c: "NG", level: "Silver" },
   ] },
   { title: "Baddest", credit: "AKA ft. Burna Boy, Khuli Chana & Yanga Chief", year: 2019, certs: [
     { c: "ZA", level: "Gold" },
