@@ -46,6 +46,7 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   ZA: { name: "South Africa", flag: "🇿🇦", body: "The Official SA Charts" },
   SR: { name: "Suriname", flag: "🇸🇷", body: "Nationale Top 40" },
   AR: { name: "Argentina", flag: "🇦🇷", body: "Billboard Argentina Hot 100" },
+  CO: { name: "Colombia", flag: "🇨🇴", body: "Billboard Colombia Hot 100" },
   WW: { name: "Global", flag: "🌍", body: "Billboard Global 200" },
 };
 
@@ -134,7 +135,7 @@ export const featureCharts: ChartRelease[] = [
   ] },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, entries: [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "DE", peak: 2 }, { c: "AT", peak: 2 },
-    { c: "BE", peak: 4 }, { c: "SE", peak: 5 }, { c: "ES", peak: 10 }, { c: "AR", peak: 20 }, { c: "UK", peak: 28 },
+    { c: "BE", peak: 4 }, { c: "SE", peak: 5 }, { c: "CO", peak: 8 }, { c: "ES", peak: 10 }, { c: "AR", peak: 20 }, { c: "UK", peak: 28 },
     { c: "IT", peak: 33 }, { c: "IE", peak: 34 }, { c: "FR", peak: 38 }, { c: "WW", peak: 46 },
     { c: "CA", peak: 55 },
   ] },
