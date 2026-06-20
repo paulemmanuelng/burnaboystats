@@ -112,7 +112,7 @@ export const singleCharts: ChartRelease[] = [
     { c: "WW", peak: 143 },
   ] },
   { title: "For My Hand", credit: "feat. Ed Sheeran", year: 2022, entries: [
-    { c: "SR", peak: 3 }, { c: "ZA", peak: 4 }, { c: "UK", peak: 18 }, { c: "DK", peak: 23 },
+    { c: "NG", peak: 1 }, { c: "SR", peak: 3 }, { c: "ZA", peak: 4 }, { c: "UK", peak: 18 }, { c: "DK", peak: 23 },
     { c: "NL", peak: 25 }, { c: "SE", peak: 38 }, { c: "IE", peak: 47 }, { c: "WW", peak: 52 },
     { c: "CH", peak: 59 }, { c: "CA", peak: 63 }, { c: "FR", peak: 173 },
   ] },
@@ -127,9 +127,10 @@ export const singleCharts: ChartRelease[] = [
   { title: "On the Low", year: 2018, entries: [
     { c: "FR", peak: 78 }, { c: "NL", peak: 97 },
   ] },
-  { title: "Kilometre", year: 2021, entries: [{ c: "UK", peak: 84 }] },
+  { title: "Kilometre", year: 2021, entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 84 }] },
   { title: "TaTaTa", credit: "feat. Travis Scott", year: 2025, entries: [{ c: "UK", peak: 84 }] },
-  { title: "Higher", year: 2024, entries: [{ c: "UK", peak: 99 }] },
+  { title: "Higher", year: 2024, entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 99 }] },
+  { title: "Love", year: 2025, entries: [{ c: "NG", peak: 1 }] },
 ];
 
 export const featureCharts: ChartRelease[] = [
@@ -187,7 +188,9 @@ export const featureCharts: ChartRelease[] = [
   { title: "Only You", credit: "J. Cole ft. Burna Boy", year: 2026, entries: [{ c: "US", peak: 78 }] },
   { title: "Just Like Me", credit: "21 Savage, Burna Boy & Metro Boomin", year: 2024, entries: [{ c: "US", peak: 67 }] },
   { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, entries: [{ c: "US", peak: 87 }] },
-  { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, entries: [{ c: "UK", peak: 67 }] },
+  { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 67 }] },
+  { title: "Sungba (Remix)", credit: "Asake ft. Burna Boy", year: 2022, entries: [{ c: "NG", peak: 1 }] },
+  { title: "Tshwala Bam (Remix)", credit: "TitoM, Yuppe & Burna Boy feat. S.N.E", year: 2024, entries: [{ c: "NG", peak: 1 }] },
 ];
 
 // Helpers
