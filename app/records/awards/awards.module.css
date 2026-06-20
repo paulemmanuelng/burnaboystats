@@ -82,11 +82,11 @@
   justify-content: center;
   padding: 8px 16px;
   border-radius: 999px;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 0.82rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.04em;
   border: 1px solid;
 }
 /* Win: solid gold pill, dark text — high contrast, celebratory */
