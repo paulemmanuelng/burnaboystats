@@ -85,7 +85,7 @@ export default function AwardExplorer() {
               <h2 className={`secTitle ${styles.group}`}>
                 <span className="goldText">{g.name}</span>{" "}
                 <span className={styles.count}>
-                  ({wins > 0 ? `${wins} won · ` : ""}{g.noms.length} {g.noms.length === 1 ? "nod" : "nods"})
+                  ({wins > 0 ? `${wins} won · ` : ""}{g.noms.length} {g.noms.length === 1 ? "nomination" : "nominations"})
                 </span>
               </h2>
               <div className={styles.list}>
