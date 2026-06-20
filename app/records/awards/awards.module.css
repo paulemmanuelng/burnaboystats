@@ -78,19 +78,29 @@
 .badge {
   display: inline-flex;
   align-items: center;
-  min-width: 58px;
+  min-width: 116px;
   justify-content: center;
-  padding: 6px 12px;
+  padding: 8px 16px;
   border-radius: 999px;
   font-family: var(--font-mono), monospace;
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   border: 1px solid;
 }
-.won { color: var(--gold); border-color: var(--gold); background: rgba(255, 182, 39, 0.14); }
-.nom { color: #9aa0a6; border-color: rgba(154, 160, 166, 0.4); }
+/* Win: solid gold pill, dark text — high contrast, celebratory */
+.won {
+  color: #14110a;
+  border-color: var(--gold-bright);
+  background: var(--gold);
+}
+/* Nominee: clearly readable light text on a subtle fill */
+.nom {
+  color: #e7e8ec;
+  border-color: rgba(231, 232, 236, 0.34);
+  background: rgba(255, 255, 255, 0.055);
+}
 
 .source { margin: 36px 0 12px; font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
 .back {

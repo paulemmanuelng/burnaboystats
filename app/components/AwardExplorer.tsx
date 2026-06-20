@@ -19,7 +19,7 @@ function Row({ nom }: { nom: AwardNom }) {
       <div className={styles.rowMeta}>
         <span className={styles.year}>{nom.year}</span>
         <span className={`${styles.badge} ${nom.won ? styles.won : styles.nom}`}>
-          {nom.won ? "Won" : "Nom"}
+          {nom.won ? "Won" : "Nominated"}
         </span>
       </div>
     </div>
