@@ -67,7 +67,7 @@ export const albums: Release[] = [
     { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "NG", level: "Platinum" },
   ] },
   { title: "Twice as Tall", year: 2020, certs: [
-    { c: "UK", level: "Silver" }, { c: "NL", level: "Gold" },
+    { c: "UK", level: "Silver" },
   ] },
 ];
 
