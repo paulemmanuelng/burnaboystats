@@ -42,6 +42,9 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   PT: { name: "Portugal", flag: "🇵🇹", body: "AFP" },
   FI: { name: "Finland", flag: "🇫🇮", body: "Suomen virallinen lista" },
   HU: { name: "Hungary", flag: "🇭🇺", body: "MAHASZ" },
+  GR: { name: "Greece", flag: "🇬🇷", body: "IFPI Greece" },
+  HR: { name: "Croatia", flag: "🇭🇷", body: "HRT (official chart)" },
+  HK: { name: "Hong Kong", flag: "🇭🇰", body: "Billboard Hong Kong Songs" },
   NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable Top 100" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "The Official SA Charts" },
   SR: { name: "Suriname", flag: "🇸🇷", body: "Nationale Top 40" },
@@ -141,11 +144,11 @@ export const featureCharts: ChartRelease[] = [
   ] },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, entries: [
     { c: "BE", peak: 2 }, { c: "SR", peak: 2 }, { c: "HU", peak: 39 }, { c: "IE", peak: 43 },
-    { c: "UK", peak: 43 }, { c: "CH", peak: 52 }, { c: "CA", peak: 70 }, { c: "AU", peak: 84 },
-    { c: "PT", peak: 140 },
+    { c: "UK", peak: 43 }, { c: "CH", peak: 52 }, { c: "CA", peak: 70 }, { c: "HR", peak: 73 },
+    { c: "AU", peak: 84 }, { c: "PT", peak: 140 },
   ] },
   { title: "We Pray", credit: "Coldplay ft. Little Simz, Burna Boy, Elyanna & TINI", year: 2024, entries: [
-    { c: "NL", peak: 4 }, { c: "IE", peak: 7 }, { c: "BE", peak: 9 }, { c: "UK", peak: 20 },
+    { c: "HR", peak: 3 }, { c: "NL", peak: 4 }, { c: "HK", peak: 4 }, { c: "IE", peak: 7 }, { c: "BE", peak: 9 }, { c: "UK", peak: 20 },
     { c: "NZ", peak: 21 }, { c: "CH", peak: 22 }, { c: "AT", peak: 28 }, { c: "AR", peak: 36 }, { c: "AU", peak: 37 },
     { c: "FI", peak: 38 }, { c: "DE", peak: 40 }, { c: "FR", peak: 45 }, { c: "WW", peak: 50 },
     { c: "ES", peak: 53 }, { c: "PT", peak: 61 }, { c: "IT", peak: 71 }, { c: "US", peak: 87 },
@@ -163,7 +166,7 @@ export const featureCharts: ChartRelease[] = [
   ] },
   { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2022, entries: [
     { c: "US", peak: 16 }, { c: "UK", peak: 22 }, { c: "NZ", peak: 29 }, { c: "CH", peak: 29 },
-    { c: "CA", peak: 46 }, { c: "WW", peak: 60 }, { c: "IE", peak: 82 }, { c: "SE", peak: 91 },
+    { c: "CA", peak: 46 }, { c: "GR", peak: 56 }, { c: "WW", peak: 60 }, { c: "IE", peak: 82 }, { c: "SE", peak: 91 },
     { c: "DE", peak: 92 }, { c: "AU", peak: 96 }, { c: "NL", peak: 97 }, { c: "PT", peak: 111 },
   ] },
   { title: "Simmer", credit: "Mahalia ft. Burna Boy", year: 2019, entries: [{ c: "UK", peak: 46 }] },
