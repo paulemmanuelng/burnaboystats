@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./awards.module.css";
 import CountUp from "../../components/CountUp";
 import AwardExplorer from "../../components/AwardExplorer";
-import { totalWins, totalNominations, ceremonyCount } from "../../data/awards";
+import { totalWins, totalNominations, ceremonyCount, honours } from "../../data/awards";
 
 export const metadata = {
   title: "Burna Boy Awards & Nominations — Grammy, BET, Headies, AFRIMA & more",
@@ -38,6 +38,21 @@ export default function AwardsPage() {
         </div>
 
         <AwardExplorer />
+
+        <section className={styles.honours}>
+          <h2 className={`secTitle ${styles.group}`}>
+            <span className="goldText">Honours &amp; Special Recognitions</span>
+          </h2>
+          <div className={styles.honourGrid}>
+            {honours.map((h, i) => (
+              <div key={i} className={styles.honourCard}>
+                <span className={styles.honourTitle}>{h.title}</span>
+                <span className={styles.honourOrg}>{h.org} · {h.year}</span>
+                {h.note && <span className={styles.honourNote}>{h.note}</span>}
+              </div>
+            ))}
+          </div>
+        </section>
 
         <p className={styles.source}>
           Includes a 2021 Grammy win (Best Global Music Album, <em>Twice as Tall</em>)

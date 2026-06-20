@@ -310,6 +310,41 @@ export const ceremonies: Ceremony[] = [
   },
 ];
 
+// Honours & special recognitions (not competitive category awards).
+export interface Honour {
+  title: string;
+  org: string;
+  year: number;
+  note?: string;
+}
+
+export const honours: Honour[] = [
+  {
+    title: "Distinguished Service Star of Rivers State (DSSRS)",
+    org: "Rivers State, Nigeria",
+    year: 2021,
+    note: "The state's second-highest honour, conferred after his Grammy win.",
+  },
+  {
+    title: "Member of the Order of the Federal Republic (MFR)",
+    org: "Federal Republic of Nigeria",
+    year: 2022,
+    note: "National honour conferred at the National Honours Investiture.",
+  },
+  {
+    title: "BRIT Billion Award",
+    org: "BPI · United Kingdom",
+    year: 2024,
+    note: "For surpassing 1 billion UK streams.",
+  },
+  {
+    title: "BRIT Billion Award",
+    org: "BPI · United Kingdom",
+    year: 2024,
+    note: "For 2 billion UK streams — the first African artist to reach it.",
+  },
+];
+
 // Helpers
 export const allNoms: AwardNom[] = ceremonies.flatMap((c) => c.noms);
 export const totalNominations = allNoms.length;
