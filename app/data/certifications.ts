@@ -323,7 +323,7 @@ export const features: Release[] = [
     { c: "ZA", level: "Gold" },
   ] },
   { title: "All Eyes on Me", credit: "AKA ft. Burna Boy, Da L.E.S & JR", year: 2014, certs: [
-    { c: "ZA", level: "Platinum" },
+    { c: "ZA", level: "Platinum", x: 19 },
   ] },
   { title: "B.D'or", credit: "Bramsito ft. Burna Boy", year: 2019, certs: [
     { c: "NG", level: "Platinum" },
