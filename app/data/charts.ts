@@ -51,6 +51,8 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   AE: { name: "United Arab Emirates", flag: "🇦🇪", body: "The Official UAE Chart" },
   SA: { name: "Saudi Arabia", flag: "🇸🇦", body: "The Official Saudi Arabia Chart" },
   LB: { name: "Lebanon", flag: "🇱🇧", body: "The Official Lebanese Top 20" },
+  RO: { name: "Romania", flag: "🇷🇴", body: "Airplay 100" },
+  SK: { name: "Slovakia", flag: "🇸🇰", body: "Singles Digitál Top 100" },
   NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable Top 100" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "The Official SA Charts" },
   SR: { name: "Suriname", flag: "🇸🇷", body: "Nationale Top 40" },
@@ -138,9 +140,9 @@ export const featureCharts: ChartRelease[] = [
   ] },
   { title: "Jerusalema (Remix)", credit: "Master KG ft. Nomcebo Zikode & Burna Boy", year: 2020, entries: [
     { c: "BE", peak: 1 }, { c: "CH", peak: 1 }, { c: "HU", peak: 1 }, { c: "NL", peak: 1 },
-    { c: "SR", peak: 1 }, { c: "ZA", peak: 1 }, { c: "AT", peak: 2 }, { c: "FR", peak: 2 },
+    { c: "SR", peak: 1 }, { c: "ZA", peak: 1 }, { c: "RO", peak: 1 }, { c: "AT", peak: 2 }, { c: "FR", peak: 2 },
     { c: "IT", peak: 2 }, { c: "DE", peak: 3 }, { c: "SE", peak: 3 }, { c: "IE", peak: 4 },
-    { c: "ES", peak: 10 }, { c: "WW", peak: 38 }, { c: "UK", peak: 55 },
+    { c: "ES", peak: 10 }, { c: "PT", peak: 15 }, { c: "WW", peak: 38 }, { c: "SK", peak: 46 }, { c: "UK", peak: 55 },
   ] },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, entries: [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "DE", peak: 2 }, { c: "AT", peak: 2 },
