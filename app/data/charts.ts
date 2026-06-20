@@ -45,6 +45,7 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable Top 100" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "The Official SA Charts" },
   SR: { name: "Suriname", flag: "🇸🇷", body: "Nationale Top 40" },
+  AR: { name: "Argentina", flag: "🇦🇷", body: "Billboard Argentina Hot 100" },
   WW: { name: "Global", flag: "🌍", body: "Billboard Global 200" },
 };
 
@@ -89,9 +90,9 @@ export const albumCharts: ChartRelease[] = [
 export const singleCharts: ChartRelease[] = [
   { title: "Last Last", year: 2022, entries: [
     { c: "ZA", peak: 1 }, { c: "NG", peak: 2 }, { c: "UK", peak: 4 }, { c: "NZ", peak: 12 },
-    { c: "NL", peak: 14 }, { c: "SE", peak: 21 }, { c: "FR", peak: 23 }, { c: "BE", peak: 24 },
-    { c: "IE", peak: 27 }, { c: "CA", peak: 30 }, { c: "CH", peak: 38 }, { c: "WW", peak: 39 },
-    { c: "US", peak: 44 }, { c: "AU", peak: 79 },
+    { c: "NL", peak: 14 }, { c: "SE", peak: 21 }, { c: "FR", peak: 23 }, { c: "IE", peak: 27 },
+    { c: "CA", peak: 30 }, { c: "CH", peak: 38 }, { c: "WW", peak: 39 }, { c: "US", peak: 44 },
+    { c: "BE", peak: 49 }, { c: "AU", peak: 79 }, { c: "PT", peak: 142 },
   ] },
   { title: "City Boys", year: 2023, entries: [
     { c: "NG", peak: 2 }, { c: "NL", peak: 14 }, { c: "UK", peak: 14 }, { c: "CH", peak: 24 },
@@ -133,7 +134,7 @@ export const featureCharts: ChartRelease[] = [
   ] },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, entries: [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "DE", peak: 2 }, { c: "AT", peak: 2 },
-    { c: "BE", peak: 4 }, { c: "SE", peak: 5 }, { c: "ES", peak: 10 }, { c: "UK", peak: 28 },
+    { c: "BE", peak: 4 }, { c: "SE", peak: 5 }, { c: "ES", peak: 10 }, { c: "AR", peak: 20 }, { c: "UK", peak: 28 },
     { c: "IT", peak: 33 }, { c: "IE", peak: 34 }, { c: "FR", peak: 38 }, { c: "WW", peak: 46 },
     { c: "CA", peak: 55 },
   ] },
@@ -144,7 +145,7 @@ export const featureCharts: ChartRelease[] = [
   ] },
   { title: "We Pray", credit: "Coldplay ft. Little Simz, Burna Boy, Elyanna & TINI", year: 2024, entries: [
     { c: "NL", peak: 4 }, { c: "IE", peak: 7 }, { c: "BE", peak: 9 }, { c: "UK", peak: 20 },
-    { c: "NZ", peak: 21 }, { c: "CH", peak: 22 }, { c: "AT", peak: 28 }, { c: "AU", peak: 37 },
+    { c: "NZ", peak: 21 }, { c: "CH", peak: 22 }, { c: "AT", peak: 28 }, { c: "AR", peak: 36 }, { c: "AU", peak: 37 },
     { c: "FI", peak: 38 }, { c: "DE", peak: 40 }, { c: "FR", peak: 45 }, { c: "WW", peak: 50 },
     { c: "ES", peak: 53 }, { c: "PT", peak: 61 }, { c: "IT", peak: 71 }, { c: "US", peak: 87 },
     { c: "CA", peak: 92 },
@@ -170,6 +171,8 @@ export const featureCharts: ChartRelease[] = [
     { c: "CA", peak: 53 }, { c: "US", peak: 99 },
   ] },
   { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", year: 2025, entries: [{ c: "FR", peak: 61 }] },
+  { title: "Only You", credit: "J. Cole ft. Burna Boy", year: 2026, entries: [{ c: "US", peak: 78 }] },
+  { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, entries: [{ c: "US", peak: 87 }] },
   { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, entries: [{ c: "UK", peak: 67 }] },
 ];
 
