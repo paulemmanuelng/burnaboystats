@@ -62,7 +62,7 @@ export const albums: Release[] = [
   { title: "Love, Damini", year: 2022, certs: [
     { c: "CA", level: "Platinum" }, { c: "UK", level: "Gold" }, { c: "SE", level: "Gold" },
     { c: "FR", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "DK", level: "Platinum" },
-    { c: "US", level: "Gold" }, { c: "NZ", level: "Platinum" }, { c: "NG", level: "Platinum", x: 5 },
+    { c: "NZ", level: "Platinum" }, { c: "NG", level: "Platinum", x: 5 },
   ] },
   { title: "I Told Them...", year: 2023, certs: [
     { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "NG", level: "Platinum" },
