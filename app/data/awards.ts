@@ -1,9 +1,13 @@
 // ============================================================
 //  AWARDS & NOMINATIONS
 //  Compiled from Wikipedia's cited "List of awards and nominations
-//  received by Burna Boy", verified June 2026. Grammy 2026 results
-//  confirmed (nominated, did not win). Premature 2026 entries for
-//  ceremonies that run later in the year (AFRIMA, AMA) are excluded.
+//  received by Burna Boy" and cross-checked against press reporting,
+//  re-verified June 2026. Includes the 9th AFRIMA (2025 edition, held
+//  Jan 2026: Album of the Year for No Sign of Weakness + Best African
+//  Collaboration for Laho II won), the 2025 MTV VMAs and the Trace
+//  Awards. Each entry is a single { year, category, work?, won } — only
+//  items confirmed with a year + category are listed (win-count-only
+//  social-media lists are not added without that detail).
 // ============================================================
 
 export interface AwardNom {
@@ -47,6 +51,9 @@ export const ceremonies: Ceremony[] = [
       { year: 2023, category: "Best Male R&B/Pop Artist", won: false },
       { year: 2023, category: "Video Director of the Year", won: false },
       { year: 2023, category: "Viewer's Choice Award", work: "Last Last", won: false },
+      { year: 2024, category: "Best Male R&B/Pop Artist", won: false },
+      { year: 2024, category: "Best Male Hip Hop Artist", won: false },
+      { year: 2025, category: "Best Male Hip Hop Artist", won: false },
     ],
   },
   {
@@ -137,6 +144,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2020, category: "Best African Act", won: false },
       { year: 2022, category: "Best African Music Act", won: true },
       { year: 2022, category: "Best International Act", won: true },
+      { year: 2024, category: "Best African Act", won: false },
     ],
   },
   {
@@ -144,6 +152,13 @@ export const ceremonies: Ceremony[] = [
     noms: [
       { year: 2014, category: "Best New Act", won: false },
       { year: 2015, category: "Best Collaboration", work: "All Eyes on Me", won: true },
+    ],
+  },
+  {
+    name: "MTV Video Music Awards",
+    noms: [
+      { year: 2025, category: "Best Afrobeats", work: "TaTaTa (with Travis Scott)", won: false },
+      { year: 2025, category: "Video for Good", work: "Higher", won: false },
     ],
   },
   {
@@ -158,6 +173,8 @@ export const ceremonies: Ceremony[] = [
       { year: 2023, category: "Artist of the Year", won: true },
       { year: 2023, category: "Album of the Year", work: "Love, Damini", won: true },
       { year: 2023, category: "Song of the Year", work: "Last Last", won: false },
+      { year: 2025, category: "Album of the Year", work: "No Sign of Weakness", won: true },
+      { year: 2025, category: "Best African Collaboration", work: "Laho II (with Shallipopi)", won: true },
     ],
   },
   {
@@ -285,6 +302,16 @@ export const ceremonies: Ceremony[] = [
     name: "Planet Rap Awards",
     noms: [
       { year: 2023, category: "Best International Artist", won: true },
+    ],
+  },
+  {
+    name: "Trace Awards",
+    noms: [
+      { year: 2023, category: "Album of the Year", work: "Love, Damini", won: true },
+      { year: 2025, category: "Album of the Year", work: "I Told Them...", won: false },
+      { year: 2025, category: "Best Collaboration", work: "Tshwala Bam (Remix)", won: false },
+      { year: 2025, category: "Best Live Performance", won: false },
+      { year: 2025, category: "Best Male Artist", won: false },
     ],
   },
   {
