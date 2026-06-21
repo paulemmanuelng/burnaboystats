@@ -30,7 +30,7 @@ export const tours: Tour[] = [
   {
     name: "No Sign of Weakness Tour",
     years: "2025–26",
-    note: "His most expansive run yet — a genuine world tour across Oceania (Oct 2025), North America (Nov–Dec 2025) and Europe (Jan 2026), performed largely on a 360° in-the-round stage. He became the first Nigerian artist to headline Red Rocks, and the Oceania leg alone grossed $3.1M from 31,000 tickets — the most for an African artist there. (Two US dates — Minneapolis and Chicago — were cancelled.)",
+    note: "His most expansive run yet — a genuine world tour across Oceania (Oct 2025), North America (Nov–Dec 2025) and Europe (Jan 2026), performed largely on a 360° in-the-round stage. He became the first Nigerian artist to headline Red Rocks, and the Oceania leg alone grossed $3.1M from 31,000 tickets — the most for an African artist there. (Only confirmed shows are listed; several scheduled dates were later cancelled.)",
     dates: [
       { date: "Oct 16, 2025", venue: "Sidney Myer Music Bowl", city: "Melbourne", country: "Australia", cap: 12000 },
       { date: "Oct 18, 2025", venue: "Qudos Bank Arena", city: "Sydney", country: "Australia", cap: 21000 },
