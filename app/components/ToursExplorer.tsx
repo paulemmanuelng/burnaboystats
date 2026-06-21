@@ -1,22 +1,59 @@
 "use client"; // interactive: open a tour to see its dates/venues/capacities
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "../records/tours/tours.module.css";
 import type { Tour } from "../data/tours";
 
 export default function ToursExplorer({ tours }: { tours: Tour[] }) {
   const [open, setOpen] = useState<number | null>(null);
   const tour = open !== null ? tours[open] : null;
+  const modalRef = useRef<HTMLDivElement>(null);
+  const lastFocused = useRef<HTMLElement | null>(null);
 
-  // Escape to close + lock page scroll while a tour is open.
+  // While a tour is open: trap focus inside the modal, close on Escape, lock
+  // page scroll, and restore focus to the trigger when it closes.
   useEffect(() => {
     if (!tour) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(null); };
+    lastFocused.current = document.activeElement as HTMLElement | null;
+    const node = modalRef.current;
+    const getFocusable = (): HTMLElement[] =>
+      node
+        ? Array.from(
+            node.querySelectorAll<HTMLElement>(
+              'a[href], button, input, textarea, [tabindex]:not([tabindex="-1"])'
+            )
+          )
+        : [];
+
+    const focusables = getFocusable();
+    if (focusables[0]) focusables[0].focus();
+
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setOpen(null);
+        return;
+      }
+      if (e.key === "Tab") {
+        const els = getFocusable();
+        if (els.length === 0) return;
+        const first = els[0];
+        const last = els[els.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      lastFocused.current?.focus();
     };
   }, [tour]);
 
@@ -72,6 +109,7 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
         <div className="modalOverlay" onClick={() => setOpen(null)} role="presentation">
           <div
             className="modal"
+            ref={modalRef}
             role="dialog"
             aria-modal="true"
             aria-label={`${tour.name} tour dates`}
