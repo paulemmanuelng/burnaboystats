@@ -12,7 +12,7 @@ const subs = [
   { href: "/records/charts", title: "Official Charts", desc: "Peak positions on every major chart worldwide", live: true },
   { href: "/records/awards", title: "Awards", desc: "Every win & nomination to date", live: true },
   { href: "/records/tours", title: "Tours", desc: "Tour runs, dates & box-office grosses", live: true },
-  { href: "/records/firsts", title: "Firsts", desc: "Every record broken & first achieved", live: false },
+  { href: "/records/firsts", title: "Firsts", desc: "Every record broken & first achieved", live: true },
 ];
 
 export default function RecordsPage() {
