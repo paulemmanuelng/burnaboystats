@@ -61,7 +61,6 @@ export const tours: Tour[] = [
     years: "2023–24",
     gross: "$30.46M",
     tickets: "302,801",
-    shows: 22,
     record: true,
     note: "The highest-grossing tour by an African artist in history — $15.19M across 16 North American shows and $15.27M across 6 European shows, averaging about $1.4M a night. It also included the record-breaking London Stadium concert.",
     dates: [
@@ -84,6 +83,10 @@ export const tours: Tour[] = [
       { date: "Mar 9, 2024", venue: "State Farm Arena", city: "Atlanta", country: "USA", cap: 21000 },
       { date: "Mar 12, 2024", venue: "Hard Rock Live", city: "Hollywood, FL", country: "USA", cap: 7000 },
       { date: "Jun 29, 2024", venue: "London Stadium", city: "London", country: "UK", cap: 80000 },
+      { date: "Apr 18, 2025", venue: "Stade de France", city: "Paris", country: "France", cap: 80000 },
+      { date: "Apr 21, 2025", venue: "Co-op Live", city: "Manchester", country: "UK", cap: 23000 },
+      { date: "Jul 5, 2025", venue: "Waldbühne", city: "Berlin", country: "Germany", cap: 22000 },
+      { date: "Jul 6, 2025", venue: "SparkassenPark", city: "Mönchengladbach", country: "Germany", cap: 21000 },
     ],
   },
   {
