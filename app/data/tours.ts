@@ -151,7 +151,26 @@ export const tours: Tour[] = [
   {
     name: "Life on the Outside Tour",
     years: "2018",
-    note: "His first headline tour of the major-label era, behind Outside — his Atlantic Records debut — as he built a touring audience beyond Nigeria. A full itinerary was never published.",
+    note: "His first international headline tour, behind Outside — his Atlantic Records debut. An intimate club-and-theatre run across North America in early summer, then a sold-out UK leg in the autumn capped by a packed O2 Academy Brixton — growing his audience beyond Nigeria, just before the African Giant breakthrough.",
+    dates: [
+      { date: "May 30, 2018", venue: "Howard Theatre", city: "Washington, D.C.", country: "USA", cap: 1100 },
+      { date: "May 31, 2018", venue: "The Foundry", city: "Philadelphia", country: "USA", cap: 450 },
+      { date: "Jun 2, 2018", venue: "Gramercy Theatre", city: "New York", country: "USA", cap: 650 },
+      { date: "Jun 3, 2018", venue: "Brighton Music Hall", city: "Boston", country: "USA", cap: 480 },
+      { date: "Jun 5, 2018", venue: "The Velvet Underground", city: "Toronto", country: "Canada" },
+      { date: "Jun 6, 2018", venue: "Reggies", city: "Chicago", country: "USA" },
+      { date: "Jun 8, 2018", venue: "Complex", city: "Oakland", country: "USA" },
+      { date: "Jun 10, 2018", venue: "The Roxy", city: "Los Angeles", country: "USA", cap: 500 },
+      { date: "Jun 14, 2018", venue: "House of Blues (Bronze Peacock)", city: "Houston", country: "USA" },
+      { date: "Jun 17, 2018", venue: "House of Blues (Cambridge Room)", city: "Dallas", country: "USA" },
+      { date: "Sep 20, 2018", venue: "The Garage", city: "Glasgow", country: "UK", cap: 600 },
+      { date: "Sep 22, 2018", venue: "O2 Academy", city: "Newcastle", country: "UK", cap: 2000 },
+      { date: "Sep 23, 2018", venue: "O2 Academy", city: "Leeds", country: "UK", cap: 2300 },
+      { date: "Sep 24, 2018", venue: "O2 Ritz", city: "Manchester", country: "UK", cap: 1500 },
+      { date: "Oct 7, 2018", venue: "O2 Academy Brixton", city: "London", country: "UK", cap: 4900 },
+      { date: "Oct 24, 2018", venue: "Thekla", city: "Bristol", country: "UK", cap: 400 },
+      { date: "Oct 25, 2018", venue: "O2 Academy 2", city: "Birmingham", country: "UK", cap: 600 },
+    ],
   },
 ];
 
