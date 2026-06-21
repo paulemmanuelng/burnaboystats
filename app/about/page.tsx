@@ -71,6 +71,16 @@ export default function AboutPage() {
                 artist to sell out stadiums in both the UK and the US — cementing
                 his status as the self-styled “African Giant.”
               </p>
+              <p style={{ marginTop: 20 }}>
+                <a
+                  className="wikiLink"
+                  href="https://en.wikipedia.org/wiki/Burna_Boy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Read his full biography on Wikipedia ↗
+                </a>
+              </p>
             </div>
           </Reveal>
 

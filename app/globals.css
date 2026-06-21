@@ -359,6 +359,16 @@ a {
   max-width: 65ch;
 }
 
+/* Inline "read more" link (e.g. Wikipedia on the About page) */
+.wikiLink {
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 182, 39, 0.4);
+  transition: border-color 0.18s ease;
+}
+.wikiLink:hover { border-bottom-color: var(--gold); }
+
 /* Two-column layout that stacks on mobile */
 .split {
   display: grid;
