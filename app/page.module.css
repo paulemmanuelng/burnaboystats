@@ -382,7 +382,16 @@
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 760px) {
-  .scoreboard { grid-template-columns: repeat(2, 1fr); }
+  /* Tighter vertical rhythm on phones — the desktop section padding (90px) and
+     CTA bottom padding (110px) leave big empty gaps between sections on a
+     narrow screen, so we shrink them here. */
+  .section { padding: 48px 0; }
+  .cta { padding: 8px 0 44px; }
+  .ctaInner { padding: 44px 22px; }
+  .scoreboard {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 40px;
+  }
   .stat { border-right: none; padding: 22px 0; }
   .scoreboard .stat:nth-child(odd) { padding-right: 24px; }
 }

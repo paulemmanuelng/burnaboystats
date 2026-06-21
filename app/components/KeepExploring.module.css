@@ -1,6 +1,12 @@
 .wrap {
   margin: 64px auto 80px;
 }
+/* Less top gap above "Keep exploring" on phones (the CTA above already adds space). */
+@media (max-width: 760px) {
+  .wrap {
+    margin: 36px auto 56px;
+  }
+}
 .eyebrow {
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
