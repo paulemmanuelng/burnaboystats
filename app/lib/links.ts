@@ -11,10 +11,9 @@ export const navItems = [
 ];
 
 // Which 3 sections each page points to in its "Keep exploring" block.
-// "tour" resolves to the Tours page under Records (see KeepExploring).
 export const exploreFor: Record<string, string[]> = {
-  "/": ["certifications", "music", "tour"],
-  "/music": ["certifications", "tour", "about"],
-  "/certifications": ["music", "tour", "about"],
-  "/about": ["music", "certifications", "tour"],
+  "/": ["certifications", "music", "records"],
+  "/music": ["certifications", "records", "about"],
+  "/certifications": ["music", "records", "about"],
+  "/about": ["music", "certifications", "records"],
 };

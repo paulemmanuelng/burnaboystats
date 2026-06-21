@@ -15,7 +15,7 @@ const sectionLinks: Record<string, SectionLink> = {
     title: "Certifications",
     desc: `${totalAwards()} awards across ${countryCount} countries`,
   },
-  tour: { href: "/records/tours", title: "Tours & Live", desc: "Grosses, stadiums & the World Cup" },
+  records: { href: "/records", title: "Career Records", desc: "Charts, awards & tours" },
   about: { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },
 };
 
