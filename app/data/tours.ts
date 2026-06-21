@@ -51,7 +51,6 @@ export const tours: Tour[] = [
       { date: "Dec 15, 2025", venue: "Bell Centre", city: "Montreal", country: "Canada", cap: 21302 },
       { date: "Dec 17, 2025", venue: "Scotiabank Arena", city: "Toronto", country: "Canada", cap: 19800 },
       { date: "Dec 18, 2025", venue: "Scotiabank Arena", city: "Toronto", country: "Canada", cap: 19800 },
-      { date: "Jan 13, 2026", venue: "Helsinki Ice Hall", city: "Helsinki", country: "Finland", cap: 8200 },
       { date: "Jan 15, 2026", venue: "Avicii Arena", city: "Stockholm", country: "Sweden", cap: 13850 },
       { date: "Jan 17, 2026", venue: "Royal Arena", city: "Copenhagen", country: "Denmark", cap: 16000 },
       { date: "Jan 20, 2026", venue: "Hallenstadion", city: "Zurich", country: "Switzerland", cap: 15000 },
