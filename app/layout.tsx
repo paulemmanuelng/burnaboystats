@@ -119,8 +119,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <p className="disclaimer">
               This is an unofficial fan-made website created for educational and
               portfolio purposes. It is not affiliated with, endorsed by, or
-              connected to Burna Boy or his representatives. All graphics are
-              original; no copyrighted images or audio are used.
+              connected to Burna Boy or his representatives. The site&apos;s own
+              graphics and design are original; album artwork is provided by
+              Spotify and remains the property of its respective owners. No
+              copyrighted audio is used.
             </p>
             <p className="builtBy">
               Built by{" "}
