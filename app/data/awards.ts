@@ -75,6 +75,8 @@ export const ceremonies: Ceremony[] = [
     name: "American Music Awards",
     noms: [
       { year: 2022, category: "Favorite Afrobeats Artist", won: false },
+      { year: 2026, category: "Best Afrobeats Artist", won: false },
+      { year: 2026, category: "Best Hip-Hop Song", work: "WGFT (Gunna ft. Burna Boy)", won: false },
     ],
   },
   {
