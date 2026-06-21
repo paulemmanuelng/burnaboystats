@@ -32,6 +32,7 @@ export const firstGroups: FirstGroup[] = [
       { year: "2026", title: "First African artist to headline a FIFA World Cup opening ceremony", text: "Mexico City, performing the official tournament song “Dai Dai” with Shakira." },
       { year: "2024", title: "First African artist to perform on the Grammy Awards stage", text: "A medley from I Told Them… with Brandy and 21 Savage." },
       { year: "2023", title: "First African artist to perform at a UEFA Champions League final", text: "The kick-off show ahead of the final in Istanbul." },
+      { year: "2021", title: "First winner of the Grammy for Best Global Music Album", text: "Twice as Tall took the award in its debut year — the category renamed from Best World Music Album." },
     ],
   },
   {

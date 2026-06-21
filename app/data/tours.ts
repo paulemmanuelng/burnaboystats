@@ -205,7 +205,7 @@ export const festivals: Festival[] = [
   { year: "2021", name: "Governors Ball Music Festival", location: "New York, USA", note: "A Sunday main-stage set at Citi Field, directly below headliner Post Malone." },
   { year: "2023", name: "St Kitts Music Festival", location: "St Kitts & Nevis", note: "The event's first-ever African headlining artist, anchoring the multi-day lineup." },
   { year: "2024", name: "Glastonbury Festival", location: "Worthy Farm, UK", note: "A primetime Pyramid Stage set, immediately before Sunday headliner SZA, on a bill topped by Dua Lipa and Coldplay." },
-  { year: "2025", name: "Wireless Festival", location: "London, UK", note: "Top-billed co-headliner alongside Drake, performing across all three days." },
-  { year: "2025", name: "Flow Festival", location: "Helsinki, Finland", note: "A top-of-the-bill headliner, sharing the weekend with Charli XCX, FKA Twigs and Fontaines D.C." },
-  { year: "2026", name: "Afro Nation", location: "Portugal", note: "Principal co-headliner of the main “Lit Stage,” alongside Wizkid, Asake and Tyla." },
+  { year: "2025", name: "Wireless Festival", location: "London, UK", note: "A top-billed name on the Sunday line-up at Finsbury Park, on a bill headlined by Drake — who became the first artist to headline all three days." },
+  { year: "2025", name: "Flow Festival", location: "Helsinki, Finland", note: "A Main Stage headliner, topping one of the three nights — on a bill with Charli XCX, FKA twigs, Little Simz and Air." },
+  { year: "2026", name: "Afro Nation", location: "Portimão, Portugal", note: "Headliner of the main “Lit Stage,” topping the opening night (3 July) alongside Tyla — with Asake and Wizkid headlining the nights after." },
 ];
