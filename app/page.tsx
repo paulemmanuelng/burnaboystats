@@ -22,6 +22,28 @@ const marqueeItems = [
   "BET Award Winner", "Global Superstar", "Afro-Fusion", "Twice as Tall",
 ];
 
+// Career-defining records as an African artist (the headline feats).
+const records = [
+  {
+    num: "$30.5M",
+    title: "Highest-grossing African tour",
+    desc: "The I Told Them… Tour — the biggest tour in history by an African artist.",
+    href: "/records/tours",
+  },
+  {
+    num: "$6.15M",
+    title: "Biggest African concert",
+    desc: "His record London Stadium night — and he was the first African artist to headline a UK stadium.",
+    href: "/records/tours",
+  },
+  {
+    num: "2026",
+    title: "FIFA World Cup headliner",
+    desc: "First African artist to headline a World Cup opening ceremony, performing “Dai Dai” with Shakira.",
+    href: "/records/tours",
+  },
+];
+
 export default function Home() {
   return (
     <main id="content">
@@ -72,18 +94,38 @@ export default function Home() {
         <Waveform bars={60} className={styles.heroWave} />
       </section>
 
-      {/* ================= WORLD CUP BANNER ================= */}
-      <section className={styles.newsBannerWrap}>
-        <div className="container">
-          <div className={styles.newsBanner}>
-            <span className={styles.newsTag}>New</span>
-            Headlined the 2026 FIFA World Cup Opening Ceremony with Shakira — “Dai Dai”
-          </div>
-        </div>
-      </section>
-
       {/* ================= MARQUEE ================= */}
       <Marquee items={marqueeItems} />
+
+      {/* ================= CAREER RECORDS ================= */}
+      <section className={styles.section}>
+        <div className="container">
+          <Reveal>
+            <p className={styles.eyebrow}>Record-breaking</p>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className={styles.sectionHead}>
+              <h2 className={styles.sectionTitle}>
+                Career <span className="goldText">records</span>
+              </h2>
+              <Link href="/records" className={styles.headLink}>
+                All career records ↗
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal delay={140}>
+            <div className={styles.recordGrid}>
+              {records.map((r) => (
+                <Link key={r.title} href={r.href} className={styles.recordCard}>
+                  <span className={styles.recordNum}>{r.num}</span>
+                  <span className={styles.recordTitle}>{r.title}</span>
+                  <span className={styles.recordDesc}>{r.desc}</span>
+                </Link>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       {/* ================= BIGGEST CERTIFICATIONS (ranked) ================= */}
       <section className={styles.section}>
@@ -127,10 +169,10 @@ export default function Home() {
                 Dive into the <span className="goldText">data</span>
               </h2>
               <p className={styles.ctaText}>
-                Explore the full discography, global certifications and milestones
-                of the African Giant.
+                Chart records, awards, tours and certifications — every career
+                record of the African Giant in one place.
               </p>
-              <Link href="/certifications" className="btn btnPrimary">Explore the stats ↗</Link>
+              <Link href="/records" className="btn btnPrimary">Explore the records ↗</Link>
             </div>
           </Reveal>
         </div>

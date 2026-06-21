@@ -310,6 +310,54 @@
   line-height: 1.5;
 }
 
+/* Career records — headline feats as an African artist */
+.recordGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 8px;
+}
+.recordCard {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 28px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.recordCard:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+.recordNum {
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(2.6rem, 4.5vw, 3.4rem);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  color: var(--gold);
+}
+.recordTitle {
+  margin-top: 16px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+.recordDesc {
+  margin-top: 10px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+@media (max-width: 760px) {
+  .recordGrid { grid-template-columns: 1fr; }
+}
+
 /* World Cup news banner */
 .newsBannerWrap {
   padding: 6px 0 2px;
