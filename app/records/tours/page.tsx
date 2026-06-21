@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./tours.module.css";
 import CountUp from "../../components/CountUp";
+import ToursExplorer from "../../components/ToursExplorer";
 import { tours, liveMoments } from "../../data/tours";
 
 export const metadata = {
@@ -39,30 +40,8 @@ export default function ToursPage() {
         <h2 className={`secTitle ${styles.group}`}>
           <span className="goldText">Tours</span>
         </h2>
-        <div className={styles.tourList}>
-          {tours.map((t) => (
-            <div key={t.name} className={`${styles.tourCard} ${t.record ? styles.tourRecord : ""}`}>
-              <div className={styles.tourHead}>
-                <div>
-                  <span className={styles.tourName}>{t.name}</span>
-                  <span className={styles.tourYears}>{t.years}</span>
-                </div>
-                {t.gross && (
-                  <div className={styles.tourFigures}>
-                    <span className={styles.tourGross}>{t.gross}</span>
-                    <span className={styles.tourSub}>
-                      {[t.tickets ? `${t.tickets} tickets` : null, t.shows ? `${t.shows} shows` : null]
-                        .filter(Boolean)
-                        .join(" · ")}
-                    </span>
-                  </div>
-                )}
-              </div>
-              {t.record && <span className={styles.recordTag}>Highest-grossing African tour ever</span>}
-              <p className={styles.tourNote}>{t.note}</p>
-            </div>
-          ))}
-        </div>
+        <p className={styles.tourHint}>Tap a tour to see its venues, dates &amp; capacities.</p>
+        <ToursExplorer tours={tours} />
 
         <h2 className={`secTitle ${styles.group}`}>
           Record nights &amp; <span className="goldText">live milestones</span>

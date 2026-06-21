@@ -99,6 +99,82 @@
   font-size: 0.95rem;
 }
 
+/* Clickable tour card (opens the dates modal) */
+.tourHint {
+  margin: 0 0 14px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.tourCardBtn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+.tourCardBtn:hover { border-color: var(--gold); transform: translateY(-2px); }
+.tourCardBtn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.tourCta {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.66rem;
+  color: var(--gold);
+}
+
+/* Dates modal content (modal shell uses global .modal / .modalOverlay) */
+.modalNote {
+  margin: 4px 0 14px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-style: italic;
+}
+.showList { border-top: 1px solid var(--line); }
+.showRow {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--line);
+}
+.showHead {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+.showDate {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.showVenue {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  min-width: 0;
+}
+.showCity {
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.capCol {
+  text-align: right;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.82rem;
+  color: var(--gold-dim);
+  white-space: nowrap;
+}
+
 /* Live milestones */
 .milestones { border-top: 1px solid var(--line); }
 .mRow {
