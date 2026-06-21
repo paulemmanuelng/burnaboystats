@@ -31,6 +31,31 @@
 
 .group { margin: 48px 0 18px; }
 
+/* Official links band (tickets + official site) */
+.officialLinks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 22px;
+  padding: 18px 22px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.officialLabel {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.officialBtns { display: flex; gap: 10px; flex-wrap: wrap; }
+@media (max-width: 560px) {
+  .officialLinks { flex-direction: column; align-items: flex-start; }
+}
+
 /* Tours */
 .tourList { display: flex; flex-direction: column; gap: 16px; }
 .tourCard {

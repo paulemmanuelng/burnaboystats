@@ -37,6 +37,28 @@ export default function ToursPage() {
           </div>
         </div>
 
+        <div className={styles.officialLinks}>
+          <span className={styles.officialLabel}>Upcoming dates &amp; tickets</span>
+          <div className={styles.officialBtns}>
+            <a
+              className="btn btnPrimary"
+              href="https://www.ticketmaster.com/burna-boy-tickets/artist/2486272"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Tickets · Ticketmaster ↗
+            </a>
+            <a
+              className="btn btnSecondary"
+              href="https://www.onaspaceship.com/tour"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Official tour site ↗
+            </a>
+          </div>
+        </div>
+
         <h2 className={`secTitle ${styles.group}`}>
           <span className="goldText">Tours</span>
         </h2>
