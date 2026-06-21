@@ -22,8 +22,8 @@ const sectionLinks: Record<string, SectionLink> = {
 // A "what to look at next" block — shown at the bottom of each page so
 // visitors click deeper into the site instead of leaving after one page.
 export default function KeepExploring({ current }: { current: string }) {
-  const keys = exploreFor[current] || ["music", "certifications", "tour"];
-  const links = keys.map((k) => sectionLinks[k]);
+  const keys = exploreFor[current] || ["music", "certifications", "records"];
+  const links = keys.map((k) => sectionLinks[k]).filter(Boolean);
 
   return (
     <nav className={`container ${styles.wrap}`} aria-label="Explore more pages">
