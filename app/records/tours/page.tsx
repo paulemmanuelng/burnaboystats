@@ -65,6 +65,14 @@ export default function ToursPage() {
         <p className={styles.tourHint}>Tap a tour to see its venues, dates &amp; capacities.</p>
         <ToursExplorer tours={tours} />
 
+        <Link href="/records/tours/shows" className={styles.allShowsCard}>
+          <span>
+            <span className={styles.allShowsTitle}>Every show, concert &amp; festival</span>
+            <span className={styles.allShowsDesc}>Browse every headline date across his career, year by year</span>
+          </span>
+          <span className={styles.allShowsArrow} aria-hidden="true">→</span>
+        </Link>
+
         <h2 className={`secTitle ${styles.group}`}>
           Record nights &amp; <span className="goldText">live milestones</span>
         </h2>
