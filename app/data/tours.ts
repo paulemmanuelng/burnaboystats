@@ -38,9 +38,19 @@ export const tours: Tour[] = [
     note: "The breakthrough run that made him the first African artist to headline a UK stadium (London Stadium), sell out a US stadium (Citi Field) and sell out Madison Square Garden. Eight reported shows grossed roughly $11.8M.",
   },
   {
+    name: "Twice as Tall Tour",
+    years: "2020–21",
+    note: "Announced for 2020 but reshaped by the pandemic, it ran through 2021 as the Space Drift arena tour — his first run as a Grammy winner — taking in his debut headline show at London's O2 Arena, a Hollywood Bowl debut, and an Amsterdam night that sold out in 19 minutes.",
+  },
+  {
     name: "African Giant Tour",
     years: "2019",
-    note: "The global club-and-theatre run behind the Grammy-nominated African Giant that broke him through to worldwide audiences, ahead of the stadium era.",
+    note: "The global club-and-theatre run behind the Grammy-nominated African Giant — including a second leg, the African Giant Returns tour — that broke him through to worldwide audiences ahead of the stadium era.",
+  },
+  {
+    name: "Life on the Outside Tour",
+    years: "2018",
+    note: "His first headline tour of the major-label era, behind Outside — his Atlantic Records debut — as he built a touring audience beyond Nigeria.",
   },
 ];
 
