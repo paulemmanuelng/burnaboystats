@@ -1,0 +1,148 @@
+/* Tours & live page */
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-top: 8px;
+}
+.sumCard { padding: 30px 28px; border-right: 1px solid var(--line); }
+.summary .sumCard:first-child { padding-left: 0; }
+.summary .sumCard:last-child { border-right: none; padding-right: 0; }
+.sumNum {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  color: var(--gold);
+}
+.sumLabel {
+  display: block;
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.68rem;
+}
+
+.group { margin: 48px 0 18px; }
+
+/* Tours */
+.tourList { display: flex; flex-direction: column; gap: 16px; }
+.tourCard {
+  padding: 24px 24px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.tourRecord { border-left: 3px solid var(--gold); }
+.tourHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+.tourName {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+}
+.tourYears {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.tourFigures { text-align: right; white-space: nowrap; }
+.tourGross {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.9rem;
+  line-height: 1;
+  color: var(--gold);
+}
+.tourSub {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.recordTag {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(255, 182, 39, 0.14);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.64rem;
+  font-weight: 700;
+}
+.tourNote {
+  margin-top: 14px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+/* Live milestones */
+.milestones { border-top: 1px solid var(--line); }
+.mRow {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 20px;
+  padding: 22px 8px;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.18s ease, padding-left 0.18s ease;
+}
+.mRow:hover { background: rgba(255, 182, 39, 0.05); padding-left: 14px; }
+.mRecord { background: rgba(255, 182, 39, 0.06); }
+.mYear {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.mTitle {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.mText { margin-top: 7px; color: var(--text-muted); line-height: 1.6; font-size: 0.92rem; }
+
+.source { margin: 36px 0 12px; font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
+.back {
+  display: inline-block;
+  margin: 0 0 60px;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.74rem;
+  color: var(--gold);
+}
+
+@media (max-width: 620px) {
+  .tourHead { flex-direction: column; gap: 10px; }
+  .tourFigures { text-align: left; }
+  .mRow { grid-template-columns: 56px 1fr; gap: 14px; }
+}
+@media (max-width: 560px) {
+  .summary { grid-template-columns: 1fr; }
+  .sumCard { border-right: none; border-bottom: 1px solid var(--line); padding: 20px 0; }
+  .summary .sumCard:last-child { border-bottom: none; }
+}

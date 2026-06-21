@@ -15,7 +15,7 @@ describe("Nav", () => {
   it("renders all nav items and marks the active page with aria-current", () => {
     render(<Nav />);
     expect(screen.getByText("Certifications")).toBeInTheDocument();
-    expect(screen.getByText("Tour")).toBeInTheDocument();
+    expect(screen.getByText("Records")).toBeInTheDocument();
     const active = screen.getByText("Music").closest("a");
     expect(active).toHaveAttribute("aria-current", "page");
   });
