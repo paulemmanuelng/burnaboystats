@@ -53,7 +53,7 @@ export interface LiveMoment {
 
 export const liveMoments: LiveMoment[] = [
   { year: "2026", title: "FIFA World Cup Opening Ceremony", text: "Headlined the opener in Mexico City with Shakira, performing the official tournament song “Dai Dai.”" },
-  { year: "2025", title: "Stade de France, Paris", text: "First African artist to headline the Stade de France (April 2025) — 43,000+ tickets sold." },
+  { year: "2025", title: "Stade de France, Paris", text: "First African artist to headline the Stade de France (April 2025) — a $4.53M gross." },
   { year: "2025", title: "Red Rocks Amphitheatre", text: "First Nigerian artist to headline the iconic Colorado venue, opening the No Sign of Weakness tour." },
   { year: "2024", title: "London Stadium — African concert record", text: "$6.15M from 58,973 tickets: the highest-grossing single concert by any African artist.", record: true },
   { year: "2024", title: "Grammy Awards Stage", text: "First African artist to perform at the Grammys — a medley from I Told Them… with Brandy and 21 Savage." },
