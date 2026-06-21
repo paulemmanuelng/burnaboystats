@@ -90,8 +90,9 @@ export const albumCharts: ChartRelease[] = [
     { c: "DE", peak: 61 },
   ] },
   { title: "Twice as Tall", year: 2020, entries: [
-    { c: "NL", peak: 10 }, { c: "UK", peak: 11 }, { c: "CA", peak: 19 }, { c: "BE", peak: 22 },
-    { c: "FR", peak: 29 }, { c: "IE", peak: 31 }, { c: "SE", peak: 47 }, { c: "US", peak: 54 },
+    { c: "NL", peak: 10 }, { c: "UK", peak: 11 }, { c: "CH", peak: 12 }, { c: "CA", peak: 19 }, { c: "BE", peak: 22 },
+    { c: "FR", peak: 29 }, { c: "IE", peak: 31 }, { c: "NO", peak: 34 }, { c: "SE", peak: 47 }, { c: "US", peak: 54 },
+    { c: "AT", peak: 69 },
   ] },
   { title: "African Giant", year: 2019, entries: [
     { c: "IE", peak: 12 }, { c: "UK", peak: 16 }, { c: "CA", peak: 33 }, { c: "FR", peak: 54 },
