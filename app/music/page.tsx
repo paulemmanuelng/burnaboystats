@@ -121,6 +121,9 @@ export default function MusicPage() {
             Tap an album to see its full tracklist.
           </p>
           <Discography albums={albums} />
+          <p className="cardMeta" style={{ marginTop: 18, opacity: 0.7 }}>
+            Album &amp; EP artwork via Spotify. Tap any cover for the tracklist and a link to listen.
+          </p>
         </div>
 
         {/* EPs + FEATURES */}

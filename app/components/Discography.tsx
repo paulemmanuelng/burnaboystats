@@ -75,9 +75,10 @@ export default function Discography({
               onClick={() => setOpen(i)}
               aria-label={`View the tracklist for ${a.title}`}
             >
-              <AlbumCover title={a.title} year={a.year} index={indexOffset + i} />
+              <AlbumCover title={a.title} year={a.year} index={indexOffset + i} cover={a.cover} />
             </button>
-            <p className="cardMeta cardMetaTop">{a.label}</p>
+            <p className="coverTitle">{a.title}</p>
+            <p className="cardMeta coverMeta">{a.year} · {a.label}</p>
           </div>
         ))}
       </div>
@@ -98,7 +99,7 @@ export default function Discography({
             </button>
             <div className="modalHead">
               <div className="modalCover">
-                <AlbumCover title={album.title} year={album.year} index={indexOffset + (open ?? 0)} compact />
+                <AlbumCover title={album.title} year={album.year} index={indexOffset + (open ?? 0)} compact cover={album.cover} />
               </div>
               <div>
                 <p className="eyebrow eyebrowTight">Album · {album.year}</p>

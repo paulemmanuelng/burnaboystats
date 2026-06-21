@@ -1,8 +1,11 @@
 // Studio albums + verified tracklists (sources: Wikipedia, per album).
 // Each album: title, year, label, and the standard-edition tracklist.
+// `cover` = official album artwork served by Spotify (displayed unmodified,
+// attributed, and linked back to Spotify — see the Music page).
 export interface AlbumEntry {
   title: string;
   spotify?: string;
+  cover?: string;
   year: number;
   label: string;
   tracks: string[];
@@ -12,6 +15,7 @@ export const albums: AlbumEntry[] = [
   {
     title: "L.I.F.E",
     spotify: "https://open.spotify.com/album/7pqUKMWH6P7AJPIjUiphTS",
+    cover: "https://i.scdn.co/image/ab67616d0000b273e3497b75e40ffc5bfffce8cf",
     year: 2013,
     label: "Aristokrat Records",
     tracks: [
@@ -26,6 +30,7 @@ export const albums: AlbumEntry[] = [
   {
     title: "On a Spaceship",
     spotify: "https://open.spotify.com/album/6NW4thIIMVcb6Wedxqu6ev",
+    cover: "https://i.scdn.co/image/ab67616d0000b2737e09ba6174aec9958461aa44",
     year: 2015,
     label: "Spaceship",
     tracks: [
@@ -40,6 +45,7 @@ export const albums: AlbumEntry[] = [
   {
     title: "Outside",
     spotify: "https://open.spotify.com/album/5SCK5p3Rqgg0FwTmAurrcp",
+    cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
     year: 2018,
     label: "Atlantic · Spaceship",
     tracks: [
@@ -52,6 +58,7 @@ export const albums: AlbumEntry[] = [
   {
     title: "African Giant",
     spotify: "https://open.spotify.com/album/79lrrUvUyIuOD12b5taQVP",
+    cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     year: 2019,
     label: "Atlantic · Spaceship",
     tracks: [
@@ -66,6 +73,7 @@ export const albums: AlbumEntry[] = [
   {
     title: "Twice as Tall",
     spotify: "https://open.spotify.com/album/218CJKDCszsQQj7Amk7vIu",
+    cover: "https://i.scdn.co/image/ab67616d0000b2733478524ed62d216a705c2424",
     year: 2020,
     label: "Atlantic · Spaceship",
     tracks: [
@@ -79,6 +87,7 @@ export const albums: AlbumEntry[] = [
   {
     title: "Love, Damini",
     spotify: "https://open.spotify.com/album/6kgDkAupBVRSqbJPUaTJwQ",
+    cover: "https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2",
     year: 2022,
     label: "Atlantic · Spaceship",
     tracks: [
@@ -94,6 +103,7 @@ export const albums: AlbumEntry[] = [
   {
     title: "I Told Them…",
     spotify: "https://open.spotify.com/album/1JzjwUKkPsdHg1SQ7qa5hc",
+    cover: "https://i.scdn.co/image/ab67616d0000b273c361f3720bafc0da36f14d96",
     year: 2023,
     label: "Atlantic · Spaceship",
     tracks: [
@@ -107,6 +117,7 @@ export const albums: AlbumEntry[] = [
   {
     title: "No Sign of Weakness",
     spotify: "https://open.spotify.com/album/35EMM8QwKJ2qXmoUJnUSNf",
+    cover: "https://i.scdn.co/image/ab67616d0000b273d00c3ad1a774c0e171939239",
     year: 2025,
     label: "Atlantic · Spaceship · Bad Habit",
     tracks: [
@@ -124,6 +135,7 @@ export const eps: AlbumEntry[] = [
   {
     title: "Redemption",
     spotify: "https://open.spotify.com/album/50qNx4v7MKypMx5wGynQ8j",
+    cover: "https://i.scdn.co/image/ab67616d0000b2739c6526408de3ed6a97d0f0db",
     year: 2016,
     label: "Spaceship",
     tracks: [
@@ -134,6 +146,7 @@ export const eps: AlbumEntry[] = [
   {
     title: "Steel & Copper",
     spotify: "https://open.spotify.com/album/7z1KSudQMWVOFpSjhxL6Qm",
+    cover: "https://i.scdn.co/image/ab67616d0000b27376cd360b4344922af3685208",
     year: 2019,
     label: "with DJDS · Spaceship",
     tracks: ["34", "Innocent Man", "Darko", "Thuggin"],

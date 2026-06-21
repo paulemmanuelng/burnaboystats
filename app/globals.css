@@ -595,6 +595,28 @@ a.fact:hover {
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65);
 }
 
+/* Real album artwork (Spotify) — fills the square, shown unmodified */
+.albumCoverImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Title + meta caption shown below the cover (so no text sits on the artwork) */
+.coverTitle {
+  margin-top: 12px;
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+.coverMeta {
+  margin-top: 4px;
+}
+
 /* Clickable album cover button (resets default button styling) */
 .coverBtn {
   display: block;

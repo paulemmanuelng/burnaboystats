@@ -120,12 +120,32 @@ export default function AlbumCover({
   year,
   index = 0,
   compact = false,
+  cover,
 }: {
   title: string;
   year: number;
   index?: number;
   compact?: boolean;
+  cover?: string;
 }) {
+  // Official artwork (served by Spotify): shown unmodified, no text overlaid.
+  if (cover) {
+    return (
+      <div className="albumCover">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className="albumCoverImg"
+          src={cover}
+          alt={`${title} — album cover`}
+          loading="lazy"
+          width={640}
+          height={640}
+        />
+      </div>
+    );
+  }
+
+  // Fallback: original abstract placeholder (used if no cover is available).
   const [a, b] = PALETTES[index % PALETTES.length];
   return (
     <div
