@@ -192,3 +192,20 @@ export const liveMoments: LiveMoment[] = [
   { year: "2023", title: "UEFA Champions League Final", text: "First African artist to perform at the Champions League final kick-off show, in Istanbul." },
   { year: "2022", title: "Madison Square Garden (sold out)", text: "First African artist to sell out the world's most famous arena." },
 ];
+
+// Major festival headline / co-headline sets (year-level; not single-venue tour dates).
+export interface Festival {
+  year: string;
+  name: string;
+  location: string;
+  note: string;
+}
+
+export const festivals: Festival[] = [
+  { year: "2021", name: "Governors Ball Music Festival", location: "New York, USA", note: "A Sunday main-stage set at Citi Field, directly below headliner Post Malone." },
+  { year: "2023", name: "St Kitts Music Festival", location: "St Kitts & Nevis", note: "The event's first-ever African headlining artist, anchoring the multi-day lineup." },
+  { year: "2024", name: "Glastonbury Festival", location: "Worthy Farm, UK", note: "A primetime Pyramid Stage set, immediately before Sunday headliner SZA, on a bill topped by Dua Lipa and Coldplay." },
+  { year: "2025", name: "Wireless Festival", location: "London, UK", note: "Top-billed co-headliner alongside Drake, performing across all three days." },
+  { year: "2025", name: "Flow Festival", location: "Helsinki, Finland", note: "A top-of-the-bill headliner, sharing the weekend with Charli XCX, FKA Twigs and Fontaines D.C." },
+  { year: "2026", name: "Afro Nation", location: "Portugal", note: "Principal co-headliner of the main “Lit Stage,” alongside Wizkid, Asake and Tyla." },
+];

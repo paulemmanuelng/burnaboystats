@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "../tours.module.css";
-import { tours } from "../../../data/tours";
+import { tours, festivals } from "../../../data/tours";
 
 export const metadata = {
   title: "Burna Boy — Every Show, Concert & Festival",
@@ -29,9 +29,9 @@ export default function AllShowsPage() {
 
       <div className="container">
         <p className={styles.source} style={{ marginTop: 8 }}>
-          {allShows.length} headline dates so far, gathered from his tour
-          itineraries. This list is still being expanded with festival sets and
-          one-off shows — the full career list will be updated shortly.
+          {allShows.length} headline tour dates, plus the major festival sets
+          below. More festival and one-off appearances are still being added —
+          the full career list will be updated shortly.
         </p>
 
         {years.map((y) => {
@@ -58,6 +58,22 @@ export default function AllShowsPage() {
             </div>
           );
         })}
+
+        <h2 className={`secTitle ${styles.group}`}>
+          <span className="goldText">Festival headline sets</span>{" "}
+          <span className={styles.count}>({festivals.length})</span>
+        </h2>
+        <div className={styles.milestones}>
+          {festivals.map((f) => (
+            <div key={`${f.name}-${f.year}`} className={styles.mRow}>
+              <span className={styles.mYear}>{f.year}</span>
+              <div>
+                <h3 className={styles.mTitle}>{f.name} · {f.location}</h3>
+                <p className={styles.mText}>{f.note}</p>
+              </div>
+            </div>
+          ))}
+        </div>
 
         <p className={styles.source}>
           Capacities are the venues&apos; standard listed capacities; festivals
