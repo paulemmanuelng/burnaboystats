@@ -109,15 +109,19 @@ export const tours: Tour[] = [
     ],
   },
   {
-    name: "Twice as Tall Tour",
-    years: "2020–21",
-    note: "Announced for 2020 but reshaped by the pandemic, it ran through 2021 as the Space Drift arena tour — his first run as a Grammy winner — taking in his debut headline show at London's O2 Arena, a Hollywood Bowl debut, and an Amsterdam night that sold out in 19 minutes.",
+    name: "Space Drift World Tour",
+    years: "2021–22",
+    note: "The Twice as Tall tour never happened under its original name. With the pandemic wiping out the planned dates, Burna re-packaged and evolved it into a brand-new global trek — the Space Drift World Tour — serving as the delayed live celebration for both his African Giant (2019) and Twice as Tall (2020) eras, finally hitting the major cities that missed out during lockdown. Kicking off in August 2021, it was his first run as a Grammy winner — his debut headline at London's O2 Arena, the first Nigerian to headline the Hollywood Bowl, an Amsterdam night that sold out in 19 minutes, a Lagos homecoming, and a Madison Square Garden finale where he became the first Nigerian artist to sell out the venue.",
+    partial: true,
     dates: [
       { date: "Aug 27, 2021", venue: "The O2 Arena", city: "London", country: "UK", cap: 20000 },
       { date: "Oct 8, 2021", venue: "Hollywood Bowl", city: "Los Angeles", country: "USA", cap: 17500 },
       { date: "Nov 10, 2021", venue: "Accor Arena", city: "Paris", country: "France", cap: 20300 },
       { date: "Nov 15, 2021", venue: "Ziggo Dome", city: "Amsterdam", country: "Netherlands", cap: 17000 },
       { date: "Nov 20, 2021", venue: "Rotterdam Ahoy", city: "Rotterdam", country: "Netherlands", cap: 16000 },
+      { date: "Dec 27, 2021", venue: "Eko Convention Centre (The Live Experience)", city: "Lagos", country: "Nigeria" },
+      { date: "Mar 18, 2022", venue: "Geneva Arena", city: "Geneva", country: "Switzerland", cap: 9500 },
+      { date: "Apr 28, 2022", venue: "Madison Square Garden (One Night in Space)", city: "New York", country: "USA", cap: 20000 },
     ],
   },
   {
