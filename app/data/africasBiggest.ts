@@ -68,7 +68,7 @@ export const statBoxes: LeaderboardBox[] = [
       },
     ],
     source:
-      "Ranked by total Spotify streams each year (2024 & 2025), compiled from Spotify Wrapped and year-end streaming tallies reported across multiple music outlets. Rankings only — per-artist totals are estimates that vary by source. Earlier years are added as reliable tallies are confirmed.",
+      "Spotify doesn't publish yearly total streams, so these are compiled by fan/community streaming trackers — that's why we show rankings only, not totals (exact figures are estimates that vary between trackers). Covers 2024 & 2025; earlier years are added as reliable tallies are confirmed.",
   },
   {
     id: "monthly-listeners-peak",
