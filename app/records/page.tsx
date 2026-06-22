@@ -15,6 +15,7 @@ const subs = [
   { href: "/records/awards", title: "Awards", desc: "Every win & nomination to date", live: true },
   { href: "/records/tours", title: "Tours", desc: "Tour runs, dates & box-office grosses", live: true },
   { href: "/records/firsts", title: "Firsts", desc: "Every record broken & first achieved", live: true },
+  { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists, year by year", live: true },
 ];
 
 export default function RecordsPage() {

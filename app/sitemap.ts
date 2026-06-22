@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/records/awards", priority: 0.8, changeFrequency: "weekly" },
     { path: "/records/tours", priority: 0.8, changeFrequency: "weekly" },
     { path: "/records/firsts", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/records/africas-biggest", priority: 0.8, changeFrequency: "weekly" },
     { path: "/records/tours/festivals", priority: 0.6, changeFrequency: "monthly" },
     { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
     { path: "/about", priority: 0.5, changeFrequency: "monthly" },

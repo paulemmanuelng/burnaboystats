@@ -48,6 +48,7 @@ const SEGMENT_LABELS: Record<string, string> = {
   tours: "Tours & Live",
   festivals: "Festivals & Shows",
   firsts: "Firsts & Records",
+  "africas-biggest": "Africa's Biggest",
   faq: "FAQ",
   about: "About",
   contact: "Contact",
