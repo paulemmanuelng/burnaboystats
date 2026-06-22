@@ -312,6 +312,21 @@ a {
 .footerLink:hover {
   text-decoration: underline;
 }
+.footerSocials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 12px;
+}
+.footerSocial {
+  display: inline-flex;
+  color: var(--text-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.footerSocial:hover {
+  color: var(--gold);
+  transform: translateY(-2px);
+}
 
 /* -----------------------------------------------------------
    SHARED PAGE HEADER (used by the simpler pages)
