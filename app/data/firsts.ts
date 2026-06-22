@@ -44,6 +44,8 @@ export const firstGroups: FirstGroup[] = [
       { year: "2024", title: "First African artist to surpass 1 billion UK streams", text: "Awarded his first BRIT Billion plaque." },
       { year: "2022", title: "Highest-charting Nigerian album in Billboard 200 history", text: "Love, Damini debuted at No. 14 — passing the previous Nigerian best, Wizkid's Made in Lagos (No. 28)." },
       { year: "2025", title: "First Nigerian artist to chart five albums on the Billboard 200", text: "Outside, African Giant, Twice as Tall, Love, Damini and No Sign of Weakness." },
+      { year: "2024", title: "First African artist with two albums over 1 billion Spotify streams", text: "Love, Damini and African Giant have each crossed a billion streams." },
+      { year: "2026", title: "First African artist to top the Billboard Colombia Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Colombia." },
     ],
   },
   {
