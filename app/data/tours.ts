@@ -30,7 +30,7 @@ export const tours: Tour[] = [
   {
     name: "No Sign of Weakness Tour",
     years: "2025–26",
-    note: "His most expansive run yet — a genuine world tour across Oceania (Oct 2025), North America (Nov–Dec 2025) and Europe (Jan 2026), performed largely on a 360° in-the-round stage. He became the first Nigerian artist to headline Red Rocks, and the Oceania leg alone grossed $3.1M from 31,000 tickets — the most for an African artist there.",
+    note: "His most expansive run yet — a genuine world tour across Oceania (Oct 2025), North America (Nov–Dec 2025) and Europe (Jan 2026), then a summer 2026 UK return at the Milton Keynes Bowl, performed largely on a 360° in-the-round stage. He became the first Nigerian artist to headline Red Rocks, and the Oceania leg alone grossed $3.1M from 31,000 tickets — the most for an African artist there.",
     dates: [
       { date: "Oct 16, 2025", venue: "Sidney Myer Music Bowl", city: "Melbourne", country: "Australia", cap: 12000 },
       { date: "Oct 18, 2025", venue: "Qudos Bank Arena", city: "Sydney", country: "Australia", cap: 21000 },
@@ -54,11 +54,12 @@ export const tours: Tour[] = [
       { date: "Jan 17, 2026", venue: "Royal Arena", city: "Copenhagen", country: "Denmark", cap: 16000 },
       { date: "Jan 20, 2026", venue: "Hallenstadion", city: "Zurich", country: "Switzerland", cap: 15000 },
       { date: "Jan 23, 2026", venue: "ING Arena", city: "Brussels", country: "Belgium", cap: 15000 },
+      { date: "Jul 31, 2026", venue: "The National Bowl", city: "Milton Keynes", country: "UK", cap: 65000 },
     ],
   },
   {
     name: "I Told Them… Tour",
-    years: "2023–24",
+    years: "2023–25",
     gross: "$30.46M",
     tickets: "302,801",
     record: true,
@@ -205,7 +206,9 @@ export const festivals: Festival[] = [
   { year: "2021", name: "Governors Ball Music Festival", location: "New York, USA", note: "A Sunday main-stage set at Citi Field, directly below headliner Post Malone." },
   { year: "2023", name: "St Kitts Music Festival", location: "St Kitts & Nevis", note: "The event's first-ever African headlining artist, anchoring the multi-day lineup." },
   { year: "2024", name: "Glastonbury Festival", location: "Worthy Farm, UK", note: "A primetime Pyramid Stage set, immediately before Sunday headliner SZA, on a bill topped by Dua Lipa and Coldplay." },
+  { year: "2024", name: "Mawazine Festival", location: "Rabat, Morocco", note: "Headlined the OLM Souissi main stage at one of the world's largest festivals, on a 2024 bill that also featured Nicki Minaj, Kylie Minogue and Camila Cabello." },
   { year: "2025", name: "Wireless Festival", location: "London, UK", note: "A top-billed name on the Sunday line-up at Finsbury Park, on a bill headlined by Drake — who became the first artist to headline all three days." },
   { year: "2025", name: "Flow Festival", location: "Helsinki, Finland", note: "A Main Stage headliner, topping one of the three nights — on a bill with Charli XCX, FKA twigs, Little Simz and Air." },
+  { year: "2025", name: "Afro Nation", location: "Portimão, Portugal", note: "A main-stage headliner of the world's biggest Afrobeats festival (5th edition, July 2025), topping the bill alongside Davido and Mary J. Blige." },
   { year: "2026", name: "Afro Nation", location: "Portimão, Portugal", note: "Headliner of the main “Lit Stage,” topping the opening night (3 July) alongside Tyla — with Asake and Wizkid headlining the nights after." },
 ];
