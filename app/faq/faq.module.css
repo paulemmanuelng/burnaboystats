@@ -3,22 +3,27 @@
   border-top: 1px solid var(--line);
 }
 .item {
-  padding: 24px 0;
+  padding: 26px 0;
   border-bottom: 1px solid var(--line);
 }
 .q {
-  margin: 0 0 10px;
-  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+  margin: 0 0 12px;
+  /* Use the readable body font, not the condensed Anton display font (h2 default). */
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--text);
 }
 .a {
   margin: 0;
-  max-width: 760px;
-  color: var(--text-muted);
-  font-size: 1.02rem;
-  line-height: 1.65;
+  max-width: 720px;
+  /* Brighter than --text-muted so the answers read comfortably on the dark bg. */
+  color: #d8d8de;
+  font-size: 1.08rem;
+  line-height: 1.75;
 }
 .source {
   margin: 30px 0 0;
