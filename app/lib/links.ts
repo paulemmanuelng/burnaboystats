@@ -6,6 +6,7 @@ export const navItems = [
   { href: "/music", label: "Music" },
   { href: "/certifications", label: "Certifications" },
   { href: "/records", label: "Records" },
+  { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -16,4 +17,5 @@ export const exploreFor: Record<string, string[]> = {
   "/music": ["certifications", "records", "about"],
   "/certifications": ["music", "records", "about"],
   "/about": ["music", "certifications", "records"],
+  "/faq": ["records", "certifications", "music"],
 };
