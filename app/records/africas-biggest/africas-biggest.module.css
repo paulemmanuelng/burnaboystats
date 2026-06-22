@@ -135,10 +135,15 @@
   border-bottom: none;
 }
 .listEntry .name {
-  flex: 1;
   color: var(--text-muted);
 }
+.listEntry .sub {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-style: italic;
+}
 .value {
+  margin-left: auto;
   font-family: var(--font-anton), sans-serif;
   font-size: 1.3rem;
   line-height: 1;

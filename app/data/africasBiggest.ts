@@ -8,6 +8,7 @@
 
 export interface RankEntry {
   name: string;
+  sub?: string; // optional secondary label, e.g. an album title ("list" boxes)
   value?: string; // e.g. "46.58M" (only used in "list" boxes)
 }
 
@@ -85,5 +86,20 @@ export const statBoxes: LeaderboardBox[] = [
     note: "Burna Boy holds the highest monthly-listeners peak ever for a male African artist on Spotify — and it's still climbing.",
     source:
       "Peak Spotify monthly listeners, from Spotify artist pages and monitoring trackers, as of June 2026. Burna Boy's figure is his current peak and still rising, so it updates as Spotify's numbers change.",
+  },
+  {
+    id: "biggest-spotify-debut",
+    title: "Biggest Spotify debut",
+    meta: "African albums · global · first-week streams",
+    layout: "list",
+    entries: [
+      { name: "Asake", sub: "M$NEY", value: "55.98M" },
+      { name: "Wizkid", sub: "Morayo", value: "52.8M" },
+      { name: "Davido", sub: "5ive", value: "51.95M" },
+      { name: "Tyla", sub: "Tyla", value: "46.4M" },
+      { name: "Burna Boy", sub: "I Told Them…", value: "37.6M" },
+    ],
+    note: "Burna Boy's I Told Them… is one of the five biggest first-week debuts ever for an African album on Spotify — the record belongs to Asake's M$NEY (55.98M).",
+    source: "Biggest opening-week streams for African albums on Spotify (global), sourced from streaming trackers.",
   },
 ];
