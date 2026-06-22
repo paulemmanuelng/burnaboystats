@@ -111,6 +111,51 @@
   font-style: italic;
 }
 
+/* "list" layout — a single ranked list with a value per row (e.g. peak listeners). */
+.listRank {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+}
+.listEntry {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+.listEntry:last-child {
+  border-bottom: none;
+}
+.listEntry .name {
+  flex: 1;
+  color: var(--text-muted);
+}
+.value {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--text);
+}
+.first .value {
+  color: var(--gold-bright);
+}
+.highlight .value {
+  color: var(--gold);
+}
+
+/* Box-level record / highlight callout. */
+.boxNote {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, rgba(255, 182, 39, 0.12), rgba(226, 52, 43, 0.08));
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
 .boxSource {
   margin: 16px 0 0;
   font-family: var(--font-mono), monospace;
