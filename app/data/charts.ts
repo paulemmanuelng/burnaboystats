@@ -152,10 +152,10 @@ export const featureCharts: ChartRelease[] = [
   ] },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, entries: [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "DE", peak: 2 }, { c: "AT", peak: 2 },
-    { c: "BE", peak: 2 }, { c: "HR", peak: 3 }, { c: "SK", peak: 3 }, { c: "AE", peak: 4 }, { c: "SE", peak: 5 },
+    { c: "BE", peak: 2 }, { c: "HR", peak: 3 }, { c: "SK", peak: 3 }, { c: "AE", peak: 4 }, { c: "SE", peak: 5 }, { c: "FR", peak: 6 },
     { c: "CO", peak: 8 }, { c: "SA", peak: 8 }, { c: "NO", peak: 8 }, { c: "ES", peak: 10 }, { c: "LB", peak: 10 },
     { c: "PT", peak: 14 }, { c: "NG", peak: 15 }, { c: "GR", peak: 16 }, { c: "ZA", peak: 19 }, { c: "AR", peak: 20 },
-    { c: "LT", peak: 23 }, { c: "UK", peak: 28 }, { c: "IT", peak: 33 }, { c: "IE", peak: 34 }, { c: "FR", peak: 38 },
+    { c: "LT", peak: 23 }, { c: "UK", peak: 28 }, { c: "IT", peak: 33 }, { c: "IE", peak: 34 },
     { c: "WW", peak: 46 }, { c: "CA", peak: 55 }, { c: "PL", peak: 72 }, { c: "CZ", peak: 74 },
   ] },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, entries: [
