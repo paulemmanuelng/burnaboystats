@@ -181,7 +181,7 @@ export const featureCharts: ChartRelease[] = [
   { title: "Mera Na", credit: "Sidhu Moose Wala ft. Burna Boy & Steel Banglez", year: 2023, entries: [
     { c: "CA", peak: 14 }, { c: "UK", peak: 87 },
   ] },
-  { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2022, entries: [
+  { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2025, entries: [
     { c: "US", peak: 16 }, { c: "UK", peak: 22 }, { c: "NZ", peak: 29 }, { c: "CH", peak: 29 },
     { c: "CA", peak: 46 }, { c: "GR", peak: 56 }, { c: "WW", peak: 60 }, { c: "IE", peak: 82 }, { c: "SE", peak: 91 },
     { c: "DE", peak: 92 }, { c: "AU", peak: 96 }, { c: "NL", peak: 97 }, { c: "PT", peak: 111 },
