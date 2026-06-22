@@ -186,11 +186,14 @@ export const liveMoments: LiveMoment[] = [
   { year: "2025", title: "Stade de France, Paris", text: "First African artist to headline the Stade de France (April 2025) — a $4.53M gross." },
   { year: "2025", title: "Red Rocks Amphitheatre", text: "First Nigerian artist to headline the iconic Colorado venue, opening the No Sign of Weakness tour." },
   { year: "2024", title: "London Stadium — African concert record", text: "$6.15M from 58,973 tickets: the highest-grossing single concert by any African artist.", record: true },
-  { year: "2024", title: "Grammy Awards Stage", text: "First African artist to perform at the Grammys — a medley from I Told Them… with Brandy and 21 Savage." },
+  { year: "2024", title: "Grammy Awards Stage", text: "First African artist to perform on the Grammys' main telecast stage — a medley from I Told Them… with Brandy and 21 Savage." },
   { year: "2023", title: "London Stadium (sold out)", text: "First African artist to headline a UK stadium (3 June 2023), to about 60,000 fans, on the Love, Damini tour." },
   { year: "2023", title: "Citi Field, New York (sold out)", text: "First African artist to headline and sell out a stadium in the United States." },
   { year: "2023", title: "UEFA Champions League Final", text: "First African artist to perform at the Champions League final kick-off show, in Istanbul." },
+  { year: "2023", title: "NBA All-Star Game halftime show", text: "Headlined an Afrobeats halftime show at the 2023 NBA All-Star Game in Salt Lake City, alongside Tems and Rema." },
   { year: "2022", title: "Madison Square Garden (sold out)", text: "First African artist to sell out the world's most famous arena." },
+  { year: "2022", title: "Billboard Music Awards", text: "Performed at the 2022 Billboard Music Awards in Las Vegas." },
+  { year: "2021", title: "Grammy Awards Premiere Ceremony", text: "Performed “Ye,” “Onyeka” and “Level Up” at the 2021 pre-telecast ceremony — the year Twice as Tall won Best Global Music Album." },
 ];
 
 // Festivals & one-off shows (year-level; not single-venue tour dates).
