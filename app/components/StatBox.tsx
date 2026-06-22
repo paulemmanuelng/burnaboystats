@@ -48,6 +48,7 @@ export default function StatBox({ box }: { box: LeaderboardBox }) {
                     >
                       <span className={styles.pos}>{i + 1}</span>
                       <span className={styles.name}>{e.name}</span>
+                      {e.value ? <span className={styles.entryValue}>{e.value}</span> : null}
                     </li>
                   ))}
                 </ol>

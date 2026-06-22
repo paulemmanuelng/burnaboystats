@@ -48,13 +48,13 @@ export const statBoxes: LeaderboardBox[] = [
       {
         label: "2025",
         entries: [
-          { name: "Burna Boy" },
-          { name: "Wizkid" },
-          { name: "Tyla" },
-          { name: "Tems" },
-          { name: "Rema" },
+          { name: "Burna Boy", value: "1.986B" },
+          { name: "Wizkid", value: "1.947B" },
+          { name: "Tyla", value: "1.798B" },
+          { name: "Rema", value: "1.267B" },
+          { name: "Tems", value: "1.195B" },
         ],
-        note: "Burna Boy's ~1.99 billion streams set a record for the biggest streaming year ever by an African artist on Spotify.",
+        note: "Burna Boy's 1.986 billion streams set a record for the biggest streaming year ever by an African artist on Spotify.",
       },
       {
         label: "2024",

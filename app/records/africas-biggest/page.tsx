@@ -30,10 +30,9 @@ export default function AfricasBiggestPage() {
         {/* Answer-first intro (helps search + AI answer engines). */}
         <p className={styles.intro}>
           Burna Boy was the <strong>most-streamed African artist on Spotify
-          globally</strong> in both 2024 and 2025 — and his ~1.99 billion streams
+          globally</strong> in both 2024 and 2025 — and his 1.986 billion streams
           in 2025 set a record for the biggest streaming year ever by an African
-          artist. The leaderboards below track who tops African music each year —
-          rankings only, since per-artist stream totals vary by source.
+          artist. The leaderboards below track who tops African music each year.
         </p>
 
         <div className={styles.boxGrid}>

@@ -94,6 +94,13 @@
 .name {
   font-weight: 500;
 }
+/* Per-entry stream total in the "year" layout (e.g. 2025's billions). */
+.entryValue {
+  margin-left: 3px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
 .first .name {
   color: var(--text);
   font-weight: 700;
