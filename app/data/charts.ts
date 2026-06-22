@@ -63,6 +63,7 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   AR: { name: "Argentina", flag: "🇦🇷", body: "Billboard Argentina Hot 100" },
   CO: { name: "Colombia", flag: "🇨🇴", body: "Billboard Colombia Hot 100" },
   WW: { name: "Global", flag: "🌍", body: "Billboard Global 200" },
+  WWX: { name: "Global (excl. US)", flag: "🌐", body: "Billboard Global Excl. US" },
 };
 
 export interface ChartEntry {
@@ -152,7 +153,7 @@ export const featureCharts: ChartRelease[] = [
   ] },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, entries: [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "DE", peak: 2 }, { c: "AT", peak: 2 },
-    { c: "BE", peak: 2 }, { c: "HR", peak: 3 }, { c: "SK", peak: 3 }, { c: "AE", peak: 4 }, { c: "IN", peak: 4 }, { c: "SE", peak: 5 }, { c: "FR", peak: 6 },
+    { c: "BE", peak: 2 }, { c: "HR", peak: 3 }, { c: "SK", peak: 3 }, { c: "AE", peak: 4 }, { c: "IN", peak: 4 }, { c: "SE", peak: 5 }, { c: "FR", peak: 6 }, { c: "WWX", peak: 7 },
     { c: "CO", peak: 8 }, { c: "SA", peak: 8 }, { c: "NO", peak: 8 }, { c: "ES", peak: 10 }, { c: "LB", peak: 10 },
     { c: "PT", peak: 14 }, { c: "NG", peak: 15 }, { c: "GR", peak: 16 }, { c: "ZA", peak: 19 }, { c: "AR", peak: 20 },
     { c: "LT", peak: 23 }, { c: "UK", peak: 28 }, { c: "IT", peak: 33 }, { c: "IE", peak: 34 },
