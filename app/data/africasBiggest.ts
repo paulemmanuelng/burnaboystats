@@ -42,6 +42,6 @@ export const statBoxes: LeaderboardBox[] = [
       { label: "2024", entries: ["Burna Boy", "Tyla", "Ayra Starr", "Rema", "Tems"] },
     ],
     source:
-      "Ranked by total Spotify streams each year (2024 & 2025), per OkayAfrica, Music in Africa and year-end press tallies. Rankings only — per-artist totals are estimates that vary by source. Earlier years are added as reliable year-end tallies are confirmed.",
+      "Ranked by total Spotify streams each year (2024 & 2025), compiled from Spotify Wrapped and year-end streaming tallies reported across multiple music outlets. Rankings only — per-artist totals are estimates that vary by source. Earlier years are added as reliable tallies are confirmed.",
   },
 ];
