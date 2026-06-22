@@ -30,7 +30,7 @@ export const tours: Tour[] = [
   {
     name: "No Sign of Weakness Tour",
     years: "2025–26",
-    note: "His most expansive run yet — a genuine world tour across Oceania (Oct 2025), North America (Nov–Dec 2025) and Europe (Jan 2026), then a summer 2026 UK return at the Milton Keynes Bowl, performed largely on a 360° in-the-round stage. He became the first Nigerian artist to headline Red Rocks, and the Oceania leg alone grossed $3.1M from 31,000 tickets — the most for an African artist there.",
+    note: "His most expansive run yet — a genuine world tour across Oceania (Oct 2025), North America (Nov–Dec 2025) and Europe (Jan 2026), performed largely on a 360° in-the-round stage. He became the first Nigerian artist to headline Red Rocks, and the Oceania leg alone grossed $3.1M from 31,000 tickets — the most for an African artist there.",
     dates: [
       { date: "Oct 16, 2025", venue: "Sidney Myer Music Bowl", city: "Melbourne", country: "Australia", cap: 12000 },
       { date: "Oct 18, 2025", venue: "Qudos Bank Arena", city: "Sydney", country: "Australia", cap: 21000 },
@@ -54,7 +54,6 @@ export const tours: Tour[] = [
       { date: "Jan 17, 2026", venue: "Royal Arena", city: "Copenhagen", country: "Denmark", cap: 16000 },
       { date: "Jan 20, 2026", venue: "Hallenstadion", city: "Zurich", country: "Switzerland", cap: 15000 },
       { date: "Jan 23, 2026", venue: "ING Arena", city: "Brussels", country: "Belgium", cap: 15000 },
-      { date: "Jul 31, 2026", venue: "The National Bowl", city: "Milton Keynes", country: "UK", cap: 65000 },
     ],
   },
   {
@@ -194,7 +193,8 @@ export const liveMoments: LiveMoment[] = [
   { year: "2022", title: "Madison Square Garden (sold out)", text: "First African artist to sell out the world's most famous arena." },
 ];
 
-// Major festival headline / co-headline sets (year-level; not single-venue tour dates).
+// Festivals & one-off shows (year-level; not single-venue tour dates).
+// Personal headline tours are NOT listed here — they live in `tours` above.
 export interface Festival {
   year: string;
   name: string;
@@ -202,13 +202,23 @@ export interface Festival {
   note: string;
 }
 
+// Festivals Burna Boy has HEADLINED (topped the bill).
 export const festivals: Festival[] = [
-  { year: "2021", name: "Governors Ball Music Festival", location: "New York, USA", note: "A Sunday main-stage set at Citi Field, directly below headliner Post Malone." },
   { year: "2023", name: "St Kitts Music Festival", location: "St Kitts & Nevis", note: "The event's first-ever African headlining artist, anchoring the multi-day lineup." },
-  { year: "2024", name: "Glastonbury Festival", location: "Worthy Farm, UK", note: "A primetime Pyramid Stage set, immediately before Sunday headliner SZA, on a bill topped by Dua Lipa and Coldplay." },
   { year: "2024", name: "Mawazine Festival", location: "Rabat, Morocco", note: "Headlined the OLM Souissi main stage at one of the world's largest festivals, on a 2024 bill that also featured Nicki Minaj, Kylie Minogue and Camila Cabello." },
-  { year: "2025", name: "Wireless Festival", location: "London, UK", note: "A top-billed name on the Sunday line-up at Finsbury Park, on a bill headlined by Drake — who became the first artist to headline all three days." },
   { year: "2025", name: "Flow Festival", location: "Helsinki, Finland", note: "A Main Stage headliner, topping one of the three nights — on a bill with Charli XCX, FKA twigs, Little Simz and Air." },
   { year: "2025", name: "Afro Nation", location: "Portimão, Portugal", note: "A main-stage headliner of the world's biggest Afrobeats festival (5th edition, July 2025), topping the bill alongside Davido and Mary J. Blige." },
   { year: "2026", name: "Afro Nation", location: "Portimão, Portugal", note: "Headliner of the main “Lit Stage,” topping the opening night (3 July) alongside Tyla — with Asake and Wizkid headlining the nights after." },
+  { year: "2026", name: "Reggae Land", location: "Milton Keynes, UK", note: "Headlining the festival's first-ever Friday at the 65,000-capacity National Bowl, topping a bill with Masicka, Christopher Martin and Julian Marley." },
+];
+
+// Other festivals & one-off shows he performed at (NOT as the headliner).
+export const otherShows: Festival[] = [
+  { year: "2019", name: "Coachella", location: "Indio, USA", note: "His Coachella debut, performing across both weekends on the Mojave stage." },
+  { year: "2021", name: "Governors Ball Music Festival", location: "New York, USA", note: "A Sunday main-stage set at Citi Field, on a bill headlined by Post Malone." },
+  { year: "2022", name: "Global Citizen Festival", location: "New York, USA", note: "Performed on the Great Lawn in Central Park at the 10th-anniversary festival." },
+  { year: "2023", name: "Coachella", location: "Indio, USA", note: "Returned to Coachella for a second appearance, on a bigger stage than his 2019 debut." },
+  { year: "2023", name: "Roskilde Festival", location: "Roskilde, Denmark", note: "Played one of Europe's largest festivals to a huge crowd." },
+  { year: "2024", name: "Glastonbury Festival", location: "Worthy Farm, UK", note: "A primetime Pyramid Stage set, immediately before Sunday headliner SZA, on a bill topped by Dua Lipa and Coldplay." },
+  { year: "2025", name: "Wireless Festival", location: "London, UK", note: "A top-billed name on the Sunday line-up at Finsbury Park, on a bill headlined by Drake — who headlined all three days." },
 ];

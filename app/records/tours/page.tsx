@@ -67,8 +67,8 @@ export default function ToursPage() {
 
         <Link href="/records/tours/festivals" className={styles.allShowsCard}>
           <span>
-            <span className={styles.allShowsTitle}>Festival headline sets</span>
-            <span className={styles.allShowsDesc}>The festivals he&apos;s headlined — Glastonbury, Wireless, Afro Nation &amp; more</span>
+            <span className={styles.allShowsTitle}>Festivals &amp; shows</span>
+            <span className={styles.allShowsDesc}>Every festival &amp; big stage he&apos;s played — the headline sets and beyond</span>
           </span>
           <span className={styles.allShowsArrow} aria-hidden="true">→</span>
         </Link>
