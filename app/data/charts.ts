@@ -62,8 +62,8 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   SR: { name: "Suriname", flag: "🇸🇷", body: "Nationale Top 40" },
   AR: { name: "Argentina", flag: "🇦🇷", body: "Billboard Argentina Hot 100" },
   CO: { name: "Colombia", flag: "🇨🇴", body: "Billboard Colombia Hot 100" },
-  WW: { name: "Global", flag: "🌍", body: "Billboard Global 200" },
-  WWX: { name: "Global (excl. US)", flag: "🌐", body: "Billboard Global Excl. US" },
+  GLB: { name: "Global", flag: "🌍", body: "Billboard Global 200" },
+  GLBX: { name: "Global (excl. US)", flag: "🌐", body: "Billboard Global Excl. US" },
 };
 
 export interface ChartEntry {
@@ -109,21 +109,21 @@ export const singleCharts: ChartRelease[] = [
   { title: "Last Last", year: 2022, entries: [
     { c: "ZA", peak: 1 }, { c: "NG", peak: 2 }, { c: "UK", peak: 4 }, { c: "NZ", peak: 12 },
     { c: "NL", peak: 14 }, { c: "SE", peak: 21 }, { c: "FR", peak: 23 }, { c: "IE", peak: 27 },
-    { c: "CA", peak: 30 }, { c: "CH", peak: 38 }, { c: "WW", peak: 39 }, { c: "US", peak: 44 },
+    { c: "CA", peak: 30 }, { c: "CH", peak: 38 }, { c: "GLB", peak: 39 }, { c: "US", peak: 44 },
     { c: "BE", peak: 49 }, { c: "AU", peak: 79 }, { c: "PT", peak: 142 },
   ] },
   { title: "City Boys", year: 2023, entries: [
     { c: "NG", peak: 2 }, { c: "NL", peak: 14 }, { c: "UK", peak: 14 }, { c: "CH", peak: 24 },
     { c: "FR", peak: 27 }, { c: "IE", peak: 44 }, { c: "SE", peak: 58 }, { c: "CA", peak: 70 },
-    { c: "WW", peak: 143 },
+    { c: "GLB", peak: 143 },
   ] },
   { title: "For My Hand", credit: "feat. Ed Sheeran", year: 2022, entries: [
     { c: "NG", peak: 1 }, { c: "SR", peak: 3 }, { c: "ZA", peak: 4 }, { c: "UK", peak: 18 }, { c: "DK", peak: 23 },
-    { c: "NL", peak: 25 }, { c: "SE", peak: 38 }, { c: "IE", peak: 47 }, { c: "WW", peak: 52 },
+    { c: "NL", peak: 25 }, { c: "SE", peak: 38 }, { c: "IE", peak: 47 }, { c: "GLB", peak: 52 },
     { c: "CH", peak: 59 }, { c: "CA", peak: 63 }, { c: "FR", peak: 173 },
   ] },
   { title: "Cheat on Me", credit: "feat. Dave", year: 2023, entries: [
-    { c: "UK", peak: 19 }, { c: "IE", peak: 42 }, { c: "FR", peak: 109 }, { c: "WW", peak: 194 },
+    { c: "UK", peak: 19 }, { c: "IE", peak: 42 }, { c: "FR", peak: 109 }, { c: "GLB", peak: 194 },
   ] },
   { title: "Sittin' on Top of the World", credit: "feat. 21 Savage", year: 2023, entries: [
     { c: "UK", peak: 36 }, { c: "NZ", peak: 36 }, { c: "US", peak: 80 },
@@ -149,15 +149,15 @@ export const featureCharts: ChartRelease[] = [
     { c: "BE", peak: 1 }, { c: "CH", peak: 1 }, { c: "HU", peak: 1 }, { c: "NL", peak: 1 },
     { c: "SR", peak: 1 }, { c: "ZA", peak: 1 }, { c: "RO", peak: 1 }, { c: "AT", peak: 2 }, { c: "FR", peak: 2 },
     { c: "IT", peak: 2 }, { c: "DE", peak: 3 }, { c: "SE", peak: 3 }, { c: "IE", peak: 4 },
-    { c: "ES", peak: 10 }, { c: "PT", peak: 15 }, { c: "WW", peak: 38 }, { c: "SK", peak: 46 }, { c: "UK", peak: 55 },
+    { c: "ES", peak: 10 }, { c: "PT", peak: 15 }, { c: "GLB", peak: 38 }, { c: "SK", peak: 46 }, { c: "UK", peak: 55 },
   ] },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, entries: [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "DE", peak: 2 }, { c: "AT", peak: 2 },
-    { c: "BE", peak: 2 }, { c: "HR", peak: 3 }, { c: "SK", peak: 3 }, { c: "AE", peak: 4 }, { c: "IN", peak: 4 }, { c: "SE", peak: 5 }, { c: "FR", peak: 6 }, { c: "WWX", peak: 7 },
+    { c: "BE", peak: 2 }, { c: "HR", peak: 3 }, { c: "SK", peak: 3 }, { c: "AE", peak: 4 }, { c: "IN", peak: 4 }, { c: "SE", peak: 5 }, { c: "FR", peak: 6 }, { c: "GLBX", peak: 7 },
     { c: "CO", peak: 8 }, { c: "SA", peak: 8 }, { c: "NO", peak: 8 }, { c: "ES", peak: 10 }, { c: "LB", peak: 10 },
     { c: "PT", peak: 14 }, { c: "NG", peak: 15 }, { c: "GR", peak: 16 }, { c: "ZA", peak: 19 }, { c: "AR", peak: 20 },
     { c: "LT", peak: 23 }, { c: "UK", peak: 28 }, { c: "IT", peak: 33 }, { c: "IE", peak: 34 },
-    { c: "WW", peak: 46 }, { c: "CA", peak: 55 }, { c: "PL", peak: 72 }, { c: "CZ", peak: 74 },
+    { c: "GLB", peak: 46 }, { c: "CA", peak: 55 }, { c: "PL", peak: 72 }, { c: "CZ", peak: 74 },
   ] },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, entries: [
     { c: "BE", peak: 2 }, { c: "SR", peak: 2 }, { c: "HU", peak: 39 }, { c: "IE", peak: 43 },
@@ -168,7 +168,7 @@ export const featureCharts: ChartRelease[] = [
     { c: "LB", peak: 1 }, { c: "HR", peak: 3 }, { c: "NL", peak: 4 }, { c: "HK", peak: 4 }, { c: "IE", peak: 7 }, { c: "AE", peak: 8 },
     { c: "BE", peak: 9 }, { c: "IL", peak: 10 }, { c: "SR", peak: 11 }, { c: "UK", peak: 20 }, { c: "IN", peak: 20 },
     { c: "NZ", peak: 21 }, { c: "CH", peak: 22 }, { c: "AT", peak: 28 }, { c: "IS", peak: 30 }, { c: "AR", peak: 36 },
-    { c: "AU", peak: 37 }, { c: "FI", peak: 38 }, { c: "DE", peak: 40 }, { c: "FR", peak: 45 }, { c: "WW", peak: 50 },
+    { c: "AU", peak: 37 }, { c: "FI", peak: 38 }, { c: "DE", peak: 40 }, { c: "FR", peak: 45 }, { c: "GLB", peak: 50 },
     { c: "ES", peak: 53 }, { c: "PT", peak: 61 }, { c: "IT", peak: 71 }, { c: "SE", peak: 79 }, { c: "NG", peak: 83 },
     { c: "US", peak: 87 }, { c: "CA", peak: 92 },
   ] },
@@ -184,7 +184,7 @@ export const featureCharts: ChartRelease[] = [
   ] },
   { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2025, entries: [
     { c: "US", peak: 16 }, { c: "UK", peak: 22 }, { c: "NZ", peak: 29 }, { c: "CH", peak: 29 },
-    { c: "CA", peak: 46 }, { c: "GR", peak: 56 }, { c: "WW", peak: 60 }, { c: "IE", peak: 82 }, { c: "SE", peak: 91 },
+    { c: "CA", peak: 46 }, { c: "GR", peak: 56 }, { c: "GLB", peak: 60 }, { c: "IE", peak: 82 }, { c: "SE", peak: 91 },
     { c: "DE", peak: 92 }, { c: "AU", peak: 96 }, { c: "NL", peak: 97 }, { c: "PT", peak: 111 },
   ] },
   { title: "Simmer", credit: "Mahalia ft. Burna Boy", year: 2019, entries: [{ c: "UK", peak: 46 }] },
