@@ -130,7 +130,7 @@ export const singles: Release[] = [
     { c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" },
   ] },
   { title: "Higher", year: 2024, certs: [
-    { c: "NG", level: "Platinum", x: 4 }, { c: "CA", level: "Gold" },
+    { c: "NG", level: "Platinum", x: 4 },
   ] },
   { title: "Common Person", year: 2022, certs: [
     { c: "NG", level: "Platinum", x: 3 },
