@@ -14,9 +14,53 @@ export const metadata = pageMetadata({
   shareDescription: "Record-breaking grosses, sold-out stadiums and history made on stage.",
 });
 
+// Turn "Oct 16, 2025" into an ISO date for structured data.
+const MONTHS: Record<string, string> = {
+  Jan: "01", Feb: "02", Mar: "03", Apr: "04", May: "05", Jun: "06",
+  Jul: "07", Aug: "08", Sep: "09", Oct: "10", Nov: "11", Dec: "12",
+};
+function toISODate(date: string): string | null {
+  const m = date.match(/^([A-Za-z]{3})\s+(\d{1,2}),\s+(\d{4})$/);
+  if (!m || !MONTHS[m[1]]) return null;
+  return `${m[3]}-${MONTHS[m[1]]}-${m[2].padStart(2, "0")}`;
+}
+
+// MusicEvent structured data for every documented tour show (date + venue +
+// city), so search engines understand Burna Boy's touring history.
+const toursJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": tours.flatMap((t) =>
+    (t.dates ?? []).flatMap((s) => {
+      const iso = toISODate(s.date);
+      if (!iso) return [];
+      return [
+        {
+          "@type": "MusicEvent",
+          name: `Burna Boy — ${t.name} (${s.city})`,
+          startDate: iso,
+          location: {
+            "@type": "Place",
+            name: s.venue,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: s.city,
+              addressCountry: s.country,
+            },
+          },
+          performer: { "@type": "MusicGroup", name: "Burna Boy" },
+        },
+      ];
+    })
+  ),
+};
+
 export default function ToursPage() {
   return (
     <main id="content">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(toursJsonLd) }}
+      />
       <header className="pageHeader container">
         <h1>
           Tours <span className="accent">&amp; Live</span>

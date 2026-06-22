@@ -63,10 +63,14 @@ const musicJsonLd = {
       "@type": "MusicGroup",
       name: "Burna Boy",
       url: `${siteUrl}/music`,
-      album: albums.map((a) => ({
+      album: [...albums, ...eps].map((a) => ({
         "@type": "MusicAlbum",
         name: a.title,
         datePublished: String(a.year),
+        numTracks: a.tracks.length,
+        byArtist: { "@type": "MusicGroup", name: "Burna Boy" },
+        ...(a.cover ? { image: a.cover } : {}),
+        ...(a.spotify ? { sameAs: a.spotify } : {}),
       })),
     },
     {
