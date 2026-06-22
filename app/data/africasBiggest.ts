@@ -79,7 +79,7 @@ export const statBoxes: LeaderboardBox[] = [
     entries: [
       { name: "Tyla", value: "46.58M" },
       { name: "Tems", value: "45.5M" },
-      { name: "Burna Boy", value: "42.63M" },
+      { name: "Burna Boy", value: "43.04M" },
       { name: "Rema", value: "40.01M" },
       { name: "Ayra Starr", value: "32.19M" },
     ],
