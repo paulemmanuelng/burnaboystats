@@ -7,7 +7,7 @@ import { pageMetadata } from "../../lib/seo";
 export const metadata = pageMetadata({
   title: "Africa's Biggest — Most-Streamed African Artists by Year (Spotify)",
   description:
-    "Who is the most-streamed African artist on Spotify? The year-by-year Top-5 leaderboard of Africa's biggest artists by global streams — Burna Boy topped 2024 and 2025, ahead of Tyla, Ayra Starr, Rema and Tems.",
+    "Who is the most-streamed African artist on Spotify? The year-by-year leaderboard of Africa's biggest artists by global streams — Burna Boy topped 2024 and 2025, with his ~2 billion streams in 2025 a record for an African artist.",
   path: "/records/africas-biggest",
   shareTitle: "Africa's Biggest",
   shareDescription: "Spotify's most-streamed African artists, year by year.",
@@ -30,10 +30,10 @@ export default function AfricasBiggestPage() {
         {/* Answer-first intro (helps search + AI answer engines). */}
         <p className={styles.intro}>
           Burna Boy was the <strong>most-streamed African artist on Spotify
-          globally</strong> in both 2024 and 2025, ahead of Tyla, Ayra Starr,
-          Rema and Tems. The leaderboards below track who tops African music each
-          year — rankings only, since Spotify doesn&apos;t publish official
-          per-artist stream totals.
+          globally</strong> in both 2024 and 2025 — and his ~1.99 billion streams
+          in 2025 set a record for the biggest streaming year ever by an African
+          artist. The leaderboards below track who tops African music each year —
+          rankings only, since per-artist stream totals vary by source.
         </p>
 
         <div className={styles.boxGrid}>

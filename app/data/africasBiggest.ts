@@ -34,10 +34,14 @@ export const statBoxes: LeaderboardBox[] = [
         inProgress: true,
         note: "Year in progress — Tems leading so far; final order not yet set.",
       },
-      { label: "2025", entries: ["Burna Boy", "Tyla", "Ayra Starr", "Rema", "Tems"] },
+      {
+        label: "2025",
+        entries: ["Burna Boy", "Wizkid", "Tyla", "Tems", "Rema"],
+        note: "Burna Boy's ~1.99 billion streams set a record for the biggest streaming year ever by an African artist on Spotify.",
+      },
       { label: "2024", entries: ["Burna Boy", "Tyla", "Ayra Starr", "Rema", "Tems"] },
     ],
     source:
-      "Spotify Wrapped global African-artist rankings (2024 & 2025). Earlier years (2021–2023) are being verified — Spotify reported those by country / “most exported,” not as a clean global Top-5.",
+      "Year-end Spotify yearly-stream rankings for African artists (2024 & 2025), per OkayAfrica, Music in Africa and Nigerian press. Rankings only — exact per-artist totals vary by source. 2021–2023 still being verified.",
   },
 ];
