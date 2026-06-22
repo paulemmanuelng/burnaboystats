@@ -4,14 +4,16 @@ import { albums, eps } from "../data/albums";
 import KeepExploring from "../components/KeepExploring";
 import SpotifyIcon from "../components/SpotifyIcon";
 import { siteUrl } from "../site";
+import { pageMetadata } from "../lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Burna Boy Discography — Albums, EPs & Songs",
   description:
     "Burna Boy's full discography: 8 studio albums (L.I.F.E to No Sign of Weakness), 2 EPs, tracklists, biggest hits and guest features.",
-  alternates: { canonical: "/music" },
-  openGraph: { title: "Burna Boy Discography", description: "Albums, EPs, tracklists and hits." },
-};
+  path: "/music",
+  shareTitle: "Burna Boy Discography",
+  shareDescription: "Albums, EPs, tracklists and hits.",
+});
 
 // A selection of his best-known songs across the years.
 const songs = [

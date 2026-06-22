@@ -3,13 +3,16 @@ import styles from "./awards.module.css";
 import CountUp from "../../components/CountUp";
 import AwardExplorer from "../../components/AwardExplorer";
 import { totalWins, totalNominations, ceremonyCount, honours } from "../../data/awards";
+import { pageMetadata } from "../../lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Burna Boy Awards & Nominations — Grammy, BET, Headies, AFRIMA & more",
   description:
     "Every award and nomination Burna Boy has received — his Grammy win, BET Awards, BRIT, MOBO, Headies, AFRIMA and more. Filter by wins or nominations.",
-  alternates: { canonical: "/records/awards" },
-};
+  path: "/records/awards",
+  shareTitle: "Burna Boy Awards & Nominations",
+  shareDescription: "His Grammy win, BET, BRIT, MOBO, Headies, AFRIMA and more.",
+});
 
 export default function AwardsPage() {
   return (

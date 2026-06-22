@@ -11,13 +11,16 @@ import {
   numberOnes,
   chartCountryCount,
 } from "../../data/charts";
+import { pageMetadata } from "../../lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Burna Boy Official Chart Entries — Peak Positions Worldwide",
   description:
     "Every Burna Boy official chart entry and peak position — US Billboard, UK Official Charts, France (SNEP), Germany, Australia, Ireland and more. Filter by country.",
-  alternates: { canonical: "/records/charts" },
-};
+  path: "/records/charts",
+  shareTitle: "Burna Boy Official Chart Entries",
+  shareDescription: "Peak positions on every major chart worldwide.",
+});
 
 export default function ChartsPage() {
   return (

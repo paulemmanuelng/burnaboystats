@@ -2,13 +2,16 @@ import Link from "next/link";
 import styles from "./firsts.module.css";
 import CountUp from "../../components/CountUp";
 import { firstGroups } from "../../data/firsts";
+import { pageMetadata } from "../../lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Burna Boy Firsts & Records — History-Making Milestones",
   description:
     "Every history-making first and record Burna Boy holds as an African artist — sold-out stadiums, the World Cup, Grammy stage, billions of UK streams and the highest-grossing African tour ever.",
-  alternates: { canonical: "/records/firsts" },
-};
+  path: "/records/firsts",
+  shareTitle: "Burna Boy Firsts & Records",
+  shareDescription: "The history-making milestones of the African Giant.",
+});
 
 export default function FirstsPage() {
   return (

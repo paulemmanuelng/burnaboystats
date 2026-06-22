@@ -1,14 +1,16 @@
 import Reveal from "../components/Reveal";
 import Equalizer from "../components/Equalizer";
 import KeepExploring from "../components/KeepExploring";
+import { pageMetadata } from "../lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "About Burna Boy — Biography & Career Timeline",
   description:
     "Who is Burna Boy? The story of Damini Ebunoluwa Ogulu — born 2 July 1991 in Port Harcourt — Afro-fusion pioneer, Grammy winner and the African Giant.",
-  alternates: { canonical: "/about" },
-  openGraph: { title: "About Burna Boy", description: "Biography & career timeline of the African Giant." },
-};
+  path: "/about",
+  shareTitle: "About Burna Boy",
+  shareDescription: "Biography & career timeline of the African Giant.",
+});
 
 // Verified quick facts (sources: Wikipedia, Grammy.com, Billboard).
 const facts = [

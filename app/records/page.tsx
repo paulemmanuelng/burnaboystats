@@ -1,12 +1,14 @@
 import Link from "next/link";
 import styles from "./records.module.css";
+import { pageMetadata } from "../lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Career Records — Burna Boy Charts, Awards, Tours & Firsts",
   description:
     "Burna Boy's career records: official chart entries, awards, tours and the historic firsts that made him the African Giant.",
-  alternates: { canonical: "/records" },
-};
+  path: "/records",
+  shareTitle: "Burna Boy — Career Records",
+});
 
 const subs = [
   { href: "/records/charts", title: "Official Charts", desc: "Peak positions on every major chart worldwide", live: true },

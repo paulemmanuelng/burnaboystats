@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Geist, Anton, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Nav from "./components/Nav";
+import Breadcrumbs from "./components/Breadcrumbs";
 import { siteUrl } from "./site";
 import "./globals.css";
 
@@ -44,6 +45,8 @@ export const metadata: Metadata = {
       "Certifications, discography and milestones of Grammy-winning Nigerian superstar Burna Boy.",
     type: "website",
     siteName: "Burna Boy Stats",
+    url: "/",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
@@ -61,19 +64,26 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Burna Boy Stats",
+  alternateName: "BurnaBoyStats",
   url: siteUrl,
+  inLanguage: "en",
   description:
     "An unofficial fan site tracking the certifications, discography and milestones of Grammy-winning Nigerian superstar Burna Boy.",
   about: {
     "@type": "MusicGroup",
     name: "Burna Boy",
     alternateName: "Damini Ebunoluwa Ogulu",
-    genre: ["Afrobeats", "Afro-fusion"],
+    genre: ["Afrobeats", "Afro-fusion", "Reggae", "Dancehall"],
+    award: "Grammy Award for Best Global Music Album (2021)",
+    foundingLocation: { "@type": "Place", name: "Port Harcourt, Nigeria" },
     sameAs: [
       "https://en.wikipedia.org/wiki/Burna_Boy",
       "https://www.instagram.com/burnaboygram",
       "https://twitter.com/burnaboy",
+      "https://www.youtube.com/channel/UCEzDdNqNkT-7rSfSGSr1hWg",
       "https://open.spotify.com/artist/3wcj11K77LjEY1PkEazffa",
+      "https://music.apple.com/us/artist/burna-boy/591899010",
+      "https://www.facebook.com/Officialburnaboy",
     ],
   },
 };
@@ -102,6 +112,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Per-page breadcrumb structured data */}
+        <Breadcrumbs />
 
         {/* NAVIGATION BAR — shown on every page */}
         <Nav />

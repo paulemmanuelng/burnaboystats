@@ -1,12 +1,13 @@
 import Reveal from "../components/Reveal";
 import ContactForm from "../components/ContactForm";
 import styles from "./contact.module.css";
+import { pageMetadata } from "../lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Contact — Burna Boy Stats",
   description: "Get in touch with Burna Boy Stats, or find Burna Boy's official channels.",
-  alternates: { canonical: "/contact" },
-};
+  path: "/contact",
+});
 
 // Official channels (for real enquiries — this fan site can't forward messages).
 const channels = [
