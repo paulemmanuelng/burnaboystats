@@ -26,7 +26,7 @@ export const statBoxes: LeaderboardBox[] = [
   {
     id: "most-streamed-african-artist",
     title: "Most-streamed African artist",
-    meta: "Spotify · global · by year",
+    meta: "Total Spotify streams · global · per year",
     rows: [
       {
         label: "2026",
@@ -42,6 +42,6 @@ export const statBoxes: LeaderboardBox[] = [
       { label: "2024", entries: ["Burna Boy", "Tyla", "Ayra Starr", "Rema", "Tems"] },
     ],
     source:
-      "Year-end Spotify yearly-stream rankings for African artists (2024 & 2025), per OkayAfrica, Music in Africa and Nigerian press. Rankings only — exact per-artist totals vary by source. 2021–2023 still being verified.",
+      "Ranked by total Spotify streams each year (2024 & 2025), per OkayAfrica, Music in Africa and year-end press tallies. Rankings only — per-artist totals are estimates that vary by source. Earlier years are added as reliable year-end tallies are confirmed.",
   },
 ];
