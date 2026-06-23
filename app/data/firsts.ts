@@ -39,7 +39,7 @@ export const firstGroups: FirstGroup[] = [
     label: "Charts & streaming",
     items: [
       { year: "2026", title: "First African artist to chart the Billboard Hot 100 six years running", text: "An unbroken run from 2021 through 2026." },
-      { year: "2026", title: "Joint-most Billboard Hot 100 entries by an African artist", text: "Eight career entries — level with Tems." },
+      { year: "2026", title: "Most Billboard Hot 100 entries by an African artist", text: "Nine career entries — the record for any African artist, extended by “Dai Dai”." },
       { year: "2024", title: "First African artist to surpass 2 billion UK streams", text: "Recognised with a BRIT Billion award — the first African to reach it." },
       { year: "2024", title: "First African artist to surpass 1 billion UK streams", text: "Awarded his first BRIT Billion plaque." },
       { year: "2022", title: "Highest-charting Nigerian album in Billboard 200 history", text: "Love, Damini debuted at No. 14 — passing the previous Nigerian best, Wizkid's Made in Lagos (No. 28)." },

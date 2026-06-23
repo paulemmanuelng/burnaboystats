@@ -45,7 +45,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "How many Billboard Hot 100 entries does Burna Boy have?",
-    a: `Burna Boy has 8 Billboard Hot 100 entries, tied with Tems for the most by an African artist. He is also the first African artist to chart on the Hot 100 for six consecutive years (2021–2026).`,
+    a: `Burna Boy has 9 Billboard Hot 100 entries — the most by any African artist. He is also the first African artist to chart on the Hot 100 for six consecutive years (2021–2026).`,
   },
   {
     q: "How many albums does Burna Boy have?",
