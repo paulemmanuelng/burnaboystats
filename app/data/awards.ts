@@ -340,7 +340,7 @@ export const ceremonies: Ceremony[] = [
   {
     name: "Nigeria South South Music Awards",
     noms: [
-      { year: 2013, category: "Recognition Award", won: true },
+      { year: 2013, category: "Best African Act", won: true },
     ],
   },
 ];
