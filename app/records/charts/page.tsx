@@ -40,7 +40,7 @@ export default function ChartsPage() {
           </div>
           <div className={styles.sumCard}>
             <span className={styles.sumNum}><CountUp end={numberOnes} /></span>
-            <span className={styles.sumLabel}>No. 1s</span>
+            <span className={styles.sumLabel}>No. 1 peaks</span>
           </div>
           <div className={styles.sumCard}>
             <span className={styles.sumNum}><CountUp end={chartCountryCount} /></span>
