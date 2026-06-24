@@ -24,6 +24,7 @@ export const firstGroups: FirstGroup[] = [
       { year: "2023", title: "First African artist to headline & sell out a US stadium", text: "Citi Field, New York." },
       { year: "2022", title: "First Nigerian artist to headline & sell out Madison Square Garden", text: "His “One Night in Space” show — the Space Drift World Tour finale." },
       { year: "2021", title: "First Nigerian artist to headline the Hollywood Bowl", text: "His debut at the legendary Los Angeles amphitheatre." },
+      { year: "2019", title: "First Afrobeats artist to sell out the SSE Arena, Wembley", text: "A sold-out London arena show that earned him a special plaque — an early breakthrough for the genre." },
     ],
   },
   {
@@ -32,7 +33,14 @@ export const firstGroups: FirstGroup[] = [
       { year: "2026", title: "First African artist to headline a FIFA World Cup opening ceremony", text: "Mexico City, performing the official tournament song “Dai Dai” with Shakira." },
       { year: "2024", title: "First African artist to perform on the Grammys' main telecast stage", text: "A medley from I Told Them… with Brandy and 21 Savage." },
       { year: "2023", title: "First African artist to perform at a UEFA Champions League final", text: "The kick-off show ahead of the final in Istanbul." },
+    ],
+  },
+  {
+    label: "Awards & honours",
+    items: [
       { year: "2021", title: "First winner of the Grammy for Best Global Music Album", text: "Twice as Tall took the award in its debut year — the category renamed from Best World Music Album." },
+      { year: "2023", title: "First African artist to win a Billboard Music Award as lead artist", text: "Recognised at the Billboard Music Awards as a headline act — the first African to win one in his own right." },
+      { year: "2024", title: "First African lead artist nominated for a Grammy outside the global categories", text: "His Best Melodic Rap Performance nod broke African artists into the Grammys' mainstream genre fields." },
     ],
   },
   {
@@ -45,6 +53,8 @@ export const firstGroups: FirstGroup[] = [
       { year: "2022", title: "Highest-charting Nigerian album in Billboard 200 history", text: "Love, Damini debuted at No. 14 — passing the previous Nigerian best, Wizkid's Made in Lagos (No. 28)." },
       { year: "2025", title: "First Nigerian artist to chart five albums on the Billboard 200", text: "Outside, African Giant, Twice as Tall, Love, Damini and No Sign of Weakness." },
       { year: "2024", title: "First African artist with two albums over 1 billion Spotify streams", text: "Love, Damini and African Giant have each crossed a billion streams." },
+      { year: "2023", title: "First Afrobeats artist to top the UK Official Albums Chart", text: "I Told Them… debuted at No. 1 in Britain — one better than Love, Damini's record No. 2." },
+      { year: "2023", title: "First African artist to reach 1 billion streams on Audiomack", text: "A milestone on the streaming platform where Afrobeats has its biggest home." },
       { year: "2026", title: "First African artist to top the Billboard Colombia Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Colombia." },
     ],
   },
