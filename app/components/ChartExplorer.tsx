@@ -71,10 +71,17 @@ export default function ChartExplorer({
     (!country || it.entries.some((e) => e.c === country)) &&
     (!peakMax || it.entries.some((e) => e.peak <= peakMax));
 
+  // Most-charted first: rank by how many territories a release charted in, then
+  // by its best (lowest) peak, then newest — so the biggest hits lead each list.
+  const byReach = (a: ChartRelease, b: ChartRelease) =>
+    b.entries.length - a.entries.length ||
+    Math.min(...a.entries.map((e) => e.peak)) - Math.min(...b.entries.map((e) => e.peak)) ||
+    b.year - a.year;
+
   const groups = [
-    { label: "Albums", items: albums.filter(keep) },
-    { label: "Singles", items: singles.filter(keep) },
-    { label: "Featured", items: features.filter(keep) },
+    { label: "Albums", items: albums.filter(keep).sort(byReach) },
+    { label: "Singles", items: singles.filter(keep).sort(byReach) },
+    { label: "Featured", items: features.filter(keep).sort(byReach) },
   ];
   const totalAll = albums.length + singles.length + features.length;
   const totalShown = groups.reduce((n, g) => n + g.items.length, 0);
