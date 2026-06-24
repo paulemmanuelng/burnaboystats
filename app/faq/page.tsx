@@ -3,7 +3,7 @@ import KeepExploring from "../components/KeepExploring";
 import { pageMetadata } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
 import { totalWins, totalNominations, ceremonyCount, ceremonies } from "../data/awards";
-import { numberOnes } from "../data/charts";
+import { numberOnes, numberOneReleases } from "../data/charts";
 
 export const metadata = pageMetadata({
   title: "Burna Boy FAQ — Grammys, Certifications, Records & Stats",
@@ -53,7 +53,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "How many number-one songs does Burna Boy have?",
-    a: `Burna Boy has ${numberOnes} releases that have reached No. 1 on an official national chart, with chart-toppers in Nigeria, South Africa and across Europe.`,
+    a: `Burna Boy has ${numberOneReleases} releases that have reached No. 1 on an official national chart — ${numberOnes} chart-topping placements in all, since several reached No. 1 in more than one country at once. His No. 1s span Nigeria, the UK, South Africa, the Netherlands, Switzerland and Colombia, among others.`,
   },
   {
     q: "What records has Burna Boy set for African music?",

@@ -214,10 +214,18 @@ export function chartTier(peak: number): "one" | "top10" | "top40" | "rest" {
 export const allChartItems: ChartRelease[] = [...albumCharts, ...singleCharts, ...featureCharts];
 export const chartEntryCount = allChartItems.reduce((n, r) => n + r.entries.length, 0);
 export const chartedReleaseCount = allChartItems.length;
-// "No. 1s" = releases that reached #1 on at least one country's main chart.
-export const numberOnes = allChartItems.filter((r) =>
+// Distinct releases that topped at least one country's main chart.
+export const numberOneReleases = allChartItems.filter((r) =>
   r.entries.some((e) => e.peak === 1)
 ).length;
+// "No. 1s" headline = total #1 chart placements — every country where a release
+// reached #1 counts (so a song that's #1 in five countries adds five). Mirrors
+// chartEntryCount (both count placements) and recomputes automatically whenever
+// a #1 is added to the data above, so the tally always tracks the charts.
+export const numberOnes = allChartItems.reduce(
+  (n, r) => n + r.entries.filter((e) => e.peak === 1).length,
+  0
+);
 export const chartCountryCount = new Set(
   allChartItems.flatMap((r) => r.entries.map((e) => e.c))
 ).size;
