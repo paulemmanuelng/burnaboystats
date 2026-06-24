@@ -1,6 +1,6 @@
 import Reveal from "../components/Reveal";
 import Discography from "../components/Discography";
-import { albums, eps } from "../data/albums";
+import { albums, eps, compilations } from "../data/albums";
 import KeepExploring from "../components/KeepExploring";
 import SpotifyIcon from "../components/SpotifyIcon";
 import { siteUrl } from "../site";
@@ -63,7 +63,7 @@ const musicJsonLd = {
       "@type": "MusicGroup",
       name: "Burna Boy",
       url: `${siteUrl}/music`,
-      album: [...albums, ...eps].map((a) => ({
+      album: [...albums, ...eps, ...compilations].map((a) => ({
         "@type": "MusicAlbum",
         name: a.title,
         datePublished: String(a.year),
@@ -179,6 +179,22 @@ export default function MusicPage() {
               </div>
             </Reveal>
           </div>
+        </div>
+
+        {/* COMPILATION */}
+        <div className="block">
+          <Reveal>
+            <p className="eyebrow">From the Vault</p>
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 className="secTitle">
+              <span className="goldText">Compilation</span>
+            </h2>
+          </Reveal>
+          <p className="cardMeta" style={{ marginTop: 6, marginBottom: 6 }}>
+            An early Aristokrat-era collection — tap for the full tracklist.
+          </p>
+          <Discography albums={compilations} indexOffset={6} />
         </div>
 
         {/* SIGNATURE SONGS */}

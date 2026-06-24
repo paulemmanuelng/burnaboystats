@@ -152,3 +152,22 @@ export const eps: AlbumEntry[] = [
     tracks: ["34", "Innocent Man", "Darko", "Thuggin"],
   },
 ];
+
+// Compilations — early-era collections released before the studio catalogue.
+export const compilations: AlbumEntry[] = [
+  {
+    title: "Best of Burn Series, Vol. 1",
+    spotify: "https://open.spotify.com/album/1KO52a7CF7exVydwrwzNPN",
+    cover: "https://i.scdn.co/image/ab67616d0000b2739c2cb75c521fe1c48f74a3c1",
+    year: 2011,
+    label: "Aristokrat Records",
+    tracks: [
+      "Don't Cross That Line", "I Don't Care", "Freedom Freestyle",
+      "Smoke (feat. Onos)", "Firewood", "Afrobeat Freestyle", "Kung Fu Loving",
+      "Ice Cream Man", "Ph - Lagos - London - Paris (feat. P.R.E.)",
+      "Trumpet (feat. Davido)", "Summer Time", "Friend Like Me (feat. Shank)",
+      "U Madt", "Bad Boy (feat. Korkormikor)", "Wickedest Luv (feat. LOS)",
+      "Fulfilling All Righteousness (feat. Sauce Kid)", "Cowboy Music",
+    ],
+  },
+];
