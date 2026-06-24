@@ -50,7 +50,7 @@ export const statBoxes: LeaderboardBox[] = [
           { name: "Tyla" },
         ],
         inProgress: true,
-        note: "Year in progress — Tems leading so far; final order not yet set.",
+        note: "Tems leading so far.",
       },
       {
         label: "2025",
@@ -95,7 +95,7 @@ export const statBoxes: LeaderboardBox[] = [
       },
     ],
     source:
-      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. Stream totals are shown for 2025; the other years are rankings only.",
+      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. Stream totals are shown for 2025; the other years are rankings only. *2026 is still in progress, so its order may change.",
   },
   {
     id: "monthly-listeners-peak",
