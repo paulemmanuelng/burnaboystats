@@ -1,8 +1,8 @@
 // "Africa's Biggest" — leaderboard-style stat boxes comparing African artists.
 // Two box layouts:
 //   • "year" — a ranked Top-5 per year (e.g. most-streamed artist by year).
-//     Stream totals are NOT shown (Spotify doesn't publish official per-year
-//     totals), so those boxes are rankings only.
+//     Mostly rankings only; a year may carry stream totals where they're
+//     reliably sourced (e.g. 2025).
 //   • "list" — a single ranked list, optionally with a value per entry
 //     (e.g. peak monthly listeners, which ARE visible on Spotify).
 
@@ -42,7 +42,13 @@ export const statBoxes: LeaderboardBox[] = [
     rows: [
       {
         label: "2026",
-        entries: [{ name: "Tems" }],
+        entries: [
+          { name: "Tems" },
+          { name: "Wizkid" },
+          { name: "Burna Boy" },
+          { name: "Asake" },
+          { name: "Tyla" },
+        ],
         inProgress: true,
         note: "Year in progress — Tems leading so far; final order not yet set.",
       },
@@ -67,9 +73,29 @@ export const statBoxes: LeaderboardBox[] = [
           { name: "Tems" },
         ],
       },
+      {
+        label: "2023",
+        entries: [
+          { name: "Rema" },
+          { name: "Burna Boy" },
+          { name: "Wizkid" },
+          { name: "Tems" },
+          { name: "Ayra Starr" },
+        ],
+      },
+      {
+        label: "2022",
+        entries: [
+          { name: "Burna Boy" },
+          { name: "Wizkid" },
+          { name: "Rema" },
+          { name: "Tems" },
+          { name: "Asake" },
+        ],
+      },
     ],
     source:
-      "Ranked by total Spotify streams each year, sourced from streaming trackers. Covers 2024 & 2025; earlier years are added as they're confirmed.",
+      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. Stream totals are shown for 2025; the other years are rankings only.",
   },
   {
     id: "monthly-listeners-peak",
