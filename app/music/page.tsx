@@ -132,10 +132,10 @@ export default function MusicPage() {
           </p>
         </div>
 
-        {/* EPs + FEATURES */}
+        {/* EPs + COMPILATION + FEATURES */}
         <div className="block">
           <div className="epsFeaturesGrid">
-            {/* EPs (left) */}
+            {/* EPs + Compilation (left, stacked) */}
             <div>
               <Reveal>
                 <p className="eyebrow">Also Released</p>
@@ -149,6 +149,19 @@ export default function MusicPage() {
                 Tap an EP to see its tracklist.
               </p>
               <Discography albums={eps} indexOffset={4} />
+
+              <Reveal>
+                <p className="eyebrow" style={{ marginTop: 38 }}>From the Vault</p>
+              </Reveal>
+              <Reveal delay={80}>
+                <h2 className="secTitle">
+                  <span className="goldText">Compilation</span>
+                </h2>
+              </Reveal>
+              <p className="cardMeta" style={{ marginTop: 6, marginBottom: 6 }}>
+                An early Aristokrat-era collection — tap for the full tracklist.
+              </p>
+              <Discography albums={compilations} indexOffset={6} />
             </div>
 
             {/* Features folder (right) */}
@@ -179,22 +192,6 @@ export default function MusicPage() {
               </div>
             </Reveal>
           </div>
-        </div>
-
-        {/* COMPILATION */}
-        <div className="block">
-          <Reveal>
-            <p className="eyebrow">From the Vault</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 className="secTitle">
-              <span className="goldText">Compilation</span>
-            </h2>
-          </Reveal>
-          <p className="cardMeta" style={{ marginTop: 6, marginBottom: 6 }}>
-            An early Aristokrat-era collection — tap for the full tracklist.
-          </p>
-          <Discography albums={compilations} indexOffset={6} />
         </div>
 
         {/* SIGNATURE SONGS */}
