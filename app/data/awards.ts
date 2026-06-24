@@ -54,6 +54,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2024, category: "Best Male R&B/Pop Artist", won: false },
       { year: 2024, category: "Best Male Hip Hop Artist", won: false },
       { year: 2025, category: "Best Male Hip Hop Artist", won: false },
+      { year: 2026, category: "Best Collaboration", work: "WGFT (Gunna ft. Burna Boy)", won: false },
     ],
   },
   {
@@ -204,6 +205,8 @@ export const ceremonies: Ceremony[] = [
       { year: 2023, category: "Songwriter of the Year", won: false },
       { year: 2023, category: "Best Collaboration", work: "Sungba (Remix)", won: false },
       { year: 2023, category: "Digital Artiste of the Year", won: false },
+      { year: 2023, category: "African Artiste of the Year", won: false },
+      { year: 2023, category: "Male Artiste of the Year", won: false },
       { year: 2025, category: "Best Performer (Live)", work: "African Giant Live From London", won: true },
       { year: 2025, category: "Best Recording of the Year", work: "Higher", won: false },
       { year: 2025, category: "Artiste of the Year", won: false },
@@ -290,6 +293,8 @@ export const ceremonies: Ceremony[] = [
       { year: 2024, category: "Song of the Year", won: false },
       { year: 2024, category: "Best Collaboration", won: false },
       { year: 2024, category: "Best Collaboration", work: "Rollercoaster", won: false },
+      { year: 2025, category: "Best Male Artist", won: false },
+      { year: 2025, category: "International Artist of the Year", won: false },
     ],
   },
   {
