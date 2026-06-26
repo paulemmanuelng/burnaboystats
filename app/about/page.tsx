@@ -25,7 +25,7 @@ const facts = [
 // Verified career milestones.
 const timeline = [
   { year: "2013", title: "Debut album — L.I.F.E", text: "Releases his first studio album on Aristokrat Records." },
-  { year: "2018", title: "Goes global with Outside", text: "Signs to Atlantic Records and releases his third album, Outside." },
+  { year: "2018", title: "Major-label debut — Outside", text: "Releases his third studio album, Outside — his first album for Atlantic Records (signed 2017)." },
   { year: "2019", title: "African Giant", text: "His breakthrough album. Becomes the first Afrobeats artist to sell out the SSE Arena, Wembley, and wins the BET Award for Best International Act." },
   { year: "2020", title: "Twice as Tall", text: "His fifth studio album arrives to worldwide acclaim." },
   { year: "2021", title: "Grammy winner", text: "Wins Best Global Music Album for Twice as Tall at the 63rd Grammy Awards." },
