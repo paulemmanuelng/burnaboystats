@@ -158,7 +158,7 @@ export const featureCharts: ChartRelease[] = [
     { c: "SA", peak: 3 }, { c: "IN", peak: 4 }, { c: "ES", peak: 4 }, { c: "SE", peak: 4 }, { c: "NO", peak: 4 },
     { c: "LB", peak: 5 }, { c: "GR", peak: 5 }, { c: "FR", peak: 6 }, { c: "GLBX", peak: 7 }, { c: "NG", peak: 7 },
     { c: "PT", peak: 14 }, { c: "CZ", peak: 18 }, { c: "ZA", peak: 19 }, { c: "GLB", peak: 20 }, { c: "LT", peak: 23 }, { c: "PL", peak: 26 },
-    { c: "UK", peak: 28 }, { c: "IT", peak: 33 }, { c: "HU", peak: 33 }, { c: "IE", peak: 34 }, { c: "CA", peak: 35 },
+    { c: "UK", peak: 28 }, { c: "IE", peak: 32 }, { c: "IT", peak: 33 }, { c: "HU", peak: 33 }, { c: "CA", peak: 35 },
     { c: "AU", peak: 52 }, { c: "BR", peak: 69 }, { c: "US", peak: 75 },
   ] },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, entries: [
