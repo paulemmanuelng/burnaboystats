@@ -31,6 +31,38 @@
 
 .group { margin: 48px 0 18px; }
 
+/* "Tours" section heading row + the world-map button on its right. */
+.toursHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 48px 0 0;
+}
+.toursHead .group { margin: 0; }
+.mapBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 15px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 182, 39, 0.12), rgba(226, 52, 43, 0.06));
+  color: var(--gold);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.mapBtn:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+
 /* Official links band (tickets + official site) */
 .officialLinks {
   display: flex;

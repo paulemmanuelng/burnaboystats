@@ -106,9 +106,14 @@ export default function ToursPage() {
           </div>
         </div>
 
-        <h2 className={`secTitle ${styles.group}`}>
-          <span className="goldText">Tours</span>
-        </h2>
+        <div className={styles.toursHead}>
+          <h2 className={`secTitle ${styles.group}`}>
+            <span className="goldText">Tours</span>
+          </h2>
+          <Link href="/records/tours/map" className={styles.mapBtn}>
+            <span aria-hidden="true">🌍</span> Where he&apos;s performed
+          </Link>
+        </div>
         <p className={styles.tourHint}>Tap a tour to see its venues, dates &amp; capacities.</p>
         <ToursExplorer tours={tours} />
 
