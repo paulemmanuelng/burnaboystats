@@ -54,7 +54,7 @@ export default function Home() {
 
         <div className={`container ${styles.heroInner}`}>
           <div className={styles.heroTop}>
-            <span className={styles.metaLabel}>Est. 2013</span>
+            <span className={styles.metaLabel}>Est. 2010</span>
             <span className={styles.metaLabel}>Afro-Fusion</span>
           </div>
 
