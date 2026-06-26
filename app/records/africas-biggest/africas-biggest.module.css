@@ -134,6 +134,17 @@
 .listEntry:last-child {
   border-bottom: none;
 }
+/* Groups the name + sub so the value can sit cleanly at the right, and so the
+   sub (flag/country) can stack under the name on narrow screens. */
+.listMain {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 8px;
+  row-gap: 2px;
+}
 .listEntry .name {
   color: var(--text-muted);
 }
@@ -143,7 +154,7 @@
   font-style: italic;
 }
 .value {
-  margin-left: auto;
+  flex: 0 0 auto;
   font-family: var(--font-anton), sans-serif;
   font-size: 1.3rem;
   line-height: 1;
@@ -200,5 +211,12 @@
   }
   .year {
     font-size: 1.3rem;
+  }
+  /* Stack the flag/country under the name so rows read "name … value" cleanly
+     and long tied-names don't collide with the value. */
+  .listMain {
+    flex-direction: column;
+    column-gap: 0;
+    row-gap: 1px;
   }
 }
