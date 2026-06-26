@@ -101,7 +101,7 @@ export const singles: Release[] = [
   ] },
   { title: "Gbona", year: 2018, certs: [
     { c: "CA", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "CH", level: "Platinum" },
-    { c: "SE", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" },
+    { c: "SE", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "It's Plenty", year: 2022, certs: [
     { c: "NG", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" },
@@ -293,7 +293,7 @@ export const features: Release[] = [
     { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" },
   ] },
   { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2025, certs: [
-    { c: "UK", level: "Gold" }, { c: "NZ", level: "Gold" },
+    { c: "NZ", level: "Platinum" }, { c: "UK", level: "Gold" },
   ] },
   { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", year: 2025, certs: [
     { c: "FR", level: "Gold" },
