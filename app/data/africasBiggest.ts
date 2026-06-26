@@ -139,9 +139,10 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Seether", sub: "🇿🇦 South Africa", value: "7" },
       { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "5" },
       { name: "Hugh Masekela", sub: "🇿🇦 South Africa", value: "4" },
+      { name: "Tyla", sub: "🇿🇦 South Africa", value: "4" },
     ],
-    note: "Burna Boy has the most Billboard Hot 100 entries of any African artist in history — 9, extended by “Dai Dai” with Shakira. Hugh Masekela was the first African act to top the Hot 100 (“Grazing in the Grass,” No. 1, 1968).",
+    note: "Burna Boy has the most Billboard Hot 100 entries of any African artist in history — 9, extended by “Dai Dai” with Shakira. Tyla and Hugh Masekela are tied on 4: Tyla holds the record for the most by an African woman, and Masekela was the first African act to top the chart (“Grazing in the Grass,” No. 1, 1968).",
     source:
-      "Career Billboard Hot 100 entries by African artists. Burna Boy (9) and Tems (8) confirmed by Billboard and multiple outlets; Seether (7), Wizkid (5) and Hugh Masekela (4) from Billboard chart histories and chart-stat trackers. As of 26 June 2026.",
+      "Career Billboard Hot 100 entries by African artists, from Billboard chart histories. Burna Boy (9), Tems (8) and Tyla (4 — Water, Chanel, She Did It Again, Push 2 Start) confirmed via Billboard; Seether (7), Wizkid (5) and Hugh Masekela (4) cross-checked against Billboard and chart-stat trackers. As of 26 June 2026.",
   },
 ];
