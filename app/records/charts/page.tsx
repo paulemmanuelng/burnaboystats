@@ -62,7 +62,7 @@ export default function ChartsPage() {
           TurnTable, The Official SA Charts and Billboard Global 200, among
           others. Genre, airplay and below-the-main-chart &ldquo;bubbling&rdquo;
           listings are excluded. Figures are peak-so-far, cross-checked against
-          the chart bodies&apos; cited data as of June 2026.
+          the chart bodies&apos; cited data as of 26 June 2026.
         </p>
         <Link href="/records" className={styles.back}>← Career Records</Link>
       </div>
