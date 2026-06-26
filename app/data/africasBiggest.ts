@@ -144,4 +144,20 @@ export const statBoxes: LeaderboardBox[] = [
     source:
       "Career Billboard Hot 100 entries by African artists, from Billboard chart histories. Burna Boy (9), Tems (8) and Tyla (4) confirmed via Billboard; Seether (7), Wizkid (5) and Hugh Masekela (4) cross-checked against Billboard and chart-stat trackers. As of 26 June 2026.",
   },
+  {
+    id: "most-200m-stream-songs",
+    title: "Most songs over 200M Spotify streams",
+    meta: "African artists · all credits · Spotify",
+    layout: "list",
+    entries: [
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "14" },
+      { name: "Tems", sub: "🇳🇬 Nigeria", value: "8" },
+      { name: "Tyla", sub: "🇿🇦 South Africa", value: "6" },
+      { name: "Rema", sub: "🇳🇬 Nigeria", value: "5" },
+      { name: "Wizkid & CKay", sub: "🇳🇬 Nigeria · tied", value: "3" },
+    ],
+    note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 14, well clear of the field. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
+    source:
+      "Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals. As of 26 June 2026 — figures shift as songs cross the threshold.",
+  },
 ];
