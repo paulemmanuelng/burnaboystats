@@ -215,6 +215,9 @@ export const festivals: Festival[] = [
   { year: "2025", name: "Afro Nation", location: "Portimão, Portugal", note: "A main-stage headliner of the world's biggest Afrobeats festival (5th edition, July 2025), topping the bill alongside Davido and Mary J. Blige." },
   { year: "2026", name: "Afro Nation", location: "Portimão, Portugal", note: "Headliner of the main “Lit Stage,” topping the opening night (3 July) alongside Tyla — with Asake and Wizkid headlining the nights after." },
   { year: "2026", name: "Reggae Land", location: "Milton Keynes, UK", note: "Headlining the festival's first-ever Friday at the 65,000-capacity National Bowl, topping a bill with Masicka, Christopher Martin and Julian Marley." },
+  { year: "2025", name: "GTCO Music Concert", location: "Accra, Ghana", note: "A headline act at the free second edition (19 Dec 2025) before 30,000+ at the Accra Sports Stadium — on a stacked pan-African bill with Shatta Wale, Sarkodie, Ayra Starr, Patoranking, Fireboy DML, Joeboy, King Promise and R2Bees." },
+  { year: "2025", name: "MadfunXperience", location: "Nairobi, Kenya", note: "Headlined the Uhuru Gardens show (1 Mar 2025) with his full band, The Outsiders — joined on stage by Sauti Sol, with Bensoul, Charisma and Vigro Deep supporting." },
+  { year: "2022", name: "DStv Delicious Festival", location: "Johannesburg, South Africa", note: "Headlined the main stage at the food-and-music festival (Kyalami, Sept 2022), on a bill that also featured Babyface, Digable Planets and Stereo MCs." },
 ];
 
 // Other festivals & one-off shows he performed at (NOT as the headliner).
