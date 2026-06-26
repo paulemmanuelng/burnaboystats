@@ -138,8 +138,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "8" },
       { name: "Seether", sub: "🇿🇦 South Africa", value: "7" },
       { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "5" },
-      { name: "Hugh Masekela", sub: "🇿🇦 South Africa", value: "4" },
-      { name: "Tyla", sub: "🇿🇦 South Africa", value: "4" },
+      { name: "Tyla & Hugh Masekela", sub: "🇿🇦 South Africa · tied", value: "4" },
     ],
     note: "Burna Boy has the most Billboard Hot 100 entries of any African artist in history — 9, extended by “Dai Dai” with Shakira. Tyla and Hugh Masekela are tied on 4: Tyla holds the record for the most by an African woman, and Masekela was the first African act to top the chart (“Grazing in the Grass,” No. 1, 1968).",
     source:
