@@ -355,6 +355,12 @@ export interface Honour {
 
 export const honours: Honour[] = [
   {
+    title: "Apple Music “Up Next” Artist",
+    org: "Apple Music",
+    year: 2019,
+    note: "Spotlighted as a global breakthrough act, with a Beats 1 interview and a short documentary.",
+  },
+  {
     title: "Distinguished Service Star of Rivers State (DSSRS)",
     org: "Rivers State, Nigeria",
     year: 2021,
@@ -365,6 +371,12 @@ export const honours: Honour[] = [
     org: "Federal Republic of Nigeria",
     year: 2022,
     note: "National honour conferred at the National Honours Investiture.",
+  },
+  {
+    title: "Rolling Stone's 200 Greatest Singers of All Time (No. 197)",
+    org: "Rolling Stone",
+    year: 2023,
+    note: "One of only two Nigerians on the list, alongside Fela Kuti — named the ambassador of Afrobeats as a global movement.",
   },
   {
     title: "BRIT Billion Award",

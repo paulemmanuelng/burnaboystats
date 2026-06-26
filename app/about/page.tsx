@@ -73,6 +73,12 @@ export default function AboutPage() {
                 artist to sell out stadiums in both the UK and the US — cementing
                 his status as the self-styled “African Giant.”
               </p>
+              <p className="lead" style={{ marginTop: 16 }}>
+                He also uses his platform for social justice: in 2020 he released
+                “20 10 20,” dedicated to the victims of the Lekki shooting during
+                Nigeria’s #EndSARS protests, with proceeds going to a relief fund
+                for those affected.
+              </p>
               <p style={{ marginTop: 20 }}>
                 <a
                   className="wikiLink"

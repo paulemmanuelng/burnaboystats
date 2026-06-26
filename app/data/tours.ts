@@ -193,7 +193,9 @@ export const liveMoments: LiveMoment[] = [
   { year: "2023", title: "NBA All-Star Game halftime show", text: "Headlined an Afrobeats halftime show at the 2023 NBA All-Star Game in Salt Lake City, alongside Tems and Rema." },
   { year: "2022", title: "Madison Square Garden (sold out)", text: "First African artist to sell out the world's most famous arena." },
   { year: "2022", title: "Billboard Music Awards", text: "Performed at the 2022 Billboard Music Awards in Las Vegas." },
+  { year: "2022", title: "National Stadium, Jamaica", text: "His first concert in Jamaica — about 19,000 fans in Kingston, joined by Popcaan and Lila Iké, staking his claim in reggae's home." },
   { year: "2021", title: "Grammy Awards Premiere Ceremony", text: "Performed “Ye,” “Onyeka” and “Level Up” at the 2021 pre-telecast ceremony — the year Twice as Tall won Best Global Music Album." },
+  { year: "2020", title: "One World: Together at Home", text: "Performed “African Giant” and “Hallelujah” from Lagos on the Global Citizen/WHO Covid-19 benefit special curated by Lady Gaga, spotlighting relief efforts across Africa." },
 ];
 
 // Festivals & one-off shows (year-level; not single-venue tour dates).
