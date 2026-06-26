@@ -128,4 +128,20 @@ export const statBoxes: LeaderboardBox[] = [
     note: "Burna Boy's I Told Them… is one of the five biggest first-week debuts ever for an African album on Spotify — the record belongs to Asake's M$NEY (55.98M).",
     source: "Biggest opening-week streams for African albums on Spotify (global), sourced from streaming trackers.",
   },
+  {
+    id: "most-hot-100-entries",
+    title: "Most Billboard Hot 100 entries",
+    meta: "African artists · career · US Billboard Hot 100",
+    layout: "list",
+    entries: [
+      { name: "Burna Boy", sub: "Nigeria", value: "9" },
+      { name: "Tems", sub: "Nigeria", value: "8" },
+      { name: "Seether", sub: "South Africa", value: "7" },
+      { name: "Wizkid", sub: "Nigeria", value: "5" },
+      { name: "Hugh Masekela", sub: "South Africa", value: "4" },
+    ],
+    note: "Burna Boy has the most Billboard Hot 100 entries of any African artist in history — 9, extended by “Dai Dai” with Shakira. Hugh Masekela was the first African act to top the Hot 100 (“Grazing in the Grass,” No. 1, 1968).",
+    source:
+      "Career Billboard Hot 100 entries by African artists. Burna Boy (9) and Tems (8) confirmed by Billboard and multiple outlets; Seether (7), Wizkid (5) and Hugh Masekela (4) from Billboard chart histories and chart-stat trackers. As of 26 June 2026.",
+  },
 ];
