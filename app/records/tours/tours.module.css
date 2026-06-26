@@ -62,6 +62,22 @@
   background: var(--gold);
   color: var(--bg);
 }
+/* "Coming soon" state — same shape, muted + non-interactive. */
+.mapBtnSoon {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 15px;
+  border: 1px dashed var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: default;
+}
 
 /* Official links band (tickets + official site) */
 .officialLinks {
