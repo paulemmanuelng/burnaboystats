@@ -154,7 +154,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "8" },
       { name: "Tyla", sub: "🇿🇦 South Africa · tied", value: "6" },
       { name: "Rema", sub: "🇳🇬 Nigeria · tied", value: "6" },
-      { name: "Wizkid & CKay", sub: "🇳🇬 Nigeria · tied", value: "3" },
+      { name: "Wizkid, CKay & Omah Lay", sub: "🇳🇬 Nigeria · tied", value: "3" },
     ],
     note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 14, well clear of the field. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
     source:
