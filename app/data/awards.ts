@@ -5,9 +5,13 @@
 //  re-verified June 2026. Includes the 9th AFRIMA (2025 edition, held
 //  Jan 2026: Album of the Year for No Sign of Weakness + Best African
 //  Collaboration for Laho II won), the 2025 MTV VMAs and the Trace
-//  Awards. Each entry is a single { year, category, work?, won } — only
-//  items confirmed with a year + category are listed (win-count-only
-//  social-media lists are not added without that detail).
+//  Awards. A June 2026 reconciliation against a fan award-count list added
+//  IRAWMA (2024–25 Best African Entertainer) and the Telecel Ghana Music
+//  Awards 2025 win for Tshwala Bam, after primary-source verification. Each
+//  entry is a single { year, category, work?, won } — only items confirmed
+//  with a year + category are listed (win-count-only social-media lists are
+//  not added without that detail; bodies like a Metro FM solo win, BMI/ASCAP/
+//  SESAC and Galaxy 5× could not be tied to a year+category and were held).
 // ============================================================
 
 export interface AwardNom {
@@ -268,6 +272,14 @@ export const ceremonies: Ceremony[] = [
       { year: 2019, category: "African Artiste of the Year", won: true },
       { year: 2020, category: "African Artiste of the Year", won: true },
       { year: 2022, category: "African Artiste of the Year (UK)", won: true },
+      { year: 2025, category: "African Song of the Year", work: "Tshwala Bam (TitoM & Yuppe ft. S.N.E & Burna Boy)", won: true },
+    ],
+  },
+  {
+    name: "International Reggae & World Music Awards (IRAWMA)",
+    noms: [
+      { year: 2024, category: "Best African Entertainer", won: true },
+      { year: 2025, category: "Best African Entertainer", won: true },
     ],
   },
   {
