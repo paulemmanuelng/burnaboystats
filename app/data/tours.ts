@@ -232,6 +232,7 @@ export const otherShows: Festival[] = [
   { year: "2024", name: "Glastonbury Festival", location: "Worthy Farm, UK", note: "A primetime Pyramid Stage set, immediately before Sunday headliner SZA, on a bill topped by Dua Lipa and Coldplay." },
   { year: "2025", name: "Wireless Festival", location: "London, UK", note: "A top-billed name on the Sunday line-up at Finsbury Park, on a bill headlined by Drake — who headlined all three days." },
   { year: "2025", name: "The Town", location: "São Paulo, Brazil", note: "His first show in Brazil — a Skyline Stage set at the giant São Paulo festival (Autódromo de Interlagos, 6 Sept 2025), on a day topped by headliner Travis Scott, before a roughly 100,000-strong daily crowd." },
+  { year: "2019", name: "One Africa Music Fest", location: "Dubai, UAE", note: "A co-headline slot at the Afrobeats festival's Dubai edition (Festival Arena, 15 Nov 2019), on a bill with Wizkid, Tiwa Savage, Tekno, Teni and 2Baba, hosted by Banky W." },
 ];
 
 // Solo headline concerts — his own standalone shows (not festival slots, and not

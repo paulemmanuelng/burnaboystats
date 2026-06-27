@@ -11,6 +11,7 @@
 export type Region =
   | "Africa"
   | "Europe"
+  | "Asia"
   | "North America"
   | "South America"
   | "Caribbean"
@@ -51,7 +52,10 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Denmark", code: 208, region: "Europe", flag: "🇩🇰", events: ["Royal Arena, Copenhagen (2026)", "Roskilde Festival (2023)"] },
   { name: "Finland", code: 246, region: "Europe", flag: "🇫🇮", events: ["Flow Festival, Helsinki (2025)"] },
   { name: "Portugal", code: 620, region: "Europe", flag: "🇵🇹", events: ["Afro Nation, Portimão (2026)", "Afro Nation, Portimão (2025)"] },
-  { name: "Turkey", code: 792, region: "Europe", flag: "🇹🇷", events: ["UEFA Champions League final, Istanbul (2023)"] },
+
+  // ── Asia ──
+  { name: "Turkey", code: 792, region: "Asia", flag: "🇹🇷", events: ["UEFA Champions League final, Istanbul (2023)"] },
+  { name: "United Arab Emirates", code: 784, region: "Asia", flag: "🇦🇪", events: ["One Africa Music Festival, Dubai (2019)"] },
 
   // ── North America ──
   { name: "United States", code: 840, region: "North America", flag: "🇺🇸", events: ["Madison Square Garden, New York (2022)", "Citi Field, New York (2022)"], more: true },
@@ -74,7 +78,7 @@ export const performedCountries: PerformedCountry[] = [
 export const performedCodes = new Set(performedCountries.map((c) => c.code));
 export const countryByCode = new Map(performedCountries.map((c) => [c.code, c]));
 
-export const REGION_ORDER: Region[] = ["Africa", "Europe", "North America", "South America", "Caribbean", "Oceania"];
+export const REGION_ORDER: Region[] = ["Africa", "Europe", "Asia", "North America", "South America", "Caribbean", "Oceania"];
 
 export const countryCount = performedCountries.length;
 export const regionCount = new Set(performedCountries.map((c) => c.region)).size;
