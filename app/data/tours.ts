@@ -220,6 +220,7 @@ export const festivals: Festival[] = [
   { year: "2025", name: "MadfunXperience", location: "Nairobi, Kenya", note: "Headlined the Uhuru Gardens show (1 Mar 2025) with his full band, The Outsiders — joined on stage by Sauti Sol, with Bensoul, Charisma and Vigro Deep supporting." },
   { year: "2022", name: "DStv Delicious Festival", location: "Johannesburg, South Africa", note: "Headlined the main stage at the food-and-music festival (Kyalami, Sept 2022), on a bill that also featured Babyface, Digable Planets and Stereo MCs." },
   { year: "2016", name: "NATIVELAND Festival", location: "Muri Okunola Park, Lagos", note: "A headliner of the inaugural NATIVELAND (22 Dec 2016), The NATIVE magazine's flagship Lagos festival — on a bill with Skepta, YCEE and Maleek Berry." },
+  { year: "2025", name: "Afrosoul Festival", location: "Go Media Stadium, Auckland", note: "Headlined the inaugural Afrosoul (11 Oct 2025) — the first African artist to headline a stadium concert in New Zealand, opening his Oceania run." },
 ];
 
 // Other festivals & one-off shows he performed at (NOT as the headliner).

@@ -19,6 +19,7 @@ export const firstGroups: FirstGroup[] = [
     label: "Stadiums & arenas",
     items: [
       { year: "2025", title: "First Nigerian artist to headline Red Rocks Amphitheatre", text: "Opening the No Sign of Weakness tour at the iconic Colorado venue." },
+      { year: "2025", title: "First African artist to headline a stadium concert in New Zealand", text: "Headlining the inaugural Afrosoul Festival at Auckland's Go Media Stadium." },
       { year: "2025", title: "First African artist to sell out the Stade de France", text: "Headlining the 80,000-capacity Paris stadium (April 2025) — a $4.53M night." },
       { year: "2023", title: "First African artist to headline & sell out a UK stadium", text: "London Stadium, to around 60,000 fans, on the Love, Damini tour." },
       { year: "2023", title: "First African artist to headline & sell out a US stadium", text: "Citi Field, New York." },

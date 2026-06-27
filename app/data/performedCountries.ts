@@ -78,6 +78,7 @@ export const performedCountries: PerformedCountry[] = [
 
   // ── Oceania ──
   { name: "Australia", code: 36, region: "Oceania", flag: "🇦🇺", events: ["Qudos Bank Arena, Sydney (2025)", "Sidney Myer Music Bowl, Melbourne (2025)"], more: true },
+  { name: "New Zealand", code: 554, region: "Oceania", flag: "🇳🇿", events: ["Afrosoul Festival, Auckland (2025)"] },
 ];
 
 export const performedCodes = new Set(performedCountries.map((c) => c.code));
