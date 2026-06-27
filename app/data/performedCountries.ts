@@ -40,6 +40,15 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Zimbabwe", code: 716, region: "Africa", flag: "🇿🇼", events: ["Belgravia Sports Club, Harare (2022)"] },
   { name: "Morocco", code: 504, region: "Africa", flag: "🇲🇦", events: ["Mawazine Festival, Rabat (2024)", "AFCON 2025 Fan Zone finale, Rabat (2026)"] },
   { name: "Egypt", code: 818, region: "Africa", flag: "🇪🇬", events: ["El Gouna Conference & Cultural Center (2026)"] },
+  { name: "Rwanda", code: 646, region: "Africa", flag: "🇷🇼", events: ["Burna Boy Experience, Kigali (2019)"] },
+  { name: "Senegal", code: 686, region: "Africa", flag: "🇸🇳", events: ["Festi Dakar, Grand Théâtre, Dakar (2022)"] },
+  { name: "Côte d'Ivoire", code: 384, region: "Africa", flag: "🇨🇮", events: ["Stell'Air Festival, Abidjan (2024)"] },
+  { name: "Benin", code: 204, region: "Africa", flag: "🇧🇯", events: ["WeLoveYa Festival, Cotonou"] },
+  { name: "Cameroon", code: 120, region: "Africa", flag: "🇨🇲", events: ["SBO Show, Douala (2019)"] },
+  { name: "Tanzania", code: 834, region: "Africa", flag: "🇹🇿", events: ["Next Door, Dar es Salaam (2019)"] },
+  { name: "Zambia", code: 894, region: "Africa", flag: "🇿🇲", events: ["Lusaka Showgrounds (2019)"] },
+  { name: "Botswana", code: 72, region: "Africa", flag: "🇧🇼", events: ["National Stadium, Gaborone"] },
+  { name: "Mauritius", code: 480, region: "Africa", flag: "🇲🇺", events: ["Tribeca Mall, Coca-Cola Food Fest (2025)"], marker: { x: 589.6, y: 302.6 } },
 
   // ── Europe ──
   { name: "United Kingdom", code: 826, region: "Europe", flag: "🇬🇧", events: ["London Stadium (2023 & 2024)", "The O2 Arena, London (2021)"], more: true },
@@ -58,6 +67,9 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Portugal", code: 620, region: "Europe", flag: "🇵🇹", events: ["Afro Nation, Portimão (2025 & 2026)", "MEO Kalorama, Lisbon (2024)"], more: true },
   { name: "Romania", code: 642, region: "Europe", flag: "🇷🇴", events: ["Untold Festival, Cluj-Napoca (2024)"] },
   { name: "Turkey", code: 792, region: "Europe", flag: "🇹🇷", events: ["UEFA Champions League final, Istanbul (2023)"] },
+  { name: "Greece", code: 300, region: "Europe", flag: "🇬🇷", events: ["SNF Nostos Festival, Athens (2021)"] },
+  { name: "Austria", code: 40, region: "Europe", flag: "🇦🇹", events: ["Gasometer, Vienna (2020)"] },
+  { name: "Kosovo", code: 383, region: "Europe", flag: "🇽🇰", events: ["Sunny Hill Festival, Pristina (2024)"], marker: { x: 495.5, y: 98.7 } },
 
   // ── Asia / Middle East ──
   { name: "United Arab Emirates", code: 784, region: "Asia", flag: "🇦🇪", events: ["One Africa Music Festival, Dubai (2019)"] },
@@ -70,6 +82,7 @@ export const performedCountries: PerformedCountry[] = [
   // ── South America ──
   { name: "Brazil", code: 76, region: "South America", flag: "🇧🇷", events: ["The Town festival, São Paulo (2025)"] },
   { name: "Guyana", code: 328, region: "South America", flag: "🇬🇾", events: ["Unforgettable Concert, National Stadium (2024)"] },
+  { name: "Suriname", code: 740, region: "South America", flag: "🇸🇷", events: ["Live in Paramaribo (2022)"] },
 
   // ── Caribbean ──
   { name: "Jamaica", code: 388, region: "Caribbean", flag: "🇯🇲", events: ["National Stadium, Kingston (2022)"] },
@@ -77,6 +90,10 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Bahamas", code: 44, region: "Caribbean", flag: "🇧🇸", events: ["Nassau (2023)"] },
   { name: "St Kitts & Nevis", code: 659, region: "Caribbean", flag: "🇰🇳", events: ["St Kitts Music Festival (2023)"], marker: { x: 296.5, y: 177.1 } },
   { name: "Dominica", code: 212, region: "Caribbean", flag: "🇩🇲", events: ["World Creole Music Festival, Roseau (2022)"], marker: { x: 299.2, y: 183.4 } },
+  { name: "Trinidad & Tobago", code: 780, region: "Caribbean", flag: "🇹🇹", events: ["O2 Park, Trinidad (2022)", "TOMAC Festival, Tobago"] },
+  { name: "Haiti", code: 332, region: "Caribbean", flag: "🇭🇹", events: ["Live in Haiti (2020)"] },
+  { name: "Saint Lucia", code: 662, region: "Caribbean", flag: "🇱🇨", events: ["Saint Lucia Jazz Festival, Castries (2024)"], marker: { x: 299.7, y: 188.4 } },
+  { name: "Antigua & Barbuda", code: 28, region: "Caribbean", flag: "🇦🇬", events: ["Sir Vivian Richards Stadium (2022)"], marker: { x: 298.8, y: 177.8 } },
 
   // ── Oceania ──
   { name: "Australia", code: 36, region: "Oceania", flag: "🇦🇺", events: ["Qudos Bank Arena, Sydney (2025)", "Sidney Myer Music Bowl, Melbourne (2025)"], more: true },

@@ -222,6 +222,13 @@ export const festivals: Festival[] = [
   { year: "2016", name: "NATIVELAND Festival", location: "Muri Okunola Park, Lagos", note: "A headliner of the inaugural NATIVELAND (22 Dec 2016), The NATIVE magazine's flagship Lagos festival — on a bill with Skepta, YCEE and Maleek Berry." },
   { year: "2025", name: "Afrosoul Festival", location: "Go Media Stadium, Auckland", note: "Headlined the inaugural Afrosoul (11 Oct 2025) — the first African artist to headline a stadium concert in New Zealand, opening his Oceania run." },
   { year: "2022", name: "World Creole Music Festival", location: "Windsor Park Stadium, Roseau, Dominica", note: "Headlined night two of Dominica's flagship festival (Oct 2022)." },
+  { year: "2024", name: "Sunny Hill Festival", location: "Pristina, Kosovo", note: "Headlined Kosovo's biggest festival (2024) before ~15,000 — wrapped in the Kosovo flag." },
+  { year: "2024", name: "Stell'Air Festival", location: "Abidjan, Côte d'Ivoire", note: "Drew about 20,000 during AFCON 2024 (Jan 2024)." },
+  { year: "2024", name: "Saint Lucia Jazz Festival", location: "Castries, Saint Lucia", note: "A full-band headline set at the island's flagship festival (May 2024)." },
+  { year: "2022", name: "Festi Dakar", location: "Grand Théâtre, Dakar, Senegal", note: "Closed the festival's third edition (Feb 2022) — his first Dakar concert." },
+  { year: "2022", name: "TOMAC Festival", location: "Plymouth Recreation Ground, Tobago", note: "Headlined Tobago's Music, Arts & Culture festival through torrential rain (Oct 2022)." },
+  { year: "2021", name: "SNF Nostos Festival", location: "Athens, Greece", note: "His Greece debut (Aug 2021)." },
+  { year: "2025", name: "Coca-Cola Food Fest", location: "Tribeca Mall, Mauritius", note: "Billed as the biggest live show Mauritius had ever seen (2 Aug 2025)." },
 ];
 
 // Other festivals & one-off shows he performed at (NOT as the headliner).
@@ -252,4 +259,6 @@ export const concerts: Festival[] = [
   { year: "2025", name: "Burna Boy Live in Madrid", location: "FITZ, Madrid", note: "Two nights in the Spanish capital (5–6 Nov 2025)." },
   { year: "2020", name: "Burna Boy Live in Rome", location: "Atlantico, Rome", note: "His first-ever performance in Italy (7 Feb 2020)." },
   { year: "2024", name: "Unforgettable Concert", location: "Guyana National Stadium, Providence", note: "Headlined the biggest concert in Guyana's history (1 May 2024) — about 20,000 fans, the country's most expensive show ever staged." },
+  { year: "2019", name: "Burna Boy Experience", location: "Intare Conference Arena, Kigali", note: "A sold-out Kigali headline concert (23 March 2019)." },
+  { year: "2022", name: "Burna Boy Live in Suriname", location: "Paramaribo", note: "His first concert in Suriname (Dec 2022)." },
 ];
