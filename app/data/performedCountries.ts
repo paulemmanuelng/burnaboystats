@@ -57,9 +57,9 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Finland", code: 246, region: "Europe", flag: "🇫🇮", events: ["Flow Festival, Helsinki (2025)"] },
   { name: "Portugal", code: 620, region: "Europe", flag: "🇵🇹", events: ["Afro Nation, Portimão (2025 & 2026)", "MEO Kalorama, Lisbon (2024)"], more: true },
   { name: "Romania", code: 642, region: "Europe", flag: "🇷🇴", events: ["Untold Festival, Cluj-Napoca (2024)"] },
+  { name: "Turkey", code: 792, region: "Europe", flag: "🇹🇷", events: ["UEFA Champions League final, Istanbul (2023)"] },
 
-  // ── Asia ──
-  { name: "Turkey", code: 792, region: "Asia", flag: "🇹🇷", events: ["UEFA Champions League final, Istanbul (2023)"] },
+  // ── Asia / Middle East ──
   { name: "United Arab Emirates", code: 784, region: "Asia", flag: "🇦🇪", events: ["One Africa Music Festival, Dubai (2019)"] },
 
   // ── North America ──
