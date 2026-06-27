@@ -1,12 +1,12 @@
 import Link from "next/link";
 import styles from "../tours.module.css";
-import { festivals, otherShows } from "../../../data/tours";
+import { festivals, otherShows, concerts } from "../../../data/tours";
 import { pageMetadata } from "../../../lib/seo";
 
 export const metadata = pageMetadata({
   title: "Burna Boy — Festivals & Shows",
   description:
-    "Every major festival and one-off show Burna Boy has performed — the festivals he's headlined (Afro Nation, Flow, Mawazine, St Kitts, Reggae Land) plus other big-stage appearances (Glastonbury, Wireless, Coachella, Roskilde and more).",
+    "Every major festival and one-off show Burna Boy has performed — the festivals he's headlined (Afro Nation, Flow, Mawazine, St Kitts, Reggae Land), his own solo concerts, plus other big-stage appearances (Glastonbury, Wireless, Coachella, Roskilde, The Town and more).",
   path: "/records/tours/festivals",
   shareTitle: "Burna Boy — Festivals & Shows",
   shareDescription: "Every festival he's headlined, plus other big-stage appearances.",
@@ -15,6 +15,7 @@ export const metadata = pageMetadata({
 export default function FestivalsPage() {
   const headlined = [...festivals].sort((a, b) => Number(b.year) - Number(a.year));
   const others = [...otherShows].sort((a, b) => Number(b.year) - Number(a.year));
+  const soloConcerts = [...concerts].sort((a, b) => Number(b.year) - Number(a.year));
 
   return (
     <main id="content">
@@ -36,6 +37,22 @@ export default function FestivalsPage() {
               <div>
                 <h3 className={styles.mTitle}>{f.name} · {f.location}</h3>
                 <p className={styles.mText}>{f.note}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <h2 className={`secTitle ${styles.group}`}>
+          Solo <span className="goldText">concerts</span>
+        </h2>
+        <p className={styles.tourHint}>His own standalone headline concerts — separate from the routed tours and festival sets.</p>
+        <div className={styles.milestones}>
+          {soloConcerts.map((c) => (
+            <div key={`${c.name}-${c.year}`} className={styles.mRow}>
+              <span className={styles.mYear}>{c.year}</span>
+              <div>
+                <h3 className={styles.mTitle}>{c.name} · {c.location}</h3>
+                <p className={styles.mText}>{c.note}</p>
               </div>
             </div>
           ))}

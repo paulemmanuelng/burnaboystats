@@ -12,6 +12,7 @@ export type Region =
   | "Africa"
   | "Europe"
   | "North America"
+  | "South America"
   | "Caribbean"
   | "Oceania";
 
@@ -54,6 +55,9 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Canada", code: 124, region: "North America", flag: "🇨🇦", events: ["Scotiabank Arena, Toronto (2024 & 2025)", "Bell Centre, Montréal (2024)"], more: true },
   { name: "Mexico", code: 484, region: "North America", flag: "🇲🇽", events: ["FIFA World Cup Opening Ceremony, Mexico City (2026)"] },
 
+  // ── South America ──
+  { name: "Brazil", code: 76, region: "South America", flag: "🇧🇷", events: ["The Town festival, São Paulo (2025)"] },
+
   // ── Caribbean ──
   { name: "Jamaica", code: 388, region: "Caribbean", flag: "🇯🇲", events: ["National Stadium, Kingston (2022)"] },
   { name: "Barbados", code: 52, region: "Caribbean", flag: "🇧🇧", events: ["Tipsy Beach Party, Bridgetown (2022)"], marker: { x: 303, y: 190.8 } },
@@ -67,7 +71,7 @@ export const performedCountries: PerformedCountry[] = [
 export const performedCodes = new Set(performedCountries.map((c) => c.code));
 export const countryByCode = new Map(performedCountries.map((c) => [c.code, c]));
 
-export const REGION_ORDER: Region[] = ["Africa", "Europe", "North America", "Caribbean", "Oceania"];
+export const REGION_ORDER: Region[] = ["Africa", "Europe", "North America", "South America", "Caribbean", "Oceania"];
 
 export const countryCount = performedCountries.length;
 export const regionCount = new Set(performedCountries.map((c) => c.region)).size;

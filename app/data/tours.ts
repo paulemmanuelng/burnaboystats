@@ -229,4 +229,12 @@ export const otherShows: Festival[] = [
   { year: "2023", name: "Roskilde Festival", location: "Roskilde, Denmark", note: "Played one of Europe's largest festivals to a huge crowd." },
   { year: "2024", name: "Glastonbury Festival", location: "Worthy Farm, UK", note: "A primetime Pyramid Stage set, immediately before Sunday headliner SZA, on a bill topped by Dua Lipa and Coldplay." },
   { year: "2025", name: "Wireless Festival", location: "London, UK", note: "A top-billed name on the Sunday line-up at Finsbury Park, on a bill headlined by Drake — who headlined all three days." },
+  { year: "2025", name: "The Town", location: "São Paulo, Brazil", note: "His first show in Brazil — a Skyline Stage set at the giant São Paulo festival (Autódromo de Interlagos, 6 Sept 2025), on a day topped by headliner Travis Scott, before a roughly 100,000-strong daily crowd." },
+];
+
+// Solo headline concerts — his own standalone shows (not festival slots, and not
+// dates within a routed multi-city tour, which live in `tours` above).
+export const concerts: Festival[] = [
+  { year: "2021", name: "Burna Boy: The Live Experience", location: "Eko Convention Centre, Lagos", note: "His sold-out Lagos homecoming concert — a hometown spectacle staged as a newly-crowned Grammy winner." },
+  { year: "2022", name: "National Stadium, Kingston", location: "Jamaica", note: "His first-ever headline concert in Jamaica — about 19,000 fans, joined on stage by Popcaan and Lila Iké, planting his flag in the home of reggae and dancehall." },
 ];
