@@ -1,8 +1,12 @@
 // Countries where Burna Boy has performed live — compiled from his personal
 // tours, festivals and one-off shows (see data/tours.ts) and cross-checked
-// against press/setlist records, as of 26 June 2026. `code` is the numeric
-// ISO 3166-1 id used by the world-atlas TopoJSON, so the map can match shapes.
-// Only verified live performances are listed; it grows as more are confirmed.
+// against press/setlist records, as of 27 June 2026. `code` is the numeric
+// ISO 3166-1 id used by the generated map shapes (data/worldShapes.ts), so the
+// map can match a country to its events. Only verified shows are listed.
+//
+// `events` are the notable appearances surfaced on hover (the map shows up to
+// two). `more: true` means the country has further appearances beyond those —
+// it drives the "…and more" hint. Countries with only one or two shows omit it.
 
 export type Region =
   | "Africa"
@@ -13,46 +17,51 @@ export type Region =
 
 export interface PerformedCountry {
   name: string;
-  code: number; // numeric ISO 3166-1 (matches world-atlas topojson feature id)
+  code: number; // numeric ISO 3166-1 (matches worldShapes feature id)
   region: Region;
   flag: string;
-  highlight: string; // a notable show or venue there
+  events: string[]; // notable shows/venues there (up to 2 shown on hover)
+  more?: boolean; // true when there are further appearances beyond those listed
+  // For tiny island nations too small to have a shape in the 110m base map, a
+  // pre-projected dot position (same projection as worldShapes) so they still
+  // appear and are hoverable.
+  marker?: { x: number; y: number };
 }
 
 export const performedCountries: PerformedCountry[] = [
   // ── Africa ──
-  { name: "Nigeria", code: 566, region: "Africa", flag: "🇳🇬", highlight: "Lagos homecoming shows (The Live Experience)" },
-  { name: "South Africa", code: 710, region: "Africa", flag: "🇿🇦", highlight: "DStv Delicious Festival" },
-  { name: "Ghana", code: 288, region: "Africa", flag: "🇬🇭", highlight: "Accra Sports Stadium (2024)" },
-  { name: "Kenya", code: 404, region: "Africa", flag: "🇰🇪", highlight: "Uhuru Gardens, Nairobi (2025)" },
-  { name: "Morocco", code: 504, region: "Africa", flag: "🇲🇦", highlight: "Mawazine Festival, Rabat (2024)" },
+  { name: "Nigeria", code: 566, region: "Africa", flag: "🇳🇬", events: ["The Live Experience, Lagos (2021)"] },
+  { name: "South Africa", code: 710, region: "Africa", flag: "🇿🇦", events: ["DStv Delicious Festival, Johannesburg (2022)"] },
+  { name: "Ghana", code: 288, region: "Africa", flag: "🇬🇭", events: ["GTCO Music Concert, Accra (2025)"] },
+  { name: "Kenya", code: 404, region: "Africa", flag: "🇰🇪", events: ["MadfunXperience, Nairobi (2025)"] },
+  { name: "Morocco", code: 504, region: "Africa", flag: "🇲🇦", events: ["Mawazine Festival, Rabat (2024)"] },
 
   // ── Europe ──
-  { name: "United Kingdom", code: 826, region: "Europe", flag: "🇬🇧", highlight: "London Stadium (2023 & 2024)" },
-  { name: "France", code: 250, region: "Europe", flag: "🇫🇷", highlight: "Stade de France, Paris (2025)" },
-  { name: "Netherlands", code: 528, region: "Europe", flag: "🇳🇱", highlight: "Ziggo Dome, Amsterdam" },
-  { name: "Belgium", code: 56, region: "Europe", flag: "🇧🇪", highlight: "ING Arena, Brussels (2026)" },
-  { name: "Germany", code: 276, region: "Europe", flag: "🇩🇪", highlight: "Waldbühne, Berlin (2025)" },
-  { name: "Switzerland", code: 756, region: "Europe", flag: "🇨🇭", highlight: "Hallenstadion, Zurich" },
-  { name: "Sweden", code: 752, region: "Europe", flag: "🇸🇪", highlight: "Avicii Arena, Stockholm (2026)" },
-  { name: "Denmark", code: 208, region: "Europe", flag: "🇩🇰", highlight: "Royal Arena, Copenhagen · Roskilde Festival" },
-  { name: "Finland", code: 246, region: "Europe", flag: "🇫🇮", highlight: "Flow Festival, Helsinki (2025)" },
-  { name: "Portugal", code: 620, region: "Europe", flag: "🇵🇹", highlight: "Afro Nation, Portimão" },
-  { name: "Turkey", code: 792, region: "Europe", flag: "🇹🇷", highlight: "UEFA Champions League final, Istanbul (2023)" },
+  { name: "United Kingdom", code: 826, region: "Europe", flag: "🇬🇧", events: ["London Stadium (2023 & 2024)", "The O2 Arena, London (2021)"], more: true },
+  { name: "France", code: 250, region: "Europe", flag: "🇫🇷", events: ["Stade de France, Paris (2025)", "Accor Arena, Paris (2021)"] },
+  { name: "Netherlands", code: 528, region: "Europe", flag: "🇳🇱", events: ["Ziggo Dome, Amsterdam (2021)", "Rotterdam Ahoy (2021)"], more: true },
+  { name: "Belgium", code: 56, region: "Europe", flag: "🇧🇪", events: ["ING Arena, Brussels (2026)", "Palais 12, Brussels (2019)"] },
+  { name: "Germany", code: 276, region: "Europe", flag: "🇩🇪", events: ["Waldbühne, Berlin (2025)", "SparkassenPark, Mönchengladbach (2025)"] },
+  { name: "Switzerland", code: 756, region: "Europe", flag: "🇨🇭", events: ["Hallenstadion, Zürich (2026)", "Geneva Arena (2022)"] },
+  { name: "Sweden", code: 752, region: "Europe", flag: "🇸🇪", events: ["Avicii Arena, Stockholm (2026)"] },
+  { name: "Denmark", code: 208, region: "Europe", flag: "🇩🇰", events: ["Royal Arena, Copenhagen (2026)", "Roskilde Festival (2023)"] },
+  { name: "Finland", code: 246, region: "Europe", flag: "🇫🇮", events: ["Flow Festival, Helsinki (2025)"] },
+  { name: "Portugal", code: 620, region: "Europe", flag: "🇵🇹", events: ["Afro Nation, Portimão (2026)", "Afro Nation, Portimão (2025)"] },
+  { name: "Turkey", code: 792, region: "Europe", flag: "🇹🇷", events: ["UEFA Champions League final, Istanbul (2023)"] },
 
   // ── North America ──
-  { name: "United States", code: 840, region: "North America", flag: "🇺🇸", highlight: "Citi Field & Madison Square Garden, New York" },
-  { name: "Canada", code: 124, region: "North America", flag: "🇨🇦", highlight: "Scotiabank Arena, Toronto" },
-  { name: "Mexico", code: 484, region: "North America", flag: "🇲🇽", highlight: "FIFA World Cup opening, Mexico City (2026)" },
+  { name: "United States", code: 840, region: "North America", flag: "🇺🇸", events: ["Madison Square Garden, New York (2022)", "Citi Field, New York (2022)"], more: true },
+  { name: "Canada", code: 124, region: "North America", flag: "🇨🇦", events: ["Scotiabank Arena, Toronto (2024 & 2025)", "Bell Centre, Montréal (2024)"], more: true },
+  { name: "Mexico", code: 484, region: "North America", flag: "🇲🇽", events: ["FIFA World Cup Opening Ceremony, Mexico City (2026)"] },
 
   // ── Caribbean ──
-  { name: "Jamaica", code: 388, region: "Caribbean", flag: "🇯🇲", highlight: "National Stadium, Kingston (2022)" },
-  { name: "Barbados", code: 52, region: "Caribbean", flag: "🇧🇧", highlight: "Bridgetown (2022)" },
-  { name: "Bahamas", code: 44, region: "Caribbean", flag: "🇧🇸", highlight: "Nassau (2023)" },
-  { name: "St Kitts & Nevis", code: 659, region: "Caribbean", flag: "🇰🇳", highlight: "St Kitts Music Festival (2023)" },
+  { name: "Jamaica", code: 388, region: "Caribbean", flag: "🇯🇲", events: ["National Stadium, Kingston (2022)"] },
+  { name: "Barbados", code: 52, region: "Caribbean", flag: "🇧🇧", events: ["Tipsy Beach Party, Bridgetown (2022)"], marker: { x: 303, y: 190.8 } },
+  { name: "Bahamas", code: 44, region: "Caribbean", flag: "🇧🇸", events: ["Nassau (2023)"] },
+  { name: "St Kitts & Nevis", code: 659, region: "Caribbean", flag: "🇰🇳", events: ["St Kitts Music Festival (2023)"], marker: { x: 296.5, y: 177.1 } },
 
   // ── Oceania ──
-  { name: "Australia", code: 36, region: "Oceania", flag: "🇦🇺", highlight: "Qudos Bank Arena, Sydney (2025)" },
+  { name: "Australia", code: 36, region: "Oceania", flag: "🇦🇺", events: ["Qudos Bank Arena, Sydney (2025)", "Sidney Myer Music Bowl, Melbourne (2025)"], more: true },
 ];
 
 export const performedCodes = new Set(performedCountries.map((c) => c.code));

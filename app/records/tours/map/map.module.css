@@ -1,0 +1,180 @@
+/* "Where he's performed" — custom world map (no mapping library; shapes are the
+   pre-generated static paths in data/worldShapes.ts). */
+
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem) 4rem;
+}
+
+.head {
+  text-align: center;
+  margin-bottom: clamp(1.25rem, 4vw, 2rem);
+}
+.kicker {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: var(--gold);
+  margin: 0 0 0.5rem;
+}
+.title {
+  font-family: var(--font-anton);
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+.lede {
+  max-width: 58ch;
+  margin: 0.75rem auto 0;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+.stats {
+  margin: 1rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.stats strong {
+  color: var(--gold-bright);
+  font-size: 1.05rem;
+}
+
+/* ── Map ── */
+.figure {
+  margin: 0;
+}
+.mapWrap {
+  position: relative;
+  width: 100%;
+}
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* countries with no documented show — the muted base map */
+.off {
+  fill: var(--bg-soft-2);
+  stroke: var(--bg);
+  stroke-width: 0.5;
+}
+
+/* countries he has performed in */
+.on {
+  fill: var(--gold-dim);
+  stroke: var(--bg);
+  stroke-width: 0.5;
+  cursor: pointer;
+  transition: fill 0.15s ease;
+  outline: none;
+}
+.on:hover,
+.on:focus-visible {
+  fill: var(--gold);
+}
+.activePath {
+  fill: var(--gold-bright);
+}
+
+/* dot markers for tiny island nations (no shape at this map resolution) */
+.dot {
+  fill: var(--gold);
+  stroke: var(--bg);
+  stroke-width: 0.6;
+  cursor: pointer;
+  transition: fill 0.15s ease;
+  outline: none;
+}
+.dot:hover,
+.dot:focus-visible {
+  fill: var(--gold-bright);
+}
+
+/* floating detail card (follows the cursor / tap) */
+.card {
+  position: fixed;
+  z-index: 50;
+  pointer-events: none;
+  background: var(--bg-soft);
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.55);
+  padding: 10px 12px;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+.cardName {
+  display: block;
+  font-weight: 600;
+  color: var(--gold-bright);
+  margin-bottom: 5px;
+}
+.cardEvents {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: var(--text);
+}
+.cardEvents li {
+  position: relative;
+  padding-left: 12px;
+}
+.cardEvents li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+.cardMore {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ── Legend + footer ── */
+.legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+.swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--gold);
+  flex: 0 0 auto;
+}
+.note {
+  max-width: 60ch;
+  margin: 1.75rem auto 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+.note a {
+  color: var(--gold);
+}
+.back {
+  display: inline-block;
+  margin-top: 2rem;
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
