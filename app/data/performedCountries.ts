@@ -69,12 +69,14 @@ export const performedCountries: PerformedCountry[] = [
 
   // ── South America ──
   { name: "Brazil", code: 76, region: "South America", flag: "🇧🇷", events: ["The Town festival, São Paulo (2025)"] },
+  { name: "Guyana", code: 328, region: "South America", flag: "🇬🇾", events: ["Unforgettable Concert, National Stadium (2024)"] },
 
   // ── Caribbean ──
   { name: "Jamaica", code: 388, region: "Caribbean", flag: "🇯🇲", events: ["National Stadium, Kingston (2022)"] },
   { name: "Barbados", code: 52, region: "Caribbean", flag: "🇧🇧", events: ["Tipsy Beach Party, Bridgetown (2022)"], marker: { x: 303, y: 190.8 } },
   { name: "Bahamas", code: 44, region: "Caribbean", flag: "🇧🇸", events: ["Nassau (2023)"] },
   { name: "St Kitts & Nevis", code: 659, region: "Caribbean", flag: "🇰🇳", events: ["St Kitts Music Festival (2023)"], marker: { x: 296.5, y: 177.1 } },
+  { name: "Dominica", code: 212, region: "Caribbean", flag: "🇩🇲", events: ["World Creole Music Festival, Roseau (2022)"], marker: { x: 299.2, y: 183.4 } },
 
   // ── Oceania ──
   { name: "Australia", code: 36, region: "Oceania", flag: "🇦🇺", events: ["Qudos Bank Arena, Sydney (2025)", "Sidney Myer Music Bowl, Melbourne (2025)"], more: true },
