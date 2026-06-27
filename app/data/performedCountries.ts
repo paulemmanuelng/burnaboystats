@@ -43,15 +43,20 @@ export const performedCountries: PerformedCountry[] = [
 
   // ── Europe ──
   { name: "United Kingdom", code: 826, region: "Europe", flag: "🇬🇧", events: ["London Stadium (2023 & 2024)", "The O2 Arena, London (2021)"], more: true },
-  { name: "France", code: 250, region: "Europe", flag: "🇫🇷", events: ["Stade de France, Paris (2025)", "Accor Arena, Paris (2021)"] },
+  { name: "France", code: 250, region: "Europe", flag: "🇫🇷", events: ["Stade de France, Paris (2025)", "Accor Arena, Paris (2021)"], more: true },
   { name: "Netherlands", code: 528, region: "Europe", flag: "🇳🇱", events: ["Ziggo Dome, Amsterdam (2021)", "Rotterdam Ahoy (2021)"], more: true },
   { name: "Belgium", code: 56, region: "Europe", flag: "🇧🇪", events: ["ING Arena, Brussels (2026)", "Palais 12, Brussels (2019)"] },
-  { name: "Germany", code: 276, region: "Europe", flag: "🇩🇪", events: ["Waldbühne, Berlin (2025)", "SparkassenPark, Mönchengladbach (2025)"] },
+  { name: "Ireland", code: 372, region: "Europe", flag: "🇮🇪", events: ["3Arena, Dublin (Mar & Dec 2022)"] },
+  { name: "Spain", code: 724, region: "Europe", flag: "🇪🇸", events: ["FITZ, Madrid (2025)", "NAO Pool Club, Málaga (2025)"] },
+  { name: "Italy", code: 380, region: "Europe", flag: "🇮🇹", events: ["Atlantico, Rome (2020)"] },
+  { name: "Germany", code: 276, region: "Europe", flag: "🇩🇪", events: ["Waldbühne, Berlin (2025)", "Superbloom Festival, Munich (2024)"], more: true },
   { name: "Switzerland", code: 756, region: "Europe", flag: "🇨🇭", events: ["Hallenstadion, Zürich (2026)", "Geneva Arena (2022)"] },
   { name: "Sweden", code: 752, region: "Europe", flag: "🇸🇪", events: ["Avicii Arena, Stockholm (2026)"] },
+  { name: "Norway", code: 578, region: "Europe", flag: "🇳🇴", events: ["Stavern Festival (2024)"] },
   { name: "Denmark", code: 208, region: "Europe", flag: "🇩🇰", events: ["Royal Arena, Copenhagen (2026)", "Roskilde Festival (2023)"] },
   { name: "Finland", code: 246, region: "Europe", flag: "🇫🇮", events: ["Flow Festival, Helsinki (2025)"] },
-  { name: "Portugal", code: 620, region: "Europe", flag: "🇵🇹", events: ["Afro Nation, Portimão (2026)", "Afro Nation, Portimão (2025)"] },
+  { name: "Portugal", code: 620, region: "Europe", flag: "🇵🇹", events: ["Afro Nation, Portimão (2025 & 2026)", "MEO Kalorama, Lisbon (2024)"], more: true },
+  { name: "Romania", code: 642, region: "Europe", flag: "🇷🇴", events: ["Untold Festival, Cluj-Napoca (2024)"] },
 
   // ── Asia ──
   { name: "Turkey", code: 792, region: "Asia", flag: "🇹🇷", events: ["UEFA Champions League final, Istanbul (2023)"] },

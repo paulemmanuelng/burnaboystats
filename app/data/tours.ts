@@ -233,6 +233,10 @@ export const otherShows: Festival[] = [
   { year: "2025", name: "Wireless Festival", location: "London, UK", note: "A top-billed name on the Sunday line-up at Finsbury Park, on a bill headlined by Drake — who headlined all three days." },
   { year: "2025", name: "The Town", location: "São Paulo, Brazil", note: "His first show in Brazil — a Skyline Stage set at the giant São Paulo festival (Autódromo de Interlagos, 6 Sept 2025), on a day topped by headliner Travis Scott, before a roughly 100,000-strong daily crowd." },
   { year: "2019", name: "One Africa Music Fest", location: "Dubai, UAE", note: "A co-headline slot at the Afrobeats festival's Dubai edition (Festival Arena, 15 Nov 2019), on a bill with Wizkid, Tiwa Savage, Tekno, Teni and 2Baba, hosted by Banky W." },
+  { year: "2024", name: "Untold Festival", location: "Cluj-Napoca, Romania", note: "Performed at one of Europe's biggest festivals (Aug 2024) — his Romania debut." },
+  { year: "2024", name: "Superbloom Festival", location: "Munich, Germany", note: "A set at the Munich festival in the Olympiapark (8 Sept 2024)." },
+  { year: "2024", name: "MEO Kalorama", location: "Lisbon, Portugal", note: "A set at the Lisbon festival in Parque da Bela Vista (Aug 2024)." },
+  { year: "2024", name: "Stavern Festival", location: "Stavern, Norway", note: "His Norway debut — a festival set in summer 2024." },
 ];
 
 // Solo headline concerts — his own standalone shows (not festival slots, and not
@@ -243,4 +247,6 @@ export const concerts: Festival[] = [
   { year: "2021", name: "Burna Boy: The Live Experience", location: "Eko Convention Centre, Lagos", note: "His sold-out Lagos homecoming concert — a hometown spectacle staged as a newly-crowned Grammy winner." },
   { year: "2022", name: "National Stadium, Kingston", location: "Jamaica", note: "His first-ever headline concert in Jamaica — about 19,000 fans, joined on stage by Popcaan and Lila Iké, planting his flag in the home of reggae and dancehall." },
   { year: "2019", name: "Burna Boy Xperience", location: "Sheraton Gardens, Kampala", note: "A packed Kampala headline concert (22 March 2019) — his return to Uganda after debuting at Namboole Stadium's Club MegaFest in 2014." },
+  { year: "2025", name: "Burna Boy Live in Madrid", location: "FITZ, Madrid", note: "Two nights in the Spanish capital (5–6 Nov 2025)." },
+  { year: "2020", name: "Burna Boy Live in Rome", location: "Atlantico, Rome", note: "His first-ever performance in Italy (7 Feb 2020)." },
 ];
