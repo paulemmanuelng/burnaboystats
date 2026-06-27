@@ -251,9 +251,8 @@ export const features: Release[] = [
     { c: "DE", level: "Gold" }, { c: "NG", level: "Gold" },
   ] },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", year: 2024, certs: [
-    { c: "FR", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "UK", level: "Gold" },
-    { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "AT", level: "Gold" },
-    { c: "PL", level: "Gold" }, { c: "PT", level: "Gold" },
+    { c: "FR", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "UK", level: "Gold" },
+    { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "PT", level: "Gold" },
   ] },
   { title: "Be Honest", credit: "Jorja Smith ft. Burna Boy", year: 2019, certs: [
     { c: "FR", level: "Diamond" }, { c: "AU", level: "Platinum" }, { c: "UK", level: "Platinum" },
