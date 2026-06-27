@@ -196,3 +196,77 @@
   font-family: var(--font-mono);
   font-size: 0.85rem;
 }
+
+/* ── By-region breakdown table ── */
+.breakdown {
+  max-width: 940px;
+  margin: 2.75rem auto 0;
+}
+.breakdownTitle {
+  font-family: var(--font-anton);
+  font-size: clamp(1.15rem, 3vw, 1.6rem);
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin: 0 0 0.9rem;
+}
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.table thead th {
+  text-align: left;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  color: var(--gold);
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+.table tbody th,
+.table tbody td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  text-align: left;
+  font-weight: 400;
+}
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+.regionCell {
+  color: var(--gold-bright);
+  font-weight: 600 !important;
+  white-space: nowrap;
+}
+.numCol {
+  text-align: center;
+  font-family: var(--font-mono);
+  width: 1%;
+  white-space: nowrap;
+}
+.namesCell {
+  color: var(--text-muted);
+  line-height: 1.55;
+  min-width: 16rem;
+}
+.table tfoot th,
+.table tfoot td {
+  padding: 11px 14px;
+  border-top: 2px solid var(--border);
+  font-family: var(--font-mono);
+  color: var(--gold-bright);
+  background: var(--bg-soft);
+  text-align: left;
+}
+.table tfoot .numCol {
+  text-align: center;
+}

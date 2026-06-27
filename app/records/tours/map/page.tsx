@@ -1,7 +1,12 @@
 import Link from "next/link";
 import PerformanceMap from "../../../components/PerformanceMap";
 import { pageMetadata } from "../../../lib/seo";
-import { countryCount, regionCount } from "../../../data/performedCountries";
+import {
+  countryCount,
+  regionCount,
+  performedCountries,
+  REGION_ORDER,
+} from "../../../data/performedCountries";
 import styles from "./map.module.css";
 
 export const metadata = pageMetadata({
@@ -13,6 +18,11 @@ export const metadata = pageMetadata({
 });
 
 export default function PerformanceMapPage() {
+  const byRegion = REGION_ORDER.map((region) => ({
+    region,
+    countries: performedCountries.filter((c) => c.region === region),
+  })).filter((g) => g.countries.length > 0);
+
   return (
     <main id="content" className={styles.page}>
       <header className={styles.head}>
@@ -35,6 +45,39 @@ export default function PerformanceMapPage() {
           confirmed Burna Boy performance
         </figcaption>
       </figure>
+
+      <section className={styles.breakdown} aria-label="Countries by region">
+        <h2 className={styles.breakdownTitle}>By region</h2>
+        <div className={styles.tableWrap}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th scope="col">Region</th>
+                <th scope="col" className={styles.numCol}>Count</th>
+                <th scope="col">Countries</th>
+              </tr>
+            </thead>
+            <tbody>
+              {byRegion.map(({ region, countries }) => (
+                <tr key={region}>
+                  <th scope="row" className={styles.regionCell}>{region}</th>
+                  <td className={styles.numCol}>{countries.length}</td>
+                  <td className={styles.namesCell}>
+                    {countries.map((c) => `${c.flag} ${c.name}`).join("   ·   ")}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row">Total</th>
+                <td className={styles.numCol}>{countryCount}</td>
+                <td>{regionCount} regions</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
 
       <p className={styles.note}>
         Compiled from his tours, festivals and one-off shows. For the full
