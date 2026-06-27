@@ -56,6 +56,7 @@ export const firstGroups: FirstGroup[] = [
       { year: "2023", title: "First Afrobeats artist to top the UK Official Albums Chart", text: "I Told Them… debuted at No. 1 in Britain — one better than Love, Damini's record No. 2." },
       { year: "2023", title: "First African artist to reach 1 billion streams on Audiomack", text: "A milestone on the streaming platform where Afrobeats has its biggest home." },
       { year: "2026", title: "First African artist to top the Billboard Colombia Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Colombia." },
+      { year: "2026", title: "First African artist with two No. 1 singles in Belgium", text: "Both “Jerusalema (Remix)” and “Dai Dai” have topped Belgium's Ultratop 50." },
     ],
   },
   {
