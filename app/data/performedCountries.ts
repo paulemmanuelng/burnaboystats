@@ -31,11 +31,14 @@ export interface PerformedCountry {
 
 export const performedCountries: PerformedCountry[] = [
   // ── Africa ──
-  { name: "Nigeria", code: 566, region: "Africa", flag: "🇳🇬", events: ["The Live Experience, Lagos (2021)"] },
+  { name: "Nigeria", code: 566, region: "Africa", flag: "🇳🇬", events: ["The Live Experience, Lagos (2021)", "NATIVELAND Festival, Lagos (2016)"], more: true },
   { name: "South Africa", code: 710, region: "Africa", flag: "🇿🇦", events: ["DStv Delicious Festival, Johannesburg (2022)"] },
   { name: "Ghana", code: 288, region: "Africa", flag: "🇬🇭", events: ["GTCO Music Concert, Accra (2025)"] },
   { name: "Kenya", code: 404, region: "Africa", flag: "🇰🇪", events: ["MadfunXperience, Nairobi (2025)"] },
-  { name: "Morocco", code: 504, region: "Africa", flag: "🇲🇦", events: ["Mawazine Festival, Rabat (2024)"] },
+  { name: "Uganda", code: 800, region: "Africa", flag: "🇺🇬", events: ["Burna Boy Xperience, Kampala (2019)", "Club MegaFest, Namboole Stadium (2014)"] },
+  { name: "Zimbabwe", code: 716, region: "Africa", flag: "🇿🇼", events: ["Belgravia Sports Club, Harare (2022)"] },
+  { name: "Morocco", code: 504, region: "Africa", flag: "🇲🇦", events: ["Mawazine Festival, Rabat (2024)", "AFCON 2025 Fan Zone finale, Rabat (2026)"] },
+  { name: "Egypt", code: 818, region: "Africa", flag: "🇪🇬", events: ["El Gouna Conference & Cultural Center (2026)"] },
 
   // ── Europe ──
   { name: "United Kingdom", code: 826, region: "Europe", flag: "🇬🇧", events: ["London Stadium (2023 & 2024)", "The O2 Arena, London (2021)"], more: true },

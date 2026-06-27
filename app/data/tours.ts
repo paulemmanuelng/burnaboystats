@@ -183,6 +183,7 @@ export interface LiveMoment {
 
 export const liveMoments: LiveMoment[] = [
   { year: "2026", title: "FIFA World Cup Opening Ceremony", text: "Headlined the opener in Mexico City with Shakira, performing the official tournament song “Dai Dai.”" },
+  { year: "2026", title: "AFCON 2025 Fan Zone grand finale", text: "Headlined “The AFCON Last Dance” in Rabat (16 Jan 2026), closing out the Africa Cup of Nations hosted by Morocco — on a bill with Stormzy, Stonebwoy and Jaylann." },
   { year: "2025", title: "Stade de France, Paris", text: "First African artist to headline the Stade de France (April 2025) — a $4.53M gross." },
   { year: "2025", title: "Red Rocks Amphitheatre", text: "First Nigerian artist to headline the iconic Colorado venue, opening the No Sign of Weakness tour." },
   { year: "2024", title: "London Stadium — African concert record", text: "$6.15M from 58,973 tickets: the highest-grossing single concert by any African artist.", record: true },
@@ -218,6 +219,7 @@ export const festivals: Festival[] = [
   { year: "2025", name: "GTCO Music Concert", location: "Accra, Ghana", note: "A headline act at the free second edition (19 Dec 2025) before 30,000+ at the Accra Sports Stadium — on a stacked pan-African bill with Shatta Wale, Sarkodie, Ayra Starr, Patoranking, Fireboy DML, Joeboy, King Promise and R2Bees." },
   { year: "2025", name: "MadfunXperience", location: "Nairobi, Kenya", note: "Headlined the Uhuru Gardens show (1 Mar 2025) with his full band, The Outsiders — joined on stage by Sauti Sol, with Bensoul, Charisma and Vigro Deep supporting." },
   { year: "2022", name: "DStv Delicious Festival", location: "Johannesburg, South Africa", note: "Headlined the main stage at the food-and-music festival (Kyalami, Sept 2022), on a bill that also featured Babyface, Digable Planets and Stereo MCs." },
+  { year: "2016", name: "NATIVELAND Festival", location: "Muri Okunola Park, Lagos", note: "A headliner of the inaugural NATIVELAND (22 Dec 2016), The NATIVE magazine's flagship Lagos festival — on a bill with Skepta, YCEE and Maleek Berry." },
 ];
 
 // Other festivals & one-off shows he performed at (NOT as the headliner).
@@ -235,6 +237,9 @@ export const otherShows: Festival[] = [
 // Solo headline concerts — his own standalone shows (not festival slots, and not
 // dates within a routed multi-city tour, which live in `tours` above).
 export const concerts: Festival[] = [
+  { year: "2026", name: "Burna Boy Live in El Gouna", location: "El Gouna Conference & Cultural Center, Egypt", note: "His first-ever performance in Egypt (11 April 2026), blending hits like On the Low and Gbona with cuts from No Sign of Weakness." },
+  { year: "2022", name: "Burna Boy Live in Harare", location: "Belgravia Sports Club, Zimbabwe", note: "His Zimbabwe debut (4 June 2022) — also remembered for declining to wear a ruling-party (ZANU-PF) scarf, refusing any political endorsement." },
   { year: "2021", name: "Burna Boy: The Live Experience", location: "Eko Convention Centre, Lagos", note: "His sold-out Lagos homecoming concert — a hometown spectacle staged as a newly-crowned Grammy winner." },
   { year: "2022", name: "National Stadium, Kingston", location: "Jamaica", note: "His first-ever headline concert in Jamaica — about 19,000 fans, joined on stage by Popcaan and Lila Iké, planting his flag in the home of reggae and dancehall." },
+  { year: "2019", name: "Burna Boy Xperience", location: "Sheraton Gardens, Kampala", note: "A packed Kampala headline concert (22 March 2019) — his return to Uganda after debuting at Namboole Stadium's Club MegaFest in 2014." },
 ];
