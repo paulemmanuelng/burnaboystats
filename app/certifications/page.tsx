@@ -11,11 +11,11 @@ import {
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Burna Boy Certifications — Gold, Platinum & Diamond Awards Worldwide",
+  title: "Burna Boy Certifications — Silver, Gold, Platinum & Diamond Awards",
   description:
-    "The complete list of Burna Boy's music certifications — 160+ Gold, Platinum and Diamond awards across 22 countries (RIAA, BPI, SNEP, Music Canada, RMNZ, TCSN and more). Filter by country or tier.",
+    "The complete list of Burna Boy's music certifications — 160+ Silver, Gold, Platinum and Diamond awards across 22 countries (RIAA, BPI, SNEP, Music Canada, RMNZ, TCSN and more). Filter by country or tier.",
   path: "/certifications",
-  shareTitle: "Burna Boy Certifications — Every Gold, Platinum & Diamond",
+  shareTitle: "Burna Boy Certifications — Every Silver, Gold, Platinum & Diamond",
   shareDescription: "Every certified Burna Boy song and album across 22 countries.",
 });
 
@@ -32,7 +32,7 @@ const certJsonLd = {
 
 const certDataset = datasetJsonLd({
   name: "Burna Boy music certifications",
-  description: `Every Gold, Platinum and Diamond certification for Burna Boy's songs and albums — ${total} awards across ${countryCount} countries (RIAA, BPI, SNEP and more).`,
+  description: `Every Silver, Gold, Platinum and Diamond certification for Burna Boy's songs and albums — ${total} awards across ${countryCount} countries (RIAA, BPI, SNEP and more).`,
   path: "/certifications",
   keywords: ["Burna Boy", "certifications", "RIAA", "BPI", "Gold", "Platinum", "Diamond", "music sales"],
   variableMeasured: ["Certification level", "Country", "Release"],
