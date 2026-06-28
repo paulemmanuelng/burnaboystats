@@ -108,7 +108,6 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "45.5M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "40.01M" },
       { name: "CKay", sub: "🇳🇬 Nigeria", value: "34.78M" },
-      { name: "Ayra Starr", sub: "🇳🇬 Nigeria", value: "32.19M" },
     ],
     note: "Burna Boy holds the highest monthly-listeners peak ever for a male African artist on Spotify — and it's still climbing.",
     source:
