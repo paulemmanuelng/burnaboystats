@@ -62,6 +62,7 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   SR: { name: "Suriname", flag: "🇸🇷", body: "Nationale Top 40" },
   AR: { name: "Argentina", flag: "🇦🇷", body: "Billboard Argentina Hot 100" },
   CO: { name: "Colombia", flag: "🇨🇴", body: "Billboard Colombia Hot 100" },
+  VN: { name: "Vietnam", flag: "🇻🇳", body: "Billboard Vietnam Hot 100" },
   BR: { name: "Brazil", flag: "🇧🇷", body: "Billboard Brasil Hot 100" },
   GLB: { name: "Global", flag: "🌍", body: "Billboard Global 200" },
   GLBX: { name: "Global (excl. US)", flag: "🌐", body: "Billboard Global Excl. US" },
@@ -159,7 +160,7 @@ export const featureCharts: ChartRelease[] = [
     { c: "LB", peak: 5 }, { c: "GR", peak: 5 }, { c: "FR", peak: 6 }, { c: "GLBX", peak: 7 }, { c: "NG", peak: 7 },
     { c: "PT", peak: 14 }, { c: "CZ", peak: 18 }, { c: "ZA", peak: 19 }, { c: "UK", peak: 19 }, { c: "IT", peak: 19 }, { c: "GLB", peak: 20 }, { c: "LT", peak: 23 }, { c: "PL", peak: 26 },
     { c: "IE", peak: 32 }, { c: "HU", peak: 33 }, { c: "CA", peak: 35 }, { c: "IL", peak: 49 },
-    { c: "AU", peak: 52 }, { c: "BR", peak: 69 }, { c: "US", peak: 75 },
+    { c: "AU", peak: 52 }, { c: "BR", peak: 69 }, { c: "US", peak: 75 }, { c: "VN", peak: 93 },
   ] },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, entries: [
     { c: "BE", peak: 2 }, { c: "SR", peak: 2 }, { c: "HU", peak: 39 }, { c: "IE", peak: 43 },
