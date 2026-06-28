@@ -50,7 +50,7 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(211);
+    expect(totalAwards()).toBe(212);
     expect(countryCount).toBe(22);
     expect(certifiedReleaseCount).toBe(81);
   });

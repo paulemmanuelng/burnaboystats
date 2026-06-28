@@ -104,8 +104,8 @@ export const statBoxes: LeaderboardBox[] = [
     layout: "list",
     entries: [
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "46.58M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "45.79M" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "45.5M" },
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "45.20M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "40.01M" },
       { name: "Ayra Starr", sub: "🇳🇬 Nigeria", value: "32.19M" },
     ],

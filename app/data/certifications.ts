@@ -249,7 +249,7 @@ export const features: Release[] = [
     { c: "CO", level: "Gold" },
   ] },
   { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, certs: [
-    { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 },
+    { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 2 },
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "NO", level: "Platinum" },
     { c: "DK", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "PT", level: "Gold" },
     { c: "DE", level: "Gold" }, { c: "NG", level: "Gold" },

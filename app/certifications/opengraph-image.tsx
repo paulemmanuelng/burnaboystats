@@ -7,6 +7,6 @@ export default function Image() {
   return ogImage({
     kicker: "Certified worldwide",
     title: "Certifications",
-    sub: "211 awards across 22 countries — every tier from Silver to Diamond",
+    sub: "212 awards across 22 countries — every tier from Silver to Diamond",
   });
 }
