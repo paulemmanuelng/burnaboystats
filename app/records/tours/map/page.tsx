@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PerformanceMap from "../../../components/PerformanceMap";
-import { pageMetadata } from "../../../lib/seo";
+import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 import {
   countryCount,
   regionCount,
@@ -23,8 +23,17 @@ export default function PerformanceMapPage() {
     countries: performedCountries.filter((c) => c.region === region),
   })).filter((g) => g.countries.length > 0);
 
+  const dataset = datasetJsonLd({
+    name: "Countries where Burna Boy has performed live",
+    description: `Every country Burna Boy has performed in live — ${countryCount} countries across ${regionCount} regions, from tours, festivals and one-off shows.`,
+    path: "/records/tours/map",
+    keywords: ["Burna Boy", "tour", "countries performed", "live performances", "concerts", "festivals"],
+    variableMeasured: ["Country", "Region", "Notable performances"],
+  });
+
   return (
     <main id="content" className={styles.page}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
       <header className={styles.head}>
         <p className={styles.kicker}>Live worldwide</p>
         <h1 className={styles.title}>Where he&apos;s performed</h1>

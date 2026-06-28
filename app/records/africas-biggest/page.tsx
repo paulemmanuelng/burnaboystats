@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./africas-biggest.module.css";
 import StatBox from "../../components/StatBox";
 import { statBoxes } from "../../data/africasBiggest";
-import { pageMetadata } from "../../lib/seo";
+import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
 export const metadata = pageMetadata({
   title: "Africa's Biggest — Most-Streamed African Artists by Year (Spotify)",
@@ -14,8 +14,16 @@ export const metadata = pageMetadata({
 });
 
 export default function AfricasBiggestPage() {
+  const dataset = datasetJsonLd({
+    name: "Africa's biggest artists — Spotify streaming & chart records",
+    description: "Year-by-year leaderboards of the most-streamed African artists on Spotify, plus records like most Billboard Hot 100 entries and most songs over 200M Spotify streams — with Burna Boy in context.",
+    path: "/records/africas-biggest",
+    keywords: ["most-streamed African artist", "Spotify", "Burna Boy", "Afrobeats streaming", "Billboard Hot 100", "African music records"],
+    variableMeasured: ["Spotify streams", "Artist", "Year", "Chart entries"],
+  });
   return (
     <main id="content">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
       <header className="pageHeader container">
         <h1>
           Africa&apos;s <span className="accent">Biggest</span>

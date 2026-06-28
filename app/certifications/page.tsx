@@ -8,7 +8,7 @@ import {
   COUNTRIES, albums, singles, features,
   totalAwards, certifiedReleaseCount, countryCount,
 } from "../data/certifications";
-import { pageMetadata } from "../lib/seo";
+import { pageMetadata, datasetJsonLd } from "../lib/seo";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Certifications — Gold, Platinum & Diamond Awards Worldwide",
@@ -30,10 +30,19 @@ const certJsonLd = {
   ],
 };
 
+const certDataset = datasetJsonLd({
+  name: "Burna Boy music certifications",
+  description: `Every Gold, Platinum and Diamond certification for Burna Boy's songs and albums — ${total} awards across ${countryCount} countries (RIAA, BPI, SNEP and more).`,
+  path: "/certifications",
+  keywords: ["Burna Boy", "certifications", "RIAA", "BPI", "Gold", "Platinum", "Diamond", "music sales"],
+  variableMeasured: ["Certification level", "Country", "Release"],
+});
+
 export default function CertificationsPage() {
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(certJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(certDataset) }} />
       <header className="pageHeader container">
         <h1>
           Global <span className="accent">Certifications</span>

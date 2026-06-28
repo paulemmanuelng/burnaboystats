@@ -38,6 +38,30 @@ export function pageMetadata(opts: {
   };
 }
 
+// Dataset structured data — marks our data-heavy pages (charts, certifications,
+// records, the tour map) as structured datasets, so search engines and AI answer
+// engines can recognise, surface and cite them as a source.
+export function datasetJsonLd(opts: {
+  name: string;
+  description: string;
+  path: string;
+  keywords: string[];
+  variableMeasured: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name: opts.name,
+    description: opts.description,
+    url: `${CANONICAL_ORIGIN}${opts.path}`,
+    keywords: opts.keywords,
+    isAccessibleForFree: true,
+    creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
+    about: { "@type": "MusicGroup", name: "Burna Boy" },
+    variableMeasured: opts.variableMeasured,
+  };
+}
+
 // Human-readable labels for each URL segment, used for breadcrumbs.
 const SEGMENT_LABELS: Record<string, string> = {
   music: "Music",

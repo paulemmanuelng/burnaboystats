@@ -11,7 +11,7 @@ import {
   numberOnes,
   chartCountryCount,
 } from "../../data/charts";
-import { pageMetadata } from "../../lib/seo";
+import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Official Chart Entries — Peak Positions Worldwide",
@@ -23,8 +23,16 @@ export const metadata = pageMetadata({
 });
 
 export default function ChartsPage() {
+  const dataset = datasetJsonLd({
+    name: "Burna Boy official chart peaks by country",
+    description: `Burna Boy's peak positions on official singles and album charts across ${chartCountryCount} territories — every charting release and its highest position, country by country, including ${numberOnes} No. 1 peaks.`,
+    path: "/records/charts",
+    keywords: ["Burna Boy", "chart positions", "official charts", "Billboard", "UK Official Charts", "peak chart position", "Afrobeats charts"],
+    variableMeasured: ["Peak chart position", "Country / territory", "Release", "Chart"],
+  });
   return (
     <main id="content">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
       <header className="pageHeader container">
         <h1>
           Official <span className="accent">Charts</span>
