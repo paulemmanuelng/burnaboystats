@@ -284,7 +284,7 @@ export const features: Release[] = [
     { c: "UK", level: "Platinum" },
   ] },
   { title: "Sungba (Remix)", credit: "Asake ft. Burna Boy", year: 2022, certs: [
-    { c: "NG", level: "Platinum", x: 4 },
+    { c: "NG", level: "Platinum", x: 4 }, { c: "UK", level: "Silver" },
   ] },
   { title: "Tshwala Bam (Remix)", credit: "TitoM & Yuppe ft. S.N.E & Burna Boy", year: 2024, certs: [
     { c: "NG", level: "Platinum", x: 4 },
