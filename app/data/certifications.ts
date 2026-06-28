@@ -51,6 +51,7 @@ export const COUNTRIES: Record<string, Country> = {
   ZA: { name: "South Africa", flag: "🇿🇦", body: "RiSA" },
   NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable (TCSN)" },
   BR: { name: "Brazil", flag: "🇧🇷", body: "Pro-Música Brasil" },
+  CO: { name: "Colombia", flag: "🇨🇴", body: "Sony Music Colombia" },
 };
 
 export const albums: Release[] = [
@@ -244,6 +245,9 @@ export const singles: Release[] = [
 
 // Songs where Burna Boy is a featured/guest artist.
 export const features: Release[] = [
+  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, certs: [
+    { c: "CO", level: "Gold" },
+  ] },
   { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, certs: [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 },
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "NO", level: "Platinum" },

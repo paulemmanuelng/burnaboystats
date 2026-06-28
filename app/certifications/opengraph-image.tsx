@@ -7,6 +7,6 @@ export default function Image() {
   return ogImage({
     kicker: "Certified worldwide",
     title: "Certifications",
-    sub: "209 awards across 21 countries — every Gold, Platinum & Diamond",
+    sub: "210 awards across 22 countries — every Gold, Platinum & Diamond",
   });
 }

@@ -59,6 +59,7 @@ export const firstGroups: FirstGroup[] = [
       { year: "2026", title: "First African artist to top the Billboard Colombia Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Colombia." },
       { year: "2026", title: "First African artist with two No. 1 singles in Belgium", text: "Both “Jerusalema (Remix)” and “Dai Dai” have topped Belgium's Ultratop 50." },
       { year: "2026", title: "First African artist to appear on the Billboard Vietnam Hot 100", text: "“Dai Dai” with Shakira debuted at No. 93 — afrobeats breaking onto Vietnam's chart." },
+      { year: "2026", title: "First African artist with 20 songs over 100M Spotify streams", text: "Twenty of his songs have each passed 100 million streams on Spotify — eight of them solo, a record for an African artist." },
     ],
   },
   {
