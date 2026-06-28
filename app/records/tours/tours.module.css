@@ -44,23 +44,35 @@
 .mapBtn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 9px 15px;
-  border: 1px solid var(--gold-dim);
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--gold);
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(255, 182, 39, 0.12), rgba(226, 52, 43, 0.06));
-  color: var(--gold);
+  background: linear-gradient(135deg, rgba(255, 182, 39, 0.16), rgba(255, 182, 39, 0.04));
+  color: var(--gold-bright);
   font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+.mapBtn::after {
+  content: "→";
+  font-size: 0.95em;
+  transition: transform 0.18s ease;
 }
 .mapBtn:hover {
   background: var(--gold);
   color: var(--bg);
+  border-color: var(--gold);
+  box-shadow: 0 6px 20px rgba(255, 182, 39, 0.28);
+}
+.mapBtn:hover::after {
+  transform: translateX(3px);
 }
 /* "Coming soon" state — same shape, muted + non-interactive. */
 .mapBtnSoon {
