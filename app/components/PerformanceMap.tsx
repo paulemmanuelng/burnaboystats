@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { worldShapes, MAP_W, MAP_H } from "../data/worldShapes";
 import {
   countryByCode,
@@ -10,6 +10,7 @@ import {
 import styles from "../records/tours/map/map.module.css";
 
 const CARD_W = 230; // card width, reserved so we can keep it inside the viewport
+const MAX_ZOOM = 4; // how far the +/- controls can zoom the map in
 const CARD_EST_H = 150; // rough card height, only used to pick above vs below
 const GAP = 9; // space (for the arrow) between the card and the country
 
@@ -23,6 +24,8 @@ interface Anchor {
 export default function PerformanceMap() {
   const [active, setActive] = useState<number | null>(null);
   const [anchor, setAnchor] = useState<Anchor | null>(null);
+  const [zoom, setZoom] = useState(1);
+  const viewportRef = useRef<HTMLDivElement>(null);
 
   const country = active != null ? countryByCode.get(active) : undefined;
 
@@ -34,6 +37,23 @@ export default function PerformanceMap() {
     setActive(null);
     setAnchor(null);
   };
+
+  const zoomIn = () => {
+    clear();
+    setZoom((z) => Math.min(MAX_ZOOM, +(z + 0.5).toFixed(1)));
+  };
+  const zoomOut = () => {
+    clear();
+    setZoom((z) => Math.max(1, +(z - 0.5).toFixed(1)));
+  };
+
+  // Re-centre the viewport whenever the zoom level changes.
+  useEffect(() => {
+    const vp = viewportRef.current;
+    if (!vp) return;
+    vp.scrollLeft = (vp.scrollWidth - vp.clientWidth) / 2;
+    vp.scrollTop = (vp.scrollHeight - vp.clientHeight) / 2;
+  }, [zoom]);
 
   // Shared interaction wiring — the card anchors to the hovered/focused country
   // itself (centred just above it), so it never drifts off into the ocean.
@@ -77,9 +97,15 @@ export default function PerformanceMap() {
 
   return (
     <div className={styles.mapWrap}>
+      <div className={styles.zoom}>
+        <button type="button" className={styles.zoomBtn} onClick={zoomIn} disabled={zoom >= MAX_ZOOM} aria-label="Zoom in">+</button>
+        <button type="button" className={styles.zoomBtn} onClick={zoomOut} disabled={zoom <= 1} aria-label="Zoom out">−</button>
+      </div>
+      <div className={styles.viewport} ref={viewportRef} style={{ overflow: zoom === 1 ? "hidden" : "auto" }}>
       <svg
         viewBox={`0 0 ${MAP_W} ${MAP_H}`}
         className={styles.svg}
+        style={{ width: `${zoom * 100}%` }}
         role="img"
         aria-label="World map highlighting the countries Burna Boy has performed in"
         onClick={(e) => {
@@ -115,6 +141,7 @@ export default function PerformanceMap() {
           ) : null
         )}
       </svg>
+      </div>
 
       {country && anchor && (
         <div

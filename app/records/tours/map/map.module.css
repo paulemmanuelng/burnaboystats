@@ -58,6 +58,47 @@
   overflow: visible;
 }
 
+/* zoomable scroll viewport (the SVG width scales with the zoom level) */
+.viewport {
+  width: 100%;
+  aspect-ratio: 900 / 470;
+  scrollbar-width: thin;
+}
+
+/* +/- zoom controls, top-right of the map */
+.zoom {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.zoomBtn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--gold-bright);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.zoomBtn:hover:not(:disabled) {
+  border-color: var(--gold);
+  background: var(--bg-soft-2);
+}
+.zoomBtn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 /* countries with no documented show — the muted base map */
 .off {
   fill: var(--bg-soft-2);
