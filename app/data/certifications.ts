@@ -101,7 +101,7 @@ export const singles: Release[] = [
     { c: "UK", level: "Gold" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" },
   ] },
   { title: "Gbona", year: 2018, certs: [
-    { c: "CA", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "CH", level: "Platinum" },
+    { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "CH", level: "Platinum" },
     { c: "SE", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "It's Plenty", year: 2022, certs: [
