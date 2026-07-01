@@ -37,12 +37,12 @@ export default function CertHistoryByYear({
         <span className="goldText">Certifications by year</span>
       </h2>
 
-      <div className={styles.filterRow}>
+      <div className={styles.yearRow}>
         {YEARS.map((y) => (
           <button
             key={y}
             type="button"
-            className={`${styles.fChip} ${year === y ? styles.fChipOn : ""}`}
+            className={`${styles.yearBtn} ${year === y ? styles.yearBtnOn : ""}`}
             onClick={() => setYear(year === y ? null : y)}
           >
             {y}
