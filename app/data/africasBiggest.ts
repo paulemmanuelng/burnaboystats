@@ -160,4 +160,36 @@ export const statBoxes: LeaderboardBox[] = [
     source:
       "Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals. As of 26 June 2026 — figures shift as songs cross the threshold.",
   },
+  {
+    id: "most-followed-spotify",
+    title: "Most-followed African artist on Spotify",
+    meta: "Spotify followers · African artists · current",
+    layout: "list",
+    entries: [
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "16.8M" },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "11.9M" },
+      { name: "Davido", sub: "🇳🇬 Nigeria", value: "11.3M" },
+      { name: "Asake", sub: "🇳🇬 Nigeria", value: "9.6M" },
+      { name: "Tyla", sub: "🇿🇦 South Africa", value: "5.1M" },
+    ],
+    note: "Burna Boy is the most-followed African artist on Spotify — nearly 5 million clear of Wizkid in second.",
+    source:
+      "Spotify follower counts, taken directly from each artist's official Spotify page. As of July 2026 — this updates continuously as Spotify's live counts change.",
+  },
+  {
+    id: "most-youtube-views",
+    title: "Most-viewed Nigerian artist on YouTube",
+    meta: "Total channel views · Nigerian artists · all-time",
+    layout: "list",
+    entries: [
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "3.13B" },
+      { name: "Davido", sub: "🇳🇬 Nigeria", value: "2.39B" },
+      { name: "Rema", sub: "🇳🇬 Nigeria", value: "1.71B" },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "1.62B" },
+      { name: "CKay", sub: "🇳🇬 Nigeria", value: "1.40B" },
+    ],
+    note: "Burna Boy has more total YouTube views than any other Nigerian artist — over 700 million clear of Davido in second.",
+    source:
+      "Total YouTube channel views for each artist's main channel, from kworb.net. As of July 2026.",
+  },
 ];
