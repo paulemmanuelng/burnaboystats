@@ -25,7 +25,7 @@ const marqueeItems = [
 // Career-defining records as an African artist (the headline feats).
 const records = [
   {
-    num: "$30.5M",
+    num: "$30.46M",
     title: "Highest-grossing African tour",
     desc: "The I Told Them… Tour — the biggest tour in history by an African artist.",
     href: "/records/tours",

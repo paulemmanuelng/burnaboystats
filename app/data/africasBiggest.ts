@@ -176,20 +176,4 @@ export const statBoxes: LeaderboardBox[] = [
     source:
       "Spotify follower counts, taken directly from each artist's official Spotify page. As of July 2026 — this updates continuously as Spotify's live counts change.",
   },
-  {
-    id: "most-youtube-views",
-    title: "Most-viewed Nigerian artist on YouTube",
-    meta: "Total channel views · Nigerian artists · all-time",
-    layout: "list",
-    entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "3.13B" },
-      { name: "Davido", sub: "🇳🇬 Nigeria", value: "2.39B" },
-      { name: "Rema", sub: "🇳🇬 Nigeria", value: "1.71B" },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "1.62B" },
-      { name: "CKay", sub: "🇳🇬 Nigeria", value: "1.40B" },
-    ],
-    note: "Burna Boy has more total YouTube views than any other Nigerian artist — over 700 million clear of Davido in second.",
-    source:
-      "Total YouTube channel views for each artist's main channel, from kworb.net. As of July 2026.",
-  },
 ];

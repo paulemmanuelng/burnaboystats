@@ -8,7 +8,7 @@ import { pageMetadata } from "../../lib/seo";
 export const metadata = pageMetadata({
   title: "Burna Boy Tours & Live — Grosses, Sold-Out Stadiums & Records",
   description:
-    "Burna Boy's tours and biggest live moments — the I Told Them… tour ($30.5M, the highest-grossing African tour ever), the record London Stadium concert, sold-out stadiums and the World Cup.",
+    "Burna Boy's tours and biggest live moments — the I Told Them… tour ($30.46M, the highest-grossing African tour ever), the record London Stadium concert, sold-out stadiums and the World Cup.",
   path: "/records/tours",
   shareTitle: "Burna Boy Tours & Live",
   shareDescription: "Record-breaking grosses, sold-out stadiums and history made on stage.",
