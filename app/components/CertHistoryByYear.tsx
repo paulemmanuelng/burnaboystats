@@ -24,8 +24,8 @@ export default function CertHistoryByYear({
   history: CertEvent[];
   countries: Record<string, Country>;
 }) {
-  const [year, setYear] = useState(YEARS[0]);
-  const items = history.filter((e) => e.year === year);
+  const [year, setYear] = useState<number | null>(null);
+  const items = year === null ? [] : history.filter((e) => e.year === year);
 
   return (
     <div>
@@ -39,14 +39,14 @@ export default function CertHistoryByYear({
             key={y}
             type="button"
             className={`${styles.fChip} ${year === y ? styles.fChipOn : ""}`}
-            onClick={() => setYear(y)}
+            onClick={() => setYear(year === y ? null : y)}
           >
             {y}
           </button>
         ))}
       </div>
 
-      {items.length === 0 ? (
+      {year === null ? null : items.length === 0 ? (
         <p className={styles.empty}>No certifications logged for {year} yet.</p>
       ) : (
         <>
