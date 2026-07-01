@@ -64,8 +64,8 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 has the published count of 33 certifications", () => {
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(33);
+  it("2026 has the published count of 34 certifications", () => {
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(34);
   });
 });
 

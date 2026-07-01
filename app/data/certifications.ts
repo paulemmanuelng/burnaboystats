@@ -386,6 +386,7 @@ export const certHistory: CertEvent[] = [
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "PL", level: "Platinum", year: 2026 },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "CO", level: "Gold", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "ZA", level: "Platinum", x: 2, year: 2026 },
+  { title: "Gbona", country: "FR", level: "Diamond", year: 2026 },
 ];
 
 // Helpers
