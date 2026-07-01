@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type CertEvent, type Country } from "../data/certifications";
 
-const YEARS = [2026, 2025, 2024];
+const YEARS = [2026, 2025, 2024, 2023];
 
 const YEAR_NOTES: Partial<Record<number, string>> = {
   2025: "Burna Boy was the most certified African artist in 2025.",

@@ -6,7 +6,7 @@ import { tierOf, type Cert, type Country, type Release } from "../data/certifica
 import { matches } from "../lib/certs";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
-const YEARS = [2026, 2025, 2024];
+const YEARS = [2026, 2025, 2024, 2023];
 
 // "Year" isn't a real filter on this grid (releases don't carry a
 // certified-date) — it jumps down to the "Certifications by year" section

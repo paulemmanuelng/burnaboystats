@@ -42,7 +42,7 @@ export const firstGroups: FirstGroup[] = [
       { year: "2021", title: "First winner of the Grammy for Best Global Music Album", text: "Twice as Tall took the award in its debut year — the category renamed from Best World Music Album." },
       { year: "2023", title: "First African artist to win a Billboard Music Award as lead artist", text: "Recognised at the Billboard Music Awards as a headline act — the first African to win one in his own right." },
       { year: "2024", title: "First African lead artist nominated for a Grammy outside the global categories", text: "His Best Melodic Rap Performance nod broke African artists into the Grammys' mainstream genre fields." },
-      { year: "2026", title: "Most certified African artist worldwide", text: "212 certifications across 22 countries — Gold, Silver, Platinum and Diamond combined — more than any other African artist." },
+      { year: "2026", title: "Most certified African artist worldwide", text: "213 certifications across 22 countries — Gold, Silver, Platinum and Diamond combined — more than any other African artist." },
     ],
   },
   {
