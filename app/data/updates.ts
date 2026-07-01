@@ -2,6 +2,11 @@
 // visitor can see what's new without spotting the diff themselves. Add a new
 // entry here (top of the array = most recent) whenever a real fact changes —
 // not for wording/design tweaks.
+//
+// "content" entries must read as news ABOUT BURNA BOY, not as dev/changelog
+// notes about the site's data work. Write "Burna Boy has now won 79 awards…",
+// never "logged X, fixed Y, added a missing Z" — that's how the fact was
+// produced, not the fact itself.
 
 export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards";
 
@@ -31,7 +36,7 @@ export const updates: Update[] = [
     date: "2026-07-01",
     category: "Awards",
     kind: "content",
-    text: "Deep research pass on the Awards page found 32 missing nominations across 12 award bodies (BMI, SESAC, Caribbean Music Awards, Urban Music Awards, Metro FM, MTN Liberia, 4Syte TV and more) — total now 79 wins from 205 nominations across 42 award bodies, up from 65 wins / 173 nominations / 30 bodies.",
+    text: "Burna Boy has now won 79 awards from 205 nominations across 42 award bodies worldwide, including wins at the BMI Awards, SESAC Awards and Caribbean Music Awards.",
     href: "/records/awards",
   },
   {
@@ -45,28 +50,28 @@ export const updates: Update[] = [
     date: "2026-07-01",
     category: "Certifications",
     kind: "content",
-    text: "Logged 123 individual certifications across 2023–2026, fixed three stale certification tiers, and added a missing “Last Last” (South Africa) certification — total awards now 213.",
+    text: "Burna Boy's total certifications now stand at 213 worldwide, after “Last Last” was confirmed Platinum in South Africa.",
     href: "/certifications",
   },
   {
     date: "2026-07-01",
     category: "Firsts & Records",
     kind: "content",
-    text: "Added two new records: first African artist to hold a UK No.1 album and No.1 single, and most certified African artist worldwide.",
+    text: "Burna Boy is the first African artist to hold both a UK No.1 album and No.1 single — and is now the most certified African artist in the world.",
     href: "/records/firsts",
   },
   {
     date: "2026-07-01",
     category: "Streaming",
     kind: "content",
-    text: "Burna Boy's Spotify monthly listeners hit a new peak of 46.85M — the highest ever for an African artist, overtaking Tyla.",
+    text: "Burna Boy's Spotify monthly listeners have hit an all-time peak of 46.85M — the highest ever for an African artist.",
     href: "/records/africas-biggest",
   },
   {
     date: "2026-07-01",
     category: "Charts",
     kind: "content",
-    text: "“Dai Dai” (Shakira x Burna Boy) hit new peaks: No.3 in Spain, No.14 in Hungary, No.38 in Israel, No.24 on the Canadian Hot 100, No.63 on the Brazil Hot 100 and No.74 on the Billboard Hot 100.",
+    text: "“Dai Dai” (Shakira x Burna Boy) keeps climbing, with new peaks in Spain (No.3), Hungary (No.14), Israel (No.38), Canada (No.24), Brazil (No.63) and the US (No.74).",
     href: "/records/charts",
   },
 ];
