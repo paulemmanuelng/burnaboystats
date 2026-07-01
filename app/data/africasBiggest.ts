@@ -176,4 +176,20 @@ export const statBoxes: LeaderboardBox[] = [
     source:
       "Spotify follower counts, taken directly from each artist's official Spotify page. As of July 2026 — this updates continuously as Spotify's live counts change.",
   },
+  {
+    id: "highest-spotify-global-peak",
+    title: "Highest-charting song on Spotify Global",
+    meta: "Spotify Daily Top Songs Global · peak position · all credits",
+    layout: "list",
+    entries: [
+      { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "#1" },
+      { name: "Wizkid", sub: "🇳🇬 “One Dance” (with Drake & Kyla)", value: "#5" },
+      { name: "Tems", sub: "🇳🇬 “Raindance”", value: "#5" },
+      { name: "Rema", sub: "🇳🇬 “Calm Down” (Remix, with Selena Gomez)", value: "#8" },
+      { name: "Tyla", sub: "🇿🇦 “Water”", value: "#8" },
+    ],
+    note: "Burna Boy is the first and only African artist to reach No. 1 on Spotify's Global Daily Top Songs chart — no other African artist has ever cracked the top 4.",
+    source:
+      "Peak positions on Spotify's Daily Top Songs Global chart, each artist's best-charting song across all credits, from chart-tracking accounts. As of July 2026.",
+  },
 ];
