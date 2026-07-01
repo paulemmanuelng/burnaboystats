@@ -6,6 +6,15 @@ import { tierOf, type Cert, type Country, type Release } from "../data/certifica
 import { matches } from "../lib/certs";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
+const YEARS = [2026, 2025, 2024];
+
+// "Year" isn't a real filter on this grid (releases don't carry a
+// certified-date) — it jumps down to the "Certifications by year" section
+// and opens that year there, via a small custom event the other component listens for.
+function jumpToYear(year: number) {
+  window.dispatchEvent(new CustomEvent("cert-year-jump", { detail: year }));
+  document.getElementById("cert-by-year")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 type Countries = Record<string, Country>;
 
@@ -127,6 +136,14 @@ export default function CertExplorer({
             </button>
           </div>
         )}
+        <div className={styles.filterRow}>
+          <span className={styles.filterLabel}>Year</span>
+          {YEARS.map((y) => (
+            <button key={y} type="button" className={styles.fChip} onClick={() => jumpToYear(y)}>
+              {y} ↓
+            </button>
+          ))}
+        </div>
         </div>
       </div>
 

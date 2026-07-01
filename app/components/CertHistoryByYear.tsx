@@ -1,6 +1,6 @@
 "use client"; // interactive: switch between years
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type CertEvent, type Country } from "../data/certifications";
 
@@ -31,8 +31,17 @@ export default function CertHistoryByYear({
   const [year, setYear] = useState<number | null>(null);
   const items = year === null ? [] : history.filter((e) => e.year === year);
 
+  // The "Year" filter chips in CertExplorer jump here and pick a year for us.
+  useEffect(() => {
+    function onJump(e: Event) {
+      setYear((e as CustomEvent<number>).detail);
+    }
+    window.addEventListener("cert-year-jump", onJump);
+    return () => window.removeEventListener("cert-year-jump", onJump);
+  }, []);
+
   return (
-    <div>
+    <div id="cert-by-year">
       <h2 className="secTitle" style={{ margin: "48px 0 18px" }}>
         <span className="goldText">Certifications by year</span>
       </h2>
