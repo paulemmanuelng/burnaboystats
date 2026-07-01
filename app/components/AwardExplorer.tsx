@@ -26,18 +26,33 @@ function Row({ nom }: { nom: AwardNom }) {
   );
 }
 
+const YEARS = Array.from(new Set(ceremonies.flatMap((c) => c.noms.map((n) => n.year)))).sort(
+  (a, b) => b - a
+);
+
 export default function AwardExplorer() {
   const [result, setResult] = useState<string | null>(null);
+  const [year, setYear] = useState<number | null>(null);
+  const [ceremony, setCeremony] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
 
-  const match = (n: AwardNom) => !result || (result === "won" ? n.won : !n.won);
+  const match = (n: AwardNom) =>
+    (!result || (result === "won" ? n.won : !n.won)) && (!year || n.year === year);
 
   const groups = ceremonies
+    .filter((c) => !ceremony || c.name === ceremony)
     .map((c) => ({ ...c, shown: c.noms.filter(match) }))
     .filter((c) => c.shown.length > 0);
 
   const totalAll = ceremonies.reduce((n, c) => n + c.noms.length, 0);
   const totalShown = groups.reduce((n, g) => n + g.shown.length, 0);
+  const active = result || year || ceremony;
+
+  const clearAll = () => {
+    setResult(null);
+    setYear(null);
+    setCeremony(null);
+  };
 
   return (
     <div>
@@ -49,7 +64,7 @@ export default function AwardExplorer() {
           aria-controls="award-filters"
           onClick={() => setFiltersOpen((o) => !o)}
         >
-          <span>Filter{result ? ` · ${totalShown} shown` : ""}</span>
+          <span>Filters{active ? ` · ${totalShown} shown` : ""}</span>
           <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
         </button>
         <div id="award-filters" className={`${styles.filterBody} ${filtersOpen ? styles.filterOpen : ""}`}>
@@ -66,10 +81,36 @@ export default function AwardExplorer() {
               </button>
             ))}
           </div>
-          {result && (
+          <div className={styles.filterRow}>
+            <span className={styles.filterLabel}>Year</span>
+            <button className={`${styles.fChip} ${!year ? styles.fChipOn : ""}`} onClick={() => setYear(null)}>All</button>
+            {YEARS.map((y) => (
+              <button
+                key={y}
+                className={`${styles.fChip} ${year === y ? styles.fChipOn : ""}`}
+                onClick={() => setYear(year === y ? null : y)}
+              >
+                {y}
+              </button>
+            ))}
+          </div>
+          <div className={styles.filterRow}>
+            <span className={styles.filterLabel}>Award body</span>
+            <button className={`${styles.fChip} ${!ceremony ? styles.fChipOn : ""}`} onClick={() => setCeremony(null)}>All</button>
+            {ceremonies.map((c) => (
+              <button
+                key={c.name}
+                className={`${styles.fChip} ${ceremony === c.name ? styles.fChipOn : ""}`}
+                onClick={() => setCeremony(ceremony === c.name ? null : c.name)}
+              >
+                {c.name}
+              </button>
+            ))}
+          </div>
+          {active && (
             <div className={styles.filterMeta}>
               Showing <b>{totalShown}</b> of {totalAll}
-              <button className={styles.clearBtn} onClick={() => setResult(null)}>Clear ✕</button>
+              <button className={styles.clearBtn} onClick={clearAll}>Clear ✕</button>
             </div>
           )}
         </div>
