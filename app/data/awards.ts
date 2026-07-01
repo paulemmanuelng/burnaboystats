@@ -5,13 +5,24 @@
 //  re-verified June 2026. Includes the 9th AFRIMA (2025 edition, held
 //  Jan 2026: Album of the Year for No Sign of Weakness + Best African
 //  Collaboration for Laho II won), the 2025 MTV VMAs and the Trace
-//  Awards. A June 2026 reconciliation against a fan award-count list added
-//  IRAWMA (2024–25 Best African Entertainer) and the Telecel Ghana Music
-//  Awards 2025 win for Tshwala Bam, after primary-source verification. Each
-//  entry is a single { year, category, work?, won } — only items confirmed
-//  with a year + category are listed (win-count-only social-media lists are
-//  not added without that detail; bodies like a Metro FM solo win, BMI/ASCAP/
-//  SESAC and Galaxy 5× could not be tied to a year+category and were held).
+//  Awards. Each entry is a single { year, category, work?, won } — only
+//  items confirmed with a year + category are listed (win-count-only
+//  social-media tallies are not added without that detail).
+//
+//  DEEP RESEARCH PASS (July 2026): a fan tracker claimed the real total
+//  was higher than what was listed. Two research passes went body-by-body
+//  through every previously-"held" claim (BMI, ASCAP, SESAC, Caribbean
+//  Music Awards, Urban Music Awards, Metro FM, Ghana diaspora shows, MTN
+//  Liberia, Uganda HiPipo, 4Syte TV, NET Honours, Africa Golden Awards,
+//  The FABYs, That Grape Juice, Odudu PH City) plus a broad sweep for any
+//  2025–2026 ceremony result not yet captured. Confirmed additions (all
+//  primary-sourced) are folded in below. Still NOT added — no primary
+//  source found naming Burna Boy at all: ASCAP (a specific song/year),
+//  The FABYs, That Grape Juice, Africa Golden Awards, Odudu PH City
+//  Awards, Nigeria Music Video Awards win (nominations only, low-
+//  confidence source). A literal "Ghana Music Awards USA" doesn't appear
+//  to exist — the real diaspora show is Ghana Entertainment Awards USA
+//  (GEA-USA), added under that name instead.
 // ============================================================
 
 export interface AwardNom {
@@ -106,6 +117,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2024, category: "Outstanding Hip Hop/Rap Song", won: false },
       { year: 2024, category: "Outstanding International Song", work: "City Boys", won: false },
       { year: 2025, category: "Outstanding Duo, Group or Collaboration", work: "Coming Home (with Usher)", won: false },
+      { year: 2026, category: "Outstanding International Song", work: "Love", won: false },
     ],
   },
   {
@@ -180,6 +192,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2023, category: "Song of the Year", work: "Last Last", won: false },
       { year: 2025, category: "Album of the Year", work: "No Sign of Weakness", won: true },
       { year: 2025, category: "Best African Collaboration", work: "Laho II (with Shallipopi)", won: true },
+      { year: 2025, category: "Artiste of the Year", won: false },
     ],
   },
   {
@@ -273,11 +286,16 @@ export const ceremonies: Ceremony[] = [
       { year: 2020, category: "African Artiste of the Year", won: true },
       { year: 2022, category: "African Artiste of the Year (UK)", won: true },
       { year: 2025, category: "African Song of the Year", work: "Tshwala Bam (TitoM & Yuppe ft. S.N.E & Burna Boy)", won: true },
+      { year: 2026, category: "Best African Song", work: "Laho II (Shallipopi & Burna Boy)", won: false },
     ],
   },
   {
     name: "International Reggae & World Music Awards (IRAWMA)",
     noms: [
+      { year: 2020, category: "Best African Reggae/Dancehall Entertainer", won: false },
+      { year: 2021, category: "Best Afrobeat Entertainer", won: false },
+      { year: 2023, category: "Best Crossover", work: "Toni-Ann Singh", won: false },
+      { year: 2023, category: "Best Afrobeats Entertainer", won: false },
       { year: 2024, category: "Best African Entertainer", won: true },
       { year: 2025, category: "Best African Entertainer", won: true },
     ],
@@ -299,6 +317,8 @@ export const ceremonies: Ceremony[] = [
   {
     name: "African Entertainment Awards USA",
     noms: [
+      { year: 2022, category: "Artist of the Year", won: true },
+      { year: 2023, category: "Best Male Artiste", won: true },
       { year: 2024, category: "Best Male Artist", won: false },
       { year: 2024, category: "Artist of the Year", won: false },
       { year: 2024, category: "Best Music Video", work: "Tshwala Bam", won: false },
@@ -326,6 +346,7 @@ export const ceremonies: Ceremony[] = [
     noms: [
       { year: 2023, category: "Album of the Year", work: "Love, Damini", won: true },
       { year: 2025, category: "Album of the Year", work: "I Told Them...", won: false },
+      { year: 2025, category: "Song of the Year", work: "Active (with Travis Scott)", won: false },
       { year: 2025, category: "Best Collaboration", work: "Tshwala Bam (Remix)", won: false },
       { year: 2025, category: "Best Live Performance", won: false },
       { year: 2025, category: "Best Male Artist", won: false },
@@ -353,6 +374,83 @@ export const ceremonies: Ceremony[] = [
     name: "Nigeria South South Music Awards",
     noms: [
       { year: 2013, category: "Best African Act", won: true },
+    ],
+  },
+  {
+    name: "BMI Awards",
+    noms: [
+      { year: 2023, category: "Most Performed Work of the Year (BMI London)", work: "Last Last", won: true },
+    ],
+  },
+  {
+    name: "SESAC Awards",
+    noms: [
+      { year: 2021, category: "Pop Music Award", work: "Enjoy Yourself (Remix)", won: true },
+      { year: 2024, category: "Music Award", work: "Sittin' on Top of the World", won: true },
+    ],
+  },
+  {
+    name: "Caribbean Music Awards",
+    noms: [
+      { year: 2024, category: "Collaboration of the Year (Dancehall)", work: "Talibans II (with Byron Messia)", won: true },
+      { year: 2025, category: "Konpa — Song of the Year", work: "4 Kampé II (Remix)", won: false },
+    ],
+  },
+  {
+    name: "Urban Music Awards",
+    noms: [
+      { year: 2020, category: "Artist of the Year (Africa)", won: true },
+      { year: 2025, category: "International Artist of the Year", won: false },
+    ],
+  },
+  {
+    name: "Africa Arts and Entertainment Awards (AAEA)",
+    noms: [
+      { year: 2025, category: "Overall Male Artist in Africa", won: true },
+    ],
+  },
+  {
+    name: "Metro FM Music Awards",
+    noms: [
+      { year: 2016, category: "One Africa Award", won: true },
+      { year: 2016, category: "Best Hit Single", work: "Baddest (AKA ft. Burna Boy, Khuli Chana & Yanga Chief)", won: true },
+      { year: 2016, category: "Best Collaboration", work: "Baddest (AKA ft. Burna Boy, Khuli Chana & Yanga Chief)", won: true },
+    ],
+  },
+  {
+    name: "Ghana Entertainment Awards USA",
+    noms: [
+      { year: 2022, category: "Best African Entertainer", won: false },
+      { year: 2023, category: "Best African Entertainer", won: true },
+    ],
+  },
+  {
+    name: "MTN Liberia Music Awards",
+    noms: [
+      { year: 2020, category: "International Artist of the Year", won: true },
+      { year: 2023, category: "International Artiste of the Year", won: false },
+    ],
+  },
+  {
+    name: "Uganda HiPipo Music Awards",
+    noms: [
+      { year: 2019, category: "Kenya Video of the Year", work: "Afrikan Star (Sauti Sol ft. Burna Boy)", won: false },
+      { year: 2025, category: "Africa's Number One", won: false },
+    ],
+  },
+  {
+    name: "4Syte TV Music Video Awards",
+    noms: [
+      { year: 2019, category: "African Act", won: true },
+      { year: 2021, category: "Best African Act", won: false },
+    ],
+  },
+  {
+    name: "NET Honours",
+    noms: [
+      { year: 2023, category: "Most Popular Music Artiste Male", won: false },
+      { year: 2023, category: "Most Searched Music Artiste Male", won: false },
+      { year: 2023, category: "Most Popular Fandom", won: false },
     ],
   },
 ];
@@ -401,6 +499,12 @@ export const honours: Honour[] = [
     org: "BPI · United Kingdom",
     year: 2024,
     note: "For 2 billion UK streams — the first African artist to reach it.",
+  },
+  {
+    title: "\"Burna Boy Day\" Proclamation",
+    org: "Boston City Council",
+    year: 2024,
+    note: "March 2 declared \"Burna Boy Day\" by the Boston City Council, recognising his role in popularising Afrobeats worldwide.",
   },
 ];
 

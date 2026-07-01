@@ -3,7 +3,7 @@
 // entry here (top of the array = most recent) whenever a real fact changes —
 // not for wording/design tweaks.
 
-export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records";
+export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards";
 
 export interface Update {
   date: string; // ISO "YYYY-MM-DD"
@@ -13,6 +13,12 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-07-01",
+    category: "Awards",
+    text: "Deep research pass on the Awards page found 32 missing nominations across 12 award bodies (BMI, SESAC, Caribbean Music Awards, Urban Music Awards, Metro FM, MTN Liberia, 4Syte TV and more) — total now 79 wins from 205 nominations across 42 award bodies, up from 65 wins / 173 nominations / 30 bodies.",
+    href: "/records/awards",
+  },
   {
     date: "2026-07-01",
     category: "Certifications",
