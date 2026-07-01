@@ -13,7 +13,7 @@
 // career award tally) — reserve present/"just happened" phrasing for things
 // that are genuinely new this week (a debut chart peak, a fresh streaming high).
 
-export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards";
+export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards" | "Site";
 
 // "content" = a real fact about Burna Boy (chart peak, cert, record, streaming
 // milestone) — these are the only ones shown on the homepage teaser.
@@ -30,6 +30,13 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-07-01",
+    category: "Site",
+    kind: "build",
+    text: "Added custom share-preview images to every Records page (Awards, Charts, Firsts, Tours, Festivals, the map and the Records hub) — each one now shows its own headline stats instead of the generic homepage image.",
+    href: "/records",
+  },
   {
     date: "2026-07-01",
     category: "Charts",
