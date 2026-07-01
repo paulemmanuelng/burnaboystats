@@ -333,6 +333,61 @@ export const features: Release[] = [
   ] },
 ];
 
+// ------------------------------------------------------------
+//  CERTIFICATIONS BY YEAR — a dated log of individual certification
+//  announcements (as opposed to the "current tier" snapshot above).
+//  A release can appear more than once in the same year if it was
+//  certified at more than one tier that year (e.g. Gold then Platinum).
+//  Source: @BurnaBoyStats' own certification-tracking, cross-checked
+//  against the current-tier snapshot above.
+// ------------------------------------------------------------
+
+export interface CertEvent {
+  title: string;
+  credit?: string;
+  album?: boolean;
+  country: string;
+  level: Tier;
+  x?: number;
+  year: number;
+}
+
+export const certHistory: CertEvent[] = [
+  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "ES", level: "Platinum", year: 2026 },
+  { title: "Love, Damini", album: true, country: "CA", level: "Platinum", year: 2026 },
+  { title: "I Told Them...", album: true, country: "CA", level: "Gold", year: 2026 },
+  { title: "Last Last", country: "CA", level: "Platinum", x: 4, year: 2026 },
+  { title: "For My Hand", credit: "feat. Ed Sheeran", country: "CA", level: "Platinum", x: 2, year: 2026 },
+  { title: "It's Plenty", country: "CA", level: "Platinum", year: 2026 },
+  { title: "Kilometre", country: "CA", level: "Gold", year: 2026 },
+  { title: "Toni-Ann Singh", credit: "feat. Popcaan", country: "CA", level: "Gold", year: 2026 },
+  { title: "Alone", country: "US", level: "Gold", year: 2026 },
+  { title: "On the Low", country: "UK", level: "Platinum", year: 2026 },
+  { title: "On the Low", country: "CA", level: "Platinum", x: 2, year: 2026 },
+  { title: "Gbona", country: "CA", level: "Platinum", year: 2026 },
+  { title: "City Boys", country: "CA", level: "Platinum", year: 2026 },
+  { title: "Talibans II", credit: "with Byron Messia", country: "CA", level: "Gold", year: 2026 },
+  { title: "Tested, Approved & Trusted", country: "CA", level: "Gold", year: 2026 },
+  { title: "Sittin' on Top of the World", credit: "feat. 21 Savage", country: "CA", level: "Gold", year: 2026 },
+  { title: "Gbona", country: "DK", level: "Gold", year: 2026 },
+  { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "NZ", level: "Gold", year: 2026 },
+  { title: "On the Low", country: "NZ", level: "Platinum", year: 2026 },
+  { title: "Last Last", country: "NZ", level: "Platinum", x: 3, year: 2026 },
+  { title: "Twice as Tall", album: true, country: "UK", level: "Silver", year: 2026 },
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "NZ", level: "Platinum", x: 3, year: 2026 },
+  { title: "It's Plenty", country: "NZ", level: "Platinum", year: 2026 },
+  { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", country: "FR", level: "Gold", year: 2026 },
+  { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "UK", level: "Gold", year: 2026 },
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "FR", level: "Diamond", year: 2026 },
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "NO", level: "Platinum", year: 2026 },
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "DE", level: "Gold", year: 2026 },
+  { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "NZ", level: "Platinum", year: 2026 },
+  { title: "Gbona", country: "NZ", level: "Gold", year: 2026 },
+  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "PL", level: "Platinum", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "CO", level: "Gold", year: 2026 },
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "ZA", level: "Platinum", x: 2, year: 2026 },
+];
+
 // Helpers
 export function tierOf(level: string): "diamond" | "platinum" | "gold" | "silver" {
   if (level === "Diamond") return "diamond";

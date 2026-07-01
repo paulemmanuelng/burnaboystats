@@ -6,6 +6,7 @@ import {
   countryCount,
   certifiedReleaseCount,
   tierOf,
+  certHistory,
   type Release,
 } from "../app/data/certifications";
 import { matches } from "../app/lib/certs";
@@ -53,6 +54,18 @@ describe("certification data integrity", () => {
     expect(totalAwards()).toBe(212);
     expect(countryCount).toBe(22);
     expect(certifiedReleaseCount).toBe(81);
+  });
+});
+
+describe("certHistory (certifications by year)", () => {
+  it("every event references a known country code", () => {
+    for (const e of certHistory) {
+      expect(COUNTRIES[e.country], `${e.title} → ${e.country}`).toBeTruthy();
+    }
+  });
+
+  it("2026 has the published count of 33 certifications", () => {
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(33);
   });
 });
 

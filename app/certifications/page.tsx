@@ -2,10 +2,11 @@ import styles from "./certifications.module.css";
 import Equalizer from "../components/Equalizer";
 import CountUp from "../components/CountUp";
 import CertExplorer from "../components/CertExplorer";
+import CertHistoryByYear from "../components/CertHistoryByYear";
 import KeepExploring from "../components/KeepExploring";
 import { siteUrl } from "../site";
 import {
-  COUNTRIES, albums, singles, features,
+  COUNTRIES, albums, singles, features, certHistory,
   totalAwards, certifiedReleaseCount, countryCount,
 } from "../data/certifications";
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
@@ -77,6 +78,8 @@ export default function CertificationsPage() {
           features={features}
           countries={COUNTRIES}
         />
+
+        <CertHistoryByYear history={certHistory} countries={COUNTRIES} />
 
         <p className={styles.source}>
           Sources: RIAA (US), BPI (UK), Music Canada, SNEP (France), BVMI

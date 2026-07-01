@@ -1,0 +1,75 @@
+"use client"; // interactive: switch between years
+
+import { useState } from "react";
+import styles from "../certifications/certifications.module.css";
+import { tierOf, type CertEvent, type Country } from "../data/certifications";
+
+const YEARS = [2026, 2025, 2024];
+
+function EventBadge({ event, countries }: { event: CertEvent; countries: Record<string, Country> }) {
+  const country = countries[event.country];
+  return (
+    <span className={`${styles.cBadge} ${styles[tierOf(event.level)]}`} title={`${country.name} — ${country.body}`}>
+      <span className={styles.flag}>{country.flag}</span>
+      {event.x ? `${event.x}× ` : ""}
+      {event.level}
+    </span>
+  );
+}
+
+export default function CertHistoryByYear({
+  history,
+  countries,
+}: {
+  history: CertEvent[];
+  countries: Record<string, Country>;
+}) {
+  const [year, setYear] = useState(YEARS[0]);
+  const items = history.filter((e) => e.year === year);
+
+  return (
+    <div>
+      <h2 className="secTitle" style={{ margin: "48px 0 18px" }}>
+        <span className="goldText">Certifications by year</span>
+      </h2>
+
+      <div className={styles.filterRow}>
+        {YEARS.map((y) => (
+          <button
+            key={y}
+            type="button"
+            className={`${styles.fChip} ${year === y ? styles.fChipOn : ""}`}
+            onClick={() => setYear(y)}
+          >
+            {y}
+          </button>
+        ))}
+      </div>
+
+      {items.length === 0 ? (
+        <p className={styles.empty}>No certifications logged for {year} yet.</p>
+      ) : (
+        <>
+          <p className={styles.filterMeta} style={{ margin: "18px 0" }}>
+            Burna Boy&apos;s certifications in {year} — <b>{items.length}</b>
+          </p>
+          <div className={styles.certGrid}>
+            {items.map((event, i) => (
+              <div key={i} className={styles.certRow}>
+                <div className={styles.certRowHead}>
+                  <span className={styles.certTitle}>{event.title}</span>
+                  <span className={styles.certCredit}>
+                    {event.album ? "Album" : event.credit || ""}
+                  </span>
+                </div>
+                <div className={styles.badges}>
+                  <EventBadge event={event} countries={countries} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
