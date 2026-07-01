@@ -5,7 +5,9 @@ import Marquee from "./components/Marquee";
 import Reveal from "./components/Reveal";
 import CountUp from "./components/CountUp";
 import KeepExploring from "./components/KeepExploring";
+import UpdatesList from "./components/UpdatesList";
 import { totalAwards, countryCount } from "./data/certifications";
+import { latestUpdates } from "./data/updates";
 
 const total = totalAwards();
 
@@ -156,6 +158,28 @@ export default function Home() {
                 </li>
               ))}
             </ol>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ================= LATEST UPDATES ================= */}
+      <section className={styles.section}>
+        <div className="container">
+          <Reveal>
+            <p className={styles.eyebrow}>Tracked as it happens</p>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className={styles.sectionHead}>
+              <h2 className={styles.sectionTitle}>
+                Latest <span className="goldText">updates</span>
+              </h2>
+              <Link href="/updates" className={styles.headLink}>
+                All updates ↗
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal delay={140}>
+            <UpdatesList items={latestUpdates(4)} />
           </Reveal>
         </div>
       </section>
