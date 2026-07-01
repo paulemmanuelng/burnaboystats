@@ -183,10 +183,10 @@ export const statBoxes: LeaderboardBox[] = [
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "#1" },
-      { name: "Wizkid", sub: "🇳🇬 “One Dance” (with Drake & Kyla)", value: "#5" },
-      { name: "Tems", sub: "🇳🇬 “Raindance”", value: "#5" },
-      { name: "Rema", sub: "🇳🇬 “Calm Down” (Remix, with Selena Gomez)", value: "#8" },
-      { name: "Tyla", sub: "🇿🇦 “Water”", value: "#8" },
+      { name: "Wizkid", sub: "🇳🇬 “One Dance” (with Drake & Kyla) · tied", value: "#5" },
+      { name: "Tems", sub: "🇳🇬 “Raindance” · tied", value: "#5" },
+      { name: "Rema", sub: "🇳🇬 “Calm Down” (Remix, with Selena Gomez) · tied", value: "#8" },
+      { name: "Tyla", sub: "🇿🇦 “Water” · tied", value: "#8" },
     ],
     note: "Burna Boy is the first and only African artist to reach No. 1 on Spotify's Global Daily Top Songs chart — no other African artist has ever cracked the top 4.",
     source:
