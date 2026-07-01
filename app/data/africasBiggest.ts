@@ -103,15 +103,15 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "Spotify · African artists · all-time peak",
     layout: "list",
     entries: [
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "46.85M" },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "46.58M" },
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "46.30M" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "45.5M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "40.01M" },
       { name: "CKay", sub: "🇳🇬 Nigeria", value: "34.78M" },
     ],
-    note: "Burna Boy holds the highest monthly-listeners peak ever for a male African artist on Spotify — and it's still climbing.",
+    note: "Burna Boy holds the highest monthly-listeners peak ever for an African artist on Spotify — and it's still climbing.",
     source:
-      "Peak Spotify monthly listeners, from Spotify artist pages and monitoring trackers, as of June 2026. Burna Boy's figure is his current peak and still rising, so it updates as Spotify's numbers change.",
+      "Peak Spotify monthly listeners, from Spotify artist pages and monitoring trackers, as of July 2026. Burna Boy's figure is his current peak and still rising, so it updates as Spotify's numbers change.",
   },
   {
     id: "biggest-spotify-debut",
