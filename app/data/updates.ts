@@ -34,6 +34,13 @@ export const updates: Update[] = [
     date: "2026-07-01",
     category: "Site",
     kind: "build",
+    text: "Trimmed 8 page descriptions that were running long enough to get cut off in Google search results, and made the Certifications one auto-update so it can't go stale again.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-07-01",
+    category: "Site",
+    kind: "build",
     text: "Added custom share-preview images to every Records page (Awards, Charts, Firsts, Tours, Festivals, the map and the Records hub) — each one now shows its own headline stats instead of the generic homepage image.",
     href: "/records",
   },
