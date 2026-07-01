@@ -256,15 +256,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 100px;
-  padding: 16px 24px;
+  min-width: 96px;
+  padding: 14px 22px;
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
   background: rgba(255, 182, 39, 0.07);
   color: var(--gold-bright);
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   letter-spacing: 0.01em;
   cursor: pointer;
   transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease,
@@ -279,10 +279,10 @@
   background: var(--gold);
   color: var(--bg);
   border-color: var(--gold);
-  box-shadow: 0 8px 24px rgba(255, 182, 39, 0.3);
+  box-shadow: 0 6px 18px rgba(255, 182, 39, 0.24);
 }
 @media (max-width: 560px) {
-  .yearBtn { min-width: 0; flex: 1; padding: 14px 12px; font-size: 1.25rem; }
+  .yearBtn { min-width: 0; flex: 1; padding: 12px 10px; font-size: 1.1rem; }
 }
 
 /* Mobile: collapse the filter behind a toggle so 26 chips don't dominate */
