@@ -6,6 +6,10 @@ import { tierOf, type CertEvent, type Country } from "../data/certifications";
 
 const YEARS = [2026, 2025, 2024];
 
+const YEAR_NOTES: Partial<Record<number, string>> = {
+  2025: "Burna Boy was the most certified African artist in 2025.",
+};
+
 function EventBadge({ event, countries }: { event: CertEvent; countries: Record<string, Country> }) {
   const country = countries[event.country];
   return (
@@ -61,6 +65,9 @@ export default function CertHistoryByYear({
               Close ▲
             </button>
           </p>
+          {YEAR_NOTES[year] && (
+            <p style={{ margin: "0 0 20px", color: "var(--gold)", fontSize: "0.95rem" }}>{YEAR_NOTES[year]}</p>
+          )}
           <div className={styles.certGrid}>
             {items.map((event, i) => (
               <div key={i} className={styles.certRow}>
