@@ -4,9 +4,14 @@
 // not for wording/design tweaks.
 //
 // "content" entries must read as news ABOUT BURNA BOY, not as dev/changelog
-// notes about the site's data work. Write "Burna Boy has now won 79 awards…",
-// never "logged X, fixed Y, added a missing Z" — that's how the fact was
-// produced, not the fact itself.
+// notes about the site's data work — state the fact itself, never "logged X,
+// fixed Y, added a missing Z" (that's how the fact was produced, not the fact).
+//
+// Vary sentence openers — don't start every entry with "Burna Boy". Lead with
+// the number, the song, or the milestone instead. Use past tense for facts
+// that were true before today and are only being caught up on now (e.g. a
+// career award tally) — reserve present/"just happened" phrasing for things
+// that are genuinely new this week (a debut chart peak, a fresh streaming high).
 
 export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards";
 
@@ -29,7 +34,7 @@ export const updates: Update[] = [
     date: "2026-07-01",
     category: "Charts",
     kind: "content",
-    text: "“Dai Dai” (Shakira x Burna Boy) has debuted at No.60 on the Billboard Japan Hot 100 — a new market for the song.",
+    text: "A brand-new market: “Dai Dai” debuted at No.60 on the Billboard Japan Hot 100.",
     href: "/records/charts",
   },
   {
@@ -43,7 +48,7 @@ export const updates: Update[] = [
     date: "2026-07-01",
     category: "Awards",
     kind: "content",
-    text: "Burna Boy has now won 79 awards from 205 nominations across 42 award bodies worldwide, including wins at the BMI Awards, SESAC Awards and Caribbean Music Awards.",
+    text: "From the BMI Awards to the Caribbean Music Awards, the career tally reached 79 wins from 205 nominations across 42 award bodies worldwide.",
     href: "/records/awards",
   },
   {
@@ -57,28 +62,28 @@ export const updates: Update[] = [
     date: "2026-07-01",
     category: "Certifications",
     kind: "content",
-    text: "Burna Boy's total certifications now stand at 213 worldwide, after “Last Last” was confirmed Platinum in South Africa.",
+    text: "Platinum in South Africa too — “Last Last” pushed the worldwide certification count to 213.",
     href: "/certifications",
   },
   {
     date: "2026-07-01",
     category: "Firsts & Records",
     kind: "content",
-    text: "Burna Boy is the first African artist to hold both a UK No.1 album and No.1 single — and is now the most certified African artist in the world.",
+    text: "No other African artist has held both a UK No.1 album and a UK No.1 single — until Burna Boy, now also the most certified African artist worldwide.",
     href: "/records/firsts",
   },
   {
     date: "2026-07-01",
     category: "Streaming",
     kind: "content",
-    text: "Burna Boy's Spotify monthly listeners have hit an all-time peak of 46.85M — the highest ever for an African artist.",
+    text: "46.85 million monthly listeners on Spotify — a new all-time peak, and the highest ever recorded for an African artist.",
     href: "/records/africas-biggest",
   },
   {
     date: "2026-07-01",
     category: "Charts",
     kind: "content",
-    text: "“Dai Dai” (Shakira x Burna Boy) keeps climbing, with new peaks in Spain (No.3), Hungary (No.14), Israel (No.38), Canada (No.24), Brazil (No.63) and the US (No.74).",
+    text: "Six new chart peaks in one week for “Dai Dai”: No.3 in Spain, No.14 in Hungary, No.38 in Israel, No.24 in Canada, No.63 in Brazil and No.74 in the US.",
     href: "/records/charts",
   },
 ];
