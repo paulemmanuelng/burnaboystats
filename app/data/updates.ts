@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-01",
+    category: "Streaming",
+    text: "No other African artist has ever cracked the top 4 on Spotify's Global Daily chart — Burna Boy is the only one to ever reach No. 1.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-01",
     category: "Firsts & Records",
     text: "No. 1 on Spotify's Global Daily chart: “Dai Dai” just made Burna Boy the first African artist ever to top it — and the highest-peaking FIFA World Cup anthem in the chart's history.",
     href: "/records/firsts",
