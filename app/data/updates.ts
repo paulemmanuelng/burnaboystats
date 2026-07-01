@@ -31,7 +31,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-01",
     category: "Firsts & Records",
-    text: "No. 1 on Spotify's Global chart: “Dai Dai” just became Burna Boy's first song to top it — and the highest-peaking FIFA World Cup anthem ever.",
+    text: "No. 1 on Spotify's Global Daily chart: “Dai Dai” just made Burna Boy the first African artist ever to top it — and the highest-peaking FIFA World Cup anthem in the chart's history.",
     href: "/records/firsts",
   },
   {
