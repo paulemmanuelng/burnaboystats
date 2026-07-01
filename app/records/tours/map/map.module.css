@@ -251,6 +251,7 @@
   margin: 0 0 0.9rem;
 }
 .tableWrap {
+  width: 100%;
   overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
@@ -310,4 +311,10 @@
 }
 .table tfoot .numCol {
   text-align: center;
+}
+
+@media (max-width: 480px) {
+  .namesCell {
+    min-width: 0;
+  }
 }
