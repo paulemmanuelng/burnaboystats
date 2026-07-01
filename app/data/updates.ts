@@ -27,6 +27,13 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-01",
+    category: "Charts",
+    kind: "content",
+    text: "“Dai Dai” (Shakira x Burna Boy) has debuted at No.60 on the Billboard Japan Hot 100 — a new market for the song.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-01",
     category: "Awards",
     kind: "build",
     text: "Added a proper filter to the Awards page — filter by Result, Year or Award body (all 42 ceremonies), and combine all three at once.",

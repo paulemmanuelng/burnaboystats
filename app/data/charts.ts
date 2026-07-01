@@ -64,6 +64,7 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   CO: { name: "Colombia", flag: "🇨🇴", body: "Billboard Colombia Hot 100" },
   VN: { name: "Vietnam", flag: "🇻🇳", body: "Billboard Vietnam Hot 100" },
   BR: { name: "Brazil", flag: "🇧🇷", body: "Billboard Brasil Hot 100" },
+  JP: { name: "Japan", flag: "🇯🇵", body: "Billboard Japan Hot 100" },
   GLB: { name: "Global", flag: "🌍", body: "Billboard Global 200" },
   GLBX: { name: "Global (excl. US)", flag: "🌐", body: "Billboard Global Excl. US" },
 };
@@ -160,7 +161,7 @@ export const featureCharts: ChartRelease[] = [
     { c: "GR", peak: 5 }, { c: "NG", peak: 7 }, { c: "GLB", peak: 9 },
     { c: "HU", peak: 14 }, { c: "PT", peak: 14 }, { c: "CZ", peak: 18 }, { c: "ZA", peak: 19 }, { c: "UK", peak: 19 }, { c: "IT", peak: 19 }, { c: "LT", peak: 23 }, { c: "CA", peak: 24 }, { c: "PL", peak: 26 },
     { c: "IE", peak: 32 }, { c: "IL", peak: 38 },
-    { c: "AU", peak: 52 }, { c: "BR", peak: 63 }, { c: "US", peak: 74 }, { c: "VN", peak: 93 },
+    { c: "AU", peak: 52 }, { c: "JP", peak: 60 }, { c: "BR", peak: 63 }, { c: "US", peak: 74 }, { c: "VN", peak: 93 },
   ] },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, entries: [
     { c: "BE", peak: 2 }, { c: "SR", peak: 2 }, { c: "HU", peak: 39 }, { c: "IE", peak: 43 },
