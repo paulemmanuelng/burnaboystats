@@ -6,7 +6,7 @@ import { pageMetadata } from "../../../lib/seo";
 export const metadata = pageMetadata({
   title: "Burna Boy — Festivals & Shows",
   description:
-    "Every major festival and one-off show Burna Boy has performed — the festivals he's headlined (Afro Nation, Flow, Mawazine, St Kitts, Reggae Land), his own solo concerts, plus other big-stage appearances (Glastonbury, Wireless, Coachella, Roskilde, The Town and more).",
+    "Every major festival and show Burna Boy has performed — headline sets, solo concerts, and other big-stage appearances like Glastonbury and Wireless.",
   path: "/records/tours/festivals",
   shareTitle: "Burna Boy — Festivals & Shows",
   shareDescription: "Every festival he's headlined, plus other big-stage appearances.",

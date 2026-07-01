@@ -14,7 +14,7 @@ import { pageMetadata, datasetJsonLd } from "../lib/seo";
 export const metadata = pageMetadata({
   title: "Burna Boy Certifications — Silver, Gold, Platinum & Diamond Awards",
   description:
-    "The complete list of Burna Boy's music certifications — 160+ Silver, Gold, Platinum and Diamond awards across 22 countries (RIAA, BPI, SNEP, Music Canada, RMNZ, TCSN and more). Filter by country or tier.",
+    `${totalAwards()} Silver, Gold, Platinum and Diamond certifications across ${countryCount} countries — filter by tier, country or year.`,
   path: "/certifications",
   shareTitle: "Burna Boy Certifications — Every Silver, Gold, Platinum & Diamond",
   shareDescription: "Every certified Burna Boy song and album across 22 countries.",

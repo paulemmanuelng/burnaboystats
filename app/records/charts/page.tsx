@@ -16,7 +16,7 @@ import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 export const metadata = pageMetadata({
   title: "Burna Boy Official Chart Entries — Peak Positions Worldwide",
   description:
-    "Every Burna Boy official chart entry and peak position — US Billboard, UK Official Charts, France (SNEP), Germany, Australia, Ireland and more. Filter by country.",
+    "Every Burna Boy official chart entry and peak position worldwide — US Billboard, UK Official Charts, SNEP and more. Filter by country.",
   path: "/records/charts",
   shareTitle: "Burna Boy Official Chart Entries",
   shareDescription: "Peak positions on every major chart worldwide.",

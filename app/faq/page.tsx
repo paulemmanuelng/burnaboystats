@@ -8,7 +8,7 @@ import { numberOnes, numberOneReleases } from "../data/charts";
 export const metadata = pageMetadata({
   title: "Burna Boy FAQ — Grammys, Certifications, Records & Stats",
   description:
-    "Answers to the most-asked questions about Burna Boy — how many Grammys he's won, his certifications, highest-grossing tour, Billboard Hot 100 entries, albums, awards and records.",
+    "Quick answers to the most-asked questions about Burna Boy — Grammys, certifications, his highest-grossing tour, Hot 100 entries and more.",
   path: "/faq",
   shareTitle: "Burna Boy FAQ",
   shareDescription: "Quick answers: Grammys, certifications, tours, chart records and more.",

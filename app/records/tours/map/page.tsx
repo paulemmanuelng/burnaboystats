@@ -11,7 +11,7 @@ import styles from "./map.module.css";
 
 export const metadata = pageMetadata({
   title: "Where Burna Boy Has Performed — Interactive World Map",
-  description: `An interactive map of every country Burna Boy has performed in live — ${countryCount} countries across ${regionCount} regions, from his tours, festivals and one-off shows. Hover a country to see the shows there.`,
+  description: `An interactive map of every country Burna Boy has performed in — ${countryCount} countries across ${regionCount} regions. Hover a country to see the shows there.`,
   path: "/records/tours/map",
   shareTitle: "Where Burna Boy Has Performed",
   shareDescription: `Every country he's taken to the stage — ${countryCount} and counting.`,

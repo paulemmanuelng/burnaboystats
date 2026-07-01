@@ -7,7 +7,7 @@ import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 export const metadata = pageMetadata({
   title: "Africa's Biggest — Most-Streamed African Artists by Year (Spotify)",
   description:
-    "Who is the most-streamed African artist on Spotify? The year-by-year leaderboard of Africa's biggest artists by global streams — Burna Boy topped 2024 and 2025, with his ~2 billion streams in 2025 a record for an African artist.",
+    "Africa's biggest artists on Spotify — most-streamed by year, monthly-listener peaks and more, with Burna Boy leading nearly every leaderboard.",
   path: "/records/africas-biggest",
   shareTitle: "Africa's Biggest",
   shareDescription: "Spotify's most-streamed African artists, year by year.",
