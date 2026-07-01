@@ -50,7 +50,7 @@ export default function CertHistoryByYear({
         <p className={styles.empty}>
           No certifications logged for {year} yet.{" "}
           <button type="button" className={styles.clearBtn} onClick={() => setYear(null)}>
-            Collapse ▲
+            Close ▲
           </button>
         </p>
       ) : (
@@ -58,7 +58,7 @@ export default function CertHistoryByYear({
           <p className={styles.filterMeta} style={{ margin: "18px 0" }}>
             Burna Boy&apos;s certifications in {year} — <b>{items.length}</b>
             <button type="button" className={styles.clearBtn} onClick={() => setYear(null)}>
-              Collapse ▲
+              Close ▲
             </button>
           </p>
           <div className={styles.certGrid}>
@@ -82,7 +82,7 @@ export default function CertHistoryByYear({
             style={{ margin: "18px 0 8px" }}
             onClick={() => setYear(null)}
           >
-            Collapse ▲
+            Close ▲
           </button>
         </>
       )}
