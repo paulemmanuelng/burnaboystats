@@ -417,6 +417,27 @@ export const certHistory: CertEvent[] = [
   { title: "Alone", country: "NZ", level: "Gold", year: 2025 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "NZ", level: "Gold", year: 2025 },
   { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "UK", level: "Silver", year: 2025 },
+
+  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "ES", level: "Gold", year: 2024 },
+  { title: "Love, Damini", album: true, country: "DK", level: "Platinum", year: 2024 },
+  { title: "I Told Them...", album: true, country: "UK", level: "Gold", year: 2024 },
+  { title: "African Giant", album: true, country: "CH", level: "Gold", year: 2024 },
+  { title: "Anybody", country: "CH", level: "Gold", year: 2024 },
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "US", level: "Gold", year: 2024 },
+  { title: "Last Last", country: "UK", level: "Platinum", x: 2, year: 2024 },
+  { title: "Ye", country: "FR", level: "Platinum", year: 2024 },
+  { title: "Sittin' on Top of the World", credit: "feat. 21 Savage", country: "UK", level: "Silver", year: 2024 },
+  { title: "Play Play", credit: "J Hus ft. Burna Boy", country: "UK", level: "Platinum", year: 2024 },
+  { title: "For My Hand", credit: "feat. Ed Sheeran", country: "UK", level: "Platinum", year: 2024 },
+  { title: "Last Last", country: "DK", level: "Gold", year: 2024 },
+  { title: "Be Honest", credit: "Jorja Smith ft. Burna Boy", country: "DK", level: "Gold", year: 2024 },
+  { title: "It's Plenty", country: "UK", level: "Silver", year: 2024 },
+  { title: "African Giant", album: true, country: "FR", level: "Platinum", year: 2024 },
+  { title: "Rollin'", credit: "Mist ft. Burna Boy", country: "UK", level: "Silver", year: 2024 },
+  { title: "Alone", country: "UK", level: "Silver", year: 2024 },
+  { title: "City Boys", country: "FR", level: "Gold", year: 2024 },
+  { title: "City Boys", country: "UK", level: "Silver", year: 2024 },
+  { title: "I Told Them...", album: true, country: "UK", level: "Silver", year: 2024 },
 ];
 
 // Helpers

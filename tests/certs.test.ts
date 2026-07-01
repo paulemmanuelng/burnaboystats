@@ -71,6 +71,10 @@ describe("certHistory (certifications by year)", () => {
   it("2025 has the published count of 29 certifications", () => {
     expect(certHistory.filter((e) => e.year === 2025).length).toBe(29);
   });
+
+  it("2024 has the published count of 20 certifications", () => {
+    expect(certHistory.filter((e) => e.year === 2024).length).toBe(20);
+  });
 });
 
 describe("tierOf", () => {
