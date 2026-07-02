@@ -3,7 +3,6 @@
 import { useState } from "react";
 import styles from "../records/awards/awards.module.css";
 import { ceremonies, ceremonyWins, type AwardNom } from "../data/awards";
-import HiddenCode from "./HiddenCode";
 
 const RESULTS = [
   { key: "won", label: "Won" },
@@ -14,13 +13,7 @@ function Row({ nom }: { nom: AwardNom }) {
   return (
     <div className={styles.row}>
       <div className={styles.rowMain}>
-        <span className={styles.category}>
-          {nom.category === "Most Popular Fandom" ? (
-            <HiddenCode code="ZjZ4cHZNVGc=">{nom.category}</HiddenCode>
-          ) : (
-            nom.category
-          )}
-        </span>
+        <span className={styles.category}>{nom.category}</span>
         {nom.work && <span className={styles.work}>{nom.work}</span>}
       </div>
       <div className={styles.rowMeta}>
