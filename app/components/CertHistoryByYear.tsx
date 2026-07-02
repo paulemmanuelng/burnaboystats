@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type CertEvent, type Country } from "../data/certifications";
+import HiddenCode from "./HiddenCode";
 
 const YEARS = [2026, 2025, 2024, 2023];
 
@@ -81,7 +82,13 @@ export default function CertHistoryByYear({
             {items.map((event, i) => (
               <div key={i} className={styles.certRow}>
                 <div className={styles.certRowHead}>
-                  <span className={styles.certTitle}>{event.title}</span>
+                  <span className={styles.certTitle}>
+                    {event.title === "Collateral Damage" ? (
+                      <HiddenCode code="OFZLRkx5SEI=">{event.title}</HiddenCode>
+                    ) : (
+                      event.title
+                    )}
+                  </span>
                   <span className={styles.certCredit}>
                     {event.album ? "Album" : event.credit || ""}
                   </span>

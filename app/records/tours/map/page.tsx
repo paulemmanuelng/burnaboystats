@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PerformanceMap from "../../../components/PerformanceMap";
+import HiddenCode from "../../../components/HiddenCode";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 import {
   countryCount,
@@ -69,7 +70,13 @@ export default function PerformanceMapPage() {
             <tbody>
               {byRegion.map(({ region, countries }) => (
                 <tr key={region}>
-                  <th scope="row" className={styles.regionCell}>{region}</th>
+                  <th scope="row" className={styles.regionCell}>
+                    {region === "North America" ? (
+                      <HiddenCode code="NUpiTVNzVHc=">{region}</HiddenCode>
+                    ) : (
+                      region
+                    )}
+                  </th>
                   <td className={styles.numCol}>{countries.length}</td>
                   <td className={styles.namesCell}>
                     {countries.map((c) => `${c.flag} ${c.name}`).join("   ·   ")}

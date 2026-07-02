@@ -1,6 +1,7 @@
 import Reveal from "../components/Reveal";
 import Equalizer from "../components/Equalizer";
 import KeepExploring from "../components/KeepExploring";
+import HiddenCode from "../components/HiddenCode";
 import { pageMetadata } from "../lib/seo";
 
 export const metadata = pageMetadata({
@@ -123,7 +124,13 @@ export default function AboutPage() {
                 <div className="tRow" key={t.year + t.title}>
                   <span className="tYear">{t.year}</span>
                   <div className="tContent">
-                    <h3>{t.title}</h3>
+                    <h3>
+                      {t.title === "Major-label debut — Outside" ? (
+                        <HiddenCode code="N2N3eXZOZEs=">{t.title}</HiddenCode>
+                      ) : (
+                        t.title
+                      )}
+                    </h3>
                     <p>{t.text}</p>
                   </div>
                 </div>

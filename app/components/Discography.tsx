@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import AlbumCover from "./AlbumCover";
 import SpotifyIcon from "./SpotifyIcon";
+import HiddenCode from "./HiddenCode";
 import type { AlbumEntry } from "../data/albums";
 
 export default function Discography({
@@ -117,7 +118,13 @@ export default function Discography({
               {album.tracks.map((t, i) => (
                 <li key={t + i} className="track">
                   <span className="trackNum">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="trackName">{t}</span>
+                  <span className="trackName">
+                    {album.title === "On a Spaceship" && t === "Rizzla" ? (
+                      <HiddenCode code="ZWpGYkpIcnQ=">{t}</HiddenCode>
+                    ) : (
+                      t
+                    )}
+                  </span>
                 </li>
               ))}
             </ol>
