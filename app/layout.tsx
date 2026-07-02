@@ -4,6 +4,7 @@ import { Geist, Anton, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Nav from "./components/Nav";
 import Breadcrumbs from "./components/Breadcrumbs";
+import BirthdayCelebration from "./components/BirthdayCelebration";
 import { siteUrl } from "./site";
 import "./globals.css";
 
@@ -117,6 +118,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* NAVIGATION BAR — shown on every page */}
         <Nav />
+
+        {/* Birthday takeover — self-gates to July 2 (Burna Boy's birthday) */}
+        <BirthdayCelebration />
 
         {/* THE ACTUAL PAGE CONTENT gets slotted in here */}
         {children}

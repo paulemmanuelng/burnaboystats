@@ -1,0 +1,156 @@
+/* ── Confetti burst ── */
+.confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 45; /* below the nav (50) + modals (200), above page content */
+  pointer-events: none;
+  overflow: hidden;
+}
+.piece {
+  position: absolute;
+  top: -24px;
+  border-radius: 1px;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-name: fall;
+  animation-timing-function: cubic-bezier(0.3, 0.2, 0.5, 1);
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.round {
+  border-radius: 50%;
+}
+@keyframes fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--sway), 108vh, 0) rotate(var(--spin));
+    opacity: 0;
+  }
+}
+
+/* ── Birthday banner ── */
+.banner {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: calc(100vw - 32px);
+  padding: 13px 16px 13px 18px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(20, 16, 8, 0.96), rgba(9, 9, 11, 0.96));
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 182, 39, 0.12),
+    0 0 34px rgba(255, 182, 39, 0.22);
+  backdrop-filter: blur(6px);
+  animation: rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+.cake {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 1.02rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  line-height: 1.1;
+}
+.sub {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.link {
+  color: var(--gold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.link:hover {
+  color: var(--gold-bright);
+}
+.close {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.close:hover {
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
+@media (max-width: 520px) {
+  .banner {
+    left: 12px;
+    right: 12px;
+    transform: none;
+    border-radius: var(--radius-sm);
+    animation: riseMobile 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  @keyframes riseMobile {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .sub {
+    white-space: normal;
+  }
+}
+
+/* Respect reduced-motion: no falling confetti, no slide-in — just show the note. */
+@media (prefers-reduced-motion: reduce) {
+  .confetti {
+    display: none;
+  }
+  .banner {
+    animation: none;
+  }
+  .piece {
+    animation: none;
+  }
+}
