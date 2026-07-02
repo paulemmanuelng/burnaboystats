@@ -12,7 +12,17 @@ function decode(encoded: string): string {
   return atob(encoded);
 }
 
-export default function HiddenCode({ code, children }: { code: string; children: ReactNode }) {
+export default function HiddenCode({
+  code,
+  children,
+  found = false,
+  remaining,
+}: {
+  code: string;
+  children: ReactNode;
+  found?: boolean; // set true once this code has been claimed by a winner
+  remaining?: number; // how many codes are still unclaimed, shown in the "already found" message
+}) {
   const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
   const [copied, setCopied] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -77,7 +87,7 @@ export default function HiddenCode({ code, children }: { code: string; children:
         className={styles.trigger}
         role="button"
         tabIndex={0}
-        aria-label="Hidden giveaway code — click to reveal"
+        aria-label={found ? "Giveaway code — already claimed" : "Hidden giveaway code — click to reveal"}
         onClick={reveal}
         onKeyDown={onKeyDown}
       >
@@ -88,15 +98,29 @@ export default function HiddenCode({ code, children }: { code: string; children:
         createPortal(
           <div
             ref={popRef}
-            className={styles.popover}
+            className={`${styles.popover} ${found ? styles.claimed : ""}`}
             style={{ left: pos.x, top: pos.y }}
             onClick={(e) => e.stopPropagation()}
           >
-            <span className={styles.label}>🎉 You found a code!</span>
-            <span className={styles.codeBox}>{decode(code)}</span>
-            <button type="button" className={styles.copyBtn} onClick={copy}>
-              {copied ? "Copied ✓" : "Copy code"}
-            </button>
+            {found ? (
+              <>
+                <span className={styles.label}>✅ Already claimed!</span>
+                <span className={styles.claimedText}>
+                  This code&apos;s been won.
+                  {typeof remaining === "number"
+                    ? ` ${remaining} more ${remaining === 1 ? "code" : "codes"} still out there — keep looking 🔍`
+                    : " Keep looking for the others 🔍"}
+                </span>
+              </>
+            ) : (
+              <>
+                <span className={styles.label}>🎉 You found a code!</span>
+                <span className={styles.codeBox}>{decode(code)}</span>
+                <button type="button" className={styles.copyBtn} onClick={copy}>
+                  {copied ? "Copied ✓" : "Copy code"}
+                </button>
+              </>
+            )}
           </div>,
           document.body
         )}

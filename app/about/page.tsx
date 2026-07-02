@@ -126,7 +126,7 @@ export default function AboutPage() {
                   <div className="tContent">
                     <h3>
                       {t.title === "Major-label debut — Outside" ? (
-                        <HiddenCode code="N2N3eXZOZEs=">{t.title}</HiddenCode>
+                        <HiddenCode code="N2N3eXZOZEs=" found remaining={3}>{t.title}</HiddenCode>
                       ) : (
                         t.title
                       )}

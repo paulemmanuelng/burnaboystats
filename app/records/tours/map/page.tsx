@@ -72,7 +72,7 @@ export default function PerformanceMapPage() {
                 <tr key={region}>
                   <th scope="row" className={styles.regionCell}>
                     {region === "North America" ? (
-                      <HiddenCode code="NUpiTVNzVHc=">{region}</HiddenCode>
+                      <HiddenCode code="NUpiTVNzVHc=" found remaining={3}>{region}</HiddenCode>
                     ) : (
                       region
                     )}
