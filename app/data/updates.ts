@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-03",
     category: "Charts",
+    text: "A new high for “Dai Dai” in Australia: No.47 on the ARIA Top 50.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-03",
+    category: "Charts",
     text: "A new market for “Dai Dai”: a debut at No.7 in Ecuador.",
     href: "/records/charts",
   },
