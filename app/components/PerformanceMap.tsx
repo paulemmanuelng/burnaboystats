@@ -55,6 +55,21 @@ export default function PerformanceMap() {
     vp.scrollTop = (vp.scrollHeight - vp.clientHeight) / 2;
   }, [zoom]);
 
+  // The card is `position: fixed`, anchored to where the country sat on screen
+  // at tap time — if the page (or the zoomed-in map viewport) scrolls afterward,
+  // that anchor goes stale and the card is left floating over whatever scrolled
+  // underneath it. Dismiss it on scroll so it never lingers like that.
+  useEffect(() => {
+    if (active == null) return;
+    const vp = viewportRef.current;
+    window.addEventListener("scroll", clear, { passive: true });
+    vp?.addEventListener("scroll", clear, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", clear);
+      vp?.removeEventListener("scroll", clear);
+    };
+  }, [active]);
+
   // Shared interaction wiring — the card anchors to the hovered/focused country
   // itself (centred just above it), so it never drifts off into the ocean.
   const wire = (c: PerformedCountry) => ({
