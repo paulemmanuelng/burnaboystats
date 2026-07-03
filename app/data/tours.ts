@@ -275,5 +275,6 @@ export const concerts: Festival[] = [
   { year: "2024", name: "Unforgettable Concert", location: "Guyana National Stadium, Providence", note: "Headlined the biggest concert in Guyana's history (1 May 2024) — about 20,000 fans, the country's most expensive show ever staged." },
   { year: "2019", name: "Burna Boy Experience", location: "Intare Conference Arena, Kigali", note: "A sold-out Kigali headline concert (23 March 2019)." },
   { year: "2022", name: "Burna Boy Live in Suriname", location: "Paramaribo", note: "His first concert in Suriname (Dec 2022)." },
+  { year: "2022", name: "Burna Boy Live in Windhoek", location: "Independence Stadium, Namibia", note: "His Namibia debut (Sept 2022) — originally booked for the African Giant tour in 2020 but postponed by COVID-19 restrictions; the show finally happened two years later." },
   { year: "2024", name: "Taste the Rhythms with Burna Boy", location: "Vigie Playing Field, Castries, Saint Lucia", note: "A standalone promoted concert (3 May 2024) — separate from that year's official Saint Lucia Jazz & Arts Festival, whose own headliners were Air Supply, Davido and Machel Montano." },
 ];
