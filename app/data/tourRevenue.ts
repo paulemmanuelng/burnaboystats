@@ -20,7 +20,7 @@ export interface RevenueShow {
 export const revenueShows: RevenueShow[] = [
   { artist: "Burna Boy", venue: "London Stadium", city: "London", flag: "🇬🇧", tour: "I Told Them… Tour", year: "2024", tickets: "58,973", revenue: 6147209 },
   { artist: "Burna Boy", venue: "Stade de France", city: "Paris", flag: "🇫🇷", tour: "I Told Them… Tour", year: "2025", tickets: "43,881", revenue: 4528368 },
-  { artist: "Fally Ipupa (DR Congo)", venue: "La Défense Arena", city: "Paris", flag: "🇫🇷", tour: "Solo concert", year: "2023", tickets: "39,048", revenue: 3160842 },
+  { artist: "Fally Ipupa", venue: "La Défense Arena", city: "Paris", flag: "🇫🇷", tour: "Solo concert", year: "2023", tickets: "39,048", revenue: 3160842 },
   { artist: "Burna Boy", venue: "La Défense Arena", city: "Paris", flag: "🇫🇷", tour: "Love, Damini Tour", year: "2023", tickets: "36,585", revenue: 2863340 },
   { artist: "Burna Boy", venue: "Scotiabank Arena", city: "Toronto", flag: "🇨🇦", tour: "I Told Them… Tour", year: "2024", tickets: "29,579 (2 nights)", revenue: 2801928 },
   { artist: "Burna Boy", venue: "Bell Centre", city: "Montreal", flag: "🇨🇦", tour: "I Told Them… Tour", year: "2024", tickets: "26,303 (2 nights)", revenue: 1904384 },
