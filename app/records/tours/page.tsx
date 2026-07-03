@@ -2,7 +2,9 @@ import Link from "next/link";
 import styles from "./tours.module.css";
 import CountUp from "../../components/CountUp";
 import ToursExplorer from "../../components/ToursExplorer";
+import StatBox from "../../components/StatBox";
 import { tours, liveMoments } from "../../data/tours";
+import { revenueShows, revenueLeaderboardBox } from "../../data/tourRevenue";
 import { pageMetadata } from "../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -121,6 +123,26 @@ export default function ToursPage() {
           <span>
             <span className={styles.allShowsTitle}>Festivals &amp; shows</span>
             <span className={styles.allShowsDesc}>Every festival &amp; big stage he&apos;s played — the headline sets and beyond</span>
+          </span>
+          <span className={styles.allShowsArrow} aria-hidden="true">→</span>
+        </Link>
+
+        <h2 className={`secTitle ${styles.group}`}>
+          Highest <span className="goldText">revenue per show</span>
+        </h2>
+        <p className={styles.tourHint}>The top 10 single-show grosses by any African artist.</p>
+        <StatBox
+          box={revenueLeaderboardBox(revenueShows.slice(0, 10), {
+            title: "Highest reported revenue per show",
+            meta: "African artists · single-show gross · all-time",
+            note: "Burna Boy holds 27 of the 40 highest-grossing shows by an African artist — more than every other artist on this list combined.",
+            source: "Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of July 2026.",
+          })}
+        />
+        <Link href="/records/tours/revenue" className={styles.allShowsCard}>
+          <span>
+            <span className={styles.allShowsTitle}>See the full top 40</span>
+            <span className={styles.allShowsDesc}>Every show on the list, ranked by reported revenue</span>
           </span>
           <span className={styles.allShowsArrow} aria-hidden="true">→</span>
         </Link>

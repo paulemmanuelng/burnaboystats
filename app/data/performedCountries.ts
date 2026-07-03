@@ -53,7 +53,7 @@ export const performedCountries: PerformedCountry[] = [
   // ── Europe ──
   { name: "United Kingdom", code: 826, region: "Europe", flag: "🇬🇧", events: ["London Stadium (2023 & 2024)", "The O2 Arena, London (2021)"], more: true },
   { name: "France", code: 250, region: "Europe", flag: "🇫🇷", events: ["Stade de France, Paris (2025)", "Accor Arena, Paris (2021)"], more: true },
-  { name: "Netherlands", code: 528, region: "Europe", flag: "🇳🇱", events: ["Ziggo Dome, Amsterdam (2021)", "Rotterdam Ahoy (2021)"], more: true },
+  { name: "Netherlands", code: 528, region: "Europe", flag: "🇳🇱", events: ["Ziggo Dome, Amsterdam (2022)", "Rotterdam Ahoy (2022)"], more: true },
   { name: "Belgium", code: 56, region: "Europe", flag: "🇧🇪", events: ["ING Arena, Brussels (2026)", "Palais 12, Brussels (2019)"] },
   { name: "Ireland", code: 372, region: "Europe", flag: "🇮🇪", events: ["3Arena, Dublin (Mar & Dec 2022)"] },
   { name: "Spain", code: 724, region: "Europe", flag: "🇪🇸", events: ["FITZ, Madrid (2025)", "NAO Pool Club, Málaga (2025)"] },
