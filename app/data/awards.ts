@@ -23,6 +23,19 @@
 //  confidence source). A literal "Ghana Music Awards USA" doesn't appear
 //  to exist — the real diaspora show is Ghana Entertainment Awards USA
 //  (GEA-USA), added under that name instead.
+//
+//  FOLLOW-UP PASS (July 2026, birthday tally from @chartsafrica): most of
+//  that tally already matched exactly (Grammy, BET, MOBO, MTV EMAs, AFRIMA,
+//  Ghana Music Awards, SoundCity — all confirmed our existing counts). One
+//  real correction came out of it: Ghana Music Awards UK is a genuinely
+//  separate, London-based ceremony from the Accra-based Telecel Ghana Music
+//  Awards (confirmed via ghanamusic.com's own 2022 winners list) — split out
+//  as its own entry instead of being folded into the main Ghana Music Awards
+//  ceremony. Checked and rejected: NMPA Songwriter Awards (no evidence at
+//  all), TooXclusive Awards (real ceremony, no verifiable win), The Nation
+//  Newspaper Awards (editorial praise, not a competitive award), a 10th
+//  Headies win (stays at 9 — no source breaks down what it would be), and a
+//  4th Metro FM win (stays at 3, all from 2016).
 // ============================================================
 
 export interface AwardNom {
@@ -284,9 +297,15 @@ export const ceremonies: Ceremony[] = [
     noms: [
       { year: 2019, category: "African Artiste of the Year", won: true },
       { year: 2020, category: "African Artiste of the Year", won: true },
-      { year: 2022, category: "African Artiste of the Year (UK)", won: true },
       { year: 2025, category: "African Song of the Year", work: "Tshwala Bam (TitoM & Yuppe ft. S.N.E & Burna Boy)", won: true },
       { year: 2026, category: "Best African Song", work: "Laho II (Shallipopi & Burna Boy)", won: false },
+    ],
+  },
+  {
+    name: "Ghana Music Awards UK",
+    noms: [
+      { year: 2021, category: "African Artist of the Year", won: false },
+      { year: 2022, category: "African Artiste of the Year", won: true },
     ],
   },
   {

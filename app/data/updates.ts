@@ -29,6 +29,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-03",
+    category: "Awards",
+    text: "Ghana Music Awards UK confirmed as its own ceremony, separate from the main Ghana Music Awards — the career tally now reads 79 wins from 206 nominations across 43 award bodies worldwide.",
+    href: "/records/awards",
+  },
+  {
     date: "2026-07-01",
     category: "Streaming",
     text: "No other African artist has ever cracked the top 4 on Spotify's Global Daily chart — Burna Boy is the only one to ever reach No. 1.",
@@ -63,12 +69,6 @@ export const updates: Update[] = [
     category: "Certifications",
     text: "Platinum in South Africa too — “Last Last” pushed the worldwide certification count to 213.",
     href: "/certifications",
-  },
-  {
-    date: "2026-07-01",
-    category: "Awards",
-    text: "From the BMI Awards to the Caribbean Music Awards, the career tally reached 79 wins from 205 nominations across 42 award bodies worldwide.",
-    href: "/records/awards",
   },
   {
     date: "2026-07-01",
