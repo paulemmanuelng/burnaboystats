@@ -30,6 +30,18 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-03",
+    category: "Charts",
+    text: "No.1 in Germany: “Dai Dai” tops the Top 100 Singles Chart there this week.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-03",
+    category: "Charts",
+    text: "Up five spots in Ireland: “Dai Dai” climbs to No.27 on the Official Irish Singles Chart, its 5th week there.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-03",
     category: "Streaming",
     text: "47.87 million monthly listeners on Spotify — yet another all-time peak, still the highest ever recorded for an African artist.",
     href: "/records/africas-biggest",
