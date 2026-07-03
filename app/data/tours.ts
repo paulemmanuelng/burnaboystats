@@ -111,7 +111,7 @@ export const tours: Tour[] = [
   {
     name: "Space Drift World Tour",
     years: "2021–22",
-    note: "His first run as a Grammy winner — a pandemic-forced repackaging of the shelved Twice as Tall tour into a new global trek celebrating both the African Giant and Twice as Tall eras. Highlights: his O2 Arena headline debut, becoming the first Nigerian to headline the Hollywood Bowl, an Amsterdam night that sold out in 19 minutes, a Lagos homecoming, and a Madison Square Garden finale — the first Nigerian artist to sell out the venue.",
+    note: "His first run as a Grammy winner — a pandemic-forced repackaging of the shelved Twice as Tall tour into a new global trek celebrating both the African Giant and Twice as Tall eras. Highlights: his O2 Arena headline debut, becoming the first Nigerian to headline the Hollywood Bowl, an Amsterdam night that sold out the Ziggo Dome in 19 minutes — making him the first African artist ever to sell out the venue — a Lagos homecoming, and a Madison Square Garden finale — the first Nigerian artist to sell out the venue.",
     partial: true,
     dates: [
       { date: "Aug 27, 2021", venue: "The O2 Arena", city: "London", country: "UK", cap: 20000 },
