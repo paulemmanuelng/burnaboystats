@@ -18,7 +18,7 @@
 // career award tally) — reserve present/"just happened" phrasing for things
 // that are genuinely new this week (a debut chart peak, a fresh streaming high).
 
-export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards";
+export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards" | "Tours";
 
 export interface Update {
   date: string; // ISO "YYYY-MM-DD"
@@ -28,6 +28,12 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-07-03",
+    category: "Tours",
+    text: "Seven headline sets and counting at Afro Nation: five in Portugal (2019, 2022, 2023, 2025, 2026), plus Miami and Detroit in 2023.",
+    href: "/records/tours/festivals",
+  },
   {
     date: "2026-07-03",
     category: "Charts",
