@@ -31,6 +31,18 @@ export const updates: Update[] = [
   {
     date: "2026-07-03",
     category: "Charts",
+    text: "A jump of nine in Italy: “Dai Dai” reaches a new peak of No.10 on the FIMI Official Singles Chart.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-03",
+    category: "Charts",
+    text: "Up to No.18 in the UK: “Dai Dai” climbs again on the Official Singles Chart, its 5th week there.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-03",
+    category: "Charts",
     text: "No.1 in Germany: “Dai Dai” tops the Top 100 Singles Chart there this week.",
     href: "/records/charts",
   },
