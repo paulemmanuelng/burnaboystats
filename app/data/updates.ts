@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-03",
+    category: "Streaming",
+    text: "592 million monthly audience peak on YouTube Music — third among African artists, behind only Tyla and Moliy, and still climbing.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-03",
     category: "Awards",
     text: "Ghana Music Awards UK confirmed as its own ceremony, separate from the main Ghana Music Awards — the career tally now reads 79 wins from 206 nominations across 43 award bodies worldwide.",
     href: "/records/awards",
