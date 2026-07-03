@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-03",
+    category: "Tours",
+    text: "Five major European festivals headlined in one summer: We Love Green in Paris, SummerJam in Cologne, Gurtenfestival in Bern, Paléo in Nyon and Lollapalooza Berlin — all in 2024.",
+    href: "/records/tours/festivals",
+  },
+  {
+    date: "2026-07-03",
     category: "Charts",
     text: "A jump of nine in Italy: “Dai Dai” reaches a new peak of No.10 on the FIMI Official Singles Chart.",
     href: "/records/charts",
