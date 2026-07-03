@@ -29,7 +29,7 @@ export default function RevenuePage() {
             title: "Highest reported revenue per show",
             meta: "African artists · single-show gross · all-time",
             note: "Burna Boy holds 27 of the 40 highest-grossing shows by an African artist — more than every other artist on this list combined.",
-            source: "Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of July 2026. Two-night stands (Toronto & Montreal) show combined tickets and revenue.",
+            source: "Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of July 2026. Each entry is a single night's gross — multi-night stands (e.g. Toronto & Montreal) are ranked per night, not combined.",
           })}
         />
         <Link href="/records/tours" className={styles.back}>← Tours</Link>
