@@ -47,6 +47,7 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Cameroon", code: 120, region: "Africa", flag: "🇨🇲", events: ["SBO Show, Douala (2019)"] },
   { name: "Tanzania", code: 834, region: "Africa", flag: "🇹🇿", events: ["Next Door, Dar es Salaam (2019)"] },
   { name: "Zambia", code: 894, region: "Africa", flag: "🇿🇲", events: ["Lusaka Showgrounds (2019)"] },
+  { name: "Botswana", code: 72, region: "Africa", flag: "🇧🇼", events: ["National Stadium, Gaborone (2017)"] },
   { name: "Mauritius", code: 480, region: "Africa", flag: "🇲🇺", events: ["Tribeca Mall, Coca-Cola Food Fest (2025)"], marker: { x: 589.6, y: 302.6 } },
 
   // ── Europe ──
