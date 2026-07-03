@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-03",
+    category: "Charts",
+    text: "A new market for “Dai Dai”: a debut at No.7 in Ecuador.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-03",
     category: "Streaming",
     text: "592 million monthly audience peak on YouTube Music — third among African artists, behind only Tyla and Moliy, and still climbing.",
     href: "/records/africas-biggest",
