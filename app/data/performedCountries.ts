@@ -88,6 +88,7 @@ export const performedCountries: PerformedCountry[] = [
 
   // ── Caribbean ──
   { name: "Jamaica", code: 388, region: "Caribbean", flag: "🇯🇲", events: ["National Stadium, Kingston (2022)"] },
+  { name: "Curaçao", code: 531, region: "Caribbean", flag: "🇨🇼", events: ["Festival Center Brievengat, Willemstad (2022)"], marker: { x: 273.5, y: 194 } },
   { name: "Barbados", code: 52, region: "Caribbean", flag: "🇧🇧", events: ["Tipsy Beach Party, Bridgetown (2022)"], marker: { x: 303, y: 190.8 } },
   { name: "Bahamas", code: 44, region: "Caribbean", flag: "🇧🇸", events: ["Spilligate Festival, Nassau (2024)"] },
   { name: "St Kitts & Nevis", code: 659, region: "Caribbean", flag: "🇰🇳", events: ["St Kitts Music Festival (2023)"], marker: { x: 296.5, y: 177.1 } },
