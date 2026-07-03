@@ -92,7 +92,7 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Dominica", code: 212, region: "Caribbean", flag: "🇩🇲", events: ["World Creole Music Festival, Roseau (2022)"], marker: { x: 299.2, y: 183.4 } },
   { name: "Trinidad & Tobago", code: 780, region: "Caribbean", flag: "🇹🇹", events: ["O2 Park, Trinidad (2022)", "TOMAC Festival, Tobago"] },
   { name: "Haiti", code: 332, region: "Caribbean", flag: "🇭🇹", events: ["Live in Haiti (2020)"] },
-  { name: "Saint Lucia", code: 662, region: "Caribbean", flag: "🇱🇨", events: ["Saint Lucia Jazz Festival, Castries (2024)"], marker: { x: 299.7, y: 188.4 } },
+  { name: "Saint Lucia", code: 662, region: "Caribbean", flag: "🇱🇨", events: ["Taste the Rhythms with Burna Boy, Castries (2024)"], marker: { x: 299.7, y: 188.4 } },
   { name: "Antigua & Barbuda", code: 28, region: "Caribbean", flag: "🇦🇬", events: ["Sir Vivian Richards Stadium (2022)"], marker: { x: 298.8, y: 177.8 } },
 
   // ── Oceania ──
