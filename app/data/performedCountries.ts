@@ -43,11 +43,10 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Rwanda", code: 646, region: "Africa", flag: "🇷🇼", events: ["Burna Boy Experience, Kigali (2019)"] },
   { name: "Senegal", code: 686, region: "Africa", flag: "🇸🇳", events: ["Festi Dakar, Grand Théâtre, Dakar (2022)"] },
   { name: "Côte d'Ivoire", code: 384, region: "Africa", flag: "🇨🇮", events: ["Stell'Air Festival, Abidjan (2024)"] },
-  { name: "Benin", code: 204, region: "Africa", flag: "🇧🇯", events: ["WeLoveYa Festival, Cotonou"] },
+  { name: "Benin", code: 204, region: "Africa", flag: "🇧🇯", events: ["WeLoveYa Festival, Cotonou (2025)"] },
   { name: "Cameroon", code: 120, region: "Africa", flag: "🇨🇲", events: ["SBO Show, Douala (2019)"] },
   { name: "Tanzania", code: 834, region: "Africa", flag: "🇹🇿", events: ["Next Door, Dar es Salaam (2019)"] },
   { name: "Zambia", code: 894, region: "Africa", flag: "🇿🇲", events: ["Lusaka Showgrounds (2019)"] },
-  { name: "Botswana", code: 72, region: "Africa", flag: "🇧🇼", events: ["National Stadium, Gaborone"] },
   { name: "Mauritius", code: 480, region: "Africa", flag: "🇲🇺", events: ["Tribeca Mall, Coca-Cola Food Fest (2025)"], marker: { x: 589.6, y: 302.6 } },
 
   // ── Europe ──
@@ -87,10 +86,10 @@ export const performedCountries: PerformedCountry[] = [
   // ── Caribbean ──
   { name: "Jamaica", code: 388, region: "Caribbean", flag: "🇯🇲", events: ["National Stadium, Kingston (2022)"] },
   { name: "Barbados", code: 52, region: "Caribbean", flag: "🇧🇧", events: ["Tipsy Beach Party, Bridgetown (2022)"], marker: { x: 303, y: 190.8 } },
-  { name: "Bahamas", code: 44, region: "Caribbean", flag: "🇧🇸", events: ["Nassau (2023)"] },
+  { name: "Bahamas", code: 44, region: "Caribbean", flag: "🇧🇸", events: ["Spilligate Festival, Nassau (2024)"] },
   { name: "St Kitts & Nevis", code: 659, region: "Caribbean", flag: "🇰🇳", events: ["St Kitts Music Festival (2023)"], marker: { x: 296.5, y: 177.1 } },
   { name: "Dominica", code: 212, region: "Caribbean", flag: "🇩🇲", events: ["World Creole Music Festival, Roseau (2022)"], marker: { x: 299.2, y: 183.4 } },
-  { name: "Trinidad & Tobago", code: 780, region: "Caribbean", flag: "🇹🇹", events: ["O2 Park, Trinidad (2022)", "TOMAC Festival, Tobago"] },
+  { name: "Trinidad & Tobago", code: 780, region: "Caribbean", flag: "🇹🇹", events: ["O2 Park, Trinidad (2022)", "TOMAC Festival, Tobago (2022)"] },
   { name: "Haiti", code: 332, region: "Caribbean", flag: "🇭🇹", events: ["Live in Haiti (2020)"] },
   { name: "Saint Lucia", code: 662, region: "Caribbean", flag: "🇱🇨", events: ["Taste the Rhythms with Burna Boy, Castries (2024)"], marker: { x: 299.7, y: 188.4 } },
   { name: "Antigua & Barbuda", code: 28, region: "Caribbean", flag: "🇦🇬", events: ["Sir Vivian Richards Stadium (2022)"], marker: { x: 298.8, y: 177.8 } },
