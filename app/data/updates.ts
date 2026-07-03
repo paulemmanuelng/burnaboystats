@@ -30,6 +30,24 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-03",
+    category: "Streaming",
+    text: "47.87 million monthly listeners on Spotify — yet another all-time peak, still the highest ever recorded for an African artist.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-03",
+    category: "Charts",
+    text: "A leap from No.60 to No.5 in Lithuania: “Dai Dai” makes its biggest jump yet, now in its 5th week on the AGATA chart.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-03",
+    category: "Charts",
+    text: "Up to No.2 in Norway: “Dai Dai” climbs again in its 6th week on the VG-lista chart.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-03",
     category: "Tours",
     text: "Seven headline sets and counting at Afro Nation: five in Portugal (2019, 2022, 2023, 2025, 2026), plus Miami and Detroit in 2023.",
     href: "/records/tours/festivals",
