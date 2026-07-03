@@ -119,7 +119,7 @@ export const tours: Tour[] = [
   {
     name: "Space Drift World Tour",
     years: "2021–22",
-    note: "His first run as a Grammy winner — a pandemic-forced repackaging of the shelved Twice as Tall tour into a new global trek celebrating both the African Giant and Twice as Tall eras. Highlights: his O2 Arena headline debut, becoming the first Nigerian to headline the Hollywood Bowl, an Amsterdam night that sold out the Ziggo Dome in 19 minutes — making him the first African artist ever to sell out the venue — a Lagos homecoming, and a Madison Square Garden finale — the first Nigerian artist to sell out the venue.",
+    note: "His first run as a Grammy winner — a pandemic-forced repackaging of the shelved Twice as Tall tour into a new global trek celebrating both the African Giant and Twice as Tall eras. Highlights: his O2 Arena headline debut, becoming the first African artist to headline the Hollywood Bowl, an Amsterdam night that sold out the Ziggo Dome in 19 minutes — making him the first African artist ever to sell out the venue — a Lagos homecoming, and a Madison Square Garden finale — the first Nigerian artist to sell out the venue.",
     partial: true,
     dates: [
       { date: "Aug 27, 2021", venue: "The O2 Arena", city: "London", country: "UK", cap: 20000 },
@@ -151,6 +151,7 @@ export const tours: Tour[] = [
       { date: "Sep 20, 2019", venue: "The Fillmore", city: "San Francisco", country: "USA", cap: 1150 },
       { date: "Oct 20, 2019", venue: "Palais 12", city: "Brussels", country: "Belgium" },
       { date: "Oct 24, 2019", venue: "AFAS Live", city: "Amsterdam", country: "Netherlands", cap: 6000 },
+      { date: "Oct 25, 2019", venue: "Columbiahalle", city: "Berlin", country: "Germany" },
       { date: "Nov 3, 2019", venue: "The SSE Arena, Wembley", city: "London", country: "UK", cap: 12500 },
       { date: "Nov 6, 2019", venue: "Albert Hall", city: "Manchester", country: "UK", cap: 2500 },
       { date: "Nov 9, 2019", venue: "O2 Academy", city: "Leicester", country: "UK", cap: 1450 },
@@ -237,8 +238,8 @@ export const festivals: Festival[] = [
   { year: "2022", name: "World Creole Music Festival", location: "Windsor Park Stadium, Roseau, Dominica", note: "Headlined night two of Dominica's flagship festival (Oct 2022)." },
   { year: "2024", name: "Sunny Hill Festival", location: "Pristina, Kosovo", note: "Headlined Kosovo's biggest festival (2024) before ~15,000 — wrapped in the Kosovo flag." },
   { year: "2024", name: "Stell'Air Festival", location: "Abidjan, Côte d'Ivoire", note: "Drew about 20,000 during AFCON 2024 (Jan 2024)." },
-  { year: "2024", name: "Saint Lucia Jazz Festival", location: "Castries, Saint Lucia", note: "A full-band headline set at the island's flagship festival (May 2024)." },
   { year: "2022", name: "Festi Dakar", location: "Grand Théâtre, Dakar, Senegal", note: "Closed the festival's third edition (Feb 2022) — his first Dakar concert." },
+  { year: "2023", name: "Roskilde Festival", location: "Roskilde, Denmark", note: "Closed the Orange Stage on Thursday night — a headline slot in the same rotation as Kendrick Lamar (Wednesday), Blur (Friday) and closing headliner Lizzo." },
   { year: "2022", name: "TOMAC Festival", location: "Plymouth Recreation Ground, Tobago", note: "Headlined Tobago's Music, Arts & Culture festival through torrential rain (Oct 2022)." },
   { year: "2021", name: "SNF Nostos Festival", location: "Athens, Greece", note: "His Greece debut (Aug 2021)." },
   { year: "2025", name: "Coca-Cola Food Fest", location: "Tribeca Mall, Mauritius", note: "Billed as the biggest live show Mauritius had ever seen (2 Aug 2025)." },
@@ -246,19 +247,19 @@ export const festivals: Festival[] = [
 
 // Other festivals & one-off shows he performed at (NOT as the headliner).
 export const otherShows: Festival[] = [
-  { year: "2019", name: "Coachella", location: "Indio, USA", note: "His Coachella debut, performing across both weekends on the Mojave stage." },
+  { year: "2019", name: "Coachella", location: "Indio, USA", note: "His Coachella debut, performing across both weekends on the main Coachella Stage." },
   { year: "2021", name: "Governors Ball Music Festival", location: "New York, USA", note: "A Sunday main-stage set at Citi Field, on a bill headlined by Post Malone." },
-  { year: "2022", name: "Global Citizen Festival", location: "New York, USA", note: "Performed on the Great Lawn in Central Park at the 10th-anniversary festival." },
+  { year: "2021", name: "Global Citizen Live", location: "New York, USA", note: "Performed on the Great Lawn in Central Park (25 Sept 2021), ahead of headliners Coldplay, Billie Eilish and Jennifer Lopez." },
   { year: "2023", name: "Coachella", location: "Indio, USA", note: "Returned to Coachella for a second appearance, on a bigger stage than his 2019 debut." },
-  { year: "2023", name: "Roskilde Festival", location: "Roskilde, Denmark", note: "Played one of Europe's largest festivals to a huge crowd." },
   { year: "2024", name: "Glastonbury Festival", location: "Worthy Farm, UK", note: "A primetime Pyramid Stage set, immediately before Sunday headliner SZA, on a bill topped by Dua Lipa and Coldplay." },
   { year: "2025", name: "Wireless Festival", location: "London, UK", note: "A top-billed name on the Sunday line-up at Finsbury Park, on a bill headlined by Drake — who headlined all three days." },
   { year: "2025", name: "The Town", location: "São Paulo, Brazil", note: "His first show in Brazil — a Skyline Stage set at the giant São Paulo festival (Autódromo de Interlagos, 6 Sept 2025), on a day topped by headliner Travis Scott, before a roughly 100,000-strong daily crowd." },
-  { year: "2019", name: "One Africa Music Fest", location: "Dubai, UAE", note: "A co-headline slot at the Afrobeats festival's Dubai edition (Festival Arena, 15 Nov 2019), on a bill with Wizkid, Tiwa Savage, Tekno, Teni and 2Baba, hosted by Banky W." },
+  { year: "2019", name: "One Africa Music Fest", location: "Dubai, UAE", note: "A featured act at the Afrobeats festival's Dubai edition (Festival Arena, 15 Nov 2019), on a bill led by Wizkid and also featuring Davido, Tiwa Savage, Tekno, Teni and 2Baba, hosted by Banky W." },
   { year: "2024", name: "Untold Festival", location: "Cluj-Napoca, Romania", note: "Performed at one of Europe's biggest festivals (Aug 2024) — his Romania debut." },
   { year: "2024", name: "Superbloom Festival", location: "Munich, Germany", note: "A set at the Munich festival in the Olympiapark (8 Sept 2024)." },
   { year: "2024", name: "MEO Kalorama", location: "Lisbon, Portugal", note: "A set at the Lisbon festival in Parque da Bela Vista (Aug 2024)." },
   { year: "2024", name: "Stavern Festival", location: "Stavern, Norway", note: "His Norway debut — a festival set in summer 2024." },
+  { year: "2025", name: "New Orleans Jazz & Heritage Festival", location: "New Orleans, USA", note: "A Congo Square Stage set at the legendary Jazz Fest (27 April 2025)." },
 ];
 
 // Solo headline concerts — his own standalone shows (not festival slots, and not
@@ -274,4 +275,5 @@ export const concerts: Festival[] = [
   { year: "2024", name: "Unforgettable Concert", location: "Guyana National Stadium, Providence", note: "Headlined the biggest concert in Guyana's history (1 May 2024) — about 20,000 fans, the country's most expensive show ever staged." },
   { year: "2019", name: "Burna Boy Experience", location: "Intare Conference Arena, Kigali", note: "A sold-out Kigali headline concert (23 March 2019)." },
   { year: "2022", name: "Burna Boy Live in Suriname", location: "Paramaribo", note: "His first concert in Suriname (Dec 2022)." },
+  { year: "2024", name: "Taste the Rhythms with Burna Boy", location: "Vigie Playing Field, Castries, Saint Lucia", note: "A standalone promoted concert (3 May 2024) — separate from that year's official Saint Lucia Jazz & Arts Festival, whose own headliners were Air Supply, Davido and Machel Montano." },
 ];

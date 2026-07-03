@@ -25,7 +25,7 @@ export const firstGroups: FirstGroup[] = [
       { year: "2023", title: "First African artist to headline & sell out a US stadium", text: "Citi Field, New York." },
       { year: "2022", title: "First Nigerian artist to headline & sell out Madison Square Garden", text: "His “One Night in Space” show — the Space Drift World Tour finale." },
       { year: "2022", title: "First African artist to sell out the Ziggo Dome", text: "The Netherlands' biggest entertainment venue (17,000 capacity), on the Space Drift World Tour — Ziggo presented him a plaque marking the milestone." },
-      { year: "2021", title: "First Nigerian artist to headline the Hollywood Bowl", text: "His debut at the legendary Los Angeles amphitheatre." },
+      { year: "2021", title: "First African artist to headline the Hollywood Bowl", text: "His debut at the legendary Los Angeles amphitheatre." },
       { year: "2019", title: "First Afrobeats artist to sell out the SSE Arena, Wembley", text: "A sold-out London arena show that earned him a special plaque — an early breakthrough for the genre." },
     ],
   },
