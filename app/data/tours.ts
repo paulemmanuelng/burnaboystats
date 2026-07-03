@@ -243,6 +243,12 @@ export const festivals: Festival[] = [
   { year: "2022", name: "TOMAC Festival", location: "Plymouth Recreation Ground, Tobago", note: "Headlined Tobago's Music, Arts & Culture festival through torrential rain (Oct 2022)." },
   { year: "2021", name: "SNF Nostos Festival", location: "Athens, Greece", note: "His Greece debut (Aug 2021)." },
   { year: "2025", name: "Coca-Cola Food Fest", location: "Tribeca Mall, Mauritius", note: "Billed as the biggest live show Mauritius had ever seen (2 Aug 2025)." },
+  { year: "2024", name: "We Love Green Festival", location: "Bois de Vincennes, Paris, France", note: "Headlined the festival (31 May) — telling the crowd “my second home is a place called Paris,” on a bill with Justice and L'Impératrice." },
+  { year: "2024", name: "SummerJam Festival", location: "Fühlinger See, Cologne, Germany", note: "Headlined the 37th edition (7 July) — his only German festival date that year." },
+  { year: "2024", name: "Gurtenfestival", location: "Bern, Switzerland", note: "Headlined before over 80,000 fans (18 July), on a bill with Peter Fox and Justice." },
+  { year: "2024", name: "Paléo Festival", location: "Nyon, Switzerland", note: "Headlined one of the world's biggest festivals (23 July) — all 200,000 tickets for the week sold out in 21 minutes, on a bill with Sean Paul, Patti Smith and Khruangbin." },
+  { year: "2024", name: "Lollapalooza Berlin", location: "Olympiastadion & Olympiapark, Berlin, Germany", note: "A headliner (7–8 September) alongside Sam Smith and Martin Garrix." },
+  { year: "2024", name: "Spilligate Festival", location: "Fort Charlotte, Nassau, Bahamas", note: "Headlined the festival (17 February) — originally booked for December 2023 but postponed." },
 ];
 
 // Other festivals & one-off shows he performed at (NOT as the headliner).
