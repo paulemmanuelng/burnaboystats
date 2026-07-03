@@ -191,4 +191,19 @@ export const statBoxes: LeaderboardBox[] = [
     source:
       "Peak positions on Spotify's Daily Top Songs Global chart, each artist's best-charting song across all credits, from chart-tracking accounts. As of July 2026.",
   },
+  {
+    id: "youtube-music-audience-peak",
+    title: "Highest monthly audience peak on YouTube Music",
+    meta: "YouTube Music · African artists · all-time peak",
+    layout: "list",
+    entries: [
+      { name: "Tyla", sub: "🇿🇦 South Africa", value: "654M" },
+      { name: "Moliy", sub: "🇬🇭 Ghana", value: "602M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "592M" },
+      { name: "Rema", sub: "🇳🇬 Nigeria", value: "471M" },
+    ],
+    note: "Burna Boy's YouTube Music audience is still climbing — he passed Rema for third place among African artists.",
+    source:
+      "Peak monthly audience on YouTube Music, from chart-tracking accounts. As of July 2026 — figures update as they climb.",
+  },
 ];
