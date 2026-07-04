@@ -62,7 +62,7 @@ export default function FirstsPage() {
         <p className={styles.source}>
           Every milestone here was cross-checked against multiple sources
           (Billboard, Pollstar/Boxscore, the BPI and press reporting), as of
-          26 June 2026. “African” / “Nigerian” firsts reflect the wording of those
+          July 2026. “African” / “Nigerian” firsts reflect the wording of those
           sources. More milestones are added as they are confirmed.
         </p>
         <Link href="/records" className={styles.back}>← Career Records</Link>

@@ -16,6 +16,8 @@ const subs = [
   { href: "/records/tours", title: "Tours", desc: "Tour runs, dates & box-office grosses", live: true },
   { href: "/records/firsts", title: "Firsts", desc: "Every record broken & first achieved", live: true },
   { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists, year by year", live: true },
+  { href: "/records/tours/map", title: "Where He's Performed", desc: "An interactive map of every country he's taken the stage", live: true },
+  { href: "/records/tours/revenue", title: "Highest Revenue Per Show", desc: "The 40 biggest single-show grosses by an African artist", live: true },
 ];
 
 export default function RecordsPage() {

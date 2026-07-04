@@ -88,7 +88,7 @@ export default function CertificationsPage() {
           IFPI (Denmark, Norway, Switzerland, Austria), ZPAV (Poland), AFP
           (Portugal), RiSA (South Africa), TCSN (Nigeria) and Pro-Música Brasil —
           cross-checked against Wikipedia&apos;s cited certification tables, as of
-          June 2026. Each card shows a song&apos;s current level in every country;
+          July 2026. Each card shows a song&apos;s current level in every country;
           “×” denotes multi-platinum.
         </p>
       </div>

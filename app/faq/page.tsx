@@ -4,6 +4,8 @@ import { pageMetadata } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
 import { totalWins, totalNominations, ceremonyCount, ceremonies } from "../data/awards";
 import { numberOnes, numberOneReleases } from "../data/charts";
+import { countryCount as performedCountryCount, regionCount } from "../data/performedCountries";
+import { festivals } from "../data/tours";
 
 export const metadata = pageMetadata({
   title: "Burna Boy FAQ — Grammys, Certifications, Records & Stats",
@@ -16,6 +18,7 @@ export const metadata = pageMetadata({
 
 const total = totalAwards();
 const grammyNoms = ceremonies.find((c) => c.name === "Grammy Awards")?.noms.length ?? 0;
+const afroNationCount = festivals.filter((f) => f.name === "Afro Nation").length;
 
 // Answer-first Q&A — figures pull from the site's own data so they stay in sync.
 const faqs: { q: string; a: string }[] = [
@@ -63,6 +66,14 @@ const faqs: { q: string; a: string }[] = [
     q: "What genre is Burna Boy's music?",
     a: `Burna Boy makes Afrobeats and what he calls "Afro-fusion" — a blend of Afrobeats, Afrobeat, dancehall, reggae, hip-hop and R&B.`,
   },
+  {
+    q: "How many countries has Burna Boy performed in?",
+    a: `Burna Boy has performed live in ${performedCountryCount} countries across ${regionCount} regions — from arena tours and stadium nights to festival headline sets, on every inhabited continent.`,
+  },
+  {
+    q: "How many times has Burna Boy headlined Afro Nation?",
+    a: `Burna Boy has headlined Afro Nation ${afroNationCount} times — five editions in Portugal (2019, 2022, 2023, 2025 and 2026), plus Miami and Detroit in 2023.`,
+  },
 ];
 
 const faqJsonLd = {
@@ -103,7 +114,7 @@ export default function FaqPage() {
 
         <p className={styles.source}>
           Figures stay in sync with the site&apos;s certifications, charts, awards and
-          tours data, verified against official sources as of June 2026.
+          tours data, verified against official sources as of July 2026.
         </p>
       </div>
 

@@ -165,7 +165,7 @@ export default function ToursPage() {
         <p className={styles.source}>
           Box-office figures are reported by Billboard Boxscore &amp; Pollstar (as
           aggregated by TouringData) and cross-checked against press reporting, as
-          of 26 June 2026. For future dates, always check official ticketing.
+          of July 2026. For future dates, always check official ticketing.
         </p>
         <Link href="/records" className={styles.back}>← Career Records</Link>
       </div>

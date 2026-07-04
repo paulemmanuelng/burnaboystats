@@ -76,7 +76,7 @@ export default function FestivalsPage() {
 
         <p className={styles.source}>
           Festival headline sets and other major festival / one-off appearances,
-          verified against press and festival line-ups, as of June 2026. His own
+          verified against press and festival line-ups, as of July 2026. His own
           headline tours and every tour date are on the Tours page. More
           appearances are added as they are confirmed.
         </p>
