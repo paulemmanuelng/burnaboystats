@@ -31,7 +31,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Lifestyle",
-    text: "A ₦9 billion one-of-one Bugatti Chiron — billed as the world's first widebody Chiron — now leads a reported 17-car collection worth over $16 million.",
+    text: "A ₦9 billion one-of-one Bugatti Chiron — billed as the world's first widebody Chiron — now leads a reported 18-car collection worth over $17 million, alongside a new Ferrari SF90 Stradale.",
     href: "/records/cars",
   },
   {

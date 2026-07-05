@@ -1,18 +1,26 @@
 // Burna Boy's car collection — reported purchase values. Most entries are
 // sourced from Pulse Nigeria's itemised breakdown (Nov 2025), the most detailed
-// single source found; the ₦9bn Bugatti Chiron is from July 2026 coverage
-// (Daily Post, Ripples, The Niche) of its unveiling; the Porsche 911 GT3 RS is
-// from dedicated acquisition coverage (AutoJosh, The Nation, Linda Ikeji).
-// Values are reported in Nigerian naira import-inclusive pricing; USD figures
-// use the source's own conversion (~₦1,455/$), so they run higher than
-// international sticker prices.
+// single source found; the ₦9bn Bugatti Chiron and Ferrari SF90 Stradale are
+// from July 2026 coverage of their unveiling/delivery (Daily Post, Ripples,
+// The Niche, Ladun Liadi); the Porsche 911 GT3 RS is from dedicated
+// acquisition coverage (AutoJosh, The Nation, Linda Ikeji). Values are
+// reported in Nigerian naira import-inclusive pricing; USD figures use the
+// source's own conversion (~₦1,455/$), so they run higher than international
+// sticker prices.
 //
-// HELD OUT (only his own cars are listed):
+// This list is NOT guaranteed complete — see the page's own note on why.
+//
+// HELD OUT (only his own confirmed cars are listed):
 //  • "Vintage Ferrari Testarossa" — only ever reported/rumoured (values flagged
 //    unreliable, likely conflated with the confirmed red 328 GTB below).
 //  • Mercedes-Maybach GLS 600 ("Maybach Truck") — Pulse lists it as a Mother's
 //    Day GIFT to his mother/manager Bose Ogulu, not part of his own fleet.
 //  • Tesla Cybertruck — a gift to a friend, per Pulse.
+//  • Rolls-Royce Ghost, Bentley Bentayga — claimed only by low-tier aggregator
+//    blogs (Urban Splatter, 234Drive, Sellatease) with no primary coverage;
+//    one of the few sources repeating this ecosystem's claims also asserted he
+//    owns "seven Bugattis," which is false (he has exactly one) — treating
+//    that whole cluster of claims as unreliable until better-sourced.
 //
 // `link` is optional — a URL to a photo or video of Burna Boy actually in/with
 // the car (added over time). When present, the row shows a "See it" link. We do
@@ -34,6 +42,11 @@ export const cars: Car[] = [
     make: "Bugatti", model: "Chiron (Venuum Widebody)",
     valueUsd: 6_190_000, valueNaira: "₦9 billion",
     desc: "A one-of-one custom build by Dubai's Venuum, unveiled July 2026 and billed as the world's first widebody Chiron — baby blue over black with a French-tricolour stripe, a “7” roundel, and his name engraved on the rear spoiler. Reported as the most expensive car in West Africa.",
+  },
+  {
+    make: "Ferrari", model: "SF90 Stradale", year: 2026,
+    valueUsd: 894_000, valueNaira: "₦1.3 billion",
+    desc: "A plug-in-hybrid V8 hypercar with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa. Delivered in 2026.",
   },
   {
     make: "McLaren", model: "Senna (Carbon Fibre Edition)",
