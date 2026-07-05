@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./cars.module.css";
 import CountUp from "../../components/CountUp";
-import { cars, recentAddition, carCount, totalValueFormatted } from "../../data/cars";
+import { cars, carCount, totalValueFormatted } from "../../data/cars";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -69,12 +69,6 @@ export default function CarsPage() {
             </li>
           ))}
         </ol>
-
-        <p className={styles.note}>
-          A {recentAddition.make} {recentAddition.model} was also reported as a
-          recent addition to the fleet — its value hasn&apos;t been disclosed, so
-          it isn&apos;t counted in the total above.
-        </p>
 
         <p className={styles.source}>
           Models and reported values are compiled from Pulse Nigeria&apos;s

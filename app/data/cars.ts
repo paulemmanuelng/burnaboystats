@@ -25,6 +25,10 @@
 //    one of the few sources repeating this ecosystem's claims also asserted he
 //    owns "seven Bugattis," which is false (he has exactly one) — treating
 //    that whole cluster of claims as unreliable until better-sourced.
+//  • Rolls-Royce Spectre — a single passing mention inside a Vanguard article
+//    that was mainly about the Bugatti Chiron, not independently corroborated
+//    by any dedicated source. Removed rather than kept as a low-confidence
+//    "recent addition" footnote.
 //
 // `link` is optional — a URL to a photo or video of Burna Boy actually in/with
 // the car (added over time). When present, the row shows a "See it" link. We do
@@ -133,14 +137,6 @@ export const cars: Car[] = [
     desc: "A top-trim luxury SUV — one of his everyday exotics.",
   },
 ];
-
-// Reported as a more recent addition (not in the itemised Pulse Nigeria list
-// above, so not folded into the total) — value not publicly disclosed.
-export const recentAddition: Car = {
-  make: "Rolls-Royce", model: "Spectre",
-  valueUsd: 0, valueNaira: "value undisclosed",
-  desc: "Rolls-Royce's first all-electric model — a two-door ultra-luxury coupe.",
-};
 
 export const totalValueUsd = cars.reduce((sum, c) => sum + c.valueUsd, 0);
 export const carCount = cars.length;
