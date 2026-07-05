@@ -18,6 +18,7 @@ const subs = [
   { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists, year by year", live: true },
   { href: "/records/tours/map", title: "Where He's Performed", desc: "An interactive map of every country he's taken the stage", live: true },
   { href: "/records/tours/revenue", title: "Highest Revenue Per Show", desc: "The 40 biggest single-show grosses by an African artist", live: true },
+  { href: "/records/cars", title: "Car Collection", desc: "Every confirmed vehicle in the garage", live: true },
 ];
 
 export default function RecordsPage() {
