@@ -1,34 +1,60 @@
-// Burna Boy's car collection — reported purchase values. Most entries (12 of
-// 18) are sourced from Pulse Nigeria's itemised breakdown (Nov 2025) — directly
-// re-fetched and re-verified, matching exactly. The ₦9bn Bugatti Chiron and the
-// Porsche 911 GT3 RS are each confirmed via a directly-fetched dedicated
-// article (Vanguard/Ripples/The Niche; AutoJosh) with consistent details
-// across multiple independent outlets. The Ferrari SF90 Stradale and the
-// vintage Ferrari Testarossa are the two exceptions: ownership of each is
-// well-documented (many independent posts/videos — the Testarossa specifically
-// via two separate sightings, London and later moved into his Lagos penthouse,
-// August 2025), but their values float free of any single dedicated report —
-// they're social/blog estimates, marked "(est.)" below rather than presented
-// with the same precision as the rest. Naira figures are import-inclusive; USD figures use
-// each source's own conversion (~₦1,455/$), so they run higher than
+// Burna Boy's car collection — reported purchase values. 15 of 19 entries are
+// sourced from Pulse Nigeria's itemised breakdown (Nov 2025) — directly
+// re-fetched, and each of those 15 also independently re-confirmed via a
+// SECOND source beyond Pulse (dealer/self-confirmations, dedicated AutoJosh/
+// Legit.ng/Punch articles, several predating Pulse's list by years — see the
+// July 2026 deep-verification pass for specifics). The ₦9bn Bugatti Chiron and
+// the Porsche 911 GT3 RS are each confirmed via multiple independent dedicated
+// articles (Vanguard/Ripples/The Niche/Daily Post; AutoJosh/News Ghana/PM News/
+// Tori.ng). The Ferrari SF90 Stradale and the vintage Ferrari Testarossa are
+// the two exceptions: ownership of each is well-documented (many independent
+// posts/videos — the Testarossa specifically confirmed as a genuinely distinct
+// car from the 328 GTB below, via convergent independent labelling across two
+// separate sightings, London and later moved into his Lagos penthouse, August
+// 2025), but their values float free of any single dedicated report — they're
+// social/blog estimates, marked "(est.)" below rather than presented with the
+// same precision as the rest. Naira figures are import-inclusive; USD figures
+// use each source's own conversion (~₦1,455/$), so they run higher than
 // international sticker prices.
 //
-// This list is NOT guaranteed complete — see the page's own note on why.
-// Last fully re-verified July 2026 (all 18 entries independently re-checked).
+// KNOWN VALUE DISCREPANCIES (flagged during re-verification, not hidden):
+// a few entries have a second, differing figure reported elsewhere — noted in
+// that car's own description rather than silently picking one number.
 //
-// HELD OUT (only his own confirmed cars are listed):
-//  • Mercedes-Maybach GLS 600 ("Maybach Truck") — Pulse lists it as a Mother's
-//    Day GIFT to his mother/manager Bose Ogulu, not part of his own fleet.
-//  • Tesla Cybertruck — a gift to a friend, per Pulse.
-//  • Rolls-Royce Ghost, Bentley Bentayga — claimed only by low-tier aggregator
-//    blogs (Urban Splatter, 234Drive, Sellatease) with no primary coverage;
-//    one of the few sources repeating this ecosystem's claims also asserted he
-//    owns "seven Bugattis," which is false (he has exactly one) — treating
-//    that whole cluster of claims as unreliable until better-sourced.
+// This list is NOT guaranteed complete — see the page's own note on why.
+// Last fully re-verified July 2026 (all 19 entries independently re-checked,
+// each against at least 2 sources beyond the original itemised breakdown).
+//
+// HELD OUT (only his own confirmed cars are listed) — re-checked, all 5 hold:
+//  • Mercedes-Maybach GLS 600 ("Maybach Truck") — a Mother's Day GIFT to his
+//    mother/manager Bose Ogulu, not part of his own fleet (Pulse, Guardian
+//    Nigeria). One low-tier blog claimed he also kept one for himself; no
+//    other outlet corroborates that, so it's not treated as confirmed.
+//  • Tesla Cybertruck — a Christmas 2024 gift to his PA/best friend King Manny,
+//    per Pulse and multiple entertainment outlets. It was destroyed in a
+//    crash in August 2025 and replaced with a gifted Lamborghini Urus — never
+//    Burna Boy's own car either way.
+//  • Rolls-Royce Ghost — traced the source of this claim: an AutoJosh article
+//    comparing Fuji musician K1 De Ultimate's Rolls-Royce Ghost to Burna Boy's
+//    Rolls-Royce Dawn. The Ghost belongs to K1 De Ultimate, not Burna Boy —
+//    an aggregator mix-up, not a real ownership claim.
+//  • Bentley Bentayga — claimed only by low-tier aggregator blogs (Urban
+//    Splatter, 234Drive, Sellatease/WheelZAR) with no primary coverage; one
+//    version ties the purchase to "the 2022 Olympics," which has no real
+//    connection to Burna Boy — a fabricated detail that further undermines
+//    this source cluster. (Separately, an unrelated Legit.ng piece reacting to
+//    a viral garage-tour video once claimed "seven Bugattis," which is false —
+//    he has exactly one — another data point that this general ecosystem of
+//    aggregator content is unreliable.)
 //  • Rolls-Royce Spectre — a single passing mention inside a Vanguard article
 //    that was mainly about the Bugatti Chiron, not independently corroborated
 //    by any dedicated source. Removed rather than kept as a low-confidence
 //    "recent addition" footnote.
+//
+// Fresh sweep (July 2026): no new car acquisitions found after the Bugatti's
+// July 3, 2026 unveiling, and no credible report of any listed car being sold
+// or given away (one viral "sold 2 Ferraris" claim traced to unsourced
+// clickbait content, not picked up by any real outlet).
 //
 // `link` is optional — a URL to a photo or video of Burna Boy actually in/with
 // the car (added over time). When present, the row shows a "See it" link. We do
@@ -49,7 +75,7 @@ export const cars: Car[] = [
   {
     make: "Bugatti", model: "Chiron (Venuum Widebody)",
     valueUsd: 6_190_000, valueNaira: "₦9 billion",
-    desc: "A one-of-one custom build by Dubai's Venuum, unveiled July 2026 and billed as the world's first widebody Chiron — baby blue over black with a French-tricolour stripe, a “7” roundel, and his name engraved on the rear spoiler. Reported as the most expensive car in West Africa.",
+    desc: "A one-of-one custom build by Dubai's Venuum, unveiled July 2026 and billed as the world's first widebody Chiron — baby blue over black with a French-tricolour stripe, a “7” roundel, and his name engraved on the rear spoiler. Reported as the most expensive car in West Africa, though neither Burna Boy nor Venuum has publicly confirmed the exact price — every outlet hedges it as \"reportedly\" ₦9 billion.",
   },
   {
     make: "McLaren", model: "Senna (Carbon Fibre Edition)",
@@ -64,7 +90,7 @@ export const cars: Car[] = [
   {
     make: "Ferrari", model: "Testarossa",
     valueUsd: 1_100_000, valueNaira: "~₦1.6 billion (est.)",
-    desc: "A wide-body, flat-12 icon of the 1980s, instantly recognisable by its side strakes — spotted in London and later moved into his Lagos penthouse (August 2025). Ownership is well-documented on video; the value is a social/blog estimate rather than one dedicated report.",
+    desc: "A wide-body, flat-12 icon of the 1980s, instantly recognisable by its side strakes — spotted in London and later moved into his Lagos penthouse (August 2025). Confirmed as a genuinely distinct car from his red 328 GTB below (multiple independent posts specifically name \"Testarossa,\" never disputed the way the 328's own variant is). The value is a syndicated social-media estimate rather than one dedicated report — reported between ₦1.5–1.6 billion depending on the outlet.",
   },
   {
     make: "Lamborghini", model: "Revuelto",
@@ -74,12 +100,12 @@ export const cars: Car[] = [
   {
     make: "Ferrari", model: "SF90 Stradale", year: 2026,
     valueUsd: 894_000, valueNaira: "~₦1.3 billion (est.)",
-    desc: "A plug-in-hybrid V8 hypercar with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa. Delivered in 2026. Ownership is well-documented; the value is a social/blog estimate rather than one dedicated report.",
+    desc: "A plug-in-hybrid V8 hypercar with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa. Delivered March 2026 (Creebhills, Ladun Liadi's blog). Ownership is well-documented; the ₦1.3bn value is the most-repeated figure across independent blogs, though no single dedicated automotive-press article states it.",
   },
   {
     make: "Lamborghini", model: "Aventador SVJ",
     valueUsd: 867_500, valueNaira: "₦1.258 billion",
-    desc: "The most extreme Aventador — a 759-hp naturally-aspirated V12, built in limited numbers.",
+    desc: "The most extreme Aventador — a 759-hp naturally-aspirated V12, built in limited numbers. Value per Pulse; AutoJosh and autoevolution both independently report it closer to $1 million.",
   },
   {
     make: "Lamborghini", model: "Urus (Novitec Edition)", year: 2022,
@@ -124,17 +150,17 @@ export const cars: Car[] = [
   {
     make: "Mercedes-Maybach", model: "S650",
     valueUsd: 228_000, valueNaira: "₦330.6 million",
-    desc: "The chauffeur-focused, range-topping S-Class.",
+    desc: "The chauffeur-focused, range-topping S-Class — confirmed via his own Instagram caption (\"Got this too because everyone needs a Maybach\"). One outlet describes it as the S680 variant rather than S650; a minor naming inconsistency, not a different car.",
   },
   {
     make: "Mercedes-AMG", model: "G63",
     valueUsd: 202_000, valueNaira: "₦292.9 million",
-    desc: "The iconic boxy G-Wagon in AMG's high-performance trim — rugged off-road capability wrapped in Mercedes luxury.",
+    desc: "The iconic boxy G-Wagon in AMG's high-performance trim — rugged off-road capability wrapped in Mercedes luxury. Value per Pulse; National Waves independently reported a notably lower figure (~₦155 million) for the same car, so treat the exact price as uncertain within that range.",
   },
   {
     make: "Ferrari", model: "328 GTB", year: 1988,
     valueUsd: 180_000, valueNaira: "₦261 million",
-    desc: "A 1980s classic — the final evolution of Ferrari's celebrated 308/328 line.",
+    desc: "A 1980s classic — the final evolution of Ferrari's celebrated 308/328 line. Model and value per Pulse; an independent automotive analysis (234Drive) argues the car may actually be the convertible 328 GTS rather than the coupe GTB, and that real-market prices for this model average closer to $100,000 — both open questions worth flagging rather than resolving with certainty.",
   },
   {
     make: "Range Rover", model: "Autobiography",
