@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-05",
+    category: "Charts",
+    text: "Now No.1 on both of Belgium's regional charts at once: “Dai Dai” tops the Flanders Top 50 after already leading Wallonia.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-05",
     category: "Lifestyle",
     text: "A vintage Ferrari Testarossa joins the fleet — spotted in London before being moved into his Lagos penthouse, taking the reported car collection to 19 vehicles worth over $18 million.",
     href: "/records/cars",
