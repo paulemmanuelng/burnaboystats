@@ -1,9 +1,15 @@
 // Burna Boy's car collection — reported purchase values. Most entries are
 // sourced from Pulse Nigeria's itemised breakdown (Nov 2025), the most detailed
 // single source found; the ₦9bn Bugatti Chiron is from July 2026 coverage
-// (Daily Post, Ripples, The Niche) of its unveiling. Values are reported in
-// Nigerian naira import-inclusive pricing; USD figures use the source's own
-// conversion (~₦1,455/$).
+// (Daily Post, Ripples, The Niche) of its unveiling; the Porsche 911 GT3 RS and
+// the Maybach GLS 600 are from dedicated acquisition coverage (AutoJosh, The
+// Nation, Guardian Nigeria). Values are reported in Nigerian naira
+// import-inclusive pricing; USD figures use the source's own conversion
+// (~₦1,455/$), so they run higher than international sticker prices.
+//
+// NOTE: a "vintage Ferrari Testarossa" is often listed in fan roundups but is
+// only ever reported/rumoured (values flagged unreliable, and likely conflated
+// with the confirmed red 328 GTB below) — held out until confirmed.
 //
 // `link` is optional — a URL to a photo or video of Burna Boy actually in/with
 // the car (added over time). When present, the row shows a "See it" link. We do
@@ -52,6 +58,11 @@ export const cars: Car[] = [
     desc: "Lamborghini's super-SUV, customised here to an aggressive Novitec widebody spec.",
   },
   {
+    make: "Porsche", model: "911 GT3 RS", year: 2025,
+    valueUsd: 690_000, valueNaira: "₦1 billion",
+    desc: "A track-focused, road-legal flat-six — 518 hp, 0–100 km/h in 3.2 seconds. Delivered to him on Valentine's Day 2026.",
+  },
+  {
     make: "Ferrari", model: "812 GTS",
     valueUsd: 600_000, valueNaira: "₦870 million",
     desc: "A front-mounted 6.5-litre V12 convertible — among the most powerful series-production Ferraris ever built.",
@@ -87,9 +98,9 @@ export const cars: Car[] = [
     desc: "The chauffeur-focused, range-topping S-Class.",
   },
   {
-    make: "Mercedes-Maybach", model: "G63",
+    make: "Mercedes-Maybach", model: "GLS 600 4MATIC",
     valueUsd: 202_000, valueNaira: "₦292.9 million",
-    desc: "A luxury take on the off-road G-Wagon icon.",
+    desc: "The ultra-luxury Maybach SUV — he famously bought one for himself and one for his mother and manager, Bose Ogulu, on Mother's Day.",
   },
   {
     make: "Ferrari", model: "328 GTB", year: 1988,
