@@ -31,7 +31,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Lifestyle",
-    text: "A reported $9.42 million car collection: 15 confirmed vehicles, from a McLaren Senna to a Rolls-Royce Cullinan.",
+    text: "A ₦9 billion one-of-one Bugatti Chiron — billed as the world's first widebody Chiron — now leads a reported 16-car collection worth over $15 million.",
     href: "/records/cars",
   },
   {

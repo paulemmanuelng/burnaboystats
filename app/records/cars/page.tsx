@@ -7,10 +7,10 @@ import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 export const metadata = pageMetadata({
   title: "Burna Boy's Car Collection — Every Confirmed Vehicle",
   description:
-    `Burna Boy's reported car collection — ${carCount} confirmed vehicles worth over ${totalValueFormatted}, from a McLaren Senna to a Rolls-Royce Cullinan.`,
+    `Burna Boy's reported car collection — ${carCount} confirmed vehicles worth over ${totalValueFormatted}, led by his ₦9 billion one-of-one widebody Bugatti Chiron.`,
   path: "/records/cars",
   shareTitle: "Burna Boy's Car Collection",
-  shareDescription: `${carCount} confirmed cars, worth over ${totalValueFormatted}.`,
+  shareDescription: `${carCount} confirmed cars, worth over ${totalValueFormatted}, led by a ₦9bn Bugatti Chiron.`,
 });
 
 const carsDataset = datasetJsonLd({
@@ -73,22 +73,22 @@ export default function CarsPage() {
                 <h2 className={styles.model}>{c.model}{c.year ? ` (${c.year})` : ""}</h2>
                 <div className={styles.value}>{formatUsd(c.valueUsd)}</div>
                 <div className={styles.valueSub}>{c.valueNaira} reported</div>
+                {c.note && <p className={styles.carNote}>{c.note}</p>}
               </div>
             </div>
           ))}
         </div>
 
         <p className={styles.note}>
-          A {recentAddition.make} {recentAddition.model} was reported as a more
+          A {recentAddition.make} {recentAddition.model} was also reported as a
           recent addition to the fleet — its value hasn&apos;t been disclosed, so
-          it isn&apos;t counted in the total above. A widebody Bugatti Chiron has
-          also reportedly been commissioned for him by a Dubai customisation
-          shop, but is not yet delivered.
+          it isn&apos;t counted in the total above.
         </p>
 
         <p className={styles.source}>
           Values and models are as reported by Pulse Nigeria&apos;s itemised
-          breakdown (November 2025), cross-checked against other Nigerian
+          breakdown (November 2025) and, for the Bugatti Chiron, July 2026
+          coverage of its unveiling — cross-checked against other Nigerian
           entertainment press. Photos are stock images of the same model via
           Wikimedia Commons — not photos of his actual car, since no
           freely-licensed photo of the specific vehicles exists. Tap a photo

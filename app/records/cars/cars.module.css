@@ -65,6 +65,14 @@
   font-size: 0.78rem;
   color: var(--text-muted);
 }
+.carNote {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--gold-bright);
+}
 
 .note {
   color: var(--text-muted);

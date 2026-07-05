@@ -1,9 +1,11 @@
-// Burna Boy's car collection — reported purchase values, sourced from Pulse
-// Nigeria's itemised breakdown (Nov 2025), the most detailed single source
-// found. Photos are stock images of the same model (via Wikimedia Commons,
-// free-licensed) — NOT photos of his specific car — since no free-to-reuse
-// photo of his actual vehicles exists. Values are as reported in Nigerian
-// naira import-inclusive pricing, converted to USD by the source.
+// Burna Boy's car collection — reported purchase values. Most entries are
+// sourced from Pulse Nigeria's itemised breakdown (Nov 2025), the most detailed
+// single source found; the ₦9bn Bugatti Chiron is from July 2026 coverage
+// (Daily Post, Ripples, The Niche) of its unveiling. Photos are stock images of
+// the same model (via Wikimedia Commons, free-licensed) — NOT photos of his
+// specific car — since no free-to-reuse photo of his actual vehicles exists.
+// Values are reported in Nigerian naira import-inclusive pricing; USD figures
+// use the source's own conversion (~₦1,455/$).
 
 export interface Car {
   make: string;
@@ -13,9 +15,17 @@ export interface Car {
   valueNaira: string;
   image: string;
   imageSourceUrl: string; // Wikipedia article the photo is from (attribution + license info)
+  note?: string; // optional highlight (e.g. a one-of-one custom build)
 }
 
 export const cars: Car[] = [
+  {
+    make: "Bugatti", model: "Chiron (Venuum Widebody)",
+    valueUsd: 6_190_000, valueNaira: "₦9 billion",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bugatti_Chiron_1.jpg/1280px-Bugatti_Chiron_1.jpg",
+    imageSourceUrl: "https://en.wikipedia.org/wiki/Bugatti_Chiron",
+    note: "Unveiled July 2026 — a one-of-one custom build by Dubai's Venuum, billed as the world's first widebody Chiron, with his name engraved on the rear spoiler. Reported as the most expensive car in West Africa.",
+  },
   {
     make: "McLaren", model: "Senna (Carbon Fibre Edition)",
     valueUsd: 2_200_000, valueNaira: "₦3.2 billion",
