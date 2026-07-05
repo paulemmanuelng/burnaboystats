@@ -18,7 +18,7 @@ export default function StatBox({ box }: { box: LeaderboardBox }) {
         <ol className={styles.listRank}>
           {(box.entries ?? []).map((e, i) => (
             <li
-              key={e.name}
+              key={`${e.name}-${i}`}
               className={`${styles.listEntry} ${i === 0 ? styles.first : ""} ${
                 e.name === HIGHLIGHT ? styles.highlight : ""
               }`}
@@ -44,7 +44,7 @@ export default function StatBox({ box }: { box: LeaderboardBox }) {
                 <ol className={styles.rank}>
                   {r.entries.map((e, i) => (
                     <li
-                      key={e.name}
+                      key={`${e.name}-${i}`}
                       className={`${styles.entry} ${i === 0 ? styles.first : ""} ${
                         e.name === HIGHLIGHT ? styles.highlight : ""
                       }`}
