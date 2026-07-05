@@ -18,7 +18,7 @@
 // career award tally) — reserve present/"just happened" phrasing for things
 // that are genuinely new this week (a debut chart peak, a fresh streaming high).
 
-export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards" | "Tours";
+export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards" | "Tours" | "Lifestyle";
 
 export interface Update {
   date: string; // ISO "YYYY-MM-DD"
@@ -28,6 +28,12 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-07-05",
+    category: "Lifestyle",
+    text: "A reported $9.42 million car collection: 15 confirmed vehicles, from a McLaren Senna to a Rolls-Royce Cullinan.",
+    href: "/records/cars",
+  },
   {
     date: "2026-07-03",
     category: "Tours",
