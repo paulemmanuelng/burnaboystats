@@ -152,13 +152,13 @@ export const statBoxes: LeaderboardBox[] = [
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "14" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "8" },
-      { name: "Tyla", sub: "🇿🇦 South Africa · tied", value: "6" },
-      { name: "Rema", sub: "🇳🇬 Nigeria · tied", value: "6" },
-      { name: "Wizkid, CKay & Omah Lay", sub: "🇳🇬 Nigeria · tied", value: "3" },
+      { name: "Tyla", sub: "🇿🇦 South Africa", value: "6" },
+      { name: "Rema", sub: "🇳🇬 Nigeria", value: "5" },
+      { name: "CKay", sub: "🇳🇬 Nigeria", value: "4" },
     ],
-    note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 14, well clear of the field. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
+    note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 14, well clear of the field (Wizkid and Omah Lay follow the top five on 3 apiece). Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
     source:
-      "Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals. As of July 2026 — figures shift as songs cross the threshold.",
+      "Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals — each artist's count re-verified individually, July 2026. Figures shift as songs cross the threshold.",
   },
   {
     id: "most-followed-spotify",
