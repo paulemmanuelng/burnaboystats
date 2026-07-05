@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-05",
+    category: "Streaming",
+    text: "48.37 million monthly listeners on Spotify — another new all-time peak, still the highest ever recorded for an African artist.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-05",
     category: "Lifestyle",
     text: "A ₦9 billion one-of-one Bugatti Chiron — billed as the world's first widebody Chiron — now leads a reported 18-car collection worth over $17 million, alongside a new Ferrari SF90 Stradale.",
     href: "/records/cars",
