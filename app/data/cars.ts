@@ -1,14 +1,18 @@
-// Burna Boy's car collection — reported purchase values. Most entries are
-// sourced from Pulse Nigeria's itemised breakdown (Nov 2025), the most detailed
-// single source found; the ₦9bn Bugatti Chiron and Ferrari SF90 Stradale are
-// from July 2026 coverage of their unveiling/delivery (Daily Post, Ripples,
-// The Niche, Ladun Liadi); the Porsche 911 GT3 RS is from dedicated
-// acquisition coverage (AutoJosh, The Nation, Linda Ikeji). Values are
-// reported in Nigerian naira import-inclusive pricing; USD figures use the
-// source's own conversion (~₦1,455/$), so they run higher than international
-// sticker prices.
+// Burna Boy's car collection — reported purchase values. Most entries (12 of
+// 18) are sourced from Pulse Nigeria's itemised breakdown (Nov 2025) — directly
+// re-fetched and re-verified, matching exactly. The ₦9bn Bugatti Chiron and the
+// Porsche 911 GT3 RS are each confirmed via a directly-fetched dedicated
+// article (Vanguard/Ripples/The Niche; AutoJosh) with consistent details
+// across multiple independent outlets. The Ferrari SF90 Stradale is the one
+// exception: ownership is well-documented (many independent posts/videos), but
+// its value floats free of any single dedicated report — it's a social/blog
+// estimate, marked "(est.)" below rather than presented with the same
+// precision as the rest. Naira figures are import-inclusive; USD figures use
+// each source's own conversion (~₦1,455/$), so they run higher than
+// international sticker prices.
 //
 // This list is NOT guaranteed complete — see the page's own note on why.
+// Last fully re-verified July 2026 (all 18 entries independently re-checked).
 //
 // HELD OUT (only his own confirmed cars are listed):
 //  • "Vintage Ferrari Testarossa" — only ever reported/rumoured (values flagged
@@ -45,8 +49,8 @@ export const cars: Car[] = [
   },
   {
     make: "Ferrari", model: "SF90 Stradale", year: 2026,
-    valueUsd: 894_000, valueNaira: "₦1.3 billion",
-    desc: "A plug-in-hybrid V8 hypercar with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa. Delivered in 2026.",
+    valueUsd: 894_000, valueNaira: "~₦1.3 billion (est.)",
+    desc: "A plug-in-hybrid V8 hypercar with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa. Delivered in 2026. Ownership is well-documented; the value is a social/blog estimate rather than one dedicated report.",
   },
   {
     make: "McLaren", model: "Senna (Carbon Fibre Edition)",
