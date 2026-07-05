@@ -71,14 +71,6 @@ export default function CarsPage() {
         </ol>
 
         <p className={styles.source}>
-          Models and reported values are compiled from Pulse Nigeria&apos;s
-          itemised breakdown (November 2025) and, for the Bugatti Chiron and
-          Ferrari SF90, July 2026 coverage of their unveiling/delivery — cross-
-          checked against other Nigerian entertainment press. Naira figures are
-          import-inclusive; dollar conversions follow the source. This is a
-          text record only — no car photos are hosted here.
-        </p>
-        <p className={styles.source}>
           This list isn&apos;t guaranteed complete. Unlike this site&apos;s charts,
           certifications and awards — which trace to an official chart body or
           academy — a celebrity car collection has no equivalent record. It&apos;s
