@@ -1,11 +1,14 @@
 // Burna Boy's car collection — reported purchase values. Most entries are
 // sourced from Pulse Nigeria's itemised breakdown (Nov 2025), the most detailed
 // single source found; the ₦9bn Bugatti Chiron is from July 2026 coverage
-// (Daily Post, Ripples, The Niche) of its unveiling. Photos are stock images of
-// the same model (via Wikimedia Commons, free-licensed) — NOT photos of his
-// specific car — since no free-to-reuse photo of his actual vehicles exists.
-// Values are reported in Nigerian naira import-inclusive pricing; USD figures
-// use the source's own conversion (~₦1,455/$).
+// (Daily Post, Ripples, The Niche) of its unveiling. Values are reported in
+// Nigerian naira import-inclusive pricing; USD figures use the source's own
+// conversion (~₦1,455/$).
+//
+// `link` is optional — a URL to a photo or video of Burna Boy actually in/with
+// the car (added over time). When present, the row shows a "See it" link. We do
+// NOT host our own photos of the cars (his are one-of-a-kind/customised and no
+// free-to-reuse image exists), so this points out to the real thing instead.
 
 export interface Car {
   make: string;
@@ -13,108 +16,90 @@ export interface Car {
   year?: number;
   valueUsd: number;
   valueNaira: string;
-  image: string;
-  imageSourceUrl: string; // Wikipedia article the photo is from (attribution + license info)
-  note?: string; // optional highlight (e.g. a one-of-one custom build)
+  desc: string;
+  link?: string; // optional: photo/video of Burna Boy in/with the car
 }
 
 export const cars: Car[] = [
   {
     make: "Bugatti", model: "Chiron (Venuum Widebody)",
     valueUsd: 6_190_000, valueNaira: "₦9 billion",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bugatti_Chiron_1.jpg/1280px-Bugatti_Chiron_1.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Bugatti_Chiron",
-    note: "Unveiled July 2026 — a one-of-one custom build by Dubai's Venuum, billed as the world's first widebody Chiron. Finished in baby blue over black with a French-tricolour stripe and a “7” roundel, his name engraved on the rear spoiler. Reported as the most expensive car in West Africa.",
+    desc: "A one-of-one custom build by Dubai's Venuum, unveiled July 2026 and billed as the world's first widebody Chiron — baby blue over black with a French-tricolour stripe, a “7” roundel, and his name engraved on the rear spoiler. Reported as the most expensive car in West Africa.",
   },
   {
     make: "McLaren", model: "Senna (Carbon Fibre Edition)",
     valueUsd: 2_200_000, valueNaira: "₦3.2 billion",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/McLaren_Senna_IMG_3279.jpg/1280px-McLaren_Senna_IMG_3279.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/McLaren_Senna",
+    desc: "A track-bred hypercar named after Ayrton Senna, limited to 500 units worldwide — his finished in exposed carbon fibre.",
   },
   {
     make: "Ferrari", model: "Purosangue", year: 2024,
     valueUsd: 1_400_000, valueNaira: "₦2.1 billion",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Ferrari_Purosangue_DSC_7008.jpg/1280px-Ferrari_Purosangue_DSC_7008.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Ferrari_Purosangue",
+    desc: "Ferrari's first-ever four-door, four-seat model — the marque's debut in the luxury-SUV space, powered by a naturally-aspirated V12.",
   },
   {
     make: "Lamborghini", model: "Revuelto",
     valueUsd: 1_030_000, valueNaira: "₦1.5 billion",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lamborghini_Revuelto_DSC_6985_%28cropped%29.jpg/1280px-Lamborghini_Revuelto_DSC_6985_%28cropped%29.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Lamborghini_Revuelto",
+    desc: "Lamborghini's first plug-in-hybrid V12 flagship — the successor to the Aventador.",
   },
   {
     make: "Lamborghini", model: "Aventador SVJ",
     valueUsd: 867_500, valueNaira: "₦1.258 billion",
-    image: "https://upload.wikimedia.org/wikipedia/commons/e/ed/Lamborghini_Aventador_S_%2844554%29.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Lamborghini_Aventador",
+    desc: "The most extreme Aventador — a 759-hp naturally-aspirated V12, built in limited numbers.",
   },
   {
     make: "Lamborghini", model: "Urus (Novitec Edition)", year: 2022,
     valueUsd: 800_000, valueNaira: "₦1.16 billion",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Lamborghini_Urus_SE_DSC_8524.jpg/1280px-Lamborghini_Urus_SE_DSC_8524.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Lamborghini_Urus",
+    desc: "Lamborghini's super-SUV, customised here to an aggressive Novitec widebody spec.",
   },
   {
     make: "Ferrari", model: "812 GTS",
     valueUsd: 600_000, valueNaira: "₦870 million",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/2019_Ferrari_812_Superfast_S-A_6.5.jpg/1280px-2019_Ferrari_812_Superfast_S-A_6.5.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Ferrari_812_Superfast",
+    desc: "A front-mounted 6.5-litre V12 convertible — among the most powerful series-production Ferraris ever built.",
   },
   {
     make: "Ferrari", model: "488 Spider",
     valueUsd: 472_000, valueNaira: "₦684.4 million",
-    image: "https://upload.wikimedia.org/wikipedia/commons/3/36/2016_Ferrari_488_Spider_%2838806%29.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Ferrari_488",
+    desc: "A twin-turbo V8 open-top supercar.",
   },
   {
     make: "Rolls-Royce", model: "Cullinan",
     valueUsd: 427_000, valueNaira: "₦619.15 million",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/2019_Rolls-Royce_Cullinan_V12_Automatic_6.75_Front.jpg/1280px-2019_Rolls-Royce_Cullinan_V12_Automatic_6.75_Front.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Rolls-Royce_Cullinan",
+    desc: "Rolls-Royce's flagship ultra-luxury SUV, custom-ordered.",
   },
   {
     make: "Rolls-Royce", model: "Dawn",
     valueUsd: 350_000, valueNaira: "₦507.5 million",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/2019_Rolls-Royce_Dawn_V12_Automatic_6.6.jpg/1280px-2019_Rolls-Royce_Dawn_V12_Automatic_6.6.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Rolls-Royce_Dawn",
+    desc: "A four-seat luxury drop-top convertible.",
   },
   {
     make: "Bentley", model: "Continental GT", year: 2017,
     valueUsd: 270_000, valueNaira: "₦391.5 million",
-    image: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Bentley_Continental_GT_First_Edition_%2849919050697%29_%28cropped%29_%28cropped%29.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Bentley_Continental_GT",
+    desc: "A quintessential British grand tourer.",
   },
   {
     make: "Ferrari", model: "458 Italia", year: 2013,
     valueUsd: 230_000, valueNaira: "₦333.5 million",
-    image: "https://upload.wikimedia.org/wikipedia/commons/0/04/Ferrari_458_Fort_Worth_June_2016_56_%28Ferrari%29_%28cropped-2%29.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Ferrari_458",
+    desc: "A naturally-aspirated V8 that became a modern Ferrari icon — one of his earliest supercars.",
   },
   {
     make: "Mercedes-Maybach", model: "S650",
     valueUsd: 228_000, valueNaira: "₦330.6 million",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mercedes-Benz_W223_IMG_6663.jpg/1280px-Mercedes-Benz_W223_IMG_6663.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Mercedes-Benz_S-Class",
+    desc: "The chauffeur-focused, range-topping S-Class.",
   },
   {
     make: "Mercedes-Maybach", model: "G63",
     valueUsd: 202_000, valueNaira: "₦292.9 million",
-    image: "https://upload.wikimedia.org/wikipedia/commons/3/38/Mercedes-Benz_W463_G_350_BlueTEC_01.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Mercedes-Benz_G-Class",
+    desc: "A luxury take on the off-road G-Wagon icon.",
   },
   {
     make: "Ferrari", model: "328 GTB", year: 1988,
     valueUsd: 180_000, valueNaira: "₦261 million",
-    image: "https://upload.wikimedia.org/wikipedia/commons/7/74/Ferrari_328_GTS_-_Flickr_-_Alexandre_Pr%C3%A9vot_%284%29_%28cropped%29.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Ferrari_328",
+    desc: "A 1980s classic — the final evolution of Ferrari's celebrated 308/328 line.",
   },
   {
     make: "Range Rover", model: "Autobiography",
     valueUsd: 167_000, valueNaira: "₦242.15 million",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/2022_Land_Rover_Range_Rover_SE_P440e_AWD_Automatic_3.0_Front.jpg/1280px-2022_Land_Rover_Range_Rover_SE_P440e_AWD_Automatic_3.0_Front.jpg",
-    imageSourceUrl: "https://en.wikipedia.org/wiki/Range_Rover",
+    desc: "A top-trim luxury SUV — one of his everyday exotics.",
   },
 ];
 
@@ -123,8 +108,7 @@ export const cars: Car[] = [
 export const recentAddition: Car = {
   make: "Rolls-Royce", model: "Spectre",
   valueUsd: 0, valueNaira: "value undisclosed",
-  image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/2024_Rolls-Royce_Spectre_in_Midnight_Sapphire_over_Silver%2C_front_left.jpg/1280px-2024_Rolls-Royce_Spectre_in_Midnight_Sapphire_over_Silver%2C_front_left.jpg",
-  imageSourceUrl: "https://en.wikipedia.org/wiki/Rolls-Royce_Spectre",
+  desc: "Rolls-Royce's first all-electric model — a two-door ultra-luxury coupe.",
 };
 
 export const totalValueUsd = cars.reduce((sum, c) => sum + c.valueUsd, 0);

@@ -33,7 +33,7 @@ export default function CarsPage() {
         <h1>
           Car <span className="accent">Collection</span>
         </h1>
-        <p>Every confirmed vehicle in the garage, and what it reportedly cost him</p>
+        <p>Every confirmed vehicle in the garage, ranked by what it reportedly cost him</p>
       </header>
 
       <div className="container">
@@ -48,36 +48,27 @@ export default function CarsPage() {
           </div>
         </div>
 
-        <div className={styles.grid}>
-          {cars.map((c) => (
-            <div key={`${c.make}-${c.model}`} className={styles.card}>
-              <a
-                className={styles.photoLink}
-                href={c.imageSourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${c.make} ${c.model} on Wikipedia (photo source)`}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  className={styles.photo}
-                  src={c.image}
-                  alt={`${c.make} ${c.model}${c.year ? ` (${c.year})` : ""} — stock photo, not the specific car`}
-                  loading="lazy"
-                  width={640}
-                  height={480}
-                />
-              </a>
-              <div className={styles.body}>
+        <ol className={styles.list}>
+          {cars.map((c, i) => (
+            <li key={`${c.make}-${c.model}`} className={styles.row}>
+              <span className={styles.rank}>{i + 1}</span>
+              <div className={styles.main}>
                 <span className={styles.make}>{c.make}</span>
                 <h2 className={styles.model}>{c.model}{c.year ? ` (${c.year})` : ""}</h2>
-                <div className={styles.value}>{formatUsd(c.valueUsd)}</div>
-                <div className={styles.valueSub}>{c.valueNaira} reported</div>
-                {c.note && <p className={styles.carNote}>{c.note}</p>}
+                <p className={styles.desc}>{c.desc}</p>
+                {c.link && (
+                  <a className={styles.seeIt} href={c.link} target="_blank" rel="noopener noreferrer">
+                    See Burna in it ↗
+                  </a>
+                )}
               </div>
-            </div>
+              <div className={styles.valueBlock}>
+                <span className={styles.value}>{formatUsd(c.valueUsd)}</span>
+                <span className={styles.valueSub}>{c.valueNaira}</span>
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
 
         <p className={styles.note}>
           A {recentAddition.make} {recentAddition.model} was also reported as a
@@ -86,13 +77,12 @@ export default function CarsPage() {
         </p>
 
         <p className={styles.source}>
-          Values and models are as reported by Pulse Nigeria&apos;s itemised
-          breakdown (November 2025) and, for the Bugatti Chiron, July 2026
+          Models and reported values are compiled from Pulse Nigeria&apos;s
+          itemised breakdown (November 2025) and, for the Bugatti Chiron, July 2026
           coverage of its unveiling — cross-checked against other Nigerian
-          entertainment press. Photos are stock images of the same model via
-          Wikimedia Commons — not photos of his actual car, since no
-          freely-licensed photo of the specific vehicles exists. Tap a photo
-          for its source and license.
+          entertainment press. Naira figures are import-inclusive; dollar
+          conversions follow the source. This is a text record only — no car
+          photos are hosted here.
         </p>
 
         <Link href="/records" className={styles.back}>← Career Records</Link>
