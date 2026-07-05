@@ -1,15 +1,18 @@
 // Burna Boy's car collection — reported purchase values. Most entries are
 // sourced from Pulse Nigeria's itemised breakdown (Nov 2025), the most detailed
 // single source found; the ₦9bn Bugatti Chiron is from July 2026 coverage
-// (Daily Post, Ripples, The Niche) of its unveiling; the Porsche 911 GT3 RS and
-// the Maybach GLS 600 are from dedicated acquisition coverage (AutoJosh, The
-// Nation, Guardian Nigeria). Values are reported in Nigerian naira
-// import-inclusive pricing; USD figures use the source's own conversion
-// (~₦1,455/$), so they run higher than international sticker prices.
+// (Daily Post, Ripples, The Niche) of its unveiling; the Porsche 911 GT3 RS is
+// from dedicated acquisition coverage (AutoJosh, The Nation, Linda Ikeji).
+// Values are reported in Nigerian naira import-inclusive pricing; USD figures
+// use the source's own conversion (~₦1,455/$), so they run higher than
+// international sticker prices.
 //
-// NOTE: a "vintage Ferrari Testarossa" is often listed in fan roundups but is
-// only ever reported/rumoured (values flagged unreliable, and likely conflated
-// with the confirmed red 328 GTB below) — held out until confirmed.
+// HELD OUT (only his own cars are listed):
+//  • "Vintage Ferrari Testarossa" — only ever reported/rumoured (values flagged
+//    unreliable, likely conflated with the confirmed red 328 GTB below).
+//  • Mercedes-Maybach GLS 600 ("Maybach Truck") — Pulse lists it as a Mother's
+//    Day GIFT to his mother/manager Bose Ogulu, not part of his own fleet.
+//  • Tesla Cybertruck — a gift to a friend, per Pulse.
 //
 // `link` is optional — a URL to a photo or video of Burna Boy actually in/with
 // the car (added over time). When present, the row shows a "See it" link. We do
@@ -98,9 +101,9 @@ export const cars: Car[] = [
     desc: "The chauffeur-focused, range-topping S-Class.",
   },
   {
-    make: "Mercedes-Maybach", model: "GLS 600 4MATIC",
+    make: "Mercedes-AMG", model: "G63",
     valueUsd: 202_000, valueNaira: "₦292.9 million",
-    desc: "The ultra-luxury Maybach SUV — he famously bought one for himself and one for his mother and manager, Bose Ogulu, on Mother's Day.",
+    desc: "The iconic boxy G-Wagon in AMG's high-performance trim — rugged off-road capability wrapped in Mercedes luxury.",
   },
   {
     make: "Ferrari", model: "328 GTB", year: 1988,
