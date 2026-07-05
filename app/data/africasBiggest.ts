@@ -43,14 +43,14 @@ export const statBoxes: LeaderboardBox[] = [
       {
         label: "2026",
         entries: [
-          { name: "Burna Boy" },
           { name: "Tems" },
           { name: "Wizkid" },
+          { name: "Burna Boy" },
           { name: "Asake" },
           { name: "Tyla" },
         ],
         inProgress: true,
-        note: "Burna Boy surged into the lead on the back of “Dai Dai”'s record-breaking run and a new all-time monthly-listeners high.",
+        note: "Tems leading so far.",
       },
       {
         label: "2025",
