@@ -40,7 +40,7 @@ function Row({
             <span
               key={e.c}
               className={`${styles.peak} ${styles[chartTier(e.peak)]} ${dim ? styles.peakDim : ""}`}
-              title={`${c.name} — ${c.body}`}
+              title={`${c.name} — ${c.body}${e.note ? ` (${e.note})` : ""}`}
             >
               <span className={styles.flag}>{c.flag}</span>#{e.peak}
             </span>
