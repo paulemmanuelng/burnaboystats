@@ -3,11 +3,13 @@
 // re-fetched and re-verified, matching exactly. The ₦9bn Bugatti Chiron and the
 // Porsche 911 GT3 RS are each confirmed via a directly-fetched dedicated
 // article (Vanguard/Ripples/The Niche; AutoJosh) with consistent details
-// across multiple independent outlets. The Ferrari SF90 Stradale is the one
-// exception: ownership is well-documented (many independent posts/videos), but
-// its value floats free of any single dedicated report — it's a social/blog
-// estimate, marked "(est.)" below rather than presented with the same
-// precision as the rest. Naira figures are import-inclusive; USD figures use
+// across multiple independent outlets. The Ferrari SF90 Stradale and the
+// vintage Ferrari Testarossa are the two exceptions: ownership of each is
+// well-documented (many independent posts/videos — the Testarossa specifically
+// via two separate sightings, London and later moved into his Lagos penthouse,
+// August 2025), but their values float free of any single dedicated report —
+// they're social/blog estimates, marked "(est.)" below rather than presented
+// with the same precision as the rest. Naira figures are import-inclusive; USD figures use
 // each source's own conversion (~₦1,455/$), so they run higher than
 // international sticker prices.
 //
@@ -15,8 +17,6 @@
 // Last fully re-verified July 2026 (all 18 entries independently re-checked).
 //
 // HELD OUT (only his own confirmed cars are listed):
-//  • "Vintage Ferrari Testarossa" — only ever reported/rumoured (values flagged
-//    unreliable, likely conflated with the confirmed red 328 GTB below).
 //  • Mercedes-Maybach GLS 600 ("Maybach Truck") — Pulse lists it as a Mother's
 //    Day GIFT to his mother/manager Bose Ogulu, not part of his own fleet.
 //  • Tesla Cybertruck — a gift to a friend, per Pulse.
@@ -52,11 +52,6 @@ export const cars: Car[] = [
     desc: "A one-of-one custom build by Dubai's Venuum, unveiled July 2026 and billed as the world's first widebody Chiron — baby blue over black with a French-tricolour stripe, a “7” roundel, and his name engraved on the rear spoiler. Reported as the most expensive car in West Africa.",
   },
   {
-    make: "Ferrari", model: "SF90 Stradale", year: 2026,
-    valueUsd: 894_000, valueNaira: "~₦1.3 billion (est.)",
-    desc: "A plug-in-hybrid V8 hypercar with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa. Delivered in 2026. Ownership is well-documented; the value is a social/blog estimate rather than one dedicated report.",
-  },
-  {
     make: "McLaren", model: "Senna (Carbon Fibre Edition)",
     valueUsd: 2_200_000, valueNaira: "₦3.2 billion",
     desc: "A track-bred hypercar named after Ayrton Senna, limited to 500 units worldwide — his finished in exposed carbon fibre.",
@@ -67,9 +62,19 @@ export const cars: Car[] = [
     desc: "Ferrari's first-ever four-door, four-seat model — the marque's debut in the luxury-SUV space, powered by a naturally-aspirated V12.",
   },
   {
+    make: "Ferrari", model: "Testarossa",
+    valueUsd: 1_100_000, valueNaira: "~₦1.6 billion (est.)",
+    desc: "A wide-body, flat-12 icon of the 1980s, instantly recognisable by its side strakes — spotted in London and later moved into his Lagos penthouse (August 2025). Ownership is well-documented on video; the value is a social/blog estimate rather than one dedicated report.",
+  },
+  {
     make: "Lamborghini", model: "Revuelto",
     valueUsd: 1_030_000, valueNaira: "₦1.5 billion",
     desc: "Lamborghini's first plug-in-hybrid V12 flagship — the successor to the Aventador.",
+  },
+  {
+    make: "Ferrari", model: "SF90 Stradale", year: 2026,
+    valueUsd: 894_000, valueNaira: "~₦1.3 billion (est.)",
+    desc: "A plug-in-hybrid V8 hypercar with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa. Delivered in 2026. Ownership is well-documented; the value is a social/blog estimate rather than one dedicated report.",
   },
   {
     make: "Lamborghini", model: "Aventador SVJ",

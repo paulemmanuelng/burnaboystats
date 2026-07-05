@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-05",
+    category: "Lifestyle",
+    text: "A vintage Ferrari Testarossa joins the fleet — spotted in London before being moved into his Lagos penthouse, taking the reported car collection to 19 vehicles worth over $18 million.",
+    href: "/records/cars",
+  },
+  {
+    date: "2026-07-05",
     category: "Streaming",
     text: "48.95 million monthly listeners on Spotify — yet another new all-time peak, still the highest ever recorded for an African artist.",
     href: "/records/africas-biggest",
