@@ -24,7 +24,7 @@ export const cars: Car[] = [
     valueUsd: 6_190_000, valueNaira: "₦9 billion",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bugatti_Chiron_1.jpg/1280px-Bugatti_Chiron_1.jpg",
     imageSourceUrl: "https://en.wikipedia.org/wiki/Bugatti_Chiron",
-    note: "Unveiled July 2026 — a one-of-one custom build by Dubai's Venuum, billed as the world's first widebody Chiron, with his name engraved on the rear spoiler. Reported as the most expensive car in West Africa.",
+    note: "Unveiled July 2026 — a one-of-one custom build by Dubai's Venuum, billed as the world's first widebody Chiron. Finished in baby blue over black with a French-tricolour stripe and a “7” roundel, his name engraved on the rear spoiler. Reported as the most expensive car in West Africa.",
   },
   {
     make: "McLaren", model: "Senna (Carbon Fibre Edition)",
