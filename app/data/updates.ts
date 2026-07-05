@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Streaming",
+    text: "48.95 million monthly listeners on Spotify — yet another new all-time peak, still the highest ever recorded for an African artist.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-05",
+    category: "Streaming",
     text: "48.37 million monthly listeners on Spotify — another new all-time peak, still the highest ever recorded for an African artist.",
     href: "/records/africas-biggest",
   },
