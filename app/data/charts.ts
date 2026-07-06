@@ -158,7 +158,7 @@ export const featureCharts: ChartRelease[] = [
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, entries: [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "HR", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "GLBX", peak: 1 },
     { c: "LB", peak: 2 }, { c: "AR", peak: 2 }, { c: "NO", peak: 2 },
-    { c: "SA", peak: 3 }, { c: "ES", peak: 3 }, { c: "IN", peak: 4 }, { c: "SE", peak: 4 }, { c: "FR", peak: 4 },
+    { c: "SA", peak: 3 }, { c: "ES", peak: 3 }, { c: "FR", peak: 3 }, { c: "IN", peak: 4 }, { c: "SE", peak: 4 },
     { c: "GR", peak: 5 }, { c: "LT", peak: 5 }, { c: "NG", peak: 7 }, { c: "EC", peak: 7 }, { c: "GLB", peak: 9 }, { c: "IT", peak: 10 },
     { c: "HU", peak: 14 }, { c: "PT", peak: 14 }, { c: "CZ", peak: 18 }, { c: "UK", peak: 18 }, { c: "ZA", peak: 19 }, { c: "CA", peak: 24 }, { c: "PL", peak: 26 }, { c: "IE", peak: 27 },
     { c: "IL", peak: 38 }, { c: "AU", peak: 47 },

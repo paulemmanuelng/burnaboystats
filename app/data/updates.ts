@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-05",
+    category: "Charts",
+    text: "Up to No.3 in France: “Dai Dai” climbs to a new peak on the SNEP official singles chart.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-05",
     category: "Streaming",
     text: "49.47 million monthly listeners on Spotify — a new all-time high, and closing in on 50 million, a mark no African artist has ever reached.",
     href: "/records/africas-biggest",
