@@ -30,15 +30,39 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-05",
+    category: "Streaming",
+    text: "50 million Spotify monthly listeners: Burna Boy becomes the first African artist in history to reach the mark, peaking at 50.06 million.",
+    href: "/records/firsts",
+  },
+  {
+    date: "2026-07-05",
     category: "Charts",
-    text: "Up to No.3 in France: “Dai Dai” climbs to a new peak on the SNEP official singles chart.",
+    text: "A new peak of No.3 on the Billboard Global 200 — “Dai Dai” jumps six places on the world's biggest chart.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-05",
+    category: "Charts",
+    text: "New peaks for “Dai Dai”: No.1 in Lebanon and a new high of No.2 in India.",
     href: "/records/charts",
   },
   {
     date: "2026-07-05",
     category: "Streaming",
-    text: "49.47 million monthly listeners on Spotify — a new all-time high, and closing in on 50 million, a mark no African artist has ever reached.",
+    text: "644 million monthly audience on YouTube Music — the first Nigerian artist past 600 million, now second among African artists behind only Tyla.",
     href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-05",
+    category: "Certifications",
+    text: "Gold in Spain: “Dai Dai” is certified Gold by Promusicae, past 50,000 units sold.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-07-05",
+    category: "Charts",
+    text: "Up to No.3 in France: “Dai Dai” climbs to a new peak on the SNEP official singles chart.",
+    href: "/records/charts",
   },
   {
     date: "2026-07-05",

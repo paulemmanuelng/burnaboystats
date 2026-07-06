@@ -49,6 +49,7 @@ export const firstGroups: FirstGroup[] = [
   {
     label: "Charts & streaming",
     items: [
+      { year: "2026", title: "First African artist to reach 50 million Spotify monthly listeners", text: "Crossed 50 million in July 2026 — the highest monthly-listeners figure ever recorded for an African artist, powered by the “Dai Dai” World Cup run." },
       { year: "2026", title: "First African artist to chart the Billboard Hot 100 six years running", text: "An unbroken run from 2021 through 2026." },
       { year: "2026", title: "Most Billboard Hot 100 entries by an African artist", text: "Nine career entries — the record for any African artist, extended by “Dai Dai”." },
       { year: "2024", title: "First African artist to surpass 2 billion UK streams", text: "Recognised with a BRIT Billion award — the first African to reach it." },

@@ -246,7 +246,7 @@ export const singles: Release[] = [
 // Songs where Burna Boy is a featured/guest artist.
 export const features: Release[] = [
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, certs: [
-    { c: "CO", level: "Gold" },
+    { c: "CO", level: "Gold" }, { c: "ES", level: "Gold" },
   ] },
   { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, certs: [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 2 },
@@ -385,6 +385,7 @@ export const certHistory: CertEvent[] = [
   { title: "Gbona", country: "NZ", level: "Gold", year: 2026 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "PL", level: "Platinum", year: 2026 },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "CO", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "ES", level: "Gold", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "ZA", level: "Platinum", x: 2, year: 2026 },
   { title: "Gbona", country: "FR", level: "Diamond", year: 2026 },
 
