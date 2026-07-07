@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-05",
+    category: "Charts",
+    text: "More new peaks for “Dai Dai”: No.6 in Portugal, No.19 in Canada, No.39 in Brazil and No.67 on the US Billboard Hot 100.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-05",
     category: "Streaming",
     text: "50 million Spotify monthly listeners: Burna Boy becomes the first African artist in history to reach the mark, peaking at 50.06 million.",
     href: "/records/firsts",
