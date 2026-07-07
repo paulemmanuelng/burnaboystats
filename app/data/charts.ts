@@ -66,6 +66,7 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   VN: { name: "Vietnam", flag: "🇻🇳", body: "Billboard Vietnam Hot 100" },
   BR: { name: "Brazil", flag: "🇧🇷", body: "Billboard Brasil Hot 100" },
   JP: { name: "Japan", flag: "🇯🇵", body: "Billboard Japan Hot 100" },
+  SG: { name: "Singapore", flag: "🇸🇬", body: "RIAS Top Charts" },
   GLB: { name: "Global", flag: "🌍", body: "Billboard Global 200" },
   GLBX: { name: "Global (excl. US)", flag: "🌐", body: "Billboard Global Excl. US" },
 };
@@ -160,7 +161,7 @@ export const featureCharts: ChartRelease[] = [
     { c: "AR", peak: 2 }, { c: "NO", peak: 2 }, { c: "IN", peak: 2 },
     { c: "SA", peak: 3 }, { c: "ES", peak: 3 }, { c: "FR", peak: 3 }, { c: "GLB", peak: 3 },
     { c: "SE", peak: 4 }, { c: "GR", peak: 5 }, { c: "LT", peak: 5 }, { c: "PT", peak: 6 }, { c: "NG", peak: 7 }, { c: "EC", peak: 7 }, { c: "IT", peak: 10 },
-    { c: "HU", peak: 14 }, { c: "CZ", peak: 18 }, { c: "UK", peak: 18 }, { c: "ZA", peak: 19 }, { c: "CA", peak: 19 }, { c: "PL", peak: 26 }, { c: "IE", peak: 27 },
+    { c: "HU", peak: 14 }, { c: "CZ", peak: 18 }, { c: "UK", peak: 18 }, { c: "ZA", peak: 19 }, { c: "CA", peak: 19 }, { c: "SG", peak: 25 }, { c: "PL", peak: 26 }, { c: "IE", peak: 27 },
     { c: "IL", peak: 38 }, { c: "BR", peak: 39 }, { c: "AU", peak: 47 },
     { c: "JP", peak: 60 }, { c: "US", peak: 67 }, { c: "VN", peak: 93 },
   ] },

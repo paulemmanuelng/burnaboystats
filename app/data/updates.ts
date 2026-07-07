@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Charts",
+    text: "A new market for “Dai Dai”: a debut at No.25 on Singapore's official RIAS chart.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-05",
+    category: "Charts",
     text: "More new peaks for “Dai Dai”: No.6 in Portugal, No.19 in Canada, No.39 in Brazil and No.67 on the US Billboard Hot 100.",
     href: "/records/charts",
   },
