@@ -68,6 +68,14 @@
   color: var(--text-muted);
   margin-top: 7px;
 }
+.releaseNote {
+  display: block;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin-top: 8px;
+  max-width: 46ch;
+}
 .peaks {
   display: flex;
   flex-wrap: wrap;

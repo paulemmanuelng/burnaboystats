@@ -31,6 +31,7 @@ function Row({
         <span className={styles.credit}>
           {item.credit ? `${item.credit} · ${item.year}` : item.year}
         </span>
+        {item.note ? <span className={styles.releaseNote}>{item.note}</span> : null}
       </div>
       <div className={styles.peaks}>
         {entries.map((e) => {

@@ -82,6 +82,7 @@ export interface ChartRelease {
   credit?: string;
   year: number;
   entries: ChartEntry[];
+  note?: string; // optional footnote under the release (e.g. multi-territory charts)
 }
 
 export const albumCharts: ChartRelease[] = [
@@ -164,7 +165,7 @@ export const featureCharts: ChartRelease[] = [
     { c: "CZ", peak: 15 }, { c: "UK", peak: 18 }, { c: "ZA", peak: 19 }, { c: "CA", peak: 19 }, { c: "DK", peak: 22 }, { c: "SG", peak: 25 }, { c: "PL", peak: 26 }, { c: "IL", peak: 26 }, { c: "IE", peak: 27 }, { c: "HU", peak: 32 },
     { c: "BR", peak: 39 }, { c: "AU", peak: 47 },
     { c: "JP", peak: 60 }, { c: "US", peak: 67 }, { c: "VN", peak: 93 },
-  ] },
+  ], note: "Also on Billboard's multi-territory charts: No.1 Global 200 (Excl. US), No.1 Central America & Caribbean, No.2 Middle East & North Africa, No.3 Global 200, and No.12 North Africa." },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, entries: [
     { c: "BE", peak: 2 }, { c: "SR", peak: 2 }, { c: "HU", peak: 39 }, { c: "IE", peak: 43 },
     { c: "UK", peak: 43 }, { c: "CH", peak: 52 }, { c: "CA", peak: 70 }, { c: "HR", peak: 73 },
