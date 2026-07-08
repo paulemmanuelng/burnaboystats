@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-05",
+    category: "Tours",
+    text: "Set to headline the 2026 FIFA World Cup Final halftime show (19 July) — the first African artist ever to perform at one — on a bill with Madonna, Shakira, BTS, Justin Bieber and Coldplay.",
+    href: "/records/tours",
+  },
+  {
+    date: "2026-07-05",
     category: "Charts",
     text: "Another No.1 for “Dai Dai”: it tops Greece's official IFPI singles chart — a 12th chart-topping country.",
     href: "/records/charts",
