@@ -96,10 +96,6 @@ export default function Home() {
               <span className={styles.statNum}><CountUp end={total} /></span>
               <span className={styles.statLabel}>Certifications</span>
             </Link>
-            <Link href="/records/africas-biggest" className={styles.stat}>
-              <span className={styles.statNum}><CountUp end={50} suffix="M" /></span>
-              <span className={styles.statLabel}>Monthly listeners</span>
-            </Link>
             <Link href="/certifications" className={styles.stat}>
               <span className={styles.statNum}><CountUp end={countryCount} /></span>
               <span className={styles.statLabel}>Countries</span>
@@ -107,6 +103,10 @@ export default function Home() {
             <Link href="/music" className={styles.stat}>
               <span className={styles.statNum}><CountUp end={8} /></span>
               <span className={styles.statLabel}>Studio albums</span>
+            </Link>
+            <Link href="/records/awards" className={styles.stat}>
+              <span className={styles.statNum}>2021</span>
+              <span className={styles.statLabel}>Grammy winner</span>
             </Link>
           </div>
         </div>
