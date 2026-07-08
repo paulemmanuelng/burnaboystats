@@ -283,6 +283,27 @@ a.stat:hover .statNum { color: var(--gold-bright); }
   background: rgba(255, 182, 39, 0.08);
 }
 
+/* "Follow on TikTok" prompt under the Latest Updates list. */
+.followTikTok {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 26px;
+  padding: 12px 20px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--gold-bright);
+  border: 1px solid var(--gold-dim);
+  border-radius: 999px;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.followTikTok:hover {
+  color: var(--bg);
+  border-color: var(--gold-bright);
+  background: var(--gold-bright);
+}
+
 .rankList {
   list-style: none;
   margin-top: 30px;

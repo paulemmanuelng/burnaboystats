@@ -191,6 +191,7 @@ export interface LiveMoment {
 }
 
 export const liveMoments: LiveMoment[] = [
+  { year: "2026", title: "FIFA World Cup Final halftime show", text: "Set to perform at the 2026 final's halftime show (19 July) — the first African artist to do so — on a bill with Madonna, Shakira, BTS, Justin Bieber and Coldplay.", record: true },
   { year: "2026", title: "FIFA World Cup Opening Ceremony", text: "Headlined the opener in Mexico City with Shakira, performing the official tournament song “Dai Dai.”" },
   { year: "2026", title: "AFCON 2025 Fan Zone grand finale", text: "Headlined “The AFCON Last Dance” in Rabat (16 Jan 2026), closing out the Africa Cup of Nations hosted by Morocco — on a bill with Stormzy, Stonebwoy and Jaylann." },
   { year: "2025", title: "Stade de France, Paris", text: "First African artist to headline the Stade de France (April 2025) — a $4.53M gross." },

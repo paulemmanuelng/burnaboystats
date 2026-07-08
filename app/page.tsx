@@ -221,6 +221,16 @@ export default function Home() {
           <Reveal delay={140}>
             <UpdatesList items={latestUpdates(4)} />
           </Reveal>
+          <Reveal delay={200}>
+            <a
+              href="https://www.tiktok.com/@paulemmanuelng"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.followTikTok}
+            >
+              Follow @paulemmanuelng on TikTok to catch these first ↗
+            </a>
+          </Reveal>
         </div>
       </section>
 
