@@ -31,6 +31,18 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Charts",
+    text: "Another No.1 for “Dai Dai”: it tops Greece's official IFPI singles chart — a 12th chart-topping country.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-05",
+    category: "Charts",
+    text: "More climbs for “Dai Dai”: up to No.3 in Portugal, No.15 in the Czech Republic and No.26 in Israel, plus a debut at No.22 in Denmark.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-05",
+    category: "Charts",
     text: "A new market for “Dai Dai”: a debut at No.25 on Singapore's official RIAS chart.",
     href: "/records/charts",
   },
@@ -43,7 +55,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Streaming",
-    text: "50 million Spotify monthly listeners: Burna Boy becomes the first African artist in history to reach the mark, peaking at 50.06 million.",
+    text: "50 million Spotify monthly listeners: Burna Boy becomes the first African artist in history to reach the mark, now peaking at 50.47 million.",
     href: "/records/firsts",
   },
   {
