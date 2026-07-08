@@ -29,9 +29,6 @@ export default function UpdatesPage() {
           Latest <span className="accent">Updates</span>
         </h1>
         <p>Everything new on the site — chart peaks, certifications and records, as they&apos;re added</p>
-        <a href="/rss.xml" className="btn btnSecondary" style={{ marginTop: 18 }}>
-          Subscribe via RSS ↗
-        </a>
       </header>
 
       <div className="container">
