@@ -1,0 +1,66 @@
+/* Full-box layer that holds the scattered motifs behind the CTA text. */
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.item {
+  position: absolute;
+  opacity: 0.09;
+  display: block;
+}
+.item svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Scatter positions — all kept in the outer edges/corners so they never sit
+   under the centred title, paragraph or button. */
+.vinyl {
+  width: 76px; height: 76px;
+  top: 7%; left: 3%;
+  transform: rotate(-6deg);
+  opacity: 0.11;
+}
+.notes {
+  width: 58px; height: 58px;
+  top: 10%; right: 5%;
+  transform: rotate(8deg);
+}
+.equalizer {
+  width: 62px; height: 62px;
+  bottom: 8%; left: 5%;
+}
+.cassette {
+  width: 66px; height: 66px;
+  bottom: 10%; right: 4%;
+  transform: rotate(-5deg);
+}
+.clef {
+  width: 46px; height: 62px;
+  top: 40%; left: 7%;
+}
+.waves {
+  width: 56px; height: 56px;
+  top: 40%; right: 6%;
+}
+.note {
+  width: 34px; height: 34px;
+  bottom: 30%; left: 16%;
+  transform: rotate(6deg);
+  opacity: 0.07;
+}
+
+/* On narrower boxes the text fills most of the width, so keep only the four
+   corner motifs (smaller) and drop the mid-edge/inner ones to avoid overlap. */
+@media (max-width: 760px) {
+  .clef, .waves, .note { display: none; }
+  .vinyl { width: 54px; height: 54px; top: 4%; left: 4%; }
+  .notes { width: 42px; height: 42px; top: 5%; right: 5%; }
+  .equalizer { width: 44px; height: 44px; bottom: 5%; left: 5%; }
+  .cassette { width: 48px; height: 48px; bottom: 6%; right: 5%; }
+}

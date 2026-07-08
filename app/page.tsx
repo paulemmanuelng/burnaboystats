@@ -6,6 +6,7 @@ import Reveal from "./components/Reveal";
 import CountUp from "./components/CountUp";
 import KeepExploring from "./components/KeepExploring";
 import UpdatesList from "./components/UpdatesList";
+import MusicDecor from "./components/MusicDecor";
 import { totalAwards, countryCount } from "./data/certifications";
 import { latestUpdates } from "./data/updates";
 
@@ -189,14 +190,17 @@ export default function Home() {
         <div className="container">
           <Reveal>
             <div className={styles.ctaInner}>
-              <h2 className={styles.ctaTitle}>
-                Dive into the <span className="goldText">data</span>
-              </h2>
-              <p className={styles.ctaText}>
-                Chart records, awards, tours and certifications — every career
-                record of the African Giant in one place.
-              </p>
-              <Link href="/records" className="btn btnPrimary">Explore the records ↗</Link>
+              <MusicDecor />
+              <div className={styles.ctaContent}>
+                <h2 className={styles.ctaTitle}>
+                  Dive into the <span className="goldText">data</span>
+                </h2>
+                <p className={styles.ctaText}>
+                  Chart records, awards, tours and certifications — every career
+                  record of the African Giant in one place.
+                </p>
+                <Link href="/records" className="btn btnPrimary">Explore the records ↗</Link>
+              </div>
             </div>
           </Reveal>
         </div>

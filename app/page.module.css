@@ -363,11 +363,17 @@
   padding: 30px 0 110px;
 }
 .ctaInner {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(135deg, rgba(255, 182, 39, 0.12), rgba(226, 52, 43, 0.09));
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 72px 40px;
   text-align: center;
+}
+.ctaContent {
+  position: relative;
+  z-index: 1;
 }
 .ctaTitle {
   font-size: clamp(2rem, 5vw, 3.2rem);
