@@ -7,6 +7,8 @@ import CountUp from "./components/CountUp";
 import KeepExploring from "./components/KeepExploring";
 import UpdatesList from "./components/UpdatesList";
 import MusicDecor from "./components/MusicDecor";
+import AlbumStrip from "./components/AlbumStrip";
+import MapTeaser from "./components/MapTeaser";
 import { totalAwards, countryCount } from "./data/certifications";
 import { latestUpdates } from "./data/updates";
 
@@ -130,6 +132,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ================= DISCOGRAPHY STRIP ================= */}
+      <section className={styles.section}>
+        <div className="container">
+          <Reveal>
+            <p className={styles.eyebrow}>The catalogue</p>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className={styles.sectionHead}>
+              <h2 className={styles.sectionTitle}>
+                The <span className="goldText">discography</span>
+              </h2>
+              <Link href="/music" className={styles.headLink}>
+                Explore the music ↗
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal delay={140}>
+            <AlbumStrip />
+          </Reveal>
+        </div>
+      </section>
+
       {/* ================= BIGGEST CERTIFICATIONS (ranked) ================= */}
       <section className={styles.section}>
         <div className="container">
@@ -181,6 +205,15 @@ export default function Home() {
           </Reveal>
           <Reveal delay={140}>
             <UpdatesList items={latestUpdates(4)} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ================= MAP TEASER ================= */}
+      <section className={styles.section}>
+        <div className="container">
+          <Reveal>
+            <MapTeaser />
           </Reveal>
         </div>
       </section>
