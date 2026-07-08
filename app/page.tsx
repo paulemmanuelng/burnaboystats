@@ -10,9 +10,18 @@ import MusicDecor from "./components/MusicDecor";
 import AlbumStrip from "./components/AlbumStrip";
 import MapTeaser from "./components/MapTeaser";
 import { totalAwards, countryCount } from "./data/certifications";
-import { latestUpdates } from "./data/updates";
+import { latestUpdates, updates } from "./data/updates";
 
 const total = totalAwards();
+
+// Freshness cue for the hero — the most recent Updates-feed date, formatted.
+// Derived from fixed data (not runtime "now"), so it's stable at build time.
+const lastUpdatedISO = updates.reduce((m, u) => (u.date > m ? u.date : m), updates[0].date);
+const lastUpdated = new Date(`${lastUpdatedISO}T00:00:00`).toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
 
 // His most decorated tracks — shown as a ranked list (the #1 is featured).
 const topCerts = [
@@ -59,8 +68,14 @@ export default function Home() {
 
         <div className={`container ${styles.heroInner}`}>
           <div className={styles.heroTop}>
-            <span className={styles.metaLabel}>Est. 2010</span>
-            <span className={styles.metaLabel}>Afro-Fusion</span>
+            <div className={styles.metaGroup}>
+              <span className={styles.metaLabel}>Est. 2010</span>
+              <span className={styles.metaLabel}>Afro-Fusion</span>
+            </div>
+            <span className={styles.updated}>
+              <span className={styles.liveDot} aria-hidden="true" />
+              Updated {lastUpdated}
+            </span>
           </div>
 
           <p className={styles.eyebrow}>★ The African Giant — by the numbers</p>
@@ -77,22 +92,22 @@ export default function Home() {
           </div>
 
           <div className={styles.scoreboard}>
-            <div className={styles.stat}>
+            <Link href="/certifications" className={styles.stat}>
               <span className={styles.statNum}><CountUp end={total} /></span>
               <span className={styles.statLabel}>Certifications</span>
-            </div>
-            <div className={styles.stat}>
+            </Link>
+            <Link href="/records/africas-biggest" className={styles.stat}>
+              <span className={styles.statNum}><CountUp end={50} suffix="M" /></span>
+              <span className={styles.statLabel}>Monthly listeners</span>
+            </Link>
+            <Link href="/certifications" className={styles.stat}>
               <span className={styles.statNum}><CountUp end={countryCount} /></span>
               <span className={styles.statLabel}>Countries</span>
-            </div>
-            <div className={styles.stat}>
+            </Link>
+            <Link href="/music" className={styles.stat}>
               <span className={styles.statNum}><CountUp end={8} /></span>
               <span className={styles.statLabel}>Studio albums</span>
-            </div>
-            <div className={styles.stat}>
-              <span className={styles.statNum}>2021</span>
-              <span className={styles.statLabel}>Grammy winner</span>
-            </div>
+            </Link>
           </div>
         </div>
 
