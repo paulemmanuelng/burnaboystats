@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-09",
+    category: "Streaming",
+    text: "New No.1 on YouTube Music: Burna Boy's 658 million monthly audience peak is now the highest of any African artist, overtaking Tyla.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-09",
     category: "Certifications",
     text: "“Dai Dai” with Shakira goes 2× Latin Platinum: the RIAA certifies it for over 120,000 units in the US Latin market.",
     href: "/certifications",
