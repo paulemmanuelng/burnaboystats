@@ -85,7 +85,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Streaming",
-    text: "50 million Spotify monthly listeners: Burna Boy becomes the first African artist in history to reach the mark, now peaking at 50.89 million.",
+    text: "50 million Spotify monthly listeners: Burna Boy becomes the first African artist in history to reach the mark, now peaking at 51.31 million.",
     href: "/records/firsts",
   },
   {
