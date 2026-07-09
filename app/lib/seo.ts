@@ -67,6 +67,7 @@ const SEGMENT_LABELS: Record<string, string> = {
   music: "Music",
   certifications: "Certifications",
   records: "Career Records",
+  "by-the-numbers": "By the Numbers",
   charts: "Official Charts",
   awards: "Awards",
   tours: "Tours & Live",
