@@ -23,7 +23,7 @@ function Badge({ cert, countries, dim }: { cert: Cert; countries: Countries; dim
   return (
     <span
       className={`${styles.cBadge} ${styles[tierOf(cert.level)]} ${dim ? styles.badgeDim : ""}`}
-      title={`${country.name} — ${country.body}`}
+      title={`${country.name} — ${cert.body ?? country.body}`}
     >
       <span className={styles.flag}>{country.flag}</span>
       {cert.x ? `${cert.x}× ` : ""}

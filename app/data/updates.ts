@@ -29,6 +29,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-09",
+    category: "Certifications",
+    text: "“Dai Dai” with Shakira goes 2× Latin Platinum: the RIAA certifies it for over 120,000 units in the US Latin market.",
+    href: "/certifications",
+  },
+  {
     date: "2026-07-05",
     category: "Tours",
     text: "Set to headline the 2026 FIFA World Cup Final halftime show (19 July) — the first African artist ever to perform at one — on a bill with Madonna, Shakira, BTS, Justin Bieber and Coldplay.",

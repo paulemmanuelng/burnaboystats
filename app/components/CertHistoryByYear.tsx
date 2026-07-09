@@ -13,7 +13,7 @@ const YEAR_NOTES: Partial<Record<number, string>> = {
 function EventBadge({ event, countries }: { event: CertEvent; countries: Record<string, Country> }) {
   const country = countries[event.country];
   return (
-    <span className={`${styles.cBadge} ${styles[tierOf(event.level)]}`} title={`${country.name} — ${country.body}`}>
+    <span className={`${styles.cBadge} ${styles[tierOf(event.level)]}`} title={`${country.name} — ${event.body ?? country.body}`}>
       <span className={styles.flag}>{country.flag}</span>
       {event.x ? `${event.x}× ` : ""}
       {event.level}
