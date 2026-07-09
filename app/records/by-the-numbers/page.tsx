@@ -28,6 +28,9 @@ const stats: { num: string; label: string; sub: string; href: string }[] = [
   { num: "$6.15M", label: "Biggest concert by an African artist", sub: "London Stadium, June 2024 — 58,973 fans", href: "/records/tours" },
   { num: "9", label: "Billboard Hot 100 entries", sub: "the most by any African artist, six years running", href: "/records/charts" },
   { num: "50M+", label: "Spotify monthly listeners", sub: "the first African artist ever to reach 50 million", href: "/records/africas-biggest" },
+  // 658M figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.
+  { num: "658M", label: "YouTube Music monthly audience", sub: "the highest peak of any African artist", href: "/records/africas-biggest" },
+  { num: "2B+", label: "UK streams", sub: "the first African artist to pass two billion", href: "/records/firsts" },
   { num: `${performedCountryCount}`, label: "Countries performed in", sub: "live shows on every inhabited continent", href: "/records/tours/map" },
   { num: `${albums.length}`, label: "Studio albums", sub: "from L.I.F.E (2013) to No Sign of Weakness (2025)", href: "/music" },
   { num: "1st", label: "African artist to headline a World Cup opening", sub: "the 2026 FIFA World Cup, performing “Dai Dai” with Shakira", href: "/records/firsts" },
