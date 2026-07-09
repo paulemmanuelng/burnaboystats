@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Geist, Anton, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Nav from "./components/Nav";
 import Breadcrumbs from "./components/Breadcrumbs";
 import BirthdayCelebration from "./components/BirthdayCelebration";
@@ -127,6 +128,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* Vercel Web Analytics — privacy-friendly visitor stats */}
         <Analytics />
+        {/* Vercel Speed Insights — real-user Core Web Vitals (LCP/CLS/INP) */}
+        <SpeedInsights />
 
         {/* FOOTER — shown on every page */}
         <footer className="footer">
