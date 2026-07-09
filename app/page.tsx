@@ -27,8 +27,8 @@ const lastUpdated = new Date(`${lastUpdatedISO}T00:00:00`).toLocaleDateString("e
 const topCerts = [
   { title: "Last Last", credit: "Burna Boy · 2022", cert: "Diamond 🇫🇷 · 4× Platinum 🇨🇦 · 5× Platinum 🇳🇬" },
   { title: "Location", credit: "Dave ft. Burna Boy · 2019", cert: "5× Platinum 🇬🇧 · Diamond 🇫🇷" },
+  { title: "Jerusalema (Remix)", credit: "Master KG, Nomcebo & Burna Boy · 2020", cert: "Diamond 🇫🇷 · 4× Platinum 🇮🇹 · 2× Platinum 🇵🇹" },
   { title: "On the Low", credit: "Burna Boy · 2018", cert: "Diamond 🇫🇷 · 2× Platinum 🇨🇦" },
-  { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy · 2019", cert: "3× Platinum 🇬🇧" },
 ];
 
 const marqueeItems = [
