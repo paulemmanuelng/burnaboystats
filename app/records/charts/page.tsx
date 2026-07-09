@@ -56,6 +56,13 @@ export default function ChartsPage() {
           </div>
         </div>
 
+        <p className="lead" style={{ margin: "22px auto 0", textAlign: "center" }}>
+          Burna Boy has {chartEntryCount} entries on official national charts across
+          {" "}{chartCountryCount} countries, reaching No. 1 a total of {numberOnes}
+          {" "}times — with chart-toppers spanning Nigeria, the UK, South Africa, the
+          Netherlands, Switzerland and Colombia.
+        </p>
+
         <ChartExplorer
           albums={albumCharts}
           singles={singleCharts}

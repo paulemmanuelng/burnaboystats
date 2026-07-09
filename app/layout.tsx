@@ -37,13 +37,13 @@ export const metadata: Metadata = {
       "FVrWwEIrAzlM4eureFu-RMjQhgQOvVKRmNRwPjJ5b8I",
     ],
   },
-  title: "Burna Boy Stats — Unofficial Fan Site",
+  title: "Burna Boy Stats — Certifications, Charts, Awards & Records",
   description:
-    "Burna Boy Stats: an unofficial fan site tracking the certifications, music and stats of Grammy-winning Nigerian superstar Burna Boy.",
+    "Every Burna Boy certification, chart peak, award and tour record in one place — fact-checked and always current. The unofficial stats home of Grammy-winning Nigerian superstar Burna Boy.",
   openGraph: {
-    title: "Burna Boy Stats",
+    title: "Burna Boy Stats — Certifications, Charts, Awards & Records",
     description:
-      "Certifications, discography and milestones of Grammy-winning Nigerian superstar Burna Boy.",
+      "Every Burna Boy certification, chart peak, award and tour record in one place — fact-checked and always current.",
     type: "website",
     siteName: "Burna Boy Stats",
     url: "/",

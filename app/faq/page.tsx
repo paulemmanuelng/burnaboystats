@@ -20,11 +20,27 @@ const total = totalAwards();
 const grammyNoms = ceremonies.find((c) => c.name === "Grammy Awards")?.noms.length ?? 0;
 const afroNationCount = festivals.filter((f) => f.name === "Afro Nation").length;
 
+// Age is computed from his birthdate at build time so it never goes stale.
+const BORN = { year: 1991, month: 7, day: 2 }; // 2 July 1991
+const nowDate = new Date();
+const hadBirthday =
+  nowDate.getMonth() + 1 > BORN.month ||
+  (nowDate.getMonth() + 1 === BORN.month && nowDate.getDate() >= BORN.day);
+const age = nowDate.getFullYear() - BORN.year - (hadBirthday ? 0 : 1);
+
 // Answer-first Q&A — figures pull from the site's own data so they stay in sync.
 const faqs: { q: string; a: string }[] = [
   {
     q: "Who is Burna Boy?",
     a: `Burna Boy is a Grammy-winning Nigerian singer, songwriter and Afro-fusion pioneer. Born Damini Ebunoluwa Ogulu on 2 July 1991 in Port Harcourt, Nigeria, he is widely known as the "African Giant" and is one of the most successful African artists in history.`,
+  },
+  {
+    q: "What is Burna Boy's real name?",
+    a: `Burna Boy's real name is Damini Ebunoluwa Ogulu. He was born on 2 July 1991 in Port Harcourt, Rivers State, Nigeria, and performs under the stage name Burna Boy.`,
+  },
+  {
+    q: "How old is Burna Boy?",
+    a: `Burna Boy is ${age} years old. He was born Damini Ebunoluwa Ogulu on 2 July 1991 in Port Harcourt, Nigeria.`,
   },
   {
     q: "How many Grammys has Burna Boy won?",
@@ -55,12 +71,20 @@ const faqs: { q: string; a: string }[] = [
     a: `Burna Boy has released 8 studio albums — L.I.F.E (2013), On a Spaceship (2015), Outside (2018), African Giant (2019), Twice as Tall (2020), Love, Damini (2022), I Told Them… (2023) and No Sign of Weakness (2025) — plus 2 EPs.`,
   },
   {
+    q: "What is Burna Boy's biggest song?",
+    a: `Burna Boy's biggest solo song is "Last Last" (2022) — certified Diamond in France, 5× Platinum in Nigeria and 4× Platinum in Canada, and his signature international hit. His biggest song as a featured artist is "Location" with Dave, certified 5× Platinum in the UK.`,
+  },
+  {
     q: "How many number-one songs does Burna Boy have?",
     a: `Burna Boy has ${numberOneReleases} releases that have reached No. 1 on an official national chart — ${numberOnes} chart-topping placements in all, since several reached No. 1 in more than one country at once. His No. 1s span Nigeria, the UK, South Africa, the Netherlands, Switzerland and Colombia, among others.`,
   },
   {
     q: "What records has Burna Boy set for African music?",
     a: `Burna Boy was the first African artist to headline a FIFA World Cup opening ceremony (2026), the first to sell out a stadium in the United States (Citi Field, 2023) and to headline a UK stadium (London Stadium, 2023), and the first African artist to surpass both 1 billion and 2 billion UK streams.`,
+  },
+  {
+    q: "Is Burna Boy the biggest African artist?",
+    a: `By several measures, yes. Burna Boy is the most-certified African artist in history (${total} certifications across ${countryCount} countries), holds the records for the highest-grossing tour and biggest single concert by an African artist, and was the first African artist to headline a FIFA World Cup opening ceremony. Alongside Wizkid and Davido, he is widely regarded as one of the artists who took Afrobeats global.`,
   },
   {
     q: "What genre is Burna Boy's music?",

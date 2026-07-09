@@ -40,6 +40,13 @@ export default function AwardsPage() {
           </div>
         </div>
 
+        <p className="lead" style={{ margin: "22px auto 0", textAlign: "center" }}>
+          Burna Boy has won {totalWins} awards from {totalNominations} nominations
+          across {ceremonyCount} award bodies — including a 2021 Grammy (Best Global
+          Music Album for <em>Twice as Tall</em>), 4 BET Awards, 3 MOBO Awards, 9
+          Headies and 7 AFRIMA awards.
+        </p>
+
         <AwardExplorer />
 
         <section className={styles.honours}>
