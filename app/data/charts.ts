@@ -158,8 +158,8 @@ export const featureCharts: ChartRelease[] = [
     { c: "ES", peak: 10 }, { c: "PT", peak: 15 }, { c: "GLB", peak: 38 }, { c: "SK", peak: 46 }, { c: "UK", peak: 55 },
   ] },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, entries: [
-    { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "HR", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "GLBX", peak: 1 },
-    { c: "AR", peak: 2 }, { c: "NO", peak: 2 }, { c: "IN", peak: 2 },
+    { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "HR", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "GLBX", peak: 1 },
+    { c: "NO", peak: 2 }, { c: "IN", peak: 2 },
     { c: "SA", peak: 3 }, { c: "ES", peak: 3 }, { c: "FR", peak: 3 }, { c: "PT", peak: 3 }, { c: "GLB", peak: 3 },
     { c: "SE", peak: 4 }, { c: "EC", peak: 4 }, { c: "LT", peak: 5 }, { c: "NG", peak: 7 }, { c: "IT", peak: 10 },
     { c: "CZ", peak: 15 }, { c: "UK", peak: 18 }, { c: "ZA", peak: 19 }, { c: "CA", peak: 19 }, { c: "DK", peak: 22 }, { c: "SG", peak: 25 }, { c: "PL", peak: 26 }, { c: "IL", peak: 26 }, { c: "IE", peak: 27 }, { c: "HU", peak: 32 },
