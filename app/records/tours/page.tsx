@@ -8,7 +8,7 @@ import { revenueShows, revenueLeaderboardBox } from "../../data/tourRevenue";
 import { pageMetadata } from "../../lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Burna Boy Tours & Live — Grosses, Sold-Out Stadiums & Records",
+  title: "Burna Boy Tours — $30.46M Record Tour, Sold-Out Stadiums & Grosses",
   description:
     "Burna Boy's tours and biggest live moments — the $30.46M highest-grossing African tour ever, the record London Stadium concert and the World Cup.",
   path: "/records/tours",

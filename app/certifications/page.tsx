@@ -12,7 +12,7 @@ import {
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Burna Boy Certifications — Silver, Gold, Platinum & Diamond Awards",
+  title: `Burna Boy Certifications — ${totalAwards()} Awards Across ${countryCount} Countries`,
   description:
     `${totalAwards()} Silver, Gold, Platinum and Diamond certifications across ${countryCount} countries — filter by tier, country or year.`,
   path: "/certifications",

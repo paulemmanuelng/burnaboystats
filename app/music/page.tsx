@@ -7,9 +7,8 @@ import { siteUrl } from "../site";
 import { pageMetadata } from "../lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Burna Boy Discography — Albums, EPs & Songs",
-  description:
-    "Burna Boy's full discography: 8 studio albums (L.I.F.E to No Sign of Weakness), 2 EPs, tracklists, biggest hits and guest features.",
+  title: `Burna Boy Discography — All ${albums.length} Studio Albums, EPs & Songs`,
+  description: `Burna Boy's full discography: ${albums.length} studio albums (L.I.F.E to No Sign of Weakness), ${eps.length} EPs, tracklists, biggest hits and guest features.`,
   path: "/music",
   shareTitle: "Burna Boy Discography",
   shareDescription: "Albums, EPs, tracklists and hits.",
