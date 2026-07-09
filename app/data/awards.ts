@@ -36,6 +36,19 @@
 //  Newspaper Awards (editorial praise, not a competitive award), a 10th
 //  Headies win (stays at 9 — no source breaks down what it would be), and a
 //  4th Metro FM win (stays at 3, all from 2016).
+//
+//  PASS (July 2026, a "103 career awards" social tally): body-by-body primary
+//  checks. One real correction — Burna WON Best Afrobeats Entertainer at the
+//  2023 (40th) IRAWMA (confirmed via reggae-international.com's winners list),
+//  which had been logged as a loss; flipped to a win (IRAWMA 2 -> 3). Confirmed
+//  the tally's inflated counts are NOT supported by any primary source and stay
+//  at ours: Headies (9, not 10), AFRIMMA (8, not 10 — 2019/2020 OkayAfrica
+//  winner lists match us exactly), Metro FM (3, not 4), BMI (1, not 2 — only
+//  "Last Last" 2023), AEA USA (2, not 3 — lost 2024), Galaxy (1, not 5 — no
+//  breakdown anywhere). The tally also UNDER-counts NEA (says 2; we have 4
+//  sourced), confirming it's an unverified aggregation. Still rejected, no
+//  source names Burna Boy: ASCAP, The FABYS, That Grape Juice, Africa Golden
+//  Awards, Odudu P-H City Awards (4), Nigeria Music Video Award win.
 // ============================================================
 
 export interface AwardNom {
@@ -314,7 +327,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2020, category: "Best African Reggae/Dancehall Entertainer", won: false },
       { year: 2021, category: "Best Afrobeat Entertainer", won: false },
       { year: 2023, category: "Best Crossover", work: "Toni-Ann Singh", won: false },
-      { year: 2023, category: "Best Afrobeats Entertainer", won: false },
+      { year: 2023, category: "Best Afrobeats Entertainer", won: true },
       { year: 2024, category: "Best African Entertainer", won: true },
       { year: 2025, category: "Best African Entertainer", won: true },
     ],

@@ -1,4 +1,5 @@
 import { ogImage, size, contentType } from "../../lib/og-image";
+import { totalWins, totalNominations, ceremonyCount } from "../../data/awards";
 
 export { size, contentType };
 export const alt = "Burna Boy Awards & Nominations — Grammy, BET, Headies, AFRIMA & more";
@@ -7,6 +8,6 @@ export default function Image() {
   return ogImage({
     kicker: "Every win, every nod",
     title: "Awards & Nominations",
-    sub: "79 wins from 205 nominations across 42 award bodies worldwide",
+    sub: `${totalWins} wins from ${totalNominations} nominations across ${ceremonyCount} award bodies worldwide`,
   });
 }

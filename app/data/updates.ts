@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-09",
+    category: "Awards",
+    text: "Now 80 career award wins: Burna Boy's Best Afrobeats Entertainer trophy from the 2023 IRAWMA is confirmed against the ceremony's own winners list, across 43 award bodies from 206 nominations.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-07-09",
     category: "Charts",
     text: "Argentina makes 13: “Dai Dai” hits No.1 on the Billboard Argentina Hot 100 — a 13th country where the Shakira collaboration has topped the chart.",
     href: "/records/charts",
