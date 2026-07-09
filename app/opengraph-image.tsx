@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 // Social share preview card (shown when the link is pasted on X, WhatsApp, etc.)
-export const alt = "Burna Boy Stats — Unofficial Fan Site";
+export const alt = "Burna Boy Stats — Certifications, Charts, Awards & Records";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
