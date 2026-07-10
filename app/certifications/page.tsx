@@ -3,6 +3,7 @@ import Equalizer from "../components/Equalizer";
 import CountUp from "../components/CountUp";
 import CertExplorer from "../components/CertExplorer";
 import CertHistoryByYear from "../components/CertHistoryByYear";
+import RankedBars, { type BarItem } from "../components/RankedBars";
 import KeepExploring from "../components/KeepExploring";
 import { siteUrl } from "../site";
 import {
@@ -21,6 +22,23 @@ export const metadata = pageMetadata({
 });
 
 const total = totalAwards();
+
+// Top certifying countries, computed from the same data the page filters.
+const certCountryChart: BarItem[] = (() => {
+  const counts: Record<string, number> = {};
+  for (const it of [...albums, ...singles, ...features])
+    for (const c of it.certs) counts[c.c] = (counts[c.c] || 0) + 1;
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 12)
+    .map(([code, n]) => ({
+      flag: COUNTRIES[code]?.flag,
+      name: COUNTRIES[code]?.name ?? code,
+      meta: COUNTRIES[code]?.body,
+      value: n,
+      displayValue: String(n),
+    }));
+})();
 
 const certJsonLd = {
   "@context": "https://schema.org",
@@ -77,6 +95,14 @@ export default function CertificationsPage() {
           (US), BPI (UK), SNEP (France) and Music Canada, making him the most-certified
           African artist in history.
         </p>
+
+        <section style={{ margin: "40px 0" }}>
+          <p className="eyebrow">Where he&apos;s certified</p>
+          <RankedBars items={certCountryChart} ariaLabel="Burna Boy's music certifications by country — the top 12" />
+          <p style={{ marginTop: 16, fontSize: "0.82rem", color: "var(--text-muted)", maxWidth: "62ch", lineHeight: 1.5 }}>
+            Certifications tracked per country — the 12 biggest of {countryCount}. Nigeria (TurnTable), the UK (BPI) and Canada (Music Canada) lead the tally.
+          </p>
+        </section>
 
         {/* INTERACTIVE FILTER + RESULTS */}
         <CertExplorer

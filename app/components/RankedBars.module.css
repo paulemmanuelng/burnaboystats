@@ -1,0 +1,110 @@
+.chart {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.row {
+  transition: transform 0.16s ease;
+}
+.row:hover {
+  transform: translateX(2px);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0; /* let the name ellipsis */
+}
+.flag {
+  font-size: 1rem;
+  flex: none;
+  transform: translateY(1px);
+}
+.name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.meta {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex: none;
+}
+.value {
+  font-family: var(--font-mono), monospace;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  flex: none;
+}
+
+.track {
+  margin-top: 6px;
+  height: 10px;
+  background: var(--bg-soft-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.fill {
+  height: 100%;
+  border-radius: 999px;
+  /* Bar grows in on load; disabled under reduced-motion below. */
+  background: var(--gold);
+  transform-origin: left center;
+  animation: grow 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+@keyframes grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Reserve the loudest gold for the single biggest bar — hierarchy, not flatness. */
+.row:first-child:not(.muted) .fill {
+  background: var(--gold-bright);
+}
+
+/* Recessive rows (e.g. non–Burna Boy shows) so the gold marks own the chart. */
+.muted .fill {
+  background: #4a4a52;
+  animation: none;
+}
+.muted .name,
+.muted .value {
+  color: var(--text-muted);
+}
+
+.row:hover .name {
+  color: var(--gold);
+}
+
+@media (max-width: 480px) {
+  .meta {
+    display: none; /* keep the row to one clean line on small screens */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    animation: none;
+  }
+  .row,
+  .row:hover {
+    transition: none;
+    transform: none;
+  }
+}
