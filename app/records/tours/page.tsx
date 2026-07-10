@@ -5,7 +5,8 @@ import ToursExplorer from "../../components/ToursExplorer";
 import StatBox from "../../components/StatBox";
 import { tours, liveMoments } from "../../data/tours";
 import { revenueShows, revenueLeaderboardBox } from "../../data/tourRevenue";
-import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
+import { pageMetadata } from "../../lib/seo";
+import { tourEventsJsonLd } from "../../lib/structuredData";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Tours — $30.46M Record Tour, Sold-Out Stadiums & Grosses",
@@ -16,56 +17,9 @@ export const metadata = pageMetadata({
   shareDescription: "Record-breaking grosses, sold-out stadiums and history made on stage.",
 });
 
-// Turn "Oct 16, 2025" into an ISO date for structured data.
-const MONTHS: Record<string, string> = {
-  Jan: "01", Feb: "02", Mar: "03", Apr: "04", May: "05", Jun: "06",
-  Jul: "07", Aug: "08", Sep: "09", Oct: "10", Nov: "11", Dec: "12",
-};
-function toISODate(date: string): string | null {
-  const m = date.match(/^([A-Za-z]{3})\s+(\d{1,2}),\s+(\d{4})$/);
-  if (!m || !MONTHS[m[1]]) return null;
-  return `${m[3]}-${MONTHS[m[1]]}-${m[2].padStart(2, "0")}`;
-}
-
-// MusicEvent structured data for every documented tour show (date + venue +
-// city), so search engines understand Burna Boy's touring history.
-const toursJsonLd = {
-  "@context": "https://schema.org",
-  "@graph": tours.flatMap((t) =>
-    (t.dates ?? []).flatMap((s) => {
-      const iso = toISODate(s.date);
-      if (!iso) return [];
-      return [
-        {
-          "@type": "MusicEvent",
-          name: `Burna Boy — ${t.name} (${s.city})`,
-          startDate: iso,
-          endDate: iso,
-          eventStatus: "https://schema.org/EventScheduled",
-          eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-          description: `Burna Boy performing live at ${s.venue} in ${s.city} on the ${t.name}.`,
-          image: [`${CANONICAL_ORIGIN}/opengraph-image`],
-          location: {
-            "@type": "Place",
-            name: s.venue,
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: s.city,
-              addressCountry: s.country,
-            },
-          },
-          performer: { "@type": "MusicGroup", name: "Burna Boy" },
-          organizer: { "@type": "Organization", name: "Spaceship Entertainment" },
-          offers: {
-            "@type": "Offer",
-            url: "https://www.onaspaceship.com/tour",
-            availability: "https://schema.org/SoldOut",
-          },
-        },
-      ];
-    })
-  ),
-};
+// MusicEvent structured data for every documented tour show — built (and
+// validated) in lib/structuredData so missing fields fail our tests, not GSC.
+const toursJsonLd = tourEventsJsonLd();
 
 export default function ToursPage() {
   return (
