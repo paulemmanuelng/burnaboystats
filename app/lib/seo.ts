@@ -56,6 +56,7 @@ export function datasetJsonLd(opts: {
     url: `${CANONICAL_ORIGIN}${opts.path}`,
     keywords: opts.keywords,
     isAccessibleForFree: true,
+    license: "https://creativecommons.org/licenses/by/4.0/",
     creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     about: { "@type": "MusicGroup", name: "Burna Boy" },
     variableMeasured: opts.variableMeasured,

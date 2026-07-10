@@ -5,7 +5,7 @@ import ToursExplorer from "../../components/ToursExplorer";
 import StatBox from "../../components/StatBox";
 import { tours, liveMoments } from "../../data/tours";
 import { revenueShows, revenueLeaderboardBox } from "../../data/tourRevenue";
-import { pageMetadata } from "../../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Tours — $30.46M Record Tour, Sold-Out Stadiums & Grosses",
@@ -40,6 +40,11 @@ const toursJsonLd = {
           "@type": "MusicEvent",
           name: `Burna Boy — ${t.name} (${s.city})`,
           startDate: iso,
+          endDate: iso,
+          eventStatus: "https://schema.org/EventScheduled",
+          eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+          description: `Burna Boy performing live at ${s.venue} in ${s.city} on the ${t.name}.`,
+          image: [`${CANONICAL_ORIGIN}/opengraph-image`],
           location: {
             "@type": "Place",
             name: s.venue,
@@ -50,6 +55,12 @@ const toursJsonLd = {
             },
           },
           performer: { "@type": "MusicGroup", name: "Burna Boy" },
+          organizer: { "@type": "Organization", name: "Spaceship Entertainment" },
+          offers: {
+            "@type": "Offer",
+            url: "https://www.onaspaceship.com/tour",
+            availability: "https://schema.org/SoldOut",
+          },
         },
       ];
     })
