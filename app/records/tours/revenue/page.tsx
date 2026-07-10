@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styles from "../tours.module.css";
 import StatBox from "../../../components/StatBox";
-import RankedBars, { type BarItem } from "../../../components/RankedBars";
 import { revenueShows, revenueLeaderboardBox } from "../../../data/tourRevenue";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 
@@ -36,15 +35,6 @@ const revenueDataset = datasetJsonLd({
   variableMeasured: ["Artist", "Venue", "Tour", "Year", "Tickets sold", "Revenue"],
 });
 
-const revenueChart: BarItem[] = revenueShows.slice(0, 12).map((s) => ({
-  flag: s.flag,
-  name: s.venue,
-  meta: `${s.artist} · ${s.city} · ${s.year}`,
-  value: s.revenue,
-  displayValue: `$${(s.revenue / 1e6).toFixed(2)}M`,
-  tone: s.artist === "Burna Boy" ? "gold" : "muted",
-}));
-
 export default function RevenuePage() {
   return (
     <main id="content">
@@ -58,13 +48,9 @@ export default function RevenuePage() {
       </header>
 
       <div className="container">
-        <section style={{ marginBottom: 44 }}>
-          <p className="eyebrow">The grosses, visualised</p>
-          <RankedBars items={revenueChart} ariaLabel="The 12 highest single-show grosses by an African artist, in millions of US dollars" />
-          <p style={{ marginTop: 18, fontSize: "0.82rem", color: "var(--text-muted)", maxWidth: "62ch", lineHeight: 1.5 }}>
-            <span style={{ color: "var(--gold-bright)", fontWeight: 600 }}>Gold bars are Burna Boy</span> — he holds 27 of the 40 biggest single-show grosses by an African artist, more than everyone else on the list combined.
-          </p>
-        </section>
+        <Link href="/records/visualized#grosses" className="btn btnSecondary" style={{ marginBottom: 30 }}>
+          See the grosses visualised →
+        </Link>
 
         <StatBox
           box={revenueLeaderboardBox(revenueShows, {

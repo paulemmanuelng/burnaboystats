@@ -12,6 +12,7 @@ export const metadata = pageMetadata({
 
 const subs = [
   { href: "/records/by-the-numbers", title: "By the Numbers", desc: "His whole career in one scannable stat sheet", live: true },
+  { href: "/records/visualized", title: "Visualized", desc: "The charts — grosses, certifications & awards at a glance", live: true },
   { href: "/records/charts", title: "Official Charts", desc: "Peak positions on every major chart worldwide", live: true },
   { href: "/records/awards", title: "Awards", desc: "Every win & nomination to date", live: true },
   { href: "/records/tours", title: "Tours", desc: "Tour runs, dates & box-office grosses", live: true },

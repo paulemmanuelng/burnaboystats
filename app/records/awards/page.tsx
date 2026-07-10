@@ -2,19 +2,8 @@ import Link from "next/link";
 import styles from "./awards.module.css";
 import CountUp from "../../components/CountUp";
 import AwardExplorer from "../../components/AwardExplorer";
-import RankedBars, { type BarItem } from "../../components/RankedBars";
-import { totalWins, totalNominations, ceremonyCount, honours, ceremonies } from "../../data/awards";
+import { totalWins, totalNominations, ceremonyCount, honours } from "../../data/awards";
 import { pageMetadata } from "../../lib/seo";
-
-// Prefer a body's parenthetical abbreviation (AFRIMMA, AFRIMA…) for the chart.
-const shortName = (name: string) => name.match(/\(([^)]+)\)/)?.[1] ?? name;
-
-const winsByBody: BarItem[] = ceremonies
-  .map((c) => ({ name: c.name, wins: c.noms.filter((n) => n.won).length }))
-  .filter((c) => c.wins > 0)
-  .sort((a, b) => b.wins - a.wins)
-  .slice(0, 10)
-  .map((c) => ({ name: shortName(c.name), value: c.wins, displayValue: `${c.wins}` }));
 
 export const metadata = pageMetadata({
   title: `Burna Boy Awards: ${totalWins} Wins — Grammy, BET, Headies & AFRIMA`,
@@ -58,13 +47,11 @@ export default function AwardsPage() {
           Headies and 7 AFRIMA awards.
         </p>
 
-        <section style={{ margin: "40px 0" }}>
-          <p className="eyebrow">Most-decorated stages</p>
-          <RankedBars items={winsByBody} ariaLabel="Burna Boy's award wins by award body — the top 10" />
-          <p style={{ marginTop: 16, fontSize: "0.82rem", color: "var(--text-muted)", maxWidth: "62ch", lineHeight: 1.5 }}>
-            Where the {totalWins} wins come from — his top 10 award bodies by number of trophies. The Grammy, BET Awards and MOBOs sit alongside a deep African-awards haul.
-          </p>
-        </section>
+        <div style={{ margin: "8px 0 36px" }}>
+          <Link href="/records/visualized#awards" className="btn btnSecondary">
+            See wins by award body →
+          </Link>
+        </div>
 
         <AwardExplorer />
 
