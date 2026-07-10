@@ -49,7 +49,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-09",
     category: "Streaming",
-    text: "New No.1 on YouTube Music: Burna Boy's 658 million monthly audience peak is now the highest of any African artist, overtaking Tyla.",
+    text: "New No.1 on YouTube Music: Burna Boy's 662 million monthly audience peak is now the highest of any African artist, overtaking Tyla.",
     href: "/records/africas-biggest",
   },
   {

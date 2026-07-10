@@ -197,12 +197,12 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "YouTube Music · African artists · all-time peak",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "658M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "662M" },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "654M" },
       { name: "Moliy", sub: "🇬🇭 Ghana", value: "602M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "471M" },
     ],
-    note: "Burna Boy now has the highest monthly audience peak on YouTube Music of any African artist — 658 million — having edged past Tyla, and the first Nigerian artist to lead the metric.",
+    note: "Burna Boy now has the highest monthly audience peak on YouTube Music of any African artist — 662 million — having edged past Tyla, and the first Nigerian artist to lead the metric.",
     source:
       "Peak monthly audience on YouTube Music, from chart-tracking accounts. As of July 2026 — figures update as they climb.",
   },
