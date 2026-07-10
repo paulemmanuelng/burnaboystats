@@ -161,9 +161,9 @@ export const featureCharts: ChartRelease[] = [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "HR", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "GLBX", peak: 1 },
     { c: "NO", peak: 2 }, { c: "IN", peak: 2 },
     { c: "SA", peak: 3 }, { c: "ES", peak: 3 }, { c: "FR", peak: 3 }, { c: "PT", peak: 3 }, { c: "GLB", peak: 3 },
-    { c: "SE", peak: 4 }, { c: "EC", peak: 4 }, { c: "LT", peak: 5 }, { c: "NG", peak: 7 }, { c: "IT", peak: 10 },
-    { c: "CZ", peak: 15 }, { c: "UK", peak: 18 }, { c: "ZA", peak: 19 }, { c: "CA", peak: 19 }, { c: "DK", peak: 22 }, { c: "SG", peak: 25 }, { c: "PL", peak: 26 }, { c: "IL", peak: 26 }, { c: "IE", peak: 27 }, { c: "HU", peak: 32 },
-    { c: "BR", peak: 39 }, { c: "AU", peak: 47 },
+    { c: "SE", peak: 4 }, { c: "EC", peak: 4 }, { c: "LT", peak: 5 }, { c: "NG", peak: 7 }, { c: "IT", peak: 8 }, { c: "PL", peak: 10 },
+    { c: "UK", peak: 13 }, { c: "CZ", peak: 15 }, { c: "IE", peak: 16 }, { c: "ZA", peak: 19 }, { c: "CA", peak: 19 }, { c: "DK", peak: 22 }, { c: "SG", peak: 25 }, { c: "IL", peak: 26 }, { c: "HU", peak: 32 }, { c: "AU", peak: 32 },
+    { c: "BR", peak: 39 }, { c: "FI", peak: 44 },
     { c: "JP", peak: 60 }, { c: "US", peak: 67 }, { c: "VN", peak: 93 },
   ], note: "Also on Billboard's multi-territory charts: No.1 Global 200 (Excl. US), No.1 Central America & Caribbean, No.2 Middle East & North Africa, No.3 Global 200, and No.12 North Africa." },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, entries: [

@@ -252,7 +252,7 @@ export const features: Release[] = [
   ] },
   { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, certs: [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 2 },
-    { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "NO", level: "Platinum" },
+    { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "NL", level: "Platinum" },
     { c: "DK", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "PT", level: "Gold" },
     { c: "DE", level: "Gold" }, { c: "NG", level: "Gold" },
   ] },
@@ -356,6 +356,7 @@ export interface CertEvent {
 }
 
 export const certHistory: CertEvent[] = [
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "NL", level: "Platinum", year: 2026 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "ES", level: "Platinum", year: 2026 },
   { title: "Love, Damini", album: true, country: "CA", level: "Platinum", year: 2026 },
   { title: "I Told Them...", album: true, country: "CA", level: "Gold", year: 2026 },

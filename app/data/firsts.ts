@@ -62,6 +62,7 @@ export const firstGroups: FirstGroup[] = [
       { year: "2023", title: "First African artist to earn a UK No. 1 album and No. 1 single", text: "“Own It” (with Stormzy & Ed Sheeran) topped the UK Singles Chart in 2019, and I Told Them… topped the UK Albums Chart in 2023 — no other African artist had held both." },
       { year: "2023", title: "First African artist to reach 1 billion streams on Audiomack", text: "A milestone on the streaming platform where Afrobeats has its biggest home." },
       { year: "2026", title: "First African artist to top the Billboard Colombia Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Colombia." },
+      { year: "2026", title: "First African artist to top the Billboard Argentina Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Argentina — the first African act ever to lead the chart." },
       { year: "2026", title: "First African artist with two No. 1 singles in Belgium", text: "Both “Jerusalema (Remix)” and “Dai Dai” have topped Belgium's Ultratop 50." },
       { year: "2026", title: "First African artist to appear on the Billboard Vietnam Hot 100", text: "“Dai Dai” with Shakira debuted at No. 93 — afrobeats breaking onto Vietnam's chart." },
       { year: "2026", title: "One of only two African artists to top the Billboard Global 200 (Excl. US)", text: "“Dai Dai” (with Shakira) reached No. 1 — Burna Boy joins Rema (“Calm Down”) as the only African acts ever to lead the chart." },

@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-09",
+    category: "Charts",
+    text: "Fresh “Dai Dai” peaks: No.8 in Italy, No.13 in the UK, No.16 in Ireland, No.10 on Poland's streaming chart and No.32 in Australia — plus a No.44 debut in Finland.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-09",
     category: "Awards",
     text: "Now 80 career award wins: Burna Boy's Best Afrobeats Entertainer trophy from the 2023 IRAWMA is confirmed against the ceremony's own winners list, across 43 award bodies from 206 nominations.",
     href: "/records/awards",
@@ -85,7 +91,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Streaming",
-    text: "50 million Spotify monthly listeners: Burna Boy becomes the first African artist in history to reach the mark, now peaking at 51.31 million.",
+    text: "50 million Spotify monthly listeners: Burna Boy becomes the first African artist in history to reach the mark, now peaking at 51.56 million.",
     href: "/records/firsts",
   },
   {
