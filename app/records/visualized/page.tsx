@@ -54,15 +54,31 @@ const winsByBody: BarItem[] = ceremonies
   .map((c) => ({ name: shortBody(c.name), value: c.wins, displayValue: `${c.wins}` }));
 
 // ── Scatter: tickets vs revenue per show ──
+// Label the four highest-grossing shows. The 3rd & 4th are both La Défense Arena
+// (Fally Ipupa's and Burna's), so disambiguate by artist and drop the 4th label
+// below its dot so the two don't collide.
 const num = (s: string | undefined) => Number((s ?? "").replace(/,/g, ""));
+const TOP_LABELS = 4;
+const firstName = (a: string) => (a === "Burna Boy" ? "Burna" : a.split(" ")[0]);
+const shortVenue = (v: string) => v.replace(/ Arena$/, "");
+const topVenueCount: Record<string, number> = {};
+revenueShows.slice(0, TOP_LABELS).forEach((s) => {
+  topVenueCount[s.venue] = (topVenueCount[s.venue] || 0) + 1;
+});
 const scatter: ScatterPoint[] = revenueShows
   .filter((s) => s.tickets && !Number.isNaN(num(s.tickets)))
-  .map((s) => ({
+  .map((s, i) => ({
     x: num(s.tickets),
     y: s.revenue,
     title: `${s.artist} — ${s.venue}, ${s.city}: ${s.tickets} tickets · $${(s.revenue / 1e6).toFixed(2)}M`,
     tone: s.artist === "Burna Boy" ? "gold" : "muted",
-    label: s.venue === "London Stadium" ? "London Stadium" : undefined,
+    label:
+      i < TOP_LABELS
+        ? topVenueCount[s.venue] > 1
+          ? `${shortVenue(s.venue)} (${firstName(s.artist)})`
+          : shortVenue(s.venue)
+        : undefined,
+    labelDy: i === 3 ? 22 : undefined, // 4th show: label below its dot
   }));
 
 // ── Donut: certifications by tier ──

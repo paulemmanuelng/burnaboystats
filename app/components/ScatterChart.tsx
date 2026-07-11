@@ -5,6 +5,9 @@ export interface ScatterPoint {
   y: number;
   title: string; // hover text
   label?: string; // optional direct label
+  labelDx?: number; // nudge label x (px) to dodge collisions
+  labelDy?: number; // nudge label y (px); default sits above the dot
+  labelAnchor?: "start" | "middle" | "end";
   tone?: "gold" | "muted";
 }
 export interface Tick {
@@ -73,7 +76,15 @@ export default function ScatterChart({
         ))}
         {/* direct labels for the standout shows */}
         {points.filter((p) => p.label).map((p, i) => (
-          <text key={`l${i}`} x={px(p.x)} y={py(p.y) - 12} textAnchor="middle" className={styles.pointLabel}>{p.label}</text>
+          <text
+            key={`l${i}`}
+            x={px(p.x) + (p.labelDx ?? 0)}
+            y={py(p.y) + (p.labelDy ?? -12)}
+            textAnchor={p.labelAnchor ?? "middle"}
+            className={styles.pointLabel}
+          >
+            {p.label}
+          </text>
         ))}
       </svg>
     </div>
