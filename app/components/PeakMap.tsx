@@ -14,22 +14,28 @@ export interface PeakInfo {
   songs: PeakSong[];
 }
 
-// Warm sequential ramp — gold → orange → burnt-orange → brick — so the four
-// bands read apart at a glance while staying on-brand. Lightness decreases
-// monotonically (brighter = higher peak).
-function band(peak: number): string {
-  if (peak === 1) return "#ffd24a";
-  if (peak <= 10) return "#f79333";
-  if (peak <= 40) return "#dd5f2b";
-  return "#9c3d2b";
+// Continuous warm ramp so every distinct peak gets its own shade (a #2 reads
+// apart from a #6 from a #14) instead of big flat bands. Log scale, because the
+// peaks bunch up at the top (most are 1–10). Brighter = higher.
+const RAMP: [number, [number, number, number]][] = [
+  [0.0, [255, 226, 122]], // peak 1   — bright gold
+  [0.28, [255, 173, 40]], // ~peak 3
+  [0.52, [245, 123, 27]], // ~peak 10 — orange
+  [0.78, [219, 62, 36]], //  ~peak 40 — red
+  [1.0, [122, 34, 32]], //   peak 100 — deep red
+];
+function color(peak: number): string {
+  const t = Math.min(Math.log(peak) / Math.log(100), 1);
+  let i = 0;
+  while (i < RAMP.length - 2 && t > RAMP[i + 1][0]) i++;
+  const [t0, c0] = RAMP[i];
+  const [t1, c1] = RAMP[i + 1];
+  const f = t1 === t0 ? 0 : (t - t0) / (t1 - t0);
+  const mix = (a: number, b: number) => Math.round(a + (b - a) * f);
+  return `rgb(${mix(c0[0], c1[0])}, ${mix(c0[1], c1[1])}, ${mix(c0[2], c1[2])})`;
 }
 
-const LEGEND = [
-  { c: "#ffd24a", label: "No. 1" },
-  { c: "#f79333", label: "Top 10" },
-  { c: "#dd5f2b", label: "Top 40" },
-  { c: "#9c3d2b", label: "Charted" },
-];
+const RAMP_CSS = "linear-gradient(to right, #ffe27a 0%, #ffad28 28%, #f57b1b 52%, #db3e24 78%, #7a2220 100%)";
 
 interface Tip {
   info: PeakInfo;
@@ -71,7 +77,7 @@ export default function PeakMap({
                 key={s.code}
                 d={s.d}
                 className={info ? styles.countryOn : styles.country}
-                style={info ? { fill: band(info.peak) } : undefined}
+                style={info ? { fill: color(info.peak) } : undefined}
                 onMouseEnter={info ? (e) => show(info, e) : undefined}
                 onMouseMove={info ? (e) => show(info, e) : undefined}
                 onClick={info ? (e) => show(info, e) : undefined}
@@ -98,14 +104,15 @@ export default function PeakMap({
         </div>
       )}
 
-      <ul className={styles.legend}>
-        {LEGEND.map((l) => (
-          <li key={l.label} className={styles.legendItem}>
-            <span className={styles.swatch} style={{ background: l.c }} aria-hidden="true" />
-            {l.label}
-          </li>
-        ))}
-      </ul>
+      <div className={styles.legend}>
+        <span className={styles.legendBar} style={{ background: RAMP_CSS }} aria-hidden="true" />
+        <div className={styles.legendTicks}>
+          <span>No. 1</span>
+          <span>Top 10</span>
+          <span>Top 40</span>
+          <span>40+</span>
+        </div>
+      </div>
     </figure>
   );
 }
