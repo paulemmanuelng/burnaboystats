@@ -30,7 +30,7 @@ export const tours: Tour[] = [
   {
     name: "No Sign of Weakness Tour",
     years: "2025–26",
-    note: "His most expansive run yet — a genuine world tour across Oceania (Oct 2025), North America (Nov–Dec 2025) and Europe (Jan 2026), performed largely on a 360° in-the-round stage. He became the first Nigerian artist to headline Red Rocks, and the Oceania leg alone grossed $3.1M from 31,000 tickets — the most for an African artist there.",
+    note: "His most expansive run yet — a genuine world tour across Oceania (Oct 2025), North America (Nov–Dec 2025) and Europe (Jan 2026), performed largely on a 360° in-the-round stage. He became the first Nigerian artist to headline Red Rocks, and the Oceania leg alone grossed $3.12M from 30,946 tickets across four arena shows — the most for an African artist there.",
     dates: [
       { date: "Oct 16, 2025", venue: "Sidney Myer Music Bowl", city: "Melbourne", country: "Australia", cap: 12000 },
       { date: "Oct 18, 2025", venue: "Qudos Bank Arena", city: "Sydney", country: "Australia", cap: 21000 },
@@ -224,6 +224,7 @@ export const festivals: Festival[] = [
   { year: "2023", name: "St Kitts Music Festival", location: "St Kitts & Nevis", note: "The event's first-ever African headlining artist, anchoring the multi-day lineup." },
   { year: "2024", name: "Mawazine Festival", location: "Rabat, Morocco", note: "Headlined the OLM Souissi main stage at one of the world's largest festivals, on a 2024 bill that also featured Nicki Minaj, Kylie Minogue and Camila Cabello." },
   { year: "2025", name: "Flow Festival", location: "Helsinki, Finland", note: "A Main Stage headliner, topping one of the three nights — on a bill with Charli XCX, FKA twigs, Little Simz and Air." },
+  { year: "2026", name: "North Sea Jazz Festival", location: "Rotterdam, Netherlands", note: "A marquee name on the Saturday (11 July) bill of the festival's landmark 50th edition at Rotterdam Ahoy, alongside headliners including John Legend & The Roots, Diana Krall, Charlie Puth and Thundercat." },
   { year: "2019", name: "Afro Nation", location: "Portimão, Portugal", note: "A headliner at the festival's inaugural edition, sharing the Saturday bill with Davido (Wizkid closed Sunday)." },
   { year: "2022", name: "Afro Nation", location: "Portimão, Portugal", note: "Closed the festival (3 July) with what press called a headline performance, after Davido and Wizkid topped the earlier nights." },
   { year: "2023", name: "Afro Nation", location: "Portimão, Portugal", note: "Headlined the opening night (28 June), with Wizkid and Asake the following night and 50 Cent and Davido closing the festival." },

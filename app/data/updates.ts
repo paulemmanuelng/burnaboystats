@@ -29,6 +29,24 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-11",
+    category: "Tours",
+    text: "On the bill in Rotterdam: Burna Boy plays the North Sea Jazz Festival's landmark 50th edition on Saturday 11 July, a marquee name alongside John Legend & The Roots, Diana Krall and Thundercat.",
+    href: "/records/tours",
+  },
+  {
+    date: "2026-07-11",
+    category: "Firsts & Records",
+    text: "Oceania records stack up: the No Sign of Weakness run grossed $3.12M from 30,946 tickets across four arena shows — the highest-grossing tour and most tickets ever by an African act in the region.",
+    href: "/records/firsts",
+  },
+  {
+    date: "2026-07-11",
+    category: "Charts",
+    text: "Uruguay joins the map for “Dai Dai”: the Shakira collaboration debuts at No.5 on the CUD Monthly Digital Chart for June.",
+    href: "/records/charts",
+  },
+  {
     date: "2026-07-09",
     category: "Charts",
     text: "Fresh “Dai Dai” peaks: No.8 in Italy, No.13 in the UK, No.16 in Ireland, No.10 on Poland's streaming chart and No.32 in Australia — plus a No.44 debut in Finland.",
