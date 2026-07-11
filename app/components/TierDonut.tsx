@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import styles from "./TierDonut.module.css";
 
 export interface DonutSeg {
@@ -18,9 +21,8 @@ function buildArcs(segments: DonutSeg[], total: number, C: number, gap: number) 
   });
 }
 
-// A composition donut (parts of a whole). Built with the stroke-dasharray
-// technique — no arc maths, no dependency. Each value is shown in the legend,
-// so identity/quantity are never colour-alone.
+// A composition donut. Hovering a tier (segment or legend row) lifts the row and
+// pops that segment while dimming the rest, so you can read which slice is which.
 export default function TierDonut({
   segments,
   total,
@@ -34,6 +36,7 @@ export default function TierDonut({
   centerLabel: string;
   ariaLabel: string;
 }) {
+  const [active, setActive] = useState<string | null>(null);
   const R = 78;
   const C = 2 * Math.PI * R;
   const arcs = buildArcs(segments, total, C, 3);
@@ -44,20 +47,28 @@ export default function TierDonut({
         <svg viewBox="0 0 200 200" className={styles.svg} role="img" aria-label={ariaLabel}>
           <circle cx="100" cy="100" r={R} fill="none" stroke="var(--bg-soft-2)" strokeWidth="24" />
           <g transform="rotate(-90 100 100)">
-            {arcs.map((a, i) => (
-              <circle
-                key={i}
-                cx="100"
-                cy="100"
-                r={R}
-                fill="none"
-                stroke={a.color}
-                strokeWidth="24"
-                strokeDasharray={a.dash}
-                strokeDashoffset={a.off}
-                strokeLinecap="butt"
-              />
-            ))}
+            {arcs.map((a, i) => {
+              const isActive = active === segments[i].label;
+              const dim = active !== null && !isActive;
+              return (
+                <circle
+                  key={i}
+                  className={styles.arc}
+                  cx="100"
+                  cy="100"
+                  r={R}
+                  fill="none"
+                  stroke={a.color}
+                  strokeWidth={isActive ? 30 : 24}
+                  strokeDasharray={a.dash}
+                  strokeDashoffset={a.off}
+                  strokeLinecap="butt"
+                  opacity={dim ? 0.35 : 1}
+                  onMouseEnter={() => setActive(segments[i].label)}
+                  onMouseLeave={() => setActive(null)}
+                />
+              );
+            })}
           </g>
           <text x="100" y="96" textAnchor="middle" className={styles.centerNum}>{centerNum}</text>
           <text x="100" y="118" textAnchor="middle" className={styles.centerLabel}>{centerLabel}</text>
@@ -65,7 +76,12 @@ export default function TierDonut({
       </div>
       <ul className={styles.legend}>
         {segments.map((s, i) => (
-          <li key={i} className={styles.legendItem}>
+          <li
+            key={i}
+            className={`${styles.legendItem} ${active === s.label ? styles.active : ""}`}
+            onMouseEnter={() => setActive(s.label)}
+            onMouseLeave={() => setActive(null)}
+          >
             <span className={styles.swatch} style={{ background: s.color }} aria-hidden="true" />
             <span className={styles.legendLabel}>{s.label}</span>
             <span className={styles.legendVal}>
