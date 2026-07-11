@@ -289,6 +289,17 @@ a.stat:hover .statNum { color: var(--gold-bright); }
   list-style: none;
   margin-top: 30px;
 }
+
+/* Tier-breakdown donut under the ranked certifications — reads as an extension
+   of the section, not a new one. */
+.tierStrip {
+  margin-top: 44px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.tierStrip .eyebrow {
+  margin-bottom: 24px;
+}
 .rankRow {
   display: grid;
   grid-template-columns: 56px 1fr auto;

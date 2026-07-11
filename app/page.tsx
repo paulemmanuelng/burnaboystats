@@ -9,10 +9,21 @@ import UpdatesList from "./components/UpdatesList";
 import MusicDecor from "./components/MusicDecor";
 import AlbumStrip from "./components/AlbumStrip";
 import GlobeTeaser from "./components/GlobeTeaser";
-import { totalAwards, countryCount } from "./data/certifications";
+import TierDonut, { type DonutSeg } from "./components/TierDonut";
+import { totalAwards, countryCount, albums, singles, features } from "./data/certifications";
 import { latestUpdates, updates } from "./data/updates";
 
 const total = totalAwards();
+
+// Tier breakdown of all certifications, for the donut under the ranked list.
+const tierCounts: Record<string, number> = { Diamond: 0, Platinum: 0, Gold: 0, Silver: 0 };
+for (const it of [...albums, ...singles, ...features]) for (const c of it.certs) tierCounts[c.level]++;
+const tierSegments: DonutSeg[] = [
+  { label: "Diamond", value: tierCounts.Diamond, color: "#8fe3f0" },
+  { label: "Platinum", value: tierCounts.Platinum, color: "#dfe2e8" },
+  { label: "Gold", value: tierCounts.Gold, color: "#ffb627" },
+  { label: "Silver", value: tierCounts.Silver, color: "#b8bcc4" },
+];
 
 // Freshness cue for the hero — the most recent Updates-feed date, formatted.
 // Derived from fixed data (not runtime "now"), so it's stable at build time.
@@ -198,6 +209,18 @@ export default function Home() {
                 </li>
               ))}
             </ol>
+          </Reveal>
+          <Reveal delay={200}>
+            <div className={styles.tierStrip}>
+              <p className={styles.eyebrow}>The full picture</p>
+              <TierDonut
+                segments={tierSegments}
+                total={total}
+                centerNum={`${total}`}
+                centerLabel="certifications"
+                ariaLabel={`Certifications by tier: ${tierSegments.map((s) => `${s.value} ${s.label}`).join(", ")}`}
+              />
+            </div>
           </Reveal>
         </div>
       </section>
