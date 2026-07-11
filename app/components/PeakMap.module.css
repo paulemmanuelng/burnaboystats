@@ -13,10 +13,68 @@
   fill: var(--bg-soft-2);
   stroke: var(--bg);
   stroke-width: 0.5;
-  transition: opacity 0.15s ease;
 }
-.country:hover {
+.countryOn {
+  stroke: var(--bg);
+  stroke-width: 0.5;
+  cursor: pointer;
+  transition: opacity 0.12s ease;
+}
+.countryOn:hover {
   opacity: 0.82;
+}
+
+/* Hover / tap tooltip */
+.tip {
+  position: fixed;
+  z-index: 60;
+  width: 220px;
+  padding: 12px 14px;
+  background: var(--bg-soft);
+  border: 1px solid var(--gold-dim);
+  border-radius: 10px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+.tipCountry {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  margin-bottom: 9px;
+}
+.tipSongs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tipSongs li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.82rem;
+}
+.tipSong {
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tipPeak {
+  flex: none;
+  font-family: var(--font-mono), monospace;
+  color: var(--gold-bright);
+}
+.tipMore {
+  display: block;
+  margin-top: 9px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
 }
 
 .legend {

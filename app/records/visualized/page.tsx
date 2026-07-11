@@ -99,16 +99,19 @@ const A2_TO_ISO: Record<string, number> = {
   CZ: 203, LT: 440, NO: 578, PL: 616, NG: 566, ZA: 710, SR: 740, AR: 32, CO: 170, EC: 218,
   VN: 704, BR: 76, JP: 392, SG: 702,
 };
-const bestPeak: Record<string, number> = {};
+// Every charting release per country, so the map hover can show the top few.
+const songsByCode: Record<string, { title: string; peak: number }[]> = {};
 for (const r of [...albumCharts, ...singleCharts, ...featureCharts])
   for (const e of r.entries) {
     if (e.c === "GLB" || e.c === "GLBX") continue;
-    if (!(e.c in bestPeak) || e.peak < bestPeak[e.c]) bestPeak[e.c] = e.peak;
+    (songsByCode[e.c] ||= []).push({ title: r.title, peak: e.peak });
   }
 const peakByISO: Record<number, PeakInfo> = {};
-for (const [code, peak] of Object.entries(bestPeak)) {
+for (const [code, songs] of Object.entries(songsByCode)) {
   const iso = A2_TO_ISO[code];
-  if (iso && CHART_COUNTRIES[code]) peakByISO[iso] = { name: CHART_COUNTRIES[code].name, peak };
+  if (!iso || !CHART_COUNTRIES[code]) continue;
+  const sorted = [...songs].sort((a, b) => a.peak - b.peak);
+  peakByISO[iso] = { name: CHART_COUNTRIES[code].name, peak: sorted[0].peak, songs: sorted };
 }
 const peakCountryCount = Object.keys(peakByISO).length;
 
