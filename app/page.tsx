@@ -212,7 +212,12 @@ export default function Home() {
           </Reveal>
           <Reveal delay={200}>
             <div className={styles.tierStrip}>
-              <p className={styles.eyebrow}>The full picture</p>
+              <div className={styles.tierHead}>
+                <p className={styles.eyebrow}>The full picture</p>
+                <Link href="/records/visualized" className={styles.headLink}>
+                  See it visualized ↗
+                </Link>
+              </div>
               <TierDonut
                 segments={tierSegments}
                 total={total}

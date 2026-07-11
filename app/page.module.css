@@ -297,8 +297,16 @@ a.stat:hover .statNum { color: var(--gold-bright); }
   padding-top: 40px;
   border-top: 1px solid var(--line);
 }
-.tierStrip .eyebrow {
+.tierHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-bottom: 24px;
+}
+.tierHead .eyebrow {
+  margin-bottom: 0;
 }
 .rankRow {
   display: grid;
