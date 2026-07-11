@@ -197,7 +197,9 @@
 
 /* ================= GENERIC SECTION ================= */
 .section {
-  padding: 90px 0;
+  /* ~124px between sections on desktop, ~88px on mobile — breathing room
+     without the dead scroll of the old flat 90px (180px between sections). */
+  padding: clamp(44px, 5.5vw, 62px) 0;
 }
 
 .eyebrow {
@@ -395,7 +397,7 @@ a.stat:hover .statNum { color: var(--gold-bright); }
 
 /* ================= CTA ================= */
 .cta {
-  padding: 30px 0 110px;
+  padding: 30px 0 clamp(52px, 7vw, 76px);
 }
 .ctaInner {
   position: relative;
