@@ -8,7 +8,7 @@ import KeepExploring from "./components/KeepExploring";
 import UpdatesList from "./components/UpdatesList";
 import MusicDecor from "./components/MusicDecor";
 import AlbumStrip from "./components/AlbumStrip";
-import MapTeaser from "./components/MapTeaser";
+import GlobeTeaser from "./components/GlobeTeaser";
 import { totalAwards, countryCount } from "./data/certifications";
 import { latestUpdates, updates } from "./data/updates";
 
@@ -228,7 +228,7 @@ export default function Home() {
       <section className={styles.section}>
         <div className="container">
           <Reveal>
-            <MapTeaser />
+            <GlobeTeaser />
           </Reveal>
         </div>
       </section>

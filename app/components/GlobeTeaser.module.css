@@ -2,23 +2,32 @@
   position: relative;
   display: block;
   margin-top: 12px;
+  aspect-ratio: 3 / 2;
+  min-height: 240px;
+  max-height: 500px;
   border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
-  background: var(--bg-soft);
+  /* faint glow so the globe reads as floating in space */
+  background: radial-gradient(circle at 50% 46%, #16161d 0%, #0b0b0d 62%, #090909 100%);
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
-.card:hover { border-color: var(--gold-dim); transform: translateY(-2px); }
-
-.map {
-  display: block;
-  width: 100%;
-  height: auto;
-  padding: 20px 20px 64px;
+.card:hover {
+  border-color: var(--gold-dim);
+  transform: translateY(-2px);
 }
-.on { fill: var(--gold-bright); opacity: 0.9; }
-.off { fill: rgba(245, 244, 240, 0.06); }
-.card:hover .on { fill: var(--gold-bright); opacity: 1; }
+
+.globeWrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.globe {
+  display: block;
+  /* width/height set in JS (square, DPR-aware) */
+}
 
 /* Caption band across the bottom */
 .overlay {
@@ -32,10 +41,11 @@
   gap: 12px;
   padding: 18px 22px;
   background: linear-gradient(to top, rgba(9, 9, 11, 0.92), transparent);
+  pointer-events: none;
 }
 .kicker {
   display: block;
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), monospace;
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -43,22 +53,32 @@
 }
 .title {
   display: block;
-  font-family: var(--font-anton);
+  font-family: var(--font-anton), sans-serif;
   font-size: clamp(1.3rem, 3vw, 1.9rem);
   line-height: 1.05;
   margin-top: 2px;
 }
 .stat {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), monospace;
   font-size: 0.82rem;
   color: var(--text-muted);
   white-space: nowrap;
 }
-.stat strong { color: var(--gold-bright); }
-.arrow { color: var(--gold-bright); }
+.stat strong {
+  color: var(--gold-bright);
+}
+.arrow {
+  color: var(--gold-bright);
+}
 
 @media (max-width: 560px) {
-  .map { padding: 12px 12px 58px; }
-  .overlay { flex-direction: column; align-items: flex-start; gap: 4px; padding: 14px 16px; }
-  .stat { font-size: 0.76rem; }
+  .overlay {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 14px 16px;
+  }
+  .stat {
+    font-size: 0.76rem;
+  }
 }
