@@ -29,14 +29,14 @@ const GRID = "rgba(245,244,240,0.05)";
 // Real orthographic projection (back hemisphere clipped), rendered to canvas so
 // the spin is smooth. Pauses off-screen and honours reduced-motion.
 export default function GlobeTeaser() {
-  const cardRef = useRef<HTMLAnchorElement>(null);
+  const wrapRef = useRef<HTMLSpanElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const card = cardRef.current;
+    const wrap = wrapRef.current;
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
-    if (!card || !canvas || !ctx) return;
+    if (!wrap || !canvas || !ctx) return;
 
     const projection = geoOrthographic().clipAngle(90).rotate([0, -12]);
     const path = geoPath(projection, ctx);
@@ -47,8 +47,8 @@ export default function GlobeTeaser() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const resize = () => {
-      const s = Math.min(card.clientHeight, card.clientWidth);
-      if (s === size) return;
+      const s = Math.min(wrap.clientWidth, wrap.clientHeight);
+      if (s <= 0 || s === size) return;
       size = s;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = s * dpr;
@@ -56,7 +56,7 @@ export default function GlobeTeaser() {
       canvas.style.width = `${s}px`;
       canvas.style.height = `${s}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      projection.scale(s / 2 - 4).translate([s / 2, s / 2]);
+      projection.scale(s / 2 - 3).translate([s / 2, s / 2]);
     };
 
     const draw = () => {
@@ -64,20 +64,17 @@ export default function GlobeTeaser() {
       ctx.clearRect(0, 0, size, size);
       projection.rotate([lambda, -12]);
 
-      // ocean sphere
       ctx.beginPath();
       path({ type: "Sphere" });
       ctx.fillStyle = OCEAN;
       ctx.fill();
 
-      // graticule
       ctx.beginPath();
       path(graticule);
       ctx.strokeStyle = GRID;
       ctx.lineWidth = 0.5;
       ctx.stroke();
 
-      // countries
       for (const c of countries) {
         ctx.beginPath();
         path(c);
@@ -102,9 +99,8 @@ export default function GlobeTeaser() {
       resize();
       if (reduce || !visible) draw();
     });
-    ro.observe(card);
+    ro.observe(wrap);
 
-    // Only spin while the globe is on screen (saves battery/CPU).
     const io = new IntersectionObserver(
       ([e]) => {
         visible = e.isIntersecting;
@@ -113,7 +109,7 @@ export default function GlobeTeaser() {
       },
       { threshold: 0.05 }
     );
-    io.observe(card);
+    io.observe(wrap);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -126,17 +122,14 @@ export default function GlobeTeaser() {
     <Link
       href="/records/tours/map"
       className={styles.card}
-      ref={cardRef}
       aria-label={`Where Burna Boy has performed — ${countryCount} countries across ${regionCount} regions`}
     >
-      <span className={styles.globeWrap} aria-hidden="true">
+      <span className={styles.globeWrap} ref={wrapRef} aria-hidden="true">
         <canvas ref={canvasRef} className={styles.globe} />
       </span>
-      <div className={styles.overlay}>
-        <div>
-          <span className={styles.kicker}>Live worldwide</span>
-          <span className={styles.title}>Where he&apos;s performed</span>
-        </div>
+      <div className={styles.text}>
+        <span className={styles.kicker}>Live worldwide</span>
+        <span className={styles.title}>Where he&apos;s performed</span>
         <span className={styles.stat}>
           <strong>{countryCount}</strong> countries · <strong>{regionCount}</strong> regions
           <span className={styles.arrow} aria-hidden="true"> →</span>
