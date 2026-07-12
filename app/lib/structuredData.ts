@@ -18,8 +18,10 @@ export function toISODate(date: string): string | null {
 
 // MusicEvent graph for every documented tour show, with the full set of fields
 // Google recommends for Event rich results (name, start/endDate, eventStatus,
-// eventAttendanceMode, description, image, location, performer, organizer,
-// offers). Every listed show has already happened, so offers are marked SoldOut.
+// eventAttendanceMode, description, image, location, performer, organizer).
+// We deliberately omit `offers`: these are historical, sold-out shows on a
+// records site, so we have no honest ticket price/priceCurrency/validFrom to
+// give — and an incomplete Offer is exactly what Search Console flags.
 export function tourEventsJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -47,11 +49,10 @@ export function tourEventsJsonLd() {
               },
             },
             performer: { "@type": "MusicGroup", name: "Burna Boy" },
-            organizer: { "@type": "Organization", name: "Spaceship Entertainment" },
-            offers: {
-              "@type": "Offer",
-              url: "https://www.onaspaceship.com/tour",
-              availability: "https://schema.org/SoldOut",
+            organizer: {
+              "@type": "Organization",
+              name: "Spaceship Entertainment",
+              url: "https://www.onaspaceship.com",
             },
           },
         ];

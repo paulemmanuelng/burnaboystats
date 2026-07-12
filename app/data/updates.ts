@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-11",
+    category: "Streaming",
+    text: "52 million and counting: Burna Boy sets a new all-time Spotify peak of 52.07 million monthly listeners (+291,773) — still the most of any African artist on the platform.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-11",
     category: "Tours",
     text: "On the bill in Rotterdam: Burna Boy plays the North Sea Jazz Festival's landmark 50th edition on Saturday 11 July, a marquee name alongside John Legend & The Roots, Diana Krall and Thundercat.",
     href: "/records/tours",
@@ -109,7 +115,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Streaming",
-    text: "50 million Spotify monthly listeners: Burna Boy becomes the first African artist in history to reach the mark, now peaking at 51.56 million.",
+    text: "50 million Spotify monthly listeners: Burna Boy becomes the first African artist in history to reach the mark.",
     href: "/records/firsts",
   },
   {

@@ -31,10 +31,18 @@ describe("MusicEvent (tours) structured data", () => {
       expect(ev.description).toBeTruthy();
       expect(Array.isArray(ev.image) && (ev.image as unknown[]).length > 0).toBe(true);
       expect((ev.performer as Record<string, unknown>)?.name).toBe("Burna Boy");
-      expect((ev.organizer as Record<string, unknown>)?.name).toBeTruthy();
-      const offers = ev.offers as Record<string, unknown>;
-      expect(offers?.url).toMatch(/^https?:\/\//);
-      expect(offers?.availability).toContain("schema.org/");
+      const org = ev.organizer as Record<string, unknown>;
+      expect(org?.name).toBeTruthy();
+      expect(org?.url, JSON.stringify(ev)).toMatch(/^https?:\/\//); // the field GSC flagged
+      // We omit `offers` for these historical, no-price shows. If it's ever
+      // re-added, it must carry the fields Google expects — else GSC re-flags it.
+      const offers = ev.offers as Record<string, unknown> | undefined;
+      if (offers) {
+        expect(offers.price, JSON.stringify(offers)).toBeTruthy();
+        expect(offers.priceCurrency).toBeTruthy();
+        expect(offers.validFrom).toBeTruthy();
+        expect(offers.url).toMatch(/^https?:\/\//);
+      }
     }
   });
 
