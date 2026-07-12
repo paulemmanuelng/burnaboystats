@@ -69,6 +69,7 @@ export interface Car {
   valueNaira: string;
   desc: string;
   link?: string; // optional: photo/video of Burna Boy in/with the car
+  linkLabel?: string; // optional override for the link text (defaults to "See Burna in it")
 }
 
 export const cars: Car[] = [
@@ -76,16 +77,21 @@ export const cars: Car[] = [
     make: "Bugatti", model: "Chiron (Venuum Widebody)",
     valueUsd: 6_190_000, valueNaira: "₦9 billion",
     desc: "A one-of-one custom build by Dubai's Venuum, unveiled July 2026 and billed as the world's first widebody Chiron — baby blue over black with a French-tricolour stripe, a “7” roundel, and his name engraved on the rear spoiler. Reported as the most expensive car in West Africa, though neither Burna Boy nor Venuum has publicly confirmed the exact price — every outlet hedges it as \"reportedly\" ₦9 billion.",
+    // He hasn't driven it yet — this is Venuum's own reveal of the finished build.
+    link: "https://autojosh.com/venuum-unveils-burna-boys-one-of-a-kind-bugatti-chiron-vxx-special-edition-worth-n9-billion/",
+    linkLabel: "See the Venuum reveal",
   },
   {
     make: "McLaren", model: "Senna (Carbon Fibre Edition)",
     valueUsd: 2_200_000, valueNaira: "₦3.2 billion",
     desc: "A track-bred hypercar named after Ayrton Senna, limited to 500 units worldwide — his finished in exposed carbon fibre.",
+    link: "https://autojosh.com/burna-boy-splashes-n3-2-billion-on-a-mclaren-senna-hypercar/",
   },
   {
     make: "Ferrari", model: "Purosangue", year: 2024,
     valueUsd: 1_400_000, valueNaira: "₦2.1 billion",
     desc: "Ferrari's first-ever four-door, four-seat model — the marque's debut in the luxury-SUV space, powered by a naturally-aspirated V12.",
+    link: "https://autojosh.com/moment-burna-boy-picked-up-his-brand-new-ferrari-purosangue-suv-worth-n2-billion-at-lagos-dealership/",
   },
   {
     make: "Ferrari", model: "Testarossa",
@@ -96,6 +102,7 @@ export const cars: Car[] = [
     make: "Lamborghini", model: "Revuelto",
     valueUsd: 1_030_000, valueNaira: "₦1.5 billion",
     desc: "Lamborghini's first plug-in-hybrid V12 flagship — the successor to the Aventador.",
+    link: "https://autojosh.com/burna-boy-acquires-the-first-ever-lamborghini-revuelto-in-nigeria-worth-n1-billion/",
   },
   {
     make: "Ferrari", model: "SF90 Stradale", year: 2026,
@@ -106,21 +113,25 @@ export const cars: Car[] = [
     make: "Lamborghini", model: "Aventador SVJ",
     valueUsd: 867_500, valueNaira: "₦1.258 billion",
     desc: "The most extreme Aventador — a 759-hp naturally-aspirated V12, built in limited numbers. Value per Pulse; AutoJosh and autoevolution both independently report it closer to $1 million.",
+    link: "https://autojosh.com/burna-boy-pull-up-in-1million-lamborghini-aventador-svj-at-lagos-restaurant/",
   },
   {
     make: "Lamborghini", model: "Urus (Novitec Edition)", year: 2022,
     valueUsd: 800_000, valueNaira: "₦1.16 billion",
     desc: "Lamborghini's super-SUV, customised here to an aggressive Novitec widebody spec.",
+    link: "https://autojosh.com/burna-boy-takes-his-lamborghini-urus-for-a-spin-moments-after-the-n200m-suv-arrived-in-nigeria/",
   },
   {
     make: "Porsche", model: "911 GT3 RS", year: 2025,
     valueUsd: 690_000, valueNaira: "₦1 billion",
     desc: "A track-focused, road-legal flat-six — 518 hp, 0–100 km/h in 3.2 seconds. Delivered to him on Valentine's Day 2026.",
+    link: "https://autojosh.com/porsche-911-gt3-rs-worth-n1b-joins-burna-boys-car-collection-singer-takes-supercar-for-a-spin/",
   },
   {
     make: "Ferrari", model: "812 GTS",
     valueUsd: 600_000, valueNaira: "₦870 million",
     desc: "A front-mounted 6.5-litre V12 convertible — among the most powerful series-production Ferraris ever built.",
+    link: "https://www.legit.ng/entertainment/celebrities/1570054-christmas-burna-boy-spurges-n700m-a-brand-ferrari-812-gts-video-frenzy/",
   },
   {
     make: "Ferrari", model: "488 Spider",
@@ -131,11 +142,13 @@ export const cars: Car[] = [
     make: "Rolls-Royce", model: "Cullinan",
     valueUsd: 427_000, valueNaira: "₦619.15 million",
     desc: "Rolls-Royce's flagship ultra-luxury SUV, custom-ordered.",
+    link: "https://autojosh.com/burna-boy-buys-customized-rolls-royce-cullinan-with-diamond-encrusted-bonnet-ornament/",
   },
   {
     make: "Rolls-Royce", model: "Dawn",
     valueUsd: 350_000, valueNaira: "₦507.5 million",
     desc: "A four-seat luxury drop-top convertible.",
+    link: "https://autojosh.com/burna-boy-flaunts-rolls-royce-dawn/",
   },
   {
     make: "Bentley", model: "Continental GT", year: 2017,
@@ -146,6 +159,7 @@ export const cars: Car[] = [
     make: "Ferrari", model: "458 Italia", year: 2013,
     valueUsd: 230_000, valueNaira: "₦333.5 million",
     desc: "A naturally-aspirated V8 that became a modern Ferrari icon — one of his earliest supercars.",
+    link: "https://autojosh.com/burna-ferrari-458-italia/",
   },
   {
     make: "Mercedes-Maybach", model: "S650",

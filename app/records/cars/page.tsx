@@ -58,7 +58,7 @@ export default function CarsPage() {
                 <p className={styles.desc}>{c.desc}</p>
                 {c.link && (
                   <a className={styles.seeIt} href={c.link} target="_blank" rel="noopener noreferrer">
-                    See Burna in it ↗
+                    {c.linkLabel ?? "See Burna in it"} ↗
                   </a>
                 )}
               </div>
