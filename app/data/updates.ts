@@ -29,6 +29,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-13",
+    category: "Charts",
+    text: "iTunes domination: the World Cup anthem “Dai Dai” has topped Apple's Worldwide iTunes Song chart and reached No.1 on national iTunes download charts in more than 55 countries, from Argentina and Canada to Nigeria and the UAE.",
+    href: "/records/charts",
+  },
+  {
     date: "2026-07-12",
     category: "Streaming",
     text: "699 million on YouTube: Burna Boy's monthly-audience peak climbs to a new high — the biggest of any African artist, and one of only six singers ever above it, behind only Bruno Mars, Rosé, Lady Gaga, Shakira and Michael Jackson.",
