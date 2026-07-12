@@ -29,6 +29,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-12",
+    category: "Streaming",
+    text: "699 million on YouTube: Burna Boy's monthly-audience peak climbs to a new high — the biggest of any African artist, and one of only six singers ever above it, behind only Bruno Mars, Rosé, Lady Gaga, Shakira and Michael Jackson.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-07-11",
     category: "Streaming",
     text: "52 million and counting: Burna Boy sets a new all-time Spotify peak of 52.07 million monthly listeners (+291,773) — still the most of any African artist on the platform.",
