@@ -1,7 +1,7 @@
 import Reveal from "../components/Reveal";
 import Equalizer from "../components/Equalizer";
 import KeepExploring from "../components/KeepExploring";
-import { pageMetadata } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Real Name, Age & Biography — Damini Ebunoluwa Ogulu",
@@ -35,9 +35,40 @@ const timeline = [
   { year: "2026", title: "FIFA World Cup opener", text: "Headlines the 2026 FIFA World Cup Opening Ceremony in Mexico City alongside Shakira, performing the official tournament song, “Dai Dai.”" },
 ];
 
+// Person entity for the biography page — reinforces "real name / birth name / age"
+// queries and gives Google + AI answer engines a clean, self-contained entity.
+// Complements the site-wide MusicGroup markup in layout.tsx (a solo artist can be
+// both). sameAs mirrors the vetted profile list used site-wide.
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Burna Boy",
+  alternateName: "Damini Ebunoluwa Ogulu",
+  birthDate: "1991-07-02",
+  birthPlace: { "@type": "Place", name: "Port Harcourt, Rivers State, Nigeria" },
+  nationality: { "@type": "Country", name: "Nigeria" },
+  jobTitle: "Singer, songwriter",
+  knowsAbout: ["Afrobeats", "Afro-fusion"],
+  award: "Grammy Award for Best Global Music Album (2021)",
+  url: `${CANONICAL_ORIGIN}/about`,
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Burna_Boy",
+    "https://www.instagram.com/burnaboygram",
+    "https://twitter.com/burnaboy",
+    "https://open.spotify.com/artist/3wcj11K77LjEY1PkEazffa",
+    "https://music.apple.com/us/artist/burna-boy/591899010",
+  ],
+};
+
 export default function AboutPage() {
   return (
     <main id="content">
+      {/* Person structured data — bio-page entity signal for search + AI answers. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
+
       <header className="pageHeader container">
         <h1>
           About the <span className="accent">Giant</span>

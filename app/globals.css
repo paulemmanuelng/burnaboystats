@@ -327,6 +327,29 @@ a {
   color: var(--gold);
   transform: translateY(-2px);
 }
+/* Footer sitemap — direct links from every page to the key stat pages, so
+   internal link equity reaches the deep pages that rank for search queries. */
+.footerNav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 11px 22px;
+  max-width: 720px;
+  margin: 0 auto 26px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+}
+.footerNav a {
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  transition: color 0.15s ease;
+}
+.footerNav a:hover {
+  color: var(--gold);
+}
 
 /* -----------------------------------------------------------
    SHARED PAGE HEADER (used by the simpler pages)

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { Geist, Anton, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -7,6 +8,7 @@ import Nav from "./components/Nav";
 import Breadcrumbs from "./components/Breadcrumbs";
 import BirthdayCelebration from "./components/BirthdayCelebration";
 import { siteUrl } from "./site";
+import { footerLinks } from "./lib/links";
 import "./globals.css";
 
 // Body font — clean and readable.
@@ -134,6 +136,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* FOOTER — shown on every page */}
         <footer className="footer">
           <div className="container">
+            <nav className="footerNav" aria-label="Footer">
+              {footerLinks.map((l) => (
+                <Link key={l.href} href={l.href}>{l.label}</Link>
+              ))}
+            </nav>
             <p>© {new Date().getFullYear()} BurnaBoyStats · Unofficial Fan Site</p>
             <p className="disclaimer">
               This is an unofficial fan-made website created for educational and

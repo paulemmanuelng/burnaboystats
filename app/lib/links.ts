@@ -12,6 +12,19 @@ export const navItems = [
   { href: "/contact", label: "Contact" },
 ];
 
+// Footer sitemap — every page links straight to the deep stat pages that rank
+// for search queries (awards, charts, tours…), spreading internal link equity.
+export const footerLinks = [
+  { href: "/certifications", label: "Certifications" },
+  { href: "/music", label: "Discography" },
+  { href: "/records/awards", label: "Awards" },
+  { href: "/records/charts", label: "Chart records" },
+  { href: "/records/tours", label: "Tours" },
+  { href: "/records/africas-biggest", label: "Africa's Biggest" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/about", label: "About" },
+];
+
 // Which 3 sections each page points to in its "Keep exploring" block.
 export const exploreFor: Record<string, string[]> = {
   "/": ["certifications", "music", "records"],
