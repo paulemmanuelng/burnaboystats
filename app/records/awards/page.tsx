@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./awards.module.css";
 import CountUp from "../../components/CountUp";
 import AwardExplorer from "../../components/AwardExplorer";
-import { totalWins, totalNominations, ceremonyCount, honours } from "../../data/awards";
+import { totalWins, totalNominations, ceremonyCount, honours, honourCount } from "../../data/awards";
 import { pageMetadata } from "../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -28,7 +28,7 @@ export default function AwardsPage() {
         <div className={styles.summary}>
           <div className={styles.sumCard}>
             <span className={styles.sumNum}><CountUp end={totalWins} /></span>
-            <span className={styles.sumLabel}>Awards won</span>
+            <span className={styles.sumLabel}>Competitive wins</span>
           </div>
           <div className={styles.sumCard}>
             <span className={styles.sumNum}><CountUp end={totalNominations} /></span>
@@ -38,13 +38,17 @@ export default function AwardsPage() {
             <span className={styles.sumNum}><CountUp end={ceremonyCount} /></span>
             <span className={styles.sumLabel}>Award bodies</span>
           </div>
+          <div className={styles.sumCard}>
+            <span className={styles.sumNum}><CountUp end={honourCount} /></span>
+            <span className={styles.sumLabel}>Honours &amp; recognitions</span>
+          </div>
         </div>
 
         <p className="lead" style={{ margin: "22px auto 0", textAlign: "center" }}>
-          Burna Boy has won {totalWins} awards from {totalNominations} nominations
-          across {ceremonyCount} award bodies — including a 2021 Grammy (Best Global
-          Music Album for <em>Twice as Tall</em>), 4 BET Awards, 3 MOBO Awards, 9
-          Headies and 7 AFRIMA awards.
+          Burna Boy has won {totalWins} competitive awards from {totalNominations} nominations
+          across {ceremonyCount} award bodies — plus {honourCount} major honours and special
+          recognitions — including a 2021 Grammy (Best Global Music Album for <em>Twice as
+          Tall</em>), 4 BET Awards, 3 MOBO Awards, 9 Headies and 7 AFRIMA awards.
         </p>
 
         <div style={{ margin: "8px 0 36px" }}>

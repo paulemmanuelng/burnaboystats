@@ -545,6 +545,7 @@ export const allNoms: AwardNom[] = ceremonies.flatMap((c) => c.noms);
 export const totalNominations = allNoms.length;
 export const totalWins = allNoms.filter((n) => n.won).length;
 export const ceremonyCount = ceremonies.length;
+export const honourCount = honours.length;
 export const grammyWins = ceremonies
   .find((c) => c.name === "Grammy Awards")!
   .noms.filter((n) => n.won).length;

@@ -2,7 +2,7 @@
 
 .summary {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   margin-top: 8px;
@@ -234,7 +234,11 @@
   .clearBtn { min-height: 40px; }
 }
 @media (max-width: 560px) {
-  .summary { grid-template-columns: 1fr; }
-  .sumCard { border-right: none; border-bottom: 1px solid var(--line); padding: 20px 0; }
-  .summary .sumCard:last-child { border-bottom: none; }
+  .summary { grid-template-columns: repeat(2, 1fr); }
+  .sumCard { border-right: none; padding: 22px 0; }
+  .summary .sumCard:first-child { padding-left: 0; }
+  .summary .sumCard:nth-child(odd) { padding-right: 24px; }
+  /* divider between the two rows */
+  .summary .sumCard:nth-child(-n+2) { border-bottom: 1px solid var(--line); padding-bottom: 22px; }
+  .summary .sumCard:nth-child(n+3) { padding-top: 22px; }
 }
