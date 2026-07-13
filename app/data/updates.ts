@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-13",
+    category: "Firsts & Records",
+    text: "No.1 on the Billboard Global 200: “Dai Dai” becomes the first song by an African artist to top Billboard's flagship worldwide chart, per Billboard — Burna Boy's third week atop the Global 200 Excl. US too.",
+    href: "/records/firsts",
+  },
+  {
+    date: "2026-07-13",
     category: "Charts",
     text: "No.1 in France: “Dai Dai” climbs to the top of France's official SNEP Singles Chart (+2 from No.3) — a major-market chart-topper for the Shakira & Burna Boy anthem, which also just went Gold there.",
     href: "/records/charts",

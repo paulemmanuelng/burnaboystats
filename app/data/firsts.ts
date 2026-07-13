@@ -50,6 +50,7 @@ export const firstGroups: FirstGroup[] = [
   {
     label: "Charts & streaming",
     items: [
+      { year: "2026", title: "First African artist to reach No. 1 on the Billboard Global 200", text: "“Dai Dai” (with Shakira) topped Billboard's flagship worldwide chart in July 2026 — no African artist had ever led the US-inclusive Global 200 before." },
       { year: "2026", title: "First African artist to reach 50 million Spotify monthly listeners", text: "Crossed 50 million in July 2026 — the highest monthly-listeners figure ever recorded for an African artist, powered by the “Dai Dai” World Cup run." },
       { year: "2026", title: "First African artist to chart the Billboard Hot 100 six years running", text: "An unbroken run from 2021 through 2026." },
       { year: "2026", title: "Most Billboard Hot 100 entries by an African artist", text: "Nine career entries — the record for any African artist, extended by “Dai Dai”." },
