@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-13",
+    category: "Charts",
+    text: "No.1 in France: “Dai Dai” climbs to the top of France's official SNEP Singles Chart (+2 from No.3) — a major-market chart-topper for the Shakira & Burna Boy anthem, which also just went Gold there.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-13",
     category: "Certifications",
     text: "Gold in France: “Dai Dai” is certified Single Or by SNEP, France's official body — 15 million equivalent streams for the Shakira collaboration.",
     href: "/certifications",
