@@ -1,57 +1,15 @@
 import { describe, it, expect } from "vitest";
-import { tourEventsJsonLd, toISODate } from "../app/lib/structuredData";
 import { datasetJsonLd, breadcrumbList } from "../app/lib/seo";
 
 // These tests encode Google's required + recommended fields for each rich-result
 // type we emit, so a missing field fails here instead of surfacing weeks later as
 // a Search Console "structured data issue" email.
-
-describe("MusicEvent (tours) structured data", () => {
-  const graph = tourEventsJsonLd()["@graph"];
-
-  it("emits an event for every dated show", () => {
-    expect(graph.length).toBeGreaterThan(50);
-  });
-
-  it("every event has all Google-recommended Event fields", () => {
-    for (const ev of graph as Record<string, unknown>[]) {
-      // required
-      expect(ev["@type"]).toBe("MusicEvent");
-      expect(ev.name, JSON.stringify(ev)).toBeTruthy();
-      expect(ev.startDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-      const loc = ev.location as Record<string, unknown>;
-      expect(loc?.name).toBeTruthy();
-      const addr = loc?.address as Record<string, unknown>;
-      expect(addr?.addressLocality).toBeTruthy();
-      expect(addr?.addressCountry).toBeTruthy();
-      // recommended (the ones GSC flagged as missing)
-      expect(ev.endDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-      expect(ev.eventStatus).toContain("schema.org/Event");
-      expect(ev.eventAttendanceMode).toContain("schema.org/");
-      expect(ev.description).toBeTruthy();
-      expect(Array.isArray(ev.image) && (ev.image as unknown[]).length > 0).toBe(true);
-      expect((ev.performer as Record<string, unknown>)?.name).toBe("Burna Boy");
-      const org = ev.organizer as Record<string, unknown>;
-      expect(org?.name).toBeTruthy();
-      expect(org?.url, JSON.stringify(ev)).toMatch(/^https?:\/\//); // the field GSC flagged
-      // We omit `offers` for these historical, no-price shows. If it's ever
-      // re-added, it must carry the fields Google expects — else GSC re-flags it.
-      const offers = ev.offers as Record<string, unknown> | undefined;
-      if (offers) {
-        expect(offers.price, JSON.stringify(offers)).toBeTruthy();
-        expect(offers.priceCurrency).toBeTruthy();
-        expect(offers.validFrom).toBeTruthy();
-        expect(offers.url).toMatch(/^https?:\/\//);
-      }
-    }
-  });
-
-  it("parses recognised dates and rejects junk", () => {
-    expect(toISODate("Oct 16, 2025")).toBe("2025-10-16");
-    expect(toISODate("Jan 3, 2019")).toBe("2019-01-03");
-    expect(toISODate("sometime 2025")).toBeNull();
-  });
-});
+//
+// Note: we intentionally do NOT emit MusicEvent markup. Every documented show is
+// in the past, and Google only surfaces upcoming events in rich results — so the
+// markup earned zero placements while repeatedly failing GSC's Events report on
+// the recommended `offers` field (which we can't honestly fill for sold-out past
+// shows with no ticket price). See app/records/tours/page.tsx.
 
 describe("Dataset structured data", () => {
   const d = datasetJsonLd({

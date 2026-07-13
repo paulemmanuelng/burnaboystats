@@ -7,7 +7,6 @@ import StatBox from "../../components/StatBox";
 import { tours, liveMoments } from "../../data/tours";
 import { revenueShows, revenueLeaderboardBox } from "../../data/tourRevenue";
 import { pageMetadata } from "../../lib/seo";
-import { tourEventsJsonLd } from "../../lib/structuredData";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Tours — $30.46M Record Tour, Sold-Out Stadiums & Grosses",
@@ -18,17 +17,13 @@ export const metadata = pageMetadata({
   shareDescription: "Record-breaking grosses, sold-out stadiums and history made on stage.",
 });
 
-// MusicEvent structured data for every documented tour show — built (and
-// validated) in lib/structuredData so missing fields fail our tests, not GSC.
-const toursJsonLd = tourEventsJsonLd();
-
+// No MusicEvent JSON-LD here on purpose: every documented show is in the past,
+// and Google only shows *upcoming* events in rich results — so the markup won
+// zero placements while repeatedly tripping GSC's Events report on the `offers`
+// field, which we can't honestly fill for sold-out past shows with no price.
 export default function ToursPage() {
   return (
     <main id="content">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(toursJsonLd) }}
-      />
       <header className="pageHeader container">
         <h1>
           Tours <span className="accent">&amp; Live</span>
