@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-13",
+    category: "Certifications",
+    text: "Gold in France: “Dai Dai” is certified Single Or by SNEP, France's official body — 15 million equivalent streams for the Shakira collaboration.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-07-13",
     category: "Charts",
     text: "iTunes domination: the World Cup anthem “Dai Dai” has topped Apple's Worldwide iTunes Song chart and reached No.1 on national iTunes download charts in more than 55 countries, from Argentina and Canada to Nigeria and the UAE.",
     href: "/records/charts",

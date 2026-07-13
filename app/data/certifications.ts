@@ -248,7 +248,7 @@ export const singles: Release[] = [
 export const features: Release[] = [
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, certs: [
     { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
-    { c: "CO", level: "Gold" }, { c: "ES", level: "Gold" },
+    { c: "CO", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "FR", level: "Gold" },
   ] },
   { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, certs: [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 2 },
@@ -391,6 +391,7 @@ export const certHistory: CertEvent[] = [
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "US", level: "Platinum", x: 2, year: 2026, body: "RIAA Latin" },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "CO", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "ES", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "FR", level: "Gold", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "ZA", level: "Platinum", x: 2, year: 2026 },
   { title: "Gbona", country: "FR", level: "Diamond", year: 2026 },
 
