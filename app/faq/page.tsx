@@ -6,6 +6,7 @@ import { totalWins, totalNominations, ceremonyCount, ceremonies } from "../data/
 import { numberOnes, numberOneReleases } from "../data/charts";
 import { countryCount as performedCountryCount, regionCount } from "../data/performedCountries";
 import { festivals } from "../data/tours";
+import { carCount, totalValueFormatted } from "../data/cars";
 
 export const metadata = pageMetadata({
   title: "Burna Boy FAQ — Grammys, Certifications, Records & Stats",
@@ -81,6 +82,18 @@ const faqs: { q: string; a: string }[] = [
   {
     q: "What records has Burna Boy set for African music?",
     a: `Burna Boy was the first African artist to headline a FIFA World Cup opening ceremony (2026), the first to sell out a stadium in the United States (Citi Field, 2023) and to headline a UK stadium (London Stadium, 2023), and the first African artist to surpass both 1 billion and 2 billion UK streams.`,
+  },
+  {
+    q: "How many cars does Burna Boy have?",
+    a: `Burna Boy has ${carCount} confirmed cars — a collection worth a reported ${totalValueFormatted}+, spanning Ferrari, Lamborghini, Rolls-Royce, McLaren, Bugatti, Porsche, Bentley, Mercedes and Range Rover. Only vehicles confirmed by multiple independent sources are counted; entertainment-press "collection" claims that don't check out are excluded.`,
+  },
+  {
+    q: "What is Burna Boy's most expensive car?",
+    a: `Burna Boy's most expensive car is his ₦9 billion one-of-one widebody Bugatti Chiron — a custom build by Dubai's Venuum, unveiled in July 2026 and billed as the world's first widebody Chiron. It is reported as the most expensive car in West Africa (around $6.19 million).`,
+  },
+  {
+    q: "How much is Burna Boy's car collection worth?",
+    a: `Burna Boy's ${carCount}-car collection is worth a reported ${totalValueFormatted}+ in total, based on itemised entertainment-press valuations (import-inclusive) — led by his ₦9 billion Bugatti Chiron, a McLaren Senna and a Ferrari Purosangue.`,
   },
   {
     q: "Is Burna Boy the biggest African artist?",

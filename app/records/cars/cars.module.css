@@ -1,4 +1,71 @@
 /* Page-summary stat band now lives in the shared StatGrid component. */
+
+/* "The collection at a glance" — superlative cards + a brand tally, so the
+   search audience gets the crowd-pleasing facts before the full list. */
+.glance { margin: 38px 0 0; }
+.glanceEyebrow {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.highlight {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 18px 20px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.hLabel {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.64rem;
+  color: var(--text-muted);
+}
+.hValue {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.35rem;
+  line-height: 1.05;
+  color: var(--gold-bright);
+}
+.hMeta { font-size: 0.8rem; color: var(--text-muted); }
+.brandTally {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tallyItem {
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-soft);
+  font-size: 0.85rem;
+  color: var(--text);
+}
+.tallyItem b {
+  color: var(--gold);
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  margin-right: 5px;
+}
+@media (max-width: 620px) {
+  .highlights { grid-template-columns: 1fr; }
+}
+
 .list {
   list-style: none;
   margin: 32px 0 12px;

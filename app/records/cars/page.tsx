@@ -27,6 +27,18 @@ function formatUsd(n: number): string {
   return `$${n.toLocaleString("en-US")}`;
 }
 
+// "At a glance" summary — brand tally + a few crowd-pleasing superlatives, all
+// from the (value-sorted) car data so they stay in sync with the list below.
+const byMake = new Map<string, number>();
+for (const c of cars) byMake.set(c.make, (byMake.get(c.make) ?? 0) + 1);
+const makeTally = [...byMake.entries()].sort((a, b) => b[1] - a[1]);
+const priciest = cars[0];
+const highlights = [
+  { label: "Most expensive", value: `${priciest.make} ${priciest.model.split(" (")[0]}`, meta: `${priciest.valueNaira} (reported)` },
+  { label: "Only one in Africa", value: "Ferrari SF90 Stradale", meta: "reported" },
+  { label: "Most of one brand", value: `${makeTally[0][1]}× ${makeTally[0][0]}`, meta: "his favourite marque" },
+];
+
 export default function CarsPage() {
   return (
     <main id="content">
@@ -45,6 +57,24 @@ export default function CarsPage() {
             { num: `${totalValueFormatted}+`, label: "Reported collection value" },
           ]}
         />
+
+        <section className={styles.glance} aria-label="Collection at a glance">
+          <p className={styles.glanceEyebrow}>The collection at a glance</p>
+          <div className={styles.highlights}>
+            {highlights.map((h) => (
+              <div key={h.label} className={styles.highlight}>
+                <span className={styles.hLabel}>{h.label}</span>
+                <span className={styles.hValue}>{h.value}</span>
+                <span className={styles.hMeta}>{h.meta}</span>
+              </div>
+            ))}
+          </div>
+          <ul className={styles.brandTally}>
+            {makeTally.map(([make, n]) => (
+              <li key={make} className={styles.tallyItem}><b>{n}</b> {make}</li>
+            ))}
+          </ul>
+        </section>
 
         <ol className={styles.list}>
           {cars.map((c, i) => (
