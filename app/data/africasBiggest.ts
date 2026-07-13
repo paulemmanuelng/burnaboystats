@@ -50,6 +50,21 @@ export const statBoxes: LeaderboardBox[] = [
     source: "Best peak on Billboard's Global 200 chart (US-inclusive), per Billboard and each song's Wikipedia-cited chart history. Several of these peaked even higher on the separate Global 200 Excl. US chart. Verified July 2026.",
   },
   {
+    id: "billboard-hot-100-peak",
+    title: "Highest Billboard Hot 100 peak",
+    meta: "Billboard Hot 100 · African artists · best peak",
+    layout: "list",
+    entries: [
+      { name: "Wizkid", sub: "🇳🇬 “One Dance” (with Drake)", value: "No. 1" },
+      { name: "Tems", sub: "🇳🇬 “Wait for U” (Future & Drake)", value: "No. 1" },
+      { name: "Rema", sub: "🇳🇬 “Calm Down” (with Selena Gomez)", value: "No. 3" },
+      { name: "Tyla", sub: "🇿🇦 “Water”", value: "No. 7" },
+      { name: "Burna Boy", sub: "🇳🇬 “WGFT” (with Gunna)", value: "No. 16" },
+    ],
+    note: "The highest any African artist has charted on the Billboard Hot 100, counting lead and featured credits — Wizkid and Tems both hit No. 1 via global smashes with Drake and Future. Burna Boy's best is “WGFT” at No. 16 (his real Hot 100 record is entries, where he leads all African acts with nine).",
+    source: "Best Billboard Hot 100 peak (lead or featured credit), per Billboard and Wikipedia-cited chart histories. As of July 2026.",
+  },
+  {
     id: "most-streamed-african-artist",
     title: "Most-streamed African artist",
     meta: "Total Spotify streams · global · per year",

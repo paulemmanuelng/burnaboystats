@@ -23,26 +23,28 @@ export default function AfricasBiggestPage() {
     variableMeasured: ["Billboard Global 200 peak", "Spotify streams", "Artist", "Year", "Chart entries"],
   });
 
-  // ItemList for the lead leaderboard so search + AI engines read the ranking.
-  const globalBox = statBoxes.find((b) => b.id === "billboard-global-200-peak");
-  const globalItemList = globalBox && {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Top 5 African artists by Billboard Global 200 peak",
-    numberOfItems: globalBox.entries?.length ?? 0,
-    itemListElement: (globalBox.entries ?? []).map((e, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      name: e.name,
-    })),
-  };
+  // ItemLists for the Billboard peak leaderboards so search + AI read the rankings.
+  const itemLists = ["billboard-global-200-peak", "billboard-hot-100-peak"]
+    .map((id) => statBoxes.find((b) => b.id === id))
+    .filter((b): b is (typeof statBoxes)[number] => !!b?.entries?.length)
+    .map((b) => ({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: b.title,
+      numberOfItems: b.entries!.length,
+      itemListElement: b.entries!.map((e, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: e.name,
+      })),
+    }));
 
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
-      {globalItemList && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(globalItemList) }} />
-      )}
+      {itemLists.map((il, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(il) }} />
+      ))}
       <header className="pageHeader container">
         <h1>
           Africa&apos;s <span className="accent">Biggest</span>
