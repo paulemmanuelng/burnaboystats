@@ -1,17 +1,27 @@
 "use client"; // interactive: toggles the mobile menu + marks the active page
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navItems } from "../lib/links";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const close = () => setOpen(false);
 
+  // Give the nav a solid, blurred backdrop once the user scrolls off the hero,
+  // so links stay legible over album art and section titles below.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="navbar">
+    <header className={`navbar${scrolled || open ? " navScrolled" : ""}`}>
       <nav className="navInner container" aria-label="Primary">
         <Link href="/" className="brand" onClick={close}>
           BurnaBoy<span>Stats</span>

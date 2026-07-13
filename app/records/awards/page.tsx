@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./awards.module.css";
 import CountUp from "../../components/CountUp";
+import StatGrid from "../../components/StatGrid";
 import AwardExplorer from "../../components/AwardExplorer";
 import { totalWins, totalNominations, ceremonyCount, honours, honourCount } from "../../data/awards";
 import { pageMetadata } from "../../lib/seo";
@@ -25,24 +26,14 @@ export default function AwardsPage() {
       </header>
 
       <div className="container">
-        <div className={styles.summary}>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={totalWins} /></span>
-            <span className={styles.sumLabel}>Competitive wins</span>
-          </div>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={totalNominations} /></span>
-            <span className={styles.sumLabel}>Total nominations</span>
-          </div>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={ceremonyCount} /></span>
-            <span className={styles.sumLabel}>Award bodies</span>
-          </div>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={honourCount} /></span>
-            <span className={styles.sumLabel}>Honours &amp; recognitions</span>
-          </div>
-        </div>
+        <StatGrid
+          stats={[
+            { num: <CountUp end={totalWins} />, label: "Competitive wins" },
+            { num: <CountUp end={totalNominations} />, label: "Total nominations" },
+            { num: <CountUp end={ceremonyCount} />, label: "Award bodies" },
+            { num: <CountUp end={honourCount} />, label: "Honours & recognitions" },
+          ]}
+        />
 
         <p className="lead" style={{ margin: "22px auto 0", textAlign: "center" }}>
           Burna Boy has won {totalWins} competitive awards from {totalNominations} nominations

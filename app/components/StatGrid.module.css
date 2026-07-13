@@ -1,0 +1,48 @@
+/* Shared page-summary stat band. Desktop: N equal columns in one row with
+   hairline dividers. Phones: a 2-column grid (4 stats → 2×2, 3 → 2+1, 2 → 1×2),
+   consistent everywhere. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--n, 3), 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-top: 8px;
+}
+.cell {
+  padding: 30px 28px;
+  border-right: 1px solid var(--line);
+  text-align: left;
+}
+.cell:first-child { padding-left: 0; }
+.cell:last-child { border-right: none; padding-right: 0; }
+
+.num {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  color: var(--gold);
+}
+.label {
+  display: block;
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+}
+
+@media (max-width: 560px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  /* smaller on phones so longer values ($18.2M+, 300K+) fit two-up */
+  .num { font-size: clamp(2.4rem, 8vw, 3.1rem); }
+  .cell { border-right: none; padding: 22px 0; }
+  .cell:first-child { padding-left: 0; }
+  .cell:nth-child(odd) { padding-right: 24px; }
+  .cell:nth-child(even) { border-left: 1px solid var(--line); padding-left: 24px; }
+  /* hairline between the two rows (4- and 3-stat grids) */
+  .cell:nth-child(n + 3) { border-top: 1px solid var(--line); padding-top: 22px; }
+}

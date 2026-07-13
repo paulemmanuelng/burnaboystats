@@ -4,7 +4,6 @@ import Waveform from "./components/Waveform";
 import Marquee from "./components/Marquee";
 import Reveal from "./components/Reveal";
 import CountUp from "./components/CountUp";
-import KeepExploring from "./components/KeepExploring";
 import UpdatesList from "./components/UpdatesList";
 import MusicDecor from "./components/MusicDecor";
 import AlbumStrip from "./components/AlbumStrip";
@@ -281,8 +280,6 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
-
-      <KeepExploring current="/" />
     </main>
   );
 }

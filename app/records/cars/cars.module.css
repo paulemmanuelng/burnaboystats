@@ -1,29 +1,7 @@
-.summary {
-  display: flex;
-  gap: 32px;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 20px 0;
-  margin: 24px 0 32px;
-}
-.sumCard { display: flex; flex-direction: column; gap: 4px; }
-.sumNum {
-  font-family: var(--font-anton);
-  font-size: 2rem;
-  color: var(--gold-bright);
-}
-.sumLabel {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
+/* Page-summary stat band now lives in the shared StatGrid component. */
 .list {
   list-style: none;
-  margin: 0 0 12px;
+  margin: 32px 0 12px;
   padding: 0;
   border-top: 1px solid var(--line);
 }

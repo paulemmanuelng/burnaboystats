@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./cars.module.css";
 import CountUp from "../../components/CountUp";
+import StatGrid from "../../components/StatGrid";
 import { cars, carCount, totalValueFormatted } from "../../data/cars";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
@@ -37,16 +38,12 @@ export default function CarsPage() {
       </header>
 
       <div className="container">
-        <div className={styles.summary}>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={carCount} /></span>
-            <span className={styles.sumLabel}>Confirmed cars</span>
-          </div>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}>{totalValueFormatted}+</span>
-            <span className={styles.sumLabel}>Reported collection value</span>
-          </div>
-        </div>
+        <StatGrid
+          stats={[
+            { num: <CountUp end={carCount} />, label: "Confirmed cars" },
+            { num: `${totalValueFormatted}+`, label: "Reported collection value" },
+          ]}
+        />
 
         <ol className={styles.list}>
           {cars.map((c, i) => (

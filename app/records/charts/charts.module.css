@@ -1,36 +1,6 @@
 /* Official Charts page */
 
-.summary {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  margin-top: 8px;
-}
-.sumCard {
-  padding: 30px 28px;
-  border-right: 1px solid var(--line);
-}
-.summary .sumCard:first-child { padding-left: 0; }
-.summary .sumCard:last-child { border-right: none; padding-right: 0; }
-.sumNum {
-  display: block;
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: clamp(3rem, 6vw, 5rem);
-  line-height: 0.86;
-  letter-spacing: -0.01em;
-  color: var(--gold);
-}
-.sumLabel {
-  display: block;
-  margin-top: 12px;
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.7rem;
-}
+/* Page-summary stat band now lives in the shared StatGrid component. */
 
 .group { margin: 48px 0 4px; }
 .count { color: var(--text-muted); font-weight: 400; font-size: 1.05rem; }
@@ -121,12 +91,6 @@
   .row { grid-template-columns: 1fr; gap: 12px; }
   .peaks { justify-content: flex-start; }
 }
-@media (max-width: 560px) {
-  .summary { grid-template-columns: 1fr; }
-  .sumCard { border-right: none; border-bottom: 1px solid var(--line); padding: 20px 0; }
-  .summary .sumCard:last-child { border-bottom: none; }
-}
-
 /* Interactive filter (mirrors the certifications filter) */
 .filterBar {
   margin: 26px 0 8px;

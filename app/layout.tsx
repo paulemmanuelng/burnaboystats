@@ -5,6 +5,7 @@ import { Geist, Anton, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Nav from "./components/Nav";
+import BackToTop from "./components/BackToTop";
 import Breadcrumbs from "./components/Breadcrumbs";
 import BirthdayCelebration from "./components/BirthdayCelebration";
 import { siteUrl } from "./site";
@@ -127,6 +128,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* THE ACTUAL PAGE CONTENT gets slotted in here */}
         {children}
+
+        {/* Floating "back to top" — appears after scrolling down a long page */}
+        <BackToTop />
 
         {/* Vercel Web Analytics — privacy-friendly visitor stats */}
         <Analytics />

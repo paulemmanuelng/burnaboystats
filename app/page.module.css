@@ -448,6 +448,8 @@ a.stat:hover .statNum { color: var(--gold-bright); }
      CTA bottom padding (110px) leave big empty gaps between sections on a
      narrow screen, so we shrink them here. */
   .section { padding: 48px 0; }
+  /* tighten the empty space under the nav on phones (desktop keeps 156px) */
+  .hero { padding-top: clamp(104px, 21vw, 156px); }
   .cta { padding: 8px 0 44px; }
   .ctaInner { padding: 44px 22px; }
   .scoreboard {

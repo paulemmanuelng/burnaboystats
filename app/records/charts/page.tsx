@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./charts.module.css";
 import CountUp from "../../components/CountUp";
+import StatGrid from "../../components/StatGrid";
 import ChartExplorer from "../../components/ChartExplorer";
 import {
   albumCharts,
@@ -41,20 +42,13 @@ export default function ChartsPage() {
       </header>
 
       <div className="container">
-        <div className={styles.summary}>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={chartEntryCount} /></span>
-            <span className={styles.sumLabel}>Chart entries</span>
-          </div>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={numberOnes} /></span>
-            <span className={styles.sumLabel}>No. 1 peaks</span>
-          </div>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={chartCountryCount} /></span>
-            <span className={styles.sumLabel}>Countries</span>
-          </div>
-        </div>
+        <StatGrid
+          stats={[
+            { num: <CountUp end={chartEntryCount} />, label: "Chart entries" },
+            { num: <CountUp end={numberOnes} />, label: "No. 1 peaks" },
+            { num: <CountUp end={chartCountryCount} />, label: "Countries" },
+          ]}
+        />
 
         <p className="lead" style={{ margin: "22px auto 0", textAlign: "center" }}>
           Burna Boy has {chartEntryCount} entries on official national charts across

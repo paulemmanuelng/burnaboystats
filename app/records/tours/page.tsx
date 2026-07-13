@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./tours.module.css";
 import CountUp from "../../components/CountUp";
+import StatGrid from "../../components/StatGrid";
 import ToursExplorer from "../../components/ToursExplorer";
 import StatBox from "../../components/StatBox";
 import { tours, liveMoments } from "../../data/tours";
@@ -36,20 +37,13 @@ export default function ToursPage() {
       </header>
 
       <div className="container">
-        <div className={styles.summary}>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={30} prefix="$" suffix=".5M" /></span>
-            <span className={styles.sumLabel}>Top tour gross · African record</span>
-          </div>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={6} prefix="$" suffix=".1M" /></span>
-            <span className={styles.sumLabel}>Biggest concert · African record</span>
-          </div>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={300} suffix="K+" /></span>
-            <span className={styles.sumLabel}>Tickets · I Told Them tour</span>
-          </div>
-        </div>
+        <StatGrid
+          stats={[
+            { num: <CountUp end={30} prefix="$" suffix=".5M" />, label: "Top tour gross · African record" },
+            { num: <CountUp end={6} prefix="$" suffix=".1M" />, label: "Biggest concert · African record" },
+            { num: <CountUp end={300} suffix="K+" />, label: "Tickets · I Told Them tour" },
+          ]}
+        />
 
         <p className="lead" style={{ margin: "22px auto 4px", textAlign: "center" }}>
           Burna Boy&apos;s I Told Them… Tour grossed $30.46 million — the

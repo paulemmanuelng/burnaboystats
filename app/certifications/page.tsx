@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./certifications.module.css";
 import Equalizer from "../components/Equalizer";
 import CountUp from "../components/CountUp";
+import StatGrid from "../components/StatGrid";
 import CertExplorer from "../components/CertExplorer";
 import CertHistoryByYear from "../components/CertHistoryByYear";
 import KeepExploring from "../components/KeepExploring";
@@ -57,20 +58,13 @@ export default function CertificationsPage() {
 
       <div className="container">
         {/* LIVE SUMMARY */}
-        <div className={styles.summary}>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={total} /></span>
-            <span className={styles.sumLabel}>Total certifications</span>
-          </div>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={countryCount} /></span>
-            <span className={styles.sumLabel}>Countries</span>
-          </div>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={certifiedReleaseCount} /></span>
-            <span className={styles.sumLabel}>Certified releases</span>
-          </div>
-        </div>
+        <StatGrid
+          stats={[
+            { num: <CountUp end={total} />, label: "Total certifications" },
+            { num: <CountUp end={countryCount} />, label: "Countries" },
+            { num: <CountUp end={certifiedReleaseCount} />, label: "Certified releases" },
+          ]}
+        />
 
         <p className="lead" style={{ margin: "22px auto 0", textAlign: "center" }}>
           Burna Boy has {total} music certifications across {countryCount} countries —

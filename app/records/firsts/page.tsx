@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./firsts.module.css";
 import CountUp from "../../components/CountUp";
+import StatGrid from "../../components/StatGrid";
 import { firstGroups } from "../../data/firsts";
 import { pageMetadata } from "../../lib/seo";
 
@@ -24,20 +25,13 @@ export default function FirstsPage() {
       </header>
 
       <div className="container">
-        <div className={styles.summary}>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={30} prefix="$" suffix=".5M" /></span>
-            <span className={styles.sumLabel}>Highest-grossing African tour</span>
-          </div>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={2} suffix="B" /></span>
-            <span className={styles.sumLabel}>UK streams · first African</span>
-          </div>
-          <div className={styles.sumCard}>
-            <span className={styles.sumNum}><CountUp end={6} /></span>
-            <span className={styles.sumLabel}>Straight years on the Hot 100</span>
-          </div>
-        </div>
+        <StatGrid
+          stats={[
+            { num: <CountUp end={30} prefix="$" suffix=".5M" />, label: "Highest-grossing African tour" },
+            { num: <CountUp end={2} suffix="B" />, label: "UK streams · first African" },
+            { num: <CountUp end={6} />, label: "Straight years on the Hot 100" },
+          ]}
+        />
 
         {firstGroups.map((g) => (
           <div key={g.label}>
