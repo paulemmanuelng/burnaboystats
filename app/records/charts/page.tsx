@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./charts.module.css";
+import KeepExploring from "../../components/KeepExploring";
 import CountUp from "../../components/CountUp";
 import StatGrid from "../../components/StatGrid";
 import ChartExplorer from "../../components/ChartExplorer";
@@ -75,6 +76,8 @@ export default function ChartsPage() {
         </p>
         <Link href="/records" className={styles.back}>← Career Records</Link>
       </div>
+
+      <KeepExploring current="/records/charts" />
     </main>
   );
 }

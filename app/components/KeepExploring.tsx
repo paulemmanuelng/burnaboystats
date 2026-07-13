@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./KeepExploring.module.css";
 import { exploreFor } from "../lib/links";
 import { totalAwards, countryCount } from "../data/certifications";
+import { chartEntryCount, numberOnes } from "../data/charts";
 
 type SectionLink = { href: string; title: string; desc: string };
 
@@ -16,6 +17,11 @@ const sectionLinks: Record<string, SectionLink> = {
     desc: `${totalAwards()} awards across ${countryCount} countries`,
   },
   records: { href: "/records", title: "Career Records", desc: "Charts, awards & tours" },
+  charts: {
+    href: "/records/charts",
+    title: "Chart Records",
+    desc: `${chartEntryCount} chart entries · ${numberOnes} No.1s worldwide`,
+  },
   tours: { href: "/records/tours", title: "Tours & Live", desc: "$30.46M — the biggest African tour" },
   about: { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },
 };

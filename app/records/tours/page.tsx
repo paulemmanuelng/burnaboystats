@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./tours.module.css";
+import KeepExploring from "../../components/KeepExploring";
 import CountUp from "../../components/CountUp";
 import StatGrid from "../../components/StatGrid";
 import ToursExplorer from "../../components/ToursExplorer";
@@ -130,6 +131,8 @@ export default function ToursPage() {
         </p>
         <Link href="/records" className={styles.back}>← Career Records</Link>
       </div>
+
+      <KeepExploring current="/records/tours" />
     </main>
   );
 }

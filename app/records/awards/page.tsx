@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./awards.module.css";
+import KeepExploring from "../../components/KeepExploring";
 import CountUp from "../../components/CountUp";
 import StatGrid from "../../components/StatGrid";
 import AwardExplorer from "../../components/AwardExplorer";
@@ -74,6 +75,8 @@ export default function AwardsPage() {
         </p>
         <Link href="/records" className={styles.back}>← Career Records</Link>
       </div>
+
+      <KeepExploring current="/records/awards" />
     </main>
   );
 }

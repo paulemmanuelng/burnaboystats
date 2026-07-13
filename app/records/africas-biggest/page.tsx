@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./africas-biggest.module.css";
+import KeepExploring from "../../components/KeepExploring";
 import StatBox from "../../components/StatBox";
 import { statBoxes } from "../../data/africasBiggest";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
@@ -55,6 +56,8 @@ export default function AfricasBiggestPage() {
         </p>
         <Link href="/records" className={styles.back}>← Career Records</Link>
       </div>
+
+      <KeepExploring current="/records/africas-biggest" />
     </main>
   );
 }

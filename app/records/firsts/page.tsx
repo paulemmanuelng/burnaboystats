@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./firsts.module.css";
+import KeepExploring from "../../components/KeepExploring";
 import CountUp from "../../components/CountUp";
 import StatGrid from "../../components/StatGrid";
 import { firstGroups } from "../../data/firsts";
@@ -61,6 +62,8 @@ export default function FirstsPage() {
         </p>
         <Link href="/records" className={styles.back}>← Career Records</Link>
       </div>
+
+      <KeepExploring current="/records/firsts" />
     </main>
   );
 }
