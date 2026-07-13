@@ -5,7 +5,7 @@ import { revenueShows, revenueLeaderboardBox } from "../../../data/tourRevenue";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Burna Boy — Highest Revenue Per Show",
+  title: "Burna Boy Concert Revenue — Highest-Grossing Shows",
   description:
     "The 40 highest-grossing single shows by an African artist, led by Burna Boy's $6.15M London Stadium concert — ranked by reported box-office revenue.",
   path: "/records/tours/revenue",

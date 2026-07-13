@@ -4,7 +4,7 @@ import { festivals, otherShows, concerts } from "../../../data/tours";
 import { pageMetadata } from "../../../lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Burna Boy — Festivals & Shows",
+  title: "Burna Boy Festivals — Afro Nation & Every Big-Stage Show",
   description:
     "Every major festival and show Burna Boy has performed — headline sets, solo concerts, and other big-stage appearances like Glastonbury and Wireless.",
   path: "/records/tours/festivals",

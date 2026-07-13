@@ -4,7 +4,7 @@ import { updates } from "../data/updates";
 import { pageMetadata } from "../lib/seo";
 
 const baseMetadata = pageMetadata({
-  title: "Latest Updates — Burna Boy Stats",
+  title: "Burna Boy News — Latest Chart, Award & Streaming Updates",
   description:
     "Every recent update to Burna Boy Stats — new chart peaks, certifications, streaming milestones and records, tracked as they happen.",
   path: "/updates",
