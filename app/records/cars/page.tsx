@@ -7,12 +7,12 @@ import { currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted }
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Burna Boy's Car Collection — Every Confirmed Vehicle",
+  title: `Burna Boy's Car Collection — ${carCount} Cars Worth ${totalValueFormatted}+`,
   description:
-    `Burna Boy's reported car collection — ${carCount} confirmed vehicles worth over ${totalValueFormatted}, led by his ₦9 billion one-of-one widebody Bugatti Chiron.`,
+    `Every car in Burna Boy's garage, priced and sourced: ${carCount} current vehicles worth a reported ${totalValueFormatted}+, led by his ₦9 billion one-of-one Bugatti Chiron and a $2M McLaren Senna — plus the ones he's since sold.`,
   path: "/records/cars",
   shareTitle: "Burna Boy's Car Collection",
-  shareDescription: `${carCount} confirmed cars, worth over ${totalValueFormatted}, led by a ₦9bn Bugatti Chiron.`,
+  shareDescription: `${carCount} cars worth a reported ${totalValueFormatted}+, led by a ₦9bn Bugatti Chiron — every car, priced.`,
 });
 
 const carsDataset = datasetJsonLd({
@@ -22,6 +22,19 @@ const carsDataset = datasetJsonLd({
   keywords: ["Burna Boy", "cars", "car collection", "supercars", "net worth"],
   variableMeasured: ["Make", "Model", "Year", "Reported value"],
 });
+
+// ItemList so search + AI engines can read the ranked collection as a list.
+const carsItemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Burna Boy's car collection",
+  numberOfItems: currentCars.length,
+  itemListElement: currentCars.map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: `${c.make} ${c.model}${c.year ? ` (${c.year})` : ""}`,
+  })),
+};
 
 function formatUsd(n: number): string {
   return `$${n.toLocaleString("en-US")}`;
@@ -43,6 +56,7 @@ export default function CarsPage() {
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(carsDataset) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(carsItemList) }} />
       <header className="pageHeader container">
         <h1>
           Car <span className="accent">Collection</span>
@@ -57,6 +71,13 @@ export default function CarsPage() {
             { num: `${totalValueFormatted}+`, label: "Reported collection value" },
           ]}
         />
+
+        <p className="lead" style={{ margin: "22px auto 0", textAlign: "center" }}>
+          Burna Boy currently owns {carCount} confirmed cars — a collection worth a
+          reported {totalValueFormatted}+, led by a one-of-one ₦9 billion Bugatti Chiron
+          and a $2 million McLaren Senna. Below is every car priced individually, plus
+          the ones he&apos;s since sold.
+        </p>
 
         <section className={styles.glance} aria-label="Collection at a glance">
           <p className={styles.glanceEyebrow}>The collection at a glance</p>

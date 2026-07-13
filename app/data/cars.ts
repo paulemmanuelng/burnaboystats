@@ -8,9 +8,9 @@
 //     sighted with him in years).
 //   • Live totals (count + value) count CURRENT cars only.
 //   • Testarossa corrected down from ~₦1.6bn (blog inflation) to ~₦175m.
-//   • Open items flagged to Paul: the Mercedes-AMG G63 (absent from the fan
-//     list, kept current for now) and the Maybach GLS 600 (fan counts it; we
-//     still hold it out as his mother's gift — see HELD OUT below).
+//   • Resolved: the Mercedes-AMG G63 (absent from the fan list) → UNCONFIRMED;
+//     the Maybach GLS 600 stays HELD OUT — the fan counts it, but it's the
+//     Mother's Day gift to his mother/manager, not his own car (see HELD OUT).
 // Older per-car provenance further down is retained for history.
 //
 // Burna Boy's car collection — reported purchase values. 15 of 19 entries are
@@ -162,11 +162,6 @@ export const cars: Car[] = [
     desc: "The chauffeur-focused, range-topping S-Class — confirmed via his own Instagram caption (\"Got this too because everyone needs a Maybach\").",
   },
   {
-    make: "Mercedes-AMG", model: "G63",
-    valueUsd: 202_000, valueNaira: "₦293 million",
-    desc: "The iconic boxy G-Wagon in AMG's high-performance trim — rugged off-road capability wrapped in Mercedes luxury.",
-  },
-  {
     make: "Ferrari", model: "Testarossa", year: 1988,
     valueUsd: 120_000, valueNaira: "₦175 million",
     desc: "A wide-body, flat-12 icon of the 1980s, instantly recognisable by its side strakes — spotted in London and later moved into his Lagos penthouse (August 2025). A genuinely distinct car from his red 328 below. Some blogs valued it near ₦1.5bn; a 1988 Testarossa realistically sits far lower, around ₦175 million.",
@@ -202,6 +197,12 @@ export const cars: Car[] = [
     valueUsd: 167_000, valueNaira: "₦242.15 million",
     status: "unconfirmed",
     desc: "A top-trim luxury SUV — like the Bentley, not seen with him recently, so it's kept here as unconfirmed rather than dropped.",
+  },
+  {
+    make: "Mercedes-AMG", model: "G63",
+    valueUsd: 202_000, valueNaira: "₦293 million",
+    status: "unconfirmed",
+    desc: "The iconic boxy G-Wagon in AMG's high-performance trim. Absent from the latest top-fan ownership research, so its current place in the fleet is unconfirmed.",
   },
 ];
 
