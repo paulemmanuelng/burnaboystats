@@ -1,3 +1,18 @@
+// ── JULY 2026 UPDATE — top-fan re-pricing pass ──────────────────────────────
+// Re-priced against a researched breakdown from a top Burna Boy fan/collector
+// (@turntupnaza), who tracked each car's buy price + Nigerian import duties.
+// Only the McLaren Senna price is fan-confirmed (Burna posted it himself); the
+// Bugatti, Cullinan and Aventador SVJ are high-confidence, the rest estimates.
+//   • Ferrari 458 Italia + 488 Spider → SOLD (kept here, not dropped).
+//   • Bentley Continental GT + Range Rover Autobiography → UNCONFIRMED (not
+//     sighted with him in years).
+//   • Live totals (count + value) count CURRENT cars only.
+//   • Testarossa corrected down from ~₦1.6bn (blog inflation) to ~₦175m.
+//   • Open items flagged to Paul: the Mercedes-AMG G63 (absent from the fan
+//     list, kept current for now) and the Maybach GLS 600 (fan counts it; we
+//     still hold it out as his mother's gift — see HELD OUT below).
+// Older per-car provenance further down is retained for history.
+//
 // Burna Boy's car collection — reported purchase values. 15 of 19 entries are
 // sourced from Pulse Nigeria's itemised breakdown (Nov 2025) — directly
 // re-fetched, and each of those 15 also independently re-confirmed via a
@@ -68,6 +83,7 @@ export interface Car {
   valueUsd: number;
   valueNaira: string;
   desc: string;
+  status?: "sold" | "unconfirmed"; // absent = currently in the collection
   link?: string; // optional: photo/video of Burna Boy in/with the car
   linkLabel?: string; // optional override for the link text (defaults to "See Burna in it")
 }
@@ -82,109 +98,122 @@ export const cars: Car[] = [
     linkLabel: "See the Venuum reveal",
   },
   {
-    make: "McLaren", model: "Senna (Carbon Fibre Edition)",
-    valueUsd: 2_200_000, valueNaira: "₦3.2 billion",
-    desc: "A track-bred hypercar named after Ayrton Senna, limited to 500 units worldwide — his finished in exposed carbon fibre.",
+    make: "McLaren", model: "Senna (MSO Carbon Edition)",
+    valueUsd: 2_000_000, valueNaira: "₦2.9 billion",
+    desc: "A track-bred hypercar named after Ayrton Senna, finished in exposed carbon fibre (MSO). The one price in the whole collection that's confirmed rather than estimated — $2M is the figure Burna Boy himself posted when he bought it.",
     link: "https://autojosh.com/burna-boy-splashes-n3-2-billion-on-a-mclaren-senna-hypercar/",
   },
   {
+    make: "Ferrari", model: "SF90 Stradale", year: 2025,
+    valueUsd: 1_000_000, valueNaira: "₦1.46 billion",
+    desc: "A plug-in-hybrid V8 hypercar with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa.",
+  },
+  {
     make: "Ferrari", model: "Purosangue", year: 2024,
-    valueUsd: 1_400_000, valueNaira: "₦2.1 billion",
+    valueUsd: 1_000_000, valueNaira: "₦1.46 billion",
     desc: "Ferrari's first-ever four-door, four-seat model — the marque's debut in the luxury-SUV space, powered by a naturally-aspirated V12.",
     link: "https://autojosh.com/moment-burna-boy-picked-up-his-brand-new-ferrari-purosangue-suv-worth-n2-billion-at-lagos-dealership/",
   },
   {
-    make: "Ferrari", model: "Testarossa",
-    valueUsd: 1_100_000, valueNaira: "~₦1.6 billion (est.)",
-    desc: "A wide-body, flat-12 icon of the 1980s, instantly recognisable by its side strakes — spotted in London and later moved into his Lagos penthouse (August 2025). Confirmed as a genuinely distinct car from his red 328 GTB below (multiple independent posts specifically name \"Testarossa,\" never disputed the way the 328's own variant is). The value is a syndicated social-media estimate rather than one dedicated report — reported between ₦1.5–1.6 billion depending on the outlet.",
-  },
-  {
-    make: "Lamborghini", model: "Revuelto",
-    valueUsd: 1_030_000, valueNaira: "₦1.5 billion",
-    desc: "Lamborghini's first plug-in-hybrid V12 flagship — the successor to the Aventador.",
+    make: "Lamborghini", model: "Revuelto", year: 2025,
+    valueUsd: 1_000_000, valueNaira: "₦1.46 billion",
+    desc: "Lamborghini's first plug-in-hybrid V12 flagship — the successor to the Aventador, and reported as the first in Nigeria.",
     link: "https://autojosh.com/burna-boy-acquires-the-first-ever-lamborghini-revuelto-in-nigeria-worth-n1-billion/",
   },
   {
-    make: "Ferrari", model: "SF90 Stradale", year: 2026,
-    valueUsd: 894_000, valueNaira: "~₦1.3 billion (est.)",
-    desc: "A plug-in-hybrid V8 hypercar with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa. Delivered March 2026 (Creebhills, Ladun Liadi's blog). Ownership is well-documented; the ₦1.3bn value is the most-repeated figure across independent blogs, though no single dedicated automotive-press article states it.",
+    make: "Rolls-Royce", model: "Cullinan Black Badge", year: 2024,
+    valueUsd: 1_000_000, valueNaira: "₦1.46 billion",
+    desc: "Rolls-Royce's flagship ultra-luxury SUV in Black Badge trim — custom-ordered with a diamond-encrusted Spirit of Ecstasy bonnet ornament.",
+    link: "https://autojosh.com/burna-boy-buys-customized-rolls-royce-cullinan-with-diamond-encrusted-bonnet-ornament/",
   },
   {
-    make: "Lamborghini", model: "Aventador SVJ",
-    valueUsd: 867_500, valueNaira: "₦1.258 billion",
-    desc: "The most extreme Aventador — a 759-hp naturally-aspirated V12, built in limited numbers. Value per Pulse; AutoJosh and autoevolution both independently report it closer to $1 million.",
+    make: "Lamborghini", model: "Aventador SVJ Roadster", year: 2022,
+    valueUsd: 1_000_000, valueNaira: "₦1.46 billion",
+    desc: "The most extreme Aventador — a 759-hp naturally-aspirated V12 in open-top Roadster form, built in limited numbers.",
     link: "https://autojosh.com/burna-boy-pull-up-in-1million-lamborghini-aventador-svj-at-lagos-restaurant/",
   },
   {
-    make: "Lamborghini", model: "Urus (Novitec Edition)", year: 2022,
-    valueUsd: 800_000, valueNaira: "₦1.16 billion",
-    desc: "Lamborghini's super-SUV, customised here to an aggressive Novitec widebody spec.",
-    link: "https://autojosh.com/burna-boy-takes-his-lamborghini-urus-for-a-spin-moments-after-the-n200m-suv-arrived-in-nigeria/",
+    make: "Rolls-Royce", model: "Dawn", year: 2019,
+    valueUsd: 700_000, valueNaira: "₦1 billion",
+    desc: "A four-seat luxury drop-top convertible, also fitted with a diamond Spirit of Ecstasy.",
+    link: "https://autojosh.com/burna-boy-flaunts-rolls-royce-dawn/",
   },
   {
-    make: "Porsche", model: "911 GT3 RS", year: 2025,
-    valueUsd: 690_000, valueNaira: "₦1 billion",
-    desc: "A track-focused, road-legal flat-six — 518 hp, 0–100 km/h in 3.2 seconds. Delivered to him on Valentine's Day 2026.",
-    link: "https://autojosh.com/porsche-911-gt3-rs-worth-n1b-joins-burna-boys-car-collection-singer-takes-supercar-for-a-spin/",
-  },
-  {
-    make: "Ferrari", model: "812 GTS",
-    valueUsd: 600_000, valueNaira: "₦870 million",
+    make: "Ferrari", model: "812 GTS", year: 2023,
+    valueUsd: 700_000, valueNaira: "₦1 billion",
     desc: "A front-mounted 6.5-litre V12 convertible — among the most powerful series-production Ferraris ever built.",
     link: "https://www.legit.ng/entertainment/celebrities/1570054-christmas-burna-boy-spurges-n700m-a-brand-ferrari-812-gts-video-frenzy/",
   },
   {
-    make: "Ferrari", model: "488 Spider",
+    make: "Porsche", model: "911 GT3 RS (Weissach)", year: 2025,
+    valueUsd: 600_000, valueNaira: "₦900 million",
+    desc: "A track-focused, road-legal flat-six with the Weissach pack — 518 hp, 0–100 km/h in 3.2 seconds. Delivered on Valentine's Day 2026; a Polanco dealership staffer put the price at ₦900 million.",
+    link: "https://autojosh.com/porsche-911-gt3-rs-worth-n1b-joins-burna-boys-car-collection-singer-takes-supercar-for-a-spin/",
+  },
+  {
+    make: "Lamborghini", model: "Urus (Novitec Edition)", year: 2022,
+    valueUsd: 500_000, valueNaira: "₦730 million",
+    desc: "Lamborghini's super-SUV, customised here to an aggressive Novitec widebody spec.",
+    link: "https://autojosh.com/burna-boy-takes-his-lamborghini-urus-for-a-spin-moments-after-the-n200m-suv-arrived-in-nigeria/",
+  },
+  {
+    make: "Mercedes-Maybach", model: "S680 4MATIC", year: 2022,
+    valueUsd: 300_000, valueNaira: "₦440 million",
+    desc: "The chauffeur-focused, range-topping S-Class — confirmed via his own Instagram caption (\"Got this too because everyone needs a Maybach\").",
+  },
+  {
+    make: "Mercedes-AMG", model: "G63",
+    valueUsd: 202_000, valueNaira: "₦293 million",
+    desc: "The iconic boxy G-Wagon in AMG's high-performance trim — rugged off-road capability wrapped in Mercedes luxury.",
+  },
+  {
+    make: "Ferrari", model: "Testarossa", year: 1988,
+    valueUsd: 120_000, valueNaira: "₦175 million",
+    desc: "A wide-body, flat-12 icon of the 1980s, instantly recognisable by its side strakes — spotted in London and later moved into his Lagos penthouse (August 2025). A genuinely distinct car from his red 328 below. Some blogs valued it near ₦1.5bn; a 1988 Testarossa realistically sits far lower, around ₦175 million.",
+  },
+  {
+    make: "Ferrari", model: "328 GTS", year: 1985,
+    valueUsd: 100_000, valueNaira: "₦146 million",
+    desc: "A 1980s classic — the final evolution of Ferrari's celebrated 308/328 line, in open-top GTS form.",
+  },
+
+  // ===== No longer counted in the live collection =====
+  {
+    make: "Ferrari", model: "458 Italia", year: 2013,
+    valueUsd: 230_000, valueNaira: "₦333.5 million",
+    status: "sold",
+    desc: "A naturally-aspirated V8 that became a modern Ferrari icon — one of his earliest supercars. Reportedly sold in 2025.",
+    link: "https://autojosh.com/burna-ferrari-458-italia/",
+  },
+  {
+    make: "Ferrari", model: "488 Spider", year: 2022,
     valueUsd: 472_000, valueNaira: "₦684.4 million",
-    desc: "A twin-turbo V8 open-top supercar.",
-  },
-  {
-    make: "Rolls-Royce", model: "Cullinan",
-    valueUsd: 427_000, valueNaira: "₦619.15 million",
-    desc: "Rolls-Royce's flagship ultra-luxury SUV, custom-ordered.",
-    link: "https://autojosh.com/burna-boy-buys-customized-rolls-royce-cullinan-with-diamond-encrusted-bonnet-ornament/",
-  },
-  {
-    make: "Rolls-Royce", model: "Dawn",
-    valueUsd: 350_000, valueNaira: "₦507.5 million",
-    desc: "A four-seat luxury drop-top convertible.",
-    link: "https://autojosh.com/burna-boy-flaunts-rolls-royce-dawn/",
+    status: "sold",
+    desc: "A twin-turbo V8 open-top supercar — reportedly sold in 2025 alongside the 458 Italia.",
   },
   {
     make: "Bentley", model: "Continental GT", year: 2017,
     valueUsd: 270_000, valueNaira: "₦391.5 million",
-    desc: "A quintessential British grand tourer.",
-  },
-  {
-    make: "Ferrari", model: "458 Italia", year: 2013,
-    valueUsd: 230_000, valueNaira: "₦333.5 million",
-    desc: "A naturally-aspirated V8 that became a modern Ferrari icon — one of his earliest supercars.",
-    link: "https://autojosh.com/burna-ferrari-458-italia/",
-  },
-  {
-    make: "Mercedes-Maybach", model: "S650",
-    valueUsd: 228_000, valueNaira: "₦330.6 million",
-    desc: "The chauffeur-focused, range-topping S-Class — confirmed via his own Instagram caption (\"Got this too because everyone needs a Maybach\"). One outlet describes it as the S680 variant rather than S650; a minor naming inconsistency, not a different car.",
-  },
-  {
-    make: "Mercedes-AMG", model: "G63",
-    valueUsd: 202_000, valueNaira: "₦292.9 million",
-    desc: "The iconic boxy G-Wagon in AMG's high-performance trim — rugged off-road capability wrapped in Mercedes luxury. Value per Pulse; National Waves independently reported a notably lower figure (~₦155 million) for the same car, so treat the exact price as uncertain within that range.",
-  },
-  {
-    make: "Ferrari", model: "328 GTB", year: 1988,
-    valueUsd: 180_000, valueNaira: "₦261 million",
-    desc: "A 1980s classic — the final evolution of Ferrari's celebrated 308/328 line. Model and value per Pulse; an independent automotive analysis (234Drive) argues the car may actually be the convertible 328 GTS rather than the coupe GTB, and that real-market prices for this model average closer to $100,000 — both open questions worth flagging rather than resolving with certainty.",
+    status: "unconfirmed",
+    desc: "A quintessential British grand tourer — an early acquisition that hasn't been sighted with him in years, so current ownership is unconfirmed.",
   },
   {
     make: "Range Rover", model: "Autobiography",
     valueUsd: 167_000, valueNaira: "₦242.15 million",
-    desc: "A top-trim luxury SUV — one of his everyday exotics.",
+    status: "unconfirmed",
+    desc: "A top-trim luxury SUV — like the Bentley, not seen with him recently, so it's kept here as unconfirmed rather than dropped.",
   },
 ];
 
-export const totalValueUsd = cars.reduce((sum, c) => sum + c.valueUsd, 0);
-export const carCount = cars.length;
+const byValueDesc = (a: Car, b: Car) => b.valueUsd - a.valueUsd;
+// Headline totals count only cars currently in the collection; sold and
+// unconfirmed cars are kept but shown separately.
+export const currentCars = [...cars].filter((c) => !c.status).sort(byValueDesc);
+export const soldCars = [...cars].filter((c) => c.status === "sold").sort(byValueDesc);
+export const unconfirmedCars = [...cars].filter((c) => c.status === "unconfirmed").sort(byValueDesc);
+
+export const totalValueUsd = currentCars.reduce((sum, c) => sum + c.valueUsd, 0);
+export const carCount = currentCars.length;
 
 function formatUsd(n: number): string {
   return `$${(n / 1_000_000).toFixed(2)}M`;

@@ -85,7 +85,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "How many cars does Burna Boy have?",
-    a: `Burna Boy has ${carCount} confirmed cars — a collection worth a reported ${totalValueFormatted}+, spanning Ferrari, Lamborghini, Rolls-Royce, McLaren, Bugatti, Porsche, Bentley, Mercedes and Range Rover. Only vehicles confirmed by multiple independent sources are counted; entertainment-press "collection" claims that don't check out are excluded.`,
+    a: `Burna Boy currently has ${carCount} cars — a collection worth a reported ${totalValueFormatted}+, spanning Ferrari, Lamborghini, Rolls-Royce, McLaren, Bugatti, Porsche and Mercedes. Only vehicles confirmed still in his possession are counted; ones he has since sold (a Ferrari 458 Italia and 488 Spider) are listed separately.`,
   },
   {
     q: "What is Burna Boy's most expensive car?",

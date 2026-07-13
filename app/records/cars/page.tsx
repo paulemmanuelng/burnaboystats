@@ -3,7 +3,7 @@ import styles from "./cars.module.css";
 import CountUp from "../../components/CountUp";
 import StatGrid from "../../components/StatGrid";
 import KeepExploring from "../../components/KeepExploring";
-import { cars, carCount, totalValueFormatted } from "../../data/cars";
+import { currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted } from "../../data/cars";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -27,12 +27,12 @@ function formatUsd(n: number): string {
   return `$${n.toLocaleString("en-US")}`;
 }
 
-// "At a glance" summary — brand tally + a few crowd-pleasing superlatives, all
-// from the (value-sorted) car data so they stay in sync with the list below.
+// "At a glance" summary — brand tally + a few crowd-pleasing superlatives, from
+// the current (value-sorted) cars so they stay in sync with the list below.
 const byMake = new Map<string, number>();
-for (const c of cars) byMake.set(c.make, (byMake.get(c.make) ?? 0) + 1);
+for (const c of currentCars) byMake.set(c.make, (byMake.get(c.make) ?? 0) + 1);
 const makeTally = [...byMake.entries()].sort((a, b) => b[1] - a[1]);
-const priciest = cars[0];
+const priciest = currentCars[0];
 const highlights = [
   { label: "Most expensive", value: `${priciest.make} ${priciest.model.split(" (")[0]}`, meta: `${priciest.valueNaira} (reported)` },
   { label: "Only one in Africa", value: "Ferrari SF90 Stradale", meta: "reported" },
@@ -47,7 +47,7 @@ export default function CarsPage() {
         <h1>
           Car <span className="accent">Collection</span>
         </h1>
-        <p>Every confirmed vehicle in the garage, ranked by what it reportedly cost him</p>
+        <p>The garage, ranked by what each car reportedly cost him — plus the ones he&apos;s since let go</p>
       </header>
 
       <div className="container">
@@ -77,7 +77,7 @@ export default function CarsPage() {
         </section>
 
         <ol className={styles.list}>
-          {cars.map((c, i) => (
+          {currentCars.map((c, i) => (
             <li key={`${c.make}-${c.model}`} className={styles.row}>
               <span className={styles.rank}>{i + 1}</span>
               <div className={styles.main}>
@@ -97,6 +97,36 @@ export default function CarsPage() {
             </li>
           ))}
         </ol>
+
+        {(soldCars.length > 0 || unconfirmedCars.length > 0) && (
+          <section className={styles.former} aria-label="No longer counted in the collection">
+            <h2 className={`secTitle ${styles.formerTitle}`}>
+              <span className="goldText">No longer counted</span>
+            </h2>
+            <p className={styles.formerNote}>
+              Kept for the record — cars he&apos;s reportedly sold, or that haven&apos;t
+              been seen with him in years. These don&apos;t count toward the totals above.
+            </p>
+            <ul className={styles.formerList}>
+              {[...soldCars, ...unconfirmedCars].map((c) => (
+                <li key={`${c.make}-${c.model}`} className={styles.formerRow}>
+                  <div className={styles.main}>
+                    <span className={`${styles.tag} ${c.status === "sold" ? styles.tagSold : ""}`}>
+                      {c.status === "sold" ? "Sold" : "Ownership unconfirmed"}
+                    </span>
+                    <span className={styles.make}>{c.make}</span>
+                    <h3 className={styles.model}>{c.model}{c.year ? ` (${c.year})` : ""}</h3>
+                    <p className={styles.desc}>{c.desc}</p>
+                  </div>
+                  <div className={styles.valueBlock}>
+                    <span className={styles.value}>{formatUsd(c.valueUsd)}</span>
+                    <span className={styles.valueSub}>{c.valueNaira}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <p className={styles.source}>
           This list isn&apos;t guaranteed complete. Unlike this site&apos;s charts,
