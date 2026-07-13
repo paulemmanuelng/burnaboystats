@@ -35,6 +35,21 @@ export const HIGHLIGHT = "Burna Boy";
 
 export const statBoxes: LeaderboardBox[] = [
   {
+    id: "billboard-global-200-peak",
+    title: "Highest Billboard Global 200 peak",
+    meta: "Billboard Global 200 · African artists · best peak",
+    layout: "list",
+    entries: [
+      { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "No. 1" },
+      { name: "CKay", sub: "🇳🇬 “Love Nwantiti”", value: "No. 2" },
+      { name: "Rema", sub: "🇳🇬 “Calm Down” (with Selena Gomez)", value: "No. 3" },
+      { name: "Tyla", sub: "🇿🇦 “Water”", value: "No. 9" },
+      { name: "Libianca", sub: "🇨🇲 “People”", value: "No. 20" },
+    ],
+    note: "“Dai Dai” made Burna Boy the first African artist ever to top Billboard's US-inclusive Global 200 — leading the five biggest African crossover hits on the chart. (Wizkid & Tems' “Essence” sits just outside, at No. 28.)",
+    source: "Best peak on Billboard's Global 200 chart (US-inclusive), per Billboard and each song's Wikipedia-cited chart history. Several of these peaked even higher on the separate Global 200 Excl. US chart. Verified July 2026.",
+  },
+  {
     id: "most-streamed-african-artist",
     title: "Most-streamed African artist",
     meta: "Total Spotify streams · global · per year",
