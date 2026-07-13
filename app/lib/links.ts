@@ -32,4 +32,7 @@ export const exploreFor: Record<string, string[]> = {
   "/certifications": ["music", "records", "about"],
   "/about": ["music", "certifications", "records"],
   "/faq": ["records", "certifications", "music"],
+  // Cars is the site's #1 landing page (search traffic). Funnel that
+  // wealth/lifestyle-curious audience toward the flashiest career stats.
+  "/records/cars": ["records", "tours", "certifications"],
 };

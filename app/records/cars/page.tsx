@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./cars.module.css";
 import CountUp from "../../components/CountUp";
 import StatGrid from "../../components/StatGrid";
+import KeepExploring from "../../components/KeepExploring";
 import { cars, carCount, totalValueFormatted } from "../../data/cars";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
@@ -79,6 +80,8 @@ export default function CarsPage() {
 
         <Link href="/records" className={styles.back}>← Career Records</Link>
       </div>
+
+      <KeepExploring current="/records/cars" />
     </main>
   );
 }

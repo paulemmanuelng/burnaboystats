@@ -16,6 +16,7 @@ const sectionLinks: Record<string, SectionLink> = {
     desc: `${totalAwards()} awards across ${countryCount} countries`,
   },
   records: { href: "/records", title: "Career Records", desc: "Charts, awards & tours" },
+  tours: { href: "/records/tours", title: "Tours & Live", desc: "$30.46M — the biggest African tour" },
   about: { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },
 };
 
