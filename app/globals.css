@@ -206,6 +206,17 @@ a {
   justify-content: space-between;
   height: 68px;
 }
+/* Right-hand group: search trigger + hamburger + nav links. */
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+@media (max-width: 640px) {
+  .navRight {
+    gap: 10px;
+  }
+}
 .brand {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

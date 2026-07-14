@@ -74,6 +74,14 @@ const jsonLd = {
   inLanguage: "en",
   description:
     "An unofficial fan site tracking the certifications, discography and milestones of Grammy-winning Nigerian superstar Burna Boy.",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
   about: {
     "@type": "MusicGroup",
     name: "Burna Boy",

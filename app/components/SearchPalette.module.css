@@ -1,0 +1,191 @@
+/* Nav search trigger — a compact pill that sits in the nav bar. */
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 244, 240, 0.05);
+  border: 1px solid var(--line);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.trigger:hover {
+  border-color: var(--gold-dim);
+  color: var(--text);
+  background: rgba(255, 182, 39, 0.06);
+}
+.triggerLabel {
+  letter-spacing: 0.02em;
+}
+.kbd {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 1px 5px;
+  line-height: 1.4;
+}
+
+/* Modal overlay + centred panel. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(6, 6, 8, 0.72);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12vh 20px 20px;
+  animation: paletteFade 0.14s ease-out;
+}
+.panel {
+  width: 100%;
+  max-width: 560px;
+  background: var(--bg-soft-2, #141416);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  animation: paletteRise 0.16s ease-out;
+}
+@keyframes paletteFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes paletteRise {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text-muted);
+}
+.input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 1.05rem;
+  font-family: inherit;
+}
+.input::placeholder {
+  color: var(--text-muted);
+}
+.escBtn {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--text-muted);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+.escBtn:hover {
+  color: var(--text);
+  border-color: var(--gold-dim);
+}
+
+.results {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  max-height: 56vh;
+  overflow-y: auto;
+}
+.groupLabel {
+  padding: 8px 12px 4px;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.64rem;
+  color: var(--text-muted);
+}
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 9px;
+  padding: 11px 12px;
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.1s ease;
+}
+.resultActive {
+  background: rgba(255, 182, 39, 0.12);
+}
+.resultMain {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.resultTitle {
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+.resultActive .resultTitle {
+  color: var(--gold);
+}
+.resultDesc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.resultSection {
+  flex: 0 0 auto;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+.empty {
+  padding: 30px 20px 34px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  /* On mobile the nav is tight — show just the icon, drop the label + kbd. */
+  .triggerLabel,
+  .kbd {
+    display: none;
+  }
+  .trigger {
+    padding: 8px;
+  }
+  .overlay {
+    padding: 8vh 12px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .panel {
+    animation: none;
+  }
+}

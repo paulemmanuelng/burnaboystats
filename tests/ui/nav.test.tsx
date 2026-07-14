@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react";
 
-vi.mock("next/navigation", () => ({ usePathname: () => "/music" }));
+vi.mock("next/navigation", () => ({
+  usePathname: () => "/music",
+  // Nav now renders the SearchPalette, which reads the router.
+  useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn() }),
+}));
 vi.mock("next/link", () => ({
   default: ({ href, children, ...rest }: { href: string; children: React.ReactNode }) => (
     <a href={href} {...rest}>

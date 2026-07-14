@@ -1,0 +1,87 @@
+.wrap {
+  max-width: 680px;
+  margin: 0 0 60px;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-muted);
+  transition: border-color 0.15s ease;
+}
+.searchForm:focus-within {
+  border-color: var(--gold-dim);
+}
+.searchInput {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 1.1rem;
+  font-family: inherit;
+}
+.searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+.hint {
+  margin: 22px 2px;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.list {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 6px;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s ease, padding-left 0.15s ease;
+}
+.item:hover {
+  background: rgba(255, 182, 39, 0.06);
+  padding-left: 14px;
+}
+.itemMain {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.itemTitle {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+.item:hover .itemTitle {
+  color: var(--gold);
+}
+.itemDesc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.itemSection {
+  flex: 0 0 auto;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
