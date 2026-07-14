@@ -23,6 +23,92 @@
   border-radius: var(--radius);
   padding: 24px 24px 18px;
 }
+
+/* Jump-nav + grouped sections (long page → two clear parts) */
+.jumpNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 30px;
+}
+.jumpNav a {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 16px;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.jumpNav a:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(255, 182, 39, 0.08);
+}
+.group {
+  scroll-margin-top: 88px;
+  margin-bottom: 44px;
+}
+.groupHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.4rem, 3.2vw, 2rem);
+}
+.groupCount {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  color: var(--gold);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 11px;
+}
+
+/* Featured (headline) box — full width, gold glow, badge */
+.featured {
+  grid-column: 1 / -1;
+  border-color: var(--gold-dim);
+  box-shadow: 0 0 0 1px rgba(255, 182, 39, 0.22), 0 12px 34px rgba(0, 0, 0, 0.32);
+}
+.featuredBadge {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #14100a;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.6rem;
+}
+
+/* "Show earlier years" progressive-disclosure toggle */
+.showMore {
+  margin-top: 14px;
+  padding: 7px 16px;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.68rem;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.showMore:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
 .boxHead {
   display: flex;
   flex-wrap: wrap;

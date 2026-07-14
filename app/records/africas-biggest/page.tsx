@@ -39,6 +39,17 @@ export default function AfricasBiggestPage() {
       })),
     }));
 
+  // Group the leaderboards so the long page reads as two clear sections.
+  const billboardIds = new Set([
+    "billboard-global-200-peak",
+    "billboard-hot-100-peak",
+    "most-hot-100-entries",
+  ]);
+  const groups = [
+    { id: "billboard", label: "On the Billboard charts", boxes: statBoxes.filter((b) => billboardIds.has(b.id)) },
+    { id: "streaming", label: "On streaming", boxes: statBoxes.filter((b) => !billboardIds.has(b.id)) },
+  ];
+
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
@@ -65,11 +76,24 @@ export default function AfricasBiggestPage() {
           The leaderboards below rank African music&apos;s biggest by the numbers.
         </p>
 
-        <div className={styles.boxGrid}>
-          {statBoxes.map((box) => (
-            <StatBox key={box.id} box={box} />
+        <nav className={styles.jumpNav} aria-label="Jump to a section">
+          {groups.map((g) => (
+            <a key={g.id} href={`#${g.id}`}>{g.label}</a>
           ))}
-        </div>
+        </nav>
+
+        {groups.map((g) => (
+          <section key={g.id} id={g.id} className={styles.group}>
+            <h2 className={styles.groupHead}>
+              {g.label} <span className={styles.groupCount}>{g.boxes.length}</span>
+            </h2>
+            <div className={styles.boxGrid}>
+              {g.boxes.map((box) => (
+                <StatBox key={box.id} box={box} featured={box.id === "billboard-global-200-peak"} />
+              ))}
+            </div>
+          </section>
+        ))}
 
         <p className={styles.note}>
           More leaderboards are on the way — most-streamed African song each year,
