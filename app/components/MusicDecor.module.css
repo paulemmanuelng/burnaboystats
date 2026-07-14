@@ -55,6 +55,64 @@
   opacity: 0.07;
 }
 
+/* ---- Ambient motion ------------------------------------------------------
+   Each motif animates the way the real thing moves: the record spins, the
+   equalizer bars bounce, the sound waves ripple outward, the notes drift and
+   the clef sways. Slow, low-amplitude and out of phase, so it reads as gentle
+   life behind the CTA rather than a distraction. Motion lives on the inner
+   <svg>/shapes so each .item keeps its scatter tilt (which sits on the span). */
+@keyframes decorSpin { to { transform: rotate(360deg); } }
+@keyframes decorFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9%); }
+}
+@keyframes decorFloatAlt {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7%); }
+}
+@keyframes decorSway {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+@keyframes decorBars {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+@keyframes decorRipple {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.vinyl svg { transform-origin: 50% 50%; animation: decorSpin 18s linear infinite; }
+.notes svg { animation: decorFloat 5.5s ease-in-out infinite; }
+.note svg { animation: decorFloat 4.6s ease-in-out infinite 0.7s; }
+.clef svg { transform-origin: 50% 90%; animation: decorSway 6.5s ease-in-out infinite; }
+.cassette svg { animation: decorFloatAlt 7s ease-in-out infinite; }
+
+/* Equalizer — each bar scales from its base, out of phase, like a spectrum. */
+.equalizer svg rect {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: decorBars 1.4s ease-in-out infinite;
+}
+.equalizer svg rect:nth-child(1) { animation-duration: 1.25s; animation-delay: -0.2s; }
+.equalizer svg rect:nth-child(2) { animation-duration: 1.7s;  animation-delay: -0.9s; }
+.equalizer svg rect:nth-child(3) { animation-duration: 1.05s; animation-delay: -0.5s; }
+.equalizer svg rect:nth-child(4) { animation-duration: 1.55s; animation-delay: -1.1s; }
+.equalizer svg rect:nth-child(5) { animation-duration: 1.35s; animation-delay: -0.7s; }
+
+/* Sound waves — inner arc pulses first, then outer: sound radiating outward. */
+.waves svg path { animation: decorRipple 2.6s ease-in-out infinite; }
+.waves svg path:nth-child(1) { animation-delay: 0s; }
+.waves svg path:nth-child(2) { animation-delay: 0.28s; }
+.waves svg path:nth-child(3) { animation-delay: 0.56s; }
+
+/* Respect users who ask for less motion — hold every motif still. */
+@media (prefers-reduced-motion: reduce) {
+  .vinyl svg, .notes svg, .note svg, .clef svg, .cassette svg,
+  .equalizer svg rect, .waves svg path { animation: none; }
+}
+
 /* On narrower boxes the text fills most of the width, so keep only the four
    corner motifs (smaller) and drop the mid-edge/inner ones to avoid overlap. */
 @media (max-width: 760px) {
