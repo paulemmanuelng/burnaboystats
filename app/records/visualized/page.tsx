@@ -9,11 +9,12 @@ import { revenueShows } from "../../data/tourRevenue";
 import { COUNTRIES, albums, singles, features, totalAwards } from "../../data/certifications";
 import { ceremonies, totalWins } from "../../data/awards";
 import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../../data/charts";
+import { statBoxes, HIGHLIGHT } from "../../data/africasBiggest";
 
 export const metadata = pageMetadata({
   title: "Burna Boy, Visualized — Grosses, Certifications & Awards Charts",
   description:
-    "Burna Boy's career plotted: the biggest single-show grosses, certifications by country and tier, how his chart entries break down by peak, and his award win rate — every stat, charted in one place.",
+    "Burna Boy's career plotted: the biggest single-show grosses, certifications by country and tier, how his chart entries break down by peak, the most-streamed African artists of 2025, and his award win rate — every stat, charted in one place.",
   path: "/records/visualized",
   shareTitle: "Burna Boy, Visualized",
   shareDescription: "His career in charts — grosses, certifications and awards, at a glance.",
@@ -111,6 +112,32 @@ const peakSegments: DonutSeg[] = [
   { label: "41–100", value: peakBands["41–100"], color: "#5a5a62" },
 ];
 
+// ── Comparison: most-streamed African artists in 2025 (Burna vs peers) ──
+// Derived from the same africasBiggest data the /records/africas-biggest page
+// uses, so the numbers never drift between the two.
+const parseBig = (v: string): number => {
+  const m = v.match(/^([\d.]+)\s*([KMB])?$/i);
+  if (!m) return NaN;
+  const n = parseFloat(m[1]);
+  const s = (m[2] || "").toUpperCase();
+  return s === "B" ? n * 1e9 : s === "M" ? n * 1e6 : s === "K" ? n * 1e3 : n;
+};
+const artistFlags: Record<string, string> = {
+  "Burna Boy": "🇳🇬", Wizkid: "🇳🇬", Tyla: "🇿🇦", Rema: "🇳🇬", Tems: "🇳🇬",
+};
+const streamRow2025 = statBoxes
+  .find((b) => b.id === "most-streamed-african-artist")
+  ?.rows?.find((r) => r.label === "2025");
+const africanStreams: BarItem[] = (streamRow2025?.entries ?? [])
+  .filter((e) => e.value)
+  .map((e) => ({
+    flag: artistFlags[e.name],
+    name: e.name,
+    value: parseBig(e.value!),
+    displayValue: e.value!,
+    tone: e.name === HIGHLIGHT ? "gold" : "muted",
+  }));
+
 // ── Donut: award wins vs nominations (career strike rate) ──
 const totalNoms = ceremonies.reduce((n, c) => n + c.noms.length, 0);
 const winRate = Math.round((totalWins / totalNoms) * 100);
@@ -148,8 +175,8 @@ const jsonLd = datasetJsonLd({
   description:
     "Charted views of Burna Boy's career: biggest single-show grosses, certifications by country, and award wins by body.",
   path: "/records/visualized",
-  keywords: ["Burna Boy", "charts", "data visualization", "grosses", "certifications", "awards", "chart peaks", "win rate"],
-  variableMeasured: ["Revenue per show", "Certifications per country", "Chart peak distribution", "Award wins per body", "Award win rate"],
+  keywords: ["Burna Boy", "charts", "data visualization", "grosses", "certifications", "awards", "chart peaks", "win rate", "most-streamed African artist", "Wizkid", "Tyla", "Rema", "Tems"],
+  variableMeasured: ["Revenue per show", "Certifications per country", "Chart peak distribution", "Spotify streams by artist", "Award wins per body", "Award win rate"],
 });
 
 const captionStyle = {
@@ -255,6 +282,18 @@ export default function VisualizedPage() {
           <p style={captionStyle}>
             All {totalEntries} of his charting entries worldwide, grouped by how high each one peaked — {peakBands["No. 1"]} hit No. 1 and {top5Count} reached the Top 5.
           </p>
+        </section>
+
+        <section id="african-artists" style={{ marginBottom: 56 }}>
+          <p className="eyebrow">Africa&apos;s biggest</p>
+          <h2 className="secTitle" style={{ marginBottom: 24 }}>Most-streamed African artist, 2025</h2>
+          <RankedBars items={africanStreams} ariaLabel="Most-streamed African artists on Spotify in 2025, by total streams in billions" />
+          <p style={captionStyle}>
+            <span style={{ color: "var(--gold-bright)", fontWeight: 600 }}>Burna Boy leads</span> — his 1.986 billion Spotify streams in 2025 were the most of any African artist, the biggest streaming year ever by an African act, just ahead of Wizkid, Tyla, Rema and Tems.
+          </p>
+          <Link href="/records/africas-biggest" className="btn btnSecondary" style={{ marginTop: 18 }}>
+            Africa&apos;s biggest ↗
+          </Link>
         </section>
 
         <section id="awards" style={{ marginBottom: 40 }}>
