@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-14",
     category: "Streaming",
+    text: "The biggest song in the world: “Dai Dai” is No. 1 on Spotify's Global chart — the most-streamed song on the planet, topping both the Weekly and Daily Top Songs Global charts.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-14",
+    category: "Streaming",
     text: "A new Spotify high: Burna Boy's monthly listeners climb to 52.74 million — a fresh all-time peak, and still the most of any African artist on the platform.",
     href: "/records/africas-biggest",
   },
