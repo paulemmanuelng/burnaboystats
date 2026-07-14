@@ -10,16 +10,19 @@ export const metadata = pageMetadata({
   shareTitle: "Burna Boy — Career Records",
 });
 
+// Ordered by weight: official charts lead, then the heaviest career stats
+// (awards, historic firsts, streaming, touring), with the overviews and extras
+// (by-the-numbers, visualized, map, cars) following.
 const subs = [
-  { href: "/records/by-the-numbers", title: "By the Numbers", desc: "His whole career in one scannable stat sheet", live: true },
-  { href: "/records/visualized", title: "Visualized", desc: "The charts — grosses, certifications & awards at a glance", live: true },
   { href: "/records/charts", title: "Official Charts", desc: "Peak positions on every major chart worldwide", live: true },
   { href: "/records/awards", title: "Awards", desc: "Every win & nomination to date", live: true },
-  { href: "/records/tours", title: "Tours", desc: "Tour runs, dates & box-office grosses", live: true },
   { href: "/records/firsts", title: "Firsts", desc: "Every record broken & first achieved", live: true },
   { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists, year by year", live: true },
-  { href: "/records/tours/map", title: "Where He's Performed", desc: "An interactive map of every country he's taken the stage", live: true },
+  { href: "/records/tours", title: "Tours", desc: "Tour runs, dates & box-office grosses", live: true },
   { href: "/records/tours/revenue", title: "Highest Revenue Per Show", desc: "The 40 biggest single-show grosses by an African artist", live: true },
+  { href: "/records/by-the-numbers", title: "By the Numbers", desc: "His whole career in one scannable stat sheet", live: true },
+  { href: "/records/visualized", title: "Visualized", desc: "The charts — grosses, certifications & awards at a glance", live: true },
+  { href: "/records/tours/map", title: "Where He's Performed", desc: "An interactive map of every country he's taken the stage", live: true },
   { href: "/records/cars", title: "Car Collection", desc: "Every confirmed vehicle in the garage", live: true },
 ];
 

@@ -9,6 +9,15 @@ import { track } from "../lib/analytics";
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
 const YEARS = [2026, 2025, 2024, 2023];
 
+// Order releases so the most-certified appear first. Primary: number of
+// certifications; tiebreaker: a prestige weight (Diamond > Platinum > Gold >
+// Silver, scaled by any multiplier), so among equal counts the bigger plaques win.
+const TIER_WEIGHT: Record<string, number> = { Diamond: 4, Platinum: 3, Gold: 2, Silver: 1 };
+const certWeight = (r: Release) =>
+  r.certs.reduce((sum, c) => sum + (TIER_WEIGHT[c.level] ?? 1) * (c.x ?? 1), 0);
+const byMostCertified = (a: Release, b: Release) =>
+  b.certs.length - a.certs.length || certWeight(b) - certWeight(a);
+
 // "Year" isn't a real filter on this grid (releases don't carry a
 // certified-date) — it jumps down to the "Certifications by year" section
 // and opens that year there, via a small custom event the other component listens for.
@@ -86,7 +95,7 @@ export default function CertExplorer({
     { label: "Albums", items: albums },
     { label: "Singles", items: singles },
     { label: "Featured Appearances", items: features },
-  ].map((g) => ({ ...g, items: g.items.filter((it) => matches(it, country, tier)) }));
+  ].map((g) => ({ ...g, items: g.items.filter((it) => matches(it, country, tier)).sort(byMostCertified) }));
 
   const totalAll = albums.length + singles.length + features.length;
   const totalShown = groups.reduce((n, g) => n + g.items.length, 0);
