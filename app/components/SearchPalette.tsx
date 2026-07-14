@@ -18,6 +18,7 @@ export default function SearchPalette() {
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   const results = useMemo(() => {
@@ -80,6 +81,26 @@ export default function SearchPalette() {
     }
   };
 
+  // Keep Tab focus inside the modal (it's aria-modal), wrapping at both ends.
+  const onPanelKey = (e: React.KeyboardEvent) => {
+    if (e.key !== "Tab" || !panelRef.current) return;
+    const focusable = [
+      ...panelRef.current.querySelectorAll<HTMLElement>("input, button"),
+    ].filter((el) => !el.hasAttribute("disabled"));
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+
+  const listboxId = "search-palette-listbox";
+
   return (
     <>
       <button
@@ -99,11 +120,13 @@ export default function SearchPalette() {
       {open && (
         <div className={styles.overlay} role="presentation" onClick={close}>
           <div
+            ref={panelRef}
             className={styles.panel}
             role="dialog"
             aria-modal="true"
             aria-label="Search the site"
             onClick={(e) => e.stopPropagation()}
+            onKeyDown={onPanelKey}
           >
             <div className={styles.inputRow}>
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -122,6 +145,13 @@ export default function SearchPalette() {
                 }}
                 onKeyDown={onInputKey}
                 aria-label="Search query"
+                role="combobox"
+                aria-expanded={results.length > 0}
+                aria-controls={listboxId}
+                aria-activedescendant={
+                  results.length > 0 && results[active] ? `search-opt-${active}` : undefined
+                }
+                aria-autocomplete="list"
                 autoComplete="off"
                 spellCheck={false}
               />
@@ -131,12 +161,15 @@ export default function SearchPalette() {
             </div>
 
             {results.length > 0 ? (
-              <ul className={styles.results} role="listbox" aria-label="Search results">
-                {!query.trim() && <li className={styles.groupLabel}>Popular pages</li>}
+              <ul id={listboxId} className={styles.results} role="listbox" aria-label="Search results">
+                {!query.trim() && (
+                  <li role="presentation" className={styles.groupLabel}>Popular pages</li>
+                )}
                 {results.map((d, i) => (
-                  <li key={d.path}>
+                  <li key={d.path} role="presentation">
                     <button
                       type="button"
+                      id={`search-opt-${i}`}
                       role="option"
                       aria-selected={i === active}
                       className={`${styles.result} ${i === active ? styles.resultActive : ""}`}
