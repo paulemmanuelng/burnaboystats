@@ -14,13 +14,49 @@ export const metadata = pageMetadata({
   shareDescription: "Top African artists on the Billboard Global 200 and Spotify — with Burna Boy in context.",
 });
 
+// Answer-first Q&A targeting the multi-artist searches this page serves, so it
+// can win featured snippets / AI answers for "which / highest African artist on
+// Billboard / Spotify" queries. Rendered visibly and as FAQPage structured data.
+const pageFaqs = [
+  {
+    q: "What is the highest-charting African song on the Billboard Global 200?",
+    a: "Shakira and Burna Boy's “Dai Dai” — the first and only African song to reach No. 1 on Billboard's US-inclusive Global 200. The next-highest are CKay's “Love Nwantiti” (No. 2), Rema and Selena Gomez's “Calm Down” (No. 3), Tyla's “Water” (No. 9) and Libianca's “People” (No. 20).",
+  },
+  {
+    q: "Which African artists have reached No. 1 on the Billboard Hot 100?",
+    a: "Wizkid (“One Dance” with Drake) and Tems (“Wait for U” with Future and Drake) have both topped the Billboard Hot 100 through featured credits. The highest Hot 100 peak for a lead African act is Rema's “Calm Down” at No. 3, ahead of Tyla's “Water” (No. 7) and Burna Boy's “WGFT” (No. 16).",
+  },
+  {
+    q: "Which African artist has the most Billboard Hot 100 entries?",
+    a: "Burna Boy, with nine career entries — the record for any African act, ahead of Tems (eight) and the South African rock band Seether (seven). Wizkid (five) and Tyla (three) complete the top five.",
+  },
+  {
+    q: "Who is the most-streamed African artist on Spotify?",
+    a: "Burna Boy was the most-streamed African artist globally in both 2024 and 2025, and holds the highest Spotify monthly-listener peak of any African artist. Tems, Wizkid, Tyla and Asake also rank among the most-streamed African artists each year.",
+  },
+  {
+    q: "Who was the first African artist to reach No. 1 on the Billboard Global 200?",
+    a: "Burna Boy, when “Dai Dai” (with Shakira) topped the chart in July 2026 — no African artist had ever led Billboard's flagship, US-inclusive worldwide chart before.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: pageFaqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function AfricasBiggestPage() {
   const dataset = datasetJsonLd({
     name: "Africa's biggest artists — Billboard, Spotify & chart records",
     description: "Leaderboards of Africa's biggest artists: the top 5 by Billboard Global 200 peak, the most-streamed on Spotify each year, most Billboard Hot 100 entries and more — with Burna Boy in context.",
     path: "/records/africas-biggest",
-    keywords: ["most-streamed African artist", "Billboard Global 200", "first African artist Billboard Global 200", "Spotify", "Burna Boy", "Afrobeats", "African music records"],
-    variableMeasured: ["Billboard Global 200 peak", "Spotify streams", "Artist", "Year", "Chart entries"],
+    keywords: ["most-streamed African artist", "highest-charting African song", "African artists Billboard Hot 100", "Billboard Global 200", "first African artist Billboard Global 200", "Burna Boy", "Wizkid", "Tems", "Rema", "Tyla", "Afrobeats records"],
+    variableMeasured: ["Billboard Global 200 peak", "Billboard Hot 100 peak", "Spotify streams", "Artist", "Chart entries"],
   });
 
   // ItemLists for the Billboard peak leaderboards so search + AI read the rankings.
@@ -56,6 +92,7 @@ export default function AfricasBiggestPage() {
       {itemLists.map((il, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(il) }} />
       ))}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <header className="pageHeader container">
         <h1>
           Africa&apos;s <span className="accent">Biggest</span>
@@ -73,13 +110,15 @@ export default function AfricasBiggestPage() {
           Billboard&apos;s Global 200</strong>{" "}— and the most-streamed African
           artist on Spotify in both 2024 and 2025, whose 1.986 billion streams in
           2025 set a record for the biggest streaming year by an African artist.
-          The leaderboards below rank African music&apos;s biggest by the numbers.
+          The leaderboards below rank African music&apos;s biggest — Burna Boy,
+          Wizkid, Tems, Rema, Tyla and more — by the numbers.
         </p>
 
         <nav className={styles.jumpNav} aria-label="Jump to a section">
           {groups.map((g) => (
             <a key={g.id} href={`#${g.id}`}>{g.label}</a>
           ))}
+          <a href="#faq">Common questions</a>
         </nav>
 
         {groups.map((g) => (
@@ -95,10 +134,16 @@ export default function AfricasBiggestPage() {
           </section>
         ))}
 
-        <p className={styles.note}>
-          More leaderboards are on the way — most-streamed African song each year,
-          most Spotify monthly listeners, biggest streaming debuts and more.
-        </p>
+        <section id="faq" className={styles.faqSection} aria-label="Common questions">
+          <h2 className={styles.groupHead}>Common questions</h2>
+          {pageFaqs.map((f) => (
+            <div key={f.q} className={styles.faqItem}>
+              <h3 className={styles.faqQ}>{f.q}</h3>
+              <p className={styles.faqA}>{f.a}</p>
+            </div>
+          ))}
+        </section>
+
         <Link href="/records" className={styles.back}>← Career Records</Link>
       </div>
 

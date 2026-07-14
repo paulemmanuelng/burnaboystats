@@ -109,6 +109,29 @@
   color: var(--gold);
   border-color: var(--gold);
 }
+
+/* Common questions — answer-first Q&A for multi-artist search capture */
+.faqSection {
+  scroll-margin-top: 88px;
+  margin-top: 8px;
+}
+.faqItem {
+  border-top: 1px solid var(--line);
+  padding: 22px 0;
+}
+.faqQ {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.faqA {
+  margin: 0;
+  max-width: 74ch;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
 .boxHead {
   display: flex;
   flex-wrap: wrap;
