@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-14",
+    category: "Streaming",
+    text: "A new Spotify high: Burna Boy's monthly listeners climb to 52.74 million — a fresh all-time peak, and still the most of any African artist on the platform.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-14",
     category: "Charts",
     text: "#55 on the Billboard Hot 100: “Dai Dai” climbs 12 places to a new peak in its fourth week — and the Shakira & Burna Boy World Cup anthem is still rising elsewhere, hitting new highs on the Canadian Hot 100 (No.16), in the Czech Republic (No.8) and Singapore (No.20), plus a No.10 debut in Latvia.",
     href: "/records/charts",
@@ -62,12 +68,6 @@ export const updates: Update[] = [
     date: "2026-07-12",
     category: "Streaming",
     text: "699 million on YouTube: Burna Boy's monthly-audience peak climbs to a new high — the biggest of any African artist, and one of only six singers ever above it, behind only Bruno Mars, Rosé, Lady Gaga, Shakira and Michael Jackson.",
-    href: "/records/africas-biggest",
-  },
-  {
-    date: "2026-07-11",
-    category: "Streaming",
-    text: "52 million and counting: Burna Boy sets a new all-time Spotify peak of 52.36 million monthly listeners — still the most of any African artist on the platform.",
     href: "/records/africas-biggest",
   },
   {
