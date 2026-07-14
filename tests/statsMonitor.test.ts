@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 // @ts-expect-error — plain ESM helper module, no types needed for the test
-import { parseNum, relativeDrift, extractKworbListeners, evaluateMetric, isActionable } from "../scripts/stats-lib.mjs";
+import { parseNum, relativeDrift, extractKworbListeners, extractKworbTotalStreams, evaluateMetric, isActionable } from "../scripts/stats-lib.mjs";
 
 // A minimal fixture mirroring how a Burna Boy row appears in kworb's
 // listeners table (#, Artist, Listeners, Daily, Peak-rank, PkListeners).
@@ -28,12 +28,22 @@ describe("relativeDrift", () => {
 });
 
 describe("extractKworbListeners", () => {
-  it("pulls monthly and peak listeners from a row", () => {
+  it("pulls rank, monthly and peak listeners from a row", () => {
     const row = extractKworbListeners(KWORB_ROW, "3wcj11K77LjEY1PkEazffa");
-    expect(row).toEqual({ monthlyListeners: 52355445, peakListeners: 52355445 });
+    expect(row).toEqual({ rank: 61, monthlyListeners: 52355445, peakListeners: 52355445 });
   });
   it("returns null when the artist isn't present", () => {
     expect(extractKworbListeners(KWORB_ROW, "notanartistid")).toBeNull();
+  });
+});
+
+describe("extractKworbTotalStreams", () => {
+  it("returns the largest number on the page (the cumulative total)", () => {
+    const html = `<td>Last Last</td><td>1,982,110,540</td> ... Total <b>10,297,429,319</b> across 400 songs, daily 18,204,113`;
+    expect(extractKworbTotalStreams(html)).toBe(10297429319);
+  });
+  it("returns NaN when there are no large numbers", () => {
+    expect(Number.isNaN(extractKworbTotalStreams("<p>no data here</p>"))).toBe(true);
   });
 });
 
@@ -51,6 +61,12 @@ describe("evaluateMetric", () => {
     expect(evaluateMetric(peak, 52355446).status).toBe("new-peak");
     expect(evaluateMetric(peak, 52355445).status).toBe("ok");
   });
+  it("flags a rank move of at least the threshold (either direction)", () => {
+    const rank = { label: "r", baseline: 61, kind: "rank", threshold: 5 };
+    expect(evaluateMetric(rank, 68).status).toBe("rank-change"); // 7 places down
+    expect(evaluateMetric(rank, 55).status).toBe("rank-change"); // 6 places up
+    expect(evaluateMetric(rank, 63).status).toBe("ok"); // only 2 places
+  });
   it("reports unavailable when the value is missing", () => {
     expect(evaluateMetric(base, NaN).status).toBe("unavailable");
   });
@@ -60,9 +76,10 @@ describe("evaluateMetric", () => {
 });
 
 describe("isActionable", () => {
-  it("only drift and new-peak need attention", () => {
+  it("drift, new-peak and rank-change need attention", () => {
     expect(isActionable("drift")).toBe(true);
     expect(isActionable("new-peak")).toBe(true);
+    expect(isActionable("rank-change")).toBe(true);
     expect(isActionable("ok")).toBe(false);
     expect(isActionable("unavailable")).toBe(false);
   });

@@ -26,8 +26,15 @@ source of truth; the robot just says "go check."
 ## Metric kinds
 
 - `drift` — flags when the live value differs from the baseline by ≥ `threshold`
-  (e.g. monthly listeners moved 3%+ → re-verify).
+  (e.g. monthly listeners moved 3%+, or total streams grew 3%+ → re-verify).
 - `peak` — flags only when a new all-time high is set (a milestone to log).
+- `rank` — flags when a chart/leaderboard rank moves by ≥ `threshold` places
+  (e.g. global monthly-listeners rank moved 5+ spots). Lower is better.
+
+## What's watched today
+
+Spotify monthly listeners, peak monthly listeners, global monthly-listeners
+rank, and total cumulative streams — all from kworb.
 
 ## Run it locally
 

@@ -25,6 +25,30 @@
       "kind": "peak",
       "baseline": 52355445,
       "note": "A new all-time peak is a milestone worth logging on /updates."
+    },
+    {
+      "id": "spotify-listeners-rank",
+      "label": "Global rank by Spotify monthly listeners",
+      "sourceName": "kworb.net — Spotify listeners",
+      "sourceUrl": "https://kworb.net/spotify/listeners.html",
+      "extractor": "kworbListeners",
+      "artistId": "3wcj11K77LjEY1PkEazffa",
+      "field": "rank",
+      "kind": "rank",
+      "threshold": 5,
+      "baseline": 61,
+      "note": "Burna Boy's position on kworb's global monthly-listeners ranking (lower is better). A move of 5+ places is worth a look."
+    },
+    {
+      "id": "spotify-total-streams",
+      "label": "Total Spotify streams (all songs)",
+      "sourceName": "kworb.net — Spotify artist total",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbTotalStreams",
+      "kind": "drift",
+      "threshold": 0.03,
+      "baseline": 10297429319,
+      "note": "Cumulative Spotify streams across every Burna Boy song — worth a milestone note as it climbs (e.g. crossing 11B)."
     }
   ]
 }

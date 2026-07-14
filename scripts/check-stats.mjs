@@ -13,7 +13,12 @@
 import { readFile, writeFile, appendFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import { extractKworbListeners, evaluateMetric, isActionable } from "./stats-lib.mjs";
+import {
+  extractKworbListeners,
+  extractKworbTotalStreams,
+  evaluateMetric,
+  isActionable,
+} from "./stats-lib.mjs";
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
 
@@ -22,6 +27,7 @@ const extractors = {
     const row = extractKworbListeners(html, metric.artistId);
     return row ? row[metric.field] : NaN;
   },
+  kworbTotalStreams: (html) => extractKworbTotalStreams(html),
 };
 
 async function fetchText(url) {
@@ -70,10 +76,14 @@ async function main() {
   lines.push("| --- | --- | --- | --- | --- |");
   for (const r of results) {
     const change =
-      r.drift != null ? `${(r.drift * 100).toFixed(1)}%` : r.status === "new-peak" ? "new high" : "—";
+      r.drift != null ? `${(r.drift * 100).toFixed(1)}%`
+      : r.delta != null ? `${r.delta} place${r.delta === 1 ? "" : "s"} ${r.live > r.baseline ? "down" : "up"}`
+      : r.status === "new-peak" ? "new high"
+      : "—";
     const badge =
       r.status === "drift" ? "⚠️ drift"
       : r.status === "new-peak" ? "🚀 new peak"
+      : r.status === "rank-change" ? "🔀 rank move"
       : r.status === "unavailable" ? "⏭️ source unavailable"
       : r.status === "unbaselined" ? "ℹ️ unbaselined"
       : "✅ ok";
