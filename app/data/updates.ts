@@ -29,6 +29,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-14",
+    category: "Charts",
+    text: "#55 on the Billboard Hot 100: “Dai Dai” climbs 12 places to a new peak in its fourth week — and the Shakira & Burna Boy World Cup anthem is still rising elsewhere, hitting new highs on the Canadian Hot 100 (No.16), in the Czech Republic (No.8) and Singapore (No.20), plus a No.10 debut in Latvia.",
+    href: "/records/charts",
+  },
+  {
     date: "2026-07-13",
     category: "Firsts & Records",
     text: "No.1 on the Billboard Global 200: “Dai Dai” becomes the first song by an African artist to top Billboard's flagship worldwide chart, per Billboard — Burna Boy's third week atop the Global 200 Excl. US too.",

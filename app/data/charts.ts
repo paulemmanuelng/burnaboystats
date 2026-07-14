@@ -68,6 +68,7 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   BR: { name: "Brazil", flag: "🇧🇷", body: "Billboard Brasil Hot 100" },
   JP: { name: "Japan", flag: "🇯🇵", body: "Billboard Japan Hot 100" },
   SG: { name: "Singapore", flag: "🇸🇬", body: "RIAS Top Charts" },
+  LV: { name: "Latvia", flag: "🇱🇻", body: "Latvia Streaming Chart" },
   GLB: { name: "Global", flag: "🌍", body: "Billboard Global 200" },
   GLBX: { name: "Global (excl. US)", flag: "🌐", body: "Billboard Global Excl. US" },
 };
@@ -162,10 +163,10 @@ export const featureCharts: ChartRelease[] = [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "HR", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1 }, { c: "GLB", peak: 1 }, { c: "GLBX", peak: 1 },
     { c: "NO", peak: 2 }, { c: "IN", peak: 2 },
     { c: "SA", peak: 3 }, { c: "ES", peak: 3 }, { c: "PT", peak: 3 },
-    { c: "SE", peak: 4 }, { c: "EC", peak: 4 }, { c: "LT", peak: 5 }, { c: "UY", peak: 5 }, { c: "NG", peak: 7 }, { c: "IT", peak: 8 }, { c: "PL", peak: 10 },
-    { c: "UK", peak: 13 }, { c: "CZ", peak: 15 }, { c: "IE", peak: 16 }, { c: "ZA", peak: 19 }, { c: "CA", peak: 19 }, { c: "DK", peak: 22 }, { c: "SG", peak: 25 }, { c: "IL", peak: 26 }, { c: "HU", peak: 32 }, { c: "AU", peak: 32 },
-    { c: "BR", peak: 39 }, { c: "FI", peak: 44 },
-    { c: "JP", peak: 60 }, { c: "US", peak: 67 }, { c: "VN", peak: 93 },
+    { c: "SE", peak: 4 }, { c: "EC", peak: 4 }, { c: "LT", peak: 5 }, { c: "UY", peak: 5 }, { c: "NG", peak: 7 }, { c: "IT", peak: 8 }, { c: "CZ", peak: 8 }, { c: "PL", peak: 10 }, { c: "LV", peak: 10 },
+    { c: "UK", peak: 13 }, { c: "IE", peak: 16 }, { c: "CA", peak: 16 }, { c: "ZA", peak: 19 }, { c: "SG", peak: 20 }, { c: "DK", peak: 22 }, { c: "IL", peak: 26 }, { c: "HU", peak: 32 }, { c: "AU", peak: 32 },
+    { c: "BR", peak: 39 }, { c: "FI", peak: 44 }, { c: "US", peak: 55 },
+    { c: "JP", peak: 60 }, { c: "VN", peak: 93 },
   ], note: "No.1 on both Billboard global charts — the Global 200 and Global 200 Excl. US. Also on Billboard's other multi-territory charts: No.1 Central America & Caribbean, No.2 Middle East & North Africa and No.12 North Africa, plus No.5 on the Official MENA Chart (IFPI) North Africa Top 20." },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, entries: [
     { c: "BE", peak: 2 }, { c: "SR", peak: 2 }, { c: "HU", peak: 39 }, { c: "IE", peak: 43 },
