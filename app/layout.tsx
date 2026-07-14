@@ -111,6 +111,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       {/* suppressHydrationWarning: some browser extensions (e.g. Grammarly)
           add attributes to <body> before React loads, which is harmless. */}
       <body suppressHydrationWarning>
+        {/* Album art is served from Spotify's image CDN — open the connection
+            early so covers (a likely LCP element on /music) load faster. React
+            hoists these resource hints into <head>. */}
+        <link rel="preconnect" href="https://i.scdn.co" />
+        <link rel="dns-prefetch" href="https://i.scdn.co" />
         <a href="#content" className="skipLink">Skip to content</a>
         {/* No-JS fallback: reveal animations are JS-driven, so without JS we must
             show the content (otherwise it stays at opacity:0). */}
