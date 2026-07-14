@@ -1,0 +1,30 @@
+{
+  "$comment": "What the stats monitor watches. It NEVER edits site data — it only alerts (via a GitHub issue) when a public source drifts from these baselines, so a human can verify in-app and update. When you confirm and update a real figure on the site, bump its baseline here too.",
+  "metrics": [
+    {
+      "id": "spotify-monthly-listeners",
+      "label": "Spotify monthly listeners",
+      "sourceName": "kworb.net — Spotify listeners",
+      "sourceUrl": "https://kworb.net/spotify/listeners.html",
+      "extractor": "kworbListeners",
+      "artistId": "3wcj11K77LjEY1PkEazffa",
+      "field": "monthlyListeners",
+      "kind": "drift",
+      "threshold": 0.03,
+      "baseline": 52355445,
+      "note": "Shown on the site as ~52.36M (app/data/africasBiggest.ts). Re-verify in the Spotify app before updating."
+    },
+    {
+      "id": "spotify-peak-listeners",
+      "label": "Spotify peak monthly listeners (all-time high)",
+      "sourceName": "kworb.net — Spotify listeners",
+      "sourceUrl": "https://kworb.net/spotify/listeners.html",
+      "extractor": "kworbListeners",
+      "artistId": "3wcj11K77LjEY1PkEazffa",
+      "field": "peakListeners",
+      "kind": "peak",
+      "baseline": 52355445,
+      "note": "A new all-time peak is a milestone worth logging on /updates."
+    }
+  ]
+}

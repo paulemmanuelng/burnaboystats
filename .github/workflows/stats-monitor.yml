@@ -1,0 +1,43 @@
+name: Stats monitor
+
+# Watches public stat sources and, when they drift from the site's baselines,
+# opens/updates a GitHub issue for a human to verify and update. It never edits
+# site data — Burna Boy's fast-moving numbers are verified by hand, and this is
+# only the tripwire that says "go check".
+
+on:
+  schedule:
+    - cron: "0 9 * * 1" # Mondays 09:00 UTC
+  workflow_dispatch: {} # allow manual runs from the Actions tab
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check public stats against baselines
+        id: check
+        run: node scripts/check-stats.mjs
+
+      - name: Open or update the drift issue
+        if: steps.check.outputs.has_drift == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          title="📊 Stats drift detected — verify & update"
+          existing=$(gh issue list --state open --json number,title \
+            --jq ".[] | select(.title==\"$title\") | .number" | head -1)
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file drift-report.md
+          else
+            gh issue create --title "$title" --body-file drift-report.md
+          fi
