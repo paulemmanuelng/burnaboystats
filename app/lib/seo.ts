@@ -80,6 +80,7 @@ const SEGMENT_LABELS: Record<string, string> = {
   "africas-biggest": "Africa's Biggest",
   updates: "Latest Updates",
   faq: "FAQ",
+  methodology: "Methodology",
   about: "About",
   contact: "Contact",
 };

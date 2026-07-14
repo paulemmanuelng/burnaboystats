@@ -22,6 +22,7 @@ export const footerLinks = [
   { href: "/records/tours", label: "Tours" },
   { href: "/records/africas-biggest", label: "Africa's Biggest" },
   { href: "/faq", label: "FAQ" },
+  { href: "/methodology", label: "Methodology" },
   { href: "/about", label: "About" },
 ];
 
@@ -32,6 +33,7 @@ export const exploreFor: Record<string, string[]> = {
   "/certifications": ["music", "records", "about"],
   "/about": ["music", "certifications", "records"],
   "/faq": ["records", "certifications", "music"],
+  "/methodology": ["about", "records", "certifications"],
   // Cars is the site's #1 landing page (search traffic). Funnel that
   // wealth/lifestyle-curious audience toward the flashiest career stats.
   "/records/cars": ["records", "tours", "certifications"],
