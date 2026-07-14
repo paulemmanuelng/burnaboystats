@@ -96,6 +96,12 @@
   color: var(--text);
   border-color: var(--gold-dim);
 }
+/* Desktop shows the "Esc" hint; the ✕ is swapped in on mobile (no Esc key). */
+.closeX {
+  display: none;
+  font-size: 0.95rem;
+  line-height: 1;
+}
 
 .results {
   list-style: none;
@@ -180,6 +186,23 @@
   }
   .overlay {
     padding: 8vh 12px 12px;
+  }
+  /* No Esc key on mobile — swap the "Esc" hint for a tappable ✕. */
+  .escText {
+    display: none;
+  }
+  .closeX {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .escBtn {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
   }
 }
 

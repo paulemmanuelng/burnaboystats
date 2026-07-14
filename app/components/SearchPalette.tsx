@@ -156,7 +156,9 @@ export default function SearchPalette() {
                 spellCheck={false}
               />
               <button type="button" className={styles.escBtn} onClick={close} aria-label="Close search">
-                Esc
+                {/* "Esc" reads on desktop (keyboard); mobile has no Esc key, so ✕ */}
+                <span className={styles.escText}>Esc</span>
+                <span className={styles.closeX} aria-hidden="true">✕</span>
               </button>
             </div>
 
