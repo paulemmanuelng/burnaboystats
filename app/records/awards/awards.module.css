@@ -166,6 +166,23 @@
 }
 .fChip:hover { border-color: var(--gold-dim); color: var(--text); }
 .fChipOn { background: rgba(255, 182, 39, 0.16); border-color: var(--gold); color: var(--gold); }
+.moreBodies {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 1px dashed var(--gold-dim);
+  color: var(--gold);
+  border-radius: 999px;
+  padding: 8px 14px;
+  min-height: 38px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.moreBodies:hover { border-color: var(--gold); color: var(--gold-bright); background: rgba(255, 182, 39, 0.08); }
 .filterMeta { display: flex; align-items: center; gap: 14px; font-size: 0.85rem; color: var(--text-muted); }
 .filterMeta b { color: var(--gold); }
 .clearBtn {

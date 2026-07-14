@@ -9,6 +9,8 @@ const RESULTS = [
   { key: "nom", label: "Nominated" },
 ];
 
+const BODY_PREVIEW = 8; // award bodies shown before the "Show all" toggle
+
 function Row({ nom }: { nom: AwardNom }) {
   return (
     <div className={styles.row}>
@@ -35,6 +37,7 @@ export default function AwardExplorer() {
   const [year, setYear] = useState<number | null>(null);
   const [ceremony, setCeremony] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [showAllBodies, setShowAllBodies] = useState(false);
 
   const match = (n: AwardNom) =>
     (!result || (result === "won" ? n.won : !n.won)) && (!year || n.year === year);
@@ -97,7 +100,10 @@ export default function AwardExplorer() {
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Award body</span>
             <button className={`${styles.fChip} ${!ceremony ? styles.fChipOn : ""}`} onClick={() => setCeremony(null)}>All</button>
-            {ceremonies.map((c) => (
+            {(showAllBodies
+              ? ceremonies
+              : ceremonies.filter((c, i) => i < BODY_PREVIEW || c.name === ceremony)
+            ).map((c) => (
               <button
                 key={c.name}
                 className={`${styles.fChip} ${ceremony === c.name ? styles.fChipOn : ""}`}
@@ -106,6 +112,16 @@ export default function AwardExplorer() {
                 {c.name}
               </button>
             ))}
+            {ceremonies.length > BODY_PREVIEW && (
+              <button
+                type="button"
+                className={styles.moreBodies}
+                aria-expanded={showAllBodies}
+                onClick={() => setShowAllBodies((s) => !s)}
+              >
+                {showAllBodies ? "Show fewer ▲" : `Show all ${ceremonies.length} ▾`}
+              </button>
+            )}
           </div>
           {active && (
             <div className={styles.filterMeta}>
