@@ -1,0 +1,49 @@
+.wrap {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Five gold bars pulsing like an equalizer — matches the site's music motifs. */
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 44px;
+}
+.bars span {
+  width: 7px;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--gold);
+  transform-origin: 50% 100%;
+  animation: loadBars 1s ease-in-out infinite;
+}
+.bars span:nth-child(1) { animation-delay: -0.2s; }
+.bars span:nth-child(2) { animation-delay: -0.6s; }
+.bars span:nth-child(3) { animation-delay: -0.4s; }
+.bars span:nth-child(4) { animation-delay: -0.8s; }
+.bars span:nth-child(5) { animation-delay: -0.3s; }
+
+@keyframes loadBars {
+  0%, 100% { transform: scaleY(0.3); opacity: 0.5; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+.label {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bars span {
+    animation: none;
+    transform: scaleY(0.6);
+  }
+}
