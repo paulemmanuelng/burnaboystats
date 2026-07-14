@@ -13,7 +13,7 @@ import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../..
 export const metadata = pageMetadata({
   title: "Burna Boy, Visualized — Grosses, Certifications & Awards Charts",
   description:
-    "Burna Boy's career plotted: the biggest single-show grosses, certifications by country, and award wins by body — every stat, charted in one place.",
+    "Burna Boy's career plotted: the biggest single-show grosses, certifications by country and tier, how his chart entries break down by peak, and his award win rate — every stat, charted in one place.",
   path: "/records/visualized",
   shareTitle: "Burna Boy, Visualized",
   shareDescription: "His career in charts — grosses, certifications and awards, at a glance.",
@@ -91,6 +91,34 @@ const tierSegments: DonutSeg[] = [
   { label: "Silver", value: tiers.Silver, color: "#b8bcc4" },
 ];
 
+// ── Donut: chart entries by how high they peaked ──
+const peakBands = { "No. 1": 0, "Top 5": 0, "Top 10": 0, "Top 40": 0, "41–100": 0 };
+for (const r of [...albumCharts, ...singleCharts, ...featureCharts])
+  for (const e of r.entries) {
+    if (e.peak === 1) peakBands["No. 1"]++;
+    else if (e.peak <= 5) peakBands["Top 5"]++;
+    else if (e.peak <= 10) peakBands["Top 10"]++;
+    else if (e.peak <= 40) peakBands["Top 40"]++;
+    else peakBands["41–100"]++;
+  }
+const totalEntries = Object.values(peakBands).reduce((a, b) => a + b, 0);
+const top5Count = peakBands["No. 1"] + peakBands["Top 5"];
+const peakSegments: DonutSeg[] = [
+  { label: "No. 1", value: peakBands["No. 1"], color: "#ffd24a" },
+  { label: "Top 5", value: peakBands["Top 5"], color: "#ffb627" },
+  { label: "Top 10", value: peakBands["Top 10"], color: "#c98a2e" },
+  { label: "Top 40", value: peakBands["Top 40"], color: "#8a7a52" },
+  { label: "41–100", value: peakBands["41–100"], color: "#5a5a62" },
+];
+
+// ── Donut: award wins vs nominations (career strike rate) ──
+const totalNoms = ceremonies.reduce((n, c) => n + c.noms.length, 0);
+const winRate = Math.round((totalWins / totalNoms) * 100);
+const winRateSegments: DonutSeg[] = [
+  { label: "Won", value: totalWins, color: "#ffb627" },
+  { label: "Nominated", value: totalNoms - totalWins, color: "#4a4a52" },
+];
+
 // ── Choropleth: best chart peak by country ──
 const A2_TO_ISO: Record<string, number> = {
   US: 840, UK: 826, IE: 372, CA: 124, AU: 36, NZ: 554, FR: 250, DE: 276, NL: 528, SE: 752,
@@ -120,8 +148,8 @@ const jsonLd = datasetJsonLd({
   description:
     "Charted views of Burna Boy's career: biggest single-show grosses, certifications by country, and award wins by body.",
   path: "/records/visualized",
-  keywords: ["Burna Boy", "charts", "data visualization", "grosses", "certifications", "awards"],
-  variableMeasured: ["Revenue per show", "Certifications per country", "Award wins per body"],
+  keywords: ["Burna Boy", "charts", "data visualization", "grosses", "certifications", "awards", "chart peaks", "win rate"],
+  variableMeasured: ["Revenue per show", "Certifications per country", "Chart peak distribution", "Award wins per body", "Award win rate"],
 });
 
 const captionStyle = {
@@ -214,6 +242,21 @@ export default function VisualizedPage() {
           </Link>
         </section>
 
+        <section id="peak-distribution" style={{ marginBottom: 56 }}>
+          <p className="eyebrow">Charts worldwide</p>
+          <h2 className="secTitle" style={{ marginBottom: 28 }}>How his chart entries break down</h2>
+          <TierDonut
+            segments={peakSegments}
+            total={totalEntries}
+            centerNum={`${peakBands["No. 1"]}`}
+            centerLabel="No. 1 peaks"
+            ariaLabel={`Chart entries by peak position: ${peakSegments.map((s) => `${s.value} ${s.label}`).join(", ")}`}
+          />
+          <p style={captionStyle}>
+            All {totalEntries} of his charting entries worldwide, grouped by how high each one peaked — {peakBands["No. 1"]} hit No. 1 and {top5Count} reached the Top 5.
+          </p>
+        </section>
+
         <section id="awards" style={{ marginBottom: 40 }}>
           <p className="eyebrow">Decorated</p>
           <h2 className="secTitle" style={{ marginBottom: 24 }}>Most-decorated stages</h2>
@@ -224,6 +267,21 @@ export default function VisualizedPage() {
           <Link href="/records/awards" className="btn btnSecondary" style={{ marginTop: 18 }}>
             Every award ↗
           </Link>
+        </section>
+
+        <section id="win-rate" style={{ marginBottom: 40 }}>
+          <p className="eyebrow">Decorated</p>
+          <h2 className="secTitle" style={{ marginBottom: 28 }}>Wins vs nominations</h2>
+          <TierDonut
+            segments={winRateSegments}
+            total={totalNoms}
+            centerNum={`${winRate}%`}
+            centerLabel="win rate"
+            ariaLabel={`Award win rate: ${totalWins} won of ${totalNoms} nominations`}
+          />
+          <p style={captionStyle}>
+            Across every awards ceremony, {totalWins} of {totalNoms} career nominations converted to wins — a {winRate}% strike rate.
+          </p>
         </section>
 
         <Link href="/records" style={{ display: "inline-block", marginTop: 8, fontFamily: "var(--font-mono), monospace", fontSize: "0.8rem", color: "var(--gold)" }}>← Career Records</Link>
