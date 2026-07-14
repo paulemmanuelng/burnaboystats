@@ -3,10 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../records/tours/tours.module.css";
 import type { Tour } from "../data/tours";
+import { track } from "../lib/analytics";
 
 export default function ToursExplorer({ tours }: { tours: Tour[] }) {
   const [open, setOpen] = useState<number | null>(null);
   const tour = open !== null ? tours[open] : null;
+
+  // Track which tours people open into (fires when a tour modal is opened).
+  useEffect(() => {
+    if (tour) track("tour_open", { tour: tour.name });
+  }, [tour]);
   const modalRef = useRef<HTMLDivElement>(null);
   const lastFocused = useRef<HTMLElement | null>(null);
 

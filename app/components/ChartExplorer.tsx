@@ -1,8 +1,9 @@
 "use client"; // interactive: filter chart entries by country and peak tier
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../records/charts/charts.module.css";
 import { chartTier, type ChartCountry, type ChartRelease } from "../data/charts";
+import { track } from "../lib/analytics";
 
 type Countries = Record<string, ChartCountry>;
 
@@ -66,6 +67,11 @@ export default function ChartExplorer({
   const [country, setCountry] = useState<string | null>(null);
   const [peak, setPeak] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
+
+  // Track filter engagement (fires once per change; skips the empty initial state).
+  useEffect(() => {
+    if (country || peak) track("chart_filter", { country: country ?? "", peak: peak ?? "" });
+  }, [country, peak]);
 
   const peakMax = peak ? PEAKS.find((p) => p.key === peak)!.max : null;
   const keep = (it: ChartRelease) =>

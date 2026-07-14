@@ -1,9 +1,10 @@
 "use client"; // interactive: filter releases by tier and country
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
 import { matches } from "../lib/certs";
+import { track } from "../lib/analytics";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
 const YEARS = [2026, 2025, 2024, 2023];
@@ -75,6 +76,11 @@ export default function CertExplorer({
   const [country, setCountry] = useState<string | null>(null);
   const [tier, setTier] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
+
+  // Track filter engagement (fires once per change; skips the empty initial state).
+  useEffect(() => {
+    if (country || tier) track("cert_filter", { country: country ?? "", tier: tier ?? "" });
+  }, [country, tier]);
 
   const groups = [
     { label: "Albums", items: albums },

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import TrackedLink from "./TrackedLink";
 import styles from "./KeepExploring.module.css";
 import { exploreFor } from "../lib/links";
 import { totalAwards, countryCount } from "../data/certifications";
@@ -37,13 +37,19 @@ export default function KeepExploring({ current }: { current: string }) {
       <p className={styles.eyebrow}>Keep exploring</p>
       <div className={styles.grid}>
         {links.map((l) => (
-          <Link key={l.href} href={l.href} className={styles.card}>
+          <TrackedLink
+            key={l.href}
+            href={l.href}
+            className={styles.card}
+            event="gateway_click"
+            props={{ from: current, to: l.href }}
+          >
             <span>
               <span className={styles.title}>{l.title}</span>
               <span className={styles.desc}>{l.desc}</span>
             </span>
             <span className={styles.arrow} aria-hidden="true">→</span>
-          </Link>
+          </TrackedLink>
         ))}
       </div>
     </nav>

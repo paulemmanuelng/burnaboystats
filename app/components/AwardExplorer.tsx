@@ -1,8 +1,9 @@
 "use client"; // interactive: filter awards by result (won / nominated)
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../records/awards/awards.module.css";
 import { ceremonies, ceremonyWins, type AwardNom } from "../data/awards";
+import { track } from "../lib/analytics";
 
 const RESULTS = [
   { key: "won", label: "Won" },
@@ -38,6 +39,13 @@ export default function AwardExplorer() {
   const [ceremony, setCeremony] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [showAllBodies, setShowAllBodies] = useState(false);
+
+  // Track filter engagement (fires once per change; skips the empty initial state).
+  useEffect(() => {
+    if (result || year || ceremony) {
+      track("award_filter", { result: result ?? "", year: year ?? "", body: ceremony ?? "" });
+    }
+  }, [result, year, ceremony]);
 
   const match = (n: AwardNom) =>
     (!result || (result === "won" ? n.won : !n.won)) && (!year || n.year === year);

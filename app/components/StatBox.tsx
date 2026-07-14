@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "../records/africas-biggest/africas-biggest.module.css";
 import { HIGHLIGHT, type LeaderboardBox } from "../data/africasBiggest";
+import { track } from "../lib/analytics";
 
 // A reusable leaderboard "stat box". Supports two layouts:
 //   • "year" — ranked Top-5 per year (#1 highlighted; names only). Long boxes
@@ -78,7 +79,10 @@ export default function StatBox({ box, featured = false }: { box: LeaderboardBox
               type="button"
               className={styles.showMore}
               aria-expanded={showAllYears}
-              onClick={() => setShowAllYears((s) => !s)}
+              onClick={() => {
+                if (!showAllYears) track("statbox_expand", { box: box.title });
+                setShowAllYears((s) => !s);
+              }}
             >
               {showAllYears ? "Show fewer years" : `Show ${hiddenYears} earlier years`}
             </button>
