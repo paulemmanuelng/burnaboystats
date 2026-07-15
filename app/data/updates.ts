@@ -29,6 +29,18 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-16",
+    category: "Charts",
+    text: "No.1 in the Middle East: “Dai Dai” tops the Official MENA Chart's Top 20, debuts at No.14 in Egypt and climbs to a new peak of No.26 in Hungary — the Shakira & Burna Boy anthem still spreading across the world's charts.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-16",
+    category: "Certifications",
+    text: "Gold in Hungary: “Dai Dai” is certified Arany (Gold) by MAHASZ, Hungary's official body — another plaque for the Shakira & Burna Boy World Cup anthem, after its French Gold.",
+    href: "/certifications",
+  },
+  {
     date: "2026-07-14",
     category: "Streaming",
     text: "The biggest song in the world: “Dai Dai” is No. 1 on Spotify's Global chart — the most-streamed song on the planet, topping both the Weekly and Daily Top Songs Global charts.",
