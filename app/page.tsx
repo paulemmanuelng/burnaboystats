@@ -58,13 +58,13 @@ const records = [
     num: "$6.15M",
     title: "Biggest African concert",
     desc: "His record London Stadium night — and he was the first African artist to headline a UK stadium.",
-    href: "/records/tours",
+    href: "/records/tours/revenue",
   },
   {
     num: "2026",
     title: "FIFA World Cup headliner",
     desc: "First African artist to headline a World Cup opening ceremony, performing “Dai Dai” with Shakira.",
-    href: "/records/tours",
+    href: "/records/firsts",
   },
 ];
 
