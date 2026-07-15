@@ -1,4 +1,5 @@
 import { ogImage, size, contentType } from "../lib/og-image";
+import { totalAwards, countryCount } from "../data/certifications";
 
 export { size, contentType };
 export const alt = "Burna Boy Certifications — Silver, Gold, Platinum & Diamond";
@@ -7,6 +8,6 @@ export default function Image() {
   return ogImage({
     kicker: "Certified worldwide",
     title: "Certifications",
-    sub: "214 awards across 22 countries — every tier from Silver to Diamond",
+    sub: `${totalAwards()} awards across ${countryCount} countries — every tier from Silver to Diamond`,
   });
 }

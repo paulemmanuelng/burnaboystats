@@ -19,7 +19,7 @@ export const metadata = pageMetadata({
     `${totalAwards()} Silver, Gold, Platinum and Diamond certifications across ${countryCount} countries — filter by tier, country or year.`,
   path: "/certifications",
   shareTitle: "Burna Boy Certifications — Every Silver, Gold, Platinum & Diamond",
-  shareDescription: "Every certified Burna Boy song and album across 22 countries.",
+  shareDescription: `Every certified Burna Boy song and album across ${countryCount} countries.`,
 });
 
 const total = totalAwards();

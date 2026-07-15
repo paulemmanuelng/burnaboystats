@@ -31,13 +31,13 @@ export const updates: Update[] = [
   {
     date: "2026-07-16",
     category: "Charts",
-    text: "No.1 in the Middle East: “Dai Dai” tops the Official MENA Chart's Top 20, debuts at No.14 in Egypt and climbs to a new peak of No.26 in Hungary — the Shakira & Burna Boy anthem still spreading across the world's charts.",
+    text: "No.1 in the Middle East and Luxembourg: “Dai Dai” tops the Official MENA Chart's Top 20 and Luxembourg's Billboard chart, debuts at No.14 in Egypt and climbs to a new peak of No.26 in Hungary.",
     href: "/records/charts",
   },
   {
     date: "2026-07-16",
     category: "Certifications",
-    text: "Gold in Hungary: “Dai Dai” is certified Arany (Gold) by MAHASZ, Hungary's official body — another plaque for the Shakira & Burna Boy World Cup anthem, after its French Gold.",
+    text: "40 certifications in a year: fresh Gold plaques for “Dai Dai” in Hungary (MAHASZ) and Slovakia (ČNS IFPI) take Burna Boy past 40 international certifications in 2026 — the most any African artist has earned in a single calendar year.",
     href: "/certifications",
   },
   {

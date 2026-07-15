@@ -3,6 +3,8 @@
 // Tours, Charts and Awards pages (June 2026). Only firsts/records that could be
 // confirmed are listed — nothing is included on a single unverified claim.
 
+import { totalAwards, countryCount } from "./certifications";
+
 export interface First {
   year: string;
   title: string;
@@ -44,7 +46,8 @@ export const firstGroups: FirstGroup[] = [
       { year: "2021", title: "First winner of the Grammy for Best Global Music Album", text: "Twice as Tall took the award in its debut year — the category renamed from Best World Music Album." },
       { year: "2023", title: "First African artist to win a Billboard Music Award as lead artist", text: "Recognised at the Billboard Music Awards as a headline act — the first African to win one in his own right." },
       { year: "2024", title: "First African lead artist nominated for a Grammy outside the global categories", text: "His Best Melodic Rap Performance nod broke African artists into the Grammys' mainstream genre fields." },
-      { year: "2026", title: "Most certified African artist worldwide", text: "213 certifications across 22 countries — Gold, Silver, Platinum and Diamond combined — more than any other African artist." },
+      { year: "2026", title: "Most certified African artist worldwide", text: `${totalAwards()} certifications across ${countryCount} countries — Gold, Silver, Platinum and Diamond combined — more than any other African artist.` },
+      { year: "2026", title: "First African artist with 40 certifications in a single year", text: "Passed 40 international song and album certifications in 2026 — the most any African artist has earned in one calendar year, led by the “Dai Dai” World Cup run." },
     ],
   },
   {
