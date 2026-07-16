@@ -36,12 +36,6 @@ export const updates: Update[] = [
   },
   {
     date: "2026-07-16",
-    category: "Lifestyle",
-    text: "A Maybach for himself too: Burna Boy keeps one of two Mercedes-Maybach GLS 600s he bought — gifting the other to his mother — taking his confirmed garage to 15 cars worth a reported $16.46M.",
-    href: "/records/cars",
-  },
-  {
-    date: "2026-07-16",
     category: "Streaming",
     text: "No. 56 in the world: Burna Boy's Spotify monthly listeners climb to a new all-time peak of 52.99 million, making him the 56th most-listened-to artist on the planet — and still the most of any African artist.",
     href: "/records/africas-biggest",
@@ -230,6 +224,12 @@ export const updates: Update[] = [
     date: "2026-07-05",
     category: "Lifestyle",
     text: "A vintage Ferrari Testarossa joins the fleet — spotted in London before being moved into his Lagos penthouse, taking the reported car collection to 19 vehicles worth over $18 million.",
+    href: "/records/cars",
+  },
+  {
+    date: "2026-07-05",
+    category: "Lifestyle",
+    text: "Two Mercedes-Maybach GLS 600s: Burna Boy bought a pair — gifting one to his mother and keeping the other for his own garage — with his confirmed collection now at 15 cars worth a reported $16.46M.",
     href: "/records/cars",
   },
   {
