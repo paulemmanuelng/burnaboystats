@@ -61,8 +61,9 @@ export const tours: Tour[] = [
     years: "2023–25",
     gross: "$30.46M",
     tickets: "302,801",
+    shows: 22,
     record: true,
-    note: "The highest-grossing tour by an African artist in history — $30.46M from 302,801 tickets across North America and Europe, averaging about $1.4M a night. It also included the record-breaking London Stadium concert.",
+    note: "The highest-grossing tour by an African artist in history — $30.46M from 302,801 tickets across 22 shows in North America and Europe, averaging about $1.4M a night. It also included the record-breaking London Stadium concert.",
     dates: [
       { date: "Nov 3, 2023", venue: "BMO Stadium", city: "Los Angeles", country: "USA", cap: 22000 },
       { date: "Nov 5, 2023", venue: "Climate Pledge Arena", city: "Seattle", country: "USA", cap: 18100 },

@@ -42,8 +42,8 @@ export default function ToursPage() {
         />
 
         <p className="lead" style={{ margin: "22px auto 4px", textAlign: "center" }}>
-          Burna Boy&apos;s I Told Them… Tour grossed $30.46 million — the
-          highest-grossing tour by an African artist in history — and his June 2024
+          Burna Boy&apos;s I Told Them… Tour grossed $30.46 million across 22 shows —
+          the highest-grossing tour by an African artist in history — and his June 2024
           London Stadium concert ($6.15M from 58,973 fans) is the biggest single
           concert ever by an African artist.
         </p>
