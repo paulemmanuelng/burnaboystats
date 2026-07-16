@@ -119,6 +119,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["visualized", "visualised", "data", "charts", "graphs", "infographic", "visualization"],
   },
   {
+    title: "The Dai Dai Story",
+    path: "/dai-dai",
+    section: "Records",
+    description: "How Burna Boy & Shakira's World Cup anthem became the biggest song in the world — told through the numbers.",
+    keywords: ["dai dai", "dai dai story", "world cup song", "shakira burna boy", "fifa world cup 2026", "biggest song in the world", "global 200"],
+  },
+  {
     title: "Latest Updates",
     path: "/updates",
     section: "Site",

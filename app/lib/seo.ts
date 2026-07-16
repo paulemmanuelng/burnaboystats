@@ -79,6 +79,7 @@ const SEGMENT_LABELS: Record<string, string> = {
   firsts: "Firsts & Records",
   "africas-biggest": "Africa's Biggest",
   updates: "Latest Updates",
+  "dai-dai": "The Dai Dai Story",
   faq: "FAQ",
   methodology: "Methodology",
   about: "About",

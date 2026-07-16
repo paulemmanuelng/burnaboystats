@@ -1,0 +1,17 @@
+.outro {
+  max-width: 720px;
+  margin: 8px auto 60px;
+  text-align: center;
+}
+.outroLead {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #d3d3da;
+  margin: 0 0 24px;
+}
+.outroLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}

@@ -24,6 +24,8 @@ const sectionLinks: Record<string, SectionLink> = {
   },
   tours: { href: "/records/tours", title: "Tours & Live", desc: "$30.46M — the biggest African tour" },
   about: { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },
+  "dai-dai": { href: "/dai-dai", title: "The Dai Dai Story", desc: "The World Cup song that conquered 2026" },
+  "africas-biggest": { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists" },
 };
 
 // A "what to look at next" block — shown at the bottom of each page so

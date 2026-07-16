@@ -1,0 +1,191 @@
+/* Scrollytelling: a sticky visual "stage" (left) that swaps scenes as the
+   narrative steps (right) scroll past. On mobile the stage pins to the top and
+   the steps scroll beneath it. */
+.scrolly {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  margin: 8px 0 16px;
+}
+
+.sticky {
+  position: sticky;
+  top: 88px;
+  align-self: start;
+  height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  text-align: center;
+}
+
+.scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: sceneIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes sceneIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+.bigWord {
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(3rem, 9vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.finaleWord {
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(2.4rem, 6.5vw, 4.4rem);
+  line-height: 0.98;
+  color: var(--text);
+  text-transform: uppercase;
+}
+.hash {
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(5rem, 16vw, 11rem);
+  line-height: 0.8;
+  color: var(--gold-bright);
+}
+.bigNum {
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(4rem, 13vw, 8.5rem);
+  line-height: 0.85;
+  color: var(--gold);
+}
+.sceneLabel {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.sceneSub {
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.08em;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+.sceneNote {
+  font-size: 0.95rem;
+  color: var(--gold-dim);
+}
+.flags {
+  font-size: 1.5rem;
+  letter-spacing: 0.12em;
+  max-width: 340px;
+  line-height: 1.7;
+}
+.tierDots {
+  display: inline-flex;
+  gap: 10px;
+}
+.tierDots i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.progressBar {
+  display: flex;
+  gap: 8px;
+}
+.tick {
+  width: 26px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--line);
+  transition: background 0.3s ease;
+}
+.tickOn {
+  background: var(--gold);
+}
+
+.step {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+}
+.stepInner {
+  max-width: 46ch;
+  opacity: 0.3;
+  transform: translateY(8px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.stepOn .stepInner {
+  opacity: 1;
+  transform: none;
+}
+.stepIndex {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--gold-dim);
+}
+.stepKicker {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+.stepTitle {
+  margin: 12px 0 14px;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+.stepBody {
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: #d3d3da;
+}
+
+@media (max-width: 900px) {
+  .scrolly {
+    display: block;
+    margin-bottom: 8px;
+  }
+  .sticky {
+    top: 60px;
+    height: 42vh;
+    background: var(--bg);
+    z-index: 2;
+    border-bottom: 1px solid var(--line);
+    margin: 0 -6vw;
+    padding: 0 6vw;
+  }
+  .step {
+    min-height: 62vh;
+  }
+  .stepInner {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    animation: none;
+  }
+  .stepInner {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

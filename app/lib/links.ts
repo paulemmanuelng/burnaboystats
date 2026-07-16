@@ -15,6 +15,7 @@ export const navItems = [
 // Footer sitemap — every page links straight to the deep stat pages that rank
 // for search queries (awards, charts, tours…), spreading internal link equity.
 export const footerLinks = [
+  { href: "/dai-dai", label: "The Dai Dai Story" },
   { href: "/certifications", label: "Certifications" },
   { href: "/music", label: "Discography" },
   { href: "/records/awards", label: "Awards" },
@@ -42,7 +43,8 @@ export const exploreFor: Record<string, string[]> = {
   // The other record pages were dead-ends too — point each onward to sibling
   // flagship stats (never to itself).
   "/records/awards": ["certifications", "charts", "tours"],
-  "/records/charts": ["certifications", "records", "music"],
+  "/records/charts": ["dai-dai", "certifications", "records"],
+  "/dai-dai": ["charts", "africas-biggest", "records"],
   "/records/tours": ["records", "certifications", "charts"],
   "/records/firsts": ["records", "charts", "certifications"],
   "/records/africas-biggest": ["certifications", "charts", "records"],
