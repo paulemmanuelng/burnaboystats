@@ -46,6 +46,6 @@ export const exploreFor: Record<string, string[]> = {
   "/records/charts": ["dai-dai", "certifications", "records"],
   "/dai-dai": ["charts", "africas-biggest", "records"],
   "/records/tours": ["records", "certifications", "charts"],
-  "/records/firsts": ["records", "charts", "certifications"],
+  "/records/firsts": ["dai-dai", "charts", "certifications"],
   "/records/africas-biggest": ["certifications", "charts", "records"],
 };

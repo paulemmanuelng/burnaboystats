@@ -442,6 +442,80 @@ a.stat:hover .statNum { color: var(--gold-bright); }
   font-size: 1.1rem;
 }
 
+/* ================= FEATURED STORY (Dai Dai) ================= */
+.featured {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: clamp(28px, 4vw, 46px);
+  background:
+    radial-gradient(120% 150% at 100% 0%, rgba(255, 182, 39, 0.16), transparent 55%),
+    linear-gradient(135deg, rgba(255, 182, 39, 0.10), rgba(226, 52, 43, 0.08));
+  transition: border-color var(--dur, 0.2s) var(--ease-out, ease),
+    transform var(--dur, 0.2s) var(--ease-out, ease);
+}
+.featured:hover {
+  border-color: var(--gold-dim);
+  transform: translateY(-2px);
+}
+.featuredBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.featuredDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: featuredPulse 2s ease-out infinite;
+}
+@keyframes featuredPulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 182, 39, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(255, 182, 39, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 182, 39, 0); }
+}
+.featuredTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+.featuredText {
+  max-width: 60ch;
+  margin: 14px 0 22px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+.featuredCta {
+  display: inline-flex;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 3px;
+}
+.featured:hover .featuredCta {
+  color: var(--gold-bright);
+}
+@media (prefers-reduced-motion: reduce) {
+  .featuredDot { animation: none; }
+  .featured:hover { transform: none; }
+}
+
 /* ================= RESPONSIVE ================= */
 @media (max-width: 760px) {
   /* Tighter vertical rhythm on phones — the desktop section padding (90px) and
