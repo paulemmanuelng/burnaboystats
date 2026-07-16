@@ -1,6 +1,6 @@
-"use client"; // interactive: filter chart entries by country and peak tier
+"use client"; // interactive: filter chart entries + toggle a sortable table view
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "../records/charts/charts.module.css";
 import { chartTier, type ChartCountry, type ChartRelease } from "../data/charts";
 import { track } from "../lib/analytics";
@@ -53,6 +53,23 @@ function Row({
   );
 }
 
+type SortKey = "song" | "country" | "peak" | "year";
+interface FlatRow {
+  song: string;
+  credit?: string;
+  year: number;
+  type: string;
+  code: string;
+  peak: number;
+}
+
+const PK_CLASS: Record<string, string | undefined> = {
+  one: styles.pkOne,
+  top10: styles.pkTop10,
+  top40: styles.pkTop40,
+  rest: styles.pkRest,
+};
+
 export default function ChartExplorer({
   albums,
   singles,
@@ -67,6 +84,9 @@ export default function ChartExplorer({
   const [country, setCountry] = useState<string | null>(null);
   const [peak, setPeak] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [view, setView] = useState<"cards" | "table">("cards");
+  const [sortKey, setSortKey] = useState<SortKey>("peak");
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
 
   // Track filter engagement (fires once per change; skips the empty initial state).
   useEffect(() => {
@@ -94,8 +114,86 @@ export default function ChartExplorer({
   const totalShown = groups.reduce((n, g) => n + g.items.length, 0);
   const active = country || peak;
 
+  // Flat, one-row-per-chart-entry data for the sortable table view (respects the
+  // same country/peak filters, but filters individual entries rather than releases).
+  const flatRows: FlatRow[] = useMemo(() => {
+    const typed = [
+      ...albums.map((r) => ({ r, type: "Album" })),
+      ...singles.map((r) => ({ r, type: "Single" })),
+      ...features.map((r) => ({ r, type: "Feature" })),
+    ];
+    return typed.flatMap(({ r, type }) =>
+      r.entries
+        .filter((e) => (!country || e.c === country) && (!peakMax || e.peak <= peakMax))
+        .map((e) => ({ song: r.title, credit: r.credit, year: r.year, type, code: e.c, peak: e.peak }))
+    );
+  }, [albums, singles, features, country, peakMax]);
+
+  const sortedRows = useMemo(() => {
+    const dir = sortDir === "asc" ? 1 : -1;
+    return [...flatRows].sort((a, b) => {
+      let cmp =
+        sortKey === "song" ? a.song.localeCompare(b.song)
+        : sortKey === "country" ? countries[a.code].name.localeCompare(countries[b.code].name)
+        : sortKey === "year" ? a.year - b.year
+        : a.peak - b.peak;
+      if (cmp === 0) cmp = a.peak - b.peak || a.song.localeCompare(b.song);
+      return cmp * dir;
+    });
+  }, [flatRows, sortKey, sortDir, countries]);
+
+  const onSort = (k: SortKey) => {
+    if (sortKey === k) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    else {
+      setSortKey(k);
+      setSortDir(k === "year" ? "desc" : "asc"); // newest-first feels right for year
+    }
+  };
+
+  const headerCell = (label: string, k: SortKey, right = false) => (
+    <th
+      className={`${styles.th} ${right ? styles.thRight : ""}`}
+      aria-sort={sortKey === k ? (sortDir === "asc" ? "ascending" : "descending") : "none"}
+    >
+      <button type="button" className={styles.thBtn} onClick={() => onSort(k)}>
+        {label}
+        <span className={styles.sortArrow} aria-hidden="true">
+          {sortKey === k ? (sortDir === "asc" ? "▲" : "▼") : "↕"}
+        </span>
+      </button>
+    </th>
+  );
+
   return (
     <div>
+      {/* View toggle: the scannable "snack" cards vs the sortable "meal" table. */}
+      <div className={styles.viewBar}>
+        <div className={styles.viewToggle}>
+          <button
+            type="button"
+            aria-pressed={view === "cards"}
+            className={`${styles.viewBtn} ${view === "cards" ? styles.viewBtnOn : ""}`}
+            onClick={() => setView("cards")}
+          >
+            Cards
+          </button>
+          <button
+            type="button"
+            aria-pressed={view === "table"}
+            className={`${styles.viewBtn} ${view === "table" ? styles.viewBtnOn : ""}`}
+            onClick={() => {
+              setView("table");
+              track("chart_view", { view: "table" });
+            }}
+          >
+            Table
+          </button>
+        </div>
+        {view === "table" && (
+          <span className={styles.viewHint}>{flatRows.length} chart entries · click a header to sort</span>
+        )}
+      </div>
+
       <div className={styles.filterBar}>
         <button
           type="button"
@@ -104,7 +202,7 @@ export default function ChartExplorer({
           aria-controls="chart-filters"
           onClick={() => setFiltersOpen((o) => !o)}
         >
-          <span>Filters{active ? ` · ${totalShown} shown` : ""}</span>
+          <span>Filters{active ? ` · ${view === "table" ? flatRows.length : totalShown} shown` : ""}</span>
           <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
         </button>
         <div id="chart-filters" className={`${styles.filterBody} ${filtersOpen ? styles.filterOpen : ""}`}>
@@ -138,7 +236,8 @@ export default function ChartExplorer({
           </div>
           {active && (
             <div className={styles.filterMeta}>
-              Showing <b>{totalShown}</b> of {totalAll} releases
+              Showing <b>{view === "table" ? flatRows.length : totalShown}</b> of{" "}
+              {view === "table" ? "all" : totalAll} {view === "table" ? "chart entries" : "releases"}
               <button className={styles.clearBtn} onClick={() => { setCountry(null); setPeak(null); }}>
                 Clear ✕
               </button>
@@ -147,25 +246,58 @@ export default function ChartExplorer({
         </div>
       </div>
 
-      {totalShown === 0 ? (
-        <p className={styles.empty}>No releases match that filter. Try another country or peak.</p>
-      ) : (
-        groups.map(
-          (g) =>
-            g.items.length > 0 && (
-              <div key={g.label}>
-                <h2 className={`secTitle ${styles.group}`}>
-                  <span className="goldText">{g.label}</span>{" "}
-                  <span className={styles.count}>({g.items.length})</span>
-                </h2>
-                <div className={styles.list}>
-                  {g.items.map((it) => (
-                    <Row key={it.title} item={it} countries={countries} country={country} peakMax={peakMax} />
-                  ))}
+      {view === "cards" ? (
+        totalShown === 0 ? (
+          <p className={styles.empty}>No releases match that filter. Try another country or peak.</p>
+        ) : (
+          groups.map(
+            (g) =>
+              g.items.length > 0 && (
+                <div key={g.label}>
+                  <h2 className={`secTitle ${styles.group}`}>
+                    <span className="goldText">{g.label}</span>{" "}
+                    <span className={styles.count}>({g.items.length})</span>
+                  </h2>
+                  <div className={styles.list}>
+                    {g.items.map((it) => (
+                      <Row key={it.title} item={it} countries={countries} country={country} peakMax={peakMax} />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )
+              )
+          )
         )
+      ) : flatRows.length === 0 ? (
+        <p className={styles.empty}>No chart entries match that filter. Try another country or peak.</p>
+      ) : (
+        <div className={styles.tableWrap}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                {headerCell("Song", "song")}
+                {headerCell("Chart", "country")}
+                {headerCell("Peak", "peak", true)}
+                {headerCell("Year", "year", true)}
+              </tr>
+            </thead>
+            <tbody>
+              {sortedRows.map((r, i) => (
+                <tr key={`${r.song}-${r.code}-${i}`} className={r.peak === 1 ? styles.rowOne : ""}>
+                  <td className={styles.tdSong}>
+                    <span className={styles.tSong}>{r.song}</span>
+                    {r.credit ? <span className={styles.tCredit}>{r.credit}</span> : null}
+                  </td>
+                  <td className={styles.tdChart}>
+                    <span className={styles.flag}>{countries[r.code].flag}</span>
+                    <span className={styles.tCountry}>{countries[r.code].name}</span>
+                  </td>
+                  <td className={`${styles.tdPeak} ${PK_CLASS[chartTier(r.peak)] ?? ""}`}>#{r.peak}</td>
+                  <td className={styles.tdYear}>{r.year}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
