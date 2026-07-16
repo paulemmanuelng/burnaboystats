@@ -1,6 +1,7 @@
 "use client"; // scroll-driven: a sticky "scene" that changes as narrative steps pass
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import CountUp from "./CountUp";
 import styles from "./DaiDaiStory.module.css";
 
@@ -95,6 +96,9 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
           <span className={styles.bigNum}><CountUp end={props.daiDaiNo1s} /></span>
           <span className={styles.sceneLabel}>countries at No. 1</span>
           <span className={styles.flags}>🇫🇷 🇩🇪 🇳🇱 🇨🇭 🇦🇷 🇨🇴 🇦🇪 🇬🇷 🇱🇺 🇸🇰</span>
+          <Link href="/records/charts?song=Dai%20Dai" className={styles.sceneLink}>
+            See every Dai&nbsp;Dai chart position →
+          </Link>
         </>
       )}
       {scene === "streaming" && (
@@ -112,6 +116,9 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
           <span className={styles.tierDots}>
             <i style={{ background: "#dfe2e8" }} /> <i style={{ background: "var(--gold)" }} />
           </span>
+          <Link href="/certifications?release=Dai%20Dai" className={styles.sceneLink}>
+            See the Dai&nbsp;Dai certifications →
+          </Link>
         </>
       )}
       {scene === "worldsong" && (

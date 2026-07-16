@@ -85,6 +85,15 @@ export default function CertExplorer({
   const [country, setCountry] = useState<string | null>(null);
   const [tier, setTier] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  // A single-release focus, deep-linked via ?release=… (e.g. from the Dai Dai story).
+  const [focus, setFocus] = useState<string | null>(null);
+
+  // Read the ?release= deep-link once on mount (client-only, keeps the page static).
+  useEffect(() => {
+    const r = new URLSearchParams(window.location.search).get("release");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount read of a browser-only URL param
+    if (r) setFocus(r);
+  }, []);
 
   // Track filter engagement (fires once per change; skips the empty initial state).
   useEffect(() => {
@@ -95,7 +104,10 @@ export default function CertExplorer({
     { label: "Albums", items: albums },
     { label: "Singles", items: singles },
     { label: "Featured Appearances", items: features },
-  ].map((g) => ({ ...g, items: g.items.filter((it) => matches(it, country, tier)).sort(byMostCertified) }));
+  ].map((g) => ({
+    ...g,
+    items: g.items.filter((it) => (!focus || it.title === focus) && matches(it, country, tier)).sort(byMostCertified),
+  }));
 
   const totalAll = albums.length + singles.length + features.length;
   const totalShown = groups.reduce((n, g) => n + g.items.length, 0);
@@ -103,6 +115,17 @@ export default function CertExplorer({
 
   return (
     <div>
+      {focus && (
+        <div className={styles.focusBar}>
+          <span>
+            Showing every certification for <b>{focus}</b>
+          </span>
+          <button type="button" className={styles.clearBtn} onClick={() => setFocus(null)}>
+            Show all releases ✕
+          </button>
+        </div>
+      )}
+
       <div className={styles.filterBar}>
         <button
           type="button"

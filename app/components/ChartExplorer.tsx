@@ -87,6 +87,18 @@ export default function ChartExplorer({
   const [view, setView] = useState<"cards" | "table">("cards");
   const [sortKey, setSortKey] = useState<SortKey>("peak");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
+  // A single-release focus, deep-linked via ?song=… (e.g. from the Dai Dai story).
+  const [focus, setFocus] = useState<string | null>(null);
+
+  // Read the ?song= deep-link once on mount (client-only, so the page stays
+  // static). When present, focus that release and open the per-entry table view.
+  useEffect(() => {
+    const s = new URLSearchParams(window.location.search).get("song");
+    if (!s) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount read of a browser-only URL param
+    setFocus(s);
+    setView("table");
+  }, []);
 
   // Track filter engagement (fires once per change; skips the empty initial state).
   useEffect(() => {
@@ -95,6 +107,7 @@ export default function ChartExplorer({
 
   const peakMax = peak ? PEAKS.find((p) => p.key === peak)!.max : null;
   const keep = (it: ChartRelease) =>
+    (!focus || it.title === focus) &&
     (!country || it.entries.some((e) => e.c === country)) &&
     (!peakMax || it.entries.some((e) => e.peak <= peakMax));
 
@@ -122,12 +135,14 @@ export default function ChartExplorer({
       ...singles.map((r) => ({ r, type: "Single" })),
       ...features.map((r) => ({ r, type: "Feature" })),
     ];
-    return typed.flatMap(({ r, type }) =>
-      r.entries
-        .filter((e) => (!country || e.c === country) && (!peakMax || e.peak <= peakMax))
-        .map((e) => ({ song: r.title, credit: r.credit, year: r.year, type, code: e.c, peak: e.peak }))
-    );
-  }, [albums, singles, features, country, peakMax]);
+    return typed
+      .filter(({ r }) => !focus || r.title === focus)
+      .flatMap(({ r, type }) =>
+        r.entries
+          .filter((e) => (!country || e.c === country) && (!peakMax || e.peak <= peakMax))
+          .map((e) => ({ song: r.title, credit: r.credit, year: r.year, type, code: e.c, peak: e.peak }))
+      );
+  }, [albums, singles, features, country, peakMax, focus]);
 
   const sortedRows = useMemo(() => {
     const dir = sortDir === "asc" ? 1 : -1;
@@ -166,6 +181,17 @@ export default function ChartExplorer({
 
   return (
     <div>
+      {focus && (
+        <div className={styles.focusBar}>
+          <span>
+            Showing every chart entry for <b>{focus}</b>
+          </span>
+          <button type="button" className={styles.clearBtn} onClick={() => setFocus(null)}>
+            Show all releases ✕
+          </button>
+        </div>
+      )}
+
       {/* View toggle: the scannable "snack" cards vs the sortable "meal" table. */}
       <div className={styles.viewBar}>
         <div className={styles.viewToggle}>
@@ -271,6 +297,29 @@ export default function ChartExplorer({
         <p className={styles.empty}>No chart entries match that filter. Try another country or peak.</p>
       ) : (
         <div className={styles.tableWrap}>
+          {/* On mobile the header row becomes stacked cards, so sorting moves to
+              these chips (the desktop sortable header is hidden there). */}
+          <div className={styles.mobileSort}>
+            <span className={styles.mobileSortLabel}>Sort</span>
+            {(
+              [
+                ["peak", "Peak"],
+                ["song", "Song"],
+                ["country", "Chart"],
+                ["year", "Year"],
+              ] as [SortKey, string][]
+            ).map(([k, label]) => (
+              <button
+                key={k}
+                type="button"
+                className={`${styles.fChip} ${sortKey === k ? styles.fChipOn : ""}`}
+                onClick={() => onSort(k)}
+              >
+                {label}
+                {sortKey === k ? (sortDir === "asc" ? " ▲" : " ▼") : ""}
+              </button>
+            ))}
+          </div>
           <table className={styles.table}>
             <thead>
               <tr>
@@ -284,15 +333,20 @@ export default function ChartExplorer({
               {sortedRows.map((r, i) => (
                 <tr key={`${r.song}-${r.code}-${i}`} className={r.peak === 1 ? styles.rowOne : ""}>
                   <td className={styles.tdSong}>
-                    <span className={styles.tSong}>{r.song}</span>
+                    <span className={styles.tSong}>
+                      {r.song}
+                      {r.type === "Album" ? <span className={styles.albumTag}>Album</span> : null}
+                    </span>
                     {r.credit ? <span className={styles.tCredit}>{r.credit}</span> : null}
                   </td>
-                  <td className={styles.tdChart}>
-                    <span className={styles.flag}>{countries[r.code].flag}</span>
-                    <span className={styles.tCountry}>{countries[r.code].name}</span>
+                  <td className={styles.tdChart} data-label="Chart">
+                    <span>
+                      <span className={styles.flag}>{countries[r.code].flag}</span>
+                      <span className={styles.tCountry}>{countries[r.code].name}</span>
+                    </span>
                   </td>
-                  <td className={`${styles.tdPeak} ${PK_CLASS[chartTier(r.peak)] ?? ""}`}>#{r.peak}</td>
-                  <td className={styles.tdYear}>{r.year}</td>
+                  <td className={`${styles.tdPeak} ${PK_CLASS[chartTier(r.peak)] ?? ""}`} data-label="Peak">#{r.peak}</td>
+                  <td className={styles.tdYear} data-label="Year">{r.year}</td>
                 </tr>
               ))}
             </tbody>

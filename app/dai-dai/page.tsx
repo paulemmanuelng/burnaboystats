@@ -61,9 +61,9 @@ export default function DaiDaiPage() {
             biggest charts. Dig into the data behind the run:
           </p>
           <div className={styles.outroLinks}>
-            <Link href="/records/charts" className="btn btnPrimary">Every chart position ↗</Link>
+            <Link href="/records/charts?song=Dai%20Dai" className="btn btnPrimary">Every chart position ↗</Link>
             <Link href="/records/africas-biggest" className="btn btnSecondary">Africa&apos;s biggest ↗</Link>
-            <Link href="/updates" className="btn btnSecondary">Latest updates ↗</Link>
+            <Link href="/music" className="btn btnSecondary">Burna Boy discography ↗</Link>
           </div>
         </section>
       </div>

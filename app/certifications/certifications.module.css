@@ -131,6 +131,23 @@
 }
 
 /* Interactive filter */
+/* Deep-link focus banner (e.g. ?release=Dai Dai from the story) */
+.focusBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin: 26px 0 4px;
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 182, 39, 0.08);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.focusBar b { color: var(--gold); }
+
 .filterBar {
   margin: 26px 0 8px;
   padding: 16px 18px;

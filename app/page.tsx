@@ -132,19 +132,31 @@ export default function Home() {
         <div className="container">
           <Reveal>
             <Link href="/dai-dai" className={styles.featured}>
-              <span className={styles.featuredBadge}>
-                <span className={styles.featuredDot} aria-hidden="true" />
-                Featured story · World Cup Final this weekend
-              </span>
-              <h2 className={styles.featuredTitle}>
-                The <span className="goldText">Dai Dai</span> Story
-              </h2>
-              <p className={styles.featuredText}>
-                How Shakira &amp; Burna Boy&apos;s World Cup anthem hit No.&nbsp;1 in 15
-                countries and became the most-streamed song on Earth — and lands on the
-                Final halftime stage on 19 July.
-              </p>
-              <span className={styles.featuredCta}>Read the story ↗</span>
+              <div className={styles.featuredBody}>
+                <span className={styles.featuredBadge}>
+                  <span className={styles.featuredDot} aria-hidden="true" />
+                  Featured story · World Cup Final this weekend
+                </span>
+                <h2 className={styles.featuredTitle}>
+                  The <span className="goldText">Dai Dai</span> Story
+                </h2>
+                <p className={styles.featuredText}>
+                  How Shakira &amp; Burna Boy&apos;s World Cup anthem hit No.&nbsp;1 in 15
+                  countries and became the most-streamed song on Earth — and lands on the
+                  Final halftime stage on 19 July.
+                </p>
+                <span className={styles.featuredCta}>Read the story ↗</span>
+              </div>
+              {/* Official Dai Dai cover, served from Spotify's CDN (same source as the discography). */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className={styles.featuredCover}
+                src="https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4"
+                alt="Dai Dai single cover — Shakira × Burna Boy"
+                width={190}
+                height={190}
+                loading="lazy"
+              />
             </Link>
           </Reveal>
         </div>

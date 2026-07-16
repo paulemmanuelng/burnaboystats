@@ -133,6 +133,21 @@
   font-size: 0.95rem;
   color: var(--gold-dim);
 }
+/* "See all →" deep-links inside a scene (to the full chart / cert data). */
+.sceneLink {
+  margin-top: 4px;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 3px;
+  transition: color var(--dur, 0.2s) var(--ease-out, ease);
+}
+.sceneLink:hover {
+  color: var(--gold-bright);
+}
 .flags {
   font-size: 1.5rem;
   letter-spacing: 0.12em;

@@ -186,6 +186,56 @@
   color: var(--text-muted);
 }
 
+/* ── Deep-link focus banner (e.g. ?song=Dai Dai from the story) ─────────── */
+.focusBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius);
+  background: rgba(255, 182, 39, 0.08);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.focusBar b { color: var(--gold); }
+
+/* "Album" tag next to a title in the table, so albums read distinctly from songs */
+.albumTag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+
+/* Mobile-only sort chips (the desktop sortable header is hidden on phones) */
+.mobileSort {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.mobileSortLabel {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  margin-right: 2px;
+}
+
 /* ── Sortable "look up any stat" table ──────────────────────────────────── */
 .tableWrap {
   overflow-x: auto;
@@ -286,4 +336,52 @@
   .filterBody.filterOpen { display: flex; }
   .fChip { min-height: 44px; padding: 11px 15px; }
   .clearBtn { min-height: 40px; }
+
+  /* Table → stacked cards: a horizontal-scroll data table is hard to read on a
+     phone, so each row becomes a self-labelled card and sorting moves to chips. */
+  .mobileSort { display: flex; }
+  .tableWrap { overflow-x: visible; border-top: none; margin-top: 0; }
+  .table { font-size: 1rem; }
+  .table thead { display: none; }
+  .table tbody,
+  .table tr,
+  .table td { display: block; width: 100%; }
+  .table tr {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    padding: 4px 2px;
+  }
+  .table tbody tr:hover { background: none; }
+  .table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(245, 244, 240, 0.07);
+    text-align: right;
+  }
+  .table td:last-child { border-bottom: none; }
+  /* Each value cell announces its column via the data-label attribute. */
+  .table td::before {
+    content: attr(data-label);
+    font-family: var(--font-mono), monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.64rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: left;
+  }
+  /* Song is the card's header — full-width, no label. */
+  .tdSong {
+    display: block;
+    min-width: 0;
+    padding-bottom: 12px;
+  }
+  .tdSong::before { content: none; }
+  .tdChart { white-space: normal; }
+  .tdPeak,
+  .tdYear { white-space: nowrap; }
 }
