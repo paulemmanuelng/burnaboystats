@@ -5,27 +5,33 @@ import KeepExploring from "../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { numberOnes } from "../data/charts";
 import { certHistory } from "../data/certifications";
+import { statBoxes } from "../data/africasBiggest";
 import { monthlyListenersSeries, monthlyListenersValues } from "../data/trends";
 
 const certs2026 = certHistory.filter((e) => e.year === 2026).length;
 const listenersPeak = `${monthlyListenersSeries[monthlyListenersSeries.length - 1].value}M`;
+// Data-driven so the story stays in sync with the YouTube leaderboard.
+const youtubeAudience =
+  statBoxes
+    .find((b) => b.id === "youtube-music-audience-peak")
+    ?.entries?.find((e) => e.name === "Burna Boy")?.value ?? "714M";
 
 export const metadata = pageMetadata({
-  title: "The Dai Dai Story — How Burna Boy & Shakira's World Cup Song Conquered 2026",
+  title: "Dai Dai at the World Cup Halftime Show — Shakira & Burna Boy's 2026 Anthem",
   description:
-    "The story of “Dai Dai”, Shakira and Burna Boy's 2026 FIFA World Cup anthem: from launch to No. 1 on the Billboard Global 200 — the first African artist ever — to the biggest song in the world, told through the numbers.",
+    "Shakira and Burna Boy perform “Dai Dai” at the 2026 FIFA World Cup Final halftime show this weekend, alongside Madonna, BTS, Justin Bieber and Coldplay. The full story of the World Cup anthem that hit No. 1 on the Billboard Global 200 and became the biggest song in the world.",
   path: "/dai-dai",
-  shareTitle: "The Dai Dai Story",
-  shareDescription: "How Burna Boy & Shakira's World Cup anthem became the biggest song in the world.",
+  shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
+  shareDescription: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and live at the Final halftime show.",
 });
 
 export default function DaiDaiPage() {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "The Dai Dai Story — How Burna Boy & Shakira's World Cup Song Conquered 2026",
+    headline: "Dai Dai — Shakira & Burna Boy's 2026 FIFA World Cup Anthem",
     description:
-      "The story of “Dai Dai”, the 2026 FIFA World Cup anthem by Shakira and Burna Boy, told through its record-breaking chart, streaming and certification run.",
+      "The story of “Dai Dai”, the 2026 FIFA World Cup anthem by Shakira and Burna Boy — its record-breaking chart, streaming and certification run, and its live performance at the World Cup Final halftime show.",
     datePublished: "2026-07-16",
     inLanguage: "en",
     author: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
@@ -50,8 +56,9 @@ export default function DaiDaiPage() {
           The <span className="accent">Dai Dai</span> Story
         </h1>
         <p>
-          How Shakira &amp; Burna Boy&apos;s 2026 World Cup anthem became the biggest song
-          in the world — told through the numbers. Scroll to follow the run.
+          How Shakira &amp; Burna Boy&apos;s 2026 World Cup anthem became the biggest
+          song in the world — and lands on the Final halftime stage this weekend.
+          Scroll to follow the run.
         </p>
       </header>
 
@@ -61,6 +68,7 @@ export default function DaiDaiPage() {
           listenersPeak={listenersPeak}
           listenersSeries={monthlyListenersValues}
           certs2026={certs2026}
+          youtubeAudience={youtubeAudience}
         />
 
         <section className={styles.outro}>

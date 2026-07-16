@@ -1,12 +1,12 @@
 import { ogImage, size, contentType } from "../lib/og-image";
 
 export { size, contentType };
-export const alt = "The Dai Dai Story — how Burna Boy & Shakira's World Cup song conquered 2026";
+export const alt = "Dai Dai — Shakira & Burna Boy's World Cup anthem, live at the 2026 halftime show";
 
 export default function Image() {
   return ogImage({
-    kicker: "The Dai Dai story",
+    kicker: "Shakira × Burna Boy",
     title: "Dai Dai",
-    sub: "How Burna Boy & Shakira's World Cup anthem became the biggest song in the world",
+    sub: "The World Cup anthem — No.1 worldwide, and live at the Final halftime show this weekend",
   });
 }

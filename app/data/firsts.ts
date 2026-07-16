@@ -55,6 +55,7 @@ export const firstGroups: FirstGroup[] = [
     items: [
       { year: "2026", title: "First African artist to reach No. 1 on the Billboard Global 200", text: "“Dai Dai” (with Shakira) topped Billboard's flagship worldwide chart in July 2026 — no African artist had ever led the US-inclusive Global 200 before." },
       { year: "2026", title: "First African artist to reach 50 million Spotify monthly listeners", text: "Crossed 50 million in July 2026 — the first African artist ever to reach the mark, and still the most of any African act, powered by the “Dai Dai” World Cup run." },
+      { year: "2026", title: "First African artist to surpass 700 million YouTube Music monthly audience", text: "Burna Boy's monthly audience on YouTube Music passed 700 million in July 2026 — now 714 million, a first for any African artist and one of the six biggest of any singer alive." },
       { year: "2026", title: "First African artist to chart the Billboard Hot 100 six years running", text: "An unbroken run from 2021 through 2026." },
       { year: "2026", title: "Most Billboard Hot 100 entries by an African artist", text: "Nine career entries — the record for any African artist, extended by “Dai Dai”." },
       { year: "2024", title: "First African artist to surpass 2 billion UK streams", text: "Recognised with a BRIT Billion award — the first African to reach it." },

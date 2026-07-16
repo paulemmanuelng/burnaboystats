@@ -119,11 +119,11 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["visualized", "visualised", "data", "charts", "graphs", "infographic", "visualization"],
   },
   {
-    title: "The Dai Dai Story",
+    title: "Dai Dai — the World Cup Anthem",
     path: "/dai-dai",
     section: "Records",
-    description: "How Burna Boy & Shakira's World Cup anthem became the biggest song in the world — told through the numbers.",
-    keywords: ["dai dai", "dai dai story", "world cup song", "shakira burna boy", "fifa world cup 2026", "biggest song in the world", "global 200"],
+    description: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and live at the 2026 Final halftime show.",
+    keywords: ["dai dai", "dai dai story", "world cup song", "world cup halftime show", "world cup halftime 2026", "who is performing at the world cup halftime", "shakira burna boy halftime", "world cup final performers", "shakira burna boy", "fifa world cup 2026", "biggest song in the world", "global 200"],
   },
   {
     title: "Latest Updates",

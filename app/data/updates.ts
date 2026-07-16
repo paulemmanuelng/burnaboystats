@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-16",
+    category: "Streaming",
+    text: "714 million on YouTube: Burna Boy becomes the first African artist in history to pass 700 million monthly audience on YouTube Music — now at 714 million, the biggest of any African artist.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-16",
     category: "Charts",
     text: "No.1 in the Middle East and Luxembourg: “Dai Dai” tops the Official MENA Chart's Top 20 and Luxembourg's Billboard chart, debuts at No.14 in Egypt and climbs to new peaks of No.26 in Hungary and No.21 in Israel.",
     href: "/records/charts",

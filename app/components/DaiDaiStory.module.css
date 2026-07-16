@@ -11,7 +11,6 @@
 .sticky {
   position: sticky;
   top: 88px;
-  align-self: start;
   height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
@@ -19,14 +18,87 @@
   justify-content: center;
   gap: 22px;
   text-align: center;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  padding: 24px;
+}
+
+/* Blurred cover art fills the stage behind every scene so it never feels empty. */
+.backdrop {
+  position: absolute;
+  inset: -25%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(46px) saturate(1.4);
+  opacity: 0.28;
+  z-index: 0;
+  pointer-events: none;
+}
+/* A dark radial scrim over the backdrop keeps the centred text high-contrast. */
+.sticky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 45%, rgba(10, 10, 11, 0.35), rgba(10, 10, 11, 0.82) 78%);
 }
 
 .scene {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  animation: sceneIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: sceneIn 0.5s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+/* Hero cover art */
+.cover {
+  width: clamp(150px, 32vw, 230px);
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* Streaming scene — two stats (Spotify + YouTube) */
+.twoStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.midNum {
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  line-height: 0.9;
+  color: var(--gold);
+}
+.midLabel {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.66rem;
+  color: var(--text-muted);
+}
+
+/* Halftime scene — overlapping artist portraits (the live collaboration) */
+.duo {
+  display: inline-flex;
+  align-items: center;
+}
+.duoImg {
+  width: clamp(88px, 20vw, 128px);
+  height: clamp(88px, 20vw, 128px);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.duoImg:last-child {
+  margin-left: -24px;
 }
 @keyframes sceneIn {
   from { opacity: 0; transform: translateY(14px); }
@@ -95,6 +167,8 @@
 }
 
 .progressBar {
+  position: relative;
+  z-index: 1;
   display: flex;
   gap: 8px;
 }

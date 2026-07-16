@@ -10,49 +10,63 @@ interface Props {
   listenersPeak: string; // e.g. "52.74M"
   listenersSeries: number[];
   certs2026: number;
+  youtubeAudience: string; // e.g. "714M"
 }
 
-type SceneKey = "hero" | "global1" | "no1s" | "streaming" | "certs" | "finale";
+// Official artwork + artist images, served from Spotify's CDN (the same source
+// the discography uses). The Dai Dai cover carries both artists' branding, so it
+// doubles as the collaboration visual.
+const COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
+const BURNA = "https://i.scdn.co/image/ab6761610000e5ebb4e44d0f4e3e47af2cf06f3f";
+const SHAKIRA = "https://i.scdn.co/image/ab6761610000e5eb17f15f351cba70561ad8bcac";
 
-// The narrative. Each step scrolls past; the sticky panel renders the matching
-// scene. Numbers are injected from live data so the story never goes stale.
+type SceneKey = "hero" | "global1" | "no1s" | "streaming" | "certs" | "worldsong" | "halftime";
+
+// The narrative — framed as the Shakira × Burna Boy collaboration it is, not one
+// artist's star power. Numbers are injected from live data so it never goes stale.
 function buildSteps(p: Props): { scene: SceneKey; kicker: string; title: string; body: string }[] {
   return [
     {
       scene: "hero",
       kicker: "15 May 2026",
-      title: "The world got a new anthem",
-      body: "The 2026 FIFA World Cup unveiled its official song — “Dai Dai”, Shakira × Burna Boy. An Afrobeats hook on the planet's biggest stage.",
+      title: "A World Cup anthem, together",
+      body: "The 2026 FIFA World Cup unveiled its official song — “Dai Dai”, a collaboration between two global superstars: Shakira and Burna Boy. Latin pop meets Afrobeats on the planet's biggest stage.",
     },
     {
       scene: "global1",
       kicker: "The record",
       title: "No. 1 on the Billboard Global 200",
-      body: "Within weeks it topped Billboard's flagship, US-inclusive worldwide chart — the first time in history an African artist has ever led it.",
+      body: "Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it.",
     },
     {
       scene: "no1s",
       kicker: "Worldwide",
       title: "No. 1 in country after country",
-      body: `From France and Germany to the Netherlands and the UAE, “Dai Dai” hit the top spot around the world — part of ${p.numberOnes} No. 1 chart placements in Burna Boy's career.`,
+      body: `From France and Germany to the Netherlands and the UAE, “Dai Dai” hit the top spot around the world — part of ${p.numberOnes} No. 1 chart placements, the reach of a true global collaboration.`,
     },
     {
       scene: "streaming",
-      kicker: "On Spotify",
-      title: "The listeners poured in",
-      body: `Burna Boy's monthly listeners climbed to ${p.listenersPeak} — a fresh all-time high, and the most of any African artist on the platform.`,
+      kicker: "On streaming",
+      title: "The whole world pressed play",
+      body: `Powered by the song, Burna Boy's Spotify monthly listeners climbed to ${p.listenersPeak} and his YouTube Music audience passed ${p.youtubeAudience} — the first African artist ever beyond 700 million there.`,
     },
     {
       scene: "certs",
       kicker: "Certified worldwide",
       title: "The plaques rolled in",
-      body: `Gold and Platinum from France, Hungary, Slovakia, the US and beyond — part of ${p.certs2026} certifications in 2026, a record for an African artist in a single calendar year.`,
+      body: `Gold and Platinum for Shakira and Burna Boy from France, Hungary, Slovakia, the US and beyond — part of ${p.certs2026} certifications in 2026, a record year for an African artist.`,
     },
     {
-      scene: "finale",
+      scene: "worldsong",
       kicker: "July 2026",
       title: "The biggest song in the world",
-      body: "“Dai Dai” reached No. 1 on Spotify's Global chart — the single most-streamed song on Earth. An African artist, leading the world.",
+      body: "“Dai Dai” reached No. 1 on Spotify's Global chart — the single most-streamed song on Earth, and the most-watched video of the year.",
+    },
+    {
+      scene: "halftime",
+      kicker: "This weekend · 19 July",
+      title: "Live on the World Cup Final stage",
+      body: "Shakira and Burna Boy take “Dai Dai” to the 2026 FIFA World Cup Final halftime show — performing to a global audience of billions, on a bill alongside Madonna, BTS, Justin Bieber and Coldplay.",
     },
   ];
 }
@@ -64,15 +78,16 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
     <div key={scene} className={styles.scene}>
       {scene === "hero" && (
         <>
-          <span className={styles.bigWord}>DAI DAI</span>
-          <span className={styles.sceneSub}>Shakira × Burna Boy · FIFA World Cup 2026</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className={styles.cover} src={COVER} alt="Dai Dai single cover — Shakira × Burna Boy, 2026 FIFA World Cup" width={220} height={220} loading="eager" />
+          <span className={styles.sceneLabel}>Dai Dai · Shakira × Burna Boy</span>
         </>
       )}
       {scene === "global1" && (
         <>
           <span className={styles.hash}>№1</span>
           <span className={styles.sceneLabel}>Billboard Global 200</span>
-          <span className={styles.sceneNote}>First African artist ever</span>
+          <span className={styles.sceneNote}>First African artist ever · Shakira&apos;s 2nd</span>
         </>
       )}
       {scene === "no1s" && (
@@ -84,9 +99,15 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
       )}
       {scene === "streaming" && (
         <>
-          <span className={styles.bigNum}>{props.listenersPeak}</span>
-          <span className={styles.sceneLabel}>Spotify monthly listeners</span>
-          <Sparkline data={props.listenersSeries} width={240} height={70} strokeWidth={2.5} ariaLabel="Monthly listeners climbing" />
+          <div className={styles.twoStat}>
+            <span className={styles.midNum}>{props.listenersPeak}</span>
+            <span className={styles.midLabel}>Spotify listeners</span>
+          </div>
+          <div className={styles.twoStat}>
+            <span className={styles.midNum}>{props.youtubeAudience}</span>
+            <span className={styles.midLabel}>YouTube audience</span>
+          </div>
+          <Sparkline data={props.listenersSeries} width={220} height={56} strokeWidth={2.5} ariaLabel="Streaming climbing" />
         </>
       )}
       {scene === "certs" && (
@@ -98,10 +119,22 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
           </span>
         </>
       )}
-      {scene === "finale" && (
+      {scene === "worldsong" && (
         <>
           <span className={styles.finaleWord}>THE BIGGEST<br />SONG IN<br />THE WORLD</span>
           <span className={styles.sceneLabel}>№1 · Spotify Global Top Songs</span>
+        </>
+      )}
+      {scene === "halftime" && (
+        <>
+          <div className={styles.duo}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className={styles.duoImg} src={SHAKIRA} alt="Shakira" width={128} height={128} loading="lazy" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className={styles.duoImg} src={BURNA} alt="Burna Boy" width={128} height={128} loading="lazy" />
+          </div>
+          <span className={styles.sceneLabel}>World Cup Final · Halftime show</span>
+          <span className={styles.sceneNote}>Shakira &amp; Burna Boy · live, 19 July</span>
         </>
       )}
     </div>
@@ -131,6 +164,8 @@ export default function DaiDaiStory(props: Props) {
     <div className={styles.scrolly}>
       <div className={styles.stickyCol}>
         <div className={styles.sticky}>
+          {/* A blurred cover fills the stage behind every scene so it never feels empty. */}
+          <div className={styles.backdrop} style={{ backgroundImage: `url(${COVER})` }} aria-hidden="true" />
           <Scene scene={steps[active].scene} props={props} />
           <div className={styles.progressBar} aria-hidden="true">
             {steps.map((_, i) => (
