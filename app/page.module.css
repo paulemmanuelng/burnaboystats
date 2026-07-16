@@ -540,7 +540,7 @@ a.stat:hover .statNum { color: var(--gold-bright); }
   }
   .featuredCover {
     order: -1;
-    width: clamp(150px, 44vw, 200px);
+    width: clamp(112px, 33vw, 150px);
   }
 }
 
