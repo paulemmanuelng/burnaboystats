@@ -1,0 +1,41 @@
+.delta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.arrow {
+  font-size: 0.68rem;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+.num {
+  font-weight: 700;
+}
+.up {
+  color: var(--gold);
+}
+.up .arrow {
+  color: var(--gold);
+}
+.down {
+  color: #f2726a;
+}
+.down .arrow {
+  color: #f2726a;
+}
+.label {
+  color: var(--text-muted);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.66rem;
+}
+.flat {
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+}

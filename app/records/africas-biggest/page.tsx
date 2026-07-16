@@ -2,8 +2,14 @@ import Link from "next/link";
 import styles from "./africas-biggest.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import StatBox from "../../components/StatBox";
+import TrendStat from "../../components/TrendStat";
 import { statBoxes } from "../../data/africasBiggest";
+import { monthlyListenersSeries, monthlyListenersValues } from "../../data/trends";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
+
+const firstListeners = monthlyListenersSeries[0].value;
+const latestListeners = monthlyListenersSeries[monthlyListenersSeries.length - 1].value;
+const listenersMonthPct = ((latestListeners - firstListeners) / firstListeners) * 100;
 
 export const metadata = pageMetadata({
   title: "Africa's Biggest Artists — Billboard Global 200 & Streaming Records",
@@ -113,6 +119,18 @@ export default function AfricasBiggestPage() {
           The leaderboards below rank African music&apos;s biggest — Burna Boy,
           Wizkid, Tems, Rema, Tyla and more — by the numbers.
         </p>
+
+        <div className={styles.trendLead}>
+          <TrendStat
+            kicker="Spotify monthly listeners · peak"
+            value={`${latestListeners}M`}
+            series={monthlyListenersValues}
+            delta={listenersMonthPct}
+            deltaFormat="pct"
+            deltaLabel="this month"
+            note="Climbing fast on the “Dai Dai” World Cup run — up from 47.4M at the start of July, and the highest of any African artist."
+          />
+        </div>
 
         <nav className={styles.jumpNav} aria-label="Jump to a section">
           {groups.map((g) => (

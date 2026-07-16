@@ -1,12 +1,18 @@
 import Link from "next/link";
 import styles from "./byTheNumbers.module.css";
 import KeepExploring from "../../components/KeepExploring";
+import TrendDelta from "../../components/TrendDelta";
 import { pageMetadata, datasetJsonLd, CANONICAL_ORIGIN } from "../../lib/seo";
 import { totalAwards, countryCount } from "../../data/certifications";
 import { totalWins } from "../../data/awards";
 import { numberOnes, chartCountryCount } from "../../data/charts";
 import { countryCount as performedCountryCount } from "../../data/performedCountries";
 import { albums } from "../../data/albums";
+import { monthlyListenersSeries } from "../../data/trends";
+
+const listenersLatest = monthlyListenersSeries[monthlyListenersSeries.length - 1].value;
+const listenersPct =
+  ((listenersLatest - monthlyListenersSeries[0].value) / monthlyListenersSeries[0].value) * 100;
 
 const editionYear = new Date().getFullYear();
 const asOf = new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" });
@@ -20,14 +26,14 @@ export const metadata = pageMetadata({
 });
 
 // Each stat is a standalone, quotable fact linking to the page that proves it.
-const stats: { num: string; label: string; sub: string; href: string }[] = [
+const stats: { num: string; label: string; sub: string; href: string; delta?: number }[] = [
   { num: `${totalAwards()}`, label: "Certifications", sub: `across ${countryCount} countries — most of any African artist`, href: "/certifications" },
   { num: `${totalWins}`, label: "Award wins", sub: "including a 2021 Grammy, plus BET, MOBO, Headies & AFRIMA wins", href: "/records/awards" },
   { num: `${numberOnes}`, label: "No. 1 chart placements", sub: `on official national charts, part of ${chartCountryCount} charting countries in all`, href: "/records/charts" },
   { num: "$30.46M", label: "Highest-grossing African tour", sub: "the I Told Them… Tour — a world record for an African act", href: "/records/tours" },
   { num: "$6.15M", label: "Biggest concert by an African artist", sub: "London Stadium, June 2024 — 58,973 fans", href: "/records/tours" },
   { num: "9", label: "Billboard Hot 100 entries", sub: "the most by any African artist, six years running", href: "/records/charts" },
-  { num: "52.7M", label: "Spotify monthly listeners", sub: "the first African artist ever to reach 50 million", href: "/records/africas-biggest" },
+  { num: `${listenersLatest}M`, label: "Spotify monthly listeners", sub: "the first African artist ever to reach 50 million", href: "/records/africas-biggest", delta: listenersPct },
   // 662M figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.
   { num: "662M", label: "YouTube Music monthly audience", sub: "the highest peak of any African artist", href: "/records/africas-biggest" },
   { num: "2B+", label: "UK streams", sub: "the first African artist to pass two billion", href: "/records/firsts" },
@@ -79,6 +85,11 @@ export default function ByTheNumbersPage() {
           {stats.map((s) => (
             <Link key={s.label} href={s.href} className={styles.stat}>
               <span className={styles.num}>{s.num}</span>
+              {s.delta != null ? (
+                <span className={styles.delta}>
+                  <TrendDelta value={s.delta} format="pct" label="this month" />
+                </span>
+              ) : null}
               <span className={styles.label}>{s.label}</span>
               <span className={styles.sub}>{s.sub}</span>
             </Link>

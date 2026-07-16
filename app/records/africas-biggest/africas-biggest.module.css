@@ -24,6 +24,12 @@
   padding: 24px 24px 18px;
 }
 
+/* Headline "trending" stat (sparkline + delta) above the jump-nav. */
+.trendLead {
+  margin: 4px 0 30px;
+  max-width: 640px;
+}
+
 /* Jump-nav + grouped sections (long page → two clear parts) */
 .jumpNav {
   display: flex;

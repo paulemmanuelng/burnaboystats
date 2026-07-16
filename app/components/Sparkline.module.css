@@ -1,0 +1,19 @@
+.spark {
+  display: block;
+  overflow: visible;
+}
+.line {
+  fill: none;
+  stroke: var(--gold);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.area {
+  fill: rgba(255, 182, 39, 0.1);
+  stroke: none;
+}
+.dot {
+  fill: var(--gold-bright);
+  stroke: var(--bg-soft);
+  stroke-width: 1;
+}

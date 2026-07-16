@@ -1,0 +1,42 @@
+.card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius-sm);
+  padding: 18px 22px;
+}
+.kicker {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.64rem;
+  color: var(--text-muted);
+}
+.body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 8px;
+}
+.left {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.value {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 6vw, 2.9rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  color: var(--gold);
+}
+.note {
+  margin: 12px 0 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
