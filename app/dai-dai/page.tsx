@@ -37,9 +37,68 @@ export default function DaiDaiPage() {
     url: `${CANONICAL_ORIGIN}/dai-dai`,
   };
 
+  // Every headline "Dai Dai" figure in one scannable, crawlable block — the
+  // song's OWN numbers (not Burna Boy's artist-wide totals).
+  const byNumbers: { v: string; l: string }[] = [
+    { v: "No. 1", l: "Billboard Global 200 — the first African artist ever to top the US-inclusive worldwide chart, and Shakira's 2nd" },
+    { v: "No. 1", l: "Billboard Global 200 (Excl. US)" },
+    { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
+    { v: "No. 1", l: "Spotify Global Top Songs, Daily & Weekly — the most-streamed song on Earth, a first for an African artist" },
+    { v: "No. 1", l: "Official MENA Chart Top 20, and Billboard's Central America & Caribbean chart" },
+    { v: "No. 55", l: "Billboard Hot 100 (US) — extending Burna Boy's record for the most Hot 100 entries by an African artist" },
+    { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, plus Gold in France, Spain, Colombia, Hungary & Slovakia" },
+    { v: "19 Jul", l: "Shakira & Burna Boy perform it live at the 2026 FIFA World Cup Final halftime show" },
+  ];
+
+  // Answer-first Q&A targeting the exact questions halftime-weekend searchers ask.
+  const faqs: { q: string; a: string }[] = [
+    {
+      q: "Who sings “Dai Dai”?",
+      a: "“Dai Dai” is a 2026 collaboration between Colombian pop superstar Shakira and Nigerian Afrobeats star Burna Boy. It is the official song of the 2026 FIFA World Cup.",
+    },
+    {
+      q: "Is “Dai Dai” the 2026 World Cup song?",
+      a: "Yes. “Dai Dai” is the official anthem of the 2026 FIFA World Cup, and Shakira and Burna Boy perform it live at the World Cup Final halftime show on 19 July 2026.",
+    },
+    {
+      q: "Did “Dai Dai” reach No. 1?",
+      a: "Yes. “Dai Dai” reached No. 1 on the Billboard Global 200 and the Global 200 Excl. US, topped Spotify's Global Top Songs chart on both the Daily and Weekly lists, and hit No. 1 on the official singles chart in 15 countries.",
+    },
+    {
+      q: "When is the 2026 World Cup Final halftime show?",
+      a: "Shakira and Burna Boy perform “Dai Dai” at the 2026 FIFA World Cup Final halftime show on 19 July 2026, on a bill alongside Madonna, BTS, Justin Bieber and Coldplay.",
+    },
+    {
+      q: "How many certifications does “Dai Dai” have?",
+      a: "“Dai Dai” has 6 certifications: 2× Platinum (Latin) in the US from the RIAA, plus Gold in France, Spain, Colombia, Hungary and Slovakia.",
+    },
+  ];
+
+  const straight = (s: string) => s.replace(/[“”]/g, '"');
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: straight(f.q),
+      acceptedAnswer: { "@type": "Answer", text: straight(f.a) },
+    })),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: CANONICAL_ORIGIN },
+      { "@type": "ListItem", position: 2, name: "The Dai Dai Story", item: `${CANONICAL_ORIGIN}/dai-dai` },
+    ],
+  };
+
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <header className="pageHeader container">
         <h1>
@@ -54,6 +113,34 @@ export default function DaiDaiPage() {
 
       <div className="container">
         <DaiDaiStory daiDaiNo1s={daiDaiNumberOnes} daiDaiCerts={daiDaiCertCount} />
+
+        <section className={styles.byNumbers} aria-labelledby="dd-numbers">
+          <h2 id="dd-numbers" className={styles.sectionTitle}>
+            Dai Dai <span className="goldText">by the numbers</span>
+          </h2>
+          <div className={styles.numGrid}>
+            {byNumbers.map((n) => (
+              <div key={n.l} className={styles.numCard}>
+                <span className={styles.numValue}>{n.v}</span>
+                <span className={styles.numLabel}>{n.l}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.faq} aria-labelledby="dd-faq">
+          <h2 id="dd-faq" className={styles.sectionTitle}>
+            Frequently asked <span className="goldText">questions</span>
+          </h2>
+          <div className={styles.faqList}>
+            {faqs.map((f) => (
+              <div key={f.q} className={styles.faqItem}>
+                <h3 className={styles.faqQ}>{f.q}</h3>
+                <p className={styles.faqA}>{f.a}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         <section className={styles.outro}>
           <p className={styles.outroLead}>
