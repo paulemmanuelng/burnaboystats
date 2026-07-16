@@ -2,15 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import CountUp from "./CountUp";
-import Sparkline from "./Sparkline";
 import styles from "./DaiDaiStory.module.css";
 
+// Every figure here is "Dai Dai"'s OWN — never Burna Boy's artist-wide totals
+// (monthly listeners, YouTube audience, career certs). Burna had a huge
+// catalogue and was already climbing before this song; the page credits the
+// song for what the song did, and keeps Shakira in frame as the co-lead.
 interface Props {
-  daiDaiNo1s: number; // Dai Dai's OWN No. 1 countries (not Burna's career total)
-  listenersPeak: string; // e.g. "52.99M"
-  listenersSeries: number[];
-  certs2026: number;
-  youtubeAudience: string; // e.g. "714M"
+  daiDaiNo1s: number; // Dai Dai's No. 1 countries
+  daiDaiCerts: number; // certifications for Dai Dai specifically
 }
 
 // Official artwork + artist images, served from Spotify's CDN (the same source
@@ -47,20 +47,20 @@ function buildSteps(p: Props): { scene: SceneKey; kicker: string; title: string;
     {
       scene: "streaming",
       kicker: "On streaming",
-      title: "The whole world pressed play",
-      body: `Powered by the song, Burna Boy's Spotify monthly listeners climbed to ${p.listenersPeak} and his YouTube Music audience passed ${p.youtubeAudience} — the first African artist ever beyond 700 million there.`,
+      title: "The most-streamed song on Earth",
+      body: "“Dai Dai” topped Spotify's Global Top Songs chart on both the Daily and Weekly lists — the single most-streamed song on the planet, and the first time an African artist has ever led it. Shakira and Burna Boy, No. 1 worldwide.",
     },
     {
       scene: "certs",
       kicker: "Certified worldwide",
       title: "The plaques rolled in",
-      body: `Gold and Platinum for Shakira and Burna Boy from France, Hungary, Slovakia, the US and beyond — part of ${p.certs2026} certifications in 2026, a record year for an African artist.`,
+      body: `The song earned its own plaques — 2× Platinum (Latin) in the US and Gold in France, Spain, Colombia, Hungary and Slovakia. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
     },
     {
       scene: "worldsong",
-      kicker: "July 2026",
-      title: "The biggest song in the world",
-      body: "“Dai Dai” reached No. 1 on Spotify's Global chart — the single most-streamed song on Earth, and the most-watched video of the year.",
+      kicker: "The record",
+      title: "The biggest World Cup anthem ever",
+      body: "No FIFA World Cup song has ever charted this high: “Dai Dai” is the highest-peaking World Cup anthem in Spotify Global history — Shakira's Latin pop and Burna Boy's Afrobeats meeting at the very top.",
     },
     {
       scene: "halftime",
@@ -99,30 +99,25 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
       )}
       {scene === "streaming" && (
         <>
-          <div className={styles.twoStat}>
-            <span className={styles.midNum}>{props.listenersPeak}</span>
-            <span className={styles.midLabel}>Spotify listeners</span>
-          </div>
-          <div className={styles.twoStat}>
-            <span className={styles.midNum}>{props.youtubeAudience}</span>
-            <span className={styles.midLabel}>YouTube audience</span>
-          </div>
-          <Sparkline data={props.listenersSeries} width={220} height={56} strokeWidth={2.5} ariaLabel="Streaming climbing" />
+          <span className={styles.hash}>№1</span>
+          <span className={styles.sceneLabel}>Spotify Global Top Songs</span>
+          <span className={styles.sceneNote}>Daily &amp; Weekly · most-streamed song on Earth</span>
         </>
       )}
       {scene === "certs" && (
         <>
-          <span className={styles.bigNum}><CountUp end={props.certs2026} /></span>
-          <span className={styles.sceneLabel}>certifications in 2026</span>
+          <span className={styles.bigNum}><CountUp end={props.daiDaiCerts} /></span>
+          <span className={styles.sceneLabel}>certifications for Dai Dai</span>
+          <span className={styles.sceneNote}>2× Platinum (Latin) US · Gold in 5 more</span>
           <span className={styles.tierDots}>
-            <i style={{ background: "#8fe3f0" }} /> <i style={{ background: "#dfe2e8" }} /> <i style={{ background: "var(--gold)" }} /> <i style={{ background: "#b8bcc4" }} />
+            <i style={{ background: "#dfe2e8" }} /> <i style={{ background: "var(--gold)" }} />
           </span>
         </>
       )}
       {scene === "worldsong" && (
         <>
-          <span className={styles.finaleWord}>THE BIGGEST<br />SONG IN<br />THE WORLD</span>
-          <span className={styles.sceneLabel}>№1 · Spotify Global Top Songs</span>
+          <span className={styles.finaleWord}>BIGGEST<br />WORLD CUP<br />ANTHEM EVER</span>
+          <span className={styles.sceneLabel}>Highest-peaking on Spotify Global</span>
         </>
       )}
       {scene === "halftime" && (

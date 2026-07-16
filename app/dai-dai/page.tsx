@@ -4,17 +4,7 @@ import DaiDaiStory from "../components/DaiDaiStory";
 import KeepExploring from "../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { daiDaiNumberOnes } from "../data/charts";
-import { certHistory } from "../data/certifications";
-import { statBoxes } from "../data/africasBiggest";
-import { monthlyListenersSeries, monthlyListenersValues } from "../data/trends";
-
-const certs2026 = certHistory.filter((e) => e.year === 2026).length;
-const listenersPeak = `${monthlyListenersSeries[monthlyListenersSeries.length - 1].value}M`;
-// Data-driven so the story stays in sync with the YouTube leaderboard.
-const youtubeAudience =
-  statBoxes
-    .find((b) => b.id === "youtube-music-audience-peak")
-    ?.entries?.find((e) => e.name === "Burna Boy")?.value ?? "714M";
+import { daiDaiCertCount } from "../data/certifications";
 
 export const metadata = pageMetadata({
   title: "Dai Dai at the World Cup Halftime Show — Shakira & Burna Boy's 2026 Anthem",
@@ -63,13 +53,7 @@ export default function DaiDaiPage() {
       </header>
 
       <div className="container">
-        <DaiDaiStory
-          daiDaiNo1s={daiDaiNumberOnes}
-          listenersPeak={listenersPeak}
-          listenersSeries={monthlyListenersValues}
-          certs2026={certs2026}
-          youtubeAudience={youtubeAudience}
-        />
+        <DaiDaiStory daiDaiNo1s={daiDaiNumberOnes} daiDaiCerts={daiDaiCertCount} />
 
         <section className={styles.outro}>
           <p className={styles.outroLead}>

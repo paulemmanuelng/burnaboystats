@@ -68,27 +68,6 @@
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
 }
 
-/* Streaming scene — two stats (Spotify + YouTube) */
-.twoStat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-.midNum {
-  font-family: var(--font-anton), sans-serif;
-  font-size: clamp(2.4rem, 8vw, 4rem);
-  line-height: 0.9;
-  color: var(--gold);
-}
-.midLabel {
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.66rem;
-  color: var(--text-muted);
-}
-
 /* Halftime scene — overlapping artist portraits (the live collaboration) */
 .duo {
   display: inline-flex;
@@ -284,7 +263,6 @@
   .bigNum { font-size: clamp(3.2rem, 19vw, 4.8rem); }
   .hash { font-size: clamp(4.4rem, 26vw, 6.8rem); }
   .finaleWord { font-size: clamp(1.9rem, 8.5vw, 2.8rem); }
-  .midNum { font-size: clamp(2rem, 11vw, 3rem); }
   .flags { font-size: 1.2rem; line-height: 1.5; }
   .duoImg { width: clamp(74px, 21vw, 100px); height: clamp(74px, 21vw, 100px); }
 }

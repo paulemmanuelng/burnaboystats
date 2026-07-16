@@ -506,3 +506,7 @@ export const countryCount = Object.keys(COUNTRIES).length;
 export function totalAwards() {
   return allItems.reduce((sum, it) => sum + it.certs.length, 0);
 }
+
+// "Dai Dai"'s OWN certifications only — so the Dai Dai page never borrows Burna
+// Boy's artist-wide 2026 total. Counts distinct country certs for the song.
+export const daiDaiCertCount = certHistory.filter((e) => e.title === "Dai Dai").length;
