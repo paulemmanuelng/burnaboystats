@@ -31,7 +31,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-16",
     category: "Charts",
-    text: "No.1 in the Middle East and Luxembourg: “Dai Dai” tops the Official MENA Chart's Top 20 and Luxembourg's Billboard chart, debuts at No.14 in Egypt and climbs to a new peak of No.26 in Hungary.",
+    text: "No.1 in the Middle East and Luxembourg: “Dai Dai” tops the Official MENA Chart's Top 20 and Luxembourg's Billboard chart, debuts at No.14 in Egypt and climbs to new peaks of No.26 in Hungary and No.21 in Israel.",
     href: "/records/charts",
   },
   {
