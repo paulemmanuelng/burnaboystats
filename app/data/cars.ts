@@ -95,9 +95,9 @@ export const cars: Car[] = [
     make: "Bugatti", model: "Chiron (Venuum Widebody)",
     valueUsd: 6_190_000, valueNaira: "₦9 billion",
     desc: "A one-of-one custom build by Dubai's Venuum, unveiled July 2026 and billed as the world's first widebody Chiron — baby blue over black with a French-tricolour stripe, a “7” roundel, and his name engraved on the rear spoiler. Reported as the most expensive car in West Africa, though neither Burna Boy nor Venuum has publicly confirmed the exact price — every outlet hedges it as \"reportedly\" ₦9 billion.",
-    // He hasn't driven it yet — this is Venuum's own reveal of the finished build.
-    link: "https://autojosh.com/venuum-unveils-burna-boys-one-of-a-kind-bugatti-chiron-vxx-special-edition-worth-n9-billion/",
-    linkLabel: "See the Venuum reveal",
+    // He hasn't driven it yet — this is the official reveal video of the finished build.
+    link: "https://www.youtube.com/watch?v=YNP3X59Yv6Y",
+    linkLabel: "Watch the reveal",
   },
   {
     make: "McLaren", model: "Senna (MSO Carbon Edition)",
@@ -132,7 +132,8 @@ export const cars: Car[] = [
     make: "Lamborghini", model: "Aventador SVJ Roadster", year: 2022,
     valueUsd: 1_000_000, valueNaira: "₦1.46 billion",
     desc: "The most extreme Aventador — a 759-hp naturally-aspirated V12 in open-top Roadster form, built in limited numbers.",
-    link: "https://autojosh.com/burna-boy-pull-up-in-1million-lamborghini-aventador-svj-at-lagos-restaurant/",
+    link: "https://www.youtube.com/watch?v=VUrDi8jbKkg",
+    linkLabel: "Watch the delivery",
   },
   {
     make: "Rolls-Royce", model: "Dawn", year: 2019,
@@ -150,7 +151,8 @@ export const cars: Car[] = [
     make: "Porsche", model: "911 GT3 RS (Weissach)", year: 2025,
     valueUsd: 600_000, valueNaira: "₦900 million",
     desc: "A track-focused, road-legal flat-six with the Weissach pack — 518 hp, 0–100 km/h in 3.2 seconds. Delivered on Valentine's Day 2026; a Polanco dealership staffer put the price at ₦900 million.",
-    link: "https://autojosh.com/porsche-911-gt3-rs-worth-n1b-joins-burna-boys-car-collection-singer-takes-supercar-for-a-spin/",
+    link: "https://x.com/TheNationNews/status/2022971489272631326",
+    linkLabel: "Watch on X",
   },
   {
     make: "Lamborghini", model: "Urus (Novitec Edition)", year: 2022,
