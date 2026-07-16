@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-16",
     category: "Streaming",
+    text: "No. 56 in the world: Burna Boy's Spotify monthly listeners climb to a new all-time peak of 52.99 million, making him the 56th most-listened-to artist on the planet — and still the most of any African artist.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-16",
+    category: "Streaming",
     text: "714 million on YouTube: Burna Boy becomes the first African artist in history to pass 700 million monthly audience on YouTube Music — now at 714 million, the biggest of any African artist.",
     href: "/records/africas-biggest",
   },
@@ -50,12 +56,6 @@ export const updates: Update[] = [
     date: "2026-07-14",
     category: "Streaming",
     text: "The biggest song in the world: “Dai Dai” is No. 1 on Spotify's Global chart — the most-streamed song on the planet, topping both the Weekly and Daily Top Songs Global charts.",
-    href: "/records/africas-biggest",
-  },
-  {
-    date: "2026-07-14",
-    category: "Streaming",
-    text: "A new Spotify high: Burna Boy's monthly listeners climb to 52.74 million — a fresh all-time peak, and still the most of any African artist on the platform.",
     href: "/records/africas-biggest",
   },
   {

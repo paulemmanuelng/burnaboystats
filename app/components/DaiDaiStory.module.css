@@ -9,19 +9,24 @@
 }
 
 .sticky {
+  /* A content-hugging card centred in the viewport (top:50% + translate), so the
+     scene fills the frame instead of floating in a tall, empty box. */
   position: sticky;
-  top: 88px;
-  height: calc(100vh - 120px);
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto;
+  min-height: min(430px, 62vh);
+  max-height: calc(100dvh - 96px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 22px;
+  gap: 20px;
   text-align: center;
   overflow: hidden;
   border-radius: var(--radius);
   border: 1px solid var(--line);
-  padding: 24px;
+  padding: 40px 28px;
 }
 
 /* Blurred cover art fills the stage behind every scene so it never feels empty. */
@@ -237,10 +242,15 @@
   }
   .sticky {
     top: 60px;
-    height: 42vh;
+    transform: none;
+    height: 44vh;
+    min-height: 0;
+    max-height: none;
     background: var(--bg);
     z-index: 2;
+    border: none;
     border-bottom: 1px solid var(--line);
+    border-radius: 0;
     margin: 0 -6vw;
     padding: 0 6vw;
   }
