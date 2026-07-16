@@ -47,6 +47,14 @@
   --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
   --glow: 0 0 40px rgba(255, 182, 39, 0.22);
 
+  /* Motion — one shared rhythm for the whole UI. --ease for state changes,
+     --ease-out for entrances; durations kept short and consistent. */
+  --ease: ease;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 0.15s;
+  --dur: 0.2s;
+  --dur-slow: 0.3s;
+
   --max-width: 1280px;
 }
 
@@ -154,8 +162,8 @@ a {
   text-transform: uppercase;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.18s ease, box-shadow 0.18s ease,
-    background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    background var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .btnPrimary {
   background: linear-gradient(135deg, var(--gold-bright), var(--gold));
@@ -188,7 +196,7 @@ a {
   background-color: transparent;
   background-image: linear-gradient(to bottom, rgba(9, 9, 11, 0.9), rgba(9, 9, 11, 0));
   border-bottom: 1px solid transparent;
-  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+  transition: background-color var(--dur-slow) var(--ease), backdrop-filter var(--dur-slow) var(--ease), border-color var(--dur-slow) var(--ease);
 }
 /* Once scrolled off the hero (or when the mobile menu is open): a solid,
    blurred bar so nav links stay legible over the content scrolling beneath. */
@@ -241,7 +249,7 @@ a {
   letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.88);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
-  transition: color 0.15s ease;
+  transition: color var(--dur-fast) var(--ease);
 }
 .navLinks a::after {
   content: "";
@@ -251,7 +259,7 @@ a {
   width: 0;
   height: 2px;
   background: var(--gold);
-  transition: width 0.2s ease;
+  transition: width var(--dur) var(--ease);
 }
 .navLinks a:hover {
   color: var(--gold);
@@ -279,7 +287,7 @@ a {
   height: 2px;
   background: var(--text);
   border-radius: 2px;
-  transition: transform 0.25s ease, opacity 0.2s ease;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
 }
 .navToggle[aria-expanded="true"] .navToggleBar:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
@@ -345,7 +353,7 @@ a {
 .footerSocial {
   display: inline-flex;
   color: var(--text-muted);
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
 .footerSocial:hover {
   color: var(--gold);
@@ -369,7 +377,7 @@ a {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.72rem;
-  transition: color 0.15s ease;
+  transition: color var(--dur-fast) var(--ease);
 }
 .footerNav a:hover {
   color: var(--gold);
@@ -427,7 +435,7 @@ a {
   font-weight: 600;
   text-decoration: none;
   border-bottom: 1px solid rgba(255, 182, 39, 0.4);
-  transition: border-color 0.18s ease;
+  transition: border-color var(--dur) var(--ease);
 }
 .wikiLink:hover { border-bottom-color: var(--gold); }
 
@@ -451,7 +459,7 @@ a {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 24px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
 .card:hover {
   transform: translateY(-4px);
@@ -482,7 +490,7 @@ a {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 18px 20px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
 a.fact:hover {
   border-color: var(--gold);
@@ -551,7 +559,7 @@ a.fact:hover {
   border-radius: 999px;
   font-size: 0.9rem;
   background: var(--bg-soft);
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .chip:hover { border-color: var(--gold); color: var(--gold); }
 
@@ -591,7 +599,7 @@ a.fact:hover {
   padding: 14px 16px;
   color: var(--text);
   font: inherit;
-  transition: border-color 0.2s ease;
+  transition: border-color var(--dur) var(--ease);
 }
 .input:focus,
 .textarea:focus { outline: none; border-color: var(--gold); }
@@ -705,7 +713,7 @@ a.fact:hover {
   background: none;
   cursor: pointer;
   border-radius: var(--radius);
-  transition: transform 0.2s ease;
+  transition: transform var(--dur) var(--ease);
 }
 .coverBtn:hover {
   transform: translateY(-5px);
@@ -726,7 +734,7 @@ a.fact:hover {
   padding: 24px;
   background: rgba(0, 0, 0, 0.78);
   backdrop-filter: blur(6px);
-  animation: fadeIn 0.2s ease;
+  animation: fadeIn var(--dur) var(--ease);
 }
 .modal {
   position: relative;
@@ -739,7 +747,7 @@ a.fact:hover {
   border-radius: var(--radius);
   padding: 28px;
   box-shadow: var(--shadow);
-  animation: modalPop 0.25s ease;
+  animation: modalPop var(--dur) var(--ease);
 }
 .modalClose {
   position: absolute;
@@ -754,7 +762,7 @@ a.fact:hover {
   font-size: 1.4rem;
   line-height: 1;
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .modalClose:hover {
   border-color: var(--gold);
@@ -787,7 +795,7 @@ a.fact:hover {
   font-size: 0.92rem;
   padding: 11px 20px;
   border-radius: 999px;
-  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+  transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 .spotifyBtn:hover {
   background: #1ed760;
@@ -1053,7 +1061,7 @@ a.fact:hover {
     opacity: 0;
     transform: translateY(-12px);
     pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
   }
   .navLinks.navOpen {
     opacity: 1;
@@ -1083,7 +1091,7 @@ a.fact:hover {
   border-radius: 4px;
   font-weight: 700;
   font-size: 0.85rem;
-  transition: top 0.2s ease;
+  transition: top var(--dur) var(--ease);
 }
 .skipLink:focus {
   top: 12px;
@@ -1115,3 +1123,21 @@ button:focus-visible,
 .errorTitle { font-size: clamp(2rem, 5vw, 3rem); margin: 10px 0 14px; }
 .errorLead { margin: 0 auto 24px; }
 .errorActions { justify-content: center; }
+
+/* ===========================================================
+   REDUCED MOTION — global safety net
+   Honours the OS "reduce motion" setting across the whole site
+   (every transition + animation, not just the ones with their own
+   guard). Uses 0.01ms rather than "none" so state changes still
+   complete instantly instead of getting stuck mid-fade.
+   =========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
