@@ -530,9 +530,18 @@ a.stat:hover .statNum { color: var(--gold-bright); }
   .featuredDot { animation: none; }
   .featured:hover { transform: none; }
 }
-/* On phones the cover would crowd the text — drop it below tablet width. */
+/* On phones the side-by-side layout crowds the text, so stack the cover on
+   top of the copy instead of hiding it. */
 @media (max-width: 620px) {
-  .featuredCover { display: none; }
+  .featured {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .featuredCover {
+    order: -1;
+    width: clamp(150px, 44vw, 200px);
+  }
 }
 
 /* ================= RESPONSIVE ================= */
