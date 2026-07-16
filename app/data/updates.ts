@@ -30,6 +30,18 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-16",
+    category: "Charts",
+    text: "Fresh “Dai Dai” peaks confirmed: the World Cup anthem reaches No.2 in Lithuania, No.3 in Nigeria and Uruguay, No.9 in Poland and No.12 in South Africa, and debuts at No.15 in New Zealand — now a No.1 in 15 countries.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-16",
+    category: "Lifestyle",
+    text: "A Maybach for himself too: Burna Boy keeps one of two Mercedes-Maybach GLS 600s he bought — gifting the other to his mother — taking his confirmed garage to 15 cars worth a reported $16.46M.",
+    href: "/records/cars",
+  },
+  {
+    date: "2026-07-16",
     category: "Streaming",
     text: "No. 56 in the world: Burna Boy's Spotify monthly listeners climb to a new all-time peak of 52.99 million, making him the 56th most-listened-to artist on the planet — and still the most of any African artist.",
     href: "/records/africas-biggest",

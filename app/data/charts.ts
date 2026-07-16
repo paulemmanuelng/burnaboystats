@@ -163,10 +163,10 @@ export const featureCharts: ChartRelease[] = [
   ] },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, entries: [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "HR", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1 }, { c: "LU", peak: 1 }, { c: "GLB", peak: 1 }, { c: "GLBX", peak: 1 },
-    { c: "NO", peak: 2 }, { c: "IN", peak: 2 },
-    { c: "SA", peak: 3 }, { c: "ES", peak: 3 }, { c: "PT", peak: 3 },
-    { c: "SE", peak: 4 }, { c: "EC", peak: 4 }, { c: "LT", peak: 5 }, { c: "UY", peak: 5 }, { c: "NG", peak: 7 }, { c: "IT", peak: 8 }, { c: "CZ", peak: 8 }, { c: "PL", peak: 10 }, { c: "LV", peak: 10 },
-    { c: "UK", peak: 13 }, { c: "EG", peak: 14 }, { c: "IE", peak: 16 }, { c: "CA", peak: 16 }, { c: "DK", peak: 17 }, { c: "ZA", peak: 19 }, { c: "SG", peak: 20 }, { c: "IL", peak: 21 }, { c: "HU", peak: 26 }, { c: "AU", peak: 32 },
+    { c: "NO", peak: 2 }, { c: "IN", peak: 2 }, { c: "LT", peak: 2 },
+    { c: "SA", peak: 3 }, { c: "ES", peak: 3 }, { c: "PT", peak: 3 }, { c: "UY", peak: 3 }, { c: "NG", peak: 3 },
+    { c: "SE", peak: 4 }, { c: "EC", peak: 4 }, { c: "IT", peak: 8 }, { c: "CZ", peak: 8 }, { c: "PL", peak: 9 }, { c: "LV", peak: 10 }, { c: "ZA", peak: 12 },
+    { c: "UK", peak: 13 }, { c: "EG", peak: 14 }, { c: "NZ", peak: 15 }, { c: "IE", peak: 16 }, { c: "CA", peak: 16 }, { c: "DK", peak: 17 }, { c: "SG", peak: 20 }, { c: "IL", peak: 21 }, { c: "HU", peak: 26 }, { c: "AU", peak: 32 },
     { c: "BR", peak: 39 }, { c: "FI", peak: 44 }, { c: "US", peak: 55 },
     { c: "JP", peak: 60 }, { c: "VN", peak: 93 },
   ], note: "No.1 on both Billboard global charts — the Global 200 and Global 200 Excl. US. Also on Billboard's other multi-territory charts: No.1 Central America & Caribbean, No.2 Middle East & North Africa and No.12 North Africa, plus No.1 on the Official MENA Chart's Top 20." },
@@ -221,6 +221,13 @@ export function chartTier(peak: number): "one" | "top10" | "top40" | "rest" {
 }
 
 export const allChartItems: ChartRelease[] = [...albumCharts, ...singleCharts, ...featureCharts];
+
+// "Dai Dai"'s OWN No. 1s — country charts only (excludes the two global charts).
+// Used by the Dai Dai story so it never shows Burna Boy's career No. 1 total.
+export const daiDaiNumberOnes = (() => {
+  const dd = allChartItems.find((r) => r.title === "Dai Dai");
+  return dd ? dd.entries.filter((e) => e.peak === 1 && e.c !== "GLB" && e.c !== "GLBX").length : 0;
+})();
 export const chartEntryCount = allChartItems.reduce((n, r) => n + r.entries.length, 0);
 export const chartedReleaseCount = allChartItems.length;
 // Distinct releases that topped at least one country's main chart.

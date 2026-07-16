@@ -3,7 +3,7 @@ import styles from "./dai-dai.module.css";
 import DaiDaiStory from "../components/DaiDaiStory";
 import KeepExploring from "../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
-import { numberOnes } from "../data/charts";
+import { daiDaiNumberOnes } from "../data/charts";
 import { certHistory } from "../data/certifications";
 import { statBoxes } from "../data/africasBiggest";
 import { monthlyListenersSeries, monthlyListenersValues } from "../data/trends";
@@ -64,7 +64,7 @@ export default function DaiDaiPage() {
 
       <div className="container">
         <DaiDaiStory
-          numberOnes={numberOnes}
+          daiDaiNo1s={daiDaiNumberOnes}
           listenersPeak={listenersPeak}
           listenersSeries={monthlyListenersValues}
           certs2026={certs2026}

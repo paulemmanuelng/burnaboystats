@@ -238,29 +238,55 @@
 @media (max-width: 900px) {
   .scrolly {
     display: block;
-    margin-bottom: 8px;
+    margin: 0 0 8px;
+  }
+  /* Drop the column wrapper so the stage's sticky container becomes the tall
+     .scrolly itself. Without this the wrapper is only as tall as the stage, so
+     the stage un-pins and scrolls away after one screen — on desktop the grid
+     stretches it full-height. Now the stage stays pinned the whole way down,
+     exactly like desktop, with the narrative scrolling beneath it. */
+  .stickyCol {
+    display: contents;
   }
   .sticky {
-    top: 60px;
+    top: 8px;
     transform: none;
     height: 44vh;
-    min-height: 0;
+    min-height: 300px;
     max-height: none;
-    background: var(--bg);
     z-index: 2;
-    border: none;
-    border-bottom: 1px solid var(--line);
-    border-radius: 0;
-    margin: 0 -6vw;
-    padding: 0 6vw;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 16px 30px -6px rgba(0, 0, 0, 0.65);
+    padding: 20px 18px;
+    gap: 14px;
+  }
+  .steps {
+    position: relative;
+    z-index: 1;
+    padding-top: 18px;
   }
   .step {
-    min-height: 62vh;
+    min-height: 66vh;
   }
+  /* Keep the reveal — inactive steps dim so the eye tracks the active one. */
   .stepInner {
-    opacity: 1;
+    opacity: 0.45;
     transform: none;
+    transition: opacity 0.4s ease;
   }
+  .stepOn .stepInner {
+    opacity: 1;
+  }
+  /* Scale the biggest scenes down so nothing crops inside the shorter stage. */
+  .cover { width: clamp(120px, 32vw, 160px); }
+  .bigNum { font-size: clamp(3.2rem, 19vw, 4.8rem); }
+  .hash { font-size: clamp(4.4rem, 26vw, 6.8rem); }
+  .finaleWord { font-size: clamp(1.9rem, 8.5vw, 2.8rem); }
+  .midNum { font-size: clamp(2rem, 11vw, 3rem); }
+  .flags { font-size: 1.2rem; line-height: 1.5; }
+  .duoImg { width: clamp(74px, 21vw, 100px); height: clamp(74px, 21vw, 100px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -6,8 +6,8 @@ import Sparkline from "./Sparkline";
 import styles from "./DaiDaiStory.module.css";
 
 interface Props {
-  numberOnes: number;
-  listenersPeak: string; // e.g. "52.74M"
+  daiDaiNo1s: number; // Dai Dai's OWN No. 1 countries (not Burna's career total)
+  listenersPeak: string; // e.g. "52.99M"
   listenersSeries: number[];
   certs2026: number;
   youtubeAudience: string; // e.g. "714M"
@@ -42,7 +42,7 @@ function buildSteps(p: Props): { scene: SceneKey; kicker: string; title: string;
       scene: "no1s",
       kicker: "Worldwide",
       title: "No. 1 in country after country",
-      body: `From France and Germany to the Netherlands and the UAE, “Dai Dai” hit the top spot around the world — part of ${p.numberOnes} No. 1 chart placements, the reach of a true global collaboration.`,
+      body: `“Dai Dai” hit No. 1 in ${p.daiDaiNo1s} countries — from France and Germany to the Netherlands and the UAE — and topped both of Billboard's global charts. The reach of a true worldwide collaboration.`,
     },
     {
       scene: "streaming",
@@ -92,8 +92,8 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
       )}
       {scene === "no1s" && (
         <>
-          <span className={styles.bigNum}><CountUp end={props.numberOnes} /></span>
-          <span className={styles.sceneLabel}>No. 1s worldwide</span>
+          <span className={styles.bigNum}><CountUp end={props.daiDaiNo1s} /></span>
+          <span className={styles.sceneLabel}>countries at No. 1</span>
           <span className={styles.flags}>🇫🇷 🇩🇪 🇳🇱 🇨🇭 🇦🇷 🇨🇴 🇦🇪 🇬🇷 🇱🇺 🇸🇰</span>
         </>
       )}

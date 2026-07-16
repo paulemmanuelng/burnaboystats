@@ -9,11 +9,12 @@
 //   • Live totals (count + value) count CURRENT cars only.
 //   • Testarossa corrected down from ~₦1.6bn (blog inflation) to ~₦175m.
 //   • Resolved: the Mercedes-AMG G63 (absent from the fan list) → UNCONFIRMED;
-//     the Maybach GLS 600 stays HELD OUT — the fan counts it, but it's the
-//     Mother's Day gift to his mother/manager, not his own car (see HELD OUT).
+//     the Maybach GLS 600 — he bought TWO (shown together in his own TikTok
+//     video): one he kept for himself (NOW COUNTED above), one gifted to his
+//     mother/manager (still held out — see HELD OUT).
 // Older per-car provenance further down is retained for history.
 //
-// Burna Boy's car collection — reported purchase values. 15 of 19 entries are
+// Burna Boy's car collection — reported purchase values. 15 of 20 entries are
 // sourced from Pulse Nigeria's itemised breakdown (Nov 2025) — directly
 // re-fetched, and each of those 15 also independently re-confirmed via a
 // SECOND source beyond Pulse (dealer/self-confirmations, dedicated AutoJosh/
@@ -37,14 +38,15 @@
 // that car's own description rather than silently picking one number.
 //
 // This list is NOT guaranteed complete — see the page's own note on why.
-// Last fully re-verified July 2026 (all 19 entries independently re-checked,
-// each against at least 2 sources beyond the original itemised breakdown).
+// Last fully re-verified July 2026 (all prior 19 entries independently
+// re-checked, each against at least 2 sources beyond the original itemised
+// breakdown; the Maybach GLS 600 added July 2026 from his own TikTok video).
 //
-// HELD OUT (only his own confirmed cars are listed) — re-checked, all 5 hold:
-//  • Mercedes-Maybach GLS 600 ("Maybach Truck") — a Mother's Day GIFT to his
-//    mother/manager Bose Ogulu, not part of his own fleet (Pulse, Guardian
-//    Nigeria). One low-tier blog claimed he also kept one for himself; no
-//    other outlet corroborates that, so it's not treated as confirmed.
+// HELD OUT (only his own confirmed cars are listed) — re-checked:
+//  • Mercedes-Maybach GLS 600 ("Maybach Truck"), the GIFT UNIT — he bought two,
+//    shown together in his own TikTok video, and gifted one to his mother/
+//    manager Bose Ogulu. Only her gifted unit stays out of the fleet totals;
+//    the second one, which he kept for himself, IS now counted above.
 //  • Tesla Cybertruck — a Christmas 2024 gift to his PA/best friend King Manny,
 //    per Pulse and multiple entertainment outlets. It was destroyed in a
 //    crash in August 2025 and replaced with a gifted Lamborghini Urus — never
@@ -160,6 +162,11 @@ export const cars: Car[] = [
     make: "Mercedes-Maybach", model: "S680 4MATIC", year: 2022,
     valueUsd: 300_000, valueNaira: "₦440 million",
     desc: "The chauffeur-focused, range-topping S-Class — confirmed via his own Instagram caption (\"Got this too because everyone needs a Maybach\").",
+  },
+  {
+    make: "Mercedes-Maybach", model: "GLS 600 4MATIC", year: 2026,
+    valueUsd: 250_000, valueNaira: "₦360 million",
+    desc: "The flagship Maybach SUV — the \"Maybach Truck.\" He bought two of them, shown together in his own TikTok video: one he kept for himself (this one) and an identical unit gifted to his mother/manager Bose Ogulu. Only his own is counted here; hers is kept out of the fleet totals. Value is an estimate in line with the Maybach tier.",
   },
   {
     make: "Ferrari", model: "Testarossa", year: 1988,
