@@ -49,6 +49,15 @@
 //  sourced), confirming it's an unverified aggregation. Still rejected, no
 //  source names Burna Boy: ASCAP, The FABYS, That Grape Juice, Africa Golden
 //  Awards, Odudu P-H City Awards (4), Nigeria Music Video Award win.
+//
+//  PASS (July 2026, honours sweep): diffed the competitive-award wins ceremony-
+//  by-ceremony against Wikipedia's cited list — every Wikipedia win is already
+//  here, and we carry more (IRAWMA, SESAC, BMI, Caribbean Music Awards, Metro FM
+//  etc., all primary-sourced). No missing wins. 2026 Grammys confirmed as two
+//  losses (Love, No Sign of Weakness). One genuine HONOUR was missing and has
+//  been added: TIME 100 Most Influential People (2024, tribute by Angélique
+//  Kidjo — Time.com/Billboard). Honours stay separate from the competitive-award
+//  total by design (like the Rolling Stone list), so this doesn't change wins.
 // ============================================================
 
 export interface AwardNom {
@@ -519,6 +528,12 @@ export const honours: Honour[] = [
     org: "Rolling Stone",
     year: 2023,
     note: "One of only two Nigerians on the list, alongside Fela Kuti — named the ambassador of Afrobeats as a global movement.",
+  },
+  {
+    title: "TIME 100 Most Influential People",
+    org: "TIME",
+    year: 2024,
+    note: "Named to TIME's 100 Most Influential People of 2024, with a tribute written by Angélique Kidjo.",
   },
   {
     title: "BRIT Billion Award",
