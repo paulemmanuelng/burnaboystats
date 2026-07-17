@@ -132,22 +132,11 @@ export default function Home() {
         <div className="container">
           <Reveal>
             <Link href="/dai-dai" className={styles.featured}>
-              <div className={styles.featuredBody}>
-                <span className={styles.featuredBadge}>
-                  <span className={styles.featuredDot} aria-hidden="true" />
-                  Featured story · World Cup Final this weekend
-                </span>
-                <h2 className={styles.featuredTitle}>
-                  The <span className="goldText">Dai Dai</span> Story
-                </h2>
-                <p className={styles.featuredText}>
-                  How Shakira &amp; Burna Boy&apos;s World Cup anthem hit No.&nbsp;1 in 15
-                  countries and became the most-streamed song on Earth — and lands on the
-                  Final halftime stage on 19 July.
-                </p>
-                <span className={styles.featuredCta}>Read the story ↗</span>
-              </div>
-              {/* Official Dai Dai cover, served from Spotify's CDN (same source as the discography). */}
+              <span className={styles.featuredBadge}>
+                <span className={styles.featuredDot} aria-hidden="true" />
+                Featured story · World Cup Final this weekend
+              </span>
+              {/* Cover floats to the right; the copy below wraps around it (Spotify CDN, same as the discography). */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className={styles.featuredCover}
@@ -157,6 +146,15 @@ export default function Home() {
                 height={190}
                 loading="lazy"
               />
+              <h2 className={styles.featuredTitle}>
+                The <span className="goldText">Dai Dai</span> Story
+              </h2>
+              <p className={styles.featuredText}>
+                How Shakira &amp; Burna Boy&apos;s World Cup anthem hit No.&nbsp;1 in 15
+                countries and became the most-streamed song on Earth — and lands on the
+                Final halftime stage on 19 July.
+              </p>
+              <span className={styles.featuredCta}>Read the story ↗</span>
             </Link>
           </Reveal>
         </div>

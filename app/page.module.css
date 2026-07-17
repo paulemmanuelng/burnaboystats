@@ -445,10 +445,8 @@ a.stat:hover .statNum { color: var(--gold-bright); }
 /* ================= FEATURED STORY (Dai Dai) ================= */
 .featured {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: clamp(22px, 4vw, 48px);
-  overflow: hidden;
+  display: block;
+  overflow: hidden; /* contains the floated cover */
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: clamp(28px, 4vw, 46px);
@@ -462,15 +460,14 @@ a.stat:hover .statNum { color: var(--gold-bright); }
   border-color: var(--gold-dim);
   transform: translateY(-2px);
 }
-.featuredBody {
-  flex: 1;
-  min-width: 0;
-}
+/* Cover floats to the right and the copy wraps around it — an aligned editorial
+   block that fills the card cleanly on both desktop and mobile. */
 .featuredCover {
-  flex-shrink: 0;
-  width: clamp(128px, 15vw, 190px);
+  float: right;
+  width: clamp(128px, 16vw, 190px);
   height: auto;
   aspect-ratio: 1;
+  margin: 4px 0 14px 28px;
   border-radius: 10px;
   border: 1px solid rgba(245, 244, 240, 0.14);
   box-shadow: 0 18px 46px rgba(0, 0, 0, 0.5);
@@ -530,15 +527,12 @@ a.stat:hover .statNum { color: var(--gold-bright); }
   .featuredDot { animation: none; }
   .featured:hover { transform: none; }
 }
-/* Keep the horizontal desktop layout on phones too — copy on the left, a
-   compact cover on the right — just tighter and with a smaller cover. */
+/* Phones: same float layout, just tighter with a smaller cover. */
 @media (max-width: 620px) {
-  .featured {
-    gap: 16px;
-    padding: 20px;
-  }
+  .featured { padding: 20px; }
   .featuredCover {
-    width: clamp(88px, 26vw, 120px);
+    width: clamp(104px, 32vw, 132px);
+    margin: 2px 0 10px 16px;
   }
   .featuredBadge { margin-bottom: 10px; }
   .featuredText { margin: 10px 0 14px; font-size: 0.95rem; }
