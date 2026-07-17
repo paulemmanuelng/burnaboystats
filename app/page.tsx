@@ -281,7 +281,7 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={140}>
-            <UpdatesList items={latestUpdates(4)} />
+            <UpdatesList items={latestUpdates(2)} />
           </Reveal>
         </div>
       </section>

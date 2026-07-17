@@ -530,21 +530,18 @@ a.stat:hover .statNum { color: var(--gold-bright); }
   .featuredDot { animation: none; }
   .featured:hover { transform: none; }
 }
-/* On phones the side-by-side layout crowds the text, so stack the cover on
-   top of the copy instead of hiding it. */
+/* Keep the horizontal desktop layout on phones too — copy on the left, a
+   compact cover on the right — just tighter and with a smaller cover. */
 @media (max-width: 620px) {
   .featured {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 22px;
+    gap: 16px;
+    padding: 20px;
   }
   .featuredCover {
-    order: -1;
-    width: clamp(100px, 30vw, 132px);
+    width: clamp(88px, 26vw, 120px);
   }
-  .featuredBadge { margin-bottom: 12px; }
-  .featuredText { margin: 12px 0 16px; font-size: 1rem; }
+  .featuredBadge { margin-bottom: 10px; }
+  .featuredText { margin: 10px 0 14px; font-size: 0.95rem; }
 }
 
 /* ================= RESPONSIVE ================= */
