@@ -48,7 +48,7 @@ const makeTally = [...byMake.entries()].sort((a, b) => b[1] - a[1]);
 const priciest = currentCars[0];
 const highlights = [
   { label: "Most expensive", value: `${priciest.make} ${priciest.model.split(" (")[0]}`, meta: `${priciest.valueNaira} (reported)` },
-  { label: "Only one in Africa", value: "Ferrari SF90 Stradale", meta: "reported" },
+  { label: "Only one in Africa", value: "Ferrari SF90 Spider", meta: "reported" },
   { label: "Most of one brand", value: `${makeTally[0][1]}× ${makeTally[0][0]}`, meta: "his favourite marque" },
 ];
 

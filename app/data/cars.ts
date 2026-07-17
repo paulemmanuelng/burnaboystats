@@ -22,11 +22,11 @@
 // July 2026 deep-verification pass for specifics). The ₦9bn Bugatti Chiron and
 // the Porsche 911 GT3 RS are each confirmed via multiple independent dedicated
 // articles (Vanguard/Ripples/The Niche/Daily Post; AutoJosh/News Ghana/PM News/
-// Tori.ng). The Ferrari SF90 Stradale and the vintage Ferrari Testarossa are
+// Tori.ng). The Ferrari SF90 Spider and the vintage Ferrari Testarossa are
 // the two exceptions: ownership of each is well-documented (many independent
 // posts/videos — the Testarossa specifically confirmed as a genuinely distinct
 // car from the 328 GTB below, via convergent independent labelling across two
-// separate sightings, London and later moved into his Lagos penthouse, August
+// separate sightings, London and later brought to his Lagos garage, August
 // 2025), but their values float free of any single dedicated report — they're
 // social/blog estimates, marked "(est.)" below rather than presented with the
 // same precision as the rest. Naira figures are import-inclusive; USD figures
@@ -106,9 +106,9 @@ export const cars: Car[] = [
     link: "https://autojosh.com/burna-boy-splashes-n3-2-billion-on-a-mclaren-senna-hypercar/",
   },
   {
-    make: "Ferrari", model: "SF90 Stradale", year: 2025,
+    make: "Ferrari", model: "SF90 Spider", year: 2025,
     valueUsd: 1_000_000, valueNaira: "₦1.46 billion",
-    desc: "A plug-in-hybrid V8 hypercar with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa.",
+    desc: "The open-top version of Ferrari's plug-in-hybrid V8 hypercar, with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa.",
   },
   {
     make: "Ferrari", model: "Purosangue", year: 2024,
@@ -166,19 +166,19 @@ export const cars: Car[] = [
     desc: "The chauffeur-focused, range-topping S-Class — confirmed via his own Instagram caption (\"Got this too because everyone needs a Maybach\").",
   },
   {
-    make: "Mercedes-Maybach", model: "GLS 600 4MATIC", year: 2026,
+    make: "Mercedes-Maybach", model: "GLS 600", year: 2024,
     valueUsd: 250_000, valueNaira: "₦360 million",
-    desc: "The flagship Maybach SUV — the \"Maybach Truck.\" He bought two of them, shown together in his own TikTok video: one he kept for himself (this one) and an identical unit gifted to his mother/manager Bose Ogulu. Only his own is counted here; hers is kept out of the fleet totals. Value is an estimate in line with the Maybach tier.",
+    desc: "The flagship Maybach SUV — the \"Maybach Truck\" (a 2024 GLS 600, not the 2026 model some blogs list). He bought two of them, shown together in his own TikTok video: one he kept for himself (this one) and an identical unit gifted to his mother/manager Bose Ogulu. Only his own is counted here; hers is kept out of the fleet totals. Value is an estimate in line with the Maybach tier.",
   },
   {
     make: "Ferrari", model: "Testarossa", year: 1988,
     valueUsd: 120_000, valueNaira: "₦175 million",
-    desc: "A wide-body, flat-12 icon of the 1980s, instantly recognisable by its side strakes — spotted in London and later moved into his Lagos penthouse (August 2025). A genuinely distinct car from his red 328 below. Some blogs valued it near ₦1.5bn; a 1988 Testarossa realistically sits far lower, around ₦175 million.",
+    desc: "A wide-body, flat-12 icon of the 1980s, instantly recognisable by its side strakes — spotted in London and later brought to his Lagos garage (August 2025). A genuinely distinct car from his red 328 below. Some blogs valued it near ₦1.5bn; a 1988 Testarossa realistically sits far lower, around ₦175 million.",
   },
   {
     make: "Ferrari", model: "328 GTS", year: 1985,
     valueUsd: 100_000, valueNaira: "₦146 million",
-    desc: "A 1980s classic — the final evolution of Ferrari's celebrated 308/328 line, in open-top GTS form.",
+    desc: "A 1980s classic — the final evolution of Ferrari's celebrated 308/328 line, in open-top GTS form. This is the Ferrari kept in his Lagos penthouse.",
   },
 
   // ===== No longer counted in the live collection =====

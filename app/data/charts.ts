@@ -167,7 +167,7 @@ export const featureCharts: ChartRelease[] = [
     { c: "NO", peak: 2 }, { c: "IN", peak: 2 }, { c: "LT", peak: 2 },
     { c: "SA", peak: 3 }, { c: "ES", peak: 3 }, { c: "PT", peak: 3 }, { c: "UY", peak: 3 }, { c: "NG", peak: 3 },
     { c: "SE", peak: 4 }, { c: "EC", peak: 4 }, { c: "CR", peak: 5 }, { c: "IT", peak: 6 }, { c: "CZ", peak: 8 }, { c: "PL", peak: 9 }, { c: "LV", peak: 10 }, { c: "ZA", peak: 12 },
-    { c: "UK", peak: 5 }, { c: "IE", peak: 14 }, { c: "EG", peak: 14 }, { c: "NZ", peak: 15 }, { c: "CA", peak: 16 }, { c: "DK", peak: 17 }, { c: "SG", peak: 20 }, { c: "IL", peak: 21 }, { c: "HU", peak: 26 }, { c: "AU", peak: 32 }, { c: "FI", peak: 35 },
+    { c: "UK", peak: 5 }, { c: "IE", peak: 14 }, { c: "EG", peak: 14 }, { c: "CA", peak: 16 }, { c: "DK", peak: 17 }, { c: "SG", peak: 20 }, { c: "IL", peak: 21 }, { c: "HU", peak: 26 }, { c: "AU", peak: 32 }, { c: "FI", peak: 35 },
     { c: "BR", peak: 39 }, { c: "US", peak: 55 },
     { c: "JP", peak: 60 }, { c: "VN", peak: 93 },
   ], note: "No.1 on both Billboard global charts — the Global 200 and Global 200 Excl. US. Also on Billboard's other multi-territory charts: No.1 Central America & Caribbean, No.2 Middle East & North Africa and No.12 North Africa, plus No.1 on the Official MENA Chart's Top 20." },
