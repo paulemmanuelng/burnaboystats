@@ -1,0 +1,30 @@
+.share {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--bg);
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 11px 24px;
+  cursor: pointer;
+  transition: background var(--dur, 0.2s) var(--ease-out, ease),
+    transform var(--dur, 0.2s) var(--ease-out, ease);
+}
+.share:hover {
+  background: var(--gold-bright);
+  transform: translateY(-1px);
+}
+.icon {
+  font-size: 1rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .share:hover {
+    transform: none;
+  }
+}

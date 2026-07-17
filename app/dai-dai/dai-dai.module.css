@@ -1,3 +1,9 @@
+.shareRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+}
+
 .sectionTitle {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./dai-dai.module.css";
 import DaiDaiStory from "../components/DaiDaiStory";
+import ShareButton from "../components/ShareButton";
 import KeepExploring from "../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
@@ -166,6 +167,13 @@ export default function DaiDaiPage() {
           song in the world — and lands on the Final halftime stage this weekend.
           Scroll to follow the run.
         </p>
+        <div className={styles.shareRow}>
+          <ShareButton
+            url={`${CANONICAL_ORIGIN}/dai-dai`}
+            title="The Dai Dai Story — Shakira & Burna Boy"
+            text="Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and live at the Final halftime show on 19 July."
+          />
+        </div>
       </header>
 
       <div className="container">
