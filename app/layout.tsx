@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   title: "Burna Boy Stats — Certifications, Charts, Awards & Records",
   description:
-    "Every Burna Boy certification, chart peak, award and tour record in one place — fact-checked and always current. The unofficial stats home of Grammy-winning Nigerian superstar Burna Boy.",
+    "Every Burna Boy certification, chart peak, award and tour record — fact-checked and always current. The unofficial stats home of the African Giant.",
   openGraph: {
     title: "Burna Boy Stats — Certifications, Charts, Awards & Records",
     description:

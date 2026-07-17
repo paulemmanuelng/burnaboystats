@@ -8,9 +8,9 @@ import { daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
 import { daiDaiCertCount } from "../data/certifications";
 
 export const metadata = pageMetadata({
-  title: "Dai Dai at the World Cup Halftime Show — Shakira & Burna Boy's 2026 Anthem",
+  title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
   description:
-    "Shakira and Burna Boy perform “Dai Dai” at the first-ever FIFA World Cup Final halftime show this weekend — joined by Uganda's Triplets Ghetto Kids, on a bill with Madonna, BTS and Justin Bieber. The full story of the World Cup anthem that hit No. 1 on the Billboard Global 200 and became the biggest song in the world.",
+    "Shakira & Burna Boy's “Dai Dai” — the 2026 FIFA World Cup anthem: No. 1 worldwide, most-streamed song on Earth, live at the Final halftime show.",
   path: "/dai-dai",
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
   shareDescription: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and live at the Final halftime show.",
