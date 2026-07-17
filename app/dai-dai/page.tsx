@@ -172,6 +172,8 @@ export default function DaiDaiPage() {
             url={`${CANONICAL_ORIGIN}/dai-dai`}
             title="The Dai Dai Story — Shakira & Burna Boy"
             text="Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and live at the Final halftime show on 19 July."
+            imageUrl="/dai-dai/opengraph-image"
+            fileName="dai-dai.png"
           />
         </div>
       </header>
