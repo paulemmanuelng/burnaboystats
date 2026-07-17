@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-17",
+    category: "Charts",
+    text: "More “Dai Dai” climbs: the World Cup anthem hits new peaks of No.6 in Italy, No.14 in Ireland and No.35 in Finland on their official singles charts.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-17",
     category: "Tours",
     text: "Uganda's Triplets Ghetto Kids will join Shakira and Burna Boy on stage for “Dai Dai” at the 2026 World Cup Final halftime show on 19 July — Shakira invited the viral Kampala dance group herself.",
     href: "/dai-dai",
