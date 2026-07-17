@@ -3,7 +3,7 @@ import styles from "./dai-dai.module.css";
 import DaiDaiStory from "../components/DaiDaiStory";
 import KeepExploring from "../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
-import { daiDaiNumberOnes } from "../data/charts";
+import { daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
 import { daiDaiCertCount } from "../data/certifications";
 
 export const metadata = pageMetadata({
@@ -30,16 +30,52 @@ export default function DaiDaiPage() {
       "@type": "MusicRecording",
       name: "Dai Dai",
       byArtist: [
-        { "@type": "MusicGroup", name: "Burna Boy" },
         { "@type": "Person", name: "Shakira" },
+        { "@type": "MusicGroup", name: "Burna Boy" },
       ],
+      datePublished: "2026-05",
+      genre: ["Afrobeats", "Latin pop"],
+      inLanguage: "en",
     },
+    url: `${CANONICAL_ORIGIN}/dai-dai`,
+  };
+
+  // The halftime performance as a MusicEvent — helps the page surface for the
+  // huge global "2026 World Cup halftime show / lineup" search demand.
+  const eventJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MusicEvent",
+    name: "2026 FIFA World Cup Final Halftime Show",
+    startDate: "2026-07-19",
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
+    location: {
+      "@type": "Place",
+      name: "MetLife Stadium",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "East Rutherford",
+        addressRegion: "NJ",
+        addressCountry: "US",
+      },
+    },
+    performer: [
+      { "@type": "Person", name: "Shakira" },
+      { "@type": "MusicGroup", name: "Burna Boy" },
+      { "@type": "Person", name: "Madonna" },
+      { "@type": "MusicGroup", name: "BTS" },
+      { "@type": "Person", name: "Justin Bieber" },
+      { "@type": "MusicGroup", name: "Coldplay" },
+    ],
+    organizer: { "@type": "Organization", name: "Global Citizen" },
+    about: { "@type": "MusicRecording", name: "Dai Dai" },
     url: `${CANONICAL_ORIGIN}/dai-dai`,
   };
 
   // Every headline "Dai Dai" figure in one scannable, crawlable block — the
   // song's OWN numbers (not Burna Boy's artist-wide totals).
   const byNumbers: { v: string; l: string }[] = [
+    { v: `${daiDaiChartEntryCount}`, l: "official chart entries worldwide — on national singles charts across the globe, plus both of Billboard's global charts" },
     { v: "No. 1", l: "Billboard Global 200 — the first African artist ever to top the US-inclusive worldwide chart, and Shakira's 2nd" },
     { v: "No. 1", l: "Billboard Global 200 (Excl. US)" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
@@ -119,6 +155,7 @@ export default function DaiDaiPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }} />
 
       <header className="pageHeader container">
         <h1>

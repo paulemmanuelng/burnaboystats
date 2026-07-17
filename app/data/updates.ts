@@ -31,7 +31,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-17",
     category: "Charts",
-    text: "More “Dai Dai” climbs: the World Cup anthem hits new peaks of No.6 in Italy, No.14 in Ireland and No.35 in Finland on their official singles charts.",
+    text: "More “Dai Dai” climbs: the World Cup anthem hits new peaks of No.5 in the UK, No.6 in Italy, No.14 in Ireland and No.35 in Finland on their official singles charts.",
     href: "/dai-dai",
   },
   {
