@@ -9,7 +9,7 @@ import { daiDaiCertCount } from "../data/certifications";
 export const metadata = pageMetadata({
   title: "Dai Dai at the World Cup Halftime Show — Shakira & Burna Boy's 2026 Anthem",
   description:
-    "Shakira and Burna Boy perform “Dai Dai” at the 2026 FIFA World Cup Final halftime show this weekend — joined by Uganda's Triplets Ghetto Kids, alongside Madonna and BTS. The full story of the World Cup anthem that hit No. 1 on the Billboard Global 200 and became the biggest song in the world.",
+    "Shakira and Burna Boy perform “Dai Dai” at the first-ever FIFA World Cup Final halftime show this weekend — joined by Uganda's Triplets Ghetto Kids, on a bill with Madonna, BTS and Justin Bieber. The full story of the World Cup anthem that hit No. 1 on the Billboard Global 200 and became the biggest song in the world.",
   path: "/dai-dai",
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
   shareDescription: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and live at the Final halftime show.",
@@ -66,7 +66,11 @@ export default function DaiDaiPage() {
     },
     {
       q: "When is the 2026 World Cup Final halftime show?",
-      a: "Shakira and Burna Boy perform “Dai Dai” at the 2026 FIFA World Cup Final halftime show on 19 July 2026 at MetLife Stadium, joined on stage by Uganda's Triplets Ghetto Kids, alongside co-headliners Madonna and BTS.",
+      a: "The first-ever FIFA World Cup Final halftime show takes place on 19 July 2026 at MetLife Stadium. Shakira and Burna Boy perform “Dai Dai”, joined on stage by Uganda's Triplets Ghetto Kids.",
+    },
+    {
+      q: "Who is performing at the 2026 World Cup Final halftime show?",
+      a: "The 2026 FIFA World Cup Final halftime show features Madonna, Shakira and Burna Boy (performing “Dai Dai”), BTS, Justin Bieber, conductor Gustavo Dudamel, and the PS22 Chorus with Coldplay — produced by Global Citizen, on 19 July 2026 at MetLife Stadium.",
     },
     {
       q: "Who are the Ghetto Kids performing with Shakira and Burna Boy?",
@@ -76,6 +80,18 @@ export default function DaiDaiPage() {
       q: "How many certifications does “Dai Dai” have?",
       a: "“Dai Dai” has 6 certifications: 2× Platinum (Latin) in the US from the RIAA, plus Gold in France, Spain, Colombia, Hungary and Slovakia.",
     },
+  ];
+
+  // The 19 July halftime bill (FIFA official), with artist photos from Spotify's
+  // CDN — the same source the discography uses. Shakira & Burna are the "Dai Dai"
+  // headliners; the rest are the co-performers on the first-ever Final show.
+  const lineup: { name: string; img: string; tag?: string; headliner?: boolean }[] = [
+    { name: "Shakira", img: "https://i.scdn.co/image/ab6761610000e5eb17f15f351cba70561ad8bcac", tag: "“Dai Dai”", headliner: true },
+    { name: "Burna Boy", img: "https://i.scdn.co/image/ab6761610000e5ebb4e44d0f4e3e47af2cf06f3f", tag: "“Dai Dai”", headliner: true },
+    { name: "Madonna", img: "https://i.scdn.co/image/ab6761610000e5ebed2208b41d49ebd24687985b" },
+    { name: "BTS", img: "https://i.scdn.co/image/ab6761610000e5ebf80ec63ea7a0ef0fba60957d" },
+    { name: "Justin Bieber", img: "https://i.scdn.co/image/ab6761610000e5ebaf20f7db5288bce9beede034" },
+    { name: "Coldplay", img: "https://i.scdn.co/image/ab6761610000e5eb1ba8fc5f5c73e7e9313cc6eb", tag: "with PS22 Chorus" },
   ];
 
   const straight = (s: string) => s.replace(/[“”]/g, '"');
@@ -117,6 +133,31 @@ export default function DaiDaiPage() {
 
       <div className="container">
         <DaiDaiStory daiDaiNo1s={daiDaiNumberOnes} daiDaiCerts={daiDaiCertCount} />
+
+        <section className={styles.lineup} aria-labelledby="dd-lineup">
+          <h2 id="dd-lineup" className={styles.sectionTitle}>
+            The <span className="goldText">halftime show</span> lineup
+          </h2>
+          <p className={styles.lineupIntro}>
+            The first-ever FIFA World Cup Final halftime show — 19 July 2026 at MetLife
+            Stadium, produced by Global Citizen. Shakira &amp; Burna Boy perform “Dai Dai”
+            on a bill of global superstars.
+          </p>
+          <ul className={styles.lineupGrid}>
+            {lineup.map((a) => (
+              <li key={a.name} className={`${styles.lineupCard} ${a.headliner ? styles.lineupHeadliner : ""}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className={styles.lineupPhoto} src={a.img} alt={a.name} width={128} height={128} loading="lazy" />
+                <span className={styles.lineupName}>{a.name}</span>
+                {a.tag ? <span className={styles.lineupTag}>{a.tag}</span> : null}
+              </li>
+            ))}
+          </ul>
+          <p className={styles.lineupNote}>
+            Also on the bill: Uganda&apos;s Triplets Ghetto Kids on stage, conductor
+            Gustavo Dudamel and the PS22 Chorus.
+          </p>
+        </section>
 
         <section className={styles.byNumbers} aria-labelledby="dd-numbers">
           <h2 id="dd-numbers" className={styles.sectionTitle}>

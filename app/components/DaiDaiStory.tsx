@@ -67,7 +67,7 @@ function buildSteps(p: Props): { scene: SceneKey; kicker: string; title: string;
       scene: "halftime",
       kicker: "This weekend · 19 July",
       title: "Live on the World Cup Final stage",
-      body: "Shakira and Burna Boy take “Dai Dai” to the 2026 FIFA World Cup Final halftime show at MetLife Stadium — joined on stage by Uganda's Triplets Ghetto Kids — before a global audience of billions, alongside co-headliners Madonna and BTS.",
+      body: "Shakira and Burna Boy take “Dai Dai” to the first-ever FIFA World Cup Final halftime show at MetLife Stadium on 19 July — joined on stage by Uganda's Triplets Ghetto Kids — before a global audience of billions, alongside Madonna, BTS and Justin Bieber.",
     },
   ];
 }
