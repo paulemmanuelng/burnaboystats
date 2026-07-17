@@ -73,8 +73,7 @@ export default function Home() {
     <main id="content">
       {/* ================= HERO ================= */}
       <section className={styles.hero}>
-        <div className={styles.heroPhoto} aria-hidden="true" />
-        <div className={styles.heroScrim} aria-hidden="true" />
+        <div className={styles.heroGlow} aria-hidden="true" />
         <span className={styles.heroWatermark} aria-hidden="true">Odogwu</span>
 
         <div className={`container ${styles.heroInner}`}>

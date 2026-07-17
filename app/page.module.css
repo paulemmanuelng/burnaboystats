@@ -5,43 +5,37 @@
   position: relative;
   overflow: hidden;
   margin-top: -68px; /* slide the art up behind the transparent nav */
-  min-height: 92vh;
-  padding: 150px 0 52px;
-  background: #08080a;
+  padding: 158px 0 66px;
+  background:
+    radial-gradient(46% 52% at 3% 100%, rgba(226, 52, 43, 0.11), transparent 60%),
+    linear-gradient(180deg, #0d0d10 0%, #09090b 62%, #08080a 100%);
 }
 
-/* Cinematic full-bleed artist portrait — grayscale, bleeding into black.
-   NOTE: placeholder = Burna's Spotify profile image (low-res); swap the URL
-   below for the high-res B&W header for a crisp, sharp hero. */
-.heroPhoto {
+/* Soft, slowly-drifting gold glow — gives the hero depth and a sense of life. */
+.heroGlow {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url("https://i.scdn.co/image/ab6761610000e5ebb4e44d0f4e3e47af2cf06f3f");
-  background-repeat: no-repeat;
-  background-position: 84% 18%;
-  background-size: cover;
-  filter: grayscale(1) contrast(1.08) brightness(0.8) blur(1.5px);
+  pointer-events: none;
+  background: radial-gradient(42% 48% at 84% 4%, rgba(255, 182, 39, 0.22), transparent 60%);
+  animation: heroGlowDrift 15s ease-in-out infinite alternate;
+}
+@keyframes heroGlowDrift {
+  from { opacity: 0.7; transform: translate3d(0, 0, 0) scale(1); }
+  to { opacity: 1; transform: translate3d(-3%, 2%, 0) scale(1.12); }
 }
 
-/* Scrim: fade the image into black on the left (for the text) and at the bottom. */
-.heroScrim {
+/* Cinematic vignette darkening the edges. */
+.hero::after {
+  content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background:
-    linear-gradient(90deg, #08080a 26%, rgba(8, 8, 10, 0.62) 55%, rgba(8, 8, 10, 0.12) 100%),
-    linear-gradient(to top, #08080a 3%, transparent 32%),
-    radial-gradient(125% 92% at 52% 42%, transparent 52%, rgba(0, 0, 0, 0.55) 100%);
+  background: radial-gradient(120% 90% at 50% 32%, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
 }
-/* On phones the text spans full width, so darken the right side for contrast. */
-@media (max-width: 760px) {
-  .heroScrim {
-    background:
-      linear-gradient(90deg, #08080a 12%, rgba(8, 8, 10, 0.5) 52%, rgba(8, 8, 10, 0.44) 100%),
-      linear-gradient(to top, #08080a 5%, rgba(8, 8, 10, 0.22) 46%, transparent 78%);
-  }
+@media (prefers-reduced-motion: reduce) {
+  .heroGlow { animation: none; }
 }
 
 .heroInner {
@@ -199,13 +193,14 @@
 .heroWatermark {
   position: absolute;
   right: -2%;
-  bottom: -7%;
+  bottom: -6%;
   z-index: 0;
   font-family: var(--font-anton), sans-serif;
-  font-size: 28vw;
+  font-size: 26vw;
   line-height: 1;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.025);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 182, 39, 0.07);
   pointer-events: none;
   letter-spacing: 0.02em;
 }
