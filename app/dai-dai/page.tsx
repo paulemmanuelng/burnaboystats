@@ -9,7 +9,7 @@ import { daiDaiCertCount } from "../data/certifications";
 export const metadata = pageMetadata({
   title: "Dai Dai at the World Cup Halftime Show — Shakira & Burna Boy's 2026 Anthem",
   description:
-    "Shakira and Burna Boy perform “Dai Dai” at the 2026 FIFA World Cup Final halftime show this weekend, alongside Madonna, BTS, Justin Bieber and Coldplay. The full story of the World Cup anthem that hit No. 1 on the Billboard Global 200 and became the biggest song in the world.",
+    "Shakira and Burna Boy perform “Dai Dai” at the 2026 FIFA World Cup Final halftime show this weekend — joined by Uganda's Triplets Ghetto Kids, alongside Madonna and BTS. The full story of the World Cup anthem that hit No. 1 on the Billboard Global 200 and became the biggest song in the world.",
   path: "/dai-dai",
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
   shareDescription: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and live at the Final halftime show.",
@@ -66,7 +66,11 @@ export default function DaiDaiPage() {
     },
     {
       q: "When is the 2026 World Cup Final halftime show?",
-      a: "Shakira and Burna Boy perform “Dai Dai” at the 2026 FIFA World Cup Final halftime show on 19 July 2026, on a bill alongside Madonna, BTS, Justin Bieber and Coldplay.",
+      a: "Shakira and Burna Boy perform “Dai Dai” at the 2026 FIFA World Cup Final halftime show on 19 July 2026 at MetLife Stadium, joined on stage by Uganda's Triplets Ghetto Kids, alongside co-headliners Madonna and BTS.",
+    },
+    {
+      q: "Who are the Ghetto Kids performing with Shakira and Burna Boy?",
+      a: "Uganda's Triplets Ghetto Kids — a Kampala-based children's dance group who went viral online — join Shakira and Burna Boy on stage for “Dai Dai” at the 2026 World Cup Final halftime show, after Shakira invited them to the performance.",
     },
     {
       q: "How many certifications does “Dai Dai” have?",

@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-17",
+    category: "Tours",
+    text: "Uganda's Triplets Ghetto Kids will join Shakira and Burna Boy on stage for “Dai Dai” at the 2026 World Cup Final halftime show on 19 July — Shakira invited the viral Kampala dance group herself.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-17",
     category: "Streaming",
     text: "53.25 million monthly listeners: Burna Boy hits a new all-time Spotify peak of 53,246,779 — still No. 56 in the world, and the most of any African artist.",
     href: "/records/africas-biggest",
