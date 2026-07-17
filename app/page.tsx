@@ -73,7 +73,8 @@ export default function Home() {
     <main id="content">
       {/* ================= HERO ================= */}
       <section className={styles.hero}>
-        <div className={styles.heroBg} aria-hidden="true" />
+        <div className={styles.heroPhoto} aria-hidden="true" />
+        <div className={styles.heroScrim} aria-hidden="true" />
         <span className={styles.heroWatermark} aria-hidden="true">Odogwu</span>
 
         <div className={`container ${styles.heroInner}`}>
@@ -88,7 +89,7 @@ export default function Home() {
             </span>
           </div>
 
-          <p className={styles.eyebrow}>★ The African Giant — by the numbers</p>
+          <p className={styles.eyebrow}>★ The African Giant</p>
           <h1 className={styles.title}>
             Burna <span className="goldText">Boy</span>
           </h1>

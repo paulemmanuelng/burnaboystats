@@ -5,28 +5,43 @@
   position: relative;
   overflow: hidden;
   margin-top: -68px; /* slide the art up behind the transparent nav */
-  padding: 156px 0 64px;
+  min-height: 92vh;
+  padding: 150px 0 52px;
+  background: #08080a;
 }
 
-/* Animated, blurred colour blobs behind the hero (the "mesh"). */
-.heroBg {
+/* Cinematic full-bleed artist portrait — grayscale, bleeding into black.
+   NOTE: placeholder = Burna's Spotify profile image (low-res); swap the URL
+   below for the high-res B&W header for a crisp, sharp hero. */
+.heroPhoto {
   position: absolute;
-  inset: -25%;
+  inset: 0;
   z-index: 0;
-  background:
-    radial-gradient(45% 50% at 80% 16%, rgba(255, 182, 39, 0.18), transparent 60%),
-    radial-gradient(42% 46% at 10% 90%, rgba(226, 52, 43, 0.13), transparent 60%);
-  filter: blur(24px);
+  background-image: url("https://i.scdn.co/image/ab6761610000e5ebb4e44d0f4e3e47af2cf06f3f");
+  background-repeat: no-repeat;
+  background-position: 84% 18%;
+  background-size: cover;
+  filter: grayscale(1) contrast(1.08) brightness(0.8) blur(1.5px);
 }
 
-/* Cinematic vignette darkening the hero edges. */
-.hero::after {
-  content: "";
+/* Scrim: fade the image into black on the left (for the text) and at the bottom. */
+.heroScrim {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: radial-gradient(115% 85% at 50% 38%, transparent 42%, rgba(0, 0, 0, 0.7) 100%);
+  background:
+    linear-gradient(90deg, #08080a 26%, rgba(8, 8, 10, 0.62) 55%, rgba(8, 8, 10, 0.12) 100%),
+    linear-gradient(to top, #08080a 3%, transparent 32%),
+    radial-gradient(125% 92% at 52% 42%, transparent 52%, rgba(0, 0, 0, 0.55) 100%);
+}
+/* On phones the text spans full width, so darken the right side for contrast. */
+@media (max-width: 760px) {
+  .heroScrim {
+    background:
+      linear-gradient(90deg, #08080a 12%, rgba(8, 8, 10, 0.5) 52%, rgba(8, 8, 10, 0.44) 100%),
+      linear-gradient(to top, #08080a 5%, rgba(8, 8, 10, 0.22) 46%, transparent 78%);
+  }
 }
 
 .heroInner {
