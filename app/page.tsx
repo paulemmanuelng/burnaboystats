@@ -10,8 +10,6 @@ import AlbumStrip from "./components/AlbumStrip";
 import GlobeTeaser from "./components/GlobeTeaser";
 import TierDonut, { type DonutSeg } from "./components/TierDonut";
 import { totalAwards, countryCount, albums, singles, features } from "./data/certifications";
-import { numberOnes } from "./data/charts";
-import { monthlyListenersValues } from "./data/trends";
 import { latestUpdates, updates } from "./data/updates";
 
 const total = totalAwards();
@@ -48,23 +46,26 @@ const marqueeItems = [
   "BET Award Winner", "Global Superstar", "Afro-Fusion", "Twice as Tall",
 ];
 
-// Homepage "at a glance" bento — mixed-size highlight cards (2026 bento layout).
-const listeners = monthlyListenersValues[monthlyListenersValues.length - 1];
-const bento: {
-  span: "big" | "wide" | "1";
-  num: string;
-  label: string;
-  href: string;
-  kicker?: string;
-  accent?: boolean;
-}[] = [
-  { span: "big", accent: true, kicker: "The African Giant", num: `${total}`, label: `certifications across ${countryCount} countries — the most of any African artist in history`, href: "/certifications" },
-  { span: "1", num: "$30.46M", label: "Highest-grossing African tour ever", href: "/records/tours" },
-  { span: "1", num: `${numberOnes}`, label: "No. 1 chart placements worldwide", href: "/records/charts" },
-  { span: "wide", num: "Dai Dai", label: "No. 1 worldwide — live at the World Cup Final, 19 July", href: "/dai-dai" },
-  { span: "1", num: "$6.15M", label: "Biggest concert by an African artist", href: "/records/tours/revenue" },
-  { span: "1", num: "2021", label: "Grammy winner", href: "/records/awards" },
-  { span: "wide", num: `${listeners}M`, label: "Spotify monthly listeners — the most of any African artist", href: "/records/africas-biggest" },
+// Career-defining records as an African artist (the headline feats).
+const records = [
+  {
+    num: "$30.46M",
+    title: "Highest-grossing African tour",
+    desc: "The I Told Them… Tour — the biggest tour in history by an African artist.",
+    href: "/records/tours",
+  },
+  {
+    num: "$6.15M",
+    title: "Biggest African concert",
+    desc: "His record London Stadium night — and he was the first African artist to headline a UK stadium.",
+    href: "/records/tours/revenue",
+  },
+  {
+    num: "2026",
+    title: "FIFA World Cup headliner",
+    desc: "First African artist to headline a World Cup opening ceremony, performing “Dai Dai” with Shakira.",
+    href: "/records/firsts",
+  },
 ];
 
 export default function Home() {
@@ -163,12 +164,12 @@ export default function Home() {
       <section className={styles.section}>
         <div className="container">
           <Reveal>
-            <p className={styles.eyebrow}>By the numbers</p>
+            <p className={styles.eyebrow}>Record-breaking</p>
           </Reveal>
           <Reveal delay={80}>
             <div className={styles.sectionHead}>
               <h2 className={styles.sectionTitle}>
-                At a <span className="goldText">glance</span>
+                Career <span className="goldText">records</span>
               </h2>
               <Link href="/records" className={styles.headLink}>
                 All career records ↗
@@ -176,18 +177,12 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={140}>
-            <div className={styles.bento}>
-              {bento.map((b) => (
-                <Link
-                  key={b.label}
-                  href={b.href}
-                  className={`${styles.bentoCard} ${
-                    b.span === "big" ? styles.bBig : b.span === "wide" ? styles.bWide : ""
-                  } ${b.accent ? styles.bAccent : ""}`}
-                >
-                  {b.kicker ? <span className={styles.bentoKicker}>{b.kicker}</span> : null}
-                  <span className={styles.bentoNum}>{b.num}</span>
-                  <span className={styles.bentoLabel}>{b.label}</span>
+            <div className={styles.recordGrid}>
+              {records.map((r) => (
+                <Link key={r.title} href={r.href} className={styles.recordCard}>
+                  <span className={styles.recordNum}>{r.num}</span>
+                  <span className={styles.recordTitle}>{r.title}</span>
+                  <span className={styles.recordDesc}>{r.desc}</span>
                 </Link>
               ))}
             </div>
