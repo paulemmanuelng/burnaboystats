@@ -171,7 +171,12 @@ export default function DaiDaiPage() {
           <ShareButton
             url={`${CANONICAL_ORIGIN}/dai-dai`}
             title="The Dai Dai Story — Shakira & Burna Boy"
-            text="Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and live at the Final halftime show on 19 July."
+            text={
+              "“Dai Dai” — Shakira & Burna Boy's official 2026 FIFA World Cup anthem: No.1 on the Billboard " +
+              `Global 200, the most-streamed song on Earth, and a No.1 in ${daiDaiNumberOnes} countries. ` +
+              "Shakira & Burna perform it live at the World Cup Final halftime show on 19 July, alongside " +
+              "Madonna, BTS & Justin Bieber. Every chart, record and the full story:"
+            }
             imageUrl="/dai-dai/opengraph-image"
             fileName="dai-dai.png"
           />
