@@ -133,7 +133,7 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "Spotify · African artists · all-time peak",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "53.25M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "53.49M" },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "46.58M" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "45.5M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "40.01M" },
@@ -196,13 +196,13 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "Spotify followers · African artists · current",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "16.9M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "17.0M" },
       { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "12.0M" },
       { name: "Davido", sub: "🇳🇬 Nigeria", value: "11.3M" },
       { name: "Asake", sub: "🇳🇬 Nigeria", value: "9.7M" },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "5.1M" },
     ],
-    note: "Burna Boy is the most-followed African artist on Spotify — nearly 5 million clear of Wizkid in second.",
+    note: "Burna Boy is the most-followed African artist on Spotify — over 5 million clear of Wizkid in second.",
     source:
       "Spotify follower counts, taken directly from each artist's official Spotify page. As of July 2026 — this updates continuously as Spotify's live counts change.",
   },
