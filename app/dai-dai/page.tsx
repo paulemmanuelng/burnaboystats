@@ -82,6 +82,7 @@ export default function DaiDaiPage() {
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "No. 1", l: "Spotify Global Top Songs, Daily & Weekly — the most-streamed song on Earth, a first for an African artist" },
     { v: "No. 1", l: "Official MENA Chart Top 20, and Billboard's Central America & Caribbean chart" },
+    { v: "No. 5", l: "UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)" },
     { v: "No. 55", l: "Billboard Hot 100 (US) — extending Burna Boy's record for the most Hot 100 entries by an African artist" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, plus Gold in France, Spain, Colombia, Hungary & Slovakia" },
     { v: "19 Jul", l: "Shakira & Burna Boy perform it live at the 2026 FIFA World Cup Final halftime show" },
@@ -100,6 +101,10 @@ export default function DaiDaiPage() {
     {
       q: "Did “Dai Dai” reach No. 1?",
       a: "Yes. “Dai Dai” reached No. 1 on the Billboard Global 200 and the Global 200 Excl. US, topped Spotify's Global Top Songs chart on both the Daily and Weekly lists, and hit No. 1 on the official singles chart in 15 countries.",
+    },
+    {
+      q: "How high did “Dai Dai” chart in the UK?",
+      a: "“Dai Dai” peaked at No. 5 on the UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and the highest-charting World Cup song in UK history, surpassing Shakira's own “Waka Waka (This Time for Africa)”, which peaked at No. 21 in 2010.",
     },
     {
       q: "When is the 2026 World Cup Final halftime show?",

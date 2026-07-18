@@ -29,6 +29,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-18",
+    category: "Charts",
+    text: "A UK first: “Dai Dai” becomes the first FIFA World Cup song ever to reach the Official Singles Top 10, peaking at No.5 — the highest-charting World Cup song in UK history, surpassing Shakira's own “Waka Waka” (No.21 in 2010).",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-07-17",
     category: "Charts",
     text: "More “Dai Dai” climbs: the World Cup anthem hits new peaks of No.5 in the UK, No.6 in Italy, No.14 in Ireland and No.35 in Finland on their official singles charts.",
