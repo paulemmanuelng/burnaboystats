@@ -10,9 +10,21 @@ import AlbumStrip from "./components/AlbumStrip";
 import GlobeTeaser from "./components/GlobeTeaser";
 import TierDonut, { type DonutSeg } from "./components/TierDonut";
 import { totalAwards, countryCount, albums, singles, features } from "./data/certifications";
+import { numberOnes } from "./data/charts";
+import { monthlyListenersValues } from "./data/trends";
 import { latestUpdates, updates } from "./data/updates";
 
 const total = totalAwards();
+
+// "Proof bar" under the hero — the record-breaking superlatives (distinct from
+// the hero scoreboard's catalogue totals). Data-driven where the value moves.
+const listeners = monthlyListenersValues[monthlyListenersValues.length - 1];
+const proofStats = [
+  { num: `${numberOnes}`, label: "No. 1s on official charts worldwide", href: "/records/charts" },
+  { num: `${listeners.toFixed(1)}M`, label: "Spotify monthly listeners — most of any African artist", href: "/records/africas-biggest" },
+  { num: "$30.46M", label: "Highest-grossing tour ever by an African artist", href: "/records/tours" },
+  { num: "1st", label: "African act to top the Billboard Global 200", href: "/records/firsts" },
+];
 
 // Tier breakdown of all certifications, for the donut under the ranked list.
 const tierCounts: Record<string, number> = { Diamond: 0, Platinum: 0, Gold: 0, Silver: 0 };
@@ -122,6 +134,20 @@ export default function Home() {
         </div>
 
         <Waveform bars={60} className={styles.heroWave} />
+      </section>
+
+      {/* ================= PROOF BAR ================= */}
+      <section className={styles.proof} aria-label="Record-breaking career highlights">
+        <div className="container">
+          <div className={styles.proofRow}>
+            {proofStats.map((s) => (
+              <Link key={s.label} href={s.href} className={styles.proofItem}>
+                <span className={styles.proofNum}>{s.num}</span>
+                <span className={styles.proofLabel}>{s.label}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ================= MARQUEE ================= */}

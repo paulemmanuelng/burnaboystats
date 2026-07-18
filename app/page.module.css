@@ -267,6 +267,47 @@ a.stat:hover .statNum { color: var(--gold-bright); }
   font-size: 0.7rem;
 }
 
+/* ================= PROOF BAR (under hero) ================= */
+.proof {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 26px 0;
+}
+.proofRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.proofItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px 26px;
+  border-left: 1px solid var(--line);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.proofItem:first-child { border-left: none; padding-left: 0; }
+.proofItem:last-child { padding-right: 0; }
+a.proofItem:hover { background: rgba(255, 182, 39, 0.05); }
+a.proofItem:hover .proofNum { color: var(--gold-bright); }
+.proofNum {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--gold);
+}
+.proofLabel {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.66rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
 /* ================= SECTION HEAD + RANKED LIST ================= */
 .sectionHead {
   display: flex;
@@ -568,6 +609,10 @@ a.stat:hover .statNum { color: var(--gold-bright); }
   }
   .stat { border-right: none; padding: 22px 0; }
   .scoreboard .stat:nth-child(odd) { padding-right: 24px; }
+  .proofRow { grid-template-columns: repeat(2, 1fr); row-gap: 24px; }
+  .proofItem { padding: 6px 20px; }
+  .proofItem:nth-child(odd) { border-left: none; padding-left: 0; }
+  .proofItem:nth-child(2) { padding-right: 0; }
 }
 @media (max-width: 760px) {
   .rankRow { grid-template-columns: 44px 1fr; gap: 14px; padding: 13px 6px; }
