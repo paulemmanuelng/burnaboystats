@@ -13,6 +13,24 @@ export interface StatCard {
   chip: string;
 }
 
+// A small "FIFA-style" supporting stat (value + short label) for the card strip.
+export interface SignatureStat {
+  value: string;
+  label: string;
+}
+
+// Three signature Burna Boy stats to show under the hero stat (like the attribute
+// grid on a FUT card), skipping whichever one is the card's own headline.
+export function signatureTrio(heroId: string, cards: StatCard[] = getStatCards()): SignatureStat[] {
+  const priority = ["african-giant", "no1s", "listeners", "tour", "grammy"];
+  return priority
+    .filter((id) => id !== heroId)
+    .map((id) => cards.find((c) => c.id === id))
+    .filter((c): c is StatCard => Boolean(c))
+    .slice(0, 3)
+    .map((c) => ({ value: c.value, label: c.chip }));
+}
+
 export function getStatCards(): StatCard[] {
   const listeners = monthlyListenersValues[monthlyListenersValues.length - 1];
   return [

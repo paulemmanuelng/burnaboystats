@@ -74,8 +74,8 @@ export default function StatCardMaker({
             className={styles.preview}
             src={src}
             alt="Burna Boy stat card preview"
-            width={1080}
-            height={1080}
+            width={1200}
+            height={900}
             onLoad={() => setLoading(false)}
           />
         </div>

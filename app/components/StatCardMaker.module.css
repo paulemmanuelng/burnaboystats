@@ -38,15 +38,15 @@
   border-color: var(--gold);
 }
 
-/* The square preview */
+/* The landscape preview */
 .stage {
   width: 100%;
-  max-width: 460px;
+  max-width: 580px;
 }
 .frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--line);
