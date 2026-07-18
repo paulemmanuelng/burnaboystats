@@ -361,15 +361,22 @@ a {
 }
 /* Footer sitemap — direct links from every page to the key stat pages, so
    internal link equity reaches the deep pages that rank for search queries. */
-.footerNav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 11px 22px;
-  max-width: 720px;
+/* Wrapper clips the leading "·" that each row's negative margin pushes off the
+   left edge — so a separator never dangles at the start of a wrapped row. */
+.footerNavWrap {
+  max-width: 760px;
   margin: 0 auto 26px;
   padding-bottom: 26px;
   border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.footerNav {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 11px;
+  /* Pull the row left by one separator width; the wrapper's overflow:hidden then
+     clips the leading dot off the start of every wrapped row. */
+  margin-left: -24px;
 }
 .footerNav a {
   color: var(--text-muted);
@@ -381,6 +388,16 @@ a {
 }
 .footerNav a:hover {
   color: var(--gold);
+}
+/* Gold middot before every link — its own colour so it stays neutral when the
+   adjacent link is hovered. The first dot of each row is clipped (see above). */
+.footerNav a::before {
+  content: "·";
+  display: inline-block;
+  width: 24px;
+  text-align: center;
+  color: var(--gold-dim);
+  pointer-events: none;
 }
 
 /* -----------------------------------------------------------
