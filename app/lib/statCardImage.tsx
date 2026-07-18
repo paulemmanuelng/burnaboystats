@@ -14,8 +14,10 @@ const PHOTO = "https://i.scdn.co/image/ab6761610000e5ebb4e44d0f4e3e47af2cf06f3f"
 // faded into the right side. All text is kept on the dark left so it never
 // overlaps the photo.
 export function statCardImage(card: StatCard) {
-  const alnum = card.value.replace(/[^0-9A-Za-z]/g, "").length;
-  const valueSize = alnum <= 3 ? 210 : alnum <= 4 ? 164 : 128;
+  // Size by full length (incl. "$" and ".") so wide values like "$30.46M" stay
+  // inside the dark zone instead of spilling into the photo.
+  const len = card.value.length;
+  const valueSize = len <= 3 ? 210 : len <= 4 ? 176 : len <= 5 ? 156 : len <= 6 ? 128 : 112;
 
   return new ImageResponse(
     (
