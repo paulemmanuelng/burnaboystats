@@ -1,0 +1,114 @@
+.maker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  margin: 8px 0 8px;
+}
+
+/* Stat picker — a wrap of pill buttons */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 720px;
+}
+.chip {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 18px;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out),
+    background var(--dur) var(--ease-out);
+}
+.chip:hover {
+  color: var(--text);
+  border-color: var(--gold-dim);
+}
+.chipOn {
+  color: var(--gold);
+  background: rgba(255, 182, 39, 0.08);
+  border-color: var(--gold);
+}
+
+/* The square preview */
+.stage {
+  width: 100%;
+  max-width: 460px;
+}
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 182, 39, 0.06);
+  background: var(--bg-soft);
+}
+.preview {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+/* soft fade while the next card renders */
+.frame[data-loading] .preview {
+  opacity: 0.35;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.download {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--bg-soft);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 11px 24px;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+}
+.download:hover {
+  background: var(--bg-soft-2);
+  transform: translateY(-1px);
+}
+.download:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+}
+
+.hint {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .download:hover {
+    transform: none;
+  }
+}

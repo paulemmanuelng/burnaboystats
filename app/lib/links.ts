@@ -24,6 +24,7 @@ export const footerLinks = [
   { href: "/records/tours", label: "Tours" },
   { href: "/records/cars", label: "Car collection" },
   { href: "/records/africas-biggest", label: "Africa's Biggest" },
+  { href: "/share", label: "Stat Cards" },
   { href: "/faq", label: "FAQ" },
   { href: "/methodology", label: "Methodology" },
   { href: "/about", label: "About" },
@@ -44,8 +45,9 @@ export const exploreFor: Record<string, string[]> = {
   // flagship stats (never to itself).
   "/records/awards": ["certifications", "charts", "tours"],
   "/records/charts": ["dai-dai", "certifications", "records"],
-  "/dai-dai": ["charts", "africas-biggest", "records"],
+  "/dai-dai": ["charts", "africas-biggest", "share"],
   "/records/tours": ["records", "certifications", "charts"],
   "/records/firsts": ["dai-dai", "charts", "certifications"],
-  "/records/africas-biggest": ["certifications", "charts", "records"],
+  "/records/africas-biggest": ["certifications", "charts", "share"],
+  "/share": ["dai-dai", "certifications", "records"],
 };

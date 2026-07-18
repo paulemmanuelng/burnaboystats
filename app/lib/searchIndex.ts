@@ -112,6 +112,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["by the numbers", "stats", "statistics", "totals", "at a glance"],
   },
   {
+    title: "Stat Cards",
+    path: "/share",
+    section: "Records",
+    description: "Pick a Burna Boy record and download a shareable 1080×1080 card.",
+    keywords: ["stat card", "share", "download", "image", "instagram", "story", "wallpaper", "receiptify", "generator", "poster", "card maker"],
+  },
+  {
     title: "Visualized",
     path: "/records/visualized",
     section: "Records",

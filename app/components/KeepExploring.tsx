@@ -26,6 +26,7 @@ const sectionLinks: Record<string, SectionLink> = {
   about: { href: "/about", title: "About Burna Boy", desc: "Bio & career timeline" },
   "dai-dai": { href: "/dai-dai", title: "The Dai Dai Story", desc: "The World Cup song that conquered 2026" },
   "africas-biggest": { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists" },
+  share: { href: "/share", title: "Stat Cards", desc: "Download a card & share the numbers" },
 };
 
 // A "what to look at next" block — shown at the bottom of each page so
