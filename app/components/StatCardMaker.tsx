@@ -100,7 +100,7 @@ export default function StatCardMaker({
         />
       </div>
 
-      <p className={styles.hint}>1080×1080 · made for Instagram, X &amp; WhatsApp</p>
+      <p className={styles.hint}>1200×900 · made for sharing on X, WhatsApp &amp; more</p>
     </div>
   );
 }
