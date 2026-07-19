@@ -133,7 +133,7 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "Spotify · African artists · all-time peak",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "53.62M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "53.89M" },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "46.58M" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "45.5M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "40.01M" },

@@ -31,7 +31,13 @@ export const updates: Update[] = [
   {
     date: "2026-07-19",
     category: "Streaming",
-    text: "“Dai Dai” crosses 200 million Spotify streams and has now spent 12 days at No.1 on Spotify's global chart — the most-streamed song on Earth this summer.",
+    text: "53.89 million monthly listeners: Burna Boy sets a new all-time Spotify peak of 53,893,724 — now No. 50 in the world, and the most of any African artist.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-19",
+    category: "Streaming",
+    text: "“Dai Dai” crosses 200 million Spotify streams in just 65 days, and has now spent 13 days at No.1 on Spotify's global chart — the most-streamed song on Earth this summer.",
     href: "/dai-dai",
   },
   {
@@ -39,12 +45,6 @@ export const updates: Update[] = [
     category: "Charts",
     text: "More new charts for “Dai Dai”: No.10 on the global Apple Music Top Songs chart — Burna Boy's second straight year in the global Apple Music Top 10, after Gunna's “WGFT” (No.8, 2025) — and a No.17 debut in Malaysia (RIM).",
     href: "/dai-dai",
-  },
-  {
-    date: "2026-07-18",
-    category: "Streaming",
-    text: "53.62 million monthly listeners: Burna Boy climbs to a new all-time Spotify peak of 53,624,038 — now No. 51 in the world, and the most of any African artist.",
-    href: "/records/africas-biggest",
   },
   {
     date: "2026-07-18",
