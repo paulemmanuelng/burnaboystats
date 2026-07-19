@@ -37,7 +37,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-19",
     category: "Streaming",
-    text: "“Dai Dai” crosses 200 million Spotify streams in just 65 days, and has now spent 13 days at No.1 on Spotify's global chart — the most-streamed song on Earth this summer.",
+    text: "“Dai Dai” crosses 200 million Spotify streams in just 65 days — Burna Boy's 15th song past 200M, the most of any African artist — and has now spent 13 days at No.1 on Spotify's global chart.",
     href: "/dai-dai",
   },
   {
