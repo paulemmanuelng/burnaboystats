@@ -37,6 +37,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-19",
     category: "Charts",
+    text: "“Dai Dai” extends its global reign — a 2nd week at No. 1 on the Billboard Global 200 and a 4th week atop the Global 200 Excl. US (charts dated 25 July).",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-19",
+    category: "Charts",
     text: "“Dai Dai” conquers Portugal — No. 1 on the AFP Official Top 200 Singles chart, Burna Boy's 16th country at No. 1, and now certified Gold there.",
     href: "/dai-dai",
   },

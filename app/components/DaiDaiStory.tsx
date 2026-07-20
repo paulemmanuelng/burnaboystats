@@ -37,7 +37,7 @@ function buildSteps(p: Props): { scene: SceneKey; kicker: string; title: string;
       scene: "global1",
       kicker: "The record",
       title: "No. 1 on the Billboard Global 200",
-      body: "Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it.",
+      body: "Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. It has now held No. 1 for a second week, and a fourth week on the Global 200 Excl. US.",
     },
     {
       scene: "no1s",

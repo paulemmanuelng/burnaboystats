@@ -78,8 +78,8 @@ export default function DaiDaiPage() {
 
   const byNumbers: { v: string; l: string }[] = [
     { v: `${daiDaiChartEntryCount}`, l: "official chart entries worldwide — on national singles charts across the globe, plus both of Billboard's global charts" },
-    { v: "No. 1", l: "Billboard Global 200 — the first African artist ever to top the US-inclusive worldwide chart, and Shakira's 2nd" },
-    { v: "No. 1", l: "Billboard Global 200 (Excl. US)" },
+    { v: "No. 1", l: "Billboard Global 200 — a 2nd week atop the US-inclusive worldwide chart, a first for an African artist (and Shakira's 2nd)" },
+    { v: "No. 1", l: "Billboard Global 200 Excl. US — a 4th week at No. 1" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "No. 1", l: "Spotify Global Top Songs, Daily & Weekly — the most-streamed song on Earth, a first for an African artist" },
     { v: "No. 1", l: "Official MENA Chart Top 20, and Billboard's Central America & Caribbean chart" },
