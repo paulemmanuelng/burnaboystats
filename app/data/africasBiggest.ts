@@ -227,12 +227,12 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "YouTube · African artists · all-time peak",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "714M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "734M" },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "654M" },
       { name: "Moliy", sub: "🇬🇭 Ghana", value: "602M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "471M" },
     ],
-    note: "Burna Boy's monthly-audience peak on YouTube has climbed to 714 million — the first African artist ever past 700 million, the highest of any African artist, and one of the six biggest of any singer ever, behind only Bruno Mars, Rosé, Lady Gaga, Shakira and Michael Jackson.",
+    note: "Burna Boy's monthly-audience peak on YouTube has climbed to 734 million — the first African artist ever past 700 million, the highest of any African artist, and one of the six biggest of any singer ever, behind only Bruno Mars, Rosé, Lady Gaga, Shakira and Michael Jackson.",
     source:
       "Peak monthly audience on YouTube (YouTube for Artists), from chart-tracking accounts. As of July 2026 — figures update as they climb.",
   },

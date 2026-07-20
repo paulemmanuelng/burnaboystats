@@ -152,7 +152,7 @@ export default function Home() {
               <p className={styles.featuredText}>
                 Shakira &amp; Burna Boy performed &ldquo;Dai Dai&rdquo; at the first-ever FIFA
                 World Cup Final halftime show — Burna the first African artist to headline it,
-                alongside Madonna, BTS &amp; Justin Bieber. Their anthem is No.&nbsp;1 in 15
+                alongside Madonna, BTS &amp; Justin Bieber. Their anthem is No.&nbsp;1 in 16
                 countries and the most-streamed song on Earth.
               </p>
               <span className={styles.featuredCta}>Read the story ↗</span>

@@ -85,8 +85,8 @@ export default function DaiDaiPage() {
     { v: "No. 1", l: "Official MENA Chart Top 20, and Billboard's Central America & Caribbean chart" },
     { v: "No. 5", l: "UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)" },
     { v: "No. 55", l: "Billboard Hot 100 (US) — extending Burna Boy's record for the most Hot 100 entries by an African artist" },
-    { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, plus Gold in France, Spain, Colombia, Hungary & Slovakia" },
-    { v: "No. 1", l: "iTunes song chart in dozens of countries — a new No. 1 in the US, plus the UK, Canada, France, Ireland, Spain, the Netherlands, Norway & Switzerland" },
+    { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, plus Gold in France, Spain, Colombia, Hungary, Slovakia & Portugal" },
+    { v: "No. 1", l: "iTunes song chart in 65 countries — the US, UK, Canada, France, India, Spain, Portugal & dozens more" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
 
@@ -102,7 +102,7 @@ export default function DaiDaiPage() {
     },
     {
       q: "Did “Dai Dai” reach No. 1?",
-      a: "Yes. “Dai Dai” reached No. 1 on the Billboard Global 200 and the Global 200 Excl. US, topped Spotify's Global Top Songs chart on both the Daily and Weekly lists, and hit No. 1 on the official singles chart in 15 countries.",
+      a: "Yes. “Dai Dai” reached No. 1 on the Billboard Global 200 and the Global 200 Excl. US, topped Spotify's Global Top Songs chart on both the Daily and Weekly lists, and hit No. 1 on the official singles chart in 16 countries.",
     },
     {
       q: "How high did “Dai Dai” chart in the UK?",
@@ -122,7 +122,7 @@ export default function DaiDaiPage() {
     },
     {
       q: "How many certifications does “Dai Dai” have?",
-      a: "“Dai Dai” has 6 certifications: 2× Platinum (Latin) in the US from the RIAA, plus Gold in France, Spain, Colombia, Hungary and Slovakia.",
+      a: "“Dai Dai” has 7 certifications: 2× Platinum (Latin) in the US from the RIAA, plus Gold in France, Spain, Colombia, Hungary, Slovakia and Portugal.",
     },
   ];
 

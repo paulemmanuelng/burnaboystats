@@ -396,6 +396,7 @@ export const certHistory: CertEvent[] = [
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "FR", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "HU", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "SK", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "PT", level: "Gold", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "ZA", level: "Platinum", x: 2, year: 2026 },
   { title: "Gbona", country: "FR", level: "Diamond", year: 2026 },
 
