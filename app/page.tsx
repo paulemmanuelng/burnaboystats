@@ -134,25 +134,26 @@ export default function Home() {
             <Link href="/dai-dai" className={styles.featured}>
               <span className={styles.featuredBadge}>
                 <span className={styles.featuredDot} aria-hidden="true" />
-                Featured story · World Cup Final this weekend
+                History made · 19 July 2026
               </span>
               {/* Cover floats to the right; the copy below wraps around it (Spotify CDN, same as the discography). */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className={styles.featuredCover}
                 src="https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4"
-                alt="Dai Dai single cover — Shakira × Burna Boy"
+                alt="Shakira × Burna Boy — Dai Dai"
                 width={190}
                 height={190}
                 loading="lazy"
               />
               <h2 className={styles.featuredTitle}>
-                The <span className="goldText">Dai Dai</span> Story
+                The first-ever World Cup <span className="goldText">Halftime Show</span>
               </h2>
               <p className={styles.featuredText}>
-                How Shakira &amp; Burna Boy&apos;s World Cup anthem hit No.&nbsp;1 in 15
-                countries and became the most-streamed song on Earth — and lands on the
-                Final halftime stage on 19 July.
+                Shakira &amp; Burna Boy performed &ldquo;Dai Dai&rdquo; at the first-ever FIFA
+                World Cup Final halftime show — Burna the first African artist to headline it,
+                alongside Madonna, BTS &amp; Justin Bieber. Their anthem is No.&nbsp;1 in 15
+                countries and the most-streamed song on Earth.
               </p>
               <span className={styles.featuredCta}>Read the story ↗</span>
             </Link>

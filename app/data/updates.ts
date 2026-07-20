@@ -30,6 +30,18 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-19",
+    category: "Firsts & Records",
+    text: "History made: Shakira & Burna Boy performed “Dai Dai” at the first-ever FIFA World Cup Final halftime show — Burna Boy the first African artist to headline a World Cup halftime show, on a bill with Madonna, BTS & Justin Bieber.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-19",
+    category: "Charts",
+    text: "“Dai Dai” tops iTunes worldwide — No. 1 on the iTunes song chart in dozens of countries, including a new No. 1 in the US, plus the UK, Canada, France, Ireland, Spain, the Netherlands, Norway & Switzerland.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-19",
     category: "Streaming",
     text: "53.89 million monthly listeners: Burna Boy sets a new all-time Spotify peak of 53,893,724 — now No. 50 in the world, and the most of any African artist.",
     href: "/records/africas-biggest",

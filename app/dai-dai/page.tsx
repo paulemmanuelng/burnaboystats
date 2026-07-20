@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styles from "./dai-dai.module.css";
 import DaiDaiStory from "../components/DaiDaiStory";
-import ShareButton from "../components/ShareButton";
 import KeepExploring from "../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
@@ -75,6 +74,8 @@ export default function DaiDaiPage() {
 
   // Every headline "Dai Dai" figure in one scannable, crawlable block — the
   // song's OWN numbers (not Burna Boy's artist-wide totals).
+  const HALFTIME_VIDEO = "https://youtu.be/T3thHUtPdhc";
+
   const byNumbers: { v: string; l: string }[] = [
     { v: `${daiDaiChartEntryCount}`, l: "official chart entries worldwide — on national singles charts across the globe, plus both of Billboard's global charts" },
     { v: "No. 1", l: "Billboard Global 200 — the first African artist ever to top the US-inclusive worldwide chart, and Shakira's 2nd" },
@@ -85,7 +86,8 @@ export default function DaiDaiPage() {
     { v: "No. 5", l: "UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)" },
     { v: "No. 55", l: "Billboard Hot 100 (US) — extending Burna Boy's record for the most Hot 100 entries by an African artist" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, plus Gold in France, Spain, Colombia, Hungary & Slovakia" },
-    { v: "19 Jul", l: "Shakira & Burna Boy perform it live at the 2026 FIFA World Cup Final halftime show" },
+    { v: "No. 1", l: "iTunes song chart in dozens of countries — a new No. 1 in the US, plus the UK, Canada, France, Ireland, Spain, the Netherlands, Norway & Switzerland" },
+    { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
 
   // Answer-first Q&A targeting the exact questions halftime-weekend searchers ask.
@@ -96,7 +98,7 @@ export default function DaiDaiPage() {
     },
     {
       q: "Is “Dai Dai” the 2026 World Cup song?",
-      a: "Yes. “Dai Dai” is the official anthem of the 2026 FIFA World Cup, and Shakira and Burna Boy perform it live at the World Cup Final halftime show on 19 July 2026.",
+      a: "Yes. “Dai Dai” is the official anthem of the 2026 FIFA World Cup, and Shakira and Burna Boy performed it live at the World Cup Final halftime show on 19 July 2026.",
     },
     {
       q: "Did “Dai Dai” reach No. 1?",
@@ -107,16 +109,16 @@ export default function DaiDaiPage() {
       a: "“Dai Dai” peaked at No. 5 on the UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and the highest-charting World Cup song in UK history, surpassing Shakira's own “Waka Waka (This Time for Africa)”, which peaked at No. 21 in 2010.",
     },
     {
-      q: "When is the 2026 World Cup Final halftime show?",
-      a: "The first-ever FIFA World Cup Final halftime show takes place on 19 July 2026 at MetLife Stadium. Shakira and Burna Boy perform “Dai Dai”, joined on stage by Uganda's Triplets Ghetto Kids.",
+      q: "When was the 2026 World Cup Final halftime show?",
+      a: "The first-ever FIFA World Cup Final halftime show took place on 19 July 2026 at MetLife Stadium. Shakira and Burna Boy performed “Dai Dai”, joined on stage by Uganda's Triplets Ghetto Kids.",
     },
     {
-      q: "Who is performing at the 2026 World Cup Final halftime show?",
-      a: "The 2026 FIFA World Cup Final halftime show features Madonna, Shakira and Burna Boy (performing “Dai Dai”), BTS, Justin Bieber, conductor Gustavo Dudamel, and the PS22 Chorus with Coldplay — produced by Global Citizen, on 19 July 2026 at MetLife Stadium.",
+      q: "Who performed at the 2026 World Cup Final halftime show?",
+      a: "The 2026 FIFA World Cup Final halftime show — the first ever — featured Madonna, Shakira and Burna Boy (performing “Dai Dai”), BTS, Justin Bieber, conductor Gustavo Dudamel, and the PS22 Chorus with Coldplay, produced by Global Citizen, on 19 July 2026 at MetLife Stadium.",
     },
     {
-      q: "Who are the Ghetto Kids performing with Shakira and Burna Boy?",
-      a: "Uganda's Triplets Ghetto Kids — a Kampala-based children's dance group who went viral online — join Shakira and Burna Boy on stage for “Dai Dai” at the 2026 World Cup Final halftime show, after Shakira invited them to the performance.",
+      q: "Who are the Ghetto Kids who performed with Shakira and Burna Boy?",
+      a: "Uganda's Triplets Ghetto Kids — a Kampala-based children's dance group who went viral online — joined Shakira and Burna Boy on stage for “Dai Dai” at the 2026 World Cup Final halftime show, after Shakira invited them to the performance.",
     },
     {
       q: "How many certifications does “Dai Dai” have?",
@@ -169,22 +171,18 @@ export default function DaiDaiPage() {
         </h1>
         <p>
           How Shakira &amp; Burna Boy&apos;s 2026 World Cup anthem became the biggest
-          song in the world — and lands on the Final halftime stage this weekend.
-          Scroll to follow the run.
+          song in the world — and made history at the first-ever FIFA World Cup Final
+          halftime show. Scroll to follow the run.
         </p>
         <div className={styles.shareRow}>
-          <ShareButton
-            url={`${CANONICAL_ORIGIN}/dai-dai`}
-            title="The Dai Dai Story — Shakira & Burna Boy"
-            text={
-              "“Dai Dai” — Shakira & Burna Boy's official 2026 FIFA World Cup anthem: No.1 on the Billboard " +
-              `Global 200, the most-streamed song on Earth, and a No.1 in ${daiDaiNumberOnes} countries. ` +
-              "Shakira & Burna perform it live at the World Cup Final halftime show on 19 July, alongside " +
-              "Madonna, BTS & Justin Bieber. Every chart, record and the full story:"
-            }
-            imageUrl="/dai-dai/opengraph-image"
-            fileName="dai-dai.png"
-          />
+          <a
+            className="btn btnPrimary"
+            href={HALFTIME_VIDEO}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ▶ Watch the halftime show ↗
+          </a>
         </div>
       </header>
 
@@ -197,7 +195,7 @@ export default function DaiDaiPage() {
           </h2>
           <p className={styles.lineupIntro}>
             The first-ever FIFA World Cup Final halftime show — 19 July 2026 at MetLife
-            Stadium, produced by Global Citizen. Shakira &amp; Burna Boy perform “Dai Dai”
+            Stadium, produced by Global Citizen. Shakira &amp; Burna Boy performed “Dai Dai”
             on a bill of global superstars.
           </p>
           <ul className={styles.lineupGrid}>

@@ -65,9 +65,9 @@ function buildSteps(p: Props): { scene: SceneKey; kicker: string; title: string;
     },
     {
       scene: "halftime",
-      kicker: "This weekend · 19 July",
-      title: "Live on the World Cup Final stage",
-      body: "Shakira and Burna Boy take “Dai Dai” to the first-ever FIFA World Cup Final halftime show at MetLife Stadium on 19 July — before a global audience of billions, alongside Madonna, BTS and Justin Bieber.",
+      kicker: "History made · 19 July",
+      title: "History on the World Cup Final stage",
+      body: "Shakira and Burna Boy took “Dai Dai” to the first-ever FIFA World Cup Final halftime show at MetLife Stadium on 19 July — before a global audience of billions, alongside Madonna, BTS and Justin Bieber.",
     },
   ];
 }
@@ -136,7 +136,7 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
             <img className={styles.duoImg} src={BURNA} alt="Burna Boy" width={128} height={128} loading="lazy" />
           </div>
           <span className={styles.sceneLabel}>World Cup Final · Halftime show</span>
-          <span className={styles.sceneNote}>Shakira &amp; Burna Boy · live, 19 July</span>
+          <span className={styles.sceneNote}>Shakira &amp; Burna Boy · halftime show, 19 July</span>
         </>
       )}
     </div>
