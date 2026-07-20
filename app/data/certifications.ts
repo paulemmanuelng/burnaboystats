@@ -250,7 +250,7 @@ export const singles: Release[] = [
 export const features: Release[] = [
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, certs: [
     { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
-    { c: "CO", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Gold" },
+    { c: "CO", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Gold" }, { c: "PT", level: "Gold" },
   ] },
   { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, certs: [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 2 },
