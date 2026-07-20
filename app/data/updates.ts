@@ -67,7 +67,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-19",
     category: "Streaming",
-    text: "53.89 million monthly listeners: Burna Boy sets a new all-time Spotify peak of 53,893,724 — now No. 50 in the world, and the most of any African artist.",
+    text: "54.33 million monthly listeners: Burna Boy sets a new all-time Spotify peak of 54,332,489 — No. 50 in the world, and the most of any African artist.",
     href: "/records/africas-biggest",
   },
   {
