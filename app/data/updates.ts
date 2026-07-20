@@ -193,7 +193,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Tours",
-    text: "Set to headline the 2026 FIFA World Cup Final halftime show (19 July) — the first African artist ever to perform at one — on a bill with Madonna, Shakira, BTS, Justin Bieber and Coldplay.",
+    text: "The 2026 FIFA World Cup Final halftime show lineup was revealed — Burna Boy the first African artist ever on a World Cup halftime bill, alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay (19 July).",
     href: "/records/tours",
   },
   {
