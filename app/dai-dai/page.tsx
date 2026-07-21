@@ -84,9 +84,9 @@ export default function DaiDaiPage() {
     { v: "No. 1", l: "Spotify Global Top Songs, Daily & Weekly — the most-streamed song on Earth, a first for an African artist" },
     { v: "No. 1", l: "Official MENA Chart Top 20, and Billboard's Central America & Caribbean chart" },
     { v: "No. 5", l: "UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)" },
-    { v: "No. 55", l: "Billboard Hot 100 (US) — extending Burna Boy's record for the most Hot 100 entries by an African artist" },
+    { v: "No. 42", l: "Billboard Hot 100 (US) — a new peak, extending Burna Boy's record for the most Hot 100 entries by an African artist" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, plus Gold in France, Spain, Colombia, Hungary, Slovakia & Portugal" },
-    { v: "No. 1", l: "iTunes song chart in 65 countries — the US, UK, Canada, France, India, Spain, Portugal & dozens more" },
+    { v: "No. 1", l: "iTunes song chart in 66 countries — the US, UK, Canada, France, Italy, India, Spain, Portugal & dozens more" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
 

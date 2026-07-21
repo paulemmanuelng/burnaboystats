@@ -43,6 +43,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-19",
     category: "Charts",
+    text: "“Dai Dai” hits a new Billboard Hot 100 peak of No. 42 (up 13) in its 5th week — extending Burna Boy's record for the most Hot 100 entries by an African artist.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-19",
+    category: "Charts",
     text: "“Dai Dai” conquers Portugal — No. 1 on the AFP Official Top 200 Singles chart, Burna Boy's 16th country at No. 1, and now certified Gold there.",
     href: "/dai-dai",
   },
@@ -61,7 +67,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-19",
     category: "Charts",
-    text: "“Dai Dai” tops iTunes worldwide — No. 1 on the iTunes song chart in 65 countries, including the US, UK, Canada, France, India, Spain and Portugal.",
+    text: "“Dai Dai” tops iTunes worldwide — No. 1 on the iTunes song chart in 66 countries, including the US, UK, Italy, Canada, France, India, Spain and Portugal.",
     href: "/dai-dai",
   },
   {
