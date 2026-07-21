@@ -29,52 +29,52 @@ export interface Update {
 
 export const updates: Update[] = [
   {
-    date: "2026-07-19",
-    category: "Firsts & Records",
-    text: "History made: Shakira & Burna Boy performed “Dai Dai” at the first-ever FIFA World Cup Final halftime show — Burna Boy the first African artist to headline a World Cup halftime show, on a bill with Madonna, BTS & Justin Bieber.",
-    href: "/dai-dai",
-  },
-  {
-    date: "2026-07-19",
-    category: "Charts",
-    text: "“Dai Dai” extends its global reign — a 2nd week at No. 1 on the Billboard Global 200 and a 4th week atop the Global 200 Excl. US (charts dated 25 July).",
-    href: "/dai-dai",
-  },
-  {
-    date: "2026-07-19",
+    date: "2026-07-21",
     category: "Charts",
     text: "“Dai Dai” hits a new Billboard Hot 100 peak of No. 42 (up 13) in its 5th week — extending Burna Boy's record for the most Hot 100 entries by an African artist.",
     href: "/dai-dai",
   },
   {
-    date: "2026-07-19",
+    date: "2026-07-21",
+    category: "Charts",
+    text: "“Dai Dai” extends its global reign — a 2nd week at No. 1 on the Billboard Global 200 and a 4th week atop the Global 200 Excl. US (charts dated 25 July).",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-21",
+    category: "Streaming",
+    text: "54.33 million monthly listeners: Burna Boy sets a new all-time Spotify peak of 54,332,489 — No. 50 in the world, and the most of any African artist.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-21",
+    category: "Charts",
+    text: "“Dai Dai” tops iTunes worldwide — No. 1 on the iTunes song chart in 66 countries, including the US, UK, Italy, Canada, France, India, Spain and Portugal.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-20",
     category: "Charts",
     text: "“Dai Dai” conquers Portugal — No. 1 on the AFP Official Top 200 Singles chart, Burna Boy's 16th country at No. 1, and now certified Gold there.",
     href: "/dai-dai",
   },
   {
-    date: "2026-07-19",
+    date: "2026-07-20",
     category: "Streaming",
     text: "734 million on YouTube Music: Burna Boy's monthly audience climbs to a new peak of 734M, and he rises to No. 18 on YouTube Music's Weekly Top Artists chart — the highest ever for an African artist.",
     href: "/records/africas-biggest",
   },
   {
-    date: "2026-07-19",
+    date: "2026-07-20",
     category: "Charts",
     text: "“Dai Dai” stays on top: a fourth straight week at No. 1 on Mediatraffic's United World Chart, back to No. 1 on the Global Shazam chart (over 400,000 Shazams in 24 hours), and a new No. 5 peak in the Czech Republic.",
     href: "/dai-dai",
   },
   {
     date: "2026-07-19",
-    category: "Charts",
-    text: "“Dai Dai” tops iTunes worldwide — No. 1 on the iTunes song chart in 66 countries, including the US, UK, Italy, Canada, France, India, Spain and Portugal.",
+    category: "Firsts & Records",
+    text: "History made: Shakira & Burna Boy performed “Dai Dai” at the first-ever FIFA World Cup Final halftime show — Burna Boy the first African artist to headline a World Cup halftime show, on a bill with Madonna, BTS & Justin Bieber.",
     href: "/dai-dai",
-  },
-  {
-    date: "2026-07-19",
-    category: "Streaming",
-    text: "54.33 million monthly listeners: Burna Boy sets a new all-time Spotify peak of 54,332,489 — No. 50 in the world, and the most of any African artist.",
-    href: "/records/africas-biggest",
   },
   {
     date: "2026-07-19",
