@@ -67,6 +67,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-21",
     category: "Charts",
+    text: "A first on Latin radio: “Dai Dai” rises to No. 1 on Billboard's Latin Airplay chart — Burna Boy's first No. 1 there, and Shakira's record-extending 25th, the most by any woman.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-21",
+    category: "Charts",
     text: "“Dai Dai” tops iTunes worldwide — No. 1 on the iTunes song chart in 67 countries, including the US, UK, Italy, New Zealand, Canada, France, India, Spain and Portugal.",
     href: "/dai-dai",
   },

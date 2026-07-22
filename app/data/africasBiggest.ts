@@ -170,7 +170,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "5" },
       { name: "Tyla & Hugh Masekela", sub: "🇿🇦 South Africa · tied", value: "4" },
     ],
-    note: "Burna Boy has the most Billboard Hot 100 entries of any African artist in history — 9, extended by “Dai Dai” with Shakira. Tyla and Hugh Masekela are tied on 4: Tyla holds the record for the most by an African woman, and Masekela was the first African act to top the chart (“Grazing in the Grass,” No. 1, 1968).",
+    note: "Burna Boy has the most Billboard Hot 100 entries of any African artist in history — 9, extended by “Dai Dai” with Shakira. Tems is next with 8 — the most ever by an African woman. Hugh Masekela and Tyla are tied on 4; Masekela was the first African act to top the chart (“Grazing in the Grass,” No. 1, 1968).",
     source:
       "Career Billboard Hot 100 entries by African artists, from Billboard chart histories. Burna Boy (9), Tems (8) and Tyla (4) confirmed via Billboard; Seether (7), Wizkid (5) and Hugh Masekela (4) cross-checked against Billboard and chart-stat trackers. As of July 2026.",
   },
@@ -235,5 +235,29 @@ export const statBoxes: LeaderboardBox[] = [
     note: "Burna Boy's monthly-audience peak on YouTube has climbed to 739 million — the first African artist ever past 700 million, the highest of any African artist, and one of the six biggest of any singer ever, behind only Bruno Mars, Rosé, Lady Gaga, Shakira and Michael Jackson.",
     source:
       "Peak monthly audience on YouTube (YouTube for Artists), from chart-tracking accounts. As of July 2026 — figures update as they climb.",
+  },
+  {
+    id: "apple-music-global-no1",
+    title: "African No. 1s on the Apple Music Global chart",
+    meta: "Apple Music Global Top 100 · African No. 1 songs",
+    layout: "list",
+    entries: [
+      { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "No. 1" },
+      { name: "Tems", sub: "🇳🇬 “Wait for U” (with Future & Drake)", value: "No. 1" },
+    ],
+    note: "Only two African artists have ever sent a song to No. 1 on Apple Music's Global Top 100 — Burna Boy with “Dai Dai” (the first and only male African artist to do it) and Tems with “Wait for U”.",
+    source: "Songs by African artists to reach No. 1 on the Apple Music Global Top 100. As of July 2026.",
+  },
+  {
+    id: "best-selling-african-artist-eas",
+    title: "Best-selling African artist of all time",
+    meta: "Equivalent album sales · global · ChartMasters",
+    layout: "list",
+    entries: [
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "14.46M" },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "14.43M" },
+    ],
+    note: "Burna Boy is the No. 1 best-selling African artist of all time by equivalent album sales — narrowly ahead of Wizkid, a lead the two keep trading (Davido rounds out the top three). Counts albums, physical and digital singles and streaming album-track equivalents.",
+    source: "Total equivalent album sales (EAS), per ChartMasters (CSPC methodology). As of July 2026 — a close, fast-moving race, so the top two can swap.",
   },
 ];
