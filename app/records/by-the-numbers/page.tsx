@@ -35,7 +35,7 @@ const stats: { num: string; label: string; sub: string; href: string; delta?: nu
   { num: "9", label: "Billboard Hot 100 entries", sub: "the most by any African artist, six years running", href: "/records/charts" },
   { num: `${listenersLatest}M`, label: "Spotify monthly listeners", sub: "the first African artist ever to reach 50 million", href: "/records/africas-biggest", delta: listenersPct },
   // YouTube figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.
-  { num: "734M", label: "YouTube Music monthly audience", sub: "first African artist ever past 700 million", href: "/records/africas-biggest" },
+  { num: "739M", label: "YouTube Music monthly audience", sub: "first African artist ever past 700 million", href: "/records/africas-biggest" },
   { num: "2B+", label: "UK streams", sub: "the first African artist to pass two billion", href: "/records/firsts" },
   { num: `${performedCountryCount}`, label: "Countries performed in", sub: "live shows on every inhabited continent", href: "/records/tours/map" },
   { num: `${albums.length}`, label: "Studio albums", sub: "from L.I.F.E (2013) to No Sign of Weakness (2025)", href: "/music" },

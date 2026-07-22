@@ -29,6 +29,30 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-22",
+    category: "Streaming",
+    text: "55.27 million monthly listeners: Burna Boy becomes the first African artist in Spotify history to reach 55 million — a new all-time peak of 55,272,197, now No. 45 in the world.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-22",
+    category: "Streaming",
+    text: "A single-day record: “Dai Dai” drew a new high of 6.72 million Spotify streams in one day — the first time an African artist's song has crossed 6 million daily streams — on its 15th day at No. 1 on the global chart.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-22",
+    category: "Firsts & Records",
+    text: "First on a new chart: Burna Boy becomes the first African artist to top Spotify's newly launched Global Music Video Chart, with “Dai Dai” No. 1 on the inaugural ranking.",
+    href: "/records/firsts",
+  },
+  {
+    date: "2026-07-22",
+    category: "Charts",
+    text: "Burna Boy is once again the No. 1 best-selling African artist of all time by equivalent album sales — 14.46 million (per ChartMasters), narrowly ahead of Wizkid.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-07-21",
     category: "Charts",
     text: "“Dai Dai” hits a new Billboard Hot 100 peak of No. 42 (up 13) in its 5th week — extending Burna Boy's record for the most Hot 100 entries by an African artist.",
@@ -42,14 +66,8 @@ export const updates: Update[] = [
   },
   {
     date: "2026-07-21",
-    category: "Streaming",
-    text: "54.33 million monthly listeners: Burna Boy sets a new all-time Spotify peak of 54,332,489 — No. 50 in the world, and the most of any African artist.",
-    href: "/records/africas-biggest",
-  },
-  {
-    date: "2026-07-21",
     category: "Charts",
-    text: "“Dai Dai” tops iTunes worldwide — No. 1 on the iTunes song chart in 66 countries, including the US, UK, Italy, Canada, France, India, Spain and Portugal.",
+    text: "“Dai Dai” tops iTunes worldwide — No. 1 on the iTunes song chart in 67 countries, including the US, UK, Italy, New Zealand, Canada, France, India, Spain and Portugal.",
     href: "/dai-dai",
   },
   {
@@ -61,7 +79,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-20",
     category: "Streaming",
-    text: "734 million on YouTube Music: Burna Boy's monthly audience climbs to a new peak of 734M, and he rises to No. 18 on YouTube Music's Weekly Top Artists chart — the highest ever for an African artist.",
+    text: "739 million on YouTube Music: Burna Boy's monthly audience climbs to a new peak of 739M, and he rises to No. 18 on YouTube Music's Weekly Top Artists chart — the highest ever for an African artist.",
     href: "/records/africas-biggest",
   },
   {
@@ -79,7 +97,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-19",
     category: "Streaming",
-    text: "“Dai Dai” crosses 200 million Spotify streams in just 65 days — Burna Boy's 15th song past 200M, the most of any African artist — and has now spent 14 days at No.1 on Spotify's global chart.",
+    text: "“Dai Dai” crosses 200 million Spotify streams in just 65 days — Burna Boy's 15th song past 200M, the most of any African artist.",
     href: "/dai-dai",
   },
   {

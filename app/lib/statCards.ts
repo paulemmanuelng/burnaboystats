@@ -76,8 +76,8 @@ export function getStatCards(): StatCard[] {
       kicker: "The most of any African artist",
       chip: "Monthly listeners",
       stats: [
-        { value: "17.0M", label: "Followers" },
-        { value: "734M", label: "YouTube peak" },
+        { value: "17.1M", label: "Followers" },
+        { value: "739M", label: "YouTube peak" },
         { value: "No.1", label: "Spotify Global" },
       ],
     },
@@ -119,13 +119,13 @@ export function getStatCards(): StatCard[] {
     },
     {
       id: "followers",
-      value: "17.0M",
+      value: "17.1M",
       label: "Spotify followers — most of any African artist",
       kicker: "The most-followed African artist on Spotify",
       chip: "Followers",
       stats: [
         { value: `${listeners}M`, label: "Monthly listeners" },
-        { value: "734M", label: "YouTube peak" },
+        { value: "739M", label: "YouTube peak" },
         { value: "#1", label: "Most-followed" },
       ],
     },

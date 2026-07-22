@@ -133,13 +133,13 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "Spotify · African artists · all-time peak",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "54.33M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "55.27M" },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "46.58M" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "45.5M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "40.01M" },
       { name: "CKay", sub: "🇳🇬 Nigeria", value: "34.78M" },
     ],
-    note: "Burna Boy is the first African artist ever to reach 50 million Spotify monthly listeners — a milestone no African act had crossed before, and his peak is still climbing.",
+    note: "Burna Boy is the first African artist ever to reach 50 million Spotify monthly listeners — and now the first past 55 million, a milestone no African act had crossed before, with his peak still climbing.",
     source:
       "Peak Spotify monthly listeners, from Spotify artist pages and monitoring trackers, as of July 2026. Burna Boy's figure is his current peak and still rising, so it updates as Spotify's numbers change.",
   },
@@ -196,7 +196,7 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "Spotify followers · African artists · current",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "17.0M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "17.1M" },
       { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "12.1M" },
       { name: "Davido", sub: "🇳🇬 Nigeria", value: "11.4M" },
       { name: "Asake", sub: "🇳🇬 Nigeria", value: "9.8M" },
@@ -227,12 +227,12 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "YouTube · African artists · all-time peak",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "734M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "739M" },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "654M" },
       { name: "Moliy", sub: "🇬🇭 Ghana", value: "602M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "471M" },
     ],
-    note: "Burna Boy's monthly-audience peak on YouTube has climbed to 734 million — the first African artist ever past 700 million, the highest of any African artist, and one of the six biggest of any singer ever, behind only Bruno Mars, Rosé, Lady Gaga, Shakira and Michael Jackson.",
+    note: "Burna Boy's monthly-audience peak on YouTube has climbed to 739 million — the first African artist ever past 700 million, the highest of any African artist, and one of the six biggest of any singer ever, behind only Bruno Mars, Rosé, Lady Gaga, Shakira and Michael Jackson.",
     source:
       "Peak monthly audience on YouTube (YouTube for Artists), from chart-tracking accounts. As of July 2026 — figures update as they climb.",
   },
