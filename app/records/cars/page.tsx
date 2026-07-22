@@ -9,7 +9,7 @@ import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 export const metadata = pageMetadata({
   title: `Burna Boy's Car Collection — ${carCount} Cars Worth ${totalValueFormatted}+`,
   description:
-    `Every car in Burna Boy's garage, priced and sourced: ${carCount} current vehicles worth a reported ${totalValueFormatted}+, led by his ₦9 billion one-of-one Bugatti Chiron and a $2M McLaren Senna — plus the ones he's since sold.`,
+    `Every car in Burna Boy's garage, priced and sourced: ${carCount} vehicles worth a reported ${totalValueFormatted}+, led by his ₦9bn one-of-one Bugatti Chiron.`,
   path: "/records/cars",
   shareTitle: "Burna Boy's Car Collection",
   shareDescription: `${carCount} cars worth a reported ${totalValueFormatted}+, led by a ₦9bn Bugatti Chiron — every car, priced.`,

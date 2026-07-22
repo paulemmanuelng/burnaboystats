@@ -9,7 +9,7 @@ import { daiDaiCertCount } from "../data/certifications";
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
   description:
-    "Shakira & Burna Boy's “Dai Dai” — the 2026 FIFA World Cup anthem: No. 1 worldwide, most-streamed song on Earth, and performed at the World Cup Final halftime show.",
+    "Shakira & Burna Boy's “Dai Dai” — the 2026 FIFA World Cup anthem: No. 1 worldwide, the most-streamed song on Earth, and the Final halftime show.",
   path: "/dai-dai",
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
   shareDescription: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and performed at the Final halftime show.",

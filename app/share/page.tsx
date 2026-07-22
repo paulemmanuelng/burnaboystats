@@ -6,7 +6,7 @@ import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
 export const metadata = pageMetadata({
   title: "Make a Burna Boy Stat Card — Download & Share the Numbers",
   description:
-    "Pick a Burna Boy record — certifications, No. 1s, the record tour, Spotify listeners — and download a clean 1080×1080 card to share on Instagram, X and WhatsApp.",
+    "Pick a Burna Boy record — certifications, No. 1s, the record tour, Spotify listeners — and download a clean card to share on X, Instagram and WhatsApp.",
   path: "/share",
   shareTitle: "Burna Boy Stat Cards",
   shareDescription:

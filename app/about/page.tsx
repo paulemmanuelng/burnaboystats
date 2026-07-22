@@ -4,9 +4,9 @@ import KeepExploring from "../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Burna Boy Real Name, Age & Biography — Damini Ebunoluwa Ogulu",
+  title: "Burna Boy Real Name & Biography — Damini Ebunoluwa Ogulu",
   description:
-    "Burna Boy's real name is Damini Ebunoluwa Ogulu, born 2 July 1991 in Port Harcourt, Nigeria. The full biography and career timeline of the Grammy-winning African Giant.",
+    "Burna Boy's real name is Damini Ebunoluwa Ogulu, born 2 July 1991 in Port Harcourt, Nigeria — the full biography of the Grammy-winning African Giant.",
   path: "/about",
   shareTitle: "About Burna Boy",
   shareDescription: "Biography & career timeline of the African Giant.",

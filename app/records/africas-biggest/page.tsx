@@ -12,9 +12,9 @@ const latestListeners = monthlyListenersSeries[monthlyListenersSeries.length - 1
 const listenersMonthPct = ((latestListeners - firstListeners) / firstListeners) * 100;
 
 export const metadata = pageMetadata({
-  title: "Africa's Biggest Artists — Billboard Global 200 & Streaming Records",
+  title: "Africa's Biggest Artists — Charts & Streaming Records",
   description:
-    "The biggest African artists by the numbers: the top 5 on the Billboard Global 200 (Burna Boy is the first African to hit No. 1), the most-streamed on Spotify each year, monthly-listener peaks and more.",
+    "The biggest African artists by the numbers — Billboard Global 200 peaks, most-streamed on Spotify each year and streaming records, with Burna Boy in context.",
   path: "/records/africas-biggest",
   shareTitle: "Africa's Biggest Artists",
   shareDescription: "Top African artists on the Billboard Global 200 and Spotify — with Burna Boy in context.",

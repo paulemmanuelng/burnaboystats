@@ -26,7 +26,11 @@ function Row({
 }) {
   const entries = [...item.entries].sort((a, b) => a.peak - b.peak);
   return (
-    <div className={styles.row}>
+    // Explicit list roles: this is a list of releases, each holding a list of
+    // chart peaks. Without them a screen reader reads the whole card view as an
+    // undifferentiated run of divs (and flex containers drop implicit list
+    // semantics in Safari/VoiceOver anyway).
+    <div className={styles.row} role="listitem">
       <div>
         <span className={styles.title}>{item.title}</span>
         <span className={styles.credit}>
@@ -34,13 +38,17 @@ function Row({
         </span>
         {item.note ? <span className={styles.releaseNote}>{item.note}</span> : null}
       </div>
-      <div className={styles.peaks}>
+      <div className={styles.peaks} role="list" aria-label={`${item.title} — chart peaks`}>
         {entries.map((e) => {
           const c = countries[e.c];
           const dim = !!((country && e.c !== country) || (peakMax && e.peak > peakMax));
           return (
+            // aria-label carries the whole fact, because the visible content is
+            // a flag emoji plus "#7" — which announces as "flag, number sign 7".
             <span
               key={e.c}
+              role="listitem"
+              aria-label={`${c.name}: peak number ${e.peak}${e.note ? `, ${e.note}` : ""}`}
               className={`${styles.peak} ${styles[chartTier(e.peak)]} ${dim ? styles.peakDim : ""}`}
               title={`${c.name} — ${c.body}${e.note ? ` (${e.note})` : ""}`}
             >
@@ -284,7 +292,7 @@ export default function ChartExplorer({
                     <span className="goldText">{g.label}</span>{" "}
                     <span className={styles.count}>({g.items.length})</span>
                   </h2>
-                  <div className={styles.list}>
+                  <div className={styles.list} role="list" aria-label={`${g.label} — chart peaks by release`}>
                     {g.items.map((it) => (
                       <Row key={it.title} item={it} countries={countries} country={country} peakMax={peakMax} />
                     ))}

@@ -7,9 +7,9 @@ import { totalAwards, countryCount } from "../data/certifications";
 import { chartEntryCount, numberOnes } from "../data/charts";
 
 export const metadata = pageMetadata({
-  title: "Methodology & Sources — How Burna Boy Stats Verifies Its Numbers",
+  title: "Methodology — How Burna Boy Stats Verifies Every Number",
   description:
-    "How every figure on Burna Boy Stats is sourced, verified and kept current — the primary sources we use, how we resolve conflicts, our update cadence and how to report a correction.",
+    "How every figure here is sourced, verified and kept current — the primary sources we use, how we resolve conflicts, and how to report a correction.",
   path: "/methodology",
   shareTitle: "Methodology & Sources",
   shareDescription: "How Burna Boy Stats sources, verifies and updates every number.",

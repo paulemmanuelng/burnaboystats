@@ -12,9 +12,9 @@ import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../..
 import { statBoxes, HIGHLIGHT } from "../../data/africasBiggest";
 
 export const metadata = pageMetadata({
-  title: "Burna Boy, Visualized — Grosses, Certifications & Awards Charts",
+  title: "Burna Boy, Visualized — Career Stats in Charts",
   description:
-    "Burna Boy's career plotted: the biggest single-show grosses, certifications by country and tier, how his chart entries break down by peak, the most-streamed African artists of 2025, and his award win rate — every stat, charted in one place.",
+    "Burna Boy's career plotted: biggest single-show grosses, certifications by country and tier, chart entries by peak and his award win rate — every stat, charted.",
   path: "/records/visualized",
   shareTitle: "Burna Boy, Visualized",
   shareDescription: "His career in charts — grosses, certifications and awards, at a glance.",
