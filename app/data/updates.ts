@@ -49,13 +49,19 @@ export const updates: Update[] = [
   {
     date: "2026-07-22",
     category: "Charts",
+    text: "“Dai Dai” tops Panama's PRODUCE International Chart, and sets new peaks of No. 13 in Denmark, No. 21 in Romania and No. 36 in Brazil.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-22",
+    category: "Charts",
     text: "Europe keeps “Dai Dai” on top — a 3rd week at No. 1 on Germany's official singles chart and a 2nd week at No. 1 on France's SNEP chart, the two biggest music markets on the continent.",
     href: "/dai-dai",
   },
   {
     date: "2026-07-22",
     category: "Charts",
-    text: "“Dai Dai” hits No. 1 in Costa Rica — Burna Boy's 17th country at No. 1 — and tops the daily Spotify, Apple Music, iTunes, YouTube, Deezer and Shazam charts across dozens of countries worldwide.",
+    text: "“Dai Dai” tops the daily Spotify, Apple Music, iTunes, YouTube, Deezer and Shazam charts across dozens of countries worldwide, and reaches a new No. 5 peak in Costa Rica.",
     href: "/dai-dai",
   },
   {
@@ -109,7 +115,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-20",
     category: "Charts",
-    text: "“Dai Dai” conquers Portugal — No. 1 on the AFP Official Top 200 Singles chart, Burna Boy's 16th country at No. 1, and now certified Gold there.",
+    text: "“Dai Dai” conquers Portugal — No. 1 on the AFP Official Top 200 Singles chart, and now certified Gold there.",
     href: "/dai-dai",
   },
   {

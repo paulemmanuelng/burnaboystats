@@ -105,7 +105,7 @@ export default function DaiDaiPage() {
     },
     {
       q: "Did “Dai Dai” reach No. 1?",
-      a: "Yes. “Dai Dai” reached No. 1 on the Billboard Global 200 and the Global 200 Excl. US, topped Spotify's Global Top Songs chart on both the Daily and Weekly lists, and hit No. 1 on the official singles chart in 17 countries.",
+      a: `Yes. “Dai Dai” reached No. 1 on the Billboard Global 200 and the Global 200 Excl. US, topped Spotify's Global Top Songs chart on both the Daily and Weekly lists, and hit No. 1 on the official singles chart in ${daiDaiNumberOnes} countries.`,
     },
     {
       q: "How high did “Dai Dai” chart in the UK?",
