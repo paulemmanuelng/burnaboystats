@@ -87,6 +87,8 @@ export default function DaiDaiPage() {
     { v: "No. 42", l: "Billboard Hot 100 (US) — a new peak, extending Burna Boy's record for the most Hot 100 entries by an African artist" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, plus Gold in France, Spain, Colombia, Hungary, Slovakia & Portugal" },
     { v: "No. 1", l: "iTunes song chart in 67 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal & dozens more" },
+    { v: "500M", l: "YouTube views for the “Dai Dai” video in under two months — Burna Boy's first to reach 500 million, and the world's most-viewed music video of 2026" },
+    { v: "No. 1", l: "on the daily charts of Spotify, Apple Music, iTunes, YouTube, Deezer and Shazam across dozens of countries — No. 1 in 50 on YouTube alone" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
 
@@ -102,7 +104,7 @@ export default function DaiDaiPage() {
     },
     {
       q: "Did “Dai Dai” reach No. 1?",
-      a: "Yes. “Dai Dai” reached No. 1 on the Billboard Global 200 and the Global 200 Excl. US, topped Spotify's Global Top Songs chart on both the Daily and Weekly lists, and hit No. 1 on the official singles chart in 16 countries.",
+      a: "Yes. “Dai Dai” reached No. 1 on the Billboard Global 200 and the Global 200 Excl. US, topped Spotify's Global Top Songs chart on both the Daily and Weekly lists, and hit No. 1 on the official singles chart in 17 countries.",
     },
     {
       q: "How high did “Dai Dai” chart in the UK?",

@@ -30,6 +30,18 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-22",
+    category: "Firsts & Records",
+    text: "The “Dai Dai” video passes 500 million YouTube views in under two months — Burna Boy's first music video to reach 500M, and the world's most-viewed music video of 2026.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-22",
+    category: "Charts",
+    text: "“Dai Dai” hits No. 1 in Costa Rica — Burna Boy's 17th country at No. 1 — and tops the daily Spotify, Apple Music, iTunes, YouTube, Deezer and Shazam charts across dozens of countries worldwide.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-22",
     category: "Streaming",
     text: "55.27 million monthly listeners: Burna Boy becomes the first African artist in Spotify history to reach 55 million — a new all-time peak of 55,272,197, now No. 45 in the world.",
     href: "/records/africas-biggest",

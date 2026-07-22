@@ -167,7 +167,7 @@ export const featureCharts: ChartRelease[] = [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "HR", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1 }, { c: "LU", peak: 1 }, { c: "GLB", peak: 1 }, { c: "GLBX", peak: 1 },
     { c: "NO", peak: 2 }, { c: "IN", peak: 2 }, { c: "LT", peak: 2 },
     { c: "PT", peak: 1 }, { c: "SA", peak: 3 }, { c: "ES", peak: 3 }, { c: "UY", peak: 3 }, { c: "NG", peak: 3 },
-    { c: "SE", peak: 4 }, { c: "EC", peak: 4 }, { c: "CR", peak: 5 }, { c: "CZ", peak: 5 }, { c: "IT", peak: 6 }, { c: "PL", peak: 9 }, { c: "LV", peak: 10 }, { c: "ZA", peak: 12 },
+    { c: "CR", peak: 1 }, { c: "SE", peak: 4 }, { c: "EC", peak: 4 }, { c: "CZ", peak: 5 }, { c: "IT", peak: 6 }, { c: "PL", peak: 9 }, { c: "LV", peak: 10 }, { c: "ZA", peak: 12 },
     { c: "UK", peak: 5 }, { c: "IE", peak: 14 }, { c: "EG", peak: 14 }, { c: "CA", peak: 16 }, { c: "DK", peak: 17 }, { c: "MY", peak: 17 }, { c: "SG", peak: 20 }, { c: "IL", peak: 21 }, { c: "HU", peak: 26 }, { c: "AU", peak: 32 }, { c: "FI", peak: 35 },
     { c: "BR", peak: 39 }, { c: "US", peak: 42 },
     { c: "JP", peak: 60 }, { c: "VN", peak: 93 },
