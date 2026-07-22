@@ -51,7 +51,7 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(219);
+    expect(totalAwards()).toBe(220);
     expect(countryCount).toBe(24);
     expect(certifiedReleaseCount).toBe(81);
   });
@@ -64,8 +64,8 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 has the published count of 40 certifications", () => {
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(40);
+  it("2026 has the published count of 41 certifications", () => {
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(41);
   });
 
   it("2025 has the published count of 29 certifications", () => {

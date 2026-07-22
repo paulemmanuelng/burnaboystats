@@ -133,7 +133,7 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "Spotify · African artists · all-time peak",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "55.27M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "55.95M" },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "46.58M" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "45.5M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "40.01M" },
@@ -227,14 +227,30 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "YouTube · African artists · all-time peak",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "739M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "747M" },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "654M" },
       { name: "Moliy", sub: "🇬🇭 Ghana", value: "602M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "471M" },
     ],
-    note: "Burna Boy's monthly-audience peak on YouTube has climbed to 739 million — the first African artist ever past 700 million, the highest of any African artist, and one of the six biggest of any singer ever, behind only Bruno Mars, Rosé, Lady Gaga, Shakira and Michael Jackson.",
+    note: "Burna Boy's monthly-audience peak on YouTube has climbed to 747 million — the first African artist ever past 700 million, and by some distance the highest of any African artist. It is also a global top-five figure: he has now passed Michael Jackson (741M) to become the second-biggest male singer in YouTube history.",
     source:
       "Peak monthly audience on YouTube (YouTube for Artists), from chart-tracking accounts. As of July 2026 — figures update as they climb.",
+  },
+  {
+    id: "youtube-audience-world",
+    title: "Biggest monthly audience on YouTube — worldwide",
+    meta: "YouTube · all artists · all-time peak",
+    layout: "list",
+    entries: [
+      { name: "Bruno Mars", sub: "🇺🇸 United States", value: "1.02B" },
+      { name: "Rosé", sub: "🇰🇷 South Korea", value: "959M" },
+      { name: "Shakira", sub: "🇨🇴 Colombia", value: "901M" },
+      { name: "Lady Gaga", sub: "🇺🇸 United States", value: "862M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "747M" },
+    ],
+    note: "Not an African leaderboard — a world one. Burna Boy is the only African artist inside the biggest YouTube audiences ever recorded, and at 747 million he has just passed Michael Jackson (741M), making him the second-biggest male singer in YouTube history behind only Bruno Mars.",
+    source:
+      "Highest monthly audience peaks on YouTube for any artist worldwide (YouTube for Artists), from chart-tracking accounts. As of July 2026 — live figures, so the order can change as they climb.",
   },
   {
     id: "apple-music-global-no1",
@@ -245,7 +261,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "No. 1" },
       { name: "Tems", sub: "🇳🇬 “Wait for U” (with Future & Drake)", value: "No. 1" },
     ],
-    note: "Only two African artists have ever sent a song to No. 1 on Apple Music's Global Top 100 — Burna Boy with “Dai Dai” (the first and only male African artist to do it) and Tems with “Wait for U”.",
+    note: "Only two African artists have ever sent a song to No. 1 on Apple Music's Global Top 100 — Burna Boy with “Dai Dai” (the first and only male African artist to do it) and Tems with “Wait for U”. Burna Boy is also the only African artist with two songs peaking inside the global top two: “Dai Dai” at No. 1 and “WGFT” (with Gunna) at No. 2.",
     source: "Songs by African artists to reach No. 1 on the Apple Music Global Top 100. As of July 2026.",
   },
   {

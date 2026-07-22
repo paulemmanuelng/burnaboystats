@@ -31,7 +31,25 @@ export const updates: Update[] = [
   {
     date: "2026-07-22",
     category: "Firsts & Records",
-    text: "The “Dai Dai” video passes 500 million YouTube views in under two months — Burna Boy's first music video to reach 500M, and the world's most-viewed music video of 2026.",
+    text: "Past Michael Jackson: a monthly audience of 747 million on YouTube moves Burna Boy ahead of Jackson's 741M, making him the second-biggest male singer in YouTube history — behind only Bruno Mars — and the only African artist among the biggest audiences ever recorded.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-22",
+    category: "Streaming",
+    text: "Two hundred days and counting: “Last Last” has now spent 200 consecutive days on Apple Music's Global Top 100, peaking at No. 12 — no other African song has managed even 120.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-22",
+    category: "Firsts & Records",
+    text: "The “Dai Dai” video passes 500 million YouTube views in under two months — now 507 million, Burna Boy's first music video to reach the mark, the 12th fastest ever to do it (59 days) and the world's most-viewed music video of 2026.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-22",
+    category: "Charts",
+    text: "Europe keeps “Dai Dai” on top — a 3rd week at No. 1 on Germany's official singles chart and a 2nd week at No. 1 on France's SNEP chart, the two biggest music markets on the continent.",
     href: "/dai-dai",
   },
   {
@@ -43,13 +61,13 @@ export const updates: Update[] = [
   {
     date: "2026-07-22",
     category: "Streaming",
-    text: "55.27 million monthly listeners: Burna Boy becomes the first African artist in Spotify history to reach 55 million — a new all-time peak of 55,272,197, now No. 45 in the world.",
+    text: "55.95 million monthly listeners: Burna Boy becomes the first African artist in Spotify history to reach 55 million — a new all-time peak of 55,954,318, now No. 44 in the world.",
     href: "/records/africas-biggest",
   },
   {
     date: "2026-07-22",
     category: "Streaming",
-    text: "A single-day record: “Dai Dai” drew a new high of 6.72 million Spotify streams in one day — the first time an African artist's song has crossed 6 million daily streams — on its 15th day at No. 1 on the global chart.",
+    text: "A single-day record: “Dai Dai” drew a new high of 6.72 million Spotify streams in one day — the first time an African artist's song has crossed 6 million daily streams — as the song ran to a 16th day at No. 1 on the global chart.",
     href: "/dai-dai",
   },
   {
@@ -97,7 +115,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-20",
     category: "Streaming",
-    text: "739 million on YouTube Music: Burna Boy's monthly audience climbs to a new peak of 739M, and he rises to No. 18 on YouTube Music's Weekly Top Artists chart — the highest ever for an African artist.",
+    text: "747 million on YouTube Music: Burna Boy's monthly audience climbs to a new peak of 747M, and he rises to No. 18 on YouTube Music's Weekly Top Artists chart — the highest ever for an African artist.",
     href: "/records/africas-biggest",
   },
   {
