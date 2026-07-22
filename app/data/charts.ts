@@ -176,7 +176,7 @@ export const featureCharts: ChartRelease[] = [
     { c: "SE", peak: 4 }, { c: "EC", peak: 4 },
     { c: "UK", peak: 5 }, { c: "CZ", peak: 5 }, { c: "LT", peak: 5 }, { c: "CR", peak: 5 },
     { c: "IT", peak: 6 }, { c: "NG", peak: 7 }, { c: "PL", peak: 9 }, { c: "LV", peak: 10 },
-    { c: "IL", peak: 13 }, { c: "DK", peak: 13 }, { c: "IE", peak: 14 }, { c: "EG", peak: 14 },
+    { c: "IS", peak: 10, note: "Billboard Iceland Songs" }, { c: "IL", peak: 13 }, { c: "DK", peak: 13 }, { c: "IE", peak: 14 }, { c: "EG", peak: 14 },
     { c: "CA", peak: 16 }, { c: "MY", peak: 17 }, { c: "SG", peak: 20 }, { c: "RO", peak: 21 },
     { c: "HU", peak: 26 }, { c: "ZA", peak: 30 }, { c: "AU", peak: 32 }, { c: "FI", peak: 35 },
     { c: "BR", peak: 36 }, { c: "US", peak: 42 },
