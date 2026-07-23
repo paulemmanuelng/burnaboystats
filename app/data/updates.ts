@@ -29,9 +29,15 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-23",
+    category: "Charts",
+    text: "A second day on top: “Dai Dai” holds No. 1 on the Apple Music Global Top 100 — the only song by an African male artist ever to lead that chart.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-07-22",
     category: "Firsts & Records",
-    text: "Past Michael Jackson: a monthly audience of 747 million on YouTube moves Burna Boy ahead of Jackson's 741M, making him the second-biggest male singer in YouTube history — behind only Bruno Mars — and the only African artist among the biggest audiences ever recorded.",
+    text: "Past Michael Jackson: a monthly audience of 747 million on YouTube moves Burna Boy ahead of Jackson's 741M, to the seventh-biggest audience ever recorded worldwide — and the only one belonging to an African artist.",
     href: "/records/africas-biggest",
   },
   {
@@ -229,7 +235,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-12",
     category: "Streaming",
-    text: "699 million on YouTube: Burna Boy's monthly-audience peak climbs to a new high — the biggest of any African artist, and one of only six singers ever above it, behind only Bruno Mars, Rosé, Lady Gaga, Shakira and Michael Jackson.",
+    text: "699 million on YouTube: Burna Boy's monthly-audience peak climbs to a new high — the biggest of any African artist, and one of only a handful of acts anywhere to have gone that high.",
     href: "/records/africas-biggest",
   },
   {
