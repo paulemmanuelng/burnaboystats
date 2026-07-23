@@ -9,9 +9,10 @@ import MusicDecor from "./components/MusicDecor";
 import AlbumStrip from "./components/AlbumStrip";
 import GlobeTeaser from "./components/GlobeTeaser";
 import TierDonut, { type DonutSeg } from "./components/TierDonut";
-import { totalAwards, countryCount, albums, singles, features } from "./data/certifications";
+import { totalAwards, albums, singles, features } from "./data/certifications";
 import { latestUpdates, updates } from "./data/updates";
-import { daiDaiNumberOnes } from "./data/charts";
+import { daiDaiNumberOnes, numberOnes } from "./data/charts";
+import { albums as studioAlbums } from "./data/albums";
 import { spotifyImage, spotifySrcSet } from "./lib/spotifyImage";
 
 // The "Dai Dai" single cover, used by the homepage featured card.
@@ -111,12 +112,12 @@ export default function Home() {
               <span className={styles.statNum}><CountUp end={total} /></span>
               <span className={styles.statLabel}>Certifications</span>
             </Link>
-            <Link href="/certifications" className={styles.stat}>
-              <span className={styles.statNum}><CountUp end={countryCount} /></span>
-              <span className={styles.statLabel}>Countries</span>
+            <Link href="/records/charts" className={styles.stat}>
+              <span className={styles.statNum}><CountUp end={numberOnes} /></span>
+              <span className={styles.statLabel}>No. 1s worldwide</span>
             </Link>
             <Link href="/music" className={styles.stat}>
-              <span className={styles.statNum}><CountUp end={8} /></span>
+              <span className={styles.statNum}><CountUp end={studioAlbums.length} /></span>
               <span className={styles.statLabel}>Studio albums</span>
             </Link>
             <Link href="/records/awards" className={styles.stat}>
