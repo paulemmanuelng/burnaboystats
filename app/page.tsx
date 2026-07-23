@@ -25,7 +25,10 @@ const total = totalAwards();
 const listeners = monthlyListenersValues[monthlyListenersValues.length - 1];
 const proofStats = [
   { num: `${numberOnes}`, label: "No. 1s on official charts worldwide", href: "/records/charts" },
-  { num: `${listeners.toFixed(1)}M`, label: "Spotify monthly listeners — most of any African artist", href: "/records/africas-biggest" },
+  // Print the tracked value as-is. toFixed(1) turned 55.95 into "56.0M", which
+  // both disagreed with every other surface and rounded him up over a milestone
+  // he has not actually crossed.
+  { num: `${listeners}M`, label: "Spotify monthly listeners — most of any African artist", href: "/records/africas-biggest" },
   { num: "$30.46M", label: "Highest-grossing tour ever by an African artist", href: "/records/tours" },
   { num: "1st", label: "African act to top the Billboard Global 200", href: "/records/firsts" },
 ];
