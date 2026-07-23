@@ -10,28 +10,14 @@ import AlbumStrip from "./components/AlbumStrip";
 import GlobeTeaser from "./components/GlobeTeaser";
 import TierDonut, { type DonutSeg } from "./components/TierDonut";
 import { totalAwards, countryCount, albums, singles, features } from "./data/certifications";
-import { numberOnes } from "./data/charts";
-import { monthlyListenersValues } from "./data/trends";
 import { latestUpdates, updates } from "./data/updates";
+import { daiDaiNumberOnes } from "./data/charts";
 import { spotifyImage, spotifySrcSet } from "./lib/spotifyImage";
 
 // The "Dai Dai" single cover, used by the homepage featured card.
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 
 const total = totalAwards();
-
-// "Proof bar" under the hero — the record-breaking superlatives (distinct from
-// the hero scoreboard's catalogue totals). Data-driven where the value moves.
-const listeners = monthlyListenersValues[monthlyListenersValues.length - 1];
-const proofStats = [
-  { num: `${numberOnes}`, label: "No. 1s on official charts worldwide", href: "/records/charts" },
-  // Print the tracked value as-is. toFixed(1) turned 55.95 into "56.0M", which
-  // both disagreed with every other surface and rounded him up over a milestone
-  // he has not actually crossed.
-  { num: `${listeners}M`, label: "Spotify monthly listeners — most of any African artist", href: "/records/africas-biggest" },
-  { num: "$30.46M", label: "Highest-grossing tour ever by an African artist", href: "/records/tours" },
-  { num: "1st", label: "African act to top the Billboard Global 200", href: "/records/firsts" },
-];
 
 // Tier breakdown of all certifications, for the donut under the ranked list.
 const tierCounts: Record<string, number> = { Diamond: 0, Platinum: 0, Gold: 0, Silver: 0 };
@@ -143,20 +129,6 @@ export default function Home() {
         <Waveform bars={60} className={styles.heroWave} />
       </section>
 
-      {/* ================= PROOF BAR ================= */}
-      <section className={styles.proof} aria-label="Record-breaking career highlights">
-        <div className="container">
-          <div className={styles.proofRow}>
-            {proofStats.map((s) => (
-              <Link key={s.label} href={s.href} className={styles.proofItem}>
-                <span className={styles.proofNum}>{s.num}</span>
-                <span className={styles.proofLabel}>{s.label}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ================= MARQUEE ================= */}
       <Marquee items={marqueeItems} />
 
@@ -187,8 +159,8 @@ export default function Home() {
               <p className={styles.featuredText}>
                 Shakira &amp; Burna Boy performed &ldquo;Dai Dai&rdquo; at the first-ever FIFA
                 World Cup Final halftime show — Burna the first African artist to headline it,
-                alongside Madonna, BTS &amp; Justin Bieber. Their anthem is No.&nbsp;1 in 17
-                countries and the most-streamed song on Earth.
+                alongside Madonna, BTS &amp; Justin Bieber. Their anthem is No.&nbsp;1 in{" "}
+                {daiDaiNumberOnes} countries and the most-streamed song on Earth.
               </p>
               <span className={styles.featuredCta}>Read the story ↗</span>
             </Link>
