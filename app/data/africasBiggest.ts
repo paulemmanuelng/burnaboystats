@@ -238,6 +238,11 @@ export const statBoxes: LeaderboardBox[] = [
   },
   {
     id: "youtube-audience-world",
+    // Runs eight deep ONLY so Burna Boy (7th) and the Michael Jackson pass are
+    // both visible. The moment he reaches the top five, cut this back to a
+    // straight Top 5 — every other board here is five, and the longer list is
+    // just scaffolding until he's in it on merit.
+    // Next targets: Lady Gaga 862M, then Shakira 901M.
     title: "Biggest monthly audience on YouTube — worldwide",
     meta: "YouTube · all artists · all-time peak",
     layout: "list",
