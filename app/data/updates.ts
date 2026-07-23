@@ -30,6 +30,24 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-23",
+    category: "Streaming",
+    text: "56.52 million monthly listeners: Burna Boy sets another all-time Spotify peak at 56,517,687 and climbs to No. 42 in the world — the first African artist ever past 56 million.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-23",
+    category: "Charts",
+    text: "A 17th day on top: “Dai Dai” returns to No. 1 on Spotify's Global Daily Top Songs chart with 6.40 million streams — 17 days at the summit for the World Cup anthem.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-23",
+    category: "Charts",
+    text: "Austria makes 68: “Dai Dai” is now No. 1 on the iTunes Top Songs chart in 68 countries.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-23",
     category: "Charts",
     text: "A second day on top: “Dai Dai” holds No. 1 on the Apple Music Global Top 100 — the only song by an African male artist ever to lead that chart.",
     href: "/records/africas-biggest",

@@ -11,8 +11,8 @@
       "field": "monthlyListeners",
       "kind": "drift",
       "threshold": 0.03,
-      "baseline": 55954318,
-      "note": "Shown on the site as ~55.95M (app/data/africasBiggest.ts). Re-verify in the Spotify app before updating."
+      "baseline": 56517687,
+      "note": "Shown on the site as ~56.52M (app/data/africasBiggest.ts). Re-verify in the Spotify app before updating."
     },
     {
       "id": "spotify-peak-listeners",
@@ -23,7 +23,7 @@
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "peakListeners",
       "kind": "peak",
-      "baseline": 55954318,
+      "baseline": 56517687,
       "note": "A new all-time peak is a milestone worth logging on /updates."
     },
     {
