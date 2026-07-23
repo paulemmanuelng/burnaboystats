@@ -13,6 +13,10 @@ import { totalAwards, countryCount, albums, singles, features } from "./data/cer
 import { numberOnes } from "./data/charts";
 import { monthlyListenersValues } from "./data/trends";
 import { latestUpdates, updates } from "./data/updates";
+import { spotifyImage, spotifySrcSet } from "./lib/spotifyImage";
+
+// The "Dai Dai" single cover, used by the homepage featured card.
+const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 
 const total = totalAwards();
 
@@ -166,7 +170,9 @@ export default function Home() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className={styles.featuredCover}
-                src="https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4"
+                src={spotifyImage(DAI_DAI_COVER, 300)}
+                srcSet={spotifySrcSet(DAI_DAI_COVER)}
+                sizes="190px"
                 alt="Shakira × Burna Boy — Dai Dai"
                 width={190}
                 height={190}

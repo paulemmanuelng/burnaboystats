@@ -5,6 +5,7 @@ import KeepExploring from "../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
 import { daiDaiCertCount } from "../data/certifications";
+import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
@@ -205,7 +206,7 @@ export default function DaiDaiPage() {
             {lineup.map((a) => (
               <li key={a.name} className={`${styles.lineupCard} ${a.headliner ? styles.lineupHeadliner : ""}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className={styles.lineupPhoto} src={a.img} alt={a.name} width={128} height={128} loading="lazy" />
+                <img className={styles.lineupPhoto} src={spotifyImage(a.img, 320)} srcSet={spotifySrcSet(a.img)} sizes="128px" alt={a.name} width={128} height={128} loading="lazy" />
                 <span className={styles.lineupName}>{a.name}</span>
                 {a.tag ? <span className={styles.lineupTag}>{a.tag}</span> : null}
               </li>

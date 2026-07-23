@@ -183,6 +183,10 @@
   }
   .trigger {
     padding: 8px;
+    /* Icon-only here, which left a 34px button — below the 44px touch minimum. */
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
   }
   .overlay {
     padding: 8vh 12px 12px;

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import CountUp from "./CountUp";
 import styles from "./DaiDaiStory.module.css";
+import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 
 // Every figure here is "Dai Dai"'s OWN — never Burna Boy's artist-wide totals
 // (monthly listeners, YouTube audience, career certs). Burna had a huge
@@ -131,9 +132,9 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
         <>
           <div className={styles.duo}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className={styles.duoImg} src={SHAKIRA} alt="Shakira" width={128} height={128} loading="lazy" />
+            <img className={styles.duoImg} src={spotifyImage(SHAKIRA, 320)} srcSet={spotifySrcSet(SHAKIRA)} sizes="128px" alt="Shakira" width={128} height={128} loading="lazy" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className={styles.duoImg} src={BURNA} alt="Burna Boy" width={128} height={128} loading="lazy" />
+            <img className={styles.duoImg} src={spotifyImage(BURNA, 320)} srcSet={spotifySrcSet(BURNA)} sizes="128px" alt="Burna Boy" width={128} height={128} loading="lazy" />
           </div>
           <span className={styles.sceneLabel}>World Cup Final · Halftime show</span>
           <span className={styles.sceneNote}>Shakira &amp; Burna Boy · halftime show, 19 July</span>

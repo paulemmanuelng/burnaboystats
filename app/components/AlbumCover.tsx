@@ -4,6 +4,7 @@
 // Disciplined warm "African Giant" palette — golds, molten orange/red and
 // charcoal on the dark base (no rainbow), so covers stay on-brand.
 import type { ReactNode } from "react";
+import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 
 const PALETTES = [
   ["#ffb627", "#7a3f0a"],
@@ -135,7 +136,9 @@ export default function AlbumCover({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="albumCoverImg"
-          src={cover}
+          src={spotifyImage(cover, 300)}
+          srcSet={spotifySrcSet(cover)}
+          sizes="(max-width: 560px) 45vw, 230px"
           alt={`${title} — album cover`}
           loading="lazy"
           width={640}

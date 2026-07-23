@@ -4,13 +4,17 @@ import Link from "next/link";
 import { useRef, useState, useEffect, useCallback } from "react";
 import styles from "./AlbumStrip.module.css";
 import { albums } from "../data/albums";
+import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 
 // A horizontal "record shelf" of the studio-album covers (official Spotify
 // artwork, shown unmodified — same source/attribution as the Music page).
 // Desktop: prev/next arrows + click-drag to scroll. Touch: native swipe.
 // Each cover links to the Music page.
 export default function AlbumStrip() {
-  const withCovers = albums.filter((a) => a.cover);
+  // Type predicate so `cover` is a string downstream, not string | undefined.
+  const withCovers = albums.filter(
+    (a): a is (typeof albums)[number] & { cover: string } => Boolean(a.cover)
+  );
   const trackRef = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
@@ -98,7 +102,9 @@ export default function AlbumStrip() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className={styles.cover}
-              src={a.cover}
+              src={spotifyImage(a.cover, 300)}
+              srcSet={spotifySrcSet(a.cover)}
+              sizes="150px"
               alt={`${a.title} album cover`}
               loading="lazy"
               width={300}

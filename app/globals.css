@@ -340,6 +340,9 @@ a {
 .footerLink {
   color: var(--gold);
   font-weight: 600;
+  /* Same reasoning as .footerNav a — this sat at ~18px too. */
+  display: inline-block;
+  padding-block: 12px;
 }
 .footerLink:hover {
   text-decoration: underline;
@@ -373,7 +376,9 @@ a {
 .footerNav {
   display: flex;
   flex-wrap: wrap;
-  row-gap: 11px;
+  /* Rows sit flush because each link now carries its own vertical padding —
+     together they give a ~44px touch target without stacking extra gap on top. */
+  row-gap: 0;
   /* Pull the row left by one separator width; the wrapper's overflow:hidden then
      clips the leading dot off the start of every wrapped row. */
   margin-left: -24px;
@@ -384,6 +389,10 @@ a {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.72rem;
+  /* ~18px of text + 13px above and below = a 44px touch target (iOS HIG /
+     WCAG 2.5.8). Vertical only: horizontal padding would break the -24px
+     margin trick that clips the leading separator dot on each wrapped row. */
+  padding-block: 13px;
   transition: color var(--dur-fast) var(--ease);
 }
 .footerNav a:hover {
