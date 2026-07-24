@@ -27,7 +27,7 @@ const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries �
 // in whole millions. Auto-updated hourly by the live stats bot (the
 // dai-dai-video-views metric) — it rewrites this string only when the figure
 // ticks over another million, so the page changes exactly when the number does.
-const DAI_DAI_VIDEO_VIEWS = "542M";
+const DAI_DAI_VIDEO_VIEWS = "543M";
 
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
