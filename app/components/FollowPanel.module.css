@@ -1,0 +1,90 @@
+.wrap {
+  margin: 44px auto 8px;
+  padding: 26px 24px;
+  border: 1px solid rgba(255, 182, 39, 0.22);
+  border-radius: var(--radius);
+  background: linear-gradient(165deg, rgba(255, 182, 39, 0.1), rgba(226, 52, 43, 0.05) 55%, transparent),
+    var(--bg-soft);
+}
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.1rem);
+  line-height: 1.05;
+  margin: 8px 0 8px;
+}
+.blurb {
+  margin: 0 0 18px;
+  max-width: 52ch;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Shared pill sizing — all ≥44px tall for comfortable tapping. */
+.primary,
+.secondary,
+.installed,
+.hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.primary {
+  color: #1a1204;
+  background: linear-gradient(120deg, var(--gold-bright), var(--gold));
+  border: none;
+  cursor: pointer;
+  transition: filter var(--dur-fast) var(--ease);
+}
+.primary:hover {
+  filter: brightness(1.08);
+}
+
+.secondary {
+  color: var(--text);
+  border: 1px solid var(--line);
+  background: rgba(245, 244, 240, 0.04);
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.secondary:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold);
+}
+
+.installed {
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  background: rgba(255, 182, 39, 0.08);
+}
+.hint {
+  color: var(--text-muted);
+  border: 1px dashed var(--line);
+  text-align: center;
+  line-height: 1.4;
+}
+.hint b {
+  color: var(--text);
+  font-weight: 600;
+}

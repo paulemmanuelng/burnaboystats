@@ -1,4 +1,5 @@
 import UpdatesList from "../components/UpdatesList";
+import FollowPanel from "../components/FollowPanel";
 import KeepExploring from "../components/KeepExploring";
 import { updates } from "../data/updates";
 import { pageMetadata } from "../lib/seo";
@@ -33,6 +34,7 @@ export default function UpdatesPage() {
 
       <div className="container">
         <UpdatesList items={updates} />
+        <FollowPanel />
       </div>
 
       <KeepExploring current="/updates" />
