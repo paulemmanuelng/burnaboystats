@@ -57,11 +57,7 @@ async function fetchText(url) {
     : UA;
   const res = await fetch(url, { headers });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const text = await res.text();
-  if (url.includes("youtube.com")) {
-    console.error(`  [ytdiag] status=${res.status} len=${text.length} hasViewCount=${text.includes('"viewCount"')} consent=${text.includes("consent.youtube")} unusual=${text.includes("unusual traffic") || text.includes("captcha")}`);
-  }
-  return text;
+  return res.text();
 }
 
 // Spotify client-credentials token → follower count. Needs SPOTIFY_CLIENT_ID /
