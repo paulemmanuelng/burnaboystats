@@ -15,11 +15,29 @@ describe("song pages data", () => {
 
   // The pages pull charts + certs by title, so each title must match at least
   // one of those datasets (a typo would render an empty page).
-  it("every song title resolves to chart or cert data", () => {
+  it("every song has real substance — chart/cert data, views, or a declared story-only page", () => {
     for (const s of songs) {
       const hasChart = allChartItems.some((r) => r.title === s.title);
       const hasCert = allItems.some((r) => r.title === s.title);
-      expect(hasChart || hasCert, `${s.title} has no chart or cert data`).toBe(true);
+      const ok = hasChart || hasCert || Boolean(s.ytViews) || s.storyOnly === true;
+      expect(ok, `${s.title} has nothing to show`).toBe(true);
+    }
+  });
+
+  // A song that claims neither storyOnly nor views MUST resolve in the datasets —
+  // that combination almost always means the title has a typo.
+  it("a song without storyOnly/views must match a dataset title exactly", () => {
+    for (const s of songs) {
+      if (s.storyOnly || s.ytViews) continue;
+      const found =
+        allChartItems.some((r) => r.title === s.title) || allItems.some((r) => r.title === s.title);
+      expect(found, `${s.title} matches no chart/cert entry — typo?`).toBe(true);
+    }
+  });
+
+  it("only songs with a verified Spotify link carry one", () => {
+    for (const s of songs) {
+      if (s.spotify) expect(s.spotify).toMatch(/^https:\/\/open\.spotify\.com\/track\/[A-Za-z0-9]{22}$/);
     }
   });
 

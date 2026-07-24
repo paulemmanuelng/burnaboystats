@@ -133,6 +133,15 @@ export const singleCharts: ChartRelease[] = [
     { c: "NL", peak: 25 }, { c: "SE", peak: 38 }, { c: "IE", peak: 47 }, { c: "GLB", peak: 52 },
     { c: "CH", peak: 59 }, { c: "CA", peak: 63 }, { c: "FR", peak: 173 },
   ] },
+  // From the Black Panther: Wakanda Forever soundtrack. Peaks per the song's
+  // cited chart table; its UK Afrobeats No.1, UK Hip-Hop/R&B and US Rhythmic
+  // Airplay placings are genre/component/airplay charts, excluded by the rules
+  // at the top of this file.
+  { title: "Alone", year: 2022, entries: [
+    { c: "FR", peak: 19 }, { c: "UK", peak: 28 }, { c: "SE", peak: 33 }, { c: "CH", peak: 45 },
+    { c: "IE", peak: 50 }, { c: "NL", peak: 58 }, { c: "CA", peak: 73 }, { c: "PT", peak: 97 },
+    { c: "GLB", peak: 143 },
+  ] },
   { title: "Cheat on Me", credit: "feat. Dave", year: 2023, entries: [
     { c: "UK", peak: 19 }, { c: "IE", peak: 42 }, { c: "FR", peak: 109 }, { c: "GLB", peak: 194 },
   ] },

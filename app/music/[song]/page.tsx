@@ -125,9 +125,11 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
             <h1 className={styles.title}>{song.title}</h1>
             <p className={styles.credit}>{credit}</p>
             <p className={styles.tagline}>{song.tagline}</p>
-            <a className="btn btnPrimary" href={song.spotify} target="_blank" rel="noopener noreferrer">
-              ▶ Play on Spotify ↗
-            </a>
+            {song.spotify && (
+              <a className="btn btnPrimary" href={song.spotify} target="_blank" rel="noopener noreferrer">
+                ▶ Play on Spotify ↗
+              </a>
+            )}
           </div>
         </header>
 

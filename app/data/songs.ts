@@ -20,11 +20,15 @@ export interface Song {
   year: number;
   album: string;
   cover: string; // Spotify i.scdn.co cover URL
-  spotify: string; // open.spotify.com track link
+  // Omitted when no track ID could be VERIFIED via oEmbed — never guess one.
+  spotify?: string;
   // Official-music-video YouTube views, displayed in whole millions. Auto-updated
   // hourly by the live stats bot (kworb per-video counts). Omit for songs whose
   // video lives on another artist's channel (WGFT, Jerusalema).
   ytViews?: string;
+  // True when no chart/cert/views figure exists — the page carries the history
+  // only. Kept explicit so the data test can tell "thin on purpose" from "typo".
+  storyOnly?: boolean;
   tagline: string; // short hook under the title
   blurb: string; // 2–4 sentence story
   extraFacts: SongFact[]; // facts beyond the auto chart/cert counts
@@ -164,36 +168,6 @@ export const songs: Song[] = [
       "“WGFT” by Gunna featuring Burna Boy gave Burna his highest-ever Billboard Hot 100 peak at No. 16, charting in 12 countries — the full chart run and story.",
   },
   {
-    slug: "kilometre",
-    title: "Kilometre",
-    year: 2021,
-    album: "Single",
-    cover: "https://i.scdn.co/image/ab67616d0000b27339041f1bb96943fde5bb86c9",
-    spotify: "https://open.spotify.com/track/0oQgoesQJq0fRnWOY1D73g",
-    ytViews: "32M",
-    tagline: "The viral 2021 return — No. 1 in Nigeria",
-    blurb:
-      "Burna Boy's first solo single after the Grammy-winning Twice as Tall, “Kilometre” (2021) was an instant Afro-fusion hit — a slick, danceable record that topped the Nigerian chart and became one of his most-played songs of the year. It went Platinum in Nigeria and Gold in Canada.",
-    extraFacts: [
-      { v: "No. 1", l: "Nigeria (TurnTable Top 100)" },
-      { v: "Platinum", l: "certified Platinum in Nigeria, Gold in Canada" },
-      { v: "2021", l: "his first solo single after Twice as Tall" },
-    ],
-    faqs: [
-      {
-        q: "What is “Kilometre” by Burna Boy?",
-        a: "“Kilometre” is a 2021 single by Burna Boy — his first solo release after the Grammy-winning album Twice as Tall. The Afro-fusion track reached No. 1 in Nigeria and went Platinum there.",
-      },
-      {
-        q: "Did “Kilometre” reach No. 1?",
-        a: "Yes — “Kilometre” topped Nigeria's TurnTable Top 100 chart, and is certified Platinum in Nigeria and Gold in Canada.",
-      },
-    ],
-    metaTitle: "Burna Boy “Kilometre” — No. 1 in Nigeria & Every Stat",
-    metaDescription:
-      "Burna Boy's “Kilometre” (2021): his first solo single after Twice as Tall, a No. 1 in Nigeria certified Platinum — the story, chart peaks and certifications.",
-  },
-  {
     slug: "city-boys",
     title: "City Boys",
     year: 2023,
@@ -254,34 +228,205 @@ export const songs: Song[] = [
       "Burna Boy on the “Jerusalema” remix: No. 1 in six countries, Diamond in France and 17 chart entries during the global #JerusalemaDanceChallenge — full stats.",
   },
   {
-    slug: "gbona",
-    title: "Gbona",
-    year: 2018,
-    album: "Single",
-    cover: "https://i.scdn.co/image/ab67616d0000b2735edf362ac1de3e5718382296",
-    spotify: "https://open.spotify.com/track/0DrzsBstN5rObzTuX8DSro",
-    ytViews: "150M",
-    tagline: "The 2018 single that went Diamond in France",
+    slug: "alone",
+    title: "Alone",
+    year: 2022,
+    album: "Black Panther: Wakanda Forever",
+    cover: "https://i.scdn.co/image/ab67616d0000b273992a1f56ac5382848277cff2",
+    spotify: "https://open.spotify.com/track/0AoBY2Y3qs6dtGgOD6c91N",
+    tagline: "His song from Black Panther: Wakanda Forever",
     blurb:
-      "A hard-hitting Afro-fusion single from 2018, later included on African Giant, “Gbona” was part of the run that broke Burna Boy internationally. It never needed a singles chart to become a staple — going Diamond in France and picking up eight certifications worldwide.",
+      "Burna Boy's contribution to the Black Panther: Wakanda Forever soundtrack (2022), a Marvel record that put Afrobeats at the centre of one of the biggest films of the year. It became a genuine international hit in its own right — No. 19 in France, No. 28 in the UK and a run across nine official charts — and topped the UK's Afrobeats chart.",
     extraFacts: [
-      { v: "Diamond", l: "certified Diamond in France (SNEP)" },
-      { v: "2018", l: "a breakthrough-era single, later on African Giant" },
-      { v: "Platinum", l: "Platinum in Canada & Switzerland, plus Gold across Europe" },
+      { v: "No. 19", l: "France (SNEP) — its highest national peak" },
+      { v: "No. 28", l: "UK Official Singles Chart" },
+      { v: "No. 1", l: "UK Official Afrobeats Chart" },
+      { v: "Marvel", l: "from the Black Panther: Wakanda Forever soundtrack" },
     ],
     faqs: [
       {
-        q: "What album is “Gbona” on?",
-        a: "“Gbona” was released as a single in 2018 and later included on Burna Boy's 2019 album African Giant.",
+        q: "What Burna Boy song is in Black Panther: Wakanda Forever?",
+        a: "“Alone” is Burna Boy's song from Black Panther: Wakanda Forever, released on the 2022 soundtrack “Music From and Inspired By.” It opens the film's soundtrack rollout and became a hit in its own right, reaching No. 19 in France and No. 28 in the UK.",
       },
       {
-        q: "Is “Gbona” certified?",
-        a: "Yes — “Gbona” is certified Diamond in France and holds eight certifications in total, despite never charting on a singles chart.",
+        q: "How did “Alone” chart?",
+        a: "“Alone” charted in eight countries plus the Billboard Global 200 — its best peaks were No. 19 in France, No. 28 on the UK Official Singles Chart, No. 33 in Sweden and No. 45 in Switzerland. It also reached No. 1 on the UK's Official Afrobeats Chart.",
+      },
+      {
+        q: "Is “Alone” certified?",
+        a: "Yes — “Alone” is certified Platinum in Nigeria, Gold in the United States, New Zealand and France, and Silver in the United Kingdom.",
       },
     ],
-    metaTitle: "Burna Boy “Gbona” — Diamond in France & Every Certification",
+    metaTitle: "Burna Boy “Alone” — the Wakanda Forever Song & Its Chart Run",
     metaDescription:
-      "Burna Boy's “Gbona” (2018): a single certified Diamond in France, later included on African Giant — eight certifications worldwide, the story and full stats.",
+      "Burna Boy's “Alone” from Black Panther: Wakanda Forever (2022): No. 19 in France, No. 28 in the UK, No. 1 on the UK Afrobeats chart and certified in five countries.",
+  },
+  {
+    slug: "23",
+    title: "23",
+    year: 2020,
+    album: "Twice as Tall",
+    cover: "https://i.scdn.co/image/ab67616d0000b2735b069390c128a4b4c3197d80",
+    spotify: "https://open.spotify.com/track/7EqoATlXAKNwzv45LAlqRt",
+    ytViews: "48M",
+    tagline: "The Jordan-numbered highlight of the Grammy album",
+    blurb:
+      "A standout from Twice as Tall (2020) — the album that won Burna Boy the Grammy for Best Global Music Album. Named for Michael Jordan's jersey number, “23” pairs a boastful, victory-lap energy with one of the record's most-played videos, and is certified Platinum in Nigeria.",
+    extraFacts: [
+      { v: "Grammy", l: "from Twice as Tall, winner of Best Global Music Album (2021)" },
+      { v: "Platinum", l: "certified Platinum in Nigeria" },
+      { v: "23", l: "named after Michael Jordan's jersey number" },
+    ],
+    faqs: [
+      {
+        q: "What album is “23” by Burna Boy on?",
+        a: "“23” is from Twice as Tall (2020), the album that won Burna Boy the Grammy Award for Best Global Music Album in 2021.",
+      },
+      {
+        q: "Why is Burna Boy's song called “23”?",
+        a: "The title references Michael Jordan's jersey number — the song leans on that imagery of being the best at what you do, matching the confident tone of the Twice as Tall era.",
+      },
+    ],
+    metaTitle: "Burna Boy “23” — From the Grammy-Winning Twice as Tall",
+    metaDescription:
+      "Burna Boy's “23” from Twice as Tall (2020), the Grammy-winning album: the Michael Jordan reference, the certification and the numbers behind the song.",
+  },
+  {
+    slug: "tatata",
+    title: "TaTaTa",
+    credit: "Burna Boy feat. Travis Scott",
+    year: 2025,
+    album: "No Sign of Weakness",
+    cover: "https://i.scdn.co/image/ab67616d0000b273d00c3ad1a774c0e171939239",
+    ytViews: "12M",
+    tagline: "The Travis Scott team-up from No Sign of Weakness",
+    blurb:
+      "The Travis Scott collaboration from No Sign of Weakness (2025), Burna Boy's eighth studio album. It was one of the record's most-anticipated moments — a meeting of Afro-fusion and Houston rap — and charted in the UK on release.",
+    extraFacts: [
+      { v: "Travis Scott", l: "the album's headline collaboration" },
+      { v: "2025", l: "from his eighth studio album, No Sign of Weakness" },
+    ],
+    faqs: [
+      {
+        q: "Who is on Burna Boy's “TaTaTa”?",
+        a: "“TaTaTa” is Burna Boy featuring American rapper Travis Scott, from his 2025 album No Sign of Weakness.",
+      },
+      {
+        q: "What album is “TaTaTa” on?",
+        a: "“TaTaTa” appears on No Sign of Weakness (2025), Burna Boy's eighth studio album, which also features Mick Jagger, Stromae and Shaboozey.",
+      },
+    ],
+    metaTitle: "Burna Boy & Travis Scott “TaTaTa” — No Sign of Weakness",
+    metaDescription:
+      "“TaTaTa,” Burna Boy's Travis Scott collaboration from No Sign of Weakness (2025) — the story, chart run and stats behind the album's headline team-up.",
+  },
+  {
+    slug: "rizzla",
+    title: "Rizzla",
+    year: 2015,
+    album: "On a Spaceship",
+    cover: "https://i.scdn.co/image/ab67616d0000b2737e09ba6174aec9958461aa44",
+    spotify: "https://open.spotify.com/track/0ASsiTKxkcMmGS52fHx3Gn",
+    ytViews: "1.8M",
+    storyOnly: true,
+    tagline: "The On a Spaceship era, before the world caught on",
+    blurb:
+      "From On a Spaceship (2015), the second album of Burna Boy's early Nigerian run — years before the international breakthrough. It's a window into the Afro-fusion sound he was already building at home, and one of the era's most-watched videos.",
+    extraFacts: [
+      { v: "2015", l: "from his second studio album, On a Spaceship" },
+      { v: "Pre-fame", l: "three years before “Ye” broke him worldwide" },
+    ],
+    faqs: [
+      {
+        q: "What album is “Rizzla” on?",
+        a: "“Rizzla” is from On a Spaceship (2015), Burna Boy's second studio album, released during his early Nigerian run before his international breakthrough.",
+      },
+    ],
+    metaTitle: "Burna Boy “Rizzla” — the On a Spaceship Era (2015)",
+    metaDescription:
+      "Burna Boy's “Rizzla” from On a Spaceship (2015): the early Afro-fusion sound he was building in Nigeria years before “Ye” broke him worldwide.",
+  },
+  {
+    slug: "boshe-nlo",
+    title: "Boshe Nlo",
+    year: 2016,
+    album: "Redemption (EP)",
+    cover: "https://i.scdn.co/image/ab67616d0000b2738f864a796ece5bd24bd45119",
+    spotify: "https://open.spotify.com/track/530ZXkK83EFoX2tVdQ9SbG",
+    ytViews: "1M",
+    storyOnly: true,
+    tagline: "The closer from the Redemption EP",
+    blurb:
+      "From Redemption (2016), the seven-track EP Burna Boy released between albums during his Aristokrat-to-Spaceship transition. The EP is a compact snapshot of the period just before Outside changed everything.",
+    extraFacts: [
+      { v: "2016", l: "from the seven-track Redemption EP" },
+      { v: "Pre-Outside", l: "two years before his international breakthrough" },
+    ],
+    faqs: [
+      {
+        q: "What is Burna Boy's Redemption EP?",
+        a: "Redemption is a seven-track EP Burna Boy released in 2016, between On a Spaceship and Outside. “Boshe Nlo” closes it.",
+      },
+    ],
+    metaTitle: "Burna Boy “Boshe Nlo” — from the Redemption EP (2016)",
+    metaDescription:
+      "Burna Boy's “Boshe Nlo” from the 2016 Redemption EP — the seven-track release from the period just before Outside broke him internationally.",
+  },
+  {
+    slug: "darko",
+    title: "Darko",
+    credit: "Burna Boy & DJDS",
+    year: 2019,
+    album: "Steel & Copper (EP)",
+    cover: "https://i.scdn.co/image/ab67616d0000b27376cd360b4344922af3685208",
+    spotify: "https://open.spotify.com/track/4Ty2eRGfNVhJOgEDRzRsyb",
+    ytViews: "1.2M",
+    storyOnly: true,
+    tagline: "The four-track experiment with DJDS",
+    blurb:
+      "From Steel & Copper (2019), the four-track EP Burna Boy made with Los Angeles production duo DJDS in the same year as African Giant. It's the most experimental corner of his catalogue — a producer-led detour alongside the album that made him a global name.",
+    extraFacts: [
+      { v: "DJDS", l: "a full EP with the LA production duo" },
+      { v: "2019", l: "released the same year as African Giant" },
+    ],
+    faqs: [
+      {
+        q: "What is Steel & Copper?",
+        a: "Steel & Copper is a four-track EP Burna Boy released in 2019 with the Los Angeles production duo DJDS, in the same year as his breakthrough album African Giant.",
+      },
+    ],
+    metaTitle: "Burna Boy “Darko” — the Steel & Copper EP with DJDS",
+    metaDescription:
+      "Burna Boy's “Darko” from Steel & Copper (2019), his four-track EP with LA duo DJDS — the most experimental corner of his catalogue.",
+  },
+  {
+    slug: "like-to-party",
+    title: "Like to Party",
+    year: 2012,
+    album: "L.I.F.E",
+    cover: "https://i.scdn.co/image/ab67616d0000b2732a50f6b6ece48016fe9217e4",
+    spotify: "https://open.spotify.com/track/6cgEDo8mFLrvQ0FVqXAKpH",
+    storyOnly: true,
+    tagline: "The song that started it all",
+    blurb:
+      "The breakout single that introduced Burna Boy to Nigeria in 2012 and led the debut album L.I.F.E (Leaving an Impact for Eternity) the following year. Everything on this site traces back to it — a full decade before the World Cup stage.",
+    extraFacts: [
+      { v: "2012", l: "his breakout single, leading the 2013 debut album L.I.F.E" },
+      { v: "Debut", l: "the start of the run — 14 years before the World Cup Final" },
+    ],
+    faqs: [
+      {
+        q: "What was Burna Boy's first hit song?",
+        a: "“Like to Party” (2012) was Burna Boy's breakout single — the song that introduced him to a Nigerian audience and led his 2013 debut album L.I.F.E (Leaving an Impact for Eternity).",
+      },
+      {
+        q: "What does L.I.F.E stand for?",
+        a: "L.I.F.E, Burna Boy's 2013 debut album, stands for “Leaving an Impact for Eternity.”",
+      },
+    ],
+    metaTitle: "Burna Boy “Like to Party” — His Breakout Song (2012)",
+    metaDescription:
+      "“Like to Party” (2012) was Burna Boy's breakout single and the lead from his debut album L.I.F.E — the song that started a career ending at the World Cup Final.",
   },
 ];
 

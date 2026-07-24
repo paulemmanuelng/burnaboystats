@@ -76,7 +76,7 @@ describe("chart data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(chartEntryCount).toBe(242);
+    expect(chartEntryCount).toBe(251);
     expect(numberOnes).toBe(37);
     expect(chartCountryCount).toBe(51);
   });
