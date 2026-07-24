@@ -63,6 +63,8 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
     bestPeak != null && { v: peakLabel, l: "best chart peak worldwide" },
     no1Countries > 0 && { v: `${no1Countries}`, l: "countries at No. 1" },
     certs.length > 0 && { v: `${certs.length}`, l: "certifications worldwide" },
+    // Live figure — the stats bot keeps this current hourly.
+    song.ytViews && { v: song.ytViews, l: "YouTube views for the official video" },
   ].filter(Boolean) as { v: string; l: string }[];
   const facts = [...autoFacts, ...song.extraFacts].slice(0, 8);
 

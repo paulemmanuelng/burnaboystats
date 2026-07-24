@@ -166,3 +166,36 @@ describe("formatStat M1", () => {
     expect(fmtStat(17240000, "M1")).toBe("17.2M");
   });
 });
+
+import { extractKworbYouTubeVideo, extractKworbYouTubeTotal, appendTrendPoint } from "../scripts/stats-lib.mjs";
+
+describe("kworb YouTube extractors", () => {
+  const html = `<tr><td>Burna Boy - Ye [Official Music Video]</td><td>306,906,990</td></tr>
+    <tr><td>Burna Boy - Ye [Official Audio]</td><td>7,761,728</td></tr>
+    <tr><td>Total views:</td><td>3,151,172,520</td></tr>`;
+  it("matches the exact video variant, not a same-song audio row", () => {
+    expect(extractKworbYouTubeVideo(html, "Ye [Official Music Video]")).toBe(306906990);
+    expect(extractKworbYouTubeVideo(html, "Ye [Official Audio]")).toBe(7761728);
+  });
+  it("returns NaN for an unknown title", () => {
+    expect(Number.isNaN(extractKworbYouTubeVideo(html, "Nope"))).toBe(true);
+  });
+  it("reads the total-views figure", () => {
+    expect(extractKworbYouTubeTotal(html)).toBe(3151172520);
+  });
+});
+
+describe("appendTrendPoint", () => {
+  const src = `export const monthlyListenersSeries: TrendPoint[] = [\n  { date: "2026-07-23", value: 56.52 },\n];\n`;
+  it("appends a new dated point before the closing bracket", () => {
+    const r = appendTrendPoint(src, "export const monthlyListenersSeries", "2026-07-24", 56.93);
+    expect(r.applied).toBe(true);
+    expect(r.text).toContain('{ date: "2026-07-24", value: 56.93 },');
+    expect(r.text.indexOf("2026-07-24")).toBeGreaterThan(r.text.indexOf("2026-07-23"));
+  });
+  it("is idempotent — never duplicates a date", () => {
+    const r = appendTrendPoint(src, "export const monthlyListenersSeries", "2026-07-23", 56.52);
+    expect(r.applied).toBe(false);
+    expect(r.reason).toBe("date already present");
+  });
+});

@@ -23,11 +23,14 @@ import {
   extractKworbListeners,
   extractKworbTotalStreams,
   extractYouTubeViews,
+  extractKworbYouTubeVideo,
+  extractKworbYouTubeTotal,
   extractSpotifyFollowers,
   evaluateMetric,
   isActionable,
   formatStat,
   applyAnchoredReplace,
+  appendTrendPoint,
   withinSanity,
 } from "./stats-lib.mjs";
 
@@ -46,6 +49,8 @@ const htmlExtractors = {
   },
   kworbTotalStreams: (html) => extractKworbTotalStreams(html),
   youtubeViews: (html) => extractYouTubeViews(html),
+  kworbYouTubeVideo: (html, metric) => extractKworbYouTubeVideo(html, metric.match),
+  kworbYouTubeTotal: (html) => extractKworbYouTubeTotal(html),
 };
 
 async function fetchText(url) {
@@ -108,11 +113,14 @@ async function applyTargets(metric, files) {
   for (const t of metric.siteTargets) {
     const abs = path.join(repoRoot, t.file);
     if (!files.has(abs)) files.set(abs, await readFile(abs, "utf8"));
-    const replacement = formatStat(metric.live, t.format);
-    if (replacement == null) {
+    const formatted = formatStat(metric.live, t.format);
+    if (formatted == null) {
       failures.push({ file: t.file, reason: `bad format "${t.format}"` });
       continue;
     }
+    // `template` scopes the rewrite to a named field (e.g. `ytViews: "%s"`) so
+    // the pattern can't accidentally match another number after the anchor.
+    const replacement = t.template ? t.template.replace("%s", formatted) : formatted;
     const res = applyAnchoredReplace(files.get(abs), t.anchor, t.pattern, replacement);
     if (!res.applied && res.reason !== "already current") {
       failures.push({ file: t.file, reason: res.reason });
@@ -121,6 +129,22 @@ async function applyTargets(metric, files) {
     files.set(abs, res.text);
     edits.push({ file: t.file, from: res.changedFrom ?? replacement, to: replacement, noop: !res.applied });
   }
+
+  // Optional: also append today's reading to a trend series, so the site's
+  // history grows by itself. Idempotent — one point per date, ever.
+  const ts = metric.trendSeries;
+  if (ts && failures.length === 0) {
+    const abs = path.join(repoRoot, ts.file);
+    if (!files.has(abs)) files.set(abs, await readFile(abs, "utf8"));
+    const value = ts.divide ? +(metric.live / ts.divide).toFixed(ts.decimals ?? 2) : Math.round(metric.live);
+    const date = new Date().toISOString().slice(0, 10);
+    const res = appendTrendPoint(files.get(abs), ts.anchor, date, value);
+    if (res.applied) {
+      files.set(abs, res.text);
+      edits.push({ file: ts.file, from: "(new point)", to: `${date} → ${value}`, noop: false });
+    }
+  }
+
   return { ok: failures.length === 0, edits, failures };
 }
 

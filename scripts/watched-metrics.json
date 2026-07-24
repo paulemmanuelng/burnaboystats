@@ -30,7 +30,7 @@
         "min": 40000000,
         "max": 90000000
       },
-      "note": "A new all-time peak is a milestone worth logging on /updates. Auto-published hourly behind the sanity gate; a >12% jump (kworb mis-read) is rejected.",
+      "note": "A new all-time peak is a milestone worth logging on /updates. Auto-published hourly behind the sanity gate; a >12% jump (kworb mis-read) is rejected. Also appends a dated point to the trends series so the listener curve deepens on its own.",
       "siteTargets": [
         {
           "file": "app/data/africasBiggest.ts",
@@ -44,7 +44,13 @@
         "Add a new dated point to app/data/trends.ts (the daily series)",
         "Log the new peak on /updates (app/data/updates.ts), newest-first",
         "Refresh the leaderboard note wording if it crosses a round milestone"
-      ]
+      ],
+      "trendSeries": {
+        "file": "app/data/trends.ts",
+        "anchor": "export const monthlyListenersSeries",
+        "divide": 1000000,
+        "decimals": 2
+      }
     },
     {
       "id": "spotify-listeners-rank",
@@ -95,6 +101,185 @@
           "describes": "displayed view count (whole millions) on /dai-dai"
         }
       ]
+    },
+    {
+      "id": "yt-views-last-last",
+      "label": "“Last Last” video — YouTube views",
+      "sourceName": "kworb — Burna Boy YouTube",
+      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
+      "extractor": "kworbYouTubeVideo",
+      "match": "Last Last [Official Music Video]",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 357451861,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.2,
+        "min": 1000000,
+        "max": 5000000000
+      },
+      "note": "Views of the official “Last Last” video, shown on /music/last-last. Auto-published hourly; the display string only changes when it crosses a whole million.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"last-last\"",
+          "pattern": "ytViews: \"\\\\d+M\"",
+          "template": "ytViews: \"%s\"",
+          "format": "M0",
+          "describes": "displayed YouTube views on /music/last-last"
+        }
+      ]
+    },
+    {
+      "id": "yt-views-ye",
+      "label": "“Ye” video — YouTube views",
+      "sourceName": "kworb — Burna Boy YouTube",
+      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
+      "extractor": "kworbYouTubeVideo",
+      "match": "Ye [Official Music Video]",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 306906990,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.2,
+        "min": 1000000,
+        "max": 5000000000
+      },
+      "note": "Views of the official “Ye” video, shown on /music/ye. Auto-published hourly; the display string only changes when it crosses a whole million.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"ye\"",
+          "pattern": "ytViews: \"\\\\d+M\"",
+          "template": "ytViews: \"%s\"",
+          "format": "M0",
+          "describes": "displayed YouTube views on /music/ye"
+        }
+      ]
+    },
+    {
+      "id": "yt-views-on-the-low",
+      "label": "“On the Low” video — YouTube views",
+      "sourceName": "kworb — Burna Boy YouTube",
+      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
+      "extractor": "kworbYouTubeVideo",
+      "match": "On The Low [Official Music Video]",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 474031504,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.2,
+        "min": 1000000,
+        "max": 5000000000
+      },
+      "note": "Views of the official “On the Low” video, shown on /music/on-the-low. Auto-published hourly; the display string only changes when it crosses a whole million.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"on-the-low\"",
+          "pattern": "ytViews: \"\\\\d+M\"",
+          "template": "ytViews: \"%s\"",
+          "format": "M0",
+          "describes": "displayed YouTube views on /music/on-the-low"
+        }
+      ]
+    },
+    {
+      "id": "yt-views-kilometre",
+      "label": "“Kilometre” video — YouTube views",
+      "sourceName": "kworb — Burna Boy YouTube",
+      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
+      "extractor": "kworbYouTubeVideo",
+      "match": "Kilometre [Official Music Video]",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 32140694,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.2,
+        "min": 1000000,
+        "max": 5000000000
+      },
+      "note": "Views of the official “Kilometre” video, shown on /music/kilometre. Auto-published hourly; the display string only changes when it crosses a whole million.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"kilometre\"",
+          "pattern": "ytViews: \"\\\\d+M\"",
+          "template": "ytViews: \"%s\"",
+          "format": "M0",
+          "describes": "displayed YouTube views on /music/kilometre"
+        }
+      ]
+    },
+    {
+      "id": "yt-views-city-boys",
+      "label": "“City Boys” video — YouTube views",
+      "sourceName": "kworb — Burna Boy YouTube",
+      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
+      "extractor": "kworbYouTubeVideo",
+      "match": "City Boys [Official Music Video]",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 115771555,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.2,
+        "min": 1000000,
+        "max": 5000000000
+      },
+      "note": "Views of the official “City Boys” video, shown on /music/city-boys. Auto-published hourly; the display string only changes when it crosses a whole million.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"city-boys\"",
+          "pattern": "ytViews: \"\\\\d+M\"",
+          "template": "ytViews: \"%s\"",
+          "format": "M0",
+          "describes": "displayed YouTube views on /music/city-boys"
+        }
+      ]
+    },
+    {
+      "id": "yt-views-gbona",
+      "label": "“Gbona” video — YouTube views",
+      "sourceName": "kworb — Burna Boy YouTube",
+      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
+      "extractor": "kworbYouTubeVideo",
+      "match": "Gbona [Official Music Video]",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 150114419,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.2,
+        "min": 1000000,
+        "max": 5000000000
+      },
+      "note": "Views of the official “Gbona” video, shown on /music/gbona. Auto-published hourly; the display string only changes when it crosses a whole million.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"gbona\"",
+          "pattern": "ytViews: \"\\\\d+M\"",
+          "template": "ytViews: \"%s\"",
+          "format": "M0",
+          "describes": "displayed YouTube views on /music/gbona"
+        }
+      ]
+    },
+    {
+      "id": "youtube-total-views",
+      "label": "Total YouTube views (all videos)",
+      "sourceName": "kworb — Burna Boy YouTube",
+      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
+      "extractor": "kworbYouTubeTotal",
+      "kind": "drift",
+      "threshold": 0.01,
+      "baseline": 3151172520,
+      "note": "Cumulative views across every Burna Boy video — a milestone figure as it climbs."
     }
   ]
 }

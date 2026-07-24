@@ -21,6 +21,10 @@ export interface Song {
   album: string;
   cover: string; // Spotify i.scdn.co cover URL
   spotify: string; // open.spotify.com track link
+  // Official-music-video YouTube views, displayed in whole millions. Auto-updated
+  // hourly by the live stats bot (kworb per-video counts). Omit for songs whose
+  // video lives on another artist's channel (WGFT, Jerusalema).
+  ytViews?: string;
   tagline: string; // short hook under the title
   blurb: string; // 2–4 sentence story
   extraFacts: SongFact[]; // facts beyond the auto chart/cert counts
@@ -37,6 +41,7 @@ export const songs: Song[] = [
     album: "Love, Damini",
     cover: "https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2",
     spotify: "https://open.spotify.com/track/4LPNkxES0zCGn6S2Y1vmJN",
+    ytViews: "357M",
     tagline: "The heartbreak anthem — “I need igbo and shayo”",
     blurb:
       "The lead single from Love, Damini (2022), built on a sample of Toni Braxton's “He Wasn't Man Enough.” It became Burna Boy's signature breakup anthem and one of the most-certified African songs ever — topping the South African chart, reaching No. 4 in the UK (his highest-charting solo single there at the time) and going Diamond in France.",
@@ -71,6 +76,7 @@ export const songs: Song[] = [
     album: "Outside",
     cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
     spotify: "https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD",
+    ytViews: "307M",
     tagline: "The life-anthem that broke Burna Boy worldwide",
     blurb:
       "From the 2018 album Outside, “Ye” is one of Burna Boy's signature songs and the record that broke him internationally. A defiant, celebratory Afro-fusion anthem about the will to live and enjoy every moment — “I no wan die, I wan enjoy” — it became a global streaming staple and went Platinum across the US, UK, France, Canada and beyond, all without ever needing a singles chart.",
@@ -104,6 +110,7 @@ export const songs: Song[] = [
     album: "African Giant",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     spotify: "https://open.spotify.com/track/1zIk8RJEKGvoH4FioFnGyJ",
+    ytViews: "474M",
     tagline: "The smooth love song that went Diamond in France",
     blurb:
       "A silky Afro-fusion love song from African Giant (2019), “On the Low” became one of Burna Boy's biggest records in Europe. It was certified Diamond in France — among the highest honours any African song has earned there — and picked up nine certifications worldwide.",
@@ -163,6 +170,7 @@ export const songs: Song[] = [
     album: "Single",
     cover: "https://i.scdn.co/image/ab67616d0000b27339041f1bb96943fde5bb86c9",
     spotify: "https://open.spotify.com/track/0oQgoesQJq0fRnWOY1D73g",
+    ytViews: "32M",
     tagline: "The viral 2021 return — No. 1 in Nigeria",
     blurb:
       "Burna Boy's first solo single after the Grammy-winning Twice as Tall, “Kilometre” (2021) was an instant Afro-fusion hit — a slick, danceable record that topped the Nigerian chart and became one of his most-played songs of the year. It went Platinum in Nigeria and Gold in Canada.",
@@ -192,6 +200,7 @@ export const songs: Song[] = [
     album: "I Told Them…",
     cover: "https://i.scdn.co/image/ab67616d0000b273c361f3720bafc0da36f14d96",
     spotify: "https://open.spotify.com/track/4RoKNqyZ9622tcAeNPNv5k",
+    ytViews: "116M",
     tagline: "The triumphant I Told Them… anthem",
     blurb:
       "A celebratory highlight from I Told Them… (2023), “City Boys” became one of the album's biggest songs — a swaggering Afrobeats anthem that reached No. 2 in Nigeria, charted in eight countries and went 4× Platinum at home.",
@@ -251,6 +260,7 @@ export const songs: Song[] = [
     album: "Single",
     cover: "https://i.scdn.co/image/ab67616d0000b2735edf362ac1de3e5718382296",
     spotify: "https://open.spotify.com/track/0DrzsBstN5rObzTuX8DSro",
+    ytViews: "150M",
     tagline: "The 2018 single that went Diamond in France",
     blurb:
       "A hard-hitting Afro-fusion single from 2018, later included on African Giant, “Gbona” was part of the run that broke Burna Boy internationally. It never needed a singles chart to become a staple — going Diamond in France and picking up eight certifications worldwide.",

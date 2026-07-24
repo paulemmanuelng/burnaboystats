@@ -56,6 +56,29 @@ export function extractKworbTotalStreams(html) {
   return Math.max(...nums);
 }
 
+// Views for one video on kworb's per-artist YouTube page. Rows are
+// "<title></td><td>views</td>"; we match the row whose title contains
+// `matchTitle` (case-insensitive) and read its view count. Exact-ish matching
+// matters: an artist has "[Official Music Video]", "[Official Audio]" and
+// "[Lyric Video]" rows for the same song with wildly different counts.
+export function extractKworbYouTubeVideo(html, matchTitle) {
+  const needle = String(matchTitle).toLowerCase();
+  for (const row of html.match(/<tr[^>]*>[\s\S]*?<\/tr>/g) || []) {
+    const cells = [...row.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((m) =>
+      m[1].replace(/<[^>]+>/g, "").trim()
+    );
+    if (cells.length < 2) continue;
+    if (cells[0].toLowerCase().includes(needle)) return parseNum(cells[1]);
+  }
+  return NaN;
+}
+
+// The "Total views:" figure on the same page.
+export function extractKworbYouTubeTotal(html) {
+  const m = html.match(/Total views:[\s\S]{0,120}?([\d,]{7,})/);
+  return m ? parseNum(m[1]) : NaN;
+}
+
 // Pull the follower total from Spotify's official artist API response.
 // GET https://api.spotify.com/v1/artists/{id} → { followers: { total: N }, ... }.
 export function extractSpotifyFollowers(json) {
@@ -87,6 +110,21 @@ export function extractYouTubeViews(html) {
   const simple = html.match(/"simpleText":"([\d,]+) views?"/);
   if (simple) return parseInt(simple[1].replace(/,/g, ""), 10);
   return NaN;
+}
+
+// Append a dated point to a trend series array, so the site's history deepens
+// on its own instead of staying a handful of hand-added points. Idempotent: if
+// `date` is already present in that series it's a no-op, so re-running the same
+// day never duplicates. Returns { text, applied }.
+export function appendTrendPoint(text, anchor, date, value) {
+  const start = text.indexOf(anchor);
+  if (start === -1) return { text, applied: false, reason: "anchor not found" };
+  const close = text.indexOf("\n];", start);
+  if (close === -1) return { text, applied: false, reason: "series end not found" };
+  const body = text.slice(start, close);
+  if (body.includes(`"${date}"`)) return { text, applied: false, reason: "date already present" };
+  const line = `  { date: "${date}", value: ${value} },`;
+  return { text: text.slice(0, close) + "\n" + line + text.slice(close), applied: true };
 }
 
 // Compare a live value to a metric's baseline and classify the result.
