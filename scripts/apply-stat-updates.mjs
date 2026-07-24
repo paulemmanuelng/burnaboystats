@@ -61,21 +61,27 @@ async function spotifyFollowers(metric) {
   const id = process.env.SPOTIFY_CLIENT_ID;
   const secret = process.env.SPOTIFY_CLIENT_SECRET;
   if (!id || !secret) throw new Error("missing SPOTIFY_CLIENT_ID/SECRET");
+  console.error(`  [diag] id len=${id.trim().length} secret len=${secret.trim().length}`);
   const tokenRes = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
       "content-type": "application/x-www-form-urlencoded",
-      authorization: "Basic " + Buffer.from(`${id}:${secret}`).toString("base64"),
+      authorization: "Basic " + Buffer.from(`${id.trim()}:${secret.trim()}`).toString("base64"),
     },
     body: "grant_type=client_credentials",
   });
-  if (!tokenRes.ok) throw new Error(`token HTTP ${tokenRes.status}`);
+  console.error(`  [diag] token status=${tokenRes.status}`);
+  if (!tokenRes.ok) throw new Error(`token HTTP ${tokenRes.status}: ${(await tokenRes.text()).slice(0, 120)}`);
   const token = (await tokenRes.json()).access_token;
+  console.error(`  [diag] token present=${!!token}`);
   const artistRes = await fetch(`https://api.spotify.com/v1/artists/${metric.artistId}`, {
     headers: { authorization: `Bearer ${token}` },
   });
-  if (!artistRes.ok) throw new Error(`artist HTTP ${artistRes.status}`);
-  return extractSpotifyFollowers(await artistRes.json());
+  console.error(`  [diag] artist status=${artistRes.status}`);
+  if (!artistRes.ok) throw new Error(`artist HTTP ${artistRes.status}: ${(await artistRes.text()).slice(0, 120)}`);
+  const artistJson = await artistRes.json();
+  console.error(`  [diag] name=${artistJson?.name} followers.total=${artistJson?.followers?.total}`);
+  return extractSpotifyFollowers(artistJson);
 }
 
 const fmt = (n) => (n == null || Number.isNaN(n) ? "—" : Math.round(n).toLocaleString("en-US"));
