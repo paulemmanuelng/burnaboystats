@@ -104,9 +104,9 @@ export default function DaiDaiPage() {
     { v: "No. 1", l: "Billboard Global 200 — a 2nd week atop the US-inclusive worldwide chart, a first for an African artist (and Shakira's 2nd)" },
     { v: "No. 1", l: "Billboard Global 200 Excl. US — a 4th week at No. 1" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
-    { v: "17 days", l: "at No. 1 on Spotify's Global Daily Top Songs chart, plus a 2nd week atop the Weekly chart — the most-streamed song on Earth, a first for an African artist" },
+    { v: "18 days", l: "at No. 1 on Spotify's Global Daily Top Songs chart, plus a 3rd week atop the Weekly chart (a new high of 40.28M streams) — the most-streamed song on Earth, a first for an African artist" },
     { v: "No. 1", l: "Official MENA Chart Top 20, and Billboard's US World Digital Song Sales chart" },
-    { v: "No. 5", l: "UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)" },
+    { v: "No. 2", l: "UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)" },
     { v: "No. 42", l: "Billboard Hot 100 (US) — a new peak, extending Burna Boy's record for the most Hot 100 entries by an African artist" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, plus Gold in France, Spain, Colombia, Hungary, Slovakia & Portugal" },
     { v: "No. 1", l: "iTunes song chart in 69 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more" },
@@ -132,7 +132,7 @@ export default function DaiDaiPage() {
     },
     {
       q: "How high did “Dai Dai” chart in the UK?",
-      a: "“Dai Dai” peaked at No. 5 on the UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and the highest-charting World Cup song in UK history, surpassing Shakira's own “Waka Waka (This Time for Africa)”, which peaked at No. 21 in 2010.",
+      a: "“Dai Dai” peaked at No. 2 on the UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, surpassing Shakira's own “Waka Waka (This Time for Africa)”, which peaked at No. 21 in 2010.",
     },
     {
       q: "When was the 2026 World Cup Final halftime show?",

@@ -29,6 +29,48 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-24",
+    category: "Charts",
+    text: "A new UK peak: “Dai Dai” climbs to No. 2 (+3) on the Official Singles Chart — by far the highest-charting FIFA World Cup song in UK history.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-24",
+    category: "Charts",
+    text: "Italy conquered: “Dai Dai” reaches No. 1 (+5) on Italy's FIMI Top 100 — Burna Boy's 18th country at No. 1 for the World Cup anthem.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-24",
+    category: "Streaming",
+    text: "56.93 million monthly listeners: Burna Boy sets yet another all-time Spotify peak — 56,934,448, No. 42 in the world.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-24",
+    category: "Charts",
+    text: "New Zealand joins in: “Dai Dai” debuts at No. 20 on the official RMNZ Aotearoa Top 40 Singles Chart.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-24",
+    category: "Charts",
+    text: "Fresh peaks across Europe: “Dai Dai” hits new highs of No. 5 (+9) in Ireland and No. 12 (+23) in Finland.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-24",
+    category: "Streaming",
+    text: "An 18th day on top: “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart (6.23M streams), and takes a 3rd week atop the Weekly chart with a new high of 40.28 million streams.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-24",
+    category: "Charts",
+    text: "Europe keeps it locked: “Dai Dai” spends a 5th week at No. 1 in Austria, a 4th in Germany, and a 3rd in both the Netherlands and Sweden.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-07-23",
     category: "Streaming",
     text: "533 million views: the official “Dai Dai” video keeps climbing — still Burna Boy's first video past 500M and the most-viewed music video of 2026.",
