@@ -84,3 +84,36 @@ describe("isActionable", () => {
     expect(isActionable("unavailable")).toBe(false);
   });
 });
+
+import { formatStat, applyAnchoredReplace } from "../scripts/stats-lib.mjs";
+
+describe("formatStat", () => {
+  it("formats each display style", () => {
+    expect(formatStat(56517687, "M2")).toBe("56.52M");
+    expect(formatStat(747000000, "M0")).toBe("747M");
+    expect(formatStat(56517687, "raw")).toBe("56,517,687");
+    expect(formatStat(44, "int")).toBe("44");
+    expect(formatStat(NaN, "M2")).toBeNull();
+  });
+});
+
+describe("applyAnchoredReplace", () => {
+  const text = `foo\n  id: "monthly-listeners-peak",\n  value: "55.95M",\n  other: "99.9M",`;
+  it("replaces the first pattern match after the anchor only", () => {
+    const r = applyAnchoredReplace(text, 'id: "monthly-listeners-peak"', "\\d+(?:\\.\\d+)?M", "56.52M");
+    expect(r.applied).toBe(true);
+    expect(r.changedFrom).toBe("55.95M");
+    expect(r.text).toContain('value: "56.52M"');
+    expect(r.text).toContain('other: "99.9M"'); // untouched
+  });
+  it("is a no-op when already current", () => {
+    const r = applyAnchoredReplace(text, 'id: "monthly-listeners-peak"', "\\d+(?:\\.\\d+)?M", "55.95M");
+    expect(r.applied).toBe(false);
+    expect(r.reason).toBe("already current");
+  });
+  it("does not edit when the anchor is missing (safety)", () => {
+    const r = applyAnchoredReplace(text, 'id: "does-not-exist"', "\\d+M", "1M");
+    expect(r.applied).toBe(false);
+    expect(r.text).toBe(text);
+  });
+});

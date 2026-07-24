@@ -96,3 +96,45 @@ export function evaluateMetric(metric, liveValue) {
 export function isActionable(status) {
   return status === "drift" || status === "new-peak" || status === "rank-change";
 }
+
+// Format a raw number the way a given site field displays it, so an auto-drafted
+// edit matches the surrounding style exactly.
+//   "M2"  → "56.52M"      (millions, 2dp — leaderboard values)
+//   "M0"  → "747M"        (millions, whole)
+//   "raw" → "56,517,687"  (grouped integer — prose / baselines)
+//   "int" → "44"          (plain integer — ranks)
+export function formatStat(n, format) {
+  if (n == null || Number.isNaN(n)) return null;
+  switch (format) {
+    case "M2":
+      return `${(n / 1e6).toFixed(2)}M`;
+    case "M0":
+      return `${Math.round(n / 1e6)}M`;
+    case "raw":
+      return Math.round(n).toLocaleString("en-US");
+    case "int":
+      return String(Math.round(n));
+    default:
+      return null;
+  }
+}
+
+// Replace the first occurrence of `pattern` that appears AFTER `anchor` in
+// `text`, leaving everything else untouched. Returns { text, applied }.
+// `applied` is false when the anchor or the pattern isn't found — the caller
+// then skips this target (and its baseline bump) rather than risk a bad edit.
+// This is what keeps the bot from ever guessing: a structural change to the file
+// simply produces a no-op the human sees flagged in the PR, never a wrong edit.
+export function applyAnchoredReplace(text, anchor, pattern, replacement) {
+  const anchorIdx = text.indexOf(anchor);
+  if (anchorIdx === -1) return { text, applied: false, reason: "anchor not found" };
+  const from = anchorIdx + anchor.length;
+  const re = new RegExp(pattern);
+  const rest = text.slice(from);
+  const m = rest.match(re);
+  if (!m) return { text, applied: false, reason: "pattern not found after anchor" };
+  const at = from + m.index;
+  const already = m[0] === replacement;
+  const next = text.slice(0, at) + replacement + text.slice(at + m[0].length);
+  return { text: next, applied: !already, changedFrom: m[0], reason: already ? "already current" : undefined };
+}

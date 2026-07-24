@@ -24,7 +24,21 @@
       "field": "peakListeners",
       "kind": "peak",
       "baseline": 56517687,
-      "note": "A new all-time peak is a milestone worth logging on /updates."
+      "note": "A new all-time peak is a milestone worth logging on /updates.",
+      "siteTargets": [
+        {
+          "file": "app/data/africasBiggest.ts",
+          "anchor": "id: \"monthly-listeners-peak\"",
+          "pattern": "\\d+(?:\\.\\d+)?M",
+          "format": "M2",
+          "describes": "Burna Boy's peak value on the monthly-listeners leaderboard"
+        }
+      ],
+      "manualAfter": [
+        "Add a new dated point to app/data/trends.ts (the daily series)",
+        "Log the new peak on /updates (app/data/updates.ts), newest-first",
+        "Refresh the leaderboard note wording if it crosses a round milestone"
+      ]
     },
     {
       "id": "spotify-listeners-rank",

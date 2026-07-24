@@ -1,0 +1,63 @@
+name: Stats refresh
+
+# Review-gated auto-refresh. Daily, it fetches the public sources and DRAFTS the
+# mechanical site edits for any figure that has drifted (see scripts/apply-stat-
+# updates.mjs), then opens/updates a single pull request with the diff and a
+# checklist of the prose parts that still need a human. It NEVER merges — Paul
+# reviews and merges, or closes it if his own live tracking has a fresher number.
+#
+# The separate weekly "Stats monitor" workflow stays as the plain tripwire (an
+# issue) for drift that can't be auto-drafted.
+
+on:
+  schedule:
+    - cron: "0 9 * * *" # daily 09:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write # push the refresh branch
+  pull-requests: write # open/update the PR
+
+concurrency:
+  group: stats-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Draft stat updates from live sources
+        id: refresh
+        run: node scripts/apply-stat-updates.mjs
+
+      - name: Open or update the refresh PR
+        if: steps.refresh.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          BRANCH="stat-refresh/auto"
+          git config user.name "burnaboystats-bot"
+          git config user.email "bot@users.noreply.github.com"
+
+          # Rebuild the branch fresh from main each run so the PR only ever
+          # contains the current drift (no stale accumulated commits).
+          git checkout -B "$BRANCH"
+          git add app/data scripts/watched-metrics.json
+          git commit -m "chore(stats): refresh drifted figures from live sources"
+          git push -f origin "$BRANCH"
+
+          title="🤖 Stat refresh — review & merge"
+          if gh pr view "$BRANCH" --json number >/dev/null 2>&1; then
+            gh pr edit "$BRANCH" --title "$title" --body-file refresh-pr-body.md
+          else
+            gh pr create --base main --head "$BRANCH" --title "$title" --body-file refresh-pr-body.md
+          fi

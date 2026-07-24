@@ -23,6 +23,38 @@ source of truth; the robot just says "go check."
 - **`.github/workflows/stats-monitor.yml`** — runs it every Monday (and on
   demand). If anything drifted, it opens or updates a single tracking issue.
 
+## The refresh layer (review-gated auto-draft)
+
+The monitor tells you *that* something moved. The **refresh** goes one step
+further and drafts the edit for you — still without ever merging it.
+
+- **`scripts/apply-stat-updates.mjs`** — same fetch + evaluate, but for any
+  drifted metric that declares `siteTargets`, it applies an **anchored
+  find/replace** in the data files and bumps that metric's baseline to match.
+- **`.github/workflows/stats-refresh.yml`** — runs daily. When anything was
+  drafted, it pushes a `stat-refresh/auto` branch and opens (or updates) **one
+  pull request** with the diff plus a checklist of the prose parts a human still
+  owns. You review and merge — or close it if your own tracking is fresher.
+
+**The safety rule that makes it trustworthy:** a baseline is bumped *only* if
+every one of that metric's site edits applied cleanly. If a file changed shape
+and an anchor goes missing, the metric is skipped whole (site + baseline
+untouched) and listed under "needs your attention" — so the baseline can never
+silently drift away from what the page shows. Run `node
+scripts/apply-stat-updates.mjs --dry-run` to preview with no writes.
+
+### Give a metric a `siteTargets` entry
+
+```jsonc
+"siteTargets": [{
+  "file": "app/data/africasBiggest.ts",
+  "anchor": "id: \"monthly-listeners-peak\"", // unique string to search from
+  "pattern": "\\d+(?:\\.\\d+)?M",              // the value to replace, after the anchor
+  "format": "M2"                               // M2 | M0 | raw | int
+}],
+"manualAfter": ["Log the new peak on /updates", "..."] // prose steps for the PR checklist
+```
+
 ## Metric kinds
 
 - `drift` — flags when the live value differs from the baseline by ≥ `threshold`
