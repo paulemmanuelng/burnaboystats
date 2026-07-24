@@ -1,22 +1,20 @@
 #!/usr/bin/env node
-// Review-gated stat refresh. Fetches the same public sources as the monitor,
-// and for any figure that has drifted past its threshold it DRAFTS the site
-// edit — anchored find/replace in the data files declared on each metric's
-// `siteTargets` — and bumps that metric's baseline to match. It then writes a
-// PR body describing what it changed and what still needs a human.
+// Draft site-figure updates from live sources and edit the data files in place.
+// Two modes, selected by the workflow that runs it:
 //
-// It never merges anything. The workflow opens a pull request; Paul reviews the
-// diff and merges or closes it. His live tracking always wins — closing the PR
-// is a valid outcome. Fast-moving figures are only ever changed behind this gate.
+//   (default)  → metrics WITHOUT `live: true`. Edits are drafted for a human to
+//                review; the PR workflow opens a pull request. Never merges.
+//   --live     → metrics WITH `live: true` (followers, peak listeners). Edits go
+//                through a SANITY GATE and, if they pass, are committed straight
+//                to main by the hourly workflow — no review. The gate is the
+//                safety net: an implausible value (kworb's mis-read failure mode)
+//                is rejected and skipped, so it never reaches the public site.
 //
-// Safety rule that makes this trustworthy: a metric's baseline is bumped ONLY if
-// every one of its site edits applied cleanly. If a file changed shape and an
-// anchor is missing, that metric is skipped whole (site + baseline untouched)
-// and listed under "needs your attention" — so the baseline can never silently
-// drift away from what the page shows.
+//   node scripts/apply-stat-updates.mjs [--live] [--dry-run]
 //
-//   node scripts/apply-stat-updates.mjs            # apply + write PR body
-//   node scripts/apply-stat-updates.mjs --dry-run  # report only, no writes
+// Baseline-bump safety rule (both modes): a metric's baseline is bumped ONLY if
+// every one of its site edits applied cleanly, so the baseline can't drift away
+// from what the page shows.
 
 import { readFile, writeFile, appendFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
@@ -25,17 +23,23 @@ import {
   extractKworbListeners,
   extractKworbTotalStreams,
   extractYouTubeViews,
+  extractSpotifyFollowers,
   evaluateMetric,
   isActionable,
   formatStat,
   applyAnchoredReplace,
+  withinSanity,
 } from "./stats-lib.mjs";
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.join(dir, "..");
 const DRY = process.argv.includes("--dry-run");
+const LIVE = process.argv.includes("--live");
 
-const extractors = {
+const UA = { "user-agent": "burnaboystats-refresh/1.0 (+https://burnaboystats.com)" };
+
+// HTML-page extractors (fed the fetched page text).
+const htmlExtractors = {
   kworbListeners: (html, metric) => {
     const row = extractKworbListeners(html, metric.artistId);
     return row ? row[metric.field] : NaN;
@@ -45,23 +49,53 @@ const extractors = {
 };
 
 async function fetchText(url) {
-  const res = await fetch(url, {
-    headers: { "user-agent": "burnaboystats-refresh/1.0 (+https://burnaboystats.com)" },
-  });
+  const res = await fetch(url, { headers: UA });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.text();
 }
 
+// Spotify client-credentials token → follower count. Needs SPOTIFY_CLIENT_ID /
+// SPOTIFY_CLIENT_SECRET in the environment; without them the metric is skipped
+// (followers just stays at the committed value — never zeroed out).
+async function spotifyFollowers(metric) {
+  const id = process.env.SPOTIFY_CLIENT_ID;
+  const secret = process.env.SPOTIFY_CLIENT_SECRET;
+  if (!id || !secret) throw new Error("missing SPOTIFY_CLIENT_ID/SECRET");
+  const tokenRes = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: {
+      "content-type": "application/x-www-form-urlencoded",
+      authorization: "Basic " + Buffer.from(`${id}:${secret}`).toString("base64"),
+    },
+    body: "grant_type=client_credentials",
+  });
+  if (!tokenRes.ok) throw new Error(`token HTTP ${tokenRes.status}`);
+  const token = (await tokenRes.json()).access_token;
+  const artistRes = await fetch(`https://api.spotify.com/v1/artists/${metric.artistId}`, {
+    headers: { authorization: `Bearer ${token}` },
+  });
+  if (!artistRes.ok) throw new Error(`artist HTTP ${artistRes.status}`);
+  return extractSpotifyFollowers(await artistRes.json());
+}
+
 const fmt = (n) => (n == null || Number.isNaN(n) ? "—" : Math.round(n).toLocaleString("en-US"));
 
-// Apply every siteTarget for one metric to the working copy of each file.
-// Returns { ok, edits, failures } — ok is true only if the metric has targets
-// and ALL of them applied (or were already current).
+// Get one metric's live value, handling both source types, with a shared page
+// cache so a source URL is fetched at most once.
+async function liveValue(metric, pageCache) {
+  if (metric.extractor === "spotifyFollowers") return spotifyFollowers(metric);
+  if (!pageCache.has(metric.sourceUrl)) {
+    pageCache.set(metric.sourceUrl, fetchText(metric.sourceUrl).catch((e) => ({ error: e.message })));
+  }
+  const page = await pageCache.get(metric.sourceUrl);
+  if (page && page.error) throw new Error(page.error);
+  return htmlExtractors[metric.extractor]?.(page, metric) ?? NaN;
+}
+
 async function applyTargets(metric, files) {
   const edits = [];
   const failures = [];
   if (!metric.siteTargets?.length) return { ok: false, edits, failures: [{ reason: "no siteTargets" }] };
-
   for (const t of metric.siteTargets) {
     const abs = path.join(repoRoot, t.file);
     if (!files.has(abs)) files.set(abs, await readFile(abs, "utf8"));
@@ -85,46 +119,40 @@ async function main() {
   const configPath = path.join(dir, "watched-metrics.json");
   const config = JSON.parse(await readFile(configPath, "utf8"));
 
-  const urls = [...new Set(config.metrics.map((m) => m.sourceUrl))];
-  const pages = new Map();
-  for (const url of urls) {
-    try {
-      pages.set(url, await fetchText(url));
-    } catch (err) {
-      pages.set(url, { error: err.message });
-    }
-  }
+  // Live mode handles the `live` metrics; default mode handles the rest.
+  const metrics = config.metrics.filter((m) => (LIVE ? m.live === true : !m.live));
 
-  const results = config.metrics.map((metric) => {
-    const page = pages.get(metric.sourceUrl);
-    if (page && page.error) return { ...metric, live: null, status: "unavailable", reason: page.error };
+  const pageCache = new Map();
+  const results = [];
+  for (const metric of metrics) {
     let live = NaN;
     try {
-      live = extractors[metric.extractor]?.(page, metric) ?? NaN;
+      live = await liveValue(metric, pageCache);
     } catch (err) {
-      return { ...metric, live: null, status: "unavailable", reason: err.message };
+      results.push({ ...metric, live: null, status: "unavailable", reason: err.message });
+      continue;
     }
-    return evaluateMetric(metric, live);
-  });
-
-  const actionable = results.filter((r) => isActionable(r.status));
-
-  const files = new Map(); // abs path -> working text (edited in place, written once)
-  const applied = []; // metrics fully auto-drafted
-  const manual = []; // actionable but not fully auto-applied → human needed
-
-  for (const r of actionable) {
-    const { ok, edits, failures } = await applyTargets(r, files);
-    if (ok && edits.some((e) => !e.noop)) {
-      applied.push({ r, edits });
-    } else if (ok) {
-      // Every target already current — nothing to do, don't reopen it.
-    } else {
-      manual.push({ r, failures });
-    }
+    results.push(evaluateMetric(metric, live));
   }
 
-  // Bump baselines for the metrics we fully applied — same edited config object.
+  const files = new Map();
+  const applied = [];
+  const manual = [];
+  const rejected = []; // live values that failed the sanity gate
+
+  for (const r of results.filter((x) => isActionable(x.status))) {
+    // In live mode, gate every value before it can touch a file.
+    if (LIVE && !withinSanity(r.baseline, r.live, r.sanity)) {
+      rejected.push(r);
+      continue;
+    }
+    const { ok, edits, failures } = await applyTargets(r, files);
+    if (ok && edits.some((e) => !e.noop)) applied.push({ r, edits });
+    else if (ok) {
+      /* every target already current — nothing to do */
+    } else manual.push({ r, failures });
+  }
+
   if (applied.length) {
     for (const { r } of applied) {
       const m = config.metrics.find((x) => x.id === r.id);
@@ -133,37 +161,39 @@ async function main() {
     files.set(configPath, JSON.stringify(config, null, 2) + "\n");
   }
 
-  // Write the working copies (unless dry-run).
-  if (!DRY) {
-    for (const [abs, text] of files) await writeFile(abs, text);
-  }
+  if (!DRY) for (const [abs, text] of files) await writeFile(abs, text);
 
-  // Build the PR body.
   const lines = [];
-  lines.push("## 🤖 Stat refresh — review & merge\n");
+  lines.push(LIVE ? "## 🤖 Live stat refresh\n" : "## 🤖 Stat refresh — review & merge\n");
   if (applied.length) {
-    lines.push(`Auto-drafted **${applied.length}** figure update(s) from the live sources. Review the diff, then merge — or close if your own tracking has a fresher number.\n`);
+    lines.push(`Updated **${applied.length}** figure(s) from the live sources.\n`);
     for (const { r, edits } of applied) {
       lines.push(`### ${r.label}`);
       lines.push(`Source shows **${fmt(r.live)}** (was ${fmt(r.baseline)}). _${r.sourceName}_`);
       for (const e of edits) lines.push(`- \`${e.file}\`: ${e.from} → **${e.to}**`);
       lines.push(`- \`scripts/watched-metrics.json\`: baseline → ${fmt(r.live)}`);
-      if (r.manualAfter?.length) {
+      if (!LIVE && r.manualAfter?.length) {
         lines.push(`\n  Still needs your hand (prose/judgement):`);
         for (const step of r.manualAfter) lines.push(`  - [ ] ${step}`);
       }
       lines.push("");
     }
   }
+  if (rejected.length) {
+    lines.push(`### ⛔ Rejected by the sanity gate (not published)\n`);
+    for (const r of rejected) {
+      lines.push(`- **${r.label}**: source ${fmt(r.live)} vs baseline ${fmt(r.baseline)} — implausible, skipped.`);
+    }
+    lines.push("");
+  }
   if (manual.length) {
     lines.push(`### ⚠️ Needs your attention (not auto-applied)\n`);
-    lines.push(`These drifted but couldn't be drafted safely — update them by hand:\n`);
     for (const { r, failures } of manual) {
       lines.push(`- **${r.label}**: baseline ${fmt(r.baseline)} → source ${fmt(r.live)} (${failures.map((f) => f.reason).join("; ")})`);
     }
     lines.push("");
   }
-  if (!applied.length && !manual.length) {
+  if (!applied.length && !manual.length && !rejected.length) {
     lines.push("All watched figures are within tolerance. Nothing to update.");
   }
   const body = lines.join("\n");
@@ -173,6 +203,7 @@ async function main() {
   if (process.env.GITHUB_OUTPUT) {
     await appendFile(process.env.GITHUB_OUTPUT, `has_changes=${applied.length > 0}\n`);
     await appendFile(process.env.GITHUB_OUTPUT, `has_manual=${manual.length > 0}\n`);
+    await appendFile(process.env.GITHUB_OUTPUT, `has_rejected=${rejected.length > 0}\n`);
   }
 }
 

@@ -1,3 +1,5 @@
+import { spotifyFollowersDisplay } from "./spotify";
+
 // "Africa's Biggest" — leaderboard-style stat boxes comparing African artists.
 // Two box layouts:
 //   • "year" — a ranked Top-5 per year (e.g. most-streamed artist by year).
@@ -196,7 +198,7 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "Spotify followers · African artists · current",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "17.1M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: spotifyFollowersDisplay },
       { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "12.1M" },
       { name: "Davido", sub: "🇳🇬 Nigeria", value: "11.4M" },
       { name: "Asake", sub: "🇳🇬 Nigeria", value: "9.8M" },

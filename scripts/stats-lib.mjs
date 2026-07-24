@@ -56,6 +56,25 @@ export function extractKworbTotalStreams(html) {
   return Math.max(...nums);
 }
 
+// Pull the follower total from Spotify's official artist API response.
+// GET https://api.spotify.com/v1/artists/{id} → { followers: { total: N }, ... }.
+export function extractSpotifyFollowers(json) {
+  const n = json?.followers?.total;
+  return typeof n === "number" ? n : NaN;
+}
+
+// The safety gate for values published live with no human review. Returns true
+// only if a live value is plausible: a real number, inside an absolute range,
+// and within `maxJump` of the baseline. The jump guard is the key protection —
+// kworb's documented failure mode is a sudden mis-read (e.g. reading a rank as a
+// listener count), which shows up as a huge % swing and gets rejected here so it
+// never reaches the site. A rejected value is skipped, not published.
+export function withinSanity(baseline, live, { maxJump = 0.15, min = 0, max = Infinity } = {}) {
+  if (live == null || Number.isNaN(live) || live <= min || live > max) return false;
+  if (baseline && Math.abs(live - baseline) / baseline > maxJump) return false;
+  return true;
+}
+
 // Pull a YouTube video's view count out of the watch page's embedded JSON.
 // YouTube renders the visible count client-side, but the raw number is in the
 // ytInitialData blob as `"viewCount":"533033080"` — read that, not the UI text.
@@ -116,6 +135,8 @@ export function formatStat(n, format) {
   switch (format) {
     case "M2":
       return `${(n / 1e6).toFixed(2)}M`;
+    case "M1":
+      return `${(n / 1e6).toFixed(1)}M`;
     case "M0":
       return `${Math.round(n / 1e6)}M`;
     case "raw":

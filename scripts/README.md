@@ -43,6 +43,26 @@ untouched) and listed under "needs your attention" — so the baseline can never
 silently drift away from what the page shows. Run `node
 scripts/apply-stat-updates.mjs --dry-run` to preview with no writes.
 
+## The live layer (fully automatic, sanity-gated)
+
+Some figures are safe to publish with **no review at all**. A metric marked
+`"live": true` is handled by `.github/workflows/stats-live.yml` (hourly), which
+runs `apply-stat-updates.mjs --live` and **commits sane changes straight to
+main** — the site updates itself. The other (review-gated) metrics are excluded
+from this run and stay on the daily PR.
+
+**What makes it safe:** every live value passes `withinSanity(baseline, live,
+{maxJump, min, max})` before it can touch a file. A value that's NaN, outside the
+absolute range, or more than `maxJump` off the baseline is **rejected and
+skipped** — never committed. This is the guard against kworb's known failure
+mode (mis-reading e.g. a rank as a listener count, which shows up as a huge %
+swing). Configure the bounds per metric under `"sanity"`.
+
+Currently live: **Spotify followers** (official API — needs `SPOTIFY_CLIENT_ID` /
+`SPOTIFY_CLIENT_SECRET` repo secrets; skipped if absent) and **peak monthly
+listeners** (kworb). Followers is stored as the displayed string in
+`app/data/spotify.ts` so it only re-commits when the visible value changes.
+
 ### Give a metric a `siteTargets` entry
 
 ```jsonc

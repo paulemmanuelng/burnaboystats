@@ -47,8 +47,12 @@ function fmt(n) {
 async function main() {
   const config = JSON.parse(await readFile(path.join(dir, "watched-metrics.json"), "utf8"));
 
+  // Live metrics (followers, peak listeners) are auto-published hourly by the
+  // stats-live workflow — the weekly tripwire only covers the review-gated rest.
+  const metrics = config.metrics.filter((m) => !m.live);
+
   // Fetch each unique source page once.
-  const urls = [...new Set(config.metrics.map((m) => m.sourceUrl))];
+  const urls = [...new Set(metrics.map((m) => m.sourceUrl))];
   const pages = new Map();
   for (const url of urls) {
     try {
@@ -58,7 +62,7 @@ async function main() {
     }
   }
 
-  const results = config.metrics.map((metric) => {
+  const results = metrics.map((metric) => {
     const page = pages.get(metric.sourceUrl);
     if (page && page.error) return { ...metric, live: null, status: "unavailable", reason: page.error };
     let live = NaN;

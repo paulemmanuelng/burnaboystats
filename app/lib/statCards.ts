@@ -2,6 +2,7 @@ import { totalAwards, countryCount, allItems, tierOf, daiDaiCertCount } from "..
 import { numberOnes, chartEntryCount, chartCountryCount, daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
 import { monthlyListenersValues } from "../data/trends";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
+import { spotifyFollowersDisplay } from "../data/spotify";
 
 // Shareable "stat cards" — a Burna Boy headline stat rendered as a downloadable
 // image (the Receiptify/Volt.fm-style viral artifact). Values are data-driven so
@@ -76,7 +77,7 @@ export function getStatCards(): StatCard[] {
       kicker: "The most of any African artist",
       chip: "Monthly listeners",
       stats: [
-        { value: "17.1M", label: "Followers" },
+        { value: spotifyFollowersDisplay, label: "Followers" },
         { value: "784M", label: "YouTube peak" },
         { value: "No.1", label: "Spotify Global" },
       ],
@@ -119,7 +120,7 @@ export function getStatCards(): StatCard[] {
     },
     {
       id: "followers",
-      value: "17.1M",
+      value: spotifyFollowersDisplay,
       label: "Spotify followers — most of any African artist",
       kicker: "The most-followed African artist on Spotify",
       chip: "Followers",

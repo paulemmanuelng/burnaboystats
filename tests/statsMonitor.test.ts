@@ -128,3 +128,38 @@ describe("extractYouTubeViews", () => {
     expect(Number.isNaN(extractYouTubeViews("<html>no data</html>"))).toBe(true);
   });
 });
+
+import { extractSpotifyFollowers, withinSanity, formatStat as fmtStat } from "../scripts/stats-lib.mjs";
+
+describe("extractSpotifyFollowers", () => {
+  it("reads followers.total from the artist API shape", () => {
+    expect(extractSpotifyFollowers({ followers: { total: 17070969 }, name: "Burna Boy" })).toBe(17070969);
+  });
+  it("returns NaN when missing", () => {
+    expect(Number.isNaN(extractSpotifyFollowers({}))).toBe(true);
+  });
+});
+
+describe("withinSanity (live safety gate)", () => {
+  const opts = { maxJump: 0.12, min: 40000000, max: 90000000 };
+  it("accepts a plausible move", () => {
+    expect(withinSanity(56517687, 56800000, opts)).toBe(true);
+  });
+  it("rejects an implausible jump (kworb mis-read)", () => {
+    expect(withinSanity(56517687, 90000000, opts)).toBe(false); // ~59% jump
+  });
+  it("rejects values outside the absolute range", () => {
+    expect(withinSanity(56517687, 61, opts)).toBe(false); // a rank mis-read as a count
+  });
+  it("rejects NaN / non-positive", () => {
+    expect(withinSanity(56517687, NaN, opts)).toBe(false);
+    expect(withinSanity(56517687, 0, opts)).toBe(false);
+  });
+});
+
+describe("formatStat M1", () => {
+  it("formats one decimal million", () => {
+    expect(fmtStat(17070969, "M1")).toBe("17.1M");
+    expect(fmtStat(17240000, "M1")).toBe("17.2M");
+  });
+});

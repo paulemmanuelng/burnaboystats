@@ -1,0 +1,49 @@
+name: Stats live
+
+# Fully-automatic hourly refresh for the "live" figures (Spotify followers +
+# peak monthly listeners). It fetches the sources, runs each value through the
+# sanity gate in scripts/apply-stat-updates.mjs, and commits any sane change
+# STRAIGHT TO main (no PR) — so the site stays current with no human action.
+# Vercel redeploys on the push. Implausible values are rejected, never committed.
+#
+# Followers needs SPOTIFY_CLIENT_ID / SPOTIFY_CLIENT_SECRET repo secrets; without
+# them that one metric is skipped (its value just holds), everything else runs.
+
+on:
+  schedule:
+    - cron: "17 * * * *" # hourly, at :17 past
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stats-live
+  cancel-in-progress: true
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Refresh live figures (sanity-gated)
+        id: live
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+        run: node scripts/apply-stat-updates.mjs --live
+
+      - name: Commit to main
+        if: steps.live.outputs.has_changes == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "burnaboystats-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add app/data scripts/watched-metrics.json
+          git commit -m "chore(stats): live refresh of followers / peak listeners [skip ci]"
+          git push origin HEAD:main
