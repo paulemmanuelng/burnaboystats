@@ -1,0 +1,146 @@
+.wrap {
+  margin: 0;
+  padding: 22px 20px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: radial-gradient(120% 140% at 50% 0%, rgba(255, 182, 39, 0.06), transparent 60%), var(--bg-soft);
+  overflow: hidden;
+}
+
+.counters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  margin-bottom: 14px;
+}
+.counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 108px;
+}
+.num {
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(2.4rem, 8vw, 3.4rem);
+  line-height: 1;
+  color: var(--gold-bright);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+.label {
+  margin-top: 4px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-align: center;
+}
+.divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--line);
+  margin: 4px 0;
+}
+
+/* Horizontal scroll only if the map can't fit — never pushes the page wide. */
+.scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.svg {
+  display: block;
+  width: 100%;
+  min-width: 520px;
+  height: auto;
+}
+
+/* Countries Dai Dai never charted in — the faint base map. */
+.base {
+  fill: #232327;
+  stroke: var(--bg-soft);
+  stroke-width: 0.5;
+}
+/* A charting country before its reveal — same as base, so it "arrives". */
+.pending {
+  fill: #232327;
+  stroke: var(--bg-soft);
+  stroke-width: 0.5;
+}
+/* Revealed, charted but not No. 1 — warm amber. */
+.charted {
+  fill: #b5661f;
+  stroke: var(--bg-soft);
+  stroke-width: 0.5;
+  animation: pop 0.5s ease-out;
+}
+/* Revealed No. 1 country — bright gold with a one-shot pulse as it lands. */
+.no1 {
+  fill: var(--gold);
+  stroke: #2a1c05;
+  stroke-width: 0.5;
+  animation: pulse 0.7s ease-out;
+}
+
+@keyframes pop {
+  from { opacity: 0.25; }
+  to { opacity: 1; }
+}
+@keyframes pulse {
+  0% { fill: #fff2cc; opacity: 0.5; }
+  40% { fill: var(--gold-bright); }
+  100% { fill: var(--gold); opacity: 1; }
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+.playBtn {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: #1a1204;
+  background: linear-gradient(120deg, var(--gold-bright), var(--gold));
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: filter 0.15s ease, opacity 0.15s ease;
+}
+.playBtn:hover { filter: brightness(1.08); }
+.playBtn:disabled { opacity: 0.6; cursor: default; }
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.dot:not(:first-child) { margin-left: 10px; }
+.dotNo1 { background: var(--gold); }
+.dotCharted { background: #b5661f; }
+
+@media (prefers-reduced-motion: reduce) {
+  .charted, .no1 { animation: none; }
+}
+
+@media (max-width: 560px) {
+  .counters { gap: 16px; }
+  .counter { min-width: 84px; }
+}

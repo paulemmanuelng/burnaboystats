@@ -1,11 +1,24 @@
 import Link from "next/link";
 import styles from "./dai-dai.module.css";
 import DaiDaiStory from "../components/DaiDaiStory";
+import DaiDaiConquest, { type ConquestCountry } from "../components/DaiDaiConquest";
 import KeepExploring from "../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
-import { daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
+import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES } from "../data/charts";
 import { daiDaiCertCount } from "../data/certifications";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
+import { A2_TO_ISO } from "../lib/isoCodes";
+
+// Countries "Dai Dai" charted in, mapped to the world-map's ISO id space, for
+// the animated takeover map. Excludes the two Billboard global charts (not
+// countries). Countries without a map shape (e.g. Singapore) still count toward
+// the total but simply don't light up a shape.
+const daiDai = allChartItems.find((r) => r.title === "Dai Dai");
+const conquestCountries: ConquestCountry[] = (daiDai?.entries ?? [])
+  .filter((e) => e.c !== "GLB" && e.c !== "GLBX" && A2_TO_ISO[e.c])
+  .map((e) => ({ iso: A2_TO_ISO[e.c], name: CHART_COUNTRIES[e.c].name, peak: e.peak }));
+const conquestTotal = (daiDai?.entries ?? []).filter((e) => e.c !== "GLB" && e.c !== "GLBX").length;
+const conquestNo1 = daiDaiNumberOnes;
 
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
@@ -216,6 +229,18 @@ export default function DaiDaiPage() {
             Also on the bill: Uganda&apos;s Triplets Ghetto Kids on stage, conductor
             Gustavo Dudamel and the PS22 Chorus.
           </p>
+        </section>
+
+        <section className={styles.conquest} aria-labelledby="dd-conquest">
+          <h2 id="dd-conquest" className={styles.sectionTitle}>
+            The <span className="goldText">world takeover</span>
+          </h2>
+          <p className={styles.conquestIntro}>
+            Every one of the {conquestTotal} countries “Dai Dai” has charted in — the{" "}
+            {conquestNo1} that reached No.&nbsp;1 light up gold first, then the rest fill in.
+            Press play.
+          </p>
+          <DaiDaiConquest countries={conquestCountries} totalCountries={conquestTotal} />
         </section>
 
         <section className={styles.byNumbers} aria-labelledby="dd-numbers">
