@@ -135,6 +135,16 @@ async function main() {
     results.push(evaluateMetric(metric, live));
   }
 
+  // Diagnostic: every metric's fetch outcome, so the Actions log always shows
+  // whether a source (esp. the Spotify API) was reached — an unchanged value is
+  // otherwise invisible in the summary below.
+  console.error("Fetch status:");
+  for (const r of results) {
+    const detail = r.live != null && !Number.isNaN(r.live) ? `(${fmt(r.live)})` : r.reason ? `— ${r.reason}` : "";
+    console.error(`  • ${r.label}: ${r.status} ${detail}`);
+  }
+  console.error("");
+
   const files = new Map();
   const applied = [];
   const manual = [];
