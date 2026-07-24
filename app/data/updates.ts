@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-23",
+    category: "Streaming",
+    text: "784 million on YouTube: Burna Boy's monthly-audience peak climbs another 37M to a new high — the highest of any African artist, and the seventh-biggest ever recorded worldwide.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-23",
     category: "Charts",
     text: "Australia rebounds: “Dai Dai” re-enters the ARIA Official Top 50 at a new peak of No. 12 — up from its earlier No. 32.",
     href: "/dai-dai",

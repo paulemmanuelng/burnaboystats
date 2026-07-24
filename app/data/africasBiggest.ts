@@ -227,12 +227,12 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "YouTube · African artists · all-time peak",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "747M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "784M" },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "654M" },
       { name: "Moliy", sub: "🇬🇭 Ghana", value: "602M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "471M" },
     ],
-    note: "Burna Boy's monthly-audience peak on YouTube has climbed to 747 million — the first African artist ever past 700 million, and by some distance the highest of any African artist. Worldwide it is the seventh-biggest audience ever recorded, having just passed Michael Jackson (741M).",
+    note: "Burna Boy's monthly-audience peak on YouTube has climbed to 784 million — the first African artist ever past 700 million, and by some distance the highest of any African artist. Worldwide it is the seventh-biggest audience ever recorded, above Michael Jackson (741M).",
     source:
       "Peak monthly audience on YouTube (YouTube for Artists), from chart-tracking accounts. As of July 2026 — figures update as they climb.",
   },
@@ -242,21 +242,21 @@ export const statBoxes: LeaderboardBox[] = [
     // both visible. The moment he reaches the top five, cut this back to a
     // straight Top 5 — every other board here is five, and the longer list is
     // just scaffolding until he's in it on merit.
-    // Next targets: Lady Gaga 862M, then Shakira 901M.
+    // Next targets: Lady Gaga 862M, then Shakira 937M (she is climbing too).
     title: "Biggest monthly audience on YouTube — worldwide",
     meta: "YouTube · all artists · all-time peak",
     layout: "list",
     entries: [
-      { name: "Alan Walker", sub: "🇳🇴 Norway", value: "1.1B" },
-      { name: "Alok", sub: "🇧🇷 Brazil", value: "1.09B" },
+      { name: "Alan Walker", sub: "🇳🇴 Norway", value: "1.12B" },
+      { name: "Alok", sub: "🇧🇷 Brazil", value: "1.11B" },
       { name: "Bruno Mars", sub: "🇺🇸 United States", value: "1.02B" },
       { name: "Rosé", sub: "🇰🇷 South Korea", value: "959M" },
-      { name: "Shakira", sub: "🇨🇴 Colombia", value: "901M" },
+      { name: "Shakira", sub: "🇨🇴 Colombia", value: "937M" },
       { name: "Lady Gaga", sub: "🇺🇸 United States", value: "862M" },
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "747M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "784M" },
       { name: "Michael Jackson", sub: "🇺🇸 United States", value: "741M" },
     ],
-    note: "Not an African leaderboard — a world one. At 747 million, Burna Boy has the seventh-biggest YouTube monthly audience ever recorded, and the only one belonging to an African artist. He has just moved ahead of Michael Jackson (741M), the first time an African act has ranked above him here.",
+    note: "Not an African leaderboard — a world one. At 784 million, Burna Boy has the seventh-biggest YouTube monthly audience ever recorded, and the only one belonging to an African artist. He sits ahead of Michael Jackson (741M) — the first time an African act has ranked above him here.",
     source:
       "Highest monthly audience peaks on YouTube for any artist worldwide (YouTube for Artists), from chart-tracking accounts. As of July 2026 — live figures, so the order can change as they climb.",
   },
