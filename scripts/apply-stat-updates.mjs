@@ -57,8 +57,13 @@ async function fetchText(url) {
   // YouTube shows datacenter IPs (CI runners) a cookie-consent wall instead of
   // the watch page, so viewCount is missing. A consent cookie + en/US locale
   // gets the real HTML.
+  const browserish = {
+    "user-agent":
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36",
+    "accept-language": "en-US,en;q=0.9",
+  };
   const headers = url.includes("youtube.com")
-    ? { ...UA, cookie: "CONSENT=YES+cb.20210328-17-p0.en+FX+000", "accept-language": "en-US,en;q=0.9" }
+    ? { ...browserish, cookie: "CONSENT=YES+cb.20210328-17-p0.en+FX+000" }
     : UA;
   const res = await fetch(url, { headers });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);

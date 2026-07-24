@@ -7,12 +7,12 @@
       "sourceName": "kworb.net — Spotify listeners",
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
-      "artistId": "3wcj11K77LjEY1PkEazffa",
-      "field": "monthlyListeners",
       "kind": "drift",
       "threshold": 0.03,
       "baseline": 56934448,
-      "note": "Shown on the site as ~56.93M (app/data/africasBiggest.ts). Re-verify in the Spotify app before updating."
+      "note": "Current monthly listeners (kworb). NOTE: Spotify’s own artist page is fresher, but it only serves the full page to curl/browsers — node fetch (which the workflow uses) gets a stub, so kworb is the reliable CI source.",
+      "artistId": "3wcj11K77LjEY1PkEazffa",
+      "field": "monthlyListeners"
     },
     {
       "id": "spotify-peak-listeners",
@@ -20,8 +20,6 @@
       "sourceName": "kworb.net — Spotify listeners",
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
-      "artistId": "3wcj11K77LjEY1PkEazffa",
-      "field": "peakListeners",
       "kind": "peak",
       "baseline": 56934448,
       "live": true,
@@ -30,7 +28,7 @@
         "min": 40000000,
         "max": 90000000
       },
-      "note": "A new all-time peak is a milestone worth logging on /updates. Auto-published hourly behind the sanity gate; a >12% jump (kworb mis-read) is rejected. Also appends a dated point to the trends series so the listener curve deepens on its own.",
+      "note": "All-time peak monthly listeners. Auto-published hourly behind the sanity gate, and only ever moves UP (kind:\"peak\"), so kworb lagging Spotify by a day can never regress the figure. Also appends a dated point to the trends series so the listener curve deepens on its own.",
       "siteTargets": [
         {
           "file": "app/data/africasBiggest.ts",
@@ -50,7 +48,9 @@
         "anchor": "export const monthlyListenersSeries",
         "divide": 1000000,
         "decimals": 2
-      }
+      },
+      "artistId": "3wcj11K77LjEY1PkEazffa",
+      "field": "peakListeners"
     },
     {
       "id": "spotify-listeners-rank",
