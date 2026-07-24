@@ -51,7 +51,7 @@ jobs:
           # Rebuild the branch fresh from main each run so the PR only ever
           # contains the current drift (no stale accumulated commits).
           git checkout -B "$BRANCH"
-          git add app/data scripts/watched-metrics.json
+          git add -A
           git commit -m "chore(stats): refresh drifted figures from live sources"
           git push -f origin "$BRANCH"
 

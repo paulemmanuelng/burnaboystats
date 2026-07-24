@@ -44,6 +44,6 @@ jobs:
           set -euo pipefail
           git config user.name "burnaboystats-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add app/data scripts/watched-metrics.json
-          git commit -m "chore(stats): live refresh of followers / peak listeners [skip ci]"
+          git add -A
+          git commit -m "chore(stats): live refresh of tracked figures [skip ci]"
           git push origin HEAD:main
