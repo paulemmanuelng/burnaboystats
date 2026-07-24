@@ -80,7 +80,8 @@ async function spotifyFollowers(metric) {
   console.error(`  [diag] artist status=${artistRes.status}`);
   if (!artistRes.ok) throw new Error(`artist HTTP ${artistRes.status}: ${(await artistRes.text()).slice(0, 120)}`);
   const artistJson = await artistRes.json();
-  console.error(`  [diag] name=${artistJson?.name} followers.total=${artistJson?.followers?.total}`);
+  console.error(`  [diag] keys=${Object.keys(artistJson).join(",")}`);
+  console.error(`  [diag] followers=${JSON.stringify(artistJson?.followers)} popularity=${artistJson?.popularity}`);
   return extractSpotifyFollowers(artistJson);
 }
 
