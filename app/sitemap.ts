@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteUrl } from "./site";
 import { updates } from "./data/updates";
+import { songs } from "./data/songs";
 
 // lastmod is derived from the real content log (updates.ts), NOT the build time.
 // A sitemap where every URL always reads "modified now" on each deploy trains
@@ -35,6 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/records/charts", priority: 0.9, changeFrequency: "weekly" },
     { path: "/certifications", priority: 0.8, changeFrequency: "weekly" },
     { path: "/music", priority: 0.8, changeFrequency: "weekly" },
+    ...songs.map((sg) => ({ path: `/music/${sg.slug}`, priority: 0.8, changeFrequency: "weekly" as const })),
     { path: "/records/awards", priority: 0.8, changeFrequency: "weekly" },
     { path: "/records/tours", priority: 0.8, changeFrequency: "weekly" },
     { path: "/records/firsts", priority: 0.7, changeFrequency: "monthly" },

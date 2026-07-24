@@ -1,0 +1,50 @@
+/* Song-stories grid on /music — links to each deep-dive song page. */
+.songGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.songCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+.songCard:hover {
+  border-color: var(--gold-dim);
+  background: rgba(255, 182, 39, 0.05);
+}
+.songCover {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+}
+.songMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+.songTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.05;
+  color: var(--text);
+}
+.songTag {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+.songArrow {
+  color: var(--gold);
+  font-size: 1rem;
+  flex-shrink: 0;
+}

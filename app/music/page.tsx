@@ -1,10 +1,25 @@
+import Link from "next/link";
 import Reveal from "../components/Reveal";
 import Discography from "../components/Discography";
+import styles from "./music.module.css";
 import { albums, eps, compilations } from "../data/albums";
 import KeepExploring from "../components/KeepExploring";
 import SpotifyIcon from "../components/SpotifyIcon";
+import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
+import { songs as songPages } from "../data/songs";
 import { siteUrl } from "../site";
 import { pageMetadata } from "../lib/seo";
+
+// Deep-dive song pages, Dai Dai (its own bespoke page) featured first.
+const songStories = [
+  {
+    href: "/dai-dai",
+    cover: "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4",
+    title: "Dai Dai",
+    tag: "The 2026 FIFA World Cup anthem, with Shakira",
+  },
+  ...songPages.map((s) => ({ href: `/music/${s.slug}`, cover: s.cover, title: s.title, tag: s.tagline })),
+];
 
 export const metadata = pageMetadata({
   title: `Burna Boy Discography — All ${albums.length} Studio Albums, EPs & Songs`,
@@ -111,6 +126,43 @@ export default function MusicPage() {
             </p>
           </div>
         </Reveal>
+
+        {/* SONG STORIES — deep-dive pages per signature song */}
+        <div className="block">
+          <Reveal>
+            <p className="eyebrow">Song stories</p>
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 className="secTitle">
+              The songs, <span className="goldText">in depth</span>
+            </h2>
+          </Reveal>
+          <p className="cardMeta" style={{ marginTop: 6, marginBottom: 14 }}>
+            The full history, chart run and certifications behind his biggest records.
+          </p>
+          <div className={styles.songGrid}>
+            {songStories.map((s) => (
+              <Link key={s.href} href={s.href} className={styles.songCard}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className={styles.songCover}
+                  src={spotifyImage(s.cover, 300)}
+                  srcSet={spotifySrcSet(s.cover)}
+                  sizes="72px"
+                  alt=""
+                  width={72}
+                  height={72}
+                  loading="lazy"
+                />
+                <span className={styles.songMeta}>
+                  <span className={styles.songTitle}>{s.title}</span>
+                  <span className={styles.songTag}>{s.tag}</span>
+                </span>
+                <span className={styles.songArrow} aria-hidden="true">↗</span>
+              </Link>
+            ))}
+          </div>
+        </div>
 
         {/* DISCOGRAPHY */}
         <div className="block">

@@ -1,0 +1,210 @@
+.crumbs {
+  margin: 24px 0 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
+}
+.crumbs a {
+  color: var(--text-muted);
+}
+.crumbs a:hover {
+  color: var(--gold);
+}
+
+.hero {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  margin: 8px 0 28px;
+}
+.cover {
+  width: 220px;
+  height: 220px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+}
+.heroText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(2.6rem, 8vw, 4.4rem);
+  line-height: 1;
+  margin: 8px 0 6px;
+}
+.credit {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+.tagline {
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin: 12px 0 18px;
+  max-width: 520px;
+}
+
+.blurb {
+  max-width: 760px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+
+.section {
+  margin: 40px 0;
+}
+.numbers {
+  margin: 36px 0;
+}
+.secTitle {
+  margin: 0 0 18px;
+}
+
+.numGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+.numCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+}
+.numValue {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.9rem;
+  line-height: 1;
+  color: var(--gold-bright);
+}
+.numLabel {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+/* Chart-peak chips — same visual language as /records/charts. */
+.peaks,
+.certs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.peak,
+.cert {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid var(--line);
+}
+.flag {
+  font-size: 1rem;
+}
+/* Peak tiers */
+.one {
+  background: rgba(255, 182, 39, 0.16);
+  border-color: var(--gold-dim);
+  color: var(--gold-bright);
+}
+.top10 {
+  background: rgba(255, 182, 39, 0.08);
+  color: #e7c98a;
+}
+.top40 {
+  color: var(--text);
+}
+.rest {
+  color: var(--text-muted);
+}
+/* Cert tiers */
+.cert .certCountry {
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-left: 2px;
+}
+.diamond {
+  background: rgba(143, 227, 240, 0.12);
+  border-color: rgba(143, 227, 240, 0.4);
+  color: #8fe3f0;
+}
+.platinum {
+  background: rgba(223, 226, 232, 0.1);
+  border-color: rgba(223, 226, 232, 0.35);
+  color: #dfe2e8;
+}
+.gold {
+  background: rgba(255, 182, 39, 0.1);
+  border-color: var(--gold-dim);
+  color: var(--gold);
+}
+.silver {
+  color: #b8bcc4;
+}
+
+.source {
+  margin: 16px 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.source a {
+  color: var(--gold);
+}
+
+/* FAQ — readable Geist, FAQPage-schema-backed. */
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 760px;
+}
+.faqItem {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+}
+.faqQ {
+  margin: 0 0 8px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: var(--text);
+}
+.faqA {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+@media (max-width: 560px) {
+  .hero {
+    gap: 18px;
+  }
+  .cover {
+    width: 40vw;
+    height: 40vw;
+  }
+}
