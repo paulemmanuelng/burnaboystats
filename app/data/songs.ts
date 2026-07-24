@@ -71,22 +71,22 @@ export const songs: Song[] = [
     album: "Outside",
     cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
     spotify: "https://open.spotify.com/track/2vFN2eWdD0amZBrTBZ0eYr",
-    tagline: "The song that broke Burna Boy worldwide",
+    tagline: "The life-anthem that broke Burna Boy worldwide",
     blurb:
-      "From the 2018 album Outside, “Ye” is the song that turned Burna Boy into a global star. Its rise was supercharged when Kanye West released an album titled Ye that same year — listeners searching for Kanye's record kept discovering Burna's song instead. It went Platinum across the US, UK, France, Canada and beyond, a pure streaming-and-culture hit.",
+      "From the 2018 album Outside, “Ye” is one of Burna Boy's signature songs and the record that broke him internationally. A defiant, celebratory Afro-fusion anthem about the will to live and enjoy every moment — “I no wan die, I wan enjoy” — it became a global streaming staple and went Platinum across the US, UK, France, Canada and beyond, all without ever needing a singles chart.",
     extraFacts: [
-      { v: "2018", l: "the international breakthrough, from the album Outside" },
-      { v: "Platinum", l: "certified Platinum in the US, UK, France, Canada, Sweden, NZ & Switzerland" },
-      { v: "Kanye", l: "boosted by fans searching for Kanye West's album “Ye”" },
+      { v: "2018", l: "his international breakthrough, from the album Outside" },
+      { v: "Platinum", l: "certified in the US, UK, France, Canada, Sweden, NZ & Switzerland" },
+      { v: "Anthem", l: "a live-set staple and enduring fan favourite that still defines his early sound" },
     ],
     faqs: [
       {
-        q: "Why is Burna Boy's “Ye” so famous?",
-        a: "“Ye” (2018) was Burna Boy's international breakthrough. Its streams surged after Kanye West released an album also called Ye — people searching for Kanye's record found Burna Boy's song instead — and it went Platinum in the US, UK and several other countries.",
+        q: "What is Burna Boy's “Ye” about?",
+        a: "“Ye” is a life-affirming anthem about the will to live and enjoy the moment — Burna Boy sings about refusing to waste his life and making the most of his success against the odds. Its hook, “I no wan die, I wan enjoy,” became one of his most-quoted lines.",
       },
       {
-        q: "Is “Ye” connected to Kanye West?",
-        a: "Not musically — it's a coincidence. Burna Boy's “Ye” and Kanye West's album Ye both arrived in 2018, and the search overlap helped drive Burna's song to a global audience.",
+        q: "Why is Burna Boy's “Ye” so important?",
+        a: "“Ye” (2018), from the album Outside, was Burna Boy's international breakthrough — the song that carried him from an Afrobeats favourite to a global name. It became a massive streaming hit and went Platinum in the US, UK, France and several other countries.",
       },
       {
         q: "What album is “Ye” on?",
@@ -95,7 +95,7 @@ export const songs: Song[] = [
     ],
     metaTitle: "Burna Boy “Ye” — The Song That Broke Him Worldwide",
     metaDescription:
-      "The story of Burna Boy's “Ye” (2018): his international breakthrough from the album Outside, boosted by the Kanye West search overlap, and certified Platinum across the US, UK and Europe.",
+      "The story of Burna Boy's “Ye” (2018): his international breakthrough from the album Outside — a life-affirming anthem certified Platinum across the US, UK, France and beyond.",
   },
   {
     slug: "on-the-low",

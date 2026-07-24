@@ -31,8 +31,8 @@ export const searchIndex: SearchDoc[] = [
     title: "Ye",
     path: "/music/ye",
     section: "Song",
-    description: "Burna Boy's “Ye” — the 2018 breakthrough from Outside, boosted by the Kanye West search overlap.",
-    keywords: ["ye", "song", "outside", "kanye west", "breakthrough", "platinum", "2018"],
+    description: "Burna Boy's “Ye” — the 2018 breakthrough from Outside, a life-affirming anthem certified Platinum worldwide.",
+    keywords: ["ye", "song", "outside", "breakthrough", "platinum", "2018", "i no wan die", "afro fusion anthem"],
   },
   {
     title: "On the Low",
