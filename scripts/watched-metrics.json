@@ -1,10 +1,10 @@
 {
-  "$comment": "What the stats monitor watches. It NEVER edits site data — it only alerts (via a GitHub issue) when a public source drifts from these baselines, so a human can verify in-app and update. When you confirm and update a real figure on the site, bump its baseline here too.",
+  "$comment": "What the stats monitor watches. It NEVER edits site data \u2014 it only alerts (via a GitHub issue) when a public source drifts from these baselines, so a human can verify in-app and update. When you confirm and update a real figure on the site, bump its baseline here too.",
   "metrics": [
     {
       "id": "spotify-monthly-listeners",
       "label": "Spotify monthly listeners",
-      "sourceName": "kworb.net — Spotify listeners",
+      "sourceName": "kworb.net \u2014 Spotify listeners",
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "artistId": "3wcj11K77LjEY1PkEazffa",
@@ -17,7 +17,7 @@
     {
       "id": "spotify-peak-listeners",
       "label": "Spotify peak monthly listeners (all-time high)",
-      "sourceName": "kworb.net — Spotify listeners",
+      "sourceName": "kworb.net \u2014 Spotify listeners",
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "artistId": "3wcj11K77LjEY1PkEazffa",
@@ -25,7 +25,11 @@
       "kind": "peak",
       "baseline": 56517687,
       "live": true,
-      "sanity": { "maxJump": 0.12, "min": 40000000, "max": 90000000 },
+      "sanity": {
+        "maxJump": 0.12,
+        "min": 40000000,
+        "max": 90000000
+      },
       "note": "A new all-time peak is a milestone worth logging on /updates. Auto-published hourly behind the sanity gate; a >12% jump (kworb mis-read) is rejected.",
       "siteTargets": [
         {
@@ -45,7 +49,7 @@
     {
       "id": "spotify-listeners-rank",
       "label": "Global rank by Spotify monthly listeners",
-      "sourceName": "kworb.net — Spotify listeners",
+      "sourceName": "kworb.net \u2014 Spotify listeners",
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "artistId": "3wcj11K77LjEY1PkEazffa",
@@ -58,35 +62,38 @@
     {
       "id": "spotify-total-streams",
       "label": "Total Spotify streams (all songs)",
-      "sourceName": "kworb.net — Spotify artist total",
+      "sourceName": "kworb.net \u2014 Spotify artist total",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbTotalStreams",
       "kind": "drift",
       "threshold": 0.03,
       "baseline": 10297429319,
-      "note": "Cumulative Spotify streams across every Burna Boy song — worth a milestone note as it climbs (e.g. crossing 11B)."
+      "note": "Cumulative Spotify streams across every Burna Boy song \u2014 worth a milestone note as it climbs (e.g. crossing 11B)."
     },
     {
       "id": "dai-dai-video-views",
-      "label": "“Dai Dai” official video — YouTube views",
-      "sourceName": "YouTube — Dai Dai (Official Video)",
+      "label": "\u201cDai Dai\u201d official video \u2014 YouTube views",
+      "sourceName": "YouTube \u2014 Dai Dai (Official Video)",
       "sourceUrl": "https://www.youtube.com/watch?v=fcnDmrtj6Sk",
       "extractor": "youtubeViews",
       "kind": "drift",
-      "threshold": 0.02,
-      "baseline": 533033080,
-      "note": "Paul asked to always keep the Dai Dai video count current. The DAI_DAI_VIDEO_VIEWS constant drives the figure on /dai-dai.",
+      "threshold": 0.001,
+      "baseline": 534463522,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.1,
+        "min": 500000000,
+        "max": 2000000000
+      },
+      "note": "Paul asked to always keep the Dai Dai video count current \u2014 now auto-published hourly behind the sanity gate. The DAI_DAI_VIDEO_VIEWS display string drives the figure on /dai-dai; it re-commits only when it crosses a whole million. The min bound rejects a mis-read of a smaller related-video count; the jump bound rejects a wildly-off read.",
       "siteTargets": [
         {
           "file": "app/dai-dai/page.tsx",
           "anchor": "const DAI_DAI_VIDEO_VIEWS =",
-          "pattern": "\\d+",
-          "format": "int",
-          "describes": "raw view count that /dai-dai formats to millions"
+          "pattern": "\\d+M",
+          "format": "M0",
+          "describes": "displayed view count (whole millions) on /dai-dai"
         }
-      ],
-      "manualAfter": [
-        "If it crosses a round milestone (600M, 700M…), log it on /updates"
       ]
     }
   ]
