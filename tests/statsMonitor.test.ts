@@ -117,3 +117,14 @@ describe("applyAnchoredReplace", () => {
     expect(r.text).toBe(text);
   });
 });
+
+import { extractYouTubeViews } from "../scripts/stats-lib.mjs";
+
+describe("extractYouTubeViews", () => {
+  it("reads the raw viewCount from ytInitialData", () => {
+    expect(extractYouTubeViews('...,"viewCount":"533033080","foo":1,...')).toBe(533033080);
+  });
+  it("returns NaN when absent", () => {
+    expect(Number.isNaN(extractYouTubeViews("<html>no data</html>"))).toBe(true);
+  });
+});

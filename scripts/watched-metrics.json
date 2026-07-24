@@ -63,6 +63,29 @@
       "threshold": 0.03,
       "baseline": 10297429319,
       "note": "Cumulative Spotify streams across every Burna Boy song — worth a milestone note as it climbs (e.g. crossing 11B)."
+    },
+    {
+      "id": "dai-dai-video-views",
+      "label": "“Dai Dai” official video — YouTube views",
+      "sourceName": "YouTube — Dai Dai (Official Video)",
+      "sourceUrl": "https://www.youtube.com/watch?v=fcnDmrtj6Sk",
+      "extractor": "youtubeViews",
+      "kind": "drift",
+      "threshold": 0.02,
+      "baseline": 533033080,
+      "note": "Paul asked to always keep the Dai Dai video count current. The DAI_DAI_VIDEO_VIEWS constant drives the figure on /dai-dai.",
+      "siteTargets": [
+        {
+          "file": "app/dai-dai/page.tsx",
+          "anchor": "const DAI_DAI_VIDEO_VIEWS =",
+          "pattern": "\\d+",
+          "format": "int",
+          "describes": "raw view count that /dai-dai formats to millions"
+        }
+      ],
+      "manualAfter": [
+        "If it crosses a round milestone (600M, 700M…), log it on /updates"
+      ]
     }
   ]
 }

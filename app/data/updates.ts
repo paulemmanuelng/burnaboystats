@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-23",
     category: "Streaming",
+    text: "533 million views: the official “Dai Dai” video keeps climbing — still Burna Boy's first video past 500M and the most-viewed music video of 2026.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-23",
+    category: "Streaming",
     text: "784 million on YouTube: Burna Boy's monthly-audience peak climbs another 37M to a new high — the highest of any African artist, and the seventh-biggest ever recorded worldwide.",
     href: "/records/africas-biggest",
   },

@@ -56,6 +56,14 @@ export function extractKworbTotalStreams(html) {
   return Math.max(...nums);
 }
 
+// Pull a YouTube video's view count out of the watch page's embedded JSON.
+// YouTube renders the visible count client-side, but the raw number is in the
+// ytInitialData blob as `"viewCount":"533033080"` — read that, not the UI text.
+export function extractYouTubeViews(html) {
+  const m = html.match(/"viewCount":"(\d+)"/);
+  return m ? parseInt(m[1], 10) : NaN;
+}
+
 // Compare a live value to a metric's baseline and classify the result.
 //   kind "drift" → flags when |change| ≥ threshold (default 5%)
 //   kind "peak"  → flags only when a new all-time high is set

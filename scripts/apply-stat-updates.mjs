@@ -24,6 +24,7 @@ import path from "node:path";
 import {
   extractKworbListeners,
   extractKworbTotalStreams,
+  extractYouTubeViews,
   evaluateMetric,
   isActionable,
   formatStat,
@@ -40,6 +41,7 @@ const extractors = {
     return row ? row[metric.field] : NaN;
   },
   kworbTotalStreams: (html) => extractKworbTotalStreams(html),
+  youtubeViews: (html) => extractYouTubeViews(html),
 };
 
 async function fetchText(url) {
