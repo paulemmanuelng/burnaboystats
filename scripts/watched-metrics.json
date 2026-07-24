@@ -67,29 +67,6 @@
       "note": "Cumulative Spotify streams across every Burna Boy song — worth a milestone note as it climbs (e.g. crossing 11B)."
     },
     {
-      "id": "spotify-followers",
-      "label": "Spotify followers",
-      "sourceName": "Spotify API — artist followers",
-      "sourceUrl": "https://api.spotify.com/v1/artists/3wcj11K77LjEY1PkEazffa",
-      "extractor": "spotifyFollowers",
-      "artistId": "3wcj11K77LjEY1PkEazffa",
-      "kind": "drift",
-      "threshold": 0.003,
-      "baseline": 17070969,
-      "live": true,
-      "sanity": { "maxJump": 0.1, "min": 15000000, "max": 30000000 },
-      "note": "Official Spotify API (needs SPOTIFY_CLIENT_ID/SECRET secrets). Auto-published hourly; the display string only changes when it crosses a 0.1M boundary.",
-      "siteTargets": [
-        {
-          "file": "app/data/spotify.ts",
-          "anchor": "export const spotifyFollowersDisplay =",
-          "pattern": "\\d+(?:\\.\\d+)?M",
-          "format": "M1",
-          "describes": "the displayed follower count on the leaderboard and stat cards"
-        }
-      ]
-    },
-    {
       "id": "dai-dai-video-views",
       "label": "“Dai Dai” official video — YouTube views",
       "sourceName": "YouTube — Dai Dai (Official Video)",

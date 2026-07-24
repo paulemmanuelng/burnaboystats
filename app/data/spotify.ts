@@ -1,8 +1,7 @@
-// Live Spotify figures, each with ONE home so the auto-refresh bot updates a
-// single value. Followers comes from Spotify's official API (reliable); the
-// hourly `stats-live` workflow keeps it current behind a sanity gate.
-//
-// Stored as the DISPLAYED string ("17.1M") on purpose: the bot only rewrites it
-// when the value crosses a 0.1M boundary, so the page changes only when the
-// number visibly changes — no churn from sub-tenths wiggle.
+// Burna Boy's Spotify follower count, one home for the leaderboard + stat cards.
+// Maintained BY HAND: Spotify's API stopped returning the `followers` field for
+// standard app credentials in 2026 (it comes back undefined), so it can't be
+// auto-fetched like the other live figures. It moves slowly, so a manual bump
+// every few weeks is fine — read it off the artist's Spotify page and update
+// this one string.
 export const spotifyFollowersDisplay = "17.1M";

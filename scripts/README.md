@@ -58,10 +58,13 @@ skipped** — never committed. This is the guard against kworb's known failure
 mode (mis-reading e.g. a rank as a listener count, which shows up as a huge %
 swing). Configure the bounds per metric under `"sanity"`.
 
-Currently live: **Spotify followers** (official API — needs `SPOTIFY_CLIENT_ID` /
-`SPOTIFY_CLIENT_SECRET` repo secrets; skipped if absent) and **peak monthly
-listeners** (kworb). Followers is stored as the displayed string in
-`app/data/spotify.ts` so it only re-commits when the visible value changes.
+Currently live: **peak monthly listeners** (kworb).
+
+**Followers is NOT auto-fetched.** Spotify's API stopped returning the
+`followers` field for standard app credentials in 2026 (the artist object comes
+back without it), so it's maintained by hand in `app/data/spotify.ts` — it moves
+slowly, so that's fine. The `spotifyFollowers` extractor and the (now-removed)
+metric config are kept in the code, ready to re-enable if that access returns.
 
 ### Give a metric a `siteTargets` entry
 
