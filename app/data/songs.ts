@@ -276,6 +276,7 @@ export const songs: Song[] = [
       { v: "Grammy", l: "from Twice as Tall, winner of Best Global Music Album (2021)" },
       { v: "Platinum", l: "certified Platinum in Nigeria" },
       { v: "23", l: "named after Michael Jordan's jersey number" },
+      { v: "48M", l: "views on the official video" },
     ],
     faqs: [
       {
@@ -331,15 +332,20 @@ export const songs: Song[] = [
     storyOnly: true,
     tagline: "The On a Spaceship era, before the world caught on",
     blurb:
-      "From On a Spaceship (2015), the second album of Burna Boy's early Nigerian run — years before the international breakthrough. It's a window into the Afro-fusion sound he was already building at home, and one of the era's most-watched videos.",
+      "Released as a single on 24 March 2016 from On a Spaceship — the album Burna Boy put out on 25 November 2015 through his own Spaceship Records with Universal. The record drew mixed reviews overall, but critics repeatedly singled out “Rizzla” as one of its strongest moments. It's a window into the Afro-fusion sound he was already building at home, three years before “Ye” took it worldwide.",
     extraFacts: [
-      { v: "2015", l: "from his second studio album, On a Spaceship" },
-      { v: "Pre-fame", l: "three years before “Ye” broke him worldwide" },
+      { v: "24 Mar 2016", l: "released as the album's third single" },
+      { v: "Spaceship", l: "from On a Spaceship (2015), on his own label with Universal" },
+      { v: "Standout", l: "picked out by reviewers as one of the album's best tracks" },
     ],
     faqs: [
       {
         q: "What album is “Rizzla” on?",
-        a: "“Rizzla” is from On a Spaceship (2015), Burna Boy's second studio album, released during his early Nigerian run before his international breakthrough.",
+        a: "“Rizzla” is from On a Spaceship, Burna Boy's second studio album, released 25 November 2015 through Spaceship Records and Universal Music Group. The song followed as a single on 24 March 2016.",
+      },
+      {
+        q: "What were the singles from On a Spaceship?",
+        a: "Five: “Soke” (2015), “Jealousy” (2016), “Rizzla” (2016), “Duro Ni Be” featuring Phyno (2016) and “The Realest” (2016).",
       },
     ],
     metaTitle: "Burna Boy “Rizzla” — the On a Spaceship Era (2015)",
@@ -384,15 +390,20 @@ export const songs: Song[] = [
     storyOnly: true,
     tagline: "The four-track experiment with DJDS",
     blurb:
-      "From Steel & Copper (2019), the four-track EP Burna Boy made with Los Angeles production duo DJDS in the same year as African Giant. It's the most experimental corner of his catalogue — a producer-led detour alongside the album that made him a global name.",
+      "From Steel & Copper, the four-track joint EP Burna Boy released with Los Angeles production duo DJDS on 21 March 2019 — four months before African Giant. Pulling on dancehall, reggae, afropop and trap across just four songs (“34”, “Innocent Man”, “Darko” and “Thuggin”), it is widely described as the most experimental project in his catalogue: a producer-led detour taken in the same year that made him a global name.",
     extraFacts: [
-      { v: "DJDS", l: "a full EP with the LA production duo" },
-      { v: "2019", l: "released the same year as African Giant" },
+      { v: "21 Mar 2019", l: "a joint EP with LA duo DJDS, four months before African Giant" },
+      { v: "4 tracks", l: "“34”, “Innocent Man”, “Darko” and “Thuggin”" },
+      { v: "Experimental", l: "dancehall, reggae, afropop and trap — his least conventional release" },
     ],
     faqs: [
       {
         q: "What is Steel & Copper?",
-        a: "Steel & Copper is a four-track EP Burna Boy released in 2019 with the Los Angeles production duo DJDS, in the same year as his breakthrough album African Giant.",
+        a: "Steel & Copper is a four-track joint EP by Burna Boy and Los Angeles production duo DJDS, released 21 March 2019 through Spaceship Entertainment, Bad Habit, Atlantic and Loma Vista — four months before African Giant.",
+      },
+      {
+        q: "Who are DJDS?",
+        a: "DJDS (formerly DJ Dodger Stadium) are an American production duo from Los Angeles. Steel & Copper followed their 2018 album Big Wave More Fire and Burna Boy's 2018 album Outside.",
       },
     ],
     metaTitle: "Burna Boy “Darko” — the Steel & Copper EP with DJDS",
@@ -409,10 +420,12 @@ export const songs: Song[] = [
     storyOnly: true,
     tagline: "The song that started it all",
     blurb:
-      "The breakout single that introduced Burna Boy to Nigeria in 2012 and led the debut album L.I.F.E (Leaving an Impact for Eternity) the following year. Everything on this site traces back to it — a full decade before the World Cup stage.",
+      "The breakout single that introduced Burna Boy to Nigeria, released on 30 May 2012 and leading his debut album L.I.F.E — Leaving an Impact for Eternity — on 12 August 2013 via Aristokrat Records. Produced entirely by Leriq, L.I.F.E reached No. 7 on Billboard's US Reggae Albums chart, an early sign of reach well beyond Lagos, and was nominated for Album of the Year at both The Headies and the Nigeria Entertainment Awards in 2014. Everything on this site traces back to this record.",
     extraFacts: [
-      { v: "2012", l: "his breakout single, leading the 2013 debut album L.I.F.E" },
-      { v: "Debut", l: "the start of the run — 14 years before the World Cup Final" },
+      { v: "No. 7", l: "L.I.F.E on Billboard's US Reggae Albums chart — his first American chart placing" },
+      { v: "30 May 2012", l: "released as the album's lead single" },
+      { v: "Leriq", l: "L.I.F.E was produced end to end by Leriq" },
+      { v: "2× nom", l: "Album of the Year at The Headies and the Nigeria Entertainment Awards, 2014" },
     ],
     faqs: [
       {
@@ -421,12 +434,20 @@ export const songs: Song[] = [
       },
       {
         q: "What does L.I.F.E stand for?",
-        a: "L.I.F.E, Burna Boy's 2013 debut album, stands for “Leaving an Impact for Eternity.”",
+        a: "L.I.F.E, Burna Boy's debut album, stands for “Leaving an Impact for Eternity.” It was released on 12 August 2013 through Aristokrat Records and produced in full by Leriq.",
+      },
+      {
+        q: "Did Burna Boy's debut album chart?",
+        a: "Yes. L.I.F.E reached No. 7 on Billboard's US Reggae Albums chart in August 2013 — his first American chart placing, six years before African Giant. It was also nominated for Album of the Year at The Headies 2014 and the 2014 Nigeria Entertainment Awards.",
+      },
+      {
+        q: "What were the singles from L.I.F.E?",
+        a: "Five: “Like to Party” (2012), “Tonight” (2012), “Always Love You” (2013), “Run My Race” (2013) and “Yawa Dey” (2013).",
       },
     ],
     metaTitle: "Burna Boy “Like to Party” — His Breakout Song (2012)",
     metaDescription:
-      "“Like to Party” (2012) was Burna Boy's breakout single and the lead from his debut album L.I.F.E — the song that started a career ending at the World Cup Final.",
+      "“Like to Party” (2012), Burna Boy's breakout single and the lead from debut album L.I.F.E — which hit No. 7 on Billboard's US Reggae Albums chart and earned two Album of the Year nominations.",
   },
   {
     slug: "smoke",
