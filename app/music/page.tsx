@@ -4,7 +4,6 @@ import Discography from "../components/Discography";
 import styles from "./music.module.css";
 import { albums, eps, compilations } from "../data/albums";
 import KeepExploring from "../components/KeepExploring";
-import SpotifyIcon from "../components/SpotifyIcon";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { songs as songPages } from "../data/songs";
 import { siteUrl } from "../site";
@@ -28,23 +27,6 @@ export const metadata = pageMetadata({
   shareTitle: "Burna Boy Discography",
   shareDescription: "Albums, EPs, tracklists and hits.",
 });
-
-
-// A selection of his most notable guest features (he's the featured artist),
-// from the discography's "as featured artist" list — not exhaustive.
-// A short marquee selection — the "Listen to more" button covers the rest.
-const topFeatures = [
-  { title: "Dai Dai", artist: "Shakira" },
-  { title: "Ja Ara E", artist: "Beyoncé" },
-  { title: "We Pray", artist: "Coldplay" },
-  { title: "Own It", artist: "Stormzy & Ed Sheeran" },
-  { title: "My Oasis", artist: "Sam Smith" },
-  { title: "Loved by You", artist: "Justin Bieber" },
-  { title: "Jerusalema (Remix)", artist: "Master KG" },
-  { title: "WGFT", artist: "Gunna" },
-];
-
-const SPOTIFY_ARTIST = "https://open.spotify.com/artist/3wcj11K77LjEY1PkEazffa";
 
 // Structured data: the album catalogue + breadcrumb trail for rich results.
 const musicJsonLd = {
@@ -123,10 +105,10 @@ export default function MusicPage() {
           </p>
         </div>
 
-        {/* EPs + COMPILATION + FEATURES */}
+        {/* EPs + COMPILATION — two columns, one release type each */}
         <div className="block">
-          <div className="epsFeaturesGrid">
-            {/* EPs + Compilation (left, stacked) */}
+          <div className="twoColGrid">
+            {/* EPs (left) */}
             <div>
               <Reveal>
                 <p className="eyebrow">Also Released</p>
@@ -140,9 +122,12 @@ export default function MusicPage() {
                 Tap an EP to see its tracklist.
               </p>
               <Discography albums={eps} indexOffset={4} />
+            </div>
 
+            {/* Compilation (right — the slot the features panel used to fill) */}
+            <div>
               <Reveal>
-                <p className="eyebrow" style={{ marginTop: 38 }}>From the Vault</p>
+                <p className="eyebrow">From the Vault</p>
               </Reveal>
               <Reveal delay={80}>
                 <h2 className="secTitle">
@@ -154,34 +139,6 @@ export default function MusicPage() {
               </p>
               <Discography albums={compilations} indexOffset={6} />
             </div>
-
-            {/* Features folder (right) */}
-            <Reveal delay={120}>
-              <div className="featuresFolder">
-                <h3 className="folderTitle" style={{ marginBottom: 4 }}>Featured On</h3>
-                <p className="cardMeta" style={{ marginBottom: 12 }}>
-                  A selection — he&apos;s featured on dozens more.
-                </p>
-                <ol className="featureList">
-                  {topFeatures.map((f, i) => (
-                    <li className="featureRow" key={f.title}>
-                      <span className="fNum">{i + 1}</span>
-                      <span className="fTitle">{f.title}</span>
-                      <span className="fArtist">{f.artist}</span>
-                    </li>
-                  ))}
-                </ol>
-                <a
-                  className="spotifyBtn folderSpotify"
-                  href={SPOTIFY_ARTIST}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <SpotifyIcon />
-                  Listen to more on Spotify
-                </a>
-              </div>
-            </Reveal>
           </div>
         </div>
 
