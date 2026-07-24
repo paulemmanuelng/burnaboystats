@@ -53,7 +53,7 @@ export const songs: Song[] = [
       },
       {
         q: "How high did “Last Last” chart?",
-        a: "“Last Last” reached No. 1 in South Africa, No. 4 on the UK Official Singles Chart, and No. 44 on the US Billboard Hot 100, charting in 15 countries in all.",
+        a: "“Last Last” reached No. 1 in South Africa, No. 4 on the UK Official Singles Chart, and No. 44 on the US Billboard Hot 100, charting in 14 countries in all.",
       },
       {
         q: "Is “Last Last” certified?",
@@ -136,10 +136,10 @@ export const songs: Song[] = [
     spotify: "https://open.spotify.com/track/0WsC4ETIXyiHDMXRaPMvKe",
     tagline: "Burna Boy's highest-ever Billboard Hot 100 peak",
     blurb:
-      "A feature on Gunna's 2025 album The Last Wun, “WGFT” gave Burna Boy his highest position ever on the US Billboard Hot 100 — No. 16 — blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 13 countries and put him back in the US Top 20.",
+      "A feature on Gunna's 2025 album The Last Wun, “WGFT” gave Burna Boy his highest position ever on the US Billboard Hot 100 — No. 16 — blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 12 countries and put him back in the US Top 20.",
     extraFacts: [
       { v: "No. 16", l: "US Billboard Hot 100 — Burna Boy's highest-ever Hot 100 peak" },
-      { v: "13", l: "countries charted, from the US and UK to Greece" },
+      { v: "12", l: "countries charted, from the US and UK to Greece" },
       { v: "2025", l: "a feature on Gunna's album The Last Wun" },
     ],
     faqs: [
@@ -154,7 +154,124 @@ export const songs: Song[] = [
     ],
     metaTitle: "Gunna & Burna Boy “WGFT” — His Best Billboard Hot 100 Peak",
     metaDescription:
-      "“WGFT” by Gunna featuring Burna Boy gave Burna his highest-ever Billboard Hot 100 peak at No. 16, charting in 13 countries — the full chart run and story.",
+      "“WGFT” by Gunna featuring Burna Boy gave Burna his highest-ever Billboard Hot 100 peak at No. 16, charting in 12 countries — the full chart run and story.",
+  },
+  {
+    slug: "kilometre",
+    title: "Kilometre",
+    year: 2021,
+    album: "Single",
+    cover: "https://i.scdn.co/image/ab67616d0000b27339041f1bb96943fde5bb86c9",
+    spotify: "https://open.spotify.com/track/0oQgoesQJq0fRnWOY1D73g",
+    tagline: "The viral 2021 return — No. 1 in Nigeria",
+    blurb:
+      "Burna Boy's first solo single after the Grammy-winning Twice as Tall, “Kilometre” (2021) was an instant Afro-fusion hit — a slick, danceable record that topped the Nigerian chart and became one of his most-played songs of the year. It went Platinum in Nigeria and Gold in Canada.",
+    extraFacts: [
+      { v: "No. 1", l: "Nigeria (TurnTable Top 100)" },
+      { v: "Platinum", l: "certified Platinum in Nigeria, Gold in Canada" },
+      { v: "2021", l: "his first solo single after Twice as Tall" },
+    ],
+    faqs: [
+      {
+        q: "What is “Kilometre” by Burna Boy?",
+        a: "“Kilometre” is a 2021 single by Burna Boy — his first solo release after the Grammy-winning album Twice as Tall. The Afro-fusion track reached No. 1 in Nigeria and went Platinum there.",
+      },
+      {
+        q: "Did “Kilometre” reach No. 1?",
+        a: "Yes — “Kilometre” topped Nigeria's TurnTable Top 100 chart, and is certified Platinum in Nigeria and Gold in Canada.",
+      },
+    ],
+    metaTitle: "Burna Boy “Kilometre” — No. 1 in Nigeria & Every Stat",
+    metaDescription:
+      "Burna Boy's “Kilometre” (2021): his first solo single after Twice as Tall, a No. 1 in Nigeria certified Platinum — the story, chart peaks and certifications.",
+  },
+  {
+    slug: "city-boys",
+    title: "City Boys",
+    year: 2023,
+    album: "I Told Them…",
+    cover: "https://i.scdn.co/image/ab67616d0000b273c361f3720bafc0da36f14d96",
+    spotify: "https://open.spotify.com/track/2M9ro2krNb7nr7HbrcaLZk",
+    tagline: "The triumphant I Told Them… anthem",
+    blurb:
+      "A celebratory highlight from I Told Them… (2023), “City Boys” became one of the album's biggest songs — a swaggering Afrobeats anthem that reached No. 2 in Nigeria, charted in eight countries and went 4× Platinum at home.",
+    extraFacts: [
+      { v: "No. 2", l: "Nigeria (TurnTable Top 100)" },
+      { v: "4× Platinum", l: "in Nigeria, plus Platinum in Canada & France" },
+      { v: "I Told Them…", l: "a standout single from the 2023 album" },
+    ],
+    faqs: [
+      {
+        q: "What album is “City Boys” on?",
+        a: "“City Boys” is from Burna Boy's 2023 album I Told Them…, one of the record's biggest singles.",
+      },
+      {
+        q: "How did “City Boys” chart?",
+        a: "“City Boys” reached No. 2 in Nigeria and charted in eight countries, including the UK and the Netherlands. It is certified 4× Platinum in Nigeria, plus Platinum in Canada and France.",
+      },
+    ],
+    metaTitle: "Burna Boy “City Boys” — Chart Peaks, Certifications & Facts",
+    metaDescription:
+      "Burna Boy's “City Boys” from I Told Them… (2023): No. 2 in Nigeria, 4× Platinum at home and charting in eight countries — the full story and stats.",
+  },
+  {
+    slug: "jerusalema",
+    title: "Jerusalema (Remix)",
+    credit: "Master KG ft. Nomcebo Zikode & Burna Boy",
+    year: 2020,
+    album: "Single",
+    cover: "https://i.scdn.co/image/ab67616d0000b2739d07e4e641b9ee80b0f713d0",
+    spotify: "https://open.spotify.com/track/1dmES1X8l1AnFBy2gR3wYA",
+    tagline: "The global dance phenomenon",
+    blurb:
+      "In 2020 Burna Boy joined the remix of Master KG and Nomcebo Zikode's “Jerusalema” — the gospel-house track that swept the world through the #JerusalemaDanceChallenge. His verse helped push it to No. 1 in six countries, including Belgium, Switzerland, the Netherlands and South Africa, and Diamond certification in France. It remains one of the biggest African songs in history.",
+    extraFacts: [
+      { v: "6", l: "countries at No. 1 — Belgium, Switzerland, Hungary, Netherlands, Suriname & South Africa" },
+      { v: "Diamond", l: "certified Diamond in France, 4× Platinum in Italy" },
+      { v: "2020", l: "the global #JerusalemaDanceChallenge phenomenon" },
+    ],
+    faqs: [
+      {
+        q: "Is Burna Boy on “Jerusalema”?",
+        a: "Yes — Burna Boy features on the 2020 remix of Master KG and Nomcebo Zikode's “Jerusalema.” His verse helped the song reach No. 1 in six countries during the global #JerusalemaDanceChallenge.",
+      },
+      {
+        q: "How big was “Jerusalema (Remix)”?",
+        a: "It was a global phenomenon — No. 1 in Belgium, Switzerland, Hungary, the Netherlands, Suriname and South Africa, charting in 16 countries and certified Diamond in France and 4× Platinum in Italy.",
+      },
+    ],
+    metaTitle: "“Jerusalema (Remix)” — Master KG, Nomcebo & Burna Boy Stats",
+    metaDescription:
+      "Burna Boy on the “Jerusalema” remix: No. 1 in six countries, Diamond in France and 17 chart entries during the global #JerusalemaDanceChallenge — full stats.",
+  },
+  {
+    slug: "gbona",
+    title: "Gbona",
+    year: 2018,
+    album: "Outside",
+    cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
+    spotify: "https://open.spotify.com/track/5DFN6PFml7Sga1UvfMDNTX",
+    tagline: "The Outside-era banger that went Diamond in France",
+    blurb:
+      "A hard-hitting Afro-fusion cut from Outside (2018), “Gbona” was part of the run that broke Burna Boy internationally. It never needed a singles chart to become a staple — going Diamond in France and picking up eight certifications worldwide.",
+    extraFacts: [
+      { v: "Diamond", l: "certified Diamond in France (SNEP)" },
+      { v: "2018", l: "from the breakthrough album Outside" },
+      { v: "Platinum", l: "Platinum in Canada & Switzerland, plus Gold across Europe" },
+    ],
+    faqs: [
+      {
+        q: "What album is “Gbona” on?",
+        a: "“Gbona” is from Burna Boy's 2018 album Outside, part of his international breakthrough era.",
+      },
+      {
+        q: "Is “Gbona” certified?",
+        a: "Yes — “Gbona” is certified Diamond in France and holds eight certifications in total, despite never charting on a singles chart.",
+      },
+    ],
+    metaTitle: "Burna Boy “Gbona” — Diamond in France & Every Certification",
+    metaDescription:
+      "Burna Boy's “Gbona” from Outside (2018): certified Diamond in France with eight certifications worldwide — the story and full stats behind the Afro-fusion banger.",
   },
 ];
 
