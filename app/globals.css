@@ -861,16 +861,14 @@ a.fact:hover {
 }
 .featureList {
   list-style: none;
-  max-height: 360px;
-  overflow-y: auto;
-  margin: 0 -4px 16px;
-  padding: 0 4px;
+  margin: 0 0 16px;
+  padding: 0;
 }
 .featureRow {
   display: flex;
   align-items: baseline;
   gap: 10px;
-  padding: 9px 2px;
+  padding: 8px 2px;
   border-bottom: 1px solid var(--border);
 }
 .featureRow:last-child {

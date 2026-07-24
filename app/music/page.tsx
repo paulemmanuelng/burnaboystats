@@ -29,42 +29,19 @@ export const metadata = pageMetadata({
   shareDescription: "Albums, EPs, tracklists and hits.",
 });
 
-// A selection of his best-known songs across the years.
-const songs = [
-  "Ye", "On the Low", "Anybody", "Gbona", "Kilometre", "Last Last",
-  "Common Person", "City Boys", "Sittin' on Top of the World", "Higher",
-  "TaTaTa", "Update", "Dai Dai",
-];
 
 // A selection of his most notable guest features (he's the featured artist),
 // from the discography's "as featured artist" list — not exhaustive.
+// A short marquee selection — the "Listen to more" button covers the rest.
 const topFeatures = [
   { title: "Dai Dai", artist: "Shakira" },
   { title: "Ja Ara E", artist: "Beyoncé" },
   { title: "We Pray", artist: "Coldplay" },
-  { title: "Loved by You", artist: "Justin Bieber" },
-  { title: "My Oasis", artist: "Sam Smith" },
   { title: "Own It", artist: "Stormzy & Ed Sheeran" },
-  { title: "Location", artist: "Dave" },
-  { title: "Ginger", artist: "Wizkid" },
-  { title: "Just Like Me", artist: "21 Savage & Metro Boomin" },
-  { title: "Coming 2 America", artist: "John Legend" },
-  { title: "Hey Boy", artist: "Sia" },
+  { title: "My Oasis", artist: "Sam Smith" },
+  { title: "Loved by You", artist: "Justin Bieber" },
   { title: "Jerusalema (Remix)", artist: "Master KG" },
-  { title: "Be Honest", artist: "Jorja Smith" },
   { title: "WGFT", artist: "Gunna" },
-  { title: "Simmer", artist: "Mahalia" },
-  { title: "Play Play", artist: "J Hus" },
-  { title: "Good Time", artist: "J Hus" },
-  { title: "Siberia", artist: "Headie One" },
-  { title: "Donne-moi l'accord", artist: "Dadju" },
-  { title: "4 Kampé II", artist: "Joé Dwèt Filé" },
-  { title: "Mera Na", artist: "Sidhu Moose Wala" },
-  { title: "Teary Eyes", artist: "YoungBoy NBA" },
-  { title: "We Must Groove", artist: "2Baba" },
-  { title: "Amorawa", artist: "Wande Coal" },
-  { title: "All Eyes on Me", artist: "AKA" },
-  { title: "Rollin'", artist: "Mist" },
 ];
 
 const SPOTIFY_ARTIST = "https://open.spotify.com/artist/3wcj11K77LjEY1PkEazffa";
@@ -126,43 +103,6 @@ export default function MusicPage() {
             </p>
           </div>
         </Reveal>
-
-        {/* SONG STORIES — deep-dive pages per signature song */}
-        <div className="block">
-          <Reveal>
-            <p className="eyebrow">Song stories</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 className="secTitle">
-              The songs, <span className="goldText">in depth</span>
-            </h2>
-          </Reveal>
-          <p className="cardMeta" style={{ marginTop: 6, marginBottom: 14 }}>
-            The full history, chart run and certifications behind his biggest records.
-          </p>
-          <div className={styles.songGrid}>
-            {songStories.map((s) => (
-              <Link key={s.href} href={s.href} className={styles.songCard}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  className={styles.songCover}
-                  src={spotifyImage(s.cover, 300)}
-                  srcSet={spotifySrcSet(s.cover)}
-                  sizes="72px"
-                  alt=""
-                  width={72}
-                  height={72}
-                  loading="lazy"
-                />
-                <span className={styles.songMeta}>
-                  <span className={styles.songTitle}>{s.title}</span>
-                  <span className={styles.songTag}>{s.tag}</span>
-                </span>
-                <span className={styles.songArrow} aria-hidden="true">↗</span>
-              </Link>
-            ))}
-          </div>
-        </div>
 
         {/* DISCOGRAPHY */}
         <div className="block">
@@ -245,32 +185,41 @@ export default function MusicPage() {
           </div>
         </div>
 
-        {/* SIGNATURE SONGS */}
+        {/* SONG STORIES — deep-dive pages per signature song (bottom of page) */}
         <div className="block">
           <Reveal>
-            <p className="eyebrow">Signature Songs</p>
+            <p className="eyebrow">Song stories</p>
           </Reveal>
           <Reveal delay={80}>
             <h2 className="secTitle">
-              Some of his <span className="goldText">biggest hits</span>
+              The songs, <span className="goldText">in depth</span>
             </h2>
           </Reveal>
-          <Reveal delay={140}>
-            <div className="chips">
-              {songs.map((s) => (
-                <span className="chip" key={s}>{s}</span>
-              ))}
-            </div>
-          </Reveal>
-          <Reveal delay={180}>
-            <p className="lead" style={{ marginTop: 20, fontSize: "0.92rem" }}>
-              A selection, not the full catalogue. See the{" "}
-              <a href="/certifications" style={{ color: "var(--gold)" }}>
-                Certifications
-              </a>{" "}
-              page for his certified tracks across the world.
-            </p>
-          </Reveal>
+          <p className="cardMeta" style={{ marginTop: 6, marginBottom: 14 }}>
+            The full history, chart run and certifications behind his biggest records.
+          </p>
+          <div className={styles.songGrid}>
+            {songStories.map((s) => (
+              <Link key={s.href} href={s.href} className={styles.songCard}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className={styles.songCover}
+                  src={spotifyImage(s.cover, 300)}
+                  srcSet={spotifySrcSet(s.cover)}
+                  sizes="72px"
+                  alt=""
+                  width={72}
+                  height={72}
+                  loading="lazy"
+                />
+                <span className={styles.songMeta}>
+                  <span className={styles.songTitle}>{s.title}</span>
+                  <span className={styles.songTag}>{s.tag}</span>
+                </span>
+                <span className={styles.songArrow} aria-hidden="true">↗</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
 
