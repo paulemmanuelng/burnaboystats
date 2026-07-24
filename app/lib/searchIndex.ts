@@ -73,8 +73,8 @@ export const searchIndex: SearchDoc[] = [
     title: "Gbona",
     path: "/music/gbona",
     section: "Song",
-    description: "Burna Boy's “Gbona” from Outside (2018) — certified Diamond in France, eight certifications.",
-    keywords: ["gbona", "song", "outside", "2018", "diamond", "france", "afro fusion"],
+    description: "Burna Boy's “Gbona” (2018) — certified Diamond in France, later on African Giant, eight certifications.",
+    keywords: ["gbona", "song", "african giant", "2018", "diamond", "france", "afro fusion", "single"],
   },
   {
     title: "Discography",

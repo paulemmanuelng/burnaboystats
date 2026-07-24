@@ -36,7 +36,7 @@ export const songs: Song[] = [
     year: 2022,
     album: "Love, Damini",
     cover: "https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2",
-    spotify: "https://open.spotify.com/track/6Qc9YfWku1Tt5f4V2Gd3Dt",
+    spotify: "https://open.spotify.com/track/4LPNkxES0zCGn6S2Y1vmJN",
     tagline: "The heartbreak anthem — “I need igbo and shayo”",
     blurb:
       "The lead single from Love, Damini (2022), built on a sample of Toni Braxton's “He Wasn't Man Enough.” It became Burna Boy's signature breakup anthem and one of the most-certified African songs ever — topping the South African chart, reaching No. 4 in the UK (his highest-charting solo single there at the time) and going Diamond in France.",
@@ -70,7 +70,7 @@ export const songs: Song[] = [
     year: 2018,
     album: "Outside",
     cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
-    spotify: "https://open.spotify.com/track/2vFN2eWdD0amZBrTBZ0eYr",
+    spotify: "https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD",
     tagline: "The life-anthem that broke Burna Boy worldwide",
     blurb:
       "From the 2018 album Outside, “Ye” is one of Burna Boy's signature songs and the record that broke him internationally. A defiant, celebratory Afro-fusion anthem about the will to live and enjoy every moment — “I no wan die, I wan enjoy” — it became a global streaming staple and went Platinum across the US, UK, France, Canada and beyond, all without ever needing a singles chart.",
@@ -103,7 +103,7 @@ export const songs: Song[] = [
     year: 2019,
     album: "African Giant",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
-    spotify: "https://open.spotify.com/track/5jdNbYPvRAigkYd2Ckjrb1",
+    spotify: "https://open.spotify.com/track/1zIk8RJEKGvoH4FioFnGyJ",
     tagline: "The smooth love song that went Diamond in France",
     blurb:
       "A silky Afro-fusion love song from African Giant (2019), “On the Low” became one of Burna Boy's biggest records in Europe. It was certified Diamond in France — among the highest honours any African song has earned there — and picked up nine certifications worldwide.",
@@ -191,7 +191,7 @@ export const songs: Song[] = [
     year: 2023,
     album: "I Told Them…",
     cover: "https://i.scdn.co/image/ab67616d0000b273c361f3720bafc0da36f14d96",
-    spotify: "https://open.spotify.com/track/2M9ro2krNb7nr7HbrcaLZk",
+    spotify: "https://open.spotify.com/track/4RoKNqyZ9622tcAeNPNv5k",
     tagline: "The triumphant I Told Them… anthem",
     blurb:
       "A celebratory highlight from I Told Them… (2023), “City Boys” became one of the album's biggest songs — a swaggering Afrobeats anthem that reached No. 2 in Nigeria, charted in eight countries and went 4× Platinum at home.",
@@ -248,21 +248,21 @@ export const songs: Song[] = [
     slug: "gbona",
     title: "Gbona",
     year: 2018,
-    album: "Outside",
-    cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
-    spotify: "https://open.spotify.com/track/5DFN6PFml7Sga1UvfMDNTX",
-    tagline: "The Outside-era banger that went Diamond in France",
+    album: "Single",
+    cover: "https://i.scdn.co/image/ab67616d0000b2735edf362ac1de3e5718382296",
+    spotify: "https://open.spotify.com/track/0DrzsBstN5rObzTuX8DSro",
+    tagline: "The 2018 single that went Diamond in France",
     blurb:
-      "A hard-hitting Afro-fusion cut from Outside (2018), “Gbona” was part of the run that broke Burna Boy internationally. It never needed a singles chart to become a staple — going Diamond in France and picking up eight certifications worldwide.",
+      "A hard-hitting Afro-fusion single from 2018, later included on African Giant, “Gbona” was part of the run that broke Burna Boy internationally. It never needed a singles chart to become a staple — going Diamond in France and picking up eight certifications worldwide.",
     extraFacts: [
       { v: "Diamond", l: "certified Diamond in France (SNEP)" },
-      { v: "2018", l: "from the breakthrough album Outside" },
+      { v: "2018", l: "a breakthrough-era single, later on African Giant" },
       { v: "Platinum", l: "Platinum in Canada & Switzerland, plus Gold across Europe" },
     ],
     faqs: [
       {
         q: "What album is “Gbona” on?",
-        a: "“Gbona” is from Burna Boy's 2018 album Outside, part of his international breakthrough era.",
+        a: "“Gbona” was released as a single in 2018 and later included on Burna Boy's 2019 album African Giant.",
       },
       {
         q: "Is “Gbona” certified?",
@@ -271,7 +271,7 @@ export const songs: Song[] = [
     ],
     metaTitle: "Burna Boy “Gbona” — Diamond in France & Every Certification",
     metaDescription:
-      "Burna Boy's “Gbona” from Outside (2018): certified Diamond in France with eight certifications worldwide — the story and full stats behind the Afro-fusion banger.",
+      "Burna Boy's “Gbona” (2018): a single certified Diamond in France, later included on African Giant — eight certifications worldwide, the story and full stats.",
   },
 ];
 
