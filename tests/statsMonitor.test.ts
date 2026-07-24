@@ -121,6 +121,9 @@ describe("applyAnchoredReplace", () => {
 import { extractYouTubeViews } from "../scripts/stats-lib.mjs";
 
 describe("extractYouTubeViews", () => {
+  it("reads the comma simpleText form (CI fallback)", () => {
+    expect(extractYouTubeViews(String.raw`x,"simpleText":"534,463,522 views",y`)).toBe(534463522);
+  });
   it("reads the raw viewCount from ytInitialData", () => {
     expect(extractYouTubeViews('...,"viewCount":"533033080","foo":1,...')).toBe(533033080);
   });

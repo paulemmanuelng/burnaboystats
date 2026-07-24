@@ -79,8 +79,14 @@ export function withinSanity(baseline, live, { maxJump = 0.15, min = 0, max = In
 // YouTube renders the visible count client-side, but the raw number is in the
 // ytInitialData blob as `"viewCount":"533033080"` — read that, not the UI text.
 export function extractYouTubeViews(html) {
-  const m = html.match(/"viewCount":"(\d+)"/);
-  return m ? parseInt(m[1], 10) : NaN;
+  // Preferred: the raw integer in the player/initial data.
+  const raw = html.match(/"viewCount":"(\d+)"/);
+  if (raw) return parseInt(raw[1], 10);
+  // Fallback (what CI/datacenter IPs often get): the "533,033,080 views"
+  // simpleText form — strip the commas.
+  const simple = html.match(/"simpleText":"([\d,]+) views?"/);
+  if (simple) return parseInt(simple[1].replace(/,/g, ""), 10);
+  return NaN;
 }
 
 // Compare a live value to a metric's baseline and classify the result.
