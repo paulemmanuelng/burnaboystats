@@ -30,6 +30,18 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-23",
+    category: "Charts",
+    text: "Sweden crowns it: “Dai Dai” hits No. 1 on Sverigetopplistan, Sweden's official singles chart — another country at the top for Shakira and Burna Boy's World Cup anthem.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-23",
+    category: "Charts",
+    text: "Hungary makes 69: “Dai Dai” is now No. 1 on the iTunes Top Songs chart in 69 countries.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-23",
     category: "Streaming",
     text: "56.52 million monthly listeners: Burna Boy sets another all-time Spotify peak at 56,517,687 and climbs to No. 42 in the world — the first African artist ever past 56 million.",
     href: "/records/africas-biggest",

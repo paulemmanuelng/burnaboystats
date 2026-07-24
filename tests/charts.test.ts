@@ -77,7 +77,7 @@ describe("chart data integrity", () => {
 
   it("matches the published headline figures", () => {
     expect(chartEntryCount).toBe(241);
-    expect(numberOnes).toBe(35);
+    expect(numberOnes).toBe(36);
     expect(chartCountryCount).toBe(51);
   });
 });
@@ -101,7 +101,7 @@ describe("Dai Dai", () => {
 
   it("matches the published headline figures", () => {
     expect(daiDaiChartEntryCount).toBe(49);
-    expect(daiDaiNumberOnes).toBe(16);
+    expect(daiDaiNumberOnes).toBe(17);
   });
 
   it("tops both Billboard global charts", () => {
