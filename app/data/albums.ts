@@ -163,7 +163,7 @@ export const compilations: AlbumEntry[] = [
     label: "Aristokrat Records",
     tracks: [
       "Don't Cross That Line", "I Don't Care", "Freedom Freestyle",
-      "Smoke (feat. Onos)", "Firewood", "Afrobeat Freestyle", "Kung Fu Loving",
+      "Smoke (feat. Onosz)", "Firewood", "Afrobeat Freestyle", "Kung Fu Loving",
       "Ice Cream Man", "Ph - Lagos - London - Paris (feat. P.R.E.)",
       "Trumpet (feat. Davido)", "Summer Time", "Friend Like Me (feat. Shank)",
       "U Madt", "Bad Boy (feat. Korkormikor)", "Wickedest Luv (feat. LOS)",

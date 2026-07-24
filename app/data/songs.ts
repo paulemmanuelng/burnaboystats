@@ -428,6 +428,37 @@ export const songs: Song[] = [
     metaDescription:
       "“Like to Party” (2012) was Burna Boy's breakout single and the lead from his debut album L.I.F.E — the song that started a career ending at the World Cup Final.",
   },
+  {
+    slug: "smoke",
+    title: "Smoke",
+    credit: "Burna Boy feat. Onosz",
+    year: 2011,
+    album: "Best of Burn Series, Vol. 1",
+    cover: "https://i.scdn.co/image/ab67616d0000b2739c2cb75c521fe1c48f74a3c1",
+    spotify: "https://open.spotify.com/track/2fOpoSqkF5kuiZcDLGyA7B",
+    storyOnly: true,
+    tagline: "The earliest Burna Boy on this site",
+    blurb:
+      "From Best of Burn Series, Vol. 1 — the 2011 Aristokrat Records compilation that collected Burna Boy's earliest work, two years before his debut album L.I.F.E and long before anyone outside Nigeria was listening. Nothing here charted or was certified; it exists as the starting point of a catalogue that ends at a World Cup Final.",
+    extraFacts: [
+      { v: "2011", l: "the earliest release documented on this site" },
+      { v: "Aristokrat", l: "from the Aristokrat Records compilation Best of Burn Series, Vol. 1" },
+      { v: "Onosz", l: "a guest feature from the Port Harcourt era" },
+    ],
+    faqs: [
+      {
+        q: "What is Burna Boy's earliest release?",
+        a: "Best of Burn Series, Vol. 1 (2011) on Aristokrat Records is the earliest Burna Boy release documented here — a compilation of his early work, including “Smoke” featuring Onosz. It predates his 2013 debut album L.I.F.E.",
+      },
+      {
+        q: "What album is “Smoke” on?",
+        a: "“Smoke” (featuring Onosz) appears on Best of Burn Series, Vol. 1, the 2011 Aristokrat Records compilation.",
+      },
+    ],
+    metaTitle: "Burna Boy “Smoke” (2011) — From His Earliest Release",
+    metaDescription:
+      "Burna Boy's “Smoke” featuring Onosz, from the 2011 Aristokrat Records compilation Best of Burn Series, Vol. 1 — the earliest release in his catalogue.",
+  },
 ];
 
 export const songBySlug = (slug: string) => songs.find((s) => s.slug === slug);

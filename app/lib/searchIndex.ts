@@ -74,7 +74,7 @@ export const searchIndex: SearchDoc[] = [
     path: "/music/23",
     section: "Song",
     description: "Burna Boy's “23” from the Grammy-winning Twice as Tall — named for Michael Jordan's number.",
-    keywords: ["23", "twice as tall", "grammy", "michael jordan", "2020", "song", "platinum"],
+    keywords: ["23", "twice as tall", "michael jordan", "2020", "song", "platinum"],
   },
   {
     title: "TaTaTa",
@@ -110,6 +110,13 @@ export const searchIndex: SearchDoc[] = [
     section: "Song",
     description: "Burna Boy's breakout single (2012) and the lead from his debut album L.I.F.E.",
     keywords: ["like to party", "l.i.f.e", "life", "debut", "2012", "first hit", "breakout", "song"],
+  },
+  {
+    title: "Smoke",
+    path: "/music/smoke",
+    section: "Song",
+    description: "Burna Boy's “Smoke” (feat. Onosz) from the 2011 Aristokrat compilation — his earliest release.",
+    keywords: ["smoke", "onosz", "aristokrat", "best of burn series", "2011", "earliest", "first release", "song"],
   },
   {
     title: "Discography",
