@@ -19,6 +19,9 @@ const conquestCountries: ConquestCountry[] = (daiDai?.entries ?? [])
   .map((e) => ({ iso: A2_TO_ISO[e.c], name: CHART_COUNTRIES[e.c].name, peak: e.peak }));
 const conquestTotal = (daiDai?.entries ?? []).filter((e) => e.c !== "GLB" && e.c !== "GLBX").length;
 const conquestNo1 = daiDaiNumberOnes;
+// Built as a plain string (not inline JSX) so the numbers always keep their
+// spacing — inline `{n} word` was rendering as "17word".
+const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries — and reached No. 1 in ${conquestNo1} of them. Press play: the No. 1 countries light up gold first, then the rest fill in.`;
 
 // Live view count of the official "Dai Dai" video (youtube.com/watch?v=fcnDmrtj6Sk).
 // Single home for the number so it's updated in one place — the stats-refresh bot
@@ -242,9 +245,7 @@ export default function DaiDaiPage() {
             The <span className="goldText">world takeover</span>
           </h2>
           <p className={styles.conquestIntro}>
-            Every one of the {conquestTotal} countries “Dai Dai” has charted in — the{" "}
-            {conquestNo1} that reached No.&nbsp;1 light up gold first, then the rest fill in.
-            Press play.
+            {conquestIntro}
           </p>
           <DaiDaiConquest countries={conquestCountries} totalCountries={conquestTotal} />
         </section>
