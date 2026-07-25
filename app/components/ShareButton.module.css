@@ -7,7 +7,7 @@
   letter-spacing: 0.1em;
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--bg);
+  color: var(--bg); -webkit-text-fill-color: var(--bg);
   background: var(--gold);
   border: 1px solid var(--gold);
   border-radius: 999px;

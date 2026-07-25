@@ -61,6 +61,10 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#09090b",
+  // Emits <meta name="color-scheme" content="dark">. Pairs with the
+  // color-scheme property in globals.css so Safari knows this is a dark UI
+  // before the stylesheet lands, rather than adjusting colours itself.
+  colorScheme: "dark",
 };
 
 // Structured data (JSON-LD) so Google understands the site and its subject.

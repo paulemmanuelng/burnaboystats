@@ -30,7 +30,7 @@
 .btn:hover {
   background: var(--gold);
   border-color: var(--gold);
-  color: #14100a;
+  color: #14100a; -webkit-text-fill-color: #14100a;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -264,7 +264,7 @@
 }
 .yearBtnOn {
   background: var(--gold);
-  color: var(--bg);
+  color: var(--bg); -webkit-text-fill-color: var(--bg);
   border-color: var(--gold);
   box-shadow: 0 6px 18px rgba(255, 182, 39, 0.24);
 }

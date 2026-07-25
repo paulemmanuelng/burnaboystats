@@ -4,6 +4,12 @@
    consistent: change a value once, it updates everywhere.
    =========================================================== */
 :root {
+  /* Tell the browser this is a dark UI. Without it iOS Safari treats the page
+     as light-scheme and applies its own colour adjustments to controls in Dark
+     Mode — which was re-tinting the gold button's label toward its background
+     and making it unreadable on a phone. */
+  color-scheme: dark;
+
   /* Surfaces */
   --bg: #0a0a0b;
   --bg-soft: #141416;
@@ -182,7 +188,12 @@ a {
 }
 .btnPrimary {
   background: linear-gradient(135deg, var(--gold-bright), var(--gold));
-  color: #1a1206;
+  color: #14100a;
+  /* WebKit resolves -webkit-text-fill-color ahead of `color`, so setting it
+     explicitly is the only way to pin the label against Safari's own colour
+     adjustment. Without it iOS rendered this text orange-on-gold — legible on
+     every desktop browser, near-invisible on an actual iPhone. */
+  -webkit-text-fill-color: #14100a;
   box-shadow: 0 8px 30px rgba(255, 182, 39, 0.24);
 }
 .btnPrimary:hover {
