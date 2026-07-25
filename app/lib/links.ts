@@ -25,8 +25,10 @@ export const footerLinks = [
   { href: "/records/tours", label: "Tours" },
   { href: "/records/cars", label: "Car collection" },
   { href: "/records/africas-biggest", label: "Africa's Biggest" },
+  { href: "/analysis", label: "Chart analysis" },
   { href: "/share", label: "Stat Cards" },
   { href: "/faq", label: "FAQ" },
+  { href: "/api", label: "Open data API" },
   { href: "/methodology", label: "Methodology" },
   { href: "/about", label: "About" },
 ];
@@ -39,13 +41,17 @@ export const exploreFor: Record<string, string[]> = {
   "/about": ["music", "certifications", "records"],
   "/faq": ["records", "certifications", "music"],
   "/methodology": ["about", "records", "certifications"],
+  // The analysis page argues from the chart + cert data, so send readers to the
+  // raw records behind it — and to the API if they want to check the working.
+  "/analysis": ["charts", "certifications", "api"],
+  "/api": ["analysis", "charts", "certifications"],
   // Cars is the site's #1 landing page (search traffic). Funnel that
   // wealth/lifestyle-curious audience toward the flashiest career stats.
   "/records/cars": ["records", "tours", "certifications"],
   // The other record pages were dead-ends too — point each onward to sibling
   // flagship stats (never to itself).
   "/records/awards": ["certifications", "charts", "tours"],
-  "/records/charts": ["dai-dai", "certifications", "records"],
+  "/records/charts": ["dai-dai", "analysis", "certifications"],
   "/dai-dai": ["charts", "africas-biggest", "share"],
   "/records/tours": ["records", "certifications", "charts"],
   "/records/firsts": ["dai-dai", "charts", "certifications"],

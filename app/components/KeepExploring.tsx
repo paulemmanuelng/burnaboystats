@@ -27,6 +27,12 @@ const sectionLinks: Record<string, SectionLink> = {
   "dai-dai": { href: "/dai-dai", title: "The Dai Dai Story", desc: "The World Cup song that conquered 2026" },
   "africas-biggest": { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists" },
   share: { href: "/share", title: "Stat Cards", desc: "Download a card & share the numbers" },
+  analysis: {
+    href: "/analysis",
+    title: "Chart Analysis",
+    desc: "Four findings the totals hide",
+  },
+  api: { href: "/api", title: "Open Data API", desc: "Every figure as free JSON" },
 };
 
 // A "what to look at next" block — shown at the bottom of each page so

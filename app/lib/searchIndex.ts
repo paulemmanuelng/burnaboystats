@@ -245,6 +245,20 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["faq", "questions", "real name", "damini ogulu", "net worth", "how many grammys", "age", "born"],
   },
   {
+    title: "Chart Analysis",
+    path: "/analysis",
+    section: "Site",
+    description: "What Burna Boy's chart and certification record actually shows — four data-led findings.",
+    keywords: ["analysis", "what the numbers say", "insights", "findings", "uk vs us", "diamond france", "breakdown", "interpretation"],
+  },
+  {
+    title: "Open Data API",
+    path: "/api",
+    section: "Site",
+    description: "Free JSON access to every verified chart entry, certification and streaming figure.",
+    keywords: ["api", "json", "open data", "dataset", "developers", "download data", "raw data", "csv"],
+  },
+  {
     title: "Methodology & Sources",
     path: "/methodology",
     section: "Site",

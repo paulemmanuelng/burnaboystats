@@ -82,6 +82,8 @@ const SEGMENT_LABELS: Record<string, string> = {
   "dai-dai": "The Dai Dai Story",
   share: "Stat Cards",
   faq: "FAQ",
+  analysis: "Analysis",
+  api: "Open Data API",
   methodology: "Methodology",
   about: "About",
   contact: "Contact",
