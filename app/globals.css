@@ -28,6 +28,9 @@
 
   /* Display face → condensed poster type (was Space Grotesk) */
   --font-display: var(--font-anton);
+  /* Editorial serif for statement lines — the third voice alongside the poster
+     display face and the utilitarian mono labels. */
+  --font-statement: var(--font-serif);
 
   /* Spacing scale (4px base) */
   --sp-1: 4px;
@@ -137,6 +140,41 @@ a {
   padding: 0 24px;
 }
 
+/* -----------------------------------------------------------
+   STATEMENT TYPE
+   A large, low-shout editorial serif for the lines that carry a
+   point of view rather than a number. Deliberately mixed-case and
+   generously leaded — the counterweight to the all-caps Anton
+   headlines, so a page reads as written instead of shouted.
+   ----------------------------------------------------------- */
+.statement {
+  font-family: var(--font-statement), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 1.05rem + 2.1vw, 2.9rem);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  text-transform: none;
+  color: var(--text);
+  max-width: 22ch;
+}
+.statement em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* Print-texture overlay for large accent type. The reference look isn't flat
+   vector gold — it's ink on paper, with the grain sitting *on* the letterforms.
+   Applied via background-clip so the noise only shows inside the glyphs. */
+.inkText {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"),
+    linear-gradient(120deg, var(--gold-bright), var(--gold) 55%, var(--grad-b));
+  background-blend-mode: overlay, normal;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 /* A reusable text-gradient (used on accent words). */
 .goldText {
   background: linear-gradient(120deg, var(--gold-bright), var(--gold), var(--grad-b));
@@ -153,8 +191,10 @@ a {
   align-items: center;
   gap: 0.5rem;
   height: 52px;
-  padding: 0 28px;
-  border-radius: 4px;
+  padding: 0 30px;
+  /* Pill, not rectangle — the single clearest shape cue separating current
+     editorial/brutalist music design from the boxy 2021-era look. */
+  border-radius: 999px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 0.82rem;

@@ -96,11 +96,14 @@ export default function Home() {
 
           <p className={styles.eyebrow}>★ The African Giant</p>
           <h1 className={styles.title}>
-            Burna <span className="goldText">Boy</span>
+            Burna <span className="inkText">Boy</span>
           </h1>
-          <p className={styles.tagline}>
+          <p className={`statement ${styles.tagline}`}>
+            Every number here is <em>checked against the body that owns it.</em>
+          </p>
+          <p className={styles.taglineSub}>
             Every certification, every chart record, every milestone — the whole
-            catalogue in one place. Fact-checked and always current.
+            catalogue in one place, and always current.
           </p>
           <div className={styles.heroButtons}>
             <Link href="/certifications" className="btn btnPrimary">View certifications ↗</Link>

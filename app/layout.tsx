@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Geist, Anton, Space_Mono } from "next/font/google";
+import { Geist, Anton, Space_Mono, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Nav from "./components/Nav";
@@ -20,6 +20,15 @@ const geistSans = Geist({
 // Poster font — huge condensed type for the festival-poster headlines.
 const anton = Anton({
   variable: "--font-anton",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+// Editorial serif — used for the human "statement" lines that sit between the
+// data. Anton shouts and the mono labels are utilitarian; this is the voice
+// that makes the site read as written rather than generated.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-serif",
   subsets: ["latin"],
   weight: "400",
 });
@@ -105,7 +114,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${anton.variable} ${spaceMono.variable}`}
+      className={`${geistSans.variable} ${anton.variable} ${spaceMono.variable} ${instrumentSerif.variable}`}
     >
       {/* suppressHydrationWarning: some browser extensions (e.g. Grammarly)
           add attributes to <body> before React loads, which is harmless. */}
