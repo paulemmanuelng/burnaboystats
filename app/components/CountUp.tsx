@@ -27,6 +27,9 @@ export default function CountUp({
     // Respect reduced-motion: leave the final number in place, no animation.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    let raf = 0;
+    let safety = 0;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {
@@ -37,15 +40,27 @@ export default function CountUp({
             const p = Math.min((now - start) / duration, 1);
             const eased = 1 - Math.pow(1 - p, 3); // ease-out
             setValue(Math.round(end * eased));
-            if (p < 1) requestAnimationFrame(tick);
+            if (p < 1) raf = requestAnimationFrame(tick);
           };
-          requestAnimationFrame(tick);
+          raf = requestAnimationFrame(tick);
+
+          // These are the site's headline credibility numbers, so the animation
+          // must never be able to strand one at a partial value. A pending rAF
+          // callback is normally just deferred while a tab is hidden, but it can
+          // be dropped outright (bfcache, long-backgrounded tabs) — and since
+          // `started` blocks a restart, the figure would read "7" instead of
+          // "251" forever. This guarantees it lands on the real number.
+          safety = window.setTimeout(() => setValue(end), duration + 400);
         }
       },
       { threshold: 0.4 }
     );
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(raf);
+      clearTimeout(safety);
+    };
   }, [end, duration]);
 
   return (

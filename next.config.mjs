@@ -26,6 +26,12 @@ const nextConfig = {
         destination: "https://burnaboystats.com/:path*",
         permanent: true,
       },
+      // The old Tour page now lives under Career Records. This has to be a
+      // routing-layer redirect: as a page calling permanentRedirect() it got
+      // statically prerendered, so Next couldn't emit an HTTP status and fell
+      // back to a meta-refresh served with 200 — which left /tour looking like
+      // a live page carrying the *homepage's* canonical.
+      { source: "/tour", destination: "/records/tours", permanent: true },
     ];
   },
 };

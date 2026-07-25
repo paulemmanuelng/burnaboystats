@@ -5,9 +5,15 @@ import styles from "./chartsLoading.module.css";
 // three-stat grid, the filter chip rows and a few release rows — instead of the
 // generic site-wide spinner. Holding the layout means nothing jumps when the
 // real content lands.
+//
+// Deliberately a <div>, not <main id="content">: streaming SSR puts the
+// fallback and the real page in the document together, so claiming the landmark
+// here shipped a duplicate id and pointed the "Skip to content" link at this
+// aria-hidden skeleton instead of the page. The page owns that id (as in
+// app/loading.tsx).
 export default function ChartsLoading() {
   return (
-    <main id="content" className={styles.wrap} role="status" aria-live="polite">
+    <div className={styles.wrap} role="status" aria-live="polite">
       <span className={styles.srOnly}>Loading Burna Boy&apos;s chart history…</span>
 
       <div className={styles.container} aria-hidden="true">
@@ -47,6 +53,6 @@ export default function ChartsLoading() {
           </div>
         ))}
       </div>
-    </main>
+    </div>
   );
 }

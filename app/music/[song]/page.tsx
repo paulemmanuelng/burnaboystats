@@ -57,6 +57,12 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
   const credit = song.credit ?? `Burna Boy · ${song.year}`;
   const peakLabel = bestPeak === 1 ? "No. 1" : bestPeak != null ? `No. ${bestPeak}` : "—";
 
+  // Longest unbreakable run in a stat value. Multi-word values ("21 Mar 2019")
+  // wrap at the spaces, but a single long word ("Experimental") can't — and at
+  // the full display size it overflows the card, so those step down a tier.
+  const longestWordLength = (v: string) =>
+    Math.max(...v.split(/\s+/).map((w) => w.length));
+
   // Auto "by the numbers" from the data, then the song's curated extras.
   const autoFacts = [
     countryEntries.length > 0 && { v: `${countryEntries.length}`, l: "countries charted" },
@@ -143,7 +149,13 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
           <div className={styles.numGrid}>
             {facts.map((f) => (
               <div key={f.l} className={styles.numCard}>
-                <span className={styles.numValue}>{f.v}</span>
+                <span
+                  className={`${styles.numValue}${
+                    longestWordLength(f.v) > 9 ? ` ${styles.numValueLong}` : ""
+                  }`}
+                >
+                  {f.v}
+                </span>
                 <span className={styles.numLabel}>{f.l}</span>
               </div>
             ))}

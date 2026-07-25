@@ -89,8 +89,16 @@
 .numValue {
   font-family: var(--font-anton), sans-serif;
   font-size: 1.9rem;
-  line-height: 1;
+  line-height: 1.05;
   color: var(--gold-bright);
+  /* Last-resort guard: anything longer than the tiers below breaks rather than
+     spilling outside the card. */
+  overflow-wrap: break-word;
+}
+/* A single word over ~9 characters is wider than the 150px minimum grid column
+   at full size. Step it down so it fits whole instead of breaking mid-word. */
+.numValueLong {
+  font-size: 1.25rem;
 }
 .numLabel {
   font-size: 0.82rem;
