@@ -98,12 +98,9 @@ export default function Home() {
           <h1 className={styles.title}>
             Burna <span className="inkText">Boy</span>
           </h1>
-          <p className={`statement ${styles.tagline}`}>
-            Every certification, every chart record, every milestone —{" "}
-            <em>the whole catalogue in one place.</em>
-          </p>
-          <p className={styles.taglineSub}>
-            Fact-checked and always current.
+          <p className={styles.tagline}>
+            Every certification, every chart record, every milestone — the whole
+            catalogue in one place. Fact-checked and always current.
           </p>
           <div className={styles.heroButtons}>
             <Link href="/certifications" className="btn btnPrimary">View certifications ↗</Link>

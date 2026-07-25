@@ -28,9 +28,6 @@
 
   /* Display face → condensed poster type (was Space Grotesk) */
   --font-display: var(--font-anton);
-  /* Editorial serif for statement lines — the third voice alongside the poster
-     display face and the utilitarian mono labels. */
-  --font-statement: var(--font-serif);
 
   /* Spacing scale (4px base) */
   --sp-1: 4px;
@@ -140,28 +137,6 @@ a {
   padding: 0 24px;
 }
 
-/* -----------------------------------------------------------
-   STATEMENT TYPE
-   A large, low-shout editorial serif for the lines that carry a
-   point of view rather than a number. Deliberately mixed-case and
-   generously leaded — the counterweight to the all-caps Anton
-   headlines, so a page reads as written instead of shouted.
-   ----------------------------------------------------------- */
-.statement {
-  font-family: var(--font-statement), Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(1.5rem, 1.05rem + 2.1vw, 2.9rem);
-  line-height: 1.18;
-  letter-spacing: -0.015em;
-  text-transform: none;
-  color: var(--text);
-  max-width: 22ch;
-}
-.statement em {
-  font-style: italic;
-  color: var(--gold);
-}
-
 /* Print-texture overlay for large accent type. The reference look isn't flat
    vector gold — it's ink on paper, with the grain sitting *on* the letterforms.
    Applied via background-clip so the noise only shows inside the glyphs. */
@@ -215,9 +190,13 @@ a {
   box-shadow: 0 14px 44px rgba(255, 182, 39, 0.42);
 }
 .btnSecondary {
-  border-color: var(--border);
+  /* var(--border) is only 1.29:1 against the page — below the 3:1 WCAG needs
+     for a control's boundary, so the button didn't read as a button until
+     :hover turned the border gold. Touch devices have no hover, so the
+     resting state has to carry it on its own. */
+  border-color: rgba(245, 244, 240, 0.42);
   color: var(--text);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.06);
 }
 .btnSecondary:hover {
   transform: translateY(-3px);

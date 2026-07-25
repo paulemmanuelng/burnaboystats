@@ -69,25 +69,12 @@
   text-shadow: 0 0 90px rgba(232, 176, 75, 0.15);
 }
 
-/* The serif statement line. Width is capped in ch so the line breaks land in
-   roughly the same place at every size. */
 .tagline {
-  margin: 22px 0 0;
-  /* Two lines at every width — wide enough that the statement doesn't stack
-     into three and push the CTAs under the fold. Sized down a little from the
-     base .statement scale because this line carries more words than most. */
-  max-width: 34ch;
-  font-size: clamp(1.3rem, 0.9rem + 1.5vw, 2.15rem);
-}
-
-/* Supporting detail under the statement — quieter, and the only place the
-   catalogue promise is spelled out in full. */
-.taglineSub {
-  max-width: 560px;
-  margin: 16px 0 0;
+  max-width: 600px;
+  margin: 24px 0 0;
   color: var(--text-muted);
-  font-size: clamp(0.98rem, 1.6vw, 1.08rem);
-  line-height: 1.6;
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  line-height: 1.55;
 }
 
 .heroButtons {
