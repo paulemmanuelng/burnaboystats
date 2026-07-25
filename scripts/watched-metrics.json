@@ -9,7 +9,7 @@
       "extractor": "kworbListeners",
       "kind": "drift",
       "threshold": 0.03,
-      "baseline": 56934448,
+      "baseline": 57292855,
       "note": "Current monthly listeners (kworb). NOTE: Spotify’s own artist page is fresher, but it only serves the full page to curl/browsers — node fetch (which the workflow uses) gets a stub, so kworb is the reliable CI source.",
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "monthlyListeners"
@@ -21,7 +21,7 @@
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
-      "baseline": 56934448,
+      "baseline": 57292855,
       "live": true,
       "sanity": {
         "maxJump": 0.12,
@@ -350,6 +350,34 @@
           "template": "spotifyStreams: \"%s\"",
           "format": "compact",
           "describes": "Spotify streams on /music/city-boys"
+        }
+      ]
+    },
+    {
+      "id": "spotify-streams-wgft",
+      "label": "“WGFT” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "wgft (feat. Burna Boy)",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 279215305,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “WGFT”, shown on /music/wgft.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"wgft\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams on /music/wgft"
         }
       ]
     },

@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-25",
+    category: "Streaming",
+    text: "57.29 million monthly listeners: a new all-time Spotify peak of 57,292,855 — Burna Boy holds at No. 41 in the world, with 17.1 million followers. Lagos alone accounts for 1.5 million of those listeners, ahead of London on 1.02 million.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-25",
     category: "Charts",
     text: "A new Malaysian peak for “Dai Dai”: the Shakira collaboration climbs five places to No. 12 on RIM's Top 20 most-streamed international singles in week 29, up from No. 17 — its second week on the chart.",
     href: "/dai-dai",
