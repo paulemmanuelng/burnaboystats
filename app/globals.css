@@ -204,9 +204,16 @@ a {
   mix-blend-mode: normal;
   opacity: 1;
   box-shadow: 0 8px 30px rgba(255, 182, 39, 0.24);
+  /* The label rendered orange-on-gold until :hover — and the only thing hover
+     changed was a transform, which promotes the button to its own compositing
+     layer. So the colour was never wrong; the label was being composited
+     against the gradient fill. Promoting the layer up-front makes the correct
+     rendering the resting state instead of a hover artefact. */
+  transform: translateZ(0);
 }
 .btnPrimary:hover {
-  transform: translateY(-3px);
+  /* Keeps the translateZ so the layer is never torn down and rebuilt on hover. */
+  transform: translateY(-3px) translateZ(0);
   box-shadow: 0 14px 44px rgba(255, 182, 39, 0.42);
 }
 .btnSecondary {
