@@ -29,6 +29,24 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-25",
+    category: "Firsts & Records",
+    text: "A month on top of YouTube: the “Dai Dai” video has now spent 30 straight days as the most-viewed music video in the world — an eight-week run at No. 1 globally, past 5.9 million likes, and still No. 1 in 55 countries.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-25",
+    category: "Charts",
+    text: "18 days at the summit: “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 6.23 million streams — the most days any song has spent at No. 1 there in 2026.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-25",
+    category: "Charts",
+    text: "Apple Music and iTunes milestones: “Dai Dai” reaches a 30th day at No. 1 on Apple Music's European chart, and has now spent 22 days atop the worldwide iTunes songs chart — and it is No. 1 on Apple Music in 26 countries.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-07-24",
     category: "Charts",
     text: "A new UK peak: “Dai Dai” climbs to No. 2 (+3) on the Official Singles Chart — by far the highest-charting FIFA World Cup song in UK history.",
