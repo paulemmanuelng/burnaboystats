@@ -73,6 +73,21 @@ export function extractKworbYouTubeVideo(html, matchTitle) {
   return NaN;
 }
 
+// Total Spotify streams for ONE song on kworb's per-artist songs page. Rows are
+// "<title></td><td>total</td><td>daily</td>"; we match the title cell exactly so
+// "Ye" can't match "Ye [Official Audio]"-style variants or a longer title.
+export function extractKworbSongStreams(html, title) {
+  const want = String(title).trim().toLowerCase();
+  for (const row of html.match(/<tr[^>]*>[\s\S]*?<\/tr>/g) || []) {
+    const cells = [...row.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((m) =>
+      m[1].replace(/<[^>]+>/g, "").trim()
+    );
+    if (cells.length < 2) continue;
+    if (cells[0].toLowerCase() === want) return parseNum(cells[1]);
+  }
+  return NaN;
+}
+
 // The "Total views:" figure on the same page.
 export function extractKworbYouTubeTotal(html) {
   const m = html.match(/Total views:[\s\S]{0,120}?([\d,]{7,})/);
@@ -183,6 +198,14 @@ export function formatStat(n, format) {
       return `${(n / 1e6).toFixed(1)}M`;
     case "M0":
       return `${Math.round(n / 1e6)}M`;
+    // Auto-scales so a 598M song and a 986K deep cut both read naturally, and
+    // sub-10M keeps a decimal instead of rounding 3.7M up to "4M".
+    case "compact":
+      if (n >= 1e9) return `${(n / 1e9).toFixed(2)}B`;
+      if (n >= 1e7) return `${Math.round(n / 1e6)}M`;
+      if (n >= 1e6) return `${(n / 1e6).toFixed(1)}M`;
+      if (n >= 1e3) return `${Math.round(n / 1e3)}K`;
+      return String(Math.round(n));
     case "raw":
       return Math.round(n).toLocaleString("en-US");
     case "int":

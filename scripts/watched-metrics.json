@@ -61,9 +61,25 @@
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "rank",
       "kind": "rank",
-      "threshold": 5,
-      "baseline": 61,
-      "note": "Burna Boy's position on kworb's global monthly-listeners ranking (lower is better). A move of 5+ places is worth a look."
+      "threshold": 1,
+      "baseline": 41,
+      "note": "Global rank by Spotify monthly listeners (lower is better). Auto-published hourly; displayed on /records/by-the-numbers.",
+      "live": true,
+      "sanity": {
+        "maxJump": 10,
+        "min": 1,
+        "max": 500
+      },
+      "siteTargets": [
+        {
+          "file": "app/data/spotify.ts",
+          "anchor": "export const spotifyGlobalRank =",
+          "pattern": "\"\\d+\"",
+          "template": "\"%s\"",
+          "format": "int",
+          "describes": "global listeners rank"
+        }
+      ]
     },
     {
       "id": "spotify-total-streams",
@@ -123,7 +139,7 @@
         {
           "file": "app/data/songs.ts",
           "anchor": "slug: \"last-last\"",
-          "pattern": "ytViews: \"\\\\d+M\"",
+          "pattern": "ytViews: \"\\d+M\"",
           "template": "ytViews: \"%s\"",
           "format": "M0",
           "describes": "displayed YouTube views on /music/last-last"
@@ -151,7 +167,7 @@
         {
           "file": "app/data/songs.ts",
           "anchor": "slug: \"ye\"",
-          "pattern": "ytViews: \"\\\\d+M\"",
+          "pattern": "ytViews: \"\\d+M\"",
           "template": "ytViews: \"%s\"",
           "format": "M0",
           "describes": "displayed YouTube views on /music/ye"
@@ -179,38 +195,10 @@
         {
           "file": "app/data/songs.ts",
           "anchor": "slug: \"on-the-low\"",
-          "pattern": "ytViews: \"\\\\d+M\"",
+          "pattern": "ytViews: \"\\d+M\"",
           "template": "ytViews: \"%s\"",
           "format": "M0",
           "describes": "displayed YouTube views on /music/on-the-low"
-        }
-      ]
-    },
-    {
-      "id": "yt-views-kilometre",
-      "label": "“Kilometre” video — YouTube views",
-      "sourceName": "kworb — Burna Boy YouTube",
-      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
-      "extractor": "kworbYouTubeVideo",
-      "match": "Kilometre [Official Music Video]",
-      "kind": "drift",
-      "threshold": 0.005,
-      "baseline": 32140694,
-      "live": true,
-      "sanity": {
-        "maxJump": 0.2,
-        "min": 1000000,
-        "max": 5000000000
-      },
-      "note": "Views of the official “Kilometre” video, shown on /music/kilometre. Auto-published hourly; the display string only changes when it crosses a whole million.",
-      "siteTargets": [
-        {
-          "file": "app/data/songs.ts",
-          "anchor": "slug: \"kilometre\"",
-          "pattern": "ytViews: \"\\\\d+M\"",
-          "template": "ytViews: \"%s\"",
-          "format": "M0",
-          "describes": "displayed YouTube views on /music/kilometre"
         }
       ]
     },
@@ -235,38 +223,10 @@
         {
           "file": "app/data/songs.ts",
           "anchor": "slug: \"city-boys\"",
-          "pattern": "ytViews: \"\\\\d+M\"",
+          "pattern": "ytViews: \"\\d+M\"",
           "template": "ytViews: \"%s\"",
           "format": "M0",
           "describes": "displayed YouTube views on /music/city-boys"
-        }
-      ]
-    },
-    {
-      "id": "yt-views-gbona",
-      "label": "“Gbona” video — YouTube views",
-      "sourceName": "kworb — Burna Boy YouTube",
-      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
-      "extractor": "kworbYouTubeVideo",
-      "match": "Gbona [Official Music Video]",
-      "kind": "drift",
-      "threshold": 0.005,
-      "baseline": 150114419,
-      "live": true,
-      "sanity": {
-        "maxJump": 0.2,
-        "min": 1000000,
-        "max": 5000000000
-      },
-      "note": "Views of the official “Gbona” video, shown on /music/gbona. Auto-published hourly; the display string only changes when it crosses a whole million.",
-      "siteTargets": [
-        {
-          "file": "app/data/songs.ts",
-          "anchor": "slug: \"gbona\"",
-          "pattern": "ytViews: \"\\\\d+M\"",
-          "template": "ytViews: \"%s\"",
-          "format": "M0",
-          "describes": "displayed YouTube views on /music/gbona"
         }
       ]
     },
@@ -280,6 +240,286 @@
       "threshold": 0.01,
       "baseline": 3151172520,
       "note": "Cumulative views across every Burna Boy video — a milestone figure as it climbs."
+    },
+    {
+      "id": "spotify-streams-last-last",
+      "label": "“Last Last” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "Last Last",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 598170364,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “Last Last”, shown on /music/last-last.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"last-last\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams on /music/last-last"
+        }
+      ]
+    },
+    {
+      "id": "spotify-streams-on-the-low",
+      "label": "“On the Low” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "On the Low",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 414361086,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “On the Low”, shown on /music/on-the-low.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"on-the-low\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams on /music/on-the-low"
+        }
+      ]
+    },
+    {
+      "id": "spotify-streams-ye",
+      "label": "“Ye” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "Ye",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 328078087,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “Ye”, shown on /music/ye.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"ye\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams on /music/ye"
+        }
+      ]
+    },
+    {
+      "id": "spotify-streams-city-boys",
+      "label": "“City Boys” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "City Boys",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 281140074,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “City Boys”, shown on /music/city-boys.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"city-boys\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams on /music/city-boys"
+        }
+      ]
+    },
+    {
+      "id": "spotify-streams-alone",
+      "label": "“Alone” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "Alone",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 211029596,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “Alone”, shown on /music/alone.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"alone\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams on /music/alone"
+        }
+      ]
+    },
+    {
+      "id": "spotify-streams-23",
+      "label": "“23” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "23",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 68230797,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “23”, shown on /music/23.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"23\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams on /music/23"
+        }
+      ]
+    },
+    {
+      "id": "spotify-streams-like-to-party",
+      "label": "“Like to Party” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "Like to Party",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 10214258,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “Like to Party”, shown on /music/like-to-party.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"like-to-party\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams on /music/like-to-party"
+        }
+      ]
+    },
+    {
+      "id": "spotify-streams-rizzla",
+      "label": "“Rizzla” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "Rizzla",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 3742727,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “Rizzla”, shown on /music/rizzla.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"rizzla\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams on /music/rizzla"
+        }
+      ]
+    },
+    {
+      "id": "spotify-streams-boshe-nlo",
+      "label": "“Boshe Nlo” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "Boshe Nlo",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 3597800,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “Boshe Nlo”, shown on /music/boshe-nlo.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"boshe-nlo\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams on /music/boshe-nlo"
+        }
+      ]
+    },
+    {
+      "id": "spotify-streams-darko",
+      "label": "“Darko” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "Darko",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 985708,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “Darko”, shown on /music/darko.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"darko\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams on /music/darko"
+        }
+      ]
     }
   ]
 }

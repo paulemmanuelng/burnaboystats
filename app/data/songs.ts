@@ -26,6 +26,8 @@ export interface Song {
   // hourly by the live stats bot (kworb per-video counts). Omit for songs whose
   // video lives on another artist's channel (WGFT, Jerusalema).
   ytViews?: string;
+  // Total Spotify streams, auto-updated hourly by the live stats bot (kworb).
+  spotifyStreams?: string;
   // True when no chart/cert/views figure exists — the page carries the history
   // only. Kept explicit so the data test can tell "thin on purpose" from "typo".
   storyOnly?: boolean;
@@ -42,6 +44,7 @@ export const songs: Song[] = [
     slug: "last-last",
     title: "Last Last",
     year: 2022,
+    spotifyStreams: "598M",
     album: "Love, Damini",
     cover: "https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2",
     spotify: "https://open.spotify.com/track/4LPNkxES0zCGn6S2Y1vmJN",
@@ -77,6 +80,7 @@ export const songs: Song[] = [
     slug: "ye",
     title: "Ye",
     year: 2018,
+    spotifyStreams: "328M",
     album: "Outside",
     cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
     spotify: "https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD",
@@ -111,6 +115,7 @@ export const songs: Song[] = [
     slug: "on-the-low",
     title: "On the Low",
     year: 2019,
+    spotifyStreams: "414M",
     album: "African Giant",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     spotify: "https://open.spotify.com/track/1zIk8RJEKGvoH4FioFnGyJ",
@@ -171,6 +176,7 @@ export const songs: Song[] = [
     slug: "city-boys",
     title: "City Boys",
     year: 2023,
+    spotifyStreams: "281M",
     album: "I Told Them…",
     cover: "https://i.scdn.co/image/ab67616d0000b273c361f3720bafc0da36f14d96",
     spotify: "https://open.spotify.com/track/4RoKNqyZ9622tcAeNPNv5k",
@@ -231,6 +237,7 @@ export const songs: Song[] = [
     slug: "alone",
     title: "Alone",
     year: 2022,
+    spotifyStreams: "211M",
     album: "Black Panther: Wakanda Forever",
     cover: "https://i.scdn.co/image/ab67616d0000b273992a1f56ac5382848277cff2",
     spotify: "https://open.spotify.com/track/0AoBY2Y3qs6dtGgOD6c91N",
@@ -265,6 +272,7 @@ export const songs: Song[] = [
     slug: "23",
     title: "23",
     year: 2020,
+    spotifyStreams: "68M",
     album: "Twice as Tall",
     cover: "https://i.scdn.co/image/ab67616d0000b2735b069390c128a4b4c3197d80",
     spotify: "https://open.spotify.com/track/7EqoATlXAKNwzv45LAlqRt",
@@ -325,6 +333,7 @@ export const songs: Song[] = [
     slug: "rizzla",
     title: "Rizzla",
     year: 2015,
+    spotifyStreams: "3.7M",
     album: "On a Spaceship",
     cover: "https://i.scdn.co/image/ab67616d0000b2737e09ba6174aec9958461aa44",
     spotify: "https://open.spotify.com/track/0ASsiTKxkcMmGS52fHx3Gn",
@@ -356,6 +365,7 @@ export const songs: Song[] = [
     slug: "boshe-nlo",
     title: "Boshe Nlo",
     year: 2016,
+    spotifyStreams: "3.6M",
     album: "Redemption (EP)",
     cover: "https://i.scdn.co/image/ab67616d0000b2738f864a796ece5bd24bd45119",
     spotify: "https://open.spotify.com/track/530ZXkK83EFoX2tVdQ9SbG",
@@ -383,6 +393,7 @@ export const songs: Song[] = [
     title: "Darko",
     credit: "Burna Boy & DJDS",
     year: 2019,
+    spotifyStreams: "986K",
     album: "Steel & Copper (EP)",
     cover: "https://i.scdn.co/image/ab67616d0000b27376cd360b4344922af3685208",
     spotify: "https://open.spotify.com/track/4Ty2eRGfNVhJOgEDRzRsyb",
@@ -414,6 +425,7 @@ export const songs: Song[] = [
     slug: "like-to-party",
     title: "Like to Party",
     year: 2012,
+    spotifyStreams: "10M",
     album: "L.I.F.E",
     cover: "https://i.scdn.co/image/ab67616d0000b2732a50f6b6ece48016fe9217e4",
     spotify: "https://open.spotify.com/track/6cgEDo8mFLrvQ0FVqXAKpH",

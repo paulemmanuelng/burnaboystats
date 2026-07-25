@@ -9,6 +9,7 @@ import { numberOnes, chartCountryCount } from "../../data/charts";
 import { countryCount as performedCountryCount } from "../../data/performedCountries";
 import { albums } from "../../data/albums";
 import { monthlyListenersSeries } from "../../data/trends";
+import { spotifyGlobalRank } from "../../data/spotify";
 
 const listenersLatest = monthlyListenersSeries[monthlyListenersSeries.length - 1].value;
 const listenersPct =
@@ -36,6 +37,7 @@ const stats: { num: string; label: string; sub: string; href: string; delta?: nu
   { num: `${listenersLatest}M`, label: "Spotify monthly listeners", sub: "the first African artist ever to reach 50 million", href: "/records/africas-biggest", delta: listenersPct },
   // YouTube figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.
   { num: "784M", label: "YouTube Music monthly audience", sub: "first African artist ever past 700 million", href: "/records/africas-biggest" },
+  { num: `No. ${spotifyGlobalRank}`, label: "Global rank by Spotify listeners", sub: "his highest position among all artists worldwide", href: "/records/africas-biggest" },
   { num: "2B+", label: "UK streams", sub: "the first African artist to pass two billion", href: "/records/firsts" },
   { num: `${performedCountryCount}`, label: "Countries performed in", sub: "live shows on every inhabited continent", href: "/records/tours/map" },
   { num: `${albums.length}`, label: "Studio albums", sub: "from L.I.F.E (2013) to No Sign of Weakness (2025)", href: "/music" },

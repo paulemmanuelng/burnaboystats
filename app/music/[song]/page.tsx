@@ -65,6 +65,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
     certs.length > 0 && { v: `${certs.length}`, l: "certifications worldwide" },
     // Live figure — the stats bot keeps this current hourly.
     song.ytViews && { v: song.ytViews, l: "YouTube views for the official video" },
+    song.spotifyStreams && { v: song.spotifyStreams, l: "Spotify streams" },
   ].filter(Boolean) as { v: string; l: string }[];
   const facts = [...autoFacts, ...song.extraFacts].slice(0, 8);
 
