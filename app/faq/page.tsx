@@ -3,7 +3,7 @@ import KeepExploring from "../components/KeepExploring";
 import { pageMetadata } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
 import { totalWins, totalNominations, ceremonyCount, ceremonies } from "../data/awards";
-import { numberOnes, numberOneReleases } from "../data/charts";
+import { numberOnes, numberOneReleases, daiDaiNumberOnes } from "../data/charts";
 import { countryCount as performedCountryCount, regionCount } from "../data/performedCountries";
 import { festivals } from "../data/tours";
 import { carCount, totalValueFormatted } from "../data/cars";
@@ -44,6 +44,14 @@ const faqs: { q: string; a: string }[] = [
     a: `Burna Boy is ${age} years old. He was born Damini Ebunoluwa Ogulu on 2 July 1991 in Port Harcourt, Nigeria.`,
   },
   {
+    q: "Did Burna Boy perform at the 2026 World Cup halftime show?",
+    a: `Yes. Burna Boy performed "Dai Dai" with Shakira at the first-ever FIFA World Cup Final halftime show on 19 July 2026 at MetLife Stadium — the first African artist ever to headline a World Cup halftime show. The bill also featured Madonna, BTS, Justin Bieber and Coldplay, with Uganda's Triplets Ghetto Kids joining them on stage.`,
+  },
+  {
+    q: "What is Burna Boy's World Cup song?",
+    a: `"Dai Dai", his collaboration with Shakira, is the official song of the 2026 FIFA World Cup. It reached No. 1 on both Billboard global charts and on the official singles chart in ${daiDaiNumberOnes} countries, and spent 18 days at No. 1 on Spotify's Global Daily Top Songs chart as the most-streamed song in the world.`,
+  },
+  {
     q: "How many Grammys has Burna Boy won?",
     a: `Burna Boy has won 1 Grammy Award — Best Global Music Album for "Twice as Tall" at the 2021 ceremony, where he became the first-ever winner of that renamed category. He has ${grammyNoms} Grammy nominations across his career.`,
   },
@@ -73,7 +81,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "What is Burna Boy's biggest song?",
-    a: `Burna Boy's biggest solo song is "Last Last" (2022) — certified Diamond in France, 5× Platinum in Nigeria and 4× Platinum in Canada, and his signature international hit. His biggest song as a featured artist is "Location" with Dave, certified 5× Platinum in the UK.`,
+    a: `By chart performance it is "Dai Dai" with Shakira, the 2026 FIFA World Cup song — No. 1 on both Billboard global charts and in ${daiDaiNumberOnes} countries. His biggest solo song is "Last Last" (2022), certified Diamond in France and his most-streamed track. His biggest other featured credit is "Location" with Dave, certified 5× Platinum in the UK.`,
   },
   {
     q: "How many number-one songs does Burna Boy have?",
@@ -81,7 +89,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "What records has Burna Boy set for African music?",
-    a: `Burna Boy was the first African artist to headline a FIFA World Cup opening ceremony (2026), the first to sell out a stadium in the United States (Citi Field, 2023) and to headline a UK stadium (London Stadium, 2023), and the first African artist to surpass both 1 billion and 2 billion UK streams.`,
+    a: `Burna Boy was the first African artist to headline a FIFA World Cup opening ceremony and the first to perform at a World Cup Final halftime show (both 2026), the first to sell out a stadium in the United States (Citi Field, 2023) and to headline a UK stadium (London Stadium, 2023), and the first African artist to surpass both 1 billion and 2 billion UK streams.`,
   },
   {
     q: "How many cars does Burna Boy have?",
@@ -97,7 +105,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "Is Burna Boy the biggest African artist?",
-    a: `By several measures, yes. Burna Boy is the most-certified African artist in history (${total} certifications across ${countryCount} countries), holds the records for the highest-grossing tour and biggest single concert by an African artist, and was the first African artist to headline a FIFA World Cup opening ceremony. Alongside Wizkid and Davido, he is widely regarded as one of the artists who took Afrobeats global.`,
+    a: `By several measures, yes. Burna Boy is the most-certified African artist in history (${total} certifications across ${countryCount} countries), holds the records for the highest-grossing tour and biggest single concert by an African artist, and was the first African artist to headline a FIFA World Cup opening ceremony and to perform at a World Cup Final halftime show. Alongside Wizkid and Davido, he is widely regarded as one of the artists who took Afrobeats global.`,
   },
   {
     q: "What genre is Burna Boy's music?",
