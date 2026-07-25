@@ -27,7 +27,7 @@ const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries �
 // in whole millions. Auto-updated hourly by the live stats bot (the
 // dai-dai-video-views metric) — it rewrites this string only when the figure
 // ticks over another million, so the page changes exactly when the number does.
-const DAI_DAI_VIDEO_VIEWS = "551M";
+const DAI_DAI_VIDEO_VIEWS = "552M";
 
 // Total Spotify streams for "Dai Dai" — same live pipeline as the video count.
 const DAI_DAI_SPOTIFY_STREAMS = "234M";
