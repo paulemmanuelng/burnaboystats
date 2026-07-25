@@ -99,11 +99,11 @@ export default function Home() {
             Burna <span className="inkText">Boy</span>
           </h1>
           <p className={`statement ${styles.tagline}`}>
-            Every number here is <em>checked against the body that owns it.</em>
+            Every certification, every chart record, every milestone —{" "}
+            <em>the whole catalogue in one place.</em>
           </p>
           <p className={styles.taglineSub}>
-            Every certification, every chart record, every milestone — the whole
-            catalogue in one place, and always current.
+            Fact-checked and always current.
           </p>
           <div className={styles.heroButtons}>
             <Link href="/certifications" className="btn btnPrimary">View certifications ↗</Link>

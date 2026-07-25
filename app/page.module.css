@@ -74,9 +74,10 @@
 .tagline {
   margin: 22px 0 0;
   /* Two lines at every width — wide enough that the statement doesn't stack
-     into three and push the CTAs under the fold. */
-  max-width: 30ch;
-  font-size: clamp(1.4rem, 0.95rem + 1.7vw, 2.4rem);
+     into three and push the CTAs under the fold. Sized down a little from the
+     base .statement scale because this line carries more words than most. */
+  max-width: 34ch;
+  font-size: clamp(1.3rem, 0.9rem + 1.5vw, 2.15rem);
 }
 
 /* Supporting detail under the statement — quieter, and the only place the
