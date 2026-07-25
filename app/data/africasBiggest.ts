@@ -286,4 +286,20 @@ export const statBoxes: LeaderboardBox[] = [
     note: "Burna Boy is the No. 1 best-selling African artist of all time by equivalent album sales — narrowly ahead of Wizkid, a lead the two keep trading (Davido rounds out the top three). Counts albums, physical and digital singles and streaming album-track equivalents.",
     source: "Total equivalent album sales (EAS), per ChartMasters (CSPC methodology). As of July 2026 — a close, fast-moving race, so the top two can swap.",
   },
+  {
+    id: "spotify-top-artists-peak",
+    title: "Highest peak on Spotify's Global Top Artists chart",
+    meta: "Spotify Weekly Top Artists · Nigerian artists · all-time peak",
+    layout: "list",
+    entries: [
+      { name: "CKay", sub: "🇳🇬 Nigeria", value: "No. 56" },
+      { name: "Asake", sub: "🇳🇬 Nigeria", value: "No. 63" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "No. 64" },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "No. 96" },
+      { name: "Tems", sub: "🇳🇬 Nigeria", value: "No. 105" },
+    ],
+    note: "Burna Boy hit a new career peak of No. 64 on Spotify's Global Weekly Top Artists chart in the week of 17–23 July 2026, on the back of the “Dai Dai” run. Note the scope: this is a NIGERIAN ranking, not an African one — Tyla is absent from it, and her peak monthly-listeners figure (46.58M) is higher than Tems' (45.5M), who places No. 105 here, so a full African list would very likely include her.",
+    source:
+      "Best all-time peak on Spotify's Global Weekly Top Artists chart, per chart-tracking accounts. Nigerian artists only — the underlying list does not cover the rest of Africa. As of July 2026.",
+  },
 ];

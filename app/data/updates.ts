@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-25",
+    category: "Charts",
+    text: "A new career peak on Spotify's Global Top Artists chart: Burna Boy reaches No. 64 for the week of 17–23 July — behind only CKay (No. 56) and Asake (No. 63) among Nigerian artists.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-25",
     category: "Firsts & Records",
     text: "A month on top of YouTube: the “Dai Dai” video has now spent 30 straight days as the most-viewed music video in the world — an eight-week run at No. 1 globally, past 5.9 million likes, and still No. 1 in 55 countries.",
     href: "/dai-dai",
