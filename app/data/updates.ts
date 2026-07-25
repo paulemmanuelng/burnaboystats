@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-25",
     category: "Charts",
+    text: "A new Malaysian peak for “Dai Dai”: the Shakira collaboration climbs five places to No. 12 on RIM's Top 20 most-streamed international singles in week 29, up from No. 17 — its second week on the chart.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-25",
+    category: "Charts",
     text: "A new career peak on Spotify's Global Top Artists chart: Burna Boy reaches No. 64 for the week of 17–23 July — behind only CKay (No. 56) and Asake (No. 63) among Nigerian artists.",
     href: "/records/africas-biggest",
   },
