@@ -31,8 +31,8 @@ export const searchIndex: SearchDoc[] = [
     title: "Ye",
     path: "/music/ye",
     section: "Song",
-    description: "Burna Boy's “Ye” — the 2018 breakthrough from Outside, a life-affirming anthem certified Platinum worldwide.",
-    keywords: ["ye", "song", "outside", "breakthrough", "platinum", "2018", "i no wan die", "afro fusion anthem"],
+    description: "Burna Boy's “Ye” — the 2018 Outside anthem that carried him worldwide, certified Platinum across seven countries.",
+    keywords: ["ye", "song", "outside", "platinum", "2018", "i no wan die", "afro fusion anthem"],
   },
   {
     title: "On the Low",
@@ -88,7 +88,7 @@ export const searchIndex: SearchDoc[] = [
     path: "/music/rizzla",
     section: "Song",
     description: "Burna Boy's “Rizzla” from On a Spaceship (2015) — the early Nigerian era.",
-    keywords: ["rizzla", "on a spaceship", "2015", "song", "early", "pre-fame"],
+    keywords: ["rizzla", "on a spaceship", "2015", "song", "early", "pre-outside"],
   },
   {
     title: "Boshe Nlo",

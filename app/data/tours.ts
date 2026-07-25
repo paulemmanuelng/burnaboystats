@@ -98,7 +98,7 @@ export const tours: Tour[] = [
     name: "Love, Damini Tour",
     years: "2022–23",
     gross: "$11.8M",
-    note: "The breakthrough run behind the album — off the back of his Madison Square Garden debut, it made him the first African artist to headline a UK stadium (London Stadium) and to sell out a US stadium (Citi Field). The tour grossed roughly $11.8M across its dates.",
+    note: "The stadium-era run behind the album — off the back of his Madison Square Garden debut, it made him the first African artist to headline a UK stadium (London Stadium) and to sell out a US stadium (Citi Field). The tour grossed roughly $11.8M across its dates.",
     dates: [
       { date: "Jul 17, 2022", venue: "Tipsy All White Beach Party", city: "Bridgetown", country: "Barbados" },
       { date: "Jul 21, 2022", venue: "Aretha Franklin Amphitheatre", city: "Detroit", country: "USA", cap: 6000 },
@@ -136,7 +136,7 @@ export const tours: Tour[] = [
   {
     name: "African Giant Tour",
     years: "2019",
-    note: "The breakthrough run behind the Grammy-nominated African Giant. Its main leg — the African Giant Returns Tour — swept theatres and clubs across Canada, the US and Europe in late 2019, opening at Toronto's Rebel and closing in Leicester, breaking him through to worldwide audiences ahead of the stadium era.",
+    note: "The run behind the Grammy-nominated African Giant. Its main leg — the African Giant Returns Tour — swept theatres and clubs across Canada, the US and Europe in late 2019, opening at Toronto's Rebel and closing in Leicester, widening his worldwide audience ahead of the stadium era.",
     dates: [
       { date: "Aug 9, 2019", venue: "Rebel", city: "Toronto", country: "Canada", cap: 2500 },
       { date: "Aug 11, 2019", venue: "L'Olympia", city: "Montreal", country: "Canada", cap: 2300 },
@@ -161,7 +161,7 @@ export const tours: Tour[] = [
   {
     name: "Life on the Outside Tour",
     years: "2018",
-    note: "His first international headline tour, behind Outside — his Atlantic Records debut. An intimate club-and-theatre run across North America in early summer, then a sold-out UK leg in the autumn capped by a packed O2 Academy Brixton — growing his audience beyond Nigeria, just before the African Giant breakthrough.",
+    note: "His first international headline tour, behind Outside — his Atlantic Records debut. An intimate club-and-theatre run across North America in early summer, then a sold-out UK leg in the autumn capped by a packed O2 Academy Brixton — growing his audience beyond Nigeria, just before the African Giant era.",
     dates: [
       { date: "May 30, 2018", venue: "Howard Theatre", city: "Washington, D.C.", country: "USA", cap: 1100 },
       { date: "May 31, 2018", venue: "The Foundry", city: "Philadelphia", country: "USA", cap: 450 },

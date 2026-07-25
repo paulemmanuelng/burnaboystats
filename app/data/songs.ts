@@ -85,11 +85,11 @@ export const songs: Song[] = [
     cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
     spotify: "https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD",
     ytViews: "307M",
-    tagline: "The life-anthem that broke Burna Boy worldwide",
+    tagline: "The defiant life-anthem that became his global signature",
     blurb:
-      "From the 2018 album Outside, “Ye” is one of Burna Boy's signature songs and the record that broke him internationally. A defiant, celebratory Afro-fusion anthem about the will to live and enjoy every moment — “I no wan die, I wan enjoy” — it became a global streaming staple and went Platinum across the US, UK, France, Canada and beyond, all without ever needing a singles chart.",
+      "From the 2018 album Outside, “Ye” is one of Burna Boy's signature songs — the record that carried a career already six years deep into a worldwide audience. A defiant, celebratory Afro-fusion anthem about the will to live and enjoy every moment — “I no wan die, I wan enjoy” — it became a global streaming staple and went Platinum across the US, UK, France, Canada and beyond, all without ever needing a singles chart.",
     extraFacts: [
-      { v: "2018", l: "his international breakthrough, from the album Outside" },
+      { v: "2018", l: "the Outside single that carried him to a worldwide audience" },
       { v: "Platinum", l: "certified in the US, UK, France, Canada, Sweden, NZ & Switzerland" },
       { v: "Anthem", l: "a live-set staple and enduring fan favourite that still defines his early sound" },
     ],
@@ -100,16 +100,16 @@ export const songs: Song[] = [
       },
       {
         q: "Why is Burna Boy's “Ye” so important?",
-        a: "“Ye” (2018), from the album Outside, was Burna Boy's international breakthrough — the song that carried him from an Afrobeats favourite to a global name. It became a massive streaming hit and went Platinum in the US, UK, France and several other countries.",
+        a: "“Ye” (2018), from the album Outside, is the song that carried Burna Boy to a worldwide audience. He had been releasing music since 2012 — “Like to Party” and the debut album L.I.F.E came years earlier — so “Ye” widened a career already well underway rather than starting one. It became a huge streaming hit and went Platinum in the US, UK, France and several other countries.",
       },
       {
         q: "What album is “Ye” on?",
         a: "“Ye” is from Burna Boy's 2018 album Outside.",
       },
     ],
-    metaTitle: "Burna Boy “Ye” — The Song That Broke Him Worldwide",
+    metaTitle: "Burna Boy “Ye” — His Global Signature Song (2018)",
     metaDescription:
-      "The story of Burna Boy's “Ye” (2018): his international breakthrough from the album Outside — a life-affirming anthem certified Platinum across the US, UK, France and beyond.",
+      "The story of Burna Boy's “Ye” (2018) from the album Outside — the life-affirming anthem that carried him to a worldwide audience, certified Platinum across the US, UK, France and beyond.",
   },
   {
     slug: "on-the-low",
@@ -361,7 +361,7 @@ export const songs: Song[] = [
     ],
     metaTitle: "Burna Boy “Rizzla” — the On a Spaceship Era (2015)",
     metaDescription:
-      "Burna Boy's “Rizzla” from On a Spaceship (2015): the early Afro-fusion sound he was building in Nigeria years before “Ye” broke him worldwide.",
+      "Burna Boy's “Rizzla” from On a Spaceship (2015): the early Afro-fusion sound he was already building in Nigeria years before “Ye” travelled worldwide.",
   },
   {
     slug: "boshe-nlo",
@@ -378,7 +378,7 @@ export const songs: Song[] = [
       "From Redemption (2016), the seven-track EP Burna Boy released between albums during his Aristokrat-to-Spaceship transition. The EP is a compact snapshot of the period just before Outside changed everything.",
     extraFacts: [
       { v: "2016", l: "from the seven-track Redemption EP" },
-      { v: "Pre-Outside", l: "two years before his international breakthrough" },
+      { v: "Pre-Outside", l: "two years before Outside carried him worldwide" },
     ],
     faqs: [
       {
@@ -388,7 +388,7 @@ export const songs: Song[] = [
     ],
     metaTitle: "Burna Boy “Boshe Nlo” — from the Redemption EP (2016)",
     metaDescription:
-      "Burna Boy's “Boshe Nlo” from the 2016 Redemption EP — the seven-track release from the period just before Outside broke him internationally.",
+      "Burna Boy's “Boshe Nlo” from the 2016 Redemption EP — the seven-track release from the period just before Outside carried him worldwide.",
   },
   {
     slug: "darko",

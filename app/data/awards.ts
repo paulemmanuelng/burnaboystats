@@ -509,7 +509,7 @@ export const honours: Honour[] = [
     title: "Apple Music “Up Next” Artist",
     org: "Apple Music",
     year: 2019,
-    note: "Spotlighted as a global breakthrough act, with a Beats 1 interview and a short documentary.",
+    note: "Selected for Apple Music's global artist-spotlight programme, with a Beats 1 interview and a short documentary.",
   },
   {
     title: "Distinguished Service Star of Rivers State (DSSRS)",
