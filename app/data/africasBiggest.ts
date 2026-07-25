@@ -288,7 +288,7 @@ export const statBoxes: LeaderboardBox[] = [
   },
   {
     id: "spotify-top-artists-peak",
-    title: "Highest peak on Spotify's Global Top Artists chart",
+    title: "Highest peak on Spotify's Global Weekly Top Artists chart",
     meta: "Spotify Weekly Top Artists · Nigerian artists · all-time peak",
     layout: "list",
     entries: [
