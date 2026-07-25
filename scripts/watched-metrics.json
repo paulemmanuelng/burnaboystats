@@ -520,6 +520,90 @@
           "describes": "Spotify streams on /music/darko"
         }
       ]
+    },
+    {
+      "id": "spotify-streams-dai-dai",
+      "label": "“Dai Dai” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "Dai Dai",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 234020409,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “Dai Dai”.",
+      "siteTargets": [
+        {
+          "file": "app/dai-dai/page.tsx",
+          "anchor": "const DAI_DAI_SPOTIFY_STREAMS =",
+          "pattern": "\"[\\d.]+[KMB]\"",
+          "template": "\"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams for Dai Dai"
+        }
+      ]
+    },
+    {
+      "id": "spotify-streams-tatata",
+      "label": "“TaTaTa” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "TaTaTa (feat. Travis Scott)",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 65822270,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “TaTaTa”.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"tatata\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams for TaTaTa"
+        }
+      ]
+    },
+    {
+      "id": "spotify-streams-smoke",
+      "label": "“Smoke” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbSongStreams",
+      "match": "Smoke (feat. Onosz)",
+      "kind": "drift",
+      "threshold": 0.005,
+      "baseline": 3502587,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.25,
+        "min": 100000,
+        "max": 20000000000
+      },
+      "note": "Total Spotify streams for “Smoke”.",
+      "siteTargets": [
+        {
+          "file": "app/data/songs.ts",
+          "anchor": "slug: \"smoke\",",
+          "pattern": "spotifyStreams: \"[\\d.]+[KMB]\"",
+          "template": "spotifyStreams: \"%s\"",
+          "format": "compact",
+          "describes": "Spotify streams for Smoke"
+        }
+      ]
     }
   ]
 }

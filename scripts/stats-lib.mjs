@@ -83,7 +83,9 @@ export function extractKworbSongStreams(html, title) {
       m[1].replace(/<[^>]+>/g, "").trim()
     );
     if (cells.length < 2) continue;
-    if (cells[0].toLowerCase() === want) return parseNum(cells[1]);
+    // kworb marks "as featured artist" rows with a leading "* ".
+    const title = cells[0].replace(/^\*\s*/, "").trim().toLowerCase();
+    if (title === want) return parseNum(cells[1]);
   }
   return NaN;
 }
