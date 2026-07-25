@@ -37,7 +37,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-25",
     category: "Charts",
-    text: "18 days at the summit: “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 6.23 million streams — the most days any song has spent at No. 1 there in 2026.",
+    text: "18 days at the summit: “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 6.23 million streams — an 18-day run at the top for the World Cup anthem.",
     href: "/dai-dai",
   },
   {
