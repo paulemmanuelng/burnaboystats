@@ -9,7 +9,7 @@
       "extractor": "kworbListeners",
       "kind": "drift",
       "threshold": 0.03,
-      "baseline": 57292855,
+      "baseline": 57705731,
       "note": "Current monthly listeners (kworb). NOTE: Spotify’s own artist page is fresher, but it only serves the full page to curl/browsers — node fetch (which the workflow uses) gets a stub, so kworb is the reliable CI source.",
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "monthlyListeners"
@@ -21,7 +21,7 @@
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
-      "baseline": 57292855,
+      "baseline": 57705731,
       "live": true,
       "sanity": {
         "maxJump": 0.12,
