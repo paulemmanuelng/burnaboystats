@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-25",
     category: "Streaming",
+    text: "A 20th day on top: “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 6,261,783 streams — 20 days at the summit, 38 days inside the global Top 10 and 65 straight days on the chart.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-25",
+    category: "Streaming",
     text: "57.29 million monthly listeners: a new all-time Spotify peak of 57,292,855 — Burna Boy holds at No. 41 in the world, with 17.1 million followers. Lagos alone accounts for 1.5 million of those listeners, ahead of London on 1.02 million.",
     href: "/records/africas-biggest",
   },
