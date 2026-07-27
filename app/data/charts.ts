@@ -179,8 +179,8 @@ export const featureCharts: ChartRelease[] = [
   // Top 100 #7), South Africa (TOSAC airplay #12 → streaming #30) and
   // Lithuania (TopHit airplay #2 → AGATA #5).
   { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, entries: [
-    { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1 }, { c: "LU", peak: 1 }, { c: "PT", peak: 1 }, { c: "PA", peak: 1 }, { c: "SE", peak: 1 }, { c: "IT", peak: 1 }, { c: "GLB", peak: 1 }, { c: "GLBX", peak: 1 },
-    { c: "UK", peak: 2 }, { c: "NO", peak: 2 }, { c: "IN", peak: 2 },
+    { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1 }, { c: "LU", peak: 1 }, { c: "PT", peak: 1 }, { c: "PA", peak: 1 }, { c: "SE", peak: 1 }, { c: "IT", peak: 1 }, { c: "IN", peak: 1 }, { c: "GLB", peak: 1 }, { c: "GLBX", peak: 1 },
+    { c: "UK", peak: 2 }, { c: "NO", peak: 2 },
     { c: "SA", peak: 3 }, { c: "ES", peak: 3 },
     { c: "EC", peak: 4 },
     { c: "IE", peak: 5 }, { c: "CZ", peak: 5 }, { c: "LT", peak: 5 }, { c: "CR", peak: 5 },

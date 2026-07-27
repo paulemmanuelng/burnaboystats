@@ -30,6 +30,36 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-26",
+    category: "Charts",
+    text: "A first No. 1 in India: “Dai Dai” climbs to the top of the IMI International Top 20 Singles Chart — the 19th country where the World Cup anthem has topped the official singles chart, and Burna Boy's first chart-topper in India.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-26",
+    category: "Certifications",
+    text: "Platinum in Spain: “Dai Dai” is certified Platinum by PROMUSICAE for 100,000 units — an upgrade from Gold, and the song's biggest certification outside the US.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-07-26",
+    category: "Charts",
+    text: "No. 1 on iTunes in 70 countries: “Dai Dai” adds Latvia to a list running from Anguilla and Argentina to the UK and USA. It also hits a new Deezer Worldwide Top 100 peak of No. 13, charting in 57 countries.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-26",
+    category: "Streaming",
+    text: "A new peak on YouTube Music's Weekly Top Artists chart: Burna Boy rises six places to No. 12 on 135,497,061 plays — the highest any African artist has placed, and the most plays an African artist has gained in a single week.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-26",
+    category: "Charts",
+    text: "A third week atop the French singles chart: “Dai Dai” holds No. 1 on SNEP's Official Singles Chart — his longest run at No. 1 on any national chart.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-26",
     category: "Streaming",
     text: "57.7 million monthly listeners: another all-time Spotify peak at 57,705,731 — up more than 400,000 in a day, with Lagos now past 1.52 million listeners and London past 1.03 million. Burna Boy holds at No. 41 in the world.",
     href: "/records/africas-biggest",
