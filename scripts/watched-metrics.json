@@ -62,7 +62,7 @@
       "field": "rank",
       "kind": "rank",
       "threshold": 1,
-      "baseline": 40,
+      "baseline": 41,
       "note": "Global rank by Spotify monthly listeners (lower is better). Auto-published hourly; displayed on /records/by-the-numbers.",
       "live": true,
       "sanity": {
@@ -100,7 +100,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 579223214,
+      "baseline": 580739747,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
