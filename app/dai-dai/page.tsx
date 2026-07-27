@@ -30,7 +30,7 @@ const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries �
 const DAI_DAI_VIDEO_VIEWS = "581M";
 
 // Total Spotify streams for "Dai Dai" — same live pipeline as the video count.
-const DAI_DAI_SPOTIFY_STREAMS = "247M";
+const DAI_DAI_SPOTIFY_STREAMS = "252M";
 
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
@@ -109,7 +109,8 @@ export default function DaiDaiPage() {
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "21 days", l: "at No. 1 on Spotify's Global Daily Top Songs chart — 39 days in the global Top 10 and 66 straight days on the chart, still the most-streamed song on Earth and a first for an African artist" },
     { v: "3 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
-    { v: "3 weeks", l: "at No. 1 on France's Official Singles Chart (SNEP) — his longest run atop any national chart" },
+    { v: "7 weeks", l: "at No. 1 on Switzerland's official chart — the longest run at No. 1 by any song there so far this year" },
+    { v: "3 weeks", l: "at No. 1 on France's Official Singles Chart (SNEP)" },
     { v: "No. 1", l: "India's IMI International Top 20 Singles Chart — the first Burna Boy song to top a chart in India" },
     { v: "No. 13", l: "Deezer Worldwide Top 100 — a new peak, charting in 57 countries and No. 1 in 23 of them" },
     { v: "No. 1", l: "Official MENA Chart Top 20, and Billboard's US World Digital Song Sales chart" },
@@ -119,11 +120,11 @@ export default function DaiDaiPage() {
     { v: "No. 1", l: "iTunes song chart in 70 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, Latvia the newest" },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — the song has been the most-streamed on Earth for weeks" },
     { v: DAI_DAI_VIDEO_VIEWS, l: "YouTube views for the “Dai Dai” video — past 500 million in 59.4 days, the 12th fastest music video in history to the mark, Burna Boy's first to reach it, and the world's most-viewed music video of 2026" },
-    { v: "No. 1", l: "right now on the daily charts of YouTube (55 countries), Apple Music (26), Shazam (20), Deezer (14), Spotify (12) and iTunes (8) — plus No. 1 worldwide on Spotify, Shazam and YouTube" },
+    { v: "No. 1", l: "right now on the daily charts of YouTube (59 countries), Apple Music (25), Deezer (16), Spotify (9), iTunes (7) and Shazam (2) — plus No. 1 worldwide on Spotify and YouTube" },
     { v: "4 weeks", l: "at No. 1 on Mediatraffic's United World Chart (297,000 points) — the first Burna Boy song ever to top it" },
-    { v: "30 days", l: "as the most-viewed music video on YouTube worldwide — an 8-week run at No. 1 globally, now past 5.9 million likes" },
-    { v: "30 days", l: "at No. 1 on Apple Music's European songs chart, and a 4th day atop the worldwide Apple Music chart" },
-    { v: "22 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
+    { v: "33 days", l: "as the most-viewed music video on YouTube worldwide, and No. 1 in 59 countries — now past 6.1 million likes" },
+    { v: "33 days", l: "at No. 1 on Apple Music's European songs chart, and a 7th day atop the worldwide Apple Music chart" },
+    { v: "23 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
     { v: "No. 14", l: "Burna Boy's position on the Global Digital Artist ranking (1,739 points) during the run" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];

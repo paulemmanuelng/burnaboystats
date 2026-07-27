@@ -29,6 +29,36 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-27",
+    category: "Charts",
+    text: "A new Spanish peak: “Dai Dai” climbs to No. 2 on PROMUSICAE's official chart, days after going Platinum there. In Switzerland it takes a 7th week at No. 1 — the longest run atop the Swiss chart by any song this year.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-27",
+    category: "Streaming",
+    text: "Over 20 days at the summit: “Dai Dai” holds a 21st day at No. 1 on Spotify's Global Daily chart, joining BTS's “Swim” as the only songs to spend more than 20 days atop the chart this year.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-27",
+    category: "Firsts & Records",
+    text: "A 33rd day as the world's most-viewed video: the “Dai Dai” clip stays No. 1 on YouTube worldwide and in 59 countries, now past 6.1 million likes. It also holds a 33rd day atop Apple Music's European chart, a 7th worldwide, and a 23rd day at No. 1 on worldwide iTunes.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-27",
+    category: "Streaming",
+    text: "A new peak on the Global Digital Artist ranking: Burna Boy lifts two places to No. 13 with 1,721 points.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-26",
+    category: "Streaming",
+    text: "Past 250 million Spotify streams: “Dai Dai” reaches 252,165,445 — up more than five million in a day. “Last Last” closes on 600 million (598,991,932), still Burna Boy's most-streamed solo song.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-07-26",
     category: "Streaming",
     text: "A 21st day on top: “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 5,383,879 streams — 21 days at the summit, 39 days inside the global Top 10 and 66 straight days on the chart.",
