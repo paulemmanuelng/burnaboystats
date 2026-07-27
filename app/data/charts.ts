@@ -190,7 +190,7 @@ export const featureCharts: ChartRelease[] = [
     { c: "EG", peak: 14 }, { c: "CA", peak: 16 }, { c: "US", peak: 17 }, { c: "SG", peak: 20 }, { c: "NZ", peak: 20 },
     { c: "RO", peak: 21 }, { c: "HU", peak: 26 }, { c: "ZA", peak: 30 }, { c: "BR", peak: 36 },
     { c: "JP", peak: 60 }, { c: "VN", peak: 93 },
-  ], note: "No.1 on both Billboard global charts — a 2nd week atop the Global 200 and a 4th week atop the Global 200 Excl. US. Also No.1 on Billboard's US World Digital Song Sales chart, No.1 on the IFPI Middle East & North Africa chart and No.3 on North Africa." },
+  ], note: "No.1 on both Billboard global charts — a 3rd week atop the Global 200 and a 5th week atop the Global 200 Excl. US. Also No.1 on Billboard's US World Digital Song Sales chart, No.1 on the IFPI Middle East & North Africa chart and No.3 on North Africa." },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, entries: [
     { c: "BE", peak: 2 }, { c: "SR", peak: 2 }, { c: "HU", peak: 39 }, { c: "IE", peak: 43 },
     { c: "UK", peak: 43 }, { c: "CH", peak: 52 }, { c: "CA", peak: 70 },

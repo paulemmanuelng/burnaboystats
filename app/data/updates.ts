@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-27",
     category: "Charts",
+    text: "Five weeks on top of the world: “Dai Dai” holds No. 1 on Billboard's Global Excl. U.S. chart for a 5th week and the Global 200 for a 3rd, on the charts dated 1 August — ahead of BTS, Ariana Grande and Justin Bieber on both.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-27",
+    category: "Charts",
     text: "A No. 17 peak on the Billboard Hot 100: “Dai Dai” surges 25 places on the chart dated 1 August, becoming the highest-charting official World Cup song in Hot 100 history and Burna Boy's second-highest placing ever, behind only “WGFT” at No. 16.",
     href: "/records/charts",
   },
