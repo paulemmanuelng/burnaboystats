@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-26",
+    category: "Streaming",
+    text: "A 21st day on top: “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 5,383,879 streams — 21 days at the summit, 39 days inside the global Top 10 and 66 straight days on the chart.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-26",
     category: "Charts",
     text: "A first No. 1 in India: “Dai Dai” climbs to the top of the IMI International Top 20 Singles Chart — the 19th country where the World Cup anthem has topped the official singles chart, and Burna Boy's first chart-topper in India.",
     href: "/records/charts",
@@ -61,7 +67,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-26",
     category: "Streaming",
-    text: "57.7 million monthly listeners: another all-time Spotify peak at 57,705,731 — up more than 400,000 in a day, with Lagos now past 1.52 million listeners and London past 1.03 million. Burna Boy holds at No. 41 in the world.",
+    text: "Past 58 million monthly listeners: Burna Boy sets another all-time Spotify peak at 58,066,513 and climbs to No. 40 in the world — a new career-best rank, with Lagos alone now past 1.54 million listeners.",
     href: "/records/africas-biggest",
   },
   {

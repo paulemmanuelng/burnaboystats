@@ -107,7 +107,7 @@ export default function DaiDaiPage() {
     { v: "No. 1", l: "Billboard Global 200 — a 2nd week atop the US-inclusive worldwide chart, a first for an African artist (and Shakira's 2nd)" },
     { v: "No. 1", l: "Billboard Global 200 Excl. US — a 4th week at No. 1" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
-    { v: "20 days", l: "at No. 1 on Spotify's Global Daily Top Songs chart — 38 days in the global Top 10 and 65 straight days on the chart, still the most-streamed song on Earth and a first for an African artist" },
+    { v: "21 days", l: "at No. 1 on Spotify's Global Daily Top Songs chart — 39 days in the global Top 10 and 66 straight days on the chart, still the most-streamed song on Earth and a first for an African artist" },
     { v: "3 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
     { v: "3 weeks", l: "at No. 1 on France's Official Singles Chart (SNEP) — his longest run atop any national chart" },
     { v: "No. 1", l: "India's IMI International Top 20 Singles Chart — the first Burna Boy song to top a chart in India" },
