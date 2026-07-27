@@ -115,7 +115,7 @@ export default function DaiDaiPage() {
     { v: "No. 13", l: "Deezer Worldwide Top 100 — a new peak, charting in 57 countries and No. 1 in 23 of them" },
     { v: "No. 1", l: "Official MENA Chart Top 20, and Billboard's US World Digital Song Sales chart" },
     { v: "No. 2", l: "UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)" },
-    { v: "No. 42", l: "Billboard Hot 100 (US) — a new peak, extending Burna Boy's record for the most Hot 100 entries by an African artist" },
+    { v: "No. 17", l: "Billboard Hot 100 (US) — a new peak, the highest-charting World Cup song in Hot 100 history and Burna Boy's second-highest placing there, behind only “WGFT” (No. 16)" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, plus Gold in France, Colombia, Hungary, Slovakia & Portugal" },
     { v: "No. 1", l: "iTunes song chart in 70 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, Latvia the newest" },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — the song has been the most-streamed on Earth for weeks" },

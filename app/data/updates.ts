@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-27",
     category: "Charts",
+    text: "A No. 17 peak on the Billboard Hot 100: “Dai Dai” surges 25 places on the chart dated 1 August, becoming the highest-charting official World Cup song in Hot 100 history and Burna Boy's second-highest placing ever, behind only “WGFT” at No. 16.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-27",
+    category: "Charts",
     text: "A new Spanish peak: “Dai Dai” climbs to No. 2 on PROMUSICAE's official chart, days after going Platinum there. In Switzerland it takes a 7th week at No. 1 — the longest run atop the Swiss chart by any song this year.",
     href: "/records/charts",
   },
