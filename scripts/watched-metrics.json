@@ -100,7 +100,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 589213376,
+      "baseline": 590120789,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
