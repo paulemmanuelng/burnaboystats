@@ -81,7 +81,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "What is Burna Boy's biggest song?",
-    a: `By chart performance it is "Dai Dai" with Shakira, the 2026 FIFA World Cup song — No. 1 on both Billboard global charts and in ${daiDaiNumberOnes} countries. His biggest solo song is "Last Last" (2022), certified Diamond in France and his most-streamed track. His biggest other featured credit is "Location" with Dave, certified 5× Platinum in the UK.`,
+    a: `By chart performance it is "Dai Dai" with Shakira, the 2026 FIFA World Cup song — No. 1 on both Billboard global charts and in ${daiDaiNumberOnes} countries. His biggest solo song is "Last Last" (2022), certified Diamond in France and his most-streamed track. His biggest featured credit is "Location" with Dave, certified 5× Platinum in the UK.`,
   },
   {
     q: "How many number-one songs does Burna Boy have?",

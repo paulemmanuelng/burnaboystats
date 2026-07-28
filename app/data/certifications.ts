@@ -78,6 +78,10 @@ export const albums: Release[] = [
 
 // Burna Boy's own (lead) singles.
 export const singles: Release[] = [
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", year: 2026, certs: [
+    { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
+    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Gold" }, { c: "PT", level: "Gold" },
+  ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
     { c: "NG", level: "Platinum", x: 5 }, { c: "US", level: "Platinum" }, { c: "AU", level: "Platinum" },
@@ -248,10 +252,6 @@ export const singles: Release[] = [
 
 // Songs where Burna Boy is a featured/guest artist.
 export const features: Release[] = [
-  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", year: 2026, certs: [
-    { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
-    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Gold" }, { c: "PT", level: "Gold" },
-  ] },
   { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, certs: [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 2 },
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "NL", level: "Platinum" },
@@ -390,13 +390,13 @@ export const certHistory: CertEvent[] = [
   { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "NZ", level: "Platinum", year: 2026 },
   { title: "Gbona", country: "NZ", level: "Gold", year: 2026 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "PL", level: "Platinum", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "US", level: "Platinum", x: 2, year: 2026, body: "RIAA Latin" },
-  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "CO", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "ES", level: "Platinum", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "FR", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "HU", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "SK", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira ft. Burna Boy", country: "PT", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "US", level: "Platinum", x: 2, year: 2026, body: "RIAA Latin" },
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "CO", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "ES", level: "Platinum", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "FR", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "HU", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "SK", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "PT", level: "Gold", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "ZA", level: "Platinum", x: 2, year: 2026 },
   { title: "Gbona", country: "FR", level: "Diamond", year: 2026 },
 
