@@ -8,6 +8,7 @@ import {
   albumCharts,
   singleCharts,
   featureCharts,
+  chartSourceSplit,
   CHART_COUNTRIES,
   chartEntryCount,
   numberOnes,
@@ -66,13 +67,19 @@ export default function ChartsPage() {
         />
 
         <p className={styles.source}>
-          Peak positions on each country&apos;s principal national chart —
-          Billboard (Hot 100 / 200), the Official Charts Company, SNEP, GfK,
-          ARIA, Recorded Music NZ, IRMA, Ultratop, FIMI, PROMUSICAE, AFP,
-          TurnTable, The Official SA Charts and Billboard Global 200, among
-          others. Genre, airplay and below-the-main-chart &ldquo;bubbling&rdquo;
-          listings are excluded. Figures are peak-so-far, cross-checked against
-          the chart bodies&apos; cited data as of July 2026.
+          Peak positions on each country&apos;s principal national chart.{" "}
+          {chartSourceSplit.nationalBody} come from the national industry body
+          itself — the Official Charts Company, SNEP, GfK, FIMI, PROMUSICAE,
+          ZPAV, ARIA, Recorded Music NZ, IRMA, Ultratop, AFP, TurnTable, The
+          Official SA Charts and their equivalents.{" "}
+          {chartSourceSplit.billboardCountry} are Billboard country charts, used
+          only where a territory publishes no chart of its own — including the
+          US and Canada, where Billboard&apos;s is the chart of record. The
+          other {chartSourceSplit.global} are Billboard&apos;s worldwide charts.
+          Where an official national chart exists, it always wins. Genre,
+          airplay and below-the-main-chart &ldquo;bubbling&rdquo; listings are
+          excluded. Figures are peak-so-far, cross-checked against the chart
+          bodies&apos; cited data as of July 2026.
         </p>
         <Link href="/records" className={styles.back}>← Career Records</Link>
       </div>

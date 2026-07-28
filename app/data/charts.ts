@@ -272,6 +272,26 @@ export const numberOnes = allChartItems.reduce(
   (n, r) => n + r.entries.filter((e) => e.peak === 1).length,
   0
 );
+// Where the tracked charts actually come from, counted from the data rather
+// than asserted. Published on /methodology and /records/charts so the mix of
+// sources is visible instead of implied: most territories use their national
+// industry body's chart, but some countries have no such chart and Billboard's
+// country chart is the principal one there.
+export const chartSourceSplit = (() => {
+  const used = new Set(allChartItems.flatMap((r) => r.entries.map((e) => e.c)));
+  let nationalBody = 0;
+  let billboardCountry = 0;
+  let global = 0;
+  for (const code of used) {
+    const meta = CHART_COUNTRIES[code];
+    if (!meta) continue;
+    if (code === "GLB" || code === "GLBX") global += 1;
+    else if (/^Billboard/i.test(meta.body)) billboardCountry += 1;
+    else nationalBody += 1;
+  }
+  return { nationalBody, billboardCountry, global };
+})();
+
 export const chartCountryCount = new Set(
   allChartItems.flatMap((r) => r.entries.map((e) => e.c))
 ).size;

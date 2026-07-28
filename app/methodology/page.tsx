@@ -4,7 +4,7 @@ import KeepExploring from "../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { updates } from "../data/updates";
 import { totalAwards, countryCount } from "../data/certifications";
-import { chartEntryCount, numberOnes } from "../data/charts";
+import { chartEntryCount, numberOnes, chartSourceSplit } from "../data/charts";
 
 export const metadata = pageMetadata({
   title: "Methodology — How Burna Boy Stats Verifies Every Number",
@@ -39,7 +39,7 @@ const sources = [
   {
     area: "Charts",
     detail:
-      "The chart body that owns each chart: Billboard (Hot 100, Billboard 200, Global 200), the Official Charts Company (UK), SNEP (France), OCC/ARIA and their national equivalents. Peaks are read from the official chart run, never from a third-party summary.",
+      `The chart body that owns each chart, read from its official run and never from a third-party summary. ${chartSourceSplit.nationalBody} of the tracked charts are the national industry body's own — the Official Charts Company (UK), SNEP (France), GfK (Germany), FIMI (Italy), PROMUSICAE (Spain), ZPAV (Poland), TurnTable (Nigeria) and their equivalents. ${chartSourceSplit.billboardCountry} are Billboard country charts, used only where a territory has no national body chart of its own — including the US and Canada, where Billboard's is the chart of record. The remaining ${chartSourceSplit.global} are Billboard's two worldwide charts. Where a country does publish an official chart, that chart wins.`,
   },
   {
     area: "Streaming",
