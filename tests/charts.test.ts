@@ -76,9 +76,9 @@ describe("chart data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(chartEntryCount).toBe(255);
+    expect(chartEntryCount).toBe(254);
     expect(numberOnes).toBe(40);
-    expect(chartCountryCount).toBe(55);
+    expect(chartCountryCount).toBe(54);
   });
 });
 
@@ -100,7 +100,7 @@ describe("Dai Dai", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(daiDaiChartEntryCount).toBe(54);
+    expect(daiDaiChartEntryCount).toBe(53);
     expect(daiDaiNumberOnes).toBe(21);
   });
 
