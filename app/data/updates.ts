@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-27",
     category: "Charts",
+    text: "The numbers behind the Hot 100 jump: “Dai Dai” drew 8.6 million US streams (up 69%), 13.9 million in radio airplay audience (up 11%) and 7,000 sold (up 322%) in the 17–23 July tracking week, per Luminate — carrying it 42-17. It is Burna Boy's second Hot 100 top 40 hit and his first in a lead role.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-27",
+    category: "Charts",
     text: "A first Canadian top 10: “Dai Dai” rises to a new peak of No. 3 on the Billboard Canadian Hot 100 — Burna Boy's first top 10 there in his career, having never placed a song higher than No. 14. It is also Shakira's first Canadian top 10 since “She Wolf” in 2009.",
     href: "/records/charts",
   },

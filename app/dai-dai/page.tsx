@@ -116,7 +116,7 @@ export default function DaiDaiPage() {
     { v: "No. 1", l: "Official MENA Chart Top 20, and Billboard's US World Digital Song Sales chart" },
     { v: "No. 2", l: "UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)" },
     { v: "No. 3", l: "Billboard Canadian Hot 100 — a new peak and Burna Boy's first-ever top 10 in Canada, where his best song placing had been No. 14. It is also Shakira's first Canadian top 10 since “She Wolf” in 2009" },
-    { v: "No. 17", l: "Billboard Hot 100 (US) — a new peak, the highest-charting World Cup song in Hot 100 history and Burna Boy's second-highest placing there, behind only “WGFT” (No. 16)" },
+    { v: "No. 17", l: "Billboard Hot 100 (US) — a 42-to-17 jump on the chart dated 1 August, the highest-charting World Cup song in Hot 100 history. Luminate logged 8.6M US streams (+69%), 13.9M radio airplay audience (+11%) and 7,000 sold (+322%) in the 17–23 July tracking week" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, plus Gold in France, Colombia, Hungary, Slovakia & Portugal" },
     { v: "No. 1", l: "iTunes song chart in 70 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, Latvia the newest" },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — the song has been the most-streamed on Earth for weeks" },
