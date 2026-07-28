@@ -12,7 +12,20 @@ const nextConfig = {
         value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
       },
     ];
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      // Only burnaboystats.com should ever be indexable. The redirect below
+      // covers the clean Vercel alias, but preview deployments
+      // (burnaboystats-<hash>.vercel.app) are deliberately left reachable for
+      // testing — which also leaves them crawlable as duplicates of the live
+      // site. This makes every non-canonical host explicitly noindex, so no
+      // copy of the site can compete with the real domain in search.
+      {
+        source: "/:path*",
+        missing: [{ type: "host", value: "burnaboystats.com" }],
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ];
   },
 
   // Keep one canonical surface: send the plain Vercel production alias to the
