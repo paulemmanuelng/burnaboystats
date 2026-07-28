@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-27",
     category: "Charts",
+    text: "A first Canadian top 10: “Dai Dai” rises to a new peak of No. 3 on the Billboard Canadian Hot 100 — Burna Boy's first top 10 there in his career, having never placed a song higher than No. 14. It is also Shakira's first Canadian top 10 since “She Wolf” in 2009.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-27",
+    category: "Charts",
     text: "Five weeks on top of the world: “Dai Dai” holds No. 1 on Billboard's Global Excl. U.S. chart for a 5th week and the Global 200 for a 3rd, on the charts dated 1 August — ahead of BTS, Ariana Grande and Justin Bieber on both.",
     href: "/dai-dai",
   },
