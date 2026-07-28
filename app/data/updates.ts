@@ -31,6 +31,18 @@ export const updates: Update[] = [
   {
     date: "2026-07-27",
     category: "Charts",
+    text: "Iceland makes 21: “Dai Dai” jumps nine places to No. 1 on Billboard's Iceland Songs chart — a 21st country at No. 1 and Burna Boy's 40th chart-topping placement worldwide.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-27",
+    category: "Charts",
+    text: "Four new countries and two big climbs on Billboard's international charts: “Dai Dai” debuts in Chile (No. 14), Croatia (No. 14), Peru (No. 23) and Bolivia (No. 25), while Romania surges 16 places to No. 5 and Brazil rises 32 to No. 27.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-27",
+    category: "Charts",
     text: "A 20th country conquered: “Dai Dai” climbs four places to No. 1 on the Czech Republic's official singles chart in its 7th week — taking Burna Boy to 39 chart-topping placements worldwide.",
     href: "/records/charts",
   },
