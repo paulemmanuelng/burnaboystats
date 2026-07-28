@@ -122,7 +122,7 @@ export default function DaiDaiPage() {
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — the song has been the most-streamed on Earth for weeks" },
     { v: DAI_DAI_VIDEO_VIEWS, l: "YouTube views for the “Dai Dai” video — past 500 million in 59.4 days, the 12th fastest music video in history to the mark, Burna Boy's first to reach it, and the world's most-viewed music video of 2026" },
     { v: "No. 1", l: "right now on the daily charts of YouTube (59 countries), Apple Music (25), Deezer (16), Spotify (9), iTunes (7) and Shazam (2) — plus No. 1 worldwide on Spotify and YouTube" },
-    { v: "4 weeks", l: "at No. 1 on Mediatraffic's United World Chart (297,000 points) — the first Burna Boy song ever to top it" },
+    { v: "5 weeks", l: "at No. 1 on Mediatraffic's United World Chart — 375,000 points in the week to 1 August, and the first Burna Boy song ever to top it" },
     { v: "33 days", l: "as the most-viewed music video on YouTube worldwide, and No. 1 in 59 countries — now past 6.1 million likes" },
     { v: "33 days", l: "at No. 1 on Apple Music's European songs chart, and a 7th day atop the worldwide Apple Music chart" },
     { v: "23 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },

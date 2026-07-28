@@ -31,6 +31,18 @@ export const updates: Update[] = [
   {
     date: "2026-07-27",
     category: "Charts",
+    text: "A 20th country conquered: “Dai Dai” climbs four places to No. 1 on the Czech Republic's official singles chart in its 7th week — taking Burna Boy to 39 chart-topping placements worldwide.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-27",
+    category: "Charts",
+    text: "Five weeks atop the United World Chart: “Dai Dai” holds No. 1 on Mediatraffic's global ranking with 375,000 points for the week to 1 August — ahead of Ariana Grande and Tame Impala.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-27",
+    category: "Charts",
     text: "The numbers behind the Hot 100 jump: “Dai Dai” drew 8.6 million US streams (up 69%), 13.9 million in radio airplay audience (up 11%) and 7,000 sold (up 322%) in the 17–23 July tracking week, per Luminate — carrying it 42-17. It is Burna Boy's second Hot 100 top 40 hit and his first in a lead role.",
     href: "/dai-dai",
   },
