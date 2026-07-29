@@ -121,3 +121,20 @@ describe("generated liveCharts data", () => {
     expect(liveCodes.size).toBeGreaterThan(officialCodes.length);
   });
 });
+
+// kworb writes chart slugs, not strict ISO. Any code that isn't a real
+// alpha-2 renders as letter boxes instead of a flag, which is how "UK" shipped
+// looking broken. This pins the set so a new one gets caught rather than seen.
+describe("flag coverage", () => {
+  const ALIASED = new Set(["UK", "WW", "EL"]);
+  const ISO =
+    /^(A[DEFGILMOQRSTUWXZ]|B[ABDEFGHIJLMNOQRSTVWYZ]|C[ACDFGHIKLMNORUVWXYZ]|D[EJKMOZ]|E[CEGHRST]|F[IJKMOR]|G[ABDEFGHILMNPQRSTUWY]|H[KMNRTU]|I[DELMNOQRST]|J[EMOP]|K[EGHIMNPRWYZ]|L[ABCIKRSTUVY]|M[ACDEFGHKLMNOPQRSTUVWXYZ]|N[ACEFGILOPRUZ]|OM|P[AEFGHKLMNRSTWY]|QA|R[EOSUW]|S[ABCDEGHIJKLMNORTVXYZ]|T[CDFGHJKLMNORTVWZ]|U[AGMSYZ]|V[ACEGINU]|W[FS]|Y[ET]|Z[AMW])$/;
+
+  it("every country code either has a real flag or a deliberate alias", () => {
+    const codes = new Set(
+      liveCharts.flatMap((r) => r.platforms.flatMap((p) => p.entries.map((e) => e.country)))
+    );
+    const unmapped = [...codes].filter((c) => !ISO.test(c) && !ALIASED.has(c));
+    expect(unmapped, `codes with no flag and no alias: ${unmapped.join(", ")}`).toEqual([]);
+  });
+});

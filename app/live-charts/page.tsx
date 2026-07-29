@@ -19,6 +19,21 @@ export const metadata = pageMetadata({
   shareDescription: `${livePlacementCount} live chart placements across ${liveCountryCount} countries, refreshed hourly.`,
 });
 
+// ISO alpha-2 → regional-indicator flag emoji.
+//
+// Two traps here. kworb writes chart-slug codes, not strict ISO: the UK is
+// "uk", but the ISO code is GB, and 🇺🇰 is not a real flag sequence — it renders
+// as two letter boxes. And WW (Shazam's worldwide chart) is not a country at
+// all. Both are mapped rather than passed through.
+const FLAG_ALIASES: Record<string, string> = { UK: "GB", EL: "GR", WW: "" };
+
+function flagFor(code: string) {
+  const mapped = FLAG_ALIASES[code] ?? code;
+  if (!mapped) return "🌍"; // worldwide / non-country chart
+  if (!/^[A-Z]{2}$/.test(mapped)) return "🏳️";
+  return String.fromCodePoint(...[...mapped].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65));
+}
+
 const reach = (r: (typeof liveCharts)[number]) =>
   r.platforms.reduce((n, p) => n + p.entries.length, 0);
 
@@ -54,8 +69,13 @@ function ReleaseBlock({ r }: { r: (typeof liveCharts)[number] }) {
         <span className={styles.chips}>
           {r.platforms.map((p) => (
             <span key={p.platform} className={styles.chip}>
-              {p.platform} <b>{p.entries.length}</b>
-              {p.numberOnes > 0 && <em className={styles.chipNo1}>{p.numberOnes}×#1</em>}
+              <span className={styles.chipPlatform}>{p.platform}</span>
+              <span className={styles.chipCount}>
+                {p.entries.length} {p.entries.length === 1 ? "country" : "countries"}
+              </span>
+              {p.numberOnes > 0 && (
+                <span className={styles.chipNo1}>{p.numberOnes} at No.&nbsp;1</span>
+              )}
             </span>
           ))}
         </span>
@@ -77,6 +97,7 @@ function ReleaseBlock({ r }: { r: (typeof liveCharts)[number] }) {
             {p.entries.map((e) => (
               <li key={e.country} className={e.position === 1 ? styles.entryTop : styles.entry}>
                 <span className={styles.pos}>#{e.position}</span>
+                <span className={styles.flag} aria-hidden="true">{flagFor(e.country)}</span>
                 <span className={styles.country}>{e.name}</span>
                 <Move v={e.movement} />
               </li>

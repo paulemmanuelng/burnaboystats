@@ -132,8 +132,8 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 6px 16px;
-  padding: 15px 4px;
+  gap: 10px 16px;
+  padding: 20px 4px;
   cursor: pointer;
   list-style: none;
 }
@@ -146,7 +146,7 @@
   grid-column: 1;
   grid-row: 1;
   font-family: var(--font-anton), sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.4rem;
   letter-spacing: 0.01em;
   transition: color var(--dur) var(--ease);
 }
@@ -157,22 +157,36 @@
   flex-wrap: wrap;
   gap: 6px;
 }
+/* Each platform reads as a small labelled block. The previous version packed
+   "Apple Music 111 20×#1" into one 0.7rem pill, which needed decoding rather
+   than reading. */
 .chip {
-  padding: 3px 9px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 13px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.7rem;
-  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 0.86rem;
+  line-height: 1.3;
 }
-.chip b { color: var(--text); font-weight: 700; }
-.chipNo1 { margin-left: 5px; color: var(--gold); font-style: normal; }
+.chipPlatform { color: var(--text); font-weight: 600; }
+.chipCount { color: var(--text-muted); }
+.chipNo1 {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 182, 39, 0.16);
+  color: var(--gold-bright);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
 .total {
   grid-column: 2;
   grid-row: 1;
   text-align: right;
   font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
   white-space: nowrap;
 }
@@ -185,8 +199,8 @@
   gap: 10px;
   margin: 14px 0 10px;
   font-family: var(--font-mono), monospace;
-  font-size: 0.76rem;
-  letter-spacing: 0.14em;
+  font-size: 0.86rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 400;
@@ -195,20 +209,22 @@
 
 .entries {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
-  gap: 2px 14px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  gap: 3px 16px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .entry, .entryTop {
   display: flex;
-  align-items: baseline;
-  gap: 9px;
-  padding: 5px 8px;
-  border-radius: 4px;
-  font-size: 0.88rem;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 1rem;
 }
+.entry:hover, .entryTop:hover { background: rgba(255, 255, 255, 0.04); }
+.flag { flex: none; font-size: 1.05rem; line-height: 1; }
 /* A current No. 1 is the thing people come to see — make it findable. */
 .entryTop {
   background: rgba(255, 182, 39, 0.10);
@@ -216,24 +232,26 @@
 .entryTop .pos { color: var(--gold-bright); }
 .pos {
   flex: none;
-  min-width: 3.2ch;
+  min-width: 3.6ch;
   font-family: var(--font-mono), monospace;
-  font-size: 0.8rem;
-  color: var(--text-muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text);
 }
 .country {
   flex: 1;
   min-width: 0;
   color: var(--text);
+  font-size: 0.98rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.moveUp   { font-size: 0.7rem; color: #35d07f; font-family: var(--font-mono), monospace; }
-.moveDown { font-size: 0.7rem; color: #e2564a; font-family: var(--font-mono), monospace; }
-.moveFlat { font-size: 0.7rem; color: var(--text-muted); opacity: 0.5; }
+.moveUp   { font-size: 0.8rem; color: #35d07f; font-family: var(--font-mono), monospace; }
+.moveDown { font-size: 0.8rem; color: #e2564a; font-family: var(--font-mono), monospace; }
+.moveFlat { font-size: 0.8rem; color: var(--text-muted); opacity: 0.5; }
 .moveNew  {
-  font-size: 0.62rem;
+  font-size: 0.7rem;
   letter-spacing: 0.08em;
   color: var(--gold);
   font-family: var(--font-mono), monospace;
