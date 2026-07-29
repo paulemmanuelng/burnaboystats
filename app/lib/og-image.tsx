@@ -39,3 +39,30 @@ export function ogImage({ kicker, title, sub }: { kicker: string; title: string;
     { ...size }
   );
 }
+
+/**
+ * Cache key for a social preview card.
+ *
+ * Next derives the `?<hash>` on an og:image URL from the route file, not from
+ * the data the card renders. So a card built from live figures keeps the exact
+ * same URL after those figures move, and Twitter, WhatsApp, Slack and iMessage
+ * go on serving whichever copy they scraped first — a preview frozen at
+ * whatever the numbers were the day someone first shared the link.
+ *
+ * Feeding the rendered text through here puts it in the URL instead, so the
+ * preview changes precisely when the card changes, and not otherwise.
+ */
+export function ogId(s: string) {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+  return h.toString(36);
+}
+
+export function ogVersions(
+  card: { kicker: string; title: string; sub?: string },
+  alt: string
+) {
+  return [
+    { id: ogId([card.kicker, card.title, card.sub ?? ""].join("|")), alt, size, contentType },
+  ];
+}

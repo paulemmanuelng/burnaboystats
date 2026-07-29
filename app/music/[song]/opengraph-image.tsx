@@ -1,10 +1,35 @@
 import { ImageResponse } from "next/og";
+import { ogId } from "../../lib/og-image";
 import { songBySlug, songSlugs } from "../../data/songs";
 import { allChartItems } from "../../data/charts";
 import { allItems } from "../../data/certifications";
 
 export function generateStaticParams() {
   return songSlugs.map((song) => ({ song }));
+}
+
+// The numbers on a song card move as it charts and gets certified. Fold them
+// into the image id so a cached share preview follows the song rather than
+// staying frozen at whatever it read the first time it was scraped.
+function songStats(slug: string) {
+  const song = songBySlug(slug);
+  const chart = song && allChartItems.find((r) => r.title === song.title);
+  const cert = song && allItems.find((r) => r.title === song.title);
+  const entries = chart ? chart.entries : [];
+  const countries = entries.filter((e) => e.c !== "GLB" && e.c !== "GLBX").length;
+  const best = entries.length ? Math.min(...entries.map((e) => e.peak)) : null;
+  const certCount = cert ? cert.certs.length : 0;
+  return { song, countries, best, certCount };
+}
+
+export async function generateImageMetadata({
+  params,
+}: {
+  params: Promise<{ song: string }>;
+}) {
+  const { song: slug } = await params;
+  const { countries, best, certCount } = songStats(slug);
+  return [{ id: ogId(`${slug}|${best}|${countries}|${certCount}`), alt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };
@@ -15,14 +40,7 @@ const GOLD = "#ffb627";
 
 export default async function Image({ params }: { params: Promise<{ song: string }> }) {
   const { song: slug } = await params;
-  const song = songBySlug(slug);
-
-  const chart = song && allChartItems.find((r) => r.title === song.title);
-  const cert = song && allItems.find((r) => r.title === song.title);
-  const entries = chart ? chart.entries : [];
-  const countries = entries.filter((e) => e.c !== "GLB" && e.c !== "GLBX").length;
-  const best = entries.length ? Math.min(...entries.map((e) => e.peak)) : null;
-  const certCount = cert ? cert.certs.length : 0;
+  const { song, countries, best, certCount } = songStats(slug);
 
   const stats = [
     best != null && { v: best === 1 ? "No.1" : `#${best}`, l: "Best peak" },

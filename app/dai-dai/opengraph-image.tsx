@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { ogId } from "../lib/og-image";
 import { daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
 import { daiDaiCertCount } from "../data/certifications";
 
@@ -13,13 +14,20 @@ export const alt =
 const COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 const GOLD = "#ffb627";
 
+const stats = [
+  { v: "No.1", l: "Global 200" },
+  { v: `${daiDaiNumberOnes}`, l: "Country No.1s" },
+  { v: `${daiDaiChartEntryCount}`, l: "Charts" },
+  { v: `${daiDaiCertCount}`, l: "Certs" },
+];
+
+// Versioned by the stats on the card, so a share preview can't stay frozen at
+// last month's numbers once a platform has cached it.
+export const generateImageMetadata = () => [
+  { id: ogId(stats.map((s) => s.v).join("-")), alt, size, contentType },
+];
+
 export default function Image() {
-  const stats = [
-    { v: "No.1", l: "Global 200" },
-    { v: `${daiDaiNumberOnes}`, l: "Country No.1s" },
-    { v: `${daiDaiChartEntryCount}`, l: "Charts" },
-    { v: `${daiDaiCertCount}`, l: "Certs" },
-  ];
 
   return new ImageResponse(
     (
