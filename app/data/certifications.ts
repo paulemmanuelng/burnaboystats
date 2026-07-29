@@ -51,6 +51,7 @@ export const COUNTRIES: Record<string, Country> = {
   SK: { name: "Slovakia", flag: "🇸🇰", body: "ČNS IFPI" },
   PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV" },
   PT: { name: "Portugal", flag: "🇵🇹", body: "AFP" },
+  GR: { name: "Greece", flag: "🇬🇷", body: "IFPI Greece" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "RiSA" },
   NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable (TCSN)" },
   BR: { name: "Brazil", flag: "🇧🇷", body: "Pro-Música Brasil" },
@@ -80,7 +81,7 @@ export const albums: Release[] = [
 export const singles: Release[] = [
   { title: "Dai Dai", credit: "Shakira X Burna Boy", year: 2026, certs: [
     { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
-    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Gold" }, { c: "PT", level: "Gold" },
+    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "GR", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -397,6 +398,7 @@ export const certHistory: CertEvent[] = [
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "HU", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "SK", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "PT", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "GR", level: "Gold", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "ZA", level: "Platinum", x: 2, year: 2026 },
   { title: "Gbona", country: "FR", level: "Diamond", year: 2026 },
 
