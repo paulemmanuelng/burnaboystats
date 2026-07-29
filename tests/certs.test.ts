@@ -9,7 +9,7 @@ import {
   certHistory,
   type Release,
 } from "../app/data/certifications";
-import { matches } from "../app/lib/certs";
+import { matches, badgeWeight, byMostCertified, MARKET_WEIGHT } from "../app/lib/certs";
 
 describe("certification data integrity", () => {
   it("every cert references a known country code", () => {
@@ -113,5 +113,46 @@ describe("matches() filter logic", () => {
   it("matches on country + tier together", () => {
     expect(matches(item, "FR", "Platinum")).toBe(true);
     expect(matches(item, "US", "Platinum")).toBe(false);
+  });
+});
+
+// Ordering weight. A BPI Silver is 200,000 units — more than a Gold is worth in
+// several markets — so the grid must not rank plaques by tier name alone.
+describe("certification ordering", () => {
+  it("ranks a UK Silver above a Nigerian Gold", () => {
+    // The case that prompted this: single-cert releases tied on count, so the
+    // weight decides, and tier-only weighting put every NG Gold on top.
+    expect(badgeWeight({ c: "UK", level: "Silver" })).toBeGreaterThan(
+      badgeWeight({ c: "NG", level: "Gold" })
+    );
+  });
+
+  it("still ranks a higher tier above a lower one in the same market", () => {
+    expect(badgeWeight({ c: "NG", level: "Platinum" })).toBeGreaterThan(
+      badgeWeight({ c: "NG", level: "Gold" })
+    );
+    expect(badgeWeight({ c: "US", level: "Diamond" })).toBeGreaterThan(
+      badgeWeight({ c: "US", level: "Platinum" })
+    );
+  });
+
+  it("counts a multiplier", () => {
+    expect(badgeWeight({ c: "US", level: "Platinum", x: 2 })).toBe(
+      badgeWeight({ c: "US", level: "Platinum" }) * 2
+    );
+  });
+
+  // Without this, adding a 26th country silently falls back to a default
+  // weight and lands mid-table for reasons nobody can see.
+  it("every certified country has an explicit weight", () => {
+    const used = new Set(allItems.flatMap((r) => r.certs.map((c) => c.c)));
+    const missing = [...used].filter((c) => MARKET_WEIGHT[c] === undefined);
+    expect(missing, `no MARKET_WEIGHT for: ${missing.join(", ")}`).toEqual([]);
+  });
+
+  it("ordering never changes the totals it is applied to", () => {
+    const before = totalAwards();
+    [...allItems].sort(byMostCertified);
+    expect(totalAwards()).toBe(before);
   });
 });

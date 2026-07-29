@@ -3,20 +3,11 @@
 import { useEffect, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
-import { matches } from "../lib/certs";
+import { matches, badgeWeight, byMostCertified } from "../lib/certs";
 import { track } from "../lib/analytics";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
 const YEARS = [2026, 2025, 2024, 2023];
-
-// Order releases so the most-certified appear first. Primary: number of
-// certifications; tiebreaker: a prestige weight (Diamond > Platinum > Gold >
-// Silver, scaled by any multiplier), so among equal counts the bigger plaques win.
-const TIER_WEIGHT: Record<string, number> = { Diamond: 4, Platinum: 3, Gold: 2, Silver: 1 };
-const certWeight = (r: Release) =>
-  r.certs.reduce((sum, c) => sum + (TIER_WEIGHT[c.level] ?? 1) * (c.x ?? 1), 0);
-const byMostCertified = (a: Release, b: Release) =>
-  b.certs.length - a.certs.length || certWeight(b) - certWeight(a);
 
 // "Year" isn't a real filter on this grid (releases don't carry a
 // certified-date) — it jumps down to the "Certifications by year" section
@@ -58,14 +49,20 @@ function CertCard({
       <div className={styles.certRowHead}>
         <span className={styles.certTitle}>{item.title}</span>
         <span className={styles.certCredit}>
-          {item.credit ? `${item.credit} · ${item.year}` : item.year}
+          {/* Not every release carries a year. Joining unconditionally printed
+              "feat. Khalid · undefined" on the live page. */}
+          {[item.credit, item.year].filter(Boolean).join(" · ")}
         </span>
       </div>
       <div className={styles.badges}>
-        {item.certs.map((cert) => {
-          const dim = !!((country && cert.c !== country) || (tier && cert.level !== tier));
-          return <Badge key={cert.c} cert={cert} countries={countries} dim={dim} />;
-        })}
+        {/* Same ordering as the release list: the plaque representing the most
+            leads, rather than whatever order the data happened to be typed in. */}
+        {[...item.certs]
+          .sort((x, y) => badgeWeight(y) - badgeWeight(x))
+          .map((cert) => {
+            const dim = !!((country && cert.c !== country) || (tier && cert.level !== tier));
+            return <Badge key={cert.c} cert={cert} countries={countries} dim={dim} />;
+          })}
       </div>
     </div>
   );
