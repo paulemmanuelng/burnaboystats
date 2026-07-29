@@ -49,7 +49,7 @@ const faqs: { q: string; a: string }[] = [
   },
   {
     q: "What is Burna Boy's World Cup song?",
-    a: `"Dai Dai", his collaboration with Shakira, is the official song of the 2026 FIFA World Cup. It reached No. 1 on both Billboard global charts and on the official singles chart in ${daiDaiNumberOnes} countries, and has spent 21 days at No. 1 on Spotify's Global Daily Top Songs chart as the most-streamed song in the world.`,
+    a: `"Dai Dai", his collaboration with Shakira, is the official song of the 2026 FIFA World Cup. It reached No. 1 on both Billboard global charts and on the official singles chart in ${daiDaiNumberOnes} countries, and has spent 22 days at No. 1 on Spotify's Global Daily Top Songs chart as the most-streamed song in the world.`,
   },
   {
     q: "How many Grammys has Burna Boy won?",

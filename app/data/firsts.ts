@@ -36,6 +36,7 @@ export const firstGroups: FirstGroup[] = [
     items: [
       { year: "2026", title: "First African artist to perform at a FIFA World Cup Final halftime show", text: "Took the 2026 final's halftime stage (19 July) — the first African artist ever to do so — alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay." },
       { year: "2026", title: "First African artist to headline a FIFA World Cup opening ceremony", text: "Mexico City, performing the official tournament song “Dai Dai” with Shakira." },
+      { year: "2026", title: "Fastest music video of his career to 600 million views", text: "“Dai Dai” with Shakira reached 600 million YouTube views in 67 days — the quickest either artist has managed, and the first and only 2026 music video to pass the mark." },
       { year: "2026", title: "Highest-charting World Cup song in Billboard Hot 100 history", text: "“Dai Dai” with Shakira peaked at No. 17 on the Hot 100 dated 1 August 2026 — higher than any official World Cup song before it, including Shakira's own “Waka Waka”." },
       { year: "2024", title: "First African artist to perform on the Grammys' main telecast stage", text: "A medley from I Told Them… with Brandy and 21 Savage." },
       { year: "2023", title: "First African artist to perform at a UEFA Champions League final", text: "The kick-off show ahead of the final in Istanbul." },

@@ -30,6 +30,36 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-27",
+    category: "Firsts & Records",
+    text: "600 million views in 67 days: the “Dai Dai” video becomes the fastest of either Burna Boy's or Shakira's career to the mark, and the first and only 2026 music video to reach it.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-27",
+    category: "Charts",
+    text: "A first US top five on a sales chart: “Dai Dai” climbs nine places to No. 2 on Billboard's Digital Song Sales chart, the second best-selling digital single in the country this week.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-27",
+    category: "Charts",
+    text: "New peaks across four more countries: “Dai Dai” hits No. 5 in Latvia (+5), No. 6 in Israel (+7), No. 7 in Denmark (+6) and No. 8 in Malaysia — and holds No. 1 on The Official MENA Chart for a third straight week.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-27",
+    category: "Awards",
+    text: "Two more nominations: “Dai Dai” is up for OMG Collaboration at the 2026 Premios Juventud, while Burna Boy takes three at this year's AFRIMMA — Artist of the Year, Album of the Year for “No Sign of Weakness”, and the Crossing Boundaries With Music Award.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-07-27",
+    category: "Streaming",
+    text: "58.27 million monthly listeners: another all-time Spotify peak at 58,269,694, holding at No. 40 in the world. “Dai Dai” passes 257 million streams and a 22nd day at No. 1 on the Global Daily chart with 5,331,621.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-27",
     category: "Charts",
     text: "Iceland makes 21: “Dai Dai” jumps nine places to No. 1 on Billboard's Iceland Songs chart — a 21st country at No. 1 and Burna Boy's 40th chart-topping placement worldwide.",
     href: "/records/charts",

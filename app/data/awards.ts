@@ -284,6 +284,9 @@ export const ceremonies: Ceremony[] = [
   {
     name: "African Muzik Magazine Awards (AFRIMMA)",
     noms: [
+      { year: 2026, category: "Artist of the Year", won: false },
+      { year: 2026, category: "Album of the Year", work: "No Sign of Weakness", won: false },
+      { year: 2026, category: "Crossing Boundaries With Music Award", won: false },
       { year: 2018, category: "Best African Dancehall/Reggae Act", won: true },
       { year: 2018, category: "Best Live Act", won: false },
       { year: 2019, category: "Song of the Year", work: "Killin' Dem", won: true },
@@ -303,6 +306,12 @@ export const ceremonies: Ceremony[] = [
       { year: 2022, category: "Best Live Act", won: false },
       { year: 2022, category: "Best Male West Africa", won: false },
       { year: 2022, category: "Best Collaboration", work: "Sungba (Remix)", won: false },
+    ],
+  },
+  {
+    name: "Premios Juventud",
+    noms: [
+      { year: 2026, category: "OMG Collaboration", work: "Dai Dai", won: false },
     ],
   },
   {
