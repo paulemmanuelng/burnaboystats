@@ -107,7 +107,7 @@ export default function DaiDaiPage() {
     { v: "No. 1", l: "Billboard Global 200 — a 3rd week atop the US-inclusive worldwide chart, a first for an African artist (and Shakira's 2nd)" },
     { v: "No. 1", l: "Billboard Global 200 Excl. US — a 5th week at No. 1" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
-    { v: "22 days", l: "at No. 1 on Spotify's Global Daily Top Songs chart — 40 days in the global Top 10 and 68 straight days on the chart, still the most-streamed song on Earth and a first for an African artist" },
+    { v: "23 days", l: "at No. 1 on Spotify's Global Daily Top Songs chart — 41 days in the global Top 10 and 68 straight days on the chart, still the most-streamed song on Earth and a first for an African artist" },
     { v: "3 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
     { v: "7 weeks", l: "at No. 1 on Switzerland's official chart — the longest run at No. 1 by any song there so far this year" },
     { v: "3 weeks", l: "at No. 1 on France's Official Singles Chart (SNEP)" },

@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-29",
+    category: "Streaming",
+    text: "A 23rd day on top: “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 5,380,338 streams — 41 days inside the global Top 10 and 68 straight days on the chart, still the most-streamed song on Earth.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-29",
     category: "Charts",
     text: "No. 1 on YouTube in 62 countries: “Dai Dai” is on 121 YouTube country charts, topping them from Brazil, the US and the UK to Nigeria, Kenya, South Africa and Angola — the single biggest platform footprint of Burna Boy's career.",
     href: "/live-charts",
