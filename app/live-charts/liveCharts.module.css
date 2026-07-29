@@ -335,6 +335,37 @@
 
 @media (max-width: 620px) {
   .summary_ { grid-template-columns: repeat(2, 1fr); }
-  .summary { grid-template-columns: 1fr; }
-  .total { grid-row: auto; }
+
+  /* The desktop rule places .title in column 2 and .total in column 3. Only
+     collapsing the template left those explicit columns pointing at tracks that
+     no longer exist, so the grid created implicit ones and the title ended up
+     floated right in a squeezed middle column. Every child is re-placed here
+     rather than half-reset.
+
+       [caret]  Title
+                311 charts · 37 at No. 1
+       [ platform chips, full width ]                                        */
+  .summary {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 6px 11px;
+    padding: 18px 2px;
+  }
+  .caret { grid-column: 1; grid-row: 1; margin-right: 0; align-self: start; }
+  .title { grid-column: 2; grid-row: 1; font-size: 1.25rem; }
+  .total { grid-column: 2; grid-row: 2; text-align: left; }
+  .chips { grid-column: 1 / -1; grid-row: 3; margin-top: 4px; }
+
+  /* Keep each chip on one line — "Apple Music" was breaking across two rows
+     inside its own pill, which read as broken rather than dense. */
+  .chip {
+    white-space: nowrap;
+    gap: 6px;
+    padding: 5px 11px;
+    font-size: 0.82rem;
+  }
+  .chipNo1 { padding: 2px 7px; font-size: 0.74rem; }
+
+  .entries { grid-template-columns: 1fr; }
+  .hint { align-items: flex-start; padding: 12px 14px; border-radius: var(--radius); }
+  .notice { padding: 14px 15px; }
 }
