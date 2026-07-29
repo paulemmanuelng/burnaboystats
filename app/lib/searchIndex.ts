@@ -245,6 +245,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["faq", "questions", "real name", "damini ogulu", "net worth", "how many grammys", "age", "born"],
   },
   {
+    title: "Live Charts",
+    path: "/live-charts",
+    section: "Records",
+    description: "Where every Burna Boy release is charting right now on Spotify, Apple Music, iTunes, Deezer and Shazam.",
+    keywords: ["live charts", "charting now", "right now", "apple music", "itunes", "shazam", "deezer", "how many countries", "currently charting"],
+  },
+  {
     title: "Chart Analysis",
     path: "/analysis",
     section: "Site",

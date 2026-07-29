@@ -83,6 +83,7 @@ const SEGMENT_LABELS: Record<string, string> = {
   share: "Stat Cards",
   faq: "FAQ",
   analysis: "Analysis",
+  "live-charts": "Live Charts",
   api: "Open Data API",
   methodology: "Methodology",
   about: "About",

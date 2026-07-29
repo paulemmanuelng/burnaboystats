@@ -34,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/records/by-the-numbers", priority: 0.9, changeFrequency: "weekly" },
     { path: "/records/visualized", priority: 0.8, changeFrequency: "weekly" },
     { path: "/records/charts", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/live-charts", priority: 0.9, changeFrequency: "daily" },
     { path: "/certifications", priority: 0.8, changeFrequency: "weekly" },
     { path: "/music", priority: 0.8, changeFrequency: "weekly" },
     ...songs.map((sg) => ({ path: `/music/${sg.slug}`, priority: 0.8, changeFrequency: "weekly" as const })),

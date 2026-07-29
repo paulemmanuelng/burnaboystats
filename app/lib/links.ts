@@ -21,6 +21,7 @@ export const footerLinks = [
   { href: "/music", label: "Discography" },
   { href: "/records/awards", label: "Awards" },
   { href: "/records/charts", label: "Chart records" },
+  { href: "/live-charts", label: "Live charts" },
   { href: "/records/firsts", label: "Firsts" },
   { href: "/records/tours", label: "Tours" },
   { href: "/records/cars", label: "Car collection" },
@@ -51,7 +52,8 @@ export const exploreFor: Record<string, string[]> = {
   // The other record pages were dead-ends too — point each onward to sibling
   // flagship stats (never to itself).
   "/records/awards": ["certifications", "charts", "tours"],
-  "/records/charts": ["dai-dai", "analysis", "certifications"],
+  "/records/charts": ["live-charts", "dai-dai", "analysis"],
+  "/live-charts": ["charts", "dai-dai", "africas-biggest"],
   "/dai-dai": ["charts", "africas-biggest", "share"],
   "/records/tours": ["records", "certifications", "charts"],
   "/records/firsts": ["dai-dai", "charts", "certifications"],

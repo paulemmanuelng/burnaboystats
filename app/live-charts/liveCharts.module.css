@@ -1,0 +1,270 @@
+.updated {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 22px;
+  padding: 8px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+.updated strong {
+  color: var(--text);
+  font-weight: 700;
+}
+/* Pulsing dot — the one place a "live" cue is honest, since this really does
+   refresh hourly. */
+.liveDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #35d07f;
+  box-shadow: 0 0 0 4px rgba(53, 208, 127, 0.16);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .liveDot { animation: none; }
+}
+
+/* The platform-vs-official distinction. Deliberately prominent. */
+.notice {
+  max-width: 72ch;
+  margin: 0 0 34px;
+  padding: 16px 18px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+.notice strong { color: var(--text); }
+.notice em { color: var(--text); font-style: italic; }
+
+.summary_ {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin: 0 0 44px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 20px 18px;
+  background: var(--bg-soft);
+}
+.statV {
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(1.7rem, 5vw, 2.5rem);
+  line-height: 1;
+  color: var(--gold);
+}
+.statL {
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+.section { margin: 0 0 48px; scroll-margin-top: 88px; }
+.h2 {
+  margin: 0 0 6px;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.4rem, 3.2vw, 2rem);
+}
+.count { color: var(--text-muted); font-size: 0.6em; }
+.hint {
+  margin: 0 0 18px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.platformGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+.platformCard {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 16px 18px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.platformCardV {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.9rem;
+  line-height: 1;
+  color: var(--gold-bright);
+}
+.platformCardName { font-size: 0.9rem; color: var(--text); }
+.platformCardNo1 {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  color: var(--gold);
+}
+
+/* One release, collapsed by default. <details> keeps every placement in the
+   HTML for crawlers while staying scannable, and needs no JavaScript. */
+.release {
+  border-bottom: 1px solid var(--line);
+}
+.release[open] { background: rgba(255, 255, 255, 0.015); }
+.summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px 16px;
+  padding: 15px 4px;
+  cursor: pointer;
+  list-style: none;
+}
+.summary::-webkit-details-marker { display: none; }
+.summary:hover .title { color: var(--gold); }
+/* All three get explicit placement. Grid places definitely-positioned items
+   before auto-placed ones, so giving only .total a row sent it to column 1 and
+   pushed the title across to column 2. */
+.title {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+  transition: color var(--dur) var(--ease);
+}
+.chips {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  padding: 3px 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+.chip b { color: var(--text); font-weight: 700; }
+.chipNo1 { margin-left: 5px; color: var(--gold); font-style: normal; }
+.total {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.totalNo1 { color: var(--gold); }
+
+.platformBlock { padding: 4px 4px 20px; }
+.platformName {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 14px 0 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 400;
+}
+.platformCount { color: var(--text-muted); letter-spacing: 0.04em; }
+
+.entries {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+  gap: 2px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.entry, .entryTop {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 0.88rem;
+}
+/* A current No. 1 is the thing people come to see — make it findable. */
+.entryTop {
+  background: rgba(255, 182, 39, 0.10);
+}
+.entryTop .pos { color: var(--gold-bright); }
+.pos {
+  flex: none;
+  min-width: 3.2ch;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.country {
+  flex: 1;
+  min-width: 0;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.moveUp   { font-size: 0.7rem; color: #35d07f; font-family: var(--font-mono), monospace; }
+.moveDown { font-size: 0.7rem; color: #e2564a; font-family: var(--font-mono), monospace; }
+.moveFlat { font-size: 0.7rem; color: var(--text-muted); opacity: 0.5; }
+.moveNew  {
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  font-family: var(--font-mono), monospace;
+}
+
+.source {
+  max-width: 72ch;
+  margin: 34px 0 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+.inlineLink {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.inlineLink:hover { color: var(--gold-bright); }
+
+.back {
+  display: inline-block;
+  margin: 26px 0 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.85rem;
+  color: var(--gold);
+  text-decoration: none;
+}
+.back:hover { text-decoration: underline; }
+
+@media (max-width: 620px) {
+  .summary_ { grid-template-columns: repeat(2, 1fr); }
+  .summary { grid-template-columns: 1fr; }
+  .total { grid-row: auto; }
+}

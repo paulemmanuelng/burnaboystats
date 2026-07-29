@@ -1,0 +1,226 @@
+import Link from "next/link";
+import styles from "./liveCharts.module.css";
+import KeepExploring from "../components/KeepExploring";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import {
+  liveCharts,
+  liveChartsUpdated,
+  livePlacementCount,
+  liveNumberOnes,
+  liveCountryCount,
+  livePlatformTotals,
+} from "../data/liveCharts";
+
+export const metadata = pageMetadata({
+  title: "Burna Boy Live Charts — Where He's Charting Right Now",
+  description: `Every Burna Boy song and album currently charting worldwide: ${livePlacementCount} live placements across ${liveCountryCount} countries on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube. Updated hourly.`,
+  path: "/live-charts",
+  shareTitle: "Burna Boy — Live Charts",
+  shareDescription: `${livePlacementCount} live chart placements across ${liveCountryCount} countries, refreshed hourly.`,
+});
+
+const reach = (r: (typeof liveCharts)[number]) =>
+  r.platforms.reduce((n, p) => n + p.entries.length, 0);
+
+const songs = liveCharts.filter((r) => r.kind === "song");
+const albums = liveCharts.filter((r) => r.kind === "album");
+
+const updatedLabel = new Date(`${liveChartsUpdated}T12:00:00Z`).toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+// Movement marker: kworb gives us the 24h change, which is the difference
+// between a static table and something that visibly moves.
+function Move({ v }: { v: number | null }) {
+  if (v === null) return <span className={styles.moveNew}>NEW</span>;
+  if (v === 0) return <span className={styles.moveFlat}>–</span>;
+  return (
+    <span className={v > 0 ? styles.moveUp : styles.moveDown}>
+      {v > 0 ? "▲" : "▼"}
+      {Math.abs(v)}
+    </span>
+  );
+}
+
+function ReleaseBlock({ r }: { r: (typeof liveCharts)[number] }) {
+  const total = reach(r);
+  const no1 = r.platforms.reduce((n, p) => n + p.numberOnes, 0);
+  return (
+    <details className={styles.release}>
+      <summary className={styles.summary}>
+        <span className={styles.title}>{r.title}</span>
+        <span className={styles.chips}>
+          {r.platforms.map((p) => (
+            <span key={p.platform} className={styles.chip}>
+              {p.platform} <b>{p.entries.length}</b>
+              {p.numberOnes > 0 && <em className={styles.chipNo1}>{p.numberOnes}×#1</em>}
+            </span>
+          ))}
+        </span>
+        <span className={styles.total}>
+          {total} {total === 1 ? "chart" : "charts"}
+          {no1 > 0 && <span className={styles.totalNo1}> · {no1} at No. 1</span>}
+        </span>
+      </summary>
+
+      {r.platforms.map((p) => (
+        <div key={p.platform} className={styles.platformBlock}>
+          <h3 className={styles.platformName}>
+            {p.platform}
+            <span className={styles.platformCount}>
+              {p.entries.length} {p.entries.length === 1 ? "country" : "countries"}
+            </span>
+          </h3>
+          <ul className={styles.entries}>
+            {p.entries.map((e) => (
+              <li key={e.country} className={e.position === 1 ? styles.entryTop : styles.entry}>
+                <span className={styles.pos}>#{e.position}</span>
+                <span className={styles.country}>{e.name}</span>
+                <Move v={e.movement} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </details>
+  );
+}
+
+export default function LiveChartsPage() {
+  const jsonLd = datasetJsonLd();
+
+  return (
+    <main id="content">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <header className="pageHeader container">
+        <h1>
+          Live <span className="accent">Charts</span>
+        </h1>
+        <p>
+          Where every Burna Boy record is charting right now — {livePlacementCount} placements
+          across {liveCountryCount} countries, refreshed every hour.
+        </p>
+      </header>
+
+      <div className="container">
+        <p className={styles.updated}>
+          <span className={styles.liveDot} aria-hidden="true" />
+          Snapshot taken <strong>{updatedLabel}</strong>
+        </p>
+
+        {/* The distinction this whole page rests on. Stated up front rather than
+            buried, because conflating the two would misrepresent both. */}
+        <p className={styles.notice}>
+          <strong>These are platform charts, not official charts.</strong> This page tracks the
+          daily country charts of Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — where a
+          record sits <em>today</em>. Official national charts, and the career peaks they produce,
+          are counted separately on{" "}
+          <Link href="/records/charts" className={styles.inlineLink}>
+            Chart Records
+          </Link>
+          . A No. 1 here is not the same thing as a No. 1 there.
+        </p>
+
+        <div className={styles.summary_}>
+          <div className={styles.stat}>
+            <span className={styles.statV}>{livePlacementCount}</span>
+            <span className={styles.statL}>live placements</span>
+          </div>
+          <div className={styles.stat}>
+            <span className={styles.statV}>{liveCountryCount}</span>
+            <span className={styles.statL}>countries</span>
+          </div>
+          <div className={styles.stat}>
+            <span className={styles.statV}>{liveNumberOnes}</span>
+            <span className={styles.statL}>currently at No. 1</span>
+          </div>
+          <div className={styles.stat}>
+            <span className={styles.statV}>{liveCharts.length}</span>
+            <span className={styles.statL}>releases charting</span>
+          </div>
+        </div>
+
+        <section className={styles.section} aria-labelledby="platforms">
+          <h2 id="platforms" className={styles.h2}>
+            By platform
+          </h2>
+          <div className={styles.platformGrid}>
+            {livePlatformTotals.map((p) => (
+              <div key={p.platform} className={styles.platformCard}>
+                <span className={styles.platformCardV}>{p.placements}</span>
+                <span className={styles.platformCardName}>{p.platform}</span>
+                {p.numberOnes > 0 && (
+                  <span className={styles.platformCardNo1}>{p.numberOnes} at No. 1</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.section} aria-labelledby="songs">
+          <h2 id="songs" className={styles.h2}>
+            Songs <span className={styles.count}>({songs.length})</span>
+          </h2>
+          <p className={styles.hint}>Tap a title to see every country it&apos;s charting in.</p>
+          {songs.map((r) => (
+            <ReleaseBlock key={r.title} r={r} />
+          ))}
+        </section>
+
+        {albums.length > 0 && (
+          <section className={styles.section} aria-labelledby="albums">
+            <h2 id="albums" className={styles.h2}>
+              Albums &amp; EPs <span className={styles.count}>({albums.length})</span>
+            </h2>
+            {albums.map((r) => (
+              <ReleaseBlock key={r.title} r={r} />
+            ))}
+          </section>
+        )}
+
+        <p className={styles.source}>
+          Positions from the daily country charts of each platform, via kworb, rebuilt hourly.
+          Movement is against 24 hours earlier — “NEW” means the record entered that chart today.
+          Because these charts refresh daily, a placement can appear and vanish within a day; the
+          official peaks on{" "}
+          <Link href="/records/charts" className={styles.inlineLink}>
+            Chart Records
+          </Link>{" "}
+          are permanent by contrast. How every figure on this site is sourced is set out in the{" "}
+          <Link href="/methodology" className={styles.inlineLink}>
+            methodology
+          </Link>
+          .
+        </p>
+
+        <Link href="/records/charts" className={styles.back}>
+          ← Official chart records
+        </Link>
+      </div>
+
+      <KeepExploring current="/live-charts" />
+    </main>
+  );
+}
+
+function datasetJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name: "Burna Boy live platform chart placements",
+    description: `Current positions for every charting Burna Boy release across Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts — ${livePlacementCount} placements in ${liveCountryCount} countries.`,
+    url: `${CANONICAL_ORIGIN}/live-charts`,
+    dateModified: liveChartsUpdated,
+    isAccessibleForFree: true,
+    creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
+    about: { "@type": "MusicGroup", name: "Burna Boy" },
+    variableMeasured: ["Chart position", "Platform", "Country", "24-hour movement"],
+    keywords: ["Burna Boy", "live charts", "Spotify", "Apple Music", "iTunes", "Shazam", "Deezer"],
+  };
+}

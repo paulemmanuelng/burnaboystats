@@ -271,3 +271,107 @@ export function staleMetrics(metrics, now = new Date()) {
   }
   return out;
 }
+
+// ---------------------------------------------------------------------------
+// LIVE PLATFORM CHARTS
+//
+// Parses kworb's artist page into per-song, per-platform, per-country live
+// positions. This is PLATFORM data (Spotify/Apple/iTunes/Deezer/Shazam/YouTube
+// daily country charts) — deliberately kept apart from data/charts.ts, which
+// holds official national-chart peaks and feeds the site's headline totals.
+// Mixing the two would inflate those totals with a different kind of number.
+//
+// Page shape, per song cell:
+//   <div class="wrap"><b>Song</b></div>
+//   <div class="spo">Spotify (10x #1):<br>
+//     <div class="… spo"><a href="…/at_daily.html">#1 Austria</a>
+//       <span class="change24">(=)</span></div> …
+// The country code lives in the href, which is far more reliable than the
+// display name (kworb writes "Turks and Caicos", "Côte d'Ivoire" etc.).
+const PLATFORM_CLASSES = {
+  spo: "Spotify",
+  app: "Apple Music",
+  itu: "iTunes",
+  dee: "Deezer",
+  sha: "Shazam",
+  you: "YouTube",
+};
+
+/** Turn kworb's "(=)", "(+12)", "(-3)", "(NE)" movement marker into a number|null. */
+export function parseMovement(raw) {
+  if (!raw) return null;
+  const t = raw.replace(/[()]/g, "").trim();
+  if (t === "=" ) return 0;
+  if (t === "NE" || t === "RE") return null; // new / re-entry: no prior position
+  const n = Number.parseInt(t, 10);
+  return Number.isFinite(n) ? n : null;
+}
+
+export function extractLiveCharts(html) {
+  const songs = [];
+  for (const cell of html.match(/<td[^>]*>[\s\S]*?<\/td>/g) || []) {
+    const title = cell.match(/<div class="wrap"><b>([\s\S]*?)<\/b>/)?.[1];
+    if (!title) continue;
+    const platforms = [];
+    // Each platform header opens a run that lasts until the next header.
+    const heads = [...cell.matchAll(/<div class="(spo|app|itu|dee|sha|you)">([^<(]+?)(?:\s*\(([^)]*)\))?:<br>/g)];
+    for (let i = 0; i < heads.length; i++) {
+      const h = heads[i];
+      const body = cell.slice(h.index, i + 1 < heads.length ? heads[i + 1].index : cell.length);
+      const entries = [];
+      for (const m of body.matchAll(
+        /<a href="[^"]*?\/([a-z]{2})(?:_daily)?\.html">#(\d+) ([^<]+)<\/a>\s*(?:<span[^>]*>([^<]*)<\/span>)?/g
+      )) {
+        entries.push({
+          country: m[1].toUpperCase(),
+          name: m[3].trim(),
+          position: Number.parseInt(m[2], 10),
+          movement: parseMovement(m[4]),
+        });
+      }
+      if (entries.length) {
+        platforms.push({
+          platform: PLATFORM_CLASSES[h[1]],
+          numberOnes: entries.filter((e) => e.position === 1).length,
+          entries: entries.sort((a, b) => a.position - b.position || a.name.localeCompare(b.name)),
+        });
+      }
+    }
+    if (platforms.length) {
+      songs.push({
+        title: title.replace(/&amp;/g, "&").trim(),
+        platforms: platforms.sort((a, b) => b.entries.length - a.entries.length),
+      });
+    }
+  }
+  // kworb lists duplicate rows by default (it ships a "No dupes" toggle), so the
+  // same release can appear more than once. Merge by title and keep the best
+  // position per country, or a song's totals get double-counted.
+  const merged = new Map();
+  for (const song of songs) {
+    const prev = merged.get(song.title);
+    if (!prev) { merged.set(song.title, song); continue; }
+    for (const p of song.platforms) {
+      const target = prev.platforms.find((x) => x.platform === p.platform);
+      if (!target) { prev.platforms.push(p); continue; }
+      for (const e of p.entries) {
+        const seen = target.entries.find((x) => x.country === e.country);
+        if (!seen) target.entries.push(e);
+        else if (e.position < seen.position) Object.assign(seen, e);
+      }
+      target.entries.sort((a, b) => a.position - b.position || a.name.localeCompare(b.name));
+      target.numberOnes = target.entries.filter((e) => e.position === 1).length;
+    }
+  }
+
+  // Albums arrive titled "Album: X" — split them out so the page can show
+  // songs and albums separately rather than mixing formats in one list.
+  const out = [...merged.values()].map((s) => {
+    const isAlbum = /^Album:\s*/i.test(s.title);
+    return { ...s, title: s.title.replace(/^Album:\s*/i, ""), kind: isAlbum ? "album" : "song" };
+  });
+
+  // Most-charted first — that is the headline the page leads with.
+  const reach = (s) => s.platforms.reduce((n, p) => n + p.entries.length, 0);
+  return out.sort((a, b) => reach(b) - reach(a));
+}

@@ -38,10 +38,22 @@ jobs:
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
         run: node scripts/apply-stat-updates.mjs --live
 
+      # Regenerates app/data/liveCharts.ts wholesale — a dataset, not a single
+      # figure, so it can't go through the anchored find/replace path above.
+      # It refuses to write a suspiciously small result, so a reshaped source
+      # page fails loudly instead of blanking the page.
+      - name: Rebuild live platform charts
+        run: node scripts/build-live-charts.mjs
+
+      # Gate on the working tree, not on one step's output: either generator
+      # can be the only thing that changed, and keying off just the first would
+      # silently drop the other's work.
       - name: Commit to main
-        if: steps.live.outputs.has_changes == 'true'
         run: |
           set -euo pipefail
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "nothing changed"; exit 0
+          fi
           git config user.name "burnaboystats-bot"
           git config user.email "bot@users.noreply.github.com"
           git add -A
