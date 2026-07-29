@@ -29,6 +29,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-29",
+    category: "Firsts & Records",
+    text: "A Hollywood soundtrack credit: Burna Boy is executive music consultant on the “Children of Blood and Bone” film, due in cinemas in January 2027 — his first credit shaping the music of a major studio release rather than appearing on one.",
+    href: "/about",
+  },
+  {
     date: "2026-07-27",
     category: "Firsts & Records",
     text: "600 million views in 67 days: the “Dai Dai” video becomes the fastest of either Burna Boy's or Shakira's career to the mark, and the first and only 2026 music video to reach it.",
