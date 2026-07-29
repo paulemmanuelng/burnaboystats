@@ -13,32 +13,28 @@ export const navItems = [
   { href: "/contact", label: "Contact" },
 ];
 
-// Footer sitemap — every page links straight to the deep stat pages that rank
-// for search queries (awards, charts, tours…), spreading internal link equity.
+// Footer sitemap. Carries only the DEEP pages — the ones with no route through
+// the top nav. Certifications, Discography, Stat Cards, FAQ and About all live
+// in navItems above, so repeating them here made the list twice as long while
+// adding no new path into the site.
 export const footerLinks = [
   { href: "/dai-dai", label: "The Dai Dai Story" },
-  { href: "/certifications", label: "Certifications" },
-  { href: "/music", label: "Discography" },
-  { href: "/records/awards", label: "Awards" },
-  { href: "/records/charts", label: "Chart records" },
   { href: "/live-charts", label: "Live charts" },
-  { href: "/records/firsts", label: "Firsts" },
+  { href: "/records/charts", label: "Chart records" },
+  { href: "/records/awards", label: "Awards" },
   { href: "/records/tours", label: "Tours" },
   { href: "/records/cars", label: "Car collection" },
   { href: "/records/africas-biggest", label: "Africa's Biggest" },
+  { href: "/records/firsts", label: "Firsts" },
   { href: "/analysis", label: "Chart analysis" },
-  { href: "/share", label: "Stat Cards" },
-  { href: "/faq", label: "FAQ" },
   { href: "/api", label: "Open data API" },
   { href: "/methodology", label: "Methodology" },
-  { href: "/about", label: "About" },
 ];
-
 // Which 3 sections each page points to in its "Keep exploring" block.
 export const exploreFor: Record<string, string[]> = {
-  "/": ["certifications", "music", "records"],
-  "/music": ["certifications", "records", "about"],
-  "/certifications": ["music", "records", "about"],
+  "/": ["certifications", "live-charts", "records"],
+  "/music": ["live-charts", "certifications", "records"],
+  "/certifications": ["music", "live-charts", "records"],
   "/about": ["music", "certifications", "records"],
   "/faq": ["records", "certifications", "music"],
   "/methodology": ["about", "records", "certifications"],
@@ -54,7 +50,7 @@ export const exploreFor: Record<string, string[]> = {
   "/records/awards": ["certifications", "charts", "tours"],
   "/records/charts": ["live-charts", "dai-dai", "analysis"],
   "/live-charts": ["charts", "dai-dai", "africas-biggest"],
-  "/dai-dai": ["charts", "africas-biggest", "share"],
+  "/dai-dai": ["live-charts", "charts", "africas-biggest"],
   "/records/tours": ["records", "certifications", "charts"],
   "/records/firsts": ["dai-dai", "charts", "certifications"],
   "/records/africas-biggest": ["certifications", "charts", "share"],

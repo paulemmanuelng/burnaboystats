@@ -15,6 +15,7 @@ export const metadata = pageMetadata({
 // (by-the-numbers, visualized, map, cars) following.
 const subs = [
   { href: "/records/charts", title: "Official Charts", desc: "Peak positions on every major chart worldwide", live: true },
+  { href: "/live-charts", title: "Live Charts", desc: "Where every release is charting right now, refreshed hourly", live: true },
   { href: "/records/awards", title: "Awards", desc: "Every win & nomination to date", live: true },
   { href: "/records/firsts", title: "Firsts", desc: "Every record broken & first achieved", live: true },
   { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists, year by year", live: true },
