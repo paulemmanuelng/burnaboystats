@@ -17,9 +17,16 @@
 //   node scripts/build-live-charts.mjs --dry     # print a summary only
 
 import { writeFile } from "node:fs/promises";
-import { extractLiveCharts } from "./stats-lib.mjs";
+import {
+  extractLiveCharts,
+  deezerCountryCodes,
+  extractDeezerChart,
+  mergeDeezerPlacements,
+} from "./stats-lib.mjs";
 
 const SOURCE = "https://kworb.net/itunes/artist/burnaboy.html";
+const DEEZER_INDEX = "https://kworb.net/charts/";
+const DEEZER_CHART = (cc) => `https://kworb.net/charts/deezer/${cc}.html`;
 const OUT = new URL("../app/data/liveCharts.ts", import.meta.url);
 const DRY = process.argv.includes("--dry");
 
@@ -36,6 +43,45 @@ if (!res.ok) {
   process.exit(1);
 }
 const releases = extractLiveCharts(await res.text());
+
+// Deezer backfill. The artist page under-reports Deezer badly, because Deezer
+// publishes only the lead credit and Burna Boy is the featured act on his
+// biggest current record. Sweep the country charts directly and merge.
+// Failure here is non-fatal: a partial Deezer picture beats no page at all.
+try {
+  const idx = await fetch(DEEZER_INDEX, { headers: { "user-agent": "burnaboystats-bot" } });
+  if (!idx.ok) throw new Error(`charts index ${idx.status}`);
+  const codes = deezerCountryCodes(await idx.text());
+
+  const rows = [];
+  let failed = 0;
+  // Sequential on purpose — this is a courtesy scrape of ~70 small pages
+  // against a free service, not a race.
+  for (const cc of codes) {
+    try {
+      const r = await fetch(DEEZER_CHART(cc), { headers: { "user-agent": "burnaboystats-bot" } });
+      if (!r.ok) throw new Error(String(r.status));
+      rows.push(...extractDeezerChart(await r.text(), cc));
+    } catch (err) {
+      failed++;
+      console.error(`  deezer/${cc}: ${err.message}`);
+    }
+  }
+  console.error(
+    `deezer sweep: ${codes.length} charts (${failed} failed) → ${rows.length} placements`
+  );
+  // The whole reason this sweep exists is that the artist page yields ~2 Deezer
+  // placements while the real number is ~60. Zero rows, or most charts failing,
+  // means the sweep is broken — not that he left Deezer. Fail rather than
+  // quietly shipping a page that under-reports by 95%.
+  if (rows.length === 0 || failed > codes.length / 2) {
+    throw new Error(`sweep returned ${rows.length} rows with ${failed}/${codes.length} failures`);
+  }
+  mergeDeezerPlacements(releases, rows);
+} catch (err) {
+  console.error(`DEEZER SWEEP FAILED: ${err.message}`);
+  process.exit(1);
+}
 
 const placements = releases.reduce((n, r) => n + reach(r), 0);
 const numberOnes = releases.reduce(
@@ -76,7 +122,12 @@ export interface LiveEntry {
   country: string; // ISO alpha-2
   name: string;
   position: number;
-  movement: number | null; // vs 24h ago; 0 = no change, null = new/re-entry
+  // Movement against the chart's previous edition: 0 = no change, null = the
+  // source flagged a new/re-entry, absent = the source reports no movement for
+  // this platform at all (YouTube). Absent and null are different facts.
+  movement?: number | null;
+  /** Why there is no movement: the source flagged a new entry or a re-entry. */
+  status?: "new" | "re";
 }
 
 export interface LivePlatform {

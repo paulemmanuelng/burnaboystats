@@ -308,6 +308,15 @@
   color: var(--gold);
   font-family: var(--font-mono), monospace;
 }
+/* A re-entry is a lesser event than a debut, so it reads quieter than .moveNew
+   — but it must not wrap, or the row height jumps on narrow screens. */
+.moveRe {
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  white-space: nowrap;
+}
 
 .source {
   max-width: 72ch;

@@ -30,6 +30,24 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-29",
+    category: "Streaming",
+    text: "One for the summer: “Dai Dai” is added to Songs of Summer 2026, Spotify's editors' pick of the season — the playlist's newest intake, alongside Yung Miami, Morgan Wallen, BabyChiefDoIt and Aitana.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-29",
+    category: "Streaming",
+    text: "Past 800 million on YouTube: the monthly audience climbs another 21M to a new peak of 805 million — the first African artist ever to go that high, and still the seventh-biggest audience ever recorded worldwide.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-29",
+    category: "Charts",
+    text: "No. 1 in 12 countries on Deezer: “Dai Dai” is charting on 55 Deezer country charts — top of the pile in Colombia, France, Germany, Spain, Poland, Turkey, Croatia, Czechia, Israel, Slovakia, South Africa and the UAE.",
+    href: "/live-charts",
+  },
+  {
+    date: "2026-07-29",
     category: "Charts",
     text: "A huge Japanese climb: “Dai Dai” surges to No. 25 on the Billboard Japan Hot 100 in its 5th week, passing the No. 38 peak of Bruno Mars & Lady Gaga's “Die With A Smile”. It also debuts at No. 12 on Oricon's Digital Singles chart with 1,914 downloads.",
     href: "/records/charts",

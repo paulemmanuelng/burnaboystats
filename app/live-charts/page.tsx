@@ -9,6 +9,7 @@ import {
   liveNumberOnes,
   liveCountryCount,
   livePlatformTotals,
+  type LiveEntry,
 } from "../data/liveCharts";
 
 export const metadata = pageMetadata({
@@ -46,15 +47,19 @@ const updatedLabel = new Date(`${liveChartsUpdated}T12:00:00Z`).toLocaleDateStri
   year: "numeric",
 });
 
-// Movement marker: kworb gives us the 24h change, which is the difference
-// between a static table and something that visibly moves.
-function Move({ v }: { v: number | null }) {
-  if (v === null) return <span className={styles.moveNew}>NEW</span>;
-  if (v === 0) return <span className={styles.moveFlat}>–</span>;
+// Movement marker. A re-entry is not a new entry — the record charted there
+// before, dropped off and came back — so it gets its own label rather than
+// being flattened into NEW. No marker at all means the platform doesn't
+// publish movement for that chart; show nothing rather than guess.
+function Move({ e }: { e: LiveEntry }) {
+  if (e.status === "re") return <span className={styles.moveRe}>RE-ENTRY</span>;
+  if (e.status === "new") return <span className={styles.moveNew}>NEW</span>;
+  if (e.movement === undefined || e.movement === null) return null;
+  if (e.movement === 0) return <span className={styles.moveFlat}>–</span>;
   return (
-    <span className={v > 0 ? styles.moveUp : styles.moveDown}>
-      {v > 0 ? "▲" : "▼"}
-      {Math.abs(v)}
+    <span className={e.movement > 0 ? styles.moveUp : styles.moveDown}>
+      {e.movement > 0 ? "▲" : "▼"}
+      {Math.abs(e.movement)}
     </span>
   );
 }
@@ -104,7 +109,7 @@ function ReleaseBlock({ r }: { r: (typeof liveCharts)[number] }) {
                 <span className={styles.pos}>#{e.position}</span>
                 <span className={styles.flag} aria-hidden="true">{flagFor(e.country)}</span>
                 <span className={styles.country}>{e.name}</span>
-                <Move v={e.movement} />
+                <Move e={e} />
               </li>
             ))}
           </ul>
@@ -144,8 +149,9 @@ export default function LiveChartsPage() {
             buried, because conflating the two would misrepresent both. */}
         <p className={styles.notice}>
           <strong>These are platform charts, not official charts.</strong> This page tracks the
-          daily country charts of Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — where a
-          record sits <em>today</em>. Official national charts, and the career peaks they produce,
+          country charts of Spotify, Apple Music, iTunes, Deezer and Shazam, which refresh daily,
+          plus YouTube&apos;s, which refreshes weekly — where a record sits{" "}
+          <em>right now</em>. Official national charts, and the career peaks they produce,
           are counted separately on{" "}
           <Link href="/records/charts" className={styles.inlineLink}>
             Chart Records
@@ -222,10 +228,12 @@ export default function LiveChartsPage() {
         )}
 
         <p className={styles.source}>
-          Positions from the daily country charts of each platform, via kworb, rebuilt hourly.
-          Movement is against 24 hours earlier — “NEW” means the record entered that chart today.
-          Because these charts refresh daily, a placement can appear and vanish within a day; the
-          official peaks on{" "}
+          Positions from each platform&apos;s own country charts, via kworb, rebuilt hourly.
+          Movement is against that chart&apos;s previous edition — “NEW” means the record entered
+          it this time round, and no marker means the platform doesn&apos;t publish movement for
+          that chart. Spotify, Apple Music, iTunes, Deezer and Shazam are daily, so a placement can
+          appear and vanish within a day; YouTube&apos;s is a weekly chart, counting a song&apos;s
+          streams across YouTube rather than views of one video. The official peaks on{" "}
           <Link href="/records/charts" className={styles.inlineLink}>
             Chart Records
           </Link>{" "}

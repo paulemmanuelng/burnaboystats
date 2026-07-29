@@ -322,12 +322,23 @@ export function extractLiveCharts(html) {
       for (const m of body.matchAll(
         /<a href="[^"]*?\/([a-z]{2})(?:_daily)?\.html">#(\d+) ([^<]+)<\/a>\s*(?:<span[^>]*>([^<]*)<\/span>)?/g
       )) {
-        entries.push({
+        // "(NE)" and "(RE)" both mean "no previous position", so both give a
+        // null movement — but they are different facts, and rendering a
+        // re-entry as NEW says the record has never charted there when it has.
+        // Keep which one it was. A marker missing entirely stays absent rather
+        // than being read as either.
+        const entry = {
           country: m[1].toUpperCase(),
           name: m[3].trim(),
           position: Number.parseInt(m[2], 10),
-          movement: parseMovement(m[4]),
-        });
+        };
+        if (m[4] !== undefined) {
+          entry.movement = parseMovement(m[4]);
+          const flag = m[4].replace(/[()]/g, "").trim();
+          if (flag === "NE") entry.status = "new";
+          else if (flag === "RE") entry.status = "re";
+        }
+        entries.push(entry);
       }
       if (entries.length) {
         platforms.push({
@@ -374,4 +385,110 @@ export function extractLiveCharts(html) {
   // Most-charted first — that is the headline the page leads with.
   const reach = (s) => s.platforms.reduce((n, p) => n + p.entries.length, 0);
   return out.sort((a, b) => reach(b) - reach(a));
+}
+
+// ---------------------------------------------------------------------------
+// DEEZER BACKFILL
+//
+// kworb's artist page attaches a placement to an artist using the chart row's
+// credit string. Deezer publishes only the LEAD credit — "Shakira - Dai Dai",
+// with no featured artists — so a collaboration Burna Boy is featured on never
+// gets attached to him there. The result was two Deezer placements on the
+// artist page while the same record sat at No. 1 in a dozen Deezer countries.
+//
+// Fix: read the Deezer country charts directly and merge what belongs to him.
+// Matching is on an explicit credit list rather than on title alone, because a
+// bare title match ("Location", "Real Life") would sweep in unrelated songs
+// that happen to share a name.
+const DEEZER_CREDIT_ALIASES = [
+  { artist: "Shakira", title: "Dai Dai", release: "Dai Dai" },
+];
+
+/** Deezer country chart slugs published by kworb, read from its charts index. */
+export function deezerCountryCodes(indexHtml) {
+  return [...new Set([...indexHtml.matchAll(/\/charts\/deezer\/([a-z]{2})\.html/g)].map((m) => m[1]))];
+}
+
+/**
+ * Pull Burna Boy's rows out of one Deezer country chart.
+ * Returns [{ release, country, name, position, movement }].
+ */
+export function extractDeezerChart(html, code) {
+  const name = html.match(/<title>\s*Deezer Top Songs - ([^<]*?)\s*<\/title>/)?.[1]?.trim();
+  if (!name) return [];
+  const country = code.toUpperCase();
+  const out = [];
+  for (const row of (html.split("<tbody>").pop() || "").split("<tr>").slice(1)) {
+    const cells = [...row.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((m) =>
+      m[1].replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").trim()
+    );
+    if (cells.length < 3) continue;
+    const [pos, move, credit] = cells;
+    const position = Number.parseInt(pos, 10);
+    if (!Number.isFinite(position)) continue;
+
+    const split = credit.indexOf(" - ");
+    const artist = split < 0 ? "" : credit.slice(0, split).trim();
+    const title = (split < 0 ? credit : credit.slice(split + 3)).trim();
+
+    let release = null;
+    if (/burna\s*boy/i.test(artist)) release = title;
+    else {
+      const alias = DEEZER_CREDIT_ALIASES.find(
+        (a) => a.artist.toLowerCase() === artist.toLowerCase() && a.title.toLowerCase() === title.toLowerCase()
+      );
+      if (alias) release = alias.release;
+    }
+    if (!release) continue;
+
+    // Deezer's own markers, which differ from the artist page's: "NEW"/"RE"
+    // rather than "NE"/"RE".
+    const flag = move.replace(/[()]/g, "").trim().toUpperCase();
+    const hit = { release, country, name, position, movement: parseMovement(move) };
+    if (flag === "NEW" || flag === "NE") hit.status = "new";
+    else if (flag === "RE") hit.status = "re";
+    out.push(hit);
+  }
+  return out;
+}
+
+/**
+ * Fold Deezer rows into the releases parsed from the artist page, mutating in
+ * place. A country can legitimately appear twice (Deezer occasionally carries
+ * two IDs for one track — Slovakia had it at both #1 and #54), so the best
+ * position wins, matching how the artist-page duplicates are merged above.
+ */
+export function mergeDeezerPlacements(releases, rows) {
+  for (const row of rows) {
+    let release = releases.find((r) => r.title === row.release && r.kind !== "album");
+    if (!release) {
+      release = { title: row.release, kind: "song", platforms: [] };
+      releases.push(release);
+    }
+    let block = release.platforms.find((p) => p.platform === "Deezer");
+    if (!block) {
+      block = { platform: "Deezer", numberOnes: 0, entries: [] };
+      release.platforms.push(block);
+    }
+    const seen = block.entries.find((e) => e.country === row.country);
+    const entry = {
+      country: row.country,
+      name: row.name,
+      position: row.position,
+      movement: row.movement,
+    };
+    if (row.status) entry.status = row.status;
+    if (!seen) block.entries.push(entry);
+    else if (entry.position < seen.position) Object.assign(seen, entry);
+  }
+
+  for (const r of releases) {
+    const block = r.platforms.find((p) => p.platform === "Deezer");
+    if (!block) continue;
+    block.entries.sort((a, b) => a.position - b.position || a.name.localeCompare(b.name));
+    block.numberOnes = block.entries.filter((e) => e.position === 1).length;
+    r.platforms.sort((a, b) => b.entries.length - a.entries.length);
+  }
+  const reach = (r) => r.platforms.reduce((n, p) => n + p.entries.length, 0);
+  return releases.sort((a, b) => reach(b) - reach(a));
 }

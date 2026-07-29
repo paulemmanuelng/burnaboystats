@@ -39,7 +39,7 @@ const stats: { num: string; label: string; sub: string; href: string; delta?: nu
   { num: spotifyTotalStreams, label: "Spotify streams, all-time", sub: "every song, lead and featured credits combined", href: "/music" },
   { num: youtubeTotalViews, label: "YouTube views, all-time", sub: "every video, across his channel and others'", href: "/music" },
   // YouTube figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.
-  { num: "784M", label: "YouTube Music monthly audience", sub: "first African artist ever past 700 million", href: "/records/africas-biggest" },
+  { num: "805M", label: "YouTube Music monthly audience", sub: "first African artist ever past 800 million", href: "/records/africas-biggest" },
   { num: `No. ${spotifyGlobalRank}`, label: "Global rank by Spotify listeners", sub: "his highest position among all artists worldwide", href: "/records/africas-biggest" },
   { num: "2B+", label: "UK streams", sub: "the first African artist to pass two billion", href: "/records/firsts" },
   { num: `${performedCountryCount}`, label: "Countries performed in", sub: "live shows on every inhabited continent", href: "/records/tours/map" },

@@ -1,6 +1,11 @@
 import { describe, it, expect } from "vitest";
 // @ts-expect-error — plain .mjs helper shared with the stats bot
-import { extractLiveCharts, parseMovement } from "../scripts/stats-lib.mjs";
+import {
+  extractLiveCharts,
+  parseMovement,
+  extractDeezerChart,
+  mergeDeezerPlacements,
+} from "../scripts/stats-lib.mjs";
 import {
   liveCharts,
   livePlacementCount,
@@ -136,5 +141,87 @@ describe("flag coverage", () => {
     );
     const unmapped = [...codes].filter((c) => !ISO.test(c) && !ALIASED.has(c));
     expect(unmapped, `codes with no flag and no alias: ${unmapped.join(", ")}`).toEqual([]);
+  });
+});
+
+// Deezer publishes only the LEAD credit, so "Shakira - Dai Dai" carries no
+// mention of Burna Boy and kworb's artist page never attaches it to him. These
+// pin the backfill that reads the country charts directly — including the
+// deliberate refusal to match on title alone.
+const DEEZER_FR = `<title>Deezer Top Songs - France</title><table><tbody>
+<tr><td>1</td><td>=</td><td>Shakira - Dai Dai</td></tr>
+<tr><td>2</td><td>+3</td><td>Some Other Act - Dai Dai</td></tr>
+<tr><td>4</td><td>NEW</td><td>Burna Boy - Kabiyesi</td></tr>
+<tr><td>9</td><td>-2</td><td>Unrelated - Another Song</td></tr>
+</tbody></table>`;
+
+describe("extractDeezerChart", () => {
+  const rows = extractDeezerChart(DEEZER_FR, "fr");
+
+  it("reads the country from the page title and the code from the slug", () => {
+    expect(rows[0]).toMatchObject({ country: "FR", name: "France" });
+  });
+
+  it("matches his own credits and the known collaboration alias", () => {
+    expect(rows.map((r: { release: string }) => r.release).sort()).toEqual(["Dai Dai", "Kabiyesi"]);
+  });
+
+  it("does not match on title alone — a same-titled song by another act is skipped", () => {
+    // "Some Other Act - Dai Dai" shares the title but is not his record.
+    expect(rows).toHaveLength(2);
+  });
+
+  it("carries position and movement through", () => {
+    const dd = rows.find((r: { release: string }) => r.release === "Dai Dai");
+    expect(dd).toMatchObject({ position: 1, movement: 0 });
+    const kb = rows.find((r: { release: string }) => r.release === "Kabiyesi");
+    expect(kb.movement).toBeNull(); // NEW — no prior position
+  });
+
+  it("returns nothing for a page that is not a Deezer country chart", () => {
+    expect(extractDeezerChart("<title>Something else</title><tbody></tbody>", "fr")).toEqual([]);
+  });
+});
+
+describe("mergeDeezerPlacements", () => {
+  it("attaches to the existing release rather than creating a duplicate", () => {
+    const releases = [
+      { title: "Dai Dai", kind: "song", platforms: [{ platform: "Spotify", numberOnes: 0, entries: [] }] },
+    ];
+    mergeDeezerPlacements(releases, [
+      { release: "Dai Dai", country: "FR", name: "France", position: 1, movement: 0 },
+    ]);
+    expect(releases).toHaveLength(1);
+    const dz = releases[0].platforms.find((p: { platform: string }) => p.platform === "Deezer");
+    expect(dz.entries).toHaveLength(1);
+    expect(dz.numberOnes).toBe(1);
+  });
+
+  it("keeps the best position when a country is listed twice", () => {
+    // Real case: Slovakia carried the same track at both #1 and #54.
+    const releases: { title: string; kind: string; platforms: unknown[] }[] = [];
+    mergeDeezerPlacements(releases, [
+      { release: "Dai Dai", country: "SK", name: "Slovakia", position: 54, movement: 0 },
+      { release: "Dai Dai", country: "SK", name: "Slovakia", position: 1, movement: 0 },
+    ]);
+    const dz = releases[0].platforms.find((p: { platform: string }) => p.platform === "Deezer");
+    expect(dz.entries).toHaveLength(1);
+    expect(dz.entries[0].position).toBe(1);
+  });
+
+  it("creates the release when the artist page never knew about it", () => {
+    const releases: { title: string }[] = [];
+    mergeDeezerPlacements(releases, [
+      { release: "Brand New", country: "NG", name: "Nigeria", position: 3, movement: null },
+    ]);
+    expect(releases[0].title).toBe("Brand New");
+  });
+});
+
+describe("Deezer coverage in the generated data", () => {
+  it("reflects the backfill rather than the artist page's handful", () => {
+    const deezer = livePlatformTotals.find((p) => p.platform === "Deezer");
+    // The artist page alone yielded 2. Anything near that means the sweep broke.
+    expect(deezer!.placements).toBeGreaterThan(20);
   });
 });
