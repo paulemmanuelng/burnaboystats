@@ -76,10 +76,14 @@ export default function ChartsPage() {
           only where a territory publishes no chart of its own — including the
           US and Canada, where Billboard&apos;s is the chart of record. The
           other {chartSourceSplit.global} are Billboard&apos;s worldwide charts.
-          Where an official national chart exists, it always wins. Genre,
-          airplay and below-the-main-chart &ldquo;bubbling&rdquo; listings are
-          excluded. Figures are peak-so-far, cross-checked against the chart
-          bodies&apos; cited data as of July 2026.
+          Where an official national chart exists, it always wins. Genre and
+          below-the-main-chart &ldquo;bubbling&rdquo; listings are excluded, as
+          are airplay charts — with one narrow exception: in the handful of
+          countries that publish no non-airplay national chart at all, the
+          airplay chart is the only national chart there is, and is used. Where
+          a country runs both, the non-airplay chart wins. Figures are
+          peak-so-far, cross-checked against the chart bodies&apos; cited data
+          as of July 2026.
         </p>
         <Link href="/records" className={styles.back}>← Career Records</Link>
       </div>

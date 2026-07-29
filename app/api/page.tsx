@@ -238,9 +238,12 @@ export default function ApiPage() {
               movement.
             </li>
             <li>
-              <strong>No airplay charts.</strong> Genre, component and
+              <strong>Almost no airplay charts.</strong> Genre, component and
               airplay-only charts are excluded by design, so figures here will be
-              lower than aggregators that count them.
+              lower than aggregators that count them. The exception is a country
+              that publishes no non-airplay national chart at all — there the
+              airplay chart is the only one there is. Where a country runs both,
+              the non-airplay chart is the one recorded.
             </li>
             <li>
               <strong>&ldquo;No. 1s&rdquo; counts placements.</strong> A song

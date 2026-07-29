@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-29",
     category: "Charts",
+    text: "Three more countries for “Dai Dai”: No. 3 in Bulgaria (PROPHON), No. 3 in Uruguay (Monitor Latino) and No. 14 in Croatia (Billboard Croatia Songs). That takes the song to 56 official chart entries, and Burna Boy's career footprint to 57 countries.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-29",
+    category: "Charts",
     text: "Three “Dai Dai” peaks were higher than recorded here: No. 3 in Singapore (RIAS), No. 9 in Hungary (MAHASZ Single Top 40) and No. 20 in South Africa (TOSAC). Singapore is the only chart there Burna Boy has ever entered — and he entered it at No. 3.",
     href: "/records/charts",
   },

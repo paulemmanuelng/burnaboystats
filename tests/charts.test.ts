@@ -50,13 +50,34 @@ describe("chart data integrity", () => {
     }
   });
 
-  // /records/charts states in print that airplay listings are excluded, and the
-  // site's rule is that a country's peak comes from its official sales/streaming
-  // chart. Keep the data honest with the claim.
-  it("no country is tracked on an airplay chart", () => {
-    for (const [code, c] of Object.entries(CHART_COUNTRIES)) {
-      expect(/airplay/i.test(c.body), `${code} → ${c.body}`).toBe(false);
+  // /records/charts and /api state in print that airplay listings are excluded
+  // except where a country publishes no non-airplay national chart at all.
+  // Keep the data honest with the claim: airplay is allowed ONLY for these
+  // three, and each must say so in its body string. Adding a fourth is a
+  // deliberate act that has to come through here.
+  const AIRPLAY_EXCEPTIONS = new Set(["IL", "BG", "UY"]);
+
+  it("only the declared exceptions are tracked on an airplay chart", () => {
+    const onAirplay = Object.entries(CHART_COUNTRIES)
+      .filter(([, c]) => /airplay/i.test(c.body))
+      .map(([code]) => code);
+    expect(new Set(onAirplay)).toEqual(
+      new Set([...AIRPLAY_EXCEPTIONS].filter((c) => onAirplay.includes(c)))
+    );
+    for (const code of onAirplay) {
+      expect(AIRPLAY_EXCEPTIONS.has(code), `${code} is on an airplay chart but not declared`).toBe(
+        true
+      );
     }
+  });
+
+  // The carve-out only holds if the country really has no alternative. Croatia
+  // is the worked example: HDU's Top lista has "Dai Dai" at No. 1 on airplay,
+  // but Billboard Croatia Songs exists, so Croatia is NOT an exception and must
+  // never be added as one.
+  it("does not treat Croatia as an airplay exception", () => {
+    expect(AIRPLAY_EXCEPTIONS.has("HR")).toBe(false);
+    expect(/airplay/i.test(CHART_COUNTRIES.HR?.body ?? "")).toBe(false);
   });
 
   it("derived totals stay consistent with the raw entries", () => {
@@ -76,9 +97,9 @@ describe("chart data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(chartEntryCount).toBe(254);
+    expect(chartEntryCount).toBe(257);
     expect(numberOnes).toBe(40);
-    expect(chartCountryCount).toBe(54);
+    expect(chartCountryCount).toBe(57);
   });
 });
 
@@ -100,7 +121,7 @@ describe("Dai Dai", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(daiDaiChartEntryCount).toBe(53);
+    expect(daiDaiChartEntryCount).toBe(56);
     expect(daiDaiNumberOnes).toBe(21);
   });
 
