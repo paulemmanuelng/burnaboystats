@@ -6,7 +6,7 @@ export const navItems = [
   { href: "/music", label: "Music" },
   { href: "/certifications", label: "Certifications" },
   { href: "/records", label: "Records" },
-  { href: "/share", label: "Stat Cards" },
+  { href: "/live-charts", label: "Live Charts" },
   { href: "/updates", label: "Updates" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
@@ -19,7 +19,7 @@ export const navItems = [
 // adding no new path into the site.
 export const footerLinks = [
   { href: "/dai-dai", label: "The Dai Dai Story" },
-  { href: "/live-charts", label: "Live charts" },
+  { href: "/share", label: "Stat Cards" },
   { href: "/records/charts", label: "Chart records" },
   { href: "/records/awards", label: "Awards" },
   { href: "/records/tours", label: "Tours" },
@@ -33,8 +33,8 @@ export const footerLinks = [
 // Which 3 sections each page points to in its "Keep exploring" block.
 export const exploreFor: Record<string, string[]> = {
   "/": ["certifications", "live-charts", "records"],
-  "/music": ["live-charts", "certifications", "records"],
-  "/certifications": ["music", "live-charts", "records"],
+  "/music": ["live-charts", "certifications", "share"],
+  "/certifications": ["music", "share", "records"],
   "/about": ["music", "certifications", "records"],
   "/faq": ["records", "certifications", "music"],
   "/methodology": ["about", "records", "certifications"],
@@ -47,10 +47,10 @@ export const exploreFor: Record<string, string[]> = {
   "/records/cars": ["records", "tours", "certifications"],
   // The other record pages were dead-ends too — point each onward to sibling
   // flagship stats (never to itself).
-  "/records/awards": ["certifications", "charts", "tours"],
+  "/records/awards": ["certifications", "charts", "share"],
   "/records/charts": ["live-charts", "dai-dai", "analysis"],
   "/live-charts": ["charts", "dai-dai", "africas-biggest"],
-  "/dai-dai": ["live-charts", "charts", "africas-biggest"],
+  "/dai-dai": ["live-charts", "charts", "share"],
   "/records/tours": ["records", "certifications", "charts"],
   "/records/firsts": ["dai-dai", "charts", "certifications"],
   "/records/africas-biggest": ["certifications", "charts", "share"],
