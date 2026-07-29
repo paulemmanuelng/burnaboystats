@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-29",
+    category: "Charts",
+    text: "A huge Japanese climb: “Dai Dai” surges to No. 25 on the Billboard Japan Hot 100 in its 5th week, passing the No. 38 peak of Bruno Mars & Lady Gaga's “Die With A Smile”. It also debuts at No. 12 on Oricon's Digital Singles chart with 1,914 downloads.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-29",
     category: "Certifications",
     text: "Gold in Greece: “Dai Dai” is certified by IFPI Greece — the World Cup anthem's 8th certification, and the first Burna Boy record to be certified there.",
     href: "/certifications",

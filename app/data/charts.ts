@@ -129,8 +129,8 @@ export const singleCharts: ChartRelease[] = [
     { c: "IL", peak: 6 }, { c: "NG", peak: 7 }, { c: "DK", peak: 7 }, { c: "MY", peak: 8 }, { c: "PL", peak: 9 },
     { c: "AU", peak: 12 }, { c: "FI", peak: 12 },
     { c: "EG", peak: 14 }, { c: "CL", peak: 14 }, { c: "US", peak: 17 }, { c: "SG", peak: 20 }, { c: "NZ", peak: 20 },
-    { c: "PE", peak: 23 }, { c: "BO", peak: 25 }, { c: "HU", peak: 26 }, { c: "BR", peak: 27 }, { c: "ZA", peak: 30 },
-    { c: "JP", peak: 60 }, { c: "VN", peak: 93 },
+    { c: "PE", peak: 23 }, { c: "BO", peak: 25 }, { c: "JP", peak: 25 }, { c: "HU", peak: 26 }, { c: "BR", peak: 27 },
+    { c: "ZA", peak: 30 }, { c: "VN", peak: 93 },
   ], note: "No.1 on both Billboard global charts — a 3rd week atop the Global 200 and a 5th week atop the Global 200 Excl. US. Also No.1 on Billboard's US World Digital Song Sales chart, No.1 on the IFPI Middle East & North Africa chart and No.3 on North Africa." },
   { title: "Last Last", year: 2022, entries: [
     { c: "ZA", peak: 1 }, { c: "NG", peak: 2 }, { c: "UK", peak: 4 }, { c: "NZ", peak: 12 },
