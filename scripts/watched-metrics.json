@@ -50,7 +50,8 @@
         "decimals": 2
       },
       "artistId": "3wcj11K77LjEY1PkEazffa",
-      "field": "peakListeners"
+      "field": "peakListeners",
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-listeners-rank",
@@ -79,7 +80,8 @@
           "format": "int",
           "describes": "global listeners rank"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-total-streams",
@@ -106,7 +108,8 @@
         "maxJump": 0.1,
         "min": 5000000000,
         "max": 100000000000
-      }
+      },
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "dai-dai-video-views",
@@ -132,7 +135,8 @@
           "format": "M0",
           "describes": "displayed view count (whole millions) on /dai-dai"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "yt-views-last-last",
@@ -160,7 +164,8 @@
           "format": "M0",
           "describes": "displayed YouTube views on /music/last-last"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "yt-views-ye",
@@ -188,7 +193,8 @@
           "format": "M0",
           "describes": "displayed YouTube views on /music/ye"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "yt-views-on-the-low",
@@ -216,7 +222,8 @@
           "format": "M0",
           "describes": "displayed YouTube views on /music/on-the-low"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "yt-views-city-boys",
@@ -244,7 +251,8 @@
           "format": "M0",
           "describes": "displayed YouTube views on /music/city-boys"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "youtube-total-views",
@@ -271,7 +279,8 @@
         "maxJump": 0.1,
         "min": 1000000000,
         "max": 50000000000
-      }
+      },
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-last-last",
@@ -299,7 +308,8 @@
           "format": "compact",
           "describes": "Spotify streams on /music/last-last"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-on-the-low",
@@ -327,7 +337,8 @@
           "format": "compact",
           "describes": "Spotify streams on /music/on-the-low"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-ye",
@@ -355,7 +366,8 @@
           "format": "compact",
           "describes": "Spotify streams on /music/ye"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-city-boys",
@@ -383,7 +395,8 @@
           "format": "compact",
           "describes": "Spotify streams on /music/city-boys"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-wgft",
@@ -411,7 +424,8 @@
           "format": "compact",
           "describes": "Spotify streams on /music/wgft"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-alone",
@@ -439,7 +453,8 @@
           "format": "compact",
           "describes": "Spotify streams on /music/alone"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-23",
@@ -467,7 +482,8 @@
           "format": "compact",
           "describes": "Spotify streams on /music/23"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-like-to-party",
@@ -495,7 +511,8 @@
           "format": "compact",
           "describes": "Spotify streams on /music/like-to-party"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-rizzla",
@@ -523,7 +540,8 @@
           "format": "compact",
           "describes": "Spotify streams on /music/rizzla"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-boshe-nlo",
@@ -551,7 +569,8 @@
           "format": "compact",
           "describes": "Spotify streams on /music/boshe-nlo"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-darko",
@@ -579,7 +598,8 @@
           "format": "compact",
           "describes": "Spotify streams on /music/darko"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-dai-dai",
@@ -607,7 +627,8 @@
           "format": "compact",
           "describes": "Spotify streams for Dai Dai"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-tatata",
@@ -635,7 +656,8 @@
           "format": "compact",
           "describes": "Spotify streams for TaTaTa"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     },
     {
       "id": "spotify-streams-smoke",
@@ -663,7 +685,8 @@
           "format": "compact",
           "describes": "Spotify streams for Smoke"
         }
-      ]
+      ],
+      "lastChanged": "2026-07-29"
     }
   ]
 }

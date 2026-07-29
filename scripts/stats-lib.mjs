@@ -236,3 +236,38 @@ export function applyAnchoredReplace(text, anchor, pattern, replacement) {
   const next = text.slice(0, at) + replacement + text.slice(at + m[0].length);
   return { text: next, applied: !already, changedFrom: m[0], reason: already ? "already current" : undefined };
 }
+
+// ---------------------------------------------------------------------------
+// STALENESS ALARM
+//
+// A dead extractor is loud — it returns NaN and gets reported "unavailable".
+// The dangerous failure is quieter: the fetch keeps working and keeps yielding
+// a plausible number, but the number stops moving because the source changed
+// shape. An unchanged figure reports "ok", so that looks identical to a stable
+// stat and can hide for weeks (it already did once here, when double-escaped
+// patterns meant edits silently never applied).
+//
+// So each metric records `lastChanged` — the last time its value actually
+// moved — and anything that should be moving but hasn't gets flagged.
+//
+// Metrics that are legitimately static are exempt: a `peak` only moves on a new
+// all-time high and a `rank` can sit still for weeks. Both would cry wolf.
+// Set `stalenessDays: null` on any other metric that is expected to sit still.
+export const DEFAULT_STALENESS_DAYS = 3;
+
+/** Metrics whose kind means "no change" is normal rather than suspicious. */
+const STATIC_BY_NATURE = new Set(["peak", "rank"]);
+
+export function staleMetrics(metrics, now = new Date()) {
+  const out = [];
+  for (const m of metrics) {
+    if (!m.live) continue; // monitor-only metrics write nothing to check
+    if (m.stalenessDays === null) continue; // explicitly opted out
+    if (m.stalenessDays === undefined && STATIC_BY_NATURE.has(m.kind)) continue;
+    const limit = m.stalenessDays ?? DEFAULT_STALENESS_DAYS;
+    if (!m.lastChanged) continue; // never recorded yet — nothing to judge against
+    const days = (now.getTime() - new Date(m.lastChanged).getTime()) / 86_400_000;
+    if (days >= limit) out.push({ id: m.id, label: m.label, days: Math.floor(days), limit });
+  }
+  return out;
+}

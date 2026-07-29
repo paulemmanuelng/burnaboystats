@@ -33,6 +33,7 @@ import {
   applyAnchoredReplace,
   appendTrendPoint,
   withinSanity,
+  staleMetrics,
 } from "./stats-lib.mjs";
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
@@ -206,7 +207,13 @@ async function main() {
   if (applied.length) {
     for (const { r } of applied) {
       const m = config.metrics.find((x) => x.id === r.id);
-      if (m) m.baseline = Math.round(r.live);
+      if (m) {
+        m.baseline = Math.round(r.live);
+        // Stamped only on a real write, so it records when the figure last
+        // MOVED — not merely when the bot last ran. That distinction is the
+        // whole point: a frozen source still runs fine every hour.
+        m.lastChanged = new Date().toISOString().slice(0, 10);
+      }
     }
     files.set(configPath, JSON.stringify(config, null, 2) + "\n");
   }
@@ -246,6 +253,22 @@ async function main() {
   if (!applied.length && !manual.length && !rejected.length) {
     lines.push("All watched figures are within tolerance. Nothing to update.");
   }
+
+  // Staleness alarm. Runs on the config AFTER this run's writes, so a figure
+  // that moved today is already cleared. Anything left has not moved in days
+  // while reporting "ok" every hour — the signature of a source that changed
+  // shape rather than a stat that happens to be flat.
+  const stale = staleMetrics(config.metrics);
+  if (stale.length) {
+    lines.push("");
+    lines.push(`### ⚠️ ${stale.length} figure(s) have stopped moving\n`);
+    for (const s of stale) {
+      lines.push(`- **${s.label}** — unchanged for ${s.days} days (expected to move within ${s.limit}).`);
+    }
+    lines.push("");
+    lines.push("These fetch cleanly but never change, which usually means the source page changed shape. Check the extractor before trusting the figure.");
+  }
+
   const body = lines.join("\n");
 
   console.log(body);
