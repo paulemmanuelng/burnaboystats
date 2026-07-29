@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-29",
+    category: "Charts",
+    text: "Three “Dai Dai” peaks were higher than recorded here: No. 3 in Singapore (RIAS), No. 9 in Hungary (MAHASZ Single Top 40) and No. 20 in South Africa (TOSAC). Singapore is the only chart there Burna Boy has ever entered — and he entered it at No. 3.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-29",
     category: "Streaming",
     text: "One for the summer: “Dai Dai” is added to Songs of Summer 2026, Spotify's editors' pick of the season — the playlist's newest intake, alongside Yung Miami, Morgan Wallen, BabyChiefDoIt and Aitana.",
     href: "/dai-dai",

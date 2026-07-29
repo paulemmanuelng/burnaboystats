@@ -125,17 +125,31 @@ export const albumCharts: ChartRelease[] = [
 ];
 
 export const singleCharts: ChartRelease[] = [
+  // Fan chart round-ups circulate a longer "Dai Dai" list than this one. The
+  // extras are consistently charts this dataset excludes by rule, so check the
+  // chart BODY before adding one — the country alone tells you nothing:
+  //   Bulgaria #3   — PROPHON *airplay*. Excluded (no airplay charts).
+  //   Uruguay #3/#5 — Monitor Latino *airplay*. Excluded.
+  //   Croatia #14   — Billboard Croatia Songs, not HDU. Croatia's own Top lista
+  //                   entry is an airplay chart, so Croatia has no eligible
+  //                   placing at all. Removed once already; don't re-add.
+  //   Malaysia #8   — IFPI Malaysia. RIM is the official body and has it at
+  //                   #12, which is what we carry. See the MY note below.
+  //   Hungary #8    — not a chart we could source; MAHASZ Single Top 40, the
+  //                   official singles chart, has it at #9.
+  // MENA (#1) and North Africa (#3) are real IFPI charts but regional, not
+  // national, so they live in the note rather than as country entries.
   { title: "Dai Dai", credit: "Shakira X Burna Boy", year: 2026, entries: [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1 }, { c: "LU", peak: 1 }, { c: "PT", peak: 1 }, { c: "PA", peak: 1 }, { c: "SE", peak: 1 }, { c: "IT", peak: 1 }, { c: "IN", peak: 1 }, { c: "CZ", peak: 1 }, { c: "IS", peak: 1, note: "Billboard Iceland Songs" }, { c: "GLB", peak: 1 }, { c: "GLBX", peak: 1 },
     { c: "UK", peak: 2 }, { c: "NO", peak: 2 }, { c: "ES", peak: 2 },
-    { c: "CA", peak: 3 }, { c: "SA", peak: 3 },
+    { c: "CA", peak: 3 }, { c: "SA", peak: 3 }, { c: "SG", peak: 3 },
     { c: "EC", peak: 4 },
     { c: "IE", peak: 5 }, { c: "LT", peak: 5 }, { c: "CR", peak: 5 }, { c: "RO", peak: 5 }, { c: "LV", peak: 5 },
-    { c: "IL", peak: 6 }, { c: "NG", peak: 7 }, { c: "DK", peak: 7 }, { c: "PL", peak: 9 },
+    { c: "IL", peak: 6 }, { c: "NG", peak: 7 }, { c: "DK", peak: 7 }, { c: "HU", peak: 9 }, { c: "PL", peak: 9 },
     { c: "AU", peak: 12 }, { c: "FI", peak: 12 }, { c: "MY", peak: 12 },
-    { c: "EG", peak: 14 }, { c: "CL", peak: 14 }, { c: "US", peak: 17 }, { c: "SG", peak: 20 }, { c: "NZ", peak: 20 },
-    { c: "PE", peak: 23 }, { c: "BO", peak: 25 }, { c: "JP", peak: 25 }, { c: "HU", peak: 26 }, { c: "BR", peak: 27 },
-    { c: "ZA", peak: 30 }, { c: "VN", peak: 93 },
+    { c: "EG", peak: 14 }, { c: "CL", peak: 14 }, { c: "US", peak: 17 }, { c: "NZ", peak: 20 }, { c: "ZA", peak: 20 },
+    { c: "PE", peak: 23 }, { c: "BO", peak: 25 }, { c: "JP", peak: 25 }, { c: "BR", peak: 27 },
+    { c: "VN", peak: 93 },
   ], note: "No.1 on both Billboard global charts — a 3rd week atop the Global 200 and a 5th week atop the Global 200 Excl. US. Also No.1 on Billboard's US World Digital Song Sales chart, No.1 on the IFPI Middle East & North Africa chart and No.3 on North Africa." },
   { title: "Last Last", year: 2022, entries: [
     { c: "ZA", peak: 1 }, { c: "NG", peak: 2 }, { c: "UK", peak: 4 }, { c: "NZ", peak: 12 },
