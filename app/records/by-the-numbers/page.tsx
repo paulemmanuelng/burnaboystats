@@ -10,6 +10,7 @@ import { countryCount as performedCountryCount } from "../../data/performedCount
 import { albums } from "../../data/albums";
 import { monthlyListenersSeries } from "../../data/trends";
 import { spotifyGlobalRank } from "../../data/spotify";
+import { spotifyTotalStreams, youtubeTotalViews } from "../../data/streamingTotals";
 
 const listenersLatest = monthlyListenersSeries[monthlyListenersSeries.length - 1].value;
 const listenersPct =
@@ -35,6 +36,8 @@ const stats: { num: string; label: string; sub: string; href: string; delta?: nu
   { num: "$6.15M", label: "Biggest concert by an African artist", sub: "London Stadium, June 2024 — 58,973 fans", href: "/records/tours" },
   { num: "9", label: "Billboard Hot 100 entries", sub: "the most by any African artist, six years running", href: "/records/charts" },
   { num: `${listenersLatest}M`, label: "Spotify monthly listeners", sub: "the first African artist ever to reach 50 million", href: "/records/africas-biggest", delta: listenersPct },
+  { num: spotifyTotalStreams, label: "Spotify streams, all-time", sub: "every song, lead and featured credits combined", href: "/music" },
+  { num: youtubeTotalViews, label: "YouTube views, all-time", sub: "every video, across his channel and others'", href: "/music" },
   // YouTube figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.
   { num: "784M", label: "YouTube Music monthly audience", sub: "first African artist ever past 700 million", href: "/records/africas-biggest" },
   { num: `No. ${spotifyGlobalRank}`, label: "Global rank by Spotify listeners", sub: "his highest position among all artists worldwide", href: "/records/africas-biggest" },

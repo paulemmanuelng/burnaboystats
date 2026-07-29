@@ -88,9 +88,25 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbTotalStreams",
       "kind": "drift",
-      "threshold": 0.03,
-      "baseline": 10297429319,
-      "note": "Cumulative Spotify streams across every Burna Boy song — worth a milestone note as it climbs (e.g. crossing 11B)."
+      "threshold": 0.001,
+      "baseline": 10445419308,
+      "note": "Cumulative Spotify streams across every Burna Boy song — worth a milestone note as it climbs (e.g. crossing 11B).",
+      "live": true,
+      "siteTargets": [
+        {
+          "file": "app/data/streamingTotals.ts",
+          "anchor": "export const spotifyTotalStreams =",
+          "pattern": "\"[\\d.]+[KMB]\"",
+          "template": "\"%s\"",
+          "format": "compact",
+          "describes": "Total Spotify streams on /records/by-the-numbers"
+        }
+      ],
+      "sanity": {
+        "maxJump": 0.1,
+        "min": 5000000000,
+        "max": 100000000000
+      }
     },
     {
       "id": "dai-dai-video-views",
@@ -237,9 +253,25 @@
       "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
       "extractor": "kworbYouTubeTotal",
       "kind": "drift",
-      "threshold": 0.01,
-      "baseline": 3151172520,
-      "note": "Cumulative views across every Burna Boy video — a milestone figure as it climbs."
+      "threshold": 0.001,
+      "baseline": 3154175749,
+      "note": "Cumulative views across every Burna Boy video — a milestone figure as it climbs.",
+      "live": true,
+      "siteTargets": [
+        {
+          "file": "app/data/streamingTotals.ts",
+          "anchor": "export const youtubeTotalViews =",
+          "pattern": "\"[\\d.]+[KMB]\"",
+          "template": "\"%s\"",
+          "format": "compact",
+          "describes": "Total YouTube views on /records/by-the-numbers"
+        }
+      ],
+      "sanity": {
+        "maxJump": 0.1,
+        "min": 1000000000,
+        "max": 50000000000
+      }
     },
     {
       "id": "spotify-streams-last-last",
