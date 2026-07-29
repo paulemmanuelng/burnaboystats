@@ -88,11 +88,63 @@
   font-size: clamp(1.4rem, 3.2vw, 2rem);
 }
 .count { color: var(--text-muted); font-size: 0.6em; }
+/* The rows are collapsed by default, so this instruction is doing real work —
+   at 0.88rem muted grey it read as a footnote and got skipped. Now it carries
+   the gold accent and matches the notice block above it, without shouting. */
 .hint {
-  margin: 0 0 18px;
-  color: var(--text-muted);
-  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  padding: 12px 16px;
+  background: rgba(255, 182, 39, 0.07);
+  border: 1px solid rgba(255, 182, 39, 0.28);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
+.hint strong { color: var(--gold-bright); font-weight: 700; }
+.hintIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #14100a;
+  animation: nudge 2.6s ease-in-out infinite;
+}
+@keyframes nudge {
+  0%, 82%, 100% { transform: translateY(0); }
+  88% { transform: translateY(2.5px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hintIcon { animation: none; }
+}
+
+/* Per-row affordance. The hint explains it once; this shows it on every row,
+   which is what actually makes the pattern discoverable mid-page. */
+.caret {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: var(--gold);
+  transition: transform var(--dur) var(--ease), background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+.summary:hover .caret {
+  background: rgba(255, 182, 39, 0.14);
+  border-color: var(--gold);
+}
+.release[open] .caret { transform: rotate(180deg); }
 
 .platformGrid {
   display: grid;
@@ -130,7 +182,7 @@
 .release[open] { background: rgba(255, 255, 255, 0.015); }
 .summary {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 10px 16px;
   padding: 20px 4px;
@@ -143,7 +195,7 @@
    before auto-placed ones, so giving only .total a row sent it to column 1 and
    pushed the title across to column 2. */
 .title {
-  grid-column: 1;
+  grid-column: 2;
   grid-row: 1;
   font-family: var(--font-anton), sans-serif;
   font-size: 1.4rem;
@@ -182,7 +234,7 @@
   white-space: nowrap;
 }
 .total {
-  grid-column: 2;
+  grid-column: 3;
   grid-row: 1;
   text-align: right;
   font-family: var(--font-mono), monospace;

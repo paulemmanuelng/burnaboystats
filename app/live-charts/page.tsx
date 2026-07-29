@@ -65,6 +65,11 @@ function ReleaseBlock({ r }: { r: (typeof liveCharts)[number] }) {
   return (
     <details className={styles.release}>
       <summary className={styles.summary}>
+        <span className={styles.caret} aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </span>
         <span className={styles.title}>{r.title}</span>
         <span className={styles.chips}>
           {r.platforms.map((p) => (
@@ -188,7 +193,18 @@ export default function LiveChartsPage() {
           <h2 id="songs" className={styles.h2}>
             Songs <span className={styles.count}>({songs.length})</span>
           </h2>
-          <p className={styles.hint}>Tap a title to see every country it&apos;s charting in.</p>
+          <p className={styles.hint}>
+            <span className={styles.hintIcon} aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </span>
+            <span>
+              <strong>Tap any title</strong>{" "}
+              to open it — every country it&apos;s charting in, its position, and how far it moved
+              in the last 24 hours.
+            </span>
+          </p>
           {songs.map((r) => (
             <ReleaseBlock key={r.title} r={r} />
           ))}
