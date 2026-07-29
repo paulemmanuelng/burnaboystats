@@ -61,7 +61,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-27",
     category: "Charts",
-    text: "New peaks across four more countries: “Dai Dai” hits No. 5 in Latvia (+5), No. 6 in Israel (+7), No. 7 in Denmark (+6) and No. 8 in Malaysia — and holds No. 1 on The Official MENA Chart for a third straight week.",
+    text: "New peaks across three more countries: “Dai Dai” hits No. 5 in Latvia (+5), No. 6 in Israel (+7) and No. 7 in Denmark (+6) — and holds No. 1 on The Official MENA Chart for a third straight week.",
     href: "/records/charts",
   },
   {

@@ -70,6 +70,11 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   BR: { name: "Brazil", flag: "🇧🇷", body: "Billboard Brasil Hot 100" },
   JP: { name: "Japan", flag: "🇯🇵", body: "Billboard Japan Hot 100" },
   SG: { name: "Singapore", flag: "🇸🇬", body: "RIAS Top Charts" },
+  // RIM is Malaysia's official chart body. Since March 2022 it splits by
+  // repertoire — Top 20 International, Top 10 Domestic (Malay), Top 10 Chinese
+  // — so there is no combined chart a foreign act can enter, and the
+  // International chart IS the official one for Burna Boy. Do not substitute a
+  // position from the regional Official Southeast Asia Charts: different body.
   MY: { name: "Malaysia", flag: "🇲🇾", body: "RIM Charts (Intl. streaming)" },
   LV: { name: "Latvia", flag: "🇱🇻", body: "Latvia Streaming Chart" },
   CL: { name: "Chile", flag: "🇨🇱", body: "Billboard Chile Songs" },
@@ -126,8 +131,8 @@ export const singleCharts: ChartRelease[] = [
     { c: "CA", peak: 3 }, { c: "SA", peak: 3 },
     { c: "EC", peak: 4 },
     { c: "IE", peak: 5 }, { c: "LT", peak: 5 }, { c: "CR", peak: 5 }, { c: "RO", peak: 5 }, { c: "LV", peak: 5 },
-    { c: "IL", peak: 6 }, { c: "NG", peak: 7 }, { c: "DK", peak: 7 }, { c: "MY", peak: 8 }, { c: "PL", peak: 9 },
-    { c: "AU", peak: 12 }, { c: "FI", peak: 12 },
+    { c: "IL", peak: 6 }, { c: "NG", peak: 7 }, { c: "DK", peak: 7 }, { c: "PL", peak: 9 },
+    { c: "AU", peak: 12 }, { c: "FI", peak: 12 }, { c: "MY", peak: 12 },
     { c: "EG", peak: 14 }, { c: "CL", peak: 14 }, { c: "US", peak: 17 }, { c: "SG", peak: 20 }, { c: "NZ", peak: 20 },
     { c: "PE", peak: 23 }, { c: "BO", peak: 25 }, { c: "JP", peak: 25 }, { c: "HU", peak: 26 }, { c: "BR", peak: 27 },
     { c: "ZA", peak: 30 }, { c: "VN", peak: 93 },
