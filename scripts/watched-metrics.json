@@ -100,7 +100,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 598650915,
+      "baseline": 600163559,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -418,7 +418,7 @@
       "match": "23",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 68230797,
+      "baseline": 68574730,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -558,7 +558,7 @@
       "match": "Dai Dai",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 252165445,
+      "baseline": 257533058,
       "live": true,
       "sanity": {
         "maxJump": 0.25,

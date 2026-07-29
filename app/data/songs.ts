@@ -273,7 +273,7 @@ export const songs: Song[] = [
     slug: "23",
     title: "23",
     year: 2020,
-    spotifyStreams: "68M",
+    spotifyStreams: "69M",
     album: "Twice as Tall",
     cover: "https://i.scdn.co/image/ab67616d0000b2735b069390c128a4b4c3197d80",
     spotify: "https://open.spotify.com/track/7EqoATlXAKNwzv45LAlqRt",
