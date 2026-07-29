@@ -136,10 +136,22 @@ describe("certification ordering", () => {
     );
   });
 
-  it("counts a multiplier", () => {
-    expect(badgeWeight({ c: "US", level: "Platinum", x: 2 })).toBe(
-      badgeWeight({ c: "US", level: "Platinum" }) * 2
+  it("counts a multiplier, but only within the same market", () => {
+    expect(badgeWeight({ c: "NG", level: "Platinum", x: 4 })).toBeGreaterThan(
+      badgeWeight({ c: "NG", level: "Platinum" })
     );
+    // The case that prompted the change: a 4x Platinum in a smaller market was
+    // jumping ahead of a Gold in a bigger one.
+    expect(badgeWeight({ c: "FR", level: "Gold" })).toBeGreaterThan(
+      badgeWeight({ c: "NG", level: "Platinum", x: 4 })
+    );
+  });
+
+  it("puts every other market ahead of the smallest-threshold one", () => {
+    const ng = badgeWeight({ c: "NG", level: "Diamond", x: 10 }); // best case NG
+    for (const c of ["US", "UK", "FR", "DE", "CA", "AU", "IT", "ES", "NL", "BR"]) {
+      expect(badgeWeight({ c, level: "Silver" }), `${c} Silver vs NG`).toBeGreaterThan(ng);
+    }
   });
 
   // Without this, adding a 26th country silently falls back to a default

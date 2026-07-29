@@ -38,8 +38,13 @@ export const MARKET_WEIGHT: Record<string, number> = {
   SK: 1,
 };
 
+// Market dominates, tier orders within a market. Multiplying the two let a
+// Nigerian 4x Platinum outrank a French Gold; the market term is now on its own
+// scale so it decides first, and tier (with any multiplier) only breaks ties
+// inside the same territory. A 2x Platinum still beats a Gold in Nigeria — it
+// just no longer jumps ahead of a bigger market's plaque.
 export const badgeWeight = (c: Cert) =>
-  (TIER_WEIGHT[c.level] ?? 1) * (MARKET_WEIGHT[c.c] ?? 2) * (c.x ?? 1);
+  (MARKET_WEIGHT[c.c] ?? 2) * 100 + (TIER_WEIGHT[c.level] ?? 1) * (c.x ?? 1);
 
 export const certWeight = (r: Release) =>
   r.certs.reduce((sum, c) => sum + badgeWeight(c), 0);
