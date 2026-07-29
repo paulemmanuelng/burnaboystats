@@ -6,6 +6,7 @@ import {
   CHART_SWEEPS,
   extractCountryChart,
   mergeChartPlacements,
+  titleKey,
 } from "../scripts/stats-lib.mjs";
 import {
   liveCharts,
@@ -254,5 +255,37 @@ describe("backfilled coverage in the generated data", () => {
     // means a sweep silently broke.
     expect(livePlatformTotals.find((p) => p.platform === "Deezer")!.placements).toBeGreaterThan(20);
     expect(livePlatformTotals.find((p) => p.platform === "YouTube")!.placements).toBeGreaterThan(50);
+  });
+});
+
+// The sweeps and the artist page name the same record differently. Matching on
+// the raw title created a second copy of a song and split its placements —
+// "On the Low" (24) sat next to "On The Low" (1).
+describe("titleKey", () => {
+  it("folds casing and featured-artist credits", () => {
+    expect(titleKey("On the Low")).toBe(titleKey("On The Low"));
+    expect(titleKey("For My Hand")).toBe(titleKey("For My Hand (feat. Ed Sheeran)"));
+    expect(titleKey("Real Life")).toBe(titleKey("Real Life (w/ Stormzy)"));
+  });
+
+  it("keeps version suffixes significant — they chart separately", () => {
+    expect(titleKey("Dai Dai")).not.toBe(titleKey("Dai Dai (Instrumental)"));
+    expect(titleKey("Dai Dai")).not.toBe(titleKey("Dai Dai (Clean Bandit Remix)"));
+  });
+});
+
+describe("no release is listed twice under a title variant", () => {
+  // The guard for the whole class of bug: if two rows in the generated data
+  // normalise to the same key, a song's placements are split across both and
+  // every total involving it is wrong.
+  it("holds one row per song", () => {
+    const seen = new Map<string, string>();
+    const clashes: string[] = [];
+    for (const r of liveCharts) {
+      const key = `${r.kind}:${titleKey(r.title)}`;
+      if (seen.has(key)) clashes.push(`${seen.get(key)} ↔ ${r.title}`);
+      else seen.set(key, r.title);
+    }
+    expect(clashes, `split releases: ${clashes.join(", ")}`).toEqual([]);
   });
 });

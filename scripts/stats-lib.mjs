@@ -482,6 +482,24 @@ export function extractCountryChart(html, code, spec) {
 }
 
 /**
+ * Matching key for a release title. The artist page and the country charts
+ * name the same record differently — "On the Low" vs "On The Low", "For My
+ * Hand" vs "For My Hand (feat. Ed Sheeran)" — and matching on the raw string
+ * created a second copy of the song, splitting its placements across two rows.
+ *
+ * Only casing, punctuation and featured-artist credits are normalised away.
+ * Version suffixes stay significant: "Dai Dai (Instrumental)" and "Dai Dai
+ * (Clean Bandit Remix)" chart separately and must not fold into "Dai Dai".
+ */
+export function titleKey(title) {
+  return String(title)
+    .replace(/\s*[([](?:feat|ft|with|w\/)\.?\s[^)\]]*[)\]]/gi, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+/**
  * Fold swept rows into the releases parsed from the artist page, mutating in
  * place. A country can legitimately appear twice (Deezer occasionally carries
  * two IDs for one track — Slovakia had it at both #1 and #54), so the best
@@ -490,7 +508,9 @@ export function extractCountryChart(html, code, spec) {
 export function mergeChartPlacements(releases, rows) {
   const touched = new Set();
   for (const row of rows) {
-    let release = releases.find((r) => r.title === row.release && r.kind !== "album");
+    let release = releases.find(
+      (r) => titleKey(r.title) === titleKey(row.release) && r.kind !== "album"
+    );
     if (!release) {
       release = { title: row.release, kind: "song", platforms: [] };
       releases.push(release);
