@@ -388,37 +388,66 @@ export function extractLiveCharts(html) {
 }
 
 // ---------------------------------------------------------------------------
-// DEEZER BACKFILL
+// COUNTRY-CHART BACKFILL
 //
-// kworb's artist page attaches a placement to an artist using the chart row's
-// credit string. Deezer publishes only the LEAD credit — "Shakira - Dai Dai",
-// with no featured artists — so a collaboration Burna Boy is featured on never
-// gets attached to him there. The result was two Deezer placements on the
-// artist page while the same record sat at No. 1 in a dozen Deezer countries.
+// kworb's artist page attaches a placement to an artist by matching the chart
+// row's credit string. Deezer and YouTube both publish only the LEAD credit —
+// "Shakira - Dai Dai", no featured artists — so a record Burna Boy is featured
+// on never gets attached to him on that page. The damage was severe: 2 Deezer
+// placements listed where there are 58, and 6 YouTube where there are ~127.
 //
-// Fix: read the Deezer country charts directly and merge what belongs to him.
-// Matching is on an explicit credit list rather than on title alone, because a
-// bare title match ("Location", "Real Life") would sweep in unrelated songs
-// that happen to share a name.
-const DEEZER_CREDIT_ALIASES = [
+// Fix: read those country charts directly and merge what belongs to him.
+// Matching uses an explicit credit list rather than title alone, because a bare
+// title match ("Location", "Real Life") would sweep in unrelated songs that
+// happen to share a name.
+const CREDIT_ALIASES = [
   { artist: "Shakira", title: "Dai Dai", release: "Dai Dai" },
 ];
 
-/** Deezer country chart slugs published by kworb, read from its charts index. */
-export function deezerCountryCodes(indexHtml) {
-  return [...new Set([...indexHtml.matchAll(/\/charts\/deezer\/([a-z]{2})\.html/g)].map((m) => m[1]))];
-}
+/**
+ * The charts we sweep directly. Both page types put position in column 0,
+ * movement in column 1 and the credit in column 2, so one row parser serves
+ * both; only the index, the URL shape and the title line differ.
+ */
+export const CHART_SWEEPS = [
+  {
+    platform: "Deezer",
+    index: "https://kworb.net/charts/",
+    url: (cc) => `https://kworb.net/charts/deezer/${cc}.html`,
+    codesFrom: (html) => [
+      ...new Set([...html.matchAll(/\/charts\/deezer\/([a-z]{2})\.html/g)].map((m) => m[1])),
+    ],
+    title: /<title>\s*Deezer Top Songs - ([^<]*?)\s*<\/title>/,
+  },
+  {
+    platform: "YouTube",
+    index: "https://kworb.net/youtube/insights/",
+    url: (cc) => `https://kworb.net/youtube/insights/${cc}.html`,
+    // This index links relatively ("ng.html"), not by full path.
+    codesFrom: (html) => [
+      ...new Set([...html.matchAll(/href="([a-z]{2})\.html"/g)].map((m) => m[1])),
+    ],
+    title: /<title>\s*YouTube Weekly Chart - ([^<]*?)\s*<\/title>/,
+    // A weekly chart behind 134 pages. Re-reading it every hour would be ~3,200
+    // needless requests a day against a free service, so sweep it every 6h and
+    // carry the data between runs.
+    everyHours: 6,
+  },
+];
 
 /**
- * Pull Burna Boy's rows out of one Deezer country chart.
- * Returns [{ release, country, name, position, movement }].
+ * Pull Burna Boy's rows out of one country chart.
+ * Returns [{ platform, release, country, name, position, movement, status? }].
  */
-export function extractDeezerChart(html, code) {
-  const name = html.match(/<title>\s*Deezer Top Songs - ([^<]*?)\s*<\/title>/)?.[1]?.trim();
-  if (!name) return [];
+export function extractCountryChart(html, code, spec) {
+  const name = html.match(spec.title)?.[1]?.trim();
+  if (!name) return []; // not the page we expected — don't guess at its shape
   const country = code.toUpperCase();
   const out = [];
-  for (const row of (html.split("<tbody>").pop() || "").split("<tr>").slice(1)) {
+  // Rows carry classes on these pages ("<tr class='newpeak'>"), so match the
+  // tag with attributes. Splitting on a literal "<tr>" silently returns only
+  // the header row, which is exactly how the YouTube sweep first read as zero.
+  for (const row of html.match(/<tr[^>]*>[\s\S]*?<\/tr>/g) || []) {
     const cells = [...row.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((m) =>
       m[1].replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").trim()
     );
@@ -434,17 +463,17 @@ export function extractDeezerChart(html, code) {
     let release = null;
     if (/burna\s*boy/i.test(artist)) release = title;
     else {
-      const alias = DEEZER_CREDIT_ALIASES.find(
-        (a) => a.artist.toLowerCase() === artist.toLowerCase() && a.title.toLowerCase() === title.toLowerCase()
+      const alias = CREDIT_ALIASES.find(
+        (a) =>
+          a.artist.toLowerCase() === artist.toLowerCase() &&
+          a.title.toLowerCase() === title.toLowerCase()
       );
       if (alias) release = alias.release;
     }
     if (!release) continue;
 
-    // Deezer's own markers, which differ from the artist page's: "NEW"/"RE"
-    // rather than "NE"/"RE".
     const flag = move.replace(/[()]/g, "").trim().toUpperCase();
-    const hit = { release, country, name, position, movement: parseMovement(move) };
+    const hit = { platform: spec.platform, release, country, name, position, movement: parseMovement(move) };
     if (flag === "NEW" || flag === "NE") hit.status = "new";
     else if (flag === "RE") hit.status = "re";
     out.push(hit);
@@ -453,24 +482,25 @@ export function extractDeezerChart(html, code) {
 }
 
 /**
- * Fold Deezer rows into the releases parsed from the artist page, mutating in
+ * Fold swept rows into the releases parsed from the artist page, mutating in
  * place. A country can legitimately appear twice (Deezer occasionally carries
  * two IDs for one track — Slovakia had it at both #1 and #54), so the best
  * position wins, matching how the artist-page duplicates are merged above.
  */
-export function mergeDeezerPlacements(releases, rows) {
+export function mergeChartPlacements(releases, rows) {
+  const touched = new Set();
   for (const row of rows) {
     let release = releases.find((r) => r.title === row.release && r.kind !== "album");
     if (!release) {
       release = { title: row.release, kind: "song", platforms: [] };
       releases.push(release);
     }
-    let block = release.platforms.find((p) => p.platform === "Deezer");
+    let block = release.platforms.find((p) => p.platform === row.platform);
     if (!block) {
-      block = { platform: "Deezer", numberOnes: 0, entries: [] };
+      block = { platform: row.platform, numberOnes: 0, entries: [] };
       release.platforms.push(block);
     }
-    const seen = block.entries.find((e) => e.country === row.country);
+    touched.add(block);
     const entry = {
       country: row.country,
       name: row.name,
@@ -478,17 +508,16 @@ export function mergeDeezerPlacements(releases, rows) {
       movement: row.movement,
     };
     if (row.status) entry.status = row.status;
+    const seen = block.entries.find((e) => e.country === row.country);
     if (!seen) block.entries.push(entry);
     else if (entry.position < seen.position) Object.assign(seen, entry);
   }
 
-  for (const r of releases) {
-    const block = r.platforms.find((p) => p.platform === "Deezer");
-    if (!block) continue;
+  for (const block of touched) {
     block.entries.sort((a, b) => a.position - b.position || a.name.localeCompare(b.name));
     block.numberOnes = block.entries.filter((e) => e.position === 1).length;
-    r.platforms.sort((a, b) => b.entries.length - a.entries.length);
   }
+  for (const r of releases) r.platforms.sort((a, b) => b.entries.length - a.entries.length);
   const reach = (r) => r.platforms.reduce((n, p) => n + p.entries.length, 0);
   return releases.sort((a, b) => reach(b) - reach(a));
 }

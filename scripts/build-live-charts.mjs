@@ -16,17 +16,16 @@
 //   node scripts/build-live-charts.mjs           # write the file
 //   node scripts/build-live-charts.mjs --dry     # print a summary only
 
-import { writeFile } from "node:fs/promises";
+import { writeFile, readFile } from "node:fs/promises";
 import {
   extractLiveCharts,
-  deezerCountryCodes,
-  extractDeezerChart,
-  mergeDeezerPlacements,
+  CHART_SWEEPS,
+  extractCountryChart,
+  mergeChartPlacements,
 } from "./stats-lib.mjs";
 
 const SOURCE = "https://kworb.net/itunes/artist/burnaboy.html";
-const DEEZER_INDEX = "https://kworb.net/charts/";
-const DEEZER_CHART = (cc) => `https://kworb.net/charts/deezer/${cc}.html`;
+const UA = { "user-agent": "burnaboystats-bot" };
 const OUT = new URL("../app/data/liveCharts.ts", import.meta.url);
 const DRY = process.argv.includes("--dry");
 
@@ -44,43 +43,81 @@ if (!res.ok) {
 }
 const releases = extractLiveCharts(await res.text());
 
-// Deezer backfill. The artist page under-reports Deezer badly, because Deezer
-// publishes only the lead credit and Burna Boy is the featured act on his
-// biggest current record. Sweep the country charts directly and merge.
-// Failure here is non-fatal: a partial Deezer picture beats no page at all.
-try {
-  const idx = await fetch(DEEZER_INDEX, { headers: { "user-agent": "burnaboystats-bot" } });
-  if (!idx.ok) throw new Error(`charts index ${idx.status}`);
-  const codes = deezerCountryCodes(await idx.text());
+// What the previous run wrote. A sweep we skip this hour carries its data
+// forward from here rather than dropping the platform off the page.
+const previous = await readFile(OUT, "utf8")
+  .then((t) => JSON.parse(t.match(/export const liveCharts: LiveRelease\[\] = (\[[\s\S]*?\n\]);/)?.[1] ?? "[]"))
+  .catch(() => []);
 
+const carryForward = (platform) => {
   const rows = [];
-  let failed = 0;
-  // Sequential on purpose — this is a courtesy scrape of ~70 small pages
-  // against a free service, not a race.
-  for (const cc of codes) {
-    try {
-      const r = await fetch(DEEZER_CHART(cc), { headers: { "user-agent": "burnaboystats-bot" } });
-      if (!r.ok) throw new Error(String(r.status));
-      rows.push(...extractDeezerChart(await r.text(), cc));
-    } catch (err) {
-      failed++;
-      console.error(`  deezer/${cc}: ${err.message}`);
+  for (const r of previous) {
+    for (const p of r.platforms.filter((x) => x.platform === platform)) {
+      for (const e of p.entries) rows.push({ platform, release: r.title, ...e });
     }
   }
-  console.error(
-    `deezer sweep: ${codes.length} charts (${failed} failed) → ${rows.length} placements`
-  );
-  // The whole reason this sweep exists is that the artist page yields ~2 Deezer
-  // placements while the real number is ~60. Zero rows, or most charts failing,
-  // means the sweep is broken — not that he left Deezer. Fail rather than
-  // quietly shipping a page that under-reports by 95%.
-  if (rows.length === 0 || failed > codes.length / 2) {
-    throw new Error(`sweep returned ${rows.length} rows with ${failed}/${codes.length} failures`);
+  return rows;
+};
+
+// Deezer and YouTube backfill. The artist page under-reports both badly,
+// because they publish only the lead credit and Burna Boy is the featured act
+// on his biggest current record. Sweep those country charts directly.
+//
+// Cadence matters here. This job runs hourly, and sweeping both means ~204
+// requests an hour — roughly 5,000 a day against a free service we depend on.
+// YouTube's chart is WEEKLY, so an hourly sweep of its 134 pages re-reads
+// numbers that cannot have moved. Sweep it a few times a day and carry the
+// rest of the time; Deezer is a daily chart, so it runs every time.
+// SWEEP_HOUR overrides the clock so the carry-forward path can be exercised
+// on demand — it is the half that only runs 5 hours in 6 and would otherwise
+// go untested until it broke in production.
+const hour = Number(process.env.SWEEP_HOUR ?? new Date().getUTCHours());
+for (const spec of CHART_SWEEPS) {
+  const due = spec.everyHours ? hour % spec.everyHours === 0 : true;
+  const carried = due ? [] : carryForward(spec.platform);
+  // Never carry nothing: on a fresh checkout there is no previous file, and
+  // skipping would ship the page without the platform entirely.
+  if (!due && carried.length > 0) {
+    console.error(`${spec.platform} sweep: skipped this hour, carried ${carried.length} placements`);
+    mergeChartPlacements(releases, carried);
+    continue;
   }
-  mergeDeezerPlacements(releases, rows);
-} catch (err) {
-  console.error(`DEEZER SWEEP FAILED: ${err.message}`);
-  process.exit(1);
+
+  try {
+    const idx = await fetch(spec.index, { headers: UA });
+    if (!idx.ok) throw new Error(`index ${idx.status}`);
+    const codes = spec.codesFrom(await idx.text());
+    if (codes.length === 0) throw new Error("index listed no country charts");
+
+    const rows = [];
+    let failed = 0;
+    // Sequential on purpose — a courtesy scrape of small pages against a free
+    // service, not a race.
+    for (const cc of codes) {
+      try {
+        const r = await fetch(spec.url(cc), { headers: UA });
+        if (!r.ok) throw new Error(String(r.status));
+        rows.push(...extractCountryChart(await r.text(), cc, spec));
+      } catch (err) {
+        failed++;
+        console.error(`  ${spec.platform}/${cc}: ${err.message}`);
+      }
+    }
+    console.error(
+      `${spec.platform} sweep: ${codes.length} charts (${failed} failed) -> ${rows.length} placements`
+    );
+    // These sweeps exist because the artist page reported 2 Deezer and 6
+    // YouTube placements against real figures of ~58 and ~127. Zero rows, or
+    // most charts failing, means the sweep is broken — not that he left the
+    // platform. Fail rather than quietly shipping a 95% under-count.
+    if (rows.length === 0 || failed > codes.length / 2) {
+      throw new Error(`returned ${rows.length} rows with ${failed}/${codes.length} failures`);
+    }
+    mergeChartPlacements(releases, rows);
+  } catch (err) {
+    console.error(`${spec.platform.toUpperCase()} SWEEP FAILED: ${err.message}`);
+    process.exit(1);
+  }
 }
 
 const placements = releases.reduce((n, r) => n + reach(r), 0);

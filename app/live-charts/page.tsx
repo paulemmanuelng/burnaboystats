@@ -38,6 +38,13 @@ function flagFor(code: string) {
 const reach = (r: (typeof liveCharts)[number]) =>
   r.platforms.reduce((n, p) => n + p.entries.length, 0);
 
+// How often each platform's chart actually refreshes. YouTube's is a weekly
+// chart and now supplies most of the No. 1s on this page, so the cadence is
+// shown next to the numbers rather than only in the note underneath — a No. 1
+// held for a week and one held for a day are not the same claim.
+const CADENCE: Record<string, string> = { YouTube: "weekly" };
+const cadenceOf = (platform: string) => CADENCE[platform] ?? "daily";
+
 const songs = liveCharts.filter((r) => r.kind === "song");
 const albums = liveCharts.filter((r) => r.kind === "album");
 
@@ -101,6 +108,7 @@ function ReleaseBlock({ r }: { r: (typeof liveCharts)[number] }) {
             {p.platform}
             <span className={styles.platformCount}>
               {p.entries.length} {p.entries.length === 1 ? "country" : "countries"}
+              <span className={styles.platformCadence}> · {cadenceOf(p.platform)}</span>
             </span>
           </h3>
           <ul className={styles.entries}>
@@ -190,6 +198,9 @@ export default function LiveChartsPage() {
                 {p.numberOnes > 0 && (
                   <span className={styles.platformCardNo1}>{p.numberOnes} at No. 1</span>
                 )}
+                <span className={styles.platformCardCadence}>
+                  {cadenceOf(p.platform)} chart
+                </span>
               </div>
             ))}
           </div>

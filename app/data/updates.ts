@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-29",
     category: "Charts",
+    text: "No. 1 on YouTube in 62 countries: “Dai Dai” is on 121 YouTube country charts, topping them from Brazil, the US and the UK to Nigeria, Kenya, South Africa and Angola — the single biggest platform footprint of Burna Boy's career.",
+    href: "/live-charts",
+  },
+  {
+    date: "2026-07-29",
+    category: "Charts",
     text: "Three more countries for “Dai Dai”: No. 3 in Bulgaria (PROPHON), No. 3 in Uruguay (Monitor Latino) and No. 14 in Croatia (Billboard Croatia Songs). That takes the song to 56 official chart entries, and Burna Boy's career footprint to 57 countries.",
     href: "/records/charts",
   },

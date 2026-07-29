@@ -378,3 +378,18 @@
   .hint { align-items: flex-start; padding: 12px 14px; border-radius: var(--radius); }
   .notice { padding: 14px 15px; }
 }
+
+/* Cadence label on the platform cards. Deliberately quiet — it qualifies the
+   number above it without competing with it. */
+.platformCardCadence {
+  margin-top: 5px;
+  font-size: 0.66rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.75;
+}
+.platformCadence {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
