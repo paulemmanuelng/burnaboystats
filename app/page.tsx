@@ -14,11 +14,15 @@ import { latestUpdates, updates } from "./data/updates";
 import { daiDaiNumberOnes, numberOnes } from "./data/charts";
 import { albums as studioAlbums } from "./data/albums";
 import { spotifyImage, spotifySrcSet } from "./lib/spotifyImage";
+import { liveHeadline } from "./lib/liveHeadline";
 
 // The "Dai Dai" single cover, used by the homepage featured card.
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 
 const total = totalAwards();
+
+// The hook, derived from the live snapshot so it changes on its own.
+const headline = liveHeadline();
 
 // Tier breakdown of all certifications, for the donut under the ranked list.
 const tierCounts: Record<string, number> = { Diamond: 0, Platinum: 0, Gold: 0, Silver: 0 };
@@ -98,6 +102,14 @@ export default function Home() {
           <h1 className={styles.title}>
             Burna <span className="inkText">Boy</span>
           </h1>
+          {/* Lead with the most remarkable thing that is true right now, not
+              with a description of the archive. Derived from the live chart
+              data, so it re-writes itself as the numbers move. */}
+          <Link href="/live-charts" className={styles.liveHook}>
+            <span className={styles.liveHookDot} aria-hidden="true" />
+            <span className={styles.liveHookLead}>{headline.lead}</span>
+            <span className={styles.liveHookDetail}>{headline.detail} ↗</span>
+          </Link>
           <p className={styles.tagline}>
             Every certification, every chart record, every milestone — the whole
             catalogue in one place. Fact-checked and always current.

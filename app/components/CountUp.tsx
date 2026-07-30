@@ -30,10 +30,18 @@ export default function CountUp({
     let raf = 0;
     let safety = 0;
 
+    // Anything already on screen when the page loads keeps its rendered value.
+    // Without this the hero counters painted the real figure, then hydration
+    // knocked them back to 0 and counted up again — the headline numbers
+    // visibly jumping backwards in the first second, which reads as broken.
+    // Only figures the reader scrolls down to get the animation.
+    const atLoad = performance.now();
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {
           started.current = true;
+          if (performance.now() - atLoad < 250) return; // above the fold: leave it be
           setValue(0);
           const start = performance.now();
           const tick = (now: number) => {
