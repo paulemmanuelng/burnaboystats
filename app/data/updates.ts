@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-30",
+    category: "Firsts & Records",
+    text: "The only African artist in the top 15: Burna Boy places 15th on Chart Update's cross-platform dominance ranking with 1,409 points, on a list led by Bad Bunny, Drake and BTS, and also featuring Michael Jackson, Shakira and Taylor Swift.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-30",
     category: "Streaming",
     text: "A 24th day on top: “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 5,351,416 streams — 42 days inside the global Top 10 and 69 straight days on the chart, still the most-streamed song on Earth.",
     href: "/dai-dai",
