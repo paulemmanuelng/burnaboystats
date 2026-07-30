@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./records.module.css";
 import { pageMetadata } from "../lib/seo";
+import { revenueShows } from "../data/tourRevenue";
 
 export const metadata = pageMetadata({
   title: "Career Records — Burna Boy Charts, Awards, Tours & Firsts",
@@ -20,7 +21,7 @@ const subs = [
   { href: "/records/firsts", title: "Firsts", desc: "Every record broken & first achieved", live: true },
   { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists, year by year", live: true },
   { href: "/records/tours", title: "Tours", desc: "Tour runs, dates & box-office grosses", live: true },
-  { href: "/records/tours/revenue", title: "Highest Revenue Per Show", desc: "The 40 biggest single-show grosses by an African artist", live: true },
+  { href: "/records/tours/revenue", title: "Highest Revenue Per Show", desc: `The ${revenueShows.length} biggest single-show grosses by an African artist`, live: true },
   { href: "/records/by-the-numbers", title: "By the Numbers", desc: "His whole career in one scannable stat sheet", live: true },
   { href: "/records/visualized", title: "Visualized", desc: "The charts — grosses, certifications & awards at a glance", live: true },
   { href: "/records/tours/map", title: "Where He's Performed", desc: "An interactive map of every country he's taken the stage", live: true },

@@ -103,7 +103,7 @@ export default function ToursPage() {
         />
         <Link href="/records/tours/revenue" className={styles.allShowsCard}>
           <span>
-            <span className={styles.allShowsTitle}>See the full top 40</span>
+            <span className={styles.allShowsTitle}>See the full top {revenueShows.length}</span>
             <span className={styles.allShowsDesc}>Every show on the list, ranked by reported revenue</span>
           </span>
           <span className={styles.allShowsArrow} aria-hidden="true">→</span>

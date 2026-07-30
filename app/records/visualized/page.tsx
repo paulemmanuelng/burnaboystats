@@ -217,7 +217,9 @@ export default function VisualizedPage() {
             yTicks={[{ value: 0, label: "$0" }, { value: 2e6, label: "$2M" }, { value: 4e6, label: "$4M" }, { value: 6e6, label: "$6M" }]}
             xLabel="Tickets sold"
             yLabel="Gross revenue"
-            ariaLabel="Scatter plot of tickets sold versus gross revenue across the 40 biggest single shows"
+            // Not the full list: the scatter plots only shows with a reported
+            // ticket count, so the label counts the points actually drawn.
+            ariaLabel={`Scatter plot of tickets sold versus gross revenue across ${scatter.length} of the biggest single shows`}
           />
           <p style={captionStyle}>
             Each dot is a show — <span style={{ color: "var(--gold-bright)", fontWeight: 600 }}>gold is Burna Boy</span>. Revenue tracks ticket count closely, but higher-priced rooms sit above the line: London Stadium turned ~59,000 tickets into $6.15M.
