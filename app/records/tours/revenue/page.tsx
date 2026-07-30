@@ -4,13 +4,19 @@ import StatBox from "../../../components/StatBox";
 import { revenueShows, revenueLeaderboardBox } from "../../../data/tourRevenue";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 
+// Derived, not written down. The list grows whenever a new show is reported —
+// it was 40 entries until Tyla's Tokyo gross was added — and five separate
+// places said "40", including the JSON-LD a search engine reads.
+const showCount = revenueShows.length;
+const burnaShows = revenueShows.filter((s) => s.artist === "Burna Boy").length;
+
 export const metadata = pageMetadata({
   title: "Burna Boy Concert Revenue — Highest-Grossing Shows",
   description:
-    "The 40 highest-grossing single shows by an African artist, led by Burna Boy's $6.15M London Stadium concert — ranked by reported box-office revenue.",
+    `The ${showCount} highest-grossing single shows by an African artist, led by Burna Boy's $6.15M London Stadium concert — ranked by reported box-office revenue.`,
   path: "/records/tours/revenue",
   shareTitle: "Burna Boy — Highest Revenue Per Show",
-  shareDescription: "The 40 highest-grossing single shows by an African artist, ranked.",
+  shareDescription: `The ${showCount} highest-grossing single shows by an African artist, ranked.`,
 });
 
 const revenueJsonLd = {
@@ -29,7 +35,7 @@ const revenueJsonLd = {
 const revenueDataset = datasetJsonLd({
   name: "Highest reported revenue per show by African artists",
   description:
-    "The 40 highest-grossing single shows by an African artist, ranked by reported box-office revenue, led by Burna Boy's $6.15M London Stadium concert.",
+    `The ${showCount} highest-grossing single shows by an African artist, ranked by reported box-office revenue, led by Burna Boy's $6.15M London Stadium concert.`,
   path: "/records/tours/revenue",
   keywords: ["Burna Boy", "box office", "highest-grossing concert", "African artist revenue", "touring revenue"],
   variableMeasured: ["Artist", "Venue", "Tour", "Year", "Tickets sold", "Revenue"],
@@ -44,7 +50,7 @@ export default function RevenuePage() {
         <h1>
           Highest <span className="accent">Revenue Per Show</span>
         </h1>
-        <p>The 40 highest-grossing single shows by an African artist, ranked</p>
+        <p>The {showCount} highest-grossing single shows by an African artist, ranked</p>
       </header>
 
       <div className="container">
@@ -56,7 +62,7 @@ export default function RevenuePage() {
           box={revenueLeaderboardBox(revenueShows, {
             title: "Highest reported revenue per show",
             meta: "African artists · single-show gross · all-time",
-            note: "Burna Boy holds 27 of the 40 highest-grossing shows by an African artist — more than every other artist on this list combined.",
+            note: `Burna Boy holds ${burnaShows} of the ${showCount} highest-grossing shows by an African artist — more than every other artist on this list combined.`,
             source: "Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of July 2026. Each entry is a single night's gross — multi-night stands (e.g. Toronto & Montreal) are ranked per night, not combined.",
           })}
         />

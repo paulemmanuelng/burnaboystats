@@ -97,7 +97,7 @@ export default function ToursPage() {
           box={revenueLeaderboardBox(revenueShows.slice(0, 10), {
             title: "Highest reported revenue per show",
             meta: "African artists · single-show gross · all-time",
-            note: "Burna Boy holds 27 of the 40 highest-grossing shows by an African artist — more than every other artist on this list combined.",
+            note: `Burna Boy holds ${revenueShows.filter((s) => s.artist === "Burna Boy").length} of the ${revenueShows.length} highest-grossing shows by an African artist — more than every other artist on this list combined.`,
             source: "Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of July 2026.",
           })}
         />

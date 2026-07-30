@@ -199,7 +199,7 @@ export default function VisualizedPage() {
           <h2 className="secTitle" style={{ marginBottom: 24 }}>Biggest single-show grosses</h2>
           <RankedBars items={grosses} ariaLabel="The 12 highest single-show grosses by an African artist, in millions of US dollars" />
           <p style={captionStyle}>
-            <span style={{ color: "var(--gold-bright)", fontWeight: 600 }}>Gold bars are Burna Boy</span> — he holds 27 of the 40 biggest single-show grosses by an African artist, more than everyone else combined.
+            <span style={{ color: "var(--gold-bright)", fontWeight: 600 }}>Gold bars are Burna Boy</span> — he holds {revenueShows.filter((s) => s.artist === "Burna Boy").length} of the {revenueShows.length} biggest single-show grosses by an African artist, more than everyone else combined.
           </p>
           <Link href="/records/tours/revenue" className="btn btnSecondary" style={{ marginTop: 18 }}>
             Full leaderboard ↗

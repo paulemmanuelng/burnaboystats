@@ -34,6 +34,11 @@ export const revenueShows: RevenueShow[] = [
   { artist: "Burna Boy", venue: "Co-op Live", city: "Manchester", flag: "🇬🇧", tour: "I Told Them… Tour", year: "2025", tickets: "13,204", revenue: 1338176 },
   { artist: "Burna Boy", venue: "BMO Stadium", city: "Los Angeles", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2023", tickets: "10,684", revenue: 1224617 },
   { artist: "Davido", venue: "The O2 Arena", city: "London", flag: "🇬🇧", tour: "Timeless Tour", year: "2024", tickets: "14,919", revenue: 1201417 },
+  // The first African concert anywhere in Asia to gross over $1M, and Tyla's
+  // own highest-grossing and most-attended show. Her two other reported dates
+  // on this run — Manila ($502,612) and Singapore ($385,207) — fall below this
+  // list's floor.
+  { artist: "Tyla", venue: "Ariake Arena", city: "Tokyo", flag: "🇯🇵", tour: "We Wanna Party Tour", year: "2025", tickets: "9,050", revenue: 1175124 },
   { artist: "Burna Boy", venue: "Qudos Bank Arena", city: "Sydney", flag: "🇦🇺", tour: "No Sign of Weakness Tour", year: "2025", tickets: "10,401", revenue: 1116628 },
   { artist: "Burna Boy", venue: "Mercedes-Benz Arena", city: "Berlin", flag: "🇩🇪", tour: "I Told Them… Tour", year: "2023", tickets: "11,839", revenue: 1089184 },
   { artist: "Wizkid", venue: "Madison Square Garden", city: "New York", flag: "🇺🇸", tour: "More Love, Less Ego Tour", year: "2022", tickets: "12,901", revenue: 1002709 },
