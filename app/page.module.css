@@ -638,3 +638,86 @@ aa
   .liveHookLead { font-size: 0.98rem; }
   .liveHook { padding: 9px 14px; }
 }
+
+/* "What the numbers actually say" — the four analysis findings, surfaced.
+   Numbered like a contents page so it reads as an argument in sequence rather
+   than four disconnected cards. */
+.findingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: finding;
+}
+.findingCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 26px 24px 22px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(165deg, var(--bg-soft), rgba(20, 20, 22, 0.35));
+  text-decoration: none;
+  overflow: hidden;
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.findingCard::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: linear-gradient(var(--gold), rgba(255, 182, 39, 0));
+  opacity: 0.5;
+  transition: opacity var(--dur) var(--ease);
+}
+.findingCard:hover {
+  border-color: rgba(255, 182, 39, 0.42);
+  transform: translateY(-3px);
+}
+.findingCard:hover::before { opacity: 1; }
+.findingIndex {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  opacity: 0.65;
+}
+.findingKicker {
+  margin-top: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.findingClaim {
+  margin-top: 9px;
+  font-size: 1.06rem;
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--text);
+  /* The claim is the point of the card — let it own the space. */
+  flex: 1;
+}
+.findingStat {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-anton), sans-serif;
+  font-size: 1.5rem;
+  color: var(--gold-bright);
+  line-height: 1;
+}
+.findingStat em {
+  display: block;
+  margin-top: 7px;
+  font-family: var(--font-mono), monospace;
+  font-style: normal;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
