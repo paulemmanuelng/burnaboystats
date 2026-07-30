@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-07-30",
+    category: "Charts",
+    text: "Three more No. 1s: “Dai Dai” tops the national charts of Venezuela (Record Report), El Salvador (ASAP EGC) and the Dominican Republic (Monitor Latino) — taking the song to 24 country No. 1s and Burna Boy's career to 43 chart-topping placements across 60 countries.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-30",
     category: "Firsts & Records",
     text: "The only African artist in the top 15: Burna Boy places 15th on Chart Update's cross-platform dominance ranking with 1,409 points, on a list led by Bad Bunny, Drake and BTS, and also featuring Michael Jackson, Shakira and Taylor Swift.",
     href: "/records/africas-biggest",

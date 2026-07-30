@@ -92,6 +92,16 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   // them doesn't make the dataset stricter, just emptier.
   BG: { name: "Bulgaria", flag: "🇧🇬", body: "PROPHON (airplay — no other national chart)" },
   UY: { name: "Uruguay", flag: "🇺🇾", body: "Monitor Latino (airplay — no other national chart)" },
+  // Verified individually before adding, because each one adds a No. 1 to the
+  // career tally. Venezuela's Record Report is described as the country's
+  // official singles chart and has been airplay-based since 1990. ASAP EGC is
+  // El Salvador's IFPI national affiliate — the standing ZPAV has in Poland —
+  // and its chart is airplay. The Dominican Republic publishes no non-airplay
+  // national chart at all; what exists there is platform charts, which this
+  // file excludes everywhere.
+  VE: { name: "Venezuela", flag: "🇻🇪", body: "Record Report (airplay — the national chart)" },
+  SV: { name: "El Salvador", flag: "🇸🇻", body: "ASAP EGC (airplay — no other national chart)" },
+  DO: { name: "Dominican Republic", flag: "🇩🇴", body: "Monitor Latino (airplay — no other national chart)" },
   // Croatia needs no airplay exception: Billboard Croatia Songs is a
   // sales/streaming chart, and we already count 14 other Billboard country
   // charts. HDU's own Top lista has it at No. 1, but that IS an airplay chart
@@ -162,7 +172,7 @@ export const singleCharts: ChartRelease[] = [
   // MENA (#1) and North Africa (#3) are real IFPI charts but regional, not
   // national, so they live in the note rather than as country entries.
   { title: "Dai Dai", credit: "Shakira X Burna Boy", year: 2026, entries: [
-    { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1 }, { c: "LU", peak: 1 }, { c: "PT", peak: 1 }, { c: "PA", peak: 1 }, { c: "SE", peak: 1 }, { c: "IT", peak: 1 }, { c: "IN", peak: 1 }, { c: "CZ", peak: 1 }, { c: "IS", peak: 1, note: "Billboard Iceland Songs" }, { c: "GLB", peak: 1 }, { c: "GLBX", peak: 1 },
+    { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1 }, { c: "LU", peak: 1 }, { c: "PT", peak: 1 }, { c: "PA", peak: 1 }, { c: "SE", peak: 1 }, { c: "IT", peak: 1 }, { c: "IN", peak: 1 }, { c: "CZ", peak: 1 }, { c: "IS", peak: 1, note: "Billboard Iceland Songs" }, { c: "VE", peak: 1 }, { c: "SV", peak: 1 }, { c: "DO", peak: 1 }, { c: "GLB", peak: 1 }, { c: "GLBX", peak: 1 },
     { c: "UK", peak: 2 }, { c: "NO", peak: 2 }, { c: "ES", peak: 2 },
     { c: "CA", peak: 3 }, { c: "SA", peak: 3 }, { c: "SG", peak: 3 }, { c: "BG", peak: 3 }, { c: "UY", peak: 3 },
     { c: "EC", peak: 4 },

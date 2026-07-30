@@ -55,7 +55,7 @@ describe("chart data integrity", () => {
   // Keep the data honest with the claim: airplay is allowed ONLY for these
   // three, and each must say so in its body string. Adding a fourth is a
   // deliberate act that has to come through here.
-  const AIRPLAY_EXCEPTIONS = new Set(["IL", "BG", "UY"]);
+  const AIRPLAY_EXCEPTIONS = new Set(["IL", "BG", "UY", "VE", "SV", "DO"]);
 
   it("only the declared exceptions are tracked on an airplay chart", () => {
     const onAirplay = Object.entries(CHART_COUNTRIES)
@@ -97,9 +97,9 @@ describe("chart data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(chartEntryCount).toBe(257);
-    expect(numberOnes).toBe(40);
-    expect(chartCountryCount).toBe(57);
+    expect(chartEntryCount).toBe(260);
+    expect(numberOnes).toBe(43);
+    expect(chartCountryCount).toBe(60);
   });
 });
 
@@ -121,8 +121,8 @@ describe("Dai Dai", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(daiDaiChartEntryCount).toBe(56);
-    expect(daiDaiNumberOnes).toBe(21);
+    expect(daiDaiChartEntryCount).toBe(59);
+    expect(daiDaiNumberOnes).toBe(24);
   });
 
   it("tops both Billboard global charts", () => {
