@@ -238,6 +238,10 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: 64px;
+}
+/* When the live hook precedes it, the two are one group — close the gap. */
+.liveHook + .scoreboard {
+  margin-top: 22px;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -592,10 +596,11 @@ aa
   align-items: baseline;
   flex-wrap: wrap;
   gap: 0 10px;
-  /* The wordmark is set at a line-height tighter than its font-size, so its
-     glyphs spill below their line box. Without a top margin the pill collides
-     with the bottom of "BOY" even though the boxes do not overlap. */
-  margin: 4px 0 26px;
+  /* Spacing binds it to the scoreboard, not to the buttons. It had 4px above
+     and ~90px below, so it read as an appendage of "Explore the music" and
+     floated away from the numbers it actually belongs with. Big gap above to
+     break from the CTAs, small gap below to group with the figures. */
+  margin: 40px 0 0;
   padding: 10px 16px 10px 14px;
   border: 1px solid rgba(255, 182, 39, 0.3);
   border-radius: 999px;
@@ -648,6 +653,7 @@ aa
     gap: 2px 9px;
     padding: 12px 15px;
     border-radius: 13px;
+    margin-top: 32px;
   }
   .liveHookDot {
     grid-column: 1;
