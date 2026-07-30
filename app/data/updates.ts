@@ -29,6 +29,24 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-07-30",
+    category: "Streaming",
+    text: "58.48 million monthly listeners: a new all-time Spotify peak at 58,478,950, holding at No. 40 in the world, with 17,178,248 followers. Lagos remains his biggest city at 1,574,633 listeners, ahead of London (1,060,343), Abuja (674,733), Port Harcourt (635,922) and São Paulo (608,432).",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-07-30",
+    category: "Charts",
+    text: "A Polish top 5: “Dai Dai” jumps 15 places to a new peak of No. 4 on ZPAV's Streaming Top 100 in week 30 — the only Polish chart Burna Boy has ever entered, and now one of his 15 top-5 placings for the song.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-07-30",
+    category: "Charts",
+    text: "Ten days on top in Britain: “Dai Dai” has now spent 10 consecutive days at No. 1 on Apple Music UK. That is the platform's own daily chart — on the Official Singles Chart the song peaked at No. 2.",
+    href: "/live-charts",
+  },
+  {
     date: "2026-07-29",
     category: "Streaming",
     text: "A 23rd day on top: “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 5,380,338 streams — 41 days inside the global Top 10 and 68 straight days on the chart, still the most-streamed song on Earth.",

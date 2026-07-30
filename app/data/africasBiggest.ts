@@ -1,5 +1,11 @@
 import { spotifyFollowersDisplay } from "./spotify";
 
+// His peak Spotify monthly listeners, in one place. The note under the
+// leaderboard used to spell the milestone out ("past 56 million") while the
+// value beside it had already climbed to 58.48M — so the threshold is derived
+// from this string rather than written twice.
+const BURNA_PEAK_LISTENERS = "58.48M";
+
 // "Africa's Biggest" — leaderboard-style stat boxes comparing African artists.
 // Two box layouts:
 //   • "year" — a ranked Top-5 per year (e.g. most-streamed artist by year).
@@ -135,13 +141,13 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "Spotify · African artists · all-time peak",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "58.48M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: BURNA_PEAK_LISTENERS },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "46.58M" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "45.5M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "40.01M" },
       { name: "CKay", sub: "🇳🇬 Nigeria", value: "34.78M" },
     ],
-    note: "Burna Boy is the first African artist ever to reach 50 million Spotify monthly listeners — and now the first past 56 million, a milestone no African act had crossed before, with his peak still climbing.",
+    note: `Burna Boy is the first African artist ever to reach 50 million Spotify monthly listeners — and now the first past ${Math.floor(parseFloat(BURNA_PEAK_LISTENERS))} million, a milestone no African act had crossed before, with his peak still climbing.`,
     source:
       "Peak Spotify monthly listeners, from Spotify artist pages and monitoring trackers, as of July 2026. Burna Boy's figure is his current peak and still rising, so it updates as Spotify's numbers change.",
   },

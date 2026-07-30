@@ -4,7 +4,7 @@
 // auto-fetched like the other live figures. It moves slowly, so a manual bump
 // every few weeks is fine — read it off the artist's Spotify page and update
 // this one string.
-export const spotifyFollowersDisplay = "17.1M";
+export const spotifyFollowersDisplay = "17.18M";
 
 // Burna Boy's global rank by Spotify monthly listeners (lower is better).
 // One home for the figure; auto-updated hourly by the live stats bot.
