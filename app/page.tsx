@@ -15,7 +15,6 @@ import { daiDaiNumberOnes, numberOnes } from "./data/charts";
 import { albums as studioAlbums } from "./data/albums";
 import { spotifyImage, spotifySrcSet } from "./lib/spotifyImage";
 import { liveHeadline } from "./lib/liveHeadline";
-import { findings } from "./lib/analysisFindings";
 
 // The "Dai Dai" single cover, used by the homepage featured card.
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
@@ -220,46 +219,6 @@ export default function Home() {
                 </Link>
               ))}
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ================= WHAT THE NUMBERS SAY =================
-          The site's only real editorial voice lived on /analysis, three clicks
-          deep behind a footer link. A stats site that never says what its data
-          MEANS is a reference work; this is the argument, on the page everyone
-          actually lands on. Claims are generated from the same guarded data as
-          the analysis page, so they can't drift from the figures. */}
-      <section className={styles.section}>
-        <div className="container">
-          <Reveal>
-            <p className={styles.eyebrow}>Not just the numbers</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className={styles.sectionHead}>
-              <h2 className={styles.sectionTitle}>
-                What the numbers <span className="goldText">actually say</span>
-              </h2>
-              <Link href="/analysis" className={styles.headLink}>
-                Read the analysis ↗
-              </Link>
-            </div>
-          </Reveal>
-          <Reveal delay={140}>
-            <ol className={styles.findingGrid}>
-              {findings.slice(0, 4).map((f, i) => (
-                <li key={f.id}>
-                  <Link href={`/analysis#${f.id}`} className={styles.findingCard}>
-                    <span className={styles.findingIndex}>{String(i + 1).padStart(2, "0")}</span>
-                    <span className={styles.findingKicker}>{f.kicker}</span>
-                    <span className={styles.findingClaim}>{f.h}</span>
-                    <span className={styles.findingStat}>
-                      {f.stats[0]?.v} <em>{f.stats[0]?.l}</em>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ol>
           </Reveal>
         </div>
       </section>
