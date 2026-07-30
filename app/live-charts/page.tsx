@@ -16,7 +16,7 @@ import {
 
 export const metadata = pageMetadata({
   title: "Burna Boy Live Charts — Where He's Charting Right Now",
-  description: `Every Burna Boy song and album currently charting worldwide: ${livePlacementCount} live placements across ${liveCountryCount} countries on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube. Updated hourly.`,
+  description: `Every Burna Boy song charting right now: ${livePlacementCount} live placements across ${liveCountryCount} countries on Spotify, Apple Music, YouTube, Deezer, iTunes and Shazam. Updated hourly.`,
   path: "/live-charts",
   shareTitle: "Burna Boy — Live Charts",
   shareDescription: `${livePlacementCount} live chart placements across ${liveCountryCount} countries, refreshed hourly.`,

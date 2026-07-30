@@ -45,6 +45,12 @@ describe("song pages data", () => {
     for (const s of songs) {
       expect(s.metaTitle.length).toBeGreaterThan(10);
       expect(s.metaDescription.length).toBeGreaterThan(50);
+      // Upper bounds matter as much as lower ones: Google truncates a title
+      // past ~60 characters and a description past ~160, and five of these had
+      // grown to 161-191 before anything caught it. The cut lands mid-sentence
+      // in the SERP, which reads as carelessness on a site selling accuracy.
+      expect(s.metaTitle.length, `title too long: ${s.slug}`).toBeLessThanOrEqual(60);
+      expect(s.metaDescription.length, `description too long: ${s.slug}`).toBeLessThanOrEqual(160);
       expect(s.faqs.length).toBeGreaterThan(0);
       expect(s.cover).toMatch(/^https:\/\/i\.scdn\.co\/image\//);
     }

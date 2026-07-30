@@ -32,7 +32,12 @@ export function liveHeadline(): { lead: string; detail: string } {
   if (best && best.countries > 1) {
     return {
       lead: `“${best.title}” is No. 1 in ${best.countries} countries`,
-      detail: "right now",
+      // The qualifier is not decoration. This counts platform charts, where the
+      // song tops 64 territories; on official national charts the figure is 21.
+      // The whole site rests on never blurring those two, so the homepage — the
+      // page most people see and the only one they may ever see — has to say
+      // which kind of No. 1 it means.
+      detail: "on streaming charts · right now",
     };
   }
 
@@ -43,6 +48,6 @@ export function liveHeadline(): { lead: string; detail: string } {
   );
   return {
     lead: `Charting in ${liveCountryCount} countries`,
-    detail: `${reach} live placements right now`,
+    detail: `${reach} live placements on streaming charts`,
   };
 }

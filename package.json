@@ -10,7 +10,9 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "check:stats": "node scripts/check-stats.mjs",
-    "refresh:stats": "node scripts/apply-stat-updates.mjs --dry-run"
+    "refresh:stats": "node scripts/apply-stat-updates.mjs --dry-run",
+    "seo": "node scripts/check-seo.mjs",
+    "verify": "tsc --noEmit && next lint && vitest run && next build && node scripts/check-seo.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

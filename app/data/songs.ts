@@ -74,7 +74,7 @@ export const songs: Song[] = [
     ],
     metaTitle: "Burna Boy “Last Last” — Chart Peaks, Certifications & Facts",
     metaDescription:
-      "Everything about Burna Boy's “Last Last”: No. 1 in South Africa, No. 4 in the UK, Diamond in France and 12 certifications in all — the samples, story and every chart peak.",
+      "Burna Boy's “Last Last”: No. 1 in South Africa, No. 4 in the UK, Diamond in France and 12 certifications in all — the samples, story and every chart peak.",
   },
   {
     slug: "ye",
@@ -109,7 +109,7 @@ export const songs: Song[] = [
     ],
     metaTitle: "Burna Boy “Ye” — His Global Signature Song (2018)",
     metaDescription:
-      "The story of Burna Boy's “Ye” (2018) from the album Outside — the life-affirming anthem that carried him to a worldwide audience, certified Platinum across the US, UK, France and beyond.",
+      "Burna Boy's “Ye” (2018), from the album Outside — the anthem that carried him worldwide, certified Platinum in the US, UK and France. Story, charts and stats.",
   },
   {
     slug: "on-the-low",
@@ -140,7 +140,7 @@ export const songs: Song[] = [
     ],
     metaTitle: "Burna Boy “On the Low” — Diamond in France & Every Stat",
     metaDescription:
-      "Burna Boy's “On the Low” from African Giant (2019): certified Diamond in France, 2× Platinum in Canada and nine certifications in all — the story and full stats.",
+      "Burna Boy's “On the Low” from African Giant (2019): Diamond in France, 2× Platinum in Canada and nine certifications in all — the story and full stats.",
   },
   {
     slug: "wgft",
@@ -267,7 +267,7 @@ export const songs: Song[] = [
     ],
     metaTitle: "Burna Boy “Alone” — the Wakanda Forever Song & Its Chart Run",
     metaDescription:
-      "Burna Boy's “Alone” from Black Panther: Wakanda Forever (2022): No. 19 in France, No. 28 in the UK, No. 1 on the UK Afrobeats chart and certified in five countries.",
+      "Burna Boy's “Alone” from Black Panther: Wakanda Forever (2022): No. 19 in France, No. 28 in the UK, and certified in five countries.",
   },
   {
     slug: "23",
@@ -461,7 +461,7 @@ export const songs: Song[] = [
     ],
     metaTitle: "Burna Boy “Like to Party” — His Breakout Song (2012)",
     metaDescription:
-      "“Like to Party” (2012), Burna Boy's breakout single and the lead from debut album L.I.F.E — which hit No. 7 on Billboard's US Reggae Albums chart and earned two Album of the Year nominations.",
+      "“Like to Party” (2012), Burna Boy's breakout single and the lead from debut album L.I.F.E, which hit No. 7 on Billboard's US Reggae Albums chart.",
   },
   {
     slug: "smoke",

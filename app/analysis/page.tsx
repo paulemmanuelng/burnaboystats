@@ -21,7 +21,7 @@ import {
 export const metadata = pageMetadata({
   title: "Burna Boy Chart Analysis — What the Numbers Actually Say",
   description:
-    "Four findings from Burna Boy's full chart and certification record: how one song took half his No. 1s, why Britain outranks America, where he goes Diamond, and how wide his reach really is.",
+    "Four findings from Burna Boy's chart and certification record: how one song took half his No. 1s, why Britain outranks America, and where he goes Diamond.",
   path: "/analysis",
   shareTitle: "What Burna Boy's Numbers Actually Say",
   shareDescription: "Four data-led findings from the full chart and certification record.",
