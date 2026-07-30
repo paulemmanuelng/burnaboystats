@@ -20,6 +20,12 @@ import { findings } from "./lib/analysisFindings";
 // The "Dai Dai" single cover, used by the homepage featured card.
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 
+// The artist's own Spotify press image. The site was, for a site about one of
+// the most magnetic performers alive, entirely tables and figures — he never
+// appeared on his own homepage. Same source and treatment already used for the
+// Dai Dai story: served from Spotify's CDN, unmodified, linked back.
+const BURNA_PORTRAIT = "https://i.scdn.co/image/ab6761610000e5ebb4e44d0f4e3e47af2cf06f3f";
+
 const total = totalAwards();
 
 // The hook, derived from the live snapshot so it changes on its own.
@@ -85,6 +91,12 @@ export default function Home() {
       {/* ================= HERO ================= */}
       <section className={styles.hero}>
         <div className={styles.heroGlow} aria-hidden="true" />
+        {/* Decorative, so it is a CSS background rather than an <img>: the
+            image must not be fetched at all on phones, and display:none does
+            not prevent that — it downloaded the full 640px file to hide it.
+            A background declared only inside a min-width query is never
+            requested when the query does not match. */}
+        <div className={styles.heroPortrait} aria-hidden="true" />
         <span className={styles.heroWatermark} aria-hidden="true">Odogwu</span>
 
         <div className={`container ${styles.heroInner}`}>
