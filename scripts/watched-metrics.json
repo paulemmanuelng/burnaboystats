@@ -21,7 +21,7 @@
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
-      "baseline": 58269694,
+      "baseline": 58478950,
       "live": true,
       "sanity": {
         "maxJump": 0.12,
@@ -51,7 +51,7 @@
       },
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "peakListeners",
-      "lastChanged": "2026-07-29"
+      "lastChanged": "2026-07-30"
     },
     {
       "id": "spotify-listeners-rank",
@@ -119,7 +119,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 609900252,
+      "baseline": 612115765,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -136,7 +136,7 @@
           "describes": "displayed view count (whole millions) on /dai-dai"
         }
       ],
-      "lastChanged": "2026-07-29"
+      "lastChanged": "2026-07-30"
     },
     {
       "id": "yt-views-last-last",
@@ -610,7 +610,7 @@
       "match": "Dai Dai",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 257533058,
+      "baseline": 262945700,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -628,7 +628,7 @@
           "describes": "Spotify streams for Dai Dai"
         }
       ],
-      "lastChanged": "2026-07-29"
+      "lastChanged": "2026-07-30"
     },
     {
       "id": "spotify-streams-tatata",
