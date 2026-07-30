@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-07-30",
     category: "Streaming",
+    text: "A 24th day on top: “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 5,351,416 streams — 42 days inside the global Top 10 and 69 straight days on the chart, still the most-streamed song on Earth.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-07-30",
+    category: "Streaming",
     text: "58.48 million monthly listeners: a new all-time Spotify peak at 58,478,950, holding at No. 40 in the world, with 17,178,248 followers. Lagos remains his biggest city at 1,574,633 listeners, ahead of London (1,060,343), Abuja (674,733), Port Harcourt (635,922) and São Paulo (608,432).",
     href: "/records/africas-biggest",
   },
