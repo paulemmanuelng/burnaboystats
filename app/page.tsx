@@ -114,14 +114,6 @@ export default function Home() {
           <h1 className={styles.title}>
             Burna <span className="inkText">Boy</span>
           </h1>
-          {/* Lead with the most remarkable thing that is true right now, not
-              with a description of the archive. Derived from the live chart
-              data, so it re-writes itself as the numbers move. */}
-          <Link href="/live-charts" className={styles.liveHook}>
-            <span className={styles.liveHookDot} aria-hidden="true" />
-            <span className={styles.liveHookLead}>{headline.lead}</span>
-            <span className={styles.liveHookDetail}>{headline.detail} ↗</span>
-          </Link>
           <p className={styles.tagline}>
             Every certification, every chart record, every milestone — the whole
             catalogue in one place. Fact-checked and always current.
@@ -131,6 +123,16 @@ export default function Home() {
             <Link href="/music" className="btn btnSecondary">Explore the music ↗</Link>
           </div>
 
+          {/* Sits directly above the scoreboard on purpose: those four are
+              all-time career figures, this is the one that is true only today.
+              Together they read as "here is the career, here is right now".
+              It previously sat between the wordmark and the tagline, where it
+              delayed the one sentence explaining what the site actually is. */}
+          <Link href="/live-charts" className={styles.liveHook}>
+            <span className={styles.liveHookDot} aria-hidden="true" />
+            <span className={styles.liveHookLead}>{headline.lead}</span>
+            <span className={styles.liveHookDetail}>{headline.detail} ↗</span>
+          </Link>
           <div className={styles.scoreboard}>
             <Link href="/certifications" className={styles.stat}>
               <span className={styles.statNum}><CountUp end={total} /></span>

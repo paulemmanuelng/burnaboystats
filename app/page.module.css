@@ -142,13 +142,16 @@
   font-size: 0.72rem;
   color: var(--text-muted);
 }
+/* Steady, not pulsing. The live hook above the scoreboard pulses, and two
+   blinking green dots in one viewport compete rather than compound — this one
+   marks when the site was last updated, which is a different and quieter
+   claim than "charting right now". */
 .liveDot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: #46d17f;
-  box-shadow: 0 0 0 0 rgba(70, 209, 127, 0.55);
-  animation: livePulse 2.4s ease-out infinite;
+  box-shadow: 0 0 0 3px rgba(70, 209, 127, 0.12);
 }
 @keyframes livePulse {
   0% { box-shadow: 0 0 0 0 rgba(70, 209, 127, 0.5); }
@@ -592,7 +595,7 @@ aa
   /* The wordmark is set at a line-height tighter than its font-size, so its
      glyphs spill below their line box. Without a top margin the pill collides
      with the bottom of "BOY" even though the boxes do not overlap. */
-  margin: 20px 0 16px;
+  margin: 4px 0 26px;
   padding: 10px 16px 10px 14px;
   border: 1px solid rgba(255, 182, 39, 0.3);
   border-radius: 999px;
