@@ -83,10 +83,15 @@ function Move({ e }: { e: LiveEntry }) {
 function Cover({ title }: { title: string }) {
   const src = coverFor(title);
   if (!src) {
+    // The letter is drawn via CSS content, not written as a text node. As real
+    // text it concatenated into the title for anything reading the DOM — a
+    // crawler saw "GGinger" — and aria-hidden does not remove text from that.
     return (
-      <span className={styles.coverFallback} aria-hidden="true">
-        {monogramFor(title)}
-      </span>
+      <span
+        className={styles.coverFallback}
+        data-letter={monogramFor(title)}
+        aria-hidden="true"
+      />
     );
   }
   return (
