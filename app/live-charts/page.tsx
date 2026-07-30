@@ -2,6 +2,8 @@ import Link from "next/link";
 import styles from "./liveCharts.module.css";
 import KeepExploring from "../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import { coverFor, monogramFor } from "../lib/covers";
+import { spotifyImage } from "../lib/spotifyImage";
 import {
   liveCharts,
   liveChartsUpdated,
@@ -71,6 +73,39 @@ function Move({ e }: { e: LiveEntry }) {
   );
 }
 
+// Cover art, sized in `em` so it tracks the title text rather than fighting it —
+// the row height is set by the title's line box either way, so adding this
+// changes nothing about the layout.
+//
+// Only some charting releases have art on file. The rest get a monogram tile in
+// the identical footprint, so a missing cover never shifts a row or leaves a
+// broken-image icon.
+function Cover({ title }: { title: string }) {
+  const src = coverFor(title);
+  if (!src) {
+    return (
+      <span className={styles.coverFallback} aria-hidden="true">
+        {monogramFor(title)}
+      </span>
+    );
+  }
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN art, sized via srcSet like the rest of the site
+    <img
+      className={styles.cover}
+      src={spotifyImage(src, 64)}
+      // A 24px tile never needs the 640px variant, and the full srcSet let the
+      // browser reach for it anyway. Offer only 1x and a retina 2x.
+      srcSet={`${spotifyImage(src, 64)} 1x, ${spotifyImage(src, 300)} 2x`}
+      alt=""
+      width={64}
+      height={64}
+      loading="lazy"
+      decoding="async"
+    />
+  );
+}
+
 function ReleaseBlock({ r }: { r: (typeof liveCharts)[number] }) {
   const total = reach(r);
   const no1 = r.platforms.reduce((n, p) => n + p.numberOnes, 0);
@@ -82,7 +117,10 @@ function ReleaseBlock({ r }: { r: (typeof liveCharts)[number] }) {
             <polyline points="6 9 12 15 18 9" />
           </svg>
         </span>
-        <span className={styles.title}>{r.title}</span>
+        <span className={styles.title}>
+          <Cover title={r.title} />
+          {r.title}
+        </span>
         <span className={styles.chips}>
           {r.platforms.map((p) => (
             <span key={p.platform} className={styles.chip}>
@@ -156,7 +194,8 @@ export default function LiveChartsPage() {
         {/* The distinction this whole page rests on. Stated up front rather than
             buried, because conflating the two would misrepresent both. */}
         <p className={styles.notice}>
-          <strong>These are platform charts, not official charts.</strong> This page tracks the
+          <strong>These are platform charts, not official charts.</strong>{" "}
+          This page tracks the
           country charts of Spotify, Apple Music, iTunes, Deezer and Shazam, which refresh daily,
           plus YouTube&apos;s, which refreshes weekly — where a record sits{" "}
           <em>right now</em>. Official national charts, and the career peaks they produce,

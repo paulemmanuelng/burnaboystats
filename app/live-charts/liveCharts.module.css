@@ -393,3 +393,38 @@
   color: var(--text-muted);
   opacity: 0.8;
 }
+
+/* Cover art beside a release title. Sized in em so it scales with the title at
+   every breakpoint, and vertically centred on the text rather than the line box
+   so it sits with the words instead of riding above them. */
+.title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42em;
+}
+.cover,
+.coverFallback {
+  width: 1.05em;
+  height: 1.05em;
+  flex: 0 0 auto;
+  border-radius: 3px;
+  /* Anton has a tall ascent; nudge the tile onto the visual centre of the caps. */
+  margin-top: 0.06em;
+}
+.cover {
+  object-fit: cover;
+  background: var(--bg-soft);
+  border: 1px solid rgba(245, 244, 240, 0.14);
+}
+.coverFallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(140deg, rgba(255, 182, 39, 0.22), rgba(255, 182, 39, 0.06));
+  border: 1px solid rgba(255, 182, 39, 0.28);
+  color: var(--gold);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.5em;
+  line-height: 1;
+  letter-spacing: 0;
+}
