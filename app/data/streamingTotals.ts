@@ -11,7 +11,7 @@
 // so more precision would be noise.
 
 // Every Burna Boy song on Spotify, lead and featured credits combined.
-export const spotifyTotalStreams = "10.45B";
+export const spotifyTotalStreams = "10.47B";
 
 // Every Burna Boy video on YouTube, across his channel and others'.
 export const youtubeTotalViews = "3.15B";

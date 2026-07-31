@@ -91,7 +91,7 @@
       "extractor": "kworbTotalStreams",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 10445419308,
+      "baseline": 10466828143,
       "note": "Cumulative Spotify streams across every Burna Boy song — worth a milestone note as it climbs (e.g. crossing 11B).",
       "live": true,
       "siteTargets": [
@@ -109,7 +109,7 @@
         "min": 5000000000,
         "max": 100000000000
       },
-      "lastChanged": "2026-07-29"
+      "lastChanged": "2026-07-31"
     },
     {
       "id": "dai-dai-video-views",
@@ -119,7 +119,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 623027403,
+      "baseline": 624565348,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -407,7 +407,7 @@
       "match": "wgft (feat. Burna Boy)",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 280827009,
+      "baseline": 282486357,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -425,7 +425,7 @@
           "describes": "Spotify streams on /music/wgft"
         }
       ],
-      "lastChanged": "2026-07-29"
+      "lastChanged": "2026-07-31"
     },
     {
       "id": "spotify-streams-alone",
@@ -610,7 +610,7 @@
       "match": "Dai Dai",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 262945700,
+      "baseline": 268328702,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -628,7 +628,7 @@
           "describes": "Spotify streams for Dai Dai"
         }
       ],
-      "lastChanged": "2026-07-30"
+      "lastChanged": "2026-07-31"
     },
     {
       "id": "spotify-streams-tatata",
