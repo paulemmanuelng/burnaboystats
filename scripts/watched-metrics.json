@@ -21,7 +21,7 @@
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
-      "baseline": 58478950,
+      "baseline": 58766806,
       "live": true,
       "sanity": {
         "maxJump": 0.12,
@@ -51,7 +51,7 @@
       },
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "peakListeners",
-      "lastChanged": "2026-07-30"
+      "lastChanged": "2026-07-31"
     },
     {
       "id": "spotify-listeners-rank",
@@ -63,7 +63,7 @@
       "field": "rank",
       "kind": "rank",
       "threshold": 1,
-      "baseline": 40,
+      "baseline": 39,
       "note": "Global rank by Spotify monthly listeners (lower is better). Auto-published hourly; displayed on /records/by-the-numbers.",
       "live": true,
       "sanity": {
@@ -81,7 +81,7 @@
           "describes": "global listeners rank"
         }
       ],
-      "lastChanged": "2026-07-29"
+      "lastChanged": "2026-07-31"
     },
     {
       "id": "spotify-total-streams",
@@ -119,7 +119,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 621993398,
+      "baseline": 623027403,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -136,7 +136,7 @@
           "describes": "displayed view count (whole millions) on /dai-dai"
         }
       ],
-      "lastChanged": "2026-07-30"
+      "lastChanged": "2026-07-31"
     },
     {
       "id": "yt-views-last-last",
