@@ -214,15 +214,18 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  height: 52px;
-  padding: 0 30px;
+  min-height: 52px;
+  padding: 0 20px;
   /* Pill, not rectangle — the single clearest shape cue separating current
      editorial/brutalist music design from the boxy 2021-era look. */
   border-radius: 999px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
+  /* Space Mono 700 / 11.5px / .12em, per the design's button spec. The base
+     design-system sheet sets Anton here; every design file overrides it to
+     mono, so mono is the spec. */
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   border: 1px solid transparent;
   cursor: pointer;
@@ -232,8 +235,10 @@ a {
 .btnPrimary {
   /* Solid fill declared first so the label never sits over a gradient if the
      gradient fails to paint. */
-  background-color: var(--gold-bright);
-  background-image: linear-gradient(135deg, var(--gold-bright), var(--gold));
+  /* Flat gold. The design fills this with --color-accent; the gradient here
+     was ours, and it is what the label was being composited against. */
+  background-color: var(--gold);
+  background-image: none;
   /* Pure black, pinned twice: WebKit resolves -webkit-text-fill-color ahead of
      `color`. This label was reported rendering orange-on-gold on an iPhone
      while measuring 10.6:1 in every desktop browser — no rule in this codebase
@@ -264,9 +269,12 @@ a {
      for a control's boundary, so the button didn't read as a button until
      :hover turned the border gold. Touch devices have no hover, so the
      resting state has to carry it on its own. */
-  border-color: rgba(245, 244, 240, 0.42);
+  /* Spec: surface fill, divider border. Note --line is a 0.12-alpha hairline,
+     which is under the 3:1 WCAG wants for a control boundary — flagged rather
+     than silently brightened, since the design was accessibility-audited. */
+  border-color: var(--line);
   color: var(--text);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--bg-soft);
 }
 .btnSecondary:hover {
   transform: translateY(-3px);
@@ -1209,4 +1217,91 @@ button:focus-visible,
   body {
     padding-bottom: calc(64px + max(30px, env(safe-area-inset-bottom, 0px)));
   }
+}
+
+
+/* -----------------------------------------------------------
+   PRIMITIVES — ghost button, tags, base table
+   Values from designs/_ds/…/styles.css with the design's own
+   overrides layered on: pill radius, Space Mono label, gold.
+   ----------------------------------------------------------- */
+/* From the base design-system sheet — a disabled control has to read as one. */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn:disabled:hover,
+.btn[aria-disabled="true"]:hover {
+  transform: none;
+  box-shadow: 0 8px 30px rgba(255, 182, 39, 0.24);
+}
+
+.btnGhost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--gold);
+  padding: 0 8px;
+}
+.btnGhost:hover {
+  background: color-mix(in srgb, var(--gold) 10%, transparent);
+}
+.btnGhost:active {
+  background: color-mix(in srgb, var(--gold) 18%, transparent);
+}
+
+/* Icon-only button. 44px, not the base sheet's 36px — the design's
+   accessibility floor for a tap target is 44 and this ships on phones. */
+.btnIcon {
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  /* Pills are always fully round in this design, tags included. */
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+.tagAccent   { background: rgba(255, 182, 39, 0.13); color: var(--gold); }
+.tagNeutral  { background: rgba(245, 244, 240, 0.08); color: var(--text); }
+.tagOutline  { border-color: var(--gold); color: var(--gold); background: transparent; }
+/* Data-meaning tags. These carry chart/tier meaning and must never be
+   recoloured to gold — see the colour discipline note in the README. */
+.tagDiamond  { background: rgba(143, 227, 240, 0.14); color: var(--cyan); }
+.tagPlatinum { background: rgba(223, 226, 232, 0.14); color: var(--silver); }
+.tagLive     { background: rgba(62, 209, 127, 0.14); color: var(--green); }
+
+.tableBase {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.tableBase th {
+  text-align: left;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--line);
+}
+.tableBase td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+.tableBase tbody tr:hover {
+  background: rgba(255, 182, 39, 0.06);
 }
