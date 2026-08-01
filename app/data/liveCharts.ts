@@ -1211,16 +1211,16 @@ export const liveCharts: LiveRelease[] = [
             "movement": -22
           },
           {
+            "country": "RU",
+            "name": "Russia",
+            "position": 43,
+            "movement": -13
+          },
+          {
             "country": "AO",
             "name": "Angola",
             "position": 44,
             "movement": 28
-          },
-          {
-            "country": "RU",
-            "name": "Russia",
-            "position": 44,
-            "movement": -15
           },
           {
             "country": "TR",
@@ -1292,7 +1292,7 @@ export const liveCharts: LiveRelease[] = [
             "country": "US",
             "name": "United States",
             "position": 78,
-            "movement": -15
+            "movement": -5
           },
           {
             "country": "TZ",
@@ -2633,13 +2633,13 @@ export const liveCharts: LiveRelease[] = [
       },
       {
         "platform": "iTunes",
-        "numberOnes": 2,
+        "numberOnes": 3,
         "entries": [
           {
             "country": "CZ",
             "name": "Czech Republic",
             "position": 1,
-            "movement": 7
+            "movement": 9
           },
           {
             "country": "IL",
@@ -2649,10 +2649,16 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
+            "country": "ES",
+            "name": "Spain",
+            "position": 1,
+            "movement": 1
+          },
+          {
             "country": "BE",
             "name": "Belgium",
             "position": 2,
-            "movement": 3
+            "movement": 0
           },
           {
             "country": "FR",
@@ -2661,64 +2667,58 @@ export const liveCharts: LiveRelease[] = [
             "movement": 0
           },
           {
+            "country": "IT",
+            "name": "Italy",
+            "position": 2,
+            "movement": 3
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 2,
+            "movement": 3
+          },
+          {
+            "country": "PL",
+            "name": "Poland",
+            "position": 2,
+            "movement": 4
+          },
+          {
             "country": "CA",
             "name": "Canada",
             "position": 3,
-            "movement": 1
+            "movement": 2
           },
           {
             "country": "DE",
             "name": "Germany",
             "position": 3,
-            "movement": 3
-          },
-          {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 3,
-            "movement": 8
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 3,
-            "movement": 6
-          },
-          {
-            "country": "ES",
-            "name": "Spain",
-            "position": 3,
-            "movement": -1
+            "movement": 1
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 3,
-            "movement": 44
+            "movement": 1
           },
           {
             "country": "UK",
             "name": "United Kingdom",
             "position": 3,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "GR",
             "name": "Greece",
             "position": 4,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "MY",
             "name": "Malaysia",
             "position": 4,
-            "movement": 2
-          },
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 4,
-            "movement": 3
+            "movement": 4
           },
           {
             "country": "TJ",
@@ -2731,7 +2731,7 @@ export const liveCharts: LiveRelease[] = [
             "country": "DK",
             "name": "Denmark",
             "position": 5,
-            "movement": 3
+            "movement": 0
           },
           {
             "country": "ID",
@@ -2740,10 +2740,10 @@ export const liveCharts: LiveRelease[] = [
             "movement": 5
           },
           {
-            "country": "IT",
-            "name": "Italy",
+            "country": "KZ",
+            "name": "Kazakhstan",
             "position": 5,
-            "movement": 0
+            "movement": 3
           },
           {
             "country": "AT",
@@ -2755,44 +2755,31 @@ export const liveCharts: LiveRelease[] = [
             "country": "CH",
             "name": "Switzerland",
             "position": 6,
-            "movement": -4
+            "movement": -3
           },
           {
             "country": "BR",
             "name": "Brazil",
             "position": 7,
-            "movement": -1
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 8,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "PH",
             "name": "Philippines",
             "position": 8,
-            "movement": 4
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 10,
-            "movement": 8
+            "movement": 3
           },
           {
             "country": "IE",
             "name": "Ireland",
             "position": 11,
-            "movement": 2
+            "movement": -2
           },
           {
-            "country": "MX",
-            "name": "Mexico",
+            "country": "NL",
+            "name": "Netherlands",
             "position": 11,
-            "movement": -2
+            "movement": -7
           },
           {
             "country": "ZA",
@@ -2804,13 +2791,26 @@ export const liveCharts: LiveRelease[] = [
             "country": "US",
             "name": "United States",
             "position": 11,
-            "movement": 4
+            "movement": 5
+          },
+          {
+            "country": "MX",
+            "name": "Mexico",
+            "position": 12,
+            "movement": -3
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 13,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "PY",
             "name": "Paraguay",
-            "position": 18,
-            "movement": -14
+            "position": 19,
+            "movement": -15
           },
           {
             "country": "TW",
@@ -2829,26 +2829,27 @@ export const liveCharts: LiveRelease[] = [
             "country": "SV",
             "name": "El Salvador",
             "position": 30,
-            "movement": -14
+            "movement": -11
           },
           {
             "country": "VN",
             "name": "Vietnam",
             "position": 34,
-            "movement": 144
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 36,
+            "position": 37,
             "movement": null,
             "status": "new"
           },
           {
             "country": "AU",
             "name": "Australia",
-            "position": 40,
-            "movement": 9
+            "position": 39,
+            "movement": 26
           },
           {
             "country": "EE",
@@ -2861,13 +2862,7 @@ export const liveCharts: LiveRelease[] = [
             "country": "NI",
             "name": "Nicaragua",
             "position": 48,
-            "movement": -10
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 48,
-            "movement": -43
+            "movement": -9
           },
           {
             "country": "IN",
@@ -2891,26 +2886,25 @@ export const liveCharts: LiveRelease[] = [
             "country": "LU",
             "name": "Luxembourg",
             "position": 58,
-            "movement": -56
+            "movement": -55
           },
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 59,
-            "movement": 5
+            "position": 63,
+            "movement": 34
           },
           {
             "country": "LB",
             "name": "Lebanon",
             "position": 71,
-            "movement": -10
+            "movement": -8
           },
           {
-            "country": "UA",
-            "name": "Ukraine",
-            "position": 74,
-            "movement": null,
-            "status": "new"
+            "country": "RO",
+            "name": "Romania",
+            "position": 71,
+            "movement": -65
           },
           {
             "country": "BO",
@@ -2921,32 +2915,32 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 81,
-            "movement": -71
-          },
-          {
-            "country": "LV",
-            "name": "Latvia",
-            "position": 86,
-            "movement": -36
+            "position": 84,
+            "movement": -64
           },
           {
             "country": "BS",
             "name": "The Bahamas",
             "position": 89,
-            "movement": -38
+            "movement": -37
           },
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 89,
-            "movement": -13
+            "movement": -11
           },
           {
             "country": "GT",
             "name": "Guatemala",
             "position": 91,
-            "movement": -72
+            "movement": -69
+          },
+          {
+            "country": "LV",
+            "name": "Latvia",
+            "position": 91,
+            "movement": -31
           },
           {
             "country": "HU",
@@ -2956,10 +2950,17 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
+            "country": "UA",
+            "name": "Ukraine",
+            "position": 94,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": -43
+            "position": 107,
+            "movement": -79
           }
         ]
       }
@@ -3124,8 +3125,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 35,
-            "movement": 0
+            "position": 37,
+            "movement": -2
           },
           {
             "country": "GH",
@@ -3148,14 +3149,14 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 167,
+            "position": 168,
             "movement": -3
           },
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 182,
-            "movement": -93
+            "position": 193,
+            "movement": -89
           }
         ]
       }
@@ -4280,9 +4281,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 157,
-            "movement": null,
-            "status": "new"
+            "position": 165,
+            "movement": -81
           }
         ]
       }
@@ -4384,13 +4384,13 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 35,
-            "movement": -4
+            "position": 34,
+            "movement": -3
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
+            "position": 42,
             "movement": -15
           },
           {
@@ -4654,14 +4654,14 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 74,
-            "movement": 0
+            "position": 75,
+            "movement": -2
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 92,
-            "movement": -2
+            "position": 93,
+            "movement": -3
           }
         ]
       }
@@ -4690,8 +4690,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 27,
-            "movement": -3
+            "position": 25,
+            "movement": -1
           },
           {
             "country": "NE",
@@ -5018,7 +5018,7 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 169,
+            "position": 171,
             "movement": -19
           }
         ]
@@ -5109,8 +5109,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 112,
-            "movement": 82
+            "position": 120,
+            "movement": -77
           }
         ]
       }
@@ -5145,9 +5145,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 119,
-            "movement": null,
-            "status": "new"
+            "position": 127,
+            "movement": -78
           }
         ]
       }
@@ -5372,6 +5371,25 @@ export const liveCharts: LiveRelease[] = [
     "kind": "song"
   },
   {
+    "title": "Hossana",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 4,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Kilometre",
     "platforms": [
       {
@@ -5399,7 +5417,7 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "AR",
             "name": "Argentina",
-            "position": 24,
+            "position": 25,
             "movement": null,
             "status": "new"
           }
@@ -5482,25 +5500,6 @@ export const liveCharts: LiveRelease[] = [
     "kind": "song"
   },
   {
-    "title": "Alone",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 145,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Higher",
     "platforms": [
       {
@@ -5510,7 +5509,25 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
+            "position": 159,
+            "movement": -82
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Alone",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 168,
             "movement": null,
             "status": "new"
           }
@@ -5529,7 +5546,7 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 168,
+            "position": 169,
             "movement": -3
           }
         ]
@@ -5547,7 +5564,7 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 199,
+            "position": 200,
             "movement": -7
           }
         ]
