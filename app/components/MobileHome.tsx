@@ -1,0 +1,259 @@
+import Link from "next/link";
+import styles from "./mobileHome.module.css";
+import { liveHeadline } from "../lib/liveHeadline";
+import { spotifyImage } from "../lib/spotifyImage";
+import {
+  allChartItems,
+  albumCharts,
+  CHART_COUNTRIES,
+  numberOnes,
+  chartCountryCount,
+} from "../data/charts";
+import { totalAwards, countryCount as certCountries } from "../data/certifications";
+import { albums as studioAlbums } from "../data/albums";
+import { tours } from "../data/tours";
+import { updates } from "../data/updates";
+
+const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
+
+/**
+ * The mobile home screen.
+ *
+ * Mobile is a distinct layout in this design, not a narrowed desktop — a
+ * different running order, a different stat grid, and two sections the desktop
+ * page does not have at all (the No. 1 board and the album rail). So it is a
+ * separate component shown only below the mobile breakpoint, rather than a pile
+ * of media queries trying to reshape the desktop markup into it.
+ *
+ * Every figure derives from app/data.
+ */
+
+// ── The No. 1 board ────────────────────────────────────────────────────────
+// Countries where a release has peaked at No. 1 on the country's own official
+// chart, newest first. Data order is append order, so reversing surfaces the
+// most recent additions — which is what the board is for.
+const numberOneCountries: string[] = [];
+for (const release of allChartItems) {
+  for (const entry of release.entries) {
+    if (entry.peak !== 1) continue;
+    if (entry.c === "GLB" || entry.c === "GLBX") continue;
+    if (!numberOneCountries.includes(entry.c)) numberOneCountries.push(entry.c);
+  }
+}
+
+// "NEW" is not decoration: it marks a country the updates feed logged in the
+// last few days, so the badge can never outlive the news it refers to.
+const RECENT_DAYS = 4;
+const recentText = updates
+  .filter((u) => {
+    const age = (Date.now() - new Date(`${u.date}T12:00:00Z`).getTime()) / 86_400_000;
+    return age <= RECENT_DAYS;
+  })
+  .map((u) => u.text)
+  .join(" ");
+
+const board = [...numberOneCountries]
+  .reverse()
+  .slice(0, 6)
+  .map((code) => {
+    const meta = CHART_COUNTRIES[code];
+    return {
+      code,
+      flag: meta.flag,
+      name: meta.name,
+      // The body string carries a parenthetical qualifier on the airplay
+      // exceptions; the board wants the body's name alone.
+      chart: meta.body.replace(/\s*\(.*\)$/, ""),
+      isNew: recentText.includes(meta.name),
+    };
+  });
+
+// ── Albums ─────────────────────────────────────────────────────────────────
+// Best official peak per album, for the chip under each cover.
+const albumPeak = (title: string) => {
+  const rec = albumCharts.find((r) => r.title === title);
+  if (!rec) return null;
+  const best = [...rec.entries]
+    .filter((e) => e.c !== "GLB" && e.c !== "GLBX")
+    .sort((a, b) => a.peak - b.peak)[0];
+  return best ? `${best.c} No. ${best.peak}` : null;
+};
+
+const albumRail = [...studioAlbums]
+  .sort((a, b) => b.year - a.year)
+  .map((a) => ({ ...a, peak: albumPeak(a.title) }));
+
+// ── Stat grid (four on mobile) ─────────────────────────────────────────────
+const grossOf = (g?: string) => (g ? Number.parseFloat(g.replace(/[^0-9.]/g, "")) : 0);
+const topTour = [...tours].sort((a, b) => grossOf(b.gross) - grossOf(a.gross))[0];
+const years = studioAlbums.map((a) => a.year);
+
+const stats = [
+  { value: String(totalAwards()), label: "Certifications", source: `${certCountries} countries` },
+  { value: String(numberOnes), label: "No. 1s worldwide", source: `${chartCountryCount} countries` },
+  { value: String(studioAlbums.length), label: "Studio albums", source: `${Math.min(...years)} — ${Math.max(...years)}` },
+  { value: topTour?.gross ?? "—", label: "Top tour gross", source: "Boxscore" },
+];
+
+export default function MobileHome() {
+  const live = liveHeadline();
+
+  return (
+    <div className={styles.screen}>
+      {/* Gold live band */}
+      <div className={styles.band}>
+        <span className={styles.livePill}>
+          <span className={styles.liveDot} aria-hidden="true" />
+          Live
+        </span>
+        <span className={styles.bandText}>
+          {live.title
+            ? `“${live.title}” — No. 1 in ${live.countries} countries`
+            : live.lead}
+        </span>
+      </div>
+
+      {/* Hero */}
+      <div className={styles.hero}>
+        <p className={styles.eyebrow}>
+          <span className={styles.rule} aria-hidden="true" />
+          The African Giant · Est. 2010
+        </p>
+        {/* Deliberately not an <h1>. Both layouts sit in the DOM at once — one
+            is CSS-hidden, not removed — so a second <h1> would give the page
+            two, which the SEO gate rejects and crawlers dislike. The desktop
+            block keeps the single document heading; this renders the same
+            words at the mobile size. */}
+        <p className={styles.title}>
+          Burna <span className={styles.titleGold}>Boy</span>
+        </p>
+        <p className={styles.lede}>
+          Every certification, chart peak and record — sourced line by line, updated
+          the day it changes.
+        </p>
+        <div className={styles.actions}>
+          <Link href="/certifications" className={styles.primary}>
+            <span>View certifications</span>
+            <span aria-hidden="true">↗</span>
+          </Link>
+          <Link href="/music" className={styles.secondary}>
+            <span>Explore the music</span>
+            <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+      </div>
+
+      {/* Today's number */}
+      <div className={styles.today}>
+        <div className={styles.todayKicker}>Today&apos;s number</div>
+        <div className={styles.todayRow}>
+          <div className={styles.todayFigure}>{live.countries}</div>
+          <Link href="/dai-dai" className={styles.todayCover}>
+            {/* eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN art */}
+            <img src={spotifyImage(DAI_DAI_COVER, 300)} alt="" width={112} height={112} />
+            <span className={styles.todayCoverLabel}>{live.title ?? "Dai Dai"} ↗</span>
+          </Link>
+        </div>
+        <div className={styles.todayCaption}>
+          {live.countries === 1 ? "Country at No. 1" : "Countries at No. 1"}
+        </div>
+        <p className={styles.todayNote}>
+          On streaming charts right now. Across official national charts his career
+          total is {numberOnes} No.&nbsp;1s in {chartCountryCount} countries.
+        </p>
+        <div className={styles.todayFoot}>
+          <span className={styles.todayFootDot} aria-hidden="true" />
+          <span>Refreshed hourly</span>
+          <Link href="/live-charts" className={styles.todayFootLink}>
+            Live board ↗
+          </Link>
+        </div>
+      </div>
+
+      {/* Stat grid — four, two-up */}
+      <div className={styles.statGrid}>
+        {stats.map((s) => (
+          <div key={s.label} className={styles.stat}>
+            <div className={styles.statValue}>{s.value}</div>
+            <div className={styles.statLabel}>{s.label}</div>
+            <div className={styles.statSource}>{s.source}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* The No. 1 board */}
+      <section className={styles.section}>
+        <div className={styles.sectionHead}>
+          <div>
+            <p className={styles.sectionKicker}>Tracked live</p>
+            <h2 className={styles.sectionTitle}>The No. 1 board</h2>
+          </div>
+          <Link href="/records/charts" className={styles.sectionLink}>
+            All {numberOneCountries.length} ↗
+          </Link>
+        </div>
+        <div className={styles.boardGrid}>
+          {board.map((c) => (
+            <div key={c.code} className={`${styles.boardCell} ${c.isNew ? styles.boardNew : ""}`}>
+              <div className={styles.boardTop}>
+                <span className={styles.boardCode}>{c.code}</span>
+                <span className={styles.boardFlag} aria-hidden="true">
+                  {c.isNew ? "NEW" : c.flag}
+                </span>
+              </div>
+              <div className={styles.boardName}>{c.name}</div>
+              <div className={styles.boardChart}>{c.chart}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Album rail */}
+      <section className={styles.sectionFlush}>
+        <div className={styles.sectionHead}>
+          <div>
+            <p className={styles.sectionKicker}>The catalogue</p>
+            <h2 className={styles.sectionTitle}>
+              {studioAlbums.length === 8 ? "Eight albums" : `${studioAlbums.length} albums`}
+            </h2>
+          </div>
+          <Link href="/music" className={styles.sectionLink}>
+            All ↗
+          </Link>
+        </div>
+        <div className={styles.rail}>
+          {albumRail.map((a) => (
+            <Link key={a.title} href="/music" className={styles.railItem}>
+              <span
+                className={styles.railCover}
+                style={a.cover ? { backgroundImage: `url(${spotifyImage(a.cover, 300)})` } : undefined}
+              />
+              <span className={styles.railTitle}>{a.title}</span>
+              <span className={styles.railChips}>
+                {a.peak && <span className={styles.railPeak}>{a.peak}</span>}
+                <span className={styles.railYear}>{a.year}</span>
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* History made */}
+      <section className={styles.history}>
+        <p className={styles.sectionKicker}>History made · 19 Jul 2026</p>
+        <h2 className={styles.historyTitle}>
+          Shakira <span aria-hidden="true">×</span>
+          <br />
+          Burna Boy
+        </h2>
+        <p className={styles.historyText}>
+          First African headliner of a World Cup Final halftime show. “Dai Dai” is now
+          the most-streamed song on Earth.
+        </p>
+        <Link href="/dai-dai" className={styles.historyCta}>
+          Read the story ↗
+        </Link>
+      </section>
+    </div>
+  );
+}

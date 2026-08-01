@@ -740,3 +740,9 @@ aa
     padding: 5px 10px;
   }
 }
+
+/* The desktop hero block. Hidden on phones, where MobileHome renders the
+   screen the design actually specifies for that width. */
+@media (max-width: 900px) {
+  .desktopOnly { display: none; }
+}

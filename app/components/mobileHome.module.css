@@ -1,0 +1,453 @@
+/* Mobile home screen. Values are the design's, verbatim.
+   Shown only below the mobile breakpoint — the desktop page is a different
+   running order, not the same markup reflowed. */
+.screen {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+  }
+}
+
+/* ── Gold live band ───────────────────────────────────────────────────── */
+.band {
+  color: var(--bg);
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: var(--gold);
+  background-image: linear-gradient(100deg, var(--gold-bright) 0%, var(--gold) 46%, #ffa023 100%);
+}
+.livePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--green);
+}
+.liveDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  display: block;
+}
+.bandText {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 24px 18px 20px; }
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.rule {
+  width: 16px;
+  height: 2px;
+  background: var(--gold);
+  display: block;
+  flex: none;
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 62px;
+  line-height: 0.86;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+.titleGold {
+  background: linear-gradient(180deg, #ffd25a, var(--gold) 45%, var(--grad-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lede {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #d8d8de;
+  margin: 14px 0 0;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 20px;
+}
+/* Label left, arrow right — the design's actions are justified, not centred. */
+.primary,
+.secondary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.primary {
+  background: var(--gold);
+  color: #17130c;
+  border: 1px solid var(--gold);
+}
+.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+/* ── Today's number ───────────────────────────────────────────────────── */
+.today {
+  margin: 0 18px;
+  padding: 20px;
+  border-radius: 16px;
+  color: var(--bg);
+  background-color: var(--gold);
+  background-image:
+    radial-gradient(58% 62% at 6% -4%, rgba(255, 246, 214, 0.55), transparent 62%),
+    radial-gradient(70% 70% at 104% 108%, rgba(150, 42, 18, 0.42), transparent 66%),
+    linear-gradient(128deg, var(--gold-bright) 0%, var(--gold) 42%, #f08a12 78%, #d96c0c 100%);
+}
+.todayKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.todayRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 10px;
+}
+.todayFigure {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 104px;
+  line-height: 0.8;
+  font-variant-numeric: tabular-nums;
+}
+.todayCover {
+  margin-left: auto;
+  color: var(--bg);
+  display: block;
+  flex: none;
+  text-decoration: none;
+}
+.todayCover img {
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  display: block;
+}
+.todayCoverLabel {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 7px;
+  opacity: 0.72;
+}
+.todayCaption {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-top: 14px;
+}
+.todayNote {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 8px 0 0;
+  font-weight: 500;
+}
+.todayFoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(90, 42, 6, 0.22);
+  font-size: 12px;
+}
+.todayFootDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0a3d22;
+  display: block;
+  flex: none;
+}
+.todayFootLink {
+  margin-left: auto;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  color: var(--bg);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ── Stat grid: two-up, hairline seams ────────────────────────────────── */
+.statGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  margin-top: 26px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.stat {
+  background: var(--bg);
+  padding: 18px;
+}
+.statValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+.statLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.statSource {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  margin-top: 5px;
+  color: var(--text-muted);
+}
+
+/* ── Sections ─────────────────────────────────────────────────────────── */
+.section { padding: 26px 0 22px; }
+.sectionFlush { padding: 0 0 24px; }
+.sectionHead {
+  padding: 0 18px;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+.sectionKicker {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.sectionTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 8px 0 0;
+}
+.sectionLink {
+  margin-left: auto;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ── No. 1 board ──────────────────────────────────────────────────────── */
+.boardGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.boardCell {
+  padding: 13px 16px;
+  background: var(--bg);
+}
+/* A newly-added No. 1 reads green, matching the live/positive accent. */
+.boardNew { background: rgba(62, 209, 127, 0.07); }
+.boardTop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.boardCode {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+.boardNew .boardCode { color: var(--green); }
+.boardFlag {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  margin-left: auto;
+}
+.boardNew .boardFlag { color: var(--green); }
+.boardName {
+  font-size: 12.5px;
+  color: #d8d8de;
+  margin-top: 2px;
+}
+.boardChart {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* ── Album rail: horizontal snap scroll ───────────────────────────────── */
+.rail {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 16px 18px 4px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.rail::-webkit-scrollbar { display: none; }
+.railItem {
+  flex: none;
+  width: 148px;
+  color: var(--text);
+  scroll-snap-align: start;
+  text-decoration: none;
+}
+.railCover {
+  display: block;
+  aspect-ratio: 1;
+  background: var(--bg-soft-2);
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px;
+}
+.railTitle {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  line-height: 1.1;
+}
+.railChips {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+.railPeak {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(255, 182, 39, 0.14);
+  color: var(--gold);
+  white-space: nowrap;
+}
+.railYear {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(245, 240, 232, 0.07);
+  color: var(--text-muted);
+}
+
+/* ── History made ─────────────────────────────────────────────────────── */
+.history {
+  padding: 22px 18px 26px;
+  background: var(--bg-soft);
+  border-top: 1px solid var(--line);
+}
+.historyTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 10px 0 0;
+}
+.historyText {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 10px 0 14px;
+}
+.historyCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}

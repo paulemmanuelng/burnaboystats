@@ -15,6 +15,7 @@ import { daiDaiNumberOnes, numberOnes } from "./data/charts";
 import { albums as studioAlbums } from "./data/albums";
 import { spotifyImage, spotifySrcSet } from "./lib/spotifyImage";
 import LiveBand from "./components/LiveBand";
+import MobileHome from "./components/MobileHome";
 import TodaysNumber from "./components/TodaysNumber";
 import { homeScoreboard } from "./lib/homeScoreboard";
 
@@ -87,6 +88,13 @@ const records = [
 export default function Home() {
   return (
     <main id="content">
+      {/* Mobile is a distinct screen in this design — different running order,
+          different stat grid, and two sections the desktop page does not have.
+          Each renders at its own breakpoint rather than one being reflowed
+          into the other. */}
+      <MobileHome />
+
+      <div className={styles.desktopOnly}>
       {/* ================= HERO ================= */}
       <LiveBand />
 
@@ -139,6 +147,8 @@ export default function Home() {
         </div>
         <Waveform className={styles.heroWave} />
       </section>
+
+      </div>
 
       {/* ================= MARQUEE ================= */}
       <Marquee items={marqueeItems} />
