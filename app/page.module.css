@@ -8,7 +8,10 @@
      longer tucks up behind the nav — the -68px here was drawing the hero
      straight over the band and hiding it entirely. */
   margin-top: 0;
-  padding: 158px 0 66px;
+  /* 158px of top padding existed to clear the transparent nav the hero used
+     to slide under. The live band now occupies that space, so it was simply
+     ~280px of dead air between the band and the eyebrow. */
+  padding: 0 0 66px;
   background:
     radial-gradient(46% 52% at 3% 100%, rgba(226, 52, 43, 0.11), transparent 60%),
     linear-gradient(180deg, #0d0d10 0%, #09090b 62%, #08080a 100%);
@@ -572,8 +575,10 @@ aa
   .rankList { margin-top: 16px; }
   .tierStrip { margin-top: 28px; padding-top: 26px; }
   .tierHead { margin-bottom: 16px; }
-  /* tighten the empty space under the nav on phones (desktop keeps 156px) */
-  .hero { padding-top: clamp(104px, 21vw, 156px); }
+  /* This used to clear the transparent nav the hero slid under. The live band
+     now fills that role, so the clamp was re-introducing 104px of dead air
+     below the band on phones after the base padding was already zeroed. */
+  .hero { padding-top: 0; }
   .cta { padding: 8px 0 44px; }
   .ctaInner { padding: 44px 22px; }
   .scoreboard {
@@ -702,5 +707,36 @@ aa
   .heroPanel {
     border-left: none;
     border-top: 1px solid var(--line);
+  }
+}
+
+
+/* ── Redesign: mobile hero ───────────────────────────────────────────────
+   Thumb-first, per the mobile spec: one column, full-width actions. */
+@media (max-width: 620px) {
+  .heroCopy {
+    padding: 30px 0 26px;
+  }
+  /* Full-bleed stacked actions — a 44px minimum target is the floor, and a
+     button that stops short of the gutter reads as an accident on a phone. */
+  .heroButtons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 22px;
+  }
+  .heroButtons :global(.btn) {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+  .heroSources {
+    margin-top: 22px;
+    gap: 6px;
+  }
+  .sourceChip,
+  .sourceChipLink {
+    font-size: 10.5px;
+    padding: 5px 10px;
   }
 }
