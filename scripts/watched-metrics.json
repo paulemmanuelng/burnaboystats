@@ -119,7 +119,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 646710615,
+      "baseline": 648139396,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -262,7 +262,7 @@
       "extractor": "kworbYouTubeTotal",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 3154175749,
+      "baseline": 3160462402,
       "note": "Cumulative views across every Burna Boy video — a milestone figure as it climbs.",
       "live": true,
       "siteTargets": [
@@ -280,7 +280,7 @@
         "min": 1000000000,
         "max": 50000000000
       },
-      "lastChanged": "2026-07-29"
+      "lastChanged": "2026-08-01"
     },
     {
       "id": "spotify-streams-last-last",
