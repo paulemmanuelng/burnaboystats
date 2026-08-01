@@ -16,43 +16,53 @@ export const metadata = pageMetadata({
   shareDescription: "The history-making milestones of the African Giant.",
 });
 
-// The headline firsts: the most recent from each category, then newest first.
-//
-// Sorting the whole set by year gave six 2026 entries and buried the Grammy,
-// the Madison Square Garden sell-out and the first stadium headline — the
-// milestones a reader actually came for. One per category keeps the spread
-// across stages, world stage, awards and streaming while staying derived.
-const headlineFirsts = firstGroups
-  .map((g) => [...g.items].sort((a, b) => Number(b.year) - Number(a.year))[0])
-  .filter(Boolean)
-  .sort((a, b) => Number(b.year) - Number(a.year));
+// The design's curated "headline firsts" — the six a reader opens the page
+// for, not simply the six most recent. Sorting the whole set by year returns
+// six 2026 entries and buries the Grammy and the Madison Square Garden night.
+// The copy is the design's; the figures inside it are checked against
+// firsts.ts, tours.ts and tourRevenue.ts.
+const headlineFirsts = [
+  { year: "2026", title: "First African artist to headline a World Cup final", sub: "“Dai Dai” with Shakira, halftime show" },
+  { year: "2024", title: "First African artist to headline a UK stadium", sub: "London Stadium — 58,973 in the room" },
+  { year: "2023", title: "Highest-grossing tour by an African artist", sub: "I Told Them… Tour, $30.46M" },
+  { year: "2022", title: "First Nigerian to sell out Madison Square Garden", sub: "Space Drift Tour, 13,586 tickets" },
+  { year: "2021", title: "Grammy — Best Global Music Album", sub: "Twice as Tall" },
+  { year: "2024", title: "First African artist past 2 billion UK streams", sub: "BRIT Billion Award" },
+];
 
 export default function FirstsPage() {
   return (
     <main id="content">
       <DeepPage
         backHref="/records"
-        backLabel="Records"
+        backLabel="Firsts"
         badge={String(firstsCount)}
         kicker="Record-breaking"
         titlePre="Firsts & "
         titleGold="records"
-        lede={`${firstsCount} milestones, from the first African stadium headline to the World Cup final.`}
+        lede={`Forty-nine milestones, from the first African stadium headline to the World Cup final.`}
         stats={[
           { value: String(firstsCount), label: "Milestones" },
           { value: String(firstGroups.length), label: "Categories" },
+        ]}
+        chips={[
+          { label: `All ${firstsCount}`, active: true },
+          { label: "Stages" },
+          { label: "World stage" },
+          { label: "Awards" },
+          { label: "Streaming" },
         ]}
         listTitle="The headline firsts"
         listMeta="newest first"
         rows={headlineFirsts.map((f, i) => ({
           rank: f.year,
           title: f.title,
-          sub: f.text,
+          sub: f.sub,
           value: "",
           highlight: i < 2,
         }))}
-        footNote={`Each first is dated to the event itself and cross-checked against the chart, certification or box-office record behind it. Grouped into ${firstGroups.length} categories below.`}
-        cta={{ label: "Every milestone", href: "#all-firsts" }}
+        footNote="Only firsts traceable to a primary source are listed. Grouped on the full page into stages, the world stage, awards, streaming and business."
+        cta={{ label: `All ${firstsCount} firsts`, href: "#all-firsts" }}
       />
 
       <div className="container" id="all-firsts">

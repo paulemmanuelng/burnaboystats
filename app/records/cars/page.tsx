@@ -4,7 +4,7 @@ import CountUp from "../../components/CountUp";
 import StatGrid from "../../components/StatGrid";
 import KeepExploring from "../../components/KeepExploring";
 import DeepPage from "../../components/DeepPage";
-import { currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted } from "../../data/cars";
+import { cars, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted } from "../../data/cars";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -53,21 +53,28 @@ const highlights = [
   { label: "Most of one brand", value: `${makeTally[0][1]}× ${makeTally[0][0]}`, meta: "his favourite marque" },
 ];
 
-// Marque counts for the chip rail, and the six priciest for the list —
-// both derived, so a car added to the data appears without another edit.
-const marques = Object.entries(
-  currentCars.reduce<Record<string, number>>((acc, c) => {
-    acc[c.make] = (acc[c.make] ?? 0) + 1;
-    return acc;
-  }, {})
-)
-  .sort((a, b) => b[1] - a[1])
-  .slice(0, 4);
+// The design's chip rail and row list. Marque counts are derived across the
+// whole collection (the design counts the garage, not only what is still in
+// it); the row titles split make + base model, with the design's descriptor
+// as the subtitle.
+const marqueCounts = cars.reduce<Record<string, number>>((acc, c) => {
+  const marque = c.make === "Mercedes-Maybach" ? "Maybach" : c.make;
+  acc[marque] = (acc[marque] ?? 0) + 1;
+  return acc;
+}, {});
+
+const CHIP_MARQUES = ["Ferrari", "Lamborghini", "Maybach", "Rolls-Royce"];
 
 const topCars = currentCars.slice(0, 6);
 const topValue = topCars[0]?.valueUsd ?? 1;
-const usd = (n: number) =>
-  n >= 1e6 ? `$${(n / 1e6).toFixed(2)}M` : `$${Math.round(n / 1e3)}K`;
+const usd = (n: number) => `$${(n / 1e6).toFixed(2)}M`;
+
+// The design shows "Bugatti Chiron" with "Venuum Widebody — one of one"
+// underneath; the data keeps the qualifier inside `model`.
+const splitModel = (model: string) => {
+  const m = model.match(/^([^(]+?)\s*\((.+)\)$/);
+  return m ? { base: m[1].trim(), qualifier: m[2].trim() } : { base: model, qualifier: "" };
+};
 
 export default function CarsPage() {
   return (
@@ -76,29 +83,35 @@ export default function CarsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(carsItemList) }} />
       <DeepPage
         backHref="/records"
-        backLabel="Records"
+        backLabel="Car collection"
         badge={String(carCount)}
         kicker="The garage, priced"
         titlePre="Car "
         titleGold="collection"
-        lede={`${carCount} confirmed cars worth a reported ${totalValueFormatted} — led by a one-of-one ₦9bn Bugatti.`}
+        lede={`Fifteen confirmed cars worth a reported ${totalValueFormatted} — led by a one-of-one ₦9bn Bugatti.`}
         stats={[
           { value: String(carCount), label: "Confirmed cars" },
           { value: totalValueFormatted, label: "Reported value" },
         ]}
-        chips={marques.map(([marque, n], i) => ({ label: `${n} ${marque}`, active: i === 0 }))}
+        chips={CHIP_MARQUES.filter((m) => marqueCounts[m]).map((m, i) => ({
+          label: `${marqueCounts[m]} ${m}`,
+          active: i === 0,
+        }))}
         listTitle="Ranked by what each cost"
         listMeta="import-inclusive"
-        rows={topCars.map((c, i) => ({
-          rank: String(i + 1).padStart(2, "0"),
-          title: `${c.make} ${c.model}`,
-          sub: c.year ? `${c.year} · ${c.valueNaira}` : c.valueNaira,
-          value: usd(c.valueUsd),
-          bar: c.valueUsd / topValue,
-          highlight: i < 2,
-        }))}
-        footNote="Unlike charts and certifications, a car collection has no governing body — every figure here is a reported price from published sightings and interviews, not an audited one. Sold and unconfirmed cars are listed separately below."
-        cta={{ label: "Every car, priced", href: "#all-cars" }}
+        rows={topCars.map((c, i) => {
+          const { base, qualifier } = splitModel(c.model);
+          return {
+            rank: String(i + 1).padStart(2, "0"),
+            title: `${c.make} ${base}`,
+            sub: qualifier || (c.year ? `${c.year}` : c.valueNaira),
+            value: usd(c.valueUsd),
+            bar: c.valueUsd / topValue,
+            highlight: i < 2,
+          };
+        })}
+        footNote="Unlike charts and certifications, a car collection has no official record. Reconstructed from press and sightings; only cars confirmed by multiple sources are listed."
+        cta={{ label: "The full garage", href: "#all-cars" }}
       />
 
       <div className="container" id="all-cars">

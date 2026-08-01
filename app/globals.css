@@ -1200,3 +1200,13 @@ button:focus-visible,
     scroll-behavior: auto !important;
   }
 }
+
+
+/* The fixed mobile tab bar sits over the page, so the footer needs clearance
+   or its last line hides beneath it. Matches the bar's height plus its
+   home-indicator foot. */
+@media (max-width: 900px) {
+  body {
+    padding-bottom: calc(64px + max(30px, env(safe-area-inset-bottom, 0px)));
+  }
+}

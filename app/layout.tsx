@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import MobileTabBar from "./components/MobileTabBar";
 import type { ReactNode } from "react";
 import { Geist, Anton, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -138,6 +139,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* NAVIGATION BAR — shown on every page */}
         <Nav />
+
+        {/* The mobile spine: a fixed five-tab bar on every phone screen.
+            Hidden above the mobile breakpoint, where the sticky nav does it. */}
+        <MobileTabBar />
 
         {/* Birthday takeover — self-gates to July 2 (Burna Boy's birthday) */}
         <BirthdayCelebration />

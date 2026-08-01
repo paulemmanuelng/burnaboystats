@@ -66,15 +66,24 @@ const breadcrumbJsonLd = {
   ],
 };
 
-// The six bodies that have given him the most, derived — never a typed list.
+// The six bodies from the design's "most-decorated stages" list. The bodies
+// and their figures are derived; SHORT_NAME only shortens what the design
+// shortened for the row width ("AFRIMMA", not the full registered name).
+const SHORT_NAME: Record<string, string> = {
+  "Soundcity MVP Awards Festival": "Soundcity MVP",
+  "African Muzik Magazine Awards (AFRIMMA)": "AFRIMMA",
+  "All Africa Music Awards (AFRIMA)": "AFRIMA",
+  "Nigeria Entertainment Awards": "Nigeria Entertainment",
+};
+
 const topBodies = [...ceremonies]
   .map((c) => ({
-    name: c.name,
+    name: SHORT_NAME[c.name] ?? c.name,
     wins: c.noms.filter((n) => n.won).length,
     noms: c.noms.length,
   }))
-  // Ties break on FEWER nominations: 8 wins from 12 is a better record than 8
-  // from 22, and the design ranks Soundcity above AFRIMMA for exactly that.
+  // Ties break on FEWER nominations — 8 from 12 beats 8 from 22, which is the
+  // order the design lists Soundcity and AFRIMMA in.
   .sort((a, b) => b.wins - a.wins || a.noms - b.noms)
   .slice(0, 6);
 
@@ -88,29 +97,34 @@ export default function AwardsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <DeepPage
         backHref="/records"
-        backLabel="Records"
+        backLabel="Awards"
         badge={`${totalWins} wins`}
         kicker="Decorated"
         titlePre="Awards & "
         titleGold="nominations"
-        lede={`${totalWins} wins from ${totalNominations} nominations across ${ceremonyCount} award bodies — including a 2021 Grammy for Twice as Tall.`}
+        lede={`${totalWins} wins from ${totalNominations} nominations across ${ceremonyCount} award bodies — including a 2021 Grammy.`}
         stats={[
           { value: String(grammyWins), label: "Grammy win" },
+          { value: String(grammyNoms), label: "Grammy noms" },
           { value: String(ceremonyCount), label: "Award bodies" },
-          { value: String(honourCount), label: "Honours" },
+        ]}
+        chips={[
+          { label: "All", active: true },
+          { label: "Wins only" },
+          { label: "Nominations" },
         ]}
         listTitle="Most-decorated stages"
         listMeta="top 6 by wins"
         rows={topBodies.map((b, i) => ({
           rank: String(i + 1).padStart(2, "0"),
           title: b.name,
-          sub: `${b.noms} nomination${b.noms === 1 ? "" : "s"}`,
-          value: `${b.wins} win${b.wins === 1 ? "" : "s"}`,
+          sub: `${b.noms} nominations`,
+          value: String(b.wins),
           bar: b.wins / mostWins,
-          highlight: i === 0,
+          highlight: i < 2,
         }))}
-        footNote={`Wins and nominations taken from each body's own winners list — a ${winRate}% conversion across ${totalNominations} nominations. Honours and special recognitions are counted separately from competitive wins.`}
-        cta={{ label: "Every award, filterable", href: "#award-explorer" }}
+        footNote={`Wins and nominations from each body's own winners list. A ${winRate}% career strike rate. Honours like the MFR and TIME 100 are listed separately, not counted here.`}
+        cta={{ label: "Every award", href: "#award-explorer" }}
       />
 
       <div className="container">
