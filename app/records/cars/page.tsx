@@ -3,6 +3,7 @@ import styles from "./cars.module.css";
 import CountUp from "../../components/CountUp";
 import StatGrid from "../../components/StatGrid";
 import KeepExploring from "../../components/KeepExploring";
+import DeepPage from "../../components/DeepPage";
 import { currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted } from "../../data/cars";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
@@ -52,26 +53,55 @@ const highlights = [
   { label: "Most of one brand", value: `${makeTally[0][1]}× ${makeTally[0][0]}`, meta: "his favourite marque" },
 ];
 
+// Marque counts for the chip rail, and the six priciest for the list —
+// both derived, so a car added to the data appears without another edit.
+const marques = Object.entries(
+  currentCars.reduce<Record<string, number>>((acc, c) => {
+    acc[c.make] = (acc[c.make] ?? 0) + 1;
+    return acc;
+  }, {})
+)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 4);
+
+const topCars = currentCars.slice(0, 6);
+const topValue = topCars[0]?.valueUsd ?? 1;
+const usd = (n: number) =>
+  n >= 1e6 ? `$${(n / 1e6).toFixed(2)}M` : `$${Math.round(n / 1e3)}K`;
+
 export default function CarsPage() {
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(carsDataset) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(carsItemList) }} />
-      <header className="pageHeader container">
-        <h1>
-          Car <span className="accent">Collection</span>
-        </h1>
-        <p>The garage, ranked by what each car reportedly cost him — plus the ones he&apos;s since let go</p>
-      </header>
+      <DeepPage
+        backHref="/records"
+        backLabel="Records"
+        badge={String(carCount)}
+        kicker="The garage, priced"
+        titlePre="Car "
+        titleGold="collection"
+        lede={`${carCount} confirmed cars worth a reported ${totalValueFormatted} — led by a one-of-one ₦9bn Bugatti.`}
+        stats={[
+          { value: String(carCount), label: "Confirmed cars" },
+          { value: totalValueFormatted, label: "Reported value" },
+        ]}
+        chips={marques.map(([marque, n], i) => ({ label: `${n} ${marque}`, active: i === 0 }))}
+        listTitle="Ranked by what each cost"
+        listMeta="import-inclusive"
+        rows={topCars.map((c, i) => ({
+          rank: String(i + 1).padStart(2, "0"),
+          title: `${c.make} ${c.model}`,
+          sub: c.year ? `${c.year} · ${c.valueNaira}` : c.valueNaira,
+          value: usd(c.valueUsd),
+          bar: c.valueUsd / topValue,
+          highlight: i < 2,
+        }))}
+        footNote="Unlike charts and certifications, a car collection has no governing body — every figure here is a reported price from published sightings and interviews, not an audited one. Sold and unconfirmed cars are listed separately below."
+        cta={{ label: "Every car, priced", href: "#all-cars" }}
+      />
 
-      <div className="container">
-        <StatGrid
-          stats={[
-            { num: <CountUp end={carCount} />, label: "Confirmed cars" },
-            { num: `${totalValueFormatted}+`, label: "Reported collection value" },
-          ]}
-        />
-
+      <div className="container" id="all-cars">
         <p className="lead" style={{ margin: "22px auto 0", textAlign: "center" }}>
           Burna Boy currently owns {carCount} confirmed cars — a collection worth a
           reported {totalValueFormatted}+, led by a one-of-one ₦9 billion Bugatti Chiron
