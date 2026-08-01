@@ -14,7 +14,16 @@ import { liveCharts, liveCountryCount } from "../data/liveCharts";
  * bigger claim than any placement count — and falls back to reach when nothing
  * is topping a chart, so the hero is never empty.
  */
-export function liveHeadline(): { lead: string; detail: string } {
+export interface LiveHeadline {
+  /** The release doing the work, e.g. "Dai Dai". Null when nothing is topping. */
+  title: string | null;
+  /** Distinct countries where it is No. 1 right now. */
+  countries: number;
+  lead: string;
+  detail: string;
+}
+
+export function liveHeadline(): LiveHeadline {
   let best: { title: string; countries: number } | null = null;
 
   for (const release of liveCharts) {
@@ -31,6 +40,8 @@ export function liveHeadline(): { lead: string; detail: string } {
 
   if (best && best.countries > 1) {
     return {
+      title: best.title,
+      countries: best.countries,
       lead: `“${best.title}” is No. 1 in ${best.countries} countries`,
       // The qualifier is not decoration. This counts platform charts, where the
       // song tops 64 territories; on official national charts the figure is 21.
@@ -47,6 +58,8 @@ export function liveHeadline(): { lead: string; detail: string } {
     0
   );
   return {
+    title: null,
+    countries: 0,
     lead: `Charting in ${liveCountryCount} countries`,
     detail: `${reach} live placements on streaming charts`,
   };

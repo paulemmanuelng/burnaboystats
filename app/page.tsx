@@ -14,7 +14,9 @@ import { latestUpdates, updates } from "./data/updates";
 import { daiDaiNumberOnes, numberOnes } from "./data/charts";
 import { albums as studioAlbums } from "./data/albums";
 import { spotifyImage, spotifySrcSet } from "./lib/spotifyImage";
-import { liveHeadline } from "./lib/liveHeadline";
+import LiveBand from "./components/LiveBand";
+import TodaysNumber from "./components/TodaysNumber";
+import { homeScoreboard } from "./lib/homeScoreboard";
 
 // The "Dai Dai" single cover, used by the homepage featured card.
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
@@ -27,8 +29,6 @@ const BURNA_PORTRAIT = "https://i.scdn.co/image/ab6761610000e5ebb4e44d0f4e3e47af
 
 const total = totalAwards();
 
-// The hook, derived from the live snapshot so it changes on its own.
-const headline = liveHeadline();
 
 // Tier breakdown of all certifications, for the donut under the ranked list.
 const tierCounts: Record<string, number> = { Diamond: 0, Platinum: 0, Gold: 0, Silver: 0 };
@@ -88,72 +88,56 @@ export default function Home() {
   return (
     <main id="content">
       {/* ================= HERO ================= */}
+      <LiveBand />
+
       <section className={styles.hero}>
         <div className={styles.heroGlow} aria-hidden="true" />
-        {/* Decorative, so it is a CSS background rather than an <img>: the
-            image must not be fetched at all on phones, and display:none does
-            not prevent that — it downloaded the full 640px file to hide it.
-            A background declared only inside a min-width query is never
-            requested when the query does not match. */}
         <div className={styles.heroPortrait} aria-hidden="true" />
         <span className={styles.heroWatermark} aria-hidden="true">Odogwu</span>
 
         <div className={`container ${styles.heroInner}`}>
-          <div className={styles.heroTop}>
-            <div className={styles.metaGroup}>
-              <span className={styles.metaLabel}>Est. 2010</span>
-              <span className={styles.metaLabel}>Afro-Fusion</span>
+          <div className={styles.heroGrid}>
+            <div className={styles.heroCopy}>
+              <p className={styles.eyebrow}>
+                <span className={styles.eyebrowRule} aria-hidden="true" />
+                The African Giant · Est. 2010 · Afro-Fusion
+              </p>
+              <h1 className={styles.title}>
+                Burna <span className="inkText">Boy</span>
+              </h1>
+              <p className={styles.tagline}>
+                Every certification, chart peak, award and tour record — one dataset,
+                sourced line by line, updated the day it changes.
+              </p>
+              <div className={styles.heroButtons}>
+                <Link href="/certifications" className="btn btnPrimary">View certifications ↗</Link>
+                <Link href="/music" className="btn btnSecondary">Explore the music ↗</Link>
+              </div>
+              {/* The trust row. The site's whole claim is that every figure
+                  traces to a named body — saying so up front is the point. */}
+              <div className={styles.heroSources}>
+                <span className={styles.sourceChip}>Sources: RIAA · BPI · SNEP · IFPI</span>
+                <span className={styles.sourceChip}>Last verified {lastUpdated}</span>
+                <Link href="/api" className={styles.sourceChipLink}>Open data API ↗</Link>
+              </div>
             </div>
-            <span className={styles.updated}>
-              <span className={styles.liveDot} aria-hidden="true" />
-              Updated {lastUpdated}
-            </span>
+
+            <div className={styles.heroPanel}>
+              <TodaysNumber />
+            </div>
           </div>
 
-          <p className={styles.eyebrow}>★ The African Giant</p>
-          <h1 className={styles.title}>
-            Burna <span className="inkText">Boy</span>
-          </h1>
-          <p className={styles.tagline}>
-            Every certification, every chart record, every milestone — the whole
-            catalogue in one place. Fact-checked and always current.
-          </p>
-          <div className={styles.heroButtons}>
-            <Link href="/certifications" className="btn btnPrimary">View certifications ↗</Link>
-            <Link href="/music" className="btn btnSecondary">Explore the music ↗</Link>
-          </div>
-
-          {/* Sits directly above the scoreboard on purpose: those four are
-              all-time career figures, this is the one that is true only today.
-              Together they read as "here is the career, here is right now".
-              It previously sat between the wordmark and the tagline, where it
-              delayed the one sentence explaining what the site actually is. */}
-          <Link href="/live-charts" className={styles.liveHook}>
-            <span className={styles.liveHookDot} aria-hidden="true" />
-            <span className={styles.liveHookLead}>{headline.lead}</span>
-            <span className={styles.liveHookDetail}>{headline.detail} ↗</span>
-          </Link>
           <div className={styles.scoreboard}>
-            <Link href="/certifications" className={styles.stat}>
-              <span className={styles.statNum}><CountUp end={total} /></span>
-              <span className={styles.statLabel}>Certifications</span>
-            </Link>
-            <Link href="/records/charts" className={styles.stat}>
-              <span className={styles.statNum}><CountUp end={numberOnes} /></span>
-              <span className={styles.statLabel}>No. 1s worldwide</span>
-            </Link>
-            <Link href="/music" className={styles.stat}>
-              <span className={styles.statNum}><CountUp end={studioAlbums.length} /></span>
-              <span className={styles.statLabel}>Studio albums</span>
-            </Link>
-            <Link href="/records/awards" className={styles.stat}>
-              <span className={styles.statNum}>2021</span>
-              <span className={styles.statLabel}>Grammy winner</span>
-            </Link>
+            {homeScoreboard.map((s) => (
+              <Link key={s.label} href={s.href} className={styles.stat}>
+                <span className={styles.statNum}>{s.value}</span>
+                <span className={styles.statLabel}>{s.label}</span>
+                <span className={styles.statSource}>{s.source}</span>
+              </Link>
+            ))}
           </div>
         </div>
-
-        <Waveform bars={60} className={styles.heroWave} />
+        <Waveform className={styles.heroWave} />
       </section>
 
       {/* ================= MARQUEE ================= */}

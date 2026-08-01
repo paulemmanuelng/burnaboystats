@@ -1,0 +1,85 @@
+/* Gold live band, full-width under the nav.
+   Spec: linear-gradient(100deg, gold-bright 0%, gold 46%, #ffa023 100%),
+   dark text, 9px/40px padding, 12.5px body. */
+.band {
+  color: var(--bg);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  background-color: var(--gold);
+  background-image: linear-gradient(100deg, var(--gold-bright) 0%, var(--gold) 46%, #ffa023 100%);
+}
+
+.inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 9px 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+}
+
+/* Dark pill so the green reads as a status light against the gold. */
+.livePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--green);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  display: block;
+}
+
+.headline {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  /* Anton has no bold cut; weight stays 400 or the browser fakes it. */
+  font-weight: 400;
+}
+
+.sub {
+  opacity: 0.75;
+}
+
+.streams {
+  margin-left: auto;
+  color: inherit;
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.9;
+  white-space: nowrap;
+  transition: opacity var(--dur) var(--ease);
+}
+.streams:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Below the desktop grid the sub-line and the streams figure are the first
+   things to go — the headline is the reason the band exists. */
+@media (max-width: 1080px) {
+  .sub { display: none; }
+}
+@media (max-width: 720px) {
+  .inner {
+    padding: 8px 18px;
+    gap: 10px;
+  }
+  .headline { font-size: 13.5px; }
+  .streams { display: none; }
+}

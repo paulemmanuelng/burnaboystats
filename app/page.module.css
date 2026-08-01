@@ -4,7 +4,10 @@
 .hero {
   position: relative;
   overflow: hidden;
-  margin-top: -68px; /* slide the art up behind the transparent nav */
+  /* The live band now sits between the nav and the hero, so the hero no
+     longer tucks up behind the nav — the -68px here was drawing the hero
+     straight over the band and hiding it entirely. */
+  margin-top: 0;
   padding: 158px 0 66px;
   background:
     radial-gradient(46% 52% at 3% 100%, rgba(226, 52, 43, 0.11), transparent 60%),
@@ -61,7 +64,10 @@
 .title {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: clamp(4.5rem, 19vw, 13rem);
+  /* Sized to the column, not the viewport. The spec puts this at 108px in
+     the two-column hero; the old 19vw resolved to 208px inside a 730px
+     column and broke "Burna Boy" across two lines. */
+  font-size: clamp(3.4rem, 7.6vw, 6.75rem);
   line-height: 0.82;
   letter-spacing: 0.005em;
   text-transform: uppercase;
@@ -236,7 +242,7 @@
 /* ================= STAT SCOREBOARD ================= */
 .scoreboard {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   margin-top: 64px;
 }
 /* When the live hook precedes it, the two are one group — close the gap. */
@@ -588,92 +594,6 @@ aa
   .rank, .rankTitle { font-size: 1.6rem; }
 }
 
-/* The live hook above the tagline. It has to out-rank the tagline without
-   shouting over the wordmark, so: gold lead at tagline size, quiet detail,
-   and a pulsing dot to signal that the figure is live rather than written. */
-.liveHook {
-  display: inline-flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0 10px;
-  /* Spacing binds it to the scoreboard, not to the buttons. It had 4px above
-     and ~90px below, so it read as an appendage of "Explore the music" and
-     floated away from the numbers it actually belongs with. Big gap above to
-     break from the CTAs, small gap below to group with the figures. */
-  margin: 40px 0 0;
-  padding: 10px 16px 10px 14px;
-  border: 1px solid rgba(255, 182, 39, 0.3);
-  border-radius: 999px;
-  background: linear-gradient(100deg, rgba(255, 182, 39, 0.12), rgba(255, 182, 39, 0.03));
-  text-decoration: none;
-  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
-}
-.liveHook:hover {
-  border-color: rgba(255, 182, 39, 0.6);
-  background: linear-gradient(100deg, rgba(255, 182, 39, 0.2), rgba(255, 182, 39, 0.06));
-}
-.liveHookDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #35d07f;
-  box-shadow: 0 0 0 0 rgba(53, 208, 127, 0.6);
-  animation: liveHookPulse 2.4s ease-out infinite;
-  align-self: center;
-}
-.liveHookLead {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--gold-bright);
-  letter-spacing: 0.01em;
-}
-.liveHookDetail {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-@keyframes liveHookPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(53, 208, 127, 0.55); }
-  70%  { box-shadow: 0 0 0 9px rgba(53, 208, 127, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(53, 208, 127, 0); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .liveHookDot { animation: none; }
-}
-/* On a phone the lead alone fills the width, so the detail always wraps to a
-   second line — and a 999px capsule stretched over two lines reads as a blob
-   rather than a deliberate shape. Below 620px it becomes a squared card with
-   the dot pinned to the first line, so the wrap looks intended. */
-@media (max-width: 620px) {
-  .liveHook {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 2px 9px;
-    padding: 12px 15px;
-    border-radius: 13px;
-    margin-top: 32px;
-  }
-  .liveHookDot {
-    grid-column: 1;
-    grid-row: 1;
-    align-self: center;
-  }
-  .liveHookLead {
-    grid-column: 2;
-    grid-row: 1;
-    font-size: 0.97rem;
-    line-height: 1.3;
-  }
-  .liveHookDetail {
-    grid-column: 2;
-    grid-row: 2;
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-  }
-}
-
 /* Hero portrait. Declared ONLY above 900px so phones never request the file —
    it is decorative, and an <img> with display:none still downloads.
 
@@ -706,5 +626,81 @@ aa
       linear-gradient(to left, #000 34%, transparent 92%),
       linear-gradient(to bottom, transparent 2%, #000 26%, #000 72%, transparent 98%);
     mask-composite: intersect;
+  }
+}
+
+
+/* ── Redesign: hero ──────────────────────────────────────────────────────
+   Two columns. Copy carries the left at 1.5fr; "Today's number" holds the
+   right at 1fr with a hairline between them, so the gold panel reads as a
+   sibling of the wordmark rather than an ornament hung off it. */
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: stretch;
+}
+.heroCopy {
+  padding: 56px 48px 44px 0;
+}
+.heroPanel {
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrowRule {
+  width: 22px;
+  height: 2px;
+  background: var(--gold);
+  display: inline-block;
+  flex: none;
+}
+
+/* Source chips. Small, quiet, and the first thing a sceptical reader looks
+   for — which is why they sit with the buttons rather than in the footer. */
+.heroSources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 30px;
+}
+.sourceChip,
+.sourceChipLink {
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.sourceChipLink {
+  color: var(--text-muted);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.sourceChipLink:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Five columns now, each carrying a source line under the label. */
+.statSource {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+@media (max-width: 1000px) {
+  .heroGrid { grid-template-columns: 1fr; }
+  .heroCopy { padding: 44px 0 34px; }
+  .heroPanel {
+    border-left: none;
+    border-top: 1px solid var(--line);
   }
 }
