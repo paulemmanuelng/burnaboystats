@@ -91,7 +91,7 @@
       "extractor": "kworbTotalStreams",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 10466828143,
+      "baseline": 10478850762,
       "note": "Cumulative Spotify streams across every Burna Boy song — worth a milestone note as it climbs (e.g. crossing 11B).",
       "live": true,
       "siteTargets": [
@@ -109,7 +109,7 @@
         "min": 5000000000,
         "max": 100000000000
       },
-      "lastChanged": "2026-07-31"
+      "lastChanged": "2026-08-01"
     },
     {
       "id": "dai-dai-video-views",
@@ -119,7 +119,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 635412017,
+      "baseline": 637717064,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -136,7 +136,7 @@
           "describes": "displayed view count (whole millions) on /dai-dai"
         }
       ],
-      "lastChanged": "2026-07-31"
+      "lastChanged": "2026-08-01"
     },
     {
       "id": "yt-views-last-last",
@@ -610,7 +610,7 @@
       "match": "Dai Dai",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 268328702,
+      "baseline": 273661432,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -628,7 +628,7 @@
           "describes": "Spotify streams for Dai Dai"
         }
       ],
-      "lastChanged": "2026-07-31"
+      "lastChanged": "2026-08-01"
     },
     {
       "id": "spotify-streams-tatata",
