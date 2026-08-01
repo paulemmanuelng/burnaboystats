@@ -4,6 +4,7 @@ import KeepExploring from "../../components/KeepExploring";
 import CountUp from "../../components/CountUp";
 import StatGrid from "../../components/StatGrid";
 import AwardExplorer from "../../components/AwardExplorer";
+import DeepPage from "../../components/DeepPage";
 import { totalWins, totalNominations, ceremonyCount, honours, honourCount, grammyWins, ceremonies } from "../../data/awards";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
 
@@ -65,42 +66,63 @@ const breadcrumbJsonLd = {
   ],
 };
 
+// The six bodies that have given him the most, derived — never a typed list.
+const topBodies = [...ceremonies]
+  .map((c) => ({
+    name: c.name,
+    wins: c.noms.filter((n) => n.won).length,
+    noms: c.noms.length,
+  }))
+  // Ties break on FEWER nominations: 8 wins from 12 is a better record than 8
+  // from 22, and the design ranks Soundcity above AFRIMMA for exactly that.
+  .sort((a, b) => b.wins - a.wins || a.noms - b.noms)
+  .slice(0, 6);
+
+const mostWins = topBodies[0]?.wins ?? 1;
+const winRate = Math.round((totalWins / totalNominations) * 100);
+
 export default function AwardsPage() {
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <header className="pageHeader container">
-        <h1>
-          Awards <span className="accent">&amp; Nominations</span>
-        </h1>
-        <p>From the Grammys to the Headies — every win and nod, verified</p>
-      </header>
+      <DeepPage
+        backHref="/records"
+        backLabel="Records"
+        badge={`${totalWins} wins`}
+        kicker="Decorated"
+        titlePre="Awards & "
+        titleGold="nominations"
+        lede={`${totalWins} wins from ${totalNominations} nominations across ${ceremonyCount} award bodies — including a 2021 Grammy for Twice as Tall.`}
+        stats={[
+          { value: String(grammyWins), label: "Grammy win" },
+          { value: String(ceremonyCount), label: "Award bodies" },
+          { value: String(honourCount), label: "Honours" },
+        ]}
+        listTitle="Most-decorated stages"
+        listMeta="top 6 by wins"
+        rows={topBodies.map((b, i) => ({
+          rank: String(i + 1).padStart(2, "0"),
+          title: b.name,
+          sub: `${b.noms} nomination${b.noms === 1 ? "" : "s"}`,
+          value: `${b.wins} win${b.wins === 1 ? "" : "s"}`,
+          bar: b.wins / mostWins,
+          highlight: i === 0,
+        }))}
+        footNote={`Wins and nominations taken from each body's own winners list — a ${winRate}% conversion across ${totalNominations} nominations. Honours and special recognitions are counted separately from competitive wins.`}
+        cta={{ label: "Every award, filterable", href: "#award-explorer" }}
+      />
 
       <div className="container">
-        <StatGrid
-          stats={[
-            { num: <CountUp end={totalWins} />, label: "Competitive wins" },
-            { num: <CountUp end={totalNominations} />, label: "Total nominations" },
-            { num: <CountUp end={ceremonyCount} />, label: "Award bodies" },
-            { num: <CountUp end={honourCount} />, label: "Honours & recognitions" },
-          ]}
-        />
-
-        <p className="lead" style={{ margin: "22px auto 0", textAlign: "center" }}>
-          Burna Boy has won {totalWins} competitive awards from {totalNominations} nominations
-          across {ceremonyCount} award bodies — plus {honourCount} major honours and special
-          recognitions — including a 2021 Grammy (Best Global Music Album for <em>Twice as
-          Tall</em>), 4 BET Awards, 3 MOBO Awards, 9 Headies and 7 AFRIMA awards.
-        </p>
-
         <div style={{ margin: "8px 0 36px" }}>
           <Link href="/records/visualized#awards" className="btn btnSecondary">
             See wins by award body →
           </Link>
         </div>
 
-        <AwardExplorer />
+        <div id="award-explorer">
+          <AwardExplorer />
+        </div>
 
         <section className={styles.honours}>
           <h2 className={`secTitle ${styles.group}`}>
