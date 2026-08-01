@@ -191,7 +191,20 @@ async function main() {
   const manual = [];
   const rejected = []; // live values that failed the sanity gate
 
-  for (const r of results.filter((x) => isActionable(x.status))) {
+  // A percentage threshold cannot see a round-number crossing. "Last Last"
+  // went 598,991,932 -> 600,032,476: a 0.174% move against a 0.5% threshold,
+  // so nothing fired — while the site went on printing "599M" for a song that
+  // had passed 600 million. Whenever the RENDERED string would differ, the
+  // published figure is simply wrong, so treat that as actionable regardless
+  // of how small the percentage move was.
+  const displayWouldChange = (r) => {
+    if (r.live == null || Number.isNaN(r.live) || r.baseline == null) return false;
+    const fmt = r.siteTargets?.[0]?.format ?? r.format;
+    if (!fmt) return false;
+    return formatStat(r.live, fmt) !== formatStat(r.baseline, fmt);
+  };
+
+  for (const r of results.filter((x) => isActionable(x.status) || displayWouldChange(x))) {
     // In live mode, gate every value before it can touch a file.
     if (LIVE && !withinSanity(r.baseline, r.live, r.sanity)) {
       rejected.push(r);
@@ -203,6 +216,25 @@ async function main() {
       /* every target already current — nothing to do */
     } else manual.push({ r, failures });
   }
+
+  // Record when the raw SOURCE value last moved, on every run — separate from
+  // when the displayed figure last changed. A mature catalogue song moves ~0.03%
+  // a day against a 0.1% rewrite threshold, so its display can sit unchanged for
+  // days while the source is perfectly healthy. Judging staleness on the display
+  // made the alarm fire on 17 healthy metrics at once.
+  let sourcesMoved = false;
+  for (const r of results) {
+    if (r.live == null || Number.isNaN(r.live)) continue;
+    const m = config.metrics.find((x) => x.id === r.id);
+    if (!m) continue;
+    const seen = Math.round(r.live);
+    if (m.lastSeenValue !== seen) {
+      m.lastSeenValue = seen;
+      m.lastSeenAt = new Date().toISOString().slice(0, 10);
+      sourcesMoved = true;
+    }
+  }
+  if (sourcesMoved) files.set(configPath, JSON.stringify(config, null, 2) + "\n");
 
   if (applied.length) {
     for (const { r } of applied) {

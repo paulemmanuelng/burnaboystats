@@ -29,6 +29,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-01",
+    category: "Streaming",
+    text: "“Last Last” passes 600 million Spotify streams — 600,032,476 — becoming Burna Boy's first solo song to reach the mark, and still his most-streamed record without a feature.",
+    href: "/music/last-last",
+  },
+  {
     date: "2026-07-30",
     category: "Charts",
     text: "Three more No. 1s: “Dai Dai” tops the national charts of Venezuela (Record Report), El Salvador (ASAP EGC) and the Dominican Republic (Monitor Latino) — taking the song to 24 country No. 1s and Burna Boy's career to 43 chart-topping placements across 60 countries.",

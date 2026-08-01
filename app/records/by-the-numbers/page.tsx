@@ -21,7 +21,7 @@ const asOf = new Date().toLocaleDateString("en-US", { month: "long", year: "nume
 
 export const metadata = pageMetadata({
   title: `Burna Boy by the Numbers (${editionYear}) — Every Career Stat`,
-  description: `Burna Boy's career in numbers, ${asOf}: ${totalAwards()} certifications, ${totalWins} award wins, ${numberOnes} No. 1 chart placements and the $30.46M record tour — fact-checked in one place.`,
+  description: `Burna Boy's career in numbers, ${asOf}: ${totalAwards()} certifications, ${totalWins} award wins, ${numberOnes} No. 1 chart placements and the $30.46M record tour.`,
   path: "/records/by-the-numbers",
   shareTitle: "Burna Boy by the Numbers",
   shareDescription: "The African Giant's whole career, in the stats that matter.",
