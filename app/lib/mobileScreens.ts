@@ -17,6 +17,7 @@ export const BACK_BAR_ROUTES = new Set<string>([
   "/certifications",
   "/music",
   "/live-charts",
+  "/records",
 ]);
 
 /** Screens whose bottom bar is a page action bar — the tab bar hides on these. */
