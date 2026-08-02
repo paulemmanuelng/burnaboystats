@@ -1,9 +1,10 @@
 "use client"; // the tier rail filters the list
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
 import { badgeWeight } from "../lib/certs";
+import ScrollRail from "./ScrollRail";
 import type { CertEvent, Country, Release } from "../data/certifications";
 
 /**
@@ -35,46 +36,6 @@ const GRAD: Record<Tier, string> = {
 };
 
 const ROWS_SHOWN = 10;
-
-/**
- * A horizontally scrolling chip rail.
- *
- * The design hides the scrollbar, which leaves no sign that there is anything
- * past the right edge — the tier rail is 616px of chips in a 402px viewport,
- * so two of the five are off-screen with nothing to say so. These edge fades
- * are an addition: they appear only on the side that still has content, so
- * they read as "more this way" rather than as decoration.
- */
-function ChipRail({ children }: { children: React.ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [edges, setEdges] = useState({ start: false, end: false });
-
-  const measure = useCallback(() => {
-    const el = ref.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    setEdges({ start: el.scrollLeft > 2, end: el.scrollLeft < max - 2 });
-  }, []);
-
-  useEffect(() => {
-    measure();
-    const el = ref.current;
-    if (!el) return;
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [measure]);
-
-  return (
-    <div
-      ref={ref}
-      className={`${styles.rail} ${edges.start ? styles.fadeStart : ""} ${edges.end ? styles.fadeEnd : ""}`}
-      onScroll={measure}
-    >
-      {children}
-    </div>
-  );
-}
 
 const YEARS = [2026, 2025, 2024, 2023];
 
@@ -171,7 +132,7 @@ export default function MobileCerts({
       </div>
 
       {/* Tier rail */}
-      <ChipRail>
+      <ScrollRail className={styles.rail} label="Filter by certification tier">
         <button
           type="button"
           className={`${styles.chip} ${!tier ? styles.chipOn : ""}`}
@@ -192,7 +153,7 @@ export default function MobileCerts({
             {name} {tierCount[name]}
           </button>
         ))}
-      </ChipRail>
+      </ScrollRail>
 
       <div className={styles.listLabel}>Most-certified releases</div>
 
@@ -261,7 +222,7 @@ export default function MobileCerts({
           </p>
         </div>
 
-        <ChipRail>
+        <ScrollRail className={styles.rail} label="Filter the log by year">
           {YEARS.map((y) => (
             <button
               key={y}
@@ -276,7 +237,7 @@ export default function MobileCerts({
               <span className="visuallyHidden">certifications</span>
             </button>
           ))}
-        </ChipRail>
+        </ScrollRail>
 
         <div className={styles.list}>
           {events.map((e, i) => {

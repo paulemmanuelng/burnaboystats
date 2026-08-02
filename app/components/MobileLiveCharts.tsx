@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./mobileLiveCharts.module.css";
 import { spotifyImage } from "../lib/spotifyImage";
 import { coverFor } from "../lib/covers";
+import ScrollRail from "./ScrollRail";
 import type { LiveRelease } from "../data/liveCharts";
 
 /**
@@ -117,7 +118,7 @@ export default function MobileLiveCharts({
 
       {/* Platform rail */}
       <div className={styles.sectionLabel}>By platform</div>
-      <div className={styles.rail}>
+      <ScrollRail className={styles.rail} label="Placements by platform">
         {platforms.map((p) => (
           <div key={p.platform} className={styles.platformCard}>
             <div className={styles.platformValue}>{p.placements}</div>
@@ -127,7 +128,7 @@ export default function MobileLiveCharts({
             </div>
           </div>
         ))}
-      </div>
+      </ScrollRail>
 
       {/* Charting now */}
       <div className={styles.sectionLabel}>Charting now</div>

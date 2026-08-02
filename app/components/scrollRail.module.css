@@ -1,0 +1,18 @@
+/* Edge fades for a horizontally scrolling rail. Masked only on the side that
+   still has content, so the fade means "there is more this way" — with the
+   scrollbar hidden there is otherwise nothing to say the rail moves. */
+.rail { scroll-behavior: smooth; }
+.rail::-webkit-scrollbar { display: none; }
+
+.fadeEnd {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent 100%);
+  mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent 100%);
+}
+.fadeStart {
+  -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 44px), transparent 100%);
+  mask-image: linear-gradient(to left, #000 calc(100% - 44px), transparent 100%);
+}
+.fadeStart.fadeEnd {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 44px, #000 calc(100% - 44px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 44px, #000 calc(100% - 44px), transparent 100%);
+}
