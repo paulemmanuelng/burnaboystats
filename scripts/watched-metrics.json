@@ -21,7 +21,7 @@
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
-      "baseline": 58991923,
+      "baseline": 59210607,
       "live": true,
       "sanity": {
         "maxJump": 0.12,
@@ -51,7 +51,7 @@
       },
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "peakListeners",
-      "lastChanged": "2026-08-01"
+      "lastChanged": "2026-08-02"
     },
     {
       "id": "spotify-listeners-rank",
