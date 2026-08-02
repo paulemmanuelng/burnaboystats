@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navItems } from "../lib/links";
 import SearchPalette from "./SearchPalette";
+import { hasOwnMobileChrome } from "../lib/mobileScreens";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -21,8 +22,14 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Screens with their own mobile chrome carry a back bar instead of this nav.
+  // The class only hides it below the mobile breakpoint — desktop is unchanged.
+  const ownChrome = hasOwnMobileChrome(pathname);
+
   return (
-    <header className={`navbar${scrolled || open ? " navScrolled" : ""}`}>
+    <header
+      className={`navbar${scrolled || open ? " navScrolled" : ""}${ownChrome ? " navDesktopOnly" : ""}`}
+    >
       <nav className="navInner container" aria-label="Primary">
         <Link href="/" className="brand" onClick={close}>
           BurnaBoy<span>Stats</span>

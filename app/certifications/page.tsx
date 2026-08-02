@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./certifications.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
+import MobileCerts from "../components/MobileCerts";
 import CertExplorer from "../components/CertExplorer";
 import CertHistoryByYear from "../components/CertHistoryByYear";
 import KeepExploring from "../components/KeepExploring";
@@ -78,6 +79,16 @@ export default function CertificationsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(certJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(certDataset) }} />
 
+      {/* Mobile is its own screen in this design — one big total with the tier
+          bars under it, then stacked rows — not the desktop page reflowed. */}
+      <MobileCerts
+        releases={allItems}
+        countries={COUNTRIES}
+        total={total}
+        countryCount={countryCount}
+      />
+
+      <div className={styles.desktopOnly}>
       <BreadcrumbBar path="/certifications" />
 
       {/* ── Hero: copy left, tier rail right ─────────────────────────── */}
@@ -158,6 +169,7 @@ export default function CertificationsPage() {
       </section>
 
       <KeepExploring current="/certifications" />
+      </div>
     </main>
   );
 }

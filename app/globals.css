@@ -1405,3 +1405,9 @@ button:focus-visible,
   .footerCompact { flex-direction: column; gap: 20px; }
   .footerQuick { margin-left: 0; gap: 18px; }
 }
+
+/* Pages whose mobile screen carries its own sticky back bar hide the site nav
+   below the mobile breakpoint — otherwise the screen has two headers. */
+@media (max-width: 900px) {
+  .navDesktopOnly { display: none; }
+}

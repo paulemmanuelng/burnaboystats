@@ -704,3 +704,10 @@
   .logTitle { font-size: 28px; }
   .yearBtn { min-width: 0; flex: 1; }
 }
+
+/* The desktop page and the mobile screen both sit in the DOM; each shows at
+   its own breakpoint. Hiding rather than branching keeps the page static. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) {
+  .desktopOnly { display: none; }
+}
