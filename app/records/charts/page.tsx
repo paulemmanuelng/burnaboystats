@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./charts.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
-import MobileDeepPage from "../../components/MobileDeepPage";
+import MobileOfficialCharts from "../../components/MobileOfficialCharts";
 import ChartExplorer from "../../components/ChartExplorer";
 import {
   albumCharts,
@@ -49,43 +49,23 @@ export default function ChartsPage() {
     { n: chartSourceSplit.global, label: "Billboard worldwide charts" },
   ];
 
-  // The mobile screen leads with reach — how many charts each release has
-  // entered — which is the one ordering a phone list can carry.
-  const allItems = [...albumCharts, ...singleCharts, ...featureCharts];
-  const mostCharted = [...allItems]
-    .sort((a, b) => b.entries.length - a.entries.length)
-    .slice(0, 6)
-    .map((r, i) => ({
-      rank: String(i + 1).padStart(2, "0"),
-      title: r.title,
-      sub: [r.credit, r.year].filter(Boolean).join(" · "),
-      value: `${r.entries.length} charts`,
-      lead: i === 0,
-    }));
-
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
 
-      {/* Mobile is its own screen — the shared deep-page grammar. */}
-      <MobileDeepPage
-        label="Official charts"
-        badge={String(chartEntryCount)}
-        kicker="Peak positions worldwide"
-        titlePre="Official "
-        titleGold="charts"
-        lede={`${chartEntryCount} entries across ${chartCountryCount} territories, ${numberOnes} of them at No. 1.`}
-        stats={[
-          { value: String(chartEntryCount), label: "Chart entries" },
-          { value: String(numberOnes), label: "No. 1 peaks" },
-          { value: String(chartCountryCount), label: "Territories" },
-        ]}
-        listTitle="Most-charted releases"
-        listMeta="sorted by reach"
-        rows={mostCharted}
-        footNote={`Peaks on each country's principal national chart — ${chartSourceSplit.nationalBody} national bodies, ${chartSourceSplit.billboardCountry} Billboard country charts, ${chartSourceSplit.global} worldwide. Airplay and genre charts excluded.`}
-        ctaLabel="Live charts today"
-        ctaHref="/live-charts"
+      {/* Mobile is a dedicated screen, not the shared deep-page grammar: a
+          flat list would throw away the peak pills, the country filter and
+          the grouping that this page exists for. */}
+      <MobileOfficialCharts
+        albums={albumCharts}
+        singles={singleCharts}
+        features={featureCharts}
+        countries={CHART_COUNTRIES}
+        entryCount={chartEntryCount}
+        territoryCount={chartCountryCount}
+        numberOnes={numberOnes}
+        releaseCount={allReleases}
+        sourceSplit={chartSourceSplit}
       />
 
       <div className={styles.desktopOnly}>

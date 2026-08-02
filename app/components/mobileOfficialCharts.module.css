@@ -1,0 +1,290 @@
+/* Mobile official-charts screen. Values are the design's, verbatim
+   (designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, screen 10).
+   Shown only below the mobile breakpoint — the desktop page is a different
+   layout, not this markup widened. */
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 100%;
+  }
+}
+
+/* ── Back bar ─────────────────────────────────────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(12, 10, 9, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.badge {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  flex: none;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 22px 18px 18px; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 46px;
+  line-height: 0.94;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-top: 11px;
+}
+.gold {
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 45%, var(--grad-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lede { font-size: 14.5px; line-height: 1.55; color: #cfc7bb; margin: 12px 0 0; }
+
+/* ── Stat strip: hairline seams ───────────────────────────────────────── */
+.statGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.statCell { background: var(--bg); padding: 15px 18px; }
+.statValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 0.9;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.statLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin-top: 9px;
+}
+.statNote {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  color: var(--dim);
+}
+
+/* ── Filters ──────────────────────────────────────────────────────────── */
+.filters { padding: 16px 0 8px; }
+.filterLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 0 18px 9px;
+}
+.rail { display: flex; gap: 8px; overflow-x: auto; padding: 0 18px 12px; scrollbar-width: none; }
+.railTight { display: flex; gap: 8px; overflow-x: auto; padding: 0 18px 4px; scrollbar-width: none; }
+.chip {
+  flex: none;
+  /* 44px, not 38 — the tap-target floor applies to filter chips too. */
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.railTight .chip { padding: 0 14px; }
+.chipOn { background: rgba(255, 182, 39, 0.16); border-color: var(--gold); color: var(--gold); }
+.chipFlag { font-size: 13px; }
+
+/* ── Count + peak-band legend ─────────────────────────────────────────── */
+.legendBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.legendItem { display: inline-flex; align-items: center; gap: 5px; }
+.legendItem:nth-of-type(1) { margin-left: auto; }
+.legendDot { width: 7px; height: 7px; border-radius: 999px; display: block; }
+.dotOne { background: var(--gold); }
+.dotTen { background: var(--cyan); }
+.dotForty { background: var(--silver); }
+
+/* ── Groups ───────────────────────────────────────────────────────────── */
+.groupHead {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 20px 18px 12px;
+}
+.groupName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0;
+}
+.groupCount { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); }
+
+.row { padding: 14px 18px; border-top: 1px solid var(--line); }
+.rowTop { display: flex; align-items: baseline; gap: 10px; }
+.rowMain { flex: 1; min-width: 0; }
+.rowTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+.rowCredit {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rowRight { text-align: right; flex: none; }
+.rowBest {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.rowCount {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  color: var(--dim);
+  margin-top: 3px;
+}
+
+.pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 11px; }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.pillFlag { font-size: 12px; }
+.more {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  color: var(--dim);
+  align-self: center;
+}
+
+.footNote {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--dim);
+  padding: 20px 18px 0;
+  border-top: 1px solid var(--line);
+  margin: 20px 0 0;
+}
+.spacer { height: 110px; }
+
+/* ── Action bar — replaces the tab bar on this screen ─────────────────── */
+.actionBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: rgba(12, 10, 9, 0.94);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--line);
+  padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 22px));
+  display: flex;
+  gap: 10px;
+}
+.actionPrimary {
+  flex: 1;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #0a0a0b;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
+}
