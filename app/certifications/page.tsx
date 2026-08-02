@@ -83,6 +83,7 @@ export default function CertificationsPage() {
           bars under it, then stacked rows — not the desktop page reflowed. */}
       <MobileCerts
         releases={allItems}
+        history={certHistory}
         countries={COUNTRIES}
         total={total}
         countryCount={countryCount}

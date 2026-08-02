@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
 import { badgeWeight } from "../lib/certs";
-import { tierOf, type Country, type Release } from "../data/certifications";
+import type { CertEvent, Country, Release } from "../data/certifications";
 
 /**
  * The mobile certifications screen.
@@ -36,18 +36,24 @@ const GRAD: Record<Tier, string> = {
 
 const ROWS_SHOWN = 10;
 
+const YEARS = [2026, 2025, 2024, 2023];
+
 export default function MobileCerts({
   releases,
+  history,
   countries,
   total,
   countryCount,
 }: {
   releases: Release[];
+  history: CertEvent[];
   countries: Record<string, Country>;
   total: number;
   countryCount: number;
 }) {
   const [tier, setTier] = useState<Tier | null>(null);
+  const [expanded, setExpanded] = useState(false);
+  const [year, setYear] = useState(YEARS[0]);
 
   const tierCount = TIER_ORDER.reduce<Record<Tier, number>>(
     (acc, name) => {
@@ -61,11 +67,18 @@ export default function MobileCerts({
   );
   const maxTier = Math.max(...TIER_ORDER.map((t) => tierCount[t]));
 
-  const rows = releases
+  const matching = releases
     .filter((r) => !tier || r.certs.some((c) => c.level === tier))
     .slice()
-    .sort((a, b) => b.certs.length - a.certs.length)
-    .slice(0, ROWS_SHOWN);
+    .sort((a, b) => b.certs.length - a.certs.length);
+  const rows = expanded ? matching : matching.slice(0, ROWS_SHOWN);
+  const hidden = matching.length - rows.length;
+
+  const events = history.filter((e) => e.year === year);
+  const yearCounts = history.reduce<Record<number, number>>((acc, e) => {
+    acc[e.year] = (acc[e.year] ?? 0) + 1;
+    return acc;
+  }, {});
 
   return (
     <div className={styles.screen}>
@@ -160,7 +173,10 @@ export default function MobileCerts({
               {[...r.certs]
                 .sort((x, y) => badgeWeight(y) - badgeWeight(x))
                 .map((c) => {
-                  const ink = INK[tierOf(c.level) as Tier] ?? INK.Silver;
+                  // Keyed off the level itself. tierOf() returns a lowercase
+                  // slug ("gold"), which never matched this map — every badge
+                  // was falling through to silver.
+                  const ink = INK[c.level as Tier] ?? INK.Silver;
                   return (
                     <span
                       key={`${c.c}-${c.level}-${c.x ?? 1}`}
@@ -178,9 +194,66 @@ export default function MobileCerts({
         ))}
       </div>
 
-      <Link href="/certifications#certs" className={styles.allBtn}>
-        All {releases.length} releases<span aria-hidden="true">↗</span>
-      </Link>
+      {/* The whole ledger is here — the button opens the rest in place rather
+          than sending a phone reader to the desktop table. */}
+      <button
+        type="button"
+        className={styles.allBtn}
+        aria-expanded={expanded}
+        onClick={() => setExpanded((o) => !o)}
+      >
+        {expanded ? "Show the top 10" : `All ${matching.length} releases`}
+        <span aria-hidden="true">{expanded ? "↑" : `+${hidden}`}</span>
+      </button>
+
+      {/* ── The dated log ─────────────────────────────────────────── */}
+      <section className={styles.log}>
+        <div className={styles.logHead}>
+          <div className={styles.logKicker}>The dated log</div>
+          <h2 className={styles.logTitle}>Certifications by year</h2>
+          <p className={styles.logLede}>
+            Each announcement as it landed — a release can appear twice in a year if it
+            was certified at two tiers.
+          </p>
+        </div>
+
+        <div className={styles.rail}>
+          {YEARS.map((y) => (
+            <button
+              key={y}
+              type="button"
+              className={`${styles.chip} ${year === y ? styles.chipOn : ""}`}
+              aria-pressed={year === y}
+              onClick={() => setYear(y)}
+            >
+              {y} {yearCounts[y] ?? 0}
+            </button>
+          ))}
+        </div>
+
+        <div className={styles.list}>
+          {events.map((e, i) => {
+            const ink = INK[e.level as Tier] ?? INK.Silver;
+            return (
+              <div key={`${e.title}-${e.country}-${i}`} className={styles.eventRow}>
+                <div className={styles.rowMain}>
+                  <div className={styles.eventTitle}>{e.title}</div>
+                  <div className={styles.rowMeta}>
+                    {[e.album ? "Album" : e.credit, countries[e.country].body]
+                      .filter(Boolean)
+                      .join(" · ")}
+                  </div>
+                </div>
+                <span className={styles.badge} style={{ color: ink, borderColor: ink }}>
+                  <span className={styles.flag}>{countries[e.country].flag}</span>
+                  {e.x ? `${e.x}× ` : ""}
+                  {e.level}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
       <div className={styles.spacer} />
 

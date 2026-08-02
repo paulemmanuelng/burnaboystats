@@ -291,3 +291,47 @@
   justify-content: center;
   cursor: pointer;
 }
+
+/* The expand toggle reads as a control, not a link out. */
+.allBtn { cursor: pointer; width: calc(100% - 36px); }
+.allBtn span {
+  font-family: var(--font-mono), monospace;
+  color: var(--gold);
+}
+
+/* ── The dated log ────────────────────────────────────────────────────── */
+.log { margin-top: 30px; border-top: 1px solid var(--line); }
+.logHead { padding: 22px 18px 4px; }
+.logKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.logTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 8px 0 0;
+}
+.logLede {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 10px 0 0;
+}
+.eventRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.eventTitle { font-weight: 600; font-size: 14.5px; line-height: 1.25; }
+.eventRow .rowMeta { margin-top: 4px; }
+.eventRow .badge { flex: none; }
