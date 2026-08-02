@@ -160,27 +160,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* FOOTER — shown on every page */}
         <footer className="footer">
-          <div className="container">
-            <FooterNav />
-            <p>© {new Date().getFullYear()} BurnaBoyStats · Unofficial Fan Site</p>
-            <p className="disclaimer">
-              An unofficial fan site — not affiliated with or endorsed by Burna
-              Boy. Album artwork is provided by Spotify and remains the property
-              of its respective owners.
-            </p>
-            <p className="builtBy">
-              Built by{" "}
-              <a
-                href="https://www.tiktok.com/@paulemmanuelng"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footerLink"
-              >
-                Paul Emmanuel
-              </a>
-            </p>
-          </div>
-          <div className="footerWordmark" aria-hidden="true">Burna Boy</div>
+          <FooterNav />
         </footer>
       </body>
     </html>

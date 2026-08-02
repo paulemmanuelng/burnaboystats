@@ -17,18 +17,61 @@ export const navItems = [
 // the top nav. Certifications, Discography, Stat Cards, FAQ and About all live
 // in navItems above, so repeating them here made the list twice as long while
 // adding no new path into the site.
-export const footerLinks = [
-  { href: "/dai-dai", label: "The Dai Dai Story" },
-  { href: "/share", label: "Stat Cards" },
-  { href: "/records/charts", label: "Chart records" },
-  { href: "/records/awards", label: "Awards" },
-  { href: "/records/tours", label: "Tours" },
-  { href: "/records/cars", label: "Car collection" },
-  { href: "/records/africas-biggest", label: "Africa's Biggest" },
-  { href: "/records/firsts", label: "Firsts" },
-  { href: "/analysis", label: "Chart analysis" },
-  { href: "/api", label: "Open data API" },
-  { href: "/methodology", label: "Methodology" },
+/**
+ * The footer sitemap, as four titled columns.
+ *
+ * This is the site's main internal-linking surface: every page links straight
+ * to the deep stat pages from here, so link equity reaches the routes that earn
+ * search traffic.
+ */
+export const footerColumns: { label: string; links: { href: string; label: string }[] }[] = [
+  {
+    label: "The data",
+    links: [
+      { href: "/certifications", label: "Certifications" },
+      { href: "/live-charts", label: "Live Charts" },
+      { href: "/records/charts", label: "Chart records" },
+      { href: "/music", label: "Discography" },
+      { href: "/records/by-the-numbers", label: "By the numbers" },
+      { href: "/records/visualized", label: "Visualized" },
+      { href: "/analysis", label: "Chart analysis" },
+    ],
+  },
+  {
+    label: "Records",
+    links: [
+      { href: "/records", label: "All career records" },
+      { href: "/records/awards", label: "Awards" },
+      { href: "/records/tours", label: "Tours" },
+      { href: "/records/tours/revenue", label: "Tour revenue" },
+      { href: "/records/tours/festivals", label: "Festivals" },
+      { href: "/records/tours/map", label: "Tour map" },
+      { href: "/records/firsts", label: "Firsts" },
+      { href: "/records/africas-biggest", label: "Africa's Biggest" },
+      { href: "/records/cars", label: "Car collection" },
+    ],
+  },
+  {
+    label: "The story",
+    links: [
+      { href: "/dai-dai", label: "The Dai Dai Story" },
+      { href: "/updates", label: "Updates" },
+      { href: "/about", label: "About Burna Boy" },
+      { href: "/music", label: "Song pages" },
+      { href: "/rss.xml", label: "RSS feed" },
+    ],
+  },
+  {
+    label: "The site",
+    links: [
+      { href: "/methodology", label: "Methodology" },
+      { href: "/api", label: "Open data API" },
+      { href: "/search", label: "Search" },
+      { href: "/share", label: "Stat Cards" },
+      { href: "/faq", label: "FAQ" },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
 ];
 // Which 3 sections each page points to in its "Keep exploring" block.
 export const exploreFor: Record<string, string[]> = {
