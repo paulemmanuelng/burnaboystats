@@ -223,9 +223,28 @@ export default function ChartExplorer({
             Table
           </button>
         </div>
-        {view === "table" && (
-          <span className={styles.viewHint}>{flatRows.length} chart entries · click a header to sort</span>
-        )}
+        <span className={styles.viewHint}>
+          {view === "table"
+            ? `${flatRows.length} chart entries · click a header to sort`
+            : "Grouped by release · every peak shown"}
+        </span>
+
+        {/* The peak bands, named. The chips below carry these colours, and a
+            reader shouldn't have to infer what they mean. */}
+        <div className={styles.legend}>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendDot} ${styles.legendOne}`} aria-hidden="true" />
+            No. 1
+          </span>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendDot} ${styles.legendTen}`} aria-hidden="true" />
+            Top 10
+          </span>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendDot} ${styles.legendForty}`} aria-hidden="true" />
+            Top 40
+          </span>
+        </div>
       </div>
 
       <div className={styles.filterBar}>

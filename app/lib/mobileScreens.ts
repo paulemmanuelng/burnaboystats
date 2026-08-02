@@ -18,10 +18,15 @@ export const BACK_BAR_ROUTES = new Set<string>([
   "/music",
   "/live-charts",
   "/records",
+  "/records/charts",
 ]);
 
 /** Screens whose bottom bar is a page action bar — the tab bar hides on these. */
-export const ACTION_BAR_ROUTES = new Set<string>(["/certifications"]);
+export const ACTION_BAR_ROUTES = new Set<string>([
+  "/certifications",
+  // Every screen built on the shared deep-page grammar carries an action bar.
+  "/records/charts",
+]);
 
 export const hasOwnMobileChrome = (pathname: string) => BACK_BAR_ROUTES.has(pathname);
 export const hasOwnActionBar = (pathname: string) => ACTION_BAR_ROUTES.has(pathname);
