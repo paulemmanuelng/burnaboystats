@@ -1202,11 +1202,13 @@ button:focus-visible,
 }
 
 
-/* The fixed mobile tab bar sits over the page, so the footer needs clearance
-   or its last line hides beneath it. Matches the bar's height plus its
-   home-indicator foot. */
+/* A fixed bottom bar sits over the page, so the last line needs clearance or
+   it hides beneath it. The tab bar is home-only now, and deep screens carry
+   their own action bar plus their own spacer — so this is scoped to the tab
+   bar rather than applied to every mobile page, where it was stacking on the
+   screen's own spacer and leaving ~200px of dead air. */
 @media (max-width: 900px) {
-  body {
+  body:has(.mobileTabBarPresent) {
     padding-bottom: calc(64px + max(30px, env(safe-area-inset-bottom, 0px)));
   }
 }

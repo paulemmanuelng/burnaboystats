@@ -335,3 +335,20 @@
 .eventTitle { font-weight: 600; font-size: 14.5px; line-height: 1.25; }
 .eventRow .rowMeta { margin-top: 4px; }
 .eventRow .badge { flex: none; }
+
+/* Edge fades on the chip rails. The rail is masked only on the side that
+   still has content, so the fade means "there is more this way" — with the
+   scrollbar hidden there is otherwise nothing to say the rail moves. */
+.rail { scroll-behavior: smooth; }
+.fadeEnd {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent 100%);
+  mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent 100%);
+}
+.fadeStart {
+  -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 44px), transparent 100%);
+  mask-image: linear-gradient(to left, #000 calc(100% - 44px), transparent 100%);
+}
+.fadeStart.fadeEnd {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 44px, #000 calc(100% - 44px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 44px, #000 calc(100% - 44px), transparent 100%);
+}

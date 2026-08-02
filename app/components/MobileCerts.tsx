@@ -1,6 +1,6 @@
 "use client"; // the tier rail filters the list
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
 import { badgeWeight } from "../lib/certs";
@@ -35,6 +35,46 @@ const GRAD: Record<Tier, string> = {
 };
 
 const ROWS_SHOWN = 10;
+
+/**
+ * A horizontally scrolling chip rail.
+ *
+ * The design hides the scrollbar, which leaves no sign that there is anything
+ * past the right edge — the tier rail is 616px of chips in a 402px viewport,
+ * so two of the five are off-screen with nothing to say so. These edge fades
+ * are an addition: they appear only on the side that still has content, so
+ * they read as "more this way" rather than as decoration.
+ */
+function ChipRail({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [edges, setEdges] = useState({ start: false, end: false });
+
+  const measure = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setEdges({ start: el.scrollLeft > 2, end: el.scrollLeft < max - 2 });
+  }, []);
+
+  useEffect(() => {
+    measure();
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [measure]);
+
+  return (
+    <div
+      ref={ref}
+      className={`${styles.rail} ${edges.start ? styles.fadeStart : ""} ${edges.end ? styles.fadeEnd : ""}`}
+      onScroll={measure}
+    >
+      {children}
+    </div>
+  );
+}
 
 const YEARS = [2026, 2025, 2024, 2023];
 
@@ -131,7 +171,7 @@ export default function MobileCerts({
       </div>
 
       {/* Tier rail */}
-      <div className={styles.rail}>
+      <ChipRail>
         <button
           type="button"
           className={`${styles.chip} ${!tier ? styles.chipOn : ""}`}
@@ -152,7 +192,7 @@ export default function MobileCerts({
             {name} {tierCount[name]}
           </button>
         ))}
-      </div>
+      </ChipRail>
 
       <div className={styles.listLabel}>Most-certified releases</div>
 
@@ -195,16 +235,20 @@ export default function MobileCerts({
       </div>
 
       {/* The whole ledger is here — the button opens the rest in place rather
-          than sending a phone reader to the desktop table. */}
-      <button
-        type="button"
-        className={styles.allBtn}
-        aria-expanded={expanded}
-        onClick={() => setExpanded((o) => !o)}
-      >
-        {expanded ? "Show the top 10" : `All ${matching.length} releases`}
-        <span aria-hidden="true">{expanded ? "↑" : `+${hidden}`}</span>
-      </button>
+          than sending a phone reader to the desktop table. It only appears
+          when there is actually something left to reveal: filtering to
+          Diamond leaves six releases, all of them already on screen. */}
+      {matching.length > ROWS_SHOWN && (
+        <button
+          type="button"
+          className={styles.allBtn}
+          aria-expanded={expanded}
+          onClick={() => setExpanded((o) => !o)}
+        >
+          {expanded ? `Show the top ${ROWS_SHOWN}` : `All ${matching.length} releases`}
+          <span aria-hidden="true">{expanded ? "↑" : `+${hidden}`}</span>
+        </button>
+      )}
 
       {/* ── The dated log ─────────────────────────────────────────── */}
       <section className={styles.log}>
@@ -217,7 +261,7 @@ export default function MobileCerts({
           </p>
         </div>
 
-        <div className={styles.rail}>
+        <ChipRail>
           {YEARS.map((y) => (
             <button
               key={y}
@@ -229,7 +273,7 @@ export default function MobileCerts({
               {y} {yearCounts[y] ?? 0}
             </button>
           ))}
-        </div>
+        </ChipRail>
 
         <div className={styles.list}>
           {events.map((e, i) => {

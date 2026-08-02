@@ -33,7 +33,7 @@ export default function MobileTabBar() {
   if (pathname !== "/") return null;
 
   return (
-    <nav className={styles.bar} aria-label="Primary">
+    <nav className={`${styles.bar} mobileTabBarPresent`} aria-label="Primary">
       {TABS.map((t) => {
         // "/" only matches exactly; the rest match their whole section, so a
         // song page still shows Music as the active tab.
