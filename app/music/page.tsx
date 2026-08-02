@@ -1,5 +1,8 @@
 import Link from "next/link";
-import Reveal from "../components/Reveal";
+import BreadcrumbBar from "../components/BreadcrumbBar";
+import TracklistTrigger from "../components/TracklistTrigger";
+import MobileMusic from "../components/MobileMusic";
+import TracklistDialog from "../components/TracklistDialog";
 import Discography from "../components/Discography";
 import styles from "./music.module.css";
 import { albums, eps, compilations } from "../data/albums";
@@ -56,109 +59,161 @@ const musicJsonLd = {
   ],
 };
 
+const latest = [...albums].sort((a, b) => b.year - a.year)[0];
+const allYears = [...albums, ...eps, ...compilations].map((a) => a.year);
+const firstYear = Math.min(...albums.map((a) => a.year));
+const lastYear = Math.max(...albums.map((a) => a.year));
+
+const counts = [
+  { value: String(albums.length), label: "Studio albums" },
+  { value: String(eps.length), label: eps.length === 1 ? "EP" : "EPs" },
+  { value: String(compilations.length), label: compilations.length === 1 ? "Compilation" : "Compilations" },
+  // Inclusive of both ends: 2013–2025 is thirteen years, not twelve.
+  { value: String(lastYear - firstYear + 1), label: `Years, ${firstYear}—${lastYear}` },
+];
+
 export default function MusicPage() {
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(musicJsonLd) }} />
-      <header className="pageHeader container">
-        <h1>
-          The <span className="accent">Music</span>
-        </h1>
-        <p>Eight studio albums and a catalogue of global hits</p>
-      </header>
 
-      <div className="container">
-        {/* LATEST ALBUM */}
-        <Reveal>
-          <div className="panel block">
-            <p className="eyebrow" style={{ marginBottom: 8 }}>Latest Album</p>
-            <h2 className="secTitle">
-              No Sign of Weakness{" "}
-              <span style={{ color: "var(--text-muted)", fontWeight: 400, fontSize: "1rem" }}>
-                (2025)
-              </span>
-            </h2>
-            <p className="lead" style={{ marginTop: 12 }}>
-              His eighth studio album — 16 tracks featuring Travis Scott,
-              Shaboozey, Mick Jagger and Stromae. In 2026 he followed it with
-              “Dai Dai” alongside Shakira, the official FIFA World Cup 2026 song.
+      {/* One dialog for the page, outside the desktop-only wrapper so the
+          mobile grid can open it too. */}
+      <TracklistDialog
+        releases={[
+          ...albums.map((a) => ({ ...a, kind: "Album" })),
+          ...eps.map((a) => ({ ...a, kind: "EP" })),
+          ...compilations.map((a) => ({ ...a, kind: "Compilation" })),
+        ]}
+      />
+
+      {/* Mobile is its own screen in this design — a count strip, the latest
+          album as a card, a two-up grid and stacked song rows. */}
+      <MobileMusic albums={albums} eps={eps} compilations={compilations} songs={songStories} />
+
+      <div className={styles.desktopOnly}>
+      <BreadcrumbBar path="/music" />
+
+      {/* ── Hero: catalogue counts left, the latest album right ──────── */}
+      <section className={styles.hero}>
+        <div className={styles.heroGrid}>
+          <div className={styles.heroCopy}>
+            <div className={styles.eyebrow}>
+              <span className={styles.eyebrowRule} aria-hidden="true" />
+              The catalogue
+            </div>
+            <h1 className={styles.h1}>
+              The <span className="inkText">Music</span>
+            </h1>
+            <p className={styles.lede}>
+              {albums.length === 8 ? "Eight" : albums.length} studio albums,{" "}
+              {eps.length === 2 ? "two" : eps.length} EPs and{" "}
+              {compilations.length === 1 ? "one early compilation" : `${compilations.length} compilations`}{" "}
+              — every tracklist, label and release year, with the song stories behind the
+              biggest records.
             </p>
-          </div>
-        </Reveal>
-
-        {/* DISCOGRAPHY */}
-        <div className="block">
-          <Reveal>
-            <p className="eyebrow">Discography</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 className="secTitle">
-              Studio <span className="goldText">albums</span>
-            </h2>
-          </Reveal>
-          <p className="cardMeta" style={{ marginTop: 6, marginBottom: 6 }}>
-            Tap an album to see its full tracklist.
-          </p>
-          <Discography albums={albums} />
-          <p className="cardMeta" style={{ marginTop: 18, opacity: 0.7 }}>
-            Album &amp; EP artwork via Spotify. Tap any cover for the tracklist and a link to listen.
-          </p>
-        </div>
-
-        {/* EPs + COMPILATION — two columns, one release type each */}
-        <div className="block">
-          <div className="twoColGrid">
-            {/* EPs (left) */}
-            <div>
-              <Reveal>
-                <p className="eyebrow">Also Released</p>
-              </Reveal>
-              <Reveal delay={80}>
-                <h2 className="secTitle">
-                  <span className="goldText">EPs</span>
-                </h2>
-              </Reveal>
-              <p className="cardMeta" style={{ marginTop: 6, marginBottom: 6 }}>
-                Tap an EP to see its tracklist.
-              </p>
-              <Discography albums={eps} indexOffset={4} />
+            <div className={styles.counts}>
+              {counts.map((c) => (
+                <div key={c.label} className={styles.countCell}>
+                  <div className={styles.countValue}>{c.value}</div>
+                  <div className={styles.countLabel}>{c.label}</div>
+                </div>
+              ))}
             </div>
+          </div>
 
-            {/* Compilation (right — the slot the features panel used to fill) */}
-            <div>
-              <Reveal>
-                <p className="eyebrow">From the Vault</p>
-              </Reveal>
-              <Reveal delay={80}>
-                <h2 className="secTitle">
-                  <span className="goldText">Compilation</span>
-                </h2>
-              </Reveal>
-              <p className="cardMeta" style={{ marginTop: 6, marginBottom: 6 }}>
-                An early Aristokrat-era collection — tap for the full tracklist.
-              </p>
-              <Discography albums={compilations} indexOffset={6} />
+          <div className={styles.latest}>
+            <div className={styles.kicker}>Latest album</div>
+            <div className={styles.latestRow}>
+              {/* eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN art */}
+              <img
+                className={styles.latestCover}
+                src={spotifyImage(latest.cover ?? "", 600)}
+                srcSet={spotifySrcSet(latest.cover ?? "")}
+                sizes="160px"
+                alt={`${latest.title} album cover`}
+                width={160}
+                height={160}
+              />
+              <div>
+                <h2 className={styles.latestTitle}>{latest.title}</h2>
+                <div className={styles.latestMeta}>
+                  {latest.year} · {latest.label} · {latest.tracks.length} tracks
+                </div>
+                <p className={styles.latestText}>
+                  His {albums.length === 8 ? "eighth" : `${albums.length}th`} studio album,
+                  featuring Travis Scott, Shaboozey, Mick Jagger and Stromae. In 2026 he
+                  followed it with “Dai Dai” alongside Shakira — the official FIFA World Cup
+                  song.
+                </p>
+              </div>
+            </div>
+            <div className={styles.latestActions}>
+              <TracklistTrigger title={latest.title} />
+              <Link href="/dai-dai" className="btn btnSecondary">The Dai Dai story ↗</Link>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* SONG STORIES — deep-dive pages per signature song (bottom of page) */}
-        <div className="block">
-          <Reveal>
-            <p className="eyebrow">Song stories</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 className="secTitle">
-              The songs, <span className="goldText">in depth</span>
+      {/* ── Studio albums ────────────────────────────────────────────── */}
+      <section className={styles.section}>
+        <div className={styles.wide}>
+          <div className={styles.head}>
+            <div>
+              <div className={styles.kicker}>Discography</div>
+              <h2 className={styles.h2}>Studio albums</h2>
+            </div>
+            <p className={styles.headLede}>
+              Tap any cover for the full tracklist and a link to listen. Artwork via Spotify.
+            </p>
+            <Link href="/certifications" className={`btn btnSecondary ${styles.headBtn}`}>
+              Certifications ↗
+            </Link>
+          </div>
+          <Discography albums={albums} layout="grid" />
+        </div>
+      </section>
+
+      {/* ── EPs + compilation ────────────────────────────────────────── */}
+      <section className={styles.altSection}>
+        <div className={`${styles.wide} ${styles.splitGrid}`}>
+          <div>
+            <div className={styles.kicker}>Also released</div>
+            <h2 className={styles.h2Tight}>{eps.length === 1 ? "EP" : "EPs"}</h2>
+            <p className={styles.blockLede}>Two short-form releases, seven years apart.</p>
+            <Discography albums={eps} layout="pair" />
+          </div>
+          <div>
+            <div className={styles.kicker}>From the vault</div>
+            <h2 className={styles.h2Tight}>
+              {compilations.length === 1 ? "Compilation" : "Compilations"}
             </h2>
-          </Reveal>
-          <p className="cardMeta" style={{ marginTop: 6, marginBottom: 14 }}>
-            The full history, chart run and certifications behind his biggest records.
-          </p>
+            <p className={styles.blockLede}>
+              An early Aristokrat-era collection, released before the studio catalogue.
+            </p>
+            <Discography albums={compilations} layout="wide" />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Song stories ─────────────────────────────────────────────── */}
+      <section className={styles.section}>
+        <div className={styles.wide}>
+          <div className={styles.head}>
+            <div>
+              <div className={styles.kicker}>Song stories</div>
+              <h2 className={styles.h2}>The songs, in depth</h2>
+            </div>
+            <p className={styles.headLede}>
+              The full history, chart run and certifications behind his biggest records.
+            </p>
+            <span className={styles.pageCount}>{songStories.length} pages</span>
+          </div>
           <div className={styles.songGrid}>
             {songStories.map((s) => (
               <Link key={s.href} href={s.href} className={styles.songCard}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+                {/* eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN art */}
                 <img
                   className={styles.songCover}
                   src={spotifyImage(s.cover, 300)}
@@ -178,9 +233,10 @@ export default function MusicPage() {
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
       <KeepExploring current="/music" />
+      </div>
     </main>
   );
 }

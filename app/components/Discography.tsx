@@ -1,129 +1,65 @@
-"use client"; // interactive: tracks which album is open
+"use client"; // the cards open the shared tracklist dialog
 
-import { useEffect, useRef, useState } from "react";
-import AlbumCover from "./AlbumCover";
-import SpotifyIcon from "./SpotifyIcon";
+import styles from "../music/music.module.css";
+import { spotifyImage } from "../lib/spotifyImage";
 import type { AlbumEntry } from "../data/albums";
 
+/**
+ * The release grids.
+ *
+ * One component, three layouts, because all three open the same dialog:
+ * "grid" is the four-across album wall, "pair" the two-up EP grid, and "wide"
+ * the single compilation row. The dialog itself lives in TracklistDialog,
+ * rendered once per page, so the mobile screen can open it too.
+ */
 export default function Discography({
   albums,
-  indexOffset = 0,
+  layout = "grid",
 }: {
   albums: AlbumEntry[];
-  indexOffset?: number;
+  layout?: "grid" | "pair" | "wide";
 }) {
-  // Which album's tracklist is open (index), or null for none.
-  const [open, setOpen] = useState<number | null>(null);
-  const album = open !== null ? albums[open] : null;
-  const modalRef = useRef<HTMLDivElement>(null);
-  const lastFocused = useRef<HTMLElement | null>(null);
+  const cover = (a: AlbumEntry) =>
+    a.cover ? { backgroundImage: `url(${spotifyImage(a.cover, 600)})` } : undefined;
 
-  // While the modal is open: trap focus inside it, close on Escape, lock page
-  // scroll, and restore focus to the trigger when it closes.
-  useEffect(() => {
-    if (!album) return;
-    lastFocused.current = document.activeElement as HTMLElement | null;
-    const node = modalRef.current;
-    const getFocusable = (): HTMLElement[] =>
-      node
-        ? Array.from(
-            node.querySelectorAll<HTMLElement>(
-              'a[href], button, input, textarea, [tabindex]:not([tabindex="-1"])'
-            )
-          )
-        : [];
+  const open = (title: string) =>
+    window.dispatchEvent(new CustomEvent("open-tracklist", { detail: title }));
 
-    const focusables = getFocusable();
-    if (focusables[0]) focusables[0].focus();
-
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        setOpen(null);
-        return;
-      }
-      if (e.key === "Tab") {
-        const els = getFocusable();
-        if (els.length === 0) return;
-        const first = els[0];
-        const last = els[els.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    }
-
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-      lastFocused.current?.focus();
-    };
-  }, [album]);
+  if (layout === "wide") {
+    return (
+      <>
+        {albums.map((a) => (
+          <button key={a.title} className={styles.wideCard} onClick={() => open(a.title)}>
+            <span className={styles.wideCover} style={cover(a)} />
+            <span>
+              <span className={styles.wideTitle}>{a.title}</span>
+              <span className={styles.cardLabel}>{a.year} · {a.label}</span>
+              <span className={styles.cardTracks}>{a.tracks.length} tracks ↗</span>
+            </span>
+          </button>
+        ))}
+      </>
+    );
+  }
 
   return (
-    <>
-      <div className="coverGrid">
-        {albums.map((a, i) => (
-          <div key={a.title}>
-            <button
-              className="coverBtn"
-              onClick={() => setOpen(i)}
-              aria-label={`View the tracklist for ${a.title}`}
-            >
-              <AlbumCover title={a.title} year={a.year} index={indexOffset + i} cover={a.cover} />
-            </button>
-            <p className="coverTitle">{a.title}</p>
-            <p className="cardMeta coverMeta">{a.year} · {a.label}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Tracklist modal */}
-      {album && (
-        <div className="modalOverlay" onClick={() => setOpen(null)} role="presentation">
-          <div
-            className="modal"
-            ref={modalRef}
-            onClick={(e) => e.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
-            aria-label={`${album.title} tracklist`}
-          >
-            <button className="modalClose" onClick={() => setOpen(null)} aria-label="Close dialog">
-              ×
-            </button>
-            <div className="modalHead">
-              <div className="modalCover">
-                <AlbumCover title={album.title} year={album.year} index={indexOffset + (open ?? 0)} compact cover={album.cover} />
-              </div>
-              <div>
-                <p className="eyebrow eyebrowTight">Album · {album.year}</p>
-                <h3 className="modalTitle">{album.title}</h3>
-                <p className="cardMeta">{album.label} · {album.tracks.length} tracks</p>
-              </div>
-            </div>
-            {album.spotify && (
-              <a className="spotifyBtn" href={album.spotify} target="_blank" rel="noopener noreferrer">
-                <SpotifyIcon />
-                Play on Spotify
-              </a>
-            )}
-            <ol className="trackList">
-              {album.tracks.map((t, i) => (
-                <li key={t + i} className="track">
-                  <span className="trackNum">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="trackName">{t}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      )}
-    </>
+    <div className={layout === "pair" ? styles.pairGrid : styles.albumGrid}>
+      {albums.map((a) => (
+        <button
+          key={a.title}
+          className={styles.albumCard}
+          onClick={() => open(a.title)}
+          aria-label={`View the tracklist for ${a.title}`}
+        >
+          <span className={styles.albumCover} style={cover(a)} />
+          <span className={styles.albumRow}>
+            <span className={styles.albumTitle}>{a.title}</span>
+            <span className={styles.albumYear}>{a.year}</span>
+          </span>
+          <span className={styles.cardLabel}>{a.label}</span>
+          <span className={styles.cardTracks}>{a.tracks.length} tracks ↗</span>
+        </button>
+      ))}
+    </div>
   );
 }

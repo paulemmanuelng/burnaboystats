@@ -40,7 +40,7 @@
   }
 }
 
-/* Hidden where a mobile action bar already occupies this corner. */
+/* Hidden on mobile: a fixed bottom bar always occupies this corner there. */
 @media (max-width: 900px) {
   .desktopOnly { display: none; }
 }

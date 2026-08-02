@@ -1,15 +1,22 @@
 /**
- * Routes that have their own purpose-built mobile screen.
+ * Which pieces of mobile chrome a route supplies for itself.
  *
- * On these, the mobile design replaces the site chrome entirely: a sticky back
- * bar stands in for the top nav, and a page action bar stands in for the tab
- * bar. Listing them here keeps Nav and MobileTabBar in agreement, and means a
- * route that hasn't been built yet still gets the normal chrome rather than
- * being left with no navigation at all.
+ * Checked screen by screen against designs/mobile/Burna Boy Stats - Mobile.dc.html:
  *
- * Add a route here only when its mobile screen actually renders a back bar.
+ * - Every mobile screen except home opens with a sticky BACK BAR, which stands
+ *   in for the site nav. Only routes whose screen actually draws one belong in
+ *   BACK_BAR_ROUTES — otherwise hiding the nav would leave a page with no
+ *   navigation at all.
+ * - The five-tab bar is the bottom of nearly every screen, home included.
+ *   Certifications is the single exception: it replaces the tab bar with a
+ *   page action bar ("Make a stat card" plus a filter control).
  */
-export const MOBILE_SCREEN_ROUTES = new Set<string>(["/certifications"]);
 
-export const hasOwnMobileChrome = (pathname: string) =>
-  MOBILE_SCREEN_ROUTES.has(pathname);
+/** Screens with their own sticky back bar — the site nav hides on these. */
+export const BACK_BAR_ROUTES = new Set<string>(["/certifications", "/music"]);
+
+/** Screens whose bottom bar is a page action bar — the tab bar hides on these. */
+export const ACTION_BAR_ROUTES = new Set<string>(["/certifications"]);
+
+export const hasOwnMobileChrome = (pathname: string) => BACK_BAR_ROUTES.has(pathname);
+export const hasOwnActionBar = (pathname: string) => ACTION_BAR_ROUTES.has(pathname);
