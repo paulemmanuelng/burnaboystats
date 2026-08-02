@@ -4,7 +4,8 @@ import KeepExploring from "../../components/KeepExploring";
 import CountUp from "../../components/CountUp";
 import StatGrid from "../../components/StatGrid";
 import AwardExplorer from "../../components/AwardExplorer";
-import DeepPage from "../../components/DeepPage";
+import BreadcrumbBar from "../../components/BreadcrumbBar";
+import MobileDeepPage from "../../components/MobileDeepPage";
 import { totalWins, totalNominations, ceremonyCount, honours, honourCount, grammyWins, ceremonies } from "../../data/awards";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
 
@@ -95,23 +96,19 @@ export default function AwardsPage() {
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <DeepPage
-        backHref="/records"
-        backLabel="Awards"
+      {/* Mobile is its own screen — the shared deep-page grammar, screen 11. */}
+      <MobileDeepPage
+        label="Awards"
         badge={`${totalWins} wins`}
         kicker="Decorated"
         titlePre="Awards & "
         titleGold="nominations"
+        titleSize={40}
         lede={`${totalWins} wins from ${totalNominations} nominations across ${ceremonyCount} award bodies — including a 2021 Grammy.`}
         stats={[
           { value: String(grammyWins), label: "Grammy win" },
           { value: String(grammyNoms), label: "Grammy noms" },
           { value: String(ceremonyCount), label: "Award bodies" },
-        ]}
-        chips={[
-          { label: "All", active: true },
-          { label: "Wins only" },
-          { label: "Nominations" },
         ]}
         listTitle="Most-decorated stages"
         listMeta="top 6 by wins"
@@ -121,63 +118,124 @@ export default function AwardsPage() {
           sub: `${b.noms} nominations`,
           value: String(b.wins),
           bar: b.wins / mostWins,
-          highlight: i < 2,
+          lead: i === 0,
         }))}
         footNote={`Wins and nominations from each body's own winners list. A ${winRate}% career strike rate. Honours like the MFR and TIME 100 are listed separately, not counted here.`}
-        cta={{ label: "Every award", href: "#award-explorer" }}
+        ctaLabel="Every award"
+        ctaHref="/records/visualized#awards"
       />
 
-      <div className="container">
-        <div style={{ margin: "8px 0 36px" }}>
-          <Link href="/records/visualized#awards" className="btn btnSecondary">
-            See wins by award body →
-          </Link>
-        </div>
+      <div className={styles.desktopOnly}>
+        <BreadcrumbBar path="/records/awards" />
 
+        {/* ── Hero ─────────────────────────────────────────────── */}
+        <section className={styles.hero}>
+          <div className={styles.wide}>
+            <div className={styles.eyebrow}>
+              <span className={styles.eyebrowRule} aria-hidden="true" />
+              The trophy cabinet
+            </div>
+            <h1 className={styles.h1}>
+              Awards <span className="inkText">&amp; Nominations</span>
+            </h1>
+            <p className={styles.lede}>
+              From the Grammys to the Headies — every win and nod, verified. A 2021 Grammy
+              for <em>Twice as Tall</em>, {winsBy("BET Awards")} BET Awards,{" "}
+              {winsBy("MOBO Awards")} MOBO Awards, {winsBy("The Headies")} Headies and{" "}
+              {winsBy("All Africa Music Awards (AFRIMA)")} AFRIMA awards, across{" "}
+              {ceremonyCount} award bodies.
+            </p>
+            <div className={styles.heroActions}>
+              <Link href="/records/visualized#awards" className="btn btnSecondary">
+                See wins by award body →
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Headline strip ───────────────────────────────────── */}
+        <section className={styles.headlineBand}>
+          <div className={styles.headlineGrid}>
+            <div className={styles.headlineCell}>
+              <div className={`${styles.headlineValue} ${styles.winInk}`}>{grammyWins}</div>
+              <div className={styles.headlineLabel}>
+                Grammy {grammyWins === 1 ? "win" : "wins"}
+              </div>
+            </div>
+            <div className={styles.headlineCell}>
+              <div className={styles.headlineValue}>{grammyNoms}</div>
+              <div className={styles.headlineLabel}>Grammy nominations</div>
+            </div>
+            <div className={styles.headlineCell}>
+              <div className={styles.headlineValue}>{ceremonyCount}</div>
+              <div className={styles.headlineLabel}>Award bodies</div>
+            </div>
+            <div className={styles.headlineCell}>
+              <div className={styles.headlineValue}>{honourCount}</div>
+              <div className={styles.headlineLabel}>Honours &amp; recognitions</div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Filters + ceremonies ─────────────────────────────── */}
         <div id="award-explorer">
           <AwardExplorer />
         </div>
 
-        <section className={styles.honours}>
-          <h2 className={`secTitle ${styles.group}`}>
-            <span className="goldText">Honours &amp; Special Recognitions</span>
-          </h2>
-          <div className={styles.honourGrid}>
-            {honours.map((h, i) => (
-              <div key={i} className={styles.honourCard}>
-                <span className={styles.honourTitle}>{h.title}</span>
-                <span className={styles.honourOrg}>{h.org} · {h.year}</span>
-                {h.note && <span className={styles.honourNote}>{h.note}</span>}
-              </div>
-            ))}
+        {/* ── Honours ──────────────────────────────────────────── */}
+        <section className={styles.honoursBand}>
+          <div className={styles.wide}>
+            <h2 className={styles.h2}>
+              <span className="inkText">Honours &amp; special recognitions</span>
+            </h2>
+            <div className={styles.honourGrid}>
+              {/* The note stays. Two BRIT Billion Awards share a title, an
+                  org and a year — one for 1bn UK streams, one for 2bn — so
+                  without it they render as two identical cards. */}
+              {honours.map((h, i) => (
+                <div key={`${h.title}-${h.year}-${i}`} className={styles.honourCard}>
+                  <span className={styles.honourTitle}>{h.title}</span>
+                  <span className={styles.honourOrg}>{h.org} · {h.year}</span>
+                  {h.note && <span className={styles.honourNote}>{h.note}</span>}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className={styles.faq} aria-labelledby="awards-faq">
-          <h2 id="awards-faq" className={`secTitle ${styles.faqTitle}`}>
-            <span className="goldText">How many awards has Burna Boy won?</span>
-          </h2>
-          <div className={styles.faqList}>
-            {faqs.map((f) => (
-              <div key={f.q} className={styles.faqItem}>
-                <h3 className={styles.faqQ}>{f.q}</h3>
-                <p className={styles.faqA}>{f.a}</p>
-              </div>
-            ))}
+        {/* ── FAQ ──────────────────────────────────────────────── */}
+        <section className={styles.faqBand}>
+          <div className={styles.wide}>
+            <h2 className={styles.h2}>
+              <span className="inkText">How many awards has Burna Boy won?</span>
+            </h2>
+            <div className={styles.faqGrid}>
+              {faqs.map((f) => (
+                <div key={f.q} className={styles.faqItem}>
+                  <h3 className={styles.faqQ}>{f.q}</h3>
+                  <p className={styles.faqA}>{f.a}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        <p className={styles.source}>
-          Includes a 2021 Grammy win (Best Global Music Album, <em>Twice as Tall</em>)
-          and thirteen Grammy nominations in total. Compiled and verified against
-          each ceremony&apos;s results, July 2026; nominations are listed even
-          where the award went elsewhere. Upcoming-ceremony entries are added
-          only once results are confirmed.
-        </p>
-        <Link href="/records" className={styles.back}>← Career Records</Link>
+        {/* ── Source ───────────────────────────────────────────── */}
+        <section className={styles.sourceBand}>
+          <div className={styles.wide}>
+            <p className={styles.source}>
+              Includes a 2021 Grammy win (Best Global Music Album, <em>Twice as Tall</em>)
+              and {grammyNoms} Grammy nominations in total. Compiled and verified against
+              each ceremony&apos;s results, July 2026; nominations are listed even where the
+              award went elsewhere. Upcoming-ceremony entries are added only once results are
+              confirmed.
+            </p>
+            <Link href="/records" className={`btn btnSecondary ${styles.back}`}>
+              ← Career Records
+            </Link>
+          </div>
+        </section>
       </div>
-
-      <KeepExploring current="/records/awards" />
     </main>
   );
 }
