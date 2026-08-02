@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./mobileHome.module.css";
 import { liveHeadline } from "../lib/liveHeadline";
 import { spotifyImage } from "../lib/spotifyImage";
+import { sameTitle } from "../lib/titleKey";
 import {
   allChartItems,
   albumCharts,
@@ -41,37 +42,80 @@ for (const release of allChartItems) {
   }
 }
 
-// "NEW" is not decoration: it marks a country the updates feed logged in the
-// last few days, so the badge can never outlive the news it refers to.
-const RECENT_DAYS = 4;
-const recentText = updates
-  .filter((u) => {
-    const age = (Date.now() - new Date(`${u.date}T12:00:00Z`).getTime()) / 86_400_000;
-    return age <= RECENT_DAYS;
-  })
-  .map((u) => u.text)
-  .join(" ");
+// "NEW" is not decoration: it marks a country the updates feed logged recently,
+// so the badge can never outlive the news it refers to.
+//
+// The badge, the count and the sentence all read off ONE window. If anything
+// landed in the last day the window is a day and the card says "today";
+// otherwise it widens to the week and the wording widens with it. That way the
+// card can never claim a four-day-old change happened this morning.
+const RECENT_DAYS = 7;
+const ageInDays = (date: string) =>
+  (Date.now() - new Date(`${date}T12:00:00Z`).getTime()) / 86_400_000;
 
-const board = [...numberOneCountries]
-  .reverse()
-  .slice(0, 6)
-  .map((code) => {
-    const meta = CHART_COUNTRIES[code];
-    return {
-      code,
-      flag: meta.flag,
-      name: meta.name,
-      // The body string carries a parenthetical qualifier on the airplay
-      // exceptions; the board wants the body's name alone.
-      chart: meta.body.replace(/\s*\(.*\)$/, ""),
-      isNew: recentText.includes(meta.name),
-    };
-  });
+// A cell only lights up for an update that reports *arriving* at No. 1. Naming
+// a country isn't enough: the same week's feed also records a No. 9 in Hungary
+// and a No. 20 in South Africa, and neither of those is a new No. 1.
+const REACHED_NUMBER_ONE = /\bNo\. 1s\b|\btops the\b|\btopped the\b|\benters at No\. 1\b/i;
+const countryNames = Object.values(CHART_COUNTRIES).map((c) => c.name);
+const recentUpdates = updates.filter(
+  (u) =>
+    ageInDays(u.date) <= RECENT_DAYS &&
+    REACHED_NUMBER_ONE.test(u.text) &&
+    countryNames.some((n) => u.text.includes(n))
+);
+const recentText = recentUpdates.map((u) => u.text).join(" ");
+
+// The wording follows the freshest of those updates, so the card can never
+// describe a five-day-old change as having happened this morning.
+const newestAge = recentUpdates.length
+  ? Math.min(...recentUpdates.map((u) => ageInDays(u.date)))
+  : Infinity;
+const windowPhrase = newestAge <= 1 ? "in the last 24 hours" : "this week";
+const changedPhrase = newestAge <= 1 ? "today" : "this week";
+
+const allCells = [...numberOneCountries].reverse().map((code) => {
+  const meta = CHART_COUNTRIES[code];
+  return {
+    code,
+    flag: meta.flag,
+    name: meta.name,
+    // The body string carries a parenthetical qualifier on the airplay
+    // exceptions; the board wants the body's name alone.
+    chart: meta.body.replace(/\s*\(.*\)$/, ""),
+    isNew: recentText.includes(meta.name),
+  };
+});
+
+// The just-changed countries lead the board — they are the reason to look at it.
+const board = [...allCells].sort((a, b) => Number(b.isNew) - Number(a.isNew)).slice(0, 6);
+
+// ── "Today's number" caption ───────────────────────────────────────────────
+// The card names the countries that just arrived. Three fit; beyond that the
+// rest are counted rather than dropped, so the sentence and the tally below it
+// always describe the same set.
+const newNames = allCells.filter((c) => c.isNew).map((c) => c.name);
+
+const listNames = (xs: string[]) => {
+  // Four names still read as a sentence; past that they become a count, so the
+  // card never turns into a list dump.
+  const shown = xs.length <= 4 ? xs : xs.slice(0, 3);
+  const rest = xs.length - shown.length;
+  if (rest > 0) return `${shown.join(", ")} and ${rest} more`;
+  return shown.length < 2 ? shown.join("") : `${shown.slice(0, -1).join(", ")} and ${shown.at(-1)}`;
+};
+
+const arrivalNote = newNames.length
+  ? `${listNames(newNames)} joined ${windowPhrase}.`
+  : "On streaming charts right now, refreshed hourly.";
+const changedNote = newNames.length
+  ? `${newNames.length} chart${newNames.length === 1 ? "" : "s"} changed ${changedPhrase}`
+  : "Refreshed hourly";
 
 // ── Albums ─────────────────────────────────────────────────────────────────
 // Best official peak per album, for the chip under each cover.
 const albumPeak = (title: string) => {
-  const rec = albumCharts.find((r) => r.title === title);
+  const rec = albumCharts.find((r) => sameTitle(r.title, title));
   if (!rec) return null;
   const best = [...rec.entries]
     .filter((e) => e.c !== "GLB" && e.c !== "GLBX")
@@ -157,13 +201,10 @@ export default function MobileHome() {
         <div className={styles.todayCaption}>
           {live.countries === 1 ? "Country at No. 1" : "Countries at No. 1"}
         </div>
-        <p className={styles.todayNote}>
-          On streaming charts right now. Across official national charts his career
-          total is {numberOnes} No.&nbsp;1s in {chartCountryCount} countries.
-        </p>
+        <p className={styles.todayNote}>{arrivalNote}</p>
         <div className={styles.todayFoot}>
           <span className={styles.todayFootDot} aria-hidden="true" />
-          <span>Refreshed hourly</span>
+          <span>{changedNote}</span>
           <Link href="/live-charts" className={styles.todayFootLink}>
             Live board ↗
           </Link>
@@ -188,8 +229,8 @@ export default function MobileHome() {
             <p className={styles.sectionKicker}>Tracked live</p>
             <h2 className={styles.sectionTitle}>The No. 1 board</h2>
           </div>
-          <Link href="/records/charts" className={styles.sectionLink}>
-            All {numberOneCountries.length} ↗
+          <Link href="/live-charts" className={styles.sectionLink}>
+            All {live.countries} ↗
           </Link>
         </div>
         <div className={styles.boardGrid}>

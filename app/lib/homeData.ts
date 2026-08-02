@@ -11,6 +11,7 @@ import { revenueShows } from "../data/tourRevenue";
 import { allFirsts } from "../data/firsts";
 import { liveCharts } from "../data/liveCharts";
 import { tours } from "../data/tours";
+import { sameTitle } from "./titleKey";
 
 /**
  * Everything the homepage sections need, derived.
@@ -158,11 +159,11 @@ export const numberWord = (n: number) => WORDS[n] ?? String(n);
 export const albumCards = [...studioAlbums]
   .sort((a, b) => a.year - b.year)
   .map((a) => {
-    const rec = albumCharts.find((r) => r.title === a.title);
+    const rec = albumCharts.find((r) => sameTitle(r.title, a.title));
     const best = rec
       ? [...rec.entries].filter((e) => e.c !== "GLB" && e.c !== "GLBX").sort((x, y) => x.peak - y.peak)[0]
       : undefined;
-    const cert = allItems.find((i) => i.title === a.title);
+    const cert = allItems.find((i) => sameTitle(i.title, a.title));
     return {
       title: a.title,
       year: a.year,
