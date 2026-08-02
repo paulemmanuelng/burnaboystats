@@ -36,7 +36,10 @@ export default function TodaysNumber() {
         <span className={styles.ring2} />
       </div>
 
-      <div className={styles.kicker}>Today&apos;s number</div>
+      <div className={styles.kicker}>
+        <span className={styles.kickerRule} aria-hidden="true" />
+        Today&apos;s number
+      </div>
 
       <div className={styles.row}>
         <div className={styles.figure}>{live.countries}</div>
