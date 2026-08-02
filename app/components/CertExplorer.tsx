@@ -7,15 +7,14 @@ import { matches, badgeWeight, byMostCertified } from "../lib/certs";
 import { track } from "../lib/analytics";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
-const YEARS = [2026, 2025, 2024, 2023];
 
-// "Year" isn't a real filter on this grid (releases don't carry a
-// certified-date) — it jumps down to the "Certifications by year" section
-// and opens that year there, via a small custom event the other component listens for.
-function jumpToYear(year: number) {
-  window.dispatchEvent(new CustomEvent("cert-year-jump", { detail: year }));
-  document.getElementById("cert-by-year")?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
+// Tier colours carry data meaning and are never recoloured to gold.
+const TIER_INK: Record<string, string> = {
+  Diamond: "var(--cyan)",
+  Platinum: "var(--silver)",
+  Gold: "var(--gold)",
+  Silver: "#b8bcc4",
+};
 
 type Countries = Record<string, Country>;
 
@@ -54,6 +53,7 @@ function CertCard({
           {[item.credit, item.year].filter(Boolean).join(" · ")}
         </span>
       </div>
+
       <div className={styles.badges}>
         {/* Same ordering as the release list: the plaque representing the most
             leads, rather than whatever order the data happened to be typed in. */}
@@ -73,11 +73,13 @@ export default function CertExplorer({
   singles,
   features,
   countries,
+  totalCerts,
 }: {
   albums: Release[];
   singles: Release[];
   features: Release[];
   countries: Countries;
+  totalCerts: number;
 }) {
   const [country, setCountry] = useState<string | null>(null);
   const [tier, setTier] = useState<string | null>(null);
@@ -108,10 +110,16 @@ export default function CertExplorer({
 
   const totalAll = albums.length + singles.length + features.length;
   const totalShown = groups.reduce((n, g) => n + g.items.length, 0);
+  const shownCerts = groups.reduce(
+    (n, g) => n + g.items.reduce((m, it) => m + it.certs.length, 0),
+    0
+  );
   const active = country || tier;
 
   return (
-    <div>
+    <>
+      <section className={styles.filterBand}>
+        <div className={styles.wide}>
       {focus && (
         <div className={styles.focusBar}>
           <span>
@@ -123,7 +131,9 @@ export default function CertExplorer({
         </div>
       )}
 
-      <div className={styles.filterBar}>
+      <div className={styles.filterCard}>
+        {/* The panel collapses to a toggle only on mobile, where the country
+            row is 25 chips long; on desktop it is always open, as designed. */}
         <button
           type="button"
           className={styles.filterToggle}
@@ -134,53 +144,72 @@ export default function CertExplorer({
           <span>Filters{active ? ` · ${totalShown} shown` : ""}</span>
           <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
         </button>
+
         <div id="cert-filters" className={`${styles.filterBody} ${filtersOpen ? styles.filterOpen : ""}`}>
-        <div className={styles.filterRow}>
-          <span className={styles.filterLabel}>Tier</span>
-          <button className={`${styles.fChip} ${!tier ? styles.fChipOn : ""}`} onClick={() => setTier(null)}>All</button>
-          {TIERS.map((t) => (
+          <div className={styles.filterRow}>
+            <span className={styles.filterLabel}>Tier</span>
             <button
-              key={t}
-              className={`${styles.fChip} ${tier === t ? styles.fChipOn : ""}`}
-              onClick={() => setTier(tier === t ? null : t)}
+              type="button"
+              className={`${styles.fChip} ${!tier ? styles.fChipOn : ""}`}
+              onClick={() => setTier(null)}
             >
-              {t}
+              All
             </button>
-          ))}
-        </div>
-        <div className={styles.filterRow}>
-          <span className={styles.filterLabel}>Country</span>
-          <button className={`${styles.fChip} ${!country ? styles.fChipOn : ""}`} onClick={() => setCountry(null)}>All</button>
-          {Object.entries(countries).map(([code, c]) => (
+            {TIERS.map((t) => (
+              <button
+                key={t}
+                type="button"
+                className={`${styles.fChip} ${tier === t ? styles.fChipOn : ""}`}
+                onClick={() => setTier(tier === t ? null : t)}
+              >
+                <span className={styles.chipDot} style={{ background: TIER_INK[t] }} aria-hidden="true" />
+                {t}
+              </button>
+            ))}
+          </div>
+
+          <div className={styles.filterRow}>
+            <span className={styles.filterLabel}>Country</span>
             <button
-              key={code}
-              className={`${styles.fChip} ${country === code ? styles.fChipOn : ""}`}
-              title={`${c.name} — ${c.body}`}
-              onClick={() => setCountry(country === code ? null : code)}
+              type="button"
+              className={`${styles.fChip} ${!country ? styles.fChipOn : ""}`}
+              onClick={() => setCountry(null)}
             >
-              <span className={styles.flag}>{c.flag}</span>
-              {code}
+              All
             </button>
-          ))}
-        </div>
-        {active && (
+            {Object.entries(countries).map(([code, c]) => (
+              <button
+                key={code}
+                type="button"
+                className={`${styles.fChip} ${country === code ? styles.fChipOn : ""}`}
+                title={`${c.name} — ${c.body}`}
+                onClick={() => setCountry(country === code ? null : code)}
+              >
+                <span className={styles.flag}>{c.flag}</span>
+                {code}
+              </button>
+            ))}
+          </div>
+
           <div className={styles.filterMeta}>
-            Showing <b>{totalShown}</b> of {totalAll} releases
-            <button className={styles.clearBtn} onClick={() => { setCountry(null); setTier(null); }}>
+            Showing <b>{totalShown}</b> of {totalAll} releases ·{" "}
+            <b>{shownCerts}</b> certifications
+            <button
+              type="button"
+              className={styles.clearBtn}
+              onClick={() => {
+                setCountry(null);
+                setTier(null);
+              }}
+            >
               Clear ✕
             </button>
           </div>
-        )}
-        <div className={styles.filterRow}>
-          <span className={styles.filterLabel}>Year</span>
-          {YEARS.map((y) => (
-            <button key={y} type="button" className={styles.fChip} onClick={() => jumpToYear(y)}>
-              {y} ↓
-            </button>
-          ))}
-        </div>
         </div>
       </div>
+
+        </div>
+      </section>
 
       {totalShown === 0 ? (
         <p className={styles.empty}>No releases match that filter. Try another country or tier.</p>
@@ -188,20 +217,24 @@ export default function CertExplorer({
         groups.map(
           (g) =>
             g.items.length > 0 && (
-              <div key={g.label}>
-                <h2 className={`secTitle ${styles.group}`}>
-                  <span className="goldText">{g.label}</span>{" "}
-                  <span className={styles.count}>({g.items.length})</span>
-                </h2>
-                <div className={styles.certGrid}>
-                  {g.items.map((it) => (
-                    <CertCard key={it.title} item={it} countries={countries} country={country} tier={tier} />
-                  ))}
+              <section key={g.label} className={styles.groupSection}>
+                <div className={styles.wide}>
+                  <div className={styles.groupHead}>
+                    <h2 className={styles.groupTitle}>
+                      <span className="inkText">{g.label}</span>
+                    </h2>
+                    <span className={styles.count}>({g.items.length})</span>
+                  </div>
+                  <div className={styles.groupList}>
+                    {g.items.map((it) => (
+                      <CertCard key={it.title} item={it} countries={countries} country={country} tier={tier} />
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </section>
             )
         )
       )}
-    </div>
+    </>
   );
 }

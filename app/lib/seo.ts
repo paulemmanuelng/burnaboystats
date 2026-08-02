@@ -64,7 +64,7 @@ export function datasetJsonLd(opts: {
 }
 
 // Human-readable labels for each URL segment, used for breadcrumbs.
-const SEGMENT_LABELS: Record<string, string> = {
+export const SEGMENT_LABELS: Record<string, string> = {
   music: "Music",
   certifications: "Certifications",
   records: "Career Records",

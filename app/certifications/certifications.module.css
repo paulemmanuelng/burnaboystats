@@ -309,3 +309,398 @@
   }
   .badges { justify-content: flex-start; }
 }
+
+/* ══ Redesign, from designs/desktop/Certifications.dc.html ══
+   Values below are the design's, verbatim. */
+
+.wide {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { border-bottom: 1px solid var(--line); }
+.heroGrid {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+}
+.heroCopy { padding: 54px 48px 46px 0; }
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.eyebrowRule {
+  width: 22px;
+  height: 2px;
+  background: var(--gold);
+  display: block;
+  flex: none;
+}
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 96px;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 16px 0 0;
+}
+.lede {
+  font-size: 17.5px;
+  line-height: 1.55;
+  max-width: 60ch;
+  margin: 18px 0 0;
+  color: #d8d8de;
+  text-wrap: pretty;
+}
+.heroButtons { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+
+/* Tier rail — four rows, hairline-separated, sharing the hero's right column. */
+.tierRail {
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+.tierRow {
+  padding: 22px 0 20px 40px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.tierDot { width: 10px; height: 10px; border-radius: 50%; flex: none; display: block; }
+.tierName {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  min-width: 92px;
+}
+.tierCount {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.tierPct {
+  margin-left: auto;
+  padding-right: 40px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Summary strip ────────────────────────────────────────────────────── */
+.summary {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+.summaryGrid {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.summaryCell {
+  padding: 28px 24px 26px;
+  border-left: 1px solid var(--line);
+}
+.summaryCell:first-child { border-left: none; }
+.summaryValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+.summaryLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+.summaryNote {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+  color: var(--text-muted);
+}
+
+/* ── Filter card ──────────────────────────────────────────────────────── */
+.filterBand { border-bottom: 1px solid var(--line); }
+.filterBand .wide { padding: 32px 40px 20px; }
+.filterCard {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+/* Desktop keeps the panel open; the toggle is a mobile affordance. */
+.filterToggle { display: none; }
+.filterBody { display: flex; flex-direction: column; gap: 14px; }
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.filterLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  min-width: 70px;
+}
+.fChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 0 15px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.fChip:hover { border-color: var(--gold-dim); color: var(--text); }
+.fChipOn {
+  background: rgba(255, 182, 39, 0.16);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.chipDot { width: 8px; height: 8px; border-radius: 50%; flex: none; display: block; }
+.filterMeta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+.filterMeta b { color: var(--gold); }
+.clearBtn {
+  margin-left: auto;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.clearBtn:hover { border-color: var(--gold-dim); color: var(--text); }
+
+/* ── Release groups ───────────────────────────────────────────────────── */
+.groupSection { border-bottom: 1px solid var(--line); }
+.groupSection .wide { padding: 34px 40px 30px; }
+.groupHead {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+.groupTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.count {
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.groupList { border-top: 1px solid var(--line); }
+.certRow {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(0, 1.6fr);
+  gap: 16px 28px;
+  align-items: center;
+  padding: 18px 8px;
+  border-bottom: 1px solid var(--line);
+  transition: background var(--dur-fast) var(--ease);
+}
+.certRow:hover { background: rgba(245, 240, 232, 0.05); }
+.certRowHead { min-width: 0; }
+.certTitle {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.certCredit {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 7px;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* ── Source note ──────────────────────────────────────────────────────── */
+.sourceBand { border-bottom: 1px solid var(--line); }
+.sourceBand .wide { padding: 34px 40px 40px; }
+.source {
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 100ch;
+  color: var(--text-muted);
+}
+
+@media (max-width: 1100px) {
+  .wide, .heroGrid, .summaryGrid { padding-inline: 24px; }
+  .heroGrid { grid-template-columns: 1fr; }
+  .heroCopy { padding: 40px 0 32px; }
+  .h1 { font-size: 62px; }
+  .tierRail { border-left: none; border-top: 1px solid var(--line); }
+  .tierRow { padding-left: 0; }
+  .tierPct { padding-right: 0; }
+  .summaryGrid { grid-template-columns: 1fr 1fr; }
+  .summaryCell:nth-child(3) { border-left: none; }
+  .certRow { grid-template-columns: 1fr; }
+  .badges { justify-content: flex-start; }
+}
+
+/* ── The dated log ────────────────────────────────────────────────────── */
+.logBand {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+.logBand .wide { padding: 44px 40px 48px; }
+.logHead {
+  display: flex;
+  align-items: flex-end;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+.logKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.logTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+.logLede {
+  font-size: 13.5px;
+  line-height: 1.5;
+  margin: 0 0 6px;
+  max-width: 44ch;
+  color: var(--text-muted);
+}
+.yearRow { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+.yearBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 120px;
+  min-height: 52px;
+  padding: 0 22px;
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 182, 39, 0.07);
+  color: var(--gold-bright);
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 21px;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.yearBtnOn {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0a0a0b;
+}
+.yearCount {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  opacity: 0.7;
+}
+.yearNote { color: var(--gold); font-size: 13.5px; margin: 0 0 18px; }
+.eventList { border-top: 1px solid var(--line); }
+.eventRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 13px 8px;
+  border-bottom: 1px solid var(--line);
+  transition: background var(--dur-fast) var(--ease);
+}
+.eventRow:hover { background: rgba(245, 240, 232, 0.045); }
+.eventMain {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.eventTitle { font-weight: 600; font-size: 15px; }
+.eventMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@media (max-width: 1100px) {
+  .logBand .wide { padding: 32px 24px 36px; }
+  .logHead { flex-wrap: wrap; gap: 14px; }
+  .logTitle { font-size: 28px; }
+  .yearBtn { min-width: 0; flex: 1; }
+}

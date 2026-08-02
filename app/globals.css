@@ -431,7 +431,7 @@ a {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding: 48px 40px 56px;
+  padding: 44px 40px 56px;
 }
 .footerGrid {
   display: grid;
@@ -1375,4 +1375,33 @@ button:focus-visible,
 }
 @media (max-width: 900px) {
   .navStatCard { display: none; }
+}
+
+/* Compact footer — every page except the home page. Wordmark and that page's
+   provenance line on the left, its four onward links on the right. */
+.footerCompact {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+.footerCompact .footerDisclaimer { max-width: 46ch; margin-bottom: 0; }
+.footerQuick {
+  margin-left: auto;
+  display: flex;
+  gap: 28px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+}
+.footerQuick a {
+  color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease);
+}
+.footerQuick a:hover { color: var(--gold); }
+
+@media (max-width: 900px) {
+  .footerCompact { flex-direction: column; gap: 20px; }
+  .footerQuick { margin-left: 0; gap: 18px; }
 }
