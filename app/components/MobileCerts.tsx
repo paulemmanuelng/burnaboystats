@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./mobileCerts.module.css";
 import { badgeWeight } from "../lib/certs";
 import ScrollRail from "./ScrollRail";
+import { titleKey } from "../lib/titleKey";
 import type { CertEvent, Country, Release } from "../data/certifications";
 
 /**
@@ -41,17 +42,23 @@ const YEARS = [2026, 2025, 2024, 2023];
 
 export default function MobileCerts({
   releases,
+  albums,
   history,
   countries,
   total,
   countryCount,
 }: {
   releases: Release[];
+  albums: Release[];
   history: CertEvent[];
   countries: Record<string, Country>;
   total: number;
   countryCount: number;
 }) {
+  // The list runs albums, singles and features together, so an album needs
+  // saying — on desktop the three are separate sections and the grouping does
+  // this job for free.
+  const albumTitles = new Set(albums.map((a) => titleKey(a.title)));
   const [tier, setTier] = useState<Tier | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [year, setYear] = useState(YEARS[0]);
@@ -163,7 +170,12 @@ export default function MobileCerts({
             <div className={styles.rowTop}>
               <span className={styles.rank}>{String(i + 1).padStart(2, "0")}</span>
               <div className={styles.rowMain}>
-                <div className={styles.rowTitle}>{r.title}</div>
+                <div className={styles.rowTitle}>
+                  {r.title}
+                  {albumTitles.has(titleKey(r.title)) && (
+                    <span className={styles.albumTag}>Album</span>
+                  )}
+                </div>
                 <div className={styles.rowMeta}>
                   {[r.credit, r.year].filter(Boolean).join(" · ")}
                 </div>

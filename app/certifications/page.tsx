@@ -7,7 +7,7 @@ import CertHistoryByYear from "../components/CertHistoryByYear";
 import KeepExploring from "../components/KeepExploring";
 import { siteUrl } from "../site";
 import {
-  COUNTRIES, albums, singles, features, certHistory, allItems,
+  COUNTRIES, albums as certAlbums, singles, features, certHistory, allItems,
   totalAwards, certifiedReleaseCount, countryCount,
 } from "../data/certifications";
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
@@ -83,6 +83,7 @@ export default function CertificationsPage() {
           bars under it, then stacked rows — not the desktop page reflowed. */}
       <MobileCerts
         releases={allItems}
+        albums={certAlbums}
         history={certHistory}
         countries={COUNTRIES}
         total={total}
@@ -145,7 +146,7 @@ export default function CertificationsPage() {
 
       {/* ── Filter card + the three release groups ───────────────────── */}
       <CertExplorer
-        albums={albums}
+        albums={certAlbums}
         singles={singles}
         features={features}
         countries={COUNTRIES}

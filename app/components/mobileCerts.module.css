@@ -357,3 +357,21 @@
    year from its tally the way the site's other meta lines do. */
 .chipSep { opacity: 0.45; margin: 0 -2px; }
 .chipCount { opacity: 0.7; font-weight: 400; }
+
+/* "Album" tag beside a title, matching the chart table's. The mobile list runs
+   albums, singles and features together, so the type has to be stated. */
+.albumTag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  vertical-align: middle;
+  transform: translateY(-2px);
+}
