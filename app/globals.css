@@ -720,8 +720,8 @@ a.fact:hover {
 .textarea:focus { outline: none; border-color: var(--gold); }
 .input:focus-visible,
 .textarea:focus-visible {
-  outline: 2px solid var(--gold-bright);
-  outline-offset: 1px;
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 .textarea { min-height: 140px; resize: vertical; }
 .success {
@@ -1156,12 +1156,20 @@ a.fact:hover {
   top: 12px;
 }
 
-/* A consistent, visible keyboard focus ring on every interactive element. */
+/* A consistent, visible keyboard focus ring on every interactive element.
+   The handoff specifies the accent at a 2px offset; the list covers form
+   controls and <summary> too, which a:/button:/[tabindex] alone misses — the
+   certifications tier filter is radio inputs, and the live-charts rows are
+   <details>. */
 a:focus-visible,
 button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--gold-bright);
-  outline-offset: 3px;
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
   border-radius: 3px;
 }
 
