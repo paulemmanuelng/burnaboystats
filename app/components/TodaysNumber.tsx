@@ -1,7 +1,9 @@
 import Link from "next/link";
 import styles from "./todaysNumber.module.css";
 import { liveHeadline } from "../lib/liveHeadline";
+import { changedSentence } from "../lib/recentNumberOnes";
 import { numberOnes, chartCountryCount } from "../data/charts";
+import { recentArrivalSentence } from "../lib/recentNumberOnes";
 import { spotifyImage } from "../lib/spotifyImage";
 
 // The Dai Dai cover, already used by the hero card and the OG image.
@@ -22,6 +24,7 @@ export default function TodaysNumber() {
   const live = liveHeadline();
 
   return (
+    <>
     <div className={styles.panel}>
       <div className={styles.glyphs} aria-hidden="true">
         <span className={styles.g1}>♪</span>
@@ -54,18 +57,21 @@ export default function TodaysNumber() {
       </div>
 
       <p className={styles.note}>
-        On streaming charts right now. Across official national charts his
-        career total is {numberOnes} No.&nbsp;1s in {chartCountryCount} countries —
-        a different, permanent measure.
+        {recentArrivalSentence(live.title ?? "Dai Dai")}{" "}
+        Burna&apos;s career total is now {numberOnes} No.&nbsp;1s across{" "}
+        {chartCountryCount} countries.
       </p>
-
-      <div className={styles.foot}>
-        <span className={styles.footDot} aria-hidden="true" />
-        <span>Refreshed hourly</span>
-        <Link href="/live-charts" className={styles.footLink}>
-          Live board ↗
-        </Link>
-      </div>
     </div>
+
+    {/* Outside the gold: the design sets this status row on the page
+        background, divided from the panel by the same hairline. */}
+    <div className={styles.status}>
+      <span className={styles.statusDot} aria-hidden="true" />
+      <span className={styles.statusText}>{changedSentence}</span>
+      <Link href="/live-charts" className={styles.statusLink}>
+        Live board ↗
+      </Link>
+    </div>
+    </>
   );
 }

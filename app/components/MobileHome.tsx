@@ -5,8 +5,9 @@ import { spotifyImage } from "../lib/spotifyImage";
 import { sameTitle } from "../lib/titleKey";
 import {
   isRecentNumberOne,
+  recentArrivals,
   arrivalWindowPhrase,
-  arrivalChangedPhrase,
+  changedSentence,
 } from "../lib/recentNumberOnes";
 import {
   allChartItems,
@@ -65,28 +66,6 @@ const allCells = [...numberOneCountries].reverse().map((code) => {
 
 // The just-changed countries lead the board — they are the reason to look at it.
 const board = [...allCells].sort((a, b) => Number(b.isNew) - Number(a.isNew)).slice(0, 6);
-
-// ── "Today's number" caption ───────────────────────────────────────────────
-// The card names the countries that just arrived. Three fit; beyond that the
-// rest are counted rather than dropped, so the sentence and the tally below it
-// always describe the same set.
-const newNames = allCells.filter((c) => c.isNew).map((c) => c.name);
-
-const listNames = (xs: string[]) => {
-  // Four names still read as a sentence; past that they become a count, so the
-  // card never turns into a list dump.
-  const shown = xs.length <= 4 ? xs : xs.slice(0, 3);
-  const rest = xs.length - shown.length;
-  if (rest > 0) return `${shown.join(", ")} and ${rest} more`;
-  return shown.length < 2 ? shown.join("") : `${shown.slice(0, -1).join(", ")} and ${shown.at(-1)}`;
-};
-
-const arrivalNote = newNames.length
-  ? `${listNames(newNames)} joined ${arrivalWindowPhrase}.`
-  : "On streaming charts right now, refreshed hourly.";
-const changedNote = newNames.length
-  ? `${newNames.length} chart${newNames.length === 1 ? "" : "s"} changed ${arrivalChangedPhrase}`
-  : "Refreshed hourly";
 
 // ── Albums ─────────────────────────────────────────────────────────────────
 // Best official peak per album, for the chip under each cover.
@@ -177,10 +156,14 @@ export default function MobileHome() {
         <div className={styles.todayCaption}>
           {live.countries === 1 ? "Country at No. 1" : "Countries at No. 1"}
         </div>
-        <p className={styles.todayNote}>{arrivalNote}</p>
+        <p className={styles.todayNote}>
+          {recentArrivals.length
+            ? `${recentArrivals.slice(0, 4).join(", ").replace(/, ([^,]*)$/, " and $1")} joined ${arrivalWindowPhrase}.`
+            : "On streaming charts right now, refreshed hourly."}
+        </p>
         <div className={styles.todayFoot}>
           <span className={styles.todayFootDot} aria-hidden="true" />
-          <span>{changedNote}</span>
+          <span>{changedSentence}</span>
           <Link href="/live-charts" className={styles.todayFootLink}>
             Live board ↗
           </Link>

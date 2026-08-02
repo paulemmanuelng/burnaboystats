@@ -38,3 +38,25 @@ export const newestArrivalAge = recentUpdates.length
 /** Wording keyed to the window above, so the copy can never outrun the data. */
 export const arrivalWindowPhrase = newestArrivalAge <= 1 ? "in the last 24 hours" : "this week";
 export const arrivalChangedPhrase = newestArrivalAge <= 1 ? "today" : "this week";
+
+// ── Sentences the hero panel and the mobile card share ─────────────────────
+const listNames = (xs: string[]) => {
+  const shown = xs.length <= 4 ? xs : xs.slice(0, 3);
+  const rest = xs.length - shown.length;
+  if (rest > 0) return `${shown.join(", ")} and ${rest} more`;
+  return shown.length < 2 ? shown.join("") : `${shown.slice(0, -1).join(", ")} and ${shown.at(-1)}`;
+};
+
+/** Countries the feed just reported topping, in the order the data holds them. */
+export const recentArrivals = countryNames.filter((n) => recentText.includes(n));
+
+/** "'Dai Dai' with Shakira added X, Y and Z this week —" */
+export const recentArrivalSentence = (title: string) =>
+  recentArrivals.length
+    ? `“${title}” added ${listNames(recentArrivals)} ${arrivalWindowPhrase}.`
+    : "On streaming charts right now, refreshed hourly.";
+
+/** "N charts changed this week" */
+export const changedSentence = recentArrivals.length
+  ? `${recentArrivals.length} chart${recentArrivals.length === 1 ? "" : "s"} changed ${arrivalChangedPhrase}`
+  : "Refreshed hourly";

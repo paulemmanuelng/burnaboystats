@@ -35,7 +35,7 @@ export default function LiveBand() {
         <span className={styles.sub}>most-streamed song on Earth · Spotify Global</span>
 
         <Link href="/live-charts" className={styles.streams}>
-          career streams {spotifyTotalStreams} ↗
+          career streams {spotifyTotalStreams}
         </Link>
       </div>
     </div>

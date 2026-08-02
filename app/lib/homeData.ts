@@ -5,13 +5,20 @@ import {
   numberOnes,
   chartCountryCount,
 } from "../data/charts";
-import { allItems, totalAwards, countryCount as certCountries, COUNTRIES as CERT_COUNTRIES } from "../data/certifications";
+import {
+  allItems,
+  albums as certAlbums,
+  totalAwards,
+  countryCount as certCountries,
+  COUNTRIES as CERT_COUNTRIES,
+} from "../data/certifications";
+import { songs } from "../data/songs";
 import { albums as studioAlbums } from "../data/albums";
 import { revenueShows } from "../data/tourRevenue";
-import { allFirsts } from "../data/firsts";
+import { firstGroups } from "../data/firsts";
 import { liveCharts } from "../data/liveCharts";
 import { tours } from "../data/tours";
-import { sameTitle } from "./titleKey";
+import { sameTitle, titleKey } from "./titleKey";
 import { isRecentNumberOne } from "./recentNumberOnes";
 
 /**
@@ -30,6 +37,8 @@ export interface LedgerRow {
   rank: string;
   title: string;
   credit: string;
+  /** The highest award with its multiplier, e.g. "4× Platinum". */
+  award: string;
   year: string;
   top: Tier;
   countries: number;
@@ -37,13 +46,34 @@ export interface LedgerRow {
   levels: Tier[];
 }
 
+const albumTitles = new Set(certAlbums.map((a) => titleKey(a.title)));
+
+/**
+ * The second line under each title. Albums say so; a release another artist
+ * leads keeps that artist's billing; his own singles name the album they came
+ * from, which is the fact a reader actually wants there.
+ */
+const creditFor = (item: (typeof allItems)[number]) => {
+  if (albumTitles.has(titleKey(item.title))) return "Album";
+  if (item.credit) return /^feat\./i.test(item.credit) ? `Burna Boy ${item.credit}` : item.credit;
+  const song = songs.find((sg) => sameTitle(sg.title, item.title));
+  return song?.album ? `Burna Boy · ${song.album}` : "Burna Boy";
+};
+
+/** "4× Platinum" where a release is certified past 1×; plain tier otherwise. */
+const topAward = (item: (typeof allItems)[number], top: Tier) => {
+  const best = Math.max(...item.certs.filter((c) => c.level === top).map((c) => c.x ?? 1));
+  return best > 1 ? `${best}× ${top}` : top;
+};
+
 export const ledgerRows: LedgerRow[] = [...allItems]
   .map((item) => {
     const levels = [...new Set(item.certs.map((c) => c.level))] as Tier[];
     const top = TIER_ORDER.find((t) => levels.includes(t)) ?? "Silver";
     return {
       title: item.title,
-      credit: item.credit ?? "Burna Boy",
+      credit: creditFor(item),
+      award: topAward(item, top),
       year: item.year ? String(item.year) : "—",
       top,
       countries: new Set(item.certs.map((c) => c.c)).size,
@@ -149,9 +179,10 @@ const allBoardCells: BoardCell[] = [
     .map(([code, name]) => ({ code, flag: "", name, chart: "Spotify", isNew: false })),
 ];
 
-export const boardCells: BoardCell[] = [...allBoardCells]
-  .sort((a, b) => Number(b.isNew) - Number(a.isNew))
-  .slice(0, 24);
+// The desktop board keeps its natural order — Africa, then Latin America, as
+// the live data holds them — and only marks the new arrivals in place. (The
+// mobile board is a different screen and does lead with them.)
+export const boardCells: BoardCell[] = allBoardCells.slice(0, 24);
 
 // ── The catalogue ──────────────────────────────────────────────────────────
 /** Small counts read as words in this design's headings, not digits. */
@@ -184,10 +215,16 @@ export const topShows = revenueShows.filter((s) => s.artist === "Burna Boy").sli
 const grossOf = (g?: string) => (g ? Number.parseFloat(g.replace(/[^0-9.]/g, "")) : 0);
 export const topTour = [...tours].sort((a, b) => grossOf(b.gross) - grossOf(a.gross))[0];
 
-/** The most recent firsts across every category. */
-export const homeFirsts = allFirsts
-  .slice()
-  .sort((a, b) => Number(b.year) - Number(a.year))
-  .slice(0, 5);
+/**
+ * One headline first from each category, newest first.
+ *
+ * Sorting all of them by year would return five 2026 rows — every recent
+ * milestone is from the World Cup run — which hides the career rather than
+ * showing it. Taking the lead item per category gives the spread the design
+ * shows, across stadiums, world stages, awards, charts and box office.
+ */
+export const homeFirsts = firstGroups
+  .map((g) => g.items[0])
+  .sort((a, b) => Number(b.year) - Number(a.year));
 
 export { CERT_COUNTRIES };

@@ -117,7 +117,6 @@
   font-size: 22px;
   line-height: 1.15;
   margin-top: 14px;
-  text-transform: uppercase;
 }
 
 .note {
@@ -160,3 +159,28 @@
   .figure { font-size: 104px; }
   .cover img { width: 104px; height: 104px; }
 }
+
+/* The status row sits OUTSIDE the gold panel, on the page background, divided
+   from it by the same hairline that divides the hero columns. */
+.status {
+  border-top: 1px solid var(--line);
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+}
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  display: block;
+  flex: none;
+}
+.statusText { color: var(--text-muted); }
+.statusLink {
+  margin-left: auto;
+  color: var(--gold);
+}
+.statusLink:hover { text-decoration: underline; }

@@ -33,7 +33,7 @@ const PILL: Record<Tier, { fill: string; ink: string }> = {
   Silver: { fill: "rgba(245, 244, 240, 0.08)", ink: "#b8bcc4" },
 };
 
-const ROWS_SHOWN = 8;
+const ROWS_SHOWN = 15;
 
 export default function CertLedger({
   rows,
@@ -112,10 +112,10 @@ export default function CertLedger({
                         className="tag"
                         style={{ background: PILL[r.top].fill, color: PILL[r.top].ink }}
                       >
-                        {r.top}
+                        {r.award}
                       </span>
                     </td>
-                    <td className={styles.countries}>{r.countries}</td>
+                    <td className={styles.countries}>{r.countries} countries</td>
                     <td className={styles.certs}>{r.certs}</td>
                     <td className={styles.shareCell}>
                       <StatCardButton

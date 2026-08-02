@@ -32,6 +32,18 @@ export default function Nav() {
           {/* Site search — opens a ⌘K command palette */}
           <SearchPalette />
 
+          {/* Stat card — the design's one gold action in the bar. Desktop
+              only: the mobile screens end at the tab bar and have no room
+              for it beside the wordmark. */}
+          <Link href="/share" className="btn btnPrimary navStatCard">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" />
+              <path d="M12 3v12" />
+              <path d="m7 8 5-5 5 5" />
+            </svg>
+            Stat card
+          </Link>
+
           {/* Hamburger — only visible on mobile (see globals.css) */}
           <button
             className="navToggle"

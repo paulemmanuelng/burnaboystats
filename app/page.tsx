@@ -5,6 +5,7 @@ import TodaysNumber from "./components/TodaysNumber";
 import MobileHome from "./components/MobileHome";
 import CertLedger from "./components/CertLedger";
 import StatCardButton from "./components/StatCardButton";
+import SearchTrigger from "./components/SearchTrigger";
 import { homeScoreboard } from "./lib/homeScoreboard";
 import { spotifyImage } from "./lib/spotifyImage";
 import {
@@ -24,6 +25,7 @@ import {
   homeFirsts,
   numberWord,
 } from "./lib/homeData";
+import { updates } from "./data/updates";
 
 /**
  * The homepage, built from designs/desktop/Burna Boy Stats.dc.html.
@@ -33,6 +35,11 @@ import {
  * the closing source panel — and nothing else. The marquee, updates feed and
  * map teaser the previous page carried are not in this design.
  */
+
+// The freshness chip reads off the feed rather than a typed date.
+const lastVerified = new Date(
+  `${updates.reduce((m, u) => (u.date > m ? u.date : m), updates[0].date)}T00:00:00`
+).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 
 // Tier colours carry data meaning and are never recoloured to gold.
 const TIER_INK: Record<string, string> = {
@@ -65,38 +72,36 @@ export default function Home() {
         <LiveBand />
 
         {/* ── Hero ───────────────────────────────────────────────── */}
+        {/* Two columns, no portrait: in this design the gold "today's number"
+            panel IS the right column, divided from the copy by a hairline. */}
         <section className={styles.hero} id="top">
-          <div className={styles.heroGlow} aria-hidden="true" />
-          <div className={styles.heroPortrait} aria-hidden="true" />
-
-          <div className={`container ${styles.heroInner}`}>
-            <div className={styles.heroGrid}>
-              <div className={styles.heroCopy}>
-                <p className={styles.eyebrow}>
-                  <span className={styles.eyebrowRule} aria-hidden="true" />
-                  The African Giant · Est. 2010 · Afro-Fusion
-                </p>
-                <h1 className={styles.title}>
-                  Burna <span className="inkText">Boy</span>
-                </h1>
-                <p className={styles.tagline}>
-                  Every certification, chart peak, award and tour record — one dataset,
-                  sourced line by line, updated the day it changes.
-                </p>
-                <div className={styles.heroButtons}>
-                  <Link href="/certifications" className="btn btnPrimary">View certifications ↗</Link>
-                  <Link href="/music" className="btn btnSecondary">Explore the music ↗</Link>
-                </div>
-                <div className={styles.heroSources}>
-                  <span className={styles.sourceChip}>Sources: RIAA · BPI · SNEP · IFPI</span>
-                  <Link href="/methodology" className={styles.sourceChipLink}>Methodology ↗</Link>
-                  <Link href="/api" className={styles.sourceChipLink}>Open data API ↗</Link>
-                </div>
+          <div className={styles.heroGrid}>
+            <div className={styles.heroCopy}>
+              <div className={styles.eyebrow}>
+                <span className={styles.eyebrowRule} aria-hidden="true" />
+                The African Giant · Est. 2010 · Afro-Fusion
               </div>
-
-              <div className={styles.heroPanel}>
-                <TodaysNumber />
+              <h1 className={styles.title}>
+                Burna <span className="inkText">Boy</span>
+              </h1>
+              <p className={styles.tagline}>
+                Every certification, chart peak, award and tour record — one dataset,
+                sourced line by line, updated the day it changes.
+              </p>
+              <div className={styles.heroButtons}>
+                <Link href="/certifications" className="btn btnPrimary">View certifications</Link>
+                <Link href="/music" className="btn btnSecondary">Explore the music</Link>
+                <SearchTrigger />
               </div>
+              <div className={styles.heroChips}>
+                <span className="tag tagNeutral">Sources: RIAA · BPI · SNEP · IFPI</span>
+                <span className="tag tagNeutral">Last verified {lastVerified}</span>
+                <Link href="/api" className="tag tagOutline">Open data API</Link>
+              </div>
+            </div>
+
+            <div className={styles.heroPanel}>
+              <TodaysNumber />
             </div>
           </div>
         </section>
@@ -118,7 +123,7 @@ export default function Home() {
 
         {/* ── History made ───────────────────────────────────────── */}
         <section className={styles.historyBand}>
-          <div className={`${styles.wide} ${styles.historyInner}`}>
+          <div className={styles.historyInner}>
             <div>
               <div className={styles.historyKicker}>History made · 19 July 2026</div>
               <h2 className={styles.historyTitle}>Shakira × Burna Boy — “Dai Dai”</h2>

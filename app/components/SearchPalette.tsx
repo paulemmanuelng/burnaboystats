@@ -51,8 +51,15 @@ export default function SearchPalette() {
         setOpen(false);
       }
     };
+    // The hero's "Search the dataset" button opens the same palette without
+    // this component having to be lifted or duplicated.
+    const onOpen = () => setOpen(true);
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("open-search", onOpen);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("open-search", onOpen);
+    };
   }, []);
 
   // Focus the input and lock body scroll while open.
