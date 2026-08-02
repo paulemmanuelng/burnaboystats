@@ -665,6 +665,11 @@
   border-color: var(--gold);
   color: #0a0a0b;
 }
+.yearSep {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  opacity: 0.45;
+}
 .yearCount {
   font-family: var(--font-mono), monospace;
   font-size: 11px;

@@ -39,3 +39,8 @@
     transform: none;
   }
 }
+
+/* Hidden where a mobile action bar already occupies this corner. */
+@media (max-width: 900px) {
+  .desktopOnly { display: none; }
+}

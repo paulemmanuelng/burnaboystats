@@ -270,7 +270,10 @@ export default function MobileCerts({
               aria-pressed={year === y}
               onClick={() => setYear(y)}
             >
-              {y} {yearCounts[y] ?? 0}
+              {y}
+              <span className={styles.chipSep} aria-hidden="true">·</span>
+              <span className={styles.chipCount}>{yearCounts[y] ?? 0}</span>
+              <span className="visuallyHidden">certifications</span>
             </button>
           ))}
         </ChipRail>

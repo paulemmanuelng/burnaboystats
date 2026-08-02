@@ -70,7 +70,9 @@ export default function CertHistoryByYear({
               onClick={() => setYear(year === y ? null : y)}
             >
               {y}
+              <span className={styles.yearSep} aria-hidden="true">·</span>
               <span className={styles.yearCount}>{counts[y] ?? 0}</span>
+              <span className="visuallyHidden">certifications</span>
             </button>
           ))}
         </div>

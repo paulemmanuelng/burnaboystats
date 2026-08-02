@@ -352,3 +352,8 @@
   -webkit-mask-image: linear-gradient(to right, transparent 0, #000 44px, #000 calc(100% - 44px), transparent 100%);
   mask-image: linear-gradient(to right, transparent 0, #000 44px, #000 calc(100% - 44px), transparent 100%);
 }
+
+/* "2026 42" read as one number. A middot plus a dimmer count separates the
+   year from its tally the way the site's other meta lines do. */
+.chipSep { opacity: 0.45; margin: 0 -2px; }
+.chipCount { opacity: 0.7; font-weight: 400; }
