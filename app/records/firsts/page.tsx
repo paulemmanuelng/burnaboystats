@@ -1,9 +1,9 @@
 import Link from "next/link";
 import styles from "./firsts.module.css";
 import KeepExploring from "../../components/KeepExploring";
-import CountUp from "../../components/CountUp";
-import StatGrid from "../../components/StatGrid";
-import DeepPage from "../../components/DeepPage";
+import BreadcrumbBar from "../../components/BreadcrumbBar";
+import MobileDeepPage from "../../components/MobileDeepPage";
+import { numberWord } from "../../lib/homeData";
 import { firstGroups, allFirsts, firstsCount } from "../../data/firsts";
 import { pageMetadata } from "../../lib/seo";
 
@@ -30,27 +30,27 @@ const headlineFirsts = [
   { year: "2024", title: "First African artist past 2 billion UK streams", sub: "BRIT Billion Award" },
 ];
 
+/** Anchor id for a category heading, so the jump rail can reach it. */
+const groupId = (label: string) =>
+  label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+const earliestYear = Math.min(...allFirsts.map((f) => Number(f.year)));
+
 export default function FirstsPage() {
   return (
     <main id="content">
-      <DeepPage
-        backHref="/records"
-        backLabel="Firsts"
+      {/* Mobile is screen 15 on the shared deep-page grammar. */}
+      <MobileDeepPage
+        label="Firsts"
         badge={String(firstsCount)}
         kicker="Record-breaking"
         titlePre="Firsts & "
         titleGold="records"
-        lede={`Forty-nine milestones, from the first African stadium headline to the World Cup final.`}
+        titleSize={44}
+        lede={`${numberWord(firstsCount)} milestones, from the first African stadium headline to the World Cup final.`}
         stats={[
           { value: String(firstsCount), label: "Milestones" },
           { value: String(firstGroups.length), label: "Categories" },
-        ]}
-        chips={[
-          { label: `All ${firstsCount}`, active: true },
-          { label: "Stages" },
-          { label: "World stage" },
-          { label: "Awards" },
-          { label: "Streaming" },
         ]}
         listTitle="The headline firsts"
         listMeta="newest first"
@@ -59,43 +59,108 @@ export default function FirstsPage() {
           title: f.title,
           sub: f.sub,
           value: "",
-          highlight: i < 2,
+          lead: i === 0,
         }))}
         footNote="Only firsts traceable to a primary source are listed. Grouped on the full page into stages, the world stage, awards, streaming and business."
-        cta={{ label: `All ${firstsCount} firsts`, href: "#all-firsts" }}
+        ctaLabel={`All ${firstsCount} firsts`}
+        ctaHref="#all-firsts"
       />
 
-      <div className="container" id="all-firsts">
-        {firstGroups.map((g) => (
-          <div key={g.label}>
-            <h2 className={`secTitle ${styles.group}`}>
-              <span className="goldText">{g.label}</span>{" "}
-              <span className={styles.count}>({g.items.length})</span>
-            </h2>
-            <div className={styles.list}>
-              {g.items.map((f) => (
-                <div key={f.title} className={styles.row}>
-                  <span className={styles.year}>{f.year}</span>
-                  <div>
-                    <h3 className={styles.title}>{f.title}</h3>
-                    <p className={styles.text}>{f.text}</p>
-                  </div>
-                </div>
-              ))}
+      <div className={styles.desktopOnly}>
+        <BreadcrumbBar path="/records/firsts" />
+
+        {/* ── Hero ─────────────────────────────────────────────── */}
+        <section className={styles.hero}>
+          <div className={styles.wide}>
+            <div className={styles.eyebrow}>
+              <span className={styles.eyebrowRule} aria-hidden="true" />
+              History made
+            </div>
+            <h1 className={styles.h1}>
+              Firsts <span className="inkText">&amp; Records</span>
+            </h1>
+            <p className={styles.lede}>
+              The history Burna Boy made for African music — every milestone, verified.{" "}
+              {firstsCount} firsts across {firstGroups.length} categories.
+            </p>
+          </div>
+        </section>
+
+        {/* ── Headline strip ───────────────────────────────────── */}
+        <section className={styles.headlineBand}>
+          <div className={styles.headlineGrid}>
+            <div className={styles.headlineCell}>
+              <div className={styles.headlineValue}>{firstsCount}</div>
+              <div className={styles.headlineLabel}>Milestones</div>
+            </div>
+            <div className={styles.headlineCell}>
+              <div className={styles.headlineValue}>{firstGroups.length}</div>
+              <div className={styles.headlineLabel}>Categories</div>
+            </div>
+            <div className={styles.headlineCell}>
+              <div className={styles.headlineValue}>{earliestYear}</div>
+              <div className={styles.headlineLabel}>First recorded</div>
             </div>
           </div>
-        ))}
+        </section>
 
-        <p className={styles.source}>
-          Every milestone here was cross-checked against multiple sources
-          (Billboard, Pollstar/Boxscore, the BPI and press reporting), as of
-          July 2026. “African” / “Nigerian” firsts reflect the wording of those
-          sources. More milestones are added as they are confirmed.
-        </p>
-        <Link href="/records" className={styles.back}>← Career Records</Link>
+        {/* ── Jump-to rail ─────────────────────────────────────── */}
+        <section className={styles.jumpBand}>
+          <div className={styles.jumpInner}>
+            <span className={styles.jumpLabel}>Jump to</span>
+            {firstGroups.map((g) => (
+              <a key={g.label} href={`#${groupId(g.label)}`} className={styles.jumpChip}>
+                {g.label}
+                <span className={styles.jumpCount}>{g.items.length}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Groups ───────────────────────────────────────────── */}
+        <div id="all-firsts">
+          {firstGroups.map((g) => (
+            <section key={g.label} id={groupId(g.label)} className={styles.groupSection}>
+              <div className={styles.wide}>
+                <div className={styles.groupHead}>
+                  <h2 className={styles.h2}>
+                    <span className="inkText">{g.label}</span>
+                  </h2>
+                  <span className={styles.count}>({g.items.length})</span>
+                </div>
+                <div className={styles.list}>
+                  {g.items.map((f) => (
+                    <div key={f.title} className={styles.row}>
+                      <span className={styles.year}>{f.year}</span>
+                      <div>
+                        <h3 className={styles.title}>{f.title}</h3>
+                        <p className={styles.text}>{f.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          ))}
+        </div>
+
+        {/* ── Source ───────────────────────────────────────────── */}
+        <section className={styles.sourceBand}>
+          <div className={styles.wide}>
+            <p className={styles.source}>
+              Every milestone here was cross-checked against multiple sources (Billboard,
+              Pollstar/Boxscore, the BPI and press reporting), as of July 2026. “African” /
+              “Nigerian” firsts reflect the wording of those sources. More milestones are
+              added as they are confirmed.
+            </p>
+            <Link href="/records" className={`btn btnSecondary ${styles.back}`}>
+              ← Career Records
+            </Link>
+          </div>
+        </section>
+
+        <KeepExploring current="/records/firsts" />
       </div>
-
-      <KeepExploring current="/records/firsts" />
     </main>
   );
 }

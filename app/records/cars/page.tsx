@@ -1,9 +1,9 @@
 import Link from "next/link";
 import styles from "./cars.module.css";
-import CountUp from "../../components/CountUp";
-import StatGrid from "../../components/StatGrid";
 import KeepExploring from "../../components/KeepExploring";
-import DeepPage from "../../components/DeepPage";
+import BreadcrumbBar from "../../components/BreadcrumbBar";
+import MobileDeepPage from "../../components/MobileDeepPage";
+import { numberWord } from "../../lib/homeData";
 import { cars, currentCars, soldCars, unconfirmedCars, carCount, totalValueFormatted } from "../../data/cars";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 
@@ -81,22 +81,23 @@ export default function CarsPage() {
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(carsDataset) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(carsItemList) }} />
-      <DeepPage
-        backHref="/records"
-        backLabel="Car collection"
+      {/* Mobile is screen 18 on the shared deep-page grammar. */}
+      <MobileDeepPage
+        label="Car collection"
         badge={String(carCount)}
         kicker="The garage, priced"
         titlePre="Car "
         titleGold="collection"
-        lede={`Fifteen confirmed cars worth a reported ${totalValueFormatted} — led by a one-of-one ₦9bn Bugatti.`}
+        lede={`${numberWord(carCount)} confirmed cars worth a reported ${totalValueFormatted} — led by a one-of-one ₦9bn Bugatti.`}
         stats={[
           { value: String(carCount), label: "Confirmed cars" },
           { value: totalValueFormatted, label: "Reported value" },
         ]}
         chips={CHIP_MARQUES.filter((m) => marqueCounts[m]).map((m, i) => ({
           label: `${marqueCounts[m]} ${m}`,
-          active: i === 0,
+          on: i === 0,
         }))}
+        chipsLabel="Collection by marque"
         listTitle="Ranked by what each cost"
         listMeta="import-inclusive"
         rows={topCars.map((c, i) => {
@@ -104,108 +105,162 @@ export default function CarsPage() {
           return {
             rank: String(i + 1).padStart(2, "0"),
             title: `${c.make} ${base}`,
-            sub: qualifier || (c.year ? `${c.year}` : c.valueNaira),
+            sub: qualifier || c.desc.split(".")[0],
             value: usd(c.valueUsd),
             bar: c.valueUsd / topValue,
-            highlight: i < 2,
+            lead: i < 2,
           };
         })}
         footNote="Unlike charts and certifications, a car collection has no official record. Reconstructed from press and sightings; only cars confirmed by multiple sources are listed."
-        cta={{ label: "The full garage", href: "#all-cars" }}
+        ctaLabel="The full garage"
+        ctaHref="#the-garage"
       />
 
-      <div className="container" id="all-cars">
-        <p className="lead" style={{ margin: "22px auto 0", textAlign: "center" }}>
-          Burna Boy currently owns {carCount} confirmed cars — a collection worth a
-          reported {totalValueFormatted}+, led by a one-of-one ₦9 billion Bugatti Chiron
-          and a $2 million McLaren Senna. Below is every car priced individually, plus
-          the ones he&apos;s since sold.
-        </p>
+      <div className={styles.desktopOnly}>
+        <BreadcrumbBar path="/records/cars" />
 
-        <section className={styles.glance} aria-label="Collection at a glance">
-          <p className={styles.glanceEyebrow}>The collection at a glance</p>
-          <div className={styles.highlights}>
-            {highlights.map((h) => (
-              <div key={h.label} className={styles.highlight}>
-                <span className={styles.hLabel}>{h.label}</span>
-                <span className={styles.hValue}>{h.value}</span>
-                <span className={styles.hMeta}>{h.meta}</span>
+        {/* ── Hero ─────────────────────────────────────────────── */}
+        <section className={styles.heroWrap}>
+          <div className={styles.kicker}>The garage · priced individually</div>
+          <h1 className={styles.h1}>
+            Car <span className="inkText">Collection</span>
+          </h1>
+          <p className={styles.lede}>
+            Burna Boy currently owns {carCount} confirmed cars — a collection worth a reported{" "}
+            {totalValueFormatted}+, led by a one-of-one ₦9 billion Bugatti Chiron and a $2
+            million McLaren Senna. Below is every car priced individually, plus the ones
+            he&apos;s since let go.
+          </p>
+
+          <div className={styles.statGrid}>
+            <div className={styles.statCell}>
+              <div className={styles.statNum}>{carCount}</div>
+              <div className={styles.statLabel}>Confirmed cars</div>
+            </div>
+            <div className={styles.statCell}>
+              <div className={styles.statNum}>{totalValueFormatted}+</div>
+              <div className={styles.statLabel}>Reported value</div>
+            </div>
+            {highlights.slice(0, 2).map((h) => (
+              <div key={h.label} className={styles.statCell}>
+                <div className={styles.highlightLabel}>{h.label}</div>
+                <div className={styles.highlightValue}>{h.value}</div>
+                <div className={styles.highlightMeta}>{h.meta}</div>
               </div>
             ))}
           </div>
-          <ul className={styles.brandTally}>
+
+          <div className={styles.tally}>
+            <span className={styles.tallyLabel}>By marque</span>
             {makeTally.map(([make, n]) => (
-              <li key={make} className={styles.tallyItem}><b>{n}</b> {make}</li>
+              <span key={make} className={styles.tallyChip}>
+                <b className={styles.tallyNum}>{n}</b>
+                <span className={styles.tallyMake}>{make}</span>
+              </span>
             ))}
-          </ul>
+          </div>
         </section>
 
-        <ol className={styles.list}>
-          {currentCars.map((c, i) => (
-            <li key={`${c.make}-${c.model}`} className={styles.row}>
-              <span className={styles.rank}>{i + 1}</span>
-              <div className={styles.main}>
-                <span className={styles.make}>{c.make}</span>
-                <h2 className={styles.model}>{c.model}{c.year ? ` (${c.year})` : ""}</h2>
-                <p className={styles.desc}>{c.desc}</p>
-                {c.link && (
-                  <a className={styles.seeIt} href={c.link} target="_blank" rel="noopener noreferrer">
-                    {c.linkLabel ?? "See Burna in it"} ↗
-                  </a>
-                )}
+        {/* ── The garage ───────────────────────────────────────── */}
+        <section className={styles.listWrap} id="the-garage">
+          <div className={styles.list}>
+            {currentCars.map((c, i) => (
+              <div key={`${c.make}-${c.model}`} className={styles.carRow}>
+                <span className={`${styles.rank} ${i === 0 ? styles.rankLead : ""}`}>
+                  {i + 1}
+                </span>
+                <div>
+                  <span className={styles.make}>{c.make}</span>
+                  <h2 className={`${styles.model} ${i === 0 ? styles.modelLead : ""}`}>
+                    {c.model}
+                  </h2>
+                  <p className={styles.desc}>{c.desc}</p>
+                  {c.link && (
+                    <a
+                      href={c.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.carLink}
+                    >
+                      {c.linkLabel ?? "See Burna in it"} ↗
+                    </a>
+                  )}
+                </div>
+                <div className={styles.priceCol}>
+                  <span className={`${styles.usd} ${i === 0 ? styles.usdLead : ""}`}>
+                    {usd(c.valueUsd)}
+                  </span>
+                  <span className={styles.naira}>{c.valueNaira}</span>
+                </div>
               </div>
-              <div className={styles.valueBlock}>
-                <span className={styles.value}>{formatUsd(c.valueUsd)}</span>
-                <span className={styles.valueSub}>{c.valueNaira}</span>
-              </div>
-            </li>
-          ))}
-        </ol>
+            ))}
+          </div>
+        </section>
 
-        {(soldCars.length > 0 || unconfirmedCars.length > 0) && (
-          <section className={styles.former} aria-label="No longer counted in the collection">
-            <h2 className={`secTitle ${styles.formerTitle}`}>
-              <span className="goldText">No longer counted</span>
-            </h2>
-            <p className={styles.formerNote}>
-              Kept for the record — cars he&apos;s reportedly sold, or that haven&apos;t
-              been seen with him in years. These don&apos;t count toward the totals above.
+        {/* ── No longer counted ────────────────────────────────── */}
+        <section className={styles.formerWrap}>
+          <h2 className={styles.h2}>
+            <span className={styles.goldFlat}>No longer counted</span>
+          </h2>
+          <p className={styles.formerLede}>
+            Kept for the record — cars he&apos;s reportedly sold, or that haven&apos;t been
+            seen with him in years. These don&apos;t count toward the totals above.
+          </p>
+          <div className={styles.formerList}>
+            {[...soldCars, ...unconfirmedCars].map((c) => (
+              <div key={`${c.make}-${c.model}`} className={styles.formerRow}>
+                <div>
+                  <span
+                    className={`${styles.tag} ${c.status === "sold" ? styles.tagSold : styles.tagUnconfirmed}`}
+                  >
+                    {c.status === "sold" ? "Sold" : "Unconfirmed"}
+                  </span>
+                  <span className={styles.make}>{c.make}</span>
+                  <h3 className={styles.formerModel}>{c.model}</h3>
+                  <p className={styles.formerDesc}>{c.desc}</p>
+                </div>
+                <div className={styles.priceCol}>
+                  <span className={styles.formerUsd}>{usd(c.valueUsd)}</span>
+                  <span className={styles.formerNaira}>{c.valueNaira}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── A note on this list ──────────────────────────────── */}
+        <section className={styles.noteWrap}>
+          <div className={styles.note}>
+            <div className={styles.noteKicker}>A note on this list</div>
+            <p className={styles.noteText}>
+              This list isn&apos;t guaranteed complete. Unlike this site&apos;s charts,
+              certifications and awards — which trace to an official chart body or academy —
+              a celebrity car collection has no equivalent record. It&apos;s reconstructed
+              from entertainment press and social sightings, which vary a lot in reliability
+              (some outlets have reported cars that don&apos;t check out) and can lag a real
+              purchase by days or weeks. Only cars confirmed by multiple independent sources
+              are listed here.
             </p>
-            <ul className={styles.formerList}>
-              {[...soldCars, ...unconfirmedCars].map((c) => (
-                <li key={`${c.make}-${c.model}`} className={styles.formerRow}>
-                  <div className={styles.main}>
-                    <span className={`${styles.tag} ${c.status === "sold" ? styles.tagSold : ""}`}>
-                      {c.status === "sold" ? "Sold" : "Ownership unconfirmed"}
-                    </span>
-                    <span className={styles.make}>{c.make}</span>
-                    <h3 className={styles.model}>{c.model}{c.year ? ` (${c.year})` : ""}</h3>
-                    <p className={styles.desc}>{c.desc}</p>
-                  </div>
-                  <div className={styles.valueBlock}>
-                    <span className={styles.value}>{formatUsd(c.valueUsd)}</span>
-                    <span className={styles.valueSub}>{c.valueNaira}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
+            <p className={styles.noteFine}>
+              Naira figures are import-inclusive and USD figures use each source&apos;s own
+              conversion (~₦1,455/$), so they run higher than international sticker prices.
+              The McLaren Senna is the one confirmed price — $2M, posted by Burna Boy himself.
+              Last fully re-verified July 2026.
+            </p>
+          </div>
+        </section>
 
-        <p className={styles.source}>
-          This list isn&apos;t guaranteed complete. Unlike this site&apos;s charts,
-          certifications and awards — which trace to an official chart body or
-          academy — a celebrity car collection has no equivalent record. It&apos;s
-          reconstructed from entertainment press and social sightings, which
-          vary a lot in reliability (some outlets have reported cars that don&apos;t
-          check out) and can lag a real purchase by days or weeks. Only cars
-          confirmed by multiple independent sources are listed here.
-        </p>
+        {/* ── Onward ───────────────────────────────────────────── */}
+        <section className={styles.actionWrap}>
+          <div className={styles.actions}>
+            <Link href="/records" className="btn btnSecondary">← Career records</Link>
+            <Link href="/records/by-the-numbers" className="btn btnPrimary">By the numbers ↗</Link>
+            <Link href="/records/tours" className="btn btnSecondary">Tours &amp; live ↗</Link>
+          </div>
+        </section>
 
-        <Link href="/records" className={styles.back}>← Career Records</Link>
+        <KeepExploring current="/records/cars" />
       </div>
-
-      <KeepExploring current="/records/cars" />
     </main>
   );
 }
