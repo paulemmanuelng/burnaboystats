@@ -13,7 +13,11 @@
  */
 
 /** Screens with their own sticky back bar — the site nav hides on these. */
-export const BACK_BAR_ROUTES = new Set<string>(["/certifications", "/music"]);
+export const BACK_BAR_ROUTES = new Set<string>([
+  "/certifications",
+  "/music",
+  "/live-charts",
+]);
 
 /** Screens whose bottom bar is a page action bar — the tab bar hides on these. */
 export const ACTION_BAR_ROUTES = new Set<string>(["/certifications"]);
