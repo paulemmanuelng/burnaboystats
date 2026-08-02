@@ -746,3 +746,478 @@ aa
 @media (max-width: 900px) {
   .desktopOnly { display: none; }
 }
+
+/* ══ Homepage sections, from designs/desktop/Burna Boy Stats.dc.html ══
+   Values below are the design's, verbatim. The design's page gutter is
+   1360/40 rather than the site-wide .container's 1280/24, so these sections
+   use their own .wide wrapper. */
+
+.wide {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 52px 40px 56px;
+}
+
+/* ── Scoreboard ─────────────────────────────────────────────────────── */
+.scoreStrip { border-bottom: 1px solid var(--line); }
+.scoreStrip .wide { padding: 0 40px; }
+.scoreGrid { display: grid; grid-template-columns: repeat(5, 1fr); }
+.scoreCell {
+  display: block;
+  padding: 26px 24px 22px;
+  border-left: 1px solid var(--line);
+  color: var(--text);
+  transition: background var(--dur) var(--ease);
+}
+.scoreCell:first-child { border-left: none; }
+.scoreCell:hover { background: var(--color-accent-100); }
+.scoreValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 52px;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  color: var(--gold);
+}
+.scoreLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+.scoreSource {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+  color: var(--text-muted);
+}
+
+/* ── History made — the one gold band above the fold ────────────────── */
+.historyBand {
+  color: var(--bg);
+  border-bottom: 1px solid var(--line);
+  background-color: var(--gold);
+  background-image:
+    radial-gradient(58% 62% at 6% -4%, rgba(255, 246, 214, 0.5), transparent 62%),
+    radial-gradient(70% 70% at 104% 108%, rgba(150, 42, 18, 0.4), transparent 66%),
+    linear-gradient(128deg, var(--gold-bright) 0%, var(--gold) 42%, #f08a12 78%, #d96c0c 100%);
+}
+.historyInner { padding: 34px 40px 36px; }
+.historyKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.historyTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+}
+.historyRow {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-top: 18px;
+}
+.historyText {
+  font-size: 15px;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 56ch;
+  opacity: 0.85;
+}
+/* On the gold band the primary button inverts to the page background. */
+.historyCta {
+  flex: none;
+  background: var(--bg);
+  color: var(--gold);
+  border-color: var(--bg);
+}
+.historyCta:hover { background: #17130c; }
+
+/* ── Shared section furniture ───────────────────────────────────────── */
+.section { border-bottom: 1px solid var(--line); }
+.liveSection {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+.head {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent-700);
+}
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+.h3 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+.lede {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0 0 4px;
+  max-width: 40ch;
+}
+.headBtn { margin-left: auto; flex: none; }
+.sourceNote {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin-top: 14px;
+}
+
+/* ── Tier breakdown (passed into the ledger's right column) ─────────── */
+.tierKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent-700);
+}
+.tierTotal { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; }
+.tierTotalNum {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 70px;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  color: var(--gold);
+}
+.tierTotalWord {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.tierList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.tierRow { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.tierTop { display: flex; align-items: baseline; gap: 10px; }
+.tierName {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  min-width: 92px;
+}
+.tierCount {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.tierPct {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+.tierTrack {
+  height: 7px;
+  background: rgba(245, 240, 232, 0.09);
+  margin-top: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.tierFill { height: 7px; border-radius: 999px; }
+.tierNote {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin-top: 16px;
+}
+.flushGhost { padding-left: 0; }
+
+/* ── The No. 1 board ────────────────────────────────────────────────── */
+.newInk { color: var(--green); }
+.boardCount {
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.boardGrid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.boardCell {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 14px;
+  transition: background var(--dur) var(--ease);
+}
+.boardCell:hover { background: var(--color-accent-200); }
+/* A newly-entered No. 1 reads green — the live/positive accent. */
+.boardNew { background: rgba(62, 209, 127, 0.07); }
+.boardTop { display: flex; align-items: center; gap: 6px; }
+.boardCode {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+.boardNew .boardCode { color: var(--green); }
+.boardFlag {
+  font-size: 11px;
+  margin-left: auto;
+  letter-spacing: 0.1em;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+}
+.boardNew .boardFlag { color: var(--green); }
+.boardName { font-size: 12.5px; margin-top: 4px; }
+.boardChart {
+  font-size: 11px;
+  margin-top: 6px;
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+}
+
+/* ── The catalogue ──────────────────────────────────────────────────── */
+/* 2px gaps over a divider-coloured bed draw the grid's seams. */
+.albumGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--line);
+}
+.albumCard {
+  background: var(--bg);
+  padding: 18px;
+  color: var(--text);
+  display: block;
+  transition: background var(--dur) var(--ease);
+}
+.albumCard:hover { background: var(--color-accent-100); }
+.albumCover {
+  aspect-ratio: 1;
+  background-color: var(--bg-soft-2);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+.albumRow { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; }
+.albumTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+.albumYear {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+.albumChips { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+
+/* ── Career records ─────────────────────────────────────────────────── */
+.recordsGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  border-top: 1px solid var(--line);
+}
+.recordsLeft { padding: 28px 40px 8px 0; }
+.recordsRight {
+  border-left: 1px solid var(--line);
+  padding: 28px 0 8px 40px;
+}
+.colCity { width: 130px; }
+.colTickets { width: 92px; text-align: right; }
+.colGross { width: 96px; text-align: right; }
+.showVenue { font-weight: 600; font-size: 14.5px; }
+.showDate {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.04em;
+}
+.numRight { text-align: right; font-variant-numeric: tabular-nums; }
+.grossCell {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+}
+.firstsList { border-top: 1px solid var(--line); }
+.firstRow {
+  display: grid;
+  grid-template-columns: 74px 1fr auto;
+  gap: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+.firstYear {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.firstTitle { font-weight: 600; font-size: 15px; line-height: 1.3; }
+.firstNote {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  line-height: 1.45;
+}
+
+/* ── Built for the timeline — the closing gold panel ────────────────── */
+.closer {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  color: var(--bg);
+  background-color: var(--gold);
+  background-image:
+    radial-gradient(52% 78% at 8% -6%, rgba(255, 246, 214, 0.5), transparent 62%),
+    radial-gradient(62% 96% at 100% 112%, rgba(150, 42, 18, 0.4), transparent 64%),
+    radial-gradient(80% 70% at 68% 118%, rgba(196, 70, 16, 0.26), transparent 68%),
+    linear-gradient(122deg, var(--gold-bright) 0%, var(--gold) 40%, #f08a12 76%, #d96c0c 100%);
+}
+.closerGlyphs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: #5a2a06;
+  font-family: var(--font-anton), sans-serif;
+}
+.closerGlyphs span { position: absolute; display: block; }
+.g1 { top: 4%; left: 1%; font-size: 84px; opacity: 0.13; transform: rotate(-14deg); }
+.g2 { bottom: 4%; left: 2%; font-size: 58px; opacity: 0.12; transform: rotate(9deg); }
+.g3 { top: 5%; right: 4%; font-size: 68px; opacity: 0.13; transform: rotate(12deg); }
+.g4 { bottom: -14%; right: -2%; font-size: 210px; opacity: 0.08; }
+.g5 { top: 36%; right: 2%; font-size: 34px; opacity: 0.16; transform: rotate(-8deg); }
+.g6 { bottom: 6%; left: 43%; font-size: 48px; opacity: 0.11; transform: rotate(6deg); }
+.g7 { top: 8%; left: 31%; font-size: 30px; opacity: 0.12; transform: rotate(-22deg); }
+.g8 { top: 52%; left: 14%; font-size: 40px; opacity: 0.1; transform: rotate(17deg); }
+.g9 { bottom: 30%; right: 22%; font-size: 52px; opacity: 0.09; transform: rotate(-11deg); }
+.ring1 {
+  top: -8%;
+  left: 62%;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 1px solid rgba(90, 42, 6, 0.12);
+}
+.ring2 {
+  bottom: -30%;
+  left: 8%;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 1px solid rgba(90, 42, 6, 0.1);
+}
+.closerInner {
+  position: relative;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 60px 40px 64px;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 56px;
+  align-items: end;
+}
+.closerKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.closerTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 66px;
+  line-height: 0.96;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  margin: 18px 0 0;
+  max-width: 24ch;
+}
+.closerText {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 20px 0 0;
+  max-width: 54ch;
+  opacity: 0.9;
+}
+.closerActions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+.closerLink {
+  border: 1px solid var(--bg);
+  color: var(--bg);
+  background: transparent;
+}
+.closerLink:hover { background: rgba(90, 42, 6, 0.12); }
+
+/* The mobile home screen takes over below 900px, so this only has to survive
+   the tablet band between the two layouts. */
+@media (max-width: 1100px) {
+  .wide { padding: 44px 24px 48px; }
+  .scoreStrip .wide { padding: 0 24px; }
+  .historyInner { padding: 28px 24px 30px; }
+  .head { flex-wrap: wrap; gap: 18px; }
+  .headBtn { margin-left: 0; }
+  .boardGrid { grid-template-columns: repeat(4, 1fr); }
+  .albumGrid { grid-template-columns: repeat(3, 1fr); }
+  .recordsGrid { grid-template-columns: 1fr; }
+  .recordsLeft { padding: 28px 0 8px; }
+  .recordsRight { border-left: none; border-top: 1px solid var(--line); padding: 28px 0 8px; }
+  .closerInner { grid-template-columns: 1fr; gap: 32px; padding: 48px 24px 52px; }
+  .closerTitle { font-size: 46px; }
+  .scoreGrid { grid-template-columns: repeat(3, 1fr); }
+}

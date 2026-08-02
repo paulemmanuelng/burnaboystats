@@ -1,0 +1,106 @@
+/* The certifications ledger. Values are the design's, verbatim. */
+
+.section { border-bottom: 1px solid var(--line); }
+.inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 52px 40px 56px;
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 26px;
+}
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent-700);
+}
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+.lede {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0 0 4px;
+  max-width: 38ch;
+}
+.segWrap {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.aside {
+  border-left: 1px solid var(--line);
+  padding-left: 32px;
+}
+
+/* Table */
+.colRank { width: 44px; }
+.colYear { width: 72px; }
+.colCountries { width: 150px; }
+.colCerts { width: 90px; text-align: right; }
+.colShare { width: 40px; }
+
+.rank {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+}
+.title { font-weight: 600; font-size: 15px; }
+.credit { font-size: 12.5px; color: var(--text-muted); }
+.num { font-variant-numeric: tabular-nums; }
+.countries {
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.04em;
+}
+.certs {
+  text-align: right;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.shareCell { text-align: right; }
+
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+}
+.footNote { font-size: 12.5px; color: var(--text-muted); }
+
+/* Below the desktop breakpoint the mobile home screen takes over, so this
+   only needs to survive the tablet band between the two. */
+@media (max-width: 1100px) {
+  .inner { padding: 44px 24px 48px; }
+  .head { flex-wrap: wrap; gap: 18px; }
+  .segWrap { margin-left: 0; width: 100%; overflow-x: auto; }
+  .grid { grid-template-columns: 1fr; gap: 32px; }
+  .aside { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 24px; }
+  .foot { flex-wrap: wrap; }
+}
