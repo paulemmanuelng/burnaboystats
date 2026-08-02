@@ -4,6 +4,11 @@ import { liveHeadline } from "../lib/liveHeadline";
 import { spotifyImage } from "../lib/spotifyImage";
 import { sameTitle } from "../lib/titleKey";
 import {
+  isRecentNumberOne,
+  arrivalWindowPhrase,
+  arrivalChangedPhrase,
+} from "../lib/recentNumberOnes";
+import {
   allChartItems,
   albumCharts,
   CHART_COUNTRIES,
@@ -13,7 +18,6 @@ import {
 import { totalAwards, countryCount as certCountries } from "../data/certifications";
 import { albums as studioAlbums } from "../data/albums";
 import { tours } from "../data/tours";
-import { updates } from "../data/updates";
 
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 
@@ -42,37 +46,9 @@ for (const release of allChartItems) {
   }
 }
 
-// "NEW" is not decoration: it marks a country the updates feed logged recently,
-// so the badge can never outlive the news it refers to.
-//
-// The badge, the count and the sentence all read off ONE window. If anything
-// landed in the last day the window is a day and the card says "today";
-// otherwise it widens to the week and the wording widens with it. That way the
-// card can never claim a four-day-old change happened this morning.
-const RECENT_DAYS = 7;
-const ageInDays = (date: string) =>
-  (Date.now() - new Date(`${date}T12:00:00Z`).getTime()) / 86_400_000;
-
-// A cell only lights up for an update that reports *arriving* at No. 1. Naming
-// a country isn't enough: the same week's feed also records a No. 9 in Hungary
-// and a No. 20 in South Africa, and neither of those is a new No. 1.
-const REACHED_NUMBER_ONE = /\bNo\. 1s\b|\btops the\b|\btopped the\b|\benters at No\. 1\b/i;
-const countryNames = Object.values(CHART_COUNTRIES).map((c) => c.name);
-const recentUpdates = updates.filter(
-  (u) =>
-    ageInDays(u.date) <= RECENT_DAYS &&
-    REACHED_NUMBER_ONE.test(u.text) &&
-    countryNames.some((n) => u.text.includes(n))
-);
-const recentText = recentUpdates.map((u) => u.text).join(" ");
-
-// The wording follows the freshest of those updates, so the card can never
-// describe a five-day-old change as having happened this morning.
-const newestAge = recentUpdates.length
-  ? Math.min(...recentUpdates.map((u) => ageInDays(u.date)))
-  : Infinity;
-const windowPhrase = newestAge <= 1 ? "in the last 24 hours" : "this week";
-const changedPhrase = newestAge <= 1 ? "today" : "this week";
+// "NEW" is not decoration: it marks a country the updates feed reports having
+// just topped, so the badge can never outlive the news it refers to. The signal
+// is shared with the desktop board — see app/lib/recentNumberOnes.ts.
 
 const allCells = [...numberOneCountries].reverse().map((code) => {
   const meta = CHART_COUNTRIES[code];
@@ -83,7 +59,7 @@ const allCells = [...numberOneCountries].reverse().map((code) => {
     // The body string carries a parenthetical qualifier on the airplay
     // exceptions; the board wants the body's name alone.
     chart: meta.body.replace(/\s*\(.*\)$/, ""),
-    isNew: recentText.includes(meta.name),
+    isNew: isRecentNumberOne(meta.name),
   };
 });
 
@@ -106,10 +82,10 @@ const listNames = (xs: string[]) => {
 };
 
 const arrivalNote = newNames.length
-  ? `${listNames(newNames)} joined ${windowPhrase}.`
+  ? `${listNames(newNames)} joined ${arrivalWindowPhrase}.`
   : "On streaming charts right now, refreshed hourly.";
 const changedNote = newNames.length
-  ? `${newNames.length} chart${newNames.length === 1 ? "" : "s"} changed ${changedPhrase}`
+  ? `${newNames.length} chart${newNames.length === 1 ? "" : "s"} changed ${arrivalChangedPhrase}`
   : "Refreshed hourly";
 
 // ── Albums ─────────────────────────────────────────────────────────────────

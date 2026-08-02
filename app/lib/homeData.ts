@@ -12,6 +12,7 @@ import { allFirsts } from "../data/firsts";
 import { liveCharts } from "../data/liveCharts";
 import { tours } from "../data/tours";
 import { sameTitle } from "./titleKey";
+import { isRecentNumberOne } from "./recentNumberOnes";
 
 /**
  * Everything the homepage sections need, derived.
@@ -133,22 +134,24 @@ export const liveNumberOneCountries = spotifyOnes.size;
 export const careerNumberOnes = numberOnes;
 export const careerNumberOneCountries = chartCountryCount;
 
-// Newest official No. 1s lead, since those are the ones that just changed.
-export const boardCells: BoardCell[] = [
+// Countries the feed just reported topping lead the board — they are the reason
+// to look at it — and only they carry the NEW mark.
+const allBoardCells: BoardCell[] = [
   ...[...officialOnes].reverse().map((code) => ({
     code,
     flag: CHART_COUNTRIES[code].flag,
     name: CHART_COUNTRIES[code].name,
     chart: CHART_COUNTRIES[code].body.replace(/\s*\(.*\)$/, ""),
-    isNew: false,
+    isNew: isRecentNumberOne(CHART_COUNTRIES[code].name),
   })),
   ...[...spotifyOnes.entries()]
     .filter(([code]) => !officialOnes.includes(code))
     .map(([code, name]) => ({ code, flag: "", name, chart: "Spotify", isNew: false })),
-].slice(0, 24);
+];
 
-// The three most recent official additions are the "NEW" cells.
-for (const cell of boardCells.slice(0, 3)) cell.isNew = true;
+export const boardCells: BoardCell[] = [...allBoardCells]
+  .sort((a, b) => Number(b.isNew) - Number(a.isNew))
+  .slice(0, 24);
 
 // ── The catalogue ──────────────────────────────────────────────────────────
 /** Small counts read as words in this design's headings, not digits. */

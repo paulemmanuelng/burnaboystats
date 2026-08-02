@@ -473,12 +473,11 @@ a {
 .footerLink:hover { text-decoration: underline; }
 
 @media (max-width: 900px) {
-  /* Mobile has the tab bar for primary navigation, so the sitemap becomes a
-     two-column reference block rather than a five-across row. */
-  .footer { padding: 32px 18px 40px; }
-  .footerGrid { grid-template-columns: 1fr 1fr; gap: 28px 18px; }
-  .footerBrand { grid-column: 1 / -1; }
-  .footerCol a { padding: 9px 0; }
+  /* No footer on mobile. Every mobile screen in the design ends at the fixed
+     tab bar, which carries navigation there — so the sitemap is desktop-only.
+     Hidden rather than unrendered: the markup stays in the HTML, so the links
+     are still crawlable. */
+  .footer { display: none; }
 }
 
 /* -----------------------------------------------------------
