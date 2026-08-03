@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./mobileAwards.module.css";
 import ScrollRail from "./ScrollRail";
 import type { Ceremony, Honour } from "../data/awards";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * Mobile screen 11 — Awards & nominations.
@@ -74,6 +75,7 @@ export default function MobileAwards({
         </Link>
         <span className={styles.backLabel}>Awards</span>
         <span className={styles.badge}>{wins} wins</span>
+        <MobileMenuButton />
       </div>
 
       <div className={styles.hero}>

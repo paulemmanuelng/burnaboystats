@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./mobileAnalysis.module.css";
 import type { Finding } from "../lib/analysisFindings";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * Mobile screen 21 — Analysis.
@@ -40,6 +41,7 @@ export default function MobileAnalysis({
         <span className={styles.badge}>
           {findings.length} {findings.length === 1 ? "finding" : "findings"}
         </span>
+        <MobileMenuButton />
       </div>
 
       <div className={styles.hero}>

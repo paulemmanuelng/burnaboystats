@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./mobileRecords.module.css";
 import type { RevenueShow } from "../data/tourRevenue";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * The mobile records hub.
@@ -35,6 +36,7 @@ export default function MobileRecords({
         </Link>
         <span className={styles.backLabel}>Records</span>
         <span className={styles.backNote}>{subs.length} books</span>
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

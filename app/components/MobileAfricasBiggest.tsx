@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./mobileAfricasBiggest.module.css";
 import ScrollRail from "./ScrollRail";
 import type { Board } from "../lib/africaBoards";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * Mobile screen 16 — Africa's biggest.
@@ -55,6 +56,7 @@ export default function MobileAfricasBiggest({
         </Link>
         <span className={styles.backLabel}>Africa&apos;s biggest</span>
         <span className={styles.badge}>{boards.length} boards</span>
+        <MobileMenuButton />
       </div>
 
       <div className={styles.hero}>

@@ -6,6 +6,7 @@ import styles from "./mobileTours.module.css";
 import { tourMeta } from "../lib/tourMeta";
 import type { Tour } from "../data/tours";
 import NotReported from "./NotReported";
+import MobileMenuButton from "./MobileMenuButton";
 
 // The lede reads as a sentence, so the count is spelled out — still derived,
 // just worded. Anything past the list falls back to the numeral.
@@ -64,6 +65,7 @@ export default function MobileTours({
         </Link>
         <span className={styles.backLabel}>Tours &amp; live</span>
         <span className={styles.badge}>{tours.length} tours</span>
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

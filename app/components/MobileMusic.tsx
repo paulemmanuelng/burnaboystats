@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./mobileMusic.module.css";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import type { AlbumEntry } from "../data/albums";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * The mobile music screen.
@@ -82,6 +83,7 @@ export default function MobileMusic({
         </Link>
         <span className={styles.backLabel}>Music</span>
         <Link href="/certifications" className={styles.backLink}>Certs ↗</Link>
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

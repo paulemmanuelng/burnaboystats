@@ -8,6 +8,7 @@ import TierDonut, { type DonutSeg } from "../../components/TierDonut";
 import PeakMap, { type PeakInfo } from "../../components/PeakMap";
 import KeepExploring from "../../components/KeepExploring";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
+import { JUMP } from "../../lib/visualizedSections";
 import { revenueShows } from "../../data/tourRevenue";
 import { COUNTRIES, albums, singles, features, totalAwards } from "../../data/certifications";
 import { ceremonies, totalWins } from "../../data/awards";
@@ -182,18 +183,6 @@ const jsonLd = datasetJsonLd({
   variableMeasured: ["Revenue per show", "Certifications per country", "Chart peak distribution", "Spotify streams by artist", "Award wins per body", "Award win rate"],
 });
 
-// The design's jump rail — one chip per section, in page order.
-const JUMP = [
-  { href: "#grosses", label: "Grosses" },
-  { href: "#tickets-revenue", label: "Tickets vs revenue" },
-  { href: "#certifications", label: "Certifications" },
-  { href: "#tiers", label: "Tiers" },
-  { href: "#chart-peaks", label: "Chart peaks" },
-  { href: "#peak-distribution", label: "Peak spread" },
-  { href: "#african-artists", label: "Africa\u2019s biggest" },
-  { href: "#awards", label: "Awards" },
-  { href: "#win-rate", label: "Win rate" },
-];
 
 // Mobile carries the charts that survive one column: three ranked-bar sets and
 // three donuts. Each is a slice of a chart the desktop page draws in full.

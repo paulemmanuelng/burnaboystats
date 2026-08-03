@@ -5,6 +5,8 @@ import { Geist, Anton, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Nav from "./components/Nav";
+import MobileNavSheet from "./components/MobileNavSheet";
+import { navGroups, navUpdated, navSearchHint } from "./lib/navGroups";
 import BackToTop from "./components/BackToTop";
 import Breadcrumbs from "./components/Breadcrumbs";
 import BirthdayCelebration from "./components/BirthdayCelebration";
@@ -143,6 +145,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* The mobile spine: a fixed five-tab bar on every phone screen.
             Hidden above the mobile breakpoint, where the sticky nav does it. */}
         <MobileTabBar />
+
+        {/* The hamburger's open state. Mounted once here rather than per
+            screen: it is opened by an event, so every back bar's menu button
+            reaches this one instance. The groups are built on the server, so
+            the underlying data never enters the client bundle. */}
+        <MobileNavSheet
+          groups={navGroups}
+          updated={navUpdated}
+          searchHint={navSearchHint}
+        />
 
         {/* Birthday takeover — self-gates to July 2 (Burna Boy's birthday) */}
         <BirthdayCelebration />

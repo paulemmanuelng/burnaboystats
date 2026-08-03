@@ -6,6 +6,7 @@ import CountUp from "./CountUp";
 import styles from "./DaiDaiStory.module.css";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
+import MobileMenuButton from "./MobileMenuButton";
 
 // Every figure here is "Dai Dai"'s OWN — never Burna Boy's artist-wide totals
 // (monthly listeners, YouTube audience, career certs). Burna had a huge
@@ -180,6 +181,7 @@ export default function DaiDaiStory(props: Props) {
         <span className={styles.backStep}>
           {String(active + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
         </span>
+        <MobileMenuButton />
       </div>
 
     <div className={styles.scrolly}>

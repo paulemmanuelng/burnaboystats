@@ -7,6 +7,7 @@ import ScrollRail from "./ScrollRail";
 import { track } from "../lib/analytics";
 import { CARD_SIZES, type CardRatio } from "../lib/cardSizes";
 import type { CardChoice } from "./StatCardMaker";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * Mobile screen 24 — Stat cards.
@@ -76,6 +77,7 @@ export default function MobileStatCards({
         </Link>
         <span className={styles.backLabel}>Stat cards</span>
         <span className={styles.badge}>{cards.length}</span>
+        <MobileMenuButton />
       </div>
 
       <div className={styles.hero}>

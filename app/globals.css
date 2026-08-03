@@ -1518,3 +1518,10 @@ a[class*="__certRow"]:focus-visible,
 @media (max-width: 900px) {
   .navDesktopOnly { display: none; }
 }
+
+/* The nav sheet hides the five-tab bar while it is open. Two navigation
+   systems on one screen is the defect the sheet replaced — see
+   App States.dc.html, panel G. */
+body.navSheetOpen .mobileTabBarPresent { display: none; }
+/* The page behind the sheet must not scroll under it. */
+body.navSheetOpen { overflow: hidden; }

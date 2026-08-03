@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./mobileTourMap.module.css";
 import PerformanceMap from "./PerformanceMap";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * The mobile "where he's performed" screen.
@@ -36,6 +37,7 @@ export default function MobileTourMap({
         </Link>
         <span className={styles.backLabel}>Tour map</span>
         <span className={styles.badge}>{countryCount}</span>
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

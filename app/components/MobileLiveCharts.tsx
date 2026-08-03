@@ -8,6 +8,7 @@ import { coverFor } from "../lib/covers";
 import { cadenceOf, reachOf, numberOnesOf } from "../lib/liveChartMeta";
 import ScrollRail from "./ScrollRail";
 import type { LiveRelease } from "../data/liveCharts";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * The mobile live-charts screen.
@@ -89,6 +90,7 @@ export default function MobileLiveCharts({
           <span className={styles.liveDot} aria-hidden="true" />
           Live
         </span>
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

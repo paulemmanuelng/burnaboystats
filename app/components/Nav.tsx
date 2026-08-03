@@ -51,13 +51,17 @@ export default function Nav() {
             Stat card
           </Link>
 
-          {/* Hamburger — only visible on mobile (see globals.css) */}
+          {/* Hamburger — only visible on mobile (see globals.css).
+              It opens the full nav sheet rather than the old inline dropdown:
+              that dropdown reached a fraction of the site, let the page show
+              through, and left the tab bar visible underneath it. Screens with
+              their own chrome carry this same button in their back bar. */}
           <button
             className="navToggle"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            aria-controls="primary-menu"
-            onClick={() => setOpen((o) => !o)}
+            data-mobile-menu-button=""
+            aria-label="Open menu"
+            aria-haspopup="dialog"
+            onClick={(e) => window.dispatchEvent(new CustomEvent("mobile-nav-open", { detail: e.currentTarget }))}
           >
             <span className="navToggleBar" />
             <span className="navToggleBar" />

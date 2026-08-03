@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./mobileVisualized.module.css";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * The mobile "visualized" screen.
@@ -56,6 +57,7 @@ export default function MobileVisualized({
         </Link>
         <span className={styles.backLabel}>Visualized</span>
         <span className={styles.badge}>{chartCount} charts</span>
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

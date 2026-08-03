@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./mobileDeepPage.module.css";
 import ScrollRail from "./ScrollRail";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * The shared mobile deep-page screen.
@@ -100,6 +101,7 @@ export default function MobileDeepPage({
         </Link>
         <span className={styles.backLabel}>{label}</span>
         {badge && <span className={styles.badge}>{badge}</span>}
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

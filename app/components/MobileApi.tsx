@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./mobileApi.module.css";
 import CopyButton from "./CopyButton";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * Mobile screen 23 — Open data API.
@@ -45,6 +46,7 @@ export default function MobileApi({
         </Link>
         <span className={styles.backLabel}>Open data API</span>
         <span className={styles.badge}>{version}</span>
+        <MobileMenuButton />
       </div>
 
       <div className={styles.hero}>

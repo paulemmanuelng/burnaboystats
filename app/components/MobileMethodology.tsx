@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./mobileMethodology.module.css";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * Mobile screen 22 — Methodology & sources.
@@ -36,6 +37,7 @@ export default function MobileMethodology({
           </svg>
         </Link>
         <span className={styles.backLabel}>Methodology</span>
+        <MobileMenuButton />
       </div>
 
       <div className={styles.hero}>
