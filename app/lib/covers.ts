@@ -1,4 +1,4 @@
-import { albums } from "../data/albums";
+import { albums, eps, compilations } from "../data/albums";
 import { songs } from "../data/songs";
 
 /**
@@ -68,6 +68,19 @@ const EXTRA_COVERS: Record<string, string> = {
   baddest: "https://cdn-images.dzcdn.net/images/cover/b86f99833d3100ad7eb753ec6966e3aa/100x100-000000-80-0-0.jpg",
   // Special Someone — Sarkodie, "Sarkology"
   "special someone": "https://cdn-images.dzcdn.net/images/cover/fe71b0ccde246808ca2b15c4e1de9388/100x100-000000-80-0-0.jpg",
+
+  // Sungba (Remix) — Asake feat. Burna Boy, the remix single
+  sungba: "https://cdn-images.dzcdn.net/images/cover/671d8a1ee4c2d4ca3e7c32877bbfee6a/100x100-000000-80-0-0.jpg",
+  // Rockstar — his own 2019 standalone single, on no album we hold
+  rockstar: "https://cdn-images.dzcdn.net/images/cover/12cc6ed5c376e339bd5e0e7f3500d375/100x100-000000-80-0-0.jpg",
+  // Don't Let Me Drown — his single from the F1 (2025) soundtrack
+  "don t let me drown": "https://cdn-images.dzcdn.net/images/cover/bb77038fd6b4b72e6d4fd8a34a889e71/100x100-000000-80-0-0.jpg",
+  // Yaba Buluku (Remix) — DJ Tarico; contributors verified to include Burna Boy
+  "yaba buluku": "https://cdn-images.dzcdn.net/images/cover/838ae1b6384d70287eb799afdb50512c/100x100-000000-80-0-0.jpg",
+  // Hossana — Shatta Wale x Burna Boy
+  hossana: "https://cdn-images.dzcdn.net/images/cover/2f2348a8985965e0f13b08e0851f5a8d/100x100-000000-80-0-0.jpg",
+  // Jerusalema (Remix) — Master KG feat. Burna Boy & Nomcebo Zikode
+  jerusalema: "https://cdn-images.dzcdn.net/images/cover/c9db716ce7cada1e9fd8dbde8e0b1301/100x100-000000-80-0-0.jpg",
 };
 
 // Not every album row carries art, so drop the empties rather than mapping a
@@ -75,9 +88,13 @@ const EXTRA_COVERS: Record<string, string> = {
 const withCover = (rows: { title: string; cover?: string }[]) =>
   rows.flatMap((r) => (r.cover ? [[key(r.title), r.cover] as const] : []));
 
-/** Song title → the cover of the album whose tracklist contains it. */
+// Albums, then EPs, then the compilation — so when a track appears twice,
+// the original release's art wins over the later collection.
+const allReleases = [...albums, ...eps, ...compilations];
+
+/** Song title → the cover of the release whose tracklist contains it. */
 const TRACK_COVERS: Record<string, string> = {};
-for (const album of albums) {
+for (const album of allReleases) {
   if (!album.cover) continue;
   for (const track of album.tracks) {
     // First album wins, so an original release beats a later compilation.
@@ -86,7 +103,7 @@ for (const album of albums) {
 }
 
 const OWN_COVERS: Record<string, string> = {
-  ...Object.fromEntries(withCover(albums)),
+  ...Object.fromEntries(withCover(allReleases)),
   ...Object.fromEntries(withCover(songs)),
   ...EXTRA_COVERS,
 };
