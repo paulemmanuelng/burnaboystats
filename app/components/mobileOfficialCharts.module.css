@@ -333,3 +333,16 @@
   text-transform: uppercase;
   box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
 }
+
+/* The release's art, leading its row — as on the live-charts screen. */
+.rowCover {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  align-self: center;
+  border-radius: var(--radius-sm);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-soft);
+  border: 1px solid var(--line);
+}

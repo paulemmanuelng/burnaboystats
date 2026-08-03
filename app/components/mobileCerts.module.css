@@ -220,7 +220,8 @@
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 10px;
-  padding-left: 30px;
+  /* Indent tracks the title's start: rank 20 + gap 10 + cover 34 + gap 10. */
+  padding-left: 74px;
 }
 .badge {
   display: inline-flex;
@@ -385,4 +386,17 @@
   color: var(--gold);
   vertical-align: middle;
   transform: translateY(-2px);
+}
+
+/* The release's cover, same tile the live-charts rows carry. */
+.rowCover {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  align-self: center; /* the rowTop baseline-aligns; art centres instead */
+  border-radius: var(--radius-sm);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-soft);
+  border: 1px solid var(--line);
 }

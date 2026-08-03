@@ -71,7 +71,13 @@ export default function RevenuePage() {
         rows={revenueShows.map((s, i) => ({
           rank: String(i + 1).padStart(2, "0"),
           venue: s.venue,
-          meta: `${s.city} · ${s.tour} · ${s.year}`,
+          // Another artist's night names its artist right under the venue —
+          // the tint alone made "whose show is this?" a legend lookup. His
+          // rows keep the tour name instead: the page is his, and his rows
+          // already carry the gold gross and the plain background.
+          meta: s.artist === "Burna Boy"
+            ? `${s.city} · ${s.tour} · ${s.year}`
+            : `${s.artist} · ${s.city} · ${s.year}`,
           gross: `$${(s.revenue / 1e6).toFixed(2)}M`,
           tickets: s.tickets,
           his: s.artist === "Burna Boy",

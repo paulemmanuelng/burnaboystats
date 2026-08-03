@@ -90,9 +90,9 @@ describe("handoff checklist — data integrity", () => {
     expect(ceremonyCount).toBe(44);
   });
 
-  it("counts 57 countries performed in and 49 firsts", () => {
+  it("counts 57 countries performed in and 48 firsts", () => {
     expect(performedCountryCount).toBe(57);
-    expect(firstsCount).toBe(49);
+    expect(firstsCount).toBe(48); // 3 Aug 2026: removed the false "first African video past 500M" — CKay and others got there years earlier
   });
 
   it("values the current car collection at $16.46M — current only", () => {

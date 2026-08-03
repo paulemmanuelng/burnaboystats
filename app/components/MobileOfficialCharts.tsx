@@ -5,6 +5,8 @@ import Link from "next/link";
 import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
 import FilterEmpty from "./FilterEmpty";
+import { coverFor } from "../lib/covers";
+import { spotifyImage } from "../lib/spotifyImage";
 import type { ChartRelease, ChartCountry } from "../data/charts";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -291,6 +293,11 @@ export default function MobileOfficialCharts({
                   aria-expanded={unfolded.has(r.title)}
                   onClick={() => toggleRow(r.title)}
                 >
+                  <span
+                    className={styles.rowCover}
+                    aria-hidden="true"
+                    style={{ backgroundImage: `url(${spotifyImage(coverFor(r.title) ?? "", 300)})` }}
+                  />
                   <span className={styles.rowMain}>
                     <span className={styles.rowTitle}>{r.title}</span>
                     <span className={styles.rowCredit}>{r.credit}</span>
@@ -304,6 +311,11 @@ export default function MobileOfficialCharts({
                 </button>
               ) : (
                 <div className={styles.rowTop}>
+                  <div
+                    className={styles.rowCover}
+                    aria-hidden="true"
+                    style={{ backgroundImage: `url(${spotifyImage(coverFor(r.title) ?? "", 300)})` }}
+                  />
                   <div className={styles.rowMain}>
                     <div className={styles.rowTitle}>{r.title}</div>
                     <div className={styles.rowCredit}>{r.credit}</div>

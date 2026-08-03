@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
 import { matches, badgeWeight, byMostCertified } from "../lib/certs";
+import { coverFor } from "../lib/covers";
+import { spotifyImage } from "../lib/spotifyImage";
 import { track } from "../lib/analytics";
 import FilterEmpty from "./FilterEmpty";
 
@@ -47,11 +49,18 @@ function CertCard({
   return (
     <div className={styles.certRow}>
       <div className={styles.certRowHead}>
-        <span className={styles.certTitle}>{item.title}</span>
-        <span className={styles.certCredit}>
-          {/* Not every release carries a year. Joining unconditionally printed
-              "feat. Khalid · undefined" on the live page. */}
-          {[item.credit, item.year].filter(Boolean).join(" · ")}
+        <span
+          className={styles.certCover}
+          aria-hidden="true"
+          style={{ backgroundImage: `url(${spotifyImage(coverFor(item.title) ?? "", 300)})` }}
+        />
+        <span className={styles.certText}>
+          <span className={styles.certTitle}>{item.title}</span>
+          <span className={styles.certCredit}>
+            {/* Not every release carries a year. Joining unconditionally printed
+                "feat. Khalid · undefined" on the live page. */}
+            {[item.credit, item.year].filter(Boolean).join(" · ")}
+          </span>
         </span>
       </div>
 

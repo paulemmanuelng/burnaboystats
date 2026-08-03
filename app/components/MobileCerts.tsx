@@ -6,6 +6,8 @@ import styles from "./mobileCerts.module.css";
 import { badgeWeight } from "../lib/certs";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
+import { coverFor } from "../lib/covers";
+import { spotifyImage } from "../lib/spotifyImage";
 import type { CertEvent, Country, Release } from "../data/certifications";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -183,6 +185,13 @@ export default function MobileCerts({
           <Link key={r.title} href={`/certifications?release=${encodeURIComponent(r.title)}`} className={styles.row}>
             <div className={styles.rowTop}>
               <span className={styles.rank}>{String(i + 1).padStart(2, "0")}</span>
+              {/* Same treatment as the live-charts rows: the release's art,
+                  resolved by title, riding between rank and name. */}
+              <span
+                className={styles.rowCover}
+                aria-hidden="true"
+                style={{ backgroundImage: `url(${spotifyImage(coverFor(r.title) ?? "", 300)})` }}
+              />
               <div className={styles.rowMain}>
                 <div className={styles.rowTitle}>
                   {r.title}

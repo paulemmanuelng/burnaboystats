@@ -60,6 +60,9 @@
   color: var(--gold);
 }
 .certRowHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   min-width: 0;
 }
 .certTitle {
@@ -723,4 +726,19 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) {
   .desktopOnly { display: none; }
+}
+
+.certText { min-width: 0; display: flex; flex-direction: column; }
+
+/* The release's art beside its name — the same tile the live-charts and
+   mobile rows carry. */
+.certCover {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: var(--radius-sm);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-soft);
+  border: 1px solid var(--line);
 }

@@ -558,3 +558,33 @@
 @media (max-width: 900px) {
   .desktopOnly { display: none; }
 }
+
+/* A small tile of the release's art beside each entry — every row names a
+   song, so every row shows its cover, the way chart tables do. */
+.tCover {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: var(--radius-sm);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-soft);
+  border: 1px solid var(--line);
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+/* Card view: the release's art beside its name, matching the cert rows. */
+.rowHead { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.rowText { min-width: 0; display: flex; flex-direction: column; }
+.rowCover {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: var(--radius-sm);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-soft);
+  border: 1px solid var(--line);
+}
