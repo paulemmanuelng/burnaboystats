@@ -223,6 +223,17 @@ export default function Home() {
                   </div>
                   <div className={styles.boardName}>{c.name}</div>
                   <div className={styles.boardChart}>{c.chart}</div>
+                  {c.cover && (
+                    // eslint-disable-next-line @next/next/no-img-element -- 28px thumb, CDN-sized
+                    <img
+                      className={styles.boardCover}
+                      src={c.cover}
+                      alt={`${c.coverTitle} cover`}
+                      loading="lazy"
+                      width={28}
+                      height={28}
+                    />
+                  )}
                 </div>
               ))}
             </div>

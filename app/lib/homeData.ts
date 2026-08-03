@@ -19,7 +19,9 @@ import { firstGroups } from "../data/firsts";
 import { liveCharts } from "../data/liveCharts";
 import { tours } from "../data/tours";
 import { sameTitle, titleKey } from "./titleKey";
-import { isRecentNumberOne } from "./recentNumberOnes";
+import { isRecentNumberOne, recentNumberOneTitle } from "./recentNumberOnes";
+import { coverFor } from "./covers";
+import { spotifyImage } from "./spotifyImage";
 
 /**
  * Everything the homepage sections need, derived.
@@ -146,6 +148,10 @@ export interface BoardCell {
   name: string;
   chart: string;
   isNew: boolean;
+  /** NEW cells only: the cover of the song the feed reported topping here. */
+  cover?: string;
+  /** Its title, for the image's alt text. */
+  coverTitle?: string;
 }
 
 const officialOnes: string[] = [];
@@ -174,13 +180,23 @@ export const careerNumberOneCountries = chartCountryCount;
 
 // Countries the feed just reported topping lead the board — they are the reason
 // to look at it — and only they carry the NEW mark.
-const allBoardCells: BoardCell[] = [...officialOnes].reverse().map((code) => ({
-  code,
-  flag: CHART_COUNTRIES[code].flag,
-  name: CHART_COUNTRIES[code].name,
-  chart: CHART_COUNTRIES[code].body.replace(/\s*\(.*\)$/, ""),
-  isNew: isRecentNumberOne(CHART_COUNTRIES[code].name),
-}));
+const allBoardCells: BoardCell[] = [...officialOnes].reverse().map((code) => {
+  const name = CHART_COUNTRIES[code].name;
+  const isNew = isRecentNumberOne(name);
+  // The update that made the cell NEW names the song, so the cell can show
+  // its cover — the board's one place where "which song did it" fits.
+  const title = isNew ? recentNumberOneTitle(name) : undefined;
+  const art = title ? coverFor(title) : undefined;
+  return {
+    code,
+    flag: CHART_COUNTRIES[code].flag,
+    name,
+    chart: CHART_COUNTRIES[code].body.replace(/\s*\(.*\)$/, ""),
+    isNew,
+    cover: art ? spotifyImage(art, 300) : undefined,
+    coverTitle: title,
+  };
+});
 
 // The desktop board keeps its natural order — Africa, then Latin America, as
 // the live data holds them — and only marks the new arrivals in place. (The

@@ -354,8 +354,19 @@
   border-bottom: 1px solid var(--line);
 }
 .boardCell {
+  position: relative; /* anchors the NEW cell's cover thumb */
   padding: 13px 16px;
   background: var(--bg);
+}
+.boardCover {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(62, 209, 127, 0.4);
+  object-fit: cover;
 }
 /* A newly-added No. 1 reads green, matching the live/positive accent. */
 .boardNew { background: rgba(62, 209, 127, 0.07); }

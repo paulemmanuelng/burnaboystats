@@ -86,6 +86,16 @@ export default function MobileOfficialCharts({
 }) {
   const [peakMax, setPeakMax] = useState<number | null>(null);
   const [only, setOnly] = useState<string | null>(null);
+  // Releases whose full chart list is unfolded. Dai Dai runs to 59 entries,
+  // so each row starts at PILLS_SHOWN and the "+47" opens the rest in place.
+  const [unfolded, setUnfolded] = useState<Set<string>>(new Set());
+  const toggleRow = (title: string) =>
+    setUnfolded((prev) => {
+      const next = new Set(prev);
+      if (next.has(title)) next.delete(title);
+      else next.add(title);
+      return next;
+    });
 
   const all = [...albums, ...singles, ...features];
 
@@ -119,8 +129,9 @@ export default function MobileOfficialCharts({
             credit: [r.credit, r.year].filter(Boolean).join(" · "),
             count: `${r.entries.length} ${r.entries.length === 1 ? "chart" : "charts"}`,
             best,
-            peaks: peaks.slice(0, PILLS_SHOWN),
-            more: r.entries.length > PILLS_SHOWN ? `+${r.entries.length - PILLS_SHOWN}` : "",
+            // The full list; the renderer folds it at PILLS_SHOWN.
+            peaks,
+            hidden: Math.max(0, r.entries.length - PILLS_SHOWN),
           };
         });
       return { name: g.name, rows };
@@ -284,7 +295,7 @@ export default function MobileOfficialCharts({
                 </div>
               </div>
               <div className={styles.pills}>
-                {r.peaks.map((p) => {
+                {(unfolded.has(r.title) ? r.peaks : r.peaks.slice(0, PILLS_SHOWN)).map((p) => {
                   const b = BAND[bandOf(p.peak)];
                   return (
                     <span
@@ -302,7 +313,16 @@ export default function MobileOfficialCharts({
                     </span>
                   );
                 })}
-                {r.more && <span className={styles.more}>{r.more}</span>}
+                {r.hidden > 0 && (
+                  <button
+                    type="button"
+                    className={styles.more}
+                    aria-expanded={unfolded.has(r.title)}
+                    onClick={() => toggleRow(r.title)}
+                  >
+                    {unfolded.has(r.title) ? "− less" : `+${r.hidden}`}
+                  </button>
+                )}
               </div>
             </div>
           ))}

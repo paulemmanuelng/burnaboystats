@@ -248,11 +248,27 @@
 }
 .pillFlag { font-size: 12px; }
 .more {
+  /* A button now — it unfolds the rest of the release's chart list — but it
+     keeps reading like the quiet "+47" run-on it was, plus a hit area. */
   font-family: var(--font-mono), monospace;
   font-size: 10.5px;
   color: var(--dim);
   align-self: center;
+  background: none;
+  border: 0;
+  padding: 6px 8px;
+  margin: -6px -8px -6px 0;
+  min-height: 30px;
+  position: relative;
+  cursor: pointer;
 }
+.more::after {
+  /* Stretches the tap target to the 44px floor without moving anything. */
+  content: "";
+  position: absolute;
+  inset: -7px 0;
+}
+.more[aria-expanded="true"] { color: var(--gold); }
 
 .footNote {
   font-size: 12px;
