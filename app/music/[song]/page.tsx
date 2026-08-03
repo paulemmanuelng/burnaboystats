@@ -8,6 +8,7 @@ import { songBySlug, songSlugs, songs, type Song } from "../../data/songs";
 import { allChartItems, CHART_COUNTRIES, chartTier } from "../../data/charts";
 import { allItems, COUNTRIES, tierOf } from "../../data/certifications";
 import MobileMenuButton from "../../components/MobileMenuButton";
+import BackLink from "../../components/BackLink";
 
 // Only the known song slugs are valid routes — anything else 404s.
 export const dynamicParams = false;
@@ -156,11 +157,11 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
       {/* Screen 26's back bar. Mobile only; the crumbs above take over on
           desktop, which is where the design keeps them. */}
       <div className={styles.mobileBackBar}>
-        <Link href="/music" aria-label="Back to music" className={styles.mobileBackBtn}>
+        <BackLink href="/music" aria-label="Back to music" className={styles.mobileBackBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
-        </Link>
+        </BackLink>
         <span className={styles.mobileBackLabel}>{song.title}</span>
         <span className={styles.mobileBackYear}>{song.year}</span>
         <MobileMenuButton />

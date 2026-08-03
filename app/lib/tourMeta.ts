@@ -19,5 +19,15 @@ export function tourMeta(t: Tour): string {
 /** The note under an opened tour's date table. */
 export function tourDateNote(t: Tour): string {
   if (t.partial) return "Confirmed dates only — the full itinerary was never publicly documented.";
-  return `${t.dates?.length ?? 0} documented dates. Capacities are the venues’ standard listed capacities.`;
+
+  const dates = t.dates?.length ?? 0;
+  const capacities = "Capacities are the venues’ standard listed capacities.";
+
+  // The header says "22 shows" and the table below it lists 27 dates. Both are
+  // right and they count different things — box office is only reported for
+  // some dates — but side by side with no explanation it reads as an error.
+  if (t.shows && t.shows !== dates) {
+    return `${dates} documented dates; box office was reported for ${t.shows} of them, which is what the gross and ticket totals cover. ${capacities}`;
+  }
+  return `${dates} documented dates. ${capacities}`;
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./mobileMethodology.module.css";
 import MobileMenuButton from "./MobileMenuButton";
+import BackLink from "./BackLink";
 
 /**
  * Mobile screen 22 — Methodology & sources.
@@ -31,11 +32,11 @@ export default function MobileMethodology({
   return (
     <div className={styles.screen}>
       <div className={styles.backBar}>
-        <Link href="/" aria-label="Back" className={styles.backBtn}>
+        <BackLink href="/" aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
-        </Link>
+        </BackLink>
         <span className={styles.backLabel}>Methodology</span>
         <MobileMenuButton />
       </div>

@@ -6,6 +6,7 @@ import styles from "./mobileRevenue.module.css";
 import ScrollRail from "./ScrollRail";
 import NotReported from "./NotReported";
 import MobileMenuButton from "./MobileMenuButton";
+import BackLink from "./BackLink";
 
 /**
  * Mobile screen 14 — Revenue per show.
@@ -72,11 +73,11 @@ export default function MobileRevenue({
   return (
     <div className={styles.screen}>
       <div className={styles.backBar}>
-        <Link href="/records/tours" aria-label="Back" className={styles.backBtn}>
+        <BackLink href="/records/tours" aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
-        </Link>
+        </BackLink>
         <span className={styles.backLabel}>Revenue per show</span>
         <span className={styles.badge}>{topGross}</span>
         <MobileMenuButton />

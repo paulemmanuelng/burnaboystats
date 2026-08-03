@@ -7,6 +7,7 @@ import styles from "./DaiDaiStory.module.css";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 import MobileMenuButton from "./MobileMenuButton";
+import BackLink from "./BackLink";
 
 // Every figure here is "Dai Dai"'s OWN — never Burna Boy's artist-wide totals
 // (monthly listeners, YouTube audience, career certs). Burna had a huge
@@ -172,11 +173,11 @@ export default function DaiDaiStory(props: Props) {
           that lifted for no other reason. Mobile only — the desktop layout
           keeps the site nav. */}
       <div className={styles.backBar}>
-        <Link href="/" aria-label="Back" className={styles.backBtn}>
+        <BackLink href="/" aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
-        </Link>
+        </BackLink>
         <span className={styles.backLabel}>Dai Dai</span>
         <span className={styles.backStep}>
           {String(active + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
