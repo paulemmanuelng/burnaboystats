@@ -61,4 +61,10 @@ export const revenueShows: RevenueShow[] = [
   { artist: "Burna Boy", venue: "Addition Financial Arena", city: "Orlando", flag: "🇺🇸", tour: "Love, Damini Tour", year: "2022", tickets: "7,137", revenue: 636923 },
   { artist: "Davido", venue: "State Farm Arena", city: "Atlanta", flag: "🇺🇸", tour: "A.W.A.Y Festival", year: "2023", tickets: "11,246", revenue: 599343 },
   { artist: "Burna Boy", venue: "Amalie Arena", city: "Tampa, FL", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2024", tickets: "5,890", revenue: 580424 },
+  // TouringData's No Sign of Weakness report (14 Mar 2026); the Oceania leg's
+  // published total ($3.1M over 4 shows) only sums with this row in it.
+  { artist: "Burna Boy", venue: "Brisbane Entertainment Centre", city: "Brisbane", flag: "🇦🇺", tour: "No Sign of Weakness Tour", year: "2025", tickets: "5,473", revenue: 556874 },
+  // Boxscore via press (Oct 2024): her highest-grossing show, and the highest
+  // by a Nigerian female artist.
+  { artist: "Tems", venue: "Radio City Music Hall", city: "New York", flag: "🇺🇸", tour: "Born in the Wild Tour", year: "2024", revenue: 547697 },
 ];
