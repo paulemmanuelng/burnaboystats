@@ -200,6 +200,27 @@
 
 .row { padding: 14px 18px; border-top: 1px solid var(--line); }
 .rowTop { display: flex; align-items: baseline; gap: 10px; }
+/* The header doubles as the unfold control on releases with hidden chips.
+   Strips the button chrome so it reads exactly like the static version — the
+   only difference a reader should notice is that tapping it works. */
+.rowToggle {
+  width: 100%;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.rowToggle .rowMain,
+.rowToggle .rowRight { display: block; }
+.rowToggle .rowTitle,
+.rowToggle .rowCredit,
+.rowToggle .rowBest,
+.rowToggle .rowCount { display: block; }
 .rowMain { flex: 1; min-width: 0; }
 .rowTitle {
   font-family: var(--font-anton), sans-serif;

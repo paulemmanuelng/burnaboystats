@@ -100,9 +100,32 @@ export default function DaiDaiPage() {
       { "@type": "Person", name: "Justin Bieber" },
       { "@type": "MusicGroup", name: "Coldplay" },
     ],
-    organizer: { "@type": "Organization", name: "Global Citizen" },
+    organizer: {
+      "@type": "Organization",
+      name: "Global Citizen",
+      url: "https://www.globalcitizen.org",
+    },
     about: { "@type": "MusicRecording", name: "Dai Dai" },
     url: `${CANONICAL_ORIGIN}/dai-dai`,
+    // Search Console flagged five non-critical Event fields as missing
+    // (image, description, endDate, organizer.url, offers). None blocked the
+    // rich result, but each one it has is a feature the listing can show.
+    description:
+      "The first-ever halftime show at a FIFA World Cup Final — Shakira and Burna Boy performed “Dai Dai”, the official 2026 tournament anthem, alongside Madonna, BTS, Justin Bieber and Coldplay.",
+    image: [`${CANONICAL_ORIGIN}/dai-dai/opengraph-image`],
+    // A one-evening show: schema.org wants an endDate even when it equals the
+    // start date, or the event reads as open-ended.
+    endDate: "2026-07-19",
+    // The show itself was not ticketed separately from the match, and it
+    // streamed free — which is a real answer to "offers", not a missing one.
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${CANONICAL_ORIGIN}/dai-dai`,
+      validFrom: "2026-05-15",
+    },
   };
 
   // Every headline "Dai Dai" figure in one scannable, crawlable block — the
@@ -111,8 +134,8 @@ export default function DaiDaiPage() {
 
   const byNumbers: { v: string; l: string }[] = [
     { v: `${daiDaiChartEntryCount}`, l: "official chart entries worldwide — on national singles charts across the globe, plus both of Billboard's global charts" },
-    { v: "No. 1", l: "Billboard Global 200 — a 3rd week atop the US-inclusive worldwide chart, a first for an African artist (and Shakira's 2nd)" },
-    { v: "No. 1", l: "Billboard Global 200 Excl. US — a 5th week at No. 1" },
+    { v: "No. 1", l: "Billboard Global 200 — a 4th consecutive week atop the US-inclusive worldwide chart, a first for an African artist (and Shakira's 2nd)" },
+    { v: "No. 1", l: "Billboard Global 200 Excl. US — a 6th consecutive week at No. 1" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "24 days", l: "at No. 1 on Spotify's Global Daily Top Songs chart — 42 days in the global Top 10 and 69 straight days on the chart, still the most-streamed song on Earth and a first for an African artist" },
     { v: "3 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
