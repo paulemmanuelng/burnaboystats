@@ -131,9 +131,15 @@ export const diamondNote =
       } — ${listOf(diamondItems.map((i) => `\u201C${i.title}\u201D`))}.`;
 
 // ── The No. 1 board ────────────────────────────────────────────────────────
-// A blend, exactly as the design describes it: "national charts and Spotify
-// daily". Official peaks come first with the country's own chart body; the
-// remainder are countries topping Spotify right now.
+// Official national charts ONLY — a country appears because a release reached
+// No. 1 on that country's own chart, and the cell names the chart body.
+//
+// This used to blend in countries topping Spotify daily. The cells never
+// actually showed one (there are more official No. 1 countries than the 24 the
+// board holds), but the count underneath was the Spotify figure, so the board
+// read "24 of 63" against a 29-country dataset and credited "Spotify daily"
+// for rows that were all official. Platform positions belong on /live-charts,
+// which is a different claim: charting now, versus having reached No. 1.
 export interface BoardCell {
   code: string;
   flag: string;
@@ -150,34 +156,31 @@ for (const release of allChartItems) {
   }
 }
 
-const spotifyOnes = new Map<string, string>();
-for (const release of liveCharts) {
-  for (const p of release.platforms) {
-    for (const e of p.entries) {
-      if (e.position === 1 && !spotifyOnes.has(e.country)) spotifyOnes.set(e.country, e.name);
+/** Countries at No. 1 right now on any tracked platform. Live charts only. */
+export const liveNumberOneCountries = (() => {
+  const seen = new Set<string>();
+  for (const release of liveCharts) {
+    for (const p of release.platforms) {
+      for (const e of p.entries) if (e.position === 1) seen.add(e.country);
     }
   }
-}
+  return seen.size;
+})();
 
-/** Countries at No. 1 right now on any tracked platform. */
-export const liveNumberOneCountries = spotifyOnes.size;
+/** Countries where a release topped that country's own official chart. */
+export const boardCountryTotal = officialOnes.length;
 export const careerNumberOnes = numberOnes;
 export const careerNumberOneCountries = chartCountryCount;
 
 // Countries the feed just reported topping lead the board — they are the reason
 // to look at it — and only they carry the NEW mark.
-const allBoardCells: BoardCell[] = [
-  ...[...officialOnes].reverse().map((code) => ({
-    code,
-    flag: CHART_COUNTRIES[code].flag,
-    name: CHART_COUNTRIES[code].name,
-    chart: CHART_COUNTRIES[code].body.replace(/\s*\(.*\)$/, ""),
-    isNew: isRecentNumberOne(CHART_COUNTRIES[code].name),
-  })),
-  ...[...spotifyOnes.entries()]
-    .filter(([code]) => !officialOnes.includes(code))
-    .map(([code, name]) => ({ code, flag: "", name, chart: "Spotify", isNew: false })),
-];
+const allBoardCells: BoardCell[] = [...officialOnes].reverse().map((code) => ({
+  code,
+  flag: CHART_COUNTRIES[code].flag,
+  name: CHART_COUNTRIES[code].name,
+  chart: CHART_COUNTRIES[code].body.replace(/\s*\(.*\)$/, ""),
+  isNew: isRecentNumberOne(CHART_COUNTRIES[code].name),
+}));
 
 // The desktop board keeps its natural order — Africa, then Latin America, as
 // the live data holds them — and only marks the new arrivals in place. (The
