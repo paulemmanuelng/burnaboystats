@@ -32,10 +32,12 @@
       "siteTargets": [
         {
           "file": "app/data/africasBiggest.ts",
-          "anchor": "id: \"monthly-listeners-peak\"",
-          "pattern": "\\d+(?:\\.\\d+)?M",
+          "anchor": "const BURNA_PEAK_LISTENERS =",
+          "pattern": "\"\\d+(?:\\.\\d+)?M\"",
           "format": "M2",
-          "describes": "Burna Boy's peak value on the monthly-listeners leaderboard"
+          "template": "\"%s\"",
+          "describes": "Burna Boy's peak monthly listeners (the one home for the figure)",
+          "$comment": "Anchored on the constant, NOT on the leaderboard id. applyAnchoredReplace takes the FIRST match after the anchor, and Burna Boy's cell on that board holds this constant rather than a literal — so a bare \\d+M pattern matched the NEXT artist's value. The bot overwrote Tyla's peak with his on every run from 31 Jul (46.58M -> 58.77M -> 58.99M -> 59.21M) while the figure it was meant to update never moved off 58.48M."
         }
       ],
       "manualAfter": [
