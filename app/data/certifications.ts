@@ -81,7 +81,7 @@ export const albums: Release[] = [
 export const singles: Release[] = [
   { title: "Dai Dai", credit: "Shakira X Burna Boy", year: 2026, certs: [
     { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
-    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "GR", level: "Gold" },
+    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "GR", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -493,6 +493,7 @@ export const certHistory: CertEvent[] = [
   { title: "Ye", country: "CH", level: "Platinum", year: 2023 },
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "CH", level: "Gold", year: 2023 },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", country: "AU", level: "Gold", year: 2023 },
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "FR", level: "Platinum", year: 2026 },
 ];
 
 // Helpers
@@ -518,4 +519,9 @@ export function totalAwards() {
 export const certsInYear = (year: number) =>
   certHistory.filter((e) => e.year === year).length;
 
-export const daiDaiCertCount = certHistory.filter((e) => e.title === "Dai Dai").length;
+// The plaques the song currently holds — one per country at its highest tier,
+// same convention as totalAwards(). Counted off the release list rather than
+// the dated log: France's Gold-then-Platinum upgrade gives the log two rows
+// for one plaque, and this figure sits beside the badge row it must match.
+export const daiDaiCertCount =
+  allItems.find((r) => r.title === "Dai Dai")?.certs.length ?? 0;
