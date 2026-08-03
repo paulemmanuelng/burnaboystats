@@ -25,6 +25,12 @@
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   padding: 12px 18px;
+  /* With viewport-fit=cover the bar reaches under the notch and the
+     status bar; the insets push its CONTENT back into the safe area
+     while the background still bleeds to the edges. */
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  padding-left: calc(18px + env(safe-area-inset-left, 0px));
+  padding-right: calc(18px + env(safe-area-inset-right, 0px));
   display: flex;
   align-items: center;
   gap: 12px;

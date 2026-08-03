@@ -61,7 +61,8 @@
   color: var(--text-muted);
 }
 
-.section { margin: 0 0 48px; scroll-margin-top: 88px; }
+/* scroll-margin-top comes from the global [id] rule. */
+.section { margin: 0 0 48px; }
 .h2 {
   margin: 0 0 6px;
   font-family: var(--font-anton), sans-serif;

@@ -55,6 +55,7 @@
 }
 .input::placeholder { color: var(--dim); }
 .clear {
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 36px;
@@ -88,8 +89,11 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  /* 38px is the design's; these sit in a 10px-gap row under a 66px field. */
+  /* 38px is the design's; these sit in a 10px-gap row under a 66px field.
+     The touch target is bigger than the pixels: the ::after below stretches
+     the hit box past the 44px floor without moving anything visible. */
   min-height: 38px;
+  position: relative;
   padding: 0 14px;
   border-radius: 999px;
   border: 1px solid var(--border);
@@ -102,6 +106,14 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .chip:hover { border-color: var(--gold); }
+/* Invisible hit-area extension: +4px top/bottom takes the 36–38px controls to
+   the 44px touch floor; the rows' 10px gaps keep the extended boxes apart. */
+.chip::after,
+.clear::after {
+  content: "";
+  position: absolute;
+  inset: -4px 0;
+}
 .chipCount { font-family: var(--font-mono), monospace; font-size: 10px; opacity: 0.7; }
 
 /* ── Results ────────────────────────────────────────────────────────────── */
@@ -241,6 +253,7 @@
     top: 0;
     z-index: 45;
     padding: 12px 18px 14px;
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
     background: rgba(12, 10, 9, 0.94);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);

@@ -1,8 +1,9 @@
 "use client"; // owns dialog state + clipboard
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./statCardButton.module.css";
 import { track } from "../lib/analytics";
+import { useFocusTrap } from "../lib/useFocusTrap";
 
 /**
  * The design's "Make a stat card" control: a quiet icon button (or a block
@@ -32,17 +33,32 @@ export default function StatCardButton({
 }) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  // Whichever of the two trigger variants opened the dialog.
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  // The keyboard side of aria-modal: Tab stays inside the dialog.
+  useFocusTrap(dialogRef, open);
 
   // Escape closes, and the page behind must not scroll while it is open.
+  // Focus moves to Close on open and back to the trigger on close — before
+  // this, focus stayed on the trigger BEHIND the open dialog, so the next Tab
+  // landed in the page underneath it.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    // Captured now: the trigger this dialog opened FROM, not whatever the ref
+    // holds by the time the cleanup runs.
+    const trigger = triggerRef.current;
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
+      trigger?.focus();
     };
   }, [open]);
 
@@ -68,6 +84,7 @@ export default function StatCardButton({
     <>
       {variant === "icon" ? (
         <button
+          ref={triggerRef}
           type="button"
           className={`btn btnIcon ${styles.iconBtn}`}
           title="Make a stat card"
@@ -81,7 +98,7 @@ export default function StatCardButton({
           </svg>
         </button>
       ) : (
-        <button type="button" className={`btn btnBlock ${styles.blockBtn}`} onClick={() => setOpen(true)}>
+        <button ref={triggerRef} type="button" className={`btn btnBlock ${styles.blockBtn}`} onClick={() => setOpen(true)}>
           {children}
         </button>
       )}
@@ -94,10 +111,10 @@ export default function StatCardButton({
           aria-label="Stat card"
           onClick={() => setOpen(false)}
         >
-          <div className={styles.dialog} onClick={(e) => e.stopPropagation()}>
+          <div ref={dialogRef} className={styles.dialog} onClick={(e) => e.stopPropagation()}>
             <div className={styles.head}>
               <span className={styles.headLabel}>Stat card · 1080 × 1080</span>
-              <button type="button" className="btn btnGhost" onClick={() => setOpen(false)}>
+              <button ref={closeRef} type="button" className="btn btnGhost" onClick={() => setOpen(false)}>
                 Close
               </button>
             </div>
