@@ -89,11 +89,14 @@ const grossOf = (g?: string) => (g ? Number.parseFloat(g.replace(/[^0-9.]/g, "")
 const topTour = [...tours].sort((a, b) => grossOf(b.gross) - grossOf(a.gross))[0];
 const years = studioAlbums.map((a) => a.year);
 
+// Each tile links to the page that holds the figure — a number the reader can
+// see is a number they will try to tap, and every one of these has a page
+// behind it that shows the working.
 const stats = [
-  { value: String(totalAwards()), label: "Certifications", source: `${certCountries} countries` },
-  { value: String(numberOnes), label: "No. 1s worldwide", source: `${chartCountryCount} countries` },
-  { value: String(studioAlbums.length), label: "Studio albums", source: `${Math.min(...years)} — ${Math.max(...years)}` },
-  { value: topTour?.gross ?? "—", label: "Top tour gross", source: "Boxscore" },
+  { value: String(totalAwards()), label: "Certifications", source: `${certCountries} countries`, href: "/certifications" },
+  { value: String(numberOnes), label: "No. 1s worldwide", source: `${chartCountryCount} countries`, href: "/records/charts" },
+  { value: String(studioAlbums.length), label: "Studio albums", source: `${Math.min(...years)} — ${Math.max(...years)}`, href: "/music" },
+  { value: topTour?.gross ?? "—", label: "Top tour gross", source: "Boxscore", href: "/records/tours" },
 ];
 
 export default function MobileHome() {
@@ -185,11 +188,11 @@ export default function MobileHome() {
       {/* Stat grid — four, two-up */}
       <div className={styles.statGrid}>
         {stats.map((s) => (
-          <div key={s.label} className={styles.stat}>
+          <Link key={s.label} href={s.href} className={styles.stat}>
             <div className={styles.statValue}>{s.value}</div>
             <div className={styles.statLabel}>{s.label}</div>
             <div className={styles.statSource}>{s.source}</div>
-          </div>
+          </Link>
         ))}
       </div>
 
@@ -200,8 +203,12 @@ export default function MobileHome() {
             <p className={styles.sectionKicker}>Tracked live</p>
             <h2 className={styles.sectionTitle}>The No. 1 board</h2>
           </div>
-          <Link href="/live-charts" className={styles.sectionLink}>
-            All {live.countries} ↗
+          {/* Official charts, not live. Every cell here is a country whose own
+              national chart a release topped, so the link has to land on the
+              page that holds those peaks — /live-charts is a different claim
+              (charting right now) and a different dataset. */}
+          <Link href="/records/charts" className={styles.sectionLink}>
+            All {numberOneCountries.length} ↗
           </Link>
         </div>
         <div className={styles.boardGrid}>

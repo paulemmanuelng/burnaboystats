@@ -18,7 +18,7 @@ import {
   largestTier,
   diamondNote,
   boardCells,
-  liveNumberOneCountries,
+  boardCountryTotal,
   careerNumberOnes,
   albumCards,
   topShows,
@@ -206,8 +206,7 @@ export default function Home() {
             </div>
 
             <div className={styles.boardCount}>
-              Showing {boardCells.length} of {liveNumberOneCountries} · national charts and
-              Spotify daily
+              Showing {boardCells.length} of {boardCountryTotal} · official national charts
             </div>
 
             <div className={styles.boardGrid}>
@@ -377,15 +376,13 @@ export default function Home() {
               </p>
             </div>
             <div className={styles.closerActions}>
-              <StatCardButton
-                variant="block"
-                value={String(certTotal)}
-                label="Certifications worldwide"
-                source={`Across ${certCountryTotal} countries · burnaboystats.com`}
-                href="/certifications"
-              >
+              {/* Goes to the stat card page rather than opening a one-stat
+                  preview. Its two siblings below navigate, and the ↗ promises
+                  the same; /share is also the fuller thing — every stat, sized
+                  for each platform, instead of this one fixed card. */}
+              <Link href="/share" className={`btn btnBlock ${styles.closerLink}`}>
                 Make a stat card ↗
-              </StatCardButton>
+              </Link>
               <Link href="/api" className={`btn btnBlock ${styles.closerLink}`}>
                 Open data API ↗
               </Link>
