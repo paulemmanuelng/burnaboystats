@@ -99,7 +99,7 @@ export default function ToursPage() {
                   Tours <span className="inkText">&amp; Live</span>
                 </h1>
                 <p className={styles.lede}>
-                  The {topTour.name} grossed {topGrossLong} across {topTour.shows} shows —
+                  The {topTour.name} grossed {topGrossLong} across {topTour.shows} reported shows —
                   the highest-grossing tour by an African artist in history — and his June
                   2024 {topShow.venue} concert ({topShowM(2)} from {topShow.tickets} fans) is
                   the biggest single concert ever by an African artist.
