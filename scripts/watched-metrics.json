@@ -9,10 +9,11 @@
       "extractor": "kworbListeners",
       "kind": "drift",
       "threshold": 0.03,
-      "baseline": 58269694,
+      "baseline": 59482941,
       "note": "Current monthly listeners (kworb). NOTE: Spotify’s own artist page is fresher, but it only serves the full page to curl/browsers — node fetch (which the workflow uses) gets a stub, so kworb is the reliable CI source.",
       "artistId": "3wcj11K77LjEY1PkEazffa",
-      "field": "monthlyListeners"
+      "field": "monthlyListeners",
+      "lastChanged": "2026-08-03"
     },
     {
       "id": "spotify-peak-listeners",
@@ -97,7 +98,7 @@
       "extractor": "kworbTotalStreams",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 10500643906,
+      "baseline": 10608257558,
       "note": "Cumulative Spotify streams across every Burna Boy song — worth a milestone note as it climbs (e.g. crossing 11B).",
       "live": true,
       "siteTargets": [
@@ -115,9 +116,7 @@
         "min": 5000000000,
         "max": 100000000000
       },
-      "lastChanged": "2026-08-03",
-      "lastSeenValue": 10478850762,
-      "lastSeenAt": "2026-08-01"
+      "lastChanged": "2026-08-03"
     },
     {
       "id": "dai-dai-video-views",
@@ -311,7 +310,7 @@
       "match": "Last Last",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 598991932,
+      "baseline": 600599059,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -329,9 +328,7 @@
           "describes": "Spotify streams on /music/last-last"
         }
       ],
-      "lastChanged": "2026-07-29",
-      "lastSeenValue": 600032476,
-      "lastSeenAt": "2026-08-01"
+      "lastChanged": "2026-08-03"
     },
     {
       "id": "spotify-streams-on-the-low",
@@ -342,7 +339,7 @@
       "match": "On the Low",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 415190710,
+      "baseline": 416857900,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -360,9 +357,7 @@
           "describes": "Spotify streams on /music/on-the-low"
         }
       ],
-      "lastChanged": "2026-07-29",
-      "lastSeenValue": 416275911,
-      "lastSeenAt": "2026-08-01"
+      "lastChanged": "2026-08-03"
     },
     {
       "id": "spotify-streams-ye",
@@ -466,7 +461,7 @@
       "match": "Alone",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 211029596,
+      "baseline": 212000000,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -484,9 +479,7 @@
           "describes": "Spotify streams on /music/alone"
         }
       ],
-      "lastChanged": "2026-07-29",
-      "lastSeenValue": 211583938,
-      "lastSeenAt": "2026-08-01"
+      "lastChanged": "2026-08-03"
     },
     {
       "id": "spotify-streams-23",

@@ -60,7 +60,7 @@ describe("handoff checklist — data integrity", () => {
     expect(sum).toBe(221);
   });
 
-  it("counts 260 chart entries across 60 territories, 43 of them at No. 1", () => {
+  it("counts 260 chart entries across 60 territories, 44 of them at No. 1", () => {
     const entries = allChartItems.reduce((n, r) => n + r.entries.length, 0);
     const territories = new Set(allChartItems.flatMap((r) => r.entries.map((e) => e.c))).size;
     // Placements, not releases: a release charting at No. 1 in six countries
@@ -72,7 +72,7 @@ describe("handoff checklist — data integrity", () => {
 
     expect(entries).toBe(260);
     expect(territories).toBe(60);
-    expect(ones).toBe(43);
+    expect(ones).toBe(44);
 
     expect(chartEntryCount).toBe(entries);
     expect(chartCountryCount).toBe(territories);

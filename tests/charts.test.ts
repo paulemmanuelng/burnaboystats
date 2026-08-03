@@ -98,7 +98,8 @@ describe("chart data integrity", () => {
 
   it("matches the published headline figures", () => {
     expect(chartEntryCount).toBe(260);
-    expect(numberOnes).toBe(43);
+    // 44 since Norway's official chart turned Dai Dai's #2 into a #1 (Aug 2026).
+    expect(numberOnes).toBe(44);
     expect(chartCountryCount).toBe(60);
   });
 });
@@ -122,7 +123,7 @@ describe("Dai Dai", () => {
 
   it("matches the published headline figures", () => {
     expect(daiDaiChartEntryCount).toBe(59);
-    expect(daiDaiNumberOnes).toBe(24);
+    expect(daiDaiNumberOnes).toBe(25);
   });
 
   it("tops both Billboard global charts", () => {

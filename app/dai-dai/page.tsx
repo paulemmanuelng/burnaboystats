@@ -37,7 +37,7 @@ const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries �
 const DAI_DAI_VIDEO_VIEWS = "664M";
 
 // Total Spotify streams for "Dai Dai" — same live pipeline as the video count.
-const DAI_DAI_SPOTIFY_STREAMS = "274M";
+const DAI_DAI_SPOTIFY_STREAMS = "285M";
 
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
