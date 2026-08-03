@@ -1,6 +1,6 @@
 "use client"; // record picker, ratio toggle, and a blob download
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import styles from "./mobileStatCards.module.css";
 import ScrollRail from "./ScrollRail";
@@ -9,6 +9,7 @@ import { CARD_SIZES, type CardRatio } from "../lib/cardSizes";
 import type { CardChoice } from "./StatCardMaker";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import { saveCard, canShareFiles, subscribeNever } from "../lib/saveCard";
 
 /**
  * Mobile screen 24 — Stat cards.
@@ -46,26 +47,18 @@ export default function MobileStatCards({
   const src = `/stat-card?stat=${id}&ratio=${ratio}`;
   const size = CARD_SIZES[ratio];
   const shareText = `Burna Boy — ${card.label}. ${card.source}.`;
+  // On a phone the primary action opens the share sheet (Save Image, or post
+  // straight to an app), so the button should not promise a download.
+  const shareable = useSyncExternalStore(subscribeNever, canShareFiles, () => false);
+  const label = shareable ? "Save or share ↓" : "Download PNG ↓";
 
   async function download() {
-    try {
-      setDownloading(true);
-      track("stat_card_download", { stat: id, ratio });
-      const res = await fetch(src);
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `burna-boy-${id}-${ratio}.png`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    } catch {
-      /* best-effort — the card can still be long-pressed from the preview */
-    } finally {
-      setDownloading(false);
-    }
+    setDownloading(true);
+    track("stat_card_download", { stat: id, ratio });
+    // saveCard picks the route the device actually supports — the share sheet
+    // on a phone, a real download elsewhere. See app/lib/saveCard.ts.
+    await saveCard(src, `burna-boy-${id}-${ratio}.png`, shareText);
+    setDownloading(false);
   }
 
   return (
@@ -141,7 +134,7 @@ export default function MobileStatCards({
       <div className={styles.spacer} />
       <div className={styles.actionBar}>
         <button type="button" className={styles.primary} onClick={download} disabled={downloading}>
-          {downloading ? "Preparing…" : "Download PNG ↓"}
+          {downloading ? "Preparing…" : label}
         </button>
         <div className={styles.secondaryRow}>
           <a

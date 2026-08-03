@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./StatCardMaker.module.css";
 import { track } from "../lib/analytics";
 import { CARD_SIZES, type CardRatio } from "../lib/cardSizes";
+import { saveCard } from "../lib/saveCard";
 
 /**
  * The stat-card builder, from designs/desktop/Share.dc.html and mobile
@@ -65,24 +66,12 @@ export default function StatCardMaker({
   }
 
   async function download() {
-    try {
-      setDownloading(true);
-      track("stat_card_download", { stat: id, ratio });
-      const res = await fetch(src);
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `burna-boy-${id}-${ratio}.png`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    } catch {
-      /* best-effort — the user can still long-press/right-click the preview */
-    } finally {
-      setDownloading(false);
-    }
+    setDownloading(true);
+    track("stat_card_download", { stat: id, ratio });
+    // Shared with the mobile screen: the same synchronous revoke truncated
+    // downloads here too. See app/lib/saveCard.ts.
+    await saveCard(src, `burna-boy-${id}-${ratio}.png`);
+    setDownloading(false);
   }
 
   return (
