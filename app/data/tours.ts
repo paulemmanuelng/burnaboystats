@@ -67,6 +67,8 @@ export const tours: Tour[] = [
     years: "2023–25",
     gross: "$30.46M",
     tickets: "302,801",
+    // Shows Boxscore reported a gross for — the itinerary below lists more
+    // dates than that, so this is not dates.length and must not be set from it.
     shows: 22,
     record: true,
     note: "The highest-grossing tour by an African artist in history — $30.46M from 302,801 tickets across 22 shows in North America and Europe, averaging about $1.4M a night. It also included the record-breaking London Stadium concert.",

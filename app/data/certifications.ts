@@ -460,7 +460,7 @@ export const certHistory: CertEvent[] = [
   { title: "Location", credit: "Dave ft. Burna Boy", country: "DK", level: "Platinum", year: 2023 },
   { title: "Gbona", country: "PT", level: "Gold", year: 2023 },
   { title: "Love, Damini", album: true, country: "UK", level: "Silver", year: 2023 },
-  { title: "Gbona", country: "UK", level: "Gold", year: 2023 },
+  { title: "Gbona", country: "UK", level: "Gold", year: 2026 },
   { title: "Love, Damini", album: true, country: "DK", level: "Gold", year: 2023 },
   { title: "Love, Damini", album: true, country: "NL", level: "Gold", year: 2023 },
   { title: "Last Last", country: "US", level: "Platinum", year: 2023 },
@@ -512,4 +512,10 @@ export function totalAwards() {
 
 // "Dai Dai"'s OWN certifications only — so the Dai Dai page never borrows Burna
 // Boy's artist-wide 2026 total. Counts distinct country certs for the song.
+/** Certifications awarded in a given calendar year — the "most in one year"
+ *  record on /records/firsts derives from this rather than freezing at the
+ *  threshold it crossed. */
+export const certsInYear = (year: number) =>
+  certHistory.filter((e) => e.year === year).length;
+
 export const daiDaiCertCount = certHistory.filter((e) => e.title === "Dai Dai").length;
