@@ -135,7 +135,7 @@ export const eps: AlbumEntry[] = [
   {
     title: "Redemption",
     spotify: "https://open.spotify.com/album/50qNx4v7MKypMx5wGynQ8j",
-    cover: "https://i.scdn.co/image/ab67616d0000b2738f864a796ece5bd24bd45119f0db",
+    cover: "https://i.scdn.co/image/ab67616d0000b2739c6526408de3ed6a97d0f0db",
     year: 2016,
     label: "Spaceship",
     tracks: [
