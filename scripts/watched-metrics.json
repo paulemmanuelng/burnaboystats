@@ -55,8 +55,8 @@
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "peakListeners",
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 58991923,
-      "lastSeenAt": "2026-08-01"
+      "lastSeenValue": 59482941,
+      "lastSeenAt": "2026-08-03"
     },
     {
       "id": "spotify-listeners-rank",
@@ -144,8 +144,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 642554551,
-      "lastSeenAt": "2026-08-01"
+      "lastSeenValue": 664199909,
+      "lastSeenAt": "2026-08-03"
     },
     {
       "id": "yt-views-last-last",
@@ -449,8 +449,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 283088840,
-      "lastSeenAt": "2026-08-01"
+      "lastSeenValue": 284303252,
+      "lastSeenAt": "2026-08-03"
     },
     {
       "id": "spotify-streams-alone",
@@ -664,8 +664,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 273661432,
-      "lastSeenAt": "2026-08-01"
+      "lastSeenValue": 284868629,
+      "lastSeenAt": "2026-08-03"
     },
     {
       "id": "spotify-streams-tatata",
