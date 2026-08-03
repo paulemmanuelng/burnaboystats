@@ -155,7 +155,7 @@ export const statBoxes: LeaderboardBox[] = [
     ],
     note: `Burna Boy is the first African artist ever to reach 50 million Spotify monthly listeners — and now the first past ${Math.floor(parseFloat(BURNA_PEAK_LISTENERS))} million, a milestone no African act had crossed before, with his peak still climbing.`,
     source:
-      "Peak Spotify monthly listeners, from Spotify artist pages and monitoring trackers, as of July 2026. Burna Boy's figure is his current peak and still rising, so it updates as Spotify's numbers change.",
+      "Peak Spotify monthly listeners, from Spotify artist pages and monitoring trackers, as of August 2026. Burna Boy's figure is his current peak and still rising, so it updates as Spotify's numbers change.",
   },
   {
     id: "biggest-spotify-debut",
@@ -218,7 +218,7 @@ export const statBoxes: LeaderboardBox[] = [
     ],
     note: "Burna Boy is the most-followed African artist on Spotify — nearly 5 million clear of Wizkid in second.",
     source:
-      "Spotify follower counts, taken directly from each artist's official Spotify page. As of July 2026 — this updates continuously as Spotify's live counts change.",
+      "Spotify follower counts, taken directly from each artist's official Spotify page. As of August 2026 — this updates continuously as Spotify's live counts change.",
   },
   {
     id: "highest-spotify-global-peak",
