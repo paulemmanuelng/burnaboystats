@@ -512,4 +512,10 @@ export function totalAwards() {
 
 // "Dai Dai"'s OWN certifications only — so the Dai Dai page never borrows Burna
 // Boy's artist-wide 2026 total. Counts distinct country certs for the song.
+/** Certifications awarded in a given calendar year — the "most in one year"
+ *  record on /records/firsts derives from this rather than freezing at the
+ *  threshold it crossed. */
+export const certsInYear = (year: number) =>
+  certHistory.filter((e) => e.year === year).length;
+
 export const daiDaiCertCount = certHistory.filter((e) => e.title === "Dai Dai").length;

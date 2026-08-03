@@ -320,7 +320,7 @@ export default function Home() {
                   Source: TouringData / Billboard Boxscore · the {topTour.name} grossed{" "}
                   {topTour.gross}
                   {topTour.tickets ? ` from ${topTour.tickets} tickets` : ""}
-                  {topTour.shows ? ` across ${topTour.shows} shows` : ""} — the
+                  {topTour.shows ? ` across ${topTour.shows} reported shows` : ""} — the
                   highest-grossing tour by an African artist.
                 </p>
               </div>
