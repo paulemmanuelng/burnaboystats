@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import config from "../scripts/watched-metrics.json";
+import { applyAnchoredReplace } from "../scripts/stats-lib.mjs";
 
 // The stats bot edits real site files by anchored find/replace. If an anchor or
 // pattern silently stops matching, the metric just never applies — and because
@@ -43,8 +44,58 @@ describe("watched-metrics site targets", () => {
     }
   });
 
+  // The failure this file did NOT catch until it shipped: a target whose anchor
+  // is too loose matches the FIRST value after it, not the intended one.
+  // `spotify-peak-listeners` anchored on the leaderboard's id with a bare \d+M
+  // pattern; Burna Boy's cell there holds a constant rather than a literal, so
+  // the first literal belonged to the NEXT artist. The bot overwrote Tyla's
+  // peak with his on every run for two days and nothing here noticed.
+  it("every target edits its own record, never the next one", () => {
+    for (const t of targets) {
+      const src = readFileSync(t.file, "utf8");
+      const from = src.indexOf(t.anchor) + t.anchor.length;
+      const m = new RegExp(t.pattern).exec(src.slice(from));
+      const gap = src.slice(from, from + (m?.index ?? 0));
+      expect(
+        /\b(?:name|slug):\s*"/.test(gap),
+        `${t.id} → target walks past its own entry into another record`
+      ).toBe(false);
+    }
+  });
+
+  // End to end through the function the bot actually calls, so an escaping or
+  // anchoring fault cannot pass the looser checks above and still fail in CI.
+  it("every target applies through applyAnchoredReplace", () => {
+    for (const t of targets) {
+      const src = readFileSync(t.file, "utf8");
+      const probe = (t.template ?? "%s").replace("%s", "999");
+      const res = applyAnchoredReplace(src, t.anchor, t.pattern, probe);
+      expect(res.reason ?? "applied", `${t.id} → ${res.reason}`).not.toBe("anchor not found");
+      expect(res.reason ?? "applied", `${t.id} → ${res.reason}`).not.toBe(
+        "pattern not found after anchor"
+      );
+    }
+  });
+
   it("every metric id is unique", () => {
     const ids = config.metrics.map((m) => m.id);
     expect(new Set(ids).size).toBe(ids.length);
+  });
+});
+
+describe("the monthly-listeners leaderboard", () => {
+  it("is ordered by the values it displays", () => {
+    // StatBox derives its "He leads" badge from whoever sits at row one, so a
+    // row out of order publishes a claim the board's own numbers contradict.
+    // That is exactly what the mis-aimed write produced.
+    const src = readFileSync("app/data/africasBiggest.ts", "utf8");
+    const board = src.slice(src.indexOf('id: "monthly-listeners-peak"'));
+    const entries = board.slice(0, board.indexOf("]"));
+    const peak = /const BURNA_PEAK_LISTENERS = "([\d.]+)M"/.exec(src)![1];
+    const values = [
+      Number.parseFloat(peak),
+      ...[...entries.matchAll(/value: "([\d.]+)M"/g)].map((m) => Number.parseFloat(m[1])),
+    ];
+    expect(values).toEqual([...values].sort((a, b) => b - a));
   });
 });
