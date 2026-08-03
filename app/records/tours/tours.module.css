@@ -672,3 +672,75 @@
   .h1 { font-size: 67px; }
   .headlineValue { font-size: 42px; }
 }
+
+/* ── Announced, not yet played ──────────────────────────────────────────
+   Deliberately quieter than a tour row and marked with its own tag: it is a
+   plan, and the page's whole promise is that everything else is a result. */
+.upcoming {
+  border: 1px solid rgba(255, 182, 39, 0.28);
+  background: rgba(255, 182, 39, 0.04);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 22px;
+}
+.upcomingHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.upcomingTag {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(255, 182, 39, 0.5);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+.upcomingNote {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.upcomingRow { display: flex; align-items: flex-start; gap: 20px; }
+.upcomingMain { flex: 1; min-width: 0; }
+.upcomingVenue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.upcomingCity {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.upcomingText { font-size: 14px; line-height: 1.6; color: #cfc7bb; margin-top: 8px; }
+.upcomingSource {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+.upcomingWhen {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  color: var(--gold);
+  flex: none;
+}
+@media (max-width: 900px) {
+  .upcomingRow { flex-direction: column; gap: 10px; }
+}

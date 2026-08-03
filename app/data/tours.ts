@@ -207,6 +207,42 @@ export interface LiveMoment {
   record?: boolean;
 }
 
+/**
+ * Shows announced but not yet played.
+ *
+ * The rest of this file is the record of what has happened; this is the one
+ * forward-looking list, kept separate so nothing downstream can mistake a
+ * plan for a result — an announced show has no gross, no attendance and no
+ * place in any total.
+ *
+ * Deliberately no MusicEvent JSON-LD: schema.org requires a startDate, and
+ * inventing one to satisfy a rich result would be publishing a date the
+ * artist has not given. It earns its markup the day a date is announced.
+ */
+export interface UpcomingShow {
+  venue: string;
+  city: string;
+  country: string;
+  /** As announced — a bare year until a date exists. */
+  when: string;
+  cap?: number;
+  note: string;
+  /** Where the announcement came from, named on the page. */
+  source: string;
+}
+
+export const upcomingShows: UpcomingShow[] = [
+  {
+    venue: "London Stadium",
+    city: "London",
+    country: "UK",
+    when: "2027",
+    cap: 80000,
+    note: "A return to the 80,000-capacity stadium he was the first African artist ever to headline — his third time there, after the sold-out 2023 debut and the 2024 night that set the African concert box-office record. No date announced yet.",
+    source: "Announced by Burna Boy on Instagram, 3 August 2026",
+  },
+];
+
 export const liveMoments: LiveMoment[] = [
   { year: "2026", title: "FIFA World Cup Final halftime show", text: "Performed at the 2026 final's halftime show (19 July) — the first African artist to do so — on a bill with Madonna, Shakira, BTS, Justin Bieber and Coldplay.", record: true },
   { year: "2026", title: "FIFA World Cup Opening Ceremony", text: "Headlined the opener in Mexico City with Shakira, performing the official tournament song “Dai Dai.”" },

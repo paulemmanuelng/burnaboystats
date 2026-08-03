@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-03",
+    category: "Tours",
+    text: "London Stadium, again: Burna Boy announces a 2027 return to the 80,000-capacity ground — his third headline show there, after the 2023 debut that made him the first African artist to headline a UK stadium and the 2024 night that set the African concert box-office record. No date announced yet.",
+    href: "/records/tours",
+  },
+  {
+    date: "2026-08-03",
     category: "Charts",
     text: "Still the biggest song in the world: “Dai Dai” takes a 4th consecutive week at No. 1 on the Billboard Global 200 and a 6th consecutive week atop the Global 200 Excl. US.",
     href: "/records/charts",
