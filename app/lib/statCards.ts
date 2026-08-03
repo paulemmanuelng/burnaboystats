@@ -102,7 +102,7 @@ export function getStatCards(): StatCard[] {
       chip: "Monthly listeners",
       stats: [
         { value: spotifyFollowersDisplay, label: "Followers" },
-        { value: "805M", label: "YouTube peak" },
+        { value: "840M", label: "YouTube peak" },
         { value: "No.1", label: "Spotify Global" },
       ],
     },
@@ -166,7 +166,7 @@ export function getStatCards(): StatCard[] {
       chip: "Followers",
       stats: [
         { value: `${listeners}M`, label: "Monthly listeners" },
-        { value: "805M", label: "YouTube peak" },
+        { value: "840M", label: "YouTube peak" },
         { value: "#1", label: "Most-followed" },
       ],
     },

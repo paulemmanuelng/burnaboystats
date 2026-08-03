@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-03",
+    category: "Streaming",
+    text: "New YouTube peak: the monthly audience climbs to 840 million — still the seventh-biggest ever recorded worldwide and the only African artist on that board, with Lady Gaga (862M) next in reach.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-08-03",
     category: "Certifications",
     text: "Platinum at home: “WGFT”, the Gunna collaboration, is certified Platinum in Nigeria by TurnTable (TCSN) for 100,000 units — its third country after New Zealand and the UK, and certification No. 222 worldwide.",
     href: "/certifications",
