@@ -152,7 +152,10 @@
 }
 
 /* ── Action bar: a primary, then two shares ───────────────────────────── */
-.spacer { height: 112px; }
+/* Clears the fixed action bar. The bar is two rows plus its padding and the
+   home-indicator inset, so this tracks that rather than a guessed number —
+   at 112px the source note's last line sat behind the bar. */
+.spacer { height: calc(150px + env(safe-area-inset-bottom, 0px)); }
 .actionBar {
   position: fixed;
   bottom: 0;
