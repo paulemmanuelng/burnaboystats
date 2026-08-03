@@ -78,6 +78,20 @@ export const viewport: Viewport = {
 };
 
 // Structured data (JSON-LD) so Google understands the site and its subject.
+// The publisher itself is an entity too: every Article on the site names
+// "Burna Boy Stats" as author/publisher, and this is the node those names
+// resolve to — with the logo AI engines and rich results pull for source
+// attribution. Kept honest: a fan-run statistics site, not the artist.
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Burna Boy Stats",
+  url: siteUrl,
+  logo: `${siteUrl}/icon.svg`,
+  description:
+    "An independent, fan-run statistics site tracking Burna Boy's certifications, chart history, awards and tour records — every figure sourced and verified.",
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -142,6 +156,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
         {/* Per-page breadcrumb structured data */}
         <Breadcrumbs />

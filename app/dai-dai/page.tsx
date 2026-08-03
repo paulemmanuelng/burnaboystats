@@ -5,6 +5,7 @@ import DaiDaiConquest, { type ConquestCountry } from "../components/DaiDaiConque
 import KeepExploring from "../components/KeepExploring";
 import DaiDaiNumbers from "../components/DaiDaiNumbers";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import { lastUpdated } from "../lib/api";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES } from "../data/charts";
 import { daiDaiCertCount } from "../data/certifications";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
@@ -56,6 +57,8 @@ export default function DaiDaiPage() {
     description:
       "The story of “Dai Dai”, the 2026 FIFA World Cup anthem by Shakira and Burna Boy — its record-breaking chart, streaming and certification run, and its live performance at the World Cup Final halftime show.",
     datePublished: "2026-07-16",
+    dateModified: lastUpdated,
+    image: [`${CANONICAL_ORIGIN}/dai-dai/opengraph-image`],
     inLanguage: "en",
     author: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     publisher: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
