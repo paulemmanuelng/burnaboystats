@@ -104,14 +104,18 @@ export default function MobileCerts({
       {/* Hero */}
       <div className={styles.hero}>
         <div className={styles.kicker}>Certified worldwide</div>
-        <div className={styles.totalRow}>
+        {/* The page's <h1>. Screen 02 leads with the total rather than a worded
+            title, so the total IS the heading — it reads "221 awards, 25
+            countries". Both layouts sit in the DOM at once, so the document
+            carries two h1s, one per layout, and only ever one is visible. */}
+        <h1 className={styles.totalRow}>
           <span className={styles.total}>{total}</span>
           <span className={styles.totalUnit}>
             awards
             <br />
             {countryCount} countries
           </span>
-        </div>
+        </h1>
         <p className={styles.lede}>
           Silver, Gold, Platinum and Diamond awards from the RIAA, BPI, SNEP, Music Canada
           and {countryCount - 4} more — across {releases.length} certified releases.

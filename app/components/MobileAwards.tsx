@@ -78,10 +78,12 @@ export default function MobileAwards({
 
       <div className={styles.hero}>
         <div className={styles.kicker}>Decorated</div>
-        {/* Deliberately not an <h1>: both layouts sit in the DOM at once. */}
-        <p className={styles.title}>
+        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+            carries two — one per layout, and only ever one is visible. The SEO
+            gate checks that pairing rather than a bare count. */}
+        <h1 className={styles.title}>
           Awards &amp; <span className={styles.gold}>nominations</span>
-        </p>
+        </h1>
         <p className={styles.lede}>{footNote}</p>
       </div>
 

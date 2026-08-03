@@ -143,11 +143,12 @@ export default function MobileOfficialCharts({
       {/* Hero */}
       <div className={styles.hero}>
         <div className={styles.kicker}>Peak positions worldwide</div>
-        {/* Deliberately not an <h1>. Both layouts sit in the DOM at once, so a
-            second <h1> would give the page two. */}
-        <p className={styles.title}>
+        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+            carries two — one per layout, and only ever one is visible. The SEO
+            gate checks that pairing rather than a bare count. */}
+        <h1 className={styles.title}>
           Official <span className={styles.gold}>charts</span>
-        </p>
+        </h1>
         <p className={styles.lede}>
           {entryCount} entries across {territoryCount} territories, {numberOnes} of them at
           No. 1 — from Nigeria and the UK to South Africa, the Netherlands and Colombia.

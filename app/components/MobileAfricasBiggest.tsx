@@ -59,10 +59,12 @@ export default function MobileAfricasBiggest({
 
       <div className={styles.hero}>
         <div className={styles.kicker}>African music by the numbers</div>
-        {/* Deliberately not an <h1>: both layouts sit in the DOM at once. */}
-        <p className={styles.title}>
+        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+            carries two — one per layout, and only ever one is visible. The SEO
+            gate checks that pairing rather than a bare count. */}
+        <h1 className={styles.title}>
           Africa&apos;s <span className={styles.gold}>biggest</span>
-        </p>
+        </h1>
         <p className={styles.lede}>
           The first African artist ever to reach No. 1 on Billboard&apos;s Global 200 — and
           where he sits on every other board, including the ones he doesn&apos;t lead.

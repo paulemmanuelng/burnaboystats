@@ -40,12 +40,12 @@ export default function MobileRecords({
       {/* Hero */}
       <div className={styles.hero}>
         <div className={styles.kicker}>Record-breaking</div>
-        {/* Deliberately not an <h1>. Both layouts sit in the DOM at once — one
-            is CSS-hidden, not removed — so a second <h1> would give the page
-            two, which the SEO gate rejects. */}
-        <p className={styles.h1}>
+        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+            carries two — one per layout, and only ever one is visible. The SEO
+            gate checks that pairing rather than a bare count. */}
+        <h1 className={styles.h1}>
           Career <span className={styles.gold}>Records</span>
-        </p>
+        </h1>
         <p className={styles.lede}>
           Charts, awards, tours and the firsts that made history.
         </p>

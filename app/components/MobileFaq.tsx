@@ -40,10 +40,12 @@ export default function MobileFaq({
       {/* Hero */}
       <div className={styles.hero}>
         <div className={styles.kicker}>Answer first</div>
-        {/* Not an <h1> — the desktop block carries the page's single heading. */}
-        <p className={styles.title}>
+        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+            carries two — one per layout, and only ever one is visible. The SEO
+            gate checks that pairing rather than a bare count. */}
+        <h1 className={styles.title}>
           Burna Boy <span className={styles.gold}>FAQ</span>
-        </p>
+        </h1>
         <p className={styles.lede}>
           Quick, verified answers to the questions people ask most.
         </p>

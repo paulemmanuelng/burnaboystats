@@ -73,6 +73,9 @@
   font-weight: 400; /* Anton has no bold cut */
   font-size: 86px;
   line-height: 0.82;
+  /* Pinned because .totalRow is the screen's <h1>, and the global h1 rule
+     tracks out by 0.01em — at 86px that visibly widened the number. */
+  letter-spacing: normal;
   color: var(--gold);
   font-variant-numeric: tabular-nums;
 }

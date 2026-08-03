@@ -41,10 +41,12 @@ export default function MobileTourMap({
       {/* Hero */}
       <div className={styles.hero}>
         <div className={styles.kicker}>Live worldwide</div>
-        {/* Not an <h1> — the desktop block carries the page's single heading. */}
-        <p className={styles.title}>
+        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+            carries two — one per layout, and only ever one is visible. The SEO
+            gate checks that pairing rather than a bare count. */}
+        <h1 className={styles.title}>
           Where he&apos;s <span className={styles.gold}>performed</span>
-        </p>
+        </h1>
         <p className={styles.lede}>
           {countryCount} countries across {regionCount} regions.
         </p>

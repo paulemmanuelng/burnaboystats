@@ -44,10 +44,12 @@ export default function MobileAnalysis({
 
       <div className={styles.hero}>
         <div className={styles.kicker}>Analysis · not a summary</div>
-        {/* Deliberately not an <h1>: both layouts sit in the DOM at once. */}
-        <p className={styles.title}>
+        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+            carries two — one per layout, and only ever one is visible. The SEO
+            gate checks that pairing rather than a bare count. */}
+        <h1 className={styles.title}>
           What the numbers <span className={styles.gold}>actually say</span>
-        </p>
+        </h1>
         <p className={styles.lede}>{lede}</p>
         <div className={styles.reviewed}>
           <span className={styles.reviewedDot} aria-hidden="true" />
