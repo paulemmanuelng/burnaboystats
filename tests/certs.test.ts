@@ -51,7 +51,7 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(222); // 222nd: WGFT NG Platinum (TCSN), added 3 Aug 2026
+    expect(totalAwards()).toBe(223); // 223rd: Location SE Platinum (IFPI Sweden, cert 19 May 2026)
     expect(countryCount).toBe(25);
     expect(certifiedReleaseCount).toBe(81);
   });
@@ -64,9 +64,9 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 has the published count of 44 certifications", () => {
-    // 44th: “Dai Dai” Single Platine from SNEP, 3 Aug 2026 (upgrade from Gold).
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(44);
+  it("2026 has the published count of 45 certifications", () => {
+    // 45th: Location SE Platinum (IFPI Sweden) — the cert itself is dated 19 May.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(45);
   });
 
   it("2025 has the published count of 29 certifications", () => {
