@@ -44,12 +44,12 @@ describe("watched-metrics site targets", () => {
     }
   });
 
-  // The bug this file did NOT catch, until it shipped: a target whose anchor is
-  // too loose matches the FIRST value after it, not the intended one.
-  // `spotify-peak-listeners` anchored on the leaderboard's id and matched a bare
-  // \d+M — but Burna Boy's cell holds a constant rather than a literal, so the
-  // first literal after the anchor belonged to the NEXT artist. The bot
-  // overwrote Tyla's peak with his, twice, and nothing here noticed.
+  // The failure this file did NOT catch until it shipped: a target whose anchor
+  // is too loose matches the FIRST value after it, not the intended one.
+  // `spotify-peak-listeners` anchored on the leaderboard's id with a bare \d+M
+  // pattern; Burna Boy's cell there holds a constant rather than a literal, so
+  // the first literal belonged to the NEXT artist. The bot overwrote Tyla's
+  // peak with his on every run for two days and nothing here noticed.
   it("every target edits its own record, never the next one", () => {
     for (const t of targets) {
       const src = readFileSync(t.file, "utf8");
@@ -63,8 +63,8 @@ describe("watched-metrics site targets", () => {
     }
   });
 
-  // End-to-end through the function the bot actually calls, so an escaping or
-  // anchoring fault can't pass the looser checks above and still fail in CI.
+  // End to end through the function the bot actually calls, so an escaping or
+  // anchoring fault cannot pass the looser checks above and still fail in CI.
   it("every target applies through applyAnchoredReplace", () => {
     for (const t of targets) {
       const src = readFileSync(t.file, "utf8");
@@ -80,5 +80,22 @@ describe("watched-metrics site targets", () => {
   it("every metric id is unique", () => {
     const ids = config.metrics.map((m) => m.id);
     expect(new Set(ids).size).toBe(ids.length);
+  });
+});
+
+describe("the monthly-listeners leaderboard", () => {
+  it("is ordered by the values it displays", () => {
+    // StatBox derives its "He leads" badge from whoever sits at row one, so a
+    // row out of order publishes a claim the board's own numbers contradict.
+    // That is exactly what the mis-aimed write produced.
+    const src = readFileSync("app/data/africasBiggest.ts", "utf8");
+    const board = src.slice(src.indexOf('id: "monthly-listeners-peak"'));
+    const entries = board.slice(0, board.indexOf("]"));
+    const peak = /const BURNA_PEAK_LISTENERS = "([\d.]+)M"/.exec(src)![1];
+    const values = [
+      Number.parseFloat(peak),
+      ...[...entries.matchAll(/value: "([\d.]+)M"/g)].map((m) => Number.parseFloat(m[1])),
+    ];
+    expect(values).toEqual([...values].sort((a, b) => b - a));
   });
 });

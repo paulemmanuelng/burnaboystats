@@ -21,7 +21,7 @@
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
-      "baseline": 58991923,
+      "baseline": 59482941,
       "live": true,
       "sanity": {
         "maxJump": 0.12,
@@ -37,7 +37,7 @@
           "format": "M2",
           "template": "\"%s\"",
           "describes": "Burna Boy's peak monthly listeners (the one home for the figure)",
-          "$comment": "Anchored on the constant, NOT on the leaderboard id. The old anchor was id: \"monthly-listeners-peak\" with a bare \\d+M pattern, and applyAnchoredReplace takes the FIRST match after the anchor — Burna Boy's cell holds this constant rather than a literal, so the first literal was the NEXT artist's. The bot overwrote Tyla's peak with his twice (46.58M -> 58.77M -> 58.99M) before anyone spotted it."
+          "$comment": "Anchored on the constant, NOT on the leaderboard id. applyAnchoredReplace takes the FIRST match after the anchor, and Burna Boy's cell on that board holds this constant rather than a literal — so a bare \\d+M pattern matched the NEXT artist's value. The bot overwrote Tyla's peak with his on every run from 31 Jul (46.58M -> 58.77M -> 58.99M -> 59.21M) while the figure it was meant to update never moved off 58.48M."
         }
       ],
       "manualAfter": [
@@ -53,7 +53,7 @@
       },
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "peakListeners",
-      "lastChanged": "2026-08-01",
+      "lastChanged": "2026-08-03",
       "lastSeenValue": 58991923,
       "lastSeenAt": "2026-08-01"
     },
@@ -97,7 +97,7 @@
       "extractor": "kworbTotalStreams",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 10478850762,
+      "baseline": 10500643906,
       "note": "Cumulative Spotify streams across every Burna Boy song — worth a milestone note as it climbs (e.g. crossing 11B).",
       "live": true,
       "siteTargets": [
@@ -115,7 +115,7 @@
         "min": 5000000000,
         "max": 100000000000
       },
-      "lastChanged": "2026-08-01",
+      "lastChanged": "2026-08-03",
       "lastSeenValue": 10478850762,
       "lastSeenAt": "2026-08-01"
     },
@@ -127,7 +127,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 642554551,
+      "baseline": 664199909,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -144,7 +144,7 @@
           "describes": "displayed view count (whole millions) on /dai-dai"
         }
       ],
-      "lastChanged": "2026-08-01",
+      "lastChanged": "2026-08-03",
       "lastSeenValue": 642554551,
       "lastSeenAt": "2026-08-01"
     },
@@ -157,7 +157,7 @@
       "match": "Last Last [Official Music Video]",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 358123985,
+      "baseline": 357451861,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
@@ -175,7 +175,7 @@
           "describes": "displayed YouTube views on /music/last-last"
         }
       ],
-      "lastChanged": "2026-08-01",
+      "lastChanged": "2026-07-29",
       "lastSeenValue": 358123985,
       "lastSeenAt": "2026-08-01"
     },
@@ -219,7 +219,7 @@
       "match": "On The Low [Official Music Video]",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 474857489,
+      "baseline": 474031504,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
@@ -237,7 +237,7 @@
           "describes": "displayed YouTube views on /music/on-the-low"
         }
       ],
-      "lastChanged": "2026-08-01",
+      "lastChanged": "2026-07-29",
       "lastSeenValue": 474857489,
       "lastSeenAt": "2026-08-01"
     },
@@ -280,7 +280,7 @@
       "extractor": "kworbYouTubeTotal",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 3157154682,
+      "baseline": 3160462402,
       "note": "Cumulative views across every Burna Boy video — a milestone figure as it climbs.",
       "live": true,
       "siteTargets": [
@@ -311,7 +311,7 @@
       "match": "Last Last",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 600032476,
+      "baseline": 598991932,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -329,7 +329,7 @@
           "describes": "Spotify streams on /music/last-last"
         }
       ],
-      "lastChanged": "2026-08-01",
+      "lastChanged": "2026-07-29",
       "lastSeenValue": 600032476,
       "lastSeenAt": "2026-08-01"
     },
@@ -342,7 +342,7 @@
       "match": "On the Low",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 416275911,
+      "baseline": 415190710,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -360,7 +360,7 @@
           "describes": "Spotify streams on /music/on-the-low"
         }
       ],
-      "lastChanged": "2026-08-01",
+      "lastChanged": "2026-07-29",
       "lastSeenValue": 416275911,
       "lastSeenAt": "2026-08-01"
     },
@@ -435,7 +435,7 @@
       "match": "wgft (feat. Burna Boy)",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 283088840,
+      "baseline": 284303252,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -453,7 +453,7 @@
           "describes": "Spotify streams on /music/wgft"
         }
       ],
-      "lastChanged": "2026-08-01",
+      "lastChanged": "2026-08-03",
       "lastSeenValue": 283088840,
       "lastSeenAt": "2026-08-01"
     },
@@ -466,7 +466,7 @@
       "match": "Alone",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 211583938,
+      "baseline": 211029596,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -484,7 +484,7 @@
           "describes": "Spotify streams on /music/alone"
         }
       ],
-      "lastChanged": "2026-08-01",
+      "lastChanged": "2026-07-29",
       "lastSeenValue": 211583938,
       "lastSeenAt": "2026-08-01"
     },
@@ -559,7 +559,7 @@
       "match": "Rizzla",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 3751595,
+      "baseline": 3742727,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -577,7 +577,7 @@
           "describes": "Spotify streams on /music/rizzla"
         }
       ],
-      "lastChanged": "2026-08-01",
+      "lastChanged": "2026-07-29",
       "lastSeenValue": 3751595,
       "lastSeenAt": "2026-08-01"
     },
@@ -652,7 +652,7 @@
       "match": "Dai Dai",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 273661432,
+      "baseline": 284868629,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -670,7 +670,7 @@
           "describes": "Spotify streams for Dai Dai"
         }
       ],
-      "lastChanged": "2026-08-01",
+      "lastChanged": "2026-08-03",
       "lastSeenValue": 273661432,
       "lastSeenAt": "2026-08-01"
     },

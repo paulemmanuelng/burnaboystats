@@ -5,12 +5,12 @@ import { spotifyFollowersDisplay } from "./spotify";
 // value beside it had already climbed past it — so the threshold is derived
 // from this string rather than written twice.
 //
-// This constant is also the stats bot's write target. It anchors here, on the
-// name, and NOT on the leaderboard's id: the board's first cell holds this
-// constant rather than a literal, so an id-anchored find/replace landed on the
-// next artist's value instead and overwrote Tyla's peak with his, twice.
-// See scripts/watched-metrics.json → spotify-peak-listeners.
-const BURNA_PEAK_LISTENERS = "58.99M";
+// This constant is also the stats bot's write target for `spotify-peak-listeners`,
+// which anchors on the NAME below rather than on the leaderboard's id — see
+// scripts/watched-metrics.json. An id-anchored find/replace matched the first
+// literal after the board's id, and because this cell holds a constant rather
+// than a literal, that was the next artist's value instead of his.
+const BURNA_PEAK_LISTENERS = "59.48M";
 
 // "Africa's Biggest" — leaderboard-style stat boxes comparing African artists.
 // Two box layouts:
