@@ -245,6 +245,14 @@ async function main() {
         // MOVED — not merely when the bot last ran. That distinction is the
         // whole point: a frozen source still runs fine every hour.
         m.lastChanged = new Date().toISOString().slice(0, 10);
+        // A value cannot change without having been read, so a write also
+        // proves the source was seen. The loop above already stamps that in
+        // the normal case; restating it here keeps `lastSeenAt >= lastChanged`
+        // true even if the two ever land in the file from separate runs — a
+        // merge once left four metrics "changed today, last seen two days ago",
+        // which would have fired the staleness alarm on healthy sources.
+        m.lastSeenValue = Math.round(r.live);
+        m.lastSeenAt = m.lastChanged;
       }
     }
     files.set(configPath, JSON.stringify(config, null, 2) + "\n");
