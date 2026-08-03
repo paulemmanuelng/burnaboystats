@@ -929,10 +929,23 @@ aa
   border-left: 1px solid var(--line);
 }
 .boardCell {
+  position: relative; /* anchors the NEW cell's cover thumb */
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: 16px 14px;
   transition: background var(--dur) var(--ease);
+}
+/* NEW cells name the song that did it — via its cover, tucked in the corner
+   the text never reaches. */
+.boardCover {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(62, 209, 127, 0.4);
+  object-fit: cover;
 }
 .boardCell:hover { background: var(--color-accent-200); }
 /* A newly-entered No. 1 reads green — the live/positive accent. */

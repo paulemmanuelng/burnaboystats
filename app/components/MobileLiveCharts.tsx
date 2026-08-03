@@ -65,6 +65,7 @@ export default function MobileLiveCharts({
   const [open, setOpen] = useState<string | null>(null);
 
   const rows = releases.map((r) => ({
+    kind: r.kind,
     title: r.title,
     // `numberOnes` counts how many of a platform's own entries sit at No. 1 —
     // a subset of `entries`, never a separate pool. Adding them double-counts.
@@ -168,7 +169,13 @@ export default function MobileLiveCharts({
                     style={{ backgroundImage: `url(${spotifyImage(coverFor(r.title) ?? "", 300)})` }}
                   />
                   <span className={styles.rowMain}>
-                    <span className={styles.rowTitle}>{r.title}</span>
+                    <span className={styles.rowTitle}>
+                      {r.title}
+                      {/* Albums sit in the same list as songs — the desktop
+                          page separates them into sections, and this tag is
+                          that distinction at phone size. */}
+                      {r.kind === "album" && <span className={styles.kindTag}>Album</span>}
+                    </span>
                     <span className={styles.rowMeta}>
                       {r.total} {r.total === 1 ? "chart" : "charts"}
                       {r.no1 > 0 && <span className={styles.rowNo1}> · {r.no1} at No. 1</span>}

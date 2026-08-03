@@ -1,5 +1,5 @@
 import { updates } from "../data/updates";
-import { CHART_COUNTRIES } from "../data/charts";
+import { allChartItems, CHART_COUNTRIES } from "../data/charts";
 
 /**
  * Which countries the updates feed reports *arriving* at No. 1 recently.
@@ -17,6 +17,9 @@ const ageInDays = (date: string) =>
   (Date.now() - new Date(`${date}T12:00:00Z`).getTime()) / 86_400_000;
 
 const countryNames = Object.values(CHART_COUNTRIES).map((c) => c.name);
+// Every release title the chart data knows, for reading WHICH song an update
+// reported — the feed writes titles exactly as charts.ts does.
+const knownTitles = allChartItems.map((r) => r.title);
 
 const recentUpdates = updates.filter(
   (u) =>
@@ -29,6 +32,20 @@ const recentText = recentUpdates.map((u) => u.text).join(" ");
 
 /** True when this country is one the feed just reported topping. */
 export const isRecentNumberOne = (countryName: string) => recentText.includes(countryName);
+
+/**
+ * WHICH release the feed reported topping that country — the same update that
+ * makes a cell NEW names the song, so the cell can carry its cover. Longest
+ * title wins when several match, so "Last Last" never loses to a title that
+ * happens to be a substring of the update's prose.
+ */
+export const recentNumberOneTitle = (countryName: string): string | undefined => {
+  const update = recentUpdates.find((u) => u.text.includes(countryName));
+  if (!update) return undefined;
+  return knownTitles
+    .filter((t) => update.text.includes(t))
+    .sort((a, b) => b.length - a.length)[0];
+};
 
 /** How fresh that news is, in days — Infinity when there is none. */
 export const newestArrivalAge = recentUpdates.length

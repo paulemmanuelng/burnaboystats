@@ -236,6 +236,19 @@
   line-height: 1.05;
   text-transform: uppercase;
 }
+.kindTag {
+  margin-left: 8px;
+  vertical-align: 2px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 7px;
+}
 .rowMeta {
   display: block;
   font-family: var(--font-mono), monospace;

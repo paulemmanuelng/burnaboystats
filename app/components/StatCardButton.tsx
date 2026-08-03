@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./statCardButton.module.css";
 import { track } from "../lib/analytics";
 import { useFocusTrap } from "../lib/useFocusTrap";
+import { BURNA_PORTRAIT } from "../lib/artistImages";
 
 /**
  * The design's "Make a stat card" control: a quiet icon button (or a block
@@ -120,6 +121,13 @@ export default function StatCardButton({
             </div>
             <div className={styles.body}>
               <div className={styles.card}>
+                {/* The portrait, dissolved into the card's right side — the
+                    same treatment as the downloadable cards, but in browser
+                    CSS: a real mask does the left fade, and the scrim melts
+                    its foot into the gold where the number sits. */}
+                {/* eslint-disable-next-line @next/next/no-img-element -- decorative, CDN-sized */}
+                <img className={styles.cardPhoto} src={BURNA_PORTRAIT} alt="" loading="lazy" />
+                <div className={styles.cardPhotoScrim} aria-hidden="true" />
                 <div className={styles.cardBrand}>Burnaboystats · {cardDate}</div>
                 <div className={styles.cardFoot}>
                   <div className={styles.cardValue}>{value}</div>

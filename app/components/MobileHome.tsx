@@ -3,10 +3,12 @@ import GlobeTeaser from "./GlobeTeaser";
 import styles from "./mobileHome.module.css";
 import { liveHeadline } from "../lib/liveHeadline";
 import { spotifyImage } from "../lib/spotifyImage";
+import { coverFor } from "../lib/covers";
 import { sameTitle } from "../lib/titleKey";
 import { numberWord } from "../lib/homeData";
 import {
   isRecentNumberOne,
+  recentNumberOneTitle,
   recentArrivals,
   arrivalWindowPhrase,
   changedSentence,
@@ -55,6 +57,11 @@ for (const release of allChartItems) {
 
 const allCells = [...numberOneCountries].reverse().map((code) => {
   const meta = CHART_COUNTRIES[code];
+  const isNew = isRecentNumberOne(meta.name);
+  // NEW cells carry the cover of the song that did it — the update naming the
+  // country names the song too. Shared derivation with the desktop board.
+  const title = isNew ? recentNumberOneTitle(meta.name) : undefined;
+  const art = title ? coverFor(title) : undefined;
   return {
     code,
     flag: meta.flag,
@@ -62,7 +69,9 @@ const allCells = [...numberOneCountries].reverse().map((code) => {
     // The body string carries a parenthetical qualifier on the airplay
     // exceptions; the board wants the body's name alone.
     chart: meta.body.replace(/\s*\(.*\)$/, ""),
-    isNew: isRecentNumberOne(meta.name),
+    isNew,
+    cover: art ? spotifyImage(art, 300) : undefined,
+    coverTitle: title,
   };
 });
 
@@ -222,6 +231,17 @@ export default function MobileHome() {
               </div>
               <div className={styles.boardName}>{c.name}</div>
               <div className={styles.boardChart}>{c.chart}</div>
+              {c.cover && (
+                // eslint-disable-next-line @next/next/no-img-element -- 24px thumb, CDN-sized
+                <img
+                  className={styles.boardCover}
+                  src={c.cover}
+                  alt={`${c.coverTitle} cover`}
+                  loading="lazy"
+                  width={24}
+                  height={24}
+                />
+              )}
             </div>
           ))}
         </div>

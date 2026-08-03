@@ -92,16 +92,46 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
             opacity: 0.9,
           }}
         />
+        {/* The dissolve starts BEFORE the photo's left edge — a scrim that
+            begins exactly at the edge left a hard vertical seam where the
+            portrait's bright forehead met the card's dark column. */}
+        <div
+          style={{
+            position: "absolute",
+            right: photoW * 0.55,
+            top: 0,
+            width: photoW * 0.65,
+            height: size.height,
+            display: "flex",
+            background:
+              "linear-gradient(90deg, #0C0A09 0%, #0C0A09 30%, rgba(12,10,9,0.9) 55%, rgba(12,10,9,0) 100%)",
+          }}
+        />
+        {/* The photo's own studio backdrop is light grey; unscrimmed it glared
+            against the card's border at the top-right and down the right edge.
+            A top wash and a right-edge vignette melt it into the face. */}
         <div
           style={{
             position: "absolute",
             right: 0,
             top: 0,
             width: photoW,
+            height: Math.round(size.height * 0.3),
+            display: "flex",
+            background:
+              "linear-gradient(180deg, rgba(12,10,9,0.85) 0%, rgba(12,10,9,0.35) 55%, rgba(12,10,9,0) 100%)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            right: 0,
+            top: 0,
+            width: Math.round(photoW * 0.45),
             height: size.height,
             display: "flex",
             background:
-              "linear-gradient(90deg, #0C0A09 0%, rgba(12,10,9,0.92) 22%, rgba(12,10,9,0.45) 58%, rgba(12,10,9,0.15) 100%)",
+              "linear-gradient(270deg, rgba(12,10,9,0.62) 0%, rgba(12,10,9,0.2) 55%, rgba(12,10,9,0) 100%)",
           }}
         />
         {/* A second wash up from the base, so the number never sits on a face. */}

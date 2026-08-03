@@ -80,7 +80,14 @@ export default function MobileCerts({
   const matching = releases
     .filter((r) => !tier || r.certs.some((c) => c.level === tier))
     .slice()
-    .sort((a, b) => b.certs.length - a.certs.length);
+    // Albums lead, then the songs — each block running most-certified to
+    // least. The blocks aren't labelled; the ALBUM tag on each album row is
+    // what carries the split.
+    .sort((a, b) => {
+      const aAlbum = albumTitles.has(titleKey(a.title)) ? 0 : 1;
+      const bAlbum = albumTitles.has(titleKey(b.title)) ? 0 : 1;
+      return aAlbum - bAlbum || b.certs.length - a.certs.length;
+    });
   const rows = expanded ? matching : matching.slice(0, ROWS_SHOWN);
   const hidden = matching.length - rows.length;
 
