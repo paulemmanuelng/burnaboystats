@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-08-03",
     category: "Certifications",
+    text: "Platinum at home: “WGFT”, the Gunna collaboration, is certified Platinum in Nigeria by TurnTable (TCSN) for 100,000 units — its third country after New Zealand and the UK, and certification No. 222 worldwide.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-08-03",
+    category: "Certifications",
     text: "Platinum in France: “Dai Dai” is certified Single Platine by SNEP, France's official body — 30 million equivalent streams for the Shakira collaboration, doubling the Gold it earned three weeks ago.",
     href: "/certifications",
   },

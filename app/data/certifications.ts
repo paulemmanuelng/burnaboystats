@@ -302,6 +302,10 @@ export const features: Release[] = [
   ] },
   { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2025, certs: [
     { c: "NZ", level: "Platinum" }, { c: "UK", level: "Gold" },
+    // TCSN (TurnTable) Platinum, 100,000 units — via the song's certification
+    // table sourced to TCSN's database. No announcement date published, so it
+    // sits here and not in the dated log.
+    { c: "NG", level: "Platinum" },
   ] },
   { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", year: 2025, certs: [
     { c: "FR", level: "Gold" },

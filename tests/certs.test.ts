@@ -51,7 +51,7 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(221);
+    expect(totalAwards()).toBe(222); // 222nd: WGFT NG Platinum (TCSN), added 3 Aug 2026
     expect(countryCount).toBe(25);
     expect(certifiedReleaseCount).toBe(81);
   });
