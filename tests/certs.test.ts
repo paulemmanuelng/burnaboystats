@@ -64,8 +64,9 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 has the published count of 43 certifications", () => {
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(43);
+  it("2026 has the published count of 44 certifications", () => {
+    // 44th: “Dai Dai” Single Platine from SNEP, 3 Aug 2026 (upgrade from Gold).
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(44);
   });
 
   it("2025 has the published count of 29 certifications", () => {

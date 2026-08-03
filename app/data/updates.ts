@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-03",
+    category: "Certifications",
+    text: "Platinum in France: “Dai Dai” is certified Single Platine by SNEP, France's official body — 30 million equivalent streams for the Shakira collaboration, doubling the Gold it earned three weeks ago.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-08-03",
     category: "Charts",
     text: "“Dai Dai” tops Norway's official singles chart — Burna Boy's 25th country No. 1 with the song, and his 44th chart-topping placement across 60 countries. It also reaches new peaks of No. 3 in Ireland, No. 6 in Finland, No. 10 in Australia and No. 13 in New Zealand.",
     href: "/records/charts",
