@@ -70,11 +70,17 @@
   --cyan: #8fe3f0;    /* Diamond tier · Top 10 peaks */
   --silver: #dfe2e8;  /* Platinum tier · Top 40 peaks */
   --green: #3ed17f;   /* live / positive delta */
-  --red: #c0392b;     /* ambient background wash only */
+  --red: #c0392b;     /* ambient background wash only — NEVER for text */
+  --red-ink: #e0796d; /* negative deltas and "sold" labels: the readable red.
+                         The wash red measured 3.64:1 as 10px text on the
+                         live-charts ▼ markers; this is the same red the cars
+                         page already used for its sold tags, at 6.4:1. */
 
-  /* Smallest meta labels. 4.6:1 on --bg — the AA floor. It was #6b645c at
-     3.4:1 during design, which failed; do not darken it again. */
-  --dim: #7c7c85;
+  /* Smallest meta labels. It was #6b645c at 3.4:1 during design, which
+     failed; do not darken it. 4.7:1 on --bg — but these labels also sit on
+     the lighter card backgrounds, where #7c7c85 slipped just under the 4.5
+     floor, so it is one step brighter than the handoff's value. */
+  --dim: #85858e;
 
   --radius-md: 6px;
   --radius-lg: 6px;
@@ -124,7 +130,20 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Anchored jumps land BELOW the sticky chrome, not underneath it. Every
+   sticky bar on the site — the desktop navbar and the mobile back bars — is
+   69px tall; 88px is that plus breathing room, the clearance the live-charts
+   sections had already worked out locally. scroll-margin applies to #hash
+   jumps, scrollIntoView and focus-driven scrolling alike, and costs nothing
+   the rest of the time. */
+[id] {
+  scroll-margin-top: calc(88px + env(safe-area-inset-top, 0px));
+}
+
 body {
+  /* Landscape on a notched phone: flow content stays clear of the notch. */
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -133,7 +152,12 @@ body {
   font-family: var(--font-geist-sans), system-ui, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
-  overflow-x: hidden;
+  /* clip, not hidden: hidden quietly makes <body> a scroll container, and
+     every scrollIntoView / #hash jump then does its math against that
+     scroller instead of the page — which threw away scroll-margin-top and
+     landed anchor jumps underneath the sticky bars. clip stops sideways
+     overflow just the same, without creating a scroller. */
+  overflow-x: clip;
 }
 
 /* Cinematic atmosphere behind everything: a warm top glow + deep-red base
@@ -298,6 +322,8 @@ a {
 .navbar {
   position: sticky;
   top: 0;
+  /* viewport-fit=cover: keep the nav's content out of the status bar. */
+  padding-top: env(safe-area-inset-top, 0px);
   z-index: 50;
   /* background-color is separate from the scrim gradient so it can animate in */
   background-color: transparent;
@@ -1446,6 +1472,12 @@ a[class*="__certRow"]:focus-visible,
    in the design but must not be nameless to a screen reader. */
 .visuallyHidden {
   position: absolute;
+  /* Pinned. An absolutely-positioned element with no offsets keeps its
+     static-flow x — so a hidden label inside a horizontally-scrolled rail
+     parked itself past the viewport edge and stretched the page's scroll
+     width by 28px at 320px. Where it sits is irrelevant to a screen reader;
+     that it never widens the page is not. */
+  left: 0;
   width: 1px;
   height: 1px;
   margin: -1px;

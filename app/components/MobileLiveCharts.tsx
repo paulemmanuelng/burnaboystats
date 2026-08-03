@@ -44,7 +44,7 @@ function movement(e: { movement?: number | null; status?: "new" | "re" }) {
   if (e.movement === 0) return { label: "–", ink: "var(--text-muted)" };
   return e.movement > 0
     ? { label: `▲${e.movement}`, ink: "var(--green)" }
-    : { label: `▼${Math.abs(e.movement)}`, ink: "var(--red)" };
+    : { label: `▼${Math.abs(e.movement)}`, ink: "var(--red-ink)" };
 }
 
 export default function MobileLiveCharts({

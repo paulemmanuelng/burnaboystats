@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./mobileNavSheet.module.css";
+import { useFocusTrap } from "../lib/useFocusTrap";
 import type { NavGroup } from "../lib/navGroups";
 
 /**
@@ -40,9 +41,14 @@ export default function MobileNavSheet({
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const closeRef = useRef<HTMLButtonElement>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
   // The button that opened us, so focus can return to it rather than to the
   // first match in the document — which is the desktop nav's hidden toggle.
   const openerRef = useRef<HTMLElement | null>(null);
+
+  // aria-modal promises the page behind is inert; this makes the keyboard
+  // honour that promise — without it, Tab walked out of the open sheet.
+  useFocusTrap(sheetRef, open);
 
   useEffect(() => {
     const onOpen = (e: Event) => {
@@ -78,7 +84,7 @@ export default function MobileNavSheet({
   if (!open) return null;
 
   return (
-    <div className={styles.root} role="dialog" aria-modal="true" aria-label="Site menu">
+    <div ref={sheetRef} className={styles.root} role="dialog" aria-modal="true" aria-label="Site menu">
       {/* The visible strip at the foot is part of this backdrop, which is why
           the backdrop covers the whole viewport rather than stopping at 76px. */}
       <button

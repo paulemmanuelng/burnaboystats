@@ -18,6 +18,8 @@
     /* The 30px foot is the home-indicator gap from the design; env() adds the
        real inset on devices that report one, so it is right on both. */
     padding: 8px 10px max(30px, env(safe-area-inset-bottom, 0px));
+    padding-left: calc(10px + env(safe-area-inset-left, 0px));
+    padding-right: calc(10px + env(safe-area-inset-right, 0px));
     background: rgba(12, 10, 9, 0.94);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);

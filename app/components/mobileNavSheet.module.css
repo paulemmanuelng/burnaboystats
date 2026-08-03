@@ -20,7 +20,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 14px;
+  padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
   cursor: pointer;
   animation: fade 180ms ease-out;
 }
@@ -42,6 +42,8 @@
   top: 0;
   left: 0;
   right: 0;
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
   bottom: 76px; /* the strip of page that stays visible */
   display: flex;
   flex-direction: column;
@@ -56,6 +58,9 @@
 
 .head {
   padding: 52px 18px 14px;
+  /* 52px already clears most status bars; Dynamic Island phones report
+     more, so the larger of the two wins. */
+  padding-top: max(52px, calc(14px + env(safe-area-inset-top, 0px)));
   display: flex;
   align-items: center;
   gap: 12px;

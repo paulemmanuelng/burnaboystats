@@ -69,6 +69,12 @@ export const viewport: Viewport = {
   // color-scheme property in globals.css so Safari knows this is a dark UI
   // before the stylesheet lands, rather than adjusting colours itself.
   colorScheme: "dark",
+  // The switch that makes every env(safe-area-inset-*) in the CSS real. The
+  // bottom bars shipped with those insets from day one, but without
+  // viewport-fit=cover iOS reports them all as 0 — so the iPhone home
+  // indicator sat on top of the tab bar. Cover lets the page bleed to the
+  // physical edges while the insets push the CONTENT back into the safe area.
+  viewportFit: "cover",
 };
 
 // Structured data (JSON-LD) so Google understands the site and its subject.
