@@ -1,0 +1,34 @@
+/* State D — "filter matched nothing".
+   designs/desktop/App States.dc.html, panel D.
+
+   Only the two buttons live here; the centred stack itself is AppState, which
+   this shares with not-found and the error boundary. The filter rail above is
+   the host component's and deliberately stays on screen. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 17px;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.clear {
+  border: 1px solid var(--gold);
+  background: rgba(255, 182, 39, 0.14);
+  color: var(--gold);
+}
+.clear:hover { border-color: var(--gold-bright); color: var(--gold-bright); }
+/* Drops the narrowest filter rather than clearing everything — the user
+   usually wants to keep the broad one they started from. */
+.drop {
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  color: var(--text-muted);
+}
+.drop:hover { border-color: var(--gold); color: var(--text); }

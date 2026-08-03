@@ -60,18 +60,6 @@
   letter-spacing: 0.04em;
   border: 1px solid;
 }
-/* Win: solid gold pill, dark text — high contrast, celebratory */
-.won {
-  color: #14110a;
-  border-color: var(--gold-bright);
-  background: var(--gold);
-}
-/* Nominee: clearly readable light text on a subtle fill */
-.nom {
-  color: #e7e8ec;
-  border-color: rgba(231, 232, 236, 0.34);
-  background: rgba(255, 255, 255, 0.055);
-}
 
 /* Honours & special recognitions */
 .honours { margin-top: 8px; }
@@ -80,13 +68,6 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 14px;
   margin-top: 18px;
-}
-.honourCard {
-  padding: 22px 22px;
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--gold);
-  border-radius: var(--radius-sm);
 }
 .honourTitle {
   display: block;
@@ -258,4 +239,239 @@
   font-size: 0.98rem;
   line-height: 1.6;
   color: var(--text-muted);
+}
+
+/* ══ Redesign, from designs/desktop/Records - Awards.dc.html ══
+   Values below are the design's, verbatim. */
+
+.desktopOnly { display: block; }
+@media (max-width: 900px) {
+  .desktopOnly { display: none; }
+}
+
+.wide { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { border-bottom: 1px solid var(--line); }
+.hero .wide { padding: 50px 40px 40px; }
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; flex: none; }
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 88px;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 16px 0 0;
+}
+.lede {
+  font-size: 18px;
+  line-height: 1.55;
+  max-width: 62ch;
+  margin: 18px 0 0;
+  color: #d8d8de;
+  text-wrap: pretty;
+}
+.heroActions { display: flex; gap: 10px; margin-top: 24px; }
+
+/* ── Headline strip ───────────────────────────────────────────────────── */
+.headlineBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+.headlineGrid {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.headlineCell { padding: 28px 24px 26px; border-left: 1px solid var(--line); }
+.headlineCell:first-child { border-left: none; }
+.headlineValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+/* A win reads green — the same positive accent the rest of the site uses. */
+.winInk { color: var(--green); }
+.headlineLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+
+/* ── Shared band furniture ────────────────────────────────────────────── */
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+
+/* ── Honours ──────────────────────────────────────────────────────────── */
+.honoursBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+.honoursBand .wide { padding: 40px 40px 44px; }
+/* 2px gaps over a divider-coloured bed draw the grid's seams. */
+.honourGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--line);
+}
+.honourCard { background: var(--bg); padding: 22px 20px; }
+.honourTitle { display: block; font-weight: 600; font-size: 15px; line-height: 1.3; }
+.honourOrg {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin-top: 8px;
+}
+
+/* ── FAQ ──────────────────────────────────────────────────────────────── */
+.faqBand { border-bottom: 1px solid var(--line); }
+.faqBand .wide { padding: 40px 40px 44px; }
+.faqBand .h2 { margin-bottom: 22px; }
+.faqGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+.faqItem { padding: 20px 0; border-bottom: 1px solid var(--line); }
+.faqQ {
+  margin: 0 0 8px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.faqA { margin: 0; color: #d3d3da; font-size: 15px; line-height: 1.65; }
+
+/* ── Source ───────────────────────────────────────────────────────────── */
+.sourceBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+.sourceBand .wide { padding: 30px 40px 34px; }
+.source { font-size: 13px; line-height: 1.7; margin: 0; max-width: 100ch; color: var(--text-muted); }
+.back { margin-top: 18px; }
+
+@media (max-width: 1239px) {
+  .wide, .headlineGrid { padding-inline: 32px; }
+  .h1 { font-size: 64px; }
+  .headlineGrid { grid-template-columns: repeat(3, 1fr); }
+  /* Partial last row stretches the final cell rather than leaving a phantom
+     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
+     position so it holds for any item count: last-in-a-fresh-row spans three,
+     second-in-a-row spans the two that remain. */
+  .headlineGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .headlineGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
+  .headlineCell:nth-child(3n + 1) { border-left: none; }
+  .headlineCell:nth-child(n + 4) { border-top: 1px solid var(--line); }
+  .honourGrid { grid-template-columns: 1fr 1fr; }
+  .faqGrid { grid-template-columns: 1fr; }
+}
+
+/* ── Ceremony sections (AwardExplorer) ────────────────────────────────── */
+.ceremony { border-bottom: 1px solid var(--line); }
+.ceremonyGrid {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 30px 40px 26px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 44px;
+  align-items: start;
+}
+/* The heading stays with its rows while a long list scrolls past. */
+.ceremonyHead { position: sticky; top: 86px; }
+.ceremonyName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.ceremonyPills { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.winPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(62, 209, 127, 0.45);
+  color: var(--green);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nomPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.list { border-top: 1px solid var(--line); }
+.row {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 13px 8px;
+  border-bottom: 1px solid var(--line);
+}
+.rowWon { background: rgba(62, 209, 127, 0.05); }
+.year {
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.rowMain { min-width: 0; }
+.category { display: block; font-weight: 600; font-size: 15px; }
+.work { display: block; font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+.result {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.won { color: var(--green); }
+.nom { color: var(--text-muted); }
+
+@media (max-width: 1239px) {
+  .ceremonyGrid { grid-template-columns: 1fr; gap: 18px; padding-inline: 32px; }
+  .ceremonyHead { position: static; }
+}
+.honourNote {
+  display: block;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin-top: 8px;
 }

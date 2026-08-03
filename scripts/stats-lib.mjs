@@ -265,8 +265,15 @@ export function staleMetrics(metrics, now = new Date()) {
     if (m.stalenessDays === null) continue; // explicitly opted out
     if (m.stalenessDays === undefined && STATIC_BY_NATURE.has(m.kind)) continue;
     const limit = m.stalenessDays ?? DEFAULT_STALENESS_DAYS;
-    if (!m.lastChanged) continue; // never recorded yet — nothing to judge against
-    const days = (now.getTime() - new Date(m.lastChanged).getTime()) / 86_400_000;
+    // Judge the SOURCE, not the rounded display. `lastChanged` moves only when
+    // the published figure is rewritten, which for a slow-moving catalogue
+    // metric can be many days apart while the feed is entirely healthy —
+    // that combination fired this alarm on 17 good metrics at once.
+    // `lastSeenAt` is stamped whenever the raw value differs from last run, so
+    // it goes quiet only when the source has genuinely frozen.
+    const marker = m.lastSeenAt ?? m.lastChanged;
+    if (!marker) continue; // never recorded yet — nothing to judge against
+    const days = (now.getTime() - new Date(marker).getTime()) / 86_400_000;
     if (days >= limit) out.push({ id: m.id, label: m.label, days: Math.floor(days), limit });
   }
   return out;

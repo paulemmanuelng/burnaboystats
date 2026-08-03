@@ -1,49 +1,74 @@
-.wrap {
-  min-height: 60vh;
+/* Route-level loading skeleton.
+   designs/desktop/App States.dc.html, panel C.
+
+   The skeleton MIRRORS the real page — kicker, headline, lede, a four-cell stat
+   row, then rows — so nothing jumps when data lands. Shimmer only on blocks
+   that become text; static --bg-soft for secondary lines. */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 30px 40px 34px; }
+
+@keyframes shimmer {
+  0% { background-position: -420px 0; }
+  100% { background-position: 420px 0; }
+}
+
+.block {
+  background: linear-gradient(90deg, var(--bg-soft) 8%, var(--bg-soft-2) 20%, var(--bg-soft) 34%);
+  background-size: 420px 100%;
+  animation: shimmer 1.3s linear infinite;
+}
+/* Secondary lines don't shimmer — only what becomes readable text does. */
+.still { background: var(--bg-soft); }
+
+.kickerRow { display: flex; align-items: center; gap: 16px; }
+.kicker { width: 150px; height: 12px; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  margin-left: auto;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid var(--line);
+  border-top-color: var(--gold);
+  animation: spin 0.8s linear infinite;
+}
+.headline { width: min(420px, 70%); height: 44px; margin-top: 16px; }
+.lede { width: min(560px, 90%); height: 12px; margin-top: 16px; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 26px;
+}
+.statCell { background: var(--bg); padding: 18px; }
+.statValue { width: 64px; height: 30px; }
+.statLabel { width: 88px; height: 9px; margin-top: 12px; }
+
+.rows { margin-top: 22px; }
+.row {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  gap: 14px;
+  padding: 13px 0;
+  border-top: 1px solid var(--line);
 }
+.rowRank { width: 22px; height: 9px; flex: none; }
+.rowMain { flex: 1; }
+.rowTitle { width: 46%; height: 11px; }
+.rowSub { width: 28%; height: 8px; margin-top: 7px; }
+.rowValue { width: 58px; height: 14px; flex: none; }
 
-/* Five gold bars pulsing like an equalizer — matches the site's music motifs. */
-.bars {
-  display: flex;
-  align-items: flex-end;
-  gap: 6px;
-  height: 44px;
-}
-.bars span {
-  width: 7px;
-  height: 100%;
-  border-radius: 3px;
-  background: var(--gold);
-  transform-origin: 50% 100%;
-  animation: loadBars 1s ease-in-out infinite;
-}
-.bars span:nth-child(1) { animation-delay: -0.2s; }
-.bars span:nth-child(2) { animation-delay: -0.6s; }
-.bars span:nth-child(3) { animation-delay: -0.4s; }
-.bars span:nth-child(4) { animation-delay: -0.8s; }
-.bars span:nth-child(5) { animation-delay: -0.3s; }
-
-@keyframes loadBars {
-  0%, 100% { transform: scaleY(0.3); opacity: 0.5; }
-  50% { transform: scaleY(1); opacity: 1; }
-}
-
-.label {
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-}
-
+/* Both the shimmer and the header spinner hold still for reduced motion. */
 @media (prefers-reduced-motion: reduce) {
-  .bars span {
-    animation: none;
-    transform: scaleY(0.6);
-  }
+  .block { animation: none; background: var(--bg-soft); }
+  .spinner { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .wrap { padding: 22px 18px 28px; }
+  .headline { height: 34px; }
+  .stats { grid-template-columns: 1fr 1fr; }
 }

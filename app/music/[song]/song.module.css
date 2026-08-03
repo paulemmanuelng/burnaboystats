@@ -1,218 +1,458 @@
-.crumbs {
-  margin: 24px 0 8px;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.8rem;
-}
-.crumbs a {
-  color: var(--text-muted);
-}
-.crumbs a:hover {
-  color: var(--gold);
-}
+/* Song page — designs/desktop/Song.dc.html, values verbatim.
 
-.hero {
+   One design covers all 14 songs, via a cover picker at the top. Mobile is
+   screen 26; the shape holds at both widths (cover over copy, then the same
+   sections), so the sizes step down rather than a second layout being drawn. */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+.crumbs {
+  padding: 16px 40px 0;
   display: flex;
-  gap: 32px;
   align-items: center;
-  margin: 8px 0 28px;
+  gap: 9px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
 }
-.cover {
-  width: 220px;
-  height: 220px;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-  flex-shrink: 0;
+.crumbs a { color: var(--text-muted); }
+.crumbs a:hover { color: var(--gold); }
+.crumbCurrent { color: var(--text); }
+
+/* ── Song picker ────────────────────────────────────────────────────────── */
+.pickerPad { padding: 18px 40px 0; }
+.pickerLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
 }
-.heroText {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
+/* Real links, not a client-side switcher: each song is its own route, so the
+   picker doubles as internal linking and works without JS. */
+.picker { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+.pick {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
+.pick:hover { border-color: var(--gold); color: var(--text); }
+.pickOn { border-color: var(--gold); background: rgba(255, 182, 39, 0.13); color: var(--gold); }
+.pickCover { width: 30px; height: 30px; border-radius: 999px; object-fit: cover; flex: none; }
+.pickYear { font-family: var(--font-mono), monospace; font-size: 10.5px; opacity: 0.65; padding-right: 6px; }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.heroPad { padding: 30px 40px 0; }
+.heroCard { position: relative; overflow: hidden; border: 1px solid var(--line); background: var(--bg-soft); }
+/* The cover itself, blurred, is the backdrop — so every song page takes its
+   colour from its own artwork without shipping a second image. */
+.heroBackdrop {
+  position: absolute;
+  inset: -14%;
+  width: 128%;
+  height: 128%;
+  object-fit: cover;
+  filter: blur(52px) saturate(1.3);
+  opacity: 0.3;
+}
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgba(12, 10, 9, 0.94) 0%, rgba(12, 10, 9, 0.78) 52%, rgba(12, 10, 9, 0.6) 100%);
+}
+.heroGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 236px 1fr;
+  gap: 38px;
+  padding: 36px 38px;
+  align-items: center;
+}
+.cover { width: 236px; height: 236px; object-fit: cover; box-shadow: 0 28px 70px rgba(0, 0, 0, 0.62); }
 .kicker {
   font-family: var(--font-mono), monospace;
-  font-size: 0.74rem;
-  letter-spacing: 0.14em;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .title {
   font-family: var(--font-anton), sans-serif;
-  font-size: clamp(2.6rem, 8vw, 4.4rem);
-  line-height: 1;
-  margin: 8px 0 6px;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 68px;
+  line-height: 0.94;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 12px 0 0;
 }
+/* A long title would otherwise push the hero out of shape. */
+.titleLong { font-size: 48px; }
 .credit {
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  color: #cfc7bb;
+  margin: 12px 0 0;
+}
+.tagline { font-size: 18px; line-height: 1.5; color: var(--gold); margin: 14px 0 0; max-width: 44ch; }
+.heroActions { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+/* Said plainly rather than left as an empty page: some songs carry the history
+   and nothing else, and that's a fact about the song, not a gap in the data. */
+.storyOnly {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.blurb { font-size: 16.5px; line-height: 1.75; color: #cfc7bb; margin: 26px 0 0; max-width: 82ch; text-wrap: pretty; }
+
+/* ── Sections ───────────────────────────────────────────────────────────── */
+.sectionPad { padding: 44px 40px 0; }
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--gold);
   margin: 0;
 }
-.tagline {
-  color: var(--text);
-  font-size: 1.05rem;
-  line-height: 1.5;
-  margin: 12px 0 18px;
-  max-width: 520px;
+.sectionHead { display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.sectionMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 6px;
 }
+.legend {
+  margin-left: auto;
+  display: flex;
+  gap: 14px;
+  margin-bottom: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.legendItem { display: flex; align-items: center; gap: 6px; }
+.legendDot { width: 10px; height: 10px; border-radius: 999px; display: block; }
+.dotOne { background: rgba(255, 182, 39, 0.22); border: 1px solid var(--gold); }
+.dotTen { border: 1px solid rgba(143, 227, 240, 0.55); }
+.dotForty { border: 1px solid rgba(223, 226, 232, 0.45); }
 
-.blurb {
-  max-width: 760px;
-  line-height: 1.7;
-  color: var(--text-muted);
-  margin: 0 0 12px;
-}
-
-.section {
-  margin: 40px 0;
-}
-.numbers {
-  margin: 36px 0;
-}
-.secTitle {
-  margin: 0 0 18px;
-}
-
+/* ── By the numbers ─────────────────────────────────────────────────────── */
+/* Seams are drawn per card rather than by showing a --line bed through the
+   gaps: a short last row would otherwise leave a pale phantom block, and
+   spanning the final card to fix it breaks at the mobile breakpoint, where the
+   column count drops and an oversized span invents extra columns. */
 .numGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 22px;
 }
 .numCard {
+  background: var(--bg);
+  box-shadow: 0 0 0 1px var(--line);
+  padding: 22px 22px 20px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 16px 18px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--bg-soft);
 }
+/* The first card is the song's headline figure, so it takes the tint. */
+.numCardLead { background: rgba(255, 182, 39, 0.05); }
 .numValue {
   font-family: var(--font-anton), sans-serif;
-  font-size: 1.9rem;
-  line-height: 1.05;
-  color: var(--gold-bright);
-  /* Last-resort guard: anything longer than the tiers below breaks rather than
-     spilling outside the card. */
-  overflow-wrap: break-word;
+  font-weight: 400;
+  font-size: 46px;
+  line-height: 0.94;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
-/* A single word over ~9 characters is wider than the 150px minimum grid column
-   at full size. Step it down so it fits whole instead of breaking mid-word. */
-.numValueLong {
-  font-size: 1.25rem;
+.numValueLead { color: var(--gold); }
+/* "Diamond in France" is a value too — it just isn't a number. */
+.numValueLong { font-size: 30px; }
+.numLabel { font-size: 13px; line-height: 1.6; color: #cfc7bb; margin-top: 11px; }
+
+/* State E — a figure the record doesn't hold.
+   designs/desktop/App States.dc.html, panel E.
+
+   An em dash means *not reported*, never zero: a zero is a claim, a dash is an
+   absence. The dim ink and the badge together say which, so nobody has to
+   wonder whether the site is broken. */
+.numValueMissing { color: var(--dim); }
+.numHead { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; }
+.numBadge {
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--dim);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
-.numLabel {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  line-height: 1.35;
+.numNote {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #cfc7bb;
+  margin: 16px 0 0;
+  max-width: 74ch;
 }
 
-/* Chart-peak chips — same visual language as /records/charts. */
-.peaks,
-.certs {
-  display: flex;
-  flex-wrap: wrap;
+/* ── Peak + certification pills ─────────────────────────────────────────── */
+.pills { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+.peak {
+  display: inline-flex;
+  align-items: center;
   gap: 8px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
 }
-.peak,
+/* Peak bands carry meaning and are never recoloured: No. 1 gold, Top 10 cyan,
+   Top 40 silver, beyond muted. */
+.one { border-color: var(--gold); background: rgba(255, 182, 39, 0.22); color: var(--gold); }
+.top10 { border-color: rgba(143, 227, 240, 0.55); color: var(--cyan); }
+.top40 { border-color: rgba(223, 226, 232, 0.45); color: var(--silver); }
+.rest { border-color: var(--border); color: var(--text-muted); }
+.flag { font-size: 15px; line-height: 1; }
+.peakName { font-family: var(--font-geist-sans), system-ui, sans-serif; font-weight: 500; font-size: 12.5px; opacity: 0.75; }
+
 .cert {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 12px;
+  gap: 9px;
+  padding: 9px 15px;
   border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border: 1px solid var(--line);
-}
-.flag {
-  font-size: 1rem;
-}
-/* Peak tiers */
-.one {
-  background: rgba(255, 182, 39, 0.16);
-  border-color: var(--gold-dim);
-  color: var(--gold-bright);
-}
-.top10 {
-  background: rgba(255, 182, 39, 0.08);
-  color: #e7c98a;
-}
-.top40 {
-  color: var(--text);
-}
-.rest {
+  border: 1px solid var(--border);
   color: var(--text-muted);
-}
-/* Cert tiers */
-.cert .certCountry {
-  color: var(--text-muted);
-  font-weight: 400;
-  margin-left: 2px;
-}
-.diamond {
-  background: rgba(143, 227, 240, 0.12);
-  border-color: rgba(143, 227, 240, 0.4);
-  color: #8fe3f0;
-}
-.platinum {
-  background: rgba(223, 226, 232, 0.1);
-  border-color: rgba(223, 226, 232, 0.35);
-  color: #dfe2e8;
-}
-.gold {
-  background: rgba(255, 182, 39, 0.1);
-  border-color: var(--gold-dim);
-  color: var(--gold);
-}
-.silver {
-  color: #b8bcc4;
-}
-
-.source {
-  margin: 16px 0 0;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-.source a {
-  color: var(--gold);
-}
-
-/* FAQ — readable Geist, FAQPage-schema-backed. */
-.faqList {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 760px;
-}
-.faqItem {
-  padding: 18px 20px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--bg-soft);
-}
-.faqQ {
-  margin: 0 0 8px;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: 1.1rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
   font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: 0;
-  color: var(--text);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
-.faqA {
+.diamond { border-color: rgba(143, 227, 240, 0.5); background: rgba(143, 227, 240, 0.13); color: var(--cyan); }
+.platinum { border-color: rgba(223, 226, 232, 0.45); color: var(--silver); }
+.gold { border-color: var(--gold); background: rgba(255, 182, 39, 0.13); color: var(--gold); }
+.silver { border-color: rgba(184, 188, 196, 0.4); color: #b8bcc4; }
+.certCountry { font-family: var(--font-geist-sans), system-ui, sans-serif; font-weight: 500; opacity: 0.75; }
+
+.source { font-size: 13px; line-height: 1.65; color: var(--text-muted); margin: 18px 0 0; max-width: 78ch; }
+.source a { color: var(--gold); }
+
+/* ── FAQ ────────────────────────────────────────────────────────────────── */
+.faqList { margin-top: 22px; border-top: 1px solid var(--line); }
+.faqItem {
+  display: grid;
+  grid-template-columns: 0.85fr 1.6fr;
+  gap: 40px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+/* Sentence case in the body face — a question is prose, not display type. */
+.faqQ {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 16px;
+  line-height: 1.35;
+  letter-spacing: 0;
   margin: 0;
-  font-size: 0.98rem;
-  line-height: 1.6;
-  color: var(--text-muted);
+}
+.faqA { font-size: 14.5px; line-height: 1.7; color: #cfc7bb; margin: 0; }
+
+.onward { display: flex; gap: 10px; flex-wrap: wrap; padding: 44px 40px 76px; }
+
+@media (max-width: 1239px) {
+  .title { font-size: 49px; }
+  .titleLong { font-size: 35px; }
+  .heroGrid { grid-template-columns: 180px 1fr; gap: 26px; padding: 26px 28px; }
+  .cover { width: 180px; height: 180px; }
+  .faqItem { grid-template-columns: 1fr; gap: 10px; }
 }
 
-@media (max-width: 560px) {
-  .hero {
-    gap: 18px;
+/* Mobile is screen 26. Same shape — cover, copy, then the same sections — at
+   phone sizes, with the cover stacked over the text rather than beside it. */
+/* Screen 26's chrome is mobile-only — declared before the mobile block so the
+   block's own display values win on cascade order. */
+.mobileBackBar,
+.mobileActionBar { display: none; }
+
+@media (max-width: 900px) {
+  /* Screen 26 has no FAQ. */
+  .desktopOnly { display: none; }
+  .wrap { padding: 0 18px; }
+  .crumbs { padding: 12px 18px 0; }
+  .pickerPad { padding: 14px 18px 0; }
+  .heroPad { padding: 18px 18px 0; }
+  .sectionPad { padding: 30px 18px 0; }
+  /* Screen 26 centres the hero over its own blurred cover, rather than the
+     desktop's cover-beside-copy split. */
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 22px;
+    justify-items: center;
+    text-align: center;
   }
-  .cover {
-    width: 40vw;
-    height: 40vw;
+  .cover { width: 164px; height: 164px; }
+  .tagline { max-width: none; }
+  /* The Spotify button moves to the action bar on this screen. `.btn` is a
+     global class, so it needs :global() — a bare .btn here compiles to a
+     module-scoped name that matches nothing. */
+  .heroActions { justify-content: center; }
+  .heroActions :global(.btn) { display: none; }
+  .title { font-size: 38px; }
+  .titleLong { font-size: 30px; }
+  .tagline { font-size: 15px; }
+  .blurb { font-size: 14.5px; margin-top: 18px; }
+  .h2 { font-size: 24px; }
+  .numGrid { grid-template-columns: 1fr 1fr; }
+  .numValue { font-size: 32px; }
+  .numValueLong { font-size: 22px; }
+  .legend { margin-left: 0; width: 100%; }
+  .onward { padding: 28px 18px 76px; }
+
+  /* Screen 26's pills are flag + figure only, so they sit on a regular grid
+     instead of ragging by name length. Clipped rather than display:none — a
+     screen reader still reads "South Africa", it just isn't painted. */
+  .peakName,
+  .certCountry {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .peak,
+  .cert { justify-content: center; }
+
+  /* Screen 26's own chrome: a back bar in place of the crumbs, and a sticky
+     action bar carrying the Spotify link the hero gives up. */
+  .crumbs { display: none; }
+  .mobileBackBar {
+    position: sticky;
+    top: 0;
+    z-index: 45;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: rgba(12, 10, 9, 0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .mobileBackBtn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    color: var(--text);
+    flex: none;
+  }
+  .mobileBackLabel {
+    font-family: var(--font-mono), monospace;
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .mobileBackYear {
+    margin-left: auto;
+    font-family: var(--font-mono), monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    flex: none;
+  }
+  .mobileActionBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 22px));
+    background: rgba(12, 10, 9, 0.94);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+  }
+  .mobilePrimary {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    border-radius: 999px;
+    background: var(--gold);
+    color: var(--bg);
+    font-family: var(--font-mono), monospace;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
+  }
+  .mobileShare {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    color: var(--text);
+    flex: none;
   }
 }
+

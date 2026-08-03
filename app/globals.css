@@ -62,6 +62,56 @@
   --dur-slow: 0.3s;
 
   --max-width: 1280px;
+
+  /* ── Redesign additions ────────────────────────────────────────────────
+     Data-meaning accents. Gold means "headline" or "his"; these carry
+     meaning of their own and must never be recoloured to gold:
+     certification tiers, chart peak bands, live deltas. */
+  --cyan: #8fe3f0;    /* Diamond tier · Top 10 peaks */
+  --silver: #dfe2e8;  /* Platinum tier · Top 40 peaks */
+  --green: #3ed17f;   /* live / positive delta */
+  --red: #c0392b;     /* ambient background wash only */
+
+  /* Smallest meta labels. 4.6:1 on --bg — the AA floor. It was #6b645c at
+     3.4:1 during design, which failed; do not darken it again. */
+  --dim: #7c7c85;
+
+  --radius-md: 6px;
+  --radius-lg: 6px;
+
+  /* ── Design-spec aliases ───────────────────────────────────────────────
+     The handoff names these tokens differently from this repo, with
+     identical values. Pasting its block verbatim would orphan 199 uses of
+     var(--gold), 192 of var(--text-muted) and 110 of var(--line), so the
+     repo names stay canonical and the spec names alias onto them. Both
+     work; new CSS written against the spec drops in unchanged. */
+  --color-bg: var(--bg);
+  --color-surface: var(--bg-soft);
+  --color-surface-2: var(--bg-soft-2);
+  --color-divider: var(--line);
+  --color-text: var(--text);
+  --muted: var(--text-muted);
+  --color-accent: var(--gold);
+  --color-accent-2: var(--grad-b);
+  /* Accent washes and the mid-grey the design uses for quiet icon controls.
+     The design's dark theme resolves accent-700/800 back to the base gold —
+     the numbered ramp comes from a light-theme base and is flattened here. */
+  --color-accent-100: rgba(255, 182, 39, 0.07);
+  --color-accent-200: rgba(255, 182, 39, 0.13);
+  --color-accent-700: var(--gold);
+  --color-neutral-600: #9b9ba3;
+  --font-heading: var(--font-anton);
+  --font-body: var(--font-geist-sans);
+}
+
+/* Figures line up in columns only if the numerals are tabular. The site is
+   almost entirely numbers in tables and stat grids. */
+.tabular,
+table,
+[class*="stat"],
+[class*="Num"],
+[class*="num"] {
+  font-variant-numeric: tabular-nums;
 }
 
 * {
@@ -170,15 +220,19 @@ a {
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  height: 52px;
-  padding: 0 30px;
+  gap: 6px;
+  justify-content: center;
+  height: 46px;
+  padding: 0 26px;
   /* Pill, not rectangle — the single clearest shape cue separating current
      editorial/brutalist music design from the boxy 2021-era look. */
   border-radius: 999px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 0.82rem;
+  /* Space Mono 700 / 13px / .08em, per the design's own <helmet> override.
+     The base design-system sheet sets Anton here; every design file overrides
+     it to mono, so mono is the spec. */
+  font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   border: 1px solid transparent;
@@ -189,8 +243,10 @@ a {
 .btnPrimary {
   /* Solid fill declared first so the label never sits over a gradient if the
      gradient fails to paint. */
-  background-color: var(--gold-bright);
-  background-image: linear-gradient(135deg, var(--gold-bright), var(--gold));
+  /* Flat gold. The design fills this with --color-accent; the gradient here
+     was ours, and it is what the label was being composited against. */
+  background-color: var(--gold);
+  background-image: none;
   /* Pure black, pinned twice: WebKit resolves -webkit-text-fill-color ahead of
      `color`. This label was reported rendering orange-on-gold on an iPhone
      while measuring 10.6:1 in every desktop browser — no rule in this codebase
@@ -221,6 +277,10 @@ a {
      for a control's boundary, so the button didn't read as a button until
      :hover turned the border gold. Touch devices have no hover, so the
      resting state has to carry it on its own. */
+  /* The design's <helmet> overrides the base sheet here: a 0.42-alpha border
+     over a 6% white fill. That clears the 3:1 WCAG floor for a control
+     boundary, which the 0.12 hairline did not — so this resolves the contrast
+     question rather than trading it off. */
   border-color: rgba(245, 244, 240, 0.42);
   color: var(--text);
   background: rgba(255, 255, 255, 0.06);
@@ -229,6 +289,7 @@ a {
   transform: translateY(-3px);
   border-color: var(--gold);
   color: var(--gold);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 /* -----------------------------------------------------------
@@ -259,17 +320,36 @@ a {
   align-items: center;
   justify-content: space-between;
   height: 68px;
+  /* The design's header runs to 1360/40, wider than the site container. With
+     nine links, the search trigger and the Stat card button in one row, the
+     1280/24 container was ~60px short and the bar wrapped to two lines. */
+  max-width: 1360px;
+  padding-inline: 40px;
+  white-space: nowrap;
 }
-/* Right-hand group: search trigger + hamburger + nav links. */
+/* Right-hand group: search trigger + hamburger + nav links.
+   The links are ordered first and push everything else to the far right, so
+   the bar reads wordmark → sections → search → Stat card, as the design has
+   it. Doing it in CSS keeps the toggle button ahead of the menu it controls
+   in the DOM, which is what assistive tech wants. */
 .navRight {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
+  flex: 1;
+  justify-content: flex-end;
 }
 @media (max-width: 640px) {
   .navRight {
     gap: 10px;
   }
+}
+/* Between 1240 and 1360 the bar loses its outer padding and closes the link
+   gaps rather than wrapping — the last step before the hamburger takes over. */
+@media (max-width: 1360px) {
+  .navInner { padding-inline: 32px; }
+  .navLinks { gap: 12px; }
+  .navRight { gap: 12px; }
 }
 .brand {
   font-family: var(--font-anton), sans-serif;
@@ -284,13 +364,23 @@ a {
 }
 .navLinks {
   display: flex;
-  gap: 26px;
+  gap: 17px;
   list-style: none;
+  order: -1;
+  margin-right: auto;
+  margin-left: 26px;
 }
+/* Nav links are standalone targets, so WCAG 2.2's 24px minimum applies. The
+   bar is 68px tall — growing the link box only enlarges the hit area, and
+   inline-flex keeps the gold underline (::after, bottom: -6px) pinned to the
+   text rather than to a taller box. */
 .navLinks a {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
+  font-size: 12.5px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.88);
@@ -346,113 +436,80 @@ a {
 }
 
 /* -----------------------------------------------------------
-   FOOTER
+   FOOTER — the design's five-column sitemap
    ----------------------------------------------------------- */
 .footer {
   margin-top: auto;
   border-top: 1px solid var(--line);
-  padding: 44px 0 0;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  text-align: center;
-  overflow: hidden;
+  max-width: 1360px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 44px 40px 56px;
 }
-.footerWordmark {
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(4, 1fr);
+  gap: 36px;
+}
+.footerMark {
   font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 23px;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.footerMark span { color: var(--gold); }
+.footerDisclaimer {
+  color: var(--text-muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin-top: 12px;
+  max-width: 38ch;
+  /* The gap before the copyright line comes from this paragraph's own bottom
+     margin, matching the design's base type rules. */
+  margin-bottom: 12px;
+}
+.footerCopy {
+  color: var(--text-muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin: 0;
+}
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+.footerColTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.12;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  text-align: center;
-  font-size: clamp(3rem, 17vw, 15rem);
-  line-height: 0.72;
-  letter-spacing: 0.01em;
-  margin-top: 28px;
-  padding-top: 10px;
-  background: linear-gradient(180deg, rgba(255, 182, 39, 0.18), rgba(255, 182, 39, 0));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  user-select: none;
-  pointer-events: none;
+  margin: 0 0 12px;
 }
-.footer .disclaimer {
-  max-width: 680px;
-  margin: 8px auto 0;
-  font-size: 0.8rem;
-  opacity: 0.85;
+.footerCol a {
+  padding: 7px 0;
+  color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease);
 }
-.footer .builtBy {
-  margin-top: 14px;
-  font-size: 0.85rem;
-}
+.footerCol a:hover { color: var(--gold); }
 .footerLink {
   color: var(--gold);
   font-weight: 600;
-  /* Same reasoning as .footerNav a — this sat at ~18px too. */
-  display: inline-block;
-  padding-block: 12px;
 }
-.footerLink:hover {
-  text-decoration: underline;
-}
-.footerSocials {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 12px;
-}
-.footerSocial {
-  display: inline-flex;
-  color: var(--text-muted);
-  transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
-}
-.footerSocial:hover {
-  color: var(--gold);
-  transform: translateY(-2px);
-}
-/* Footer sitemap — direct links from every page to the key stat pages, so
-   internal link equity reaches the deep pages that rank for search queries. */
-/* Wrapper clips the leading "·" that each row's negative margin pushes off the
-   left edge — so a separator never dangles at the start of a wrapped row. */
-.footerNavWrap {
-  max-width: 760px;
-  margin: 0 auto 26px;
-  padding-bottom: 26px;
-  border-bottom: 1px solid var(--line);
-  overflow: hidden;
-}
-.footerNav {
-  display: flex;
-  flex-wrap: wrap;
-  /* Rows sit flush because each link now carries its own vertical padding —
-     together they give a ~44px touch target without stacking extra gap on top. */
-  row-gap: 0;
-  /* Pull the row left by one separator width; the wrapper's overflow:hidden then
-     clips the leading dot off the start of every wrapped row. */
-  margin-left: -24px;
-}
-.footerNav a {
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.72rem;
-  /* ~18px of text + 13px above and below = a 44px touch target (iOS HIG /
-     WCAG 2.5.8). Vertical only: horizontal padding would break the -24px
-     margin trick that clips the leading separator dot on each wrapped row. */
-  padding-block: 13px;
-  transition: color var(--dur-fast) var(--ease);
-}
-.footerNav a:hover {
-  color: var(--gold);
-}
-/* Gold middot before every link — its own colour so it stays neutral when the
-   adjacent link is hovered. The first dot of each row is clipped (see above). */
-.footerNav a::before {
-  content: "·";
-  display: inline-block;
-  width: 24px;
-  text-align: center;
-  color: var(--gold-dim);
-  pointer-events: none;
+.footerLink:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  /* No footer on mobile. Every mobile screen in the design ends at the fixed
+     tab bar, which carries navigation there — so the sitemap is desktop-only.
+     Hidden rather than unrendered: the markup stays in the HTML, so the links
+     are still crawlable. */
+  .footer { display: none; }
 }
 
 /* -----------------------------------------------------------
@@ -677,8 +734,8 @@ a.fact:hover {
 .textarea:focus { outline: none; border-color: var(--gold); }
 .input:focus-visible,
 .textarea:focus-visible {
-  outline: 2px solid var(--gold-bright);
-  outline-offset: 1px;
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 .textarea { min-height: 140px; resize: vertical; }
 .success {
@@ -1056,13 +1113,22 @@ a.fact:hover {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+  /* Scroll reveals resolve to their final state rather than getting stuck
+     mid-fade — the handoff's rule. */
   .reveal {
     opacity: 1 !important;
     transform: none !important;
   }
 }
 
-@media (max-width: 860px) {
+/* The bar collapses to the hamburger below the tablet breakpoint.
+   RESPONSIVE-AND-STATES.md sets 1240px as where the desktop layout stops, and
+   the bar measures the case: nine links plus the search trigger and the Stat
+   card button need ~1285px of viewport at the design's spacing. Anything below
+   that overflowed — 1229px of content in a 1100px window, with the Stat card
+   button hanging off the right edge on every page. Tightened to fit at exactly
+   1240 (below), hamburger under it. */
+@media (max-width: 1239px) {
   .navToggle { display: flex; }
   .navLinks {
     position: absolute;
@@ -1094,6 +1160,45 @@ a.fact:hover {
 }
 
 /* ===========================================================
+   UI-TARGET FLOOR — WCAG 2.2 SC 2.5.8
+   ===========================================================
+   The v2 handoff's base rule: 24px minimum on desktop, 44px once the pointer
+   is coarse. It applies to CHROME links — nav, footer, breadcrumb bars — plus
+   anything opted in with .ui-link, and it is written as a base reset rather
+   than per element because 353 of these are bare inline anchors with no height
+   of their own; sizing each by hand is how the rule rots.
+
+   :where() keeps the nav/footer part at zero specificity, so a component that
+   sets its own display (the mobile tab bar's stacked icon-over-label tabs)
+   still wins. Links inside a run of prose are exempt under 2.5.8 and keep
+   their natural inline box — growing one would break the line around it. */
+:where(nav, footer) a,
+.footerCol a,
+.footerQuick a,
+.ui-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+/* The prose exemption, named explicitly: these sit mid-sentence. */
+.footerCopy a,
+.footerDisclaimer a {
+  display: inline;
+  min-height: 0;
+}
+@media (pointer: coarse) {
+  :where(nav, footer) a,
+  .navLinks a,
+  .footerCol a,
+  .footerQuick a,
+  .ui-link {
+    min-height: 44px;
+  }
+  .footerCopy a,
+  .footerDisclaimer a { min-height: 0; }
+}
+
+/* ===========================================================
    ACCESSIBILITY — skip link, focus rings, active nav
    =========================================================== */
 .skipLink {
@@ -1113,13 +1218,59 @@ a.fact:hover {
   top: 12px;
 }
 
-/* A consistent, visible keyboard focus ring on every interactive element. */
+/* A consistent, visible keyboard focus ring on every interactive element.
+   The handoff specifies the accent at a 2px offset; the list covers form
+   controls and <summary> too, which a:/button:/[tabindex] alone misses — the
+   certifications tier filter is radio inputs, and the live-charts rows are
+   <details>. */
 a:focus-visible,
 button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--gold-bright);
-  outline-offset: 3px;
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
   border-radius: 3px;
+}
+
+/* ===========================================================
+   HOVER / FOCUS — the surfaces the first bundle left unspecified
+   ===========================================================
+   RESPONSIVE-AND-STATES.md gives a state per surface. Buttons, chips, rows and
+   cards already carried hover states from the v1 designs; these are the rows of
+   that table with no implementation at all. All transitions .2s ease, all
+   suppressed under prefers-reduced-motion except the colour changes, which the
+   global reduced-motion switch already leaves alone.
+
+   Written against the shared markup patterns rather than per component, since
+   CSS-module class names are hashed — [class*=…] matches the readable half of
+   the compiled name, which is case-sensitive and camelCase. */
+
+/* Filter chip, pressed. Hover was specified and built; this was not. Scoped to
+   the button itself — :active also matches descendants under the pointer, and
+   tinting a chip's dot or count span is not the state. */
+button[class*="hip"]:active,
+button[aria-pressed]:active {
+  background: rgba(255, 182, 39, 0.10);
+}
+
+/* Accordion header. The two disclosure surfaces on the site are the live-charts
+   release rows and the per-board source note. */
+summary:hover {
+  background: rgba(255, 182, 39, 0.05);
+}
+
+/* A table row's focus ring goes INSIDE it. The global ring sits 2px outside,
+   which a full-bleed row clips against its container — so rows that are links
+   or buttons take an inset ring instead. */
+a[class*="__row"]:focus-visible,
+button[class*="__row"]:focus-visible,
+a[class*="__certRow"]:focus-visible,
+[role="row"][class*="__row"]:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--gold);
 }
 
 /* Active nav item (set via aria-current in Nav) */
@@ -1134,12 +1285,6 @@ button:focus-visible,
 .cardMetaTop { margin-top: 10px; }
 .eyebrowTight { margin-bottom: 6px; }
 
-/* Error boundary screen */
-.errorPage { padding: 110px 24px 130px; text-align: center; }
-.errorTitle { font-size: clamp(2rem, 5vw, 3rem); margin: 10px 0 14px; }
-.errorLead { margin: 0 auto 24px; }
-.errorActions { justify-content: center; }
-
 /* ===========================================================
    REDUCED MOTION — global safety net
    Honours the OS "reduce motion" setting across the whole site
@@ -1147,13 +1292,229 @@ button:focus-visible,
    guard). Uses 0.01ms rather than "none" so state changes still
    complete instantly instead of getting stuck mid-fade.
    =========================================================== */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+/* The global reduced-motion kill switch lives once, near the top of this file
+   under ACCESSIBILITY — a second copy here only invited the two to drift. */
+
+
+/* A fixed bottom bar sits over the page, so the last line needs clearance or
+   it hides beneath it. The tab bar is home-only now, and deep screens carry
+   their own action bar plus their own spacer — so this is scoped to the tab
+   bar rather than applied to every mobile page, where it was stacking on the
+   screen's own spacer and leaving ~200px of dead air. */
+@media (max-width: 900px) {
+  body:has(.mobileTabBarPresent) {
+    padding-bottom: calc(64px + max(30px, env(safe-area-inset-bottom, 0px)));
   }
+  /* The three app-level states hide the five-tab bar: a failed page shouldn't
+     offer lateral navigation before it offers recovery. The tab bar keys off
+     the pathname, which on a 404 is the URL that missed — so this is decided
+     by what rendered, not by the route. The in-page states (missing figure,
+     no matches) keep whatever bar their host screen has. */
+  body:has(.appStateShell) .mobileTabBarPresent { display: none; }
+  body:has(.appStateShell) { padding-bottom: 0; }
+}
+
+
+/* -----------------------------------------------------------
+   PRIMITIVES — ghost button, tags, base table
+   Values from designs/_ds/…/styles.css with the design's own
+   overrides layered on: pill radius, Space Mono label, gold.
+   ----------------------------------------------------------- */
+/* From the base design-system sheet — a disabled control has to read as one. */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn:disabled:hover,
+.btn[aria-disabled="true"]:hover {
+  transform: none;
+  box-shadow: 0 8px 30px rgba(255, 182, 39, 0.24);
+}
+
+.btnGhost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--gold);
+  padding: 0 8px;
+}
+.btnGhost:hover {
+  background: color-mix(in srgb, var(--gold) 10%, transparent);
+}
+.btnGhost:active {
+  background: color-mix(in srgb, var(--gold) 18%, transparent);
+}
+
+/* Icon-only button. 44px, not the base sheet's 36px — the design's
+   accessibility floor for a tap target is 44 and this ships on phones. */
+.btnIcon {
+  /* Transparent by default, per the base sheet — a quiet control that only
+     picks up colour on hover. It is not a filled circle. */
+  width: 36px;
+  height: 36px;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+  border-color: transparent;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  /* The design's <helmet> overrides the base sheet's 11px sans chip with a
+     mono uppercase pill — that is what every design file renders. */
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 4px 10px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.tagAccent   { background: rgba(255, 182, 39, 0.13); color: var(--gold); }
+.tagNeutral  { background: rgba(245, 244, 240, 0.08); color: var(--text); }
+.tagOutline  { border-color: var(--gold); color: var(--gold); background: transparent; }
+.tagDiamond  { background: rgba(143, 227, 240, 0.14); color: var(--cyan); }
+.tagPlatinum { background: rgba(223, 226, 232, 0.14); color: var(--silver); }
+.tagLive     { background: rgba(62, 209, 127, 0.14); color: var(--green); }
+
+.tableBase {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.tableBase th {
+  text-align: left;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--line);
+}
+.tableBase td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+.tableBase tbody tr:hover {
+  background: rgba(255, 182, 39, 0.06);
+}
+
+/* Segmented control. The design drives it with radio inputs so it works
+   without JS and reads to a screen reader as one named group; the input
+   itself is visually hidden and :has() paints the selected segment. */
+.seg {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-md);
+}
+.segOpt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.segOpt + .segOpt { border-left: 1px solid var(--color-divider); }
+.segOpt input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.segOpt:has(input:checked) { background: var(--color-accent); color: var(--color-bg); }
+.segOpt:not(:has(input:checked)):hover {
+  background: color-mix(in srgb, var(--color-text) 7%, transparent);
+}
+.segOpt:has(input:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+
+/* Full-width button variant used in the closing panel's action stack. */
+.btnBlock {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/* Visually hidden, still announced — used for table headers that are icon-only
+   in the design but must not be nameless to a screen reader. */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* State E — a figure the source never reported. An em dash means *not
+   reported*, never zero, so it reads dim rather than in value ink. */
+.notReported { color: var(--dim); cursor: help; }
+
+/* The button lift is decorative — drop it when the reader asks for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn:hover {
+    transform: none;
+    transition: none;
+  }
+  .btnPrimary,
+  .btnPrimary:hover { transform: translateZ(0); }
+}
+
+/* The nav's gold action. Slightly shorter than a page button so it sits
+   comfortably in the bar; hidden on mobile, where the tab bar takes over. */
+.navStatCard {
+  height: 38px;
+  padding: 0 18px;
+  font-size: 11.5px;
+  gap: 8px;
+  flex: none;
+}
+@media (max-width: 900px) {
+  .navStatCard { display: none; }
+}
+
+/* Compact footer — every page except the home page. Wordmark and that page's
+   provenance line on the left, its four onward links on the right. */
+.footerCompact {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+.footerCompact .footerDisclaimer { max-width: 46ch; margin-bottom: 0; }
+.footerQuick {
+  margin-left: auto;
+  display: flex;
+  gap: 28px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+}
+.footerQuick a {
+  color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease);
+}
+.footerQuick a:hover { color: var(--gold); }
+
+@media (max-width: 900px) {
+  .footerCompact { flex-direction: column; gap: 20px; }
+  .footerQuick { margin-left: 0; gap: 18px; }
+}
+
+/* Pages whose mobile screen carries its own sticky back bar hide the site nav
+   below the mobile breakpoint — otherwise the screen has two headers. */
+@media (max-width: 900px) {
+  .navDesktopOnly { display: none; }
 }

@@ -17,18 +17,61 @@ export const navItems = [
 // the top nav. Certifications, Discography, Stat Cards, FAQ and About all live
 // in navItems above, so repeating them here made the list twice as long while
 // adding no new path into the site.
-export const footerLinks = [
-  { href: "/dai-dai", label: "The Dai Dai Story" },
-  { href: "/share", label: "Stat Cards" },
-  { href: "/records/charts", label: "Chart records" },
-  { href: "/records/awards", label: "Awards" },
-  { href: "/records/tours", label: "Tours" },
-  { href: "/records/cars", label: "Car collection" },
-  { href: "/records/africas-biggest", label: "Africa's Biggest" },
-  { href: "/records/firsts", label: "Firsts" },
-  { href: "/analysis", label: "Chart analysis" },
-  { href: "/api", label: "Open data API" },
-  { href: "/methodology", label: "Methodology" },
+/**
+ * The footer sitemap, as four titled columns.
+ *
+ * This is the site's main internal-linking surface: every page links straight
+ * to the deep stat pages from here, so link equity reaches the routes that earn
+ * search traffic.
+ */
+export const footerColumns: { label: string; links: { href: string; label: string }[] }[] = [
+  {
+    label: "The data",
+    links: [
+      { href: "/certifications", label: "Certifications" },
+      { href: "/live-charts", label: "Live Charts" },
+      { href: "/records/charts", label: "Chart records" },
+      { href: "/music", label: "Discography" },
+      { href: "/records/by-the-numbers", label: "By the numbers" },
+      { href: "/records/visualized", label: "Visualized" },
+      { href: "/analysis", label: "Chart analysis" },
+    ],
+  },
+  {
+    label: "Records",
+    links: [
+      { href: "/records", label: "All career records" },
+      { href: "/records/awards", label: "Awards" },
+      { href: "/records/tours", label: "Tours" },
+      { href: "/records/tours/revenue", label: "Tour revenue" },
+      { href: "/records/tours/festivals", label: "Festivals" },
+      { href: "/records/tours/map", label: "Tour map" },
+      { href: "/records/firsts", label: "Firsts" },
+      { href: "/records/africas-biggest", label: "Africa's Biggest" },
+      { href: "/records/cars", label: "Car collection" },
+    ],
+  },
+  {
+    label: "The story",
+    links: [
+      { href: "/dai-dai", label: "The Dai Dai Story" },
+      { href: "/updates", label: "Updates" },
+      { href: "/about", label: "About Burna Boy" },
+      { href: "/music", label: "Song pages" },
+      { href: "/rss.xml", label: "RSS feed" },
+    ],
+  },
+  {
+    label: "The site",
+    links: [
+      { href: "/methodology", label: "Methodology" },
+      { href: "/api", label: "Open data API" },
+      { href: "/search", label: "Search" },
+      { href: "/share", label: "Stat Cards" },
+      { href: "/faq", label: "FAQ" },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
 ];
 // Which 3 sections each page points to in its "Keep exploring" block.
 export const exploreFor: Record<string, string[]> = {
@@ -55,4 +98,140 @@ export const exploreFor: Record<string, string[]> = {
   "/records/firsts": ["dai-dai", "charts", "certifications"],
   "/records/africas-biggest": ["certifications", "charts", "share"],
   "/share": ["dai-dai", "certifications", "records"],
+};
+
+/**
+ * The compact footer used on every page except the home page.
+ *
+ * The design gives each deep page its own four links and its own provenance
+ * line — the footer is part of the page's argument, not boilerplate. Pages the
+ * design didn't draw a footer for fall back to DEFAULT_FOOTER.
+ */
+export interface FooterVariant {
+  /** Appended after the standing "unofficial fan site" sentence. */
+  note?: string;
+  links: { href: string; label: string }[];
+}
+
+export const DEFAULT_FOOTER: FooterVariant = {
+  links: [
+    { href: "/music", label: "Music" },
+    { href: "/records", label: "Records" },
+    { href: "/live-charts", label: "Live Charts" },
+    { href: "/api", label: "Open data API" },
+  ],
+};
+
+export const footerFor: Record<string, FooterVariant> = {
+  "/certifications": {
+    note: "Certification data is read from each issuing body.",
+    links: [
+      { href: "/music", label: "Music" },
+      { href: "/records", label: "Records" },
+      { href: "/live-charts", label: "Live Charts" },
+      { href: "/api", label: "Open data API" },
+    ],
+  },
+  "/music": {
+    note: "Album artwork is provided by Spotify and remains the property of its owners.",
+    links: [
+      { href: "/certifications", label: "Certifications" },
+      { href: "/records", label: "Records" },
+      { href: "/live-charts", label: "Live Charts" },
+      { href: "/methodology", label: "Methodology" },
+    ],
+  },
+  "/records": {
+    note: "Box-office figures via Billboard Boxscore.",
+    links: [
+      { href: "/music", label: "Music" },
+      { href: "/certifications", label: "Certifications" },
+      { href: "/live-charts", label: "Live Charts" },
+      { href: "/methodology", label: "Methodology" },
+    ],
+  },
+  "/live-charts": {
+    note: "Platform chart positions via kworb.",
+    links: [
+      { href: "/records/charts", label: "Chart records" },
+      { href: "/certifications", label: "Certifications" },
+      { href: "/dai-dai", label: "Dai Dai" },
+      { href: "/methodology", label: "Methodology" },
+    ],
+  },
+  "/about": {
+    note: "Biography facts sourced from Wikipedia.",
+    links: [
+      { href: "/music", label: "Music" },
+      { href: "/records", label: "Records" },
+      { href: "/faq", label: "FAQ" },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
+  "/contact": {
+    note: "Built by Paul Emmanuel.",
+    links: [
+      { href: "/about", label: "About" },
+      { href: "/faq", label: "FAQ" },
+      { href: "/methodology", label: "Methodology" },
+      { href: "/api", label: "Open data API" },
+    ],
+  },
+  "/faq": {
+    links: [
+      { href: "/methodology", label: "Methodology" },
+      { href: "/about", label: "About" },
+      { href: "/contact", label: "Contact" },
+      { href: "/api", label: "Open data API" },
+    ],
+  },
+  "/updates": {
+    links: [
+      { href: "/rss.xml", label: "RSS" },
+      { href: "/certifications", label: "Certifications" },
+      { href: "/live-charts", label: "Live Charts" },
+      { href: "/methodology", label: "Methodology" },
+    ],
+  },
+  "/records/awards": {
+    links: [
+      { href: "/records/firsts", label: "Firsts" },
+      { href: "/certifications", label: "Certifications" },
+      { href: "/records/charts", label: "Chart records" },
+      { href: "/methodology", label: "Methodology" },
+    ],
+  },
+  "/records/firsts": {
+    links: [
+      { href: "/records/charts", label: "Chart records" },
+      { href: "/records/tours", label: "Tours" },
+      { href: "/dai-dai", label: "Dai Dai" },
+      { href: "/methodology", label: "Methodology" },
+    ],
+  },
+  "/records/tours": {
+    links: [
+      { href: "/records/tours/revenue", label: "Revenue" },
+      { href: "/records/tours/festivals", label: "Festivals" },
+      { href: "/records/tours/map", label: "Tour map" },
+      { href: "/records/firsts", label: "Firsts" },
+    ],
+  },
+  "/records/tours/revenue": {
+    note: "Box-office figures via Billboard Boxscore.",
+    links: [
+      { href: "/records/tours", label: "Tours" },
+      { href: "/records/tours/festivals", label: "Festivals" },
+      { href: "/records/africas-biggest", label: "Africa's Biggest" },
+      { href: "/methodology", label: "Methodology" },
+    ],
+  },
+  "/records/tours/festivals": {
+    links: [
+      { href: "/records/tours", label: "Tours" },
+      { href: "/records/tours/revenue", label: "Revenue" },
+      { href: "/records/tours/map", label: "Tour map" },
+      { href: "/records/firsts", label: "Firsts" },
+    ],
+  },
 };

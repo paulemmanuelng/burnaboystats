@@ -19,6 +19,9 @@ export default function SearchPalette() {
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  // Whatever had focus when the palette opened, so closing can hand it back
+  // instead of dumping a keyboard user at the top of the document.
+  const openerRef = useRef<HTMLElement | null>(null);
   const router = useRouter();
 
   const results = useMemo(() => {
@@ -51,17 +54,29 @@ export default function SearchPalette() {
         setOpen(false);
       }
     };
+    // The hero's "Search the dataset" button opens the same palette without
+    // this component having to be lifted or duplicated.
+    const onOpen = () => setOpen(true);
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("open-search", onOpen);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("open-search", onOpen);
+    };
   }, []);
 
   // Focus the input and lock body scroll while open.
   useEffect(() => {
     if (!open) return;
+    openerRef.current = document.activeElement as HTMLElement | null;
     inputRef.current?.focus();
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
+      // Hand focus back to whatever opened it. Skipped when navigating away —
+      // the destination page owns focus at that point.
+      const opener = openerRef.current;
+      if (opener?.isConnected) opener.focus();
       document.body.style.overflow = prev;
     };
   }, [open]);

@@ -385,3 +385,176 @@
   .tdPeak,
   .tdYear { white-space: nowrap; }
 }
+
+/* ══ Redesign, from designs/desktop/Records - Charts.dc.html ══
+   Values below are the design's, verbatim. This page's container is 1240px,
+   narrower than the site's 1360 — the chip panels and the card rows read
+   better with the shorter measure. */
+
+.wide { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.heroWrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 32px 40px 0;
+}
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 82px;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-top: 14px;
+}
+.lede {
+  font-size: 18px;
+  line-height: 1.55;
+  color: #cfc7bb;
+  max-width: 62ch;
+  margin: 18px 0 0;
+  text-wrap: pretty;
+}
+
+/* Hairline seams: 1px gaps over a divider-coloured bed. */
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  margin-top: 34px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.statCell { background: var(--bg); padding: 24px 26px 22px; }
+.statNum {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+.statLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+.statNote {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+  margin-top: 5px;
+}
+
+/* ── Peak-band legend ─────────────────────────────────────────────────── */
+.legend {
+  margin-left: auto;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.legendItem { display: flex; align-items: center; gap: 6px; }
+.legendDot { width: 9px; height: 9px; border-radius: 999px; display: block; }
+/* The same three bands the peak chips use. */
+.legendOne { background: rgba(255, 182, 39, 0.2); border: 1px solid var(--gold); }
+.legendTen { border: 1px solid rgba(143, 227, 240, 0.5); }
+.legendForty { border: 1px solid rgba(223, 226, 232, 0.4); }
+
+/* ── Source split ─────────────────────────────────────────────────────── */
+.sourceWrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 40px 0;
+}
+.sourceGrid {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 44px;
+}
+.splitPanel { border-left: 1px solid var(--line); padding-left: 32px; }
+.splitKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.splitList { margin-top: 16px; border-top: 1px solid var(--line); }
+.splitRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+.splitNum {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+  min-width: 34px;
+}
+.splitLabel { font-size: 13px; color: #cfc7bb; line-height: 1.4; }
+
+/* ── Onward ───────────────────────────────────────────────────────────── */
+.actionWrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 44px 40px 72px;
+}
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+@media (max-width: 1239px) {
+  .heroWrap, .sourceWrap, .actionWrap, .wide { padding-inline: 32px; }
+  .h1 { font-size: 60px; }
+  .statGrid { grid-template-columns: repeat(3, 1fr); }
+  /* Partial last row stretches the final cell rather than leaving a phantom
+     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
+     position so it holds for any item count: last-in-a-fresh-row spans three,
+     second-in-a-row spans the two that remain. */
+  .statGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .statGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
+  .sourceGrid { grid-template-columns: 1fr; gap: 28px; }
+  .splitPanel { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 40px; }
+  .legend { margin-left: 0; }
+}
+
+/* The explorer shares the hero's measure — its chip panels and card rows are
+   part of the same column. */
+.explorerWrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 30px 40px 0;
+}
+@media (max-width: 1239px) {
+  .explorerWrap { padding-inline: 32px; }
+}
+
+/* The desktop page and the mobile screen both sit in the DOM; each shows at
+   its own breakpoint. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) {
+  .desktopOnly { display: none; }
+}

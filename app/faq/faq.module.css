@@ -1,33 +1,142 @@
-.list {
-  margin-top: 8px;
-  border-top: 1px solid var(--line);
+/* FAQ — desktop.
+   designs/desktop/FAQ.dc.html, values verbatim.
+
+   Hidden below 900px, where MobileFaq renders screen 08 instead. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+.band { border-bottom: 1px solid var(--line); }
+.bandSurface { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+.wide { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.heroPad { padding: 50px 40px 40px; }
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
-.item {
-  padding: 26px 0;
-  border-bottom: 1px solid var(--line);
+.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; }
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 96px;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 16px 0 0;
 }
+.lede {
+  font-size: 18px;
+  line-height: 1.55;
+  max-width: 60ch;
+  margin: 18px 0 0;
+  color: #d8d8de;
+  text-wrap: pretty;
+}
+
+/* ── Jump band ──────────────────────────────────────────────────────────── */
+.jumpPad { padding: 20px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.jumpLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-right: 6px;
+}
+.jumpChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.jumpChip:hover { border-color: var(--gold); color: var(--gold); }
+.jumpCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: 0.7; }
+.jumpTotal {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Groups ─────────────────────────────────────────────────────────────── */
+.groupPad {
+  padding: 38px 40px 34px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+/* The category rides down beside its questions, so a long group never leaves
+   you wondering which one you're reading. */
+.groupAside { position: sticky; top: 86px; }
+.groupKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.groupTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+.groupCount {
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+.qList { border-top: 1px solid var(--line); }
+.item { padding: 24px 0; border-bottom: 1px solid var(--line); }
+/* Sentence case in the body face — a question is prose, not display type. */
 .q {
   margin: 0 0 8px;
-  /* Match the Tours page title style (.mTitle): Geist 700, not condensed Anton. */
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: 1.12rem;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: 0;
   text-transform: none;
   color: var(--text);
 }
-.a {
-  margin: 0;
-  max-width: 760px;
-  /* Brighter than the muted body grey so answers read comfortably on the dark bg. */
-  color: #d3d3da;
-  font-size: 1rem;
-  line-height: 1.65;
-}
+.a { margin: 0; max-width: 760px; color: #d3d3da; font-size: 16px; line-height: 1.65; }
+
+/* ── Source ─────────────────────────────────────────────────────────────── */
+.sourcePad { padding: 30px 40px 34px; }
 .source {
-  margin: 30px 0 0;
+  margin: 0;
   font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
+  font-size: 12.5px;
   color: var(--text-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 1239px) {
+  .h1 { font-size: 70px; }
+  .groupPad { grid-template-columns: 1fr; gap: 20px; }
+  .groupAside { position: static; }
 }

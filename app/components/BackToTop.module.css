@@ -39,3 +39,8 @@
     transform: none;
   }
 }
+
+/* Hidden on mobile: a fixed bottom bar always occupies this corner there. */
+@media (max-width: 900px) {
+  .desktopOnly { display: none; }
+}

@@ -1,15 +1,44 @@
 import Link from "next/link";
 import styles from "./africas-biggest.module.css";
 import KeepExploring from "../../components/KeepExploring";
+import BreadcrumbBar from "../../components/BreadcrumbBar";
 import StatBox from "../../components/StatBox";
-import TrendStat from "../../components/TrendStat";
-import { statBoxes } from "../../data/africasBiggest";
-import { monthlyListenersSeries, monthlyListenersValues } from "../../data/trends";
+import TrendDelta from "../../components/TrendDelta";
+import { statBoxes, HIGHLIGHT } from "../../data/africasBiggest";
+import { monthlyListenersSeries } from "../../data/trends";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
+import MobileAfricasBiggest from "../../components/MobileAfricasBiggest";
+import {
+  africaBoards,
+  boardsHeLeads,
+  boardsOthersLead,
+  youtubeWorldRank,
+} from "../../lib/africaBoards";
 
 const firstListeners = monthlyListenersSeries[0].value;
 const latestListeners = monthlyListenersSeries[monthlyListenersSeries.length - 1].value;
 const listenersMonthPct = ((latestListeners - firstListeners) / firstListeners) * 100;
+
+// The design draws eight bars showing the climb. The series is logged daily
+// rather than monthly, so the last eight readings sit within half a million of
+// each other and would draw as a flat block. These are eight readings spaced
+// evenly across the whole run — every bar a real logged figure, and the shape
+// is the climb the chart is there to show.
+const BARS = 8;
+const barPoints = Array.from({ length: BARS }, (_, i) =>
+  monthlyListenersSeries[
+    Math.round((i * (monthlyListenersSeries.length - 1)) / (BARS - 1))
+  ]
+);
+// Bars are drawn against zero, not against the range, so a 25% climb reads as
+// a 25% climb.
+const barMax = Math.max(...barPoints.map((p) => p.value));
+const barDate = (iso: string) =>
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    timeZone: "UTC",
+  });
 
 export const metadata = pageMetadata({
   title: "Africa's Biggest Artists — Charts & Streaming Records",
@@ -56,6 +85,24 @@ const faqJsonLd = {
   })),
 };
 
+// Group the leaderboards so the long page reads as two clear sections.
+const billboardIds = new Set([
+  "billboard-global-200-peak",
+  "billboard-hot-100-peak",
+  "most-hot-100-entries",
+]);
+const groups = [
+  { id: "billboard", label: "On the Billboard charts", boxes: statBoxes.filter((b) => billboardIds.has(b.id)) },
+  { id: "streaming", label: "On streaming", boxes: statBoxes.filter((b) => !billboardIds.has(b.id)) },
+];
+
+// His all-time YouTube monthly-audience peak — read from the board that ranks
+// it, so the stat cell can never drift from the row it summarises.
+const youtubePeak =
+  statBoxes
+    .find((b) => b.id === "youtube-music-audience-peak")
+    ?.entries?.find((e) => e.name === HIGHLIGHT)?.value ?? "—";
+
 export default function AfricasBiggestPage() {
   const dataset = datasetJsonLd({
     name: "Africa's biggest artists — Billboard, Spotify & chart records",
@@ -81,17 +128,6 @@ export default function AfricasBiggestPage() {
       })),
     }));
 
-  // Group the leaderboards so the long page reads as two clear sections.
-  const billboardIds = new Set([
-    "billboard-global-200-peak",
-    "billboard-hot-100-peak",
-    "most-hot-100-entries",
-  ]);
-  const groups = [
-    { id: "billboard", label: "On the Billboard charts", boxes: statBoxes.filter((b) => billboardIds.has(b.id)) },
-    { id: "streaming", label: "On streaming", boxes: statBoxes.filter((b) => !billboardIds.has(b.id)) },
-  ];
-
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
@@ -99,73 +135,127 @@ export default function AfricasBiggestPage() {
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(il) }} />
       ))}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <header className="pageHeader container">
-        <h1>
-          Africa&apos;s <span className="accent">Biggest</span>
-        </h1>
-        <p>
-          The artists topping African music by the numbers — year-by-year
-          streaming leaderboards, with Burna Boy in context
-        </p>
-      </header>
 
-      <div className="container">
-        {/* Answer-first intro (helps search + AI answer engines). */}
-        <p className={styles.intro}>
-          Burna Boy is the <strong>first African artist ever to reach No. 1 on
-          Billboard&apos;s Global 200</strong>{" "}— and the most-streamed African
-          artist on Spotify in both 2024 and 2025, whose 1.986 billion streams in
-          2025 set a record for the biggest streaming year by an African artist.
-          The leaderboards below rank African music&apos;s biggest — Burna Boy,
-          Wizkid, Tems, Rema, Tyla and more — by the numbers.
-        </p>
+      {/* Mobile is screen 16 — its own screen, not the shared deep-page
+          grammar: each board carries a badge and a note the shared rows have
+          nowhere to put. Every figure below is derived, including "he leads":
+          the design's mock said 8 of 14, which was true only while the stats
+          bot had corrupted the monthly-listeners board. */}
+      <MobileAfricasBiggest
+        boards={africaBoards}
+        leads={boardsHeLeads}
+        others={boardsOthersLead}
+        stats={[
+          { value: String(statBoxes.length), label: "Leaderboards", note: "African music" },
+          { value: String(boardsHeLeads), label: "He leads", note: `of ${statBoxes.length} boards` },
+          { value: "1st", label: "Global 200", note: "first African ever" },
+          { value: youtubePeak, label: "YouTube peak", note: `${youtubeWorldRank} worldwide` },
+        ]}
+      />
 
-        <div className={styles.trendLead}>
-          <TrendStat
-            kicker="Spotify monthly listeners · peak"
-            value={`${latestListeners}M`}
-            series={monthlyListenersValues}
-            delta={listenersMonthPct}
-            deltaFormat="pct"
-            deltaLabel="this month"
-            note="Climbing fast on the “Dai Dai” World Cup run — up from 47.4M at the start of July, and the highest of any African artist."
-          />
-        </div>
+      <div className={styles.desktopOnly}>
+        <BreadcrumbBar path="/records/africas-biggest" />
 
-        <nav className={styles.jumpNav} aria-label="Jump to a section">
-          {groups.map((g) => (
-            <a key={g.id} href={`#${g.id}`}>{g.label}</a>
-          ))}
-          <a href="#faq">Common questions</a>
-        </nav>
+        {/* ── Hero ───────────────────────────────────────────── */}
+        <section className={`${styles.wrap} ${styles.heroPad}`}>
+          <div className={styles.kicker}>African music by the numbers</div>
+          <h1 className={styles.h1}>
+            Africa&apos;s <span className="inkText">Biggest</span>
+          </h1>
+          <p className={styles.intro}>
+            Burna Boy is the{" "}
+            <strong>first African artist ever to reach No. 1 on Billboard&apos;s Global 200</strong>{" "}
+            — and the most-streamed African artist on Spotify in both 2024 and 2025, whose
+            1.986 billion streams in 2025 set a record for the biggest streaming year by an
+            African artist. The leaderboards below rank African music&apos;s biggest by the
+            numbers.
+          </p>
 
+          {/* Headline number beside its own recent history. */}
+          <div className={styles.trendGrid}>
+            <div className={styles.trendMain}>
+              <div className={styles.trendKicker}>Spotify monthly listeners · peak</div>
+              <div className={styles.trendValueRow}>
+                <span className={`${styles.trendValue} inkText`}>{latestListeners}M</span>
+                <TrendDelta value={listenersMonthPct} format="pct" label="this month" />
+              </div>
+              <p className={styles.trendNote}>
+                Climbing fast on the “Dai Dai” World Cup run — up from {firstListeners}M at
+                the start of July, and the highest of any African artist.
+              </p>
+            </div>
+            <div className={styles.trendChart}>
+              <div className={styles.chartLabel}>
+                {barDate(barPoints[0].date)} — {barDate(barPoints[barPoints.length - 1].date)}
+              </div>
+              <div className={styles.bars}>
+                {barPoints.map((p, i) => {
+                  const now = i === barPoints.length - 1;
+                  return (
+                    <div key={p.date} className={styles.bar}>
+                      <span className={`${styles.barValue} ${now ? styles.barValueNow : ""}`}>
+                        {p.value}M
+                      </span>
+                      <span
+                        className={`${styles.barFill} ${now ? styles.barFillNow : ""}`}
+                        style={{ height: `${Math.round((p.value / barMax) * 78)}px` }}
+                      />
+                      <span className={styles.barMonth}>{barDate(p.date)}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <nav className={styles.jumpNav} aria-label="Jump to a section">
+            {groups.map((g) => (
+              <a key={g.id} href={`#${g.id}`}>{g.label}</a>
+            ))}
+            <a href="#faq">Common questions</a>
+          </nav>
+        </section>
+
+        {/* ── Leaderboards ───────────────────────────────────── */}
         {groups.map((g) => (
-          <section key={g.id} id={g.id} className={styles.group}>
+          <section key={g.id} id={g.id} className={`${styles.wrap} ${styles.groupPad}`}>
             <h2 className={styles.groupHead}>
               {g.label} <span className={styles.groupCount}>{g.boxes.length}</span>
             </h2>
             <div className={styles.boxGrid}>
               {g.boxes.map((box) => (
-                <StatBox key={box.id} box={box} featured={box.id === "billboard-global-200-peak"} />
+                <StatBox
+                  key={box.id}
+                  box={box}
+                  featured={box.id === "billboard-global-200-peak"}
+                />
               ))}
             </div>
           </section>
         ))}
 
-        <section id="faq" className={styles.faqSection} aria-label="Common questions">
+        {/* ── FAQ ────────────────────────────────────────────── */}
+        <section id="faq" className={`${styles.wrap} ${styles.faqPad}`}>
           <h2 className={styles.groupHead}>Common questions</h2>
-          {pageFaqs.map((f) => (
-            <div key={f.q} className={styles.faqItem}>
-              <h3 className={styles.faqQ}>{f.q}</h3>
-              <p className={styles.faqA}>{f.a}</p>
-            </div>
-          ))}
+          <div className={styles.faqList}>
+            {pageFaqs.map((f) => (
+              <div key={f.q} className={styles.faqItem}>
+                <h3 className={styles.faqQ}>{f.q}</h3>
+                <p className={styles.faqA}>{f.a}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
-        <Link href="/records" className={styles.back}>← Career Records</Link>
-      </div>
+        {/* ── Onward ─────────────────────────────────────────── */}
+        <section className={`${styles.wrap} ${styles.pills}`}>
+          <Link href="/records" className="btn btnSecondary">← Career records</Link>
+          <Link href="/records/charts" className="btn btnPrimary">Official charts ↗</Link>
+          <Link href="/music" className="btn btnSecondary">Discography ↗</Link>
+        </section>
 
-      <KeepExploring current="/records/africas-biggest" />
+        <KeepExploring current="/records/africas-biggest" />
+      </div>
     </main>
   );
 }

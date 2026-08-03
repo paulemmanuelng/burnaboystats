@@ -1,114 +1,218 @@
-.maker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 26px;
-  margin: 8px 0 8px;
-}
+/* Stat cards — designs/desktop/Share.dc.html, values verbatim.
 
-/* Stat picker — a wrap of pill buttons */
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  max-width: 720px;
+   One layout at every width: the preview is the page, and a preview over its
+   controls is already the phone shape. Only the grid and sizes step down. */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Pick a record ──────────────────────────────────────────────────────── */
+.pickerPad { padding: 30px 40px 0; }
+.picker { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pickerLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-right: 4px;
 }
 .chip {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 9px 18px;
-  cursor: pointer;
-  transition: color var(--dur) var(--ease-out),
-    border-color var(--dur) var(--ease-out),
-    background var(--dur) var(--ease-out);
-}
-.chip:hover {
-  color: var(--text);
-  border-color: var(--gold-dim);
-}
-.chipOn {
-  color: var(--gold);
-  background: rgba(255, 182, 39, 0.08);
-  border-color: var(--gold);
-}
-
-/* The landscape preview */
-.stage {
-  width: 100%;
-  max-width: 580px;
-}
-.frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.9),
-    0 0 0 1px rgba(255, 182, 39, 0.06);
-  background: var(--bg-soft);
-}
-.preview {
-  display: block;
-  width: 100%;
-  height: 100%;
-  transition: opacity var(--dur-slow) var(--ease-out);
-}
-/* soft fade while the next card renders */
-.frame[data-loading] .preview {
-  opacity: 0.35;
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-}
-.download {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--text);
-  background: var(--bg-soft);
-  border: 1px solid var(--gold);
+  min-height: 42px;
+  padding: 0 16px;
   border-radius: 999px;
-  padding: 11px 24px;
-  cursor: pointer;
-  transition: background var(--dur) var(--ease-out),
-    transform var(--dur) var(--ease-out);
-}
-.download:hover {
-  background: var(--bg-soft-2);
-  transform: translateY(-1px);
-}
-.download:disabled {
-  opacity: 0.6;
-  cursor: default;
-  transform: none;
-}
-
-.hint {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
+  border: 1px solid var(--border);
+  background: transparent;
   color: var(--text-muted);
-  margin: 0;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.chip:hover { border-color: var(--gold); }
+.chipOn { border-color: var(--gold); background: rgba(255, 182, 39, 0.13); color: var(--gold); }
+
+/* ── Preview beside the provenance ──────────────────────────────────────── */
+.mainPad { padding: 28px 40px 0; }
+.split { display: grid; grid-template-columns: 1fr 380px; gap: 44px; align-items: start; }
+
+.previewHead { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.previewLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+/* Segmented control — the two ratios are one choice, so they share a track. */
+.ratios {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+.ratio {
+  background: transparent;
+  color: var(--text-muted);
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+.ratioOn { background: var(--gold); color: #0a0a0b; }
+
+.stage {
+  border: 1px solid var(--line);
+  background: var(--bg-soft-2);
+  padding: 26px;
+  display: flex;
+  justify-content: center;
+}
+/* The preview is an <img> of the real PNG route, so what you see is the file
+   you get — no second renderer to drift from the download. */
+.card {
+  width: 100%;
+  display: block;
+  height: auto;
+  border: 1px solid rgba(255, 182, 39, 0.28);
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.cardSquare { max-width: 460px; aspect-ratio: 1 / 1; }
+.cardStory { max-width: 300px; aspect-ratio: 9 / 16; }
+.cardLoading { opacity: 0.35; }
+
+.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #0a0a0b;
+  border: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
+  cursor: pointer;
+}
+.primary:hover { background: var(--gold-bright); }
+.primary:disabled { opacity: 0.6; cursor: default; }
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.secondary:hover { border-color: var(--gold); color: var(--gold); }
+.note {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+  color: var(--dim);
+  margin: 14px 0 0;
+  max-width: 74ch;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .download:hover {
-    transform: none;
-  }
+/* ── Behind this number ─────────────────────────────────────────────────── */
+.aside { border-left: 1px solid var(--line); padding-left: 32px; }
+.asideKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.asideH {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 26px;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+}
+.asideP { font-size: 14.5px; line-height: 1.7; color: #cfc7bb; margin: 14px 0 0; }
+.meta { margin-top: 20px; border-top: 1px solid var(--line); }
+.metaRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+.metaLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.metaValue { margin-left: auto; font-size: 13px; color: #cfc7bb; text-align: right; }
+.asideLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  margin-top: 18px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.asideLink:hover { border-color: var(--gold); color: var(--gold); }
+.asideFoot { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin: 22px 0 0; }
+.asideFoot a { color: var(--gold); }
+
+.pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 52px 40px 72px; }
+
+@media (max-width: 1239px) {
+  .split { grid-template-columns: 1fr; gap: 28px; }
+  .aside { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 40px; }
+}
+
+@media (max-width: 900px) {
+  .wrap { padding: 0 18px; }
+  .pickerPad { padding: 18px 18px 0; }
+  .mainPad { padding: 20px 18px 0; }
+  .stage { padding: 16px; }
+  .cardSquare { max-width: 340px; }
+  .cardStory { max-width: 220px; }
+  .actions { gap: 8px; }
+  /* The download goes full-width — it's the one thing this screen is for. */
+  .primary { width: 100%; }
+  .pills { padding: 28px 18px 72px; }
 }

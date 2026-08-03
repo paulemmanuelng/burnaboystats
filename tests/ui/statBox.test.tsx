@@ -1,7 +1,24 @@
 import { render } from "@testing-library/react";
 import StatBox from "../../app/components/StatBox";
-import { revenueShows, revenueLeaderboardBox } from "../../app/data/tourRevenue";
-import { statBoxes } from "../../app/data/africasBiggest";
+import { revenueShows } from "../../app/data/tourRevenue";
+import { statBoxes, type LeaderboardBox } from "../../app/data/africasBiggest";
+
+// The revenue board used to be rendered through StatBox, and tourRevenue.ts
+// exported a helper that shaped it. /records/tours/revenue now has its own
+// RevenueBoard, so the helper is gone — but this fixture is still the most
+// punishing real-world input StatBox can get, so it's built here instead.
+const revenueBox: LeaderboardBox = {
+  id: "highest-revenue-per-show",
+  title: "Highest reported revenue per show",
+  meta: "test",
+  layout: "list",
+  entries: revenueShows.map((s) => ({
+    name: s.artist,
+    sub: `${s.flag} ${s.venue}, ${s.city} · ${s.tour} · ${s.year}`,
+    value: `$${s.revenue.toLocaleString("en-US")}`,
+  })),
+  source: "test",
+};
 
 // Regression test for a real bug: StatBox used to key list entries by artist
 // name alone, which is safe when every name in a box is unique (the original
@@ -26,15 +43,13 @@ describe("StatBox", () => {
   }
 
   it("renders the full revenue leaderboard (mostly duplicate artist names) without a key warning", () => {
-    render(
-      <StatBox
-        box={revenueLeaderboardBox(revenueShows, {
-          title: "Highest reported revenue per show",
-          meta: "test",
-          source: "test",
-        })}
-      />
-    );
+    // Guard the premise: this case only tests anything while the real data
+    // actually repeats a name. If the board ever became one-row-per-artist the
+    // assertion below would pass for the wrong reason.
+    const names = revenueBox.entries!.map((e) => e.name);
+    expect(new Set(names).size).toBeLessThan(names.length);
+
+    render(<StatBox box={revenueBox} />);
     expectNoDuplicateKeyWarning();
   });
 

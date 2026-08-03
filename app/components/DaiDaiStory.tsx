@@ -5,6 +5,7 @@ import Link from "next/link";
 import CountUp from "./CountUp";
 import styles from "./DaiDaiStory.module.css";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
+import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 
 // Every figure here is "Dai Dai"'s OWN — never Burna Boy's artist-wide totals
 // (monthly listeners, YouTube audience, career certs). Burna had a huge
@@ -19,8 +20,8 @@ interface Props {
 // the discography uses). The Dai Dai cover carries both artists' branding, so it
 // doubles as the collaboration visual.
 const COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
-const BURNA = "https://i.scdn.co/image/ab6761610000e5ebb4e44d0f4e3e47af2cf06f3f";
-const SHAKIRA = "https://i.scdn.co/image/ab6761610000e5eb17f15f351cba70561ad8bcac";
+const BURNA = BURNA_PORTRAIT;
+const SHAKIRA = SHAKIRA_PORTRAIT;
 
 type SceneKey = "hero" | "global1" | "no1s" | "streaming" | "certs" | "worldsong" | "halftime";
 
@@ -164,6 +165,23 @@ export default function DaiDaiStory(props: Props) {
   }, []);
 
   return (
+    <>
+      {/* Screen 25's back bar. It lives here rather than in the page because the
+          step counter is this component's state; a bar in the page would need
+          that lifted for no other reason. Mobile only — the desktop layout
+          keeps the site nav. */}
+      <div className={styles.backBar}>
+        <Link href="/" aria-label="Back" className={styles.backBtn}>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+            <path d="M15 5l-7 7 7 7" />
+          </svg>
+        </Link>
+        <span className={styles.backLabel}>Dai Dai</span>
+        <span className={styles.backStep}>
+          {String(active + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
+        </span>
+      </div>
+
     <div className={styles.scrolly}>
       <div className={styles.stickyCol}>
         <div className={styles.sticky}>
@@ -189,6 +207,24 @@ export default function DaiDaiStory(props: Props) {
             className={`${styles.step} ${active === i ? styles.stepOn : ""}`}
           >
             <div className={styles.stepInner}>
+              {/* Archetype 5, RESPONSIVE-AND-STATES.md: between 900 and 1239 the
+                  stage unsticks and each scene renders inline above its own step
+                  text. A sticky scroll narrative needs two full columns to read;
+                  below that it fights the scroll. Hidden at every other width,
+                  where the single shared stage is the one on screen. */}
+              {/* No aria-hidden: display:none already keeps these out of the
+                  accessibility tree at every other width, and at tablet this is
+                  the only scene on screen — hiding it would drop the figure. */}
+              <div className={styles.inlineScene}>
+                <div className={styles.inlineSceneCard}>
+                  <div
+                    className={styles.backdrop}
+                    style={{ backgroundImage: `url(${COVER})` }}
+                    aria-hidden="true"
+                  />
+                  <Scene scene={s.scene} props={props} />
+                </div>
+              </div>
               <span className={styles.stepIndex} aria-hidden="true">
                 {String(i + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
               </span>
@@ -200,5 +236,6 @@ export default function DaiDaiStory(props: Props) {
         ))}
       </div>
     </div>
+    </>
   );
 }

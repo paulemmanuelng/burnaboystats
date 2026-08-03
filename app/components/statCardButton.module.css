@@ -1,0 +1,120 @@
+/* Stat-card control + dialog. Values are the design's, verbatim. */
+
+.iconBtn {
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  padding: 0;
+  color: var(--color-neutral-600);
+}
+.iconBtn:hover {
+  color: var(--gold);
+  background: var(--color-accent-100);
+}
+
+/* The closing panel inverts: the page background becomes the button fill. */
+.blockBtn {
+  background: var(--color-bg);
+  color: var(--gold);
+  border: 1px solid var(--color-bg);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(8, 7, 6, 0.5);
+}
+.dialog {
+  /* The button can live in a right-aligned table cell; the dialog is a DOM
+     child of it, so alignment has to be reset rather than inherited. */
+  text-align: left;
+  width: min(560px, 100%);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+.head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.headLabel {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.head :global(.btn) { margin-left: auto; }
+.body { padding: 24px; }
+
+.card {
+  color: var(--bg);
+  padding: 32px;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-md);
+  background-color: var(--gold);
+  background-image:
+    radial-gradient(70% 90% at 8% 0%, rgba(255, 255, 255, 0.26), transparent 60%),
+    radial-gradient(60% 80% at 100% 105%, rgba(226, 52, 43, 0.26), transparent 62%),
+    linear-gradient(112deg, var(--gold-bright) 0%, var(--gold) 55%, #ffa023 100%);
+}
+.cardBrand {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.cardFoot { margin-top: auto; }
+.cardValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 104px;
+  line-height: 0.85;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.cardLabel {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.1;
+  margin-top: 16px;
+  max-width: 22ch;
+  text-transform: uppercase;
+}
+.cardRule {
+  height: 2px;
+  background: var(--bg);
+  margin: 20px 0 14px;
+  opacity: 0.5;
+}
+.cardSource { font-size: 13px; opacity: 0.9; }
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  align-items: center;
+}
+.actionsNote {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+@media (max-width: 560px) {
+  .cardValue { font-size: 68px; }
+  .cardLabel { font-size: 20px; }
+  .actionsNote { display: none; }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SearchResults from "../components/SearchResults";
 import { SITE_NAME } from "../lib/seo";
+import { searchStats } from "../lib/searchStats";
 
 export const metadata: Metadata = {
   title: `Search — ${SITE_NAME}`,
@@ -20,16 +21,9 @@ export default async function SearchPage({
 
   return (
     <main id="content">
-      <header className="pageHeader container">
-        <h1>
-          <span className="accent">Search</span>
-        </h1>
-        <p>Find any page — charts, awards, cars, certifications and more.</p>
-      </header>
-
-      <div className="container">
-        <SearchResults initialQuery={q} />
-      </div>
+      {/* One layout at every width — see SearchResults. The stat map is built
+          here, on the server, so the index stays out of the client bundle. */}
+      <SearchResults initialQuery={q} stats={searchStats} />
     </main>
   );
 }

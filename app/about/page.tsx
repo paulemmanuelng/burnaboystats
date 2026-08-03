@@ -1,5 +1,6 @@
-import Reveal from "../components/Reveal";
-import Equalizer from "../components/Equalizer";
+import styles from "./about.module.css";
+import BreadcrumbBar from "../components/BreadcrumbBar";
+import MobileAbout from "../components/MobileAbout";
 import KeepExploring from "../components/KeepExploring";
 import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
 
@@ -69,50 +70,60 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
 
-      <header className="pageHeader container">
-        <h1>
-          About the <span className="accent">Giant</span>
-        </h1>
-        <p>The story of Damini Ogulu — Afrobeats’ African Giant</p>
-        <div style={{ display: "flex", justifyContent: "center", marginTop: 22, height: 24 }}>
-          <Equalizer bars={9} />
-        </div>
-      </header>
+      {/* Mobile is screen 07 — facts first, abridged prose, same timeline. */}
+      <MobileAbout facts={facts} timeline={timeline} />
 
-      <div className="container">
-        {/* BIO + FAST FACTS */}
-        <div className="split block">
-          <Reveal>
-            <div>
-              <p className="eyebrow">Biography</p>
-              <p className="lead">
-                Burna Boy — born Damini Ebunoluwa Ogulu on 2 July 1991 in Port
-                Harcourt — is one of the most successful African artists of all
-                time, rising from Nigeria’s music scene to become a global
-                headliner and Grammy winner.
+      <div className={styles.desktopOnly}>
+        <BreadcrumbBar path="/about" />
+
+        {/* ── Hero ───────────────────────────────────────────── */}
+        <section className={styles.band}>
+          <div className={`${styles.wide} ${styles.heroPad}`}>
+            <div className={styles.eyebrow}>
+              <span className={styles.eyebrowRule} aria-hidden="true" />
+              Biography
+            </div>
+            <h1 className={styles.h1}>
+              About the <span className="inkText">Giant</span>
+            </h1>
+            <p className={styles.lede}>
+              The story of Damini Ogulu — Afrobeats&apos; African Giant.
+            </p>
+          </div>
+        </section>
+
+        {/* ── Biography + fast facts ─────────────────────────── */}
+        <section className={styles.band}>
+          <div className={`${styles.wide} ${styles.split}`}>
+            <div className={styles.bioCol}>
+              <p>
+                Burna Boy — born <strong>Damini Ebunoluwa Ogulu</strong> on 2 July 1991 in
+                Port Harcourt — is one of the most successful African artists of all time,
+                rising from Nigeria&rsquo;s music scene to become a global headliner and
+                Grammy winner.
               </p>
-              <p className="lead" style={{ marginTop: 16 }}>
-                Music runs in the family: his maternal grandfather, Benson
-                Idonije, was a veteran broadcaster and critic who once managed
-                the legendary Fela Kuti. Burna Boy blends Afrobeat, dancehall,
-                reggae, hip-hop, R&amp;B and pop into a sound he calls
-                “Afro-fusion.” His mother, Bose Ogulu, is also his manager.
+              <p>
+                Music runs in the family: his maternal grandfather, Benson Idonije, was a
+                veteran broadcaster and critic who once managed the legendary Fela Kuti.
+                Burna Boy blends Afrobeat, dancehall, reggae, hip-hop, R&amp;B and pop into
+                a sound he calls &ldquo;Afro-fusion.&rdquo; His mother, Bose Ogulu, is also
+                his manager.
               </p>
-              <p className="lead" style={{ marginTop: 16 }}>
-                Since his 2013 debut L.I.F.E, he has released eight studio
-                albums, won a Grammy, and made history as the first African
-                artist to sell out stadiums in both the UK and the US — cementing
-                his status as the self-styled “African Giant.”
+              <p>
+                Since his 2013 debut L.I.F.E, he has released eight studio albums, won a
+                Grammy, and made history as the first African artist to sell out stadiums in
+                both the UK and the US — cementing his status as the self-styled
+                &ldquo;African Giant.&rdquo;
               </p>
-              <p className="lead" style={{ marginTop: 16 }}>
+              <p>
                 He also uses his platform for social justice: in 2020 he released
-                “20 10 20,” dedicated to the victims of the Lekki shooting during
-                Nigeria’s #EndSARS protests, with proceeds going to a relief fund
-                for those affected.
+                &ldquo;20 10 20,&rdquo; dedicated to the victims of the Lekki shooting
+                during Nigeria&rsquo;s #EndSARS protests, with proceeds going to a relief
+                fund for those affected.
               </p>
-              <p style={{ marginTop: 20 }}>
+              <p className={styles.wikiWrap}>
                 <a
-                  className="wikiLink"
+                  className={styles.wikiLink}
                   href="https://en.wikipedia.org/wiki/Burna_Boy"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -121,50 +132,43 @@ export default function AboutPage() {
                 </a>
               </p>
             </div>
-          </Reveal>
 
-          <Reveal delay={120}>
-            <div>
-              <p className="eyebrow">Fast Facts</p>
-              <div className="facts">
+            <div className={styles.factCol}>
+              <div className={styles.eyebrow}>Fast facts</div>
+              <div className={styles.facts}>
                 {facts.map((f) => (
-                  <div className="fact" key={f.label}>
-                    <span className="factLabel">{f.label}</span>
-                    <span className="factValue">{f.value}</span>
+                  <div key={f.label} className={styles.fact}>
+                    <span className={styles.factLabel}>{f.label}</span>
+                    <span className={styles.factValue}>{f.value}</span>
                   </div>
                 ))}
               </div>
             </div>
-          </Reveal>
-        </div>
+          </div>
+        </section>
 
-        {/* TIMELINE */}
-        <div className="block">
-          <Reveal>
-            <p className="eyebrow">Career Timeline</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 className="secTitle">
-              Milestones of a <span className="goldText">global icon</span>
+        {/* ── Timeline ───────────────────────────────────────── */}
+        <section className={styles.bandSurface}>
+          <div className={`${styles.wide} ${styles.timelinePad}`}>
+            <div className={styles.eyebrow}>Career timeline</div>
+            <h2 className={styles.h2}>
+              Milestones of a <span className="inkText">global icon</span>
             </h2>
-          </Reveal>
-          <Reveal delay={140}>
-            <div className="timeline">
+            <div className={styles.timeline}>
               {timeline.map((t) => (
-                <div className="tRow" key={t.year + t.title}>
-                  <span className="tYear">{t.year}</span>
-                  <div className="tContent">
-                    <h3>{t.title}</h3>
-                    <p>{t.text}</p>
-                  </div>
+                <div key={t.year + t.title} className={styles.tRow}>
+                  <span className={styles.tDot} aria-hidden="true" />
+                  <div className={styles.tYear}>{t.year}</div>
+                  <h3 className={styles.tTitle}>{t.title}</h3>
+                  <p className={styles.tText}>{t.text}</p>
                 </div>
               ))}
             </div>
-          </Reveal>
-        </div>
-      </div>
+          </div>
+        </section>
 
-      <KeepExploring current="/about" />
+        <KeepExploring current="/about" />
+      </div>
     </main>
   );
 }

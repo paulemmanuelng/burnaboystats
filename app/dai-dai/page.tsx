@@ -3,25 +3,32 @@ import styles from "./dai-dai.module.css";
 import DaiDaiStory from "../components/DaiDaiStory";
 import DaiDaiConquest, { type ConquestCountry } from "../components/DaiDaiConquest";
 import KeepExploring from "../components/KeepExploring";
+import DaiDaiNumbers from "../components/DaiDaiNumbers";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES } from "../data/charts";
 import { daiDaiCertCount } from "../data/certifications";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
-import { A2_TO_ISO } from "../lib/isoCodes";
+import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 
 // Countries "Dai Dai" charted in, mapped to the world-map's ISO id space, for
 // the animated takeover map. Excludes the two Billboard global charts (not
-// countries). Countries without a map shape (e.g. Singapore) still count toward
-// the total but simply don't light up a shape.
+// Every country the song charted in, for the takeover grid. A flag grid needs
+// no map shape, so nothing is dropped — which is what the old SVG map did to
+// the three No. 1 countries it had no outline for.
 const daiDai = allChartItems.find((r) => r.title === "Dai Dai");
 const conquestCountries: ConquestCountry[] = (daiDai?.entries ?? [])
-  .filter((e) => e.c !== "GLB" && e.c !== "GLBX" && A2_TO_ISO[e.c])
-  .map((e) => ({ iso: A2_TO_ISO[e.c], name: CHART_COUNTRIES[e.c].name, peak: e.peak }));
-const conquestTotal = (daiDai?.entries ?? []).filter((e) => e.c !== "GLB" && e.c !== "GLBX").length;
-const conquestNo1 = daiDaiNumberOnes;
+  .filter((e) => e.c !== "GLB" && e.c !== "GLBX")
+  .map((e) => ({
+    code: e.c,
+    flag: CHART_COUNTRIES[e.c]?.flag ?? "🏳",
+    name: CHART_COUNTRIES[e.c]?.name ?? e.c,
+    peak: e.peak,
+  }));
+const conquestTotal = conquestCountries.length;
+const conquestNo1 = conquestCountries.filter((c) => c.peak === 1).length;
 // Built as a plain string (not inline JSX) so the numbers always keep their
 // spacing — inline `{n} word` was rendering as "17word".
-const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries — and reached No. 1 in ${conquestNo1} of them. Press play: the No. 1 countries light up gold first, then the rest fill in.`;
+const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries — and reached No. 1 in ${conquestNo1} of them. The No. 1 countries are gold; the rest charted without topping.`;
 
 // Views of the official "Dai Dai" video (youtube.com/watch?v=fcnDmrtj6Sk), shown
 // in whole millions. Auto-updated hourly by the live stats bot (the
@@ -170,8 +177,8 @@ export default function DaiDaiPage() {
   // CDN — the same source the discography uses. Shakira & Burna are the "Dai Dai"
   // headliners; the rest are the co-performers on the first-ever Final show.
   const lineup: { name: string; img: string; tag?: string; headliner?: boolean }[] = [
-    { name: "Shakira", img: "https://i.scdn.co/image/ab6761610000e5eb17f15f351cba70561ad8bcac", tag: "“Dai Dai”", headliner: true },
-    { name: "Burna Boy", img: "https://i.scdn.co/image/ab6761610000e5ebb4e44d0f4e3e47af2cf06f3f", tag: "“Dai Dai”", headliner: true },
+    { name: "Shakira", img: SHAKIRA_PORTRAIT, tag: "“Dai Dai”", headliner: true },
+    { name: "Burna Boy", img: BURNA_PORTRAIT, tag: "“Dai Dai”", headliner: true },
     { name: "Madonna", img: "https://i.scdn.co/image/ab6761610000e5ebed2208b41d49ebd24687985b" },
     { name: "BTS", img: "https://i.scdn.co/image/ab6761610000e5ebf80ec63ea7a0ef0fba60957d" },
     { name: "Justin Bieber", img: "https://i.scdn.co/image/ab6761610000e5ebaf20f7db5288bce9beede034" },
@@ -205,16 +212,17 @@ export default function DaiDaiPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }} />
 
-      <header className="pageHeader container">
-        <h1>
-          The <span className="accent">Dai Dai</span> Story
+      <section className={`${styles.wrap} ${styles.heroPad}`}>
+        <div className={styles.kicker}>2026 FIFA World Cup · official song</div>
+        <h1 className={styles.h1}>
+          The <span className="inkText">Dai Dai</span> story
         </h1>
-        <p>
-          How Shakira &amp; Burna Boy&apos;s 2026 World Cup anthem became the biggest
-          song in the world — and made history at the first-ever FIFA World Cup Final
-          halftime show. Scroll to follow the run.
+        <p className={styles.lede}>
+          How Shakira &amp; Burna Boy&apos;s 2026 World Cup anthem became the biggest song
+          in the world — and made history at the first-ever FIFA World Cup Final halftime
+          show. Scroll to follow the run.
         </p>
-        <div className={styles.shareRow}>
+        <div className={styles.heroActions}>
           <a
             className="btn btnPrimary"
             href={HALFTIME_VIDEO}
@@ -223,20 +231,21 @@ export default function DaiDaiPage() {
           >
             ▶ Watch the halftime show ↗
           </a>
+          <a className="btn btnSecondary" href="#numbers">Skip to the numbers</a>
         </div>
-      </header>
+      </section>
 
-      <div className="container">
+      <div className={styles.wrap}>
         <DaiDaiStory daiDaiNo1s={daiDaiNumberOnes} daiDaiCerts={daiDaiCertCount} />
 
-        <section className={styles.lineup} aria-labelledby="dd-lineup">
-          <h2 id="dd-lineup" className={styles.sectionTitle}>
-            The <span className="goldText">halftime show</span> lineup
+        <section className={styles.section} aria-labelledby="dd-lineup">
+          <div className={styles.kicker}>19 July 2026 · MetLife Stadium</div>
+          <h2 id="dd-lineup" className={styles.h2}>
+            The <span className={styles.gold}>halftime show</span> lineup
           </h2>
           <p className={styles.lineupIntro}>
-            The first-ever FIFA World Cup Final halftime show — 19 July 2026 at MetLife
-            Stadium, produced by Global Citizen. Shakira &amp; Burna Boy performed “Dai Dai”
-            on a bill of global superstars.
+            The first-ever FIFA World Cup Final halftime show, produced by Global Citizen.
+            Shakira &amp; Burna Boy performed “Dai Dai” on a bill of global superstars.
           </p>
           <ul className={styles.lineupGrid}>
             {lineup.map((a) => (
@@ -254,33 +263,33 @@ export default function DaiDaiPage() {
           </p>
         </section>
 
-        <section className={styles.conquest} aria-labelledby="dd-conquest">
-          <h2 id="dd-conquest" className={styles.sectionTitle}>
-            The <span className="goldText">world takeover</span>
+        <section className={styles.section} aria-labelledby="dd-conquest">
+          <div className={styles.kicker}>Country by country</div>
+          <h2 id="dd-conquest" className={styles.h2}>
+            The <span className={styles.gold}>world takeover</span>
           </h2>
           <p className={styles.conquestIntro}>
             {conquestIntro}
           </p>
-          <DaiDaiConquest countries={conquestCountries} totalCountries={conquestTotal} />
+          <DaiDaiConquest countries={conquestCountries} />
         </section>
 
-        <section className={styles.byNumbers} aria-labelledby="dd-numbers">
-          <h2 id="dd-numbers" className={styles.sectionTitle}>
-            Dai Dai <span className="goldText">by the numbers</span>
+        <section id="numbers" className={styles.section} aria-labelledby="dd-numbers">
+          <div className={styles.kicker}>The song&apos;s own record</div>
+          <h2 id="dd-numbers" className={styles.h2}>
+            Dai Dai <span className={styles.gold}>by the numbers</span>
           </h2>
-          <div className={styles.numGrid}>
-            {byNumbers.map((n) => (
-              <div key={n.l} className={styles.numCard}>
-                <span className={styles.numValue}>{n.v}</span>
-                <span className={styles.numLabel}>{n.l}</span>
-              </div>
-            ))}
-          </div>
+          <p className={styles.numIntro}>
+            These are “Dai Dai”&apos;s own figures — not Burna Boy&apos;s career totals.
+            Every one is the song&apos;s.
+          </p>
+          <DaiDaiNumbers items={byNumbers} />
         </section>
 
-        <section className={styles.faq} aria-labelledby="dd-faq">
-          <h2 id="dd-faq" className={styles.sectionTitle}>
-            Frequently asked <span className="goldText">questions</span>
+        <section className={`${styles.section} ${styles.desktopOnly}`} aria-labelledby="dd-faq">
+          <div className={styles.kicker}>Answered plainly</div>
+          <h2 id="dd-faq" className={styles.h2}>
+            Frequently asked <span className={styles.gold}>questions</span>
           </h2>
           <div className={styles.faqList}>
             {faqs.map((f) => (
@@ -305,7 +314,29 @@ export default function DaiDaiPage() {
         </section>
       </div>
 
-      <KeepExploring current="/dai-dai" />
+      {/* Screen 25's action bar — mobile only. The hero keeps its own two
+          buttons; this is the persistent one the design pins to the floor. */}
+      <div className={styles.mobileActionBar}>
+        <a
+          className={styles.mobilePrimary}
+          href={HALFTIME_VIDEO}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ▶ Watch the halftime show
+        </a>
+        <Link href="/share" aria-label="Make a stat card" className={styles.mobileShare}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" />
+            <path d="M12 3v12" />
+            <path d="m7 8 5-5 5 5" />
+          </svg>
+        </Link>
+      </div>
+
+      <div className={styles.desktopOnly}>
+        <KeepExploring current="/dai-dai" />
+      </div>
     </main>
   );
 }

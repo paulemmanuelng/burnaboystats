@@ -1,353 +1,401 @@
 import Link from "next/link";
 import styles from "./page.module.css";
-import Waveform from "./components/Waveform";
-import Marquee from "./components/Marquee";
-import Reveal from "./components/Reveal";
-import CountUp from "./components/CountUp";
-import UpdatesList from "./components/UpdatesList";
-import MusicDecor from "./components/MusicDecor";
-import AlbumStrip from "./components/AlbumStrip";
+import LiveBand from "./components/LiveBand";
+import TodaysNumber from "./components/TodaysNumber";
+import MobileHome from "./components/MobileHome";
+import CertLedger from "./components/CertLedger";
+import StatCardButton from "./components/StatCardButton";
 import GlobeTeaser from "./components/GlobeTeaser";
-import TierDonut, { type DonutSeg } from "./components/TierDonut";
-import { totalAwards, albums, singles, features } from "./data/certifications";
-import { latestUpdates, updates } from "./data/updates";
-import { daiDaiNumberOnes, numberOnes } from "./data/charts";
-import { albums as studioAlbums } from "./data/albums";
-import { spotifyImage, spotifySrcSet } from "./lib/spotifyImage";
-import { liveHeadline } from "./lib/liveHeadline";
+import SearchTrigger from "./components/SearchTrigger";
+import { homeScoreboard } from "./lib/homeScoreboard";
+import { spotifyImage } from "./lib/spotifyImage";
+import {
+  ledgerRows,
+  certTotal,
+  certCountryTotal,
+  certifiedReleaseTotal,
+  tierTotals,
+  largestTier,
+  diamondNote,
+  boardCells,
+  liveNumberOneCountries,
+  careerNumberOnes,
+  albumCards,
+  topShows,
+  topTour,
+  homeFirsts,
+  numberWord,
+} from "./lib/homeData";
+import { updates } from "./data/updates";
+import NotReported from "./components/NotReported";
 
-// The "Dai Dai" single cover, used by the homepage featured card.
-const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
+/**
+ * The homepage, built from designs/desktop/Burna Boy Stats.dc.html.
+ *
+ * Eight sections in the design's order: hero, scoreboard, history made, the
+ * certifications ledger, the No. 1 board, the catalogue, career records, and
+ * the closing source panel — and nothing else. The marquee, updates feed and
+ * map teaser the previous page carried are not in this design.
+ */
 
-// The artist's own Spotify press image. The site was, for a site about one of
-// the most magnetic performers alive, entirely tables and figures — he never
-// appeared on his own homepage. Same source and treatment already used for the
-// Dai Dai story: served from Spotify's CDN, unmodified, linked back.
-const BURNA_PORTRAIT = "https://i.scdn.co/image/ab6761610000e5ebb4e44d0f4e3e47af2cf06f3f";
+// The freshness chip reads off the feed rather than a typed date.
+const lastVerified = new Date(
+  `${updates.reduce((m, u) => (u.date > m ? u.date : m), updates[0].date)}T00:00:00`
+).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 
-const total = totalAwards();
+// Tier colours carry data meaning and are never recoloured to gold.
+const TIER_INK: Record<string, string> = {
+  Diamond: "var(--cyan)",
+  Platinum: "var(--silver)",
+  Gold: "var(--gold)",
+  Silver: "#b8bcc4",
+};
+const TIER_GRAD: Record<string, string> = {
+  Diamond: "linear-gradient(90deg, #8fe3f0, #5fc9dc)",
+  Platinum: "linear-gradient(90deg, #dfe2e8, #b8bcc4)",
+  Gold: "linear-gradient(90deg, var(--gold-bright), var(--gold))",
+  Silver: "linear-gradient(90deg, #b8bcc4, #8f939b)",
+};
 
-// The hook, derived from the live snapshot so it changes on its own.
-const headline = liveHeadline();
-
-// Tier breakdown of all certifications, for the donut under the ranked list.
-const tierCounts: Record<string, number> = { Diamond: 0, Platinum: 0, Gold: 0, Silver: 0 };
-for (const it of [...albums, ...singles, ...features]) for (const c of it.certs) tierCounts[c.level]++;
-const tierSegments: DonutSeg[] = [
-  { label: "Diamond", value: tierCounts.Diamond, color: "#8fe3f0" },
-  { label: "Platinum", value: tierCounts.Platinum, color: "#dfe2e8" },
-  { label: "Gold", value: tierCounts.Gold, color: "#ffb627" },
-  { label: "Silver", value: tierCounts.Silver, color: "#b8bcc4" },
-];
-
-// Freshness cue for the hero — the most recent Updates-feed date, formatted.
-// Derived from fixed data (not runtime "now"), so it's stable at build time.
-const lastUpdatedISO = updates.reduce((m, u) => (u.date > m ? u.date : m), updates[0].date);
-const lastUpdated = new Date(`${lastUpdatedISO}T00:00:00`).toLocaleDateString("en-US", {
-  month: "long",
-  day: "numeric",
-  year: "numeric",
-});
-
-// His most decorated tracks — shown as a ranked list (the #1 is featured).
-const topCerts = [
-  { title: "Last Last", credit: "Burna Boy · 2022", cert: "Diamond 🇫🇷 · 4× Platinum 🇨🇦 · 5× Platinum 🇳🇬" },
-  { title: "Location", credit: "Dave ft. Burna Boy · 2019", cert: "5× Platinum 🇬🇧 · Diamond 🇫🇷" },
-  { title: "Jerusalema (Remix)", credit: "Master KG, Nomcebo & Burna Boy · 2020", cert: "Diamond 🇫🇷 · 4× Platinum 🇮🇹 · 2× Platinum 🇵🇹" },
-  { title: "On the Low", credit: "Burna Boy · 2018", cert: "Diamond 🇫🇷 · 2× Platinum 🇨🇦" },
-];
-
-const marqueeItems = [
-  "African Giant", "FIFA World Cup 2026", "Grammy Winner", "Odogwu",
-  "BET Award Winner", "Global Superstar", "Afro-Fusion", "Twice as Tall",
-];
-
-// Career-defining records as an African artist (the headline feats).
-const records = [
-  {
-    num: "$30.46M",
-    title: "Highest-grossing African tour",
-    desc: "The I Told Them… Tour — the biggest tour in history by an African artist.",
-    href: "/records/tours",
-  },
-  {
-    num: "$6.15M",
-    title: "Biggest African concert",
-    desc: "His record London Stadium night — and he was the first African artist to headline a UK stadium.",
-    href: "/records/tours/revenue",
-  },
-  {
-    num: "2026",
-    title: "FIFA World Cup headliner",
-    desc: "First African artist to headline a World Cup opening ceremony, performing “Dai Dai” with Shakira.",
-    href: "/records/firsts",
-  },
-];
+// 2013–2025 is thirteen years, not twelve — the span is inclusive of both ends.
+const firstYear = albumCards[0].year;
+const lastYear = albumCards.at(-1)!.year;
+const albumSpan = `${numberWord(lastYear - firstYear + 1)} years, ${firstYear} to ${lastYear}.`;
 
 export default function Home() {
   return (
     <main id="content">
-      {/* ================= HERO ================= */}
-      <section className={styles.hero}>
-        <div className={styles.heroGlow} aria-hidden="true" />
-        {/* Decorative, so it is a CSS background rather than an <img>: the
-            image must not be fetched at all on phones, and display:none does
-            not prevent that — it downloaded the full 640px file to hide it.
-            A background declared only inside a min-width query is never
-            requested when the query does not match. */}
-        <div className={styles.heroPortrait} aria-hidden="true" />
-        <span className={styles.heroWatermark} aria-hidden="true">Odogwu</span>
+      {/* Mobile is its own screen in this design — a different running order,
+          and sections the desktop page does not have. Each renders at its own
+          breakpoint rather than one being reflowed into the other. */}
+      <MobileHome />
 
-        <div className={`container ${styles.heroInner}`}>
-          <div className={styles.heroTop}>
-            <div className={styles.metaGroup}>
-              <span className={styles.metaLabel}>Est. 2010</span>
-              <span className={styles.metaLabel}>Afro-Fusion</span>
-            </div>
-            <span className={styles.updated}>
-              <span className={styles.liveDot} aria-hidden="true" />
-              Updated {lastUpdated}
-            </span>
-          </div>
+      <div className={styles.desktopOnly}>
+        <LiveBand />
 
-          <p className={styles.eyebrow}>★ The African Giant</p>
-          <h1 className={styles.title}>
-            Burna <span className="inkText">Boy</span>
-          </h1>
-          <p className={styles.tagline}>
-            Every certification, every chart record, every milestone — the whole
-            catalogue in one place. Fact-checked and always current.
-          </p>
-          <div className={styles.heroButtons}>
-            <Link href="/certifications" className="btn btnPrimary">View certifications ↗</Link>
-            <Link href="/music" className="btn btnSecondary">Explore the music ↗</Link>
-          </div>
-
-          {/* Sits directly above the scoreboard on purpose: those four are
-              all-time career figures, this is the one that is true only today.
-              Together they read as "here is the career, here is right now".
-              It previously sat between the wordmark and the tagline, where it
-              delayed the one sentence explaining what the site actually is. */}
-          <Link href="/live-charts" className={styles.liveHook}>
-            <span className={styles.liveHookDot} aria-hidden="true" />
-            <span className={styles.liveHookLead}>{headline.lead}</span>
-            <span className={styles.liveHookDetail}>{headline.detail} ↗</span>
-          </Link>
-          <div className={styles.scoreboard}>
-            <Link href="/certifications" className={styles.stat}>
-              <span className={styles.statNum}><CountUp end={total} /></span>
-              <span className={styles.statLabel}>Certifications</span>
-            </Link>
-            <Link href="/records/charts" className={styles.stat}>
-              <span className={styles.statNum}><CountUp end={numberOnes} /></span>
-              <span className={styles.statLabel}>No. 1s worldwide</span>
-            </Link>
-            <Link href="/music" className={styles.stat}>
-              <span className={styles.statNum}><CountUp end={studioAlbums.length} /></span>
-              <span className={styles.statLabel}>Studio albums</span>
-            </Link>
-            <Link href="/records/awards" className={styles.stat}>
-              <span className={styles.statNum}>2021</span>
-              <span className={styles.statLabel}>Grammy winner</span>
-            </Link>
-          </div>
-        </div>
-
-        <Waveform bars={60} className={styles.heroWave} />
-      </section>
-
-      {/* ================= MARQUEE ================= */}
-      <Marquee items={marqueeItems} />
-
-      {/* ================= FEATURED: DAI DAI STORY ================= */}
-      <section className={styles.section}>
-        <div className="container">
-          <Reveal>
-            <Link href="/dai-dai" className={styles.featured}>
-              <span className={styles.featuredBadge}>
-                <span className={styles.featuredDot} aria-hidden="true" />
-                History made · 19 July 2026
-              </span>
-              {/* Cover floats to the right; the copy below wraps around it (Spotify CDN, same as the discography). */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                className={styles.featuredCover}
-                src={spotifyImage(DAI_DAI_COVER, 300)}
-                srcSet={spotifySrcSet(DAI_DAI_COVER)}
-                sizes="190px"
-                alt="Shakira × Burna Boy — Dai Dai"
-                width={190}
-                height={190}
-                loading="lazy"
-              />
-              <h2 className={styles.featuredTitle}>
-                The first-ever World Cup <span className="goldText">Halftime Show</span>
-              </h2>
-              <p className={styles.featuredText}>
-                Shakira &amp; Burna Boy performed &ldquo;Dai Dai&rdquo; at the first-ever FIFA
-                World Cup Final halftime show — Burna the first African artist to headline it,
-                alongside Madonna, BTS &amp; Justin Bieber. Their anthem is No.&nbsp;1 in{" "}
-                {daiDaiNumberOnes} countries and the most-streamed song on Earth.
+        {/* ── Hero ───────────────────────────────────────────────── */}
+        {/* Two columns, no portrait: in this design the gold "today's number"
+            panel IS the right column, divided from the copy by a hairline. */}
+        <section className={styles.hero} id="top">
+          <div className={styles.heroGrid}>
+            <div className={styles.heroCopy}>
+              <div className={styles.eyebrow}>
+                <span className={styles.eyebrowRule} aria-hidden="true" />
+                The African Giant · Est. 2010 · Afro-Fusion
+              </div>
+              <h1 className={styles.title}>
+                Burna <span className="inkText">Boy</span>
+              </h1>
+              <p className={styles.tagline}>
+                Every certification, chart peak, award and tour record — one dataset,
+                sourced line by line, updated the day it changes.
               </p>
-              <span className={styles.featuredCta}>Read the story ↗</span>
-            </Link>
-          </Reveal>
-        </div>
-      </section>
+              <div className={styles.heroButtons}>
+                <Link href="/certifications" className="btn btnPrimary">View certifications</Link>
+                <Link href="/music" className="btn btnSecondary">Explore the music</Link>
+                <SearchTrigger />
+              </div>
+              <div className={styles.heroChips}>
+                <span className="tag tagNeutral">Sources: RIAA · BPI · SNEP · IFPI</span>
+                <span className="tag tagNeutral">Last verified {lastVerified}</span>
+                <Link href="/api" className="tag tagOutline">Open data API</Link>
+              </div>
+            </div>
 
-      {/* ================= CAREER RECORDS ================= */}
-      <section className={styles.section}>
-        <div className="container">
-          <Reveal>
-            <p className={styles.eyebrow}>Record-breaking</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className={styles.sectionHead}>
-              <h2 className={styles.sectionTitle}>
-                Career <span className="goldText">records</span>
-              </h2>
-              <Link href="/records" className={styles.headLink}>
+            <div className={styles.heroPanel}>
+              <TodaysNumber />
+            </div>
+          </div>
+        </section>
+
+        {/* ── Scoreboard ─────────────────────────────────────────── */}
+        <section className={styles.scoreStrip}>
+          <div className={styles.wide}>
+            <div className={styles.scoreGrid}>
+              {homeScoreboard.map((s) => (
+                <Link key={s.label} href={s.href} className={styles.scoreCell}>
+                  <div className={styles.scoreValue}>{s.value}</div>
+                  <div className={styles.scoreLabel}>{s.label}</div>
+                  <div className={styles.scoreSource}>{s.source}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── History made ───────────────────────────────────────── */}
+        <section className={styles.historyBand}>
+          <div className={styles.historyInner}>
+            <div>
+              <div className={styles.historyKicker}>History made · 19 July 2026</div>
+              <h2 className={styles.historyTitle}>Shakira × Burna Boy — “Dai Dai”</h2>
+            </div>
+            <div className={styles.historyRow}>
+              <p className={styles.historyText}>
+                The first-ever FIFA World Cup Final halftime show, and the first African
+                artist to headline it. Their anthem is now the most-streamed song on Earth.
+              </p>
+              <Link href="/dai-dai" className={`btn btnPrimary ${styles.historyCta}`}>
+                Read the story ↗
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ── The certifications ledger ──────────────────────────── */}
+        <CertLedger
+          rows={ledgerRows}
+          releaseTotal={certifiedReleaseTotal}
+          certTotal={certTotal}
+          certCountries={certCountryTotal}
+        >
+          <div className={styles.tierKicker}>The full picture</div>
+          <div className={styles.tierTotal}>
+            <span className={styles.tierTotalNum}>{certTotal}</span>
+            <span className={styles.tierTotalWord}>certifications</span>
+          </div>
+          <div className={styles.tierList}>
+            {tierTotals.map((t) => (
+              <div key={t.name} className={styles.tierRow}>
+                <div className={styles.tierTop}>
+                  <span className={styles.tierName} style={{ color: TIER_INK[t.name] }}>
+                    {t.name}
+                  </span>
+                  <span className={styles.tierCount}>{t.count}</span>
+                  <span className={styles.tierPct}>{t.pct}%</span>
+                </div>
+                <div className={styles.tierTrack}>
+                  <div
+                    className={styles.tierFill}
+                    style={{
+                      width: `${(t.count / largestTier) * 100}%`,
+                      background: TIER_GRAD[t.name],
+                    }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className={styles.tierNote}>
+            Bars are scaled to the largest tier and coloured by metal. {diamondNote}
+          </p>
+          <Link href="/records/visualized" className={`btn btnGhost ${styles.flushGhost}`}>
+            See it visualized ↗
+          </Link>
+
+          {/* The rotating globe fills the rest of this column — a teaser into
+              the full performance map. */}
+          <GlobeTeaser />
+        </CertLedger>
+
+        {/* ── The No. 1 board ────────────────────────────────────── */}
+        <section className={styles.liveSection} id="live">
+          <div className={styles.wide}>
+            <div className={styles.head}>
+              <div>
+                <div className={styles.kicker}>Tracked as it happens</div>
+                <h2 className={styles.h2}>The No. 1 board</h2>
+              </div>
+              <p className={styles.lede}>
+                Where he sits at the top today. Green cells marked{" "}
+                <span className={styles.newInk}>NEW</span> entered at No. 1 most recently.
+              </p>
+              <Link href="/records/charts" className={`btn btnSecondary ${styles.headBtn}`}>
+                All {careerNumberOnes} career No. 1s ↗
+              </Link>
+            </div>
+
+            <div className={styles.boardCount}>
+              Showing {boardCells.length} of {liveNumberOneCountries} · national charts and
+              Spotify daily
+            </div>
+
+            <div className={styles.boardGrid}>
+              {boardCells.map((c) => (
+                <div
+                  key={c.code}
+                  className={`${styles.boardCell} ${c.isNew ? styles.boardNew : ""}`}
+                >
+                  <div className={styles.boardTop}>
+                    <span className={styles.boardCode}>{c.code}</span>
+                    <span className={styles.boardFlag} aria-hidden="true">
+                      {c.isNew ? "NEW" : c.flag}
+                    </span>
+                  </div>
+                  <div className={styles.boardName}>{c.name}</div>
+                  <div className={styles.boardChart}>{c.chart}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── The catalogue ──────────────────────────────────────── */}
+        <section className={styles.section} id="music">
+          <div className={styles.wide}>
+            <div className={styles.head}>
+              <div>
+                <div className={styles.kicker}>The catalogue</div>
+                <h2 className={styles.h2}>
+                  {numberWord(albumCards.length)} studio albums
+                </h2>
+              </div>
+              <p className={styles.lede}>
+                {albumSpan} Hover an album for its peak and certifications.
+              </p>
+              <Link href="/music" className={`btn btnSecondary ${styles.headBtn}`}>
+                Full discography ↗
+              </Link>
+            </div>
+
+            <div className={styles.albumGrid}>
+              {albumCards.map((a) => (
+                <Link key={a.title} href="/music" className={styles.albumCard}>
+                  <div
+                    className={styles.albumCover}
+                    style={
+                      a.cover
+                        ? { backgroundImage: `url(${spotifyImage(a.cover, 300)})` }
+                        : undefined
+                    }
+                  />
+                  <div className={styles.albumRow}>
+                    <div className={styles.albumTitle}>{a.title}</div>
+                    <div className={styles.albumYear}>{a.year}</div>
+                  </div>
+                  {/* Only the chips there is data for — the earliest albums
+                      predate the chart and certification records. */}
+                  <div className={styles.albumChips}>
+                    {a.peak && <span className="tag tagNeutral">{a.peak}</span>}
+                    {a.certs && <span className="tag tagNeutral">{a.certs}</span>}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Career records ─────────────────────────────────────── */}
+        <section className={styles.section} id="records">
+          <div className={styles.wide}>
+            <div className={styles.head}>
+              <div>
+                <div className={styles.kicker}>Record-breaking</div>
+                <h2 className={styles.h2}>Career records</h2>
+              </div>
+              <Link href="/records" className={`btn btnSecondary ${styles.headBtn}`}>
                 All career records ↗
               </Link>
             </div>
-          </Reveal>
-          <Reveal delay={140}>
-            <div className={styles.recordGrid}>
-              {records.map((r) => (
-                <Link key={r.title} href={r.href} className={styles.recordCard}>
-                  <span className={styles.recordNum}>{r.num}</span>
-                  <span className={styles.recordTitle}>{r.title}</span>
-                  <span className={styles.recordDesc}>{r.desc}</span>
-                </Link>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
-      {/* ================= DISCOGRAPHY STRIP ================= */}
-      <section className={styles.section}>
-        <div className="container">
-          <Reveal>
-            <p className={styles.eyebrow}>The catalogue</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className={styles.sectionHead}>
-              <h2 className={styles.sectionTitle}>
-                The <span className="goldText">discography</span>
-              </h2>
-              <Link href="/music" className={styles.headLink}>
-                Explore the music ↗
-              </Link>
-            </div>
-          </Reveal>
-          <Reveal delay={140}>
-            <AlbumStrip />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ================= BIGGEST CERTIFICATIONS (ranked) ================= */}
-      <section className={styles.section}>
-        <div className="container">
-          <Reveal>
-            <p className={styles.eyebrow}>Certified worldwide</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className={styles.sectionHead}>
-              <h2 className={styles.sectionTitle}>
-                Biggest <span className="goldText">certifications</span>
-              </h2>
-              <Link href="/certifications" className={styles.headLink}>
-                All {total} certifications ↗
-              </Link>
-            </div>
-          </Reveal>
-          <Reveal delay={140}>
-            <ol className={styles.rankList}>
-              {topCerts.map((c, i) => (
-                <li key={c.title} className={styles.rankRow}>
-                  <span className={styles.rank}>{String(i + 1).padStart(2, "0")}</span>
-                  <div className={styles.rankBody}>
-                    <span className={styles.rankTitle}>{c.title}</span>
-                    <span className={styles.rankCredit}>{c.credit}</span>
-                  </div>
-                  <span className={styles.rankCert}>{c.cert}</span>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-          <Reveal delay={200}>
-            <div className={styles.tierStrip}>
-              <div className={styles.tierHead}>
-                <p className={styles.eyebrow}>The full picture</p>
-                <Link href="/records/visualized" className={styles.headLink}>
-                  See it visualized ↗
-                </Link>
-              </div>
-              <TierDonut
-                segments={tierSegments}
-                total={total}
-                centerNum={`${total}`}
-                centerLabel="certifications"
-                ariaLabel={`Certifications by tier: ${tierSegments.map((s) => `${s.value} ${s.label}`).join(", ")}`}
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ================= LATEST UPDATES ================= */}
-      <section className={styles.section}>
-        <div className="container">
-          <Reveal>
-            <p className={styles.eyebrow}>Tracked as it happens</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className={styles.sectionHead}>
-              <h2 className={styles.sectionTitle}>
-                Latest <span className="goldText">updates</span>
-              </h2>
-              <Link href="/updates" className={styles.headLink}>
-                All updates ↗
-              </Link>
-            </div>
-          </Reveal>
-          <Reveal delay={140}>
-            <UpdatesList items={latestUpdates(2)} />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ================= MAP TEASER ================= */}
-      <section className={styles.section}>
-        <div className="container">
-          <Reveal>
-            <GlobeTeaser />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ================= CTA ================= */}
-      <section className={styles.cta}>
-        <div className="container">
-          <Reveal>
-            <div className={styles.ctaInner}>
-              <MusicDecor />
-              <div className={styles.ctaContent}>
-                <h2 className={styles.ctaTitle}>
-                  Dive into the <span className="goldText">data</span>
-                </h2>
-                <p className={styles.ctaText}>
-                  Chart records, awards, tours and certifications — every career
-                  record of the African Giant in one place.
+            <div className={styles.recordsGrid}>
+              <div className={styles.recordsLeft}>
+                <h3 className={styles.h3}>Highest revenue per show</h3>
+                <table className="tableBase">
+                  <thead>
+                    <tr>
+                      <th>Venue</th>
+                      <th className={styles.colCity}>City</th>
+                      <th className={styles.colTickets}>Tickets</th>
+                      <th className={styles.colGross}>Gross</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {topShows.map((t) => (
+                      <tr key={`${t.venue}-${t.year}`}>
+                        <td>
+                          <div className={styles.showVenue}>{t.venue}</div>
+                          <div className={styles.showDate}>
+                            {t.tour} · {t.year}
+                          </div>
+                        </td>
+                        <td>{t.city}</td>
+                        <td className={styles.numRight}>{t.tickets ?? <NotReported />}</td>
+                        <td className={styles.grossCell}>${(t.revenue / 1e6).toFixed(2)}M</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className={styles.sourceNote}>
+                  Source: TouringData / Billboard Boxscore · the {topTour.name} grossed{" "}
+                  {topTour.gross}
+                  {topTour.tickets ? ` from ${topTour.tickets} tickets` : ""}
+                  {topTour.shows ? ` across ${topTour.shows} shows` : ""} — the
+                  highest-grossing tour by an African artist.
                 </p>
-                <Link href="/records" className="btn btnPrimary">Explore the records ↗</Link>
+              </div>
+
+              <div className={styles.recordsRight}>
+                <h3 className={styles.h3}>Firsts</h3>
+                <div className={styles.firstsList}>
+                  {homeFirsts.map((f) => (
+                    <div key={f.title} className={styles.firstRow}>
+                      <div className={styles.firstYear}>{f.year}</div>
+                      <div>
+                        <div className={styles.firstTitle}>{f.title}</div>
+                        <div className={styles.firstNote}>{f.text}</div>
+                      </div>
+                      <StatCardButton
+                        value={f.year}
+                        label={f.title}
+                        source={f.text}
+                        href="/records/firsts"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </Reveal>
-        </div>
-      </section>
+          </div>
+        </section>
+
+        {/* ── Built for the timeline ─────────────────────────────── */}
+        <section className={styles.closer}>
+          <div className={styles.closerGlyphs} aria-hidden="true">
+            <span className={styles.g1}>♫</span>
+            <span className={styles.g2}>♪</span>
+            <span className={styles.g3}>♬</span>
+            <span className={styles.g4}>◉</span>
+            <span className={styles.g5}>✦</span>
+            <span className={styles.g6}>♩</span>
+            <span className={styles.g7}>✦</span>
+            <span className={styles.g8}>♪</span>
+            <span className={styles.g9}>♫</span>
+            <span className={styles.ring1} />
+            <span className={styles.ring2} />
+          </div>
+          <div className={styles.closerInner}>
+            <div>
+              <div className={styles.closerKicker}>Built for the timeline</div>
+              <h2 className={styles.closerTitle}>
+                Every number here comes with a source and a date.
+              </h2>
+              <p className={styles.closerText}>
+                No aggregated guesses. Certifications are read from the issuing body,
+                chart peaks from the national chart, grosses from Boxscore — and the whole
+                dataset is public.
+              </p>
+            </div>
+            <div className={styles.closerActions}>
+              <StatCardButton
+                variant="block"
+                value={String(certTotal)}
+                label="Certifications worldwide"
+                source={`Across ${certCountryTotal} countries · burnaboystats.com`}
+                href="/certifications"
+              >
+                Make a stat card ↗
+              </StatCardButton>
+              <Link href="/api" className={`btn btnBlock ${styles.closerLink}`}>
+                Open data API ↗
+              </Link>
+              <Link href="/methodology" className={`btn btnBlock ${styles.closerLink}`}>
+                Methodology ↗
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }

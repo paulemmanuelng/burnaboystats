@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import MobileTabBar from "./components/MobileTabBar";
 import type { ReactNode } from "react";
 import { Geist, Anton, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -139,6 +140,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* NAVIGATION BAR — shown on every page */}
         <Nav />
 
+        {/* The mobile spine: a fixed five-tab bar on every phone screen.
+            Hidden above the mobile breakpoint, where the sticky nav does it. */}
+        <MobileTabBar />
+
         {/* Birthday takeover — self-gates to July 2 (Burna Boy's birthday) */}
         <BirthdayCelebration />
 
@@ -155,27 +160,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         {/* FOOTER — shown on every page */}
         <footer className="footer">
-          <div className="container">
-            <FooterNav />
-            <p>© {new Date().getFullYear()} BurnaBoyStats · Unofficial Fan Site</p>
-            <p className="disclaimer">
-              An unofficial fan site — not affiliated with or endorsed by Burna
-              Boy. Album artwork is provided by Spotify and remains the property
-              of its respective owners.
-            </p>
-            <p className="builtBy">
-              Built by{" "}
-              <a
-                href="https://www.tiktok.com/@paulemmanuelng"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footerLink"
-              >
-                Paul Emmanuel
-              </a>
-            </p>
-          </div>
-          <div className="footerWordmark" aria-hidden="true">Burna Boy</div>
+          <FooterNav />
         </footer>
       </body>
     </html>

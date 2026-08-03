@@ -1,69 +1,176 @@
 /* "Where he's performed" — custom world map (no mapping library; shapes are the
-   pre-generated static paths in data/worldShapes.ts). */
+   pre-generated static paths in data/worldShapes.ts).
 
-.page {
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem) 4rem;
-}
+   Two consumers: this page's desktop layout, and PerformanceMap, which imports
+   the map/card classes from here and is rendered by both layouts.
+   designs/desktop/Records - Tour Map.html supplies every value below. */
 
-.head {
-  text-align: center;
-  margin-bottom: clamp(1.25rem, 4vw, 2rem);
-}
+/* ═══ Page — desktop ═══════════════════════════════════════════════════════ */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+.head { padding-top: 32px; }
 .kicker {
-  font-family: var(--font-mono);
-  text-transform: uppercase;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
   letter-spacing: 0.18em;
-  font-size: 0.72rem;
+  text-transform: uppercase;
   color: var(--gold);
-  margin: 0 0 0.5rem;
 }
 .title {
-  font-family: var(--font-anton);
-  font-size: clamp(2rem, 6vw, 3.4rem);
-  line-height: 1.02;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 78px;
+  line-height: 0.9;
   letter-spacing: 0.01em;
-  margin: 0;
+  text-transform: uppercase;
+  margin: 14px 0 0;
 }
 .lede {
-  max-width: 58ch;
-  margin: 0.75rem auto 0;
-  color: var(--text-muted);
+  font-size: 18px;
   line-height: 1.55;
-}
-.stats {
-  margin: 1rem 0 0;
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-.stats strong {
-  color: var(--gold-bright);
-  font-size: 1.05rem;
+  color: #cfc7bb;
+  max-width: 62ch;
+  margin: 18px 0 0;
+  text-wrap: pretty;
 }
 
-/* ── Map ── */
-.figure {
-  margin: 0;
+/* The two counts read as one line: countries lit, regions plain, a hairline
+   between them. Regions aren't a record — they're the shape of the first
+   number. */
+.counts { display: flex; align-items: baseline; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
+.countBig {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 58px;
+  line-height: 0.9;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
 }
-.mapWrap {
-  position: relative;
-  width: 100%;
+.countBigPlain { color: var(--text); }
+.countWord {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
-.svg {
+.countRule { width: 1px; height: 22px; background: var(--line); display: block; }
+
+.figure { margin: 28px auto 0; }
+.frame { position: relative; border: 1px solid var(--line); background: var(--bg-soft); }
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+/* Two swatches, because there are two ways a country can appear: a shaded
+   shape, or a marker where 110m geometry has no usable shape for it. */
+.swatch {
+  width: 14px;
+  height: 14px;
+  background: rgba(255, 182, 39, 0.42);
+  border: 1px solid var(--gold);
   display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
+  flex: none;
 }
+.swatchDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 182, 39, 0.75);
+  border: 1px solid var(--gold-bright);
+  display: block;
+  flex: none;
+  margin-left: 14px;
+}
+
+.breakdown { padding-top: 52px; }
+.breakdownTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+.tableWrap { margin-top: 22px; overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; }
+.table th {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.table td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.table tbody tr:hover td { background: rgba(255, 182, 39, 0.05); }
+.regionCell {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  border-bottom: 1px solid var(--line);
+  padding: 14px;
+  white-space: nowrap;
+  text-align: left;
+}
+.numCol {
+  text-align: right;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  width: 90px;
+}
+.namesCell { font-size: 13.5px; line-height: 1.7; color: #cfc7bb; }
+.table tfoot td {
+  border-bottom: none;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+/* The total row's last cell is prose, not display type. */
+.tfootPlain {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 14px;
+  text-transform: none;
+}
+
+.note { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin: 22px 0 0; max-width: 84ch; }
+.note a { color: var(--gold); }
+.pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 0 72px; }
+
+@media (max-width: 1239px) {
+  .title { font-size: 57px; }
+  .countBig { font-size: 44px; }
+}
+
+/* ═══ Map component ════════════════════════════════════════════════════════ */
+.mapWrap { position: relative; width: 100%; }
+.svg { display: block; width: 100%; height: auto; overflow: visible; }
 
 /* zoomable scroll viewport (the SVG width scales with the zoom level) */
-.viewport {
-  width: 100%;
-  aspect-ratio: 900 / 470;
-  scrollbar-width: thin;
-}
+.viewport { width: 100%; aspect-ratio: 900 / 470; scrollbar-width: thin; }
 
 /* +/- zoom controls, top-right of the map */
 .zoom {
@@ -90,65 +197,47 @@
   cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
-.zoomBtn:hover:not(:disabled) {
-  border-color: var(--gold);
-  background: var(--bg-soft-2);
-}
-.zoomBtn:disabled {
-  opacity: 0.4;
-  cursor: default;
-}
+.zoomBtn:hover:not(:disabled) { border-color: var(--gold); background: var(--bg-soft-2); }
+.zoomBtn:disabled { opacity: 0.4; cursor: default; }
 
 /* countries with no documented show — the muted base map */
-.off {
-  fill: var(--bg-soft-2);
-  stroke: var(--bg);
-  stroke-width: 0.5;
-}
+.off { fill: var(--bg-soft-2); stroke: rgba(12, 10, 9, 0.9); stroke-width: 0.4; }
 
 /* countries he has performed in */
 .on {
-  fill: var(--gold-dim);
-  stroke: var(--bg);
-  stroke-width: 0.5;
+  fill: rgba(255, 182, 39, 0.42);
+  stroke: rgba(12, 10, 9, 0.9);
+  stroke-width: 0.4;
   cursor: pointer;
   transition: fill 0.15s ease;
   outline: none;
 }
 .on:hover,
-.on:focus-visible {
-  fill: var(--gold);
-}
-.activePath {
-  fill: var(--gold-bright);
-}
+.on:focus-visible { fill: var(--gold-bright); }
+.activePath { fill: var(--gold-bright); }
 
 /* dot markers for tiny island nations (no shape at this map resolution) */
 .dot {
-  fill: var(--gold);
-  stroke: var(--bg);
-  stroke-width: 0.6;
+  fill: rgba(255, 182, 39, 0.75);
+  stroke: var(--gold-bright);
+  stroke-width: 1;
   cursor: pointer;
   transition: fill 0.15s ease;
   outline: none;
 }
 .dot:hover,
-.dot:focus-visible {
-  fill: var(--gold-bright);
-}
+.dot:focus-visible { fill: var(--gold-bright); }
 
 /* floating detail card (follows the cursor / tap) */
 .card {
   position: fixed;
   z-index: 50;
   pointer-events: none;
-  background: var(--bg-soft);
-  border: 1px solid var(--gold-dim);
-  border-radius: var(--radius-sm);
+  background: rgba(12, 10, 9, 0.97);
+  border: 1px solid var(--gold);
   box-shadow: 0 10px 34px rgba(0, 0, 0, 0.55);
-  padding: 10px 12px;
-  font-size: 0.82rem;
-  line-height: 1.35;
+  padding: 12px 14px;
+  max-width: 280px;
 }
 
 /* little arrow that points from the card at the country it describes */
@@ -160,161 +249,34 @@
   border-right: 7px solid transparent;
   transform: translateX(-50%);
 }
-.cardAbove .arrow {
-  bottom: -7px;
-  border-top: 7px solid var(--gold-dim);
-}
-.cardBelow .arrow {
-  top: -7px;
-  border-bottom: 7px solid var(--gold-dim);
-}
+.cardAbove .arrow { bottom: -7px; border-top: 7px solid var(--gold); }
+.cardBelow .arrow { top: -7px; border-bottom: 7px solid var(--gold); }
 .cardName {
   display: block;
-  font-weight: 600;
-  color: var(--gold-bright);
-  margin-bottom: 5px;
-}
-.cardEvents {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: var(--text);
 }
-.cardEvents li {
-  position: relative;
-  padding-left: 12px;
-}
-.cardEvents li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
+.cardRegion {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--gold);
+  margin-top: 4px;
 }
+.cardEvents { margin: 9px 0 0; padding-left: 15px; }
+.cardEvents li { font-size: 12.5px; line-height: 1.45; color: #cfc7bb; margin-bottom: 3px; }
 .cardMore {
   display: block;
-  margin-top: 5px;
-  font-size: 0.76rem;
-  color: var(--text-muted);
-  font-style: italic;
-}
-
-/* ── Legend + footer ── */
-.legend {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 1rem;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-}
-.swatch {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  background: var(--gold);
-  flex: 0 0 auto;
-}
-.note {
-  max-width: 60ch;
-  margin: 1.75rem auto 0;
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  line-height: 1.55;
-}
-.note a {
-  color: var(--gold);
-}
-.back {
-  display: inline-block;
-  margin-top: 2rem;
-  color: var(--gold);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-}
-
-/* ── By-region breakdown table ── */
-.breakdown {
-  max-width: 940px;
-  margin: 2.75rem auto 0;
-}
-.breakdownTitle {
-  font-family: var(--font-anton);
-  font-size: clamp(1.15rem, 3vw, 1.6rem);
-  letter-spacing: 0.02em;
-  text-align: center;
-  margin: 0 0 0.9rem;
-}
-.tableWrap {
-  width: 100%;
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-}
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.88rem;
-}
-.table thead th {
-  text-align: left;
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.7rem;
-  color: var(--gold);
-  padding: 11px 14px;
-  border-bottom: 1px solid var(--line);
-  background: var(--bg-soft);
-}
-.table tbody th,
-.table tbody td {
-  padding: 11px 14px;
-  border-bottom: 1px solid var(--line);
-  vertical-align: top;
-  text-align: left;
-  font-weight: 400;
-}
-.table tbody tr:last-child th,
-.table tbody tr:last-child td {
-  border-bottom: none;
-}
-.regionCell {
-  color: var(--gold-bright);
-  font-weight: 600 !important;
-  white-space: nowrap;
-}
-.numCol {
-  text-align: center;
-  font-family: var(--font-mono);
-  width: 1%;
-  white-space: nowrap;
-}
-.namesCell {
-  color: var(--text-muted);
-  line-height: 1.55;
-  min-width: 16rem;
-}
-.table tfoot th,
-.table tfoot td {
-  padding: 11px 14px;
-  border-top: 2px solid var(--border);
-  font-family: var(--font-mono);
-  color: var(--gold-bright);
-  background: var(--bg-soft);
-  text-align: left;
-}
-.table tfoot .numCol {
-  text-align: center;
-}
-
-@media (max-width: 480px) {
-  .namesCell {
-    min-width: 0;
-  }
+  color: var(--dim);
+  margin-top: 7px;
 }

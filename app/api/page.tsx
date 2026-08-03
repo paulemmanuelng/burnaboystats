@@ -1,6 +1,9 @@
 import Link from "next/link";
 import styles from "./api.module.css";
 import KeepExploring from "../components/KeepExploring";
+import BreadcrumbBar from "../components/BreadcrumbBar";
+import CopyButton from "../components/CopyButton";
+import MobileApi from "../components/MobileApi";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { API_VERSION, lastUpdated } from "../lib/api";
 import { chartEntryCount, chartCountryCount, numberOnes, CHART_COUNTRIES, allChartItems } from "../data/charts";
@@ -40,6 +43,18 @@ const endpoints = [
     what: "The song catalogue, with verified Spotify track IDs and streaming totals.",
     size: `${songs.length} songs`,
   },
+];
+
+const ATTRIBUTION = `Data from Burna Boy Stats — ${CANONICAL_ORIGIN}`;
+const CURL = `curl ${base}/charts`;
+
+// The design numbers these; they read as a checklist of what the data is not.
+const caveats = [
+  { h: "Peaks, not runs.", p: "Chart data records the highest position a release reached in each country, not its week-by-week movement." },
+  { h: "Almost no airplay charts.", p: "Genre, component and airplay-only charts are excluded by design, so figures here will be lower than aggregators that count them. The exception is a country that publishes no non-airplay national chart at all — there the airplay chart is the only one there is. Where a country runs both, the non-airplay chart is the one recorded." },
+  { h: "“No. 1s” counts placements.", p: "A song that tops five countries adds five, not one." },
+  { h: "Streaming figures are display strings.", p: "Values like \"747M\" are rounded for display; treat them as approximate, and null as “no verified figure” rather than zero." },
+  { h: "This is an unofficial fan project.", p: "It is not affiliated with Burna Boy or his label." },
 ];
 
 // The sample payload is built from the real dataset at build time, so these docs
@@ -102,61 +117,79 @@ export default function ApiPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <header className="pageHeader container">
-        <h1>
-          Open <span className="accent">Data API</span>
-        </h1>
-        <p>
-          Every verified number on this site, free to use in JSON. No API key, no
-          rate limit, no sign-up.
-        </p>
-      </header>
+      {/* Mobile is screen 23 — the shared deep-page grammar, one row per
+          endpoint with the size it returns. */}
+      {/* Mobile is screen 23 — four documentation blocks, not a row list. It
+          used to be four rows with a value column, which left no room for the
+          curl, the response envelope, the caveats or the licence string. Every
+          pill figure is derived. */}
+      <MobileApi
+        version={API_VERSION}
+        base={`/api/${API_VERSION}`}
+        lede="Afrobeats has no open chart dataset. Every figure here is checked against the body that owns it, and published in machine-readable form. The only condition is attribution."
+        pills={[
+          `${chartEntryCount} chart entries`,
+          `${totalAwards()} certifications`,
+          `${chartCountryCount} countries`,
+          "CC BY 4.0",
+        ]}
+        endpoints={endpoints}
+        caveats={caveats}
+        curl={CURL}
+        attribution={ATTRIBUTION}
+      />
 
-      <div className="container">
-        <p className={styles.intro}>
-          Afrobeats has no open chart dataset. Every figure here is checked
-          against the body that owns it — Billboard, the Official Charts Company,
-          SNEP, the RIAA, the BPI and their national equivalents — so it is
-          published in machine-readable form for anyone building, writing or
-          researching. Use it in a project, a story or a paper; the only
-          condition is attribution.
-        </p>
+      <div className={styles.desktopOnly}>
+        <BreadcrumbBar path="/api" />
 
-        <div className={styles.badges}>
-          <span className={styles.badge}>
-            <span className={styles.badgeDot} aria-hidden="true" />
-            {chartEntryCount} chart entries
-          </span>
-          <span className={styles.badge}>{totalAwards()} certifications</span>
-          <span className={styles.badge}>{chartedCountryCount} countries charted</span>
-          <span className={styles.badge}>CC BY 4.0</span>
-        </div>
+        {/* ── Hero ───────────────────────────────────────────── */}
+        <section className={`${styles.wrap} ${styles.heroPad}`}>
+          <div className={styles.kicker}>Free · no key · no rate limit</div>
+          <h1 className={styles.h1}>
+            Open <span className="inkText">Data API</span>
+          </h1>
+          <p className={styles.lede}>
+            Every verified number on this site, free to use in JSON. No API key, no rate
+            limit, no sign-up.
+          </p>
+          <p className={styles.intro}>
+            Afrobeats has no open chart dataset. Every figure here is checked against the
+            body that owns it — Billboard, the Official Charts Company, SNEP, the RIAA, the
+            BPI and their national equivalents — so it is published in machine-readable
+            form for anyone building, writing or researching. Use it in a project, a story
+            or a paper; the only condition is attribution.
+          </p>
+          <div className={styles.badges}>
+            <span className={`${styles.badge} ${styles.badgeLive}`}>
+              <span className={styles.badgeDot} aria-hidden="true" />
+              {chartEntryCount} chart entries
+            </span>
+            <span className={styles.badge}>{totalAwards()} certifications</span>
+            <span className={styles.badge}>{chartedCountryCount} countries charted</span>
+            <span className={`${styles.badge} ${styles.badgeLicence}`}>CC BY 4.0</span>
+          </div>
+        </section>
 
-        <section className={styles.section} aria-labelledby="endpoints">
-          <h2 id="endpoints" className={styles.h2}>
-            Endpoints
-          </h2>
+        {/* ── Endpoints ──────────────────────────────────────── */}
+        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="endpoints">
+          <h2 id="endpoints" className={styles.h2}>Endpoints</h2>
           <p className={styles.body}>
-            All endpoints are <code className={styles.code}>GET</code>, return
-            JSON, and send{" "}
-            <code className={styles.code}>Access-Control-Allow-Origin: *</code>{" "}
-            so you can call them straight from the browser.
+            All endpoints are <code className={styles.code}>GET</code>, return JSON, and
+            send <code className={styles.code}>Access-Control-Allow-Origin: *</code> so you
+            can call them straight from the browser.
           </p>
           <div className={styles.endpointList}>
             {endpoints.map((e) => (
               <a
                 key={e.path}
                 href={`/api/${API_VERSION}${e.path}`}
-                className={styles.endpoint}
                 target="_blank"
                 rel="noreferrer"
+                className={styles.endpoint}
               >
                 <span className={styles.endpointTop}>
                   <code className={styles.method}>GET</code>
-                  <code className={styles.path}>
-                    /api/{API_VERSION}
-                    {e.path}
-                  </code>
+                  <code className={styles.path}>/api/{API_VERSION}{e.path}</code>
                   <span className={styles.size}>{e.size}</span>
                 </span>
                 <span className={styles.endpointWhat}>{e.what}</span>
@@ -164,128 +197,109 @@ export default function ApiPage() {
             ))}
           </div>
           <p className={styles.note}>
-            A directory of all four lives at{" "}
-            <a href={`/api/${API_VERSION}`} className={styles.inlineLink} target="_blank" rel="noreferrer">
+            A directory of all {endpoints.length} lives at{" "}
+            <a href={`/api/${API_VERSION}`} target="_blank" rel="noreferrer">
               /api/{API_VERSION}
             </a>
             .
           </p>
         </section>
 
-        <section className={styles.section} aria-labelledby="try">
-          <h2 id="try" className={styles.h2}>
-            Try it
-          </h2>
-          <pre className={styles.pre}>
-            <code>curl {base}/charts</code>
-          </pre>
+        {/* ── Try it ─────────────────────────────────────────── */}
+        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="try">
+          <h2 id="try" className={styles.h2}>Try it</h2>
+          <div className={styles.curlRow}>
+            <code className={styles.curl}>{CURL}</code>
+            <CopyButton value={CURL} className={styles.copyBtn} />
+          </div>
           <p className={styles.body}>
-            Every response uses the same envelope — the data, plus where it came
-            from and when it last changed:
+            Every response uses the same envelope — the data, plus where it came from and
+            when it last changed:
           </p>
           <pre className={styles.pre}>
             <code>{sample}</code>
           </pre>
           <p className={styles.note}>
-            <code className={styles.code}>updated</code> is the date of the most
-            recent real change to the data, not the last deploy — so you can
-            safely use it to decide whether to re-fetch.
+            <code>updated</code> is the date of the most recent real change to the data, not
+            the last deploy — so you can safely use it to decide whether to re-fetch.
           </p>
         </section>
 
-        <section className={styles.section} aria-labelledby="license">
-          <h2 id="license" className={styles.h2}>
-            Licence &amp; attribution
-          </h2>
-          <p className={styles.body}>
-            The dataset is released under{" "}
-            <a
-              href="https://creativecommons.org/licenses/by/4.0/"
-              className={styles.inlineLink}
-              target="_blank"
-              rel="noreferrer"
-            >
-              CC BY 4.0
-            </a>
-            . You can use it commercially, remix it and redistribute it — just
-            credit the source:
-          </p>
-          <pre className={styles.pre}>
-            <code>Data from Burna Boy Stats — {CANONICAL_ORIGIN}</code>
-          </pre>
-          <p className={styles.body}>
-            If you publish something built on it, a link back is genuinely
-            appreciated. How each figure is verified is set out on the{" "}
-            <Link href="/methodology" className={styles.inlineLink}>
-              methodology page
-            </Link>
-            , and every change is logged on the{" "}
-            <Link href="/updates" className={styles.inlineLink}>
-              updates feed
-            </Link>
-            .
-          </p>
+        {/* ── Licence + stability ────────────────────────────── */}
+        <section className={`${styles.wrap} ${styles.sectionPad}`}>
+          <div className={styles.blocks}>
+            <div className={`${styles.block} ${styles.blockGold}`}>
+              <h2 className={styles.blockH}>Licence &amp; attribution</h2>
+              <p className={styles.blockP}>
+                The dataset is released under{" "}
+                <a
+                  href="https://creativecommons.org/licenses/by/4.0/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  CC BY 4.0
+                </a>
+                . You can use it commercially, remix it and redistribute it — just credit
+                the source:
+              </p>
+              <div className={styles.attrRow}>
+                <code className={styles.attr}>{ATTRIBUTION}</code>
+                <CopyButton value={ATTRIBUTION} className={styles.copyBtnSm} />
+              </div>
+              <p className={styles.blockMuted}>
+                If you publish something built on it, a link back is genuinely appreciated.
+                How each figure is verified is set out on the{" "}
+                <Link href="/methodology">methodology page</Link>, and every change is
+                logged on the <Link href="/updates">updates feed</Link>.
+              </p>
+            </div>
+
+            <div className={styles.block}>
+              <h2 className={styles.blockH}>Stability</h2>
+              <p className={styles.blockP}>
+                The <code className={styles.code}>{API_VERSION}</code> shape won&apos;t
+                change in a breaking way — new fields may be added, but existing ones stay
+                put. Anything breaking would ship as{" "}
+                <code className={styles.code}>v2</code> at a new path.
+              </p>
+              <p className={styles.blockMuted}>
+                Spotted a problem or want a field added?{" "}
+                <Link href="/contact">Get in touch</Link>.
+              </p>
+              <div className={styles.freshness}>
+                <span className={styles.freshDot} aria-hidden="true" />
+                Data updated {lastUpdated}
+              </div>
+            </div>
+          </div>
         </section>
 
-        <section className={styles.section} aria-labelledby="caveats">
-          <h2 id="caveats" className={styles.h2}>
-            What to know before you use it
-          </h2>
+        {/* ── Caveats ────────────────────────────────────────── */}
+        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="caveats">
+          <h2 id="caveats" className={styles.h2}>What to know before you use it</h2>
           <ul className={styles.caveats}>
-            <li>
-              <strong>Peaks, not runs.</strong> Chart data records the highest
-              position a release reached in each country, not its week-by-week
-              movement.
-            </li>
-            <li>
-              <strong>Almost no airplay charts.</strong> Genre, component and
-              airplay-only charts are excluded by design, so figures here will be
-              lower than aggregators that count them. The exception is a country
-              that publishes no non-airplay national chart at all — there the
-              airplay chart is the only one there is. Where a country runs both,
-              the non-airplay chart is the one recorded.
-            </li>
-            <li>
-              <strong>&ldquo;No. 1s&rdquo; counts placements.</strong> A song
-              that tops five countries adds five, not one.
-            </li>
-            <li>
-              <strong>Streaming figures are display strings.</strong> Values like{" "}
-              <code className={styles.code}>&quot;747M&quot;</code> are rounded
-              for display; treat them as approximate, and{" "}
-              <code className={styles.code}>null</code> as &ldquo;no verified
-              figure&rdquo; rather than zero.
-            </li>
-            <li>
-              <strong>This is an unofficial fan project.</strong> It is not
-              affiliated with Burna Boy or his label.
-            </li>
+            {caveats.map((c, i) => (
+              <li key={c.h} className={styles.caveat}>
+                <span className={styles.caveatNum}>{String(i + 1).padStart(2, "0")}</span>
+                <p className={styles.caveatP}>
+                  <strong>{c.h}</strong> {c.p}
+                </p>
+              </li>
+            ))}
           </ul>
         </section>
 
-        <section className={styles.section} aria-labelledby="stability">
-          <h2 id="stability" className={styles.h2}>
-            Stability
-          </h2>
-          <p className={styles.body}>
-            The <code className={styles.code}>{API_VERSION}</code> shape
-            won&apos;t change in a breaking way — new fields may be added, but
-            existing ones stay put. Anything breaking would ship as{" "}
-            <code className={styles.code}>v2</code> at a new path. Spotted a
-            problem or want a field added?{" "}
-            <Link href="/contact" className={styles.inlineLink}>
-              Get in touch
-            </Link>
-            .
-          </p>
+        {/* ── Onward ─────────────────────────────────────────── */}
+        <section className={`${styles.wrap} ${styles.pills}`}>
+          <Link href="/methodology" className="btn btnSecondary">
+            ← How the numbers are verified
+          </Link>
+          <Link href="/analysis" className="btn btnPrimary">What the numbers say ↗</Link>
+          <Link href="/records/charts" className="btn btnSecondary">Every chart entry ↗</Link>
         </section>
 
-        <Link href="/methodology" className={styles.back}>
-          ← How the numbers are verified
-        </Link>
+        <KeepExploring current="/api" />
       </div>
-
-      <KeepExploring current="/api" />
     </main>
   );
 }

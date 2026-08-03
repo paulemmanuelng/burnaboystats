@@ -1,0 +1,171 @@
+/* The shared app-state shell.
+   designs/desktop/App States.dc.html, values verbatim.
+
+   One centred stack — mono kicker, Anton headline, one sentence, at most two
+   actions — carries not-found, the error boundary, and the in-page "filter
+   matched nothing" state at every width. The site's header and ambient gold
+   wash stay, so a failure still looks like the site rather than a browser
+   error page. */
+.wrap {
+  position: relative;
+  padding: 64px 28px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+/* Red surfaces here and only here. It exists in the palette for the background
+   wash; a failure is the one place it becomes a foreground colour. */
+.washError {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(110% 70% at 50% -10%, rgba(192, 57, 43, 0.1), transparent 55%);
+}
+
+.glyph {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 104px;
+  line-height: 0.85;
+  position: relative;
+}
+/* The 402px stand-in for `.icon` — hidden until the mobile block turns it on. */
+.glyphMobileOnly { display: none; }
+.glyphError { color: #e06a5c; }
+.icon {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 2px solid rgba(192, 57, 43, 0.5);
+  background: rgba(192, 57, 43, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e06a5c;
+}
+.iconMuted {
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dim);
+  position: relative;
+}
+.title {
+  position: relative;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 18px 0 0;
+}
+.titleSm { font-size: 22px; margin-top: 16px; }
+.body {
+  position: relative;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 12px 0 0;
+  max-width: 48ch;
+}
+.bodySm { font-size: 14px; max-width: 44ch; margin-top: 10px; }
+.actions { position: relative; display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; justify-content: center; }
+
+/* Reference line — shown only when an error id exists. Never a stack trace. */
+.reference {
+  position: relative;
+  margin-top: 28px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.referenceLabel { color: var(--text-muted); }
+.referenceId { color: var(--text); }
+.referenceRule { width: 1px; height: 14px; background: var(--line); display: block; }
+.referenceLink { display: inline-flex; align-items: center; min-height: 24px; padding: 0 6px; color: var(--gold); }
+
+/* "Popular instead" — a 404 with only a home button wastes the visit. */
+.suggestWrap {
+  position: relative;
+  margin-top: 34px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  width: 100%;
+  max-width: 520px;
+}
+.suggestLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.suggestRow { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 12px; }
+.suggest {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.suggest:hover { border-color: var(--gold); color: var(--gold); }
+
+@media (max-width: 900px) {
+  .wrap { padding: 44px 20px; }
+  .glyph { font-size: 62px; }
+  /* The error disc becomes a 56px "!" — panel F, second card. */
+  .icon { display: none; }
+  .glyphMobileOnly { display: block; font-size: 56px; }
+  .title { font-size: 19px; margin-top: 14px; }
+  .titleSm { font-size: 18px; }
+  .body { font-size: 13px; line-height: 1.55; margin-top: 9px; }
+  /* The two actions stack full-width in a bottom bar — so the reference line,
+     which follows them in the DOM, is ordered above it rather than beneath a
+     bar that is meant to be the last thing on the screen. */
+  .reference { order: 2; margin-top: 22px; }
+  .actions {
+    order: 3;
+    margin: 24px -20px 0;
+    width: calc(100% + 40px);
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 16px max(18px, env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--line);
+  }
+  .actions > * { width: 100%; justify-content: center; }
+
+  /* An app-level state owns the whole screen: the message centres in what is
+     left under the header and the action bar sits on the floor, as in panel F.
+     The in-page states stay in their host page's flow and get none of this. */
+  .appLevel {
+    min-height: calc(100dvh - 69px); /* under the 69px mobile header */
+    padding-bottom: 0;
+  }
+  .appLevel > .glyph,
+  .appLevel > .iconMuted { margin-top: auto; }
+  .appLevel > .actions { margin-top: auto; }
+  /* The suggestion row drops — panel F. */
+  .suggestWrap { display: none; }
+}

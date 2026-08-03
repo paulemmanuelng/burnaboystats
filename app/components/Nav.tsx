@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navItems } from "../lib/links";
 import SearchPalette from "./SearchPalette";
+import { hasOwnMobileChrome } from "../lib/mobileScreens";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -21,8 +22,14 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Screens with their own mobile chrome carry a back bar instead of this nav.
+  // The class only hides it below the mobile breakpoint — desktop is unchanged.
+  const ownChrome = hasOwnMobileChrome(pathname);
+
   return (
-    <header className={`navbar${scrolled || open ? " navScrolled" : ""}`}>
+    <header
+      className={`navbar${scrolled || open ? " navScrolled" : ""}${ownChrome ? " navDesktopOnly" : ""}`}
+    >
       <nav className="navInner container" aria-label="Primary">
         <Link href="/" className="brand" onClick={close}>
           BurnaBoy<span>Stats</span>
@@ -31,6 +38,18 @@ export default function Nav() {
         <div className="navRight">
           {/* Site search — opens a ⌘K command palette */}
           <SearchPalette />
+
+          {/* Stat card — the design's one gold action in the bar. Desktop
+              only: the mobile screens end at the tab bar and have no room
+              for it beside the wordmark. */}
+          <Link href="/share" className="btn btnPrimary navStatCard">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" />
+              <path d="M12 3v12" />
+              <path d="m7 8 5-5 5 5" />
+            </svg>
+            Stat card
+          </Link>
 
           {/* Hamburger — only visible on mobile (see globals.css) */}
           <button

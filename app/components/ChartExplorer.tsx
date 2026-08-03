@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import styles from "../records/charts/charts.module.css";
 import { chartTier, type ChartCountry, type ChartRelease } from "../data/charts";
 import { track } from "../lib/analytics";
+import FilterEmpty from "./FilterEmpty";
 
 type Countries = Record<string, ChartCountry>;
 
@@ -133,6 +134,29 @@ export default function ChartExplorer({
   ];
   const totalAll = albums.length + singles.length + features.length;
   const totalShown = groups.reduce((n, g) => n + g.items.length, 0);
+
+  // The country is the narrower of the two filters, so it is what the second
+  // button drops — a peak band alone almost always still has matches.
+  const emptyProps = {
+    onClear: () => {
+      setCountry(null);
+      setPeak(null);
+    },
+    narrowest: country
+      ? { label: countries[country]?.name ?? country, drop: () => setCountry(null) }
+      : peak
+        ? { label: PEAKS.find((p) => p.key === peak)!.label, drop: () => setPeak(null) }
+        : undefined,
+  };
+  const emptyBody = (noun: string) =>
+    `There's no ${[
+      peak && PEAKS.find((p) => p.key === peak)!.label,
+      noun,
+      country && `in ${countries[country]?.name ?? country}`,
+    ]
+      .filter(Boolean)
+      .join(" ")}. That's a real gap in the record, not a missing page.`;
+
   const active = country || peak;
 
   // Flat, one-row-per-chart-entry data for the sortable table view (respects the
@@ -223,9 +247,28 @@ export default function ChartExplorer({
             Table
           </button>
         </div>
-        {view === "table" && (
-          <span className={styles.viewHint}>{flatRows.length} chart entries · click a header to sort</span>
-        )}
+        <span className={styles.viewHint}>
+          {view === "table"
+            ? `${flatRows.length} chart entries · click a header to sort`
+            : "Grouped by release · every peak shown"}
+        </span>
+
+        {/* The peak bands, named. The chips below carry these colours, and a
+            reader shouldn't have to infer what they mean. */}
+        <div className={styles.legend}>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendDot} ${styles.legendOne}`} aria-hidden="true" />
+            No. 1
+          </span>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendDot} ${styles.legendTen}`} aria-hidden="true" />
+            Top 10
+          </span>
+          <span className={styles.legendItem}>
+            <span className={`${styles.legendDot} ${styles.legendForty}`} aria-hidden="true" />
+            Top 40
+          </span>
+        </div>
       </div>
 
       <div className={styles.filterBar}>
@@ -282,7 +325,7 @@ export default function ChartExplorer({
 
       {view === "cards" ? (
         totalShown === 0 ? (
-          <p className={styles.empty}>No releases match that filter. Try another country or peak.</p>
+          <FilterEmpty body={emptyBody("release")} {...emptyProps} />
         ) : (
           groups.map(
             (g) =>
@@ -302,7 +345,7 @@ export default function ChartExplorer({
           )
         )
       ) : flatRows.length === 0 ? (
-        <p className={styles.empty}>No chart entries match that filter. Try another country or peak.</p>
+        <FilterEmpty body={emptyBody("chart entry")} {...emptyProps} />
       ) : (
         <div className={styles.tableWrap}>
           {/* On mobile the header row becomes stacked cards, so sorting moves to

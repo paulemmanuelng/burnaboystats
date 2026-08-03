@@ -28,8 +28,14 @@ export default function CertHistoryByYear({
   history: CertEvent[];
   countries: Record<string, Country>;
 }) {
-  const [year, setYear] = useState<number | null>(null);
+  // The design opens on the newest year rather than on nothing — the log is
+  // the point of the section, so it should not start empty.
+  const [year, setYear] = useState<number | null>(YEARS[0]);
   const items = year === null ? [] : history.filter((e) => e.year === year);
+  const counts = history.reduce<Record<number, number>>((acc, e) => {
+    acc[e.year] = (acc[e.year] ?? 0) + 1;
+    return acc;
+  }, {});
 
   // The "Year" filter chips in CertExplorer jump here and pick a year for us.
   useEffect(() => {
@@ -41,67 +47,56 @@ export default function CertHistoryByYear({
   }, []);
 
   return (
-    <div id="cert-by-year">
-      <h2 className="secTitle" style={{ margin: "48px 0 18px" }}>
-        <span className="goldText">Certifications by year</span>
-      </h2>
-
-      <div className={styles.yearRow}>
-        {YEARS.map((y) => (
-          <button
-            key={y}
-            type="button"
-            className={`${styles.yearBtn} ${year === y ? styles.yearBtnOn : ""}`}
-            onClick={() => setYear(year === y ? null : y)}
-          >
-            {y}
-          </button>
-        ))}
-      </div>
-
-      {year === null ? null : items.length === 0 ? (
-        <p className={styles.empty}>
-          No certifications logged for {year} yet.{" "}
-          <button type="button" className={styles.clearBtn} onClick={() => setYear(null)}>
-            Close ▲
-          </button>
-        </p>
-      ) : (
-        <>
-          <p className={styles.filterMeta} style={{ margin: "18px 0" }}>
-            Burna Boy&apos;s certifications in {year} — <b>{items.length}</b>
-            <button type="button" className={styles.clearBtn} onClick={() => setYear(null)}>
-              Close ▲
-            </button>
+    <section id="cert-by-year" className={styles.logBand}>
+      <div className={styles.wide}>
+        <div className={styles.logHead}>
+          <div>
+            <div className={styles.logKicker}>The dated log</div>
+            <h2 className={styles.logTitle}>Certifications by year</h2>
+          </div>
+          <p className={styles.logLede}>
+            Each announcement as it landed — a release can appear twice in a year if it was
+            certified at two tiers.
           </p>
-          {YEAR_NOTES[year] && (
-            <p style={{ margin: "0 0 20px", color: "var(--gold)", fontSize: "0.95rem" }}>{YEAR_NOTES[year]}</p>
-          )}
-          <div className={styles.certGrid}>
+        </div>
+
+        <div className={styles.yearRow}>
+          {YEARS.map((y) => (
+            <button
+              key={y}
+              type="button"
+              className={`${styles.yearBtn} ${year === y ? styles.yearBtnOn : ""}`}
+              aria-pressed={year === y}
+              onClick={() => setYear(year === y ? null : y)}
+            >
+              {y}
+              <span className={styles.yearSep} aria-hidden="true">·</span>
+              <span className={styles.yearCount}>{counts[y] ?? 0}</span>
+              <span className="visuallyHidden">certifications</span>
+            </button>
+          ))}
+        </div>
+
+        {YEAR_NOTES[year ?? 0] && <p className={styles.yearNote}>{YEAR_NOTES[year ?? 0]}</p>}
+
+        {items.length > 0 && (
+          <div className={styles.eventList}>
             {items.map((event, i) => (
-              <div key={i} className={styles.certRow}>
-                <div className={styles.certRowHead}>
-                  <span className={styles.certTitle}>{event.title}</span>
-                  <span className={styles.certCredit}>
-                    {event.album ? "Album" : event.credit || ""}
+              <div key={`${event.title}-${event.country}-${i}`} className={styles.eventRow}>
+                <div className={styles.eventMain}>
+                  <span className={styles.eventTitle}>{event.title}</span>
+                  <span className={styles.eventMeta}>
+                    {[event.album ? "Album" : event.credit, countries[event.country].body]
+                      .filter(Boolean)
+                      .join(" · ")}
                   </span>
                 </div>
-                <div className={styles.badges}>
-                  <EventBadge event={event} countries={countries} />
-                </div>
+                <EventBadge event={event} countries={countries} />
               </div>
             ))}
           </div>
-          <button
-            type="button"
-            className={styles.clearBtn}
-            style={{ margin: "18px 0 8px" }}
-            onClick={() => setYear(null)}
-          >
-            Close ▲
-          </button>
-        </>
-      )}
-    </div>
+        )}
+      </div>
+    </section>
   );
 }

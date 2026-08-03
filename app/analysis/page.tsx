@@ -1,23 +1,14 @@
 import Link from "next/link";
 import styles from "./analysis.module.css";
 import KeepExploring from "../components/KeepExploring";
+import BreadcrumbBar from "../components/BreadcrumbBar";
+import MobileAnalysis from "../components/MobileAnalysis";
 import { findings } from "../lib/analysisFindings";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { updates } from "../data/updates";
+import { numberWord } from "../lib/homeData";
 import { chartEntryCount, daiDaiChartEntryCount } from "../data/charts";
 import { totalAwards } from "../data/certifications";
-import {
-  countryNumberOnes,
-  countryNumberOneReleases,
-  daiDaiCountryNumberOnes,
-  daiDaiNumberOneShare,
-  chartedCountryCount,
-  marketProfile,
-  marketsByVolume,
-  certsByCountry,
-  diamondCerts,
-  diamondCountries,
-} from "../lib/analysis";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Chart Analysis — What the Numbers Actually Say",
@@ -58,103 +49,153 @@ export default function AnalysisPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <header className="pageHeader container">
-        <h1>
-          What the Numbers <span className="accent">Actually Say</span>
-        </h1>
-        <p>
-          The rest of this site reports the record. This page argues with it —
-          four findings drawn from the full chart and certification data.
-        </p>
-      </header>
+      {/* Mobile is screen 21 — the shared deep-page grammar. Each row is the
+          finding's headline plus the number it turns on. */}
+      {/* Mobile is screen 21 — every finding in full: number, kicker, headline,
+          a three-up stat row, its paragraphs and its links. It used to be four
+          rows linking to /analysis#id, and those ids live only in the desktop
+          layout, so all four were dead taps on a phone. */}
+      <MobileAnalysis
+        findings={findings}
+        lede={`The rest of this site reports the record. This page argues with it — ${numberWord(findings.length).toLowerCase()} findings drawn from the full chart and certification data.`}
+        reviewedLabel={reviewedLabel}
+        checkNote={
+          <>
+            Nothing here is an opinion about the music — each claim is a statement about the
+            dataset, and every one can be reproduced. The figures are published as open JSON
+            on the <Link href="/api">data API</Link>. Two definitions matter: No. 1s are
+            counted as <em>placements</em>, and country tallies exclude the two Billboard
+            Global charts, since a worldwide chart isn&apos;t a market.
+          </>
+        }
+      />
 
-      <div className="container">
-        <p className={styles.intro}>
-          Totals flatten things. {chartEntryCount} chart entries and {totalAwards()}{" "}
-          certifications tell you a career happened, not what shape it took.
-          Read the same data by country, by tier and by release
-          and a much sharper picture appears — one that contradicts a few things
-          commonly said about Burna Boy. Every figure below is computed live from
-          the site&apos;s own dataset, so it stays true as the record changes.
-        </p>
+      <div className={styles.desktopOnly}>
+        <BreadcrumbBar path="/analysis" />
 
-        <p className={styles.reviewed}>
-          <span className={styles.reviewedDot} aria-hidden="true" />
-          Data last reviewed <strong>{reviewedLabel}</strong>
-        </p>
+        {/* ── Hero ───────────────────────────────────────────── */}
+        <section className={`${styles.wrap} ${styles.heroPad}`}>
+          <div className={styles.kicker}>Analysis · not a summary</div>
+          <h1 className={styles.h1}>
+            What the Numbers <span className="inkText">Actually Say</span>
+          </h1>
+          <p className={styles.intro}>
+            Totals flatten things. {chartEntryCount} chart entries and {totalAwards()}{" "}
+            certifications tell you a career happened, not what shape it took. Read the
+            same data by country, by tier and by release and a much sharper picture
+            appears — one that contradicts a few things commonly said about Burna Boy.
+            Every figure below is computed live from the site&apos;s own dataset, so it
+            stays true as the record changes.
+          </p>
+          <p className={styles.reviewed}>
+            <span className={styles.reviewedDot} aria-hidden="true" />
+            Data last reviewed <strong>{reviewedLabel}</strong>
+          </p>
+        </section>
 
-        <nav className={styles.toc} aria-label="Findings">
-          {findings.map((f, i) => (
-            <a key={f.id} href={`#${f.id}`} className={styles.tocItem}>
-              <span className={styles.tocNum}>{String(i + 1).padStart(2, "0")}</span>
-              <span>{f.h}</span>
-            </a>
-          ))}
+        {/* ── Contents ───────────────────────────────────────── */}
+        <nav className={`${styles.wrap} ${styles.tocPad}`} aria-label="Findings">
+          <div className={styles.toc}>
+            {findings.map((f, i) => (
+              <a key={f.id} href={`#${f.id}`} className={styles.tocItem}>
+                <span className={styles.tocNum}>{String(i + 1).padStart(2, "0")}</span>
+                <span className={styles.tocLabel}>{f.h}</span>
+              </a>
+            ))}
+          </div>
         </nav>
 
+        {/* ── Findings ───────────────────────────────────────── */}
         {findings.map((f, i) => (
-          <section key={f.id} id={f.id} className={styles.finding} aria-labelledby={`${f.id}-h`}>
-            <p className={styles.kicker}>
-              <span className={styles.num}>{String(i + 1).padStart(2, "0")}</span>
+          <section
+            key={f.id}
+            id={f.id}
+            className={`${styles.wrap} ${styles.findingPad}`}
+            aria-labelledby={`${f.id}-h`}
+          >
+            <div className={styles.findingKicker}>
+              <span className={styles.findingNum}>{String(i + 1).padStart(2, "0")}</span>
               {f.kicker}
-            </p>
-            <h2 id={`${f.id}-h`} className={styles.h2}>
-              {f.h}
-            </h2>
+            </div>
+            <h2 id={`${f.id}-h`} className={styles.h2}>{f.h}</h2>
 
             <div className={styles.statRow}>
               {f.stats.map((s) => (
                 <div key={s.l} className={styles.stat}>
-                  <span className={styles.statV}>{s.v}</span>
-                  <span className={styles.statL}>{s.l}</span>
+                  <div className={styles.statV}>{s.v}</div>
+                  <div className={styles.statL}>{s.l}</div>
                 </div>
               ))}
             </div>
 
-            {f.body.map((p) => (
-              <p key={p.slice(0, 40)} className={styles.body}>
-                {p}
-              </p>
-            ))}
+            <div className={styles.findingBody}>
+              <div className={styles.prose}>
+                {f.body.map((p) => (
+                  <p key={p.slice(0, 40)}>{p}</p>
+                ))}
+                <div className={styles.findingLinks}>
+                  {f.links.map((l) => (
+                    <Link key={l.href} href={l.href} className={styles.findingLink}>
+                      {l.label} →
+                    </Link>
+                  ))}
+                </div>
+              </div>
 
-            <p className={styles.findingLinks}>
-              {f.links.map((l) => (
-                <Link key={l.href} href={l.href} className={styles.findingLink}>
-                  {l.label} →
-                </Link>
-              ))}
-            </p>
+              <div className={styles.chartCol}>
+                <div className={styles.chartLabel}>{f.chartLabel}</div>
+                <div className={styles.bars}>
+                  {f.bars.map((b) => (
+                    <div key={b.name}>
+                      <div className={styles.barHead}>
+                        <span className={`${styles.barName} ${b.hot ? styles.barNameHot : ""}`}>
+                          {b.name}
+                        </span>
+                        <span className={`${styles.barValue} ${b.hot ? styles.barValueHot : ""}`}>
+                          {b.value}
+                        </span>
+                      </div>
+                      <div className={styles.barTrack}>
+                        <div
+                          className={`${styles.barFill} ${b.hot ? styles.barFillHot : ""}`}
+                          style={{ width: `${Math.round(b.frac * 100)}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className={styles.chartNote}>{f.chartNote}</p>
+              </div>
+            </div>
           </section>
         ))}
 
-        <section className={styles.method} aria-labelledby="how">
-          <h2 id="how" className={styles.methodH}>
-            How to check this
-          </h2>
-          <p className={styles.body}>
-            Nothing here is an opinion about the music — each claim is a
-            statement about the dataset, and every one can be reproduced. The
-            underlying figures are published as open JSON on the{" "}
-            <Link href="/api" className={styles.inlineLink}>
-              data API
-            </Link>
-            , and how each number is verified is set out in the{" "}
-            <Link href="/methodology" className={styles.inlineLink}>
-              methodology
-            </Link>
-            . Two definitions matter for the figures above: No. 1s are counted as{" "}
-            <em>placements</em> (a song topping five countries adds five), and the
-            country tallies here exclude the two Billboard Global charts, since a
-            worldwide chart isn&apos;t a market.
-          </p>
+        {/* ── How to check this ──────────────────────────────── */}
+        <section className={`${styles.wrap} ${styles.methodPad}`} aria-labelledby="how">
+          <div className={styles.method}>
+            <h2 id="how" className={styles.methodH}>How to check this</h2>
+            <p className={styles.methodBody}>
+              Nothing here is an opinion about the music — each claim is a statement about
+              the dataset, and every one can be reproduced. The underlying figures are
+              published as open JSON on the <Link href="/api">data API</Link>, and how each
+              number is verified is set out in the{" "}
+              <Link href="/methodology">methodology</Link>. Two definitions matter for the
+              figures above: No. 1s are counted as <em>placements</em> (a song topping five
+              countries adds five), and the country tallies here exclude the two Billboard
+              Global charts, since a worldwide chart isn&apos;t a market.
+            </p>
+          </div>
         </section>
 
-        <Link href="/records" className={styles.back}>
-          ← Career Records
-        </Link>
-      </div>
+        {/* ── Onward ─────────────────────────────────────────── */}
+        <section className={`${styles.wrap} ${styles.pills}`}>
+          <Link href="/records" className="btn btnSecondary">← Career records</Link>
+          <Link href="/methodology" className="btn btnPrimary">Methodology ↗</Link>
+          <Link href="/records/charts" className="btn btnSecondary">Every chart entry ↗</Link>
+        </section>
 
-      <KeepExploring current="/analysis" />
+        <KeepExploring current="/analysis" />
+      </div>
     </main>
   );
 }

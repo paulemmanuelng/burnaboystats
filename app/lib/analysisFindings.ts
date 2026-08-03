@@ -1,4 +1,7 @@
 import {
+  numberOnesByRelease,
+  numberOneCountryCount,
+  chartingReleaseCount,
   marketProfile,
   marketsByVolume,
   certsByCountry,
@@ -20,6 +23,15 @@ import { totalAwards } from "../data/certifications";
 // Numbers are interpolated from lib/analysis.ts so a data change can never
 // leave the prose quoting a stale figure, and tests/analysis.test.ts guards the
 // shape each argument rests on.
+/** One bar in a finding's chart column. `hot` is the row the finding is about. */
+export interface FindingBar {
+  name: string;
+  value: string;
+  /** 0–1 of the largest bar in this set. */
+  frac: number;
+  hot?: boolean;
+}
+
 export interface Finding {
   id: string;
   kicker: string;
@@ -27,7 +39,18 @@ export interface Finding {
   stats: { v: string; l: string }[];
   body: string[];
   links: { href: string; label: string }[];
+  /** The evidence, charted — the desktop page runs it beside the prose. */
+  chartLabel: string;
+  bars: FindingBar[];
+  chartNote: string;
 }
+
+// Bars are scaled against the largest in their own set, so each chart answers
+// its own question rather than being comparable across findings.
+const toBars = (rows: { name: string; n: number; hot?: boolean }[]): FindingBar[] => {
+  const max = Math.max(...rows.map((r) => r.n), 1);
+  return rows.map((r) => ({ name: r.name, value: String(r.n), frac: r.n / max, hot: r.hot }));
+};
 
 const uk = marketProfile("UK");
 const us = marketProfile("US");
@@ -59,6 +82,14 @@ export const findings: Finding[] = [
       { href: "/dai-dai", label: "The Dai Dai story" },
       { href: "/records/charts", label: "Every chart entry" },
     ],
+    chartLabel: "No. 1s by release",
+    bars: toBars(
+      numberOnesByRelease
+        .slice(0, 8)
+        .map((r) => ({ name: r.title, n: r.count, hot: r.title === "Dai Dai" }))
+    ),
+    chartNote:
+      "Country charts only — the two Billboard Global charts are excluded, since a worldwide chart isn't a market.",
   },
   {
     id: "britain-not-america",
@@ -81,6 +112,14 @@ export const findings: Finding[] = [
       { href: "/records/charts", label: "Chart records by country" },
       { href: "/music/wgft", label: "His highest US peak" },
     ],
+    chartLabel: "Chart entries by market",
+    bars: toBars(
+      marketsByVolume
+        .slice(0, 10)
+        .map((m) => ({ name: m.country, n: m.entries, hot: m.code === "UK" || m.code === "US" }))
+    ),
+    chartNote:
+      "Top 10 markets by number of charting releases. The US sits high on volume and nowhere on peaks.",
   },
   {
     id: "diamond-country",
@@ -102,6 +141,15 @@ export const findings: Finding[] = [
       { href: "/certifications", label: "All certifications" },
       { href: "/music/on-the-low", label: "A French Diamond record" },
     ],
+    chartLabel: "Certifications by country",
+    bars: toBars(
+      certsByCountry.slice(0, 10).map((c) => ({
+        name: c.country,
+        n: c.count,
+        hot: c.country === topCert.country || c.country === diamondHome,
+      }))
+    ),
+    chartNote: `${topCert.country} leads on volume; ${diamondHome} holds all ${diamondCerts.length} Diamond awards. Volume and depth are different measures.`,
   },
   {
     id: "reach-vs-dominance",
@@ -121,6 +169,15 @@ export const findings: Finding[] = [
       { href: "/records/tours/map", label: "Where he's performed" },
       { href: "/records/africas-biggest", label: "How he ranks in Africa" },
     ],
+    chartLabel: "Reach against dominance",
+    bars: toBars([
+      { name: "Countries charted", n: chartedCountryCount, hot: true },
+      { name: "Countries with a No. 1", n: numberOneCountryCount, hot: true },
+      { name: "Charting releases", n: chartingReleaseCount },
+      { name: "Releases with a No. 1", n: countryNumberOneReleases },
+    ]),
+    chartNote:
+      "Breadth against depth, on the same scale. The gap between the pairs is the finding.",
   },
 ];
 

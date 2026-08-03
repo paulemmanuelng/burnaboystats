@@ -29,6 +29,24 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-03",
+    category: "Charts",
+    text: "“Dai Dai” tops Norway's official singles chart — Burna Boy's 25th country No. 1 with the song, and his 44th chart-topping placement across 60 countries. It also reaches new peaks of No. 3 in Ireland, No. 6 in Finland, No. 10 in Australia and No. 13 in New Zealand.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-08-03",
+    category: "Streaming",
+    text: "Burna Boy passes 10.6 billion Spotify streams and 17.2 million followers, holding at No. 38 most-followed artist in the world with 59,482,941 monthly listeners — a new career peak.",
+    href: "/records/by-the-numbers",
+  },
+  {
+    date: "2026-08-01",
+    category: "Streaming",
+    text: "“Last Last” passes 600 million Spotify streams — 600,032,476 — becoming Burna Boy's first solo song to reach the mark, and still his most-streamed record without a feature.",
+    href: "/music/last-last",
+  },
+  {
     date: "2026-07-30",
     category: "Charts",
     text: "Three more No. 1s: “Dai Dai” tops the national charts of Venezuela (Record Report), El Salvador (ASAP EGC) and the Dominican Republic (Monitor Latino) — taking the song to 24 country No. 1s and Burna Boy's career to 43 chart-topping placements across 60 countries.",

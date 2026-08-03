@@ -111,3 +111,28 @@ export const diamondCerts = allItems.flatMap((item) =>
 
 /** Distinct countries that have ever awarded him a Diamond certification. */
 export const diamondCountries = [...new Set(diamondCerts.map((d) => d.code))];
+
+/**
+ * No. 1s per release, country charts only, biggest first.
+ *
+ * Feeds the /analysis bar column for finding 1. Excludes the two Billboard
+ * Global charts for the same reason every other tally on that page does — a
+ * worldwide chart isn't a market.
+ */
+export const numberOnesByRelease = allChartItems
+  .map((r) => ({
+    title: r.title,
+    count: r.entries.filter((e) => e.peak === 1 && !isGlobalChart(e.c)).length,
+  }))
+  .filter((r) => r.count > 0)
+  .sort((a, b) => b.count - a.count);
+
+/** Countries where at least one release reached No. 1 (country charts only). */
+export const numberOneCountryCount = new Set(
+  allChartItems.flatMap((r) =>
+    r.entries.filter((e) => e.peak === 1 && !isGlobalChart(e.c)).map((e) => e.c)
+  )
+).size;
+
+/** Releases that have charted anywhere at all. */
+export const chartingReleaseCount = allChartItems.length;

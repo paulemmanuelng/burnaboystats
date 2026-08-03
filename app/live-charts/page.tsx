@@ -1,6 +1,9 @@
 import Link from "next/link";
 import styles from "./liveCharts.module.css";
 import KeepExploring from "../components/KeepExploring";
+import BreadcrumbBar from "../components/BreadcrumbBar";
+import MobileLiveCharts from "../components/MobileLiveCharts";
+import { cadenceOf, reachOf } from "../lib/liveChartMeta";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { coverFor, monogramFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
@@ -37,15 +40,7 @@ function flagFor(code: string) {
   return String.fromCodePoint(...[...mapped].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65));
 }
 
-const reach = (r: (typeof liveCharts)[number]) =>
-  r.platforms.reduce((n, p) => n + p.entries.length, 0);
-
-// How often each platform's chart actually refreshes. YouTube's is a weekly
-// chart and now supplies most of the No. 1s on this page, so the cadence is
-// shown next to the numbers rather than only in the note underneath — a No. 1
-// held for a week and one held for a day are not the same claim.
-const CADENCE: Record<string, string> = { YouTube: "weekly" };
-const cadenceOf = (platform: string) => CADENCE[platform] ?? "daily";
+const reach = reachOf;
 
 const songs = liveCharts.filter((r) => r.kind === "song");
 const albums = liveCharts.filter((r) => r.kind === "album");
@@ -180,131 +175,153 @@ export default function LiveChartsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <header className="pageHeader container">
-        <h1>
-          Live <span className="accent">Charts</span>
-        </h1>
-        <p>
-          Where every Burna Boy record is charting right now — {livePlacementCount} placements
-          across {liveCountryCount} countries, refreshed every hour.
-        </p>
-      </header>
+      {/* Mobile is its own screen in this design — a two-up summary, a
+          scrolling platform rail and one condensed row per release. */}
+      <MobileLiveCharts
+        releases={liveCharts}
+        platforms={livePlatformTotals}
+        placements={livePlacementCount}
+        countries={liveCountryCount}
+        numberOnes={liveNumberOnes}
+        updated={updatedLabel}
+      />
 
-      <div className="container">
-        <p className={styles.updated}>
-          <span className={styles.liveDot} aria-hidden="true" />
-          Snapshot taken <strong>{updatedLabel}</strong>
-        </p>
+      <div className={styles.desktopOnly}>
+        <BreadcrumbBar path="/live-charts" />
 
-        {/* The distinction this whole page rests on. Stated up front rather than
-            buried, because conflating the two would misrepresent both. */}
-        <p className={styles.notice}>
-          <strong>These are platform charts, not official charts.</strong>{" "}
-          This page tracks the
-          country charts of Spotify, Apple Music, iTunes, Deezer and Shazam, which refresh daily,
-          plus YouTube&apos;s, which refreshes weekly — where a record sits{" "}
-          <em>right now</em>. Official national charts, and the career peaks they produce,
-          are counted separately on{" "}
-          <Link href="/records/charts" className={styles.inlineLink}>
-            Chart Records
-          </Link>
-          . A No. 1 here is not the same thing as a No. 1 there.
-        </p>
+        {/* ── Hero ───────────────────────────────────────────────── */}
+        <section className={styles.hero}>
+          <div className={styles.wide}>
+            <div className={styles.eyebrow}>
+              <span className={styles.eyebrowRule} aria-hidden="true" />
+              Tracked as it happens
+            </div>
+            <h1 className={styles.h1}>
+              Live <span className="inkText">Charts</span>
+            </h1>
+            <p className={styles.lede}>
+              Where every Burna Boy record is charting right now — {livePlacementCount}{" "}
+              placements across {liveCountryCount} countries, refreshed every hour.
+            </p>
+            <p className={styles.updated}>
+              <span className={styles.liveDot} aria-hidden="true" />
+              Snapshot taken <strong>{updatedLabel}</strong>
+            </p>
 
-        <div className={styles.summary_}>
-          <div className={styles.stat}>
-            <span className={styles.statV}>{livePlacementCount}</span>
-            <span className={styles.statL}>live placements</span>
-          </div>
-          <div className={styles.stat}>
-            <span className={styles.statV}>{liveCountryCount}</span>
-            <span className={styles.statL}>countries</span>
-          </div>
-          <div className={styles.stat}>
-            <span className={styles.statV}>{liveNumberOnes}</span>
-            <span className={styles.statL}>currently at No. 1</span>
-          </div>
-          <div className={styles.stat}>
-            <span className={styles.statV}>{liveCharts.length}</span>
-            <span className={styles.statL}>releases charting</span>
-          </div>
-        </div>
-
-        <section className={styles.section} aria-labelledby="platforms">
-          <h2 id="platforms" className={styles.h2}>
-            By platform
-          </h2>
-          <div className={styles.platformGrid}>
-            {livePlatformTotals.map((p) => (
-              <div key={p.platform} className={styles.platformCard}>
-                <span className={styles.platformCardV}>{p.placements}</span>
-                <span className={styles.platformCardName}>{p.platform}</span>
-                {p.numberOnes > 0 && (
-                  <span className={styles.platformCardNo1}>{p.numberOnes} at No. 1</span>
-                )}
-                <span className={styles.platformCardCadence}>
-                  {cadenceOf(p.platform)} chart
-                </span>
-              </div>
-            ))}
+            {/* The distinction this whole page rests on. Stated up front rather
+                than buried, because conflating the two misrepresents both. */}
+            <div className={styles.notice}>
+              <strong>These are platform charts, not official charts.</strong>{" "}
+              This page tracks the country charts of Spotify, Apple Music, iTunes, Deezer and Shazam,
+              which refresh daily, plus YouTube&apos;s, which refreshes weekly — where a
+              record sits <em>right now</em>. Official national charts, and the career peaks
+              they produce, are counted separately on{" "}
+              <Link href="/records/charts">Chart Records</Link>. A No. 1 here is not the same
+              thing as a No. 1 there.
+            </div>
           </div>
         </section>
 
-        <section className={styles.section} aria-labelledby="songs">
-          <h2 id="songs" className={styles.h2}>
-            Songs <span className={styles.count}>({songs.length})</span>
-          </h2>
-          <p className={styles.hint}>
-            <span className={styles.hintIcon} aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </span>
-            <span>
-              <strong>Tap any title</strong>{" "}
-              to open it — every country it&apos;s charting in, its position, and how far it moved
-              in the last 24 hours.
-            </span>
-          </p>
-          {songs.map((r) => (
-            <ReleaseBlock key={r.title} r={r} />
-          ))}
+        {/* ── Summary strip ──────────────────────────────────────── */}
+        <section className={styles.summaryBand}>
+          <div className={styles.summaryGrid}>
+            <div className={styles.summaryCell}>
+              <div className={styles.summaryValue}>{livePlacementCount}</div>
+              <div className={styles.summaryLabel}>Live placements</div>
+            </div>
+            <div className={styles.summaryCell}>
+              <div className={styles.summaryValue}>{liveCountryCount}</div>
+              <div className={styles.summaryLabel}>Countries</div>
+            </div>
+            <div className={styles.summaryCell}>
+              <div className={`${styles.summaryValue} ${styles.liveInk}`}>{liveNumberOnes}</div>
+              <div className={styles.summaryLabel}>Currently at No. 1</div>
+            </div>
+            <div className={styles.summaryCell}>
+              <div className={styles.summaryValue}>{liveCharts.length}</div>
+              <div className={styles.summaryLabel}>Releases charting</div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── By platform ────────────────────────────────────────── */}
+        <section className={styles.section}>
+          <div className={styles.wide}>
+            <h2 className={styles.h2}>By platform</h2>
+            <div className={styles.platformGrid}>
+              {livePlatformTotals.map((p) => (
+                <div key={p.platform} className={styles.platformCard}>
+                  <div className={styles.platformCardV}>{p.placements}</div>
+                  <div className={styles.platformCardName}>{p.platform}</div>
+                  <div className={styles.platformCardNo1}>
+                    {p.numberOnes > 0 ? `${p.numberOnes} at No. 1` : ""}
+                  </div>
+                  <div className={styles.platformCardCadence}>{cadenceOf(p.platform)} chart</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Releases ───────────────────────────────────────────── */}
+        <section className={styles.section}>
+          <div className={styles.wide}>
+            <div className={styles.h2Row}>
+              <h2 className={styles.h2}>Songs</h2>
+              <span className={styles.count}>({songs.length})</span>
+            </div>
+            <p className={styles.hint}>
+              <strong>Click any title</strong> to open it — every country it&apos;s charting
+              in, its position, and how far it moved since the last edition.
+            </p>
+            <div className={styles.releaseList}>
+              {songs.map((r) => (
+                <ReleaseBlock key={r.title} r={r} />
+              ))}
+            </div>
+          </div>
         </section>
 
         {albums.length > 0 && (
-          <section className={styles.section} aria-labelledby="albums">
-            <h2 id="albums" className={styles.h2}>
-              Albums &amp; EPs <span className={styles.count}>({albums.length})</span>
-            </h2>
-            {albums.map((r) => (
-              <ReleaseBlock key={r.title} r={r} />
-            ))}
+          <section className={styles.section}>
+            <div className={styles.wide}>
+              <div className={styles.h2Row}>
+                <h2 className={styles.h2}>Albums &amp; EPs</h2>
+                <span className={styles.count}>({albums.length})</span>
+              </div>
+              <div className={styles.releaseList}>
+                {albums.map((r) => (
+                  <ReleaseBlock key={r.title} r={r} />
+                ))}
+              </div>
+            </div>
           </section>
         )}
 
-        <p className={styles.source}>
-          Positions from each platform&apos;s own country charts, via kworb, rebuilt hourly.
-          Movement is against that chart&apos;s previous edition — “NEW” means the record entered
-          it this time round, and no marker means the platform doesn&apos;t publish movement for
-          that chart. Spotify, Apple Music, iTunes, Deezer and Shazam are daily, so a placement can
-          appear and vanish within a day; YouTube&apos;s is a weekly chart, counting a song&apos;s
-          streams across YouTube rather than views of one video. The official peaks on{" "}
-          <Link href="/records/charts" className={styles.inlineLink}>
-            Chart Records
-          </Link>{" "}
-          are permanent by contrast. How every figure on this site is sourced is set out in the{" "}
-          <Link href="/methodology" className={styles.inlineLink}>
-            methodology
-          </Link>
-          .
-        </p>
+        {/* ── Source note ────────────────────────────────────────── */}
+        <section className={styles.sourceBand}>
+          <div className={styles.wide}>
+            <p className={styles.source}>
+              Positions come from each platform&apos;s own country charts, via kworb, rebuilt
+              hourly. Movement is against that chart&apos;s previous edition — “NEW” means
+              the record entered it this time round, “RE-ENTRY” that it charted before,
+              dropped off and came back, and no marker means the platform doesn&apos;t publish
+              movement for that chart. Spotify, Apple Music, iTunes, Deezer and Shazam are
+              daily, so a placement can appear and vanish within a day; YouTube&apos;s is a
+              weekly chart, counting a song&apos;s streams across YouTube rather than views of
+              one video. The official peaks on{" "}
+              <Link href="/records/charts">Chart Records</Link> are permanent by contrast. How
+              every figure on this site is sourced is set out in the{" "}
+              <Link href="/methodology">methodology</Link>.
+            </p>
+            <Link href="/records/charts" className={`btn btnSecondary ${styles.back}`}>
+              ← Official chart records
+            </Link>
+          </div>
+        </section>
 
-        <Link href="/records/charts" className={styles.back}>
-          ← Official chart records
-        </Link>
+        <KeepExploring current="/live-charts" />
       </div>
-
-      <KeepExploring current="/live-charts" />
     </main>
   );
 }

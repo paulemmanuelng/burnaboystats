@@ -22,6 +22,14 @@ export interface StatCard {
   chip: string;
   // Three supporting stats, each relevant to THIS card's headline (not generic).
   stats: SignatureStat[];
+  /** The body that owns this number — printed on the card itself. */
+  source: string;
+  /** Why the number is what it is. Shown beside the preview, not on the card. */
+  detail: string;
+  /** The page that documents it. */
+  href: string;
+  /** One word ghosted behind the card. */
+  watermark: string;
 }
 
 // Count certification plaques of a given tier across the whole catalogue.
@@ -36,6 +44,10 @@ export function getStatCards(): StatCard[] {
   return [
     {
       id: "african-giant",
+      source: "RIAA · BPI · SNEP · IFPI",
+      watermark: "GOLD",
+      href: "/certifications",
+      detail: `Every award is counted once it appears in the issuing body's own searchable database. ${diamond} of them are Diamond, all awarded by SNEP in France.`,
       value: `${totalAwards()}`,
       label: `certifications across ${countryCount} countries`,
       kicker: "The most-certified African artist in history",
@@ -48,6 +60,10 @@ export function getStatCards(): StatCard[] {
     },
     {
       id: "dai-dai",
+      source: "National chart bodies",
+      watermark: "DAI",
+      href: "/dai-dai",
+      detail: `The official song of the 2026 FIFA World Cup, with Shakira — No. 1 on both Billboard global charts and on ${daiDaiNumberOnes} national singles charts.`,
       value: "No. 1",
       label: "“Dai Dai” — the biggest song in the world",
       kicker: "The 2026 FIFA World Cup anthem, with Shakira",
@@ -60,6 +76,10 @@ export function getStatCards(): StatCard[] {
     },
     {
       id: "no1s",
+      source: "National chart bodies",
+      watermark: "ONE",
+      href: "/records/charts",
+      detail: `Counted as placements: a song topping five countries adds five. Includes both Billboard Global charts alongside ${chartCountryCount} charting territories.`,
       value: `${numberOnes}`,
       label: "No. 1 chart placements worldwide",
       kicker: "Nigeria, the UK, the Netherlands, Colombia & more",
@@ -72,6 +92,10 @@ export function getStatCards(): StatCard[] {
     },
     {
       id: "listeners",
+      source: "Spotify",
+      watermark: "PLAY",
+      href: "/records/africas-biggest",
+      detail: `Read from Spotify's own artist page rather than a tracker. The first African artist ever past 50 million monthly listeners.`,
       value: `${listeners}M`,
       label: "Spotify monthly listeners",
       kicker: "The most of any African artist",
@@ -84,6 +108,10 @@ export function getStatCards(): StatCard[] {
     },
     {
       id: "tour",
+      source: "Billboard Boxscore",
+      watermark: "TOUR",
+      href: "/records/tours",
+      detail: `Box-office gross across three continents. His London Stadium night alone took $6.15M from 58,973 tickets — the biggest concert ever by an African artist.`,
       value: "$30.46M",
       label: "highest-grossing African tour ever",
       kicker: "The I Told Them… Tour",
@@ -96,6 +124,10 @@ export function getStatCards(): StatCard[] {
     },
     {
       id: "grammy",
+      source: "Recording Academy",
+      watermark: "GRAMMY",
+      href: "/records/awards",
+      detail: `Best Global Music Album for Twice as Tall — the first winner of the category under that name. ${totalWins} wins from ${totalNominations} nominations across ${ceremonyCount} bodies.`,
       value: "2021",
       label: "Grammy winner — Best Global Music Album",
       kicker: "Twice as Tall",
@@ -108,6 +140,10 @@ export function getStatCards(): StatCard[] {
     },
     {
       id: "concert",
+      source: "Billboard Boxscore",
+      watermark: "LIVE",
+      href: "/records/tours/revenue",
+      detail: `58,973 tickets at London Stadium, June 2024 — the highest-grossing single concert by any African artist, and the first UK stadium headline by one.`,
       value: "$6.15M",
       label: "biggest concert by an African artist",
       kicker: "London Stadium · June 2024",
@@ -120,6 +156,10 @@ export function getStatCards(): StatCard[] {
     },
     {
       id: "followers",
+      source: "Spotify",
+      watermark: "FOLLOW",
+      href: "/records/africas-biggest",
+      detail: `Followers, not monthly listeners — the count of people who chose to keep his releases in their feed. The most of any African artist.`,
       value: spotifyFollowersDisplay,
       label: "Spotify followers — most of any African artist",
       kicker: "The most-followed African artist on Spotify",

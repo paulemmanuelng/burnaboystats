@@ -1,337 +1,307 @@
-.intro {
-  max-width: 760px;
-  margin: 0 0 28px;
-  color: #d3d3da;
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-.intro strong {
-  color: var(--text);
-  font-weight: 700;
-}
+/* Africa's biggest — desktop.
+   designs/desktop/Records - Africas Biggest.dc.html, values verbatim.
 
-/* Box grid — holds one or many stat boxes; 2-up on wide screens. */
-.boxGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
-  gap: 20px;
-}
+   Two consumers: this page, and StatBox, which imports the box classes from
+   here and is only rendered by the desktop layout.
 
-.box {
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px 24px 18px;
-}
+   Hidden below 900px, where MobileDeepPage renders screen 16 instead. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
 
-/* Headline "trending" stat (sparkline + delta) above the jump-nav. */
-.trendLead {
-  margin: 4px 0 30px;
-  max-width: 640px;
-}
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
 
-/* Jump-nav + grouped sections (long page → two clear parts) */
-.jumpNav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 0 0 30px;
-}
-.jumpNav a {
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.heroPad { padding: 32px 40px 0; }
+.kicker {
   font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.72rem;
   color: var(--text-muted);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 8px 16px;
-  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
-.jumpNav a:hover {
-  color: var(--gold);
-  border-color: var(--gold);
-  background: rgba(255, 182, 39, 0.08);
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 82px;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 14px 0 0;
 }
-.group {
-  scroll-margin-top: 88px;
-  margin-bottom: 44px;
+.intro {
+  font-size: 18px;
+  line-height: 1.55;
+  color: #cfc7bb;
+  max-width: 66ch;
+  margin: 18px 0 0;
+  text-wrap: pretty;
 }
-.groupHead {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0 0 18px;
+.intro strong { color: var(--text); }
+
+/* ── Trend lead: the headline number beside its own eight-month history ─── */
+.trendGrid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  margin-top: 34px;
+  border: 1px solid var(--border);
+}
+.trendMain { padding: 28px 32px; }
+.trendKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.trendValueRow { display: flex; align-items: baseline; gap: 16px; margin-top: 14px; flex-wrap: wrap; }
+.trendValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
+  font-size: 76px;
+  line-height: 0.86;
+  font-variant-numeric: tabular-nums;
+}
+.trendNote { font-size: 13.5px; line-height: 1.6; color: var(--text-muted); margin: 14px 0 0; max-width: 48ch; }
+
+.trendChart { border-left: 1px solid var(--border); padding: 28px 32px; display: flex; flex-direction: column; }
+.chartLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  font-size: clamp(1.4rem, 3.2vw, 2rem);
+  color: var(--text-muted);
+}
+.bars { display: flex; align-items: flex-end; gap: 6px; flex: 1; min-height: 104px; margin-top: 16px; }
+.bar { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; align-items: center; }
+.barValue { font-family: var(--font-mono), monospace; font-size: 10.5px; color: var(--dim); }
+/* Only the newest month is lit — the rest are the shape it arrived at. */
+.barValueNow { color: var(--gold); }
+.barFill { width: 100%; background: rgba(255, 182, 39, 0.28); display: block; }
+.barFillNow { background: linear-gradient(180deg, var(--gold), var(--grad-b)); }
+.barMonth {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+}
+
+/* ── Jump nav ───────────────────────────────────────────────────────────── */
+.jumpNav { display: flex; gap: 8px; margin-top: 22px; flex-wrap: wrap; }
+.jumpNav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.jumpNav a:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── Groups ─────────────────────────────────────────────────────────────── */
+.groupPad { padding: 44px 40px 0; }
+.groupHead {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
 }
 .groupCount {
   font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
-  color: var(--gold);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 2px 11px;
-}
-
-/* Featured (headline) box — full width, gold glow, badge */
-.featured {
-  grid-column: 1 / -1;
-  border-color: var(--gold-dim);
-  box-shadow: 0 0 0 1px rgba(255, 182, 39, 0.22), 0 12px 34px rgba(0, 0, 0, 0.32);
-}
-.featuredBadge {
-  display: inline-block;
-  margin-bottom: 12px;
-  padding: 3px 11px;
-  border-radius: 999px;
-  background: var(--gold);
-  color: #14100a; -webkit-text-fill-color: #14100a;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.6rem;
-}
-
-/* "Show earlier years" progressive-disclosure toggle */
-.showMore {
-  margin-top: 14px;
-  padding: 7px 16px;
-  background: none;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.68rem;
-  cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-.showMore:hover {
-  color: var(--gold);
-  border-color: var(--gold);
-}
-
-/* Common questions — answer-first Q&A for multi-artist search capture */
-.faqSection {
-  scroll-margin-top: 88px;
-  margin-top: 8px;
-}
-.faqItem {
-  border-top: 1px solid var(--line);
-  padding: 22px 0;
-}
-.faqQ {
-  margin: 0 0 8px;
-  font-size: 1.05rem;
+  font-size: 12px;
   font-weight: 700;
-  color: var(--text);
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 182, 39, 0.13);
 }
-.faqA {
-  margin: 0;
-  max-width: 74ch;
-  color: var(--text-muted);
-  font-size: 0.98rem;
-  line-height: 1.65;
+/* Hairline seams inside a bounding border, so the boards read as one table. */
+.boxGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  margin-top: 22px;
+  border: 1px solid var(--line);
 }
-.boxHead {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--line);
-}
+
+/* ── Stat box ───────────────────────────────────────────────────────────── */
+.box { background: var(--bg); padding: 24px 26px 22px; display: flex; flex-direction: column; }
+.boxFeatured { background: rgba(255, 182, 39, 0.06); grid-column: 1 / -1; }
+.boxHead { display: flex; align-items: flex-start; gap: 12px; }
+.boxHeadMain { flex: 1; }
 .boxTitle {
-  margin: 0;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: clamp(1.4rem, 3.4vw, 1.9rem);
-  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 1.1;
   letter-spacing: 0.01em;
-  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0;
 }
+.boxTitleBig { font-size: 26px; color: var(--gold); }
 .boxMeta {
   font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 8px;
+}
+.leadsBadge {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+  flex: none;
 }
 
-.row {
+.entryList { display: flex; flex-direction: column; margin-top: 18px; border-top: 1px solid var(--line); }
+.entryRow {
   display: grid;
-  grid-template-columns: 68px 1fr;
-  gap: 16px;
-  align-items: baseline;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--line);
-}
-.row:last-child {
-  border-bottom: none;
-}
-.year {
-  font-family: var(--font-anton), sans-serif;
-  font-size: 1.5rem;
-  color: var(--gold);
-  line-height: 1;
-}
-.star {
-  color: var(--gold-bright);
-}
-
-.rank {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-}
-.entry {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
-  color: var(--text-muted);
-  font-size: 0.98rem;
-}
-.pos {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  opacity: 0.65;
-}
-.name {
-  font-weight: 500;
-}
-/* Per-entry stream total in the "year" layout (e.g. 2025's billions). */
-.entryValue {
-  margin-left: 3px;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
-  color: var(--text-muted);
-}
-.first .name {
-  color: var(--text);
-  font-weight: 700;
-}
-/* Burna Boy highlighted gold wherever he appears (defined after .first so he
-   stays gold even when he is #1). */
-.highlight .name {
-  color: var(--gold);
-  font-weight: 700;
-}
-.rowNote {
-  margin: 8px 0 0;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  font-style: italic;
-}
-
-/* "list" layout — a single ranked list with a value per row (e.g. peak listeners). */
-.listRank {
-  list-style: none;
-  margin: 4px 0 0;
-  padding: 0;
-}
-.listEntry {
-  display: flex;
-  align-items: baseline;
+  grid-template-columns: 26px 1fr auto;
   gap: 12px;
-  padding: 13px 0;
+  align-items: baseline;
+  padding: 11px 0;
   border-bottom: 1px solid var(--line);
 }
-.listEntry:last-child {
-  border-bottom: none;
+.entryHim { background: rgba(255, 182, 39, 0.07); }
+.entryRank {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
 }
-/* Groups the name + sub so the value can sit cleanly at the right, and so the
-   sub (flag/country) can stack under the name on narrow screens. */
-.listMain {
-  flex: 1 1 auto;
-  min-width: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: 8px;
-  row-gap: 2px;
-}
-.listEntry .name {
+.rankHim { color: var(--gold); }
+.entryName { display: block; font-weight: 600; font-size: 14.5px; color: var(--text); }
+.nameHim { color: var(--gold); }
+.entrySub { display: block; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.entryValue {
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  font-weight: 700;
   color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
-.listEntry .sub {
-  color: var(--text-muted);
-  font-size: 0.88rem;
-  font-style: italic;
-}
-.value {
-  flex: 0 0 auto;
+.valueTop { color: var(--silver); }
+.valueHim { color: var(--gold-bright); }
+
+.yearList { display: flex; flex-direction: column; margin-top: 18px; border-top: 1px solid var(--line); }
+.yearRow { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.yearHead { display: flex; align-items: center; gap: 10px; }
+.yearLabel {
   font-family: var(--font-anton), sans-serif;
-  font-size: 1.3rem;
-  line-height: 1;
+  font-weight: 400;
+  font-size: 22px;
   color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
-.first .value {
-  color: var(--gold-bright);
-}
-.highlight .value {
-  color: var(--gold);
-}
-
-/* Box-level record / highlight callout. */
-.boxNote {
-  margin: 16px 0 0;
-  padding: 12px 14px;
-  background: linear-gradient(135deg, rgba(255, 182, 39, 0.12), rgba(226, 52, 43, 0.08));
-  border: 1px solid var(--gold-dim);
-  border-radius: var(--radius-sm);
-  font-size: 0.92rem;
-  line-height: 1.5;
-  color: var(--text);
-}
-
-.boxSource {
-  margin: 16px 0 0;
+.yearLabelHim { color: var(--gold); }
+.inProgress {
   font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
-  line-height: 1.55;
-  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+  border: 1px solid rgba(62, 209, 127, 0.45);
+  border-radius: 999px;
+  padding: 3px 8px;
 }
+.yearNote { font-size: 12px; color: var(--text-muted); margin-left: auto; }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: #cfc7bb;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.chipHim { border-color: var(--gold); background: rgba(255, 182, 39, 0.14); color: var(--gold); }
+.chipRank { font-family: var(--font-mono), monospace; font-size: 10px; font-weight: 700; opacity: 0.7; }
+.chipValue { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--text-muted); }
 
-.note {
-  margin: 26px 0 0;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-.back {
-  display: inline-block;
-  margin: 22px 0 0;
+.boxNote { font-size: 13px; line-height: 1.6; color: #cfc7bb; margin: 16px 0 0; max-width: 72ch; }
+.sourceWrap { margin-top: auto; padding-top: 14px; }
+/* A standalone disclosure control, so the 24px target floor applies — it
+   measured 16px. inline-flex rather than a padding bump so the row it sits in
+   doesn't grow. */
+.sourceSummary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   font-family: var(--font-mono), monospace;
-  font-size: 0.85rem;
-  color: var(--gold);
-  text-decoration: none;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  cursor: pointer;
+  list-style: none;
 }
-.back:hover {
-  text-decoration: underline;
-}
+.sourceSummary::-webkit-details-marker { display: none; }
+.sourceText { font-size: 11.5px; line-height: 1.6; color: var(--dim); margin: 10px 0 0; max-width: 76ch; }
 
-@media (max-width: 520px) {
-  .row {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-  .year {
-    font-size: 1.3rem;
-  }
-  /* Stack the flag/country under the name so rows read "name … value" cleanly
-     and long tied-names don't collide with the value. */
-  .listMain {
-    flex-direction: column;
-    column-gap: 0;
-    row-gap: 1px;
-  }
+/* ── FAQ ────────────────────────────────────────────────────────────────── */
+.faqPad { padding: 52px 40px 0; }
+.faqList { margin-top: 22px; border-top: 1px solid var(--line); }
+.faqItem {
+  display: grid;
+  grid-template-columns: 0.9fr 1.6fr;
+  gap: 40px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+/* Sentence case in the body face — a question is prose, not display type. */
+.faqQ {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 16px;
+  line-height: 1.35;
+  letter-spacing: 0;
+  margin: 0;
+}
+.faqA { font-size: 14.5px; line-height: 1.65; color: #cfc7bb; margin: 0; }
+
+.pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 44px 40px 72px; }
+
+@media (max-width: 1239px) {
+  .h1 { font-size: 60px; }
+  .trendGrid { grid-template-columns: 1fr; }
+  .trendChart { border-left: 0; border-top: 1px solid var(--border); }
+  .trendValue { font-size: 56px; }
+  .boxGrid { grid-template-columns: 1fr; }
+  .faqItem { grid-template-columns: 1fr; gap: 10px; }
 }

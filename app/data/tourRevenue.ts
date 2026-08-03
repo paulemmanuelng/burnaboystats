@@ -4,8 +4,6 @@
 // against the site's own verified tour records — July 2026. This is PER-SHOW
 // gross, distinct from the tour-level totals on the main Tours page.
 
-import type { LeaderboardBox } from "./africasBiggest";
-
 export interface RevenueShow {
   artist: string;
   venue: string;
@@ -64,26 +62,3 @@ export const revenueShows: RevenueShow[] = [
   { artist: "Davido", venue: "State Farm Arena", city: "Atlanta", flag: "🇺🇸", tour: "A.W.A.Y Festival", year: "2023", tickets: "11,246", revenue: 599343 },
   { artist: "Burna Boy", venue: "Amalie Arena", city: "Tampa, FL", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2024", tickets: "5,890", revenue: 580424 },
 ];
-
-function formatUSD(n: number): string {
-  return `$${n.toLocaleString("en-US")}`;
-}
-
-export function revenueLeaderboardBox(
-  shows: RevenueShow[],
-  opts: { title: string; meta: string; source: string; note?: string }
-): LeaderboardBox {
-  return {
-    id: "highest-revenue-per-show",
-    title: opts.title,
-    meta: opts.meta,
-    layout: "list",
-    entries: shows.map((s) => ({
-      name: s.artist,
-      sub: `${s.flag} ${s.venue}, ${s.city} · ${s.tour} · ${s.year}${s.tickets ? ` · ${s.tickets} tickets` : ""}`,
-      value: formatUSD(s.revenue),
-    })),
-    note: opts.note,
-    source: opts.source,
-  };
-}

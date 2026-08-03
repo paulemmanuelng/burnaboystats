@@ -1,0 +1,164 @@
+/* Mobile tour-map screen. Values are the design's, verbatim
+   (designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, screen 20).
+   Shown only below the mobile breakpoint — the desktop page is a different
+   layout, not this markup widened. */
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 100%;
+  }
+}
+
+/* ── Back bar ─────────────────────────────────────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(12, 10, 9, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.badge {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  flex: none;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 22px 18px 18px; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 40px;
+  line-height: 0.94;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-top: 11px;
+}
+.gold {
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 45%, var(--grad-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lede { font-size: 14.5px; line-height: 1.55; color: #cfc7bb; margin: 12px 0 0; }
+
+/* ── Map card ─────────────────────────────────────────────────────────── */
+/* The design mocks the map with dots because its prototype can't run the real
+   one. This renders the actual PerformanceMap in the same frame. */
+.mapCard { margin: 0 18px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.mapInner { background: var(--bg-soft); }
+.mapHint {
+  padding: 11px 14px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--dim);
+}
+
+/* ── Regions ──────────────────────────────────────────────────────────── */
+.regions { padding: 20px 0 0; }
+.region { padding: 14px 18px; border-top: 1px solid var(--line); }
+.regionTop { display: flex; align-items: baseline; gap: 10px; }
+.regionName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+.regionCount {
+  margin-left: auto;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.regionList {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 7px 0 0;
+}
+
+.footNote {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--dim);
+  padding: 18px 18px 0;
+  border-top: 1px solid var(--line);
+  margin: 0;
+}
+.spacer { height: 110px; }
+
+/* ── Action bar — replaces the tab bar on this screen ─────────────────── */
+.actionBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: rgba(12, 10, 9, 0.94);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--line);
+  padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 22px));
+  display: flex;
+  gap: 10px;
+}
+.actionPrimary {
+  flex: 1;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #0a0a0b;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
+}

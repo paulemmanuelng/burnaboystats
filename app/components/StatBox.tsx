@@ -1,97 +1,118 @@
-"use client";
-
-import { useState } from "react";
 import styles from "../records/africas-biggest/africas-biggest.module.css";
 import { HIGHLIGHT, type LeaderboardBox } from "../data/africasBiggest";
-import { track } from "../lib/analytics";
 
-// A reusable leaderboard "stat box". Supports two layouts:
-//   • "year" — ranked Top-5 per year (#1 highlighted; names only). Long boxes
-//     collapse to the latest years, with a "show earlier years" toggle.
-//   • "list" — a single ranked list with an optional value per entry.
-// Burna Boy is highlighted gold wherever he appears (HIGHLIGHT). `featured`
-// promotes a box to a full-width, badged headline.
-const INITIAL_YEARS = 2;
-
-export default function StatBox({ box, featured = false }: { box: LeaderboardBox; featured?: boolean }) {
-  const [showAllYears, setShowAllYears] = useState(false);
-  const rows = box.rows ?? [];
-  const visibleRows = showAllYears ? rows : rows.slice(0, INITIAL_YEARS);
-  const hiddenYears = rows.length - INITIAL_YEARS;
+/**
+ * A leaderboard "stat box". Two layouts:
+ *
+ *   • "list" — one ranked list, optional value per entry.
+ *   • "year" — a ranked top five per year, drawn as chips.
+ *
+ * Burna Boy is lit gold wherever he appears, including where he *doesn't* lead:
+ * he is fifth on Hot 100 peak and fifth on Spotify debuts, and the page marks
+ * his row on those boards too rather than only showing the wins.
+ *
+ * `featured` promotes a box to a full-width headline card.
+ *
+ * No state, so this stays on the server — the design shows every year row, and
+ * the longest board has five, so there is nothing to collapse.
+ */
+export default function StatBox({
+  box,
+  featured = false,
+}: {
+  box: LeaderboardBox;
+  featured?: boolean;
+}) {
+  const entries = box.entries ?? [];
+  // "He leads" is a claim, so it's earned from the data, not passed in.
+  const heLeads = box.layout === "list" && entries[0]?.name === HIGHLIGHT;
 
   return (
-    <div className={`${styles.box} ${featured ? styles.featured : ""}`}>
-      {featured ? <span className={styles.featuredBadge}>★ Latest milestone</span> : null}
+    <div className={`${styles.box} ${featured ? styles.boxFeatured : ""}`}>
       <div className={styles.boxHead}>
-        <h2 className={styles.boxTitle}>{box.title}</h2>
-        <span className={styles.boxMeta}>{box.meta}</span>
+        <div className={styles.boxHeadMain}>
+          <h3 className={`${styles.boxTitle} ${featured ? styles.boxTitleBig : ""}`}>
+            {box.title}
+          </h3>
+          <div className={styles.boxMeta}>{box.meta}</div>
+        </div>
+        {heLeads && <span className={styles.leadsBadge}>He leads</span>}
       </div>
 
       {box.layout === "list" ? (
-        <ol className={styles.listRank}>
-          {(box.entries ?? []).map((e, i) => (
-            <li
-              key={`${e.name}-${i}`}
-              className={`${styles.listEntry} ${i === 0 ? styles.first : ""} ${
-                e.name === HIGHLIGHT ? styles.highlight : ""
-              }`}
-            >
-              <span className={styles.pos}>{i + 1}</span>
-              <span className={styles.listMain}>
-                <span className={styles.name}>{e.name}</span>
-                {e.sub ? <span className={styles.sub}>{e.sub}</span> : null}
-              </span>
-              {e.value ? <span className={styles.value}>{e.value}</span> : null}
-            </li>
-          ))}
-        </ol>
-      ) : (
-        <>
-          <div className={styles.rows}>
-            {visibleRows.map((r) => (
-              <div key={r.label} className={styles.row}>
-                <span className={styles.year}>
-                  {r.label}
-                  {r.inProgress ? <span className={styles.star}>*</span> : null}
+        <div className={styles.entryList}>
+          {entries.map((e, i) => {
+            const him = e.name === HIGHLIGHT;
+            return (
+              <div
+                key={`${e.name}-${i}`}
+                className={`${styles.entryRow} ${him ? styles.entryHim : ""}`}
+              >
+                <span className={`${styles.entryRank} ${him ? styles.rankHim : ""}`}>
+                  {i + 1}
                 </span>
-                <div>
-                  <ol className={styles.rank}>
-                    {r.entries.map((e, i) => (
-                      <li
-                        key={`${e.name}-${i}`}
-                        className={`${styles.entry} ${i === 0 ? styles.first : ""} ${
-                          e.name === HIGHLIGHT ? styles.highlight : ""
-                        }`}
-                      >
-                        <span className={styles.pos}>{i + 1}</span>
-                        <span className={styles.name}>{e.name}</span>
-                        {e.value ? <span className={styles.entryValue}>{e.value}</span> : null}
-                      </li>
-                    ))}
-                  </ol>
-                  {r.note ? <p className={styles.rowNote}>{r.note}</p> : null}
-                </div>
+                <span>
+                  <span className={`${styles.entryName} ${him ? styles.nameHim : ""}`}>
+                    {e.name}
+                  </span>
+                  {e.sub && <span className={styles.entrySub}>{e.sub}</span>}
+                </span>
+                {e.value && (
+                  <span
+                    className={`${styles.entryValue} ${
+                      him ? styles.valueHim : i === 0 ? styles.valueTop : ""
+                    }`}
+                  >
+                    {e.value}
+                  </span>
+                )}
               </div>
-            ))}
-          </div>
-          {hiddenYears > 0 ? (
-            <button
-              type="button"
-              className={styles.showMore}
-              aria-expanded={showAllYears}
-              onClick={() => {
-                if (!showAllYears) track("statbox_expand", { box: box.title });
-                setShowAllYears((s) => !s);
-              }}
-            >
-              {showAllYears ? "Show fewer years" : `Show ${hiddenYears} earlier years`}
-            </button>
-          ) : null}
-        </>
+            );
+          })}
+        </div>
+      ) : (
+        <div className={styles.yearList}>
+          {(box.rows ?? []).map((r) => (
+            <div key={r.label} className={styles.yearRow}>
+              <div className={styles.yearHead}>
+                <span
+                  className={`${styles.yearLabel} ${
+                    r.entries[0]?.name === HIGHLIGHT ? styles.yearLabelHim : ""
+                  }`}
+                >
+                  {r.label}
+                </span>
+                {/* Green, not gold: this flags an incomplete year, not a win. */}
+                {r.inProgress && <span className={styles.inProgress}>In progress</span>}
+                {r.note && <span className={styles.yearNote}>{r.note}</span>}
+              </div>
+              <div className={styles.chips}>
+                {r.entries.map((e, i) => {
+                  const him = e.name === HIGHLIGHT;
+                  return (
+                    <span
+                      key={`${e.name}-${i}`}
+                      className={`${styles.chip} ${him ? styles.chipHim : ""}`}
+                    >
+                      <span className={styles.chipRank}>{i + 1}</span>
+                      {e.name}
+                      {e.value && <span className={styles.chipValue}>{e.value}</span>}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
       )}
 
-      {box.note ? <p className={styles.boxNote}>{box.note}</p> : null}
-      <p className={styles.boxSource}>{box.source}</p>
+      {box.note && <p className={styles.boxNote}>{box.note}</p>}
+      {/* Folded away by default: the provenance has to be reachable on every
+          board, but it shouldn't outweigh the board itself. */}
+      <details className={styles.sourceWrap}>
+        <summary className={styles.sourceSummary}>Source ▾</summary>
+        <p className={styles.sourceText}>{box.source}</p>
+      </details>
     </div>
   );
 }

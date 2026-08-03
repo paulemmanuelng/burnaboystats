@@ -1,18 +1,58 @@
-/* Contact page — editorial pill channels */
+/* Contact — desktop.
+   designs/desktop/Contact.dc.html, values verbatim.
 
-.lead2 {
-  margin: 12px 0 24px;
-}
-.lead3 {
-  margin-bottom: 18px;
-}
+   Hidden below 900px, where MobileContact renders screen 09 instead. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
 
-.channels {
+.band { border-bottom: 1px solid var(--line); }
+.wide { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.heroPad { padding: 50px 40px 42px; }
+.eyebrow {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 8px;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
+.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; }
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 96px;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 16px 0 0;
+}
+.lede { font-size: 18px; line-height: 1.55; max-width: 52ch; margin: 18px 0 0; color: #d8d8de; }
+
+/* ── Split: form beside the official channels ───────────────────────────── */
+.split { display: grid; grid-template-columns: 1.2fr 0.9fr; }
+.formCol { padding: 44px 52px 48px 0; }
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+.formLede { font-size: 16px; line-height: 1.6; color: #d8d8de; margin: 12px 0 24px; max-width: 56ch; }
+.formWrap { max-width: 620px; }
+
+.channelCol { border-left: 1px solid var(--line); padding: 44px 0 48px 44px; }
+.channelLede { font-size: 16px; line-height: 1.6; color: #d8d8de; margin: 12px 0 18px; }
+.channelLede strong { color: var(--text); }
+.channels { display: flex; flex-direction: column; gap: 12px; }
+/* Pills, not rows: each is a destination off the site, and the shape says so. */
 .channel {
   display: flex;
   align-items: center;
@@ -21,25 +61,25 @@
   padding: 16px 22px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  text-decoration: none;
   color: var(--text);
-  transition: border-color 0.2s ease, background 0.2s ease;
+  min-height: 44px;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
 }
-.channel:hover {
-  border-color: var(--gold);
-  background: rgba(255, 182, 39, 0.06);
-}
+.channel:hover { border-color: var(--gold); background: rgba(255, 182, 39, 0.06); color: var(--text); }
 .channelLabel {
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 0.72rem;
+  font-size: 11.5px;
   color: var(--text-muted);
 }
-.channel:hover .channelLabel {
-  color: var(--gold);
-}
-.channelValue {
-  font-weight: 600;
-  font-size: 0.92rem;
+.channelValue { font-weight: 600; font-size: 15px; }
+.note { font-size: 12.5px; line-height: 1.6; color: var(--text-muted); margin-top: 20px; }
+.note a { color: var(--gold); }
+
+@media (max-width: 1239px) {
+  .h1 { font-size: 70px; }
+  .split { grid-template-columns: 1fr; }
+  .formCol { padding: 44px 0 32px; }
+  .channelCol { border-left: 0; border-top: 1px solid var(--line); padding: 40px 0 48px; }
 }

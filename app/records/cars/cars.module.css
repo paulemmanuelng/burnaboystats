@@ -228,3 +228,172 @@
     margin-top: 6px;
   }
 }
+
+/* ══ Redesign, from designs/desktop/Records - Cars.dc.html ══
+   Values below are the design's, verbatim. This page's measure is 1240px. */
+
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+.heroWrap { max-width: 1240px; margin: 0 auto; padding: 32px 40px 0; }
+.kicker {
+  font-family: var(--font-mono), monospace; font-weight: 700;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted);
+}
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 82px; line-height: 0.9; letter-spacing: 0.01em;
+  text-transform: uppercase; margin-top: 14px;
+}
+.lede {
+  font-size: 18px; line-height: 1.55; color: #cfc7bb;
+  max-width: 64ch; margin: 20px 0 0; text-wrap: pretty;
+}
+
+/* Hairline seams inside a bounding border. */
+.statGrid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--line);
+  margin-top: 32px; border: 1px solid var(--line);
+}
+.statCell { background: var(--bg); padding: 24px 26px; }
+.statNum {
+  font-family: var(--font-anton), sans-serif; font-weight: 400;
+  font-size: 56px; line-height: 0.9; font-variant-numeric: tabular-nums;
+}
+.statLabel {
+  font-family: var(--font-mono), monospace; font-weight: 700;
+  font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 12px;
+}
+.highlightLabel {
+  font-family: var(--font-mono), monospace; font-weight: 700;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+}
+.highlightValue {
+  font-family: var(--font-anton), sans-serif; font-weight: 400;
+  font-size: 24px; line-height: 1.1; margin-top: 12px; text-transform: uppercase;
+}
+.highlightMeta {
+  font-family: var(--font-mono), monospace; font-size: 10px;
+  letter-spacing: 0.06em; color: var(--dim); margin-top: 6px;
+}
+
+.tally { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.tallyLabel {
+  font-family: var(--font-mono), monospace; font-weight: 700;
+  font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-muted); margin-right: 4px;
+}
+.tallyChip {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 14px; border-radius: 999px;
+  border: 1px solid var(--border); background: transparent; font-size: 13px;
+}
+.tallyNum { font-family: var(--font-anton), sans-serif; font-weight: 400; font-size: 16px; color: var(--gold); }
+.tallyMake { color: #cfc7bb; }
+
+/* ── The garage ───────────────────────────────────────────────────────── */
+.listWrap { max-width: 1240px; margin: 0 auto; padding: 38px 40px 0; }
+.list { border-top: 1px solid var(--line); }
+.carRow {
+  display: grid; grid-template-columns: 56px 1fr 200px; gap: 24px;
+  padding: 22px 8px; border-bottom: 1px solid var(--line);
+  align-items: start;
+  transition: background var(--dur-fast) var(--ease);
+}
+.carRow:hover { background: rgba(245, 240, 232, 0.045); }
+.rank {
+  font-family: var(--font-anton), sans-serif; font-weight: 400;
+  font-size: 26px; line-height: 0.9; color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+/* The most expensive car leads — bigger rank, bigger model, gold price. */
+.rankLead { font-size: 34px; color: var(--gold); }
+.make {
+  display: block; font-family: var(--font-mono), monospace; font-weight: 700;
+  font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted);
+}
+.model {
+  font-family: var(--font-anton), sans-serif; font-weight: 400;
+  font-size: 24px; line-height: 1.1; letter-spacing: 0.01em;
+  text-transform: uppercase; margin-top: 8px;
+}
+.modelLead { font-size: 32px; }
+.desc { font-size: 13.5px; line-height: 1.65; color: #b8b0a5; margin: 10px 0 0; max-width: 78ch; }
+.carLink {
+  display: inline-flex; align-items: center; min-height: 38px; margin-top: 12px;
+  font-family: var(--font-mono), monospace; font-weight: 700;
+  font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+}
+.carLink:hover { text-decoration: underline; }
+.priceCol { text-align: right; }
+.usd {
+  display: block; font-family: var(--font-anton), sans-serif; font-weight: 400;
+  font-size: 28px; line-height: 0.95; color: var(--text); font-variant-numeric: tabular-nums;
+}
+.usdLead { font-size: 38px; color: var(--gold); }
+.naira { display: block; font-family: var(--font-mono), monospace; font-size: 11.5px; color: var(--text-muted); margin-top: 6px; }
+
+/* ── No longer counted ────────────────────────────────────────────────── */
+.formerWrap { max-width: 1240px; margin: 0 auto; padding: 46px 40px 0; }
+.h2 {
+  font-family: var(--font-anton), sans-serif; font-weight: 400;
+  font-size: 32px; line-height: 1; letter-spacing: 0.01em;
+  text-transform: uppercase; margin: 0;
+}
+.goldFlat { color: var(--gold); }
+.formerLede { font-size: 13.5px; line-height: 1.6; color: var(--text-muted); margin: 12px 0 0; max-width: 70ch; }
+.formerList { margin-top: 22px; border-top: 1px solid var(--line); }
+.formerRow {
+  display: grid; grid-template-columns: 1fr 200px; gap: 24px;
+  padding: 20px 8px; border-bottom: 1px solid var(--line);
+  align-items: start; opacity: 0.72;
+}
+.tag {
+  display: inline-flex; align-items: center; padding: 4px 11px; border-radius: 999px;
+  font-family: var(--font-mono), monospace; font-weight: 700;
+  font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.tagSold { border: 1px solid rgba(192, 57, 43, 0.5); background: rgba(192, 57, 43, 0.1); color: #e0796d; }
+.tagUnconfirmed { border: 1px solid var(--border); background: transparent; color: var(--text-muted); }
+.formerRow .make { margin-top: 11px; }
+.formerModel {
+  font-family: var(--font-anton), sans-serif; font-weight: 400;
+  font-size: 21px; line-height: 1.1; text-transform: uppercase; margin-top: 7px;
+}
+.formerDesc { font-size: 13px; line-height: 1.6; color: var(--text-muted); margin: 9px 0 0; max-width: 74ch; }
+.formerUsd {
+  display: block; font-family: var(--font-anton), sans-serif; font-weight: 400;
+  font-size: 26px; line-height: 0.95; color: var(--text-muted); font-variant-numeric: tabular-nums;
+}
+.formerNaira { display: block; font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); margin-top: 5px; }
+
+/* ── A note on this list ──────────────────────────────────────────────── */
+.noteWrap { max-width: 1240px; margin: 0 auto; padding: 40px 40px 0; }
+.note { padding: 24px 28px; border: 1px solid rgba(255, 182, 39, 0.35); background: rgba(255, 182, 39, 0.05); }
+.noteKicker {
+  font-family: var(--font-mono), monospace; font-weight: 700;
+  font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted);
+}
+.noteText { font-size: 13.5px; line-height: 1.75; color: #cfc7bb; margin: 12px 0 0; max-width: 92ch; }
+.noteFine { font-size: 12.5px; line-height: 1.7; color: var(--text-muted); margin: 14px 0 0; max-width: 92ch; }
+
+.actionWrap { max-width: 1240px; margin: 0 auto; padding: 40px 40px 72px; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+@media (max-width: 1239px) {
+  .heroWrap, .listWrap, .formerWrap, .noteWrap, .actionWrap { padding-inline: 32px; }
+  .h1 { font-size: 60px; }
+  .statGrid { grid-template-columns: repeat(3, 1fr); }
+  /* Partial last row stretches the final cell rather than leaving a phantom
+     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
+     position so it holds for any item count: last-in-a-fresh-row spans three,
+     second-in-a-row spans the two that remain. */
+  .statGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .statGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
+  .carRow { grid-template-columns: 40px 1fr; }
+  .carRow .priceCol { grid-column: 2; text-align: left; }
+  .formerRow { grid-template-columns: 1fr; }
+  .formerRow .priceCol { text-align: left; }
+}

@@ -1,20 +1,3 @@
-.updated {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  margin: 0 0 22px;
-  padding: 8px 15px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-}
-.updated strong {
-  color: var(--text);
-  font-weight: 700;
-}
 /* Pulsing dot — the one place a "live" cue is honest, since this really does
    refresh hourly. */
 .liveDot {
@@ -91,19 +74,6 @@
 /* The rows are collapsed by default, so this instruction is doing real work —
    at 0.88rem muted grey it read as a footnote and got skipped. Now it carries
    the gold accent and matches the notice block above it, without shouting. */
-.hint {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0 0 20px;
-  padding: 12px 16px;
-  background: rgba(255, 182, 39, 0.07);
-  border: 1px solid rgba(255, 182, 39, 0.28);
-  border-radius: 999px;
-  color: var(--text);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
 .hint strong { color: var(--gold-bright); font-weight: 700; }
 .hintIcon {
   flex: none;
@@ -198,8 +168,11 @@
   grid-column: 2;
   grid-row: 1;
   font-family: var(--font-anton), sans-serif;
-  font-size: 1.4rem;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 21px;
+  line-height: 1.05;
   letter-spacing: 0.01em;
+  text-transform: uppercase;
   transition: color var(--dur) var(--ease);
 }
 .chips {
@@ -430,4 +403,186 @@
   font-size: 0.5em;
   line-height: 1;
   letter-spacing: 0;
+}
+
+/* ══ Redesign, from designs/desktop/Live Charts.dc.html ══
+   Values below are the design's, verbatim. */
+
+.desktopOnly { display: block; }
+@media (max-width: 900px) {
+  .desktopOnly { display: none; }
+}
+
+.wide { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { border-bottom: 1px solid var(--line); }
+.hero .wide { padding: 50px 40px 42px; }
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; flex: none; }
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 96px;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 16px 0 0;
+}
+.lede {
+  font-size: 18px;
+  line-height: 1.55;
+  max-width: 62ch;
+  margin: 18px 0 0;
+  color: #d8d8de;
+  text-wrap: pretty;
+}
+.updated {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 22px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.updated strong { color: var(--text); }
+.notice {
+  margin-top: 22px;
+  padding: 16px 20px;
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 182, 39, 0.08);
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 96ch;
+}
+.notice a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── Summary strip ────────────────────────────────────────────────────── */
+.summaryBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+.summaryGrid {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.summaryCell { padding: 28px 24px 26px; border-left: 1px solid var(--line); }
+.summaryCell:first-child { border-left: none; }
+.summaryValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 0.9;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+/* Live/positive green, not gold — it means "right now", not "his". */
+.liveInk { color: var(--green); }
+.summaryLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+
+/* ── Sections ─────────────────────────────────────────────────────────── */
+.section { border-bottom: 1px solid var(--line); }
+.section .wide { padding: 40px 40px 48px; }
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+.h2Row { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; }
+.h2Row .h2 { margin: 0; }
+.count { font-family: var(--font-mono), monospace; font-size: 14px; color: var(--text-muted); }
+.hint { font-size: 13.5px; color: var(--text-muted); margin: 0 0 20px; }
+.hint strong { color: var(--text); }
+
+/* ── Platform grid ────────────────────────────────────────────────────── */
+.platformGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  background: var(--line);
+}
+.platformCard { background: var(--bg); padding: 22px 20px; }
+.platformCardV {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+.platformCardName {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.platformCardNo1 {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+  color: var(--green);
+  min-height: 14px;
+}
+.platformCardCadence {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  margin-top: 3px;
+  color: var(--text-muted);
+}
+
+.releaseList { border-top: 1px solid var(--line); }
+
+/* ── Source band ──────────────────────────────────────────────────────── */
+.sourceBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+.sourceBand .wide { padding: 34px 40px 38px; }
+.source {
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 104ch;
+  color: var(--text-muted);
+}
+.source a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+.back { margin-top: 20px; }
+
+@media (max-width: 1239px) {
+  .wide, .summaryGrid { padding-inline: 32px; }
+  .h1 { font-size: 70px; }
+  .summaryGrid { grid-template-columns: repeat(3, 1fr); }
+  /* Partial last row stretches the final cell rather than leaving a phantom
+     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
+     position so it holds for any item count: last-in-a-fresh-row spans three,
+     second-in-a-row spans the two that remain. */
+  .summaryGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .summaryGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
+  .summaryCell:nth-child(3n + 1) { border-left: none; }
+  .summaryCell:nth-child(n + 4) { border-top: 1px solid var(--line); }
+  .platformGrid { grid-template-columns: repeat(3, 1fr); }
 }

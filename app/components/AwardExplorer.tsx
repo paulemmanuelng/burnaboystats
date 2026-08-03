@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "../records/awards/awards.module.css";
 import { ceremonies, ceremonyWins, type AwardNom } from "../data/awards";
 import { track } from "../lib/analytics";
+import FilterEmpty from "./FilterEmpty";
 
 const RESULTS = [
   { key: "won", label: "Won" },
@@ -14,17 +15,15 @@ const BODY_PREVIEW = 8; // award bodies shown before the "Show all" toggle
 
 function Row({ nom }: { nom: AwardNom }) {
   return (
-    <div className={styles.row}>
+    <div className={`${styles.row} ${nom.won ? styles.rowWon : ""}`}>
+      <span className={styles.year}>{nom.year}</span>
       <div className={styles.rowMain}>
         <span className={styles.category}>{nom.category}</span>
         {nom.work && <span className={styles.work}>{nom.work}</span>}
       </div>
-      <div className={styles.rowMeta}>
-        <span className={styles.year}>{nom.year}</span>
-        <span className={`${styles.badge} ${nom.won ? styles.won : styles.nom}`}>
-          {nom.won ? "Won" : "Nominated"}
-        </span>
-      </div>
+      <span className={`${styles.result} ${nom.won ? styles.won : styles.nom}`}>
+        {nom.won ? "Won" : "Nominated"}
+      </span>
     </div>
   );
 }
@@ -141,27 +140,52 @@ export default function AwardExplorer() {
       </div>
 
       {totalShown === 0 ? (
-        <p className={styles.empty}>Nothing matches that filter.</p>
+        // Narrowest first: a single year is tighter than a body, which is
+        // tighter than won-vs-nominated.
+        <FilterEmpty
+          body={`There's no ${[
+            result === "won" ? "win" : result === "nominated" ? "nomination" : "nomination",
+            ceremony && `at the ${ceremony}`,
+            year && `in ${year}`,
+          ]
+            .filter(Boolean)
+            .join(" ")}. That's a real gap in the record, not a missing page.`}
+          onClear={clearAll}
+          narrowest={
+            year
+              ? { label: String(year), drop: () => setYear(null) }
+              : ceremony
+                ? { label: ceremony, drop: () => setCeremony(null) }
+                : result
+                  ? { label: result === "won" ? "Won" : "Nominated", drop: () => setResult(null) }
+                  : undefined
+          }
+        />
       ) : (
         groups.map((g) => {
           const wins = ceremonyWins(g);
           return (
-            <div key={g.name}>
-              <h2 className={`secTitle ${styles.group}`}>
-                <span className="goldText">{g.name}</span>{" "}
-                <span className={styles.count}>
-                  ({wins > 0 ? `${wins} won · ` : ""}{g.noms.length} {g.noms.length === 1 ? "nomination" : "nominations"})
-                </span>
-              </h2>
-              <div className={styles.list}>
+            <section key={g.name} className={styles.ceremony}>
+              <div className={styles.ceremonyGrid}>
+                <div className={styles.ceremonyHead}>
+                  <h2 className={styles.ceremonyName}>{g.name}</h2>
+                  <div className={styles.ceremonyPills}>
+                    {wins > 0 && <span className={styles.winPill}>{wins} won</span>}
+                    <span className={styles.nomPill}>
+                      {g.noms.length} {g.noms.length === 1 ? "nomination" : "nominations"}
+                    </span>
+                  </div>
+                </div>
+                <div className={styles.list}>
                 {g.shown
                   .slice()
                   .sort((a, b) => a.year - b.year)
                   .map((n, i) => (
                     <Row key={`${n.year}-${n.category}-${i}`} nom={n} />
                   ))}
+                </div>
               </div>
-            </div>
+            </section>
           );
         })
       )}

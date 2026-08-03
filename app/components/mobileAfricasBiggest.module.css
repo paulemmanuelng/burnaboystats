@@ -1,0 +1,258 @@
+/* Mobile screen 16 — Africa's biggest.
+   designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, values verbatim.
+   Shown only below the mobile breakpoint; the desktop page is its own layout. */
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 100%;
+  }
+}
+
+/* ── Back bar ─────────────────────────────────────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(12, 10, 9, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.badge {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  flex: none;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 22px 18px 18px; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 46px;
+  line-height: 0.94;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 11px 0 0;
+}
+.gold {
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 45%, var(--grad-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lede { font-size: 14.5px; line-height: 1.55; color: #cfc7bb; margin: 12px 0 0; }
+
+/* ── Stat grid: 2-up, hairline seams ──────────────────────────────────── */
+.statGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.statCell { background: var(--bg); padding: 15px 18px; }
+.statValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 0.9;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.statLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin-top: 9px;
+}
+.statNote {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  color: var(--dim);
+}
+
+/* ── Filter chips ─────────────────────────────────────────────────────── */
+.rail {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 16px 18px 14px;
+  scrollbar-width: none;
+}
+.chip {
+  flex: none;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.chipOn { background: rgba(255, 182, 39, 0.16); border-color: var(--gold); color: var(--gold); }
+
+.metaBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.legend { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; }
+.legendDot { width: 7px; height: 7px; border-radius: 999px; background: var(--gold); display: block; }
+
+/* ── One board ────────────────────────────────────────────────────────── */
+.board { border-top: 1px solid var(--line); padding: 18px 18px 14px; }
+.board:first-of-type { border-top: none; }
+.boardHead { display: flex; align-items: flex-start; gap: 10px; }
+.boardHeadMain { flex: 1; min-width: 0; }
+.boardTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  /* White. Gold on this site means "his", and fourteen gold board titles on one
+     screen would spend the accent on labels instead of results. */
+  color: var(--text);
+  margin: 0;
+}
+.boardMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 5px;
+}
+/* His standing on the board, so fourteen boards can be scanned without reading
+   fourteen lists. A win is filled; a position is outlined. */
+.boardBadge {
+  flex: none;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.boardBadgeLeads { border-color: var(--gold); background: var(--gold); color: #0a0a0b; }
+
+.rows { margin-top: 12px; border-top: 1px solid var(--line); }
+.row {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+  padding: 9px 8px 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+.rowHis { background: rgba(255, 182, 39, 0.08); }
+.rank {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+.rowHis .rank { color: var(--gold); }
+.rowMain { min-width: 0; }
+.rowName { display: block; font-size: 13px; font-weight: 600; color: var(--text); }
+.rowHis .rowName { color: var(--gold); }
+.rowSub {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rowHis .rowSub { color: var(--gold-dim); }
+.rowValue {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12.5px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.rowHis .rowValue { color: var(--gold); }
+/* An em dash means the record is absent, not zero — it reads dim, never as a
+   value. designs/desktop/App States.dc.html, panel E. */
+.rowValueNone { color: var(--dim); }
+
+.boardNote { font-size: 12px; line-height: 1.5; color: var(--text-muted); margin: 11px 0 0; }
+
+.footNote {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--dim);
+  padding: 18px 18px 0;
+  border-top: 1px solid var(--line);
+  margin: 0;
+}
+.footNote + .footNote { border-top: none; padding-top: 8px; padding-bottom: 24px; }
+.footNote strong { color: var(--text-muted); font-weight: 600; }

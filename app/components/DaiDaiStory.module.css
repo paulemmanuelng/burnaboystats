@@ -5,18 +5,22 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 56px;
-  margin: 8px 0 16px;
+  align-items: start;
+  margin: 44px 0 16px;
 }
+/* The column is what sticks; the card inside it keeps its own square shape.
+   Pinning below the sticky site header (rather than centring on the viewport)
+   keeps the stage clear of the hero at scroll 0 — a viewport-centred card
+   rides up over the copy above it. */
+.stickyCol { position: sticky; top: 104px; align-self: start; }
+
+/* Archetype 5 — the per-step scene used only between 900 and 1239px, where the
+   stage unsticks. Off at every other width: above 1240 the single sticky stage
+   is the design, below 900 the phone pins it to the top. */
+.inlineScene { display: none; }
 
 .sticky {
-  /* A content-hugging card centred in the viewport (top:50% + translate), so the
-     scene fills the frame instead of floating in a tall, empty box. */
-  position: sticky;
-  top: 50%;
-  transform: translateY(-50%);
-  height: auto;
-  min-height: min(430px, 62vh);
-  max-height: calc(100dvh - 96px);
+  aspect-ratio: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -135,6 +139,11 @@
 }
 /* "See all →" deep-links inside a scene (to the full chart / cert data). */
 .sceneLink {
+  /* A standalone call to action, not a link inside a sentence — the 24px
+     target floor applies. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   margin-top: 4px;
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
@@ -189,7 +198,9 @@
 }
 .stepInner {
   max-width: 46ch;
-  opacity: 0.3;
+  /* .34 is the handoff's value — dim enough to recede, light enough that a
+     step you have already read is still readable. */
+  opacity: 0.34;
   transform: translateY(8px);
   transition: opacity 0.45s ease, transform 0.45s ease;
 }
@@ -229,6 +240,37 @@
   color: #d3d3da;
 }
 
+/* 900–1239: the sticky scene stage unsticks and each scene renders inline
+   above its step text. Sticky scroll narratives need two full columns to read;
+   below that they fight the scroll. RESPONSIVE-AND-STATES.md, archetype 5. */
+@media (max-width: 1239px) and (min-width: 901px) {
+  .scrolly { display: block; margin: 32px 0 16px; }
+  /* The shared stage goes; each step carries its own. */
+  .stickyCol { display: none; }
+  .inlineScene { display: block; margin-bottom: 20px; }
+  .inlineSceneCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    text-align: center;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--bg-soft);
+    /* The doc's cap for a figure that has moved below its paragraph. */
+    max-height: 640px;
+    min-height: 320px;
+    padding: 34px 26px;
+  }
+  /* Nothing dims once every step carries its own scene — the reveal that the
+     opacity ramp existed to stage is now just the scroll itself. */
+  .step { min-height: 0; display: block; padding: 0 0 56px; }
+  .stepInner { max-width: none; opacity: 1; transform: none; }
+}
+
 @media (max-width: 900px) {
   .scrolly {
     display: block;
@@ -243,8 +285,12 @@
     display: contents;
   }
   .sticky {
+    /* The base rule's sticky now lives on .stickyCol, which is display:contents
+       here — so the card itself has to pin. */
+    position: sticky;
     top: 8px;
     transform: none;
+    aspect-ratio: auto;
     height: 44vh;
     min-height: 300px;
     max-height: none;
@@ -290,5 +336,55 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* ── Screen 25's back bar ────────────────────────────────────────────────
+   Mobile only: the desktop layout keeps the site nav, which this replaces on a
+   phone. Fixed rather than sticky because it is rendered from inside the story,
+   partway down the document. */
+.backBar { display: none; }
+
+@media (max-width: 900px) {
+  .backBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 45;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: rgba(12, 10, 9, 0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .backBtn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    color: var(--text);
+    flex: none;
+  }
+  .backLabel {
+    font-family: var(--font-mono), monospace;
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .backStep {
+    margin-left: auto;
+    font-family: var(--font-mono), monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    font-variant-numeric: tabular-nums;
   }
 }

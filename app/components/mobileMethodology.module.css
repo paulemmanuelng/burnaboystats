@@ -1,0 +1,185 @@
+/* Mobile screen 22 — Methodology & sources.
+   designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, values verbatim.
+   Shown only below the mobile breakpoint; the desktop page is its own layout. */
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 100%;
+  }
+}
+
+/* ── Back bar ─────────────────────────────────────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(12, 10, 9, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.badge {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  flex: none;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 22px 18px 18px; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 36px;
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 11px 0 0;
+}
+.gold {
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 45%, var(--grad-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lede { font-size: 14.5px; line-height: 1.55; color: #cfc7bb; margin: 12px 0 0; }
+
+/* ── Hero review line ─────────────────────────────────────────────────── */
+.reviewed {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+/* Green, the site's live accent: this says the data is current, not that it is
+   one of his records. */
+.reviewedDot { width: 7px; height: 7px; border-radius: 999px; background: var(--green); display: block; flex: none; }
+
+/* ── A block of prose ─────────────────────────────────────────────────── */
+.block { border-top: 1px solid var(--line); padding: 20px 18px 6px; }
+/* The sources block sits on the soft surface, so the two blocks read as two
+   answers rather than one long column. */
+.blockSoft { background: var(--bg-soft); margin-top: 16px; }
+.blockTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0;
+}
+.item { padding: 14px 0; border-bottom: 1px solid var(--line); }
+/* Body font and sentence case — a principle is a statement, not a label. */
+.itemTitle {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+  margin: 0;
+}
+.itemBody { font-size: 12.5px; line-height: 1.6; color: var(--text-muted); margin: 6px 0 0; }
+/* The source area is a label, so it takes mono caps rather than body type. */
+.area {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.area + .itemBody { margin-top: 7px; }
+
+/* ── Closing sections ─────────────────────────────────────────────────── */
+.section { border-top: 1px solid var(--line); padding: 18px; }
+.sectionTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0;
+}
+.sectionTitle + .itemBody { margin-top: 8px; }
+
+/* ── Action bar ───────────────────────────────────────────────────────── */
+.spacer { height: 104px; }
+
+/* ── Action bar — replaces the tab bar on this screen ─────────────────── */
+.actionBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: rgba(12, 10, 9, 0.94);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--line);
+  padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 22px));
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.actionPrimary {
+  flex: 1;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
+}

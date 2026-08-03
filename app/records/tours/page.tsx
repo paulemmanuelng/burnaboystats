@@ -1,13 +1,14 @@
 import Link from "next/link";
 import styles from "./tours.module.css";
 import KeepExploring from "../../components/KeepExploring";
-import CountUp from "../../components/CountUp";
-import StatGrid from "../../components/StatGrid";
+import BreadcrumbBar from "../../components/BreadcrumbBar";
 import ToursExplorer from "../../components/ToursExplorer";
-import StatBox from "../../components/StatBox";
+import MobileTours from "../../components/MobileTours";
 import { tours, liveMoments } from "../../data/tours";
-import { revenueShows, revenueLeaderboardBox } from "../../data/tourRevenue";
+import { revenueShows } from "../../data/tourRevenue";
+import { countryCount as playedCount, regionCount } from "../../data/performedCountries";
 import { pageMetadata } from "../../lib/seo";
+import NotReported from "../../components/NotReported";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Tours — $30.46M Record Tour & Sold-Out Stadiums",
@@ -22,117 +23,262 @@ export const metadata = pageMetadata({
 // and Google only shows *upcoming* events in rich results — so the markup won
 // zero placements while repeatedly tripping GSC's Events report on the `offers`
 // field, which we can't honestly fill for sold-out past shows with no price.
+
+// ── Derived figures ────────────────────────────────────────────────────────
+// Everything on this page is computed from tours.ts and tourRevenue.ts. Nothing
+// below is a number typed into the markup.
+const grossOf = (g?: string) => (g ? Number.parseFloat(g.replace(/[^0-9.]/g, "")) : 0);
+const topTour = [...tours].sort((a, b) => grossOf(b.gross) - grossOf(a.gross))[0];
+const topShow = [...revenueShows].sort((a, b) => b.revenue - a.revenue)[0];
+const hisShowCount = revenueShows.filter((s) => s.artist === "Burna Boy").length;
+
+const topShowM = (dp: number) => `$${(topShow.revenue / 1e6).toFixed(dp)}M`;
+// "$30.46M" → "$30.46 million", so the lede reads as prose and the strip above
+// it can carry the short form.
+const topGrossLong = (topTour.gross ?? "").replace(/M$/, " million");
+// 302,801 → "300K+". Rounded down to the nearest hundred thousand, so the "+"
+// is always honest.
+const topTicketsShort = topTour.tickets
+  ? `${Math.floor(Number(topTour.tickets.replace(/,/g, "")) / 1e5) * 100}K+`
+  : "—";
+
+// Tour years are ranges, and the end of one is abbreviated: "2025–26" means
+// 2025 to 2026, so a plain number-scrape would read the run as ending in 26.
+// A two-digit end borrows the century of the year it follows.
+function yearsOf(range: string): number[] {
+  let century = 0;
+  return (range.match(/\d{2,4}/g) ?? []).map((p) => {
+    const n = Number(p);
+    if (p.length === 4) {
+      century = Math.floor(n / 100) * 100;
+      return n;
+    }
+    return century + n;
+  });
+}
+const tourYears = tours.flatMap((t) => yearsOf(t.years));
+const yearSpan = `${Math.min(...tourYears)} — ${Math.max(...tourYears)}`;
+
+const headline = [
+  { value: `$${grossOf(topTour.gross).toFixed(1)}M`, label: "Top tour gross · African record" },
+  { value: topShowM(1), label: "Biggest concert · African record" },
+  { value: topTicketsShort, label: `Tickets · ${topTour.name}` },
+];
+
 export default function ToursPage() {
   return (
     <main id="content">
-      <header className="pageHeader container">
-        <h1>
-          Tours <span className="accent">&amp; Live</span>
-        </h1>
-        <p>Sold-out stadiums, record-breaking grosses and history made on stage</p>
-      </header>
+      {/* Mobile is screen 12 — a two-up stat grid, then one expandable row per
+          tour whose dates stack rather than becoming a table. */}
+      <MobileTours
+        tours={tours}
+        topGross={topTour.gross ?? "—"}
+        // The stat cell is narrow, and "Tour" is the one word every entry
+        // shares — dropping it costs nothing and keeps the note on one line.
+        topTourName={topTour.name.replace(/ Tour$/, "")}
+        countryCount={playedCount}
+        regionCount={regionCount}
+        biggestNight={topShow.tickets ?? "—"}
+        biggestVenue={topShow.venue}
+        yearSpan={yearSpan}
+      />
 
-      <div className="container">
-        <StatGrid
-          stats={[
-            { num: <CountUp end={30} prefix="$" suffix=".5M" />, label: "Top tour gross · African record" },
-            { num: <CountUp end={6} prefix="$" suffix=".1M" />, label: "Biggest concert · African record" },
-            { num: <CountUp end={300} suffix="K+" />, label: "Tickets · I Told Them tour" },
-          ]}
-        />
+      <div className={styles.desktopOnly}>
+        <BreadcrumbBar path="/records/tours" />
 
-        <p className="lead" style={{ margin: "22px auto 4px", textAlign: "center" }}>
-          Burna Boy&apos;s I Told Them… Tour grossed $30.46 million across 22 shows —
-          the highest-grossing tour by an African artist in history — and his June 2024
-          London Stadium concert ($6.15M from 58,973 fans) is the biggest single
-          concert ever by an African artist.
-        </p>
-
-        <div className={styles.officialLinks}>
-          <span className={styles.officialLabel}>Upcoming dates &amp; tickets</span>
-          <div className={styles.officialBtns}>
-            <a
-              className="btn btnPrimary"
-              href="https://www.ticketmaster.com/burna-boy-tickets/artist/2486272"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Tickets · Ticketmaster ↗
-            </a>
-            <a
-              className="btn btnSecondary"
-              href="https://www.onaspaceship.com/tour"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Official tour site ↗
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.toursHead}>
-          <h2 className={`secTitle ${styles.group}`}>
-            <span className="goldText">Tours</span>
-          </h2>
-          <Link href="/records/tours/map" className={styles.mapBtn}>
-            <span aria-hidden="true">🌍</span> Where he&apos;s performed
-          </Link>
-        </div>
-        <p className={styles.tourHint}>Tap a tour to see its venues, dates &amp; capacities.</p>
-        <ToursExplorer tours={tours} />
-
-        <Link href="/records/tours/festivals" className={styles.allShowsCard}>
-          <span>
-            <span className={styles.allShowsTitle}>Festivals &amp; shows</span>
-            <span className={styles.allShowsDesc}>Every festival &amp; big stage he&apos;s played — the headline sets and beyond</span>
-          </span>
-          <span className={styles.allShowsArrow} aria-hidden="true">→</span>
-        </Link>
-
-        <h2 className={`secTitle ${styles.group}`}>
-          Highest <span className="goldText">revenue per show</span>
-        </h2>
-        <p className={styles.tourHint}>The top 10 single-show grosses by any African artist.</p>
-        <StatBox
-          box={revenueLeaderboardBox(revenueShows.slice(0, 10), {
-            title: "Highest reported revenue per show",
-            meta: "African artists · single-show gross · all-time",
-            note: `Burna Boy holds ${revenueShows.filter((s) => s.artist === "Burna Boy").length} of the ${revenueShows.length} highest-grossing shows by an African artist — more than every other artist on this list combined.`,
-            source: "Box-office figures reported by Billboard Boxscore & Pollstar (as aggregated by TouringData), cross-checked against press reporting, as of July 2026.",
-          })}
-        />
-        <Link href="/records/tours/revenue" className={styles.allShowsCard}>
-          <span>
-            <span className={styles.allShowsTitle}>See the full top {revenueShows.length}</span>
-            <span className={styles.allShowsDesc}>Every show on the list, ranked by reported revenue</span>
-          </span>
-          <span className={styles.allShowsArrow} aria-hidden="true">→</span>
-        </Link>
-
-        <h2 className={`secTitle ${styles.group}`}>
-          Record nights &amp; <span className="goldText">live milestones</span>
-        </h2>
-        <div className={styles.milestones}>
-          {liveMoments.map((m) => (
-            <div key={m.title} className={`${styles.mRow} ${m.record ? styles.mRecord : ""}`}>
-              <span className={styles.mYear}>{m.year}</span>
+        {/* ── Hero ───────────────────────────────────────────── */}
+        <section className={styles.band}>
+          <div className={`${styles.wide} ${styles.heroPad}`}>
+            <div className={styles.heroGrid}>
               <div>
-                <h3 className={styles.mTitle}>{m.title}</h3>
-                <p className={styles.mText}>{m.text}</p>
+                <div className={styles.eyebrow}>
+                  <span className={styles.eyebrowRule} aria-hidden="true" />
+                  On the road
+                </div>
+                <h1 className={styles.h1}>
+                  Tours <span className="inkText">&amp; Live</span>
+                </h1>
+                <p className={styles.lede}>
+                  The {topTour.name} grossed {topGrossLong} across {topTour.shows} shows —
+                  the highest-grossing tour by an African artist in history — and his June
+                  2024 {topShow.venue} concert ({topShowM(2)} from {topShow.tickets} fans) is
+                  the biggest single concert ever by an African artist.
+                </p>
+              </div>
+              <div className={styles.ticketPanel}>
+                <div className={styles.kicker}>Upcoming dates &amp; tickets</div>
+                <div className={styles.ticketBtns}>
+                  <a
+                    className="btn btnPrimary"
+                    href="https://www.ticketmaster.com/burna-boy-tickets/artist/2486272"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Tickets · Ticketmaster ↗
+                  </a>
+                  <a
+                    className="btn btnSecondary"
+                    href="https://www.onaspaceship.com/tour"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Official tour site ↗
+                  </a>
+                  <Link href="/records/tours/map" className="btn btnSecondary">
+                    Where he&apos;s performed ↗
+                  </Link>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        </section>
 
-        <p className={styles.source}>
-          Box-office figures are reported by Billboard Boxscore &amp; Pollstar (as
-          aggregated by TouringData) and cross-checked against press reporting, as
-          of July 2026. For future dates, always check official ticketing.
-        </p>
-        <Link href="/records" className={styles.back}>← Career Records</Link>
+        {/* ── Headline strip ─────────────────────────────────── */}
+        <section className={styles.bandSurface}>
+          <div className={styles.wide}>
+            <div className={styles.headlineGrid}>
+              {headline.map((s) => (
+                <div key={s.label} className={styles.headlineCell}>
+                  <div className={styles.headlineValue}>{s.value}</div>
+                  <div className={styles.headlineLabel}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Tours ──────────────────────────────────────────── */}
+        <section className={styles.band}>
+          <div className={`${styles.wide} ${styles.sectionPad}`}>
+            <div className={styles.headRow}>
+              <h2 className={styles.h2}>
+                <span className="inkText">Tours</span>
+              </h2>
+              <p className={styles.headLede}>
+                Click a tour to see its venues, dates and capacities.
+              </p>
+            </div>
+            <ToursExplorer tours={tours} />
+
+            <Link href="/records/tours/festivals" className={styles.jumpCard}>
+              <span>
+                <span className={styles.jumpTitle}>Festivals &amp; shows</span>
+                <span className={styles.jumpDesc}>
+                  Every festival &amp; big stage he&apos;s played — the headline sets and
+                  beyond
+                </span>
+              </span>
+              <span className={styles.jumpArrow} aria-hidden="true">
+                →
+              </span>
+            </Link>
+          </div>
+        </section>
+
+        {/* ── Highest revenue per show ───────────────────────── */}
+        <section className={styles.bandSurface}>
+          <div className={`${styles.wide} ${styles.revenuePad}`}>
+            <h2 className={styles.h2}>
+              Highest <span className="inkText">revenue per show</span>
+            </h2>
+            <p className={styles.headLede}>
+              The top 10 single-show grosses by any African artist.
+            </p>
+            <table className="tableBase">
+              <thead>
+                <tr>
+                  <th className={styles.colRank}>#</th>
+                  <th>Artist</th>
+                  <th>Venue</th>
+                  <th className={styles.colTour}>Tour</th>
+                  <th className={styles.colTickets}>Tickets</th>
+                  <th className={styles.colGross}>Gross</th>
+                </tr>
+              </thead>
+              <tbody>
+                {revenueShows.slice(0, 10).map((s, i) => (
+                  <tr key={`${s.artist}-${s.venue}-${s.year}-${s.revenue}`}>
+                    <td className={styles.rank}>{String(i + 1).padStart(2, "0")}</td>
+                    <td className={s.artist === "Burna Boy" ? styles.hisName : styles.otherName}>
+                      {s.artist}
+                    </td>
+                    <td>
+                      <div className={styles.venue}>
+                        {s.flag} {s.venue}
+                      </div>
+                      <div className={styles.city}>{s.city}</div>
+                    </td>
+                    <td className={styles.tourCell}>
+                      {s.tour} · {s.year}
+                    </td>
+                    <td className={styles.tickets}>{s.tickets ?? <NotReported />}</td>
+                    <td className={styles.grossCell}>${s.revenue.toLocaleString("en-US")}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className={styles.sourceNote}>
+              Burna Boy holds {hisShowCount} of the {revenueShows.length}{" "}
+              highest-grossing shows by an African artist — more than every other artist on this list
+              combined. Box-office figures reported by Billboard Boxscore &amp; Pollstar (as
+              aggregated by TouringData), cross-checked against press reporting, as of July
+              2026.
+            </p>
+            <Link href="/records/tours/revenue" className={styles.jumpCardAlt}>
+              <span>
+                <span className={styles.jumpTitle}>
+                  See the full top {revenueShows.length}
+                </span>
+                <span className={styles.jumpDesc}>
+                  Every show on the list, ranked by reported revenue
+                </span>
+              </span>
+              <span className={styles.jumpArrow} aria-hidden="true">
+                →
+              </span>
+            </Link>
+          </div>
+        </section>
+
+        {/* ── Record nights ──────────────────────────────────── */}
+        <section className={styles.band}>
+          <div className={`${styles.wide} ${styles.momentsPad}`}>
+            <h2 className={`${styles.h2} ${styles.h2Spaced}`}>
+              Record nights &amp; <span className="inkText">live milestones</span>
+            </h2>
+            <div className={styles.momentList}>
+              {liveMoments.map((m) => (
+                <div
+                  key={m.title}
+                  className={`${styles.moment} ${m.record ? styles.momentRecord : ""}`}
+                >
+                  <span className={styles.momentYear}>{m.year}</span>
+                  <div>
+                    <h3 className={styles.momentTitle}>{m.title}</h3>
+                    <p className={styles.momentText}>{m.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Source ─────────────────────────────────────────── */}
+        <section className={styles.bandSurface}>
+          <div className={`${styles.wide} ${styles.sourcePad}`}>
+            <p className={styles.sourceLine}>
+              Box-office figures are reported by Billboard Boxscore &amp; Pollstar (as
+              aggregated by TouringData) and cross-checked against press reporting, as of
+              July 2026. For future dates, always check official ticketing.
+            </p>
+            <Link href="/records" className={`btn btnSecondary ${styles.backBtn}`}>
+              ← Career Records
+            </Link>
+          </div>
+        </section>
+
+        <KeepExploring current="/records/tours" />
       </div>
-
-      <KeepExploring current="/records/tours" />
     </main>
   );
 }

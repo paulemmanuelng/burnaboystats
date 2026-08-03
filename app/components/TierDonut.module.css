@@ -21,7 +21,8 @@
 .centerLabel {
   fill: var(--text-muted);
   font-family: var(--font-mono), monospace;
-  font-size: 9px;
+  /* 10px is the floor across the site — SVG text is not exempt. */
+  font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }

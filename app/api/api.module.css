@@ -1,192 +1,256 @@
-.intro {
-  max-width: 760px;
-  margin: 0 0 22px;
-  color: #d3d3da;
-  font-size: 1.08rem;
-  line-height: 1.65;
-}
+/* Open data API — desktop.
+   designs/desktop/API.dc.html, values verbatim.
 
-/* Quick "what's in here" chips under the intro. */
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 0 0 44px;
+   Hidden below 900px, where MobileDeepPage renders screen 23 instead. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+/* 1180, matching /analysis and /methodology — the three prose-led pages. */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.heroPad { padding: 44px 40px 0; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 82px;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+}
+.lede { font-size: 19px; line-height: 1.55; color: #cfc7bb; max-width: 56ch; margin: 20px 0 0; text-wrap: pretty; }
+.intro { font-size: 15.5px; line-height: 1.7; color: var(--text-muted); max-width: 78ch; margin: 20px 0 0; }
+
+.badges { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 22px; }
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   padding: 8px 15px;
-  border: 1px solid var(--line);
   border-radius: 999px;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-}
-.badgeDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 0 4px rgba(255, 182, 39, 0.16);
-}
-
-.section {
-  margin: 0 0 48px;
-  scroll-margin-top: 88px;
-}
-.h2 {
-  margin: 0 0 18px;
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  font-size: clamp(1.4rem, 3.2vw, 2rem);
-}
-
-.body {
-  max-width: 70ch;
-  color: var(--text-muted);
-  font-size: 1rem;
-  line-height: 1.7;
-}
-.note {
-  max-width: 70ch;
-  margin-top: 14px;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  opacity: 0.85;
-}
-
-/* Endpoint cards — each one is a live link to the real JSON. */
-.endpointList {
-  display: grid;
-  gap: 12px;
-  margin: 22px 0 0;
-}
-.endpoint {
-  display: block;
-  padding: 18px 20px;
-  background: var(--bg-soft);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--gold);
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  transition: border-color 0.15s ease, transform 0.15s ease;
-}
-.endpoint:hover {
-  border-color: var(--gold);
-  transform: translateX(2px);
-}
-.endpointTop {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.method {
-  padding: 3px 8px;
-  border-radius: 4px;
-  background: rgba(255, 182, 39, 0.14);
-  color: var(--gold);
+  background: transparent;
+  color: #cfc7bb;
   font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.08em;
 }
-.path {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.95rem;
-  color: var(--text);
-  word-break: break-all;
+/* Green for the live figure, gold for the licence — the two badges that say
+   something different from "here is a count". */
+.badgeLive { border-color: rgba(62, 209, 127, 0.4); background: rgba(62, 209, 127, 0.1); color: var(--green); }
+.badgeDot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: block; }
+.badgeLicence { border-color: var(--gold); background: rgba(255, 182, 39, 0.13); color: var(--gold); }
+
+/* ── Sections ───────────────────────────────────────────────────────────── */
+.sectionPad { padding: 48px 40px 0; }
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
 }
+.body { font-size: 15px; line-height: 1.7; color: #cfc7bb; margin: 12px 0 0; max-width: 78ch; }
+.body a,
+.blockP a { color: var(--gold); }
+.code {
+  background: var(--bg-soft-2);
+  padding: 2px 7px;
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  color: var(--gold);
+}
+
+/* ── Endpoints ──────────────────────────────────────────────────────────── */
+.endpointList {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 22px;
+}
+.endpoint {
+  background: var(--bg);
+  padding: 20px 24px;
+  color: var(--text);
+  display: block;
+  transition: background var(--dur-fast) var(--ease);
+}
+.endpoint:hover { background: rgba(245, 240, 232, 0.055); color: var(--text); }
+.endpointTop { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+/* Green, like every other "this is live" signal on the site. */
+.method {
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(62, 209, 127, 0.14);
+  border: 1px solid rgba(62, 209, 127, 0.4);
+  color: var(--green);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.path { font-family: var(--font-mono), monospace; font-size: 15px; color: var(--gold); font-weight: 700; }
 .size {
   margin-left: auto;
   font-family: var(--font-mono), monospace;
-  font-size: 0.75rem;
+  font-size: 11px;
+  letter-spacing: 0.08em;
   color: var(--text-muted);
   white-space: nowrap;
 }
-.endpointWhat {
-  display: block;
-  margin-top: 8px;
-  color: var(--text-muted);
-  font-size: 0.93rem;
-  line-height: 1.55;
-  max-width: 70ch;
+.endpointWhat { display: block; font-size: 14px; line-height: 1.6; color: #b8b0a5; margin-top: 9px; max-width: 82ch; }
+.note {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  margin: 14px 0 0;
+  max-width: 82ch;
 }
+.note a,
+.note code { color: var(--gold); }
 
-/* Code samples — horizontally scrollable so long JSON never breaks the page. */
-.pre {
-  margin: 18px 0;
-  padding: 18px 20px;
+/* ── Try it ─────────────────────────────────────────────────────────────── */
+.curlRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 16px 20px;
   background: var(--bg-soft);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  flex-wrap: wrap;
+}
+.curl { font-family: var(--font-mono), monospace; font-size: 14.5px; color: var(--text); }
+.copyBtn {
+  margin-left: auto;
+  min-height: 38px;
+  padding: 0 15px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.copyBtn:hover { border-color: var(--gold); color: var(--gold); }
+.pre {
+  margin: 14px 0 0;
+  padding: 22px 24px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
   overflow-x: auto;
   font-family: var(--font-mono), monospace;
-  font-size: 0.83rem;
-  line-height: 1.6;
-  color: #d3d3da;
-  -webkit-overflow-scrolling: touch;
-}
-.pre code {
-  font-family: inherit;
-  white-space: pre;
-}
-.code {
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.06);
-  font-family: var(--font-mono), monospace;
-  font-size: 0.85em;
-  color: var(--gold-bright);
-  word-break: break-word;
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: #cfc7bb;
 }
 
-.caveats {
-  max-width: 70ch;
+/* ── Licence + stability ────────────────────────────────────────────────── */
+.blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.block { background: var(--bg); padding: 28px 30px; }
+/* The licence block is the one with a condition attached, so it carries the tint. */
+.blockGold { background: rgba(255, 182, 39, 0.05); }
+.blockH {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
   margin: 0;
-  padding-left: 20px;
+}
+.blockP { font-size: 14.5px; line-height: 1.7; color: #cfc7bb; margin: 14px 0 0; }
+.blockMuted { font-size: 14px; line-height: 1.7; color: var(--text-muted); margin: 14px 0 0; }
+.blockMuted a { color: var(--gold); }
+.attrRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 13px 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.attr { font-family: var(--font-mono), monospace; font-size: 12.5px; color: var(--text); }
+.copyBtnSm {
+  margin-left: auto;
+  min-height: 36px;
+  padding: 0 13px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--border);
   color: var(--text-muted);
-  font-size: 0.98rem;
-  line-height: 1.7;
-}
-.caveats li {
-  margin-bottom: 12px;
-}
-.caveats strong {
-  color: var(--text);
-}
-
-.inlineLink {
-  color: var(--gold);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.inlineLink:hover {
-  color: var(--gold-bright);
-}
-
-.back {
-  display: inline-block;
-  margin: 8px 0 0;
   font-family: var(--font-mono), monospace;
-  font-size: 0.85rem;
-  color: var(--gold);
-  text-decoration: none;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
-.back:hover {
-  text-decoration: underline;
+.copyBtnSm:hover { border-color: var(--gold); color: var(--gold); }
+.freshness {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
+.freshDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: block; }
 
-@media (max-width: 560px) {
-  .size {
-    margin-left: 0;
-  }
-  .pre {
-    font-size: 0.76rem;
-  }
+/* ── Caveats ────────────────────────────────────────────────────────────── */
+.caveats { margin-top: 22px; border-top: 1px solid var(--line); list-style: none; padding: 0; }
+.caveat {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+/* Outlined numeral — it counts the caveats without shouting them. */
+.caveatNum {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--bg-soft-2);
+  -webkit-text-stroke: 1px var(--gold);
+  line-height: 1.2;
+}
+.caveatP { font-size: 15px; line-height: 1.7; color: #cfc7bb; margin: 0; max-width: 88ch; }
+.caveatP strong { color: var(--text); }
+
+.pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 40px 72px; }
+
+@media (max-width: 1239px) {
+  .h1 { font-size: 60px; }
+  .blocks { grid-template-columns: 1fr; }
 }
