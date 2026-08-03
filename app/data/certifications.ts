@@ -460,7 +460,7 @@ export const certHistory: CertEvent[] = [
   { title: "Location", credit: "Dave ft. Burna Boy", country: "DK", level: "Platinum", year: 2023 },
   { title: "Gbona", country: "PT", level: "Gold", year: 2023 },
   { title: "Love, Damini", album: true, country: "UK", level: "Silver", year: 2023 },
-  { title: "Gbona", country: "UK", level: "Gold", year: 2023 },
+  { title: "Gbona", country: "UK", level: "Gold", year: 2026 },
   { title: "Love, Damini", album: true, country: "DK", level: "Gold", year: 2023 },
   { title: "Love, Damini", album: true, country: "NL", level: "Gold", year: 2023 },
   { title: "Last Last", country: "US", level: "Platinum", year: 2023 },
