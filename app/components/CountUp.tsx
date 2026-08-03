@@ -7,7 +7,9 @@ import { useEffect, useRef, useState } from "react";
 // crawlers see the real number (not 0), then animates as an enhancement.
 export default function CountUp({
   end,
-  duration = 1600,
+  // 1.1s, eased — the handoff's figure. Long enough to read as a count,
+  // short enough that the number is legible almost immediately.
+  duration = 1100,
   prefix = "",
   suffix = "",
 }: {

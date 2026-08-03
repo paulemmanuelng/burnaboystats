@@ -1,23 +1,47 @@
 import { ImageResponse } from "next/og";
 import type { StatCard } from "./statCards";
+import { CARD_SIZES, type CardRatio } from "./cardSizes";
+import { BURNA_PORTRAIT } from "./artistImages";
 
-// A moderate landscape rectangle (not square, not a wide banner).
-export const statCardSize = { width: 1200, height: 900 };
-const BG = "#0a0a0b";
-// A brushed-gold gradient for the headline value (nicer than flat gold).
-const GOLD_GRAD = "linear-gradient(160deg, #ffe08a 0%, #ffc23e 46%, #e08f22 100%)";
-// Burna Boy's Spotify artist photo (same CDN the discography uses).
-const PHOTO = "https://i.scdn.co/image/ab6761610000e5ebb4e44d0f4e3e47af2cf06f3f";
+/**
+ * The downloadable share card, built from designs/desktop/Share.dc.html.
+ *
+ * Two ratios, because the two places these get posted want different shapes:
+ * a square for a timeline, a 9:16 for a story. Both render at 2× so the PNG
+ * holds up on a phone screen.
+ *
+ * Rendered server-side by next/og rather than screenshotted in the browser, so
+ * the download is a real image at a known size — no html2canvas, no device
+ * pixel-ratio lottery, and it works from a link.
+ */
+// Kept for the OG/meta consumers that ask for the card's nominal size.
+export const statCardSize = CARD_SIZES.square;
 
-// A premium, FUT-card-inspired share card: a headline stat (the "rating"), a
-// supporting FIFA-style stat strip relevant to that stat, and Burna's photo
-// faded into the right side. All text is kept on the dark left so it never
-// overlaps the photo.
-export function statCardImage(card: StatCard) {
-  // Size by full length (incl. "$" and ".") so wide values like "$30.46M" stay
-  // inside the dark zone instead of spilling into the photo.
+const GOLD = "#ffb627";
+// The design's card face: a warm near-black, lit from the top right.
+const FACE = "linear-gradient(155deg, #1A1410 0%, #0C0A09 55%, #140F0A 100%)";
+const GOLD_GRAD = "linear-gradient(180deg, #ffd24a 0%, #ffb627 45%, #f5890b 100%)";
+
+export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
+  const size = CARD_SIZES[ratio];
+  const tall = ratio === "story";
+  const pad = tall ? 96 : 84;
+  // Satori has no `ch` unit — a `maxWidth: "22ch"` silently collapses to almost
+  // nothing and wraps the label one word per line. Widths here are px, measured
+  // off the card's own content box.
+  const contentWidth = size.width - pad * 2;
+  // The portrait sits in a column on the right. Its left edge is dissolved by a
+  // scrim that starts on the card's own darkest tone, so there is no seam where
+  // the column begins, and the text keeps a clear column of its own.
+  const photoW = Math.round(size.width * (tall ? 0.58 : 0.5));
+  const textW = size.width - pad * 2 - photoW * (tall ? 0.15 : 0.45);
+
+  // Long values ("$30.46M") have to hold the same optical weight as short ones
+  // ("221") without overflowing, so the size steps down with length.
   const len = card.value.length;
-  const valueSize = len <= 3 ? 210 : len <= 4 ? 176 : len <= 5 ? 156 : len <= 6 ? 128 : 112;
+  const base = tall ? 260 : 210;
+  const valueSize =
+    len <= 3 ? base : len <= 4 ? base * 0.86 : len <= 5 ? base * 0.76 : len <= 7 ? base * 0.62 : base * 0.52;
 
   return new ImageResponse(
     (
@@ -26,105 +50,173 @@ export function statCardImage(card: StatCard) {
           width: "100%",
           height: "100%",
           display: "flex",
-          background: BG,
+          flexDirection: "column",
+          position: "relative",
+          background: FACE,
           color: "#f5f4f0",
           fontFamily: "sans-serif",
-          position: "relative",
+          padding: pad,
+          border: "2px solid rgba(255,182,39,0.28)",
         }}
       >
-        {/* Burna's photo, anchored right (dimmed so it reads as part of the card) */}
-        {/* eslint-disable-next-line @next/next/no-img-element -- Satori (next/og) renders to a PNG server-side; next/image is not supported here */}
+        {/* Gold wash from the top right */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            background:
+              "radial-gradient(120% 80% at 100% 0%, rgba(255,182,39,0.22), rgba(255,182,39,0) 60%)",
+          }}
+        />
+        {/* The portrait, bled off the right edge.
+            Satori supports neither mask-image nor filter, so the fade is a real
+            scrim laid over the photo: card-face colour at the left, clear at
+            the right. That keeps the value and label side clean while the
+            picture still reads. */}
+        {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders its
+            own tree; next/image cannot run inside an ImageResponse. */}
         <img
-          src={PHOTO}
-          width={620}
-          height={900}
+          src={BURNA_PORTRAIT}
+          width={photoW}
+          height={size.height}
           alt=""
-          style={{ position: "absolute", top: 0, right: 0, height: "100%", width: 620, objectFit: "cover", objectPosition: "50% 16%", opacity: 0.82 }}
+          style={{
+            position: "absolute",
+            right: 0,
+            top: 0,
+            width: photoW,
+            height: size.height,
+            objectFit: "cover",
+            objectPosition: "center top",
+            opacity: 0.9,
+          }}
         />
-        {/* Left→right wash: solid black under the text, long fade so the photo blends */}
+        <div
+          style={{
+            position: "absolute",
+            right: 0,
+            top: 0,
+            width: photoW,
+            height: size.height,
+            display: "flex",
+            background:
+              "linear-gradient(90deg, #0C0A09 0%, rgba(12,10,9,0.92) 22%, rgba(12,10,9,0.45) 58%, rgba(12,10,9,0.15) 100%)",
+          }}
+        />
+        {/* A second wash up from the base, so the number never sits on a face. */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             display: "flex",
-            background: `linear-gradient(90deg, ${BG} 0%, ${BG} 54%, rgba(10,10,11,0.85) 67%, rgba(10,10,11,0.55) 82%, rgba(10,10,11,0.46) 100%)`,
-          }}
-        />
-        {/* Top/bottom vignette: darkens the bright backdrop up top (so the brand row
-            reads) and the base (so the footer reads) */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            background: `linear-gradient(180deg, rgba(10,10,11,0.97) 0%, rgba(10,10,11,0.8) 12%, rgba(10,10,11,0.35) 22%, rgba(10,10,11,0) 34%, rgba(10,10,11,0) 66%, rgba(10,10,11,0.96) 100%)`,
-          }}
-        />
-        {/* Gold glow, top-right */}
-        <div
-          style={{
-            position: "absolute",
-            top: -220,
-            right: -160,
-            width: 620,
-            height: 620,
-            display: "flex",
-            background: "radial-gradient(circle, rgba(255,182,39,0.18), rgba(255,182,39,0) 70%)",
+            background:
+              "linear-gradient(0deg, #0C0A09 8%, rgba(12,10,9,0.6) 34%, rgba(12,10,9,0) 66%)",
           }}
         />
 
-        {/* Content */}
-        <div style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 72, width: "100%", height: "100%" }}>
-          {/* Brand row */}
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <div style={{ display: "flex", fontSize: 29, fontWeight: 800, letterSpacing: 1 }}>
-              <span style={{ display: "flex" }}>BURNABOY</span>
-              <span style={{ display: "flex", color: "#ffc23e" }}>STATS</span>
-            </div>
-            <div style={{ display: "flex", fontSize: 17, letterSpacing: 2, color: "#ffc23e", textTransform: "uppercase", marginLeft: 18, paddingLeft: 18, borderLeft: "1px solid rgba(255,182,39,0.35)" }}>
-              The African Giant
-            </div>
+        {/* The watermark word, ghosted into the bottom-right corner */}
+        <div
+          style={{
+            position: "absolute",
+            right: -pad * 0.4,
+            bottom: -pad * 0.8,
+            display: "flex",
+            fontSize: tall ? 460 : 360,
+            fontWeight: 800,
+            lineHeight: 0.8,
+            color: "rgba(255,182,39,0.05)",
+            letterSpacing: 2,
+          }}
+        >
+          {card.watermark}
+        </div>
+
+        {/* Brand row */}
+        <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", fontSize: tall ? 44 : 38, fontWeight: 800, letterSpacing: 1 }}>
+            <span style={{ display: "flex" }}>BURNABOY</span>
+            <span style={{ display: "flex", color: GOLD }}>STATS</span>
           </div>
+          <div
+            style={{
+              display: "flex",
+              marginLeft: "auto",
+              fontSize: tall ? 26 : 23,
+              fontWeight: 700,
+              letterSpacing: 3,
+              textTransform: "uppercase",
+              color: GOLD,
+              border: "2px solid rgba(255,182,39,0.5)",
+              borderRadius: 999,
+              padding: "10px 24px",
+            }}
+          >
+            {card.chip}
+          </div>
+        </div>
 
-          {/* Hero stat (the "rating") */}
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ display: "flex", fontSize: 24, letterSpacing: 4, color: "#9b9ba3", textTransform: "uppercase", marginBottom: 14, maxWidth: 440 }}>{card.kicker}</div>
+        {/* The number, pinned to the base */}
+        <div style={{ position: "relative", display: "flex", flexDirection: "column", marginTop: "auto" }}>
+          <div
+            style={{
+              display: "flex",
+              fontSize: valueSize,
+              fontWeight: 800,
+              lineHeight: 0.82,
+              letterSpacing: -4,
+              backgroundImage: GOLD_GRAD,
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              color: "transparent",
+            }}
+          >
+            {card.value}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              fontSize: tall ? 62 : 52,
+              fontWeight: 700,
+              lineHeight: 1.08,
+              textTransform: "uppercase",
+              marginTop: tall ? 40 : 30,
+              maxWidth: textW,
+            }}
+          >
+            {card.label}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              height: 2,
+              background: "rgba(255,182,39,0.35)",
+              margin: `${tall ? 44 : 34}px 0`,
+            }}
+          />
+          <div style={{ display: "flex", alignItems: "flex-end" }}>
+            <div style={{ display: "flex", fontSize: tall ? 32 : 27, lineHeight: 1.5, color: "#CFC7BB", maxWidth: textW * 0.72 }}>
+              {card.kicker}
+            </div>
+            {/* Every card carries the body behind the number, so a screenshot
+                can always be traced back to its source. */}
             <div
               style={{
                 display: "flex",
-                fontSize: valueSize,
-                fontWeight: 800,
-                letterSpacing: -4,
-                lineHeight: 0.9,
-                backgroundImage: GOLD_GRAD,
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                color: "transparent",
+                marginLeft: "auto",
+                paddingLeft: 24,
+                fontSize: tall ? 24 : 21,
+                letterSpacing: 2,
+                textTransform: "uppercase",
+                color: "#8A8279",
               }}
             >
-              {card.value}
-            </div>
-            <div style={{ display: "flex", fontSize: 42, lineHeight: 1.15, color: "#f5f4f0", marginTop: 20, maxWidth: 470 }}>{card.label}</div>
-          </div>
-
-          {/* FIFA-style supporting strip (relevant to this stat) + footer */}
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ display: "flex", gap: 30, marginBottom: 30, maxWidth: 620 }}>
-              {card.stats.map((s) => (
-                <div key={s.label} style={{ display: "flex", flexDirection: "column" }}>
-                  <div style={{ display: "flex", fontSize: 44, fontWeight: 800, color: "#ffc23e", lineHeight: 1 }}>{s.value}</div>
-                  <div style={{ display: "flex", fontSize: 14, color: "#9b9ba3", textTransform: "uppercase", letterSpacing: 1.2, marginTop: 8 }}>{s.label}</div>
-                </div>
-              ))}
-            </div>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid rgba(245,244,240,0.16)", paddingTop: 24 }}>
-              <div style={{ display: "flex", fontSize: 25, color: "#9b9ba3", letterSpacing: 3, fontWeight: 700 }}>BURNABOYSTATS.COM</div>
-              <div style={{ display: "flex", fontSize: 23, color: "#ffc23e", letterSpacing: 2 }}>Burna Boy · by the numbers</div>
+              {card.source}
             </div>
           </div>
         </div>
       </div>
     ),
-    { ...statCardSize }
+    { ...size }
   );
 }

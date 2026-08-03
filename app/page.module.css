@@ -642,7 +642,10 @@ aa
   color: var(--dim);
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1239px) {
+  /* Archetype 6: the hero drops one display step (150 → 104 in the table's
+     terms; 108 → 75 here). Nothing else about the band reflows. */
+  .title { font-size: 75px; }
   .heroGrid { grid-template-columns: 1fr; }
   .heroCopy { padding: 44px 0 34px; }
   .heroPanel {
@@ -1146,18 +1149,34 @@ aa
 
 /* The mobile home screen takes over below 900px, so this only has to survive
    the tablet band between the two layouts. */
-@media (max-width: 1100px) {
-  .wide { padding: 44px 24px 48px; }
+@media (max-width: 1239px) {
+  .wide { padding: 44px 32px 48px; }
   .scoreStrip .wide { padding: 0 24px; }
-  .historyInner { padding: 28px 24px 30px; }
+  .historyInner { padding: 28px 32px 30px; }
   .head { flex-wrap: wrap; gap: 18px; }
   .headBtn { margin-left: 0; }
   .boardGrid { grid-template-columns: repeat(4, 1fr); }
   .albumGrid { grid-template-columns: repeat(3, 1fr); }
+  /* Partial last row stretches the final cell rather than leaving a phantom
+     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
+     position so it holds for any item count: last-in-a-fresh-row spans three,
+     second-in-a-row spans the two that remain. */
+  .albumGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .albumGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
   .recordsGrid { grid-template-columns: 1fr; }
   .recordsLeft { padding: 28px 0 8px; }
-  .recordsRight { border-left: none; border-top: 1px solid var(--line); padding: 28px 0 8px; }
-  .closerInner { grid-template-columns: 1fr; gap: 32px; padding: 48px 24px 52px; }
-  .closerTitle { font-size: 46px; }
+  .recordsRight { border-left: none; border-top: 1px solid var(--line); padding: 40px 0 8px; }
+  .closerInner { grid-template-columns: 1fr; gap: 32px; padding: 48px 32px 52px; }
+  .closerTitle { font-size: 48px; }
   .scoreGrid { grid-template-columns: repeat(3, 1fr); }
+  /* This strip draws its seams with border-left, so a wrapped row needs
+     the first cell's rule dropped and the row's own rule added. */
+  .scoreCell:nth-child(3n + 1) { border-left: none; }
+  .scoreCell:nth-child(n + 4) { border-top: 1px solid var(--line); }
+  /* Partial last row stretches the final cell rather than leaving a phantom
+     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
+     position so it holds for any item count: last-in-a-fresh-row spans three,
+     second-in-a-row spans the two that remain. */
+  .scoreGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .scoreGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
 }

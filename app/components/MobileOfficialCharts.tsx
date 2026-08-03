@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
+import FilterEmpty from "./FilterEmpty";
 import type { ChartRelease, ChartCountry } from "../data/charts";
 
 /**
@@ -232,6 +233,30 @@ export default function MobileOfficialCharts({
       </div>
 
       {/* Groups */}
+      {shown === 0 && (
+        // The country is the narrower of the two rails, so it is what the
+        // second button drops.
+        <FilterEmpty
+          body={`There's no ${[
+            peakMax && PEAKS.find((p) => p.key === peakMax)!.label,
+            "chart entry",
+            only && `in ${countries[only]?.name ?? only}`,
+          ]
+            .filter(Boolean)
+            .join(" ")}. That's a real gap in the record, not a missing page.`}
+          onClear={() => {
+            setPeakMax(null);
+            setOnly(null);
+          }}
+          narrowest={
+            only
+              ? { label: countries[only]?.name ?? only, drop: () => setOnly(null) }
+              : peakMax
+                ? { label: PEAKS.find((p) => p.key === peakMax)!.label, drop: () => setPeakMax(null) }
+                : undefined
+          }
+        />
+      )}
       {sections.map((g) => (
         <div key={g.name}>
           <div className={styles.groupHead}>
@@ -289,8 +314,8 @@ export default function MobileOfficialCharts({
       <div className={styles.spacer} />
 
       <div className={styles.actionBar}>
-        <Link href="/live-charts" className={styles.actionPrimary}>
-          Live charts today
+        <Link href="/share" className={styles.actionPrimary}>
+          Make a stat card
         </Link>
       </div>
     </div>

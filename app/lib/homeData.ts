@@ -185,10 +185,23 @@ const allBoardCells: BoardCell[] = [
 export const boardCells: BoardCell[] = allBoardCells.slice(0, 24);
 
 // ── The catalogue ──────────────────────────────────────────────────────────
-/** Small counts read as words in this design's headings, not digits. */
+/**
+ * Counts read as words in this design's headings, not digits.
+ *
+ * Covers 0–99, because the designs spell out numbers well past twenty —
+ * "Forty-nine milestones" on screen 15, "Fifty-eight documented appearances" on
+ * screen 13. Anything larger stays a numeral: past a hundred the word is longer
+ * than the figure and stops being easier to read.
+ */
 const WORDS = ["Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten",
   "Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen","Twenty"];
-export const numberWord = (n: number) => WORDS[n] ?? String(n);
+const TENS = ["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
+export const numberWord = (n: number) => {
+  if (!Number.isInteger(n) || n < 0 || n > 99) return String(n);
+  if (n <= 20) return WORDS[n];
+  const unit = n % 10;
+  return unit === 0 ? TENS[Math.floor(n / 10)] : `${TENS[Math.floor(n / 10)]}-${WORDS[unit].toLowerCase()}`;
+};
 
 export const albumCards = [...studioAlbums]
   .sort((a, b) => a.year - b.year)

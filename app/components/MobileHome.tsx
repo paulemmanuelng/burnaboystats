@@ -1,4 +1,5 @@
 import Link from "next/link";
+import GlobeTeaser from "./GlobeTeaser";
 import styles from "./mobileHome.module.css";
 import { liveHeadline } from "../lib/liveHeadline";
 import { spotifyImage } from "../lib/spotifyImage";
@@ -20,12 +21,6 @@ import {
 import { totalAwards, countryCount as certCountries } from "../data/certifications";
 import { albums as studioAlbums } from "../data/albums";
 import { tours } from "../data/tours";
-import {
-  performedCountries,
-  countryCount as playedCount,
-  regionCount,
-  REGION_ORDER,
-} from "../data/performedCountries";
 
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 
@@ -88,18 +83,6 @@ const albumPeak = (title: string) => {
 const albumRail = [...studioAlbums]
   .sort((a, b) => b.year - a.year)
   .map((a) => ({ ...a, peak: albumPeak(a.title) }));
-
-// ── Globe teaser ───────────────────────────────────────────────────────────
-// Four cells: the three biggest regions by country count, then everything else
-// pooled as "Rest", so the strip always adds up to the full total.
-const byRegion = REGION_ORDER.map((r) => ({
-  name: r,
-  n: performedCountries.filter((c) => c.region === r).length,
-})).sort((a, b) => b.n - a.n);
-const globeRegions = [
-  ...byRegion.slice(0, 3),
-  { name: "Rest", n: byRegion.slice(3).reduce((t, r) => t + r.n, 0) },
-];
 
 // ── Stat grid (four on mobile) ─────────────────────────────────────────────
 const grossOf = (g?: string) => (g ? Number.parseFloat(g.replace(/[^0-9.]/g, "")) : 0);
@@ -269,55 +252,8 @@ export default function MobileHome() {
         </div>
       </section>
 
-      {/* Where he's performed — the globe teaser */}
-      <Link href="/records/tours/map" className={styles.globe}>
-        <div className={styles.globeKicker}>
-          <span className={styles.globeRule} aria-hidden="true" />
-          Live worldwide
-        </div>
-        <h2 className={styles.globeTitle}>
-          Where he&apos;s
-          <br />
-          performed
-        </h2>
-        <p className={styles.globeLede}>
-          {playedCount} countries, {numberWord(regionCount).toLowerCase()}{" "}
-          regions — every stage he&apos;s taken.
-        </p>
-
-        <div className={styles.globeStage}>
-          <span className={styles.globeRing1} aria-hidden="true" />
-          <span className={styles.globeRing2} aria-hidden="true" />
-          {/* A suggestion of a globe, not a map: two dot grids drifting behind a
-              sphere mask. The real map is a route away. */}
-          <div
-            className={styles.globeBall}
-            role="img"
-            aria-label={`Rotating globe showing ${playedCount} countries performed in`}
-          />
-          <span className={styles.globeSheen} aria-hidden="true" />
-          <span className={styles.globePing} aria-hidden="true" />
-          <span className={styles.globePin1} aria-hidden="true" />
-          <span className={styles.globePin2} aria-hidden="true" />
-          <span className={styles.globePin3} aria-hidden="true" />
-          <span className={styles.globePin4} aria-hidden="true" />
-        </div>
-
-        <div className={styles.globeGrid}>
-          {globeRegions.map((r) => (
-            <div key={r.name} className={styles.globeCell}>
-              <div className={styles.globeNum}>{r.n}</div>
-              <div className={styles.globeLabel}>{r.name}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className={styles.globeFoot}>
-          <span className={styles.globeDot} aria-hidden="true" />
-          <span className={styles.globeNote}>Oceania added Oct 2025</span>
-          <span className={styles.globeCta}>Open the map ↗</span>
-        </div>
-      </Link>
+      {/* Where he's performed — shared with desktop, one design at both widths. */}
+      <GlobeTeaser />
 
       {/* History made */}
       <section className={styles.history}>

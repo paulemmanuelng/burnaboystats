@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "../records/awards/awards.module.css";
 import { ceremonies, ceremonyWins, type AwardNom } from "../data/awards";
 import { track } from "../lib/analytics";
+import FilterEmpty from "./FilterEmpty";
 
 const RESULTS = [
   { key: "won", label: "Won" },
@@ -139,7 +140,27 @@ export default function AwardExplorer() {
       </div>
 
       {totalShown === 0 ? (
-        <p className={styles.empty}>Nothing matches that filter.</p>
+        // Narrowest first: a single year is tighter than a body, which is
+        // tighter than won-vs-nominated.
+        <FilterEmpty
+          body={`There's no ${[
+            result === "won" ? "win" : result === "nominated" ? "nomination" : "nomination",
+            ceremony && `at the ${ceremony}`,
+            year && `in ${year}`,
+          ]
+            .filter(Boolean)
+            .join(" ")}. That's a real gap in the record, not a missing page.`}
+          onClear={clearAll}
+          narrowest={
+            year
+              ? { label: String(year), drop: () => setYear(null) }
+              : ceremony
+                ? { label: ceremony, drop: () => setCeremony(null) }
+                : result
+                  ? { label: result === "won" ? "Won" : "Nominated", drop: () => setResult(null) }
+                  : undefined
+          }
+        />
       ) : (
         groups.map((g) => {
           const wins = ceremonyWins(g);

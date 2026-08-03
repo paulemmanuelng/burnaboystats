@@ -1,0 +1,219 @@
+/* Updates — desktop.
+   designs/desktop/Updates.dc.html, values verbatim.
+
+   Two consumers: this page, and UpdatesFeed, which imports the filter/feed
+   classes from here.
+
+   Hidden below 900px, where MobileUpdates renders screen 06 instead. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+.band { border-bottom: 1px solid var(--line); }
+.bandSurface { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+.wide { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.heroPad {
+  padding: 50px 40px 42px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 56px;
+  align-items: end;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; }
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 96px;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 16px 0 0;
+}
+.lede {
+  font-size: 18px;
+  line-height: 1.55;
+  max-width: 56ch;
+  margin: 18px 0 0;
+  color: #d8d8de;
+  text-wrap: pretty;
+}
+.lastEntry {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 20px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.lastEntry strong { color: var(--text); }
+/* Green, not gold: this reports that the feed is alive, not a record. */
+.liveDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  display: block;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .liveDot { animation: none; }
+}
+
+.heroAside { border-left: 1px solid var(--line); padding-left: 40px; }
+.asideText { font-size: 14px; line-height: 1.55; color: #d8d8de; margin: 12px 0 0; }
+.tally { display: flex; gap: 26px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); }
+/* White, not gold — these count the log, not his achievements. */
+.tallyValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 0.9;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.tallyLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 8px;
+  color: var(--text-muted);
+}
+
+/* ── Filter band ────────────────────────────────────────────────────────── */
+.filterPad { padding: 22px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.filterLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-right: 6px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.chip:hover { border-color: var(--gold); color: var(--gold); }
+.chipDot { width: 8px; height: 8px; border-radius: 50%; flex: none; display: block; }
+.chipCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: 0.75; }
+.shown {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Feed ───────────────────────────────────────────────────────────────── */
+.feedPad { padding: 10px 40px 40px; }
+.month { margin-top: 30px; }
+.monthHead {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.monthTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.monthCount { font-family: var(--font-mono), monospace; font-size: 12px; color: var(--text-muted); }
+.row {
+  display: grid;
+  grid-template-columns: 190px 150px 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 16px 8px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  transition: background var(--dur-fast) var(--ease);
+}
+.row:hover { background: rgba(245, 240, 232, 0.05); color: var(--text); }
+.rowDate {
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+/* The pill is outlined in the category's own colour rather than filled — a
+   filled gold pill would read as an award. */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  border: 1px solid;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  justify-self: start;
+  white-space: nowrap;
+}
+.tagDot { width: 6px; height: 6px; border-radius: 50%; display: block; }
+.rowText { font-size: 15.5px; line-height: 1.5; }
+.rowArrow { color: var(--gold); font-size: 16px; }
+
+.empty {
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  color: var(--dim);
+  padding: 26px 8px;
+}
+
+/* ── Follow panel + source ──────────────────────────────────────────────── */
+.followPad { padding: 10px 40px 44px; }
+.sourcePad { padding: 32px 40px 36px; }
+.source { font-size: 13px; line-height: 1.7; margin: 0; max-width: 100ch; color: var(--text-muted); }
+.source a { color: var(--gold); }
+
+@media (max-width: 1239px) {
+  .h1 { font-size: 70px; }
+  .heroPad { grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  .heroAside { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 40px; }
+  /* The date column is the first to fold — the month heading already says it. */
+  .row { grid-template-columns: 150px 1fr auto; }
+  .rowDate { display: none; }
+}

@@ -1,0 +1,244 @@
+/* Mobile screen 14 — Revenue per show.
+   designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, values verbatim.
+   Shown only below the mobile breakpoint; the desktop page is its own layout. */
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 100%;
+  }
+}
+
+/* ── Back bar ─────────────────────────────────────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(12, 10, 9, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.badge {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  flex: none;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 22px 18px 18px; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 40px;
+  line-height: 0.94;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 11px 0 0;
+}
+.gold {
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 45%, var(--grad-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lede { font-size: 14.5px; line-height: 1.55; color: #cfc7bb; margin: 12px 0 0; }
+
+/* ── Stat grid: 2-up, hairline seams. Label only — screen 13's cells carry no
+   sub-note, unlike 16's. ─────────────────────────────────────────────────── */
+.statGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.statCell { background: var(--bg); padding: 15px 18px; }
+.statValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 0.9;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.statLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin-top: 9px;
+}
+
+
+/* ── Filter chips ─────────────────────────────────────────────────────── */
+.rail {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 16px 18px 14px;
+  scrollbar-width: none;
+}
+.chip {
+  flex: none;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.chipOn { background: rgba(255, 182, 39, 0.16); border-color: var(--gold); color: var(--gold); }
+
+.metaBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.legend { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; }
+.legendDot { width: 7px; height: 7px; border-radius: 999px; background: var(--gold); display: block; }
+
+/* ── One night ────────────────────────────────────────────────────────── */
+.row {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  gap: 11px;
+  align-items: baseline;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line);
+}
+/* The wash marks the rows that are NOT his — 27 of 41 are, so tinting those
+   would tint the board rather than pick anything out. */
+.rowOther { background: rgba(245, 244, 240, 0.02); }
+.rank {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+.main { min-width: 0; }
+.venue { font-size: 13.5px; line-height: 1.3; }
+.meta {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.right { text-align: right; flex: none; }
+.gross {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 17px;
+  line-height: 1;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.grossHis { color: var(--gold); }
+.tickets {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  color: var(--dim);
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.foot {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--dim);
+  padding: 18px 18px 0;
+  margin: 0;
+}
+
+/* ── Action bar ───────────────────────────────────────────────────────── */
+.spacer { height: 104px; }
+
+/* ── Action bar — replaces the tab bar on this screen ─────────────────── */
+.actionBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: rgba(12, 10, 9, 0.94);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--line);
+  padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 22px));
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.actionPrimary {
+  flex: 1;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
+}

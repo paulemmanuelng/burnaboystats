@@ -8,6 +8,7 @@ import { numberWord } from "../lib/homeData";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import MobileRecords from "../components/MobileRecords";
+import NotReported from "../components/NotReported";
 
 export const metadata = pageMetadata({
   title: "Career Records — Burna Boy Charts, Awards, Tours & Firsts",
@@ -191,7 +192,7 @@ export default function RecordsPage() {
                       <div className={styles.city}>{s.city}</div>
                     </td>
                     <td className={styles.tour}>{s.tour} · {s.year}</td>
-                    <td className={styles.tickets}>{s.tickets ?? "—"}</td>
+                    <td className={styles.tickets}>{s.tickets ?? <NotReported />}</td>
                     <td className={styles.gross}>{usd(s.revenue)}</td>
                   </tr>
                 ))}

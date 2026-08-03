@@ -196,12 +196,19 @@
   overflow: hidden;
   margin-top: 9px;
 }
+/* A quiet tint, not a gold slab. These bars sit under every row of a long list,
+   so at full-brightness gold they read as a highlight on rows that aren't one —
+   and gold on this site means "his". A flat, low-opacity warm fill gives the
+   scale enough differentiation to be read at a glance without competing with
+   the value beside it or with the rows that are genuinely marked. */
 .barFill {
   display: block;
   height: 6px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--grad-b), var(--gold-bright));
+  background: rgba(255, 182, 39, 0.3);
 }
+/* His row is the one the page marks, so its bar carries a little more of it. */
+.rowLead .barFill { background: rgba(255, 182, 39, 0.55); }
 .rowValue {
   font-family: var(--font-mono), monospace;
   font-size: 12.5px;
@@ -212,6 +219,48 @@
   text-align: right;
 }
 .rowLead .rowValue { color: var(--gold); }
+
+/* Rank + value only. No title tint and no background wash: on these lists the
+   value names a category, so it repeats down most of the page — washing every
+   matching row would distinguish nothing. */
+.rowAccent .rank { color: var(--gold); }
+.rowAccent .rowValue { color: var(--gold); }
+
+/* A linked row keeps the row grammar and adds a press state — nothing else, so
+   a list of links still scans as one list. */
+/* Group heading — marks where one board ends and the next begins. */
+.groupHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 20px 18px 10px;
+  border-top: 1px solid var(--line);
+}
+.groupName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 17px;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  /* Gold, per the design — screens 13/15 and the rest of the deep-page family
+     draw their group headings in gold. Africa's biggest is the one screen the
+     design draws in white, and it has its own component. */
+  color: var(--gold);
+  margin: 0;
+}
+.groupMeta {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-align: right;
+}
+
+.rowLink { color: var(--text); }
+.rowLink:active { background: rgba(255, 182, 39, 0.09); }
 
 .footNote {
   font-size: 11.5px;

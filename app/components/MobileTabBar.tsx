@@ -28,9 +28,9 @@ const TABS = [
 export default function MobileTabBar() {
   const pathname = usePathname();
 
-  // The bottom of nearly every mobile screen, home included. Certifications is
-  // the one screen that replaces it with a page action bar, so the two fixed
-  // bars can never stack.
+  // The bottom of the nine top-level screens, home included. Deep screens are
+  // reached by a back button rather than lateral nav, so they carry a page
+  // action bar or nothing at all — either way this must not stack on top.
   if (hasOwnActionBar(pathname)) return null;
 
   return (

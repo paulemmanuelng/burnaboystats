@@ -1,5 +1,8 @@
-import Reveal from "../components/Reveal";
+import Link from "next/link";
 import ContactForm from "../components/ContactForm";
+import BreadcrumbBar from "../components/BreadcrumbBar";
+import MobileContact from "../components/MobileContact";
+import KeepExploring from "../components/KeepExploring";
 import styles from "./contact.module.css";
 import { pageMetadata } from "../lib/seo";
 
@@ -20,56 +23,76 @@ const channels = [
 export default function ContactPage() {
   return (
     <main id="content">
-      <header className="pageHeader container">
-        <h1>
-          Get in <span className="accent">Touch</span>
-        </h1>
-        <p>Questions, corrections, or just here for the music?</p>
-      </header>
+      {/* Mobile is screen 09 — the same two blocks, stacked. */}
+      <MobileContact channels={channels} />
 
-      <div className="container">
-        <div className="split block">
-          {/* MESSAGE FORM */}
-          <Reveal>
-            <div>
-              <p className="eyebrow">Message Us</p>
-              <h2 className="secTitle">
-                Drop a <span className="goldText">line</span>
-              </h2>
-              <p className={`lead ${styles.lead2}`}>
-                Spotted something we should fix, or just want to say hi? Use the
-                form below — we love hearing from fellow fans.
-              </p>
-              <ContactForm />
+      <div className={styles.desktopOnly}>
+        <BreadcrumbBar path="/contact" />
+
+        {/* ── Hero ───────────────────────────────────────────── */}
+        <section className={styles.band}>
+          <div className={`${styles.wide} ${styles.heroPad}`}>
+            <div className={styles.eyebrow}>
+              <span className={styles.eyebrowRule} aria-hidden="true" />
+              Message us
             </div>
-          </Reveal>
+            <h1 className={styles.h1}>
+              Get in <span className="inkText">Touch</span>
+            </h1>
+            <p className={styles.lede}>
+              Questions, corrections, or just here for the music?
+            </p>
+          </div>
+        </section>
 
-          {/* OFFICIAL CHANNELS */}
-          <Reveal delay={120}>
-            <div>
-              <p className="eyebrow">Official Channels</p>
-              <p className={`lead ${styles.lead3}`}>
-                This is an <strong>unofficial fan site</strong>, so we can’t pass
-                messages to Burna Boy. For official business, bookings or news,
-                use his real channels:
+        {/* ── Form + official channels ───────────────────────── */}
+        <section className={styles.band}>
+          <div className={`${styles.wide} ${styles.split}`}>
+            <div className={styles.formCol}>
+              <div className={styles.eyebrow}>Message us</div>
+              <h2 className={styles.h2}>
+                Drop a <span className="inkText">line</span>
+              </h2>
+              <p className={styles.formLede}>
+                Spotted something we should fix, or just want to say hi? Use the form
+                below — we love hearing from fellow fans.
+              </p>
+              <div className={styles.formWrap}>
+                <ContactForm />
+              </div>
+            </div>
+
+            <div className={styles.channelCol}>
+              <div className={styles.eyebrow}>Official channels</div>
+              <p className={styles.channelLede}>
+                This is an <strong>unofficial fan site</strong>, so we can&apos;t pass
+                messages to Burna Boy. For official business, bookings or news, use his
+                real channels:
               </p>
               <div className={styles.channels}>
                 {channels.map((c) => (
                   <a
-                    className={styles.channel}
                     key={c.label}
                     href={c.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className={styles.channel}
                   >
                     <span className={styles.channelLabel}>{c.label}</span>
                     <span className={styles.channelValue}>{c.value}</span>
                   </a>
                 ))}
               </div>
+              <p className={styles.note}>
+                Corrections are welcome — if a figure here disagrees with an official
+                source, send the link and it gets checked against the{" "}
+                <Link href="/methodology">methodology</Link>.
+              </p>
             </div>
-          </Reveal>
-        </div>
+          </div>
+        </section>
+
+        <KeepExploring current="/contact" />
       </div>
     </main>
   );

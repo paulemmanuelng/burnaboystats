@@ -1,94 +1,142 @@
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(16px, 4vw, 56px);
-  width: 100%;
-  margin-top: 12px;
-  height: clamp(300px, 34vw, 440px);
-  padding: 0 clamp(22px, 4vw, 56px);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
-  /* glow behind the globe (right side) */
-  background: radial-gradient(circle at 78% 50%, #16161d 0%, #0b0b0d 58%, #090909 100%);
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-.card:hover {
-  border-color: var(--gold-dim);
-  transform: translateY(-2px);
-}
+/* "Where he's performed" — the globe teaser.
 
-.text {
-  order: 1;
-  flex: 1 1 auto;
-  max-width: 460px;
-  z-index: 1;
-}
-.globeWrap {
-  order: 2;
-  flex: none;
-  height: 86%;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+   One design at every width, lifted from the mobile home screen: kicker, split
+   title, lede, the rotating globe ringed on its stage, a four-cell region
+   strip, then a status/CTA foot. Desktop used to have a separate side-by-side
+   card; this replaced it. */
 .globe {
   display: block;
+  position: relative;
+  overflow: hidden;
+  padding: 26px 18px 24px;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  background: radial-gradient(120% 80% at 50% 120%, rgba(255, 182, 39, 0.13), transparent 62%);
+  transition: background var(--dur-fast) var(--ease);
 }
+.globe:hover { color: var(--text); }
 
 .kicker {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 9px;
   font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gold-bright);
+  color: var(--gold);
 }
+.rule { width: 16px; height: 1px; background: var(--gold); display: block; }
 .title {
-  display: block;
   font-family: var(--font-anton), sans-serif;
-  font-size: clamp(1.7rem, 4vw, 2.8rem);
-  line-height: 1.03;
-  margin-top: 8px;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-top: 10px;
 }
-.stat {
+.lede { font-size: 13.5px; line-height: 1.5; color: var(--text-muted); margin: 10px 0 0; }
+
+.stage { position: relative; width: 212px; height: 212px; margin: 20px auto 4px; }
+.ring1 {
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 182, 39, 0.14);
   display: block;
-  margin-top: 16px;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.9rem;
-  color: var(--text-muted);
 }
-.stat strong {
-  color: var(--gold-bright);
+.ring2 {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 182, 39, 0.09);
+  display: block;
 }
-.arrow {
-  color: var(--gold-bright);
+/* The rotating globe fills the stage as a disc. */
+.canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 182, 39, 0.28);
+  box-shadow:
+    inset -22px -14px 46px rgba(0, 0, 0, 0.72),
+    0 0 44px rgba(255, 182, 39, 0.13);
 }
 
-@media (max-width: 680px) {
-  .card {
-    flex-direction: column;
-    justify-content: center;
+/* Hairline seams inside a bounding border. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 18px;
+}
+.cell { background: var(--bg); padding: 11px 8px; text-align: center; }
+.num {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.label {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+/* Green, not gold: this reports freshness, not a record. */
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  display: block;
+  flex: none;
+  box-shadow: 0 0 8px rgba(62, 209, 127, 0.7);
+}
+.note { color: var(--text-muted); }
+.cta { margin-left: auto; color: var(--gold); }
+
+/* Above the mobile breakpoint it sits inside a column (the certifications
+   aside) rather than spanning the screen, so it drops the side padding and
+   aligns flush with whatever is stacked above it. The stage sizes to the
+   column instead of a fixed 212px, capped so it never outgrows the copy. */
+@media (min-width: 901px) {
+  .globe {
+    padding: 26px 0 0;
+    border-top: 1px solid var(--line);
+    margin-top: 26px;
+    background: none;
+  }
+  .globe:hover .cta { color: var(--gold-bright); }
+  .title { font-size: 30px; }
+  .lede { font-size: 14px; }
+  .stage {
+    width: min(100%, 260px);
     height: auto;
-    padding: 26px 20px 24px;
-    gap: 14px;
-    background: radial-gradient(circle at 50% 34%, #16161d 0%, #0b0b0d 62%, #090909 100%);
+    aspect-ratio: 1;
+    margin: 24px auto 10px;
   }
-  .globeWrap {
-    order: 1;
-    width: min(78%, 320px);
-    height: auto;
-  }
-  .text {
-    order: 2;
-    text-align: center;
-    max-width: none;
-  }
-  .title {
-    font-size: clamp(1.5rem, 8vw, 2.1rem);
-  }
+  .num { font-size: 24px; }
 }

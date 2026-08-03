@@ -22,6 +22,27 @@ export interface DeepRow {
   bar?: number;
   /** Marks the row as a headline result — its title and value read in gold. */
   lead?: boolean;
+  /**
+   * Lights the rank and the value, but not the title.
+   *
+   * For lists where the value is a *category* rather than a distinction — half
+   * the festivals list is "Headlined", so golding those titles would tint most
+   * of the page and stop meaning anything. `lead` is for the one or two rows a
+   * page is actually built around.
+   */
+  accent?: boolean;
+  /** Makes the whole row a link — used where each row has a page proving it. */
+  href?: string;
+  /**
+   * Starts a new labelled group above this row.
+   *
+   * The grammar has one list, but some screens carry several distinct boards
+   * (Africa's biggest has 14). Rather than strand thirteen of them, the list
+   * runs straight through and a heading marks where each begins.
+   */
+  group?: string;
+  /** Sub-label for the group heading — the board's metric and source. */
+  groupMeta?: string;
 }
 
 export interface DeepChip {
@@ -57,7 +78,8 @@ export default function MobileDeepPage({
   titleGold: string;
   titleSize?: number;
   lede: string;
-  stats: { value: string; label: string }[];
+  /** Omitted on screens the design gives no stat strip (17). */
+  stats?: { value: string; label: string }[];
   chips?: DeepChip[];
   chipsLabel?: string;
   listTitle: string;
@@ -94,6 +116,7 @@ export default function MobileDeepPage({
       </div>
 
       {/* Stat strip */}
+      {stats && stats.length > 0 && (
       <div
         className={styles.statGrid}
         style={{ gridTemplateColumns: `repeat(${stats.length}, 1fr)` }}
@@ -105,6 +128,7 @@ export default function MobileDeepPage({
           </div>
         ))}
       </div>
+      )}
 
       {/* Chip rail */}
       {chips && chips.length > 0 && (
@@ -133,35 +157,63 @@ export default function MobileDeepPage({
         {listMeta && <span className={styles.listMeta}>{listMeta}</span>}
       </div>
       <div className={styles.list}>
-        {rows.map((r) => (
-          <div
-            key={r.title}
-            className={`${styles.row} ${r.lead ? styles.rowLead : ""}`}
-            style={{ gridTemplateColumns: r.rank ? "26px 1fr auto" : "1fr auto" }}
-          >
-            {r.rank && <span className={styles.rank}>{r.rank}</span>}
-            <span className={styles.rowMain}>
-              <span className={styles.rowTitle}>{r.title}</span>
-              {r.sub && <span className={styles.rowSub}>{r.sub}</span>}
-              {r.bar !== undefined && (
-                <span className={styles.barTrack}>
-                  <span
-                    className={styles.barFill}
-                    style={{ width: `${Math.round(r.bar * 100)}%` }}
-                  />
-                </span>
-              )}
-            </span>
-            <span className={styles.rowValue}>{r.value}</span>
-          </div>
-        ))}
+        {rows.map((r, i) => {
+          const body = (
+            <>
+              {r.rank && <span className={styles.rank}>{r.rank}</span>}
+              <span className={styles.rowMain}>
+                <span className={styles.rowTitle}>{r.title}</span>
+                {r.sub && <span className={styles.rowSub}>{r.sub}</span>}
+                {r.bar !== undefined && (
+                  <span className={styles.barTrack}>
+                    <span
+                      className={styles.barFill}
+                      style={{ width: `${Math.round(r.bar * 100)}%` }}
+                    />
+                  </span>
+                )}
+              </span>
+              <span className={styles.rowValue}>{r.value}</span>
+            </>
+          );
+          /* Titles repeat — a venue hosts more than one ranked night, an award
+             body wins in more than one year — so position disambiguates. The
+             list is derived deterministically and never reordered here. */
+          const key = `${i}-${r.title}`;
+          const className = `${styles.row} ${r.lead ? styles.rowLead : ""} ${
+            r.accent ? styles.rowAccent : ""
+          } ${r.href ? styles.rowLink : ""}`;
+          const style = { gridTemplateColumns: r.rank ? "26px 1fr auto" : "1fr auto" };
+          const row = r.href ? (
+            <Link href={r.href} className={className} style={style}>
+              {body}
+            </Link>
+          ) : (
+            <div className={className} style={style}>
+              {body}
+            </div>
+          );
+          return r.group ? (
+            <div key={key}>
+              <div className={styles.groupHead}>
+                <h3 className={styles.groupName}>{r.group}</h3>
+                {r.groupMeta && <span className={styles.groupMeta}>{r.groupMeta}</span>}
+              </div>
+              {row}
+            </div>
+          ) : (
+            <div key={key}>{row}</div>
+          );
+        })}
       </div>
 
       {footNote && <p className={styles.footNote}>{footNote}</p>}
 
-      <div className={styles.spacer} />
+      {/* The bar exists only when there is somewhere else to go; when the screen
+          is already the full list, it goes — and the scroll padding that
+          cleared it goes with it. */}
+      {ctaLabel && ctaHref && <div className={styles.spacer} />}
 
-      {/* Action bar — replaces the tab bar on this screen */}
       {ctaLabel && ctaHref && (
         <div className={styles.actionBar}>
           <Link href={ctaHref} className={styles.actionPrimary}>

@@ -1,0 +1,165 @@
+import Link from "next/link";
+import styles from "./mobileVisualized.module.css";
+
+/**
+ * The mobile "visualized" screen.
+ *
+ * A distinct screen, not the desktop page narrowed: the scatter plot and the
+ * choropleth need width and a pointer, so mobile carries the charts that
+ * survive one column — ranked bars and composition donuts. Built from
+ * designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, screen 19.
+ *
+ * The design mocks each donut with a CSS border trick (one colour per edge).
+ * These are real arcs computed from the segments, so a 6-of-221 slice draws as
+ * 6 of 221 rather than as a quarter of the ring.
+ */
+
+export interface MobileBar {
+  name: string;
+  value: string;
+  /** 0–1 of the largest value in this set. */
+  frac: number;
+  /** His row — drawn gold. Everyone else is grey. */
+  his?: boolean;
+}
+
+export interface MobileDonut {
+  title: string;
+  centre: string;
+  centreLabel: string;
+  legend: { label: string; value: number; color: string }[];
+}
+
+const R = 34;
+const STROKE = 10;
+const C = 2 * Math.PI * R;
+
+export default function MobileVisualized({
+  chartCount,
+  bars,
+  donuts,
+  footNote,
+}: {
+  chartCount: number;
+  bars: { title: string; note: string; items: MobileBar[] }[];
+  donuts: MobileDonut[];
+  footNote: string;
+}) {
+  return (
+    <div className={styles.screen}>
+      {/* Back bar */}
+      <div className={styles.backBar}>
+        <Link href="/records" aria-label="Back" className={styles.backBtn}>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+            <path d="M15 5l-7 7 7 7" />
+          </svg>
+        </Link>
+        <span className={styles.backLabel}>Visualized</span>
+        <span className={styles.badge}>{chartCount} charts</span>
+      </div>
+
+      {/* Hero */}
+      <div className={styles.hero}>
+        <div className={styles.kicker}>Every stat, charted</div>
+        {/* Not an <h1> — the desktop block carries the page's single heading. */}
+        <p className={styles.title}>
+          Burna Boy, <span className={styles.gold}>visualized</span>
+        </p>
+        <p className={styles.lede}>
+          The career plotted — grosses, certifications, chart peaks and award win rate.
+        </p>
+      </div>
+
+      {/* Ranked bars */}
+      {bars.map((c) => (
+        <div key={c.title} className={styles.chart}>
+          <h2 className={styles.chartTitle}>{c.title}</h2>
+          <div className={styles.bars}>
+            {c.items.map((it) => (
+              <div key={it.name} className={styles.barRow}>
+                <div className={styles.barHead}>
+                  <span className={styles.barName}>{it.name}</span>
+                  <span className={styles.barValue}>{it.value}</span>
+                </div>
+                <div className={styles.barTrack}>
+                  <div
+                    className={`${styles.barFill} ${it.his ? "" : styles.barFillOther}`}
+                    style={{ width: `${Math.round(it.frac * 100)}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className={styles.chartNote}>{c.note}</p>
+        </div>
+      ))}
+
+      {/* Donuts */}
+      {donuts.map((d) => {
+        const total = d.legend.reduce((n, l) => n + l.value, 0);
+        let cursor = 0;
+        const arcs = d.legend.map((l) => {
+          const len = (l.value / total) * C;
+          const arc = { color: l.color, dash: `${Math.max(len - 2, 0.5)} ${C - len}`, off: -cursor };
+          cursor += len;
+          return arc;
+        });
+        return (
+          <div key={d.title} className={styles.donut}>
+            <h2 className={styles.chartTitle}>{d.title}</h2>
+            <div className={styles.donutBody}>
+              <svg
+                className={styles.donutSvg}
+                viewBox="0 0 96 96"
+                role="img"
+                aria-label={`${d.title}: ${d.legend.map((l) => `${l.value} ${l.label}`).join(", ")}`}
+              >
+                <g transform="rotate(-90 48 48)">
+                  {arcs.map((a, i) => (
+                    <circle
+                      key={i}
+                      cx="48"
+                      cy="48"
+                      r={R}
+                      fill="none"
+                      stroke={a.color}
+                      strokeWidth={STROKE}
+                      strokeDasharray={a.dash}
+                      strokeDashoffset={a.off}
+                    />
+                  ))}
+                </g>
+                <text x="48" y="55" textAnchor="middle" className={styles.donutCentre}>
+                  {d.centre}
+                </text>
+              </svg>
+              {/* The label sits under the ring, not inside it: "certifications"
+                  is wider than a 96px circle's inner hole, and at this size
+                  there is no font size that fits it without going under the
+                  10px floor. */}
+              <div className={styles.donutSide}>
+                <div className={styles.donutCentreLabel}>{d.centreLabel}</div>
+                <div className={styles.legend}>
+                  {d.legend.map((l) => (
+                    <div key={l.label} className={styles.legendRow}>
+                      <span
+                        className={styles.legendDot}
+                        style={{ background: l.color }}
+                        aria-hidden="true"
+                      />
+                      <span className={styles.legendLabel}>{l.label}</span>
+                      <span className={styles.legendValue}>{l.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+
+      <p className={styles.footNote}>{footNote}</p>
+
+    </div>
+  );
+}

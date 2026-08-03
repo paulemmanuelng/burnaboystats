@@ -1,136 +1,212 @@
-.intro {
-  max-width: 760px;
-  margin: 0 0 20px;
-  color: #d3d3da;
-  font-size: 1.08rem;
-  line-height: 1.65;
-}
+/* Methodology — desktop.
+   designs/desktop/Methodology.dc.html, values verbatim.
 
-/* "Data last reviewed" freshness badge — small, quiet, trustworthy. */
-.reviewed {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  margin: 0 0 40px;
-  padding: 8px 15px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+   Hidden below 900px, where MobileDeepPage renders screen 22 instead. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+/* 1180, matching /analysis — both pages are read rather than scanned. */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.heroPad { padding: 44px 40px 0; }
+.kicker {
   font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--text-muted);
 }
-.reviewed strong {
-  color: var(--text);
-  font-weight: 700;
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 78px;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+  max-width: 22ch;
 }
-.reviewedDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 0 4px rgba(255, 182, 39, 0.16);
+.lede { font-size: 19px; line-height: 1.55; color: #cfc7bb; max-width: 60ch; margin: 20px 0 0; text-wrap: pretty; }
+.intro { font-size: 15.5px; line-height: 1.7; color: var(--text-muted); max-width: 76ch; margin: 20px 0 0; }
+.reviewed {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 22px 0 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
+.reviewed strong { color: var(--text); }
+/* Green, not gold: this reports freshness, not an achievement. */
+.reviewedDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: block; }
 
-.section {
-  margin: 0 0 48px;
-  scroll-margin-top: 88px;
+/* ── Counts band ────────────────────────────────────────────────────────── */
+.countsPad { padding: 34px 40px 0; }
+.counts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
 }
-.h2 {
-  margin: 0 0 20px;
+.count { background: var(--bg-soft); padding: 22px 24px; }
+/* White, not gold — this is the scope of the standard, not a record. */
+.countValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
+  font-size: 48px;
+  line-height: 0.9;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.countLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  font-size: clamp(1.4rem, 3.2vw, 2rem);
+  margin-top: 12px;
+  line-height: 1.4;
 }
 
-/* Verification principles — 2-up cards on wide screens. */
+/* ── Sections ───────────────────────────────────────────────────────────── */
+.sectionPad { padding: 52px 40px 0; }
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+
+/* ── The four rules ─────────────────────────────────────────────────────── */
 .principleGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 24px;
 }
-.principle {
-  padding: 22px 22px;
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--gold);
-  border-radius: var(--radius-sm);
+.principle { background: var(--bg); padding: 26px 28px; }
+.principleHead { display: flex; align-items: baseline; gap: 12px; }
+/* Outlined numeral — position without competing with the rule itself. */
+.principleNum {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--bg-soft-2);
+  -webkit-text-stroke: 1px var(--gold);
+  line-height: 1;
 }
 .principleH {
-  margin: 0 0 10px;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-weight: 700;
-  font-size: 1.05rem;
-  line-height: 1.25;
-  color: var(--text);
-}
-.principleP {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
   margin: 0;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  line-height: 1.6;
 }
+.principleP { font-size: 14.5px; line-height: 1.7; color: #cfc7bb; margin: 14px 0 0; }
 
-/* Sources — a definition list (area → where it comes from). */
-.sourceList {
-  margin: 0;
-  border-top: 1px solid var(--line);
-}
+/* ── Primary sources ────────────────────────────────────────────────────── */
+.sourceList { margin-top: 24px; border-top: 1px solid var(--line); }
 .sourceRow {
   display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 8px 28px;
-  padding: 20px 0;
+  grid-template-columns: 210px 1fr;
+  gap: 36px;
+  padding: 22px 0;
   border-bottom: 1px solid var(--line);
+  align-items: start;
 }
 .sourceArea {
   font-family: var(--font-anton), sans-serif;
-  font-size: 1.15rem;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
   color: var(--gold);
-  line-height: 1.15;
-}
-.sourceDetail {
   margin: 0;
-  color: var(--text-muted);
-  font-size: 0.97rem;
-  line-height: 1.6;
-  max-width: 68ch;
 }
-
-.body {
-  max-width: 70ch;
-  color: var(--text-muted);
-  font-size: 1rem;
-  line-height: 1.7;
-}
-.inlineLink {
-  color: var(--gold);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.inlineLink:hover {
-  color: var(--gold-bright);
-}
-
-.back {
-  display: inline-block;
-  margin: 8px 0 0;
+.sourceTag {
   font-family: var(--font-mono), monospace;
-  font-size: 0.85rem;
-  color: var(--gold);
-  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 8px;
 }
-.back:hover {
-  text-decoration: underline;
-}
+.sourceDetail { font-size: 15px; line-height: 1.7; color: #cfc7bb; margin: 0; max-width: 82ch; }
 
-@media (max-width: 560px) {
-  .sourceRow {
-    grid-template-columns: 1fr;
-    gap: 6px;
-  }
+/* ── Closing blocks ─────────────────────────────────────────────────────── */
+.blocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.block { background: var(--bg); padding: 28px 30px; }
+/* The independence note spans the row — it applies to everything above it. */
+.blockWide { grid-column: 1 / -1; background: rgba(255, 182, 39, 0.05); }
+.blockH {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.blockP { font-size: 15px; line-height: 1.75; color: #cfc7bb; margin: 14px 0 0; max-width: 84ch; }
+.blockLinks { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.blockLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: var(--bg-soft-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.blockLink:hover { border-color: var(--gold); color: var(--gold); }
+
+.pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 40px 72px; }
+
+@media (max-width: 1239px) {
+  .h1 { font-size: 57px; }
+  .counts { grid-template-columns: repeat(3, 1fr); }
+  /* Partial last row stretches the final cell rather than leaving a phantom
+     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
+     position so it holds for any item count: last-in-a-fresh-row spans three,
+     second-in-a-row spans the two that remain. */
+  .counts > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .counts > :last-child:nth-child(3n + 2) { grid-column: span 2; }
+  .principleGrid { grid-template-columns: 1fr; }
+  .sourceRow { grid-template-columns: 1fr; gap: 12px; }
+  .blocks { grid-template-columns: 1fr; }
 }

@@ -65,8 +65,10 @@ const marqueCounts = cars.reduce<Record<string, number>>((acc, c) => {
 
 const CHIP_MARQUES = ["Ferrari", "Lamborghini", "Maybach", "Rolls-Royce"];
 
-const topCars = currentCars.slice(0, 6);
-const topValue = topCars[0]?.valueUsd ?? 1;
+// Mobile lists the whole current garage, not a preview: this route is the only
+// place the collection exists, so a "see them all" button would have nowhere to
+// go once the desktop layout is hidden.
+const topValue = currentCars[0]?.valueUsd ?? 1;
 const usd = (n: number) => `$${(n / 1e6).toFixed(2)}M`;
 
 // The design shows "Bugatti Chiron" with "Venuum Widebody — one of one"
@@ -76,12 +78,21 @@ const splitModel = (model: string) => {
   return m ? { base: m[1].trim(), qualifier: m[2].trim() } : { base: model, qualifier: "" };
 };
 
+// The garage's headline car, read from the data so the stat cell can never
+// name a car the list no longer leads with.
+const topCar = [...currentCars].sort((a, b) => b.valueUsd - a.valueUsd)[0];
+const topCarValue = `$${(topCar.valueUsd / 1e6).toFixed(2)}M`;
+const topCarName = `${topCar.make} ${topCar.model.split(" (")[0]}`;
+
 export default function CarsPage() {
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(carsDataset) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(carsItemList) }} />
       {/* Mobile is screen 18 on the shared deep-page grammar. */}
+      {/* Screen 18: two stat cells — the garage total and its headline car —
+          and no chip rail; the design gives neither a filter nor a marque
+          breakdown here. */}
       <MobileDeepPage
         label="Car collection"
         badge={String(carCount)}
@@ -90,17 +101,12 @@ export default function CarsPage() {
         titleGold="collection"
         lede={`${numberWord(carCount)} confirmed cars worth a reported ${totalValueFormatted} — led by a one-of-one ₦9bn Bugatti.`}
         stats={[
-          { value: String(carCount), label: "Confirmed cars" },
-          { value: totalValueFormatted, label: "Reported value" },
+          { value: totalValueFormatted, label: "Total value" },
+          { value: topCarValue, label: topCarName },
         ]}
-        chips={CHIP_MARQUES.filter((m) => marqueCounts[m]).map((m, i) => ({
-          label: `${marqueCounts[m]} ${m}`,
-          on: i === 0,
-        }))}
-        chipsLabel="Collection by marque"
         listTitle="Ranked by what each cost"
         listMeta="import-inclusive"
-        rows={topCars.map((c, i) => {
+        rows={currentCars.map((c, i) => {
           const { base, qualifier } = splitModel(c.model);
           return {
             rank: String(i + 1).padStart(2, "0"),
@@ -112,8 +118,6 @@ export default function CarsPage() {
           };
         })}
         footNote="Unlike charts and certifications, a car collection has no official record. Reconstructed from press and sightings; only cars confirmed by multiple sources are listed."
-        ctaLabel="The full garage"
-        ctaHref="#the-garage"
       />
 
       <div className={styles.desktopOnly}>

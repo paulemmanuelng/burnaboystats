@@ -14,8 +14,15 @@
   color: var(--text-muted);
   flex-wrap: wrap;
 }
+/* A breadcrumb link is a standalone target, not a link inside a sentence, so
+   WCAG 2.2's 24px target minimum applies. Growing the box vertically keeps the
+   bar's height and the text's position unchanged — the row is already 12px
+   padded, so the taller hit area sits inside it. */
 .inner a {
   color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   transition: color var(--dur-fast) var(--ease);
 }
 .inner a:hover { color: var(--gold); }

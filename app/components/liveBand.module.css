@@ -56,7 +56,12 @@
   opacity: 0.75;
 }
 
+/* A standalone link, so it needs WCAG 2.2's 24px minimum target. The band is
+   taller than that already — this only grows the hit area. */
 .streams {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   margin-left: auto;
   color: inherit;
   text-decoration: none;
@@ -72,7 +77,10 @@
 
 /* Below the desktop grid the sub-line and the streams figure are the first
    things to go — the headline is the reason the band exists. */
-@media (max-width: 1080px) {
+/* The subtitle holds through the whole tablet band — measured, the row needs
+   687px of content in an 886px box at 901px, so there is nothing to gain by
+   dropping it early. It goes with the rest of the desktop band below 900. */
+@media (max-width: 900px) {
   .sub { display: none; }
 }
 @media (max-width: 720px) {

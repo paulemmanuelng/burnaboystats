@@ -75,6 +75,7 @@ export const SEGMENT_LABELS: Record<string, string> = {
   tours: "Tours & Live",
   festivals: "Festivals & Shows",
   revenue: "Highest Revenue Per Show",
+  map: "Where He's Performed",
   cars: "Car Collection",
   firsts: "Firsts & Records",
   "africas-biggest": "Africa's Biggest",

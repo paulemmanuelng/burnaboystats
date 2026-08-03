@@ -174,11 +174,43 @@
   color: var(--green);
   min-height: 13px;
 }
+.platformCadence {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 3px;
+}
 
 /* ── Charting now ─────────────────────────────────────────────────────── */
 .list { border-top: 1px solid var(--line); margin-top: 8px; }
-.row { padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.row { border-bottom: 1px solid var(--line); }
+.rowOpen { background: rgba(255, 182, 39, 0.04); }
+/* The whole row is the control — a 40px cover plus two lines of text clears
+   the 44px tap-target floor on its own. */
+.rowBtn {
+  width: 100%;
+  display: block;
+  padding: 14px 18px;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text);
+  font: inherit;
+}
 .rowTop { display: flex; align-items: center; gap: 12px; }
+.caret {
+  font-family: var(--font-mono), monospace;
+  font-size: 15px;
+  color: var(--gold);
+  flex: none;
+  width: 16px;
+  text-align: center;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.caretShut { transform: rotate(-90deg); }
 .rowCover {
   width: 40px;
   height: 40px;
@@ -229,6 +261,63 @@
 .chipFlag { font-size: 11px; }
 .pos { color: var(--gold); font-weight: 700; }
 .posTop { color: var(--green); font-weight: 700; }
+.more {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  color: var(--dim);
+  align-self: center;
+}
+
+/* ── Open panel: every platform, every country ────────────────────────── */
+.panel { padding: 0 18px 16px; }
+.platformBlock { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 12px; }
+.platformBlock:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+.platformHead { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.platformBlockName {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.platformBlockMeta {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.entries { list-style: none; margin: 10px 0 0; padding: 0; }
+.entry,
+.entryTop {
+  display: grid;
+  grid-template-columns: 42px 20px 1fr auto;
+  gap: 9px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+}
+.entries li:first-child { border-top: 0; }
+/* A No. 1 reads green, matching the summary and the chips. */
+.entryTop .entryPos { color: var(--green); }
+.entryPos {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.entryFlag { font-size: 13px; line-height: 1; }
+.entryCountry { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.entryMove {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
 
 .allBtn {
   display: flex;

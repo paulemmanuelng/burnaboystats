@@ -20,6 +20,12 @@ export interface Tour {
   gross?: string;
   tickets?: string;
   shows?: number;
+  /**
+   * Optional label for the right-hand column under the gross. Set it only where
+   * a date count would undersell the run — everything else derives one from
+   * `tickets`/`shows` or `dates.length`, so no count is ever written by hand.
+   */
+  meta?: string;
   note: string;
   record?: boolean;
   dates?: Show[];
@@ -98,6 +104,7 @@ export const tours: Tour[] = [
     name: "Love, Damini Tour",
     years: "2022–23",
     gross: "$11.8M",
+    meta: "Stadium era",
     note: "The stadium-era run behind the album — off the back of his Madison Square Garden debut, it made him the first African artist to headline a UK stadium (London Stadium) and to sell out a US stadium (Citi Field). The tour grossed roughly $11.8M across its dates.",
     dates: [
       { date: "Jul 17, 2022", venue: "Tipsy All White Beach Party", city: "Bridgetown", country: "Barbados" },
@@ -161,6 +168,7 @@ export const tours: Tour[] = [
   {
     name: "Life on the Outside Tour",
     years: "2018",
+    meta: "First world tour",
     note: "His first international headline tour, behind Outside — his Atlantic Records debut. An intimate club-and-theatre run across North America in early summer, then a sold-out UK leg in the autumn capped by a packed O2 Academy Brixton — growing his audience beyond Nigeria, just before the African Giant era.",
     dates: [
       { date: "May 30, 2018", venue: "Howard Theatre", city: "Washington, D.C.", country: "USA", cap: 1100 },

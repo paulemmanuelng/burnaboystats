@@ -5,6 +5,7 @@ import TodaysNumber from "./components/TodaysNumber";
 import MobileHome from "./components/MobileHome";
 import CertLedger from "./components/CertLedger";
 import StatCardButton from "./components/StatCardButton";
+import GlobeTeaser from "./components/GlobeTeaser";
 import SearchTrigger from "./components/SearchTrigger";
 import { homeScoreboard } from "./lib/homeScoreboard";
 import { spotifyImage } from "./lib/spotifyImage";
@@ -26,6 +27,7 @@ import {
   numberWord,
 } from "./lib/homeData";
 import { updates } from "./data/updates";
+import NotReported from "./components/NotReported";
 
 /**
  * The homepage, built from designs/desktop/Burna Boy Stats.dc.html.
@@ -180,6 +182,10 @@ export default function Home() {
           <Link href="/records/visualized" className={`btn btnGhost ${styles.flushGhost}`}>
             See it visualized ↗
           </Link>
+
+          {/* The rotating globe fills the rest of this column — a teaser into
+              the full performance map. */}
+          <GlobeTeaser />
         </CertLedger>
 
         {/* ── The No. 1 board ────────────────────────────────────── */}
@@ -304,7 +310,7 @@ export default function Home() {
                           </div>
                         </td>
                         <td>{t.city}</td>
-                        <td className={styles.numRight}>{t.tickets ?? "—"}</td>
+                        <td className={styles.numRight}>{t.tickets ?? <NotReported />}</td>
                         <td className={styles.grossCell}>${(t.revenue / 1e6).toFixed(2)}M</td>
                       </tr>
                     ))}

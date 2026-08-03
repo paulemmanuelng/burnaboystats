@@ -7,7 +7,24 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 // won't find it. It's decoded in the browser only at the moment of sending.
 const ENCODED_TO = "dWtwYWthZW1tYW51ZWxAZ21haWwuY29t";
 
-export default function ContactForm() {
+/**
+ * The contact form.
+ *
+ * `idPrefix` exists because the desktop and mobile layouts each render their
+ * own copy — both sit in the DOM at once, one CSS-hidden — and two inputs
+ * sharing an id would make a <label for> ambiguous. The hidden copy is
+ * `display: none`, so it is out of the tab order entirely.
+ *
+ * `stacked` sends the submit button full-width, which is how the mobile screen
+ * draws it.
+ */
+export default function ContactForm({
+  idPrefix = "",
+  stacked = false,
+}: {
+  idPrefix?: string;
+  stacked?: boolean;
+} = {}) {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -61,27 +78,37 @@ export default function ContactForm() {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <div className="field">
-        <label className="label" htmlFor="name">Name</label>
-        <input className="input" id="name" name="name" value={form.name} onChange={update} required />
-      </div>
-      <div className="field">
-        <label className="label" htmlFor="email">Email</label>
+        <label className="label" htmlFor={`${idPrefix}name`}>Name</label>
         <input
           className="input"
-          id="email"
+          id={`${idPrefix}name`}
+          name="name"
+          placeholder="Your name"
+          value={form.name}
+          onChange={update}
+          required
+        />
+      </div>
+      <div className="field">
+        <label className="label" htmlFor={`${idPrefix}email`}>Email</label>
+        <input
+          className="input"
+          id={`${idPrefix}email`}
           name="email"
           type="email"
+          placeholder="you@example.com"
           value={form.email}
           onChange={update}
           required
         />
       </div>
       <div className="field">
-        <label className="label" htmlFor="message">Message</label>
+        <label className="label" htmlFor={`${idPrefix}message`}>Message</label>
         <textarea
           className="textarea"
-          id="message"
+          id={`${idPrefix}message`}
           name="message"
+          placeholder="What's on your mind?"
           value={form.message}
           onChange={update}
           required
@@ -93,7 +120,7 @@ export default function ContactForm() {
       <button
         type="submit"
         className="btn btnPrimary"
-        style={{ alignSelf: "flex-start" }}
+        style={stacked ? { width: "100%" } : { alignSelf: "flex-start" }}
         disabled={sending}
       >
         {sending ? "Sending…" : "Send message"}

@@ -3,6 +3,7 @@ import styles from "./liveCharts.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileLiveCharts from "../components/MobileLiveCharts";
+import { cadenceOf, reachOf } from "../lib/liveChartMeta";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { coverFor, monogramFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
@@ -39,15 +40,7 @@ function flagFor(code: string) {
   return String.fromCodePoint(...[...mapped].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65));
 }
 
-const reach = (r: (typeof liveCharts)[number]) =>
-  r.platforms.reduce((n, p) => n + p.entries.length, 0);
-
-// How often each platform's chart actually refreshes. YouTube's is a weekly
-// chart and now supplies most of the No. 1s on this page, so the cadence is
-// shown next to the numbers rather than only in the note underneath — a No. 1
-// held for a week and one held for a day are not the same claim.
-const CADENCE: Record<string, string> = { YouTube: "weekly" };
-const cadenceOf = (platform: string) => CADENCE[platform] ?? "daily";
+const reach = reachOf;
 
 const songs = liveCharts.filter((r) => r.kind === "song");
 const albums = liveCharts.filter((r) => r.kind === "album");

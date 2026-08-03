@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./firsts.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
-import MobileDeepPage from "../../components/MobileDeepPage";
+import MobileFirsts from "../../components/MobileFirsts";
 import { numberWord } from "../../lib/homeData";
 import { firstGroups, allFirsts, firstsCount } from "../../data/firsts";
 import { pageMetadata } from "../../lib/seo";
@@ -16,20 +16,6 @@ export const metadata = pageMetadata({
   shareDescription: "The history-making milestones of the African Giant.",
 });
 
-// The design's curated "headline firsts" — the six a reader opens the page
-// for, not simply the six most recent. Sorting the whole set by year returns
-// six 2026 entries and buries the Grammy and the Madison Square Garden night.
-// The copy is the design's; the figures inside it are checked against
-// firsts.ts, tours.ts and tourRevenue.ts.
-const headlineFirsts = [
-  { year: "2026", title: "First African artist to headline a World Cup final", sub: "“Dai Dai” with Shakira, halftime show" },
-  { year: "2024", title: "First African artist to headline a UK stadium", sub: "London Stadium — 58,973 in the room" },
-  { year: "2023", title: "Highest-grossing tour by an African artist", sub: "I Told Them… Tour, $30.46M" },
-  { year: "2022", title: "First Nigerian to sell out Madison Square Garden", sub: "Space Drift Tour, 13,586 tickets" },
-  { year: "2021", title: "Grammy — Best Global Music Album", sub: "Twice as Tall" },
-  { year: "2024", title: "First African artist past 2 billion UK streams", sub: "BRIT Billion Award" },
-];
-
 /** Anchor id for a category heading, so the jump rail can reach it. */
 const groupId = (label: string) =>
   label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -39,31 +25,21 @@ const earliestYear = Math.min(...allFirsts.map((f) => Number(f.year)));
 export default function FirstsPage() {
   return (
     <main id="content">
-      {/* Mobile is screen 15 on the shared deep-page grammar. */}
-      <MobileDeepPage
-        label="Firsts"
-        badge={String(firstsCount)}
-        kicker="Record-breaking"
-        titlePre="Firsts & "
-        titleGold="records"
-        titleSize={44}
-        lede={`${numberWord(firstsCount)} milestones, from the first African stadium headline to the World Cup final.`}
-        stats={[
-          { value: String(firstsCount), label: "Milestones" },
-          { value: String(firstGroups.length), label: "Categories" },
-        ]}
-        listTitle="The headline firsts"
-        listMeta="newest first"
-        rows={headlineFirsts.map((f, i) => ({
-          rank: f.year,
-          title: f.title,
-          sub: f.sub,
-          value: "",
-          lead: i === 0,
+      {/* Mobile is screen 15 — five accordion categories, first one open, and no
+          stat strip: the design runs the hero straight into them. Category
+          labels come from firsts.ts so mobile and desktop can never disagree
+          about what a group is called. */}
+      <MobileFirsts
+        total={firstsCount}
+        lede={`${numberWord(firstsCount)} milestones in ${numberWord(firstGroups.length).toLowerCase()} categories, from the first African stadium headline to the World Cup final.`}
+        sections={firstGroups.map((g) => ({
+          name: g.label,
+          // The design's row is the year and the milestone alone; `text` is the
+          // supporting detail and stays on the desktop page, which is what the
+          // source note points at.
+          rows: g.items.map((f) => ({ lead: f.year, title: f.title })),
         }))}
-        footNote="Only firsts traceable to a primary source are listed. Grouped on the full page into stages, the world stage, awards, streaming and business."
-        ctaLabel={`All ${firstsCount} firsts`}
-        ctaHref="#all-firsts"
+        sourceNote="Each milestone is a documented first, sourced on the desktop page. Tap a category to open it."
       />
 
       <div className={styles.desktopOnly}>

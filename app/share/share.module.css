@@ -1,0 +1,30 @@
+/* Stat cards — hero only; the builder carries its own styles.
+   designs/desktop/Share.dc.html, values verbatim. */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+.heroPad { padding: 44px 40px 0; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 82px;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+}
+.lede { font-size: 19px; line-height: 1.55; color: #cfc7bb; max-width: 56ch; margin: 20px 0 0; text-wrap: pretty; }
+
+@media (max-width: 900px) {
+  .wrap { padding: 0 18px; }
+  .heroPad { padding: 22px 18px 0; }
+  .h1 { font-size: 46px; }
+  .lede { font-size: 14.5px; }
+}
+@media (max-width: 900px) { .desktopOnly { display: none; } }

@@ -317,3 +317,358 @@
   .tourFigures { text-align: left; }
   .mRow { grid-template-columns: 56px 1fr; gap: 14px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DESKTOP — designs/desktop/Records - Tours.dc.html
+
+   Everything below is the desktop page. It is hidden below 900px, where
+   MobileTours renders a different screen entirely rather than this one
+   narrowed. Values are the design's.
+
+   Deliberately new class names: the classes above are still in use by
+   /records/tours/revenue and /records/tours/festivals, which have not been
+   rebuilt yet.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+/* Every band is full-bleed with a hairline under it; the content inside is
+   what's centred, not the band. */
+.band { border-bottom: 1px solid var(--line); }
+.bandSurface { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+.wide { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.heroPad { padding: 50px 40px 40px; }
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 56px;
+  align-items: end;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; }
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 92px;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 16px 0 0;
+}
+.lede {
+  font-size: 17.5px;
+  line-height: 1.55;
+  max-width: 62ch;
+  margin: 18px 0 0;
+  color: #d8d8de;
+  text-wrap: pretty;
+}
+
+.ticketPanel { border-left: 1px solid var(--line); padding-left: 40px; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.ticketBtns { display: flex; flex-direction: column; gap: 9px; margin-top: 16px; }
+/* Left-aligned labels: three stacked full-width buttons read as a list, and a
+   list is scanned down its left edge. */
+.ticketBtns .btn { width: 100%; justify-content: flex-start; }
+
+/* ── Headline strip ─────────────────────────────────────────────────────── */
+.headlineGrid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.headlineCell { padding: 28px 24px 26px; border-left: 1px solid var(--line); }
+/* White, not gold. Two of the three are records held against other artists, and
+   the strip reads as one row — colouring them gold would claim a distinction
+   the third doesn't have. */
+.headlineValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 0.9;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.headlineLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+
+/* ── Section heads ──────────────────────────────────────────────────────── */
+.sectionPad { padding: 40px 40px 44px; }
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.headRow { display: flex; align-items: flex-end; gap: 30px; margin-bottom: 8px; }
+.headLede { font-size: 13.5px; color: var(--text-muted); margin: 0 0 6px; }
+
+/* ── Tours accordion ────────────────────────────────────────────────────── */
+.accordion { border-top: 1px solid var(--line); }
+.tourItem { border-bottom: 1px solid var(--line); }
+.tourRow {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 8px;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: var(--text);
+  transition: background var(--dur-fast) var(--ease);
+}
+.tourRow:hover { background: rgba(245, 240, 232, 0.05); }
+.tourRowOpen { background: rgba(255, 182, 39, 0.05); }
+.tourRowOpen:hover { background: rgba(255, 182, 39, 0.08); }
+.caret {
+  color: var(--gold);
+  font-size: 13px;
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.caretShut { transform: rotate(-90deg); }
+
+.tourBody { min-width: 0; }
+.tourTitleRow { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.tourHeading {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 27px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.tourRun { font-family: var(--font-mono), monospace; font-size: 12.5px; color: var(--text-muted); }
+/* Green outline, not a gold fill: an African-industry record, not one of his
+   own chart or certification numbers. */
+.recordPill {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(62, 209, 127, 0.45);
+  background: transparent;
+  color: var(--green);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.tourBlurb {
+  display: block;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  margin-top: 6px;
+  max-width: 96ch;
+  line-height: 1.55;
+}
+.tourFigs { text-align: right; white-space: nowrap; }
+.grossFig {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+/* A dash means no reported gross, not a small run — it should not read gold. */
+.grossNone { color: var(--dim); }
+.tourMeta {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.tourPanel { padding: 4px 8px 24px 46px; }
+.colDate { width: 130px; }
+.colCity { width: 180px; }
+.colCountry { width: 140px; }
+.colCap { width: 110px; text-align: right; }
+.dDate {
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.dVenue { font-weight: 600; font-size: 14.5px; }
+.dCity { font-size: 13.5px; color: #d8d8de; }
+.dCountry { font-family: var(--font-mono), monospace; font-size: 12px; color: var(--text-muted); }
+.dCap {
+  text-align: right;
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  color: #d8d8de;
+  font-variant-numeric: tabular-nums;
+}
+.dateNote {
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+
+/* ── Jump cards ─────────────────────────────────────────────────────────── */
+.jumpCard,
+.jumpCardAlt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 22px 26px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+/* The two cards sit on different beds, so each takes the other band's colour
+   to stay legible as a raised surface. */
+.jumpCard { background: var(--bg-soft); }
+.jumpCardAlt { background: var(--bg); }
+.jumpCard:hover,
+.jumpCardAlt:hover { border-color: var(--gold); background: rgba(255, 182, 39, 0.05); }
+.jumpTitle {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.jumpDesc { display: block; color: var(--text-muted); font-size: 13.5px; margin-top: 5px; }
+.jumpArrow { color: var(--gold); font-weight: 700; font-size: 20px; }
+
+/* ── Revenue per show ───────────────────────────────────────────────────── */
+.revenuePad { padding: 42px 40px 46px; }
+.colRank { width: 44px; }
+.colTour { width: 220px; }
+.colTickets { width: 100px; text-align: right; }
+.colGross { width: 120px; text-align: right; }
+.rank {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.hisName { font-weight: 600; color: var(--gold); }
+.otherName { font-weight: 600; color: var(--text); }
+.venue { font-weight: 600; font-size: 14.5px; }
+.city {
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.tourCell { font-size: 13.5px; color: #d8d8de; }
+.tickets {
+  text-align: right;
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  color: #d8d8de;
+  font-variant-numeric: tabular-nums;
+}
+.grossCell {
+  text-align: right;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.sourceNote {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 14px;
+  max-width: 100ch;
+  line-height: 1.6;
+}
+
+/* ── Record nights ──────────────────────────────────────────────────────── */
+.momentsPad { padding: 42px 40px 40px; }
+.h2Spaced { margin: 0 0 22px; }
+.momentList { border-top: 1px solid var(--line); }
+.moment {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 24px;
+  padding: 16px 8px;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+  background: transparent;
+}
+/* Green wash, matching the "African record" pill — these are the rows the pill
+   would sit on if it appeared here. */
+.momentRecord { background: rgba(62, 209, 127, 0.06); }
+.momentYear {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--gold);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+/* Sentence case in the body face: these are headlines, not display type. */
+.momentTitle {
+  margin: 0;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.momentText {
+  margin: 5px 0 0;
+  color: #d3d3da;
+  font-size: 14.5px;
+  line-height: 1.6;
+  max-width: 96ch;
+}
+
+/* ── Source band ────────────────────────────────────────────────────────── */
+.sourcePad { padding: 30px 40px 34px; }
+.sourceLine {
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 100ch;
+  color: var(--text-muted);
+}
+.backBtn { margin-top: 18px; }
+
+/* Narrower desktops: the hero's side panel drops under the headline before the
+   92px type has to shrink. */
+@media (max-width: 1239px) {
+  .heroGrid { grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  .ticketPanel { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 40px; }
+  .h1 { font-size: 67px; }
+  .headlineValue { font-size: 42px; }
+}

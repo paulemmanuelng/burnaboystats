@@ -5,7 +5,7 @@ import CountUp from "../../components/CountUp";
 import StatGrid from "../../components/StatGrid";
 import AwardExplorer from "../../components/AwardExplorer";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
-import MobileDeepPage from "../../components/MobileDeepPage";
+import MobileAwards from "../../components/MobileAwards";
 import { totalWins, totalNominations, ceremonyCount, honours, honourCount, grammyWins, ceremonies } from "../../data/awards";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
 
@@ -77,52 +77,46 @@ const SHORT_NAME: Record<string, string> = {
   "Nigeria Entertainment Awards": "Nigeria Entertainment",
 };
 
-const topBodies = [...ceremonies]
-  .map((c) => ({
-    name: SHORT_NAME[c.name] ?? c.name,
-    wins: c.noms.filter((n) => n.won).length,
-    noms: c.noms.length,
-  }))
-  // Ties break on FEWER nominations — 8 from 12 beats 8 from 22, which is the
-  // order the design lists Soundcity and AFRIMMA in.
-  .sort((a, b) => b.wins - a.wins || a.noms - b.noms)
-  .slice(0, 6);
-
-const mostWins = topBodies[0]?.wins ?? 1;
-const winRate = Math.round((totalWins / totalNominations) * 100);
+// Every award body, in the design's own order: most wins first, ties broken on
+// FEWER nominations — 8 from 12 beats 8 from 22, which is how the design lists
+// Soundcity and AFRIMMA. SHORT_NAME only shortens what the design shortened.
+const mobileCeremonies = [...ceremonies]
+  .map((c) => ({ ...c, name: SHORT_NAME[c.name] ?? c.name }))
+  .sort(
+    (a, b) =>
+      b.noms.filter((n) => n.won).length - a.noms.filter((n) => n.won).length ||
+      a.noms.length - b.noms.length
+  );
 
 export default function AwardsPage() {
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      {/* Mobile is its own screen — the shared deep-page grammar, screen 11. */}
-      <MobileDeepPage
-        label="Awards"
-        badge={`${totalWins} wins`}
-        kicker="Decorated"
-        titlePre="Awards & "
-        titleGold="nominations"
-        titleSize={40}
-        lede={`${totalWins} wins from ${totalNominations} nominations across ${ceremonyCount} award bodies — including a 2021 Grammy.`}
+      {/* Mobile is screen 11 — a nomination ledger, not a summary. Every body,
+          every year, every category, won or not, plus the honours block; the
+          shared deep-page grammar has one row per item and could not carry it.
+          The design's mock shows six bodies because that is what fits a mockup;
+          the real screen renders all of them. */}
+      <MobileAwards
+        ceremonies={mobileCeremonies}
+        honours={honours}
+        wins={totalWins}
+        footNote={`${totalWins} wins from ${totalNominations} nominations across ${ceremonyCount} award bodies — including the 2021 Grammy for Twice as Tall.`}
         stats={[
-          { value: String(grammyWins), label: "Grammy win" },
-          { value: String(grammyNoms), label: "Grammy noms" },
-          { value: String(ceremonyCount), label: "Award bodies" },
+          { value: String(totalWins), label: "Wins", note: "career total" },
+          {
+            value: String(totalNominations),
+            label: "Nominations",
+            note: `${Math.round((totalWins / totalNominations) * 100)}% strike rate`,
+          },
+          { value: String(ceremonyCount), label: "Award bodies", note: "worldwide" },
+          {
+            value: String(grammyWins),
+            label: grammyWins === 1 ? "Grammy" : "Grammys",
+            note: `from ${grammyNoms} noms`,
+          },
         ]}
-        listTitle="Most-decorated stages"
-        listMeta="top 6 by wins"
-        rows={topBodies.map((b, i) => ({
-          rank: String(i + 1).padStart(2, "0"),
-          title: b.name,
-          sub: `${b.noms} nominations`,
-          value: String(b.wins),
-          bar: b.wins / mostWins,
-          lead: i === 0,
-        }))}
-        footNote={`Wins and nominations from each body's own winners list. A ${winRate}% career strike rate. Honours like the MFR and TIME 100 are listed separately, not counted here.`}
-        ctaLabel="Every award"
-        ctaHref="/records/visualized#awards"
       />
 
       <div className={styles.desktopOnly}>

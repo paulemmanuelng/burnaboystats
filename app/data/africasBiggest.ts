@@ -2,9 +2,15 @@ import { spotifyFollowersDisplay } from "./spotify";
 
 // His peak Spotify monthly listeners, in one place. The note under the
 // leaderboard used to spell the milestone out ("past 56 million") while the
-// value beside it had already climbed to 58.48M — so the threshold is derived
+// value beside it had already climbed past it — so the threshold is derived
 // from this string rather than written twice.
-const BURNA_PEAK_LISTENERS = "58.48M";
+//
+// This constant is also the stats bot's write target. It anchors here, on the
+// name, and NOT on the leaderboard's id: the board's first cell holds this
+// constant rather than a literal, so an id-anchored find/replace landed on the
+// next artist's value instead and overwrote Tyla's peak with his, twice.
+// See scripts/watched-metrics.json → spotify-peak-listeners.
+const BURNA_PEAK_LISTENERS = "58.99M";
 
 // "Africa's Biggest" — leaderboard-style stat boxes comparing African artists.
 // Two box layouts:
@@ -142,7 +148,7 @@ export const statBoxes: LeaderboardBox[] = [
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: BURNA_PEAK_LISTENERS },
-      { name: "Tyla", sub: "🇿🇦 South Africa", value: "58.99M" },
+      { name: "Tyla", sub: "🇿🇦 South Africa", value: "46.58M" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "45.5M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "40.01M" },
       { name: "CKay", sub: "🇳🇬 Nigeria", value: "34.78M" },

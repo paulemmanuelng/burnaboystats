@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import styles from "../records/charts/charts.module.css";
 import { chartTier, type ChartCountry, type ChartRelease } from "../data/charts";
 import { track } from "../lib/analytics";
+import FilterEmpty from "./FilterEmpty";
 
 type Countries = Record<string, ChartCountry>;
 
@@ -133,6 +134,29 @@ export default function ChartExplorer({
   ];
   const totalAll = albums.length + singles.length + features.length;
   const totalShown = groups.reduce((n, g) => n + g.items.length, 0);
+
+  // The country is the narrower of the two filters, so it is what the second
+  // button drops — a peak band alone almost always still has matches.
+  const emptyProps = {
+    onClear: () => {
+      setCountry(null);
+      setPeak(null);
+    },
+    narrowest: country
+      ? { label: countries[country]?.name ?? country, drop: () => setCountry(null) }
+      : peak
+        ? { label: PEAKS.find((p) => p.key === peak)!.label, drop: () => setPeak(null) }
+        : undefined,
+  };
+  const emptyBody = (noun: string) =>
+    `There's no ${[
+      peak && PEAKS.find((p) => p.key === peak)!.label,
+      noun,
+      country && `in ${countries[country]?.name ?? country}`,
+    ]
+      .filter(Boolean)
+      .join(" ")}. That's a real gap in the record, not a missing page.`;
+
   const active = country || peak;
 
   // Flat, one-row-per-chart-entry data for the sortable table view (respects the
@@ -301,7 +325,7 @@ export default function ChartExplorer({
 
       {view === "cards" ? (
         totalShown === 0 ? (
-          <p className={styles.empty}>No releases match that filter. Try another country or peak.</p>
+          <FilterEmpty body={emptyBody("release")} {...emptyProps} />
         ) : (
           groups.map(
             (g) =>
@@ -321,7 +345,7 @@ export default function ChartExplorer({
           )
         )
       ) : flatRows.length === 0 ? (
-        <p className={styles.empty}>No chart entries match that filter. Try another country or peak.</p>
+        <FilterEmpty body={emptyBody("chart entry")} {...emptyProps} />
       ) : (
         <div className={styles.tableWrap}>
           {/* On mobile the header row becomes stacked cards, so sorting moves to

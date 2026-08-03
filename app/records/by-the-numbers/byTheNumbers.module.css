@@ -1,106 +1,158 @@
+/* By the numbers — desktop.
+   designs/desktop/Records - By The Numbers.dc.html, values verbatim.
+
+   Hidden below 900px, where MobileDeepPage renders screen 17 instead. */
+.desktopOnly { display: block; }
+@media (max-width: 900px) { .desktopOnly { display: none; } }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.heroPad { padding: 32px 40px 0; }
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.eyebrowRule { width: 1px; height: 12px; background: var(--line); display: block; }
+.freshness { display: flex; align-items: center; gap: 7px; }
+/* Green, not gold: this reports that the page is current, which isn't one of
+   his numbers. */
+.freshDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: block; }
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 76px;
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+  max-width: 20ch;
+}
+.lede {
+  font-size: 18px;
+  line-height: 1.55;
+  color: #cfc7bb;
+  max-width: 66ch;
+  margin: 20px 0 0;
+  text-wrap: pretty;
+}
+.hint {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 16px 0 0;
+}
+
+/* ── Stat grid: hairline seams inside a bounding border ─────────────────── */
+.gridPad { padding: 34px 40px 0; }
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 16px;
-  margin-top: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
 }
-
 .stat {
+  background: var(--bg);
+  padding: 26px 26px 24px;
+  color: var(--text);
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 26px 22px;
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+  transition: background var(--dur-fast) var(--ease);
 }
-.stat:hover {
-  border-color: var(--gold);
-  background: rgba(255, 182, 39, 0.05);
-  transform: translateY(-3px);
-}
-
+/* The four the page is built around get a wash and larger type. */
+.statBig { background: rgba(255, 182, 39, 0.05); }
+.stat:hover { background: rgba(255, 182, 39, 0.09); color: var(--text); }
+.numRow { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .num {
   font-family: var(--font-anton), sans-serif;
-  font-size: clamp(2.4rem, 5vw, 3.2rem);
-  line-height: 1;
-  color: var(--gold-bright);
-  letter-spacing: 0.01em;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 0.86;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
 }
-.delta {
-  display: block;
-  margin: 6px 0 2px;
-}
+.numBig { font-size: 60px; }
 .label {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--text);
-  margin-top: 4px;
-}
-.sub {
-  font-size: 0.86rem;
-  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 14px;
   line-height: 1.4;
 }
+.sub { font-size: 13px; line-height: 1.5; color: var(--text-muted); margin-top: 7px; max-width: 38ch; }
+/* Pinned to the card's foot so the proof line reads as a footer across the row,
+   however tall each card's copy runs. */
+.proof {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: auto;
+  padding-top: 16px;
+}
 
-/* Share row */
+/* ── Share row ──────────────────────────────────────────────────────────── */
+.sharePad { padding: 34px 40px 0; }
 .shareRow {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 14px;
-  margin-top: 36px;
-  padding: 20px 22px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 22px 26px;
+  border: 1px solid var(--border);
   background: var(--bg-soft);
 }
 .shareLabel {
   font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.74rem;
-  color: var(--gold);
+  color: var(--text-muted);
 }
-.shareBtns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+.shareBtns { display: flex; gap: 9px; flex-wrap: wrap; margin-left: auto; }
 .shareBtn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 9px 16px;
-  border: 1px solid var(--line);
+  min-height: 44px;
+  padding: 0 18px;
   border-radius: 999px;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
+  border: 1px solid var(--border);
   color: var(--text);
-  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
-}
-.shareBtn:hover {
-  color: var(--gold);
-  border-color: var(--gold);
-  background: rgba(255, 182, 39, 0.08);
-}
-
-.source {
-  margin-top: 30px;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  max-width: 70ch;
-  line-height: 1.55;
-}
-.back {
-  display: inline-block;
-  margin: 22px 0 8px;
   font-family: var(--font-mono), monospace;
-  font-size: 0.8rem;
-  color: var(--gold);
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
-.back:hover {
-  text-decoration: underline;
+.shareBtn:hover { border-color: var(--gold); color: var(--gold); }
+
+.source { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin: 24px 0 0; max-width: 88ch; }
+.pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 40px 72px; }
+
+@media (max-width: 1239px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+  /* Partial last row stretches the final cell rather than leaving a phantom
+     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
+     position so it holds for any item count: last-in-a-fresh-row spans three,
+     second-in-a-row spans the two that remain. */
+  .grid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .grid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
+  .h1 { font-size: 55px; }
+  .num { font-size: 40px; }
+  .numBig { font-size: 48px; }
 }

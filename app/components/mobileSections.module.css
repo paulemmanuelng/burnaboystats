@@ -1,0 +1,78 @@
+/* The shared mobile accordion — the design's `sectioned()`.
+   designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, screens 13 and
+   15, values verbatim. Only ever rendered inside a mobile screen, which is
+   itself hidden above the breakpoint, so this needs no media query of its own. */
+.section { border-top: 1px solid var(--line); }
+
+.head {
+  width: 100%;
+  min-height: 52px;
+  padding: 15px 18px;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+/* The open section keeps a faint wash, so the header still reads as the head of
+   something rather than as another row. */
+.headOpen { background: rgba(255, 182, 39, 0.05); }
+
+.name {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+/* Screen 15 sets its category names a step smaller than screen 13. */
+.nameSm { font-size: 19px; }
+.count { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); }
+.caret {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 17px;
+  line-height: 1;
+  color: var(--gold);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 12px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--line);
+  align-items: baseline;
+}
+.lead {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+/* Screen 15's year is display type, not a mono label — it reads as part of the
+   milestone rather than as a column heading. */
+.leadDisplay {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 18px;
+  line-height: 1;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.main { min-width: 0; }
+.title { font-weight: 600; font-size: 13.5px; line-height: 1.3; }
+/* Screen 15's milestone is a sentence, so it sets lighter and looser. */
+.plainTitle { font-weight: 400; line-height: 1.4; }
+.meta {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}

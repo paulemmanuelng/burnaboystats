@@ -5,6 +5,7 @@ import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
 import { matches, badgeWeight, byMostCertified } from "../lib/certs";
 import { track } from "../lib/analytics";
+import FilterEmpty from "./FilterEmpty";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
 
@@ -212,7 +213,24 @@ export default function CertExplorer({
       </section>
 
       {totalShown === 0 ? (
-        <p className={styles.empty}>No releases match that filter. Try another country or tier.</p>
+        // The country is the narrower of the two, so it is what the second
+        // button drops — a tier alone almost always still has matches.
+        <FilterEmpty
+          body={`There's no ${[tier, "certification", country && `from ${countries[country]?.name ?? country}`]
+            .filter(Boolean)
+            .join(" ")}. That's a real gap in the record, not a missing page.`}
+          onClear={() => {
+            setCountry(null);
+            setTier(null);
+          }}
+          narrowest={
+            country
+              ? { label: countries[country]?.name ?? country, drop: () => setCountry(null) }
+              : tier
+                ? { label: tier, drop: () => setTier(null) }
+                : undefined
+          }
+        />
       ) : (
         groups.map(
           (g) =>

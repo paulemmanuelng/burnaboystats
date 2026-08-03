@@ -191,7 +191,11 @@
   box-shadow: 0 0 8px rgba(62, 209, 127, 0.7);
 }
 .statusText { color: var(--text-muted); }
+/* Same 24px target minimum — the status row has the room. */
 .statusLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   margin-left: auto;
   color: var(--gold);
 }

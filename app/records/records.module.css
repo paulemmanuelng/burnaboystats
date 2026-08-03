@@ -232,11 +232,18 @@ a.card:hover {
 }
 .sourceNote { font-size: 12.5px; color: var(--text-muted); margin-top: 14px; }
 
-@media (max-width: 1100px) {
-  .wide, .headlineGrid { padding-inline: 24px; }
-  .h1 { font-size: 62px; }
-  .headlineGrid { grid-template-columns: 1fr 1fr; }
-  .headlineCell:nth-child(3) { border-left: none; }
+@media (max-width: 1239px) {
+  .wide, .headlineGrid { padding-inline: 32px; }
+  .h1 { font-size: 70px; }
+  .headlineGrid { grid-template-columns: repeat(3, 1fr); }
+  /* Partial last row stretches the final cell rather than leaving a phantom
+     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
+     position so it holds for any item count: last-in-a-fresh-row spans three,
+     second-in-a-row spans the two that remain. */
+  .headlineGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .headlineGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
+  .headlineCell:nth-child(3n + 1) { border-left: none; }
+  .headlineCell:nth-child(n + 4) { border-top: 1px solid var(--line); }
   .head { flex-wrap: wrap; gap: 16px; }
   .headBtn { margin-left: 0; }
   .grid { grid-template-columns: 1fr; }

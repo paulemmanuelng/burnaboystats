@@ -1,21 +1,32 @@
+"use client"; // each release opens to reveal its full placement list
+
+import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileLiveCharts.module.css";
 import { spotifyImage } from "../lib/spotifyImage";
 import { coverFor } from "../lib/covers";
+import { cadenceOf, reachOf, numberOnesOf } from "../lib/liveChartMeta";
 import ScrollRail from "./ScrollRail";
 import type { LiveRelease } from "../data/liveCharts";
 
 /**
  * The mobile live-charts screen.
  *
- * A distinct screen, not the desktop accordion narrowed: a two-up summary, a
- * scrolling platform rail, then one condensed row per release showing its top
- * few placements as chips. Built from designs/mobile/Burna Boy Stats -
- * Mobile.dc.html, screen 05.
+ * A distinct screen, not the desktop accordion narrowed — a two-up summary, a
+ * scrolling platform rail, then one row per release. Built from
+ * designs/mobile/Burna Boy Stats - Mobile.dc.html, screen 05.
+ *
+ * The design draws the row as a *preview*: cover, title, total, a few chips.
+ * Taken literally that strands 83% of the data on a phone — 658 of 790
+ * placements, with "Dai Dai" showing 5 of its 478. So the row opens, and the
+ * panel carries what the desktop <details> carries: every platform, its
+ * cadence, and every country with position and movement. Shut, it is the
+ * design's row; open, nothing is missing.
  *
  * Every figure derives from app/data/liveCharts.ts.
  */
 
+/** Chips shown while a row is shut — the best positions, not the list. */
 const TOP_CHIPS = 5;
 
 // The flag for an ISO alpha-2 code, from its regional indicator pair.
@@ -49,20 +60,20 @@ export default function MobileLiveCharts({
   numberOnes: number;
   updated: string;
 }) {
-  const rows = releases.map((r) => {
-    // LivePlatform.numberOnes counts how many of that platform's own entries
-    // are at No. 1 — it is a subset of `entries`, not a separate pool. Adding
-    // the two together double-counts, which is what the desktop page's `reach`
-    // helper already avoids.
-    const total = r.platforms.reduce((n, p) => n + p.entries.length, 0);
-    const no1 = r.platforms.reduce((n, p) => n + p.numberOnes, 0);
-    // Best positions first — the chips are a summary, not the whole list.
-    const top = r.platforms
+  const [open, setOpen] = useState<string | null>(null);
+
+  const rows = releases.map((r) => ({
+    title: r.title,
+    // `numberOnes` counts how many of a platform's own entries sit at No. 1 —
+    // a subset of `entries`, never a separate pool. Adding them double-counts.
+    total: reachOf(r),
+    no1: numberOnesOf(r),
+    top: r.platforms
       .flatMap((p) => p.entries)
       .sort((a, b) => a.position - b.position)
-      .slice(0, TOP_CHIPS);
-    return { title: r.title, total, no1, top };
-  });
+      .slice(0, TOP_CHIPS),
+    platforms: r.platforms,
+  }));
 
   return (
     <div className={styles.screen}>
@@ -124,48 +135,112 @@ export default function MobileLiveCharts({
             <div className={styles.platformValue}>{p.placements}</div>
             <div className={styles.platformName}>{p.platform}</div>
             <div className={styles.platformNo1}>
-              {p.numberOnes > 0 ? `${p.numberOnes} at No. 1` : ""}
+              {p.numberOnes > 0 ? `${p.numberOnes} at No. 1` : "none at No. 1"}
             </div>
+            {/* A No. 1 held for a week and one held for a day aren't the same
+                claim, so the cadence travels with the number. */}
+            <div className={styles.platformCadence}>{cadenceOf(p.platform)}</div>
           </div>
         ))}
       </ScrollRail>
 
-      {/* Charting now */}
+      {/* Charting now — every release, each opening to its full list */}
       <div className={styles.sectionLabel}>Charting now</div>
       <div className={styles.list}>
-        {rows.map((r) => (
-          <div key={r.title} className={styles.row}>
-            <div className={styles.rowTop}>
-              <span
-                className={styles.rowCover}
-                style={{ backgroundImage: `url(${spotifyImage(coverFor(r.title) ?? "", 300)})` }}
-              />
-              <span className={styles.rowMain}>
-                <span className={styles.rowTitle}>{r.title}</span>
-                <span className={styles.rowMeta}>
-                  {r.total} charts
-                  {r.no1 > 0 && <span className={styles.rowNo1}> · {r.no1} at No. 1</span>}
-                </span>
-              </span>
-            </div>
-            <div className={styles.chips}>
-              {r.top.map((e) => {
-                const m = movement(e);
-                const top = e.position === 1;
-                return (
+        {rows.map((r) => {
+          const isOpen = open === r.title;
+          const panelId = `live-${r.title.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
+          return (
+            <div key={r.title} className={`${styles.row} ${isOpen ? styles.rowOpen : ""}`}>
+              <button
+                type="button"
+                className={styles.rowBtn}
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                onClick={() => setOpen(isOpen ? null : r.title)}
+              >
+                <span className={styles.rowTop}>
                   <span
-                    key={`${e.country}-${e.position}`}
-                    className={`${styles.chip} ${top ? styles.chipTop : ""}`}
-                  >
-                    <span className={styles.chipFlag} aria-hidden="true">{flagFor(e.country)}</span>
-                    <span className={top ? styles.posTop : styles.pos}>#{e.position}</span>
-                    <span style={{ color: m.ink }}>{m.label}</span>
+                    className={styles.rowCover}
+                    style={{ backgroundImage: `url(${spotifyImage(coverFor(r.title) ?? "", 300)})` }}
+                  />
+                  <span className={styles.rowMain}>
+                    <span className={styles.rowTitle}>{r.title}</span>
+                    <span className={styles.rowMeta}>
+                      {r.total} {r.total === 1 ? "chart" : "charts"}
+                      {r.no1 > 0 && <span className={styles.rowNo1}> · {r.no1} at No. 1</span>}
+                    </span>
                   </span>
-                );
-              })}
+                  <span
+                    className={`${styles.caret} ${isOpen ? "" : styles.caretShut}`}
+                    aria-hidden="true"
+                  >
+                    ▾
+                  </span>
+                </span>
+
+                {/* The design's preview chips — shut state only. */}
+                {!isOpen && (
+                  <span className={styles.chips}>
+                    {r.top.map((e) => {
+                      const m = movement(e);
+                      const top = e.position === 1;
+                      return (
+                        <span
+                          key={`${e.country}-${e.position}`}
+                          className={`${styles.chip} ${top ? styles.chipTop : ""}`}
+                        >
+                          <span className={styles.chipFlag} aria-hidden="true">{flagFor(e.country)}</span>
+                          <span className={top ? styles.posTop : styles.pos}>#{e.position}</span>
+                          <span style={{ color: m.ink }}>{m.label}</span>
+                        </span>
+                      );
+                    })}
+                    {r.total > r.top.length && (
+                      <span className={styles.more}>+{r.total - r.top.length} more</span>
+                    )}
+                  </span>
+                )}
+              </button>
+
+              {isOpen && (
+                <div id={panelId} className={styles.panel}>
+                  {r.platforms.map((p) => (
+                    <div key={p.platform} className={styles.platformBlock}>
+                      <div className={styles.platformHead}>
+                        <span className={styles.platformBlockName}>{p.platform}</span>
+                        <span className={styles.platformBlockMeta}>
+                          {p.entries.length} {p.entries.length === 1 ? "country" : "countries"} ·{" "}
+                          {cadenceOf(p.platform)}
+                        </span>
+                      </div>
+                      <ul className={styles.entries}>
+                        {p.entries.map((e) => {
+                          const m = movement(e);
+                          return (
+                            <li
+                              key={e.country}
+                              className={e.position === 1 ? styles.entryTop : styles.entry}
+                            >
+                              <span className={styles.entryPos}>#{e.position}</span>
+                              <span className={styles.entryFlag} aria-hidden="true">
+                                {flagFor(e.country)}
+                              </span>
+                              <span className={styles.entryCountry}>{e.name}</span>
+                              <span className={styles.entryMove} style={{ color: m.ink }}>
+                                {m.label}
+                              </span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <Link href="/records/charts" className={styles.allBtn}>

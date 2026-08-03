@@ -1,0 +1,166 @@
+/* Mobile about screen. Values are the design's, verbatim
+   (designs/mobile/Burna Boy Stats - Mobile.dc.html, screen 07).
+   Shown only below the mobile breakpoint — the desktop page is a two-column
+   layout, not this markup widened.
+
+   This screen keeps the five-tab bar, so /about is in BACK_BAR_ROUTES but not
+   ACTION_BAR_ROUTES. */
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 100%;
+  }
+}
+
+/* ── Back bar ─────────────────────────────────────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(12, 10, 9, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 22px 18px 18px; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 48px;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.gold {
+  background: linear-gradient(120deg, var(--gold-bright), var(--gold) 55%, var(--grad-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lede { font-size: 14.5px; line-height: 1.5; color: #d8d8de; margin: 12px 0 0; }
+
+/* ── Fast facts ───────────────────────────────────────────────────────── */
+/* The facts come before the prose here — on a phone the answer people arrived
+   for ("real name", "born") should not sit below four paragraphs. */
+.facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.fact { background: var(--bg); padding: 14px 16px; }
+.factLabel {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.factValue { display: block; margin-top: 5px; font-weight: 600; font-size: 14px; }
+
+/* ── Bio ──────────────────────────────────────────────────────────────── */
+.bio { padding: 20px 18px 8px; }
+.bio p { font-size: 14.5px; line-height: 1.6; color: #d8d8de; margin: 0; }
+.bio p + p { margin-top: 12px; }
+.bio strong { color: var(--text); }
+.wikiLink {
+  display: inline-block;
+  min-height: 44px;
+  line-height: 44px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
+/* ── Timeline ─────────────────────────────────────────────────────────── */
+.timelineKicker {
+  padding: 8px 18px 6px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.timelineWrap { padding: 12px 18px 0; }
+.timeline {
+  border-left: 2px solid var(--border);
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.tRow { position: relative; }
+.tDot {
+  position: absolute;
+  left: -29px;
+  top: 5px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgba(232, 176, 75, 0.15);
+  display: block;
+}
+.tYear {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--gold);
+  line-height: 1;
+}
+/* Sentence case in the body face — a milestone is prose, not display type. */
+.tTitle {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: none;
+  margin: 5px 0 0;
+}
+.tText { color: var(--text-muted); font-size: 13px; margin: 4px 0 0; line-height: 1.5; }
+
+/* Clears the five-tab bar this screen keeps. */
+.spacer { height: 96px; }

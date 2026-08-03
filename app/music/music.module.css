@@ -4,8 +4,14 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
-@media (max-width: 1100px) {
-  .songGrid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 1239px) {
+  .songGrid { grid-template-columns: repeat(3, 1fr); }
+  /* Partial last row stretches the final cell rather than leaving a phantom
+     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
+     position so it holds for any item count: last-in-a-fresh-row spans three,
+     second-in-a-row spans the two that remain. */
+  .songGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .songGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
 }
 @media (max-width: 700px) {
   .songGrid { grid-template-columns: 1fr; }
@@ -413,16 +419,22 @@
 }
 .trackName { font-size: 14.5px; }
 
-@media (max-width: 1100px) {
-  .wide, .heroGrid { padding-inline: 24px; }
+@media (max-width: 1239px) {
+  .wide, .heroGrid { padding-inline: 32px; }
   .heroGrid { grid-template-columns: 1fr; }
   .heroCopy { padding: 40px 0 30px; }
-  .h1 { font-size: 62px; }
-  .latest { border-left: none; border-top: 1px solid var(--line); padding: 30px 0 36px; }
+  .h1 { font-size: 76px; }
+  .latest { border-left: none; border-top: 1px solid var(--line); padding: 40px 0 36px; }
   .head { flex-wrap: wrap; gap: 16px; }
   .headBtn, .pageCount { margin-left: 0; }
   .splitGrid { grid-template-columns: 1fr; gap: 40px; }
   .albumGrid { grid-template-columns: repeat(3, 1fr); }
+  /* Partial last row stretches the final cell rather than leaving a phantom
+     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
+     position so it holds for any item count: last-in-a-fresh-row spans three,
+     second-in-a-row spans the two that remain. */
+  .albumGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .albumGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
 }
 
 /* The desktop page and the mobile screen both sit in the DOM; each shows at

@@ -1,0 +1,170 @@
+/* Mobile updates screen. Values are the design's, verbatim
+   (designs/mobile/Burna Boy Stats - Mobile.dc.html, screen 06).
+   Shown only below the mobile breakpoint — the desktop page is a month-grouped
+   table, not this markup widened.
+
+   This screen keeps the five-tab bar, so /updates is in BACK_BAR_ROUTES but
+   not ACTION_BAR_ROUTES. */
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    min-height: 100%;
+  }
+}
+
+/* ── Back bar ─────────────────────────────────────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(12, 10, 9, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+/* A 44px tap target, not the design's bare text link — it's the only way off
+   this screen other than the tab bar. */
+.rss {
+  margin-left: auto;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: none;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 22px 18px 16px; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 52px;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.gold {
+  background: linear-gradient(120deg, var(--gold-bright), var(--gold) 55%, var(--grad-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lede { font-size: 14px; line-height: 1.5; color: #d8d8de; margin: 12px 0 0; }
+.lastEntry {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.liveDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: block; }
+
+/* ── Filter rail ──────────────────────────────────────────────────────── */
+.rail {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 18px 16px;
+  border-top: 1px solid var(--line);
+  scrollbar-width: none;
+}
+.chip {
+  flex: none;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+.chipDot { width: 7px; height: 7px; border-radius: 50%; flex: none; display: block; }
+
+/* ── Feed ─────────────────────────────────────────────────────────────── */
+.list { border-top: 1px solid var(--line); }
+.row { display: block; padding: 14px 18px; border-bottom: 1px solid var(--line); color: var(--text); }
+.rowTop { display: flex; align-items: center; gap: 10px; }
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.tagDot { width: 5px; height: 5px; border-radius: 50%; display: block; }
+.rowDate {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+.rowText { font-size: 14.5px; line-height: 1.45; margin-top: 9px; }
+
+.count {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 14px 18px 0;
+  margin: 0;
+}
+/* Clears the five-tab bar this screen keeps. */
+.spacer { height: 96px; }
