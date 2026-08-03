@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileTours.module.css";
 import { tourMeta } from "../lib/tourMeta";
-import type { Tour } from "../data/tours";
+import { upcomingShows, type Tour } from "../data/tours";
 import NotReported from "./NotReported";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -94,6 +94,27 @@ export default function MobileTours({
           </div>
         ))}
       </div>
+
+      {/* Announced but unplayed — kept out of every figure above. */}
+      {upcomingShows.length > 0 && (
+        <div className={styles.upcoming}>
+          <div className={styles.upcomingHead}>
+            <span className={styles.upcomingTag}>Announced</span>
+            <span className={styles.upcomingWhen}>{upcomingShows[0].when}</span>
+          </div>
+          {upcomingShows.map((u) => (
+            <div key={`${u.venue}-${u.when}`}>
+              <div className={styles.upcomingVenue}>{u.venue}</div>
+              <div className={styles.upcomingCity}>
+                {u.city}, {u.country}
+                {u.cap ? ` · ${u.cap.toLocaleString()} cap` : ""}
+              </div>
+              <p className={styles.upcomingText}>{u.note}</p>
+              <p className={styles.upcomingSource}>{u.source}</p>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Tours */}
       {tours.map((t) => {

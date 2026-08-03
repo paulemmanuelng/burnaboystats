@@ -4,7 +4,7 @@ import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import ToursExplorer from "../../components/ToursExplorer";
 import MobileTours from "../../components/MobileTours";
-import { tours, liveMoments } from "../../data/tours";
+import { tours, liveMoments, upcomingShows } from "../../data/tours";
 import { revenueShows } from "../../data/tourRevenue";
 import { countryCount as playedCount, regionCount } from "../../data/performedCountries";
 import { pageMetadata } from "../../lib/seo";
@@ -158,6 +158,34 @@ export default function ToursPage() {
                 Click a tour to see its venues, dates and capacities.
               </p>
             </div>
+            {/* Announced but unplayed. Sits above the tours because it is the
+                only thing here that hasn't happened yet, and it is kept out of
+                every total for the same reason. */}
+            {upcomingShows.length > 0 && (
+              <div className={styles.upcoming}>
+                <div className={styles.upcomingHead}>
+                  <span className={styles.upcomingTag}>Announced</span>
+                  <span className={styles.upcomingNote}>Not yet played — no gross, no attendance</span>
+                </div>
+                {upcomingShows.map((u) => (
+                  <div key={`${u.venue}-${u.when}`} className={styles.upcomingRow}>
+                    <div className={styles.upcomingMain}>
+                      <div className={styles.upcomingVenue}>
+                        {u.venue}
+                        <span className={styles.upcomingCity}>
+                          {u.city}, {u.country}
+                          {u.cap ? ` · ${u.cap.toLocaleString()} capacity` : ""}
+                        </span>
+                      </div>
+                      <p className={styles.upcomingText}>{u.note}</p>
+                      <p className={styles.upcomingSource}>{u.source}</p>
+                    </div>
+                    <span className={styles.upcomingWhen}>{u.when}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
             <ToursExplorer tours={tours} />
 
             <Link href="/records/tours/festivals" className={styles.jumpCard}>
