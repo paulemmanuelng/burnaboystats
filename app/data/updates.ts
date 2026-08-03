@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-03",
+    category: "Certifications",
+    text: "Platinum in Sweden: “Location”, the Dave collaboration, is certified Platinum by IFPI Sweden for 12 million on-demand streams — its 14th country, and certification No. 223 worldwide.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-08-03",
     category: "Streaming",
     text: "New YouTube peak: the monthly audience climbs to 840 million — still the seventh-biggest ever recorded worldwide and the only African artist on that board, with Lady Gaga (862M) next in reach.",
     href: "/records/africas-biggest",

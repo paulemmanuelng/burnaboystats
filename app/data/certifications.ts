@@ -257,7 +257,7 @@ export const features: Release[] = [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 2 },
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "NL", level: "Platinum" },
     { c: "DK", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "PT", level: "Gold" },
-    { c: "DE", level: "Gold" }, { c: "NG", level: "Gold" },
+    { c: "DE", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "SE", level: "Platinum" },
   ] },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", year: 2024, certs: [
     { c: "FR", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "UK", level: "Gold" },
@@ -498,6 +498,7 @@ export const certHistory: CertEvent[] = [
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "CH", level: "Gold", year: 2023 },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", country: "AU", level: "Gold", year: 2023 },
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "FR", level: "Platinum", year: 2026 },
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "SE", level: "Platinum", year: 2026 },
 ];
 
 // Helpers

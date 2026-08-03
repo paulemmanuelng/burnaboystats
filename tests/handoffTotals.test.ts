@@ -33,18 +33,18 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 222 certifications across 25 countries", () => {
+  it("counts 223 certifications across 25 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
-    expect(certs).toBe(222); // WGFT NG Platinum (TCSN)
+    expect(certs).toBe(223); // + Location SE Platinum
     expect(countries).toBe(25);
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 6 Diamond / 90 Platinum / 96 Gold / 30 Silver", () => {
+  it("splits into 6 Diamond / 91 Platinum / 96 Gold / 30 Silver", () => {
     // 3 Aug 2026: “Dai Dai” France upgraded Gold → Platinum (SNEP, 30M streams).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -53,12 +53,12 @@ describe("handoff checklist — data integrity", () => {
     // changed to Diamond — the repo says Platinum, and the design file that
     // showed 7 was the one carrying the typo.
     expect(byLevel("Diamond")).toBe(6);
-    expect(byLevel("Platinum")).toBe(90); // WGFT NG
+    expect(byLevel("Platinum")).toBe(91); // + Location SE
     expect(byLevel("Gold")).toBe(96);
     expect(byLevel("Silver")).toBe(30);
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(222);
+    expect(sum).toBe(223);
   });
 
   it("counts 260 chart entries across 60 territories, 44 of them at No. 1", () => {
