@@ -21,7 +21,7 @@
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
-      "baseline": 59210607,
+      "baseline": 59482941,
       "live": true,
       "sanity": {
         "maxJump": 0.12,
@@ -51,7 +51,7 @@
       },
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "peakListeners",
-      "lastChanged": "2026-08-02"
+      "lastChanged": "2026-08-03"
     },
     {
       "id": "spotify-listeners-rank",
@@ -91,7 +91,7 @@
       "extractor": "kworbTotalStreams",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 10489736233,
+      "baseline": 10500643906,
       "note": "Cumulative Spotify streams across every Burna Boy song — worth a milestone note as it climbs (e.g. crossing 11B).",
       "live": true,
       "siteTargets": [
@@ -109,7 +109,7 @@
         "min": 5000000000,
         "max": 100000000000
       },
-      "lastChanged": "2026-08-01"
+      "lastChanged": "2026-08-03"
     },
     {
       "id": "dai-dai-video-views",
@@ -119,7 +119,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 662641134,
+      "baseline": 664199909,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -407,7 +407,7 @@
       "match": "wgft (feat. Burna Boy)",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 282486357,
+      "baseline": 284303252,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -425,7 +425,7 @@
           "describes": "Spotify streams on /music/wgft"
         }
       ],
-      "lastChanged": "2026-07-31"
+      "lastChanged": "2026-08-03"
     },
     {
       "id": "spotify-streams-alone",
@@ -610,7 +610,7 @@
       "match": "Dai Dai",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 279251093,
+      "baseline": 284868629,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -628,7 +628,7 @@
           "describes": "Spotify streams for Dai Dai"
         }
       ],
-      "lastChanged": "2026-08-01"
+      "lastChanged": "2026-08-03"
     },
     {
       "id": "spotify-streams-tatata",
