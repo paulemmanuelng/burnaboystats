@@ -120,14 +120,12 @@ export default function MobileHome() {
           <span className={styles.rule} aria-hidden="true" />
           The African Giant · Est. 2010
         </p>
-        {/* Deliberately not an <h1>. Both layouts sit in the DOM at once — one
-            is CSS-hidden, not removed — so a second <h1> would give the page
-            two, which the SEO gate rejects and crawlers dislike. The desktop
-            block keeps the single document heading; this renders the same
-            words at the mobile size. */}
-        <p className={styles.title}>
+        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+            carries two — one per layout, and only ever one is visible. The SEO
+            gate checks that pairing rather than a bare count. */}
+        <h1 className={styles.title}>
           Burna <span className={styles.titleGold}>Boy</span>
-        </p>
+        </h1>
         <p className={styles.lede}>
           Every certification, chart peak and record — sourced line by line, updated
           the day it changes.

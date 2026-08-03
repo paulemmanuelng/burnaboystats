@@ -47,8 +47,24 @@ for await (const file of walk(ROOT)) {
   if (!/<link rel="canonical"/.test(html)) problems.push(`${route}: no canonical`);
   if (!/property="og:image"/.test(html)) problems.push(`${route}: no og:image`);
 
+  // One <h1> per LAYOUT, not per document.
+  //
+  // Most routes ship a mobile screen and a desktop page in the same HTML, one
+  // hidden by CSS at any given width. Demanding a single <h1> per document
+  // meant only the desktop copy could have one — so at phone width, which is
+  // how crawlers render and how most readers arrive, the page's only heading
+  // was display:none and screen readers started at <h2>.
+  //
+  // So: two are allowed exactly when the page carries both layouts, which the
+  // desktopOnly wrapper marks. Anything else is still an error.
   const h1s = (html.match(/<h1[^>]*>/g) ?? []).length;
-  if (h1s !== 1) problems.push(`${route}: ${h1s} <h1> tags (want exactly 1)`);
+  const split = /desktopOnly/.test(html);
+  const allowed = split ? [1, 2] : [1];
+  if (!allowed.includes(h1s)) {
+    problems.push(
+      `${route}: ${h1s} <h1> tags (want ${split ? "1 per layout, so 1 or 2" : "exactly 1"})`
+    );
+  }
 }
 
 if (problems.length) {
@@ -56,4 +72,4 @@ if (problems.length) {
   for (const p of problems) console.error(`  ${p}`);
   process.exit(1);
 }
-console.error(`SEO check passed — ${checked} pages: titles, descriptions, canonicals, og:image, single h1.`);
+console.error(`SEO check passed — ${checked} pages: titles, descriptions, canonicals, og:image, one h1 per layout.`);

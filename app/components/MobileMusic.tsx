@@ -87,13 +87,12 @@ export default function MobileMusic({
       {/* Hero */}
       <div className={styles.hero}>
         <div className={styles.kicker}>The catalogue</div>
-        {/* Deliberately not an <h1>. Both layouts sit in the DOM at once — one
-            is CSS-hidden, not removed — so a second <h1> would give the page
-            two, which the SEO gate rejects. The desktop block keeps the single
-            document heading; this renders the same words at the mobile size. */}
-        <p className={styles.h1}>
+        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+            carries two — one per layout, and only ever one is visible. The SEO
+            gate checks that pairing rather than a bare count. */}
+        <h1 className={styles.h1}>
           The <span className={styles.gold}>Music</span>
-        </p>
+        </h1>
         <p className={styles.lede}>
           {albums.length === 8 ? "Eight" : albums.length} studio albums,{" "}
           {eps.length === 2 ? "two" : eps.length} EPs and{" "}

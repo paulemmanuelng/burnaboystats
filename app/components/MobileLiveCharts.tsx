@@ -94,9 +94,9 @@ export default function MobileLiveCharts({
       {/* Hero */}
       <div className={styles.hero}>
         <div className={styles.kicker}>Tracked as it happens</div>
-        <p className={styles.h1}>
+        <h1 className={styles.h1}>
           Live <span className={styles.gold}>Charts</span>
-        </p>
+        </h1>
         <p className={styles.lede}>
           {placements} placements across {countries} countries, refreshed hourly. Snapshot{" "}
           {updated}.

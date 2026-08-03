@@ -69,10 +69,12 @@ export default function MobileTours({
       {/* Hero */}
       <div className={styles.hero}>
         <div className={styles.kicker}>On the road</div>
-        {/* Not an <h1> — the desktop block carries the page's single heading. */}
-        <p className={styles.title}>
+        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+            carries two — one per layout, and only ever one is visible. The SEO
+            gate checks that pairing rather than a bare count. */}
+        <h1 className={styles.title}>
           Tours &amp; <span className={styles.gold}>live</span>
-        </p>
+        </h1>
         <p className={styles.lede}>
           {spell(tours.length)} tours across {countryCount} countries — and the
           highest-grossing tour by any African artist. Tap a tour for its dates.

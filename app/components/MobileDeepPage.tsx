@@ -105,13 +105,13 @@ export default function MobileDeepPage({
       {/* Hero */}
       <div className={styles.hero}>
         <div className={styles.kicker}>{kicker}</div>
-        {/* Deliberately not an <h1>. Both layouts sit in the DOM at once — one
-            is CSS-hidden, not removed — so a second <h1> would give the page
-            two, which the SEO gate rejects. */}
-        <p className={styles.title} style={{ fontSize: `${titleSize}px` }}>
+        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+            carries two — one per layout, and only ever one is visible. The SEO
+            gate checks that pairing rather than a bare count. */}
+        <h1 className={styles.title} style={{ fontSize: `${titleSize}px` }}>
           {titlePre}
           <span className={styles.gold}>{titleGold}</span>
-        </p>
+        </h1>
         <p className={styles.lede}>{lede}</p>
       </div>
 
