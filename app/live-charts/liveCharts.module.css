@@ -162,6 +162,20 @@
 }
 .summary::-webkit-details-marker { display: none; }
 .summary:hover .title { color: var(--gold); }
+/* The quiet pill that names the two EPs — same voice as the mobile tag. */
+.epTag {
+  margin-left: 9px;
+  vertical-align: 3px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 7px;
+}
 /* All three get explicit placement. Grid places definitely-positioned items
    before auto-placed ones, so giving only .total a row sent it to column 1 and
    pushed the title across to column 2. */

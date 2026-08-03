@@ -135,7 +135,7 @@ export const eps: AlbumEntry[] = [
   {
     title: "Redemption",
     spotify: "https://open.spotify.com/album/50qNx4v7MKypMx5wGynQ8j",
-    cover: "https://i.scdn.co/image/ab67616d0000b2739c6526408de3ed6a97d0f0db",
+    cover: "https://i.scdn.co/image/ab67616d0000b2738f864a796ece5bd24bd45119f0db",
     year: 2016,
     label: "Spaceship",
     tracks: [
@@ -171,3 +171,11 @@ export const compilations: AlbumEntry[] = [
     ],
   },
 ];
+
+/**
+ * Whether a release title names one of the EPs. The live-charts feed only
+ * distinguishes "song" from "album", so anything album-shaped checks here to
+ * be labelled EP rather than Album — Redemption and Steel & Copper are EPs.
+ */
+export const isEp = (title: string) =>
+  eps.some((e) => e.title.toLowerCase() === title.trim().toLowerCase());

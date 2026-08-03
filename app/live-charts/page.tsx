@@ -16,6 +16,7 @@ import {
   livePlatformTotals,
   type LiveEntry,
 } from "../data/liveCharts";
+import { isEp } from "../data/albums";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Live Charts — Where He's Charting Right Now",
@@ -120,6 +121,9 @@ function ReleaseBlock({ r }: { r: (typeof liveCharts)[number] }) {
         <span className={styles.title}>
           <Cover title={r.title} />
           {r.title}
+          {/* The feed only knows song vs album; the two EPs deserve their
+              real name. Sits inside the "Albums & EPs" section either way. */}
+          {r.kind === "album" && isEp(r.title) && <span className={styles.epTag}>EP</span>}
         </span>
         <span className={styles.chips}>
           {r.platforms.map((p) => (

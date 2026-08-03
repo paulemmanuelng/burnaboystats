@@ -10,6 +10,7 @@ import ScrollRail from "./ScrollRail";
 import type { LiveRelease } from "../data/liveCharts";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import { isEp } from "../data/albums";
 
 /**
  * The mobile live-charts screen.
@@ -174,7 +175,7 @@ export default function MobileLiveCharts({
                       {/* Albums sit in the same list as songs — the desktop
                           page separates them into sections, and this tag is
                           that distinction at phone size. */}
-                      {r.kind === "album" && <span className={styles.kindTag}>Album</span>}
+                      {r.kind === "album" && <span className={styles.kindTag}>{isEp(r.title) ? "EP" : "Album"}</span>}
                     </span>
                     <span className={styles.rowMeta}>
                       {r.total} {r.total === 1 ? "chart" : "charts"}
