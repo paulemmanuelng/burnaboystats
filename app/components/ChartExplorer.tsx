@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import styles from "../records/charts/charts.module.css";
 import { chartTier, type ChartCountry, type ChartRelease } from "../data/charts";
 import { track } from "../lib/analytics";
+import { coverFor } from "../lib/covers";
+import { spotifyImage } from "../lib/spotifyImage";
 import FilterEmpty from "./FilterEmpty";
 
 type Countries = Record<string, ChartCountry>;
@@ -32,12 +34,19 @@ function Row({
     // undifferentiated run of divs (and flex containers drop implicit list
     // semantics in Safari/VoiceOver anyway).
     <div className={styles.row} role="listitem">
-      <div>
+      <div className={styles.rowHead}>
+        <span
+          className={styles.rowCover}
+          aria-hidden="true"
+          style={{ backgroundImage: `url(${spotifyImage(coverFor(item.title) ?? "", 300)})` }}
+        />
+        <span className={styles.rowText}>
         <span className={styles.title}>{item.title}</span>
         <span className={styles.credit}>
           {item.credit ? `${item.credit} · ${item.year}` : item.year}
         </span>
         {item.note ? <span className={styles.releaseNote}>{item.note}</span> : null}
+        </span>
       </div>
       <div className={styles.peaks} role="list" aria-label={`${item.title} — chart peaks`}>
         {entries.map((e) => {
@@ -384,6 +393,11 @@ export default function ChartExplorer({
               {sortedRows.map((r, i) => (
                 <tr key={`${r.song}-${r.code}-${i}`} className={r.peak === 1 ? styles.rowOne : ""}>
                   <td className={styles.tdSong}>
+                    <span
+                      className={styles.tCover}
+                      aria-hidden="true"
+                      style={{ backgroundImage: `url(${spotifyImage(coverFor(r.song) ?? "", 64)})` }}
+                    />
                     <span className={styles.tSong}>
                       {r.song}
                       {r.type === "Album" ? <span className={styles.albumTag}>Album</span> : null}

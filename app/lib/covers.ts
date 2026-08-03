@@ -81,6 +81,50 @@ const EXTRA_COVERS: Record<string, string> = {
   hossana: "https://cdn-images.dzcdn.net/images/cover/2f2348a8985965e0f13b08e0851f5a8d/100x100-000000-80-0-0.jpg",
   // Jerusalema (Remix) — Master KG feat. Burna Boy & Nomcebo Zikode
   jerusalema: "https://cdn-images.dzcdn.net/images/cover/c9db716ce7cada1e9fd8dbde8e0b1301/100x100-000000-80-0-0.jpg",
+
+  // Higher — his own 2024 single
+  higher: "https://cdn-images.dzcdn.net/images/cover/a01a6cc7f3c7d316f597492e03caa8fe/100x100-000000-80-0-0.jpg",
+  // Do I (Remix) — Phyno ft. Burna Boy
+  "do i": "https://cdn-images.dzcdn.net/images/cover/060b1718eafdeecf3642fb53b072d2e8/100x100-000000-80-0-0.jpg",
+  // Question — Burna Boy ft. Don Jazzy
+  question: "https://cdn-images.dzcdn.net/images/cover/f1ded2f2f5b80c9b054ee9f742cce6fd/100x100-000000-80-0-0.jpg",
+  // Want It All — Burna Boy ft. Polo G
+  "want it all": "https://cdn-images.dzcdn.net/images/cover/65652c3850bfa36fcf7fe016ffe792f3/100x100-000000-80-0-0.jpg",
+  // Onyeka (Baby) — on Twice As Tall's deluxe edition
+  "onyeka baby": "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/100x100-000000-80-0-0.jpg",
+  // Own It — Stormzy ft. Burna Boy & Ed Sheeran
+  "own it": "https://cdn-images.dzcdn.net/images/cover/c118f131cf627543b95df1ad9a4c1571/100x100-000000-80-0-0.jpg",
+  // Donne-moi l'accord — Dadju & Burna Boy
+  "donne moi l accord": "https://cdn-images.dzcdn.net/images/cover/046cf3983b563fea65147732eeb653c2/100x100-000000-80-0-0.jpg",
+  // Play Play — J Hus ft. Burna Boy, "Big Conspiracy"
+  "play play": "https://cdn-images.dzcdn.net/images/cover/fd4f0303fd35a1ecdfaa76ea1a4e29a4/100x100-000000-80-0-0.jpg",
+  // Second Sermon (Remix) — Black Sherif ft. Burna Boy
+  "second sermon": "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/100x100-000000-80-0-0.jpg",
+  // Simmer — Mahalia ft. Burna Boy
+  simmer: "https://cdn-images.dzcdn.net/images/cover/eceac2149053e31a54687b05e125c93d/100x100-000000-80-0-0.jpg",
+  // Loved By You — Justin Bieber ft. Burna Boy, "Justice"
+  "loved by you": "https://cdn-images.dzcdn.net/images/cover/87468622c8e7ac9dce7b541be136aa4c/100x100-000000-80-0-0.jpg",
+  // Enjoy Yourself (Remix) — Pop Smoke ft. Burna Boy
+  "enjoy yourself": "https://cdn-images.dzcdn.net/images/cover/337e152ccbf267774a30a08fbceae106/100x100-000000-80-0-0.jpg",
+  // Rollin' — MIST ft. Burna Boy
+  rollin: "https://cdn-images.dzcdn.net/images/cover/123c9286e946a0ad60a4126acbee6f60/100x100-000000-80-0-0.jpg",
+  // Lenu (Remix) — BNXN ft. Burna Boy
+  lenu: "https://cdn-images.dzcdn.net/images/cover/aef7ccf16f0481793eea256ab167aa88/100x100-000000-80-0-0.jpg",
+  // All Eyes on Me — AKA ft. Burna Boy, Da L.E.S & JR
+  "all eyes on me": "https://cdn-images.dzcdn.net/images/cover/51a425dcf87f37e33159744d5685471d/100x100-000000-80-0-0.jpg",
+  // B. D'OR — Burna Boy ft. Wizkid
+  "b d or": "https://cdn-images.dzcdn.net/images/cover/22ffd179c90c11da9bbb429c9c13d4a4/100x100-000000-80-0-0.jpg",
+  // Mera Na — Sidhu Moose Wala ft. Burna Boy
+  "mera na": "https://cdn-images.dzcdn.net/images/cover/79427388e8d1b09867081a1edf9a62a2/100x100-000000-80-0-0.jpg",
+  // Only You — J. Cole ft. Burna Boy
+  "only you": "https://cdn-images.dzcdn.net/images/cover/ba58221a878715b6d99912ce63ea63d5/100x100-000000-80-0-0.jpg",
+  // just like me — 21 Savage ft. Burna Boy & Metro Boomin
+  "just like me": "https://cdn-images.dzcdn.net/images/cover/d1efd9562706fbc4facf4e86cbe78be4/100x100-000000-80-0-0.jpg",
+  // Tshwala Bam — TitoM & Yuppe ft. Burna Boy & S.N.E
+  "tshwala bam": "https://cdn-images.dzcdn.net/images/cover/04a3890df3db451da1b4dea992f59ab2/100x100-000000-80-0-0.jpg",
+  // Be Honest — Jorja Smith ft. Burna Boy. Deezer only licenses karaoke
+  // covers of it, so this one comes from the iTunes catalogue instead.
+  "be honest": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/17/8d/a1/178da1a7-0ad5-145b-31fb-9a4c150b4a4a/194491116361.jpg/100x100bb.jpg",
 };
 
 // Not every album row carries art, so drop the empties rather than mapping a
@@ -110,7 +154,13 @@ const OWN_COVERS: Record<string, string> = {
 
 export function coverFor(title: string): string | undefined {
   const k = TITLE_ALIASES[key(title)] ?? key(title);
-  return OWN_COVERS[k] ?? TRACK_COVERS[k];
+  const hit = OWN_COVERS[k] ?? TRACK_COVERS[k];
+  if (hit) return hit;
+  // "Sungba (Remix)" should find the art filed under "sungba": sources write
+  // the remix credit inconsistently, and the remix single almost always
+  // carries the base release's art in our maps.
+  const base = k.replace(/\s+remix$/, "");
+  return base !== k ? (OWN_COVERS[base] ?? TRACK_COVERS[base]) : undefined;
 }
 
 /** First letter, for the fallback tile when there is no art. */
