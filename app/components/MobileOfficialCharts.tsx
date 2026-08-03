@@ -280,20 +280,44 @@ export default function MobileOfficialCharts({
           </div>
           {g.rows.map((r) => (
             <div key={r.title} className={styles.row}>
-              <div className={styles.rowTop}>
-                <div className={styles.rowMain}>
-                  <div className={styles.rowTitle}>{r.title}</div>
-                  <div className={styles.rowCredit}>{r.credit}</div>
-                </div>
-                <div className={styles.rowRight}>
-                  {/* Best peak leads, right-aligned, so the column can be
-                      scanned without reading pills. */}
-                  <div className={styles.rowBest} style={{ color: BAND[bandOf(r.best)].color }}>
-                    #{r.best}
+              {/* Tapping the release opens its full chart list. The "+47" is
+                  the affordance, but the title is what a thumb goes for, so
+                  the whole header is the control — a button when there is
+                  something to unfold, plain markup when there isn't. */}
+              {r.hidden > 0 ? (
+                <button
+                  type="button"
+                  className={`${styles.rowTop} ${styles.rowToggle}`}
+                  aria-expanded={unfolded.has(r.title)}
+                  onClick={() => toggleRow(r.title)}
+                >
+                  <span className={styles.rowMain}>
+                    <span className={styles.rowTitle}>{r.title}</span>
+                    <span className={styles.rowCredit}>{r.credit}</span>
+                  </span>
+                  <span className={styles.rowRight}>
+                    <span className={styles.rowBest} style={{ color: BAND[bandOf(r.best)].color }}>
+                      #{r.best}
+                    </span>
+                    <span className={styles.rowCount}>{r.count}</span>
+                  </span>
+                </button>
+              ) : (
+                <div className={styles.rowTop}>
+                  <div className={styles.rowMain}>
+                    <div className={styles.rowTitle}>{r.title}</div>
+                    <div className={styles.rowCredit}>{r.credit}</div>
                   </div>
-                  <div className={styles.rowCount}>{r.count}</div>
+                  <div className={styles.rowRight}>
+                    {/* Best peak leads, right-aligned, so the column can be
+                        scanned without reading pills. */}
+                    <div className={styles.rowBest} style={{ color: BAND[bandOf(r.best)].color }}>
+                      #{r.best}
+                    </div>
+                    <div className={styles.rowCount}>{r.count}</div>
+                  </div>
                 </div>
-              </div>
+              )}
               <div className={styles.pills}>
                 {(unfolded.has(r.title) ? r.peaks : r.peaks.slice(0, PILLS_SHOWN)).map((p) => {
                   const b = BAND[bandOf(p.peak)];

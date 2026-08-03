@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-03",
+    category: "Charts",
+    text: "Still the biggest song in the world: “Dai Dai” takes a 4th consecutive week at No. 1 on the Billboard Global 200 and a 6th consecutive week atop the Global 200 Excl. US.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-08-03",
     category: "Certifications",
     text: "Platinum in Sweden: “Location”, the Dave collaboration, is certified Platinum by IFPI Sweden for 12 million on-demand streams — its 14th country, and certification No. 223 worldwide.",
     href: "/certifications",
