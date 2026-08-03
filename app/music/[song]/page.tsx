@@ -7,6 +7,7 @@ import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { songBySlug, songSlugs, songs, type Song } from "../../data/songs";
 import { allChartItems, CHART_COUNTRIES, chartTier } from "../../data/charts";
 import { allItems, COUNTRIES, tierOf } from "../../data/certifications";
+import MobileMenuButton from "../../components/MobileMenuButton";
 
 // Only the known song slugs are valid routes — anything else 404s.
 export const dynamicParams = false;
@@ -162,6 +163,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
         </Link>
         <span className={styles.mobileBackLabel}>{song.title}</span>
         <span className={styles.mobileBackYear}>{song.year}</span>
+        <MobileMenuButton />
       </div>
 
       {/* The cover picker — the design's way of moving between songs. Real

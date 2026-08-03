@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./mobileAbout.module.css";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * The mobile about screen.
@@ -31,6 +32,7 @@ export default function MobileAbout({
           </svg>
         </Link>
         <span className={styles.backLabel}>About</span>
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

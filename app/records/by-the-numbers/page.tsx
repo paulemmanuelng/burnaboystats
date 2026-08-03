@@ -55,7 +55,7 @@ const PROOF: Record<string, string> = {
 
 // Each stat is a standalone, quotable fact linking to the page that proves it.
 // `big` marks the four the page is built around — larger type and a wash.
-const stats: {
+export const stats: {
   num: string;
   label: string;
   sub: string;

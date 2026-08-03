@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./mobileRevenue.module.css";
 import ScrollRail from "./ScrollRail";
 import NotReported from "./NotReported";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * Mobile screen 14 — Revenue per show.
@@ -78,6 +79,7 @@ export default function MobileRevenue({
         </Link>
         <span className={styles.backLabel}>Revenue per show</span>
         <span className={styles.badge}>{topGross}</span>
+        <MobileMenuButton />
       </div>
 
       <div className={styles.hero}>

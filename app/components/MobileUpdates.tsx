@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./mobileUpdates.module.css";
 import { inkFor } from "../lib/updateInk";
 import type { Update, UpdateCategory } from "../data/updates";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * The mobile updates screen.
@@ -55,6 +56,7 @@ export default function MobileUpdates({
         </Link>
         <span className={styles.backLabel}>Updates</span>
         <a href="/rss.xml" className={styles.rss}>RSS ↗</a>
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./mobileFaq.module.css";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * The mobile FAQ screen.
@@ -35,6 +36,7 @@ export default function MobileFaq({
         </Link>
         <span className={styles.backLabel}>FAQ</span>
         <span className={styles.badge}>{total} questions</span>
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

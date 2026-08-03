@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./mobileFirsts.module.css";
 import MobileSections, { type Section } from "./MobileSections";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * Mobile screen 15 — Firsts & records.
@@ -35,6 +36,7 @@ export default function MobileFirsts({
         </Link>
         <span className={styles.backLabel}>Firsts</span>
         <span className={styles.badge}>{total}</span>
+        <MobileMenuButton />
       </div>
 
       <div className={styles.hero}>

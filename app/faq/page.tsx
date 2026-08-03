@@ -45,7 +45,7 @@ const GROUPS = [
 type GroupId = (typeof GROUPS)[number]["id"];
 
 // Answer-first Q&A — figures pull from the site's own data so they stay in sync.
-const faqs: { g: GroupId; q: string; a: string }[] = [
+export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "artist",
     q: "Who is Burna Boy?",

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./mobileContact.module.css";
 import ContactForm from "./ContactForm";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * The mobile contact screen.
@@ -29,6 +30,7 @@ export default function MobileContact({
           </svg>
         </Link>
         <span className={styles.backLabel}>Contact</span>
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

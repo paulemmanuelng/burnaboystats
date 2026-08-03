@@ -7,6 +7,7 @@ import { badgeWeight } from "../lib/certs";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
 import type { CertEvent, Country, Release } from "../data/certifications";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * The mobile certifications screen.
@@ -99,6 +100,7 @@ export default function MobileCerts({
         </Link>
         <span className={styles.backLabel}>Certifications</span>
         <span className={styles.backCount}>{total}</span>
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

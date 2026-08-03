@@ -6,6 +6,7 @@ import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
 import FilterEmpty from "./FilterEmpty";
 import type { ChartRelease, ChartCountry } from "../data/charts";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * The mobile official-charts screen.
@@ -138,6 +139,7 @@ export default function MobileOfficialCharts({
         </Link>
         <span className={styles.backLabel}>Official charts</span>
         <span className={styles.badge}>{entryCount}</span>
+        <MobileMenuButton />
       </div>
 
       {/* Hero */}

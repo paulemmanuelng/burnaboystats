@@ -1,0 +1,30 @@
+/* The hamburger, as drawn in the mobile back bars.
+   Pushed to the right end of whatever header renders it. */
+.btn {
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  flex: none;
+}
+
+.bar {
+  display: block;
+  width: 17px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+/* Mobile chrome only — the desktop nav has its own. */
+@media (min-width: 901px) {
+  .btn { display: none; }
+}

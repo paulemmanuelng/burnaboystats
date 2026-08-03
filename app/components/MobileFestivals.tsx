@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./mobileFestivals.module.css";
 import MobileSections, { type Section } from "./MobileSections";
+import MobileMenuButton from "./MobileMenuButton";
 
 /**
  * Mobile screen 13 — Festivals & shows.
@@ -37,6 +38,7 @@ export default function MobileFestivals({
         </Link>
         <span className={styles.backLabel}>Festivals</span>
         <span className={styles.badge}>{total}</span>
+        <MobileMenuButton />
       </div>
 
       <div className={styles.hero}>
