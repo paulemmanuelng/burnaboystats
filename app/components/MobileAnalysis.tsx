@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./mobileAnalysis.module.css";
 import type { Finding } from "../lib/analysisFindings";
 import MobileMenuButton from "./MobileMenuButton";
+import BackLink from "./BackLink";
 
 /**
  * Mobile screen 21 — Analysis.
@@ -32,11 +33,11 @@ export default function MobileAnalysis({
   return (
     <div className={styles.screen}>
       <div className={styles.backBar}>
-        <Link href="/records" aria-label="Back" className={styles.backBtn}>
+        <BackLink href="/records" aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
-        </Link>
+        </BackLink>
         <span className={styles.backLabel}>Analysis</span>
         <span className={styles.badge}>
           {findings.length} {findings.length === 1 ? "finding" : "findings"}

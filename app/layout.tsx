@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Nav from "./components/Nav";
 import MobileNavSheet from "./components/MobileNavSheet";
+import NavHistoryTracker from "./components/NavHistoryTracker";
 import { navGroups, navUpdated, navSearchHint } from "./lib/navGroups";
 import BackToTop from "./components/BackToTop";
 import Breadcrumbs from "./components/Breadcrumbs";
@@ -138,6 +139,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
         {/* Per-page breadcrumb structured data */}
         <Breadcrumbs />
+
+        {/* Notes each route change, so a screen's back bar can tell "go back
+            to where you came from" from "there is nowhere to go back to". */}
+        <NavHistoryTracker />
 
         {/* NAVIGATION BAR — shown on every page */}
         <Nav />

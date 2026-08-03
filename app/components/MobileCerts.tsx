@@ -8,6 +8,7 @@ import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
 import type { CertEvent, Country, Release } from "../data/certifications";
 import MobileMenuButton from "./MobileMenuButton";
+import BackLink from "./BackLink";
 
 /**
  * The mobile certifications screen.
@@ -93,11 +94,11 @@ export default function MobileCerts({
     <div className={styles.screen}>
       {/* Back bar */}
       <div className={styles.backBar}>
-        <Link href="/" aria-label="Back" className={styles.backBtn}>
+        <BackLink href="/" aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
-        </Link>
+        </BackLink>
         <span className={styles.backLabel}>Certifications</span>
         <span className={styles.backCount}>{total}</span>
         <MobileMenuButton />

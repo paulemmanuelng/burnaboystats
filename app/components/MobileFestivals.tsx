@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./mobileFestivals.module.css";
 import MobileSections, { type Section } from "./MobileSections";
 import MobileMenuButton from "./MobileMenuButton";
+import BackLink from "./BackLink";
 
 /**
  * Mobile screen 13 — Festivals & shows.
@@ -31,11 +32,11 @@ export default function MobileFestivals({
   return (
     <div className={styles.screen}>
       <div className={styles.backBar}>
-        <Link href="/records/tours" aria-label="Back" className={styles.backBtn}>
+        <BackLink href="/records/tours" aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
-        </Link>
+        </BackLink>
         <span className={styles.backLabel}>Festivals</span>
         <span className={styles.badge}>{total}</span>
         <MobileMenuButton />

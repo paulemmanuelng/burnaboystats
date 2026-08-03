@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./mobileVisualized.module.css";
 import MobileMenuButton from "./MobileMenuButton";
+import BackLink from "./BackLink";
 
 /**
  * The mobile "visualized" screen.
@@ -50,11 +51,11 @@ export default function MobileVisualized({
     <div className={styles.screen}>
       {/* Back bar */}
       <div className={styles.backBar}>
-        <Link href="/records" aria-label="Back" className={styles.backBtn}>
+        <BackLink href="/records" aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
-        </Link>
+        </BackLink>
         <span className={styles.backLabel}>Visualized</span>
         <span className={styles.badge}>{chartCount} charts</span>
         <MobileMenuButton />

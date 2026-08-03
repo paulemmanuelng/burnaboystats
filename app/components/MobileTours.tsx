@@ -7,6 +7,7 @@ import { tourMeta } from "../lib/tourMeta";
 import type { Tour } from "../data/tours";
 import NotReported from "./NotReported";
 import MobileMenuButton from "./MobileMenuButton";
+import BackLink from "./BackLink";
 
 // The lede reads as a sentence, so the count is spelled out — still derived,
 // just worded. Anything past the list falls back to the numeral.
@@ -58,11 +59,11 @@ export default function MobileTours({
     <div className={styles.screen}>
       {/* Back bar */}
       <div className={styles.backBar}>
-        <Link href="/records" aria-label="Back" className={styles.backBtn}>
+        <BackLink href="/records" aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
-        </Link>
+        </BackLink>
         <span className={styles.backLabel}>Tours &amp; live</span>
         <span className={styles.badge}>{tours.length} tours</span>
         <MobileMenuButton />

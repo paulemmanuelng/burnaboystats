@@ -6,6 +6,7 @@ import styles from "./mobileAfricasBiggest.module.css";
 import ScrollRail from "./ScrollRail";
 import type { Board } from "../lib/africaBoards";
 import MobileMenuButton from "./MobileMenuButton";
+import BackLink from "./BackLink";
 
 /**
  * Mobile screen 16 — Africa's biggest.
@@ -49,11 +50,11 @@ export default function MobileAfricasBiggest({
   return (
     <div className={styles.screen}>
       <div className={styles.backBar}>
-        <Link href="/records" aria-label="Back" className={styles.backBtn}>
+        <BackLink href="/records" aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
-        </Link>
+        </BackLink>
         <span className={styles.backLabel}>Africa&apos;s biggest</span>
         <span className={styles.badge}>{boards.length} boards</span>
         <MobileMenuButton />
