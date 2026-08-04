@@ -32,7 +32,7 @@ export default function LiveBand() {
             : live.lead}
         </span>
 
-        <span className={styles.sub}>most-streamed song on Earth · Spotify Global</span>
+        <span className={styles.sub}>across Spotify, Apple Music, Deezer &amp; YouTube</span>
 
         <Link href="/live-charts" className={styles.streams}>
           career streams {spotifyTotalStreams}

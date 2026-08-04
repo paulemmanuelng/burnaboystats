@@ -53,7 +53,7 @@ function buildSteps(p: Props): { scene: SceneKey; kicker: string; title: string;
       scene: "streaming",
       kicker: "On streaming",
       title: "The most-streamed song on Earth",
-      body: "“Dai Dai” topped Spotify's Global Top Songs chart on both the Daily and Weekly lists — the single most-streamed song on the planet, and the first time an African artist has ever led it. Shakira and Burna Boy, No. 1 worldwide.",
+      body: "“Dai Dai” topped Spotify's Global Top Songs chart on both the Daily and Weekly lists — 25 straight days as the single most-streamed song on the planet, and the first time an African artist has ever led it.",
     },
     {
       scene: "certs",
@@ -109,7 +109,7 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
         <>
           <span className={styles.hash}>№1</span>
           <span className={styles.sceneLabel}>Spotify Global Top Songs</span>
-          <span className={styles.sceneNote}>Daily &amp; Weekly · most-streamed song on Earth</span>
+          <span className={styles.sceneNote}>Daily &amp; Weekly · 25 days as Earth&apos;s most-streamed song</span>
         </>
       )}
       {scene === "certs" && (
