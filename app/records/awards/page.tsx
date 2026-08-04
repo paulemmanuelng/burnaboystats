@@ -102,7 +102,7 @@ export default function AwardsPage() {
         ceremonies={mobileCeremonies}
         honours={honours}
         wins={totalWins}
-        footNote={`${totalWins} wins from ${totalNominations} nominations across ${ceremonyCount} award bodies — including the 2021 Grammy for Twice as Tall.`}
+        footNote={`${totalWins} wins from ${totalNominations} nominations across ${ceremonyCount} award bodies, plus ${honourCount} honours & special recognitions — including the 2021 Grammy for Twice as Tall.`}
         stats={[
           { value: String(totalWins), label: "Wins", note: "career total" },
           {
@@ -157,8 +157,8 @@ export default function AwardsPage() {
               </div>
             </div>
             <div className={styles.headlineCell}>
-              <div className={styles.headlineValue}>{grammyNoms}</div>
-              <div className={styles.headlineLabel}>Grammy nominations</div>
+              <div className={styles.headlineValue}>{totalWins}</div>
+              <div className={styles.headlineLabel}>Award wins</div>
             </div>
             <div className={styles.headlineCell}>
               <div className={styles.headlineValue}>{ceremonyCount}</div>

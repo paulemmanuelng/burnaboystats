@@ -98,7 +98,7 @@
       "extractor": "kworbTotalStreams",
       "kind": "drift",
       "threshold": 0.03,
-      "baseline": 10500643906,
+      "baseline": 10510186473,
       "note": "Monitor-only since 3 Aug 2026: kworb's artist-totals row undercounts the full lead+featured total by ~1% (10.50B vs Paul's tracked 10,608,257,587), so auto-publishing kept dragging the displayed figure down. The display in streamingTotals.ts is maintained from Paul's tracking; this metric now just flags real movement in the source.",
       "live": false,
       "siteTargets": [
