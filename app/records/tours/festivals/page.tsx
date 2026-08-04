@@ -49,7 +49,7 @@ const groups = [
 ];
 
 const SOURCE_NOTE =
-  "Festival headline sets and other major festival / one-off appearances, verified against press and festival line-ups, as of July 2026. His own headline tours and every tour date are on the Tours page. More appearances are added as they are confirmed.";
+  "Festival headline sets and other major festival / one-off appearances, verified against press and festival line-ups, as of August 2026. His own headline tours and every tour date are on the Tours page. More appearances are added as they are confirmed.";
 
 // The accordion's row shape: year in the lead column, then name and location.
 const toRow = (f: Festival) => ({ lead: f.year, title: f.name, meta: f.location });

@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-08-04",
     category: "Charts",
+    text: "The streaks keep stretching: “Dai Dai” logs an 8th week at No. 1 in Switzerland, a 4th on France's SNEP chart, a 4th on Spotify's Global Weekly Top Songs list and a 6th atop Mediatraffic's United World Chart — while still leading the Official MENA Chart's latest week.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-04",
+    category: "Charts",
     text: "The “Dai Dai” chart sweep lands 11 new territories — No. 1 in Estonia and, via IFPI Latin America's new chart, Ecuador — plus improved peaks in Uruguay (2), Malaysia (5) and Croatia (13). The song now counts 70 official chart entries with 27 countries at No. 1, and Burna Boy's career No. 1 tally moves to 46.",
     href: "/dai-dai",
   },

@@ -249,7 +249,7 @@ export default function ToursPage() {
               Burna Boy holds {hisShowCount} of the {revenueShows.length}{" "}
               highest-grossing shows by an African artist — more than every other artist on this list
               combined. Box-office figures reported by Billboard Boxscore &amp; Pollstar (as
-              aggregated by TouringData), cross-checked against press reporting, as of July
+              aggregated by TouringData), cross-checked against press reporting, as of August
               2026.
             </p>
             <Link href="/records/tours/revenue" className={styles.jumpCardAlt}>
@@ -297,7 +297,7 @@ export default function ToursPage() {
             <p className={styles.sourceLine}>
               Box-office figures are reported by Billboard Boxscore &amp; Pollstar (as
               aggregated by TouringData) and cross-checked against press reporting, as of
-              July 2026. For future dates, always check official ticketing.
+              August 2026. For future dates, always check official ticketing.
             </p>
             <Link href="/records" className={`btn btnSecondary ${styles.backBtn}`}>
               ← Career Records

@@ -200,7 +200,7 @@ export default function RecordsPage() {
             </table>
             <p className={styles.sourceNote}>
               Source: TouringData, aggregating Billboard Boxscore, cross-checked against press
-              reporting — July 2026. Per-show gross, distinct from tour-level totals.
+              reporting — August 2026. Per-show gross, distinct from tour-level totals.
             </p>
           </div>
         </section>
