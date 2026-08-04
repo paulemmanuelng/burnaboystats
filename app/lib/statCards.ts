@@ -1,4 +1,6 @@
-import { totalAwards, countryCount, allItems, tierOf, daiDaiCertCount } from "../data/certifications";
+import { totalAwards, countryCount, allItems, tierOf, daiDaiCertCount, COUNTRIES } from "../data/certifications";
+import { firstGroups } from "../data/firsts";
+import { titleKey } from "./titleKey";
 import { numberOnes, chartEntryCount, chartCountryCount, daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
 import { monthlyListenersValues } from "../data/trends";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
@@ -171,4 +173,78 @@ export function getStatCards(): StatCard[] {
       ],
     },
   ];
+}
+
+/**
+ * Resolve ANY card id — the eight canned cards above, plus two derived
+ * families that back the detailed per-row share dialogs:
+ *
+ *   cert-<titleKey>   one card per certified release
+ *   first-<titleKey>  one card per career first
+ *
+ * The dialogs used to render their own CSS card, which had drifted from the
+ * downloadable design and could not be downloaded at all. Registering every
+ * possible card server-side lets them preview and save the REAL PNG from
+ * /stat-card — and keeps that route id-only, so nobody can mint an
+ * official-looking card with arbitrary text via URL params.
+ */
+const highestTier = (r: (typeof allItems)[number]) => {
+  const order = ["diamond", "platinum", "gold", "silver"] as const;
+  for (const t of order) {
+    const hit = r.certs.find((c) => tierOf(c.level) === t);
+    if (hit) return `${hit.x ? `${hit.x}× ` : ""}${hit.level}`;
+  }
+  return r.certs[0]?.level ?? "";
+};
+
+// Satori wraps but never scrolls; a run-on kicker would collide with the
+// value block, so the derived families clamp it at a sentence-ish length.
+const clamp = (s: string, n = 150) => (s.length <= n ? s : `${s.slice(0, n - 1).trimEnd()}…`);
+
+export function findCard(id: string | null): StatCard | undefined {
+  if (!id) return undefined;
+  const canned = getStatCards().find((c) => c.id === id);
+  if (canned) return canned;
+
+  if (id.startsWith("cert-")) {
+    const key = id.slice(5);
+    const r = allItems.find((it) => titleKey(it.title) === key);
+    if (!r) return undefined;
+    const countrySet = new Set(r.certs.map((c) => c.c));
+    return {
+      id,
+      value: `${r.certs.length}`,
+      label: `certification${r.certs.length === 1 ? "" : "s"} for “${r.title}”`,
+      kicker: `${countrySet.size} ${countrySet.size === 1 ? "country" : "countries"} · highest award ${highestTier(r)}`,
+      chip: "Certified",
+      source: "CERTIFYING BODIES",
+      watermark: "CERTS",
+      href: "/certifications",
+      detail: `Every certification “${r.title}” holds, as recorded by each country's own certifying body.`,
+      stats: r.certs.slice(0, 3).map((c) => ({
+        value: `${c.x ? `${c.x}× ` : ""}${c.level}`,
+        label: COUNTRIES[c.c]?.name ?? c.c,
+      })),
+    };
+  }
+
+  if (id.startsWith("first-")) {
+    const key = id.slice(6);
+    const f = firstGroups.flatMap((g) => g.items).find((it) => titleKey(it.title) === key);
+    if (!f) return undefined;
+    return {
+      id,
+      value: f.year,
+      label: f.title,
+      kicker: clamp(f.text),
+      chip: "First",
+      source: "CAREER FIRSTS",
+      watermark: "FIRST",
+      href: "/records/firsts",
+      detail: f.text,
+      stats: [],
+    };
+  }
+
+  return undefined;
 }

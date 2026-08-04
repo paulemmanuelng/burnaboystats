@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./certLedger.module.css";
 import StatCardButton from "./StatCardButton";
 import type { LedgerRow, Tier } from "../lib/homeData";
+import { titleKey } from "../lib/titleKey";
 
 /**
  * The homepage certifications ledger: a tier-filtered table of certified
@@ -119,6 +120,7 @@ export default function CertLedger({
                     <td className={styles.certs}>{r.certs}</td>
                     <td className={styles.shareCell}>
                       <StatCardButton
+                        cardId={`cert-${titleKey(r.title)}`}
                         value={String(r.certs)}
                         label={`Certifications for “${r.title}”`}
                         source={`${r.countries} countries · highest award ${r.top}`}
