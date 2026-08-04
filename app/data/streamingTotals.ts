@@ -11,11 +11,14 @@
 // so more precision would be noise.
 
 // Every Burna Boy song on Spotify, lead and featured credits combined.
-// Maintained from Paul's live tracking (10,608,257,587 as of 31 Jul 2026) —
-// the bot's kworb artist-totals source undercounts by ~100M (it misses some
-// featured credits), which is why this figure is no longer auto-published.
-// The spotify-total-streams metric still monitors the source for movement.
-export const spotifyTotalStreams = "10.61B";
+// Maintained from Paul's live tracking — the bot's kworb artist-totals
+// source undercounts by ~107.6M (it misses some featured credits), which is
+// why this figure is no longer auto-published. Refreshed 4 Aug 2026 as
+// kworb's current total (10,510,186,473) plus that documented gap
+// (~10,617,800,154); the gap itself was measured against Paul's tracked
+// 10,608,257,587 on 31 Jul 2026. The spotify-total-streams metric still
+// monitors the source for movement.
+export const spotifyTotalStreams = "10.62B";
 
 // Every Burna Boy video on YouTube, across his channel and others'.
 export const youtubeTotalViews = "3.16B";

@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-04",
+    category: "Streaming",
+    text: "Career Spotify streams tick up to 10.62B across every lead and featured credit — refreshed from kworb's live artist total plus the documented featured-credits gap it misses.",
+    href: "/records/by-the-numbers",
+  },
+  {
+    date: "2026-08-04",
     category: "Awards",
     text: "A year-by-year audit of 2010–2026 surfaces two missing wins — Burna Boy's very first award, Rookie of the Year at The Headies 2012 (shared with Dammy Krane), and 2025 International Artist of the Year at the African Entertainment Awards USA — lifting the tally to 82 wins from 234 nominations across 46 award bodies.",
     href: "/records/awards",
