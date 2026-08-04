@@ -29,6 +29,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-04",
+    category: "Certifications",
+    text: "Platinum in Slovakia: “Dai Dai” is certified Platinum by ČNS IFPI, upgrading the Gold it earned in July — the anthem's third Platinum country after Spain and France, alongside its 2× Platinum (Latin) in the US.",
+    href: "/certifications",
+  },
+  {
     date: "2026-08-03",
     category: "Tours",
     text: "London Stadium, again: Burna Boy announces a 2027 return to the 80,000-capacity ground — his third headline show there, after the 2023 debut that made him the first African artist to headline a UK stadium and the 2024 night that set the African concert box-office record. No date announced yet.",

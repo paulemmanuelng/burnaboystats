@@ -44,7 +44,7 @@ describe("handoff checklist — data integrity", () => {
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 6 Diamond / 91 Platinum / 96 Gold / 30 Silver", () => {
+  it("splits into 6 Diamond / 92 Platinum / 95 Gold / 30 Silver", () => {
     // 3 Aug 2026: “Dai Dai” France upgraded Gold → Platinum (SNEP, 30M streams).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -53,8 +53,8 @@ describe("handoff checklist — data integrity", () => {
     // changed to Diamond — the repo says Platinum, and the design file that
     // showed 7 was the one carrying the typo.
     expect(byLevel("Diamond")).toBe(6);
-    expect(byLevel("Platinum")).toBe(91); // + Location SE
-    expect(byLevel("Gold")).toBe(96);
+    expect(byLevel("Platinum")).toBe(92); // + Dai Dai SK upgrade
+    expect(byLevel("Gold")).toBe(95); // Dai Dai SK moved up to Platinum
     expect(byLevel("Silver")).toBe(30);
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
