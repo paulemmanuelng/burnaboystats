@@ -46,23 +46,34 @@ export default function StatCardMaker({
   const [id, setId] = useState(cards[0]?.id ?? "");
   const [ratio, setRatio] = useState<CardRatio>("square");
   const [loading, setLoading] = useState(true);
+  const [failed, setFailed] = useState(false);
+  // Bumped by Retry so the <img> re-requests a URL the browser just marked bad.
+  const [attempt, setAttempt] = useState(0);
   const [downloading, setDownloading] = useState(false);
 
   const card = cards.find((c) => c.id === id) ?? cards[0];
-  const src = `/stat-card?stat=${id}&ratio=${ratio}`;
+  const src = `/stat-card?stat=${id}&ratio=${ratio}${attempt ? `&r=${attempt}` : ""}`;
   const size = CARD_SIZES[ratio];
   const shareText = `Burna Boy — ${card.label}. ${card.source}.`;
 
   function select(next: string) {
     if (next === id) return;
     setLoading(true);
+    setFailed(false);
     setId(next);
   }
 
   function selectRatio(next: CardRatio) {
     if (next === ratio) return;
     setLoading(true);
+    setFailed(false);
     setRatio(next);
+  }
+
+  function retry() {
+    setLoading(true);
+    setFailed(false);
+    setAttempt((n) => n + 1);
   }
 
   async function download() {
@@ -125,8 +136,29 @@ export default function StatCardMaker({
                 alt={`Stat card: ${card.label}`}
                 width={size.width}
                 height={size.height}
-                onLoad={() => setLoading(false)}
+                onLoad={() => {
+                  setLoading(false);
+                  // Warm the other shape of this card, so flipping the ratio
+                  // is instant instead of a fresh server render. The route is
+                  // cacheable now, so this costs one background request.
+                  const other = ratio === "square" ? "story" : "square";
+                  new window.Image().src = `/stat-card?stat=${id}&ratio=${other}`;
+                }}
+                onError={() => {
+                  // Without this, a failed render left the preview dimmed at
+                  // 35% forever with no way out.
+                  setLoading(false);
+                  setFailed(true);
+                }}
               />
+              {failed && (
+                <div className={styles.failed} role="alert">
+                  <span>The preview didn&apos;t render.</span>
+                  <button type="button" className={styles.retry} onClick={retry}>
+                    Try again
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className={styles.actions}>

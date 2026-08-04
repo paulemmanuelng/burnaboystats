@@ -108,7 +108,8 @@
 .chipOn { border-color: var(--gold); background: rgba(255, 182, 39, 0.16); color: var(--gold); }
 
 /* ── The card preview ─────────────────────────────────────────────────── */
-.stage { padding: 0 18px; }
+.stage { padding: 0 18px;   position: relative; /* anchors the failed overlay */
+}
 .card {
   display: block;
   width: 100%;
@@ -204,4 +205,35 @@
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+/* Loading and failure states, matching the desktop maker. */
+.cardLoading { opacity: 0.35; transition: opacity 0.15s ease; }
+.failed {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(12, 10, 9, 0.82);
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.retry {
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
 }

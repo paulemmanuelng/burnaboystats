@@ -41,10 +41,13 @@ export default function MobileStatCards({
   const [id, setId] = useState(cards[0]?.id ?? "");
   // Story, per the design. The desktop maker keeps square.
   const [ratio, setRatio] = useState<CardRatio>("story");
+  const [loading, setLoading] = useState(true);
+  const [failed, setFailed] = useState(false);
+  const [attempt, setAttempt] = useState(0);
   const [downloading, setDownloading] = useState(false);
 
   const card = cards.find((c) => c.id === id) ?? cards[0];
-  const src = `/stat-card?stat=${id}&ratio=${ratio}`;
+  const src = `/stat-card?stat=${id}&ratio=${ratio}${attempt ? `&r=${attempt}` : ""}`;
   const size = CARD_SIZES[ratio];
   const shareText = `Burna Boy — ${card.label}. ${card.source}.`;
   // On a phone the primary action opens the share sheet (Save Image, or post
@@ -94,7 +97,12 @@ export default function MobileStatCards({
             type="button"
             aria-pressed={c.id === id}
             className={`${styles.chip} ${c.id === id ? styles.chipOn : ""}`}
-            onClick={() => setId(c.id)}
+            onClick={() => {
+              if (c.id === id) return;
+              setLoading(true);
+              setFailed(false);
+              setId(c.id);
+            }}
           >
             {c.chip}
           </button>
@@ -104,12 +112,41 @@ export default function MobileStatCards({
       <div className={styles.stage}>
         {/* eslint-disable-next-line @next/next/no-img-element -- dynamic image route, not a static asset (next/image can't optimise it) */}
         <img
-          className={`${styles.card} ${ratio === "story" ? styles.cardStory : styles.cardSquare}`}
+          className={`${styles.card} ${ratio === "story" ? styles.cardStory : styles.cardSquare} ${
+            loading ? styles.cardLoading : ""
+          }`}
           src={src}
           alt={`Stat card: ${card.label}`}
           width={size.width}
           height={size.height}
+          onLoad={() => {
+            setLoading(false);
+            // Warm the other shape, so the ratio toggle is instant — the
+            // route is cacheable, so this is one background request.
+            const other = ratio === "story" ? "square" : "story";
+            new window.Image().src = `/stat-card?stat=${id}&ratio=${other}`;
+          }}
+          onError={() => {
+            setLoading(false);
+            setFailed(true);
+          }}
         />
+        {failed && (
+          <div className={styles.failed} role="alert">
+            <span>The card didn&apos;t render.</span>
+            <button
+              type="button"
+              className={styles.retry}
+              onClick={() => {
+                setLoading(true);
+                setFailed(false);
+                setAttempt((n) => n + 1);
+              }}
+            >
+              Try again
+            </button>
+          </div>
+        )}
       </div>
 
       <div className={styles.ratios} role="group" aria-label="Card shape">
@@ -119,7 +156,12 @@ export default function MobileStatCards({
             type="button"
             aria-pressed={ratio === r.key}
             className={`${styles.ratio} ${ratio === r.key ? styles.ratioOn : ""}`}
-            onClick={() => setRatio(r.key)}
+            onClick={() => {
+              if (r.key === ratio) return;
+              setLoading(true);
+              setFailed(false);
+              setRatio(r.key);
+            }}
           >
             {r.label}
           </button>
