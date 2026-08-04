@@ -73,6 +73,7 @@
 .ratioOn { background: var(--gold); color: #0a0a0b; }
 
 .stage {
+  position: relative; /* anchors the failed-render overlay */
   border: 1px solid var(--line);
   background: var(--bg-soft-2);
   padding: 26px;
@@ -91,6 +92,36 @@
 .cardSquare { max-width: 460px; aspect-ratio: 1 / 1; }
 .cardStory { max-width: 300px; aspect-ratio: 9 / 16; }
 .cardLoading { opacity: 0.35; }
+
+/* A render that failed says so, instead of dimming forever. */
+.failed {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(12, 10, 9, 0.82);
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.retry {
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
 
 .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
 .primary {

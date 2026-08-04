@@ -33,7 +33,13 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
   // The portrait sits in a column on the right. Its left edge is dissolved by a
   // scrim that starts on the card's own darkest tone, so there is no seam where
   // the column begins, and the text keeps a clear column of its own.
-  const photoW = Math.round(size.width * (tall ? 0.58 : 0.5));
+  const photoW = Math.round(size.width * (tall ? 0.62 : 0.5));
+  // On the square card the portrait can run the full height — a 1:2 crop of
+  // the square source keeps the face natural. Story is 1:3; running full
+  // height there over-zooms the crop until the face lands by luck, so the
+  // photo gets a bounded, top-anchored box instead and dissolves out well
+  // above the number block.
+  const photoH = tall ? Math.round(size.height * 0.56) : size.height;
   const textW = size.width - pad * 2 - photoW * (tall ? 0.15 : 0.45);
 
   // Long values ("$30.46M") have to hold the same optical weight as short ones
@@ -79,14 +85,14 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
         <img
           src={BURNA_PORTRAIT}
           width={photoW}
-          height={size.height}
+          height={photoH}
           alt=""
           style={{
             position: "absolute",
             right: 0,
             top: 0,
             width: photoW,
-            height: size.height,
+            height: photoH,
             objectFit: "cover",
             objectPosition: "center top",
             opacity: 0.9,
@@ -101,7 +107,7 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
             right: photoW * 0.55,
             top: 0,
             width: photoW * 0.65,
-            height: size.height,
+            height: photoH,
             display: "flex",
             background:
               "linear-gradient(90deg, #0C0A09 0%, #0C0A09 30%, rgba(12,10,9,0.9) 55%, rgba(12,10,9,0) 100%)",
@@ -116,7 +122,7 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
             right: 0,
             top: 0,
             width: photoW,
-            height: Math.round(size.height * 0.3),
+            height: Math.round(photoH * 0.3),
             display: "flex",
             background:
               "linear-gradient(180deg, rgba(12,10,9,0.85) 0%, rgba(12,10,9,0.35) 55%, rgba(12,10,9,0) 100%)",
@@ -128,12 +134,29 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
             right: 0,
             top: 0,
             width: Math.round(photoW * 0.45),
-            height: size.height,
+            height: photoH,
             display: "flex",
             background:
               "linear-gradient(270deg, rgba(12,10,9,0.62) 0%, rgba(12,10,9,0.2) 55%, rgba(12,10,9,0) 100%)",
           }}
         />
+        {/* Story only: the photo box ends mid-card, so its bottom edge melts
+            into the face colour rather than cutting a line across it. */}
+        {tall && (
+          <div
+            style={{
+              position: "absolute",
+              right: 0,
+              top: photoH - 240,
+              width: photoW,
+              height: 240,
+              display: "flex",
+              background:
+                "linear-gradient(180deg, rgba(12,10,9,0) 0%, rgba(12,10,9,0.75) 62%, #0C0A09 100%)",
+            }}
+          />
+        )}
+
         {/* A second wash up from the base, so the number never sits on a face. */}
         <div
           style={{
@@ -247,6 +270,14 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
         </div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      // Satori renders take real time, and the figures only change with a
+      // deploy — which busts the CDN cache on its own. Caching makes ratio
+      // flips and re-downloads instant instead of a fresh render each time.
+      headers: {
+        "Cache-Control": "public, max-age=600, s-maxage=3600, stale-while-revalidate=86400",
+      },
+    }
   );
 }
