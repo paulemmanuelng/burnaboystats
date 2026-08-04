@@ -28,7 +28,7 @@ export default function LiveBand() {
 
         <span className={styles.headline}>
           {live.title
-            ? `“${live.title}” — No. 1 in ${live.countries} countries`
+            ? `“${live.title}” — No. 1 in ${live.countries} countries on streaming charts`
             : live.lead}
         </span>
 
