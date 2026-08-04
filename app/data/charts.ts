@@ -70,7 +70,10 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   AR: { name: "Argentina", flag: "🇦🇷", body: "Billboard Argentina Hot 100" },
   PA: { name: "Panama", flag: "🇵🇦", body: "PRODUCE International Chart" },
   CO: { name: "Colombia", flag: "🇨🇴", body: "Billboard Colombia Hot 100" },
-  EC: { name: "Ecuador", flag: "🇪🇨", body: "Billboard Ecuador Hot 100" },
+  // Switched from Billboard Ecuador Hot 100 in Aug 2026: IFPI Latin America
+  // now publishes an Ecuador chart, and an industry-body chart outranks a
+  // Billboard country chart everywhere else in this file.
+  EC: { name: "Ecuador", flag: "🇪🇨", body: "IFPI Latin America" },
   CR: { name: "Costa Rica", flag: "🇨🇷", body: "FONÓTICA Streaming" },
   VN: { name: "Vietnam", flag: "🇻🇳", body: "Billboard Vietnam Hot 100" },
   BR: { name: "Brazil", flag: "🇧🇷", body: "Billboard Brasil Hot 100" },
@@ -102,6 +105,24 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   VE: { name: "Venezuela", flag: "🇻🇪", body: "Record Report (airplay — the national chart)" },
   SV: { name: "El Salvador", flag: "🇸🇻", body: "ASAP EGC (airplay — no other national chart)" },
   DO: { name: "Dominican Republic", flag: "🇩🇴", body: "Monitor Latino (airplay — no other national chart)" },
+  // Aug 2026 sweep additions — same standing as the exceptions above: none of
+  // these countries publishes a non-airplay national chart, so the monitor
+  // chart IS the national chart (Monitor Latino across Central America and
+  // the Caribbean, TopHit in the ex-USSR states, Radiomonitor in Turkey).
+  // Estonia's own Eesti Tipp-40 folded in 2020. Russia is the odd one out in
+  // the other direction: TopHit's Russian chart is STREAMING, not airplay —
+  // no industry body has published a chart there since IFPI left in 2022.
+  EE: { name: "Estonia", flag: "🇪🇪", body: "TopHit weekly (airplay — no other national chart)" },
+  GT: { name: "Guatemala", flag: "🇬🇹", body: "Monitor Latino (airplay — no other national chart)" },
+  HN: { name: "Honduras", flag: "🇭🇳", body: "Monitor Latino (airplay — no other national chart)" },
+  NI: { name: "Nicaragua", flag: "🇳🇮", body: "Monitor Latino (airplay — no other national chart)" },
+  PY: { name: "Paraguay", flag: "🇵🇾", body: "Monitor Latino (airplay — no other national chart)" },
+  PR: { name: "Puerto Rico", flag: "🇵🇷", body: "Monitor Latino (airplay — no other national chart)" },
+  TR: { name: "Turkey", flag: "🇹🇷", body: "Radiomonitor Türkiye Intl. (airplay — no other national chart)" },
+  KZ: { name: "Kazakhstan", flag: "🇰🇿", body: "TopHit weekly (airplay — no other national chart)" },
+  MD: { name: "Moldova", flag: "🇲🇩", body: "TopHit weekly (airplay — no other national chart)" },
+  UA: { name: "Ukraine", flag: "🇺🇦", body: "TopHit weekly (airplay — no other national chart)" },
+  RU: { name: "Russia", flag: "🇷🇺", body: "TopHit streaming (no industry chart since 2022)" },
   // Croatia needs no airplay exception: Billboard Croatia Songs is a
   // sales/streaming chart, and we already count 14 other Billboard country
   // charts. HDU's own Top lista has it at No. 1, but that IS an airplay chart
@@ -171,19 +192,42 @@ export const singleCharts: ChartRelease[] = [
   //                   official singles chart, has it at #9.
   // MENA (#1) and North Africa (#3) are real IFPI charts but regional, not
   // national, so they live in the note rather than as country entries.
+  // Aug 2026 sweep (against the song's cited chart table) — the same
+  // body-first checks, entry by entry:
+  //   Lithuania #1  — TopHit airplay. AGATA (streaming) exists and is what we
+  //                   track; verified weeks 27→31 directly (5 → 20 → 7), so
+  //                   the peak stays #5 and the airplay #1 does not apply.
+  //   Estonia #1    — TopHit airplay, INCLUDED: Eesti Tipp-40 folded in 2020,
+  //                   so Estonia has no non-airplay chart. Verified on
+  //                   tophit.com, week of 17–23 Jul 2026.
+  //   Ecuador #1    — IFPI Latin America, week 24 — verified on @ifpilatam's
+  //                   own Top-uno graphic. Replaces Billboard Ecuador (#4).
+  //   Mexico #10    — Monitor Latino airplay. Billboard México Songs exists
+  //                   (non-airplay); Dai Dai just isn't on it — so no entry.
+  //   Chile #1, Peru #5, Bolivia #1 — Monitor Latino airplay; the Billboard
+  //                   country charts exist and are what we track (14/23/25).
+  //   Slovakia #6   — the radio chart; Singles Digitál (#1) is ours.
+  //   Japan #12     — Oricon digital sales; Billboard Japan Hot 100 (#25) is
+  //                   the composite standard we track.
+  //   Hungary #2    — Editors' Choice radio list; MAHASZ Single Top 40 (#9)
+  //                   is the official singles chart.
+  //   Remix/instrumental rows (Greece, Poland, Lithuania) are versions, not
+  //   the song, and genre/format charts (Latin Airplay, Pop Songs, Rhythmic,
+  //   ARIA Hip Hop, Canada AC/CHR) stay out of country entries as always.
   { title: "Dai Dai", credit: "Shakira X Burna Boy", year: 2026, entries: [
-    { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1 }, { c: "LU", peak: 1 }, { c: "PT", peak: 1 }, { c: "PA", peak: 1 }, { c: "SE", peak: 1 }, { c: "IT", peak: 1 }, { c: "IN", peak: 1 }, { c: "CZ", peak: 1 }, { c: "IS", peak: 1, note: "Billboard Iceland Songs" }, { c: "VE", peak: 1 }, { c: "SV", peak: 1 }, { c: "DO", peak: 1 }, { c: "GLB", peak: 1 }, { c: "GLBX", peak: 1 },
-    { c: "UK", peak: 2 }, { c: "NO", peak: 1 }, { c: "ES", peak: 2 },
-    { c: "CA", peak: 3 }, { c: "SA", peak: 3 }, { c: "SG", peak: 3 }, { c: "BG", peak: 3 }, { c: "UY", peak: 3 },
-    { c: "EC", peak: 4 },
-    { c: "IE", peak: 3 }, { c: "LT", peak: 5 }, { c: "CR", peak: 5 }, { c: "RO", peak: 5 }, { c: "LV", peak: 5 },
-    { c: "PL", peak: 4 },
-    { c: "IL", peak: 6 }, { c: "NG", peak: 7 }, { c: "DK", peak: 7 }, { c: "HU", peak: 9 },
-    { c: "AU", peak: 10 }, { c: "FI", peak: 6 }, { c: "MY", peak: 12 },
-    { c: "EG", peak: 14 }, { c: "CL", peak: 14 }, { c: "HR", peak: 14 }, { c: "US", peak: 17 }, { c: "NZ", peak: 13 }, { c: "ZA", peak: 20 },
+    { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1 }, { c: "LU", peak: 1 }, { c: "PT", peak: 1 }, { c: "PA", peak: 1 }, { c: "SE", peak: 1 }, { c: "IT", peak: 1 }, { c: "IN", peak: 1 }, { c: "CZ", peak: 1 }, { c: "IS", peak: 1, note: "Billboard Iceland Songs" }, { c: "VE", peak: 1 }, { c: "SV", peak: 1 }, { c: "DO", peak: 1 }, { c: "NO", peak: 1 }, { c: "EC", peak: 1 }, { c: "EE", peak: 1 }, { c: "GLB", peak: 1 }, { c: "GLBX", peak: 1 },
+    { c: "UK", peak: 2 }, { c: "ES", peak: 2 }, { c: "UY", peak: 2 }, { c: "PR", peak: 2 },
+    { c: "CA", peak: 3 }, { c: "SA", peak: 3 }, { c: "SG", peak: 3 }, { c: "BG", peak: 3 }, { c: "IE", peak: 3 }, { c: "PY", peak: 3 },
+    { c: "PL", peak: 4 }, { c: "HN", peak: 4 },
+    { c: "LT", peak: 5 }, { c: "CR", peak: 5 }, { c: "RO", peak: 5 }, { c: "LV", peak: 5 }, { c: "MY", peak: 5 }, { c: "GT", peak: 5 },
+    { c: "IL", peak: 6 }, { c: "FI", peak: 6 }, { c: "NI", peak: 6 },
+    { c: "NG", peak: 7 }, { c: "DK", peak: 7 }, { c: "TR", peak: 7 },
+    { c: "KZ", peak: 8 }, { c: "HU", peak: 9 }, { c: "AU", peak: 10 },
+    { c: "NZ", peak: 13 }, { c: "HR", peak: 13 },
+    { c: "EG", peak: 14 }, { c: "CL", peak: 14 }, { c: "US", peak: 17 }, { c: "ZA", peak: 20 },
     { c: "PE", peak: 23 }, { c: "BO", peak: 25 }, { c: "JP", peak: 25 }, { c: "BR", peak: 27 },
-    { c: "VN", peak: 93 },
-  ], note: "No.1 on both Billboard global charts — a 3rd week atop the Global 200 and a 5th week atop the Global 200 Excl. US. Also No.1 on Billboard's US World Digital Song Sales chart, No.1 on the IFPI Middle East & North Africa chart and No.3 on North Africa." },
+    { c: "RU", peak: 31 }, { c: "MD", peak: 34 }, { c: "UA", peak: 90 }, { c: "VN", peak: 93 },
+  ], note: "No.1 on both Billboard global charts — a 4th week atop the Global 200 and a 6th week atop the Global 200 Excl. US. Also No.1 on Billboard's US World Digital Song Sales and Latin Airplay charts, No.1 on the IFPI Middle East & North Africa chart (No.3 on North Africa), and No.1 on BMAT's Central America & Caribbean airplay chart." },
   { title: "Last Last", year: 2022, entries: [
     { c: "ZA", peak: 1 }, { c: "NG", peak: 2 }, { c: "UK", peak: 4 }, { c: "NZ", peak: 12 },
     { c: "NL", peak: 14 }, { c: "SE", peak: 21 }, { c: "FR", peak: 23 }, { c: "IE", peak: 27 },

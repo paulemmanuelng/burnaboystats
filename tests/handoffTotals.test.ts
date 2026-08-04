@@ -71,9 +71,10 @@ describe("handoff checklist — data integrity", () => {
       0
     );
 
-    expect(entries).toBe(260);
-    expect(territories).toBe(60);
-    expect(ones).toBe(44);
+    // 4 Aug 2026 Dai Dai sweep — see tests/charts.test.ts for the breakdown.
+    expect(entries).toBe(271);
+    expect(territories).toBe(71);
+    expect(ones).toBe(46);
 
     expect(chartEntryCount).toBe(entries);
     expect(chartCountryCount).toBe(territories);
