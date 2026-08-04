@@ -22,7 +22,7 @@
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
-      "baseline": 59482941,
+      "baseline": 59537366,
       "live": true,
       "sanity": {
         "maxJump": 0.12,
@@ -54,9 +54,9 @@
       },
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "peakListeners",
-      "lastChanged": "2026-08-03",
-      "lastSeenValue": 59482941,
-      "lastSeenAt": "2026-08-03"
+      "lastChanged": "2026-08-04",
+      "lastSeenValue": 59537366,
+      "lastSeenAt": "2026-08-04"
     },
     {
       "id": "spotify-listeners-rank",
@@ -128,7 +128,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 673209214,
+      "baseline": 674959792,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -145,9 +145,9 @@
           "describes": "displayed view count (whole millions) on /dai-dai"
         }
       ],
-      "lastChanged": "2026-08-03",
-      "lastSeenValue": 673209214,
-      "lastSeenAt": "2026-08-03"
+      "lastChanged": "2026-08-04",
+      "lastSeenValue": 674959792,
+      "lastSeenAt": "2026-08-04"
     },
     {
       "id": "yt-views-last-last",

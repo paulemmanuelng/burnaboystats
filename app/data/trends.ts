@@ -28,6 +28,7 @@ export const monthlyListenersSeries: TrendPoint[] = [
   { date: "2026-08-01", value: 58.99 },
   { date: "2026-08-02", value: 59.21 },
   { date: "2026-08-03", value: 59.48 },
+  { date: "2026-08-04", value: 59.54 },
 ];
 
 // Latest change: the most recent point vs the one before it. `abs` is in the
