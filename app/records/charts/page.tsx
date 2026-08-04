@@ -121,7 +121,7 @@ export default function ChartsPage() {
             countries that publish no non-airplay national chart at all, the airplay chart is
             the only national chart there is, and is used. Where a country runs both, the
             non-airplay chart wins. Figures are peak-so-far, cross-checked against the chart
-            bodies&apos; cited data as of July 2026.
+            bodies&apos; cited data as of August 2026.
           </p>
           <div className={styles.splitPanel}>
             <div className={styles.splitKicker}>Where the charts come from</div>

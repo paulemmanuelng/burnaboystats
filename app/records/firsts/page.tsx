@@ -125,7 +125,7 @@ export default function FirstsPage() {
           <div className={styles.wide}>
             <p className={styles.source}>
               Every milestone here was cross-checked against multiple sources (Billboard,
-              Pollstar/Boxscore, the BPI and press reporting), as of July 2026. “African” /
+              Pollstar/Boxscore, the BPI and press reporting), as of August 2026. “African” /
               “Nigerian” firsts reflect the wording of those sources. More milestones are
               added as they are confirmed.
             </p>
