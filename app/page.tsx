@@ -214,7 +214,7 @@ export default function Home() {
             <div className={styles.boardGrid}>
               {boardCells.map((c) => (
                 <div
-                  key={c.code}
+                  key={`${c.code}-${c.coverTitle ?? c.name}`}
                   className={`${styles.boardCell} ${c.isNew ? styles.boardNew : ""}`}
                 >
                   <div className={styles.boardTop}>

@@ -5,7 +5,7 @@ import { liveHeadline } from "../lib/liveHeadline";
 import { spotifyImage } from "../lib/spotifyImage";
 import { coverFor } from "../lib/covers";
 import { sameTitle } from "../lib/titleKey";
-import { numberWord, numberOneTitleFor } from "../lib/homeData";
+import { numberWord, numberOneTitleFor, ukSinglesCell, ukAlbumsCell } from "../lib/homeData";
 import {
   isRecentNumberOne,
   recentNumberOneTitle,
@@ -76,8 +76,12 @@ const allCells = [...numberOneCountries].reverse().map((code) => {
   };
 });
 
-// The just-changed countries lead the board — they are the reason to look at it.
-const board = [...allCells].sort((a, b) => Number(b.isNew) - Number(a.isNew)).slice(0, 6);
+// The just-changed countries lead the board — they are the reason to look at
+// it — then the curated UK pair (the singles and albums No. 1s), then the
+// countries other songs topped. Eight cells, six distinct songs.
+const newCells = allCells.filter((c) => c.isNew);
+const restCells = allCells.filter((c) => !c.isNew);
+const board = [...newCells, ukSinglesCell, ukAlbumsCell, ...restCells].slice(0, 8);
 
 // ── Albums ─────────────────────────────────────────────────────────────────
 // Best official peak per album, for the chip under each cover.
@@ -225,7 +229,7 @@ export default function MobileHome() {
         </div>
         <div className={styles.boardGrid}>
           {board.map((c) => (
-            <div key={c.code} className={`${styles.boardCell} ${c.isNew ? styles.boardNew : ""}`}>
+            <div key={`${c.code}-${c.coverTitle ?? c.name}`} className={`${styles.boardCell} ${c.isNew ? styles.boardNew : ""}`}>
               <div className={styles.boardTop}>
                 <span className={styles.boardCode}>{c.code}</span>
                 <span className={styles.boardFlag} aria-hidden="true">

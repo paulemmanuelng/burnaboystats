@@ -213,10 +213,44 @@ const allBoardCells: BoardCell[] = [...officialOnes].reverse().map((code) => {
   };
 });
 
-// The desktop board keeps its natural order — Africa, then Latin America, as
-// the live data holds them — and only marks the new arrivals in place. (The
-// mobile board is a different screen and does lead with them.)
-export const boardCells: BoardCell[] = allBoardCells.slice(0, 24);
+// Curated at the margins (Aug 2026, Paul's call): Lebanon credits "We Pray" —
+// Coldplay's Lebanese No. 1 with Burna — over the more recent "Dai Dai", and
+// Panama and Luxembourg (the board's two most marginal charts) give up their
+// visible slots so the UK, the biggest chart the catalogue has topped, can
+// show both of its No. 1s: "Own It" on the Official Singles Chart and the
+// "I Told Them..." album on the Official Albums Chart. All three remain real
+// No. 1 countries and stay in the 31-count — they are just not among the 24
+// cells shown. The board otherwise keeps its natural order.
+function specialCell(title: string, chart: string): BoardCell {
+  const art = coverFor(title);
+  return {
+    code: "UK",
+    flag: CHART_COUNTRIES.UK.flag,
+    name: "United Kingdom",
+    chart,
+    isNew: false,
+    cover: art ? spotifyImage(art, 300) : undefined,
+    coverTitle: title,
+  };
+}
+export const ukSinglesCell = specialCell("Own It", "Official Singles Chart");
+export const ukAlbumsCell = specialCell("I Told Them...", "Official Albums Chart");
+
+function withOverrides(cell: BoardCell): BoardCell {
+  if (cell.code === "LB") {
+    const art = coverFor("We Pray");
+    return { ...cell, cover: art ? spotifyImage(art, 300) : cell.cover, coverTitle: "We Pray" };
+  }
+  if (cell.code === "PA") return ukSinglesCell;
+  if (cell.code === "LU") return ukAlbumsCell;
+  return cell;
+}
+
+export const boardCells: BoardCell[] = allBoardCells
+  .slice(0, 24)
+  .map(withOverrides)
+  // The tail already held a UK cell; the curation must never render it twice.
+  .filter((c, i, arr) => arr.findIndex((x) => x.code === c.code && x.coverTitle === c.coverTitle) === i);
 
 // ── The catalogue ──────────────────────────────────────────────────────────
 /**
