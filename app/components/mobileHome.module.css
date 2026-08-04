@@ -267,12 +267,19 @@
 /* ── Stat grid: two-up, hairline seams ────────────────────────────────── */
 .statGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* minmax(0,1fr), not 1fr: a bare 1fr can't shrink below the value's
+     min-content ("$30.46M" at Anton 40), which pushed the document 16px
+     wide at 320px. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   background: var(--line);
   margin-top: 26px;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+}
+@media (max-width: 340px) {
+  .stat { padding: 14px; }
+  .statValue { font-size: 32px; }
 }
 .stat {
   background: var(--bg);
