@@ -121,7 +121,7 @@ export default function MobileHome() {
         </span>
         <span className={styles.bandText}>
           {live.title
-            ? `“${live.title}” — No. 1 in ${live.countries} countries`
+            ? `“${live.title}” — No. 1 in ${live.countries} countries on streaming charts`
             : live.lead}
         </span>
       </div>

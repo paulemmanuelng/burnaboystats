@@ -14,6 +14,7 @@ import BirthdayCelebration from "./components/BirthdayCelebration";
 import FooterNav from "./components/FooterNav";
 import { siteUrl } from "./site";
 import "./globals.css";
+import FlagEmojiPolyfill from "./components/FlagEmojiPolyfill";
 
 // Body font — clean and readable.
 const geistSans = Geist({
@@ -138,6 +139,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       {/* suppressHydrationWarning: some browser extensions (e.g. Grammarly)
           add attributes to <body> before React loads, which is harmless. */}
       <body suppressHydrationWarning>
+        <FlagEmojiPolyfill />
         {/* Album art is served from Spotify's image CDN — open the connection
             early so covers (a likely LCP element on /music) load faster. React
             hoists these resource hints into <head>. */}

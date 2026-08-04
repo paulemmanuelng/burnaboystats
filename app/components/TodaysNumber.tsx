@@ -56,13 +56,15 @@ export default function TodaysNumber() {
       </div>
 
       <div className={styles.caption}>
-        {live.countries === 1 ? "country at No. 1" : "countries at No. 1"}
+        {live.countries === 1
+          ? "country at No. 1 on today's streaming charts"
+          : "countries at No. 1 on today's streaming charts"}
       </div>
 
       <p className={styles.note}>
         {recentArrivalSentence(live.title ?? "Dai Dai")}{" "}
-        Burna&apos;s career total is now {numberOnes} No.&nbsp;1s across{" "}
-        {chartCountryCount} countries.
+        On the official national charts, his career total is now {numberOnes}{" "}
+        No.&nbsp;1s across {chartCountryCount} countries.
       </p>
     </div>
 

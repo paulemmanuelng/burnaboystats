@@ -4,42 +4,71 @@ import { useState } from "react";
 import styles from "../dai-dai/dai-dai.module.css";
 
 /**
- * "Dai Dai by the numbers" — the song's own figures.
+ * "Dai Dai by the numbers" — the song's own figures, tiered.
  *
- * Twenty-six boxes is a long scroll on a phone, so mobile shows the first six
- * and folds the rest behind a toggle. Desktop renders all of them and never
- * sees the button: the fold lives entirely in the mobile media query, so the
- * full set stays in the HTML for crawlers either way.
+ * The old version poured every figure into one flat grid, so the song's
+ * defining stat carried the same visual weight as a footnote. Now six hero
+ * numbers lead at full volume, and the rest sit in labeled groups — the
+ * streaks, the national charts, the world rankings, the video — each with a
+ * one-line intro, so a scanning reader knows what a cell measures before
+ * reading it.
+ *
+ * On a phone the hero grid shows and the groups fold behind a toggle; the
+ * fold lives entirely in the mobile media query, so the full set stays in
+ * the HTML for crawlers either way.
  */
 
-const MOBILE_SHOWN = 6;
+interface Stat {
+  v: string;
+  l: string;
+}
 
-export default function DaiDaiNumbers({ items }: { items: { v: string; l: string }[] }) {
+export default function DaiDaiNumbers({
+  hero,
+  groups,
+}: {
+  hero: Stat[];
+  groups: { label: string; intro: string; items: Stat[] }[];
+}) {
   const [open, setOpen] = useState(false);
-  const hidden = items.length - MOBILE_SHOWN;
+  const grouped = groups.reduce((n, g) => n + g.items.length, 0);
 
   return (
     <>
-      <div className={`${styles.numGrid} ${open ? styles.numGridOpen : ""}`}>
-        {items.map((n, i) => (
-          <div key={n.l} className={`${styles.numCard} ${i === 0 ? styles.numCardLead : ""}`}>
-            <span className={`${styles.numValue} ${i === 0 ? styles.numValueLead : ""}`}>
-              {n.v}
-            </span>
+      <div className={styles.numHeroGrid}>
+        {hero.map((n) => (
+          <div key={n.l} className={`${styles.numCard} ${styles.numCardLead}`}>
+            <span className={`${styles.numValue} ${styles.numValueLead}`}>{n.v}</span>
             <span className={styles.numLabel}>{n.l}</span>
           </div>
         ))}
       </div>
-      {hidden > 0 && (
-        <button
-          type="button"
-          className={styles.numFold}
-          aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
-        >
-          {open ? "Show fewer −" : `Show all ${items.length} +`}
-        </button>
-      )}
+
+      <div className={open ? `${styles.numGroups} ${styles.numGroupsOpen}` : styles.numGroups}>
+        {groups.map((g) => (
+          <section key={g.label} className={styles.numGroup}>
+            <h3 className={styles.numGroupHead}>{g.label}</h3>
+            <p className={styles.numGroupIntro}>{g.intro}</p>
+            <div className={styles.numGrid}>
+              {g.items.map((n) => (
+                <div key={n.l} className={styles.numCard}>
+                  <span className={styles.numValue}>{n.v}</span>
+                  <span className={styles.numLabel}>{n.l}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <button
+        type="button"
+        className={styles.numFold}
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+      >
+        {open ? "Show fewer −" : `Show the full breakdown (${grouped} more) +`}
+      </button>
     </>
   );
 }

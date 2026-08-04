@@ -149,7 +149,10 @@ body {
   flex-direction: column;
   color: var(--text);
   background: var(--bg);
-  font-family: var(--font-geist-sans), system-ui, Arial, sans-serif;
+  /* "Twemoji Country Flags" only exists when FlagEmojiPolyfill injects it
+     (Windows). The face holds nothing but flag sequences, so listing it
+     first costs other platforms and other glyphs nothing. */
+  font-family: "Twemoji Country Flags", var(--font-geist-sans), system-ui, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
   /* clip, not hidden: hidden quietly makes <body> a scroll container, and
