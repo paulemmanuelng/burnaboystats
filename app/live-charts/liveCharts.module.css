@@ -601,3 +601,23 @@
   .summaryCell:nth-child(n + 4) { border-top: 1px solid var(--line); }
   .platformGrid { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* The on-demand panel while its one shared fetch is in flight. */
+.panelLoading {
+  padding: 14px 4px 18px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.panelRetry {
+  margin-left: 8px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: none;
+  color: var(--gold);
+  font: inherit;
+  font-weight: 700;
+  padding: 4px 12px;
+  cursor: pointer;
+}

@@ -2,8 +2,9 @@ import Link from "next/link";
 import styles from "./liveCharts.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
-import MobileLiveCharts from "../components/MobileLiveCharts";
-import { cadenceOf, reachOf } from "../lib/liveChartMeta";
+import MobileLiveCharts, { type ReleasePreview } from "../components/MobileLiveCharts";
+import { cadenceOf, reachOf, numberOnesOf } from "../lib/liveChartMeta";
+import LiveReleaseBlock, { type ReleaseSummary } from "../components/LiveReleaseBlock";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
 import { coverFor, monogramFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
@@ -43,6 +44,36 @@ function flagFor(code: string) {
 
 const reach = reachOf;
 
+// Only the summary of each release ships with the page; the country panels
+// fetch from /api/v1/live-charts on first open. This page used to serialise
+// all ~790 rows twice over and was the heaviest thing the site sent.
+// The mobile screen's shut rows, computed here so the client gets previews —
+// title, totals and the five best chips — instead of the whole dataset.
+const preview = (r: (typeof liveCharts)[number]): ReleasePreview => ({
+  kind: r.kind,
+  title: r.title,
+  total: reachOf(r),
+  no1: numberOnesOf(r),
+  top: r.platforms
+    .flatMap((p) => p.entries)
+    .sort((a, b) => a.position - b.position)
+    .slice(0, 5)
+    .map((e) => ({ country: e.country, position: e.position, movement: e.movement, status: e.status })),
+});
+
+const summarize = (r: (typeof liveCharts)[number]): ReleaseSummary => ({
+  title: r.title,
+  kind: r.kind,
+  ep: r.kind === "album" && isEp(r.title),
+  total: reachOf(r),
+  no1: numberOnesOf(r),
+  platforms: r.platforms.map((p) => ({
+    platform: p.platform,
+    count: p.entries.length,
+    numberOnes: p.numberOnes,
+  })),
+});
+
 const songs = liveCharts.filter((r) => r.kind === "song");
 const albums = liveCharts.filter((r) => r.kind === "album");
 
@@ -56,118 +87,8 @@ const updatedLabel = new Date(`${liveChartsUpdated}T12:00:00Z`).toLocaleDateStri
 // before, dropped off and came back — so it gets its own label rather than
 // being flattened into NEW. No marker at all means the platform doesn't
 // publish movement for that chart; show nothing rather than guess.
-function Move({ e }: { e: LiveEntry }) {
-  if (e.status === "re") return <span className={styles.moveRe}>RE-ENTRY</span>;
-  if (e.status === "new") return <span className={styles.moveNew}>NEW</span>;
-  if (e.movement === undefined || e.movement === null) return null;
-  if (e.movement === 0) return <span className={styles.moveFlat}>–</span>;
-  return (
-    <span className={e.movement > 0 ? styles.moveUp : styles.moveDown}>
-      {e.movement > 0 ? "▲" : "▼"}
-      {Math.abs(e.movement)}
-    </span>
-  );
-}
 
-// Cover art, sized in `em` so it tracks the title text rather than fighting it —
-// the row height is set by the title's line box either way, so adding this
-// changes nothing about the layout.
-//
-// Only some charting releases have art on file. The rest get a monogram tile in
-// the identical footprint, so a missing cover never shifts a row or leaves a
-// broken-image icon.
-function Cover({ title }: { title: string }) {
-  const src = coverFor(title);
-  if (!src) {
-    // The letter is drawn via CSS content, not written as a text node. As real
-    // text it concatenated into the title for anything reading the DOM — a
-    // crawler saw "GGinger" — and aria-hidden does not remove text from that.
-    return (
-      <span
-        className={styles.coverFallback}
-        data-letter={monogramFor(title)}
-        aria-hidden="true"
-      />
-    );
-  }
-  return (
-    // eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN art, sized via srcSet like the rest of the site
-    <img
-      className={styles.cover}
-      src={spotifyImage(src, 64)}
-      // A 24px tile never needs the 640px variant, and the full srcSet let the
-      // browser reach for it anyway. Offer only 1x and a retina 2x.
-      srcSet={`${spotifyImage(src, 64)} 1x, ${spotifyImage(src, 300)} 2x`}
-      alt=""
-      width={64}
-      height={64}
-      loading="lazy"
-      decoding="async"
-    />
-  );
-}
 
-function ReleaseBlock({ r }: { r: (typeof liveCharts)[number] }) {
-  const total = reach(r);
-  const no1 = r.platforms.reduce((n, p) => n + p.numberOnes, 0);
-  return (
-    <details className={styles.release}>
-      <summary className={styles.summary}>
-        <span className={styles.caret} aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
-        </span>
-        <span className={styles.title}>
-          <Cover title={r.title} />
-          {r.title}
-          {/* The feed only knows song vs album; the two EPs deserve their
-              real name. Sits inside the "Albums & EPs" section either way. */}
-          {r.kind === "album" && isEp(r.title) && <span className={styles.epTag}>EP</span>}
-        </span>
-        <span className={styles.chips}>
-          {r.platforms.map((p) => (
-            <span key={p.platform} className={styles.chip}>
-              <span className={styles.chipPlatform}>{p.platform}</span>
-              <span className={styles.chipCount}>
-                {p.entries.length} {p.entries.length === 1 ? "country" : "countries"}
-              </span>
-              {p.numberOnes > 0 && (
-                <span className={styles.chipNo1}>{p.numberOnes} at No.&nbsp;1</span>
-              )}
-            </span>
-          ))}
-        </span>
-        <span className={styles.total}>
-          {total} {total === 1 ? "chart" : "charts"}
-          {no1 > 0 && <span className={styles.totalNo1}> · {no1} at No. 1</span>}
-        </span>
-      </summary>
-
-      {r.platforms.map((p) => (
-        <div key={p.platform} className={styles.platformBlock}>
-          <h3 className={styles.platformName}>
-            {p.platform}
-            <span className={styles.platformCount}>
-              {p.entries.length} {p.entries.length === 1 ? "country" : "countries"}
-              <span className={styles.platformCadence}> · {cadenceOf(p.platform)}</span>
-            </span>
-          </h3>
-          <ul className={styles.entries}>
-            {p.entries.map((e) => (
-              <li key={e.country} className={e.position === 1 ? styles.entryTop : styles.entry}>
-                <span className={styles.pos}>#{e.position}</span>
-                <span className={styles.flag} aria-hidden="true">{flagFor(e.country)}</span>
-                <span className={styles.country}>{e.name}</span>
-                <Move e={e} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </details>
-  );
-}
 
 export default function LiveChartsPage() {
   const jsonLd = datasetJsonLd();
@@ -182,7 +103,7 @@ export default function LiveChartsPage() {
       {/* Mobile is its own screen in this design — a two-up summary, a
           scrolling platform rail and one condensed row per release. */}
       <MobileLiveCharts
-        releases={liveCharts}
+        releases={liveCharts.map(preview)}
         platforms={livePlatformTotals}
         placements={livePlacementCount}
         countries={liveCountryCount}
@@ -280,7 +201,7 @@ export default function LiveChartsPage() {
             </p>
             <div className={styles.releaseList}>
               {songs.map((r) => (
-                <ReleaseBlock key={r.title} r={r} />
+                <LiveReleaseBlock key={r.title} r={summarize(r)} />
               ))}
             </div>
           </div>
@@ -295,7 +216,7 @@ export default function LiveChartsPage() {
               </div>
               <div className={styles.releaseList}>
                 {albums.map((r) => (
-                  <ReleaseBlock key={r.title} r={r} />
+                  <LiveReleaseBlock key={r.title} r={summarize(r)} />
                 ))}
               </div>
             </div>
