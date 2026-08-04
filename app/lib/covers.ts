@@ -122,6 +122,8 @@ const EXTRA_COVERS: Record<string, string> = {
   "just like me": "https://cdn-images.dzcdn.net/images/cover/d1efd9562706fbc4facf4e86cbe78be4/100x100-000000-80-0-0.jpg",
   // Tshwala Bam — TitoM & Yuppe ft. Burna Boy & S.N.E
   "tshwala bam": "https://cdn-images.dzcdn.net/images/cover/04a3890df3db451da1b4dea992f59ab2/100x100-000000-80-0-0.jpg",
+  // Deja-vu — Dr Vades ft. Burna Boy & K-Trap; entered the live feed 4 Aug
+  "deja vu": "https://cdn-images.dzcdn.net/images/cover/7a7ad27dccfb97d6c825f6cf4568b50d/100x100-000000-80-0-0.jpg",
   // Be Honest — Jorja Smith ft. Burna Boy. Deezer only licenses karaoke
   // covers of it, so this one comes from the iTunes catalogue instead.
   "be honest": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/17/8d/a1/178da1a7-0ad5-145b-31fb-9a4c150b4a4a/194491116361.jpg/100x100bb.jpg",
