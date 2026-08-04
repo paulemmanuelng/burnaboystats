@@ -7,6 +7,7 @@ import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import type { AlbumEntry } from "../data/albums";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import { spotifyTotalStreams } from "../data/streamingTotals";
 
 /**
  * The mobile music screen.
@@ -37,7 +38,10 @@ export default function MobileMusic({
   const counts = [
     { value: String(albums.length), label: "Albums" },
     { value: String(eps.length), label: eps.length === 1 ? "EP" : "EPs" },
-    { value: String(compilations.length), label: "Comp" },
+    // The compilation lives in the lede's prose; the cell carries the
+    // catalogue's biggest number instead — the home band's "career streams"
+    // chip lands here, so the figure must be waiting at the destination.
+    { value: spotifyTotalStreams, label: "Streams" },
     // Inclusive of both ends: 2013–2025 is thirteen years, not twelve.
     { value: String(lastYear - firstYear + 1), label: "Years" },
   ];
