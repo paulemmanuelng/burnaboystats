@@ -220,9 +220,9 @@ export default function AwardsPage() {
             <p className={styles.source}>
               Includes a 2021 Grammy win (Best Global Music Album, <em>Twice as Tall</em>)
               and {grammyNoms} Grammy nominations in total. Compiled and verified against
-              each ceremony&apos;s results, July 2026; nominations are listed even where the
-              award went elsewhere. Upcoming-ceremony entries are added only once results are
-              confirmed.
+              each ceremony&apos;s results, August 2026; nominations are listed even where the
+              award went elsewhere. Nominations at ceremonies still to be held stay listed
+              as nominations until the results are confirmed.
             </p>
             <Link href="/records" className={`btn btnSecondary ${styles.back}`}>
               ← Career Records

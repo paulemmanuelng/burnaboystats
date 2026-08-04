@@ -80,14 +80,18 @@ describe("handoff checklist — data integrity", () => {
     expect(numberOnes).toBe(ones);
   });
 
-  it("counts 80 award wins from 210 nominations across 44 bodies", () => {
+  it("counts 82 award wins from 234 nominations across 46 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
-    expect(wins).toBe(80);
-    expect(allNoms.length).toBe(210);
+    // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
+    // Year, shared with Dammy Krane; AEA USA 2025 International Artist of
+    // the Year per AEAUSA's own winners PDF), +24 entries, +2 bodies
+    // (Channel O MVA, SA Hip Hop Awards). Details in app/data/awards.ts.
+    expect(wins).toBe(82);
+    expect(allNoms.length).toBe(234);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
-    expect(ceremonyCount).toBe(44);
+    expect(ceremonyCount).toBe(46);
   });
 
   it("counts 57 countries performed in and 48 firsts", () => {
