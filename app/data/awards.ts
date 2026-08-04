@@ -58,6 +58,30 @@
 //  been added: TIME 100 Most Influential People (2024, tribute by Angélique
 //  Kidjo — Time.com/Billboard). Honours stay separate from the competitive-award
 //  total by design (like the Rolling Stone list), so this doesn't change wins.
+//
+//  YEAR-BY-YEAR PASS (4 Aug 2026): walked 2010 -> Aug 2026 one year at a
+//  time. Two missing WINS found: The Headies 2012 Rookie of the Year,
+//  shared with Dammy Krane — his first-ever award, confirmed via the
+//  Headies' own category history and a 2014 winners archive (the ceremony
+//  page omits the special category; this IS the "10th Headies win" earlier
+//  passes couldn't source, 9 -> 10) — and AEA USA 2025 International
+//  Artist of the Year (AEAUSA's official winners PDF gold-marks Burna Boy;
+//  press saying he won Best Male Artist misread list order — that one went
+//  to Wizkid, so the Best Male Artist loss stands). New bodies: Channel O
+//  Africa Music Video Awards (2013-14, x3) and South African Hip Hop
+//  Awards (2015, x3 featured-artist noms). Also added: MAMA 2016 (x2,
+//  "Baddest" + Listener's Choice), AFRIMA 2021 (x3, Twice as Tall era,
+//  all lost to the Essence sweep), Soundcity 2023's seven missing results
+//  (he had 8 noms, only the AOTY win was logged), MTV EMA 2024 and BBMA
+//  2024 Top Afrobeats Artist (both lost to Tyla), AFRIMA 2025 (2 of his 5
+//  noms were missing: Best Male Western Africa and African Pop, both
+//  lost), AFRIMMA 2026 Best Male West Africa (pending, 12 Sep 2026). The
+//  Caribbean "Konpa — Song of the Year" nom moved 2025 -> 2026: the
+//  category is new for the 2026 ceremony and the 2025 nominee/winner
+//  lists (40+ categories) contain no Burna Boy at all. Checked and still
+//  excluded: ASCAP (2024 ASCAP R&S winners list has no Burna work), MAMA
+//  2021 noms (Kampala ceremony never held — no result exists), Headie
+//  One's AFRIMA 2021 diaspora nom (his, not Burna's), BMI London 2025.
 // ============================================================
 
 export interface AwardNom {
@@ -141,6 +165,7 @@ export const ceremonies: Ceremony[] = [
     name: "Billboard Music Awards",
     noms: [
       { year: 2023, category: "Top Afrobeats Artist", won: true },
+      { year: 2024, category: "Top Afrobeats Artist", won: false },
     ],
   },
   {
@@ -187,6 +212,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2023, category: "Best African Act", won: false },
       { year: 2023, category: "Best Live", won: false },
       { year: 2023, category: "Best Afrobeats", work: "Last Last", won: false },
+      { year: 2024, category: "Best Afrobeats", won: false },
     ],
   },
   {
@@ -204,6 +230,8 @@ export const ceremonies: Ceremony[] = [
     noms: [
       { year: 2014, category: "Best New Act", won: false },
       { year: 2015, category: "Best Collaboration", work: "All Eyes on Me", won: true },
+      { year: 2016, category: "Best Collaboration", work: "Baddest (AKA ft. Burna Boy, Yanga & Khuli Chana)", won: false },
+      { year: 2016, category: "Listener's Choice", won: false },
     ],
   },
   {
@@ -222,17 +250,23 @@ export const ceremonies: Ceremony[] = [
       { year: 2019, category: "Album of the Year", work: "African Giant", won: false },
       { year: 2019, category: "Best African Collaboration", work: "Killin' Dem", won: false },
       { year: 2019, category: "Song of the Year in Africa", work: "On the Low", won: false },
+      { year: 2021, category: "Album of the Year", work: "Twice as Tall", won: false },
+      { year: 2021, category: "Best African Collaboration", work: "Yaba Buluku (Remix) (DJ Tarico ft. Burna Boy)", won: false },
+      { year: 2021, category: "Best Artiste, Duo or Group in African Dance or Choreography", work: "Yaba Buluku (Remix)", won: false },
       { year: 2023, category: "Artist of the Year", won: true },
       { year: 2023, category: "Album of the Year", work: "Love, Damini", won: true },
       { year: 2023, category: "Song of the Year", work: "Last Last", won: false },
       { year: 2025, category: "Album of the Year", work: "No Sign of Weakness", won: true },
       { year: 2025, category: "Best African Collaboration", work: "Laho II (with Shallipopi)", won: true },
       { year: 2025, category: "Artiste of the Year", won: false },
+      { year: 2025, category: "Best Male Artiste in Western Africa", work: "Update", won: false },
+      { year: 2025, category: "Best African Artiste, Duo or Group in African Pop", work: "Change Your Mind (ft. Shaboozey)", won: false },
     ],
   },
   {
     name: "The Headies",
     noms: [
+      { year: 2012, category: "Rookie of the Year", won: true },
       { year: 2013, category: "Next Rated", won: false },
       { year: 2013, category: "Best R&B Single", work: "Like to Party", won: false },
       { year: 2014, category: "Best R&B Single", work: "Don Gorgon", won: false },
@@ -279,6 +313,13 @@ export const ceremonies: Ceremony[] = [
       { year: 2020, category: "Listeners' Choice", work: "Killin' Dem", won: false },
       { year: 2020, category: "Viewers' Choice", work: "On the Low", won: false },
       { year: 2023, category: "African Artiste of the Year", won: true },
+      { year: 2023, category: "Song of the Year", work: "Last Last", won: false },
+      { year: 2023, category: "Best Male MVP", won: false },
+      { year: 2023, category: "Digital Artiste of the Year", won: false },
+      { year: 2023, category: "Listener's Choice", won: false },
+      { year: 2023, category: "Viewer's Choice", won: false },
+      { year: 2023, category: "Best Collaboration", work: "Second Sermon (Remix) (Black Sherif ft. Burna Boy)", won: false },
+      { year: 2023, category: "Best Collaboration", work: "Sungba (Remix) (Asake ft. Burna Boy)", won: false },
     ],
   },
   {
@@ -287,6 +328,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2026, category: "Artist of the Year", won: false },
       { year: 2026, category: "Album of the Year", work: "No Sign of Weakness", won: false },
       { year: 2026, category: "Crossing Boundaries With Music Award", won: false },
+      { year: 2026, category: "Best Male West Africa", won: false },
       { year: 2018, category: "Best African Dancehall/Reggae Act", won: true },
       { year: 2018, category: "Best Live Act", won: false },
       { year: 2019, category: "Song of the Year", work: "Killin' Dem", won: true },
@@ -376,7 +418,7 @@ export const ceremonies: Ceremony[] = [
       { year: 2024, category: "Best Collaboration", won: false },
       { year: 2024, category: "Best Collaboration", work: "Rollercoaster", won: false },
       { year: 2025, category: "Best Male Artist", won: false },
-      { year: 2025, category: "International Artist of the Year", won: false },
+      { year: 2025, category: "International Artist of the Year", won: true },
     ],
   },
   {
@@ -443,7 +485,7 @@ export const ceremonies: Ceremony[] = [
     name: "Caribbean Music Awards",
     noms: [
       { year: 2024, category: "Collaboration of the Year (Dancehall)", work: "Talibans II (with Byron Messia)", won: true },
-      { year: 2025, category: "Konpa — Song of the Year", work: "4 Kampé II (Remix)", won: false },
+      { year: 2026, category: "Konpa — Song of the Year", work: "4 Kampé II (Remix)", won: false },
     ],
   },
   {
@@ -501,6 +543,22 @@ export const ceremonies: Ceremony[] = [
       { year: 2023, category: "Most Popular Music Artiste Male", won: false },
       { year: 2023, category: "Most Searched Music Artiste Male", won: false },
       { year: 2023, category: "Most Popular Fandom", won: false },
+    ],
+  },
+  {
+    name: "Channel O Africa Music Video Awards",
+    noms: [
+      { year: 2013, category: "Most Gifted Newcomer Video", work: "Tonight", won: false },
+      { year: 2014, category: "Most Gifted Video of the Year", work: "Run My Race", won: false },
+      { year: 2014, category: "Most Gifted West", work: "Won Da Mo (with D'banj)", won: false },
+    ],
+  },
+  {
+    name: "South African Hip Hop Awards",
+    noms: [
+      { year: 2015, category: "Best Collaboration", work: "Baddest (AKA ft. Burna Boy, Khuli Chana & Yanga)", won: false },
+      { year: 2015, category: "Video of the Year", work: "All Eyes on Me (AKA ft. Burna Boy, JR & Da L.E.S)", won: false },
+      { year: 2015, category: "Video of the Year", work: "P.A.I.D (Da L.E.S ft. AKA & Burna Boy)", won: false },
     ],
   },
 ];

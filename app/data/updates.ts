@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-04",
+    category: "Awards",
+    text: "A year-by-year audit of 2010–2026 surfaces two missing wins — Burna Boy's very first award, Rookie of the Year at The Headies 2012 (shared with Dammy Krane), and 2025 International Artist of the Year at the African Entertainment Awards USA — lifting the tally to 82 wins from 234 nominations across 46 award bodies.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-08-04",
     category: "Certifications",
     text: "Platinum in Slovakia: “Dai Dai” is certified Platinum by ČNS IFPI, upgrading the Gold it earned in July — the anthem's third Platinum country after Spain and France, alongside its 2× Platinum (Latin) in the US.",
     href: "/certifications",

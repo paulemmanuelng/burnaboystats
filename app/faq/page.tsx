@@ -159,7 +159,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
 ];
 
 const SOURCE_NOTE =
-  "Figures stay in sync with the site's certifications, charts, awards and tours data, verified against official sources as of July 2026.";
+  "Figures stay in sync with the site's certifications, charts, awards and tours data, verified against official sources as of August 2026.";
 
 const groups = GROUPS.map((g) => ({
   ...g,
