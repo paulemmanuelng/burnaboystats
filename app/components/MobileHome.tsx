@@ -76,12 +76,15 @@ const allCells = [...numberOneCountries].reverse().map((code) => {
   };
 });
 
-// The just-changed countries lead the board — they are the reason to look at
-// it — then the curated UK pair (the singles and albums No. 1s), then the
-// countries other songs topped. Eight cells, six distinct songs.
+// Six cells, six songs. One NEW cell keeps the news beat without crowding
+// the six-pack — Venezuela outranks the other current arrivals (Record
+// Report is the region's most established national chart, and the biggest
+// market of the batch); if the NEW set rotates, the first arrival wins.
+// Then the curated UK pair, then the countries other songs topped.
 const newCells = allCells.filter((c) => c.isNew);
+const leadNew = newCells.find((c) => c.code === "VE") ?? newCells[0];
 const restCells = allCells.filter((c) => !c.isNew);
-const board = [...newCells, ukSinglesCell, ukAlbumsCell, ...restCells].slice(0, 8);
+const board = [...(leadNew ? [leadNew] : []), ukSinglesCell, ukAlbumsCell, ...restCells].slice(0, 6);
 
 // ── Albums ─────────────────────────────────────────────────────────────────
 // Best official peak per album, for the chip under each cover.
