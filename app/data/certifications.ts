@@ -81,7 +81,7 @@ export const albums: Release[] = [
 export const singles: Release[] = [
   { title: "Dai Dai", credit: "Shakira X Burna Boy", year: 2026, certs: [
     { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
-    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "GR", level: "Gold" },
+    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Gold" }, { c: "GR", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -499,6 +499,7 @@ export const certHistory: CertEvent[] = [
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", country: "AU", level: "Gold", year: 2023 },
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "FR", level: "Platinum", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "SE", level: "Platinum", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "SK", level: "Platinum", year: 2026 },
 ];
 
 // Helpers
