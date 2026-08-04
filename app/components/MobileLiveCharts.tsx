@@ -5,9 +5,9 @@ import Link from "next/link";
 import styles from "./mobileLiveCharts.module.css";
 import { spotifyImage } from "../lib/spotifyImage";
 import { coverFor } from "../lib/covers";
-import { cadenceOf, reachOf, numberOnesOf } from "../lib/liveChartMeta";
+import { cadenceOf } from "../lib/liveChartMeta";
+import { useLiveRelease } from "../lib/useLiveRelease";
 import ScrollRail from "./ScrollRail";
-import type { LiveRelease } from "../data/liveCharts";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import { isEp } from "../data/albums";
@@ -48,6 +48,14 @@ function movement(e: { movement?: number | null; status?: "new" | "re" }) {
     : { label: `▼${Math.abs(e.movement)}`, ink: "var(--red-ink)" };
 }
 
+export interface ReleasePreview {
+  kind: "song" | "album";
+  title: string;
+  total: number;
+  no1: number;
+  top: { country: string; position: number; movement?: number | null; status?: "new" | "re" }[];
+}
+
 export default function MobileLiveCharts({
   releases,
   platforms,
@@ -56,7 +64,7 @@ export default function MobileLiveCharts({
   numberOnes,
   updated,
 }: {
-  releases: LiveRelease[];
+  releases: ReleasePreview[];
   platforms: { platform: string; placements: number; numberOnes: number }[];
   placements: number;
   countries: number;
@@ -65,19 +73,10 @@ export default function MobileLiveCharts({
 }) {
   const [open, setOpen] = useState<string | null>(null);
 
-  const rows = releases.map((r) => ({
-    kind: r.kind,
-    title: r.title,
-    // `numberOnes` counts how many of a platform's own entries sit at No. 1 —
-    // a subset of `entries`, never a separate pool. Adding them double-counts.
-    total: reachOf(r),
-    no1: numberOnesOf(r),
-    top: r.platforms
-      .flatMap((p) => p.entries)
-      .sort((a, b) => a.position - b.position)
-      .slice(0, TOP_CHIPS),
-    platforms: r.platforms,
-  }));
+  // The rows arrive as previews — everything the shut state needs and nothing
+  // more. The open panel's country lists fetch on demand (see LivePanel):
+  // shipping all ~790 rows as props made this page the heaviest on the site.
+  const rows = releases;
 
   return (
     <div className={styles.screen}>
@@ -214,41 +213,7 @@ export default function MobileLiveCharts({
                 )}
               </button>
 
-              {isOpen && (
-                <div id={panelId} className={styles.panel}>
-                  {r.platforms.map((p) => (
-                    <div key={p.platform} className={styles.platformBlock}>
-                      <div className={styles.platformHead}>
-                        <span className={styles.platformBlockName}>{p.platform}</span>
-                        <span className={styles.platformBlockMeta}>
-                          {p.entries.length} {p.entries.length === 1 ? "country" : "countries"} ·{" "}
-                          {cadenceOf(p.platform)}
-                        </span>
-                      </div>
-                      <ul className={styles.entries}>
-                        {p.entries.map((e) => {
-                          const m = movement(e);
-                          return (
-                            <li
-                              key={e.country}
-                              className={e.position === 1 ? styles.entryTop : styles.entry}
-                            >
-                              <span className={styles.entryPos}>#{e.position}</span>
-                              <span className={styles.entryFlag} aria-hidden="true">
-                                {flagFor(e.country)}
-                              </span>
-                              <span className={styles.entryCountry}>{e.name}</span>
-                              <span className={styles.entryMove} style={{ color: m.ink }}>
-                                {m.label}
-                              </span>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              )}
+              {isOpen && <LivePanel title={r.title} panelId={panelId} />}
             </div>
           );
         })}
@@ -257,6 +222,60 @@ export default function MobileLiveCharts({
       <Link href="/records/charts" className={styles.allBtn}>
         Official chart records<span aria-hidden="true">↗</span>
       </Link>
+    </div>
+  );
+}
+
+/**
+ * A row's open state. The country lists fetch on first open from the shared
+ * /api/v1/live-charts snapshot — shipping all ~790 rows as props made this
+ * page the heaviest thing the site sent, for panels most readers never open.
+ */
+function LivePanel({ title, panelId }: { title: string; panelId: string }) {
+  const { release, error, loading, retry } = useLiveRelease(title, true);
+  if (loading) return <div id={panelId} className={styles.panelNote}>Loading the country list…</div>;
+  if (error || !release)
+    return (
+      <div id={panelId} className={styles.panelNote}>
+        Couldn&apos;t load the country list.{" "}
+        <button type="button" className={styles.panelRetry} onClick={retry}>
+          Try again
+        </button>
+      </div>
+    );
+  return (
+    <div id={panelId} className={styles.panel}>
+      {release.platforms.map((p) => (
+        <div key={p.platform} className={styles.platformBlock}>
+          <div className={styles.platformHead}>
+            <span className={styles.platformBlockName}>{p.platform}</span>
+            <span className={styles.platformBlockMeta}>
+              {p.entries.length} {p.entries.length === 1 ? "country" : "countries"} ·{" "}
+              {cadenceOf(p.platform)}
+            </span>
+          </div>
+          <ul className={styles.entries}>
+            {p.entries.map((e) => {
+              const m = movement(e);
+              return (
+                <li
+                  key={e.country}
+                  className={e.position === 1 ? styles.entryTop : styles.entry}
+                >
+                  <span className={styles.entryPos}>#{e.position}</span>
+                  <span className={styles.entryFlag} aria-hidden="true">
+                    {flagFor(e.country)}
+                  </span>
+                  <span className={styles.entryCountry}>{e.name}</span>
+                  <span className={styles.entryMove} style={{ color: m.ink }}>
+                    {m.label}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 }
