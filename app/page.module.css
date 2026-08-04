@@ -944,9 +944,10 @@ aa
   width: 28px;
   height: 28px;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(62, 209, 127, 0.4);
+  border: 1px solid var(--line);
   object-fit: cover;
 }
+.boardNew .boardCover { border-color: rgba(62, 209, 127, 0.4); }
 .boardCell:hover { background: var(--color-accent-200); }
 /* A newly-entered No. 1 reads green — the live/positive accent. */
 .boardNew { background: rgba(62, 209, 127, 0.07); }

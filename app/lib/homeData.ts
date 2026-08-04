@@ -162,6 +162,19 @@ for (const release of allChartItems) {
   }
 }
 
+/** The release that most recently topped a country's official chart — the
+ *  song a board cell should credit. Countries with several No. 1s (Nigeria
+ *  has five) show the newest; countries only one song ever topped show that
+ *  song, which is the only truthful choice. */
+export function numberOneTitleFor(code: string): string | undefined {
+  const toppers = allChartItems.filter((r) =>
+    r.entries.some((e) => e.c === code && e.peak === 1)
+  );
+  if (toppers.length === 0) return undefined;
+  toppers.sort((a, b) => b.year - a.year);
+  return toppers[0].title;
+}
+
 /** Countries at No. 1 right now on any tracked platform. Live charts only. */
 export const liveNumberOneCountries = (() => {
   const seen = new Set<string>();
@@ -183,9 +196,11 @@ export const careerNumberOneCountries = chartCountryCount;
 const allBoardCells: BoardCell[] = [...officialOnes].reverse().map((code) => {
   const name = CHART_COUNTRIES[code].name;
   const isNew = isRecentNumberOne(name);
-  // The update that made the cell NEW names the song, so the cell can show
-  // its cover — the board's one place where "which song did it" fits.
-  const title = isNew ? recentNumberOneTitle(name) : undefined;
+  // Every cell credits the song that topped the country — NEW cells take the
+  // title from the feed item that reported it, the rest from the chart data
+  // (most recent No. 1 wins, so Nigeria shows "Love", South Africa "Last
+  // Last", and Dai Dai only the countries it actually topped).
+  const title = (isNew ? recentNumberOneTitle(name) : undefined) ?? numberOneTitleFor(code);
   const art = title ? coverFor(title) : undefined;
   return {
     code,
