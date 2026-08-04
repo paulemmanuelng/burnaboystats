@@ -11,6 +11,7 @@ import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { songs as songPages } from "../data/songs";
 import { siteUrl } from "../site";
 import { pageMetadata } from "../lib/seo";
+import { spotifyTotalStreams } from "../data/streamingTotals";
 
 // Deep-dive song pages, Dai Dai (its own bespoke page) featured first.
 const songStories = [
@@ -67,7 +68,10 @@ const lastYear = Math.max(...albums.map((a) => a.year));
 const counts = [
   { value: String(albums.length), label: "Studio albums" },
   { value: String(eps.length), label: eps.length === 1 ? "EP" : "EPs" },
-  { value: String(compilations.length), label: compilations.length === 1 ? "Compilation" : "Compilations" },
+  // The compilation lives in the lede's prose; the cell carries the
+  // catalogue's biggest number instead — the home band's "career streams"
+  // chip lands on this page, so the figure is waiting at the destination.
+  { value: spotifyTotalStreams, label: "Spotify streams" },
   // Inclusive of both ends: 2013–2025 is thirteen years, not twelve.
   { value: String(lastYear - firstYear + 1), label: `Years, ${firstYear}—${lastYear}` },
 ];

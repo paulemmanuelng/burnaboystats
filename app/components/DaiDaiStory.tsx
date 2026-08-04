@@ -53,7 +53,7 @@ function buildSteps(p: Props): { scene: SceneKey; kicker: string; title: string;
       scene: "streaming",
       kicker: "On streaming",
       title: "The most-streamed song on Earth",
-      body: "“Dai Dai” topped Spotify's Global Top Songs chart on both the Daily and Weekly lists — 25 straight days as the single most-streamed song on the planet, and the first time an African artist has ever led it.",
+      body: "“Dai Dai” topped Spotify's Global Top Songs chart on both the Daily and Weekly lists — 25 days as the single most-streamed song on the planet, and the first time an African artist has ever led it.",
     },
     {
       scene: "certs",

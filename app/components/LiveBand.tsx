@@ -34,7 +34,7 @@ export default function LiveBand() {
 
         <span className={styles.sub}>across Spotify, Apple Music, Deezer &amp; YouTube</span>
 
-        <Link href="/live-charts" className={styles.streams}>
+        <Link href="/music" className={styles.streams}>
           career streams {spotifyTotalStreams}
         </Link>
       </div>

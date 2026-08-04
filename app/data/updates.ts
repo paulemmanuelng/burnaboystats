@@ -31,7 +31,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-04",
     category: "Streaming",
-    text: "The historic Spotify run closes: after 25 straight days as the most-streamed song on Earth — the first African-artist No. 1 in the Global Daily chart's history — “Dai Dai” hands the top spot to Ariana Grande, bowing out at No. 3 with 4.48M daily streams and 75 days on the chart.",
+    text: "The historic Spotify run closes: after 25 days in total as the most-streamed song on Earth — the first African-artist No. 1 in the Global Daily chart's history — “Dai Dai” hands the top spot to Ariana Grande, bowing out at No. 3 with 4.48M daily streams and 75 days on the chart.",
     href: "/dai-dai",
   },
   {

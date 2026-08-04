@@ -159,7 +159,7 @@ export default function DaiDaiPage() {
     { v: `${daiDaiChartEntryCount}`, l: "official chart entries worldwide — on national singles charts across the globe, plus both of Billboard's global charts" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "No. 1", l: "on both Billboard global charts — a 4th consecutive week atop the Global 200 (a first for an African artist, and Shakira's 2nd) and a 6th consecutive week atop the Global 200 Excl. US" },
-    { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — 25 straight days as the most-streamed song on Earth" },
+    { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — 25 days as the most-streamed song on Earth" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, France & Slovakia, plus Gold in Colombia, Hungary, Portugal & Greece" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
@@ -169,7 +169,7 @@ export default function DaiDaiPage() {
       label: "The streaming streaks",
       intro: "The daily and weekly runs — every one still counting.",
       items: [
-        { v: "25 days", l: "at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist — before Ariana Grande ended the run in early August; 75 days on the chart and counting" },
+        { v: "25 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist — before Ariana Grande took over in early August; 75 days on the chart and counting" },
         { v: "4 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
         { v: "33 days", l: "at No. 1 on Apple Music's European songs chart, and a 7th day atop the worldwide Apple Music chart" },
         { v: "23 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
