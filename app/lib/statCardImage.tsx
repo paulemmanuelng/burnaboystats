@@ -229,7 +229,14 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
           <div
             style={{
               display: "flex",
-              fontSize: tall ? 62 : 52,
+              // The derived cards carry labels far longer than the canned
+              // eight ("First African artist to perform at a FIFA World Cup
+              // Final halftime show"), so the size steps down with length the
+              // same way the value does.
+              fontSize:
+                card.label.length <= 42 ? (tall ? 62 : 52)
+                : card.label.length <= 64 ? (tall ? 52 : 44)
+                : (tall ? 44 : 38),
               fontWeight: 700,
               lineHeight: 1.08,
               textTransform: "uppercase",

@@ -9,6 +9,7 @@ import GlobeTeaser from "./components/GlobeTeaser";
 import SearchTrigger from "./components/SearchTrigger";
 import { homeScoreboard } from "./lib/homeScoreboard";
 import { spotifyImage } from "./lib/spotifyImage";
+import { titleKey } from "./lib/titleKey";
 import {
   ledgerRows,
   certTotal,
@@ -346,6 +347,7 @@ export default function Home() {
                         <div className={styles.firstNote}>{f.text}</div>
                       </div>
                       <StatCardButton
+                        cardId={`first-${titleKey(f.title)}`}
                         value={f.year}
                         label={f.title}
                         source={f.text}
