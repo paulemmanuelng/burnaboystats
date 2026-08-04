@@ -974,6 +974,9 @@ aa
   font-family: var(--font-mono), monospace;
   letter-spacing: 0.02em;
   color: var(--text-muted);
+  /* the cover thumb sits absolute in the bottom-right corner (28px + 10px
+     inset) — keep the chart name clear of it instead of running underneath */
+  padding-right: 46px;
 }
 
 /* ── The catalogue ──────────────────────────────────────────────────── */

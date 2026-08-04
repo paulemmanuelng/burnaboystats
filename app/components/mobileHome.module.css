@@ -401,6 +401,9 @@
   letter-spacing: 0.04em;
   color: var(--text-muted);
   margin-top: 6px;
+  /* the cover thumb sits absolute in the bottom-right corner (24px + 10px
+     inset) — keep the chart name clear of it instead of running underneath */
+  padding-right: 42px;
 }
 
 /* ── Album rail: horizontal snap scroll ───────────────────────────────── */
