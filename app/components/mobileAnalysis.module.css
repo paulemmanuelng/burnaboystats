@@ -130,7 +130,9 @@
 
 .statRow {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  /* minmax(0,1fr) — see mobileHome's statGrid: bare 1fr tracks can't shrink
+     below their labels' min-content and overflowed the 320px viewport. */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
