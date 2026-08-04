@@ -198,8 +198,9 @@ export default function Home() {
                 <h2 className={styles.h2}>The No. 1 board</h2>
               </div>
               <p className={styles.lede}>
-                Where he sits at the top today. Green cells marked{" "}
-                <span className={styles.newInk}>NEW</span> entered at No. 1 most recently.
+                Every country a release has taken to No. 1 on its own official chart —
+                with the song that did it. Green cells marked{" "}
+                <span className={styles.newInk}>NEW</span> got there most recently.
               </p>
               <Link href="/records/charts" className={`btn btnSecondary ${styles.headBtn}`}>
                 All {careerNumberOnes} career No. 1s ↗
@@ -213,7 +214,7 @@ export default function Home() {
             <div className={styles.boardGrid}>
               {boardCells.map((c) => (
                 <div
-                  key={c.code}
+                  key={`${c.code}-${c.coverTitle ?? c.name}`}
                   className={`${styles.boardCell} ${c.isNew ? styles.boardNew : ""}`}
                 >
                   <div className={styles.boardTop}>

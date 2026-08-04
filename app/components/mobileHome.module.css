@@ -365,9 +365,10 @@
   width: 24px;
   height: 24px;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(62, 209, 127, 0.4);
+  border: 1px solid var(--line);
   object-fit: cover;
 }
+.boardNew .boardCover { border-color: rgba(62, 209, 127, 0.4); }
 /* A newly-added No. 1 reads green, matching the live/positive accent. */
 .boardNew { background: rgba(62, 209, 127, 0.07); }
 .boardTop {
@@ -400,6 +401,9 @@
   letter-spacing: 0.04em;
   color: var(--text-muted);
   margin-top: 6px;
+  /* the cover thumb sits absolute in the bottom-right corner (24px + 10px
+     inset) — keep the chart name clear of it instead of running underneath */
+  padding-right: 42px;
 }
 
 /* ── Album rail: horizontal snap scroll ───────────────────────────────── */

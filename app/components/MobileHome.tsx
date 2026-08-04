@@ -5,7 +5,7 @@ import { liveHeadline } from "../lib/liveHeadline";
 import { spotifyImage } from "../lib/spotifyImage";
 import { coverFor } from "../lib/covers";
 import { sameTitle } from "../lib/titleKey";
-import { numberWord } from "../lib/homeData";
+import { numberWord, numberOneTitleFor, ukSinglesCell, ukAlbumsCell } from "../lib/homeData";
 import {
   isRecentNumberOne,
   recentNumberOneTitle,
@@ -58,9 +58,10 @@ for (const release of allChartItems) {
 const allCells = [...numberOneCountries].reverse().map((code) => {
   const meta = CHART_COUNTRIES[code];
   const isNew = isRecentNumberOne(meta.name);
-  // NEW cells carry the cover of the song that did it — the update naming the
-  // country names the song too. Shared derivation with the desktop board.
-  const title = isNew ? recentNumberOneTitle(meta.name) : undefined;
+  // Every cell credits the song that topped the country — NEW cells take the
+  // title from the feed, the rest from the chart data via the same helper as
+  // the desktop board (most recent No. 1 wins).
+  const title = (isNew ? recentNumberOneTitle(meta.name) : undefined) ?? numberOneTitleFor(code);
   const art = title ? coverFor(title) : undefined;
   return {
     code,
@@ -75,8 +76,15 @@ const allCells = [...numberOneCountries].reverse().map((code) => {
   };
 });
 
-// The just-changed countries lead the board — they are the reason to look at it.
-const board = [...allCells].sort((a, b) => Number(b.isNew) - Number(a.isNew)).slice(0, 6);
+// Six cells, six songs. One NEW cell keeps the news beat without crowding
+// the six-pack — Venezuela outranks the other current arrivals (Record
+// Report is the region's most established national chart, and the biggest
+// market of the batch); if the NEW set rotates, the first arrival wins.
+// Then the curated UK pair, then the countries other songs topped.
+const newCells = allCells.filter((c) => c.isNew);
+const leadNew = newCells.find((c) => c.code === "VE") ?? newCells[0];
+const restCells = allCells.filter((c) => !c.isNew);
+const board = [...(leadNew ? [leadNew] : []), ukSinglesCell, ukAlbumsCell, ...restCells].slice(0, 6);
 
 // ── Albums ─────────────────────────────────────────────────────────────────
 // Best official peak per album, for the chip under each cover.
@@ -177,7 +185,9 @@ export default function MobileHome() {
           </Link>
         </div>
         <div className={styles.todayCaption}>
-          {live.countries === 1 ? "Country at No. 1" : "Countries at No. 1"}
+          {live.countries === 1
+            ? "Country at No. 1 on today's streaming charts"
+            : "Countries at No. 1 on today's streaming charts"}
         </div>
         <p className={styles.todayNote}>
           {recentArrivals.length
@@ -209,7 +219,7 @@ export default function MobileHome() {
       <section className={styles.section}>
         <div className={styles.sectionHead}>
           <div>
-            <p className={styles.sectionKicker}>Tracked live</p>
+            <p className={styles.sectionKicker}>Official chart-toppers</p>
             <h2 className={styles.sectionTitle}>The No. 1 board</h2>
           </div>
           {/* Official charts, not live. Every cell here is a country whose own
@@ -222,7 +232,7 @@ export default function MobileHome() {
         </div>
         <div className={styles.boardGrid}>
           {board.map((c) => (
-            <div key={c.code} className={`${styles.boardCell} ${c.isNew ? styles.boardNew : ""}`}>
+            <div key={`${c.code}-${c.coverTitle ?? c.name}`} className={`${styles.boardCell} ${c.isNew ? styles.boardNew : ""}`}>
               <div className={styles.boardTop}>
                 <span className={styles.boardCode}>{c.code}</span>
                 <span className={styles.boardFlag} aria-hidden="true">
