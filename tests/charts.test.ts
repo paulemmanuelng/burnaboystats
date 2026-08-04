@@ -53,9 +53,16 @@ describe("chart data integrity", () => {
   // /records/charts and /api state in print that airplay listings are excluded
   // except where a country publishes no non-airplay national chart at all.
   // Keep the data honest with the claim: airplay is allowed ONLY for these
-  // three, and each must say so in its body string. Adding a fourth is a
-  // deliberate act that has to come through here.
-  const AIRPLAY_EXCEPTIONS = new Set(["IL", "BG", "UY", "VE", "SV", "DO"]);
+  // countries, and each must say so in its body string. Adding another is a
+  // deliberate act that has to come through here. The Aug 2026 Dai Dai sweep
+  // added the Monitor Latino belt (GT/HN/NI/PY/PR), the TopHit states
+  // (EE/KZ/MD/UA), and Radiomonitor Türkiye (TR) — every one verified to
+  // publish no non-airplay national chart. Russia is NOT here: its TopHit
+  // chart is streaming.
+  const AIRPLAY_EXCEPTIONS = new Set([
+    "IL", "BG", "UY", "VE", "SV", "DO",
+    "EE", "GT", "HN", "NI", "PY", "PR", "TR", "KZ", "MD", "UA",
+  ]);
 
   it("only the declared exceptions are tracked on an airplay chart", () => {
     const onAirplay = Object.entries(CHART_COUNTRIES)
@@ -97,10 +104,12 @@ describe("chart data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(chartEntryCount).toBe(260);
-    // 44 since Norway's official chart turned Dai Dai's #2 into a #1 (Aug 2026).
-    expect(numberOnes).toBe(44);
-    expect(chartCountryCount).toBe(60);
+    // 4 Aug 2026 Dai Dai sweep: +11 territories (EE at No.1 on TopHit, the
+    // Monitor Latino belt, TR/KZ/MD/UA/RU), Ecuador's IFPI LatAm chart turned
+    // its Billboard #4 into a #1, and UY/MY/HR peaks improved (2/5/13).
+    expect(chartEntryCount).toBe(271);
+    expect(numberOnes).toBe(46);
+    expect(chartCountryCount).toBe(71);
   });
 });
 
@@ -122,8 +131,10 @@ describe("Dai Dai", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(daiDaiChartEntryCount).toBe(59);
-    expect(daiDaiNumberOnes).toBe(25);
+    // 4 Aug 2026 sweep: +11 territories; Ecuador (IFPI LatAm) and Estonia
+    // (TopHit) are the two new country No. 1s.
+    expect(daiDaiChartEntryCount).toBe(70);
+    expect(daiDaiNumberOnes).toBe(27);
   });
 
   it("tops both Billboard global charts", () => {

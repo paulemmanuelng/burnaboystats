@@ -23,8 +23,10 @@ describe("analysis derivations", () => {
     expect(isGlobalChart("GLB")).toBe(true);
     expect(isGlobalChart("GLBX")).toBe(true);
     expect(isGlobalChart("UK")).toBe(false);
-    // The site's headline chartCountryCount counts the globals; this one must not.
-    expect(chartedCountryCount).toBeLessThan(60);
+    // The site's headline chartCountryCount counts the globals; this one must
+    // not — so it always sits below the headline figure (71 after the Aug 2026
+    // Dai Dai sweep added 11 territories).
+    expect(chartedCountryCount).toBeLessThan(71);
   });
 
   it("computes a coherent Dai Dai share", () => {

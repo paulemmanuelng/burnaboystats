@@ -41,7 +41,7 @@ function buildSteps(p: Props): { scene: SceneKey; kicker: string; title: string;
       scene: "global1",
       kicker: "The record",
       title: "No. 1 on the Billboard Global 200",
-      body: "Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. It has now held No. 1 for a third week, and a fifth week on the Global 200 Excl. US.",
+      body: "Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. It has now held No. 1 for a fourth straight week, and a sixth week on the Global 200 Excl. US.",
     },
     {
       scene: "no1s",
@@ -59,7 +59,7 @@ function buildSteps(p: Props): { scene: SceneKey; kicker: string; title: string;
       scene: "certs",
       kicker: "Certified worldwide",
       title: "The plaques rolled in",
-      body: `The song earned its own plaques — 2× Platinum (Latin) in the US and Gold in France, Spain, Colombia, Hungary, Slovakia and Portugal. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
+      body: `The song earned its own plaques — 2× Platinum (Latin) in the US, Platinum in Spain, France and Slovakia, and Gold in Colombia, Hungary, Portugal and Greece. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
     },
     {
       scene: "worldsong",
