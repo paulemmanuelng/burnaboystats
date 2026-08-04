@@ -128,7 +128,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 676618128,
+      "baseline": 678815643,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -146,7 +146,7 @@
         }
       ],
       "lastChanged": "2026-08-04",
-      "lastSeenValue": 677231837,
+      "lastSeenValue": 678815643,
       "lastSeenAt": "2026-08-04"
     },
     {
@@ -158,7 +158,7 @@
       "match": "Last Last [Official Music Video]",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 357451861,
+      "baseline": 358798428,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
@@ -176,9 +176,9 @@
           "describes": "displayed YouTube views on /music/last-last"
         }
       ],
-      "lastChanged": "2026-07-29",
-      "lastSeenValue": 358490042,
-      "lastSeenAt": "2026-08-03"
+      "lastChanged": "2026-08-04",
+      "lastSeenValue": 358798428,
+      "lastSeenAt": "2026-08-04"
     },
     {
       "id": "yt-views-ye",
@@ -189,7 +189,7 @@
       "match": "Ye [Official Music Video]",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 306906990,
+      "baseline": 307576033,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
@@ -207,9 +207,9 @@
           "describes": "displayed YouTube views on /music/ye"
         }
       ],
-      "lastChanged": "2026-07-29",
-      "lastSeenValue": 307426069,
-      "lastSeenAt": "2026-08-03"
+      "lastChanged": "2026-08-04",
+      "lastSeenValue": 307576033,
+      "lastSeenAt": "2026-08-04"
     },
     {
       "id": "yt-views-on-the-low",
@@ -220,7 +220,7 @@
       "match": "On The Low [Official Music Video]",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 474031504,
+      "baseline": 475657164,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
@@ -238,9 +238,9 @@
           "describes": "displayed YouTube views on /music/on-the-low"
         }
       ],
-      "lastChanged": "2026-07-29",
-      "lastSeenValue": 475301399,
-      "lastSeenAt": "2026-08-03"
+      "lastChanged": "2026-08-04",
+      "lastSeenValue": 475657164,
+      "lastSeenAt": "2026-08-04"
     },
     {
       "id": "yt-views-city-boys",
@@ -270,8 +270,8 @@
         }
       ],
       "lastChanged": "2026-07-29",
-      "lastSeenValue": 116218524,
-      "lastSeenAt": "2026-08-03"
+      "lastSeenValue": 116354900,
+      "lastSeenAt": "2026-08-04"
     },
     {
       "id": "youtube-total-views",
@@ -300,8 +300,8 @@
         "max": 50000000000
       },
       "lastChanged": "2026-08-01",
-      "lastSeenValue": 3160462402,
-      "lastSeenAt": "2026-08-03"
+      "lastSeenValue": 3163156840,
+      "lastSeenAt": "2026-08-04"
     },
     {
       "id": "spotify-streams-last-last",

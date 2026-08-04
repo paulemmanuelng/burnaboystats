@@ -48,7 +48,7 @@ export const songs: Song[] = [
     album: "Love, Damini",
     cover: "https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2",
     spotify: "https://open.spotify.com/track/4LPNkxES0zCGn6S2Y1vmJN",
-    ytViews: "358M",
+    ytViews: "359M",
     tagline: "The heartbreak anthem — “I need igbo and shayo”",
     blurb:
       "The lead single from Love, Damini (2022), built on a sample of Toni Braxton's “He Wasn't Man Enough.” It became Burna Boy's signature breakup anthem and one of the most-certified African songs ever — topping the South African chart, reaching No. 4 in the UK (his highest-charting solo single there at the time) and going Diamond in France.",
@@ -84,7 +84,7 @@ export const songs: Song[] = [
     album: "Outside",
     cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
     spotify: "https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD",
-    ytViews: "307M",
+    ytViews: "308M",
     tagline: "The defiant life-anthem that became his global signature",
     blurb:
       "From the 2018 album Outside, “Ye” is one of Burna Boy's signature songs — the record that carried a career already six years deep into a worldwide audience. A defiant, celebratory Afro-fusion anthem about the will to live and enjoy every moment — “I no wan die, I wan enjoy” — it became a global streaming staple and went Platinum across the US, UK, France, Canada and beyond, all without ever needing a singles chart.",
@@ -119,7 +119,7 @@ export const songs: Song[] = [
     album: "African Giant",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     spotify: "https://open.spotify.com/track/1zIk8RJEKGvoH4FioFnGyJ",
-    ytViews: "475M",
+    ytViews: "476M",
     tagline: "The smooth love song that went Diamond in France",
     blurb:
       "A silky Afro-fusion love song from African Giant (2019), “On the Low” became one of Burna Boy's biggest records in Europe. It was certified Diamond in France — among the highest honours any African song has earned there — and picked up nine certifications worldwide.",
