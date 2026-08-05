@@ -10,7 +10,7 @@ import { spotifyFollowersDisplay } from "./spotify";
 // scripts/watched-metrics.json. An id-anchored find/replace matched the first
 // literal after the board's id, and because this cell holds a constant rather
 // than a literal, that was the next artist's value instead of his.
-const BURNA_PEAK_LISTENERS = "59.54M";
+const BURNA_PEAK_LISTENERS = "59.69M";
 
 // "Africa's Biggest" — leaderboard-style stat boxes comparing African artists.
 // Two box layouts:
