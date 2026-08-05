@@ -28,10 +28,7 @@ export interface ReleaseSummary {
   platforms: { platform: string; count: number; numberOnes: number }[];
 }
 
-const flagFor = (code: string) =>
-  code.length === 2
-    ? String.fromCodePoint(...[...code.toUpperCase()].map((c) => 0x1f1a5 + c.charCodeAt(0)))
-    : "";
+import { flagFor } from "../lib/flagFor";
 
 function Move({ e }: { e: LiveEntry }) {
   if (e.status === "re") return <span className={styles.moveRe}>RE-ENTRY</span>;

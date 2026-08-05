@@ -33,10 +33,7 @@ import { isEp } from "../data/albums";
 const TOP_CHIPS = 5;
 
 // The flag for an ISO alpha-2 code, from its regional indicator pair.
-const flagFor = (code: string) =>
-  code.length === 2
-    ? String.fromCodePoint(...[...code.toUpperCase()].map((c) => 0x1f1a5 + c.charCodeAt(0)))
-    : "";
+import { flagFor } from "../lib/flagFor";
 
 function movement(e: { movement?: number | null; status?: "new" | "re" }) {
   if (e.status === "re") return { label: "RE-ENTRY", ink: "var(--gold-bright)" };
