@@ -429,7 +429,9 @@ export const songs: Song[] = [
     year: 2012,
     spotifyStreams: "10M",
     album: "L.I.F.E",
-    cover: "https://i.scdn.co/image/ab67616d0000b2732a50f6b6ece48016fe9217e4",
+    // The L.I.F.E album art — the track link's own art is a best-of
+    // compilation cover, which is not the release this page is about.
+    cover: "https://i.scdn.co/image/ab67616d0000b273e3497b75e40ffc5bfffce8cf",
     spotify: "https://open.spotify.com/track/6cgEDo8mFLrvQ0FVqXAKpH",
     storyOnly: true,
     tagline: "The song that started it all",

@@ -50,6 +50,10 @@ const TITLE_ALIASES: Record<string, string> = {
 const EXTRA_COVERS: Record<string, string> = {
   "dai dai": "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4",
 
+  // Good Time — J Hus feat. Burna Boy, "Common Sense" (2017); back on the
+  // live boards Aug 2026. Deezer track 354045791, contributors name Burna Boy.
+  "good time": "https://cdn-images.dzcdn.net/images/cover/e75061725743f7df452ce6ec6d761c16/100x100-000000-80-0-0.jpg",
+
   // Ginger — WizKid, "Made In Lagos"
   ginger: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/100x100-000000-80-0-0.jpg",
   // Sponono — Kabza De Small, "I Am The King Of Amapiano: Sweet & Dust"
