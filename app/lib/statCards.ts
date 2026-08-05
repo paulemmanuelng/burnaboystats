@@ -213,8 +213,8 @@ const certBodies = (r: (typeof allItems)[number]) => {
     const body = COUNTRIES[c.c]?.body;
     if (body && !seen.includes(body)) seen.push(body);
   }
-  const shown = seen.slice(0, 3);
-  if (shown.join(" · ").length > 36 && shown.length > 2) shown.pop();
+  // Two names, then the count — three crowded the line on most cards.
+  const shown = seen.slice(0, 2);
   const rest = seen.length - shown.length;
   return rest > 0 ? `${shown.join(" · ")} + ${rest} more` : shown.join(" · ");
 };
