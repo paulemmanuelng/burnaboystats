@@ -344,7 +344,10 @@
   .tagline { font-size: 15px; }
   .blurb { font-size: 14.5px; margin-top: 18px; }
   .h2 { font-size: 24px; }
-  .numGrid { grid-template-columns: 1fr 1fr; }
+  /* minmax(0,1fr), matching the base grid above — a bare 1fr here undid that
+     fix below 900px and let long cert labels push the page 36px wide on a
+     phone (91px on the worst song at 320px). */
+  .numGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .numValue { font-size: 32px; }
   .numValueLong { font-size: 22px; }
   .legend { margin-left: 0; width: 100%; }
