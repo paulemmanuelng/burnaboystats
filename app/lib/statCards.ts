@@ -1,6 +1,7 @@
 import { totalAwards, countryCount, allItems, tierOf, daiDaiCertCount, COUNTRIES } from "../data/certifications";
 import { firstGroups } from "../data/firsts";
 import { titleKey } from "./titleKey";
+import { badgeWeight } from "./certs";
 import { numberOnes, chartEntryCount, chartCountryCount, daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
 import { monthlyListenersValues } from "../data/trends";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
@@ -202,6 +203,22 @@ const highestTier = (r: (typeof allItems)[number]) => {
 // value block, so the derived families clamp it at a sentence-ish length.
 const clamp = (s: string, n = 150) => (s.length <= n ? s : `${s.slice(0, n - 1).trimEnd()}…`);
 
+// The bodies behind the number, most representative first — the same
+// ordering the cert badges use — so "Location" credits BPI, RIAA and SNEP
+// rather than the placeholder phrase that shipped here. Three names fit the
+// source line; the rest roll up into a count.
+const certBodies = (r: (typeof allItems)[number]) => {
+  const seen: string[] = [];
+  for (const c of [...r.certs].sort((a, b) => badgeWeight(b) - badgeWeight(a))) {
+    const body = COUNTRIES[c.c]?.body;
+    if (body && !seen.includes(body)) seen.push(body);
+  }
+  const shown = seen.slice(0, 3);
+  if (shown.join(" · ").length > 36 && shown.length > 2) shown.pop();
+  const rest = seen.length - shown.length;
+  return rest > 0 ? `${shown.join(" · ")} + ${rest} more` : shown.join(" · ");
+};
+
 export function findCard(id: string | null): StatCard | undefined {
   if (!id) return undefined;
   const canned = getStatCards().find((c) => c.id === id);
@@ -218,7 +235,7 @@ export function findCard(id: string | null): StatCard | undefined {
       label: `certification${r.certs.length === 1 ? "" : "s"} for “${r.title}”`,
       kicker: `${countrySet.size} ${countrySet.size === 1 ? "country" : "countries"} · highest award ${highestTier(r)}`,
       chip: "Certified",
-      source: "CERTIFYING BODIES",
+      source: certBodies(r),
       watermark: "CERTS",
       href: "/certifications",
       detail: `Every certification “${r.title}” holds, as recorded by each country's own certifying body.`,
