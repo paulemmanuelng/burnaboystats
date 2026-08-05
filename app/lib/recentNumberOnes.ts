@@ -10,7 +10,9 @@ import { allChartItems, CHART_COUNTRIES } from "../data/charts";
  * and a No. 20 in South Africa, and neither is a new No. 1.
  */
 
-const RECENT_DAYS = 7;
+// Four days, not seven: at a week the badge outlived the news — cells from
+// the previous Thursday were still shouting NEW the following Wednesday.
+const RECENT_DAYS = 4;
 const REACHED_NUMBER_ONE = /\bNo\. 1s\b|\btops the\b|\btopped the\b|\benters at No\. 1\b/i;
 
 const ageInDays = (date: string) =>

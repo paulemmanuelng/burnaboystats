@@ -23,6 +23,7 @@ import {
 import { totalAwards, countryCount as certCountries } from "../data/certifications";
 import { albums as studioAlbums } from "../data/albums";
 import { tours } from "../data/tours";
+import { MARKET_WEIGHT } from "../lib/certs";
 
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 
@@ -76,15 +77,25 @@ const allCells = [...numberOneCountries].reverse().map((code) => {
   };
 });
 
-// Six cells, six songs. One NEW cell keeps the news beat without crowding
-// the six-pack — Venezuela outranks the other current arrivals (Record
-// Report is the region's most established national chart, and the biggest
-// market of the batch); if the NEW set rotates, the first arrival wins.
-// Then the curated UK pair, then the countries other songs topped.
+// Six cells, six songs. The lead slot carries the news when there IS news —
+// a genuinely new arrival — and otherwise the biggest market "Dai Dai"
+// topped, so the board always opens on a marquee country rather than on a
+// stale badge. Then the curated UK pair, then the countries other songs
+// topped.
 const newCells = allCells.filter((c) => c.isNew);
-const leadNew = newCells.find((c) => c.code === "VE") ?? newCells[0];
-const restCells = allCells.filter((c) => !c.isNew);
-const board = [...(leadNew ? [leadNew] : []), ukSinglesCell, ukAlbumsCell, ...restCells].slice(0, 6);
+const topDaiDaiCode = [...allCells]
+  .filter((c) => !c.isNew && c.coverTitle === "Dai Dai")
+  .sort(
+    (a, b) =>
+      (MARKET_WEIGHT[b.code] ?? 0) - (MARKET_WEIGHT[a.code] ?? 0) ||
+      a.code.localeCompare(b.code)
+  )[0]?.code;
+const leadCell = newCells[0] ?? allCells.find((c) => c.code === topDaiDaiCode);
+// Only ONE news cell ever shows: three arrivals in a week would otherwise
+// fill the board with the same song again, which is what the six-song rule
+// exists to prevent.
+const restCells = allCells.filter((c) => !c.isNew && c.code !== leadCell?.code);
+const board = [...(leadCell ? [leadCell] : []), ukSinglesCell, ukAlbumsCell, ...restCells].slice(0, 6);
 
 // ── Albums ─────────────────────────────────────────────────────────────────
 // Best official peak per album, for the chip under each cover.

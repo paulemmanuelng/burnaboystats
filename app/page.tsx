@@ -199,8 +199,15 @@ export default function Home() {
               </div>
               <p className={styles.lede}>
                 Every country a release has taken to No. 1 on its own official chart —
-                with the song that did it. Green cells marked{" "}
-                <span className={styles.newInk}>NEW</span> got there most recently.
+                with the song that did it.
+                {/* Only explain the badge while a badge is actually on the board;
+                    otherwise the sentence describes something invisible. */}
+                {boardCells.some((c) => c.isNew) && (
+                  <>
+                    {" "}Green cells marked <span className={styles.newInk}>NEW</span> got
+                    there most recently.
+                  </>
+                )}
               </p>
               <Link href="/records/charts" className={`btn btnSecondary ${styles.headBtn}`}>
                 All {careerNumberOnes} career No. 1s ↗

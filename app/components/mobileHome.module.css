@@ -284,6 +284,25 @@
 .stat {
   background: var(--bg);
   padding: 18px;
+  /* These cells are links. A faint gold wash is the whole affordance — on
+     hover where a pointer exists, and on press where one doesn't, since a
+     touch screen never fires hover. Kept very light: it should read as the
+     cell waking up, not as a selected state. */
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: background 140ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+/* 0.10: at 0.07 the wash was invisible in use, and by 0.16 it read as a
+   selected state rather than a hover. */
+@media (hover: hover) {
+  .stat:hover {
+    background: rgba(255, 182, 39, 0.1);
+  }
+}
+.stat:active {
+  background: rgba(255, 182, 39, 0.1);
 }
 .statValue {
   font-family: var(--font-anton), sans-serif;

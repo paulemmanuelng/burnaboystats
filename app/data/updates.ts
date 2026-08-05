@@ -29,6 +29,18 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-05",
+    category: "Charts",
+    text: "Two new European peaks for “Dai Dai”: No. 5 on Denmark's official Track Top-40, up two places, and No. 8 on Hungary's MAHASZ Single Top 40 — its best position yet in both countries, and its 46th top-5 placing worldwide.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-08-05",
+    category: "Streaming",
+    text: "A new YouTube Music high: the monthly audience reaches 844 million — still the seventh-biggest ever recorded worldwide and the only African artist on that board. Spotify monthly listeners also hit a fresh all-time peak of 59,691,049, lifting him to No. 37 among all artists worldwide.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-08-04",
     category: "Streaming",
     text: "The historic Spotify run closes: after 25 days in total as the most-streamed song on Earth — the first African-artist No. 1 in the Global Daily chart's history — “Dai Dai” hands the top spot to Ariana Grande, bowing out at No. 3 with 4.48M daily streams and 75 days on the chart.",
