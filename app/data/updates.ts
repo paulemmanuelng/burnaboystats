@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-08-05",
     category: "Charts",
+    text: "American radio comes around: “Dai Dai” climbs 11–9 on Billboard's Rhythmic Airplay chart — Burna Boy's fourth top 10 on the format, and the first for Shakira in 20 years, since “Hips Don't Lie” peaked at No. 5 in 2006.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-05",
+    category: "Charts",
     text: "Two new European peaks for “Dai Dai”: No. 5 on Denmark's official Track Top-40, up two places, and No. 8 on Hungary's MAHASZ Single Top 40 — its best position yet in both countries, and its 46th top-5 placing worldwide.",
     href: "/records/charts",
   },
