@@ -94,7 +94,9 @@
 /* Hairline seams: 1px gaps over a divider-coloured bed. */
 .countGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* minmax(0,1fr) — bare 1fr tracks can't shrink below "10.62B", which
+     poked the grid 7px past a 320px viewport. */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   background: var(--line);
   margin-top: 20px;
@@ -104,6 +106,10 @@
 /* Even horizontal padding: a zero left inset sat the value hard against the
    hairline seam. Every other hairline grid on the site pads 14–18px. */
 .countCell { background: var(--bg); padding: 14px 14px; }
+@media (max-width: 340px) {
+  .countCell { padding: 12px 8px; }
+  .countValue { font-size: 24px; }
+}
 .countValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
