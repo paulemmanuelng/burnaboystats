@@ -168,6 +168,27 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
           }}
         />
 
+        {/* Provenance stamp: the "where do I get mine" answer, centred on the
+            bottom edge where the eye lands after reading the number. Sits in
+            the padding zone so the data block above stays untouched. */}
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: tall ? 34 : 28,
+            display: "flex",
+            justifyContent: "center",
+            fontSize: tall ? 23 : 21,
+            fontWeight: 700,
+            letterSpacing: 3,
+            textTransform: "uppercase",
+            color: "#8a8279",
+          }}
+        >
+          burnaboystats.com
+        </div>
+
         {/* The watermark word, ghosted into the bottom-right corner */}
         <div
           style={{
