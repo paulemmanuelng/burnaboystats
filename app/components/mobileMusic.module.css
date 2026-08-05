@@ -101,7 +101,9 @@
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.countCell { background: var(--bg); padding: 14px 8px 14px 0; }
+/* Even horizontal padding: a zero left inset sat the value hard against the
+   hairline seam. Every other hairline grid on the site pads 14–18px. */
+.countCell { background: var(--bg); padding: 14px 14px; }
 .countValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

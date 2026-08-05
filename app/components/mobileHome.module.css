@@ -284,6 +284,32 @@
 .stat {
   background: var(--bg);
   padding: 18px;
+  /* These cells are links, but a phone has no hover to reveal that. The
+     corner chevron is the standing affordance and the pressed state is the
+     feedback — together they do the job hover does on the desktop board. */
+  position: relative;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: background 120ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.stat::after {
+  content: "↗";
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--text-muted);
+  opacity: 0.55;
+}
+.stat:active {
+  background: var(--bg-soft);
+}
+.stat:active::after {
+  color: var(--gold);
+  opacity: 1;
 }
 .statValue {
   font-family: var(--font-anton), sans-serif;
