@@ -5,6 +5,7 @@ import { numberOnes, chartEntryCount, chartCountryCount, daiDaiNumberOnes, daiDa
 import { monthlyListenersValues } from "../data/trends";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { spotifyFollowersDisplay } from "../data/spotify";
+import { BURNA_YT_AUDIENCE } from "../data/africasBiggest";
 
 // Shareable "stat cards" — a Burna Boy headline stat rendered as a downloadable
 // image (the Receiptify/Volt.fm-style viral artifact). Values are data-driven so
@@ -104,7 +105,7 @@ export function getStatCards(): StatCard[] {
       chip: "Monthly listeners",
       stats: [
         { value: spotifyFollowersDisplay, label: "Followers" },
-        { value: "840M", label: "YouTube peak" },
+        { value: BURNA_YT_AUDIENCE, label: "YouTube peak" },
         { value: "No.1", label: "Spotify Global" },
       ],
     },
@@ -168,7 +169,7 @@ export function getStatCards(): StatCard[] {
       chip: "Followers",
       stats: [
         { value: `${listeners}M`, label: "Monthly listeners" },
-        { value: "840M", label: "YouTube peak" },
+        { value: BURNA_YT_AUDIENCE, label: "YouTube peak" },
         { value: "#1", label: "Most-followed" },
       ],
     },
