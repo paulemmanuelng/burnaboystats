@@ -169,7 +169,7 @@ export default function DaiDaiPage() {
       label: "The streaming streaks",
       intro: "The daily and weekly runs — every one still counting.",
       items: [
-        { v: "25 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist — before Ariana Grande took over in early August; 75 days on the chart and counting" },
+        { v: "25 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist — before Ariana Grande took over in early August; 76 days on the chart and counting" },
         { v: "4 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
         { v: "33 days", l: "at No. 1 on Apple Music's European songs chart, and a 7th day atop the worldwide Apple Music chart" },
         { v: "23 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
@@ -180,6 +180,7 @@ export default function DaiDaiPage() {
       label: "The national charts",
       intro: "Country by country, on the official singles charts.",
       items: [
+        { v: "5 weeks", l: "at No. 1 on Germany's official singles chart — and named the country's official Sommerhit 2026 by GfK Entertainment, which compiles the charts, after nearly 60 million German streams" },
         { v: "8 weeks", l: "at No. 1 on Switzerland's official chart — the longest run at No. 1 by any song there so far this year" },
         { v: "4 weeks", l: "at No. 1 on France's Official Singles Chart (SNEP)" },
         { v: "No. 1", l: "India's IMI International Top 20 Singles Chart — the first Burna Boy song to top a chart in India" },
