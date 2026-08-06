@@ -31,6 +31,12 @@ export const updates: Update[] = [
   {
     date: "2026-08-06",
     category: "Streaming",
+    text: "Career Spotify streams tick up to 10.64B across every lead and featured credit — refreshed from kworb's live artist total plus the documented featured-credits gap it misses.",
+    href: "/records/by-the-numbers",
+  },
+  {
+    date: "2026-08-06",
+    category: "Streaming",
     text: "One million from sixth in the world: Burna Boy's YouTube monthly audience hits a new peak of 861 million, leaving him a single million behind Lady Gaga's 862M — no African artist has ever ranked this high. Shakira, his “Dai Dai” partner, sets her own new peak of 987 million.",
     href: "/records/africas-biggest",
   },
@@ -75,12 +81,6 @@ export const updates: Update[] = [
     category: "Charts",
     text: "The “Dai Dai” chart sweep lands 11 new territories — No. 1 in Estonia and, via IFPI Latin America's new chart, Ecuador — plus improved peaks in Uruguay (2), Malaysia (5) and Croatia (13). The song now counts 70 official chart entries with 27 countries at No. 1, and Burna Boy's career No. 1 tally moves to 46.",
     href: "/dai-dai",
-  },
-  {
-    date: "2026-08-04",
-    category: "Streaming",
-    text: "Career Spotify streams tick up to 10.62B across every lead and featured credit — refreshed from kworb's live artist total plus the documented featured-credits gap it misses.",
-    href: "/records/by-the-numbers",
   },
   {
     date: "2026-08-04",
