@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-05",
+    category: "Charts",
+    text: "Germany crowns it the song of the summer: GfK Entertainment, which compiles the Official German Charts, names “Dai Dai” the country's Sommerhit 2026 — five weeks at No. 1 on the singles chart and close to 60 million German streams.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-05",
     category: "Streaming",
     text: "The YouTube climb continues: Burna Boy's monthly audience reaches 852 million — a new all-time peak, still the seventh-biggest ever recorded worldwide, and now just 10 million short of Lady Gaga's 862M in sixth. Shakira, his “Dai Dai” partner, sets her own new peak of 976 million.",
     href: "/records/africas-biggest",
