@@ -118,7 +118,7 @@ export default function PerformanceMapPage() {
                     <th scope="row" className={styles.regionCell}>{region}</th>
                     <td className={styles.numCol}>{countries.length}</td>
                     <td className={styles.namesCell}>
-                      {countries.map((c) => `${c.flag} ${c.name}`).join("   ·   ")}
+                      {countries.map((c) => [c.flag, c.name].filter(Boolean).join(" ")).join("   ·   ")}
                     </td>
                   </tr>
                 ))}

@@ -71,7 +71,9 @@ export const performedCountries: PerformedCountry[] = [
   { name: "Turkey", code: 792, region: "Europe", flag: "🇹🇷", events: ["UEFA Champions League final, Istanbul (2023)"] },
   { name: "Greece", code: 300, region: "Europe", flag: "🇬🇷", events: ["SNF Nostos Festival, Athens (2021)"] },
   { name: "Austria", code: 40, region: "Europe", flag: "🇦🇹", events: ["Gasometer, Vienna (2020)"] },
-  { name: "Kosovo", code: 383, region: "Europe", flag: "🇽🇰", events: ["Sunny Hill Festival, Pristina (2024)"], marker: { x: 495.5, y: 98.7 } },
+  // Kosovo's XK is a user-assigned ISO code with no emoji flag on Apple or
+  // Google keyboards — 🇽🇰 renders as boxed "XK" letters, so no flag here.
+  { name: "Kosovo", code: 383, region: "Europe", flag: "", events: ["Sunny Hill Festival, Pristina (2024)"], marker: { x: 495.5, y: 98.7 } },
 
   // ── Asia / Middle East ──
   { name: "United Arab Emirates", code: 784, region: "Asia", flag: "🇦🇪", events: ["One Africa Music Festival, Dubai (2019)"] },

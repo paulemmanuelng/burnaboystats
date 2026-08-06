@@ -165,7 +165,8 @@ export default function PerformanceMap() {
           role="status"
         >
           <span className={styles.cardName}>
-            <span aria-hidden="true">{country.flag}</span> {country.name}
+            {country.flag && <span aria-hidden="true">{country.flag} </span>}
+            {country.name}
           </span>
           <span className={styles.cardRegion}>{country.region}</span>
           <ul className={styles.cardEvents}>
