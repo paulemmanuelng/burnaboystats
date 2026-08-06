@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-05",
+    category: "Streaming",
+    text: "The YouTube climb continues: Burna Boy's monthly audience reaches 852 million — a new all-time peak, still the seventh-biggest ever recorded worldwide, and now just 10 million short of Lady Gaga's 862M in sixth. Shakira, his “Dai Dai” partner, sets her own new peak of 976 million.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-08-05",
     category: "Charts",
     text: "American radio comes around: “Dai Dai” climbs 11–9 on Billboard's Rhythmic Airplay chart — Burna Boy's fourth top 10 on the format, and the first for Shakira in 20 years, since “Hips Don't Lie” peaked at No. 5 in 2006.",
     href: "/dai-dai",

@@ -15,8 +15,8 @@ const BURNA_PEAK_LISTENERS = "59.84M";
 /** His YouTube Music monthly audience, at its peak. Exported because four
  *  files quoted this figure by hand — it sat at 840M in eight places while
  *  YouTube Music itself showed 844M. One home, imported everywhere. */
-export const BURNA_YT_AUDIENCE = "844M";
-export const BURNA_YT_AUDIENCE_WORDS = "844 million";
+export const BURNA_YT_AUDIENCE = "852M";
+export const BURNA_YT_AUDIENCE_WORDS = "852 million";
 
 // "Africa's Biggest" — leaderboard-style stat boxes comparing African artists.
 // Two box layouts:
@@ -262,7 +262,7 @@ export const statBoxes: LeaderboardBox[] = [
     // both visible. The moment he reaches the top five, cut this back to a
     // straight Top 5 — every other board here is five, and the longer list is
     // just scaffolding until he's in it on merit.
-    // Next target: Lady Gaga 862M — 22M ahead as of Aug 2026.
+    // Next target: Lady Gaga 862M — 10M ahead as of 5 Aug 2026.
     title: "Biggest monthly audience on YouTube — worldwide",
     meta: "YouTube · all artists · all-time peak",
     layout: "list",
@@ -270,7 +270,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Alan Walker", sub: "🇳🇴 Norway", value: "1.12B" },
       { name: "Alok", sub: "🇧🇷 Brazil", value: "1.11B" },
       { name: "Bruno Mars", sub: "🇺🇸 United States", value: "1.02B" },
-      { name: "Shakira", sub: "🇨🇴 Colombia", value: "970M" },
+      { name: "Shakira", sub: "🇨🇴 Colombia", value: "976M" },
       { name: "Rosé", sub: "🇰🇷 South Korea", value: "959M" },
       { name: "Lady Gaga", sub: "🇺🇸 United States", value: "862M" },
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: BURNA_YT_AUDIENCE },
