@@ -22,7 +22,7 @@
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
-      "baseline": 59842480,
+      "baseline": 59985587,
       "live": true,
       "sanity": {
         "maxJump": 0.12,
