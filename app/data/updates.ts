@@ -30,6 +30,18 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-06",
+    category: "Certifications",
+    text: "Platinum in Portugal: AFP upgrades “Dai Dai” from Gold as the song logs an 11th week at No. 1 on the Top 200 Singles — its fifth Platinum-or-higher market, and Burna Boy's 47th certification of 2026.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-06",
+    category: "Streaming",
+    text: "Within 15,000 listeners of the 60-million mark: Spotify monthly listeners set another all-time peak at 59,985,587, holding No. 37 in the world, with followers climbing to 17,277,212.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-08-06",
     category: "Streaming",
     text: "Career Spotify streams tick up to 10.64B across every lead and featured credit — refreshed from kworb's live artist total plus the documented featured-credits gap it misses.",
     href: "/records/by-the-numbers",

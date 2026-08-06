@@ -10,7 +10,7 @@ import { spotifyFollowersDisplay } from "./spotify";
 // scripts/watched-metrics.json. An id-anchored find/replace matched the first
 // literal after the board's id, and because this cell holds a constant rather
 // than a literal, that was the next artist's value instead of his.
-const BURNA_PEAK_LISTENERS = "59.84M";
+const BURNA_PEAK_LISTENERS = "59.99M";
 
 /** His YouTube Music monthly audience, at its peak. Exported because four
  *  files quoted this figure by hand — it sat at 840M in eight places while

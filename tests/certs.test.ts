@@ -64,9 +64,9 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 has the published count of 46 certifications", () => {
-    // 46th: “Dai Dai” SK Platinum (ČNS IFPI, 4 Aug 2026 — upgrade from Gold).
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(46);
+  it("2026 has the published count of 47 certifications", () => {
+    // 47th: “Dai Dai” PT Platinum (AFP, 6 Aug 2026 — upgrade from Gold).
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(47);
   });
 
   it("2025 has the published count of 29 certifications", () => {
