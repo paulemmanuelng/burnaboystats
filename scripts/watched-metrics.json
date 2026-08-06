@@ -128,7 +128,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 697122491,
+      "baseline": 698012923,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -146,7 +146,7 @@
         }
       ],
       "lastChanged": "2026-08-06",
-      "lastSeenValue": 697122491,
+      "lastSeenValue": 698012923,
       "lastSeenAt": "2026-08-06"
     },
     {
@@ -331,8 +331,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 601095508,
-      "lastSeenAt": "2026-08-05"
+      "lastSeenValue": 601354120,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-on-the-low",
@@ -343,7 +343,7 @@
       "match": "On the Low",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 416857900,
+      "baseline": 417671383,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -361,9 +361,9 @@
           "describes": "Spotify streams on /music/on-the-low"
         }
       ],
-      "lastChanged": "2026-08-03",
-      "lastSeenValue": 417397910,
-      "lastSeenAt": "2026-08-05"
+      "lastChanged": "2026-08-06",
+      "lastSeenValue": 417671383,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-ye",
@@ -393,8 +393,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 329906888,
-      "lastSeenAt": "2026-08-05"
+      "lastSeenValue": 330073295,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-city-boys",
@@ -424,8 +424,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 282858654,
-      "lastSeenAt": "2026-08-05"
+      "lastSeenValue": 283015226,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-wgft",
@@ -436,7 +436,7 @@
       "match": "wgft (feat. Burna Boy)",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 284852623,
+      "baseline": 286018331,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -454,9 +454,9 @@
           "describes": "Spotify streams on /music/wgft"
         }
       ],
-      "lastChanged": "2026-08-04",
-      "lastSeenValue": 285421122,
-      "lastSeenAt": "2026-08-05"
+      "lastChanged": "2026-08-06",
+      "lastSeenValue": 286018331,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-alone",
@@ -486,8 +486,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 211877065,
-      "lastSeenAt": "2026-08-05"
+      "lastSeenValue": 211952791,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-23",
@@ -517,8 +517,8 @@
         }
       ],
       "lastChanged": "2026-07-29",
-      "lastSeenValue": 69195495,
-      "lastSeenAt": "2026-08-05"
+      "lastSeenValue": 69281882,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-like-to-party",
@@ -548,8 +548,8 @@
         }
       ],
       "lastChanged": "2026-07-29",
-      "lastSeenValue": 10288354,
-      "lastSeenAt": "2026-08-05"
+      "lastSeenValue": 10295498,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-rizzla",
@@ -579,8 +579,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 3757226,
-      "lastSeenAt": "2026-08-05"
+      "lastSeenValue": 3758946,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-boshe-nlo",
@@ -610,8 +610,8 @@
         }
       ],
       "lastChanged": "2026-07-29",
-      "lastSeenValue": 3620476,
-      "lastSeenAt": "2026-08-05"
+      "lastSeenValue": 3622799,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-darko",
@@ -641,8 +641,8 @@
         }
       ],
       "lastChanged": "2026-07-29",
-      "lastSeenValue": 986316,
-      "lastSeenAt": "2026-08-05"
+      "lastSeenValue": 986372,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-dai-dai",
@@ -653,7 +653,7 @@
       "match": "Dai Dai",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 294444624,
+      "baseline": 299175903,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -671,9 +671,9 @@
           "describes": "Spotify streams for Dai Dai"
         }
       ],
-      "lastChanged": "2026-08-05",
-      "lastSeenValue": 294444624,
-      "lastSeenAt": "2026-08-05"
+      "lastChanged": "2026-08-06",
+      "lastSeenValue": 299175903,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-tatata",
@@ -703,8 +703,8 @@
         }
       ],
       "lastChanged": "2026-07-29",
-      "lastSeenValue": 66329027,
-      "lastSeenAt": "2026-08-05"
+      "lastSeenValue": 66376215,
+      "lastSeenAt": "2026-08-06"
     },
     {
       "id": "spotify-streams-smoke",
@@ -734,8 +734,8 @@
         }
       ],
       "lastChanged": "2026-07-29",
-      "lastSeenValue": 3544504,
-      "lastSeenAt": "2026-08-05"
+      "lastSeenValue": 3548259,
+      "lastSeenAt": "2026-08-06"
     }
   ]
 }
