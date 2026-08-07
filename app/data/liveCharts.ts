@@ -2602,6 +2602,12 @@ export const liveCharts: LiveRelease[] = [
             "movement": -5
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 7,
+            "movement": -4
+          },
+          {
             "country": "LU",
             "name": "Luxembourg",
             "position": 7,
@@ -2612,12 +2618,6 @@ export const liveCharts: LiveRelease[] = [
             "name": "Poland",
             "position": 7,
             "movement": 7
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 8,
-            "movement": -5
           },
           {
             "country": "MX",
@@ -2645,16 +2645,16 @@ export const liveCharts: LiveRelease[] = [
             "movement": -5
           },
           {
-            "country": "IT",
-            "name": "Italy",
-            "position": 18,
-            "movement": -14
-          },
-          {
             "country": "US",
             "name": "United States",
             "position": 18,
             "movement": -11
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 19,
+            "movement": -15
           },
           {
             "country": "GR",
@@ -2810,21 +2810,21 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 144,
+            "position": 148,
             "movement": null,
             "status": "new"
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 161,
+            "position": 168,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 166,
+            "position": 177,
             "movement": null,
             "status": "new"
           }
@@ -4560,7 +4560,7 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "FI",
             "name": "Finland",
-            "position": 122,
+            "position": 128,
             "movement": null,
             "status": "new"
           }
