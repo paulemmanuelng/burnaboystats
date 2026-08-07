@@ -206,9 +206,9 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Rema", sub: "🇳🇬 Nigeria · tied", value: "6" },
       { name: "Wizkid, CKay & Omah Lay", sub: "🇳🇬 Nigeria · tied", value: "3" },
     ],
-    note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 15, well clear of the field, with “Dai Dai” the latest to cross the mark. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
+    note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 15, well clear of the field. He owns the 300M tier too: “Dai Dai” crossed it in August 2026 as his 8th song past 300 million, and no other African act has more than Tems's five. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
     source:
-      "Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals. As of July 2026 — figures shift as songs cross the threshold.",
+      "Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals. As of August 2026 — figures shift as songs cross the threshold.",
   },
   {
     id: "most-followed-spotify",

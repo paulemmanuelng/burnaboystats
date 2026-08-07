@@ -29,6 +29,18 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-07",
+    category: "Streaming",
+    text: "Career Spotify streams tick up to 10.65B across every lead and featured credit — now refreshed daily from kworb's live artist total plus the documented featured-credits gap it misses.",
+    href: "/records/by-the-numbers",
+  },
+  {
+    date: "2026-08-06",
+    category: "Streaming",
+    text: "300 million Spotify streams for “Dai Dai” — Burna Boy's 8th song past the mark, counting lead and featured credits, the most of any African act. Tems is closest with five; the song reached it in under three months.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-08-06",
     category: "Certifications",
     text: "Platinum in Portugal: AFP upgrades “Dai Dai” from Gold as the song logs an 11th week at No. 1 on the Top 200 Singles — its fifth Platinum-or-higher market, and Burna Boy's 47th certification of 2026.",
@@ -39,12 +51,6 @@ export const updates: Update[] = [
     category: "Streaming",
     text: "Within 15,000 listeners of the 60-million mark: Spotify monthly listeners set another all-time peak at 59,985,587, holding No. 37 in the world, with followers climbing to 17,277,212.",
     href: "/records/africas-biggest",
-  },
-  {
-    date: "2026-08-06",
-    category: "Streaming",
-    text: "Career Spotify streams tick up to 10.64B across every lead and featured credit — refreshed from kworb's live artist total plus the documented featured-credits gap it misses.",
-    href: "/records/by-the-numbers",
   },
   {
     date: "2026-08-06",
