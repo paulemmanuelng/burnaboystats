@@ -117,7 +117,9 @@
         "max": 100000000000
       },
       "lastChanged": "2026-08-07",
-      "offset": 107613681
+      "offset": 107613681,
+      "lastSeenValue": 10647597329,
+      "lastSeenAt": "2026-08-07"
     },
     {
       "id": "dai-dai-video-views",
@@ -145,7 +147,7 @@
         }
       ],
       "lastChanged": "2026-08-07",
-      "lastSeenValue": 710089600,
+      "lastSeenValue": 710445861,
       "lastSeenAt": "2026-08-07"
     },
     {
