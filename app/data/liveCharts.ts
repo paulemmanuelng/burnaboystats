@@ -1471,6 +1471,12 @@ export const liveCharts: LiveRelease[] = [
             "movement": 0
           },
           {
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 2,
+            "movement": 0
+          },
+          {
             "country": "IS",
             "name": "Iceland",
             "position": 3,
@@ -2826,7 +2832,7 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "PE",
             "name": "Peru",
-            "position": 109,
+            "position": 111,
             "movement": null,
             "status": "new"
           }

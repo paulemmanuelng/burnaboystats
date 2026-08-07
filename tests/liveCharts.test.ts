@@ -23,6 +23,7 @@ import { CHART_COUNTRIES } from "../app/data/charts";
 const CELL = `
 <td valign=top width="200"><div class="wrap"><b>Test Song</b></div><br>
 <div class="spo">Spotify (2x #1):<br>
+<div class="eu small spo"><a href="/spotify/country/global_daily.html">#2 Worldwide</a> <span class="change24">(=)</span></div>
 <div class="eu small spo"><a href="/spotify/country/at_daily.html">#1 Austria</a> <span class="change24">(=)</span></div>
 <div class="eu spo"><a href="/spotify/country/de_daily.html">#1 Germany</a> <span class="change24">(+3)</span></div>
 <div class="eu spo"><a href="/spotify/country/fr_daily.html">#12 France</a> <span class="change24">(-4)</span></div>
@@ -60,7 +61,17 @@ describe("extractLiveCharts", () => {
     const names = song.platforms.map((p: { platform: string }) => p.platform);
     expect(names).toEqual(expect.arrayContaining(["Spotify", "Apple Music"]));
     expect(song.platforms.find((p: { platform: string }) => p.platform === "Spotify").entries)
-      .toHaveLength(3);
+      .toHaveLength(4);
+  });
+
+  it("keeps Spotify's global chart row, mapped to WW", () => {
+    // Spotify's worldwide chart lives at global_daily.html — not a two-letter
+    // code like every other page — and the parser used to drop it silently.
+    const song = out.find((r: { title: string }) => r.title === "Test Song");
+    const spo = song.platforms.find((p: { platform: string }) => p.platform === "Spotify");
+    expect(spo.entries).toContainEqual(
+      expect.objectContaining({ country: "WW", name: "Worldwide", position: 2 })
+    );
   });
 
   it("takes the country code from the href, not the display name", () => {
@@ -74,7 +85,7 @@ describe("extractLiveCharts", () => {
     const song = out.find((r: { title: string }) => r.title === "Test Song");
     const spo = song.platforms.find((p: { platform: string }) => p.platform === "Spotify");
     expect(spo.numberOnes).toBe(2);
-    expect(spo.entries.map((e: { position: number }) => e.position)).toEqual([1, 1, 12]);
+    expect(spo.entries.map((e: { position: number }) => e.position)).toEqual([1, 1, 2, 12]);
   });
 
   it("returns nothing for markup with no placements", () => {
