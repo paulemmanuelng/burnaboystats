@@ -128,7 +128,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 707954618,
+      "baseline": 708674282,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -146,7 +146,7 @@
         }
       ],
       "lastChanged": "2026-08-07",
-      "lastSeenValue": 707954618,
+      "lastSeenValue": 708674282,
       "lastSeenAt": "2026-08-07"
     },
     {
@@ -177,8 +177,8 @@
         }
       ],
       "lastChanged": "2026-08-04",
-      "lastSeenValue": 358798428,
-      "lastSeenAt": "2026-08-04"
+      "lastSeenValue": 359116109,
+      "lastSeenAt": "2026-08-07"
     },
     {
       "id": "yt-views-ye",
@@ -208,8 +208,8 @@
         }
       ],
       "lastChanged": "2026-08-04",
-      "lastSeenValue": 307576033,
-      "lastSeenAt": "2026-08-04"
+      "lastSeenValue": 307737924,
+      "lastSeenAt": "2026-08-07"
     },
     {
       "id": "yt-views-on-the-low",
@@ -239,8 +239,8 @@
         }
       ],
       "lastChanged": "2026-08-04",
-      "lastSeenValue": 475657164,
-      "lastSeenAt": "2026-08-04"
+      "lastSeenValue": 476059907,
+      "lastSeenAt": "2026-08-07"
     },
     {
       "id": "yt-views-city-boys",
@@ -251,7 +251,7 @@
       "match": "City Boys [Official Music Video]",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 115771555,
+      "baseline": 116501289,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
@@ -269,9 +269,9 @@
           "describes": "displayed YouTube views on /music/city-boys"
         }
       ],
-      "lastChanged": "2026-07-29",
-      "lastSeenValue": 116354900,
-      "lastSeenAt": "2026-08-04"
+      "lastChanged": "2026-08-07",
+      "lastSeenValue": 116501289,
+      "lastSeenAt": "2026-08-07"
     },
     {
       "id": "youtube-total-views",
@@ -281,7 +281,7 @@
       "extractor": "kworbYouTubeTotal",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 3160462402,
+      "baseline": 3166196415,
       "note": "Cumulative views across every Burna Boy video — a milestone figure as it climbs.",
       "live": true,
       "siteTargets": [
@@ -299,9 +299,9 @@
         "min": 1000000000,
         "max": 50000000000
       },
-      "lastChanged": "2026-08-01",
-      "lastSeenValue": 3163156840,
-      "lastSeenAt": "2026-08-04"
+      "lastChanged": "2026-08-07",
+      "lastSeenValue": 3166196415,
+      "lastSeenAt": "2026-08-07"
     },
     {
       "id": "spotify-streams-last-last",
