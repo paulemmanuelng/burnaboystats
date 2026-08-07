@@ -55,8 +55,8 @@
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "peakListeners",
       "lastChanged": "2026-08-06",
-      "lastSeenValue": 59842480,
-      "lastSeenAt": "2026-08-06"
+      "lastSeenValue": 59985587,
+      "lastSeenAt": "2026-08-07"
     },
     {
       "id": "spotify-listeners-rank",
@@ -128,7 +128,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 700337272,
+      "baseline": 706535194,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -145,9 +145,9 @@
           "describes": "displayed view count (whole millions) on /dai-dai"
         }
       ],
-      "lastChanged": "2026-08-06",
-      "lastSeenValue": 700337272,
-      "lastSeenAt": "2026-08-06"
+      "lastChanged": "2026-08-07",
+      "lastSeenValue": 706535194,
+      "lastSeenAt": "2026-08-07"
     },
     {
       "id": "yt-views-last-last",
