@@ -55,7 +55,7 @@ const liveOnesLabel = `right now on the daily charts of ${platformOnes
   .replace(/, ([^,]*)$/, " and $1")} — refreshed hourly from the live board`;
 
 // Total Spotify streams for "Dai Dai" — same live pipeline as the video count.
-const DAI_DAI_SPOTIFY_STREAMS = "299M";
+const DAI_DAI_SPOTIFY_STREAMS = "303M";
 
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
@@ -159,7 +159,7 @@ export default function DaiDaiPage() {
     { v: `${daiDaiChartEntryCount}`, l: "official chart entries worldwide — on national singles charts across the globe, plus both of Billboard's global charts" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "No. 1", l: "on both Billboard global charts — a 4th consecutive week atop the Global 200 (a first for an African artist, and Shakira's 2nd) and a 6th consecutive week atop the Global 200 Excl. US" },
-    { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — 25 days as the most-streamed song on Earth" },
+    { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 25 days as the most-streamed song on Earth" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, France, Slovakia & Portugal, plus Gold in Colombia, Hungary & Greece" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];

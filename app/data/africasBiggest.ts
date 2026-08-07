@@ -164,6 +164,22 @@ export const statBoxes: LeaderboardBox[] = [
       "Peak Spotify monthly listeners, from Spotify artist pages and monitoring trackers, as of August 2026. Burna Boy's figure is his current peak and still rising, so it updates as Spotify's numbers change.",
   },
   {
+    id: "spotify-300m-club",
+    title: "Most songs past 300M streams",
+    meta: "Spotify · African artists · lead & featured credits",
+    layout: "list",
+    entries: [
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "8" },
+      { name: "Tems", sub: "🇳🇬 Nigeria", value: "5" },
+      { name: "CKay", sub: "🇳🇬 Nigeria", value: "3" },
+      { name: "Ayra Starr", sub: "🇳🇬 Nigeria", value: "2" },
+      { name: "Rema", sub: "🇳🇬 Nigeria", value: "2" },
+    ],
+    note: "“Dai Dai” made it 8 in August 2026 — no other African act has more than five. The eight: Location (729M), Last Last (602M), On the Low (418M), Own It (411M), Be Honest (389M), For My Hand (377M), Ye (330M) and “Dai Dai” (304M and climbing).",
+    source:
+      "Spotify play counts via kworb's per-artist song tables, as of 6 August 2026. Lead and featured credits both count, and each Spotify version counts separately — Wizkid also has two (One Dance, Essence); Rema's two are both versions of Calm Down.",
+  },
+  {
     id: "biggest-spotify-debut",
     title: "Biggest Spotify debut",
     meta: "African albums · global · first-week streams",
