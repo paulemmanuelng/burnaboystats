@@ -165,7 +165,7 @@
         "min": 1000000,
         "max": 5000000000
       },
-      "note": "Views of the official “Last Last” video, shown on /music/last-last. Auto-published hourly; the display string only changes when it crosses a whole million.",
+      "note": "Views of the official “Last Last” video, shown on /music/last-last. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy — hence the long staleness window.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -178,7 +178,8 @@
       ],
       "lastChanged": "2026-08-04",
       "lastSeenValue": 359116109,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenAt": "2026-08-07",
+      "stalenessDays": 45
     },
     {
       "id": "yt-views-ye",
@@ -196,7 +197,7 @@
         "min": 1000000,
         "max": 5000000000
       },
-      "note": "Views of the official “Ye” video, shown on /music/ye. Auto-published hourly; the display string only changes when it crosses a whole million.",
+      "note": "Views of the official “Ye” video, shown on /music/ye. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy — hence the long staleness window.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -209,7 +210,8 @@
       ],
       "lastChanged": "2026-08-04",
       "lastSeenValue": 307737924,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenAt": "2026-08-07",
+      "stalenessDays": 60
     },
     {
       "id": "yt-views-on-the-low",
@@ -227,7 +229,7 @@
         "min": 1000000,
         "max": 5000000000
       },
-      "note": "Views of the official “On the Low” video, shown on /music/on-the-low. Auto-published hourly; the display string only changes when it crosses a whole million.",
+      "note": "Views of the official “On the Low” video, shown on /music/on-the-low. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy — hence the long staleness window.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -240,7 +242,8 @@
       ],
       "lastChanged": "2026-08-04",
       "lastSeenValue": 476059907,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenAt": "2026-08-07",
+      "stalenessDays": 45
     },
     {
       "id": "yt-views-city-boys",
@@ -258,7 +261,7 @@
         "min": 1000000,
         "max": 5000000000
       },
-      "note": "Views of the official “City Boys” video, shown on /music/city-boys. Auto-published hourly; the display string only changes when it crosses a whole million.",
+      "note": "Views of the official “City Boys” video, shown on /music/city-boys. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy — hence the long staleness window.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -271,7 +274,8 @@
       ],
       "lastChanged": "2026-08-07",
       "lastSeenValue": 116501289,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenAt": "2026-08-07",
+      "stalenessDays": 30
     },
     {
       "id": "youtube-total-views",
