@@ -326,8 +326,12 @@ export function extractLiveCharts(html) {
       const h = heads[i];
       const body = cell.slice(h.index, i + 1 < heads.length ? heads[i + 1].index : cell.length);
       const entries = [];
+      // Country pages use two-letter codes ("de_daily.html", "ww.html"), but
+      // Spotify's global chart lives at "global_daily.html" — without the
+      // alternation the site silently dropped Spotify worldwide placements
+      // while showing Shazam's and Deezer's ("ww" happens to be two letters).
       for (const m of body.matchAll(
-        /<a href="[^"]*?\/([a-z]{2})(?:_daily)?\.html">#(\d+) ([^<]+)<\/a>\s*(?:<span[^>]*>([^<]*)<\/span>)?/g
+        /<a href="[^"]*?\/([a-z]{2}|global)(?:_daily)?\.html">#(\d+) ([^<]+)<\/a>\s*(?:<span[^>]*>([^<]*)<\/span>)?/g
       )) {
         // "(NE)" and "(RE)" both mean "no previous position", so both give a
         // null movement — but they are different facts, and rendering a
@@ -335,7 +339,7 @@ export function extractLiveCharts(html) {
         // Keep which one it was. A marker missing entirely stays absent rather
         // than being read as either.
         const entry = {
-          country: m[1].toUpperCase(),
+          country: m[1] === "global" ? "WW" : m[1].toUpperCase(),
           name: m[3].trim(),
           position: Number.parseInt(m[2], 10),
         };
