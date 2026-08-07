@@ -104,14 +104,21 @@ const fmt = (n) => (n == null || Number.isNaN(n) ? "—" : Math.round(n).toLocal
 
 // Get one metric's live value, handling both source types, with a shared page
 // cache so a source URL is fetched at most once.
+//
+// `metric.offset` is added to whatever the source reports, for sources that
+// undercount by a known, measured amount (kworb's artist total misses some
+// featured credits). It applies at this single point, so the baseline, the
+// sanity gate and the written display all live in corrected space — a
+// metric's offset can only be changed together with a matching baseline.
 async function liveValue(metric, pageCache) {
-  if (metric.extractor === "spotifyFollowers") return spotifyFollowers(metric);
+  const corrected = (n) => (Number.isNaN(n) ? n : n + (metric.offset ?? 0));
+  if (metric.extractor === "spotifyFollowers") return corrected(await spotifyFollowers(metric));
   if (!pageCache.has(metric.sourceUrl)) {
     pageCache.set(metric.sourceUrl, fetchText(metric.sourceUrl).catch((e) => ({ error: e.message })));
   }
   const page = await pageCache.get(metric.sourceUrl);
   if (page && page.error) throw new Error(page.error);
-  return htmlExtractors[metric.extractor]?.(page, metric) ?? NaN;
+  return corrected(htmlExtractors[metric.extractor]?.(page, metric) ?? NaN);
 }
 
 async function applyTargets(metric, files) {

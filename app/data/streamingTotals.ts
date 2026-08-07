@@ -11,14 +11,13 @@
 // so more precision would be noise.
 
 // Every Burna Boy song on Spotify, lead and featured credits combined.
-// Maintained from Paul's live tracking — the bot's kworb artist-totals
-// source undercounts by ~107.6M (it misses some featured credits), which is
-// why this figure is no longer auto-published. Refreshed 6 Aug 2026 as
-// kworb's current total (10,529,639,831) plus that documented gap
-// (~10,637,253,512); the gap itself was measured against Paul's tracked
-// 10,608,257,587 on 31 Jul 2026. The spotify-total-streams metric still
-// monitors the source for movement.
-export const spotifyTotalStreams = "10.64B";
+// Auto-published daily again (7 Aug 2026): the spotify-total-streams metric
+// now adds the featured-credits gap kworb misses (+107,613,681, measured
+// against Paul's tracked total on 31 Jul 2026) as a pipeline offset before
+// writing this string, so it tracks the source without undercounting. If a
+// new featured credit changes the gap itself, re-measure the offset in
+// scripts/watched-metrics.json.
+export const spotifyTotalStreams = "10.65B";
 
 // Every Burna Boy video on YouTube, across his channel and others'.
 export const youtubeTotalViews = "3.17B";

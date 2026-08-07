@@ -98,9 +98,9 @@
       "extractor": "kworbTotalStreams",
       "kind": "drift",
       "threshold": 0.03,
-      "baseline": 10529639831,
-      "note": "Monitor-only since 3 Aug 2026: kworb's artist-totals row undercounts the full lead+featured total by ~1% (10.50B vs Paul's tracked 10,608,257,587), so auto-publishing kept dragging the displayed figure down. The display in streamingTotals.ts is maintained from Paul's tracking; this metric now just flags real movement in the source.",
-      "live": false,
+      "baseline": 10647597329,
+      "note": "Auto-published again since 7 Aug 2026, with the featured-credits gap kworb misses (+107,613,681, measured against Paul’s tracked 10,608,257,587 on 31 Jul 2026) applied as a pipeline offset — so the display tracks the source daily without dragging below the true total. Baseline lives in corrected space. If Paul’s tracking shows the gap itself moved (a new featured credit), re-measure and update offset and baseline together.",
+      "live": true,
       "siteTargets": [
         {
           "file": "app/data/streamingTotals.ts",
@@ -116,9 +116,8 @@
         "min": 5000000000,
         "max": 100000000000
       },
-      "lastChanged": "2026-08-03",
-      "lastSeenValue": 10500643906,
-      "lastSeenAt": "2026-08-03"
+      "lastChanged": "2026-08-07",
+      "offset": 107613681
     },
     {
       "id": "dai-dai-video-views",
