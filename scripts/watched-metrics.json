@@ -13,7 +13,9 @@
       "note": "Current monthly listeners (kworb). NOTE: Spotify’s own artist page is fresher, but it only serves the full page to curl/browsers — node fetch (which the workflow uses) gets a stub, so kworb is the reliable CI source.",
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "monthlyListeners",
-      "lastChanged": "2026-08-03"
+      "lastChanged": "2026-08-03",
+      "lastSeenValue": 59985587,
+      "lastSeenAt": "2026-08-07"
     },
     {
       "id": "spotify-peak-listeners",
@@ -98,7 +100,7 @@
       "extractor": "kworbTotalStreams",
       "kind": "drift",
       "threshold": 0.03,
-      "baseline": 10529639831,
+      "baseline": 10539983648,
       "note": "Monitor-only since 3 Aug 2026: kworb's artist-totals row undercounts the full lead+featured total by ~1% (10.50B vs Paul's tracked 10,608,257,587), so auto-publishing kept dragging the displayed figure down. The display in streamingTotals.ts is maintained from Paul's tracking; this metric now just flags real movement in the source.",
       "live": false,
       "siteTargets": [
@@ -116,9 +118,9 @@
         "min": 5000000000,
         "max": 100000000000
       },
-      "lastChanged": "2026-08-03",
-      "lastSeenValue": 10500643906,
-      "lastSeenAt": "2026-08-03"
+      "lastChanged": "2026-08-07",
+      "lastSeenValue": 10539983648,
+      "lastSeenAt": "2026-08-07"
     },
     {
       "id": "dai-dai-video-views",

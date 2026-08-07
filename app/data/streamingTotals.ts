@@ -18,7 +18,7 @@
 // (~10,637,253,512); the gap itself was measured against Paul's tracked
 // 10,608,257,587 on 31 Jul 2026. The spotify-total-streams metric still
 // monitors the source for movement.
-export const spotifyTotalStreams = "10.64B";
+export const spotifyTotalStreams = "10.54B";
 
 // Every Burna Boy video on YouTube, across his channel and others'.
 export const youtubeTotalViews = "3.17B";
