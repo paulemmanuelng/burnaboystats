@@ -44,7 +44,7 @@ const figures = [
   { value: String(performedCountryCount), label: "Countries performed", sub: "7 regions" },
 ];
 
-const X_SITE = "https://x.com/BurnaBoyStats";
+const X_CONTACT = "https://x.com/paulemmanuelng";
 
 export default function PressPage() {
   const webPageJsonLd = {
@@ -164,8 +164,8 @@ export default function PressPage() {
           <Link href="/methodology" className={styles.link}>methodology</Link> spells it
           out, and the <Link href="/curator" className={styles.link}>curator page</Link>{" "}
           says who does the work. For data requests, corrections or anything else, DM{" "}
-          <a href={X_SITE} rel="noopener" target="_blank" className={styles.link}>
-            @BurnaBoyStats
+          <a href={X_CONTACT} rel="noopener" target="_blank" className={styles.link}>
+            @paulemmanuelng
           </a>{" "}
           or use the <Link href="/contact" className={styles.link}>contact page</Link>.
         </p>

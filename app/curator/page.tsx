@@ -29,7 +29,6 @@ const reviewedLabel = new Date(`${lastReviewed}T12:00:00Z`).toLocaleDateString("
   year: "numeric",
 });
 
-const X_SITE = "https://x.com/BurnaBoyStats";
 const X_PERSONAL = "https://x.com/paulemmanuelng";
 
 // First person throughout — this page is the curator speaking, not the site
@@ -67,7 +66,7 @@ export default function CuratorPage() {
       name: "Ukpaka Emmanuel",
       alternateName: "Paul Emmanuel",
       url: `${CANONICAL_ORIGIN}/curator`,
-      sameAs: [X_PERSONAL, X_SITE],
+      sameAs: [X_PERSONAL],
       knowsAbout: ["Burna Boy", "Afrobeats", "music charts", "music certifications", "streaming data"],
       affiliation: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     },
@@ -108,15 +107,12 @@ export default function CuratorPage() {
       <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="reach">
         <h2 id="reach" className={styles.h2}>Reach me</h2>
         <p className={styles.p}>
-          The site posts as{" "}
-          <a href={X_SITE} rel="noopener" target="_blank" className={styles.link}>
-            @BurnaBoyStats
-          </a>{" "}
-          on X, and I&apos;m{" "}
+          I&apos;m{" "}
           <a href={X_PERSONAL} rel="noopener" target="_blank" className={styles.link}>
             @paulemmanuelng
-          </a>
-          . Corrections with a primary source are always welcome — the{" "}
+          </a>{" "}
+          on X — the fastest way to reach me. Corrections with a primary source are always
+          welcome — the{" "}
           <Link href="/contact" className={styles.link}>contact page</Link> explains what to
           send. Writers and fan pages: the{" "}
           <Link href="/press" className={styles.link}>press &amp; data kit</Link> has
