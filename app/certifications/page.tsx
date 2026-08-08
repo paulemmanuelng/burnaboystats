@@ -164,7 +164,7 @@ export default function CertificationsPage() {
             (New Zealand), Promusicae (Spain), IFPI (Denmark, Norway, Switzerland, Austria),
             ZPAV (Poland), AFP (Portugal), RiSA (South Africa), TCSN (Nigeria) and Pro-Música
             Brasil — cross-checked against Wikipedia&apos;s cited certification tables, as of
-            July 2026. Each row shows a release&apos;s current level in every country; “×”
+            August 2026. Each row shows a release&apos;s current level in every country; “×”
             denotes multi-platinum.
           </p>
         </div>
