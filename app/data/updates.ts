@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-08",
+    category: "Charts",
+    text: "A leap to No. 2 in Hungary: “Dai Dai” jumps 8–2 on MAHASZ's official Single Top 40 (week 32) — a new peak, and the song's 49th top-5 placing worldwide.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-08-08",
     category: "Firsts & Records",
     text: "Sixty million: Spotify monthly listeners reach 60,012,272 — the first and only African artist ever to hit the mark, at No. 37 among all artists worldwide, with followers climbing to 17.3 million. No other African act has passed 47 million.",
     href: "/records/firsts",
