@@ -206,6 +206,13 @@ async function main() {
   // of how small the percentage move was.
   const displayWouldChange = (r) => {
     if (r.live == null || Number.isNaN(r.live) || r.baseline == null) return false;
+    // A peak metric records an all-time HIGH, and its baseline can be fresher
+    // than the source (Paul reads Spotify's own page; kworb lags it by hours).
+    // Without this guard, a lagging source that formats differently rewrote
+    // the site DOWNWARD — 60.01M back to 59.99M on 8 Aug 2026 — through this
+    // display-sync path, which bypassed the only-moves-up rule in
+    // evaluateMetric. A peak below its baseline is lag, never news.
+    if (r.kind === "peak" && r.live <= r.baseline) return false;
     const fmt = r.siteTargets?.[0]?.format ?? r.format;
     if (!fmt) return false;
     return formatStat(r.live, fmt) !== formatStat(r.baseline, fmt);
