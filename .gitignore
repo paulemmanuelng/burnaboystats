@@ -46,3 +46,7 @@ refresh-pr-body.md
 
 # redesign drop folder (local only)
 /design
+
+# Stray verification artifacts (downloaded chart pages, test card renders)
+/card-*.png
+/*.html
