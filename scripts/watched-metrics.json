@@ -98,7 +98,7 @@
       "extractor": "kworbTotalStreams",
       "kind": "drift",
       "threshold": 0.03,
-      "baseline": 10647597329,
+      "baseline": 10666766251,
       "note": "Auto-published again since 7 Aug 2026, with the featured-credits gap kworb misses (+107,613,681, measured against Paul’s tracked 10,608,257,587 on 31 Jul 2026) applied as a pipeline offset — so the display tracks the source daily without dragging below the true total. Baseline lives in corrected space. If Paul’s tracking shows the gap itself moved (a new featured credit), re-measure and update offset and baseline together.",
       "live": true,
       "siteTargets": [
@@ -116,10 +116,10 @@
         "min": 5000000000,
         "max": 100000000000
       },
-      "lastChanged": "2026-08-07",
+      "lastChanged": "2026-08-08",
       "offset": 107613681,
-      "lastSeenValue": 10647597329,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenValue": 10666766251,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "dai-dai-video-views",
@@ -129,7 +129,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 732054424,
+      "baseline": 732804811,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -147,7 +147,7 @@
         }
       ],
       "lastChanged": "2026-08-08",
-      "lastSeenValue": 732054424,
+      "lastSeenValue": 732804811,
       "lastSeenAt": "2026-08-08"
     },
     {
@@ -336,8 +336,8 @@
         }
       ],
       "lastChanged": "2026-08-07",
-      "lastSeenValue": 601606940,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenValue": 602122837,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-on-the-low",
@@ -348,7 +348,7 @@
       "match": "On the Low",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 417671383,
+      "baseline": 418542752,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -366,9 +366,9 @@
           "describes": "Spotify streams on /music/on-the-low"
         }
       ],
-      "lastChanged": "2026-08-06",
-      "lastSeenValue": 417943755,
-      "lastSeenAt": "2026-08-07"
+      "lastChanged": "2026-08-08",
+      "lastSeenValue": 418542752,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-ye",
@@ -379,7 +379,7 @@
       "match": "Ye",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 329596023,
+      "baseline": 330592211,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -397,9 +397,9 @@
           "describes": "Spotify streams on /music/ye"
         }
       ],
-      "lastChanged": "2026-08-03",
-      "lastSeenValue": 330236065,
-      "lastSeenAt": "2026-08-07"
+      "lastChanged": "2026-08-08",
+      "lastSeenValue": 330592211,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-city-boys",
@@ -429,8 +429,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 283168483,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenValue": 283491051,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-wgft",
@@ -441,7 +441,7 @@
       "match": "wgft (feat. Burna Boy)",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 286623169,
+      "baseline": 287770054,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -459,9 +459,9 @@
           "describes": "Spotify streams on /music/wgft"
         }
       ],
-      "lastChanged": "2026-08-07",
-      "lastSeenValue": 286623169,
-      "lastSeenAt": "2026-08-07"
+      "lastChanged": "2026-08-08",
+      "lastSeenValue": 287770054,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-alone",
@@ -491,8 +491,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 212028201,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenValue": 212172640,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-23",
@@ -503,7 +503,7 @@
       "match": "23",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 68574730,
+      "baseline": 69528706,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -521,9 +521,9 @@
           "describes": "Spotify streams on /music/23"
         }
       ],
-      "lastChanged": "2026-07-29",
-      "lastSeenValue": 69366836,
-      "lastSeenAt": "2026-08-07"
+      "lastChanged": "2026-08-08",
+      "lastSeenValue": 69528706,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-like-to-party",
@@ -553,8 +553,8 @@
         }
       ],
       "lastChanged": "2026-07-29",
-      "lastSeenValue": 10302811,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenValue": 10318244,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-rizzla",
@@ -584,8 +584,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 3760472,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenValue": 3764162,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-boshe-nlo",
@@ -615,8 +615,8 @@
         }
       ],
       "lastChanged": "2026-07-29",
-      "lastSeenValue": 3625144,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenValue": 3630568,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-darko",
@@ -627,7 +627,7 @@
       "match": "Darko",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 985708,
+      "baseline": 986529,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -645,9 +645,9 @@
           "describes": "Spotify streams on /music/darko"
         }
       ],
-      "lastChanged": "2026-07-29",
-      "lastSeenValue": 986433,
-      "lastSeenAt": "2026-08-07"
+      "lastChanged": "2026-08-08",
+      "lastSeenValue": 986529,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-dai-dai",
@@ -658,7 +658,7 @@
       "match": "Dai Dai",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 303848373,
+      "baseline": 313314334,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -676,9 +676,9 @@
           "describes": "Spotify streams for Dai Dai"
         }
       ],
-      "lastChanged": "2026-08-07",
-      "lastSeenValue": 303848373,
-      "lastSeenAt": "2026-08-07"
+      "lastChanged": "2026-08-08",
+      "lastSeenValue": 313314334,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-tatata",
@@ -689,7 +689,7 @@
       "match": "TaTaTa (feat. Travis Scott)",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 65822270,
+      "baseline": 66519812,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -707,9 +707,9 @@
           "describes": "Spotify streams for TaTaTa"
         }
       ],
-      "lastChanged": "2026-07-29",
-      "lastSeenValue": 66424237,
-      "lastSeenAt": "2026-08-07"
+      "lastChanged": "2026-08-08",
+      "lastSeenValue": 66519812,
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-streams-smoke",
@@ -739,8 +739,8 @@
         }
       ],
       "lastChanged": "2026-08-07",
-      "lastSeenValue": 3551832,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenValue": 3559219,
+      "lastSeenAt": "2026-08-08"
     }
   ]
 }

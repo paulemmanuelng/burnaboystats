@@ -1378,8 +1378,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "JP",
             "name": "Japan",
-            "position": 171,
-            "movement": 1
+            "position": 175,
+            "movement": -3
           },
           {
             "country": "PA",
@@ -2594,12 +2594,6 @@ export const liveCharts: LiveRelease[] = [
             "movement": 3
           },
           {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 3,
-            "movement": 163
-          },
-          {
             "country": "DK",
             "name": "Denmark",
             "position": 3,
@@ -2616,6 +2610,12 @@ export const liveCharts: LiveRelease[] = [
             "name": "Canada",
             "position": 4,
             "movement": 6
+          },
+          {
+            "country": "CO",
+            "name": "Colombia",
+            "position": 4,
+            "movement": 162
           },
           {
             "country": "HU",
@@ -2762,12 +2762,6 @@ export const liveCharts: LiveRelease[] = [
             "movement": -67
           },
           {
-            "country": "CY",
-            "name": "Cyprus",
-            "position": 74,
-            "movement": -46
-          },
-          {
             "country": "SG",
             "name": "Singapore",
             "position": 76,
@@ -2794,6 +2788,12 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
+            "country": "CY",
+            "name": "Cyprus",
+            "position": 94,
+            "movement": -66
+          },
+          {
             "country": "MT",
             "name": "Malta",
             "position": 100,
@@ -2802,14 +2802,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "JP",
             "name": "Japan",
-            "position": 118,
-            "movement": -6
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 190,
-            "movement": -147
+            "position": 120,
+            "movement": -8
           }
         ]
       }
@@ -5002,8 +4996,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
-            "movement": -125
+            "position": 161,
+            "movement": -127
           }
         ]
       }
@@ -5125,8 +5119,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 145,
-            "movement": -118
+            "position": 147,
+            "movement": -120
           }
         ]
       }
@@ -5221,36 +5215,6 @@ export const liveCharts: LiveRelease[] = [
     "kind": "song"
   },
   {
-    "title": "WE PRAY",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CY",
-            "name": "Cyprus",
-            "position": 84,
-            "movement": -46
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 176,
-            "movement": -13
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Love",
     "platforms": [
       {
@@ -5273,8 +5237,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -128
+            "position": 167,
+            "movement": -130
           }
         ]
       }
@@ -5291,8 +5255,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 154,
-            "movement": -121
+            "position": 156,
+            "movement": -123
           }
         ]
       },
@@ -5569,6 +5533,24 @@ export const liveCharts: LiveRelease[] = [
     "kind": "song"
   },
   {
+    "title": "WE PRAY",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 176,
+            "movement": -13
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Bank On It",
     "platforms": [
       {
@@ -5578,8 +5560,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
-            "movement": -125
+            "position": 162,
+            "movement": -127
           }
         ]
       }
