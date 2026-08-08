@@ -15,8 +15,8 @@ const BURNA_PEAK_LISTENERS = "59.99M";
 /** His YouTube Music monthly audience, at its peak. Exported because four
  *  files quoted this figure by hand — it sat at 840M in eight places while
  *  YouTube Music itself showed 844M. One home, imported everywhere. */
-export const BURNA_YT_AUDIENCE = "861M";
-export const BURNA_YT_AUDIENCE_WORDS = "861 million";
+export const BURNA_YT_AUDIENCE = "871M";
+export const BURNA_YT_AUDIENCE_WORDS = "871 million";
 
 // "Africa's Biggest" — leaderboard-style stat boxes comparing African artists.
 // Two box layouts:
@@ -252,18 +252,15 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Moliy", sub: "🇬🇭 Ghana", value: "602M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "471M" },
     ],
-    note: `Burna Boy's monthly-audience peak on YouTube has climbed to ${BURNA_YT_AUDIENCE_WORDS} — the first African artist ever past 700 million, and now past 800 million too, by some distance the highest of any African artist. Worldwide it is the seventh-biggest audience ever recorded, above Michael Jackson (741M).`,
+    note: `Burna Boy's monthly-audience peak on YouTube has climbed to ${BURNA_YT_AUDIENCE_WORDS} — the first African artist ever past 700 million, and now past 800 million too, by some distance the highest of any African artist. Worldwide it is the sixth-biggest audience ever recorded, above Lady Gaga (862M) and Michael Jackson (741M).`,
     source:
       "Peak monthly audience on YouTube (YouTube for Artists), from chart-tracking accounts. As of August 2026 — figures update as they climb.",
   },
   {
     id: "youtube-audience-world",
-    // Runs eight deep ONLY so Burna Boy (7th) and the Michael Jackson pass are
-    // both visible. The moment he reaches the top five, cut this back to a
-    // straight Top 5 — every other board here is five, and the longer list is
-    // just scaffolding until he's in it on merit.
-    // Next target: Lady Gaga 862M — ONE million ahead as of 6 Aug 2026.
-    // He passes her on the next tick; when he does, reorder and cut to a Top 5.
+    // Six deep: the top five plus Burna Boy, who closes the list on merit —
+    // he passed Lady Gaga (862M) on 8 Aug 2026, so the Gaga and Michael
+    // Jackson scaffolding rows are gone. Next target: Rosé at 959M.
     title: "Biggest monthly audience on YouTube — worldwide",
     meta: "YouTube · all artists · all-time peak",
     layout: "list",
@@ -271,13 +268,11 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Alan Walker", sub: "🇳🇴 Norway", value: "1.12B" },
       { name: "Alok", sub: "🇧🇷 Brazil", value: "1.11B" },
       { name: "Bruno Mars", sub: "🇺🇸 United States", value: "1.02B" },
-      { name: "Shakira", sub: "🇨🇴 Colombia", value: "987M" },
+      { name: "Shakira", sub: "🇨🇴 Colombia", value: "995M" },
       { name: "Rosé", sub: "🇰🇷 South Korea", value: "959M" },
-      { name: "Lady Gaga", sub: "🇺🇸 United States", value: "862M" },
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: BURNA_YT_AUDIENCE },
-      { name: "Michael Jackson", sub: "🇺🇸 United States", value: "741M" },
     ],
-    note: `Not an African leaderboard — a world one. At ${BURNA_YT_AUDIENCE_WORDS}, Burna Boy has the seventh-biggest YouTube monthly audience ever recorded, and the only one belonging to an African artist. He sits ahead of Michael Jackson (741M) — the first time an African act has ranked above him here.`,
+    note: `Not an African leaderboard — a world one. At ${BURNA_YT_AUDIENCE_WORDS}, Burna Boy has the sixth-biggest YouTube monthly audience ever recorded, and the only one belonging to an African artist — now ahead of Lady Gaga (862M) and Michael Jackson (741M), heights no African act had reached before.`,
     source:
       "Highest monthly audience peaks on YouTube for any artist worldwide (YouTube for Artists), from chart-tracking accounts. As of August 2026 — live figures, so the order can change as they climb.",
   },

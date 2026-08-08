@@ -51,7 +51,7 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(223); // 223rd: Location SE Platinum (IFPI Sweden, cert 19 May 2026)
+    expect(totalAwards()).toBe(224); // 224th: Dai Dai UK Silver (BPI, 7 Aug 2026)
     expect(countryCount).toBe(25);
     expect(certifiedReleaseCount).toBe(81);
   });
@@ -64,9 +64,9 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 has the published count of 47 certifications", () => {
-    // 47th: “Dai Dai” PT Platinum (AFP, 6 Aug 2026 — upgrade from Gold).
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(47);
+  it("2026 has the published count of 48 certifications", () => {
+    // 48th: “Dai Dai” UK Silver (BPI, 7 Aug 2026).
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(48);
   });
 
   it("2025 has the published count of 29 certifications", () => {
