@@ -260,6 +260,10 @@ export const singleCharts: ChartRelease[] = [
     { c: "NG", peak: 8 }, { c: "UK", peak: 36 }, { c: "NZ", peak: 36 }, { c: "US", peak: 80 },
   ] },
   { title: "Big 7", year: 2023, entries: [{ c: "NG", peak: 2 }, { c: "UK", peak: 53 }] },
+  // The NATIVE's recap of TurnTable's I Told Them... week: "Giza" at No. 2,
+  // ahead of City Boys (3), Cheat on Me (4) and Big 7 (5). Its only official
+  // national-chart placement — a home smash on the strength of Seyi Vibez.
+  { title: "Giza", credit: "feat. Seyi Vibez", year: 2023, entries: [{ c: "NG", peak: 2 }] },
   { title: "Real Life", credit: "feat. Stormzy", year: 2020, entries: [{ c: "UK", peak: 54 }] },
   { title: "On the Low", year: 2018, entries: [
     { c: "FR", peak: 78 }, { c: "NL", peak: 97 },
