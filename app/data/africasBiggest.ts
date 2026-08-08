@@ -15,8 +15,8 @@ const BURNA_PEAK_LISTENERS = "60.01M";
 /** His YouTube Music monthly audience, at its peak. Exported because four
  *  files quoted this figure by hand — it sat at 840M in eight places while
  *  YouTube Music itself showed 844M. One home, imported everywhere. */
-export const BURNA_YT_AUDIENCE = "871M";
-export const BURNA_YT_AUDIENCE_WORDS = "871 million";
+export const BURNA_YT_AUDIENCE = "898M";
+export const BURNA_YT_AUDIENCE_WORDS = "898 million";
 
 // "Africa's Biggest" — leaderboard-style stat boxes comparing African artists.
 // Two box layouts:
@@ -268,7 +268,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Alan Walker", sub: "🇳🇴 Norway", value: "1.12B" },
       { name: "Alok", sub: "🇧🇷 Brazil", value: "1.11B" },
       { name: "Bruno Mars", sub: "🇺🇸 United States", value: "1.02B" },
-      { name: "Shakira", sub: "🇨🇴 Colombia", value: "995M" },
+      { name: "Shakira", sub: "🇨🇴 Colombia", value: "1.02B" },
       { name: "Rosé", sub: "🇰🇷 South Korea", value: "959M" },
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: BURNA_YT_AUDIENCE },
     ],
