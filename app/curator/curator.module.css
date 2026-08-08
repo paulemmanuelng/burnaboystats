@@ -1,0 +1,63 @@
+/* About the Curator — a single responsive layout (like the song pages): this
+   is a short prose page, so one column scales down without a separate mobile
+   component. Visual vocabulary matches /methodology. */
+
+.wrap { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+
+.heroPad { padding: 44px 40px 0; }
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 64px;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+  max-width: 22ch;
+}
+.lede { font-size: 19px; line-height: 1.55; color: #cfc7bb; max-width: 60ch; margin: 20px 0 0; text-wrap: pretty; }
+.lede strong { color: var(--text); }
+.reviewed {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 22px 0 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.reviewed strong { color: var(--text); }
+.reviewedDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: block; }
+
+.sectionPad { padding: 40px 40px 0; }
+.block { margin: 0 0 34px; }
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+.p { font-size: 15.5px; line-height: 1.75; color: var(--text-muted); max-width: 72ch; margin: 0; }
+.p strong { color: var(--text); }
+.link { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(255, 182, 39, 0.35); }
+.link:hover { color: var(--gold-bright); border-bottom-color: var(--gold-bright); }
+
+@media (max-width: 720px) {
+  .wrap { padding: 0 18px; }
+  .heroPad { padding: 28px 18px 0; }
+  .sectionPad { padding: 30px 18px 0; }
+  .h1 { font-size: 42px; }
+  .lede { font-size: 16.5px; }
+}

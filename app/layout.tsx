@@ -91,6 +91,12 @@ const orgJsonLd = {
   logo: `${siteUrl}/icon.svg`,
   description:
     "An independent, fan-run statistics site tracking Burna Boy's certifications, chart history, awards and tour records — every figure sourced and verified.",
+  sameAs: ["https://x.com/paulemmanuelng"],
+  founder: {
+    "@type": "Person",
+    name: "Ukpaka Emmanuel",
+    url: `${siteUrl}/curator`,
+  },
 };
 
 const jsonLd = {

@@ -273,6 +273,20 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["methodology", "sources", "how verified", "accuracy", "corrections", "trust"],
   },
   {
+    title: "About the Curator",
+    path: "/curator",
+    section: "Site",
+    description: "Who researches, verifies and maintains Burna Boy Stats.",
+    keywords: ["curator", "about", "who runs", "ukpaka emmanuel", "paul emmanuel", "owner"],
+  },
+  {
+    title: "Press & Data Kit",
+    path: "/press",
+    section: "Site",
+    description: "Verified figures free to use with attribution — citations, API, stat cards.",
+    keywords: ["press", "data kit", "cite", "citation", "attribution", "media", "journalists"],
+  },
+  {
     title: "About Burna Boy",
     path: "/about",
     section: "Site",

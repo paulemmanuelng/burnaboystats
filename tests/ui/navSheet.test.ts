@@ -11,9 +11,10 @@ describe("mobile nav sheet", () => {
     expect(navGroups.map((g) => g.name)).toEqual(["Browse", "Deep data", "The site"]);
   });
 
-  it("lists 22 routes — 6 browse, 8 record books, 8 site", () => {
-    expect(navGroups.map((g) => g.items.length)).toEqual([6, 8, 8]);
-    expect(navRoutes).toHaveLength(22);
+  it("lists 24 routes — 6 browse, 8 record books, 10 site", () => {
+    // 8 Aug 2026: +2 site routes — /curator and /press.
+    expect(navGroups.map((g) => g.items.length)).toEqual([6, 8, 10]);
+    expect(navRoutes).toHaveLength(24);
   });
 
   it("links every route exactly once", () => {

@@ -119,6 +119,7 @@ export const DEFAULT_FOOTER: FooterVariant = {
     { href: "/records", label: "Records" },
     { href: "/live-charts", label: "Live Charts" },
     { href: "/api", label: "Open data API" },
+    { href: "/press", label: "Press kit" },
   ],
 };
 
