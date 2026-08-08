@@ -107,9 +107,9 @@ describe("chart data integrity", () => {
     // 4 Aug 2026 Dai Dai sweep: +11 territories (EE at No.1 on TopHit, the
     // Monitor Latino belt, TR/KZ/MD/UA/RU), Ecuador's IFPI LatAm chart turned
     // its Billboard #4 into a #1, and UY/MY/HR peaks improved (2/5/13).
-    expect(chartEntryCount).toBe(271);
-    expect(numberOnes).toBe(46);
-    expect(chartCountryCount).toBe(71);
+    expect(chartEntryCount).toBe(279); // 9 Aug 2026: +8 Nigerian (TurnTable) entries from the NG sweep
+    expect(numberOnes).toBe(48); // + I Told Them... and No Sign of Weakness, both No. 1 on TurnTable albums
+    expect(chartCountryCount).toBe(71); // NG was already counted
   });
 });
 

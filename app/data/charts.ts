@@ -150,18 +150,18 @@ export interface ChartRelease {
 
 export const albumCharts: ChartRelease[] = [
   { title: "I Told Them...", year: 2023, entries: [
-    { c: "UK", peak: 1 }, { c: "NL", peak: 2 }, { c: "FR", peak: 6 }, { c: "SE", peak: 7 },
+    { c: "NG", peak: 1 }, { c: "UK", peak: 1 }, { c: "NL", peak: 2 }, { c: "FR", peak: 6 }, { c: "SE", peak: 7 },
     { c: "CA", peak: 18 }, { c: "BE", peak: 20 }, { c: "IE", peak: 25 }, { c: "US", peak: 31 },
     { c: "DE", peak: 46 }, { c: "AU", peak: 56 },
   ] },
   { title: "Love, Damini", year: 2022, entries: [
-    { c: "UK", peak: 2 }, { c: "NL", peak: 2 }, { c: "CA", peak: 6 }, { c: "SE", peak: 12 },
+    { c: "UK", peak: 2 }, { c: "NG", peak: 3 }, { c: "NL", peak: 2 }, { c: "CA", peak: 6 }, { c: "SE", peak: 12 },
     { c: "US", peak: 14 }, { c: "FR", peak: 17 }, { c: "IE", peak: 23 }, { c: "BE", peak: 24 },
     { c: "DE", peak: 61 },
   ] },
   { title: "Twice as Tall", year: 2020, entries: [
     { c: "NL", peak: 10 }, { c: "UK", peak: 11 }, { c: "CH", peak: 12 }, { c: "CA", peak: 19 }, { c: "BE", peak: 22 },
-    { c: "FR", peak: 29 }, { c: "IE", peak: 31 }, { c: "NO", peak: 34 }, { c: "SE", peak: 47 }, { c: "US", peak: 54 },
+    { c: "FR", peak: 29 }, { c: "IE", peak: 31 }, { c: "NO", peak: 34 }, { c: "NG", peak: 25 }, { c: "SE", peak: 47 }, { c: "US", peak: 54 },
     { c: "AT", peak: 69 },
   ] },
   { title: "African Giant", year: 2019, entries: [
@@ -169,7 +169,7 @@ export const albumCharts: ChartRelease[] = [
     { c: "BE", peak: 58 }, { c: "DE", peak: 80 }, { c: "US", peak: 104 },
   ] },
   { title: "No Sign of Weakness", year: 2025, entries: [
-    { c: "UK", peak: 6 }, { c: "NL", peak: 57 }, { c: "FR", peak: 58 }, { c: "CA", peak: 65 },
+    { c: "NG", peak: 1 }, { c: "UK", peak: 6 }, { c: "NL", peak: 57 }, { c: "FR", peak: 58 }, { c: "CA", peak: 65 },
     { c: "BE", peak: 136 }, { c: "US", peak: 200 },
   ] },
 ];
@@ -254,18 +254,18 @@ export const singleCharts: ChartRelease[] = [
     { c: "GLB", peak: 143 },
   ] },
   { title: "Cheat on Me", credit: "feat. Dave", year: 2023, entries: [
-    { c: "UK", peak: 19 }, { c: "IE", peak: 42 }, { c: "FR", peak: 109 }, { c: "GLB", peak: 194 },
+    { c: "NG", peak: 4 }, { c: "UK", peak: 19 }, { c: "IE", peak: 42 }, { c: "FR", peak: 109 }, { c: "GLB", peak: 194 },
   ] },
   { title: "Sittin' on Top of the World", credit: "feat. 21 Savage", year: 2023, entries: [
-    { c: "UK", peak: 36 }, { c: "NZ", peak: 36 }, { c: "US", peak: 80 },
+    { c: "NG", peak: 8 }, { c: "UK", peak: 36 }, { c: "NZ", peak: 36 }, { c: "US", peak: 80 },
   ] },
-  { title: "Big 7", year: 2023, entries: [{ c: "UK", peak: 53 }] },
+  { title: "Big 7", year: 2023, entries: [{ c: "NG", peak: 2 }, { c: "UK", peak: 53 }] },
   { title: "Real Life", credit: "feat. Stormzy", year: 2020, entries: [{ c: "UK", peak: 54 }] },
   { title: "On the Low", year: 2018, entries: [
     { c: "FR", peak: 78 }, { c: "NL", peak: 97 },
   ] },
   { title: "Kilometre", year: 2021, entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 84 }] },
-  { title: "TaTaTa", credit: "feat. Travis Scott", year: 2025, entries: [{ c: "UK", peak: 84 }] },
+  { title: "TaTaTa", credit: "feat. Travis Scott", year: 2025, entries: [{ c: "NG", peak: 5 }, { c: "UK", peak: 84 }] },
   { title: "Higher", year: 2024, entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 99 }] },
   { title: "Love", year: 2025, entries: [{ c: "NG", peak: 1 }] },
 ];
