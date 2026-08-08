@@ -36,7 +36,7 @@ const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries �
 // in whole millions. Auto-updated hourly by the live stats bot (the
 // dai-dai-video-views metric) — it rewrites this string only when the figure
 // ticks over another million, so the page changes exactly when the number does.
-const DAI_DAI_VIDEO_VIEWS = "722M";
+const DAI_DAI_VIDEO_VIEWS = "723M";
 
 // The per-platform No. 1 counts, derived from the same hourly live-charts
 // snapshot as /live-charts — this line used to be hand-written and drifted
