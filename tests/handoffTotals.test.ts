@@ -61,7 +61,7 @@ describe("handoff checklist — data integrity", () => {
     expect(sum).toBe(224);
   });
 
-  it("counts 260 chart entries across 60 territories, 44 of them at No. 1", () => {
+  it("counts 280 chart entries across 71 territories, 48 of them at No. 1", () => {
     const entries = allChartItems.reduce((n, r) => n + r.entries.length, 0);
     const territories = new Set(allChartItems.flatMap((r) => r.entries.map((e) => e.c))).size;
     // Placements, not releases: a release charting at No. 1 in six countries
@@ -72,9 +72,9 @@ describe("handoff checklist — data integrity", () => {
     );
 
     // 4 Aug 2026 Dai Dai sweep — see tests/charts.test.ts for the breakdown.
-    expect(entries).toBe(271);
+    expect(entries).toBe(280); // 9 Aug 2026 TurnTable NG sweep (+9, Giza included)
     expect(territories).toBe(71);
-    expect(ones).toBe(46);
+    expect(ones).toBe(48); // + 2 Nigerian No. 1 albums
 
     expect(chartEntryCount).toBe(entries);
     expect(chartCountryCount).toBe(territories);

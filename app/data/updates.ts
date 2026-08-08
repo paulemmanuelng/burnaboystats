@@ -29,6 +29,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-09",
+    category: "Charts",
+    text: "The Nigerian record, filled in: a TurnTable sweep surfaces 9 missing home-chart placements — I Told Them… and No Sign of Weakness were both No. 1 albums in Nigeria, Love, Damini reached No. 3, and on the Top 100 both Giza (with Seyi Vibez) and Big 7 hit No. 2, with Cheat on Me at No. 4, TaTaTa No. 5 and Sittin' on Top of the World No. 8 — lifting the career tally to 280 chart entries and 48 worldwide No. 1s.",
+    href: "/records/charts",
+  },
+  {
     date: "2026-08-08",
     category: "Charts",
     text: "A leap to No. 2 in Hungary: “Dai Dai” jumps 8–2 on MAHASZ's official Single Top 40 (week 32) — a new peak, and the song's 49th top-5 placing worldwide.",
