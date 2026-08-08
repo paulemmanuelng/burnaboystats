@@ -2529,12 +2529,6 @@ export const liveCharts: LiveRelease[] = [
         "numberOnes": 0,
         "entries": [
           {
-            "country": "AT",
-            "name": "Austria",
-            "position": 2,
-            "movement": 3
-          },
-          {
             "country": "FR",
             "name": "France",
             "position": 2,
@@ -2578,11 +2572,10 @@ export const liveCharts: LiveRelease[] = [
             "movement": -2
           },
           {
-            "country": "MD",
-            "name": "Moldova",
+            "country": "AT",
+            "name": "Austria",
             "position": 4,
-            "movement": null,
-            "status": "new"
+            "movement": 1
           },
           {
             "country": "UK",
@@ -2595,6 +2588,13 @@ export const liveCharts: LiveRelease[] = [
             "name": "Brazil",
             "position": 5,
             "movement": 2
+          },
+          {
+            "country": "MD",
+            "name": "Moldova",
+            "position": 5,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "PL",
@@ -2629,8 +2629,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "CA",
             "name": "Canada",
-            "position": 10,
-            "movement": -1
+            "position": 9,
+            "movement": 0
           },
           {
             "country": "ID",
@@ -2643,13 +2643,6 @@ export const liveCharts: LiveRelease[] = [
             "name": "Luxembourg",
             "position": 14,
             "movement": -3
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 14,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "US",
@@ -2685,16 +2678,23 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 21,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "AU",
             "name": "Australia",
-            "position": 22,
-            "movement": 0
+            "position": 24,
+            "movement": -2
           },
           {
             "country": "IT",
             "name": "Italy",
-            "position": 25,
-            "movement": -15
+            "position": 29,
+            "movement": -19
           },
           {
             "country": "KH",
@@ -2710,16 +2710,16 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
-            "country": "CY",
-            "name": "Cyprus",
-            "position": 54,
-            "movement": -51
-          },
-          {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 56,
-            "movement": -5
+            "position": 57,
+            "movement": -6
+          },
+          {
+            "country": "CY",
+            "name": "Cyprus",
+            "position": 58,
+            "movement": -55
           },
           {
             "country": "ZW",
@@ -2735,16 +2735,16 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
-            "country": "PA",
-            "name": "Panama",
-            "position": 67,
-            "movement": -43
-          },
-          {
             "country": "IN",
             "name": "India",
             "position": 68,
             "movement": -11
+          },
+          {
+            "country": "PA",
+            "name": "Panama",
+            "position": 68,
+            "movement": -44
           },
           {
             "country": "TR",
@@ -2787,8 +2787,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 116,
-            "movement": -92
+            "position": 119,
+            "movement": -95
           },
           {
             "country": "JP",
@@ -2801,12 +2801,6 @@ export const liveCharts: LiveRelease[] = [
             "name": "South Africa",
             "position": 145,
             "movement": -138
-          },
-          {
-            "country": "VN",
-            "name": "Vietnam",
-            "position": 169,
-            "movement": -136
           }
         ]
       }
@@ -3583,8 +3577,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 163,
-            "movement": -2
+            "position": 167,
+            "movement": -6
           }
         ]
       }
@@ -4554,8 +4548,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 73,
-            "movement": 14
+            "position": 72,
+            "movement": 15
           },
           {
             "country": "UG",
@@ -5157,8 +5151,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 64,
-            "movement": -51
+            "position": 68,
+            "movement": -55
           }
         ]
       },
@@ -5306,25 +5300,6 @@ export const liveCharts: LiveRelease[] = [
     "kind": "song"
   },
   {
-    "title": "Bebo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 89,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Special Someone",
     "platforms": [
       {
@@ -5336,6 +5311,25 @@ export const liveCharts: LiveRelease[] = [
             "name": "Ghana",
             "position": 114,
             "movement": 3
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Bebo",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 97,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -5424,27 +5418,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "album"
-  },
-  {
-    "title": "On a Spaceship",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 197,
-            "movement": null,
-            "status": "new"
+            "position": 168,
+            "movement": -6
           }
         ]
       }
