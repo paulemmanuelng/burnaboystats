@@ -95,9 +95,9 @@ describe("handoff checklist — data integrity", () => {
     expect(ceremonyCount).toBe(46);
   });
 
-  it("counts 57 countries performed in and 48 firsts", () => {
+  it("counts 57 countries performed in and 49 firsts", () => {
     expect(performedCountryCount).toBe(57);
-    expect(firstsCount).toBe(48); // 3 Aug 2026: removed the false "first African video past 500M" — CKay and others got there years earlier
+    expect(firstsCount).toBe(49); // 49th: first African artist to 60M Spotify monthly listeners (8 Aug 2026)
   });
 
   it("values the current car collection at $16.46M — current only", () => {

@@ -30,6 +30,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-08",
+    category: "Firsts & Records",
+    text: "Sixty million: Spotify monthly listeners reach 60,012,272 — the first and only African artist ever to hit the mark, at No. 37 among all artists worldwide, with followers climbing to 17.3 million. No other African act has passed 47 million.",
+    href: "/records/firsts",
+  },
+  {
+    date: "2026-08-08",
     category: "Streaming",
     text: "Sixth-biggest YouTube audience ever recorded: Burna Boy's monthly audience reaches 871 million, passing Lady Gaga's 862M — heights no African act had touched before. Shakira, his “Dai Dai” partner, sets her own new peak of 995 million.",
     href: "/records/africas-biggest",
