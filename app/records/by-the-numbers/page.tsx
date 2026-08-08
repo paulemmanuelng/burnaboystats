@@ -70,7 +70,7 @@ export const stats: {
   { num: "$30.46M", label: "Highest-grossing African tour", sub: "the I Told Them… Tour — a world record for an African act", href: "/records/tours", big: true },
   { num: "$6.15M", label: "Biggest concert by an African artist", sub: "London Stadium, June 2024 — 58,973 fans", href: "/records/tours" },
   { num: "9", label: "Billboard Hot 100 entries", sub: "the most by any African artist, six years running", href: "/records/charts" },
-  { num: `${listenersLatest}M`, label: "Spotify monthly listeners", sub: "the first African artist ever to reach 50 million", href: "/records/africas-biggest", delta: listenersPct, big: true },
+  { num: `${listenersLatest}M`, label: "Spotify monthly listeners", sub: "the first African artist ever to reach 60 million", href: "/records/africas-biggest", delta: listenersPct, big: true },
   { num: spotifyTotalStreams, label: "Spotify streams, all-time", sub: "every song, lead and featured credits combined", href: "/music" },
   { num: youtubeTotalViews, label: "YouTube views, all-time", sub: "every video, across his channel and others'", href: "/music" },
   // YouTube figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.

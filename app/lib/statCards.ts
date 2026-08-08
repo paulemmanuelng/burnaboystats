@@ -99,7 +99,7 @@ export function getStatCards(): StatCard[] {
       source: "Spotify",
       watermark: "PLAY",
       href: "/records/africas-biggest",
-      detail: `Read from Spotify's own artist page rather than a tracker. The first African artist ever past 50 million monthly listeners.`,
+      detail: `Read from Spotify's own artist page rather than a tracker. The first African artist ever past 60 million monthly listeners.`,
       value: `${listeners}M`,
       label: "Spotify monthly listeners",
       kicker: "The most of any African artist",
