@@ -37,7 +37,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-08",
     category: "Streaming",
-    text: "Sixth-biggest YouTube audience ever recorded: Burna Boy's monthly audience reaches 871 million, passing Lady Gaga's 862M — heights no African act had touched before. Shakira, his “Dai Dai” partner, sets her own new peak of 995 million.",
+    text: "Sixth-biggest YouTube audience ever recorded: Burna Boy's monthly audience surges to 898 million — past Lady Gaga's 862M peak and closing on Rosé's 959M — while Shakira, his “Dai Dai” partner, crosses the billion mark at 1.02B.",
     href: "/records/africas-biggest",
   },
   {
