@@ -83,6 +83,8 @@ export const SEGMENT_LABELS: Record<string, string> = {
   "dai-dai": "The Dai Dai Story",
   share: "Stat Cards",
   faq: "FAQ",
+  curator: "About the Curator",
+  press: "Press & Data Kit",
   analysis: "Analysis",
   "live-charts": "Live Charts",
   api: "Open Data API",

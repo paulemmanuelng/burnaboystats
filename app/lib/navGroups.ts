@@ -80,6 +80,8 @@ export const navGroups: NavGroup[] = [
       { label: "About", href: "/about", meta: "" },
       { label: "Analysis", href: "/analysis", meta: String(findings.length) },
       { label: "Methodology", href: "/methodology", meta: "" },
+      { label: "About the curator", href: "/curator", meta: "" },
+      { label: "Press & data kit", href: "/press", meta: "" },
       { label: "API", href: "/api", meta: API_VERSION },
       { label: "FAQ", href: "/faq", meta: String(faqs.length) },
       { label: "Contact", href: "/contact", meta: "" },

@@ -51,6 +51,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
     { path: "/api", priority: 0.7, changeFrequency: "monthly" },
     { path: "/methodology", priority: 0.6, changeFrequency: "monthly" },
+    { path: "/curator", priority: 0.5, changeFrequency: "monthly" },
+    { path: "/press", priority: 0.6, changeFrequency: "monthly" },
     { path: "/about", priority: 0.5, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.4, changeFrequency: "monthly" },
   ];
