@@ -22,7 +22,7 @@
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
-      "baseline": 60012272,
+      "baseline": 59985587,
       "live": true,
       "sanity": {
         "maxJump": 0.12,
@@ -56,7 +56,7 @@
       "field": "peakListeners",
       "lastChanged": "2026-08-08",
       "lastSeenValue": 59985587,
-      "lastSeenAt": "2026-08-07"
+      "lastSeenAt": "2026-08-08"
     },
     {
       "id": "spotify-listeners-rank",
@@ -147,7 +147,7 @@
         }
       ],
       "lastChanged": "2026-08-08",
-      "lastSeenValue": 723539173,
+      "lastSeenValue": 723927438,
       "lastSeenAt": "2026-08-08"
     },
     {
