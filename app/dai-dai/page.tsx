@@ -160,7 +160,7 @@ export default function DaiDaiPage() {
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "No. 1", l: "on both Billboard global charts — a 4th consecutive week atop the Global 200 (a first for an African artist, and Shakira's 2nd) and a 6th consecutive week atop the Global 200 Excl. US" },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 25 days as the most-streamed song on Earth" },
-    { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, France, Slovakia & Portugal, plus Gold in Colombia, Hungary & Greece" },
+    { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, France, Slovakia & Portugal, Gold in Colombia, Hungary & Greece, and Silver in the UK" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
 
@@ -169,7 +169,7 @@ export default function DaiDaiPage() {
       label: "The streaming streaks",
       intro: "The daily and weekly runs — every one still counting.",
       items: [
-        { v: "25 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist — before Ariana Grande took over in early August; 76 days on the chart and counting" },
+        { v: "25 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist — before Ariana Grande took over in early August; 50 days inside the global Top 10 and 78 days on the chart, both still counting" },
         { v: "4 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
         { v: "33 days", l: "at No. 1 on Apple Music's European songs chart, and a 7th day atop the worldwide Apple Music chart" },
         { v: "23 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
@@ -180,7 +180,7 @@ export default function DaiDaiPage() {
       label: "The national charts",
       intro: "Country by country, on the official singles charts.",
       items: [
-        { v: "5 weeks", l: "at No. 1 on Germany's official singles chart — and named the country's official Sommerhit 2026 by GfK Entertainment, which compiles the charts, after nearly 60 million German streams" },
+        { v: "6 weeks", l: "at No. 1 on Germany's official singles chart — and named the country's official Sommerhit 2026 by GfK Entertainment, which compiles the charts, after nearly 60 million German streams" },
         { v: "8 weeks", l: "at No. 1 on Switzerland's official chart — the longest run at No. 1 by any song there so far this year" },
         { v: "4 weeks", l: "at No. 1 on France's Official Singles Chart (SNEP)" },
         { v: "No. 1", l: "India's IMI International Top 20 Singles Chart — the first Burna Boy song to top a chart in India" },
@@ -243,7 +243,7 @@ export default function DaiDaiPage() {
     },
     {
       q: "How many certifications does “Dai Dai” have?",
-      a: "“Dai Dai” has 8 certifications: 2× Platinum (Latin) in the US from the RIAA, Platinum in Spain, France, Slovakia and Portugal, plus Gold in Colombia, Hungary and Greece.",
+      a: "“Dai Dai” has 9 certifications: 2× Platinum (Latin) in the US from the RIAA, Platinum in Spain, France, Slovakia and Portugal, Gold in Colombia, Hungary and Greece, and Silver in the UK from the BPI.",
     },
   ];
 

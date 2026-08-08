@@ -29,6 +29,36 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-08",
+    category: "Streaming",
+    text: "Sixth-biggest YouTube audience ever recorded: Burna Boy's monthly audience reaches 871 million, passing Lady Gaga's 862M — heights no African act had touched before. Shakira, his “Dai Dai” partner, sets her own new peak of 995 million.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-08-08",
+    category: "Certifications",
+    text: "Silver in Britain: the BPI certifies “Dai Dai”, announced through the BRIT Awards' #BRITcertified series — the song's 9th certification and its 9th country, and Burna Boy's 224th plaque worldwide.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-08",
+    category: "Streaming",
+    text: "Love, Damini crosses 1.7 billion Spotify streams — Burna Boy's first album to the mark, and only the second Nigerian album in the platform's history to reach it.",
+    href: "/records/firsts",
+  },
+  {
+    date: "2026-08-08",
+    category: "Charts",
+    text: "The No. 1 runs roll on for “Dai Dai”: a 6th week in Germany, a 7th in Austria, a 5th in both the Netherlands and Sweden, a 2nd in Norway and another week on top in Italy — while it holds No. 2 in the UK for a third week and No. 2 on Spotify's global chart, now 78 days on that board.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-07",
+    category: "Streaming",
+    text: "“Dai Dai” (Spanish Version) is out on every platform worldwide — a second studio cut of the World Cup anthem, sung in Shakira's native tongue.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-08-07",
     category: "Streaming",
     text: "Career Spotify streams tick up to 10.65B across every lead and featured credit — now refreshed daily from kworb's live artist total plus the documented featured-credits gap it misses.",
