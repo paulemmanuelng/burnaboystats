@@ -47,7 +47,7 @@ export const homeScoreboard: ScoreboardStat[] = [
   },
   {
     value: String(playedCount),
-    label: "Countries played",
+    label: "Countries performed in",
     source: `${regionCount} regions`,
     href: "/records/tours",
   },

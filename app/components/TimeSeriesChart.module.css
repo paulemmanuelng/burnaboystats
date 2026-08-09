@@ -1,0 +1,80 @@
+/* Dated line chart — shares the custom-SVG vocabulary of Sparkline and
+   RankedBars (gold line, 10% gold wash beneath, muted mono axis text). */
+
+.figure {
+  margin: 0;
+  width: 100%;
+}
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.grid {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.axis {
+  fill: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+}
+
+.area {
+  fill: rgba(255, 182, 39, 0.1);
+  stroke: none;
+}
+.line {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Milestones: a dropped hairline to the baseline, a dot on the reading and a
+   label above it. Deliberately quieter than the line itself — the shape of
+   the climb is the story, the markers annotate it. */
+.markLine {
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.markDot {
+  fill: var(--bg);
+  stroke: var(--gold-bright);
+  stroke-width: 2;
+}
+.markLabel {
+  fill: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.unit {
+  fill: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.lastDot {
+  fill: var(--gold-bright);
+  stroke: var(--bg);
+  stroke-width: 2;
+}
+
+/* On a phone the viewBox scales down hard, so bump the type back to legible
+   sizes rather than letting it shrink with the drawing. */
+@media (max-width: 720px) {
+  .axis { font-size: 15px; }
+  .unit { font-size: 14px; }
+  .markLabel { font-size: 15px; }
+  .line { stroke-width: 3; }
+}

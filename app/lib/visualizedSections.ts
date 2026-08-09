@@ -7,6 +7,11 @@
  * without dragging that route's CSS into every other route's chunk.
  */
 export const JUMP = [
+  { href: "#the-climb", label: "The climb" },
+  { href: "#cert-pace", label: "Cert pace" },
+  { href: "#wins-by-year", label: "Wins by year" },
+  { href: "#live-platforms", label: "Charting now" },
+  { href: "#regions", label: "Regions" },
   { href: "#grosses", label: "Grosses" },
   { href: "#tickets-revenue", label: "Tickets vs revenue" },
   { href: "#certifications", label: "Certifications" },

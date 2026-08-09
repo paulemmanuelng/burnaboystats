@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import styles from "./mobileVisualized.module.css";
 import MobileMenuButton from "./MobileMenuButton";
@@ -15,6 +16,22 @@ import BackLink from "./BackLink";
  * These are real arcs computed from the segments, so a 6-of-221 slice draws as
  * 6 of 221 rather than as a quarter of the ring.
  */
+
+import TimeSeriesChart, { type SeriesPoint, type SeriesAnnotation } from "./TimeSeriesChart";
+
+/** A dated line chart on the mobile screen. `format` names a formatter rather
+ *  than passing a function, so the parent stays a server component. */
+export interface MobileTimeChart {
+  title: string;
+  /** What the line measures — the desktop eyebrow has no mobile equivalent. */
+  subtitle?: string;
+  note: string;
+  points: SeriesPoint[];
+  annotations?: SeriesAnnotation[];
+  format?: "listeners" | "count";
+  unitLabel?: string;
+  ariaLabel: string;
+}
 
 export interface MobileBar {
   name: string;
@@ -36,13 +53,25 @@ const R = 34;
 const STROKE = 10;
 const C = 2 * Math.PI * R;
 
+const FORMATTERS: Record<string, (v: number) => string> = {
+  listeners: (v) => `${v.toFixed(1)}M`,
+  count: (v) => String(Math.round(v)),
+};
+
 export default function MobileVisualized({
   chartCount,
+  timeCharts = [],
+  blocks = [],
   bars,
   donuts,
   footNote,
 }: {
   chartCount: number;
+  timeCharts?: MobileTimeChart[];
+  /** Charts the phone can carry but that aren't bars, donuts or lines — the
+   *  scatter and the choropleth. Rendered by the page and passed through, so
+   *  this component doesn't need to know how to draw them. */
+  blocks?: { title: string; note: string; chart: ReactNode }[];
   bars: { title: string; note: string; items: MobileBar[] }[];
   donuts: MobileDonut[];
   footNote: string;
@@ -76,6 +105,30 @@ export default function MobileVisualized({
       </div>
 
       {/* Ranked bars */}
+      {timeCharts.map((c) => (
+        <div key={c.title} className={styles.chart}>
+          <h2 className={styles.chartTitle}>{c.title}</h2>
+          {c.subtitle && <p className={styles.chartSub}>{c.subtitle}</p>}
+          <TimeSeriesChart
+            points={c.points}
+            annotations={c.annotations}
+            format={c.format ? FORMATTERS[c.format] : undefined}
+            unitLabel={c.unitLabel}
+            ariaLabel={c.ariaLabel}
+            aspect="tall"
+          />
+          <p className={styles.chartNote}>{c.note}</p>
+        </div>
+      ))}
+
+      {blocks.map((b) => (
+        <div key={b.title} className={styles.chart}>
+          <h2 className={styles.chartTitle}>{b.title}</h2>
+          {b.chart}
+          <p className={styles.chartNote}>{b.note}</p>
+        </div>
+      ))}
+
       {bars.map((c) => (
         <div key={c.title} className={styles.chart}>
           <h2 className={styles.chartTitle}>{c.title}</h2>

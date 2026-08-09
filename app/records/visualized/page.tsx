@@ -7,6 +7,7 @@ import ScatterChart, { type ScatterPoint } from "../../components/ScatterChart";
 import TierDonut, { type DonutSeg } from "../../components/TierDonut";
 import PeakMap, { type PeakInfo } from "../../components/PeakMap";
 import KeepExploring from "../../components/KeepExploring";
+import TimeSeriesChart, { type SeriesAnnotation } from "../../components/TimeSeriesChart";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import { JUMP } from "../../lib/visualizedSections";
 import { revenueShows } from "../../data/tourRevenue";
@@ -14,6 +15,12 @@ import { COUNTRIES, albums, singles, features, totalAwards } from "../../data/ce
 import { ceremonies, totalWins } from "../../data/awards";
 import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../../data/charts";
 import { statBoxes, HIGHLIGHT } from "../../data/africasBiggest";
+import { monthlyListenersSeries } from "../../data/trends";
+import { certHistory } from "../../data/certifications";
+import { allNoms } from "../../data/awards";
+import { songs } from "../../data/songs";
+import { livePlatformTotals, liveChartsUpdated } from "../../data/liveCharts";
+import { performedCountries } from "../../data/performedCountries";
 import { A2_TO_ISO } from "../../lib/isoCodes";
 
 export const metadata = pageMetadata({
@@ -55,6 +62,86 @@ const certsByCountry: BarItem[] = (() => {
       value: n,
       displayValue: String(n),
     }));
+})();
+
+// ── The climb ────────────────────────────────────────────────────────────
+// The only daily series the site keeps: monthly listeners through the "Dai
+// Dai" run. Milestones are found IN the data rather than hardcoded, so the
+// markers can never contradict the line they sit on.
+const listenerMilestones: SeriesAnnotation[] = [50, 60]
+  .map((mark) => {
+    const hit = monthlyListenersSeries.find((p) => p.value >= mark);
+    return hit ? { date: hit.date, label: `${mark}M` } : null;
+  })
+  .filter((a): a is SeriesAnnotation => a !== null);
+const listenerFirst = monthlyListenersSeries[0];
+const listenerLast = monthlyListenersSeries[monthlyListenersSeries.length - 1];
+const listenerGain = (listenerLast.value - listenerFirst.value).toFixed(2);
+const listenerDays = Math.round(
+  (new Date(listenerLast.date).getTime() - new Date(listenerFirst.date).getTime()) / 86_400_000
+);
+const formatListeners = (v: number) => `${v.toFixed(1)}M`;
+
+// ── Certification pace ───────────────────────────────────────────────────
+// Chronological, not ranked: the story is that the newest year is already the
+// biggest, so the years have to read left-to-right in time order.
+const certYears = [...new Set(certHistory.map((e) => e.year))].sort((a, b) => a - b);
+const thisYear = certYears[certYears.length - 1];
+const certsByYear: BarItem[] = certYears.map((year) => {
+  const n = certHistory.filter((e) => e.year === year).length;
+  return {
+    name: String(year),
+    meta: year === thisYear ? "so far" : undefined,
+    value: n,
+    displayValue: String(n),
+    tone: year === thisYear ? "gold" : "muted",
+  };
+});
+const certYearPeak = Math.max(...certsByYear.map((c) => c.value));
+const certYearRecord = certsByYear[certsByYear.length - 1].value === certYearPeak;
+
+// ── Awards won, by year ──────────────────────────────────────────────────
+// The second real time axis on the site: every win carries the year it was
+// awarded, so a fifteen-year career plots as a career rather than a total.
+const winYearCounts = (() => {
+  const by: Record<number, number> = {};
+  for (const n of allNoms) if (n.won) by[n.year] = (by[n.year] ?? 0) + 1;
+  return by;
+})();
+const winYears = Object.keys(winYearCounts).map(Number).sort((a, b) => a - b);
+// Every year between first and last, so a quiet year reads as a dip rather
+// than being skipped — a gap in a time series is a lie about the shape.
+const winsSeries = (() => {
+  const out: { date: string; value: number }[] = [];
+  for (let y = winYears[0]; y <= winYears[winYears.length - 1]; y++) {
+    out.push({ date: `${y}-06-30`, value: winYearCounts[y] ?? 0 });
+  }
+  return out;
+})();
+const bestWinYear = winYears.reduce((a, b) => (winYearCounts[b] > winYearCounts[a] ? b : a));
+const winsAnnotations: SeriesAnnotation[] = [
+  { date: `${bestWinYear}-06-30`, label: String(bestWinYear) },
+];
+
+// ── Where he is charting right now ───────────────────────────────────────
+const livePlatformBars: BarItem[] = livePlatformTotals.map((p) => ({
+  name: p.platform,
+  meta: p.numberOnes > 0 ? `${p.numberOnes} at No. 1` : undefined,
+  value: p.placements,
+  displayValue: String(p.placements),
+}));
+const livePlacementTotal = livePlatformTotals.reduce((n, p) => n + p.placements, 0);
+
+// ── Stages by region ─────────────────────────────────────────────────────
+const REGION_ORDER = ["Africa", "Europe", "Caribbean", "North America", "South America", "Oceania", "Asia"];
+const regionBars: BarItem[] = (() => {
+  const by: Record<string, number> = {};
+  for (const c of performedCountries) by[c.region] = (by[c.region] ?? 0) + 1;
+  return REGION_ORDER.filter((r) => by[r]).map((r) => ({
+    name: r,
+    value: by[r],
+    displayValue: String(by[r]),
+  }));
 })();
 
 const shortBody = (name: string) => name.match(/\(([^)]+)\)/)?.[1] ?? name;
@@ -207,6 +294,59 @@ export default function VisualizedPage() {
           that survive one column. */}
       <MobileVisualized
         chartCount={JUMP.length}
+        blocks={[
+          {
+            title: "Tickets vs revenue",
+            // The scatter keeps a 460px minimum and scrolls inside its own
+            // frame rather than shrinking its labels to nothing — so the note
+            // has to say it scrolls, or a phone reader sees a cropped chart
+            // and assumes that is all of it.
+            note: "Each dot is one show — how a night's attendance turned into its gross. Swipe the chart to reach the biggest nights.",
+            chart: (
+              <ScatterChart
+                points={scatter}
+                xMax={65000}
+                yMax={6.5e6}
+                xTicks={[{ value: 0, label: "0" }, { value: 30000, label: "30k" }, { value: 60000, label: "60k" }]}
+                yTicks={[{ value: 0, label: "$0" }, { value: 3e6, label: "$3M" }, { value: 6e6, label: "$6M" }]}
+                xLabel="Tickets sold"
+                yLabel="Revenue"
+                ariaLabel="Tickets sold against revenue for the biggest single shows by African artists"
+              />
+            ),
+          },
+          {
+            title: "Best chart peak by country",
+            note: "Darker gold is a higher peak — tap a country for the song that got there.",
+            chart: (
+              <PeakMap
+                data={peakByISO}
+                ariaLabel="World map coloured by Burna Boy's best official chart peak in each country"
+              />
+            ),
+          },
+        ]}
+        timeCharts={[
+          {
+            title: "The climb to sixty million",
+            note: `+${listenerGain}M in ${listenerDays} days — every reading logged as it happened through the “Dai Dai” run.`,
+            points: monthlyListenersSeries,
+            annotations: listenerMilestones,
+            format: "listeners",
+            unitLabel: "Spotify · monthly listeners",
+            ariaLabel:
+              "Burna Boy's Spotify monthly listeners, daily, from the start of July 2026 to today",
+          },
+          {
+            title: "Fifteen years of winning",
+            note: `${bestWinYear} was the peak — ${winYearCounts[bestWinYear]} wins in a single year, of ${totalWins} in all.`,
+            points: winsSeries,
+            annotations: winsAnnotations,
+            format: "count",
+            unitLabel: "Award wins per year",
+            ariaLabel: `Burna Boy's award wins in each year from ${winYears[0]} to ${winYears[winYears.length - 1]}`,
+          },
+        ]}
         bars={[
           {
             title: "Biggest single-show grosses",
@@ -222,6 +362,28 @@ export default function VisualizedPage() {
             title: "Most-decorated stages",
             note: `Where his ${totalWins} wins come from — top 6 bodies.`,
             items: toBars(winsByBody, 6),
+          },
+          {
+            title: "The pace of the plaques",
+            note: certYearRecord
+              ? `${thisYear} is already his biggest year — ${certYearPeak} certifications, and it is still running.`
+              : "Counted by the year each award landed.",
+            items: toBars(certsByYear, certsByYear.length),
+          },
+          {
+            title: "Where he is charting right now",
+            note: `${livePlacementTotal} placements on today's board — country charts only, refreshed hourly.`,
+            items: toBars(livePlatformBars, livePlatformBars.length),
+          },
+          {
+            title: "Where he has performed",
+            note: `${performedCountries.length} countries across ${regionBars.length} regions.`,
+            items: toBars(regionBars, regionBars.length),
+          },
+          {
+            title: "Most-streamed African artist, 2025",
+            note: "Gold is Burna Boy — his 1.986B set the record for the biggest streaming year by an African artist.",
+            items: toBars(africanStreams, 5),
           },
         ]}
         donuts={[
@@ -265,6 +427,130 @@ export default function VisualizedPage() {
               <a key={j.href} href={j.href}>{j.label}</a>
             ))}
           </nav>
+        </section>
+
+        {/* ── The climb ──────────────────────────────────────── */}
+        <section id="the-climb" className={`${styles.wrap} ${styles.sectionPad}`}>
+          <div className={styles.eyebrow}>Spotify · monthly listeners · daily</div>
+          <h2 className={styles.h2}>The climb to sixty million</h2>
+          <div className={styles.chartBody}>
+            <TimeSeriesChart
+              points={monthlyListenersSeries}
+              annotations={listenerMilestones}
+              format={formatListeners}
+              valueLabel="Monthly listeners (millions)"
+              unitLabel="Spotify · monthly listeners"
+              ariaLabel="Burna Boy's Spotify monthly listeners, daily, from the start of July 2026 to today"
+            />
+          </div>
+          <p className={`${styles.caption} ${styles.captionNarrow}`}>
+            <span className={styles.captionLead}>
+              +{listenerGain}M in {listenerDays} days
+            </span>{" "}
+            — every reading logged as it happened through the “Dai Dai” run, from{" "}
+            {formatListeners(listenerFirst.value)} to {formatListeners(listenerLast.value)}. He is
+            the first African artist past both marked milestones.
+          </p>
+          <Link href="/records/africas-biggest" className={`btn btnSecondary ${styles.cta}`}>
+            Africa&apos;s biggest ↗
+          </Link>
+        </section>
+
+        {/* ── Certification pace ─────────────────────────────── */}
+        <section id="cert-pace" className={`${styles.wrap} ${styles.sectionPad}`}>
+          <div className={styles.eyebrow}>Certifications · by year</div>
+          <h2 className={styles.h2}>The pace of the plaques</h2>
+          <div className={styles.chartBody}>
+            <RankedBars
+              items={certsByYear}
+              ariaLabel="Burna Boy certifications awarded in each year"
+            />
+          </div>
+          <p className={`${styles.caption} ${styles.captionNarrow}`}>
+            {certYearRecord ? (
+              <>
+                <span className={styles.captionLead}>{thisYear} is already his biggest year</span>{" "}
+                — {certYearPeak} certifications with the year still running.
+              </>
+            ) : (
+              <>
+                <span className={styles.captionLead}>Counted the year each award landed</span> — a
+                release can appear twice in a year if it certified at two tiers.
+              </>
+            )}
+          </p>
+          <Link href="/certifications" className={`btn btnSecondary ${styles.cta}`}>
+            Every certification ↗
+          </Link>
+        </section>
+
+        {/* ── Awards by year ─────────────────────────────────── */}
+        <section id="wins-by-year" className={`${styles.wrap} ${styles.sectionPad}`}>
+          <div className={styles.eyebrow}>Awards · wins per year</div>
+          <h2 className={styles.h2}>Fifteen years of winning</h2>
+          <div className={styles.chartBody}>
+            <TimeSeriesChart
+              points={winsSeries}
+              annotations={winsAnnotations}
+              format={(v) => String(Math.round(v))}
+              valueLabel="Wins"
+              unitLabel="Award wins per year"
+              ariaLabel={`Burna Boy's award wins in each year from ${winYears[0]} to ${winYears[winYears.length - 1]}`}
+            />
+          </div>
+          <p className={`${styles.caption} ${styles.captionNarrow}`}>
+            <span className={styles.captionLead}>
+              {bestWinYear} was the peak — {winYearCounts[bestWinYear]} wins in a single year
+            </span>{" "}
+            — the African Giant year. Every win is counted in the year the ceremony
+            happened, across {totalWins} in all.
+          </p>
+          <Link href="/records/awards" className={`btn btnSecondary ${styles.cta}`}>
+            Every award ↗
+          </Link>
+        </section>
+
+        {/* ── Live placements ────────────────────────────────── */}
+        <section id="live-platforms" className={`${styles.wrap} ${styles.sectionPad}`}>
+          <div className={styles.eyebrow}>Live · platform charts</div>
+          <h2 className={styles.h2}>Where he is charting right now</h2>
+          <div className={styles.chartBody}>
+            <RankedBars
+              items={livePlatformBars}
+              ariaLabel="Burna Boy's current placements on each streaming platform's country charts"
+            />
+          </div>
+          <p className={`${styles.caption} ${styles.captionNarrow}`}>
+            <span className={styles.captionLead}>
+              {livePlacementTotal} placements on today&apos;s board
+            </span>{" "}
+            — country charts only, refreshed hourly. Last swept {liveChartsUpdated}.
+          </p>
+          <Link href="/live-charts" className={`btn btnSecondary ${styles.cta}`}>
+            The live board ↗
+          </Link>
+        </section>
+
+        {/* ── Stages by region ───────────────────────────────── */}
+        <section id="regions" className={`${styles.wrap} ${styles.sectionPad}`}>
+          <div className={styles.eyebrow}>Live · countries performed in</div>
+          <h2 className={styles.h2}>Where he has performed</h2>
+          <div className={styles.chartBody}>
+            <RankedBars
+              items={regionBars}
+              ariaLabel="Countries Burna Boy has performed in, grouped by region"
+            />
+          </div>
+          <p className={`${styles.caption} ${styles.captionNarrow}`}>
+            <span className={styles.captionLead}>
+              {performedCountries.length} countries across {regionBars.length} regions
+            </span>{" "}
+            — Africa and Europe carry the most stages, but only the Caribbean run is newer than
+            the World Cup.
+          </p>
+          <Link href="/records/tours/map" className={`btn btnSecondary ${styles.cta}`}>
+            The performance map ↗
+          </Link>
         </section>
 
         {/* ── Grosses ────────────────────────────────────────── */}

@@ -41,7 +41,7 @@ const figures = [
   { value: String(numberOnes), label: "No. 1 placements", sub: "worldwide" },
   { value: String(totalWins), label: "Award wins", sub: `${totalNominations} nominations` },
   { value: spotifyTotalStreams, label: "Career streams", sub: "Spotify, all credits" },
-  { value: String(performedCountryCount), label: "Countries performed", sub: "7 regions" },
+  { value: String(performedCountryCount), label: "Countries performed in", sub: "7 regions" },
 ];
 
 const X_CONTACT = "https://x.com/paulemmanuelng";
