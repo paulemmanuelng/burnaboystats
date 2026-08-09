@@ -7,6 +7,7 @@ import ScatterChart, { type ScatterPoint } from "../../components/ScatterChart";
 import TierDonut, { type DonutSeg } from "../../components/TierDonut";
 import PeakMap, { type PeakInfo } from "../../components/PeakMap";
 import KeepExploring from "../../components/KeepExploring";
+import TimeSeriesChart, { type SeriesAnnotation } from "../../components/TimeSeriesChart";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import { JUMP } from "../../lib/visualizedSections";
 import { revenueShows } from "../../data/tourRevenue";
@@ -14,6 +15,8 @@ import { COUNTRIES, albums, singles, features, totalAwards } from "../../data/ce
 import { ceremonies, totalWins } from "../../data/awards";
 import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../../data/charts";
 import { statBoxes, HIGHLIGHT } from "../../data/africasBiggest";
+import { monthlyListenersSeries } from "../../data/trends";
+import { certHistory } from "../../data/certifications";
 import { A2_TO_ISO } from "../../lib/isoCodes";
 
 export const metadata = pageMetadata({
@@ -56,6 +59,42 @@ const certsByCountry: BarItem[] = (() => {
       displayValue: String(n),
     }));
 })();
+
+// ── The climb ────────────────────────────────────────────────────────────
+// The only daily series the site keeps: monthly listeners through the "Dai
+// Dai" run. Milestones are found IN the data rather than hardcoded, so the
+// markers can never contradict the line they sit on.
+const listenerMilestones: SeriesAnnotation[] = [50, 60]
+  .map((mark) => {
+    const hit = monthlyListenersSeries.find((p) => p.value >= mark);
+    return hit ? { date: hit.date, label: `${mark}M` } : null;
+  })
+  .filter((a): a is SeriesAnnotation => a !== null);
+const listenerFirst = monthlyListenersSeries[0];
+const listenerLast = monthlyListenersSeries[monthlyListenersSeries.length - 1];
+const listenerGain = (listenerLast.value - listenerFirst.value).toFixed(2);
+const listenerDays = Math.round(
+  (new Date(listenerLast.date).getTime() - new Date(listenerFirst.date).getTime()) / 86_400_000
+);
+const formatListeners = (v: number) => `${v.toFixed(1)}M`;
+
+// ── Certification pace ───────────────────────────────────────────────────
+// Chronological, not ranked: the story is that the newest year is already the
+// biggest, so the years have to read left-to-right in time order.
+const certYears = [...new Set(certHistory.map((e) => e.year))].sort((a, b) => a - b);
+const thisYear = certYears[certYears.length - 1];
+const certsByYear: BarItem[] = certYears.map((year) => {
+  const n = certHistory.filter((e) => e.year === year).length;
+  return {
+    name: String(year),
+    meta: year === thisYear ? "so far" : undefined,
+    value: n,
+    displayValue: String(n),
+    tone: year === thisYear ? "gold" : "muted",
+  };
+});
+const certYearPeak = Math.max(...certsByYear.map((c) => c.value));
+const certYearRecord = certsByYear[certsByYear.length - 1].value === certYearPeak;
 
 const shortBody = (name: string) => name.match(/\(([^)]+)\)/)?.[1] ?? name;
 const winsByBody: BarItem[] = ceremonies
@@ -207,6 +246,17 @@ export default function VisualizedPage() {
           that survive one column. */}
       <MobileVisualized
         chartCount={JUMP.length}
+        timeCharts={[
+          {
+            title: "The climb to sixty million",
+            note: `+${listenerGain}M in ${listenerDays} days — every reading logged as it happened through the “Dai Dai” run.`,
+            points: monthlyListenersSeries,
+            annotations: listenerMilestones,
+            format: "listeners",
+            ariaLabel:
+              "Burna Boy's Spotify monthly listeners, daily, from the start of July 2026 to today",
+          },
+        ]}
         bars={[
           {
             title: "Biggest single-show grosses",
@@ -222,6 +272,13 @@ export default function VisualizedPage() {
             title: "Most-decorated stages",
             note: `Where his ${totalWins} wins come from — top 6 bodies.`,
             items: toBars(winsByBody, 6),
+          },
+          {
+            title: "The pace of the plaques",
+            note: certYearRecord
+              ? `${thisYear} is already his biggest year — ${certYearPeak} certifications, and it is still running.`
+              : "Counted by the year each award landed.",
+            items: toBars(certsByYear, certsByYear.length),
           },
         ]}
         donuts={[
@@ -265,6 +322,60 @@ export default function VisualizedPage() {
               <a key={j.href} href={j.href}>{j.label}</a>
             ))}
           </nav>
+        </section>
+
+        {/* ── The climb ──────────────────────────────────────── */}
+        <section id="the-climb" className={`${styles.wrap} ${styles.sectionPad}`}>
+          <div className={styles.eyebrow}>Streaming · daily</div>
+          <h2 className={styles.h2}>The climb to sixty million</h2>
+          <div className={styles.chartBody}>
+            <TimeSeriesChart
+              points={monthlyListenersSeries}
+              annotations={listenerMilestones}
+              format={formatListeners}
+              valueLabel="Monthly listeners (millions)"
+              ariaLabel="Burna Boy's Spotify monthly listeners, daily, from the start of July 2026 to today"
+            />
+          </div>
+          <p className={`${styles.caption} ${styles.captionNarrow}`}>
+            <span className={styles.captionLead}>
+              +{listenerGain}M in {listenerDays} days
+            </span>{" "}
+            — every reading logged as it happened through the “Dai Dai” run, from{" "}
+            {formatListeners(listenerFirst.value)} to {formatListeners(listenerLast.value)}. He is
+            the first African artist past both marked milestones.
+          </p>
+          <Link href="/records/africas-biggest" className={`btn btnSecondary ${styles.cta}`}>
+            Africa&apos;s biggest ↗
+          </Link>
+        </section>
+
+        {/* ── Certification pace ─────────────────────────────── */}
+        <section id="cert-pace" className={`${styles.wrap} ${styles.sectionPad}`}>
+          <div className={styles.eyebrow}>Certifications · by year</div>
+          <h2 className={styles.h2}>The pace of the plaques</h2>
+          <div className={styles.chartBody}>
+            <RankedBars
+              items={certsByYear}
+              ariaLabel="Burna Boy certifications awarded in each year"
+            />
+          </div>
+          <p className={`${styles.caption} ${styles.captionNarrow}`}>
+            {certYearRecord ? (
+              <>
+                <span className={styles.captionLead}>{thisYear} is already his biggest year</span>{" "}
+                — {certYearPeak} certifications with the year still running.
+              </>
+            ) : (
+              <>
+                <span className={styles.captionLead}>Counted the year each award landed</span> — a
+                release can appear twice in a year if it certified at two tiers.
+              </>
+            )}
+          </p>
+          <Link href="/certifications" className={`btn btnSecondary ${styles.cta}`}>
+            Every certification ↗
+          </Link>
         </section>
 
         {/* ── Grosses ────────────────────────────────────────── */}

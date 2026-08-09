@@ -16,6 +16,19 @@ import BackLink from "./BackLink";
  * 6 of 221 rather than as a quarter of the ring.
  */
 
+import TimeSeriesChart, { type SeriesPoint, type SeriesAnnotation } from "./TimeSeriesChart";
+
+/** A dated line chart on the mobile screen. `format` names a formatter rather
+ *  than passing a function, so the parent stays a server component. */
+export interface MobileTimeChart {
+  title: string;
+  note: string;
+  points: SeriesPoint[];
+  annotations?: SeriesAnnotation[];
+  format?: "listeners";
+  ariaLabel: string;
+}
+
 export interface MobileBar {
   name: string;
   value: string;
@@ -36,13 +49,19 @@ const R = 34;
 const STROKE = 10;
 const C = 2 * Math.PI * R;
 
+const FORMATTERS: Record<string, (v: number) => string> = {
+  listeners: (v) => `${v.toFixed(1)}M`,
+};
+
 export default function MobileVisualized({
   chartCount,
+  timeCharts = [],
   bars,
   donuts,
   footNote,
 }: {
   chartCount: number;
+  timeCharts?: MobileTimeChart[];
   bars: { title: string; note: string; items: MobileBar[] }[];
   donuts: MobileDonut[];
   footNote: string;
@@ -76,6 +95,20 @@ export default function MobileVisualized({
       </div>
 
       {/* Ranked bars */}
+      {timeCharts.map((c) => (
+        <div key={c.title} className={styles.chart}>
+          <h2 className={styles.chartTitle}>{c.title}</h2>
+          <TimeSeriesChart
+            points={c.points}
+            annotations={c.annotations}
+            format={c.format ? FORMATTERS[c.format] : undefined}
+            ariaLabel={c.ariaLabel}
+            aspect="tall"
+          />
+          <p className={styles.chartNote}>{c.note}</p>
+        </div>
+      ))}
+
       {bars.map((c) => (
         <div key={c.title} className={styles.chart}>
           <h2 className={styles.chartTitle}>{c.title}</h2>
