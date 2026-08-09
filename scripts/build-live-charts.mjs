@@ -27,6 +27,14 @@ import {
 const SOURCE = "https://kworb.net/itunes/artist/burnaboy.html";
 const UA = { "user-agent": "burnaboystats-bot" };
 const OUT = new URL("../app/data/liveCharts.ts", import.meta.url);
+// Append-only daily record of worldwide chart positions. liveCharts.ts is a
+// SNAPSHOT — it only ever knows today — so a run like "Dai Dai" spending
+// weeks at No. 1 globally leaves no trace the site can plot. This file is the
+// memory: one row per release/platform/day.
+const RUN_OUT = new URL("../app/data/runHistory.ts", import.meta.url);
+// ~14 months, so a chart can always show a full year without the file growing
+// without limit.
+const RUN_KEEP_DAYS = 430;
 const DRY = process.argv.includes("--dry");
 
 // A run that returns far less than usual almost certainly means the page
@@ -216,3 +224,63 @@ export const livePlatformTotals: { platform: string; placements: number; numberO
 
 await writeFile(OUT, body);
 console.error(`wrote ${OUT.pathname}`);
+
+// ── Worldwide run history ────────────────────────────────────────────────
+// Today's worldwide positions, appended to the long record. Runs on every
+// sweep; the day's row is upserted rather than duplicated, so the hourly
+// cadence leaves exactly one reading per day (the most recent one).
+const today = new Date().toISOString().slice(0, 10);
+const todaysRuns = [];
+for (const r of releases) {
+  for (const p of r.platforms) {
+    const ww = p.entries.find((e) => e.country === "WW" || /^world/i.test(e.name ?? ""));
+    if (ww) todaysRuns.push({ date: today, release: r.title, platform: p.platform, position: ww.position });
+  }
+}
+
+const priorRuns = await readFile(RUN_OUT, "utf8")
+  .then((t) => JSON.parse(t.match(/export const runHistory: RunPoint\[\] = (\[[\s\S]*?\n\]);/)?.[1] ?? "[]"))
+  .catch(() => []);
+
+const isToday = (x) => x.date === today;
+const keptFrom = new Date(Date.now() - RUN_KEEP_DAYS * 86_400_000).toISOString().slice(0, 10);
+const mergedRuns = [...priorRuns.filter((x) => !isToday(x) && x.date >= keptFrom), ...todaysRuns].sort(
+  (a, b) => a.date.localeCompare(b.date) || a.release.localeCompare(b.release) || a.platform.localeCompare(b.platform)
+);
+
+const runBody = `// GENERATED FILE — do not edit by hand.
+// Appended to by scripts/build-live-charts.mjs on every sweep.
+//
+// The long memory of WORLDWIDE chart positions. app/data/liveCharts.ts knows
+// only today; this knows every day it has watched, so a run — "Dai Dai" at
+// No. 1 on Spotify's global daily chart for 26 days — can be plotted rather
+// than only counted. One row per release, platform and day (the day's latest
+// reading). Collection began ${mergedRuns[0]?.date ?? today}; entries older than
+// ${RUN_KEEP_DAYS} days are dropped.
+
+export interface RunPoint {
+  date: string; // ISO "YYYY-MM-DD"
+  release: string;
+  platform: string;
+  position: number;
+}
+
+export const runHistory: RunPoint[] = ${JSON.stringify(mergedRuns, null, 2)};
+
+/** The dated series for one release on one platform, oldest first. */
+export const runSeries = (release: string, platform: string) =>
+  runHistory
+    .filter((r) => r.release === release && r.platform === platform)
+    .map((r) => ({ date: r.date, value: r.position }));
+
+/** How many days the history actually covers — a chart should say so rather
+ *  than implying it has watched a run from its first day. */
+export const runHistoryDays = new Set(runHistory.map((r) => r.date)).size;
+`;
+
+await writeFile(RUN_OUT, runBody);
+console.error(
+  `run history: +${todaysRuns.length} worldwide rows for ${today} (${mergedRuns.length} total, ${
+    new Set(mergedRuns.map((r) => r.date)).size
+  } days)`
+);
