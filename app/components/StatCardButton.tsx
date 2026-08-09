@@ -31,6 +31,7 @@ export default function StatCardButton({
   source,
   href = "/",
   variant = "icon",
+  className,
   children,
 }: {
   /** A card id the server resolves — see findCard in lib/statCards.ts. */
@@ -40,6 +41,9 @@ export default function StatCardButton({
   source: string;
   href?: string;
   variant?: "icon" | "block";
+  /** Extra classes for the block trigger, so a list row can keep its styling
+   *  when the whole row becomes the dialog's trigger. */
+  className?: string;
   children?: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
@@ -126,7 +130,7 @@ export default function StatCardButton({
           </svg>
         </button>
       ) : (
-        <button ref={triggerRef} type="button" className={`btn btnBlock ${styles.blockBtn}`} onClick={openDialog}>
+        <button ref={triggerRef} type="button" className={`btn btnBlock ${styles.blockBtn} ${className ?? ""}`} onClick={openDialog}>
           {children}
         </button>
       )}
