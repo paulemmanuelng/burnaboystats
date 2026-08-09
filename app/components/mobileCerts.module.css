@@ -184,6 +184,17 @@
   padding: 15px 18px;
   border-bottom: 1px solid var(--line);
   color: var(--text);
+  /* The row is now a <button> (it opens the release's stat card), so undo
+     the button defaults the anchor never had. */
+  width: 100%;
+  text-align: left;
+  background: none;
+  font: inherit;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  cursor: pointer;
 }
 .rowTop { display: flex; align-items: baseline; gap: 10px; }
 .rank {

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import StatCardButton from "./StatCardButton";
 import styles from "./mobileCerts.module.css";
 import { badgeWeight } from "../lib/certs";
 import ScrollRail from "./ScrollRail";
@@ -182,7 +183,20 @@ export default function MobileCerts({
 
       <div className={styles.list}>
         {rows.map((r, i) => (
-          <Link key={r.title} href={`/certifications?release=${encodeURIComponent(r.title)}`} className={styles.row}>
+          // The row used to link to /certifications?release=… — a param only
+          // the desktop explorer reads, and only on a fresh load, so on a
+          // phone the tap just re-navigated to the same page and jumped to
+          // the top. Now the whole row opens the release's cert stat card.
+          <StatCardButton
+            key={r.title}
+            cardId={`cert-${titleKey(r.title)}`}
+            value={String(r.certs.length)}
+            label={`Certifications for “${r.title}”`}
+            source={`${r.certs.length} countries · highest award ${(() => { const t = [...r.certs].sort((x, y) => badgeWeight(y) - badgeWeight(x))[0]; return `${t.x ? `${t.x}× ` : ""}${t.level}`; })()}`}
+            href="/certifications"
+            variant="block"
+            className={styles.row}
+          >
             <div className={styles.rowTop}>
               <span className={styles.rank}>{String(i + 1).padStart(2, "0")}</span>
               {/* Same treatment as the live-charts rows: the release's art,
@@ -226,7 +240,7 @@ export default function MobileCerts({
                   );
                 })}
             </div>
-          </Link>
+          </StatCardButton>
         ))}
       </div>
 
