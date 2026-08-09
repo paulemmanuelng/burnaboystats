@@ -56,6 +56,14 @@
   text-transform: uppercase;
 }
 
+.unit {
+  fill: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .lastDot {
   fill: var(--gold-bright);
   stroke: var(--bg);
@@ -66,6 +74,7 @@
    sizes rather than letting it shrink with the drawing. */
 @media (max-width: 720px) {
   .axis { font-size: 15px; }
+  .unit { font-size: 14px; }
   .markLabel { font-size: 15px; }
   .line { stroke-width: 3; }
 }

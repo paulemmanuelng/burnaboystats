@@ -47,6 +47,7 @@ export default function TimeSeriesChart({
   format = (v) => String(v),
   ariaLabel,
   valueLabel = "Value",
+  unitLabel,
   aspect = "wide",
 }: {
   points: SeriesPoint[];
@@ -56,6 +57,11 @@ export default function TimeSeriesChart({
   ariaLabel: string;
   /** Column heading for the hidden data table. */
   valueLabel?: string;
+  /** Printed inside the plot: what is being measured and where it comes from
+   *  ("Spotify · monthly listeners"). A line with no units is a shape, not a
+   *  statistic — and on mobile the section eyebrow that used to carry this
+   *  isn't rendered at all. */
+  unitLabel?: string;
   /** "tall" trades width for height — a phone column is narrow, and a climb
    *  read at 2.8:1 there flattens into a nearly straight line. */
   aspect?: "wide" | "tall";
@@ -153,6 +159,12 @@ export default function TimeSeriesChart({
             </text>
           </g>
         ))}
+
+        {unitLabel && (
+          <text className={styles.unit} x={padL} y={12}>
+            {unitLabel}
+          </text>
+        )}
 
         <path className={styles.area} d={area} />
         <path className={styles.line} d={line} />

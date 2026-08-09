@@ -22,10 +22,13 @@ import TimeSeriesChart, { type SeriesPoint, type SeriesAnnotation } from "./Time
  *  than passing a function, so the parent stays a server component. */
 export interface MobileTimeChart {
   title: string;
+  /** What the line measures — the desktop eyebrow has no mobile equivalent. */
+  subtitle?: string;
   note: string;
   points: SeriesPoint[];
   annotations?: SeriesAnnotation[];
-  format?: "listeners";
+  format?: "listeners" | "count";
+  unitLabel?: string;
   ariaLabel: string;
 }
 
@@ -51,6 +54,7 @@ const C = 2 * Math.PI * R;
 
 const FORMATTERS: Record<string, (v: number) => string> = {
   listeners: (v) => `${v.toFixed(1)}M`,
+  count: (v) => String(Math.round(v)),
 };
 
 export default function MobileVisualized({
@@ -98,10 +102,12 @@ export default function MobileVisualized({
       {timeCharts.map((c) => (
         <div key={c.title} className={styles.chart}>
           <h2 className={styles.chartTitle}>{c.title}</h2>
+          {c.subtitle && <p className={styles.chartSub}>{c.subtitle}</p>}
           <TimeSeriesChart
             points={c.points}
             annotations={c.annotations}
             format={c.format ? FORMATTERS[c.format] : undefined}
+            unitLabel={c.unitLabel}
             ariaLabel={c.ariaLabel}
             aspect="tall"
           />

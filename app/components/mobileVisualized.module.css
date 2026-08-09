@@ -89,6 +89,14 @@
 
 /* ── Bar charts ───────────────────────────────────────────────────────── */
 .chart { border-top: 1px solid var(--line); padding: 20px 18px; }
+.chartSub {
+  margin: 4px 0 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 .chartTitle {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
