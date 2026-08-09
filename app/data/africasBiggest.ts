@@ -93,14 +93,14 @@ export const statBoxes: LeaderboardBox[] = [
       {
         label: "2026",
         entries: [
-          { name: "Tems" },
-          { name: "Wizkid" },
-          { name: "Burna Boy" },
+          { name: "Tems", value: "1.598B" },
+          { name: "Wizkid", value: "1.560B" },
+          { name: "Burna Boy", value: "1.508B" },
           { name: "Asake" },
           { name: "Tyla" },
         ],
         inProgress: true,
-        note: "Tems leading so far.",
+        note: "Only three Afrobeats artists have passed 1.5 billion Spotify streams so far in 2026 — Tems leads on 1.598B, ahead of Wizkid (1.560B) and Burna Boy, who crossed the mark in August on 1.508B. Seven months still to count.",
       },
       {
         label: "2025",
@@ -145,7 +145,7 @@ export const statBoxes: LeaderboardBox[] = [
       },
     ],
     source:
-      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. Stream totals are shown for 2025; the other years are rankings only. *2026 is still in progress, so its order may change.",
+      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. Totals are shown for 2025 and, for the three artists past 1.5 billion, for 2026 so far; the other years are rankings only. The 2026 figures are part-year counts read from chart-tracking accounts in August 2026 rather than an official Spotify report, and 2026 is still in progress, so both the totals and the order will change.",
   },
   {
     id: "monthly-listeners-peak",
