@@ -167,8 +167,15 @@ for (const release of allChartItems) {
  *  has five) show the newest; countries only one song ever topped show that
  *  song, which is the only truthful choice. */
 export function numberOneTitleFor(code: string): string | undefined {
-  const toppers = allChartItems.filter((r) =>
-    r.entries.some((e) => e.c === code && e.peak === 1)
+  // Songs only: a No. 1 ALBUM belongs on the board solely through the curated
+  // cells (the UK pair below). Without this filter, adding No Sign of
+  // Weakness's Nigerian albums-chart No. 1 displaced "Love" from the Nigeria
+  // cell — an album quietly stealing a song's spot the day its data arrived.
+  const albumTitles = new Set(albumCharts.map((a) => a.title));
+  const toppers = allChartItems.filter(
+    (r) =>
+      !albumTitles.has(r.title) &&
+      r.entries.some((e) => e.c === code && e.peak === 1)
   );
   if (toppers.length === 0) return undefined;
   toppers.sort((a, b) => b.year - a.year);
