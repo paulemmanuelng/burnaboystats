@@ -123,30 +123,6 @@ const winsAnnotations: SeriesAnnotation[] = [
   { date: `${bestWinYear}-06-30`, label: String(bestWinYear) },
 ];
 
-// ── Biggest songs on Spotify ─────────────────────────────────────────────
-// Parses "602M" / "1.7B" from the song pages' own displayed figures, so the
-// bars can never disagree with the numbers printed beside them.
-// Normalised to MILLIONS. The unit matters: reading "987K" as a bare number
-// ranked a 987-thousand-stream song above "Last Last" on 602M, straight to the
-// top of the chart.
-const toStreams = (v: string) => {
-  const n = parseFloat(v);
-  const unit = v.trim().toUpperCase().slice(-1);
-  if (unit === "B") return n * 1000;
-  if (unit === "K") return n / 1000;
-  return n;
-};
-const biggestSongs: BarItem[] = songs
-  .filter((s) => s.spotifyStreams)
-  .map((s) => ({
-    name: s.title,
-    meta: String(s.year),
-    value: toStreams(s.spotifyStreams!),
-    displayValue: s.spotifyStreams!,
-  }))
-  .sort((a, b) => b.value - a.value)
-  .slice(0, 10);
-
 // ── Where he is charting right now ───────────────────────────────────────
 const livePlatformBars: BarItem[] = livePlatformTotals.map((p) => ({
   name: p.platform,
@@ -318,6 +294,38 @@ export default function VisualizedPage() {
           that survive one column. */}
       <MobileVisualized
         chartCount={JUMP.length}
+        blocks={[
+          {
+            title: "Tickets vs revenue",
+            // The scatter keeps a 460px minimum and scrolls inside its own
+            // frame rather than shrinking its labels to nothing — so the note
+            // has to say it scrolls, or a phone reader sees a cropped chart
+            // and assumes that is all of it.
+            note: "Each dot is one show — how a night's attendance turned into its gross. Swipe the chart to reach the biggest nights.",
+            chart: (
+              <ScatterChart
+                points={scatter}
+                xMax={65000}
+                yMax={6.5e6}
+                xTicks={[{ value: 0, label: "0" }, { value: 30000, label: "30k" }, { value: 60000, label: "60k" }]}
+                yTicks={[{ value: 0, label: "$0" }, { value: 3e6, label: "$3M" }, { value: 6e6, label: "$6M" }]}
+                xLabel="Tickets sold"
+                yLabel="Revenue"
+                ariaLabel="Tickets sold against revenue for the biggest single shows by African artists"
+              />
+            ),
+          },
+          {
+            title: "Best chart peak by country",
+            note: "Darker gold is a higher peak — tap a country for the song that got there.",
+            chart: (
+              <PeakMap
+                data={peakByISO}
+                ariaLabel="World map coloured by Burna Boy's best official chart peak in each country"
+              />
+            ),
+          },
+        ]}
         timeCharts={[
           {
             title: "The climb to sixty million",
@@ -363,17 +371,12 @@ export default function VisualizedPage() {
             items: toBars(certsByYear, certsByYear.length),
           },
           {
-            title: "His biggest songs on Spotify",
-            note: "Lead and featured credits together — the same totals each song's own page shows.",
-            items: toBars(biggestSongs, 6),
-          },
-          {
             title: "Where he is charting right now",
             note: `${livePlacementTotal} placements on today's board — country charts only, refreshed hourly.`,
             items: toBars(livePlatformBars, livePlatformBars.length),
           },
           {
-            title: "Every region he has played",
+            title: "Where he has performed",
             note: `${performedCountries.length} countries across ${regionBars.length} regions.`,
             items: toBars(regionBars, regionBars.length),
           },
@@ -507,26 +510,6 @@ export default function VisualizedPage() {
           </Link>
         </section>
 
-        {/* ── Biggest songs ──────────────────────────────────── */}
-        <section id="biggest-songs" className={`${styles.wrap} ${styles.sectionPad}`}>
-          <div className={styles.eyebrow}>Spotify · total streams</div>
-          <h2 className={styles.h2}>His biggest songs on Spotify</h2>
-          <div className={styles.chartBody}>
-            <RankedBars
-              items={biggestSongs}
-              ariaLabel="Burna Boy's most-streamed songs on Spotify, in millions of streams"
-            />
-          </div>
-          <p className={`${styles.caption} ${styles.captionNarrow}`}>
-            <span className={styles.captionLead}>Lead and featured credits together</span> — the
-            same totals shown on each song&apos;s own page, so the bars and the pages can never
-            disagree.
-          </p>
-          <Link href="/music" className={`btn btnSecondary ${styles.cta}`}>
-            All the music ↗
-          </Link>
-        </section>
-
         {/* ── Live placements ────────────────────────────────── */}
         <section id="live-platforms" className={`${styles.wrap} ${styles.sectionPad}`}>
           <div className={styles.eyebrow}>Live · platform charts</div>
@@ -550,8 +533,8 @@ export default function VisualizedPage() {
 
         {/* ── Stages by region ───────────────────────────────── */}
         <section id="regions" className={`${styles.wrap} ${styles.sectionPad}`}>
-          <div className={styles.eyebrow}>Live · countries played</div>
-          <h2 className={styles.h2}>Every region he has played</h2>
+          <div className={styles.eyebrow}>Live · countries performed in</div>
+          <h2 className={styles.h2}>Where he has performed</h2>
           <div className={styles.chartBody}>
             <RankedBars
               items={regionBars}

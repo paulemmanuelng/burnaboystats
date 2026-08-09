@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import styles from "./mobileVisualized.module.css";
 import MobileMenuButton from "./MobileMenuButton";
@@ -60,12 +61,17 @@ const FORMATTERS: Record<string, (v: number) => string> = {
 export default function MobileVisualized({
   chartCount,
   timeCharts = [],
+  blocks = [],
   bars,
   donuts,
   footNote,
 }: {
   chartCount: number;
   timeCharts?: MobileTimeChart[];
+  /** Charts the phone can carry but that aren't bars, donuts or lines — the
+   *  scatter and the choropleth. Rendered by the page and passed through, so
+   *  this component doesn't need to know how to draw them. */
+  blocks?: { title: string; note: string; chart: ReactNode }[];
   bars: { title: string; note: string; items: MobileBar[] }[];
   donuts: MobileDonut[];
   footNote: string;
@@ -112,6 +118,14 @@ export default function MobileVisualized({
             aspect="tall"
           />
           <p className={styles.chartNote}>{c.note}</p>
+        </div>
+      ))}
+
+      {blocks.map((b) => (
+        <div key={b.title} className={styles.chart}>
+          <h2 className={styles.chartTitle}>{b.title}</h2>
+          {b.chart}
+          <p className={styles.chartNote}>{b.note}</p>
         </div>
       ))}
 

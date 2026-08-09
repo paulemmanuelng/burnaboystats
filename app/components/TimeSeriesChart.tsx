@@ -28,11 +28,16 @@ export interface SeriesAnnotation {
   label: string;
 }
 
-const shortDate = (iso: string) =>
-  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-  });
+// Day-and-month for a run measured in days; the bare year once a series spans
+// years — a yearly series ticked "30 Jun / 30 Jun / 30 Jun" names no year at
+// all, which is the one thing its axis exists to say.
+const shortDate = (iso: string, yearly: boolean) =>
+  yearly
+    ? new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { year: "numeric" })
+    : new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+      });
 
 const longDate = (iso: string) =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -76,6 +81,12 @@ export default function TimeSeriesChart({
   const padR = 16;
   const padT = 22;
   const padB = 30;
+
+  // Two years of span is the switch: anything longer is a career, not a run.
+  const yearly =
+    new Date(`${points[points.length - 1].date}T12:00:00Z`).getTime() -
+      new Date(`${points[0].date}T12:00:00Z`).getTime() >
+    730 * 86_400_000;
 
   const values = points.map((p) => p.value);
   const times = points.map((p) => new Date(`${p.date}T12:00:00Z`).getTime());
@@ -216,7 +227,7 @@ export default function TimeSeriesChart({
                   : "middle"
             }
           >
-            {shortDate(p.date)}
+            {shortDate(p.date, yearly)}
           </text>
         ))}
       </svg>
@@ -241,7 +252,7 @@ export default function TimeSeriesChart({
           <tbody>
             {points.map((p) => (
               <tr key={p.date}>
-                <th scope="row">{longDate(p.date)}</th>
+                <th scope="row">{yearly ? p.date.slice(0, 4) : longDate(p.date)}</th>
                 <td>{format(p.value)}</td>
               </tr>
             ))}
