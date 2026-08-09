@@ -60,7 +60,7 @@ const DAI_DAI_SPOTIFY_STREAMS = "313M";
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
   description:
-    "Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: 25 days as Earth's most-streamed song, No. 1 in 27 countries, and the Final halftime show.",
+    "Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: 26 days as Earth's most-streamed song, No. 1 in 27 countries, and the Final halftime show.",
   path: "/dai-dai",
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
   shareDescription: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and performed at the Final halftime show.",
@@ -159,7 +159,7 @@ export default function DaiDaiPage() {
     { v: `${daiDaiChartEntryCount}`, l: "official chart entries worldwide — on national singles charts across the globe, plus both of Billboard's global charts" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "No. 1", l: "on both Billboard global charts — a 4th consecutive week atop the Global 200 (a first for an African artist, and Shakira's 2nd) and a 6th consecutive week atop the Global 200 Excl. US" },
-    { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 25 days as the most-streamed song on Earth" },
+    { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 26 days as the most-streamed song on Earth" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, France, Slovakia & Portugal, Gold in Colombia, Hungary & Greece, and Silver in the UK" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
@@ -169,7 +169,7 @@ export default function DaiDaiPage() {
       label: "The streaming streaks",
       intro: "The daily and weekly runs — every one still counting.",
       items: [
-        { v: "25 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist — before Ariana Grande took over in early August; 50 days inside the global Top 10 and 78 days on the chart, both still counting" },
+        { v: "26 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and reclaimed in August as the longest-running No. 1 by any 2026 release, past BTS' “Swim” (25); 51 days inside the global Top 10 and 79 days on the chart, all still counting" },
         { v: "4 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
         { v: "33 days", l: "at No. 1 on Apple Music's European songs chart, and a 7th day atop the worldwide Apple Music chart" },
         { v: "23 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },

@@ -22,7 +22,7 @@
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
-      "baseline": 60012272,
+      "baseline": 60082675,
       "live": true,
       "sanity": {
         "maxJump": 0.12,
@@ -54,7 +54,7 @@
       },
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "peakListeners",
-      "lastChanged": "2026-08-08",
+      "lastChanged": "2026-08-09",
       "lastSeenValue": 59985587,
       "lastSeenAt": "2026-08-08"
     },
@@ -68,7 +68,7 @@
       "field": "rank",
       "kind": "rank",
       "threshold": 1,
-      "baseline": 37,
+      "baseline": 36,
       "note": "Global rank by Spotify monthly listeners (lower is better). Auto-published hourly; displayed on /records/by-the-numbers.",
       "live": true,
       "sanity": {
@@ -86,7 +86,7 @@
           "describes": "global listeners rank"
         }
       ],
-      "lastChanged": "2026-08-05",
+      "lastChanged": "2026-08-09",
       "lastSeenValue": 37,
       "lastSeenAt": "2026-08-05"
     },

@@ -134,7 +134,7 @@ export default function Home() {
             <div className={styles.historyRow}>
               <p className={styles.historyText}>
                 The first-ever FIFA World Cup Final halftime show, and the first African
-                artist to headline it. Their anthem spent 25 days as the most-streamed song on Earth.
+                artist to headline it. Their anthem has now spent 26 days as the most-streamed song on Earth — back on top in August.
               </p>
               <Link href="/dai-dai" className={`btn btnPrimary ${styles.historyCta}`}>
                 Read the story ↗
