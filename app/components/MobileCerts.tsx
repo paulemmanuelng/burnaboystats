@@ -64,12 +64,6 @@ export default function MobileCerts({
   // this job for free.
   const albumTitles = new Set(albums.map((a) => titleKey(a.title)));
   const [tier, setTier] = useState<Tier | null>(null);
-  // Which release the reader tapped. The rows used to link to
-  // /certifications?release=… — a param only the DESKTOP explorer reads, and
-  // only on a fresh load — so a tap on a phone just re-navigated to the same
-  // page and jumped to the top. The focus lives here instead, so a tap filters
-  // the list in place, exactly like the desktop explorer's release focus.
-  const [focus, setFocus] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [year, setYear] = useState(YEARS[0]);
 
@@ -86,7 +80,7 @@ export default function MobileCerts({
   const maxTier = Math.max(...TIER_ORDER.map((t) => tierCount[t]));
 
   const matching = releases
-    .filter((r) => (!focus || r.title === focus) && (!tier || r.certs.some((c) => c.level === tier)))
+    .filter((r) => !tier || r.certs.some((c) => c.level === tier))
     .slice()
     // Albums lead, then the songs — each block running most-certified to
     // least. The blocks aren't labelled; the ALBUM tag on each album row is
@@ -184,26 +178,15 @@ export default function MobileCerts({
         ))}
       </ScrollRail>
 
-      {focus ? (
-        <div className={styles.listLabelRow}>
-          <span className={styles.listLabel}>Every certification · {focus}</span>
-          <button type="button" className={styles.clearFocus} onClick={() => setFocus(null)}>
-            Show all ✕
-          </button>
-        </div>
-      ) : (
-        <div className={styles.listLabel}>Most-certified releases</div>
-      )}
+      <div className={styles.listLabel}>Most-certified releases</div>
 
       <div className={styles.list}>
         {rows.map((r, i) => (
-          <button
-            key={r.title}
-            type="button"
-            className={styles.row}
-            aria-pressed={focus === r.title}
-            onClick={() => setFocus(focus === r.title ? null : r.title)}
-          >
+          // Deliberately not interactive: the row already shows every one of
+          // the release's certifications, so a tap has nothing to reveal. It
+          // linked to /certifications?release=… for a while, which on a phone
+          // only re-navigated the same page and jumped to the top.
+          <div key={r.title} className={styles.row}>
             <div className={styles.rowTop}>
               <span className={styles.rank}>{String(i + 1).padStart(2, "0")}</span>
               {/* Same treatment as the live-charts rows: the release's art,
@@ -247,7 +230,7 @@ export default function MobileCerts({
                   );
                 })}
             </div>
-          </button>
+          </div>
         ))}
       </div>
 

@@ -184,40 +184,6 @@
   padding: 15px 18px;
   border-bottom: 1px solid var(--line);
   color: var(--text);
-  /* The row is a <button> now (it focuses the release in place). These undo
-     the UA button defaults so the row looks EXACTLY as it did as a link —
-     font, colour, alignment and full width all inherited, no button chrome. */
-  width: 100%;
-  text-align: left;
-  background: none;
-  font: inherit;
-  letter-spacing: inherit;
-  text-transform: none;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  border-radius: 0;
-  cursor: pointer;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.listLabelRow {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 10px;
-  padding-right: 18px;
-}
-.clearFocus {
-  font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  background: none;
-  border: 0;
-  padding: 0 0 6px;
-  cursor: pointer;
 }
 .rowTop { display: flex; align-items: baseline; gap: 10px; }
 .rank {
