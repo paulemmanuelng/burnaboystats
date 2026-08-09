@@ -37,6 +37,18 @@ export const updates: Update[] = [
   {
     date: "2026-08-09",
     category: "Charts",
+    text: "Back on top of the world: “Dai Dai” returns to No. 1 on Spotify's Global Daily Top Songs chart for a 26th day in total — overtaking BTS' “Swim” (25) as the longest-running No. 1 by any 2026 release, with 79 days on the chart and counting.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-09",
+    category: "Streaming",
+    text: "A new high at No. 36 in the world: Spotify monthly listeners climb to 60,082,675 — a fresh all-time peak barely a day after crossing sixty million — with Port Harcourt overtaking Abuja as his third-biggest listening city.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-08-09",
+    category: "Charts",
     text: "The Nigerian record, filled in: a TurnTable sweep surfaces 9 missing home-chart placements — I Told Them… and No Sign of Weakness were both No. 1 albums in Nigeria, Love, Damini reached No. 3, and on the Top 100 both Giza (with Seyi Vibez) and Big 7 hit No. 2, with Cheat on Me at No. 4, TaTaTa No. 5 and Sittin' on Top of the World No. 8 — lifting the career tally to 280 chart entries and 48 No. 1 placements worldwide.",
     href: "/records/charts",
   },
