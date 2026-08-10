@@ -133,8 +133,12 @@ export default function MobileVisualized({
         <div key={c.title} className={styles.chart}>
           <h2 className={styles.chartTitle}>{c.title}</h2>
           <div className={styles.bars}>
-            {c.items.map((it) => (
-              <div key={it.name} className={styles.barRow}>
+            {/* Keyed by position, not name: the grosses list holds two shows
+                at La Défense Arena (Fally Ipupa's and Burna's), so names can
+                repeat — React logged a duplicate-key error for exactly that.
+                Rank IS the identity in a ranked list; RankedBars agrees. */}
+            {c.items.map((it, i) => (
+              <div key={i} className={styles.barRow}>
                 <div className={styles.barHead}>
                   <span className={styles.barName}>{it.name}</span>
                   <span className={styles.barValue}>{it.value}</span>
