@@ -36,6 +36,21 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-10",
+    category: "Charts",
+    text: "A 7th consecutive week as the world's biggest song outside America: “Dai Dai” leads the Billboard Global 200 Excl. US again on the chart dated 15 August — while its historic Global 200 run, the first ever fronted by an African artist, closes at four straight weeks with the song now at No. 3.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-10",
+    // Top 50 Oficial is a Spanish-language music portal's own countdown, not a
+    // national industry-body chart — so this milestone lives here as news and
+    // deliberately does NOT join charts.ts or any tally. See /methodology.
+    category: "Charts",
+    text: "A first on Top 50 Oficial: “Dai Dai” reached No. 1 on the Spanish-language music portal's own countdown — Burna Boy's first time at the top of it, and Shakira's ninth.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-10",
     category: "Streaming",
     text: "A 28th day as the most-streamed song on Earth: “Dai Dai” holds No. 1 on Spotify's Global Daily chart with 4.034M streams — 53 days inside the global Top 10 and 81 days on the chart, still the longest run at No. 1 of any 2026 release, ahead of BTS' “Swim” (25 days).",
     href: "/dai-dai",

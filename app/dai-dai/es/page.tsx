@@ -114,7 +114,7 @@ export default function DaiDaiPageES() {
       scene: "global1",
       kicker: "El récord",
       title: "Número 1 en el Billboard Global 200",
-      body: "En cuestión de semanas la canción lideró la lista mundial insignia de Billboard, la que incluye a Estados Unidos: el segundo número 1 de Shakira en el Global 200 y la primera vez en la historia que un artista africano ayuda a encabezarla. Ya suma cuatro semanas consecutivas en la cima, y seis en el Global 200 Excl. US.",
+      body: "En cuestión de semanas la canción lideró la lista mundial insignia de Billboard, la que incluye a Estados Unidos: el segundo número 1 de Shakira en el Global 200 y la primera vez en la historia que un artista africano ayuda a encabezarla. Su racha en el Global 200 cerró con cuatro semanas consecutivas, y sigue liderando el Global 200 Excl. US: séptima semana consecutiva, y contando.",
     },
     {
       scene: "no1s",
@@ -151,7 +151,7 @@ export default function DaiDaiPageES() {
   const heroNumbers: { v: string; l: string }[] = [
     { v: `${daiDaiChartEntryCount}`, l: "entradas en listas oficiales de todo el mundo — en listas nacionales de sencillos, más las dos listas globales de Billboard" },
     { v: `${daiDaiNumberOnes}`, l: "países con la canción en el número 1 de su lista oficial de sencillos — de Francia y Alemania a Emiratos Árabes Unidos" },
-    { v: "N.º 1", l: "en las dos listas globales de Billboard — cuarta semana consecutiva en la cima del Global 200 (algo inédito para un artista africano, y el segundo de Shakira) y sexta en el Global 200 Excl. US" },
+    { v: "N.º 1", l: "en las dos listas globales de Billboard — cuatro semanas consecutivas en la cima del Global 200 (algo inédito para un artista africano, y el segundo de Shakira) y séptima semana consecutiva en el Global 200 Excl. US, y contando" },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano, tras 28 días como la canción más escuchada del planeta" },
     { v: `${daiDaiCertCount}`, l: "certificaciones — doble platino (latino) en EE. UU., platino en España, Francia, Eslovaquia y Portugal, oro en Colombia, Hungría y Grecia, y plata en el Reino Unido" },
     { v: "19 jul", l: "Shakira y Burna Boy interpretaron “Dai Dai” en vivo en el primer show de medio tiempo de una Final del Mundial de la FIFA" },
