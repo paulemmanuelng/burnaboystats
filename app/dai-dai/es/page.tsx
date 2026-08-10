@@ -154,7 +154,7 @@ export default function DaiDaiPageES() {
     { v: "N.º 1", l: "en las dos listas globales de Billboard — cuarta semana consecutiva en la cima del Global 200 (algo inédito para un artista africano, y el segundo de Shakira) y sexta en el Global 200 Excl. US" },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano, tras 27 días como la canción más escuchada del planeta" },
     { v: `${daiDaiCertCount}`, l: "certificaciones — doble platino (latino) en EE. UU., platino en España, Francia, Eslovaquia y Portugal, oro en Colombia, Hungría y Grecia, y plata en el Reino Unido" },
-    { v: DAI_DAI_VIDEO_VIEWS, l: "visualizaciones del video oficial en YouTube — 600 millones en 67 días, el video más rápido en llegar a esa cifra en la carrera de cualquiera de los dos" },
+    { v: "19 jul", l: "Shakira y Burna Boy interpretaron “Dai Dai” en vivo en el primer show de medio tiempo de una Final del Mundial de la FIFA" },
   ];
 
   const numberGroups = [
@@ -180,7 +180,7 @@ export default function DaiDaiPageES() {
         { v: "N.º 1", l: "en el Official MENA Chart Top 20 —todavía en la cima en su última semana— y en la lista US World Digital Song Sales de Billboard" },
         { v: "N.º 2", l: "en la lista oficial de sencillos del Reino Unido — la primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira" },
         { v: "N.º 3", l: "en el Billboard Canadian Hot 100 — un nuevo pico y el primer top 10 de Burna Boy en Canadá, donde su mejor posición había sido el N.º 14. Es también el primer top 10 canadiense de Shakira desde “She Wolf” en 2009" },
-        { v: "N.º 17", l: "en el Billboard Hot 100 de Estados Unidos — un salto del 42 al 17 en la lista del 1 de agosto, el pico más alto de una canción mundialista en la historia del Hot 100" },
+        { v: "N.º 17", l: "en el Billboard Hot 100 de Estados Unidos — un salto del 42 al 17 en la lista del 1 de agosto, el pico más alto de una canción mundialista en la historia del Hot 100. Luminate registró 8,6 millones de reproducciones en Estados Unidos (+69 %), 13,9 millones de audiencia radial (+11 %) y 7.000 copias vendidas (+322 %) en la semana de seguimiento del 17 al 23 de julio" },
         { v: "N.º 1", l: "en el Big Top 40 del Reino Unido — la cuenta atrás nacional de las cadenas Capital y Heart, con Burna Boy recibiendo la placa de número 1" },
         { v: "N.º 9", l: "en la lista Rhythmic Airplay de Billboard, subiendo del 11 al 9 — el cuarto top 10 de Burna Boy en ese formato, y el primero de Shakira en 20 años, desde “Hips Don't Lie” (2006)" },
       ],
@@ -200,7 +200,7 @@ export default function DaiDaiPageES() {
       label: "El video",
       intro: "El video de “Dai Dai”, con carrera propia.",
       items: [
-        { v: DAI_DAI_VIDEO_VIEWS, l: "visualizaciones en YouTube — 600 millones en 67 días, el video musical más rápido de la carrera de ambos artistas hasta esa cifra y el único de 2026 en alcanzarla" },
+        { v: DAI_DAI_VIDEO_VIEWS, l: "visualizaciones en YouTube — 600 millones en 67 días, el video musical más rápido de la carrera de ambos artistas hasta esa cifra y el único de 2026 en alcanzarla. Superó los 500 millones en 59,4 días, el 12.º más rápido de la historia" },
         { v: "33 días", l: "como el video musical más visto del mundo en YouTube, y número 1 en 59 países — ya supera los 6,1 millones de “me gusta”" },
       ],
     },
@@ -256,7 +256,10 @@ export default function DaiDaiPageES() {
   const lineup: { name: string; img: string; tag?: string; headliner?: boolean }[] = [
     { name: "Shakira", img: SHAKIRA_PORTRAIT, tag: "“Dai Dai”", headliner: true },
     { name: "Burna Boy", img: BURNA_PORTRAIT, tag: "“Dai Dai”", headliner: true },
-    { name: "Madonna", img: "https://i.scdn.co/image/ab6761610000e5ebed2208b41d49ebd24687985b" },
+    { name: "Madonna", img: "https://i.scdn.co/image/ab6761610000e5ebed2208b41d49ebd24687985b", tag: "“Music”" },
+    { name: "BTS", img: "https://i.scdn.co/image/ab6761610000e5ebf80ec63ea7a0ef0fba60957d", tag: "“Dynamite”" },
+    { name: "Justin Bieber", img: "https://i.scdn.co/image/ab6761610000e5ebaf20f7db5288bce9beede034", tag: "“Everything Hallelujah”" },
+    { name: "Coldplay", img: "https://i.scdn.co/image/ab6761610000e5eb1ba8fc5f5c73e7e9313cc6eb", tag: "con el PS22 Chorus" },
   ];
 
   return (
