@@ -217,14 +217,14 @@ export const statBoxes: LeaderboardBox[] = [
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: spotifyFollowersDisplay },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "12.1M" },
-      { name: "Davido", sub: "🇳🇬 Nigeria", value: "11.4M" },
-      { name: "Asake", sub: "🇳🇬 Nigeria", value: "9.8M" },
-      { name: "Tyla", sub: "🇿🇦 South Africa", value: "5.2M" },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "12.36M" },
+      { name: "Davido", sub: "🇳🇬 Nigeria", value: "11.62M" },
+      { name: "Asake", sub: "🇳🇬 Nigeria", value: "10.14M" },
+      { name: "Tyla", sub: "🇿🇦 South Africa", value: "5.28M" },
     ],
-    note: "Burna Boy is the most-followed African artist on Spotify — nearly 5 million clear of Wizkid in second.",
+    note: "Burna Boy is the most-followed African artist on Spotify — just under 5 million clear of Wizkid in second, with Asake now past ten million too.",
     source:
-      "Spotify follower counts, taken directly from each artist's official Spotify page. As of August 2026 — this updates continuously as Spotify's live counts change.",
+      "Spotify follower counts, read directly from each artist's own Spotify page rather than a tracker. Every figure re-read on 10 August 2026; they move continuously, so treat them as that day's reading.",
   },
   {
     id: "highest-spotify-global-peak",
@@ -294,11 +294,11 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "Equivalent album sales · global · ChartMasters",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "14.46M" },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "14.43M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "14.75M" },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "14.59M" },
     ],
-    note: "Burna Boy is the No. 1 best-selling African artist of all time by equivalent album sales — narrowly ahead of Wizkid, a lead the two keep trading (Davido rounds out the top three). Counts albums, physical and digital singles and streaming album-track equivalents.",
-    source: "Total equivalent album sales (EAS), per ChartMasters (CSPC methodology). As of July 2026 — a close, fast-moving race, so the top two can swap.",
+    note: "Burna Boy is the No. 1 best-selling African artist of all time by equivalent album sales — and his lead over Wizkid has stretched from about 30,000 to some 164,000 through the “Dai Dai” run. Counts albums, physical and digital singles and streaming album-track equivalents.",
+    source: "Total equivalent album sales (EAS), per ChartMasters (CSPC methodology), read from their own Afrobeats board on 10 August 2026 (their figures dated 9 August): Burna Boy 14,750,000 to Wizkid's 14,586,000. The two have traded this lead before, so it is worth re-reading rather than assuming.",
   },
   {
     id: "spotify-top-artists-peak",
