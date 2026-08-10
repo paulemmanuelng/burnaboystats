@@ -4,7 +4,7 @@ import DaiDaiStory from "../components/DaiDaiStory";
 import DaiDaiConquest, { type ConquestCountry } from "../components/DaiDaiConquest";
 import KeepExploring from "../components/KeepExploring";
 import DaiDaiNumbers from "../components/DaiDaiNumbers";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { lastUpdated } from "../lib/api";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES } from "../data/charts";
 import { liveCharts } from "../data/liveCharts";
@@ -54,7 +54,7 @@ const liveOnesLabel = `right now on the daily charts of ${platformOnes
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
   description:
-    "Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: 26 days as Earth's most-streamed song, No. 1 in 27 countries, and the Final halftime show.",
+    "Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: 27 days as Earth's most-streamed song, No. 1 in 27 countries, and the Final halftime show.",
   path: "/dai-dai",
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
   shareDescription: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and performed at the Final halftime show.",
@@ -69,7 +69,7 @@ export default function DaiDaiPage() {
     description:
       "The story of “Dai Dai”, the 2026 FIFA World Cup anthem by Shakira and Burna Boy — its record-breaking chart, streaming and certification run, and its live performance at the World Cup Final halftime show.",
     datePublished: "2026-07-16",
-    dateModified: lastUpdated,
+    dateModified: asDateTime(lastUpdated),
     image: [`${CANONICAL_ORIGIN}/dai-dai/opengraph-image`],
     inLanguage: "en",
     author: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
@@ -154,7 +154,7 @@ export default function DaiDaiPage() {
     { v: `${daiDaiChartEntryCount}`, l: "official chart entries worldwide — on national singles charts across the globe, plus both of Billboard's global charts" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "No. 1", l: "on both Billboard global charts — a 4th consecutive week atop the Global 200 (a first for an African artist, and Shakira's 2nd) and a 6th consecutive week atop the Global 200 Excl. US" },
-    { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 26 days as the most-streamed song on Earth" },
+    { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 27 days as the most-streamed song on Earth" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, France, Slovakia & Portugal, Gold in Colombia, Hungary & Greece, and Silver in the UK" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
@@ -164,7 +164,7 @@ export default function DaiDaiPage() {
       label: "The streaming streaks",
       intro: "The daily and weekly runs — every one still counting.",
       items: [
-        { v: "26 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and reclaimed in August as the longest-running No. 1 by any 2026 release, past BTS' “Swim” (25); 51 days inside the global Top 10 and 79 days on the chart, all still counting" },
+        { v: "27 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and reclaimed in August as the longest-running No. 1 by any 2026 release, past BTS' “Swim” (25); 52 days inside the global Top 10 and 80 days on the chart, all still counting" },
         { v: "4 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
         { v: "33 days", l: "at No. 1 on Apple Music's European songs chart, and a 7th day atop the worldwide Apple Music chart" },
         { v: "23 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
@@ -177,12 +177,13 @@ export default function DaiDaiPage() {
       items: [
         { v: "6 weeks", l: "at No. 1 on Germany's official singles chart — and named the country's official Sommerhit 2026 by GfK Entertainment, which compiles the charts, after nearly 60 million German streams" },
         { v: "8 weeks", l: "at No. 1 on Switzerland's official chart — the longest run at No. 1 by any song there so far this year" },
-        { v: "4 weeks", l: "at No. 1 on France's Official Singles Chart (SNEP)" },
+        { v: "5 weeks", l: "at No. 1 on France's Official Singles Chart (SNEP)" },
         { v: "No. 1", l: "India's IMI International Top 20 Singles Chart — the first Burna Boy song to top a chart in India" },
         { v: "No. 1", l: "Official MENA Chart Top 20 — still on top in the latest week — and Billboard's US World Digital Song Sales chart" },
         { v: "No. 2", l: "UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)" },
         { v: "No. 3", l: "Billboard Canadian Hot 100 — a new peak and Burna Boy's first-ever top 10 in Canada, where his best song placing had been No. 14. It is also Shakira's first Canadian top 10 since “She Wolf” in 2009" },
         { v: "No. 17", l: "Billboard Hot 100 (US) — a 42-to-17 jump on the chart dated 1 August, the highest-charting World Cup song in Hot 100 history. Luminate logged 8.6M US streams (+69%), 13.9M radio airplay audience (+11%) and 7,000 sold (+322%) in the 17–23 July tracking week" },
+        { v: "No. 1", l: "on the UK's Big Top 40 — the Capital and Heart networks' national countdown, with Burna Boy presented the No. 1 plaque" },
         { v: "No. 9", l: "on Billboard's Rhythmic Airplay chart, up 11–9 — Burna Boy's fourth top 10 on the format, and Shakira's first in 20 years, since “Hips Don't Lie” (2006)" },
       ],
     },
@@ -191,8 +192,9 @@ export default function DaiDaiPage() {
       intro: "The charts that rank the whole planet at once.",
       items: [
         { v: "6 weeks", l: "at No. 1 on Mediatraffic's United World Chart — 375,000 points in the week to 8 August, and the first Burna Boy song ever to top it" },
-        { v: "No. 1", l: "iTunes song chart in 71 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, Latvia the newest" },
+        { v: "No. 1", l: "iTunes song chart in 72 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, the Philippines the newest" },
         { v: "No. 13", l: "Deezer Worldwide Top 100 — a new peak, charting in 57 countries and No. 1 in 23 of them" },
+        { v: "17 days", l: "at No. 1 on Spotify's Global Music Video chart — more than any other song has managed there" },
         { v: "No. 14", l: "Burna Boy's position on the Global Digital Artist ranking (1,739 points) during the run" },
       ],
     },

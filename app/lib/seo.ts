@@ -6,6 +6,17 @@ export const SITE_NAME = "Burna Boy Stats";
 // Canonical production origin (stable — used for absolute URLs in structured data).
 export const CANONICAL_ORIGIN = "https://burnaboystats.com";
 
+/**
+ * A feed date ("2026-08-09") as a full ISO 8601 datetime.
+ *
+ * Search Console flagged "Invalid datetime value for dateModified" on the
+ * ProfilePage at /curator: that type wants a datetime, and a bare date does
+ * not satisfy it. Midday UTC is deliberate — the updates feed records the day
+ * a fact changed, not the minute, and noon is the reading that stays on the
+ * right calendar day in every timezone.
+ */
+export const asDateTime = (isoDate: string) => `${isoDate}T12:00:00+00:00`;
+
 // Build a full Metadata object for a page: title + description + canonical, plus
 // a matching Open Graph and Twitter card so social/search previews are unique
 // per page (Next does not copy the page title into og:title automatically).
