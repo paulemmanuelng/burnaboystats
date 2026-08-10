@@ -273,6 +273,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["methodology", "sources", "how verified", "accuracy", "corrections", "trust"],
   },
   {
+    title: "Dai Dai — en español",
+    path: "/dai-dai/es",
+    section: "Site",
+    description: "La historia de “Dai Dai”, el himno del Mundial 2026, en español.",
+    keywords: ["dai dai español", "espanol", "spanish", "mundial", "cancion del mundial", "himno"],
+  },
+  {
     title: "About the Curator",
     path: "/curator",
     section: "Site",

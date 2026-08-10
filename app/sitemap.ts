@@ -29,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }[] = [
     { path: "", priority: 1.0, changeFrequency: "weekly" },
     { path: "/dai-dai", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/dai-dai/es", priority: 0.7, changeFrequency: "weekly" },
     { path: "/updates", priority: 0.8, changeFrequency: "daily" },
     { path: "/records", priority: 0.9, changeFrequency: "weekly" },
     { path: "/records/by-the-numbers", priority: 0.9, changeFrequency: "weekly" },

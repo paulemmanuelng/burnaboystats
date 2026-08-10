@@ -139,8 +139,8 @@
       "note": "Paul asked to always keep the Dai Dai video count current — now auto-published hourly behind the sanity gate. The DAI_DAI_VIDEO_VIEWS display string drives the figure on /dai-dai; it re-commits only when it crosses a whole million. The min bound rejects a mis-read of a smaller related-video count; the jump bound rejects a wildly-off read.",
       "siteTargets": [
         {
-          "file": "app/dai-dai/page.tsx",
-          "anchor": "const DAI_DAI_VIDEO_VIEWS =",
+          "file": "app/data/daiDai.ts",
+          "anchor": "export const DAI_DAI_VIDEO_VIEWS =",
           "pattern": "\\d+M",
           "format": "M0",
           "describes": "displayed view count (whole millions) on /dai-dai"
@@ -306,7 +306,8 @@
       },
       "lastChanged": "2026-08-07",
       "lastSeenValue": 3169710662,
-      "lastSeenAt": "2026-08-09"
+      "lastSeenAt": "2026-08-09",
+      "stalenessDays": 21
     },
     {
       "id": "spotify-streams-last-last",
@@ -668,8 +669,8 @@
       "note": "Total Spotify streams for “Dai Dai”.",
       "siteTargets": [
         {
-          "file": "app/dai-dai/page.tsx",
-          "anchor": "const DAI_DAI_SPOTIFY_STREAMS =",
+          "file": "app/data/daiDai.ts",
+          "anchor": "export const DAI_DAI_SPOTIFY_STREAMS =",
           "pattern": "\"[\\d.]+[KMB]\"",
           "template": "\"%s\"",
           "format": "compact",

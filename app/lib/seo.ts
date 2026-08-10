@@ -15,20 +15,30 @@ export function pageMetadata(opts: {
   path: string;
   shareTitle?: string; // shorter title for social cards (optional)
   shareDescription?: string;
+  /** hreflang alternates — every language edition of this page, keyed by code
+   *  (plus "x-default"). Without these a translated page reads to a search
+   *  engine as a separate, competing page rather than the same page in another
+   *  language, and the wrong one gets served. */
+  languages?: Record<string, string>;
+  /** Open Graph locale, e.g. "es_ES". Defaults to en_US. */
+  locale?: string;
 }): Metadata {
   const ogTitle = opts.shareTitle ?? opts.title;
   const ogDescription = opts.shareDescription ?? opts.description;
   return {
     title: opts.title,
     description: opts.description,
-    alternates: { canonical: opts.path },
+    alternates: {
+      canonical: opts.path,
+      ...(opts.languages ? { languages: opts.languages } : {}),
+    },
     openGraph: {
       title: ogTitle,
       description: ogDescription,
       url: opts.path,
       siteName: SITE_NAME,
       type: "website",
-      locale: "en_US",
+      locale: opts.locale ?? "en_US",
     },
     twitter: {
       card: "summary_large_image",

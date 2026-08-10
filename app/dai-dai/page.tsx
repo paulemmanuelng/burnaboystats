@@ -9,6 +9,7 @@ import { lastUpdated } from "../lib/api";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES } from "../data/charts";
 import { liveCharts } from "../data/liveCharts";
 import { daiDaiCertCount } from "../data/certifications";
+import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS } from "../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 
@@ -32,11 +33,6 @@ const conquestNo1 = conquestCountries.filter((c) => c.peak === 1).length;
 // spacing — inline `{n} word` was rendering as "17word".
 const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries — and reached No. 1 in ${conquestNo1} of them. The No. 1 countries are gold; the rest charted without topping.`;
 
-// Views of the official "Dai Dai" video (youtube.com/watch?v=fcnDmrtj6Sk), shown
-// in whole millions. Auto-updated hourly by the live stats bot (the
-// dai-dai-video-views metric) — it rewrites this string only when the figure
-// ticks over another million, so the page changes exactly when the number does.
-const DAI_DAI_VIDEO_VIEWS = "750M";
 
 // The per-platform No. 1 counts, derived from the same hourly live-charts
 // snapshot as /live-charts — this line used to be hand-written and drifted
@@ -54,8 +50,6 @@ const liveOnesLabel = `right now on the daily charts of ${platformOnes
   .join(", ")
   .replace(/, ([^,]*)$/, " and $1")} — refreshed hourly from the live board`;
 
-// Total Spotify streams for "Dai Dai" — same live pipeline as the video count.
-const DAI_DAI_SPOTIFY_STREAMS = "318M";
 
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
@@ -64,6 +58,7 @@ export const metadata = pageMetadata({
   path: "/dai-dai",
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
   shareDescription: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and performed at the Final halftime show.",
+  languages: { en: "/dai-dai", es: "/dai-dai/es", "x-default": "/dai-dai" },
 });
 
 export default function DaiDaiPage() {
@@ -306,6 +301,9 @@ export default function DaiDaiPage() {
             ▶ Watch the halftime show ↗
           </a>
           <a className="btn btnSecondary" href="#numbers">Skip to the numbers</a>
+          <Link className="btn btnSecondary" href="/dai-dai/es" hrefLang="es">
+            Leer en español
+          </Link>
         </div>
       </section>
 
@@ -386,26 +384,6 @@ export default function DaiDaiPage() {
             <Link href="/music" className="btn btnSecondary">Burna Boy discography ↗</Link>
           </div>
         </section>
-      </div>
-
-      {/* Screen 25's action bar — mobile only. The hero keeps its own two
-          buttons; this is the persistent one the design pins to the floor. */}
-      <div className={styles.mobileActionBar}>
-        <a
-          className={styles.mobilePrimary}
-          href={HALFTIME_VIDEO}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ▶ Watch the halftime show
-        </a>
-        <Link href="/share" aria-label="Make a stat card" className={styles.mobileShare}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-            <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" />
-            <path d="M12 3v12" />
-            <path d="m7 8 5-5 5 5" />
-          </svg>
-        </Link>
       </div>
 
       <div className={styles.desktopOnly}>
