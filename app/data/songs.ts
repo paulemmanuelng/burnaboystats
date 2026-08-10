@@ -177,7 +177,7 @@ export const songs: Song[] = [
     slug: "city-boys",
     title: "City Boys",
     year: 2023,
-    spotifyStreams: "283M",
+    spotifyStreams: "284M",
     album: "I Told Them…",
     cover: "https://i.scdn.co/image/ab67616d0000b273c361f3720bafc0da36f14d96",
     spotify: "https://open.spotify.com/track/4RoKNqyZ9622tcAeNPNv5k",

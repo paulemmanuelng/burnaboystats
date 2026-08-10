@@ -17,7 +17,7 @@
 // writing this string, so it tracks the source without undercounting. If a
 // new featured credit changes the gap itself, re-measure the offset in
 // scripts/watched-metrics.json.
-export const spotifyTotalStreams = "10.67B";
+export const spotifyTotalStreams = "10.68B";
 
 // Every Burna Boy video on YouTube, across his channel and others'.
 export const youtubeTotalViews = "3.17B";
