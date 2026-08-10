@@ -3,7 +3,7 @@ import styles from "./press.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import CopyButton from "../components/CopyButton";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
 import { chartEntryCount, numberOnes, chartCountryCount } from "../data/charts";
 import { totalWins, totalNominations } from "../data/awards";
@@ -54,7 +54,7 @@ export default function PressPage() {
     description:
       "Verified Burna Boy statistics, free to use with attribution — citation formats, open API and shareable stat cards.",
     url: `${CANONICAL_ORIGIN}/press`,
-    dateModified: lastReviewed,
+    dateModified: asDateTime(lastReviewed),
     inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
     about: { "@type": "MusicGroup", name: "Burna Boy" },

@@ -35,6 +35,31 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-10",
+    category: "Charts",
+    text: "No. 1 on British radio's biggest countdown: “Dai Dai” tops the UK's Big Top 40 across the Capital and Heart networks, and Burna Boy is presented with the No. 1 plaque.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-10",
+    category: "Charts",
+    text: "A 27th day on top of the world: “Dai Dai” holds No. 1 on Spotify's Global Daily chart with 4.635M streams — 52 days inside the global Top 10 and 80 days on the chart, the longest run at No. 1 of any 2026 release.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-10",
+    category: "Charts",
+    text: "Five straight weeks atop France: SNEP keeps “Dai Dai” at No. 1 for a 5th week — while its iTunes sweep reaches 72 countries, the Philippines the newest, and it logs a 17th day at No. 1 on Spotify's Global Music Video chart.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-08-10",
+    category: "Streaming",
+    text: "343 days on the global artist chart: Burna Boy climbs five places to No. 81 on Spotify's worldwide artist ranking — more days on that chart than any African artist has managed — with monthly listeners at 60,089,089 and followers at 17.33 million.",
+    href: "/records/africas-biggest",
+  },
+
+  {
     date: "2026-08-09",
     category: "Charts",
     text: "Back on top of the world: “Dai Dai” returns to No. 1 on Spotify's Global Daily Top Songs chart for a 26th day in total — overtaking BTS' “Swim” (25) as the longest-running No. 1 by any 2026 release, with 79 days on the chart and counting.",

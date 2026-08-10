@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./curator.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
 import { chartEntryCount, numberOnes } from "../data/charts";
 import { totalWins } from "../data/awards";
@@ -58,7 +58,7 @@ export default function CuratorPage() {
     "@type": "ProfilePage",
     name: "About the Curator",
     url: `${CANONICAL_ORIGIN}/curator`,
-    dateModified: lastReviewed,
+    dateModified: asDateTime(lastReviewed),
     inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
     mainEntity: {

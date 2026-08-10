@@ -4,7 +4,7 @@ import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import CopyButton from "../components/CopyButton";
 import MobileApi from "../components/MobileApi";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { API_VERSION, lastUpdated } from "../lib/api";
 import { chartEntryCount, chartCountryCount, numberOnes, CHART_COUNTRIES, allChartItems } from "../data/charts";
 import { totalAwards } from "../data/certifications";
@@ -98,7 +98,7 @@ export default function ApiPage() {
     url: `${CANONICAL_ORIGIN}/api`,
     license: "https://creativecommons.org/licenses/by/4.0/",
     isAccessibleForFree: true,
-    dateModified: lastUpdated,
+    dateModified: asDateTime(lastUpdated),
     creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     about: { "@type": "MusicGroup", name: "Burna Boy" },
     keywords: ["Burna Boy", "charts", "certifications", "Afrobeats", "music data", "open data"],

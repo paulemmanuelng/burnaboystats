@@ -3,7 +3,7 @@ import styles from "./methodology.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileMethodology from "../components/MobileMethodology";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { updates } from "../data/updates";
 import { totalAwards, countryCount } from "../data/certifications";
 import { chartEntryCount, numberOnes, chartSourceSplit, chartCountryCount } from "../data/charts";
@@ -125,7 +125,7 @@ export default function MethodologyPage() {
     description:
       "How every figure on Burna Boy Stats is sourced, verified and kept current.",
     url: `${CANONICAL_ORIGIN}/methodology`,
-    dateModified: lastReviewed,
+    dateModified: asDateTime(lastReviewed),
     inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
     about: { "@type": "MusicGroup", name: "Burna Boy" },

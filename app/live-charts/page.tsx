@@ -5,7 +5,7 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileLiveCharts, { type ReleasePreview } from "../components/MobileLiveCharts";
 import { cadenceOf, reachOf, numberOnesOf } from "../lib/liveChartMeta";
 import LiveReleaseBlock, { type ReleaseSummary } from "../components/LiveReleaseBlock";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { coverFor, monogramFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
 import {
@@ -258,7 +258,7 @@ function datasetJsonLd() {
     name: "Burna Boy live platform chart placements",
     description: `Current positions for every charting Burna Boy release across Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts — ${livePlacementCount} placements in ${liveCountryCount} countries.`,
     url: `${CANONICAL_ORIGIN}/live-charts`,
-    dateModified: liveChartsUpdated,
+    dateModified: asDateTime(liveChartsUpdated),
     isAccessibleForFree: true,
     creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     about: { "@type": "MusicGroup", name: "Burna Boy" },

@@ -4,7 +4,7 @@ import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileAnalysis from "../components/MobileAnalysis";
 import { findings } from "../lib/analysisFindings";
-import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { updates } from "../data/updates";
 import { numberWord } from "../lib/homeData";
 import { chartEntryCount, daiDaiChartEntryCount } from "../data/charts";
@@ -36,7 +36,7 @@ export default function AnalysisPage() {
     url: `${CANONICAL_ORIGIN}/analysis`,
     // The page first shipped 25 Jul 2026 (git history); modified tracks the feed.
     datePublished: "2026-07-25",
-    dateModified: lastReviewed,
+    dateModified: asDateTime(lastReviewed),
     image: [`${CANONICAL_ORIGIN}/analysis/opengraph-image`],
     inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
