@@ -26,9 +26,16 @@ interface Stat {
 export default function DaiDaiNumbers({
   hero,
   groups,
+  foldMore = "Show the full breakdown ({n} more) +",
+  foldLess = "Show fewer −",
 }: {
   hero: Stat[];
   groups: { label: string; intro: string; items: Stat[] }[];
+  /** Fold copy, so the Spanish edition can speak Spanish. Templates rather
+   *  than functions: this is a client component, and a function cannot cross
+   *  the server boundary to reach it. "{n}" is the hidden-cell count. */
+  foldMore?: string;
+  foldLess?: string;
 }) {
   const [open, setOpen] = useState(false);
   const grouped = groups.reduce((n, g) => n + g.items.length, 0);
@@ -67,7 +74,7 @@ export default function DaiDaiNumbers({
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
       >
-        {open ? "Show fewer −" : `Show the full breakdown (${grouped} more) +`}
+        {open ? foldLess : foldMore.replace("{n}", String(grouped))}
       </button>
     </>
   );

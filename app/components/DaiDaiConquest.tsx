@@ -30,7 +30,38 @@ function order(countries: ConquestCountry[]): ConquestCountry[] {
   return [...countries].sort((a, b) => a.peak - b.peak || a.code.localeCompare(b.code));
 }
 
-export default function DaiDaiConquest({ countries }: { countries: ConquestCountry[] }) {
+export default function DaiDaiConquest({
+  countries,
+  labels,
+}: {
+  countries: ConquestCountry[];
+  /** Copy for the fold and the labels, so the grid can be shown in Spanish.
+   *  Templates rather than functions — this is a client component, and a
+   *  function cannot be passed across the server boundary. Placeholders:
+   *  {total}, {ones}, {name}, {peak}. */
+  labels?: {
+    countries: string;
+    atNo1: string;
+    aria: string;
+    peak: string;
+    /** Legend swatches and the fold's own action word. */
+    legendOne?: string;
+    legendCharted?: string;
+    showAll?: string;
+    hide?: string;
+  };
+}) {
+  const t = {
+    countries: "countries",
+    atNo1: "at No. 1",
+    aria: "“Dai Dai” charted in {total} countries and reached No. 1 in {ones} of them.",
+    peak: "{name} — peak #{peak}",
+    legendOne: "No. 1",
+    legendCharted: "Charted",
+    showAll: "Show all +",
+    hide: "Hide −",
+    ...labels,
+  };
   const seq = order(countries);
   const total = seq.length;
   const ones = seq.filter((c) => c.peak === 1).length;
@@ -49,23 +80,23 @@ export default function DaiDaiConquest({ countries }: { countries: ConquestCount
         onClick={() => setOpen((o) => !o)}
       >
         <span className={styles.foldNums}>
-          <span className={styles.foldNum}>{total}</span> countries ·{" "}
-          <span className={styles.foldNum}>{ones}</span> at No. 1
+          <span className={styles.foldNum}>{total}</span> {t.countries} ·{" "}
+          <span className={styles.foldNum}>{ones}</span> {t.atNo1}
         </span>
         <span className={styles.foldAction} aria-hidden="true">
-          {open ? "Hide −" : "Show all +"}
+          {open ? t.hide : t.showAll}
         </span>
       </button>
 
       <div
         className={`${styles.grid} ${open ? styles.gridOpen : ""}`}
         role="img"
-        aria-label={`“Dai Dai” charted in ${total} countries and reached No. 1 in ${ones} of them.`}
+        aria-label={t.aria.replace("{total}", String(total)).replace("{ones}", String(ones))}
       >
         {seq.map((c) => (
           <div
             key={c.code}
-            title={`${c.name} — peak #${c.peak}`}
+            title={t.peak.replace("{name}", c.name).replace("{peak}", String(c.peak))}
             className={`${styles.cell} ${c.peak === 1 ? styles.cellOne : styles.cellOn}`}
           >
             <span className={styles.flag}>{c.flag}</span>
@@ -78,14 +109,14 @@ export default function DaiDaiConquest({ countries }: { countries: ConquestCount
       <figcaption className={`${styles.legend} ${open ? styles.legendOpen : ""}`}>
         <span className={styles.legendItem}>
           <span className={`${styles.swatch} ${styles.swatchOne}`} aria-hidden="true" />
-          No. 1
+          {t.legendOne}
         </span>
         <span className={styles.legendItem}>
           <span className={`${styles.swatch} ${styles.swatchOn}`} aria-hidden="true" />
-          Charted
+          {t.legendCharted}
         </span>
         <span className={styles.status}>
-          {total} countries · {ones} at No. 1
+          {total} {t.countries} · {ones} {t.atNo1}
         </span>
       </figcaption>
     </figure>

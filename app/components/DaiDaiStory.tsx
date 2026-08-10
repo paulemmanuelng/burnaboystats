@@ -16,7 +16,63 @@ import BackLink from "./BackLink";
 interface Props {
   daiDaiNo1s: number; // Dai Dai's No. 1 countries
   daiDaiCerts: number; // certifications for Dai Dai specifically
+  /** Override the narrative — the Spanish edition passes its own. Scene keys
+   *  stay the same, so the artwork and layout are shared and only the words
+   *  change. Omitted everywhere else, which keeps the English page untouched. */
+  steps?: Step[];
+  /** Override the words inside the artwork panels. Partial: anything omitted
+   *  falls back to the English copy. */
+  sceneCopy?: Partial<SceneCopy>;
 }
+
+export type SceneKey =
+  | "hero"
+  | "global1"
+  | "no1s"
+  | "streaming"
+  | "certs"
+  | "worldsong"
+  | "halftime";
+
+export interface Step {
+  scene: SceneKey;
+  kicker: string;
+  title: string;
+  body: string;
+}
+
+/** The words baked into the artwork panels. Chart names stay as they are —
+ *  "Billboard Global 200" is the chart's name in any language — but the
+ *  sentences around them are translatable. */
+export interface SceneCopy {
+  heroLabel: string;
+  global1Note: string;
+  no1sLabel: string;
+  no1sLink: string;
+  streamingNote: string;
+  certsLabel: string;
+  certsNote: string;
+  certsLink: string;
+  worldsongWord: string;
+  worldsongLabel: string;
+  halftimeLabel: string;
+  halftimeNote: string;
+}
+
+const EN_SCENE: SceneCopy = {
+  heroLabel: "Dai Dai · Shakira × Burna Boy",
+  global1Note: "First African artist ever · Shakira's 2nd",
+  no1sLabel: "countries at No. 1",
+  no1sLink: "See every Dai Dai chart position →",
+  streamingNote: "Daily & Weekly · 26 days as Earth's most-streamed song",
+  certsLabel: "certifications for Dai Dai",
+  certsNote: "2× Platinum (Latin) US · Gold in 5 more",
+  certsLink: "See the Dai Dai certifications →",
+  worldsongWord: "BIGGEST\nWORLD CUP\nANTHEM EVER",
+  worldsongLabel: "Highest-peaking on Spotify Global",
+  halftimeLabel: "World Cup Final · Halftime show",
+  halftimeNote: "Shakira & Burna Boy · halftime show, 19 July",
+};
 
 // Official artwork + artist images, served from Spotify's CDN (the same source
 // the discography uses). The Dai Dai cover carries both artists' branding, so it
@@ -25,11 +81,10 @@ const COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4"
 const BURNA = BURNA_PORTRAIT;
 const SHAKIRA = SHAKIRA_PORTRAIT;
 
-type SceneKey = "hero" | "global1" | "no1s" | "streaming" | "certs" | "worldsong" | "halftime";
 
 // The narrative — framed as the Shakira × Burna Boy collaboration it is, not one
 // artist's star power. Numbers are injected from live data so it never goes stale.
-function buildSteps(p: Props): { scene: SceneKey; kicker: string; title: string; body: string }[] {
+function buildSteps(p: Props): Step[] {
   return [
     {
       scene: "hero",
@@ -77,6 +132,7 @@ function buildSteps(p: Props): { scene: SceneKey; kicker: string; title: string;
 }
 
 function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
+  const c: SceneCopy = { ...EN_SCENE, ...props.sceneCopy };
   // key={scene} on the wrapper remounts each scene, replaying the entrance
   // animation (and re-running CountUp) as you scroll from one step to the next.
   return (
@@ -85,23 +141,23 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className={styles.cover} src={COVER} alt="Dai Dai single cover — Shakira × Burna Boy, 2026 FIFA World Cup" width={220} height={220} loading="eager" />
-          <span className={styles.sceneLabel}>Dai Dai · Shakira × Burna Boy</span>
+          <span className={styles.sceneLabel}>{c.heroLabel}</span>
         </>
       )}
       {scene === "global1" && (
         <>
           <span className={styles.hash}>№1</span>
           <span className={styles.sceneLabel}>Billboard Global 200</span>
-          <span className={styles.sceneNote}>First African artist ever · Shakira&apos;s 2nd</span>
+          <span className={styles.sceneNote}>{c.global1Note}</span>
         </>
       )}
       {scene === "no1s" && (
         <>
           <span className={styles.bigNum}><CountUp end={props.daiDaiNo1s} /></span>
-          <span className={styles.sceneLabel}>countries at No. 1</span>
+          <span className={styles.sceneLabel}>{c.no1sLabel}</span>
           <span className={styles.flags}>🇫🇷 🇩🇪 🇳🇱 🇨🇭 🇦🇷 🇨🇴 🇦🇪 🇬🇷 🇱🇺 🇸🇰</span>
           <Link href="/records/charts?song=Dai%20Dai" className={styles.sceneLink}>
-            See every Dai&nbsp;Dai chart position →
+            {c.no1sLink}
           </Link>
         </>
       )}
@@ -109,26 +165,33 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
         <>
           <span className={styles.hash}>№1</span>
           <span className={styles.sceneLabel}>Spotify Global Top Songs</span>
-          <span className={styles.sceneNote}>Daily &amp; Weekly · 26 days as Earth&apos;s most-streamed song</span>
+          <span className={styles.sceneNote}>{c.streamingNote}</span>
         </>
       )}
       {scene === "certs" && (
         <>
           <span className={styles.bigNum}><CountUp end={props.daiDaiCerts} /></span>
-          <span className={styles.sceneLabel}>certifications for Dai Dai</span>
-          <span className={styles.sceneNote}>2× Platinum (Latin) US · Gold in 5 more</span>
+          <span className={styles.sceneLabel}>{c.certsLabel}</span>
+          <span className={styles.sceneNote}>{c.certsNote}</span>
           <span className={styles.tierDots}>
             <i style={{ background: "#dfe2e8" }} /> <i style={{ background: "var(--gold)" }} />
           </span>
           <Link href="/certifications?release=Dai%20Dai" className={styles.sceneLink}>
-            See the Dai&nbsp;Dai certifications →
+            {c.certsLink}
           </Link>
         </>
       )}
       {scene === "worldsong" && (
         <>
-          <span className={styles.finaleWord}>BIGGEST<br />WORLD CUP<br />ANTHEM EVER</span>
-          <span className={styles.sceneLabel}>Highest-peaking on Spotify Global</span>
+          <span className={styles.finaleWord}>
+            {c.worldsongWord.split("\n").map((line, i) => (
+              <span key={line}>
+                {i > 0 && <br />}
+                {line}
+              </span>
+            ))}
+          </span>
+          <span className={styles.sceneLabel}>{c.worldsongLabel}</span>
         </>
       )}
       {scene === "halftime" && (
@@ -139,8 +202,8 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className={styles.duoImg} src={spotifyImage(BURNA, 320)} srcSet={spotifySrcSet(BURNA)} sizes="128px" alt="Burna Boy" width={128} height={128} loading="lazy" />
           </div>
-          <span className={styles.sceneLabel}>World Cup Final · Halftime show</span>
-          <span className={styles.sceneNote}>Shakira &amp; Burna Boy · halftime show, 19 July</span>
+          <span className={styles.sceneLabel}>{c.halftimeLabel}</span>
+          <span className={styles.sceneNote}>{c.halftimeNote}</span>
         </>
       )}
     </div>
@@ -148,7 +211,7 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
 }
 
 export default function DaiDaiStory(props: Props) {
-  const steps = buildSteps(props);
+  const steps = props.steps ?? buildSteps(props);
   const [active, setActive] = useState(0);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
