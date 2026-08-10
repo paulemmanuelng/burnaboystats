@@ -44,7 +44,13 @@
 
 @media (max-width: 900px) {
   .wrap { padding: 0 18px; }
-  .heroPad { padding: 24px 18px 0; }
+  /* Clear the story's back bar. That bar is position:fixed and lives inside
+     DaiDaiStory — which renders BELOW this hero — so nothing in the flow
+     reserved space for it and the <h1> sat underneath it at the top of the
+     page. 56px of bar + its safe-area inset, then the hero's own 24px. */
+  .heroPad {
+    padding: calc(56px + env(safe-area-inset-top, 0px) + 24px) 18px 0;
+  }
   .h1 { font-size: 46px; }
   .lede { font-size: 15px; }
   .h2 { font-size: 26px; }
