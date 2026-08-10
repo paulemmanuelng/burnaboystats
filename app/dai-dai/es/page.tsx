@@ -165,6 +165,7 @@ export default function DaiDaiPageES() {
         { v: "26 días", l: "en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y recuperado en agosto como la racha más larga de cualquier lanzamiento de 2026, por delante de “Swim” de BTS (25)—; 51 días dentro del top 10 mundial y 79 en la lista" },
         { v: "4 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify, con un pico de 40,28 millones de reproducciones en una sola semana" },
         { v: "33 días", l: "en el número 1 de la lista europea de Apple Music, y un séptimo día en la cima de la lista mundial de Apple Music" },
+        { v: "23 días", l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes" },
         { v: "N.º 1", l: liveOnesLabel },
       ],
     },
@@ -175,8 +176,12 @@ export default function DaiDaiPageES() {
         { v: "6 semanas", l: "en el número 1 de la lista oficial de sencillos de Alemania — y elegida Sommerhit 2026, la canción del verano del país, por GfK Entertainment, tras casi 60 millones de reproducciones alemanas" },
         { v: "8 semanas", l: "en el número 1 de la lista oficial de Suiza — la racha más larga en la cima de cualquier canción allí en lo que va de año" },
         { v: "4 semanas", l: "en el número 1 de la lista oficial de sencillos de Francia (SNEP)" },
+        { v: "N.º 1", l: "en la lista IMI International Top 20 Singles de la India — la primera canción de Burna Boy que encabeza una lista en ese país" },
+        { v: "N.º 1", l: "en el Official MENA Chart Top 20 —todavía en la cima en su última semana— y en la lista US World Digital Song Sales de Billboard" },
         { v: "N.º 2", l: "en la lista oficial de sencillos del Reino Unido — la primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira" },
+        { v: "N.º 3", l: "en el Billboard Canadian Hot 100 — un nuevo pico y el primer top 10 de Burna Boy en Canadá, donde su mejor posición había sido el N.º 14. Es también el primer top 10 canadiense de Shakira desde “She Wolf” en 2009" },
         { v: "N.º 17", l: "en el Billboard Hot 100 de Estados Unidos — un salto del 42 al 17 en la lista del 1 de agosto, el pico más alto de una canción mundialista en la historia del Hot 100" },
+        { v: "N.º 9", l: "en la lista Rhythmic Airplay de Billboard, subiendo del 11 al 9 — el cuarto top 10 de Burna Boy en ese formato, y el primero de Shakira en 20 años, desde “Hips Don't Lie” (2006)" },
       ],
     },
     {
@@ -186,6 +191,7 @@ export default function DaiDaiPageES() {
         { v: "6 semanas", l: "en el número 1 del United World Chart de Mediatraffic — 375.000 puntos en la semana del 8 de agosto, y la primera canción de Burna Boy que lo lidera" },
         { v: "N.º 1", l: "en la lista de canciones de iTunes en 71 países — Estados Unidos, Reino Unido, Canadá, Francia, Italia, Nueva Zelanda, India, España, Portugal, Hungría y decenas más" },
         { v: "N.º 13", l: "en el Deezer Worldwide Top 100 — un nuevo pico, con presencia en 57 países y el número 1 en 23 de ellos" },
+        { v: "N.º 14", l: "la posición de Burna Boy en el ranking Global Digital Artist (1.739 puntos) durante el recorrido" },
       ],
     },
     {
@@ -210,6 +216,14 @@ export default function DaiDaiPageES() {
     {
       q: "¿“Dai Dai” llegó al número 1?",
       a: `Sí. “Dai Dai” llegó al número 1 del Billboard Global 200 y del Global 200 Excl. US, lideró la lista Global Top Songs de Spotify tanto en su versión diaria como en la semanal, y alcanzó el número 1 de la lista oficial de sencillos en ${daiDaiNumberOnes} países.`,
+    },
+    {
+      q: "¿Hasta dónde llegó “Dai Dai” en el Reino Unido?",
+      a: "“Dai Dai” alcanzó el número 2 de la lista oficial de sencillos del Reino Unido — la primera canción de un Mundial de la FIFA que entra en el top 10 británico, y con diferencia la canción mundialista más alta en la historia de esa lista, por encima de “Waka Waka (This Time for Africa)” de la propia Shakira, que llegó al número 21 en 2010.",
+    },
+    {
+      q: "¿Quiénes son los Ghetto Kids que actuaron con Shakira y Burna Boy?",
+      a: "Los Triplets Ghetto Kids de Uganda —un grupo infantil de baile de Kampala que se hizo viral en internet— acompañaron a Shakira y Burna Boy en el escenario durante “Dai Dai” en el show de medio tiempo de la Final del Mundial 2026, después de que Shakira los invitara a la actuación.",
     },
     {
       q: "¿Cuántas certificaciones tiene “Dai Dai”?",
