@@ -71,7 +71,9 @@ export const ACTION_BAR_ROUTES = new Set<string>([
   "/methodology",
   "/api",
   "/share",
-  "/dai-dai",
+  // NOT /dai-dai: Paul's call (9 Aug 2026) — the story pages carry the
+  // standard five-tab footer, in English and in Spanish, instead of their own
+  // action bar. They keep their back bar, so they stay in BACK_BAR_ROUTES.
 ]);
 
 /**

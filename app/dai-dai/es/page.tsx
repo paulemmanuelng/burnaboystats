@@ -389,19 +389,6 @@ export default function DaiDaiPageES() {
         </section>
       </div>
 
-      <div className={styles.mobileActionBar}>
-        <a
-          className={styles.mobilePrimary}
-          href={HALFTIME_VIDEO}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ▶ Ver el show de medio tiempo
-        </a>
-        <Link href={EN_PATH} aria-label="Read in English" className={styles.mobileShare} hrefLang="en">
-          EN
-        </Link>
-      </div>
     </main>
   );
 }

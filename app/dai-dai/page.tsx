@@ -386,26 +386,6 @@ export default function DaiDaiPage() {
         </section>
       </div>
 
-      {/* Screen 25's action bar — mobile only. The hero keeps its own two
-          buttons; this is the persistent one the design pins to the floor. */}
-      <div className={styles.mobileActionBar}>
-        <a
-          className={styles.mobilePrimary}
-          href={HALFTIME_VIDEO}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ▶ Watch the halftime show
-        </a>
-        <Link href="/share" aria-label="Make a stat card" className={styles.mobileShare}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-            <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" />
-            <path d="M12 3v12" />
-            <path d="m7 8 5-5 5 5" />
-          </svg>
-        </Link>
-      </div>
-
       <div className={styles.desktopOnly}>
         <KeepExploring current="/dai-dai" />
       </div>
