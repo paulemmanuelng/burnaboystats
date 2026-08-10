@@ -250,9 +250,9 @@ export default function DaiDaiPage() {
   const lineup: { name: string; img: string; tag?: string; headliner?: boolean }[] = [
     { name: "Shakira", img: SHAKIRA_PORTRAIT, tag: "“Dai Dai”", headliner: true },
     { name: "Burna Boy", img: BURNA_PORTRAIT, tag: "“Dai Dai”", headliner: true },
-    { name: "Madonna", img: "https://i.scdn.co/image/ab6761610000e5ebed2208b41d49ebd24687985b" },
-    { name: "BTS", img: "https://i.scdn.co/image/ab6761610000e5ebf80ec63ea7a0ef0fba60957d" },
-    { name: "Justin Bieber", img: "https://i.scdn.co/image/ab6761610000e5ebaf20f7db5288bce9beede034" },
+    { name: "Madonna", img: "https://i.scdn.co/image/ab6761610000e5ebed2208b41d49ebd24687985b", tag: "“Music”" },
+    { name: "BTS", img: "https://i.scdn.co/image/ab6761610000e5ebf80ec63ea7a0ef0fba60957d", tag: "“Dynamite”" },
+    { name: "Justin Bieber", img: "https://i.scdn.co/image/ab6761610000e5ebaf20f7db5288bce9beede034", tag: "“Everything Hallelujah”" },
     { name: "Coldplay", img: "https://i.scdn.co/image/ab6761610000e5eb1ba8fc5f5c73e7e9313cc6eb", tag: "with PS22 Chorus" },
   ];
 
