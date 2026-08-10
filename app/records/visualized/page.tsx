@@ -39,10 +39,14 @@ const certifyingCountryCount = new Set(
   [...albums, ...singles, ...features].flatMap((it) => it.certs.map((c) => c.c))
 ).size;
 
+// "Burna" / "Fally" — the same short form the scatter's labels use.
+const firstName = (a: string) => (a === "Burna Boy" ? "Burna" : a.split(" ")[0]);
+
 const grosses: BarItem[] = revenueShows.slice(0, 12).map((s) => ({
   flag: s.flag,
   name: s.venue,
   meta: `${s.artist} · ${s.city} · ${s.year}`,
+  disambig: firstName(s.artist),
   value: s.revenue,
   displayValue: `$${(s.revenue / 1e6).toFixed(2)}M`,
   tone: s.artist === "Burna Boy" ? "gold" : "muted",
@@ -158,7 +162,6 @@ const winsByBody: BarItem[] = ceremonies
 // below its dot so the two don't collide.
 const num = (s: string | undefined) => Number((s ?? "").replace(/,/g, ""));
 const TOP_LABELS = 4;
-const firstName = (a: string) => (a === "Burna Boy" ? "Burna" : a.split(" ")[0]);
 const shortVenue = (v: string) => v.replace(/ Arena$/, "");
 const topVenueCount: Record<string, number> = {};
 revenueShows.slice(0, TOP_LABELS).forEach((s) => {
@@ -276,8 +279,16 @@ const jsonLd = datasetJsonLd({
 const toBars = (items: BarItem[], n: number) => {
   const top = items.slice(0, n);
   const max = Math.max(...top.map((b) => b.value));
+  // The mobile rows drop the meta line desktop shows, so two rows sharing a
+  // name — the grosses list's pair of La Défense Arena shows — would read as
+  // the same show twice. When names collide within the slice, append the
+  // short artist tag, matching the scatter's "La Défense (Fally)" convention.
+  const nameCount: Record<string, number> = {};
+  top.forEach((b) => (nameCount[b.name] = (nameCount[b.name] || 0) + 1));
   return top.map((b) => ({
-    name: [b.flag, b.name].filter(Boolean).join(" "),
+    name:
+      [b.flag, b.name].filter(Boolean).join(" ") +
+      (nameCount[b.name] > 1 && b.disambig ? ` (${b.disambig})` : ""),
     value: b.displayValue,
     frac: b.value / max,
     his: b.tone !== "muted",

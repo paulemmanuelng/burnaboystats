@@ -9,6 +9,11 @@ export interface BarItem {
   flag?: string;
   name: string;
   meta?: string;
+  // Short identity tag (e.g. the artist's first name) appended to `name` by
+  // consumers that DROP the meta line — the mobile bars — whenever two rows in
+  // a slice share a name, as the grosses list's two La Défense Arena shows do.
+  // This component ignores it: the meta line already tells its rows apart.
+  disambig?: string;
   value: number;
   displayValue: string;
   tone?: "gold" | "muted";
