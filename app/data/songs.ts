@@ -44,7 +44,7 @@ export const songs: Song[] = [
     slug: "last-last",
     title: "Last Last",
     year: 2022,
-    spotifyStreams: "602M",
+    spotifyStreams: "603M",
     album: "Love, Damini",
     cover: "https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2",
     spotify: "https://open.spotify.com/track/4LPNkxES0zCGn6S2Y1vmJN",
@@ -150,7 +150,7 @@ export const songs: Song[] = [
     album: "The Last Wun",
     cover: "https://i.scdn.co/image/ab67616d0000b27303a253cffd6d9e556ef4eec5",
     spotify: "https://open.spotify.com/track/0WsC4ETIXyiHDMXRaPMvKe",
-    spotifyStreams: "288M",
+    spotifyStreams: "289M",
     tagline: "Burna Boy's highest-ever Billboard Hot 100 peak",
     blurb:
       "A feature on Gunna's 2025 album The Last Wun, “WGFT” gave Burna Boy his highest position ever on the US Billboard Hot 100 — No. 16 — blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 12 countries and put him back in the US Top 20.",
