@@ -36,6 +36,18 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-10",
+    category: "Streaming",
+    text: "A 28th day as the most-streamed song on Earth: “Dai Dai” holds No. 1 on Spotify's Global Daily chart with 4.034M streams — 53 days inside the global Top 10 and 81 days on the chart, still the longest run at No. 1 of any 2026 release, ahead of BTS' “Swim” (25 days).",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-10",
+    category: "Streaming",
+    text: "60,131,126 monthly listeners: a fresh all-time peak on Spotify, holding at No. 36 among all artists worldwide with 17.33 million followers — and “Dai Dai” passes 322 million streams of its own.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-08-10",
     category: "Charts",
     text: "No. 1 on British radio's biggest countdown: “Dai Dai” tops the UK's Big Top 40 across the Capital and Heart networks, and Burna Boy is presented with the No. 1 plaque.",
     href: "/dai-dai",

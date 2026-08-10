@@ -22,7 +22,7 @@
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
-      "baseline": 60089089,
+      "baseline": 60131126,
       "live": true,
       "sanity": {
         "maxJump": 0.12,
@@ -657,16 +657,15 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Dai Dai",
-      "kind": "drift",
-      "threshold": 0.005,
-      "baseline": 318213263,
+      "kind": "peak",
+      "baseline": 322486481,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for “Dai Dai”.",
+      "note": "Total Spotify streams for “Dai Dai”. kind:\"peak\" because a cumulative play count only ever rises: kworb trails Spotify's own track page by a few million (318.2M vs 322.5M on 10 Aug 2026), and without the guard that lag would walk the published figure backwards every time the site is updated from Spotify directly. Same reasoning as spotify-peak-listeners.",
       "siteTargets": [
         {
           "file": "app/data/daiDai.ts",
