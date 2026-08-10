@@ -104,16 +104,22 @@
   border-bottom: 1px solid var(--line);
 }
 /* Even horizontal padding: a zero left inset sat the value hard against the
-   hairline seam. Every other hairline grid on the site pads 14–18px. */
-.countCell { background: var(--bg); padding: 14px 14px; }
+   hairline seam. Every other hairline grid on the site pads 14–18px — 10px
+   here because a quarter of a phone is the narrowest cell on the site and the
+   streams figure needs the room (see .countValue). */
+.countCell { background: var(--bg); padding: 14px 10px; }
 @media (max-width: 340px) {
   .countCell { padding: 12px 8px; }
-  .countValue { font-size: 24px; }
 }
 .countValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 30px;
+  /* A quarter of a 375px phone leaves ~60px of content box, and "10.68B" is
+     ~76px wide at 30px — it used to overrun its cell and sit on the hairline
+     seam. The cap keeps the designed 30px wherever it fits (≥527px) and scales
+     the whole strip together below that, so all four numbers stay one size
+     rather than the long one shrinking alone. */
+  font-size: min(30px, 5.7vw);
   line-height: 0.9;
   font-variant-numeric: tabular-nums;
 }

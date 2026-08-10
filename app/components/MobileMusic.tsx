@@ -41,7 +41,7 @@ export default function MobileMusic({
     // The compilation lives in the lede's prose; the cell carries the
     // catalogue's biggest number instead — the home band's "career streams"
     // chip lands here, so the figure must be waiting at the destination.
-    { value: spotifyTotalStreams, label: "Streams" },
+    { value: spotifyTotalStreams, label: "Spotify streams" },
     // Inclusive of both ends: 2013–2025 is thirteen years, not twelve.
     { value: String(lastYear - firstYear + 1), label: "Years" },
   ];
