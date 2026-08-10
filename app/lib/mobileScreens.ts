@@ -81,7 +81,21 @@ export const ACTION_BAR_ROUTES = new Set<string>([
  */
 const isSongPage = (pathname: string) => pathname.startsWith("/music/");
 
+/**
+ * Language editions inherit their parent screen's chrome.
+ *
+ * The sets above are exact-match, so /dai-dai/es did not count as /dai-dai and
+ * the five-tab bar rendered UNDER the page's own action bar — two pinned bars
+ * stacked at the foot of the Spanish page. A translation is the same screen in
+ * another language, so it gets the same chrome.
+ */
+const LOCALES = new Set(["es"]);
+const withoutLocale = (pathname: string) => {
+  const parts = pathname.split("/");
+  return LOCALES.has(parts[parts.length - 1]) ? parts.slice(0, -1).join("/") || "/" : pathname;
+};
+
 export const hasOwnMobileChrome = (pathname: string) =>
-  BACK_BAR_ROUTES.has(pathname) || isSongPage(pathname);
+  BACK_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname);
 export const hasOwnActionBar = (pathname: string) =>
-  ACTION_BAR_ROUTES.has(pathname) || isSongPage(pathname);
+  ACTION_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname);
