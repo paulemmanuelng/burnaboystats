@@ -44,11 +44,11 @@ const sections = [
     // whether the data can be trusted — no location beyond the country, no
     // date of birth, nothing a private individual shouldn't publish.
     h: "Who I am",
-    p: "I'm Nigerian, based in the UK, and I manage programmes for a living — five years of delivery and reporting on technology projects, most recently as regional programme lead at the Starknet Foundation, running 23 events across Nigeria, Kenya, Rwanda and Ghana. Before that I ran client workstreams at Hype, tracking performance and reporting it to stakeholders every cycle. It's work that lives or dies on whether the number you report can be traced back to something real. I'm currently reading for an MSc in Project Management at the University of Chester.",
+    p: "I'm Nigerian, based in the UK, and I've been deep in the music for years — following the releases, the charts and the run-ups long before I ever thought about building a site about them. The rest is the part that made this possible: I work with data and reporting, so checking a number against the source it came from is habit rather than effort, and I write the code, do the research and maintain every page here myself.",
   },
   {
     h: "Why this site exists",
-    p: `I've followed African music closely for years — long before this site — and kept watching the same figures repeated across fan threads, press write-ups and screenshots, often unsourced, often contradicting each other. Burna Boy is the most decorated artist Africa has ever produced and his numbers deserved better than that. I started building this in June 2026: today it tracks ${totalAwards()} certifications across ${countryCount} countries, ${chartEntryCount} official chart entries with ${numberOnes} No. 1s, and ${totalWins} award wins — every figure traced to the body that owns it. It's the reporting discipline from my day job, pointed at something I actually care about.`,
+    p: `Burna Boy is the most decorated artist Africa has ever produced, but his numbers lived scattered across fan threads, press write-ups and screenshots — often unsourced, often contradicting each other. I kept seeing the same figures repeated with nobody checking them, so in June 2026 I started building the careful home those numbers deserved: today it tracks ${totalAwards()} certifications across ${countryCount} countries, ${chartEntryCount} official chart entries with ${numberOnes} No. 1s, and ${totalWins} award wins — every figure traced to the body that owns it.`,
   },
   {
     h: "How I work",
@@ -83,11 +83,9 @@ export default function CuratorPage() {
       alternateName: "Paul Emmanuel",
       url: `${CANONICAL_ORIGIN}/curator`,
       sameAs: [X_PERSONAL, LINKEDIN],
-      jobTitle: "Programme and project manager",
       nationality: { "@type": "Country", name: "Nigeria" },
       description:
-        "Nigerian programme and project manager based in the UK, and the researcher behind Burna Boy Stats — a verified record of Burna Boy's certifications, chart runs, awards and streaming milestones, maintained single-handedly since June 2026.",
-      alumniOf: { "@type": "CollegeOrUniversity", name: "University of Chester" },
+        "Nigerian music follower based in the UK, and the researcher behind Burna Boy Stats — a verified record of Burna Boy's certifications, chart runs, awards and streaming milestones, built and maintained single-handedly since June 2026.",
       knowsAbout: ["Burna Boy", "Afrobeats", "music charts", "music certifications", "streaming data"],
       affiliation: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     },
