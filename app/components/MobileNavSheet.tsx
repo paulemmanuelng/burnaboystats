@@ -81,10 +81,23 @@ export default function MobileNavSheet({
     };
   }, [open]);
 
-  if (!open) return null;
-
+  // Rendered even when closed, with `hidden` doing the hiding.
+  //
+  // It used to `return null`, which meant the sheet's two dozen links existed
+  // only after a tap — so they were absent from the HTML a crawler reads, and
+  // contributed nothing to the site's internal linking. Googlebot doesn't open
+  // menus. `hidden` keeps it out of the layout AND out of the accessibility
+  // tree (so `role="dialog"` isn't announced while closed, and nothing inside
+  // is focusable), while leaving the links in the markup where they count.
   return (
-    <div ref={sheetRef} className={styles.root} role="dialog" aria-modal="true" aria-label="Site menu">
+    <div
+      ref={sheetRef}
+      className={styles.root}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Site menu"
+      hidden={!open}
+    >
       {/* The visible strip at the foot is part of this backdrop, which is why
           the backdrop covers the whole viewport rather than stopping at 76px. */}
       <button
