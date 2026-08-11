@@ -2697,20 +2697,14 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "PE",
             "name": "Peru",
-            "position": 132,
-            "movement": -17
+            "position": 135,
+            "movement": -20
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 197,
             "movement": -149
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 199,
-            "movement": -6
           }
         ]
       }
@@ -4079,8 +4073,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "BN",
             "name": "Brunei Darussalam",
-            "position": 31,
-            "movement": 0
+            "position": 35,
+            "movement": -4
           },
           {
             "country": "SR",
@@ -4814,31 +4808,6 @@ export const liveCharts: LiveRelease[] = [
     "kind": "album"
   },
   {
-    "title": "My Oasis",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BN",
-            "name": "Brunei Darussalam",
-            "position": 2,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 84,
-            "movement": 63
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Common Person",
     "platforms": [
       {
@@ -4857,6 +4826,31 @@ export const liveCharts: LiveRelease[] = [
             "position": 68,
             "movement": null,
             "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "My Oasis",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BN",
+            "name": "Brunei Darussalam",
+            "position": 62,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 84,
+            "movement": 63
           }
         ]
       }
