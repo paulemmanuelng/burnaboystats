@@ -148,6 +148,15 @@ export const statBoxes: LeaderboardBox[] = [
       "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. Totals are shown for 2025, and for 2026 as counted to 7 August 2026 — part-year figures from a chart tracker's own daily count, not an official Spotify report and not projected forward from a daily average. 2026 is still running, so both the totals and the order will change.",
   },
   {
+    // Verified against kworb's PkListeners column, which agrees to the digit on
+    // Burna Boy (60.13M), Tyla (46.58M) and Rema (40.01M), and to the decimal
+    // on Tems once unrounded (45.58M).
+    //
+    // CKay is the exception and must NOT be "corrected" from kworb: it lists
+    // his peak as 15.50M against the 34.78M here. That column records the peak
+    // since kworb began watching an artist, not an all-time high, and CKay
+    // peaked during the 2021 “Love Nwantiti” run — before that coverage. The
+    // 34.78M is his verified Spotify peak and stands.
     id: "monthly-listeners-peak",
     title: "Highest monthly-listeners peak",
     meta: "Spotify · African artists · all-time peak",
@@ -155,13 +164,13 @@ export const statBoxes: LeaderboardBox[] = [
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: BURNA_PEAK_LISTENERS },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "46.58M" },
-      { name: "Tems", sub: "🇳🇬 Nigeria", value: "45.5M" },
+      { name: "Tems", sub: "🇳🇬 Nigeria", value: "45.58M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "40.01M" },
       { name: "CKay", sub: "🇳🇬 Nigeria", value: "34.78M" },
     ],
     note: `Burna Boy is the first African artist ever to reach 50 million Spotify monthly listeners — and now the first past ${Math.floor(parseFloat(BURNA_PEAK_LISTENERS))} million, a milestone no African act had crossed before, with his peak still climbing.`,
     source:
-      "Peak Spotify monthly listeners, from Spotify artist pages and monitoring trackers, as of August 2026. Burna Boy's figure is his current peak and still rising, so it updates as Spotify's numbers change.",
+      "Peak Spotify monthly listeners, as of August 2026. Burna Boy, Tyla, Tems and Rema are kworb's recorded peaks; CKay's is his Spotify peak from the “Love Nwantiti” run, which predates kworb's coverage of him. Burna Boy's figure is his current peak and still rising, so it updates as Spotify's numbers change.",
   },
   {
     id: "biggest-spotify-debut",
@@ -314,7 +323,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "No. 96" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "No. 105" },
     ],
-    note: "Burna Boy hit a new career peak of No. 64 on Spotify's Global Weekly Top Artists chart in the week of 17–23 July 2026, on the back of the “Dai Dai” run. Note the scope: this is a NIGERIAN ranking, not an African one — Tyla is absent from it, and her peak monthly-listeners figure (46.58M) is higher than Tems' (45.5M), who places No. 105 here, so a full African list would very likely include her.",
+    note: "Burna Boy hit a new career peak of No. 64 on Spotify's Global Weekly Top Artists chart in the week of 17–23 July 2026, on the back of the “Dai Dai” run. Note the scope: this is a NIGERIAN ranking, not an African one — Tyla is absent from it, and her peak monthly-listeners figure (46.58M) is higher than Tems' (45.58M), who places No. 105 here, so a full African list would very likely include her.",
     source:
       "Best all-time peak on Spotify's Global Weekly Top Artists chart, per chart-tracking accounts. Nigerian artists only — the underlying list does not cover the rest of Africa. As of July 2026.",
   },
