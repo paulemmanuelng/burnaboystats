@@ -34,7 +34,7 @@ export const MARKET_WEIGHT: Record<string, number> = {
   US: 5, UK: 5,
   DE: 4, FR: 4, CA: 4, AU: 4, IT: 4, ES: 4, NL: 4, BR: 4,
   SE: 3, BE: 3, CH: 3, AT: 3, DK: 3, NO: 3, PL: 3, NZ: 3,
-  NG: 2, ZA: 2, PT: 2, GR: 2, HU: 2, CO: 2,
+  NG: 2, ZA: 2, PT: 2, GR: 2, HU: 2, CO: 2, CZ: 2,
   SK: 1,
 };
 

@@ -240,7 +240,7 @@ export default function DaiDaiPage() {
     },
     {
       q: "How many certifications does “Dai Dai” have?",
-      a: "“Dai Dai” has 9 certifications: 2× Platinum (Latin) in the US from the RIAA, Platinum in Spain, France, Slovakia and Portugal, Gold in Colombia, Hungary and Greece, and Silver in the UK from the BPI.",
+      a: "“Dai Dai” has 10 certifications: 2× Platinum (Latin) in the US from the RIAA, Platinum in Spain, France, Slovakia and Portugal, Gold in Colombia, Hungary, Greece and the Czech Republic, and Silver in the UK from the BPI.",
     },
   ];
 

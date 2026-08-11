@@ -51,8 +51,8 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(224); // 224th: Dai Dai UK Silver (BPI, 7 Aug 2026)
-    expect(countryCount).toBe(25);
+    expect(totalAwards()).toBe(225); // 225th: Dai Dai CZ Gold (ČNS IFPI week-32 badge, 10 Aug 2026)
+    expect(countryCount).toBe(26);
     expect(certifiedReleaseCount).toBe(81);
   });
 });
@@ -64,9 +64,9 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 has the published count of 48 certifications", () => {
-    // 48th: “Dai Dai” UK Silver (BPI, 7 Aug 2026).
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(48);
+  it("2026 has the published count of 49 certifications", () => {
+    // 49th: “Dai Dai” CZ Gold (ČNS IFPI, 10 Aug 2026).
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(49);
   });
 
   it("2025 has the published count of 29 certifications", () => {

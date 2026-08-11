@@ -36,6 +36,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-10",
+    category: "Certifications",
+    text: "Gold in a 26th country: ČNS IFPI's own chart now carries the “Zlatý singl” badge for “Dai Dai” in Czechia at 2.5 million streams — the collaboration's 10th plaque, Burna Boy's 225th certification worldwide, and his first ever from the Czech body.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-08-10",
     category: "Charts",
     text: "A 7th consecutive week as the world's biggest song outside America: “Dai Dai” leads the Billboard Global 200 Excl. US again on the chart dated 15 August — while its historic Global 200 run, the first ever fronted by an African artist, closes at four straight weeks with the song now at No. 3.",
     href: "/dai-dai",
