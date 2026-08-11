@@ -364,8 +364,13 @@ export interface CertEvent {
 }
 
 export const certHistory: CertEvent[] = [
-  // 225th: gold badge ("Zlatý singl") on ČNS IFPI's own Singles Digital Top 100, week 32/2026 — 2.5M streams.
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "CZ", level: "Gold", year: 2026 },
+  // APPEND upgrades, never rewrite them. This is a log of award EVENTS, not of
+  // current status: when a release moves Gold → Platinum, the Gold stays and the
+  // Platinum is added as its own row. The page says so in its own words ("a
+  // release can appear twice in a year if it was certified at two tiers"), and
+  // the per-release `certs` arrays above are what track current level.
+  // "Dai Dai" in Spain was rewritten in place on 27 Jul 2026, which silently
+  // deleted a real award and left 2026 one short; restored 11 Aug 2026.
   { title: "Location", credit: "Dave ft. Burna Boy", country: "NL", level: "Platinum", year: 2026 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "ES", level: "Platinum", year: 2026 },
   { title: "Love, Damini", album: true, country: "CA", level: "Platinum", year: 2026 },
@@ -400,7 +405,7 @@ export const certHistory: CertEvent[] = [
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "PL", level: "Platinum", year: 2026 },
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "US", level: "Platinum", x: 2, year: 2026, body: "RIAA Latin" },
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "CO", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "ES", level: "Platinum", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "ES", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "FR", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "HU", level: "Gold", year: 2026 },
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "SK", level: "Gold", year: 2026 },
@@ -500,6 +505,7 @@ export const certHistory: CertEvent[] = [
   { title: "Ye", country: "CH", level: "Platinum", year: 2023 },
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "CH", level: "Gold", year: 2023 },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", country: "AU", level: "Gold", year: 2023 },
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "ES", level: "Platinum", year: 2026 },
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "FR", level: "Platinum", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "SE", level: "Platinum", year: 2026 },
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "SK", level: "Platinum", year: 2026 },
@@ -508,6 +514,8 @@ export const certHistory: CertEvent[] = [
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "PT", level: "Platinum", year: 2026 },
   // Announced by the BRIT Awards' own account (#BRITcertified), 7 Aug 2026.
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "UK", level: "Silver", year: 2026 },
+  // 225th: gold badge ("Zlatý singl") on ČNS IFPI's own Singles Digital Top 100, week 32/2026 — 2.5M streams.
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "CZ", level: "Gold", year: 2026 },
 ];
 
 // Helpers

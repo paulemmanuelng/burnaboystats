@@ -35,6 +35,18 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-11",
+    category: "Streaming",
+    text: "A 29th day as the most-streamed song on Earth: Spotify's own Daily Top Songs Global for 10 August keeps “Dai Dai” at No. 1 with 3,965,127 streams — 82 days on the chart now, and still the longest run at No. 1 of any 2026 release.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-11",
+    category: "Certifications",
+    text: "50 certifications in a single year: the Czech gold for “Dai Dai” makes 2026 the first year Burna Boy has been awarded fifty plaques — past his own previous best of 39 in 2023, with four and a half months still to run.",
+    href: "/certifications",
+  },
+  {
     date: "2026-08-10",
     category: "Certifications",
     text: "Gold in a 26th country: ČNS IFPI's own chart now carries the “Zlatý singl” badge for “Dai Dai” in Czechia at 2.5 million streams — the collaboration's 10th plaque, Burna Boy's 225th certification worldwide, and his first ever from the Czech body.",
