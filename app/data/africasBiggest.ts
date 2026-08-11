@@ -15,8 +15,8 @@ const BURNA_PEAK_LISTENERS = "60.13M";
 /** His YouTube Music monthly audience, at its peak. Exported because four
  *  files quoted this figure by hand — it sat at 840M in eight places while
  *  YouTube Music itself showed 844M. One home, imported everywhere. */
-export const BURNA_YT_AUDIENCE = "898M";
-export const BURNA_YT_AUDIENCE_WORDS = "898 million";
+export const BURNA_YT_AUDIENCE = "921M";
+export const BURNA_YT_AUDIENCE_WORDS = "921 million";
 
 // "Africa's Biggest" — leaderboard-style stat boxes comparing African artists.
 // Two box layouts:
@@ -252,7 +252,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Moliy", sub: "🇬🇭 Ghana", value: "602M" },
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "471M" },
     ],
-    note: `Burna Boy's monthly-audience peak on YouTube has climbed to ${BURNA_YT_AUDIENCE_WORDS} — the first African artist ever past 700 million, and now past 800 million too, by some distance the highest of any African artist. Worldwide it is the sixth-biggest audience ever recorded, above Lady Gaga (862M) and Michael Jackson (741M).`,
+    note: `Burna Boy's monthly-audience peak on YouTube has climbed to ${BURNA_YT_AUDIENCE_WORDS} — the first African artist ever past 700 million, and now past 900 million too, by some distance the highest of any African artist — the next-highest African peak is Tyla's 654 million. Worldwide it is the sixth-biggest audience ever recorded, above Lady Gaga (862M) and Michael Jackson (741M).`,
     source:
       "Peak monthly audience on YouTube (YouTube for Artists), from chart-tracking accounts. As of August 2026 — figures update as they climb.",
   },
@@ -260,15 +260,17 @@ export const statBoxes: LeaderboardBox[] = [
     id: "youtube-audience-world",
     // Six deep: the top five plus Burna Boy, who closes the list on merit —
     // he passed Lady Gaga (862M) on 8 Aug 2026, so the Gaga and Michael
-    // Jackson scaffolding rows are gone. Next target: Rosé at 959M.
+    // Jackson scaffolding rows are gone. At 921M the next target is Rosé
+    // (959M). Shakira set a new all-time peak of 1.04B on 11 Aug 2026, taking
+    // the record from Bruno Mars — hence her row moving above his.
     title: "Biggest monthly audience on YouTube — worldwide",
     meta: "YouTube · all artists · all-time peak",
     layout: "list",
     entries: [
       { name: "Alan Walker", sub: "🇳🇴 Norway", value: "1.12B" },
       { name: "Alok", sub: "🇧🇷 Brazil", value: "1.11B" },
+      { name: "Shakira", sub: "🇨🇴 Colombia", value: "1.04B" },
       { name: "Bruno Mars", sub: "🇺🇸 United States", value: "1.02B" },
-      { name: "Shakira", sub: "🇨🇴 Colombia", value: "1.02B" },
       { name: "Rosé", sub: "🇰🇷 South Korea", value: "959M" },
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: BURNA_YT_AUDIENCE },
     ],

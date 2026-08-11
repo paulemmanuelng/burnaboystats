@@ -37,6 +37,12 @@ export const updates: Update[] = [
   {
     date: "2026-08-11",
     category: "Streaming",
+    text: "Past 900 million on YouTube: Burna Boy's monthly audience climbs to 921 million — the first African artist ever to cross nine hundred million, with the next-highest African peak (Tyla's 654M) more than a quarter of a billion behind, and still the sixth-biggest audience any artist has recorded.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-08-11",
+    category: "Streaming",
     text: "A 29th day as the most-streamed song on Earth: Spotify's own Daily Top Songs Global for 10 August keeps “Dai Dai” at No. 1 with 3,965,127 streams — 82 days on the chart now, and still the longest run at No. 1 of any 2026 release.",
     href: "/dai-dai",
   },
