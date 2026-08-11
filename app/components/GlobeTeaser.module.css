@@ -22,8 +22,8 @@
   gap: 9px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -72,8 +72,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  background: var(--rule);
+  border: 1px solid var(--rule-soft);
   margin-top: 18px;
 }
 .cell { background: var(--bg); padding: 11px 8px; text-align: center; }
@@ -87,7 +87,7 @@
 }
 .label {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -101,7 +101,7 @@
   margin-top: 16px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }

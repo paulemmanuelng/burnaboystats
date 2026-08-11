@@ -132,7 +132,7 @@
   display: block;
   margin-top: 6px;
   font-family: var(--font-mono), monospace;
-  font-size: 0.66rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.06em;
   color: var(--text-muted);
 }
@@ -147,7 +147,7 @@
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: 0.64rem;
+  font-size: 0.6875rem;
   font-weight: 700;
 }
 .tourNote {
@@ -180,7 +180,7 @@
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-size: 0.66rem;
+  font-size: 0.6875rem;
   color: var(--gold);
 }
 
@@ -204,7 +204,7 @@
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-size: 0.62rem;
+  font-size: 0.6875rem;
   color: var(--text-muted);
 }
 .showDate {
@@ -477,7 +477,7 @@
   color: var(--green);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -692,8 +692,8 @@
 .upcomingTag {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--gold);
   border: 1px solid rgba(255, 182, 39, 0.5);
@@ -702,7 +702,7 @@
 }
 .upcomingNote {
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -729,7 +729,7 @@
 .upcomingText { font-size: 14px; line-height: 1.6; color: #cfc7bb; margin-top: 8px; }
 .upcomingSource {
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   color: var(--text-muted);
   margin-top: 8px;

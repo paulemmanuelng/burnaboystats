@@ -317,7 +317,7 @@ export default function DaiDaiPage() {
           <h2 id="dd-lineup" className={styles.h2}>
             The <span className={styles.gold}>halftime show</span> lineup
           </h2>
-          <p className={styles.lineupIntro}>
+          <p className={styles.sectionIntro}>
             The first-ever FIFA World Cup Final halftime show, produced by Global Citizen.
             Shakira &amp; Burna Boy performed “Dai Dai” on a bill of global superstars.
           </p>
@@ -342,7 +342,7 @@ export default function DaiDaiPage() {
           <h2 id="dd-conquest" className={styles.h2}>
             The <span className={styles.gold}>world takeover</span>
           </h2>
-          <p className={styles.conquestIntro}>
+          <p className={styles.sectionIntro}>
             {conquestIntro}
           </p>
           <DaiDaiConquest countries={conquestCountries} />

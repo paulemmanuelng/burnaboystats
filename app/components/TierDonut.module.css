@@ -22,8 +22,8 @@
   fill: var(--text-muted);
   font-family: var(--font-mono), monospace;
   /* 10px is the floor across the site — SVG text is not exempt. */
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 

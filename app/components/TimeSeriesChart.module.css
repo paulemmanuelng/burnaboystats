@@ -19,7 +19,7 @@
 .axis {
   fill: var(--text-muted);
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.06em;
 }
 
@@ -51,7 +51,7 @@
 .markLabel {
   fill: var(--text);
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -59,8 +59,8 @@
 .unit {
   fill: var(--text-muted);
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 

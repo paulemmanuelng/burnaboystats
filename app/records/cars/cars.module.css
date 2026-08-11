@@ -30,7 +30,7 @@
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 0.64rem;
+  font-size: 0.6875rem;
   color: var(--text-muted);
 }
 .hValue {
@@ -191,7 +191,7 @@
 .tag {
   display: inline-block;
   font-family: var(--font-mono), monospace;
-  font-size: 0.6rem;
+  font-size: 0.6875rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   padding: 3px 9px;
@@ -238,7 +238,7 @@
 .heroWrap { max-width: 1240px; margin: 0 auto; padding: 32px 40px 0; }
 .kicker {
   font-family: var(--font-mono), monospace; font-weight: 700;
-  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted);
+  font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted);
 }
 .h1 {
   font-family: var(--font-anton), sans-serif;
@@ -254,8 +254,8 @@
 /* Hairline seams inside a bounding border. */
 .statGrid {
   display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1px; background: var(--line);
-  margin-top: 32px; border: 1px solid var(--line);
+  gap: 1px; background: var(--rule);
+  margin-top: 32px; border: 1px solid var(--rule-soft);
 }
 .statCell { background: var(--bg); padding: 24px 26px; }
 .statNum {
@@ -264,25 +264,25 @@
 }
 .statLabel {
   font-family: var(--font-mono), monospace; font-weight: 700;
-  font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 12px;
+  font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; margin-top: 12px;
 }
 .highlightLabel {
   font-family: var(--font-mono), monospace; font-weight: 700;
-  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+  font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--gold);
 }
 .highlightValue {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
   font-size: 24px; line-height: 1.1; margin-top: 12px; text-transform: uppercase;
 }
 .highlightMeta {
-  font-family: var(--font-mono), monospace; font-size: 10px;
+  font-family: var(--font-mono), monospace; font-size: 11px;
   letter-spacing: 0.06em; color: var(--dim); margin-top: 6px;
 }
 
 .tally { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
 .tallyLabel {
   font-family: var(--font-mono), monospace; font-weight: 700;
-  font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase;
   color: var(--text-muted); margin-right: 4px;
 }
 .tallyChip {
@@ -312,7 +312,7 @@
 .rankLead { font-size: 34px; color: var(--gold); }
 .make {
   display: block; font-family: var(--font-mono), monospace; font-weight: 700;
-  font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted);
+  font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted);
 }
 .model {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
@@ -324,7 +324,7 @@
 .carLink {
   display: inline-flex; align-items: center; min-height: 38px; margin-top: 12px;
   font-family: var(--font-mono), monospace; font-weight: 700;
-  font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
 }
 .carLink:hover { text-decoration: underline; }
 .priceCol { text-align: right; }
@@ -353,7 +353,7 @@
 .tag {
   display: inline-flex; align-items: center; padding: 4px 11px; border-radius: 999px;
   font-family: var(--font-mono), monospace; font-weight: 700;
-  font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
 }
 .tagSold { border: 1px solid rgba(192, 57, 43, 0.5); background: rgba(192, 57, 43, 0.1); color: #e0796d; }
 .tagUnconfirmed { border: 1px solid var(--border); background: transparent; color: var(--text-muted); }
@@ -374,7 +374,7 @@
 .note { padding: 24px 28px; border: 1px solid rgba(255, 182, 39, 0.35); background: rgba(255, 182, 39, 0.05); }
 .noteKicker {
   font-family: var(--font-mono), monospace; font-weight: 700;
-  font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted);
+  font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted);
 }
 .noteText { font-size: 13.5px; line-height: 1.75; color: #cfc7bb; margin: 12px 0 0; max-width: 92ch; }
 .noteFine { font-size: 12.5px; line-height: 1.7; color: var(--text-muted); margin: 14px 0 0; max-width: 92ch; }

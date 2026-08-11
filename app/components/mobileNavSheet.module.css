@@ -38,8 +38,8 @@
 
 .dismissHint {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -125,8 +125,8 @@
   padding: 0 18px 8px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -166,7 +166,7 @@
 .meta {
   margin-left: auto;
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--text-muted);
   flex: none;
@@ -187,7 +187,7 @@
   align-items: center;
   gap: 6px;
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -210,7 +210,7 @@
   color: var(--bg);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   flex: none;

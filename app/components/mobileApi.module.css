@@ -46,14 +46,14 @@
 .backLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 .badge {
   margin-left: auto;
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   color: var(--gold);
   flex: none;
@@ -64,8 +64,8 @@
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -98,7 +98,7 @@
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
 }
 /* The first pill is the headline figure and carries the live dot. */
@@ -133,11 +133,11 @@
   color: var(--gold);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.06em;
 }
 .path { font-family: var(--font-mono), monospace; font-size: 12.5px; color: var(--text); }
-.size { margin-left: auto; font-family: var(--font-mono), monospace; font-size: 10px; color: var(--dim); }
+.size { margin-left: auto; font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); }
 .what { display: block; font-size: 12.5px; line-height: 1.5; color: var(--text-muted); margin-top: 7px; }
 
 /* ── Code boxes ───────────────────────────────────────────────────────── */

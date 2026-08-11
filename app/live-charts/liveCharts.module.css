@@ -37,8 +37,8 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   margin: 0 0 44px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  background: var(--rule);
+  border: 1px solid var(--rule-soft);
   border-radius: var(--radius-sm);
   overflow: hidden;
 }
@@ -168,7 +168,7 @@
   vertical-align: 3px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -299,7 +299,7 @@
 /* A re-entry is a lesser event than a debut, so it reads quieter than .moveNew
    — but it must not wrap, or the row height jumps on narrow screens. */
 .moveRe {
-  font-size: 0.66rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.06em;
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
@@ -371,7 +371,7 @@
    number above it without competing with it. */
 .platformCardCadence {
   margin-top: 5px;
-  font-size: 0.66rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--text-muted);

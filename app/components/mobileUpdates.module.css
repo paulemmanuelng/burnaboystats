@@ -50,8 +50,8 @@
 .backLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 /* A 44px tap target, not the design's bare text link — it's the only way off
@@ -62,7 +62,7 @@
   display: inline-flex;
   align-items: center;
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -74,8 +74,8 @@
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -101,7 +101,7 @@
   gap: 9px;
   margin-top: 12px;
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   color: var(--text-muted);
 }
@@ -126,7 +126,7 @@
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
@@ -150,7 +150,7 @@
   border: 1px solid;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -158,14 +158,14 @@
 .rowDate {
   margin-left: auto;
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   color: var(--text-muted);
 }
 .rowText { font-size: 14.5px; line-height: 1.45; margin-top: 9px; }
 
 .count {
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--dim);

@@ -15,7 +15,14 @@
   --bg-soft: #141416;
   --bg-soft-2: #1c1c21;
   --border: #26262b;
-  --line: rgba(245, 244, 240, 0.12); /* hairline rules */
+  --line: rgba(245, 244, 240, 0.12); /* hairline rules — 1.31:1, DECORATIVE */
+  /* Two heavier weights for lines that carry meaning. --line stays exactly as
+     it was, so all 518 of its call sites remain correct by definition: the
+     decorative weight IS today's value. Promote upward, never reclassify.
+     Rule of thumb: if the line is the only thing separating two pieces of
+     data, it is structural. */
+  --rule-soft: rgba(245, 244, 240, 0.24); /* 1.97:1 — secondary structure */
+  --rule: rgba(245, 244, 240, 0.38);      /* 3.30:1 — structural, clears WCAG 3:1 */
 
   /* Text */
   --text: #f5f4f0;
@@ -67,8 +74,25 @@
      Data-meaning accents. Gold means "headline" or "his"; these carry
      meaning of their own and must never be recoloured to gold:
      certification tiers, chart peak bands, live deltas. */
-  --cyan: #8fe3f0;    /* Diamond tier · Top 10 peaks */
-  --silver: #dfe2e8;  /* Platinum tier · Top 40 peaks */
+  --cyan: #8fe3f0;    /* Top 10 peak band ONLY — see tier tokens below */
+  --silver: #dfe2e8;  /* Top 40 peak band ONLY — see tier tokens below */
+
+  /* Certification tiers. These used to borrow --cyan and --silver, which also
+     colour the Top 10 / Top 40 chart bands — two unrelated meanings sharing
+     one value. They are separated here so the tier palette could be fixed
+     without recolouring the peak bands, which carry their own meaning.
+     Spread across the lightness range (L* 93.7 / 78.0 / 61.6 / 44.9) with
+     distinct hue families, so the four separate at an 8px dot AND in
+     greyscale. Border alphas rise as the tier darkens, each landing at
+     ~2.4:1 against --soft, which is where a badge edge sits. */
+  --tier-platinum: #EFEDE6;  /* L* 93.7 · 16.86:1 */
+  --tier-gold: #FBB417;      /* L* 78.0 · 10.95:1 — same as --gold */
+  --tier-diamond: #31A1C0;   /* L* 61.6 ·  6.58:1 */
+  --tier-silver: #626B77;    /* L* 44.9 ·  3.66:1 */
+  --tier-platinum-edge: rgba(239, 237, 230, 0.29);
+  --tier-gold-edge: rgba(251, 180, 23, 0.37);
+  --tier-diamond-edge: rgba(49, 161, 192, 0.50);
+  --tier-silver-edge: rgba(98, 107, 119, 0.73);
   --green: #3ed17f;   /* live / positive delta */
   --red: #c0392b;     /* ambient background wash only — NEVER for text */
   --red-ink: #e0796d; /* negative deltas and "sold" labels: the readable red.
@@ -1220,7 +1244,12 @@ a.fact:hover {
   .navLinks a,
   .footerCol a,
   .footerQuick a,
-  .ui-link {
+  .ui-link,
+  /* A <button>, so the anchor selectors above never matched it. The rest of
+     this rule is unchanged: the proposed replacement reset was withdrawn
+     because :where() here holds specificity at zero, which the mobile tab
+     bar's stacked layout depends on. */
+  .navToggle {
     min-height: 44px;
   }
   .footerCopy a,
@@ -1394,7 +1423,7 @@ a[class*="__certRow"]:focus-visible,
   /* The design's <helmet> overrides the base sheet's 11px sans chip with a
      mono uppercase pill — that is what every design file renders. */
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 999px;
@@ -1405,8 +1434,8 @@ a[class*="__certRow"]:focus-visible,
 .tagAccent   { background: rgba(255, 182, 39, 0.13); color: var(--gold); }
 .tagNeutral  { background: rgba(245, 244, 240, 0.08); color: var(--text); }
 .tagOutline  { border-color: var(--gold); color: var(--gold); background: transparent; }
-.tagDiamond  { background: rgba(143, 227, 240, 0.14); color: var(--cyan); }
-.tagPlatinum { background: rgba(223, 226, 232, 0.14); color: var(--silver); }
+.tagDiamond  { background: rgba(49, 161, 192, 0.16); color: var(--tier-diamond); }
+.tagPlatinum { background: rgba(239, 237, 230, 0.12); color: var(--tier-platinum); }
 .tagLive     { background: rgba(62, 209, 127, 0.14); color: var(--green); }
 
 .tableBase {

@@ -16,7 +16,7 @@
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -50,8 +50,8 @@
 .trendKicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -69,21 +69,21 @@
 .chartLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 .bars { display: flex; align-items: flex-end; gap: 6px; flex: 1; min-height: 104px; margin-top: 16px; }
 .bar { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; align-items: center; }
-.barValue { font-family: var(--font-mono), monospace; font-size: 10.5px; color: var(--dim); }
+.barValue { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); }
 /* Only the newest month is lit — the rest are the shape it arrived at. */
 .barValueNow { color: var(--gold); }
 .barFill { width: 100%; background: rgba(255, 182, 39, 0.28); display: block; }
 .barFillNow { background: linear-gradient(180deg, var(--gold), var(--grad-b)); }
 .barMonth {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   color: var(--dim);
 }
@@ -100,7 +100,7 @@
   background: var(--bg-soft);
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -137,9 +137,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: var(--line);
+  background: var(--rule);
   margin-top: 22px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--rule-soft);
 }
 
 /* ── Stat box ───────────────────────────────────────────────────────────── */
@@ -160,7 +160,7 @@
 .boxTitleBig { font-size: 26px; color: var(--gold); }
 .boxMeta {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--dim);
@@ -168,7 +168,7 @@
 }
 .leadsBadge {
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -225,7 +225,7 @@
 .yearLabelHim { color: var(--gold); }
 .inProgress {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -249,7 +249,7 @@
   font-weight: 600;
 }
 .chipHim { border-color: var(--gold); background: rgba(255, 182, 39, 0.14); color: var(--gold); }
-.chipRank { font-family: var(--font-mono), monospace; font-size: 10px; font-weight: 700; opacity: 0.7; }
+.chipRank { font-family: var(--font-mono), monospace; font-size: 11px; font-weight: 700; opacity: 0.7; }
 .chipValue { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--text-muted); }
 
 .boxNote { font-size: 13px; line-height: 1.6; color: #cfc7bb; margin: 16px 0 0; max-width: 72ch; }
@@ -262,7 +262,7 @@
   align-items: center;
   min-height: 24px;
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;

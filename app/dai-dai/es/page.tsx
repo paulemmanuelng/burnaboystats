@@ -318,7 +318,7 @@ export default function DaiDaiPageES() {
           <h2 id="dd-lineup" className={styles.h2}>
             El cartel del <span className={styles.gold}>show de medio tiempo</span>
           </h2>
-          <p className={styles.lineupIntro}>
+          <p className={styles.sectionIntro}>
             El primer show de medio tiempo de una Final del Mundial de la FIFA, producido por
             Global Citizen. Shakira y Burna Boy interpretaron “Dai Dai” en un cartel de
             superestrellas globales.
@@ -344,7 +344,7 @@ export default function DaiDaiPageES() {
           <h2 id="dd-conquest" className={styles.h2}>
             La <span className={styles.gold}>conquista mundial</span>
           </h2>
-          <p className={styles.conquestIntro}>{conquestIntro}</p>
+          <p className={styles.sectionIntro}>{conquestIntro}</p>
           <DaiDaiConquest
             countries={conquestCountries}
             labels={{

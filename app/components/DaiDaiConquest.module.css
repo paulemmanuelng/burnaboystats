@@ -7,8 +7,8 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  background: var(--rule);
+  border: 1px solid var(--rule-soft);
   margin-top: 14px;
 }
 .cell {
@@ -38,7 +38,7 @@
 
 .peak {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   color: rgba(138, 130, 121, 0.5);
   font-variant-numeric: tabular-nums;
@@ -53,7 +53,7 @@
   margin-top: 14px;
   flex-wrap: wrap;
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--dim);
@@ -113,7 +113,7 @@
     margin-left: auto;
     font-family: var(--font-mono), monospace;
     font-weight: 700;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--gold);

@@ -23,7 +23,7 @@
 }
 .kbd {
   font-family: var(--font-mono), monospace;
-  font-size: 0.68rem;
+  font-size: 0.6875rem;
   color: var(--text-muted);
   border: 1px solid var(--line);
   border-radius: 5px;
@@ -115,7 +115,7 @@
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 0.64rem;
+  font-size: 0.6875rem;
   color: var(--text-muted);
 }
 .result {
@@ -161,7 +161,7 @@
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: 0.6rem;
+  font-size: 0.6875rem;
   color: var(--text-muted);
   border: 1px solid var(--line);
   border-radius: 999px;
