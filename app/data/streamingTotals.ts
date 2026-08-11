@@ -11,13 +11,15 @@
 // so more precision would be noise.
 
 // Every Burna Boy song on Spotify, lead and featured credits combined.
-// Auto-published daily again (7 Aug 2026): the spotify-total-streams metric
-// now adds the featured-credits gap kworb misses (+107,613,681, measured
-// against Paul's tracked total on 31 Jul 2026) as a pipeline offset before
-// writing this string, so it tracks the source without undercounting. If a
-// new featured credit changes the gap itself, re-measure the offset in
-// scripts/watched-metrics.json.
-export const spotifyTotalStreams = "10.69B";
+// Auto-published daily: the spotify-total-streams metric adds the
+// featured-credits gap kworb misses as a pipeline offset before writing this
+// string, so it tracks the source without undercounting. The gap GROWS as
+// featured songs accrue streams — +107,613,681 on 31 Jul 2026, re-measured to
+// +129,703,877 on 11 Aug — so when the published figure falls behind the
+// tracked total, re-measure the offset in scripts/watched-metrics.json rather
+// than editing this string. A 22M drift on 10.6B is only 0.2%, well under the
+// metric's 3% threshold, so the bot will never self-correct it.
+export const spotifyTotalStreams = "10.71B";
 
 // Every Burna Boy video on YouTube, across his channel and others'.
 export const youtubeTotalViews = "3.17B";
