@@ -64,9 +64,23 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 has the published count of 49 certifications", () => {
-    // 49th: “Dai Dai” CZ Gold (ČNS IFPI, 10 Aug 2026).
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(49);
+  // The 27 Jul 2026 Spain upgrade rewrote its Gold row into a Platinum instead
+  // of adding one, silently deleting an award. Every OTHER Dai Dai upgrade kept
+  // both rows, so the shape of the data itself is the check: where a release is
+  // certified above the entry tier in a country, and the log records an upgrade
+  // for its siblings, it should record one here too.
+  it("keeps both rows for every Dai Dai Gold→Platinum upgrade", () => {
+    const dd = certHistory.filter((e) => e.title === "Dai Dai" && e.year === 2026);
+    for (const country of ["ES", "FR", "SK", "PT"]) {
+      const levels = dd.filter((e) => e.country === country).map((e) => e.level);
+      expect(levels, `${country} should log Gold then Platinum`).toEqual(["Gold", "Platinum"]);
+    }
+  });
+
+  it("2026 has the published count of 50 certifications", () => {
+    // 50th: “Dai Dai” CZ Gold (ČNS IFPI, 10 Aug 2026). The log counts award
+    // EVENTS, so a Gold and a later Platinum in the same country are two.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(50);
   });
 
   it("2025 has the published count of 29 certifications", () => {
