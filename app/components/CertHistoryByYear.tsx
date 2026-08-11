@@ -6,7 +6,13 @@ import { tierOf, type CertEvent, type Country } from "../data/certifications";
 
 const YEARS = [2026, 2025, 2024, 2023];
 
+// Notes shown under a year's log. Keep these to claims this site can stand
+// behind from its own data: a "most certified African artist in <year>" line
+// needs every other African artist's per-year count, which no body publishes
+// and no aggregator compiles — the 2025 note below predates that rule and is
+// the one line here without a source behind it.
 const YEAR_NOTES: Partial<Record<number, string>> = {
+  2026: "Fifty plaques and counting — Burna Boy's biggest certification year on record, past his own previous best of 39 in 2023.",
   2025: "Burna Boy was the most certified African artist in 2025.",
 };
 
