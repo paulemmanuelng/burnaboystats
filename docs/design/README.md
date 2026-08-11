@@ -1,0 +1,13 @@
+# Design docs
+
+Briefs and audits for burnaboystats.com, kept in the repo so they can be linked
+and read on GitHub rather than passed around as attachments.
+
+| file | what it is |
+|---|---|
+| [ui-ux-audit.md](ui-ux-audit.md) | Measured UI/UX audit of the live site — contrast, tier colours, type scale, tap targets, and the one real layout defect. Start here for a general design pass. |
+| [car-collection-brief.md](car-collection-brief.md) | Brief for redesigning `/records/cars`: a per-car detail treatment with specs, and a stylised silhouette instead of photos or 3D. |
+
+Note: `/design` in the repo root is a **local-only** drop folder (gitignored) for
+incoming design output. Anything a designer needs to *read* belongs here in
+`docs/design/` instead, because the ignored folder never reaches GitHub.
