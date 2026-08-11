@@ -32,6 +32,7 @@ const subs = [
   { href: "/records/by-the-numbers", title: "By the Numbers", desc: "His whole career in one scannable stat sheet" },
   { href: "/records/visualized", title: "Visualized", desc: "The charts — grosses, certifications & awards at a glance" },
   { href: "/records/tours/map", title: "Where He's Performed", desc: "An interactive map of every country he's taken the stage" },
+  { href: "/records/tours/festivals", title: "Festivals", desc: "Afro Nation and every big-stage festival billing" },
   { href: "/records/cars", title: "Car Collection", desc: "Every confirmed vehicle in the garage" },
 ];
 

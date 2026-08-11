@@ -89,6 +89,10 @@
   --tier-gold: #FBB417;      /* L* 78.0 · 10.95:1 — same as --gold */
   --tier-diamond: #31A1C0;   /* L* 61.6 ·  6.58:1 */
   --tier-silver: #626B77;    /* L* 44.9 ·  3.66:1 */
+  /* Type floor: nothing on this site sets a font-size below 11px. When
+     auditing that, check BOTH units — the Aug 2026 pass found 274 px
+     declarations under the floor and then another 27 in rem (down to 0.6rem
+     = 9.6px) that a px-only sweep had missed entirely. 11px is 0.6875rem. */
   --tier-platinum-edge: rgba(239, 237, 230, 0.29);
   --tier-gold-edge: rgba(251, 180, 23, 0.37);
   --tier-diamond-edge: rgba(49, 161, 192, 0.50);
