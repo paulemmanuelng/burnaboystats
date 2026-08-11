@@ -184,6 +184,26 @@
   padding: 15px 18px;
   border-bottom: 1px solid var(--line);
   color: var(--text);
+  transition: background 0.18s ease, padding-left 0.18s ease, border-color 0.18s ease;
+}
+/* The same row highlight the desktop ledger has (.certRow:hover). Both layouts
+   render the row as an inert <div> — this is a reading aid that follows the
+   pointer down a long list, not a hint that the row does something. Gated on
+   (hover: hover) so a touch device never gets a state it can't leave. */
+@media (hover: hover) {
+  .row:hover {
+    background: rgba(255, 182, 39, 0.06);
+    border-bottom-color: rgba(255, 182, 39, 0.4);
+    padding-left: 26px;
+  }
+  .row:hover .rowTitle {
+    color: var(--gold);
+  }
+}
+/* Touch has no hover, so the press gives the same feedback. */
+.row:active {
+  background: rgba(255, 182, 39, 0.06);
+  border-bottom-color: rgba(255, 182, 39, 0.4);
 }
 .rowTop { display: flex; align-items: baseline; gap: 10px; }
 .rank {

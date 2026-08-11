@@ -36,6 +36,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-11",
+    category: "Firsts & Records",
+    text: "On the NBA 2K27 soundtrack: “TaTaTa”, his Travis Scott collaboration from No Sign of Weakness, is one of 28 tracks on 2K's official launch playlist — alongside A$AP Rocky, J. Cole, Tyler, The Creator, Bad Bunny and Snoop Dogg.",
+    href: "/music/tatata",
+  },
+  {
+    date: "2026-08-11",
     category: "Streaming",
     text: "Past 900 million on YouTube: Burna Boy's monthly audience climbs to 921 million — the first African artist ever to cross nine hundred million, with the next-highest African peak (Tyla's 654M) more than a quarter of a billion behind, and still the sixth-biggest audience any artist has recorded.",
     href: "/records/africas-biggest",
