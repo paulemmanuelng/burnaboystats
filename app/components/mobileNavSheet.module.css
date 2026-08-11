@@ -6,6 +6,13 @@
   inset: 0;
   z-index: 60; /* over the tab bar (40) and every sticky back bar (45) */
 }
+/* The sheet stays in the DOM while closed so its links are crawlable, and
+   `hidden` does the hiding. Stated explicitly rather than leaning on the UA
+   stylesheet: this element is fixed and covers the viewport, so anything that
+   gave it a `display` would black out the whole screen. */
+.root[hidden] {
+  display: none;
+}
 
 /* Covers the whole viewport. The bottom 76px is the only part left uncovered
    by the sheet, and that strip is what the user taps to dismiss. */

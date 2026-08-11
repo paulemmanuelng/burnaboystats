@@ -11,10 +11,12 @@ describe("mobile nav sheet", () => {
     expect(navGroups.map((g) => g.name)).toEqual(["Browse", "Deep data", "The site"]);
   });
 
-  it("lists 24 routes — 6 browse, 8 record books, 10 site", () => {
+  it("lists 25 routes — 6 browse, 8 record books, 11 site", () => {
     // 8 Aug 2026: +2 site routes — /curator and /press.
-    expect(navGroups.map((g) => g.items.length)).toEqual([6, 8, 10]);
-    expect(navRoutes).toHaveLength(24);
+    // 11 Aug 2026: +/dai-dai/es. The Spanish edition had one inbound link in
+    // the whole site; the sheet now carries it on every page.
+    expect(navGroups.map((g) => g.items.length)).toEqual([6, 8, 11]);
+    expect(navRoutes).toHaveLength(25);
   });
 
   it("links every route exactly once", () => {

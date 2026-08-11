@@ -76,6 +76,10 @@ export const navGroups: NavGroup[] = [
     name: "The site",
     items: [
       { label: "The Dai Dai story", href: "/dai-dai", meta: "" },
+      // The Spanish edition, listed in its own language so a Spanish reader
+      // recognises it. It had exactly one inbound link (from the English
+      // page), which is thin for a page whose whole job is ranking in Spanish.
+      { label: "Dai Dai en español", href: "/dai-dai/es", meta: "ES" },
       { label: "Stat cards", href: "/share", meta: "" },
       { label: "About", href: "/about", meta: "" },
       { label: "Analysis", href: "/analysis", meta: String(findings.length) },
