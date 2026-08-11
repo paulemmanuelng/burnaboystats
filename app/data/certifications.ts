@@ -49,6 +49,7 @@ export const COUNTRIES: Record<string, Country> = {
   AT: { name: "Austria", flag: "🇦🇹", body: "IFPI Austria" },
   HU: { name: "Hungary", flag: "🇭🇺", body: "MAHASZ" },
   SK: { name: "Slovakia", flag: "🇸🇰", body: "ČNS IFPI" },
+  CZ: { name: "Czech Republic", flag: "🇨🇿", body: "ČNS IFPI" },
   PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV" },
   PT: { name: "Portugal", flag: "🇵🇹", body: "AFP" },
   GR: { name: "Greece", flag: "🇬🇷", body: "IFPI Greece" },
@@ -81,7 +82,7 @@ export const albums: Release[] = [
 export const singles: Release[] = [
   { title: "Dai Dai", credit: "Shakira X Burna Boy", year: 2026, certs: [
     { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
-    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Gold" }, { c: "UK", level: "Silver" },
+    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -363,6 +364,8 @@ export interface CertEvent {
 }
 
 export const certHistory: CertEvent[] = [
+  // 225th: gold badge ("Zlatý singl") on ČNS IFPI's own Singles Digital Top 100, week 32/2026 — 2.5M streams.
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "CZ", level: "Gold", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "NL", level: "Platinum", year: 2026 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "ES", level: "Platinum", year: 2026 },
   { title: "Love, Damini", album: true, country: "CA", level: "Platinum", year: 2026 },

@@ -132,7 +132,7 @@ export default function DaiDaiPageES() {
       scene: "certs",
       kicker: "Certificada en el mundo entero",
       title: "Llegaron los discos",
-      body: `La canción ganó sus propias certificaciones: doble platino (latino) en Estados Unidos, platino en España, Francia, Eslovaquia y Portugal, oro en Colombia, Hungría y Grecia, y plata en el Reino Unido. Ya son ${daiDaiCertCount} certificaciones para la colaboración de Shakira y Burna Boy, y siguen sumando.`,
+      body: `La canción ganó sus propias certificaciones: doble platino (latino) en Estados Unidos, platino en España, Francia, Eslovaquia y Portugal, oro en Colombia, Hungría, Grecia y Chequia, y plata en el Reino Unido. Ya son ${daiDaiCertCount} certificaciones para la colaboración de Shakira y Burna Boy, y siguen sumando.`,
     },
     {
       scene: "worldsong",
@@ -229,7 +229,7 @@ export default function DaiDaiPageES() {
     },
     {
       q: "¿Cuántas certificaciones tiene “Dai Dai”?",
-      a: "“Dai Dai” tiene 9 certificaciones: doble platino (latino) en Estados Unidos por la RIAA, platino en España, Francia, Eslovaquia y Portugal, oro en Colombia, Hungría y Grecia, y plata en el Reino Unido por la BPI.",
+      a: "“Dai Dai” tiene 10 certificaciones: doble platino (latino) en Estados Unidos por la RIAA, platino en España, Francia, Eslovaquia y Portugal, oro en Colombia, Hungría, Grecia y Chequia, y plata en el Reino Unido por la BPI.",
     },
     {
       q: "¿Cuándo fue el show de medio tiempo de la Final del Mundial 2026?",
