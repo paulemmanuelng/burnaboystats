@@ -6,7 +6,7 @@
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }

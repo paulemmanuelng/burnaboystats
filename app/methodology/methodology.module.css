@@ -14,7 +14,7 @@
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -51,8 +51,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  background: var(--rule);
+  border: 1px solid var(--rule-soft);
 }
 .count { background: var(--bg-soft); padding: 22px 24px; }
 /* White, not gold — this is the scope of the standard, not a record. */
@@ -67,8 +67,8 @@
 .countLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   margin-top: 12px;
   line-height: 1.4;
@@ -79,8 +79,8 @@
 .eyebrow {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.18em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -99,8 +99,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  background: var(--rule);
+  border: 1px solid var(--rule-soft);
   margin-top: 24px;
 }
 .principle { background: var(--bg); padding: 26px 28px; }
@@ -147,7 +147,7 @@
 }
 .sourceTag {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--dim);
@@ -160,8 +160,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  background: var(--rule);
+  border: 1px solid var(--rule-soft);
 }
 .block { background: var(--bg); padding: 28px 30px; }
 /* The independence note spans the row — it applies to everything above it. */
@@ -188,7 +188,7 @@
   color: var(--text);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);

@@ -107,7 +107,7 @@
 .filterLabel {
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
-  font-size: 0.68rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.12em;
   color: var(--text-muted);
   margin-right: 4px;
@@ -211,7 +211,7 @@
   border: 1px solid var(--line);
   border-radius: 999px;
   font-family: var(--font-mono), monospace;
-  font-size: 0.6rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gold);
@@ -231,7 +231,7 @@
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 0.66rem;
+  font-size: 0.6875rem;
   color: var(--text-muted);
   margin-right: 2px;
 }
@@ -267,14 +267,14 @@
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-size: 0.66rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   color: var(--text-muted);
   transition: color 0.15s ease;
 }
 .thRight .thBtn { flex-direction: row-reverse; }
 .thBtn:hover { color: var(--gold); }
-.sortArrow { font-size: 0.6rem; opacity: 0.7; }
+.sortArrow { font-size: 0.6875rem; opacity: 0.7; }
 .table td {
   padding: 13px 14px;
   border-bottom: 1px solid var(--line);
@@ -369,7 +369,7 @@
     font-family: var(--font-mono), monospace;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    font-size: 0.64rem;
+    font-size: 0.6875rem;
     font-weight: 700;
     color: var(--text-muted);
     text-align: left;
@@ -403,7 +403,7 @@
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -430,10 +430,10 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: var(--line);
+  background: var(--rule);
   margin-top: 34px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
 }
 .statCell { background: var(--bg); padding: 24px 26px 22px; }
 .statNum {
@@ -446,14 +446,14 @@
 .statLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   margin-top: 12px;
 }
 .statNote {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   color: var(--dim);
   margin-top: 5px;
@@ -466,7 +466,7 @@
   gap: 14px;
   align-items: center;
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--dim);
@@ -495,8 +495,8 @@
 .splitKicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }

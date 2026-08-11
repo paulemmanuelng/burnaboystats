@@ -50,8 +50,8 @@
 .backLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
@@ -61,8 +61,8 @@
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--gold);
 }
@@ -88,8 +88,8 @@
 .sectionKicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--gold);
   margin-top: 18px;
@@ -116,7 +116,7 @@
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 10.5px;
+  font-size: 11px;
   color: var(--text-muted);
 }
 .channelValue { font-weight: 600; font-size: 14px; }

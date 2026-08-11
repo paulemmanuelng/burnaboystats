@@ -46,14 +46,14 @@
 .backLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 .badge {
   margin-left: auto;
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   color: var(--gold);
   flex: none;
@@ -64,8 +64,8 @@
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -91,9 +91,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: var(--line);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background: var(--rule);
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
 }
 .statCell { background: var(--bg); padding: 15px 18px; }
 .statValue {
@@ -107,14 +107,14 @@
 .statLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   margin-top: 9px;
 }
 .statNote {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   margin-top: 4px;
   color: var(--dim);
@@ -138,7 +138,7 @@
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -154,7 +154,7 @@
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--dim);
@@ -187,7 +187,7 @@
 .tallyWon { color: var(--gold); }
 .tallyLabel {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--dim);
@@ -212,7 +212,7 @@
 .category { font-size: 13.5px; line-height: 1.35; }
 .work {
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   color: var(--text-muted);
   margin-top: 3px;
   overflow: hidden;
@@ -228,7 +228,7 @@
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -258,7 +258,7 @@
 }
 .honoursNote {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--dim);
@@ -276,7 +276,7 @@
 .honourTitle { font-size: 13.5px; line-height: 1.35; }
 .honourOrg {
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 11px;
   color: var(--text-muted);
   margin-top: 3px;
 }

@@ -11,7 +11,7 @@
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -79,9 +79,18 @@
   margin: 8px auto 60px;
   text-align: center;
 }
-.lineupIntro {
+/* One rule for every section intro, in both languages.
+   Replaces .lineupIntro and .conquestIntro, which each gave the paragraph its
+   OWN centring instead of letting it inherit the heading's column — so at
+   desktop widths the intro began far to the right of the heading it belongs
+   to, and .lineupIntro's negative top margin pulled it into the heading's box.
+   60ch is a measure here, not a centring device. No Spanish override is
+   needed: a ch measure grows with the text, and with the negative margin gone
+   a longer heading pushes the paragraph down instead of colliding with it. */
+.sectionIntro {
   max-width: 60ch;
-  margin: -8px auto 32px;
+  margin: 14px 0 32px;
+  text-align: left;
   color: var(--text-muted);
   font-size: 1.02rem;
   line-height: 1.6;
@@ -121,7 +130,7 @@
 }
 .lineupTag {
   font-family: var(--font-mono), monospace;
-  font-size: 0.62rem;
+  font-size: 0.6875rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--gold-dim);
@@ -192,7 +201,7 @@
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--gold);
   display: flex;
@@ -277,14 +286,6 @@
   max-width: 860px;
   margin: 44px auto 56px;
 }
-.conquestIntro {
-  max-width: 640px;
-  margin: 0 auto 20px;
-  text-align: center;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
 /* ── Screen 25's action bar ──────────────────────────────────────────────
    Mobile only. The five-tab bar steps aside for it (see lib/mobileScreens.ts),
    so the two fixed bars can never stack. */
@@ -362,7 +363,7 @@
     color: var(--gold);
     font-family: var(--font-mono), monospace;
     font-weight: 700;
-    font-size: 10.5px;
+    font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     cursor: pointer;

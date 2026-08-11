@@ -110,20 +110,20 @@
 
 /* Tier colours — ranking by colour, no fills (cleaner on rows) */
 .silver {
-  color: #b8bcc4;
-  border-color: rgba(184, 188, 196, 0.4);
+  color: var(--tier-silver);
+  border-color: var(--tier-silver-edge);
 }
 .gold {
-  color: var(--gold);
-  border-color: rgba(255, 182, 39, 0.5);
+  color: var(--tier-gold);
+  border-color: var(--tier-gold-edge);
 }
 .platinum {
-  color: #dfe2e8;
-  border-color: rgba(223, 226, 232, 0.42);
+  color: var(--tier-platinum);
+  border-color: var(--tier-platinum-edge);
 }
 .diamond {
-  color: #8fe3f0;
-  border-color: rgba(143, 227, 240, 0.55);
+  color: var(--tier-diamond);
+  border-color: var(--tier-diamond-edge);
 }
 
 .source {
@@ -170,7 +170,7 @@
 .filterLabel {
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
-  font-size: 0.68rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.12em;
   color: var(--text-muted);
   margin-right: 4px;

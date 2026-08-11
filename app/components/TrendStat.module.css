@@ -10,7 +10,7 @@
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-size: 0.64rem;
+  font-size: 0.6875rem;
   color: var(--text-muted);
 }
 .body {
