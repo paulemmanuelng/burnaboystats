@@ -277,10 +277,6 @@
   border-top: 1px solid var(--rule-soft);
   border-bottom: 1px solid var(--rule-soft);
 }
-@media (max-width: 340px) {
-  .stat { padding: 14px; }
-  .statValue { font-size: 32px; }
-}
 .stat {
   background: var(--bg);
   padding: 18px;
@@ -307,7 +303,16 @@
 .statValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 40px;
+  /* Half a 320px phone leaves a 116px content box, and "$30.46M" is 136px at
+     40px Anton — it overran the cell and sat on the hairline seam. There used
+     to be a (max-width: 340px) override here, but it was declared ABOVE these
+     base rules, so the later font-size won and it never applied. A cap does
+     the same job without depending on source order: the designed 40px wherever
+     it fits (>=364px), scaling with the viewport below that so every figure in
+     the strip shrinks together. 10.4vw is set from measurement, not taste:
+     the string costs 3.41px of width per px of font, and half a 320px phone
+     leaves 116px, so 34px is the ceiling there. */
+  font-size: min(40px, 10.4vw);
   line-height: 0.9;
   font-variant-numeric: tabular-nums;
 }
