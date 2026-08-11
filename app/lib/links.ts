@@ -65,6 +65,8 @@ export const footerColumns: { label: string; links: { href: string; label: strin
     label: "The site",
     links: [
       { href: "/methodology", label: "Methodology" },
+      // Next to the methodology: the two together answer "who says so, and how".
+      { href: "/curator", label: "About the curator" },
       { href: "/api", label: "Open data API" },
       { href: "/search", label: "Search" },
       { href: "/share", label: "Stat Cards" },
