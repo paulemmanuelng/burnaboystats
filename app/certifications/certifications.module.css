@@ -369,19 +369,26 @@
 }
 .heroButtons { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
 
-/* Tier rail — four rows, hairline-separated, sharing the hero's right column. */
+/* Tier rail — four rows, hairline-separated, sharing the hero's right column.
+   The rows GROW to split the column into four equal bands: the hero's copy
+   side is taller than four fixed-height rows, and the leftover used to pool
+   below Silver as a visibly dead block with the rail's border running past
+   the content. flex: 1 spends that height inside the rows instead, and the
+   last hairline goes — it was underlining nothing. */
 .tierRail {
   border-left: 1px solid var(--line);
   display: flex;
   flex-direction: column;
 }
 .tierRow {
+  flex: 1;
   padding: 22px 0 20px 40px;
   border-bottom: 1px solid var(--line);
   display: flex;
   align-items: center;
   gap: 16px;
 }
+.tierRow:last-child { border-bottom: none; }
 .tierDot { width: 10px; height: 10px; border-radius: 50%; flex: none; display: block; }
 .tierName {
   font-family: var(--font-mono), monospace;
