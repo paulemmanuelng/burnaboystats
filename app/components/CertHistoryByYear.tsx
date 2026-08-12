@@ -17,7 +17,7 @@ const YEARS = [2026, 2025, 2024, 2023];
 // (The all-time "most certified African artist" record IS press-sourced; that's
 // a different claim and it lives in the updates feed.)
 const YEAR_NOTES: Partial<Record<number, string>> = {
-  2026: "Fifty plaques and counting — the most certified African artist of 2026, and Burna Boy's biggest certification year on record, past his own previous best of 39 in 2023.",
+  2026: "Fifty-eight plaques and counting — the most certified African artist of 2026, and Burna Boy's biggest certification year on record, past his own previous best of 39 in 2023.",
   2025: "Burna Boy was the most certified African artist in 2025.",
 };
 

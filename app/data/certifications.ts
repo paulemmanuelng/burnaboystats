@@ -145,8 +145,20 @@ export const singles: Release[] = [
   { title: "Common Person", year: 2022, certs: [
     { c: "NG", level: "Platinum", x: 3 },
   ] },
+  { title: "TaTaTa", credit: "feat. Travis Scott", year: 2025, certs: [
+    { c: "NG", level: "Platinum" },
+  ] },
+  { title: "Update", year: 2025, certs: [
+    { c: "NG", level: "Platinum" },
+  ] },
+  { title: "Love", year: 2025, certs: [
+    { c: "NG", level: "Platinum", x: 3 },
+  ] },
+  { title: "Dem Dey", year: 2025, certs: [
+    { c: "NG", level: "Gold" },
+  ] },
   { title: "Giza", year: 2025, certs: [
-    { c: "NG", level: "Platinum", x: 2 },
+    { c: "NG", level: "Platinum", x: 3 },
   ] },
   { title: "Do I", year: 2023, certs: [
     { c: "NG", level: "Platinum" },
@@ -170,7 +182,7 @@ export const singles: Release[] = [
     { c: "NG", level: "Platinum" },
   ] },
   { title: "Bundle by Bundle", year: 2024, certs: [
-    { c: "NG", level: "Gold" },
+    { c: "NG", level: "Platinum" },
   ] },
   { title: "Question", credit: "feat. Don Jazzy", year: 2021, certs: [
     { c: "NG", level: "Gold" },
@@ -258,7 +270,7 @@ export const features: Release[] = [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 2 },
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "NL", level: "Platinum" },
     { c: "DK", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "PT", level: "Gold" },
-    { c: "DE", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "SE", level: "Platinum" },
+    { c: "DE", level: "Gold" }, { c: "NG", level: "Platinum" }, { c: "SE", level: "Platinum" },
   ] },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", year: 2024, certs: [
     { c: "FR", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "UK", level: "Gold" },
@@ -324,7 +336,7 @@ export const features: Release[] = [
     { c: "CA", level: "Gold" }, { c: "NG", level: "Silver" },
   ] },
   { title: "Talibans II", credit: "with Byron Messia", year: 2023, certs: [
-    { c: "CA", level: "Gold" }, { c: "NG", level: "Gold" },
+    { c: "CA", level: "Gold" }, { c: "NG", level: "Platinum" },
   ] },
   { title: "Rollin'", credit: "Mist ft. Burna Boy", year: 2021, certs: [
     { c: "UK", level: "Silver" },
@@ -364,6 +376,17 @@ export interface CertEvent {
 }
 
 export const certHistory: CertEvent[] = [
+  // TCSN (Nigeria) register, read directly at turntablecharts.com/certification
+  // on 12 Aug 2026 — the relaunch batch is dated 6 Feb 2026. Four new plaques
+  // and four upgrades; upgrade rows APPEND (the earlier tier's row stays).
+  { title: "TaTaTa", credit: "feat. Travis Scott", country: "NG", level: "Platinum", year: 2026 },
+  { title: "Update", country: "NG", level: "Platinum", year: 2026 },
+  { title: "Love", country: "NG", level: "Platinum", x: 3, year: 2026 },
+  { title: "Dem Dey", country: "NG", level: "Gold", year: 2026 },
+  { title: "Giza", credit: "feat. Seyi Vibez", country: "NG", level: "Platinum", x: 3, year: 2026 },
+  { title: "Bundle by Bundle", country: "NG", level: "Platinum", year: 2026 },
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "NG", level: "Platinum", year: 2026 },
+  { title: "Talibans II", credit: "with Byron Messia", country: "NG", level: "Platinum", year: 2026 },
   // APPEND upgrades, never rewrite them. This is a log of award EVENTS, not of
   // current status: when a release moves Gold → Platinum, the Gold stays and the
   // Platinum is added as its own row. The page says so in its own words ("a
