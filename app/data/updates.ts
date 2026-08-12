@@ -36,6 +36,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-12",
+    category: "Certifications",
+    text: "Nigeria's register, read in full: TCSN's own records carry four plaques the site had missed — “TaTaTa” Platinum, “Update” Platinum, “Love” 3× Platinum and “Dem Dey” Gold — and four upgrades, with “Location”, “Talibans II” and “Bundle by Bundle” all moving up to Platinum and “Giza” to 3×. That is 229 certifications worldwide, 58 of them awarded in 2026.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-08-12",
     category: "Streaming",
     text: "One billion plays on YouTube Music: “Dai Dai” crosses the mark in under three months — Burna Boy's first song to a billion there, and No. 1 on the platform's global chart this week.",
     href: "/dai-dai",

@@ -33,18 +33,18 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 225 certifications across 26 countries", () => {
+  it("counts 229 certifications across 26 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
-    expect(certs).toBe(225); // + Dai Dai CZ Gold
+    expect(certs).toBe(229); // + the TCSN four
     expect(countries).toBe(26); // Czechia joins
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 6 Diamond / 93 Platinum / 95 Gold / 31 Silver", () => {
+  it("splits into 6 Diamond / 99 Platinum / 93 Gold / 31 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -53,12 +53,12 @@ describe("handoff checklist — data integrity", () => {
     // changed to Diamond — the repo says Platinum, and the design file that
     // showed 7 was the one carrying the typo.
     expect(byLevel("Diamond")).toBe(6);
-    expect(byLevel("Platinum")).toBe(93); // + Dai Dai PT upgrade
-    expect(byLevel("Gold")).toBe(95); // + Dai Dai CZ Gold
+    expect(byLevel("Platinum")).toBe(99); // + Dai Dai PT upgrade
+    expect(byLevel("Gold")).toBe(93); // three golds upgraded to Platinum at TCSN, one gold added
     expect(byLevel("Silver")).toBe(31);
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(225);
+    expect(sum).toBe(229);
   });
 
   it("counts 280 chart entries across 71 territories, 48 of them at No. 1", () => {

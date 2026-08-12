@@ -51,9 +51,9 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(225); // 225th: Dai Dai CZ Gold (ČNS IFPI week-32 badge, 10 Aug 2026)
+    expect(totalAwards()).toBe(229); // 226th–229th: the TCSN register read 12 Aug 2026 — TaTaTa, Update, Love, Dem Dey
     expect(countryCount).toBe(26);
-    expect(certifiedReleaseCount).toBe(81);
+    expect(certifiedReleaseCount).toBe(85); // TaTaTa, Update, Love, Dem Dey join via TCSN
   });
 });
 
@@ -77,10 +77,11 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 has the published count of 50 certifications", () => {
-    // 50th: “Dai Dai” CZ Gold (ČNS IFPI, 10 Aug 2026). The log counts award
-    // EVENTS, so a Gold and a later Platinum in the same country are two.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(50);
+  it("2026 has the published count of 58 certifications", () => {
+    // 51st–58th: TCSN's 6 Feb 2026 batch, read at the register 12 Aug — four
+    // new plaques and four upgrades. The log counts award EVENTS, so a Gold
+    // and a later Platinum in the same country are two.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(58);
   });
 
   it("2025 has the published count of 29 certifications", () => {
