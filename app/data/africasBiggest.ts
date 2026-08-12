@@ -15,8 +15,8 @@ const BURNA_PEAK_LISTENERS = "60.13M";
 /** His YouTube Music monthly audience, at its peak. Exported because four
  *  files quoted this figure by hand — it sat at 840M in eight places while
  *  YouTube Music itself showed 844M. One home, imported everywhere. */
-export const BURNA_YT_AUDIENCE = "921M";
-export const BURNA_YT_AUDIENCE_WORDS = "921 million";
+export const BURNA_YT_AUDIENCE = "929M";
+export const BURNA_YT_AUDIENCE_WORDS = "929 million";
 
 // "Africa's Biggest" — leaderboard-style stat boxes comparing African artists.
 // Two box layouts:
@@ -93,14 +93,14 @@ export const statBoxes: LeaderboardBox[] = [
       {
         label: "2026",
         entries: [
-          { name: "Tems", value: "1.599B" },
-          { name: "Wizkid", value: "1.558B" },
-          { name: "Burna Boy", value: "1.480B" },
+          { name: "Tems", value: "1.615B" },
+          { name: "Wizkid", value: "1.577B" },
+          { name: "Burna Boy", value: "1.508B" },
           { name: "Asake", value: "1.224B" },
           { name: "Tyla", value: "1.069B" },
         ],
         inProgress: true,
-        note: "Five African artists have passed a billion Spotify streams in 2026 so far — Tems leads on 1.599B, with Burna Boy third on 1.480B and Tyla the newest past the mark. Counted to 7 August, with five months still to run.",
+        note: "Five African artists have passed a billion Spotify streams in 2026 so far — Tems leads on 1.615B, and Burna Boy is third on 1.508B, one of only three past the billion-and-a-half line. Counted to 11 August, with over four months still to run.",
       },
       {
         label: "2025",
@@ -145,7 +145,7 @@ export const statBoxes: LeaderboardBox[] = [
       },
     ],
     source:
-      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. Totals are shown for 2025, and for 2026 as counted to 7 August 2026 — part-year figures from a chart tracker's own daily count, not an official Spotify report and not projected forward from a daily average. 2026 is still running, so both the totals and the order will change.",
+      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. Totals are shown for 2025, and for 2026 as counted to 11 August 2026 — part-year figures from a chart tracker's own daily count, not an official Spotify report and not projected forward from a daily average. 2026 is still running, so both the totals and the order will change.",
   },
   {
     // Verified against kworb's PkListeners column, which agrees to the digit on
@@ -269,7 +269,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "youtube-audience-world",
     // Six deep: the top five plus Burna Boy, who closes the list on merit —
     // he passed Lady Gaga (862M) on 8 Aug 2026, so the Gaga and Michael
-    // Jackson scaffolding rows are gone. At 921M the next target is Rosé
+    // Jackson scaffolding rows are gone. At 929M the next target is Rosé
     // (959M). Shakira set a new all-time peak of 1.04B on 11 Aug 2026, taking
     // the record from Bruno Mars — hence her row moving above his.
     title: "Biggest monthly audience on YouTube — worldwide",

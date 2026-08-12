@@ -35,6 +35,30 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-12",
+    category: "Streaming",
+    text: "One billion plays on YouTube Music: “Dai Dai” crosses the mark in under three months — Burna Boy's first song to a billion there, and No. 1 on the platform's global chart this week.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-12",
+    category: "Streaming",
+    text: "A 30th day as the most-streamed song on Earth: Spotify's Daily Top Songs Global for 11 August keeps “Dai Dai” at No. 1 with 3,949,565 streams — 55 days inside the global Top 10 and 83 on the chart, still the longest run by any 2026 release.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-12",
+    category: "Charts",
+    text: "A 7th week atop Mediatraffic's United World Chart with 347,000 points — while Switzerland gives “Dai Dai” a 9th week at No. 1, the longest run of any song there this year, and Germany a 6th.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-12",
+    category: "Streaming",
+    text: "Seven million YouTube subscribers — the most of any Nigerian artist, more than a million clear of Rema — as his YouTube Music monthly audience climbs again to 929 million.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-08-11",
     category: "Firsts & Records",
     text: "On the NBA 2K27 soundtrack: “TaTaTa”, his Travis Scott collaboration from No Sign of Weakness, is one of 28 tracks on 2K's official launch playlist — alongside A$AP Rocky, J. Cole, Tyler, The Creator, Bad Bunny and Snoop Dogg.",

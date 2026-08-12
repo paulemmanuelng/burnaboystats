@@ -54,7 +54,7 @@ const liveOnesLabel = `right now on the daily charts of ${platformOnes
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
   description:
-    "Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: 29 days as Earth's most-streamed song, No. 1 in 27 countries, and the Final halftime show.",
+    "Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: 30 days as Earth's most-streamed song, No. 1 in 27 countries, and the Final halftime show.",
   path: "/dai-dai",
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
   shareDescription: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and performed at the Final halftime show.",
@@ -154,7 +154,7 @@ export default function DaiDaiPage() {
     { v: `${daiDaiChartEntryCount}`, l: "official chart entries worldwide — on national singles charts across the globe, plus both of Billboard's global charts" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "No. 1", l: "on both Billboard global charts — 4 consecutive weeks atop the Global 200 (a first for an African artist, and Shakira's 2nd) and a 7th consecutive week atop the Global 200 Excl. US, still counting" },
-    { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 29 days as the most-streamed song on Earth" },
+    { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 30 days as the most-streamed song on Earth" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, France, Slovakia & Portugal, Gold in Colombia, Hungary & Greece, and Silver in the UK" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
@@ -164,7 +164,7 @@ export default function DaiDaiPage() {
       label: "The streaming streaks",
       intro: "The daily and weekly runs — every one still counting.",
       items: [
-        { v: "29 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and reclaimed in August as the longest-running No. 1 by any 2026 release, past BTS' “Swim” (25); 54 days inside the global Top 10 and 82 days on the chart, all still counting" },
+        { v: "30 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and reclaimed in August as the longest-running No. 1 by any 2026 release, past BTS' “Swim” (25); 55 days inside the global Top 10 and 83 days on the chart, all still counting" },
         { v: "4 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
         { v: "33 days", l: "at No. 1 on Apple Music's European songs chart, and a 7th day atop the worldwide Apple Music chart" },
         { v: "23 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
@@ -176,7 +176,7 @@ export default function DaiDaiPage() {
       intro: "Country by country, on the official singles charts.",
       items: [
         { v: "6 weeks", l: "at No. 1 on Germany's official singles chart — and named the country's official Sommerhit 2026 by GfK Entertainment, which compiles the charts, after nearly 60 million German streams" },
-        { v: "8 weeks", l: "at No. 1 on Switzerland's official chart — the longest run at No. 1 by any song there so far this year" },
+        { v: "9 weeks", l: "at No. 1 on Switzerland's official chart — the longest run at No. 1 by any song there so far this year" },
         { v: "5 weeks", l: "at No. 1 on France's Official Singles Chart (SNEP)" },
         { v: "No. 1", l: "India's IMI International Top 20 Singles Chart — the first Burna Boy song to top a chart in India" },
         { v: "No. 1", l: "Official MENA Chart Top 20 — still on top in the latest week — and Billboard's US World Digital Song Sales chart" },
@@ -191,7 +191,7 @@ export default function DaiDaiPage() {
       label: "The world rankings",
       intro: "The charts that rank the whole planet at once.",
       items: [
-        { v: "6 weeks", l: "at No. 1 on Mediatraffic's United World Chart — 375,000 points in the week to 8 August, and the first Burna Boy song ever to top it" },
+        { v: "7 weeks", l: "at No. 1 on Mediatraffic's United World Chart — 347,000 points in the week to 15 August, and the first Burna Boy song ever to top it" },
         { v: "No. 1", l: "iTunes song chart in 72 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, the Philippines the newest" },
         { v: "No. 13", l: "Deezer Worldwide Top 100 — a new peak, charting in 57 countries and No. 1 in 23 of them" },
         { v: "17 days", l: "at No. 1 on Spotify's Global Music Video chart — more than any other song has managed there" },
