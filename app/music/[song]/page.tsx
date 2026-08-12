@@ -94,11 +94,15 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
   ].filter(Boolean) as { v: string; l: string; missing?: boolean; lead?: boolean }[];
   // Em dash, not zero. The badge names the reason so the reader doesn't have to
   // guess whether the figure is absent or the page is broken.
+  // ONE dash card, not three. The design's rule stands — an absent record is
+  // itself a fact and stays on the page as a dash — but three dash cells each
+  // badged "History only", under a hero chip saying the same thing, over a
+  // footnote saying it a fifth time, read as a page full of missing teeth.
+  // The statement now appears once here and once in the hero, and the rest of
+  // the grid is the figures the record DOES hold.
   const missingFacts = historyOnly
     ? [
-        { v: "—", l: "best chart peak worldwide", missing: true },
-        { v: "—", l: "chart entries", missing: true },
-        { v: "—", l: "certifications worldwide", missing: true },
+        { v: "—", l: "chart or certification record", missing: true },
         // Gold, like any figure the record does hold — panel F.
         { v: `${song.year}`, l: "released", lead: true },
       ]
@@ -255,12 +259,6 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
               </div>
             ))}
           </div>
-          {historyOnly && (
-            <p className={styles.numNote}>
-              No chart or certification record exists for this song. The page still runs
-              its story — the dashes say the record is absent, not zero.
-            </p>
-          )}
         </section>
       )}
 
