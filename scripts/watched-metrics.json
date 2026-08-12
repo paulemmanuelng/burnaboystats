@@ -129,7 +129,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 771803628,
+      "baseline": 772514052,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -147,7 +147,7 @@
         }
       ],
       "lastChanged": "2026-08-12",
-      "lastSeenValue": 771803628,
+      "lastSeenValue": 772514052,
       "lastSeenAt": "2026-08-12"
     },
     {
@@ -159,7 +159,7 @@
       "match": "Last Last [Official Music Video]",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 358798428,
+      "baseline": 359765412,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
@@ -177,9 +177,9 @@
           "describes": "displayed YouTube views on /music/last-last"
         }
       ],
-      "lastChanged": "2026-08-04",
-      "lastSeenValue": 359476904,
-      "lastSeenAt": "2026-08-09",
+      "lastChanged": "2026-08-12",
+      "lastSeenValue": 359765412,
+      "lastSeenAt": "2026-08-12",
       "stalenessDays": 45
     },
     {
@@ -210,8 +210,8 @@
         }
       ],
       "lastChanged": "2026-08-04",
-      "lastSeenValue": 307926000,
-      "lastSeenAt": "2026-08-09",
+      "lastSeenValue": 308052418,
+      "lastSeenAt": "2026-08-12",
       "stalenessDays": 60
     },
     {
@@ -242,8 +242,8 @@
         }
       ],
       "lastChanged": "2026-08-09",
-      "lastSeenValue": 476500154,
-      "lastSeenAt": "2026-08-09",
+      "lastSeenValue": 476872715,
+      "lastSeenAt": "2026-08-12",
       "stalenessDays": 45
     },
     {
@@ -274,8 +274,8 @@
         }
       ],
       "lastChanged": "2026-08-07",
-      "lastSeenValue": 116666892,
-      "lastSeenAt": "2026-08-09",
+      "lastSeenValue": 116806824,
+      "lastSeenAt": "2026-08-12",
       "stalenessDays": 30
     },
     {
@@ -305,8 +305,8 @@
         "max": 50000000000
       },
       "lastChanged": "2026-08-07",
-      "lastSeenValue": 3169710662,
-      "lastSeenAt": "2026-08-09",
+      "lastSeenValue": 3172598665,
+      "lastSeenAt": "2026-08-12",
       "stalenessDays": 21
     },
     {
