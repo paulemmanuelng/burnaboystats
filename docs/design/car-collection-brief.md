@@ -1,5 +1,14 @@
 # Design brief — Burna Boy Stats, Car Collection page
 
+> **⚠ Partially superseded (August 2026).** The artwork approach in §5b of this
+> document — batch silhouettes, site-palette fills — did not survive contact
+> with reality: briefs named car *models*, but several of these cars are
+> one-offs, so generic drawings could never resemble them. Car artwork is now
+> produced **one car at a time** under
+> [car-artwork-process.md](car-artwork-process.md), drawn from references of
+> the actual vehicles in their real liveries. The page-layout and spec-panel
+> ideas in this document remain valid future work.
+
 **For:** Claude design
 **Route:** `/records/cars` (desktop) + its mobile screen
 **Status:** the page exists and works. This is a visual redesign of an existing, data-complete page — not a new feature.
