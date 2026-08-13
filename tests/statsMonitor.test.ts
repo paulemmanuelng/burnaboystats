@@ -199,3 +199,45 @@ describe("appendTrendPoint", () => {
     expect(r.reason).toBe("date already present");
   });
 });
+
+// ── The 2026 running-totals accumulator (streams-2026-*) ──────────────────────
+// kworb's all-artists table publishes values in MILLIONS with decimals, and
+// the artist link is wrapped in a div — both bit the first extractor draft.
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error — plain ESM helper module
+import { extractKworbArtistDaily } from "../scripts/stats-lib.mjs";
+
+const KWORB_ARTISTS_ROW = `<tr>
+<td class="text"><div><a href="/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html">Burna Boy</a></div></td>
+<td>10,596.5</td>
+<td>9.267</td>
+<td class="smaller">6,097.6</td></tr>`;
+
+describe("extractKworbArtistDaily", () => {
+  it("reads the daily column and converts from millions", () => {
+    expect(extractKworbArtistDaily(KWORB_ARTISTS_ROW, "Burna Boy")).toBe(9267000);
+  });
+  it("returns NaN for an artist not in the table", () => {
+    expect(Number.isNaN(extractKworbArtistDaily(KWORB_ARTISTS_ROW, "Wizkid"))).toBe(true);
+  });
+});
+
+describe("accumulate metrics", () => {
+  const base = { id: "x", kind: "accumulate", baseline: 1_517_360_000 };
+  it("adds the daily to the running total on a new day", () => {
+    const r = evaluateMetric({ ...base, lastSeenAt: "2026-08-12" }, 9_267_000);
+    expect(r.status).toBe("accumulate");
+    expect(r.live).toBe(1_526_627_000);
+    expect(isActionable(r.status)).toBe(true);
+  });
+  it("adds only once per day — the live workflow runs hourly", () => {
+    const today = new Date().toISOString().slice(0, 10);
+    const r = evaluateMetric({ ...base, lastSeenAt: today }, 9_267_000);
+    expect(r.status).toBe("ok");
+    expect(r.live).toBe(base.baseline); // unchanged
+  });
+  it("formats the total the way the 2026 board displays it", () => {
+    expect(formatStat(1_526_627_000, "B3")).toBe("1.527B");
+    expect(formatStat(1_620_560_000, "B3")).toBe("1.621B");
+  });
+});

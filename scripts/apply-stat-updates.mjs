@@ -26,6 +26,7 @@ import {
   extractKworbYouTubeVideo,
   extractKworbYouTubeTotal,
   extractKworbSongStreams,
+  extractKworbArtistDaily,
   extractSpotifyFollowers,
   evaluateMetric,
   isActionable,
@@ -54,6 +55,7 @@ const htmlExtractors = {
   kworbYouTubeVideo: (html, metric) => extractKworbYouTubeVideo(html, metric.match),
   kworbYouTubeTotal: (html) => extractKworbYouTubeTotal(html),
   kworbSongStreams: (html, metric) => extractKworbSongStreams(html, metric.match),
+  kworbArtistDaily: (html, metric) => extractKworbArtistDaily(html, metric.match),
 };
 
 async function fetchText(url) {

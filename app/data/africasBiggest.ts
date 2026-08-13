@@ -93,14 +93,14 @@ export const statBoxes: LeaderboardBox[] = [
       {
         label: "2026",
         entries: [
-          { name: "Tems", value: "1.615B" },
-          { name: "Wizkid", value: "1.577B" },
-          { name: "Burna Boy", value: "1.508B" },
+          { name: "Tems", value: "1.621B" },
+          { name: "Wizkid", value: "1.584B" },
+          { name: "Burna Boy", value: "1.517B" },
           { name: "Asake", value: "1.224B" },
           { name: "Tyla", value: "1.069B" },
         ],
         inProgress: true,
-        note: "Five African artists have passed a billion Spotify streams in 2026 so far — Tems leads on 1.615B, and Burna Boy is third on 1.508B, one of only three past the billion-and-a-half line. Counted to 11 August, with over four months still to run.",
+        note: "Five African artists have passed a billion Spotify streams in 2026 so far — and three are past a billion and a half, with Burna Boy third behind Tems and Wizkid. The top three totals now update daily from each day's streams.",
       },
       {
         label: "2025",
@@ -145,7 +145,7 @@ export const statBoxes: LeaderboardBox[] = [
       },
     ],
     source:
-      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. Totals are shown for 2025, and for 2026 as counted to 11 August 2026 — part-year figures from a chart tracker's own daily count, not an official Spotify report and not projected forward from a daily average. 2026 is still running, so both the totals and the order will change.",
+      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. Totals are shown for 2025, and for 2026 auto-accumulated daily for the top three (each day's streams added to a running total, checkpointed against a chart tracker's cumulative count) — not an official Spotify report and not projected forward from a daily average. 2026 is still running, so both the totals and the order will change.",
   },
   {
     // Verified against kworb's PkListeners column, which agrees to the digit on

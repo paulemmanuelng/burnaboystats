@@ -54,6 +54,12 @@ export const COUNTRIES: Record<string, Country> = {
   PT: { name: "Portugal", flag: "🇵🇹", body: "AFP" },
   GR: { name: "Greece", flag: "🇬🇷", body: "IFPI Greece" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "RiSA" },
+  // TCSN's public register (turntablecharts.com/certification) is REQUEST-based
+  // and paid — "certification is not automatic" — so it will never mirror every
+  // award, and absence from it proves nothing. Silver IS a real TCSN tier (their
+  // application form: "Silver, Gold, Platinum or Multi-Platinum") even though
+  // the register currently displays no Silver awards for anyone. Do not "clean
+  // up" NG entries against the register — see PR #97 and its correction comment.
   NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable (TCSN)" },
   BR: { name: "Brazil", flag: "🇧🇷", body: "Pro-Música Brasil" },
   CO: { name: "Colombia", flag: "🇨🇴", body: "Sony Music Colombia" },
