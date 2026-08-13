@@ -1,3 +1,7 @@
+/* Translucent washes in this file composite over an explicit var(--bg)
+   layer (the gradient trick): these cells sit on hairline-grid seam beds that
+   the Aug 2026 divider pass brightened from --line to --rule, and a bare
+   translucent background against that mid-grey read as olive/washed-out. */
 /* By the numbers — desktop.
    designs/desktop/Records - By The Numbers.dc.html, values verbatim.
 
@@ -70,8 +74,8 @@
   transition: background var(--dur-fast) var(--ease);
 }
 /* The four the page is built around get a wash and larger type. */
-.statBig { background: rgba(255, 182, 39, 0.05); }
-.stat:hover { background: rgba(255, 182, 39, 0.09); color: var(--text); }
+.statBig { background: linear-gradient(rgba(255, 182, 39, 0.05), rgba(255, 182, 39, 0.05)), var(--bg); }
+.stat:hover { background: linear-gradient(rgba(255, 182, 39, 0.09), rgba(255, 182, 39, 0.09)), var(--bg); color: var(--text); }
 .numRow { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .num {
   font-family: var(--font-anton), sans-serif;
