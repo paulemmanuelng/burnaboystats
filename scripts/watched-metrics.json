@@ -129,7 +129,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 780658050,
+      "baseline": 781617485,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -147,7 +147,7 @@
         }
       ],
       "lastChanged": "2026-08-13",
-      "lastSeenValue": 781062691,
+      "lastSeenValue": 781617485,
       "lastSeenAt": "2026-08-13"
     },
     {
@@ -750,7 +750,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Tems",
       "kind": "accumulate",
-      "baseline": 1620560000,
+      "baseline": 1626014000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -768,9 +768,9 @@
           "describes": "Tems 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1620560000,
-      "lastSeenAt": "2026-08-12",
-      "lastChanged": "2026-08-12"
+      "lastSeenValue": 1626014000,
+      "lastSeenAt": "2026-08-13",
+      "lastChanged": "2026-08-13"
     },
     {
       "id": "streams-2026-wizkid",
@@ -780,7 +780,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Wizkid",
       "kind": "accumulate",
-      "baseline": 1583540000,
+      "baseline": 1589903000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -798,9 +798,9 @@
           "describes": "Wizkid 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1583540000,
-      "lastSeenAt": "2026-08-12",
-      "lastChanged": "2026-08-12"
+      "lastSeenValue": 1589903000,
+      "lastSeenAt": "2026-08-13",
+      "lastChanged": "2026-08-13"
     },
     {
       "id": "streams-2026-burna",
@@ -810,7 +810,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Burna Boy",
       "kind": "accumulate",
-      "baseline": 1517360000,
+      "baseline": 1526627000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -828,9 +828,9 @@
           "describes": "Burna Boy 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1517360000,
-      "lastSeenAt": "2026-08-12",
-      "lastChanged": "2026-08-12"
+      "lastSeenValue": 1526627000,
+      "lastSeenAt": "2026-08-13",
+      "lastChanged": "2026-08-13"
     }
   ]
 }
