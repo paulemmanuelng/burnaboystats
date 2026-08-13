@@ -708,11 +708,33 @@ aa
 .scoreGrid { display: grid; grid-template-columns: repeat(5, 1fr); }
 .scoreCell {
   display: block;
+  position: relative; /* anchors the watermark glyph */
+  overflow: hidden;
   padding: 26px 24px 22px;
   border-left: 1px solid var(--line);
   color: var(--text);
   transition: background var(--dur) var(--ease);
 }
+/* The watermark: a faint pictogram of what the number IS, tucked to the cell's
+   right edge behind the text. Decorative only — the label carries the meaning,
+   so the glyph can stay whisper-quiet and colour-blind-safe. */
+.scoreGlyph {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 84px;
+  height: 84px;
+  color: var(--gold);
+  opacity: 0.07;
+  pointer-events: none;
+}
+/* The album disc carries the real cover in its label — a raster image can't be
+   tinted by currentColor, so this glyph runs brighter overall and its own
+   line-work is drawn lighter inside the SVG to land at the same visual weight. */
+.scoreGlyphAlbum { opacity: 0.35; }
+.scoreCell:hover .scoreGlyph { opacity: 0.12; }
+.scoreCell:hover .scoreGlyphAlbum { opacity: 0.5; }
 .scoreCell:first-child { border-left: none; }
 .scoreCell:hover { background: var(--color-accent-100); }
 .scoreValue {

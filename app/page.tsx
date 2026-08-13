@@ -8,6 +8,7 @@ import StatCardButton from "./components/StatCardButton";
 import GlobeTeaser from "./components/GlobeTeaser";
 import SearchTrigger from "./components/SearchTrigger";
 import { homeScoreboard } from "./lib/homeScoreboard";
+import StatGlyph from "./components/StatGlyph";
 import { spotifyImage } from "./lib/spotifyImage";
 import { titleKey } from "./lib/titleKey";
 import {
@@ -115,6 +116,7 @@ export default function Home() {
             <div className={styles.scoreGrid}>
               {homeScoreboard.map((s) => (
                 <Link key={s.label} href={s.href} className={styles.scoreCell}>
+                  <StatGlyph kind={s.glyph} className={`${styles.scoreGlyph} ${s.glyph === "albums" ? styles.scoreGlyphAlbum : ""}`} />
                   <div className={styles.scoreValue}>{s.value}</div>
                   <div className={styles.scoreLabel}>{s.label}</div>
                   <div className={styles.scoreSource}>{s.source}</div>
