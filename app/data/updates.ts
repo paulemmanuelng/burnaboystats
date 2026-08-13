@@ -35,6 +35,14 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-13",
+    category: "Streaming",
+    // Spotify's own half-year editorial list, not an official chart — logged
+    // here as news; deliberately does not join charts.ts.
+    text: "Top of Spotify's Global Impact List: the platform's H1 2026 ranking of Nigerian songs with the strongest international streaming performance puts “Dai Dai” at No. 1 — ahead of collaborations from Rema, Tems and Wizkid.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-08-12",
     category: "Certifications",
     text: "Nigeria's register, read in full: TCSN's own records carry four plaques the site had missed — “TaTaTa” Platinum, “Update” Platinum, “Love” 3× Platinum and “Dem Dey” Gold — and four upgrades, with “Location”, “Talibans II” and “Bundle by Bundle” all moving up to Platinum and “Giza” to 3×. That is 229 certifications worldwide, 58 of them awarded in 2026.",
