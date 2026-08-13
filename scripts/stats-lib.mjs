@@ -76,6 +76,23 @@ export function extractKworbYouTubeVideo(html, matchTitle) {
 // Total Spotify streams for ONE song on kworb's per-artist songs page. Rows are
 // "<title></td><td>total</td><td>daily</td>"; we match the title cell exactly so
 // "Ye" can't match "Ye [Official Audio]"-style variants or a longer title.
+// kworb's all-artists table (kworb.net/spotify/artists.html): one row per
+// artist with Total and Daily stream columns. Returns the DAILY figure for the
+// named artist — the increment an accumulate metric adds once per day.
+export function extractKworbArtistDaily(html, artistName) {
+  // Row shape (verified 13 Aug 2026):
+  //   <td class="text"><div><a href="/spotify/artist/…">Burna Boy</a></div></td>
+  //   <td>10,596.5</td>  <- career total, MILLIONS
+  //   <td>9.267</td>     <- daily streams, MILLIONS
+  // Values are in millions with a decimal point, so the daily converts ×1e6.
+  const esc = artistName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const rowRe = new RegExp(`>${esc}</a>(?:</div>)?</td>\\s*((?:<td[^>]*>[\\d,.]+</td>\\s*){2})`, "i");
+  const m = html.match(rowRe);
+  if (!m) return NaN;
+  const cells = [...m[1].matchAll(/<td[^>]*>([\d,.]+)<\/td>/g)].map((c) => parseNum(c[1]));
+  return cells.length >= 2 ? Math.round(cells[1] * 1e6) : NaN;
+}
+
 export function extractKworbSongStreams(html, title) {
   const want = String(title).trim().toLowerCase();
   for (const row of html.match(/<tr[^>]*>[\s\S]*?<\/tr>/g) || []) {
@@ -171,6 +188,17 @@ export function evaluateMetric(metric, liveValue) {
       status: delta >= (metric.threshold ?? 5) ? "rank-change" : "ok",
     };
   }
+  if (metric.kind === "accumulate") {
+    // A running total the source only publishes as a DAILY increment. The
+    // baseline IS the total; each new kworb day adds the daily figure to it —
+    // once, gated on the date, because the live workflow runs hourly and the
+    // source refreshes daily. liveValue here is the DAY'S streams, not a total.
+    const today = new Date().toISOString().slice(0, 10);
+    if (metric.lastSeenAt === today) {
+      return { ...metric, live: metric.baseline, status: "ok" };
+    }
+    return { ...metric, live: metric.baseline + liveValue, added: liveValue, status: "accumulate" };
+  }
   const drift = relativeDrift(metric.baseline, liveValue);
   return {
     ...metric,
@@ -182,7 +210,7 @@ export function evaluateMetric(metric, liveValue) {
 
 // True when a result is worth alerting a human about.
 export function isActionable(status) {
-  return status === "drift" || status === "new-peak" || status === "rank-change";
+  return status === "drift" || status === "new-peak" || status === "rank-change" || status === "accumulate";
 }
 
 // Format a raw number the way a given site field displays it, so an auto-drafted
@@ -208,6 +236,8 @@ export function formatStat(n, format) {
       if (n >= 1e6) return `${(n / 1e6).toFixed(1)}M`;
       if (n >= 1e3) return `${Math.round(n / 1e3)}K`;
       return String(Math.round(n));
+    case "B3":
+      return `${(n / 1e9).toFixed(3)}B`;
     case "raw":
       return Math.round(n).toLocaleString("en-US");
     case "int":

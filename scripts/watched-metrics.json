@@ -741,6 +741,96 @@
       "lastChanged": "2026-08-07",
       "lastSeenValue": 3573771,
       "lastSeenAt": "2026-08-13"
+    },
+    {
+      "id": "streams-2026-tems",
+      "label": "Tems — 2026 Spotify streams (running total)",
+      "sourceName": "kworb — all-artists daily table",
+      "sourceUrl": "https://kworb.net/spotify/artists.html",
+      "extractor": "kworbArtistDaily",
+      "match": "Tems",
+      "kind": "accumulate",
+      "baseline": 1620560000,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.03,
+        "min": 1000000000,
+        "max": 6000000000
+      },
+      "note": "Year-to-date total, auto-accumulated: kworb publishes only a per-day figure, so each new kworb day ADDS the daily to this baseline (gated once per date — the live workflow is hourly, the source daily). Checkpointed to the fan tracker's cumulative count through 11 Aug 2026; re-checkpoint against the tracker if the two drift by more than a day's streams. Rows in the board are ordered by hand — if the order changes, reorder africasBiggest.ts manually.",
+      "siteTargets": [
+        {
+          "file": "app/data/africasBiggest.ts",
+          "anchor": "{ name: \"Tems\", value: \"",
+          "pattern": "[\\d.]+B",
+          "template": "%s",
+          "format": "B3",
+          "describes": "Tems 2026 running Spotify total on the Africa's Biggest board"
+        }
+      ],
+      "lastSeenValue": 1620560000,
+      "lastSeenAt": "2026-08-12",
+      "lastChanged": "2026-08-12"
+    },
+    {
+      "id": "streams-2026-wizkid",
+      "label": "Wizkid — 2026 Spotify streams (running total)",
+      "sourceName": "kworb — all-artists daily table",
+      "sourceUrl": "https://kworb.net/spotify/artists.html",
+      "extractor": "kworbArtistDaily",
+      "match": "Wizkid",
+      "kind": "accumulate",
+      "baseline": 1583540000,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.03,
+        "min": 1000000000,
+        "max": 6000000000
+      },
+      "note": "Year-to-date total, auto-accumulated: kworb publishes only a per-day figure, so each new kworb day ADDS the daily to this baseline (gated once per date — the live workflow is hourly, the source daily). Checkpointed to the fan tracker's cumulative count through 11 Aug 2026; re-checkpoint against the tracker if the two drift by more than a day's streams. Rows in the board are ordered by hand — if the order changes, reorder africasBiggest.ts manually.",
+      "siteTargets": [
+        {
+          "file": "app/data/africasBiggest.ts",
+          "anchor": "{ name: \"Wizkid\", value: \"",
+          "pattern": "[\\d.]+B",
+          "template": "%s",
+          "format": "B3",
+          "describes": "Wizkid 2026 running Spotify total on the Africa's Biggest board"
+        }
+      ],
+      "lastSeenValue": 1583540000,
+      "lastSeenAt": "2026-08-12",
+      "lastChanged": "2026-08-12"
+    },
+    {
+      "id": "streams-2026-burna",
+      "label": "Burna Boy — 2026 Spotify streams (running total)",
+      "sourceName": "kworb — all-artists daily table",
+      "sourceUrl": "https://kworb.net/spotify/artists.html",
+      "extractor": "kworbArtistDaily",
+      "match": "Burna Boy",
+      "kind": "accumulate",
+      "baseline": 1517360000,
+      "live": true,
+      "sanity": {
+        "maxJump": 0.03,
+        "min": 1000000000,
+        "max": 6000000000
+      },
+      "note": "Year-to-date total, auto-accumulated: kworb publishes only a per-day figure, so each new kworb day ADDS the daily to this baseline (gated once per date — the live workflow is hourly, the source daily). Checkpointed to the fan tracker's cumulative count through 11 Aug 2026; re-checkpoint against the tracker if the two drift by more than a day's streams. Rows in the board are ordered by hand — if the order changes, reorder africasBiggest.ts manually.",
+      "siteTargets": [
+        {
+          "file": "app/data/africasBiggest.ts",
+          "anchor": "{ name: \"Burna Boy\", value: \"",
+          "pattern": "[\\d.]+B",
+          "template": "%s",
+          "format": "B3",
+          "describes": "Burna Boy 2026 running Spotify total on the Africa's Biggest board"
+        }
+      ],
+      "lastSeenValue": 1517360000,
+      "lastSeenAt": "2026-08-12",
+      "lastChanged": "2026-08-12"
     }
   ]
 }
