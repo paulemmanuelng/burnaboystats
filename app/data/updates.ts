@@ -36,6 +36,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-13",
+    category: "Charts",
+    text: "A 50th day atop Apple Music's European songs chart and a 34th on the worldwide iTunes chart — while the “Dai Dai” video logs a 48th day as YouTube's most-viewed and stands as the 8th-fastest music video in YouTube history to 700 million, reached in 74.8 days.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-13",
     category: "Streaming",
     // Spotify's own half-year editorial list, not an official chart — logged
     // here as news; deliberately does not join charts.ts.

@@ -164,8 +164,8 @@ export default function DaiDaiPageES() {
       items: [
         { v: "30 días", l: "en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y recuperado en agosto como la racha más larga de cualquier lanzamiento de 2026, por delante de “Swim” de BTS (25)—; 55 días dentro del top 10 mundial y 83 en la lista" },
         { v: "4 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify, con un pico de 40,28 millones de reproducciones en una sola semana" },
-        { v: "33 días", l: "en el número 1 de la lista europea de Apple Music, y un séptimo día en la cima de la lista mundial de Apple Music" },
-        { v: "23 días", l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes" },
+        { v: "50 días", l: "en el número 1 de la lista europea de Apple Music —su 50.º día de hito—, más 11 días en la cima de la lista mundial de Apple Music" },
+        { v: "34 días", l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes" },
         { v: "N.º 1", l: liveOnesLabel },
       ],
     },
@@ -200,7 +200,7 @@ export default function DaiDaiPageES() {
       label: "El video",
       intro: "El video de “Dai Dai”, con carrera propia.",
       items: [
-        { v: DAI_DAI_VIDEO_VIEWS, l: "visualizaciones en YouTube — 600 millones en 67 días, el video musical más rápido de la carrera de ambos artistas hasta esa cifra y el único de 2026 en alcanzarla. Superó los 500 millones en 59,4 días, el 12.º más rápido de la historia" },
+        { v: DAI_DAI_VIDEO_VIEWS, l: "visualizaciones en YouTube — 600 millones en 67 días, el video musical más rápido de la carrera de ambos artistas hasta esa cifra y el único de 2026 en alcanzarla. Superó los 500 millones en 59,4 días (el 12.º más rápido de la historia) y los 700 millones en 74,8 días — el 8.º video musical más rápido en la historia de YouTube" },
         { v: "33 días", l: "como el video musical más visto del mundo en YouTube, y número 1 en 59 países — ya supera los 6,1 millones de “me gusta”" },
       ],
     },

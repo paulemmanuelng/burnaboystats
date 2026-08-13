@@ -166,8 +166,8 @@ export default function DaiDaiPage() {
       items: [
         { v: "30 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and reclaimed in August as the longest-running No. 1 by any 2026 release, past BTS' “Swim” (25); 55 days inside the global Top 10 and 83 days on the chart, all still counting" },
         { v: "4 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
-        { v: "33 days", l: "at No. 1 on Apple Music's European songs chart, and a 7th day atop the worldwide Apple Music chart" },
-        { v: "23 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
+        { v: "50 days", l: "at No. 1 on Apple Music's European songs chart — a 50th milestone day — plus 11 days atop the worldwide Apple Music chart" },
+        { v: "34 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
         { v: "No. 1", l: liveOnesLabel },
       ],
     },
@@ -202,7 +202,7 @@ export default function DaiDaiPage() {
       label: "The video",
       intro: "The “Dai Dai” video, on a tear of its own.",
       items: [
-        { v: DAI_DAI_VIDEO_VIEWS, l: "YouTube views for the “Dai Dai” video — 600 million in 67 days, the fastest music video of either artist's career to the mark and the first and only 2026 video to reach it. It passed 500 million in 59.4 days, the 12th fastest in history" },
+        { v: DAI_DAI_VIDEO_VIEWS, l: "YouTube views for the “Dai Dai” video — 600 million in 67 days, the fastest music video of either artist's career to the mark and the first and only 2026 video to reach it. It passed 500 million in 59.4 days (12th fastest ever) and 700 million in 74.8 days — the 8th fastest music video in YouTube history" },
         { v: "33 days", l: "as the most-viewed music video on YouTube worldwide, and No. 1 in 59 countries — now past 6.1 million likes" },
       ],
     },
