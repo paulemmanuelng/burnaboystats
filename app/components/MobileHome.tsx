@@ -1,5 +1,6 @@
 import Link from "next/link";
 import GlobeTeaser from "./GlobeTeaser";
+import StatGlyph from "./StatGlyph";
 import styles from "./mobileHome.module.css";
 import { liveHeadline } from "../lib/liveHeadline";
 import { spotifyImage } from "../lib/spotifyImage";
@@ -121,10 +122,10 @@ const years = studioAlbums.map((a) => a.year);
 // see is a number they will try to tap, and every one of these has a page
 // behind it that shows the working.
 const stats = [
-  { value: String(totalAwards()), label: "Certifications", source: `${certCountries} countries`, href: "/certifications" },
-  { value: String(numberOnes), label: "No. 1s worldwide", source: `${chartCountryCount} countries`, href: "/records/charts" },
-  { value: String(studioAlbums.length), label: "Studio albums", source: `${Math.min(...years)} — ${Math.max(...years)}`, href: "/music" },
-  { value: topTour?.gross ?? "—", label: "Top tour gross", source: "Boxscore", href: "/records/tours" },
+  { glyph: "certs" as const, value: String(totalAwards()), label: "Certifications", source: `${certCountries} countries`, href: "/certifications" },
+  { glyph: "no1s" as const, value: String(numberOnes), label: "No. 1s worldwide", source: `${chartCountryCount} countries`, href: "/records/charts" },
+  { glyph: "albums" as const, value: String(studioAlbums.length), label: "Studio albums", source: `${Math.min(...years)} — ${Math.max(...years)}`, href: "/music" },
+  { glyph: "tour" as const, value: topTour?.gross ?? "—", label: "Top tour gross", source: "Boxscore", href: "/records/tours" },
 ];
 
 export default function MobileHome() {
@@ -219,6 +220,7 @@ export default function MobileHome() {
       <div className={styles.statGrid}>
         {stats.map((s) => (
           <Link key={s.label} href={s.href} className={styles.stat}>
+            <StatGlyph kind={s.glyph} className={`${styles.statGlyph} ${s.glyph === "albums" ? styles.statGlyphAlbum : ""}`} />
             <div className={styles.statValue}>{s.value}</div>
             <div className={styles.statLabel}>{s.label}</div>
             <div className={styles.statSource}>{s.source}</div>
