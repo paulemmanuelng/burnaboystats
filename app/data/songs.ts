@@ -238,7 +238,7 @@ export const songs: Song[] = [
     slug: "alone",
     title: "Alone",
     year: 2022,
-    spotifyStreams: "212M",
+    spotifyStreams: "213M",
     album: "Black Panther: Wakanda Forever",
     cover: "https://i.scdn.co/image/ab67616d0000b273992a1f56ac5382848277cff2",
     spotify: "https://open.spotify.com/track/0AoBY2Y3qs6dtGgOD6c91N",

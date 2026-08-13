@@ -19,7 +19,7 @@
 // tracked total, re-measure the offset in scripts/watched-metrics.json rather
 // than editing this string. A 22M drift on 10.6B is only 0.2%, well under the
 // metric's 3% threshold, so the bot will never self-correct it.
-export const spotifyTotalStreams = "10.73B";
+export const spotifyTotalStreams = "10.74B";
 
 // Every Burna Boy video on YouTube, across his channel and others'.
 export const youtubeTotalViews = "3.17B";
