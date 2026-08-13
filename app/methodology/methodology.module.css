@@ -1,3 +1,7 @@
+/* Translucent washes in this file composite over an explicit var(--bg)
+   layer (the gradient trick): these cells sit on hairline-grid seam beds that
+   the Aug 2026 divider pass brightened from --line to --rule, and a bare
+   translucent background against that mid-grey read as olive/washed-out. */
 /* Methodology — desktop.
    designs/desktop/Methodology.dc.html, values verbatim.
 
@@ -165,7 +169,7 @@
 }
 .block { background: var(--bg); padding: 28px 30px; }
 /* The independence note spans the row — it applies to everything above it. */
-.blockWide { grid-column: 1 / -1; background: rgba(255, 182, 39, 0.05); }
+.blockWide { grid-column: 1 / -1; background: linear-gradient(rgba(255, 182, 39, 0.05), rgba(255, 182, 39, 0.05)), var(--bg); }
 .blockH {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

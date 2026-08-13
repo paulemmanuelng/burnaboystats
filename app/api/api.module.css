@@ -1,3 +1,7 @@
+/* Translucent washes in this file composite over an explicit var(--bg)
+   layer (the gradient trick): these cells sit on hairline-grid seam beds that
+   the Aug 2026 divider pass brightened from --line to --rule, and a bare
+   translucent background against that mid-grey read as olive/washed-out. */
 /* Open data API — desktop.
    designs/desktop/API.dc.html, values verbatim.
 
@@ -49,7 +53,7 @@
    something different from "here is a count". */
 .badgeLive { border-color: rgba(62, 209, 127, 0.4); background: rgba(62, 209, 127, 0.1); color: var(--green); }
 .badgeDot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: block; }
-.badgeLicence { border-color: var(--gold); background: rgba(255, 182, 39, 0.13); color: var(--gold); }
+.badgeLicence { border-color: var(--gold); background: linear-gradient(rgba(255, 182, 39, 0.13), rgba(255, 182, 39, 0.13)), var(--bg); color: var(--gold); }
 
 /* ── Sections ───────────────────────────────────────────────────────────── */
 .sectionPad { padding: 48px 40px 0; }
@@ -89,7 +93,7 @@
   display: block;
   transition: background var(--dur-fast) var(--ease);
 }
-.endpoint:hover { background: rgba(245, 240, 232, 0.055); color: var(--text); }
+.endpoint:hover { background: linear-gradient(rgba(245, 240, 232, 0.055), rgba(245, 240, 232, 0.055)), var(--bg); color: var(--text); }
 .endpointTop { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 /* Green, like every other "this is live" signal on the site. */
 .method {
@@ -170,7 +174,7 @@
 .blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule-soft); }
 .block { background: var(--bg); padding: 28px 30px; }
 /* The licence block is the one with a condition attached, so it carries the tint. */
-.blockGold { background: rgba(255, 182, 39, 0.05); }
+.blockGold { background: linear-gradient(rgba(255, 182, 39, 0.05), rgba(255, 182, 39, 0.05)), var(--bg); }
 .blockH {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

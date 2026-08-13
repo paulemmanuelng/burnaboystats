@@ -1,3 +1,7 @@
+/* Translucent washes in this file composite over an explicit var(--bg)
+   layer (the gradient trick): these cells sit on hairline-grid seam beds that
+   the Aug 2026 divider pass brightened from --line to --rule, and a bare
+   translucent background against that mid-grey read as olive/washed-out. */
 /* "The world takeover" — the conquest grid.
    designs/desktop/Dai Dai.dc.html and mobile screen 25, values verbatim.
    Ten columns on desktop, five on a phone. */
@@ -21,8 +25,8 @@
 }
 /* Charted — a warm neutral. No. 1 — gold. The two tiers are the whole point of
    the grid, so they carry the only colour on it. */
-.cellOn { background: rgba(245, 240, 232, 0.07); }
-.cellOne { background: rgba(255, 182, 39, 0.3); }
+.cellOn { background: linear-gradient(rgba(245, 240, 232, 0.07), rgba(245, 240, 232, 0.07)), var(--bg); }
+.cellOne { background: linear-gradient(rgba(255, 182, 39, 0.3), rgba(255, 182, 39, 0.3)), var(--bg); }
 
 .flag { font-size: 17px; line-height: 1; }
 
@@ -60,8 +64,8 @@
 }
 .legendItem { display: flex; align-items: center; gap: 7px; }
 .swatch { width: 11px; height: 11px; display: block; }
-.swatchOne { background: rgba(255, 182, 39, 0.3); border: 1px solid var(--gold); }
-.swatchOn { background: rgba(245, 240, 232, 0.07); border: 1px solid var(--line); }
+.swatchOne { background: linear-gradient(rgba(255, 182, 39, 0.3), rgba(255, 182, 39, 0.3)), var(--bg); border: 1px solid var(--gold); }
+.swatchOn { background: linear-gradient(rgba(245, 240, 232, 0.07), rgba(245, 240, 232, 0.07)), var(--bg); border: 1px solid var(--line); }
 .status { margin-left: auto; }
 
 @media (max-width: 1239px) {

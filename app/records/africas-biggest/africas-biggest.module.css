@@ -144,7 +144,15 @@
 
 /* ── Stat box ───────────────────────────────────────────────────────────── */
 .box { background: var(--bg); padding: 24px 26px 22px; display: flex; flex-direction: column; }
-.boxFeatured { background: rgba(255, 182, 39, 0.06); grid-column: 1 / -1; }
+/* Layered over an OPAQUE --bg, not bare: this cell sits on the box grid's
+   1px seam bed, which the Aug 2026 divider pass brightened from --line to
+   --rule — a translucent wash composited against that mid-grey read as olive
+   and washed the whole board out. The gradient trick keeps the gold tint while
+   compositing against the page colour, whatever the seam bed becomes. */
+.boxFeatured {
+  background: linear-gradient(rgba(255, 182, 39, 0.06), rgba(255, 182, 39, 0.06)), var(--bg);
+  grid-column: 1 / -1;
+}
 .boxHead { display: flex; align-items: flex-start; gap: 12px; }
 .boxHeadMain { flex: 1; }
 .boxTitle {
