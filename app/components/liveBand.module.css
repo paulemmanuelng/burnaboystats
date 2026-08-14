@@ -48,7 +48,7 @@
 }
 
 .headline {
-  color: var(--gold);
+  color: var(--text);
   font-family: var(--font-anton), sans-serif;
   font-size: 16px;
   letter-spacing: 0.02em;
