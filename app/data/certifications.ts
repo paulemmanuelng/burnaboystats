@@ -88,7 +88,7 @@ export const albums: Release[] = [
 export const singles: Release[] = [
   { title: "Dai Dai", credit: "Shakira X Burna Boy", year: 2026, certs: [
     { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
-    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Gold" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" },
+    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -545,6 +545,12 @@ export const certHistory: CertEvent[] = [
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "UK", level: "Silver", year: 2026 },
   // 225th: gold badge ("Zlatý singl") on ČNS IFPI's own Singles Digital Top 100, week 32/2026 — 2.5M streams.
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "CZ", level: "Gold", year: 2026 },
+  // Gold→Platinum upgrade — verified at MAHASZ's own register search
+  // (slagerlistak.hu/arany-es-platinalemezek/kereso) 14 Aug 2026, which returns
+  // the row under Platinalemez and nothing under Aranylemez. An upgrade, so the
+  // worldwide plaque total stays put while Platinum crosses 100; the HU Gold
+  // row above stays, per the append-never-rewrite rule.
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "HU", level: "Platinum", year: 2026 },
 ];
 
 // Helpers
