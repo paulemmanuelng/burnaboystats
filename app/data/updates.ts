@@ -35,6 +35,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-14",
+    category: "Streaming",
+    text: "A 31st day as the most-streamed song on Earth: Spotify's Daily Top Songs Global for 12 August keeps “Dai Dai” at No. 1 with 3,893,861 streams — tying Justin Bieber & Nicki Minaj's “Beauty And A Beat” for the second-most days at No. 1 by any song in 2026, one behind Djo's “End of Beginning” (32).",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-08-13",
     category: "Charts",
     text: "A 50th day atop Apple Music's European songs chart and a 34th on the worldwide iTunes chart — while the “Dai Dai” video logs a 48th day as YouTube's most-viewed and stands as the 8th-fastest music video in YouTube history to 700 million, reached in 74.8 days.",
