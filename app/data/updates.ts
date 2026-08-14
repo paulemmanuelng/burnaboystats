@@ -36,6 +36,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-14",
+    category: "Certifications",
+    text: "Platinum in Hungary: MAHASZ upgrades “Dai Dai” from Gold — Burna Boy's 100th Platinum plaque worldwide, and the 59th certification awarded to him in 2026.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-08-14",
     category: "Streaming",
     text: "A 31st day as the most-streamed song on Earth: Spotify's Daily Top Songs Global for 12 August keeps “Dai Dai” at No. 1 with 3,893,861 streams — tying Justin Bieber & Nicki Minaj's “Beauty And A Beat” for the second-most days at No. 1 by any song in 2026, one behind Djo's “End of Beginning” (32).",
     href: "/dai-dai",

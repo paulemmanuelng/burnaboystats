@@ -51,7 +51,7 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(229); // 226th–229th: the TCSN register read 12 Aug 2026 — TaTaTa, Update, Love, Dem Dey
+    expect(totalAwards()).toBe(229); // Hungary's Platinum is an upgrade — the plaque count holds, the tier split moves
     expect(countryCount).toBe(26);
     expect(certifiedReleaseCount).toBe(85); // TaTaTa, Update, Love, Dem Dey join via TCSN
   });
@@ -71,17 +71,17 @@ describe("certHistory (certifications by year)", () => {
   // for its siblings, it should record one here too.
   it("keeps both rows for every Dai Dai Gold→Platinum upgrade", () => {
     const dd = certHistory.filter((e) => e.title === "Dai Dai" && e.year === 2026);
-    for (const country of ["ES", "FR", "SK", "PT"]) {
+    for (const country of ["ES", "FR", "SK", "PT", "HU"]) {
       const levels = dd.filter((e) => e.country === country).map((e) => e.level);
       expect(levels, `${country} should log Gold then Platinum`).toEqual(["Gold", "Platinum"]);
     }
   });
 
-  it("2026 has the published count of 58 certifications", () => {
+  it("2026 has the published count of 59 certifications", () => {
     // 51st–58th: TCSN's 6 Feb 2026 batch, read at the register 12 Aug — four
     // new plaques and four upgrades. The log counts award EVENTS, so a Gold
     // and a later Platinum in the same country are two.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(58);
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(59); // 59th: the Hungary Platinum upgrade
   });
 
   it("2025 has the published count of 29 certifications", () => {
