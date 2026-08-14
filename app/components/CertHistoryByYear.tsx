@@ -67,7 +67,7 @@ export default function CertHistoryByYear({
           </div>
           <p className={styles.logLede}>
             Each international announcement as it landed — a release can appear twice in a
-            year if it was certified at two tiers. Nigeria's TCSN plaques count in the
+            year if it was certified at two tiers. Nigeria’s TCSN plaques count in the
             totals and the country grid, not in this log.
           </p>
         </div>
