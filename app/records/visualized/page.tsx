@@ -16,7 +16,7 @@ import { ceremonies, totalWins } from "../../data/awards";
 import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../../data/charts";
 import { statBoxes, HIGHLIGHT } from "../../data/africasBiggest";
 import { monthlyListenersSeries } from "../../data/trends";
-import { certHistory } from "../../data/certifications";
+import { intlCertHistory } from "../../data/certifications";
 import { allNoms } from "../../data/awards";
 import { songs } from "../../data/songs";
 import { livePlatformTotals, liveChartsUpdated } from "../../data/liveCharts";
@@ -89,10 +89,10 @@ const formatListeners = (v: number) => `${v.toFixed(1)}M`;
 // ── Certification pace ───────────────────────────────────────────────────
 // Chronological, not ranked: the story is that the newest year is already the
 // biggest, so the years have to read left-to-right in time order.
-const certYears = [...new Set(certHistory.map((e) => e.year))].sort((a, b) => a - b);
+const certYears = [...new Set(intlCertHistory.map((e) => e.year))].sort((a, b) => a - b);
 const thisYear = certYears[certYears.length - 1];
 const certsByYear: BarItem[] = certYears.map((year) => {
-  const n = certHistory.filter((e) => e.year === year).length;
+  const n = intlCertHistory.filter((e) => e.year === year).length;
   return {
     name: String(year),
     meta: year === thisYear ? "so far" : undefined,
@@ -377,8 +377,8 @@ export default function VisualizedPage() {
           {
             title: "The pace of the plaques",
             note: certYearRecord
-              ? `${thisYear} is already his biggest year — ${certYearPeak} certifications, and it is still running.`
-              : "Counted by the year each award landed.",
+              ? `${thisYear} is already his biggest year — ${certYearPeak} international certifications, and it is still running.`
+              : "International awards, counted by the year each landed.",
             items: toBars(certsByYear, certsByYear.length),
           },
           {
@@ -474,7 +474,7 @@ export default function VisualizedPage() {
           <div className={styles.chartBody}>
             <RankedBars
               items={certsByYear}
-              ariaLabel="Burna Boy certifications awarded in each year"
+              ariaLabel="Burna Boy international certifications awarded in each year"
             />
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>

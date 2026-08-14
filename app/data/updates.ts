@@ -37,7 +37,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-14",
     category: "Certifications",
-    text: "Platinum in Hungary: MAHASZ upgrades “Dai Dai” from Gold — Burna Boy's 100th Platinum plaque worldwide, and the 59th certification awarded to him in 2026.",
+    text: "Platinum in Hungary: MAHASZ upgrades “Dai Dai” from Gold — Burna Boy's 100th Platinum plaque worldwide, and his 51st international certification of 2026.",
     href: "/certifications",
   },
   {

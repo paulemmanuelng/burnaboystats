@@ -7,6 +7,7 @@ import {
   certifiedReleaseCount,
   tierOf,
   certHistory,
+  intlCertHistory,
   type Release,
 } from "../app/data/certifications";
 import { matches, badgeWeight, byMostCertified, MARKET_WEIGHT } from "../app/lib/certs";
@@ -77,11 +78,13 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 has the published count of 59 certifications", () => {
-    // 51st–58th: TCSN's 6 Feb 2026 batch, read at the register 12 Aug — four
-    // new plaques and four upgrades. The log counts award EVENTS, so a Gold
-    // and a later Platinum in the same country are two.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(59); // 59th: the Hungary Platinum upgrade
+  it("2026 logs 51 international certifications (59 events with Nigeria)", () => {
+    // The by-year log is international-only: earlier years predate the TCSN
+    // register, so Nigeria's 8 events would skew the comparison. They still
+    // count in the totals. The log counts award EVENTS, so a Gold and a later
+    // Platinum in the same country are two.
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(51);
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(59);
   });
 
   it("2025 has the published count of 29 certifications", () => {
