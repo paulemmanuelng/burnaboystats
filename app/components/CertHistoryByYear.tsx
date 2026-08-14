@@ -17,7 +17,7 @@ const YEARS = [2026, 2025, 2024, 2023];
 // (The all-time "most certified African artist" record IS press-sourced; that's
 // a different claim and it lives in the updates feed.)
 const YEAR_NOTES: Partial<Record<number, string>> = {
-  2026: "Fifty-eight plaques and counting — the most certified African artist of 2026, and Burna Boy's biggest certification year on record, past his own previous best of 39 in 2023.",
+  2026: "Fifty-one international plaques and counting — the most certified African artist of 2026, and Burna Boy's biggest certification year on record, past his own previous best of 39 in 2023.",
   2025: "Burna Boy was the most certified African artist in 2025.",
 };
 
@@ -66,8 +66,9 @@ export default function CertHistoryByYear({
             <h2 className={styles.logTitle}>Certifications by year</h2>
           </div>
           <p className={styles.logLede}>
-            Each announcement as it landed — a release can appear twice in a year if it was
-            certified at two tiers.
+            Each international announcement as it landed — a release can appear twice in a
+            year if it was certified at two tiers. Nigeria’s TCSN plaques count in the
+            totals and the country grid, not in this log.
           </p>
         </div>
 

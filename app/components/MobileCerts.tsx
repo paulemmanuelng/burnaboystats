@@ -256,8 +256,9 @@ export default function MobileCerts({
           <div className={styles.logKicker}>The dated log</div>
           <h2 className={styles.logTitle}>Certifications by year</h2>
           <p className={styles.logLede}>
-            Each announcement as it landed — a release can appear twice in a year if it
-            was certified at two tiers.
+            Each international announcement as it landed — a release can appear twice in a
+            year if it was certified at two tiers. Nigeria’s TCSN plaques count in the
+            totals and the country grid, not in this log.
           </p>
         </div>
 

@@ -570,11 +570,18 @@ export function totalAwards() {
 
 // "Dai Dai"'s OWN certifications only — so the Dai Dai page never borrows Burna
 // Boy's artist-wide 2026 total. Counts distinct country certs for the song.
-/** Certifications awarded in a given calendar year — the "most in one year"
- *  record on /records/firsts derives from this rather than freezing at the
- *  threshold it crossed. */
+// The dated by-year log counts INTERNATIONAL certifications only. The logs
+// for earlier years predate Nigeria's TCSN register (relaunched Feb 2026) and
+// carry international awards alone, so mixing the 8 NG events into 2026 would
+// make the year-on-year comparison read high. Nigerian plaques still count
+// everywhere else: the worldwide total, the country grid, every release's row.
+export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
+
+/** International certifications awarded in a given calendar year — the "most
+ *  in one year" record on /records/firsts derives from this rather than
+ *  freezing at the threshold it crossed. */
 export const certsInYear = (year: number) =>
-  certHistory.filter((e) => e.year === year).length;
+  intlCertHistory.filter((e) => e.year === year).length;
 
 // The plaques the song currently holds — one per country at its highest tier,
 // same convention as totalAwards(). Counted off the release list rather than

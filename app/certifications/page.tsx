@@ -7,7 +7,7 @@ import CertHistoryByYear from "../components/CertHistoryByYear";
 import KeepExploring from "../components/KeepExploring";
 import { siteUrl } from "../site";
 import {
-  COUNTRIES, albums as certAlbums, singles, features, certHistory, allItems,
+  COUNTRIES, albums as certAlbums, singles, features, certHistory, intlCertHistory, allItems,
   totalAwards, certifiedReleaseCount, countryCount,
 } from "../data/certifications";
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
@@ -67,9 +67,9 @@ const summary = [
   { value: String(countryCount), label: "Countries", note: `${issuingBodies} issuing bodies` },
   { value: String(certifiedReleaseCount), label: "Certified releases", note: "Albums, singles, features" },
   {
-    value: String(certHistory.filter((e) => e.year === thisYear).length),
+    value: String(intlCertHistory.filter((e) => e.year === thisYear).length),
     label: `New in ${thisYear}`,
-    note: "Announced this year",
+    note: "International awards",
   },
 ];
 
@@ -84,7 +84,7 @@ export default function CertificationsPage() {
       <MobileCerts
         releases={allItems}
         albums={certAlbums}
-        history={certHistory}
+        history={intlCertHistory}
         countries={COUNTRIES}
         total={total}
         countryCount={countryCount}
@@ -154,7 +154,7 @@ export default function CertificationsPage() {
       />
 
       {/* ── The dated log ────────────────────────────────────────────── */}
-      <CertHistoryByYear history={certHistory} countries={COUNTRIES} />
+      <CertHistoryByYear history={intlCertHistory} countries={COUNTRIES} />
 
       <section className={styles.sourceBand}>
         <div className={styles.wide}>
