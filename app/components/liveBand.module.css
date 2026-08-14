@@ -6,7 +6,7 @@
   border-bottom: 1px solid var(--line);
   overflow: hidden;
   background-color: var(--gold);
-  background-image: linear-gradient(100deg, var(--gold-bright) 0%, var(--gold) 46%, #ffa023 100%);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 50%, var(--grad-b) 100%);
 }
 
 .inner {
