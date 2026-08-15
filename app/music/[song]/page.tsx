@@ -7,6 +7,7 @@ import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { songBySlug, songSlugs, songs, type Song } from "../../data/songs";
 import { allChartItems, CHART_COUNTRIES, chartTier } from "../../data/charts";
 import { allItems, COUNTRIES, tierOf } from "../../data/certifications";
+import { albumPageByTitle } from "../../data/albumPages";
 import MobileMenuButton from "../../components/MobileMenuButton";
 import BackLink from "../../components/BackLink";
 
@@ -210,7 +211,14 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
               height={236}
             />
             <div>
-              <div className={styles.kicker}>{song.album} · {song.year}</div>
+              <div className={styles.kicker}>
+                {albumPageByTitle(song.album) ? (
+                  <Link href={`/music/albums/${albumPageByTitle(song.album)!.slug}`}>{song.album}</Link>
+                ) : (
+                  song.album
+                )}{" "}
+                · {song.year}
+              </div>
               <h1 className={`${styles.title} ${song.title.length > 14 ? styles.titleLong : ""}`}>
                 {song.title}
               </h1>

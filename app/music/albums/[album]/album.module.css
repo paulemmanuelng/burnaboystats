@@ -1,0 +1,56 @@
+/* Album-only pieces of the album deep-dive. Everything else on the page reuses
+   the song page's stylesheet (../[song]/song.module.css) — the album page is
+   that design at album scale, so the shared classes are the point, not a
+   shortcut. */
+
+.trackList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.track {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 10px 2px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.trackNum {
+  flex: none;
+  width: 22px;
+  text-align: right;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.trackName {
+  color: var(--text);
+}
+
+.trackLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+.trackLink:hover {
+  color: var(--gold);
+}
+
+.trackMore {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.75;
+}
+.trackLink:hover .trackMore {
+  opacity: 1;
+}
