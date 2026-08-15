@@ -13,6 +13,7 @@ import { albums } from "../../../data/albums";
 import { songs } from "../../../data/songs";
 import { albumCharts, CHART_COUNTRIES, chartTier } from "../../../data/charts";
 import { allItems, COUNTRIES, tierOf } from "../../../data/certifications";
+import { sameTitle } from "../../../lib/titleKey";
 import MobileMenuButton from "../../../components/MobileMenuButton";
 import BackLink from "../../../components/BackLink";
 
@@ -26,9 +27,11 @@ export function generateStaticParams() {
 // Everything derived from the live chart + cert data, looked up by title, so
 // an album page never drifts from /records/charts or /certifications.
 function albumData(title: string) {
-  const record = albums.find((a) => a.title === title);
-  const chart = albumCharts.find((r) => r.title === title);
-  const cert = allItems.find((r) => r.title === title);
+  // sameTitle, not ===: albums.ts writes "I Told Them…" with a real ellipsis
+  // while charts.ts/certifications.ts write "..." — see lib/titleKey.ts.
+  const record = albums.find((a) => sameTitle(a.title, title));
+  const chart = albumCharts.find((r) => sameTitle(r.title, title));
+  const cert = allItems.find((r) => sameTitle(r.title, title));
 
   const entries = chart ? [...chart.entries].sort((a, b) => a.peak - b.peak) : [];
   const countryEntries = entries.filter((e) => e.c !== "GLB" && e.c !== "GLBX");
