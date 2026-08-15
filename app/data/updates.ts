@@ -35,6 +35,36 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-15",
+    category: "Streaming",
+    text: "A 32nd day as the most-streamed song on Earth: Spotify's Daily Top Songs Global for 13 August keeps “Dai Dai” at No. 1 with 3,925,226 streams — passing “Beauty And A Beat” (31) and tying Djo's “End of Beginning” for the most days at No. 1 by any song in 2026.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-15",
+    category: "Streaming",
+    text: "Back on the weekly summit too: “Dai Dai” returns to No. 1 on Spotify's Weekly Top Songs Global for the week ending 13 August with 28,999,319 streams — a 5th week atop the weekly list, in its 12th week on it.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-15",
+    category: "Streaming",
+    text: "800 million views on YouTube: the “Dai Dai” video crosses the mark 83 days after release — the first music video released in 2026 to reach it.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-15",
+    category: "Streaming",
+    text: "Two billion streams worldwide: the anthem's combined tally across Spotify, Apple Music, YouTube and the other major platforms passes the mark — Spotify's counter alone reads 338 million, YouTube Music is past a billion plays and the video sits at 800 million views.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-15",
+    category: "Charts",
+    text: "Holding No. 1 across Europe: a 7th week atop Germany's Top 100 Single-Charts, a 6th on the Netherlands' Single Top 100 and a 3rd on Norway's Top 100 Singles — while the UK logs a 4th week at the song's No. 2 peak.",
+    href: "/records/charts",
+  },
+  {
     date: "2026-08-14",
     category: "Certifications",
     text: "Platinum in Hungary: MAHASZ upgrades “Dai Dai” from Gold — Burna Boy's 100th Platinum plaque worldwide, and his 51st international certification of 2026.",

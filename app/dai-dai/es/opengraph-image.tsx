@@ -7,6 +7,6 @@ export default function Image() {
   return ogImage({
     kicker: "Mundial de la FIFA 2026",
     title: "Dai Dai",
-    sub: "El himno de Shakira y Burna Boy — 31 días como la canción más escuchada del mundo",
+    sub: "El himno de Shakira y Burna Boy — 32 días como la canción más escuchada del mundo",
   });
 }
