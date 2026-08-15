@@ -241,3 +241,21 @@ describe("accumulate metrics", () => {
     expect(formatStat(1_620_560_000, "B3")).toBe("1.621B");
   });
 });
+
+// ── Certification watches ──────────────────────────────────────────────────
+import { certWatchStatus } from "../scripts/stats-lib.mjs";
+
+describe("certification watches (FIMI register)", () => {
+  it("reports found when the release's row is in the returned fragment", () => {
+    const html = '<div class="table-item">Dai Dai — SHAKIRA X BURNA BOY — oro — 2026</div>';
+    expect(certWatchStatus(html, "Dai Dai")).toBe("found");
+  });
+  it("reports not-found on the register's own empty-result message", () => {
+    const html = '<div class="nessun-risultato">Nessuna certificazione disponibile per i criteri di ricerca inseriti.</div>';
+    expect(certWatchStatus(html, "Dai Dai")).toBe("not-found");
+  });
+  it("reports unavailable on an empty or non-string payload", () => {
+    expect(certWatchStatus("", "Dai Dai")).toBe("unavailable");
+    expect(certWatchStatus(undefined, "Dai Dai")).toBe("unavailable");
+  });
+});

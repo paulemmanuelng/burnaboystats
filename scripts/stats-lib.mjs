@@ -582,3 +582,14 @@ export function mergeChartPlacements(releases, rows) {
   const reach = (r) => r.platforms.reduce((n, p) => n + p.entries.length, 0);
   return releases.sort((a, b) => reach(b) - reach(a));
 }
+
+// ── Certification watches ──────────────────────────────────────────────────
+// A cert watch polls a register's own search endpoint and reports when a row
+// for the watched release appears. `html` is the fragment the register
+// returns; a hit means "a human should verify the tier at the register and
+// add the certification" — the watch never decides the tier itself.
+export function certWatchStatus(html, pattern) {
+  if (typeof html !== "string" || !html.trim()) return "unavailable";
+  if (html.includes("Nessuna certificazione")) return "not-found";
+  return html.toLowerCase().includes(pattern.toLowerCase()) ? "found" : "not-found";
+}
