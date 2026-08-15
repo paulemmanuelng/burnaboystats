@@ -65,6 +65,12 @@ export const updates: Update[] = [
     href: "/records/charts",
   },
   {
+    date: "2026-08-15",
+    category: "Tours",
+    text: "An Ibiza pool-party headline: Burna Boy fronted the global launch of Luna Loca at O Beach Ibiza on 14 August — swapping arenas for the island's daytime stage.",
+    href: "/records/tours/map",
+  },
+  {
     date: "2026-08-14",
     category: "Certifications",
     text: "Platinum in Hungary: MAHASZ upgrades “Dai Dai” from Gold — Burna Boy's 100th Platinum plaque worldwide, and his 51st international certification of 2026.",
