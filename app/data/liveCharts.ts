@@ -2664,7 +2664,7 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "HK",
             "name": "Hong Kong",
-            "position": 171,
+            "position": 173,
             "movement": null,
             "status": "new"
           }
