@@ -21,6 +21,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["home", "start", "overview", "burna boy stats"],
   },
   {
+    title: "Twice as Tall",
+    path: "/music/albums/twice-as-tall",
+    section: "Album",
+    description: "Burna Boy's Grammy-winning 2020 album — charts in 12 countries, features from Stormzy, Chris Martin and Youssou N'Dour.",
+    keywords: ["twice as tall", "album", "best global music album", "diddy", "2020", "level up", "monsters you made", "real life", "wonderful", "23"],
+  },
+  {
     title: "Last Last",
     path: "/music/last-last",
     section: "Song",

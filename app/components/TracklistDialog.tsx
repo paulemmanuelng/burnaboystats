@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../music/music.module.css";
 import { spotifyImage } from "../lib/spotifyImage";
+import Link from "next/link";
 import type { AlbumEntry } from "../data/albums";
+import { albumPageByTitle } from "../data/albumPages";
 
 /**
  * The tracklist dialog, rendered once for the whole page.
@@ -117,6 +119,14 @@ export default function TracklistDialog({ releases }: { releases: Release[] }) {
                 >
                   Play on Spotify ↗
                 </a>
+              )}
+              {albumPageByTitle(album.title) && (
+                <Link
+                  className={`btn ${styles.spotifyBtn}`}
+                  href={`/music/albums/${albumPageByTitle(album.title)!.slug}`}
+                >
+                  Full album page →
+                </Link>
               )}
               <div className={styles.trackList}>
                 {album.tracks.map((t, i) => (
