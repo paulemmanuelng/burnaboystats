@@ -4,6 +4,7 @@ import { albumPageBySlug, albumPageSlugs } from "../../../data/albumPages";
 import { albums } from "../../../data/albums";
 import { albumCharts } from "../../../data/charts";
 import { allItems } from "../../../data/certifications";
+import { sameTitle } from "../../../lib/titleKey";
 
 export function generateStaticParams() {
   return albumPageSlugs.map((album) => ({ album }));
@@ -14,9 +15,9 @@ export function generateStaticParams() {
 // staying frozen at whatever it read the first time it was scraped.
 function albumStats(slug: string) {
   const page = albumPageBySlug(slug);
-  const record = page && albums.find((a) => a.title === page.title);
-  const chart = page && albumCharts.find((r) => r.title === page.title);
-  const cert = page && allItems.find((r) => r.title === page.title);
+  const record = page && albums.find((a) => sameTitle(a.title, page.title));
+  const chart = page && albumCharts.find((r) => sameTitle(r.title, page.title));
+  const cert = page && allItems.find((r) => sameTitle(r.title, page.title));
   const entries = chart ? chart.entries : [];
   const countries = entries.filter((e) => e.c !== "GLB" && e.c !== "GLBX").length;
   const best = entries.length ? Math.min(...entries.map((e) => e.peak)) : null;
