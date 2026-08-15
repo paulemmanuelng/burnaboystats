@@ -140,9 +140,9 @@ export const albumPages: AlbumPage[] = [
   {
     slug: "twice-as-tall",
     title: "Twice as Tall",
-    tagline: "The Grammy winner — executive-produced with Diddy",
+    tagline: "The Grammy winner — Best Global Music Album, 2021",
     blurb:
-      "Released in August 2020, Twice as Tall won the 2021 Grammy for Best Global Music Album — the first winner of the category under that name, one year after African Giant's nomination. Recorded in lockdown and executive-produced with Diddy and Mama Bose Ogulu, it reaches across continents: Youssou N'Dour, Chris Martin, Stormzy, Naughty by Nature and Sauti Sol all appear across its fifteen tracks.",
+      "Released in August 2020, Twice as Tall won the 2021 Grammy for Best Global Music Album — the first winner of the category under that name, one year after African Giant's nomination. Recorded in lockdown and executive-produced by his mother and manager, Bose Ogulu, it reaches across continents: Youssou N'Dour, Chris Martin, Stormzy, Naughty by Nature and Sauti Sol all appear across its fifteen tracks.",
     extraFacts: [
       { v: "2021", l: "Grammy — Best Global Music Album, the first winner under that name" },
       { v: "15", l: "tracks, with features from Youssou N'Dour, Chris Martin, Stormzy, Naughty by Nature and Sauti Sol" },
@@ -159,7 +159,7 @@ export const albumPages: AlbumPage[] = [
       },
       {
         q: "Who features on Twice as Tall?",
-        a: "Across its 15 tracks, Twice as Tall features Youssou N'Dour (Level Up), Naughty by Nature (Naughty by Nature), Sauti Sol (Time Flies), Chris Martin of Coldplay (Monsters You Made) and Stormzy (Real Life). Diddy served as an executive producer.",
+        a: "Across its 15 tracks, Twice as Tall features Youssou N'Dour (Level Up), Naughty by Nature (Naughty by Nature), Sauti Sol (Time Flies), Chris Martin of Coldplay (Monsters You Made) and Stormzy (Real Life).",
       },
     ],
     metaTitle: "Twice as Tall — Burna Boy's Grammy-Winning 2020 Album",
