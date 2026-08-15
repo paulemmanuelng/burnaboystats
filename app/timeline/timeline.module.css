@@ -1,0 +1,279 @@
+/* The career timeline — era sections hung on a gold spine. House style:
+   Anton display, mono kickers, hairline rules, gold reserved for the spine
+   dots and the era markers. One responsive layout (like the song pages),
+   not a separate mobile screen. */
+
+.desktopOnly { display: block; }
+.desktopCrumbs { display: block; }
+
+/* Mobile back bar — same pattern as the song pages. */
+.mobileBackBar {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.mobileBackBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: none;
+}
+.mobileBackLabel {
+  flex: 1;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+/* ── Hero ──────────────────────────────────────────────────── */
+.hero {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 46px 40px 30px;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.eyebrowRule { width: 26px; height: 2px; background: var(--gold); }
+.h1 {
+  margin: 14px 0 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(44px, 7vw, 92px);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+.lede {
+  margin: 18px 0 0;
+  max-width: 560px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.jumpRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.jumpChip {
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.jumpChip:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ── Eras ──────────────────────────────────────────────────── */
+.era {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 34px 40px 8px;
+}
+.eraHead { max-width: 640px; }
+.eraSpan {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.11em;
+  color: var(--gold);
+}
+.eraName {
+  margin: 8px 0 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(26px, 3.4vw, 40px);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+.eraIntro { margin: 10px 0 0; color: var(--muted); line-height: 1.6; }
+
+.spine {
+  margin-top: 22px;
+  border-left: 2px solid var(--rule-soft);
+  padding-left: 0;
+}
+
+.entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 18px;
+  padding: 18px 8px 18px 28px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+}
+.entry:last-child { border-bottom: 0; }
+.entryLinked { transition: background var(--dur) var(--ease); }
+.entryLinked:hover { background: var(--color-accent-100); }
+
+.dot {
+  position: absolute;
+  left: -6px;
+  top: 26px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--bg);
+}
+
+.entryDate {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding-top: 3px;
+  white-space: nowrap;
+}
+
+.entryTop {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.entryTitle {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.entryText {
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 620px;
+}
+.entryMore {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.8;
+}
+.entryLinked:hover .entryMore { opacity: 1; }
+
+/* Kind badges — quiet, bordered, colour-coded by tier tokens. */
+.kind {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.kind_album { color: var(--gold); border-color: var(--tier-gold-edge, var(--line)); }
+.kind_award { color: var(--tier-platinum, #efede6); }
+.kind_milestone { color: var(--tier-diamond, #31a1c0); }
+
+/* ── Today ─────────────────────────────────────────────────── */
+.today {
+  max-width: 1360px;
+  margin: 30px auto 0;
+  padding: 34px 40px 46px;
+  border-top: 1px solid var(--rule-soft);
+}
+.todayKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.todayTitle {
+  margin: 8px 0 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 34px);
+  text-transform: uppercase;
+}
+.todayGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 20px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.todayCell {
+  display: block;
+  padding: 22px 20px;
+  background: var(--bg);
+  color: var(--text);
+  text-decoration: none;
+  transition: background var(--dur) var(--ease);
+}
+.todayCell:hover { background: var(--color-accent-100); }
+.todayValue {
+  display: block;
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(30px, 4vw, 44px);
+  color: var(--gold);
+}
+.todayLabel {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.todayNote { margin: 16px 0 0; font-size: 13px; color: var(--muted); }
+.todayNote a { color: var(--gold); }
+
+/* ── Mobile ────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .mobileBackBar { display: flex; }
+  .desktopCrumbs { display: none; }
+  .desktopOnly { display: none; }
+  .hero { padding: 26px 18px 20px; }
+  .era { padding: 26px 18px 4px; }
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 14px 4px 14px 22px;
+  }
+  .dot { top: 20px; }
+  .today { padding: 26px 18px 34px; }
+  .todayGrid { grid-template-columns: 1fr; }
+}

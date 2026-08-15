@@ -101,6 +101,7 @@ export const SEGMENT_LABELS: Record<string, string> = {
   firsts: "Firsts & Records",
   "africas-biggest": "Africa's Biggest",
   updates: "Latest Updates",
+  timeline: "Career Timeline",
   "dai-dai": "The Dai Dai Story",
   share: "Stat Cards",
   faq: "FAQ",

@@ -21,6 +21,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["home", "start", "overview", "burna boy stats"],
   },
   {
+    title: "Career Timeline",
+    path: "/timeline",
+    section: "Site",
+    description: "Burna Boy's career year by year — from Port Harcourt to the World Cup Final, every milestone dated.",
+    keywords: ["timeline", "career", "history", "biography", "story", "milestones", "year by year", "journey"],
+  },
+  {
     title: "L.I.F.E",
     path: "/music/albums/life",
     section: "Album",

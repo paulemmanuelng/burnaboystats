@@ -15,6 +15,7 @@
 /** Screens with their own sticky back bar — the site nav hides on these. */
 export const BACK_BAR_ROUTES = new Set<string>([
   "/certifications",
+  "/timeline",
   // Screen 27's sticky search field stands in for the nav. It is NOT in
   // ACTION_BAR_ROUTES: the design keeps the five-tab bar at its foot.
   "/search",
