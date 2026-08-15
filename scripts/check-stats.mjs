@@ -19,6 +19,7 @@ import {
   extractYouTubeViews,
   evaluateMetric,
   isActionable,
+  certWatchStatus,
 } from "./stats-lib.mjs";
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
@@ -76,6 +77,30 @@ async function main() {
 
   const actionable = results.filter((r) => isActionable(r.status));
 
+  // Certification watches — registers polled for a release that is expected to
+  // appear. A hit is actionable exactly like drift: verify at the register,
+  // then update the site by hand.
+  const certWatchResults = [];
+  for (const w of config.certWatches ?? []) {
+    let status = "unavailable";
+    try {
+      const res = await fetch(w.endpoint, {
+        method: "POST",
+        headers: {
+          "content-type": "application/x-www-form-urlencoded",
+          "user-agent": "burnaboystats-monitor/1.0 (+https://burnaboystats.com)",
+        },
+        body: w.body,
+      });
+      const data = res.ok ? await res.json() : null;
+      status = certWatchStatus(data?.html ?? "", w.pattern);
+    } catch {
+      status = "unavailable";
+    }
+    certWatchResults.push({ ...w, status });
+  }
+  const certHits = certWatchResults.filter((w) => w.status === "found");
+
   // Build a report table.
   const lines = [];
   lines.push("| Metric | Baseline | Live | Change | Status |");
@@ -95,17 +120,27 @@ async function main() {
       : "✅ ok";
     lines.push(`| ${r.label} | ${fmt(r.baseline)} | ${fmt(r.live)} | ${change} | ${badge} |`);
   }
+  for (const w of certWatchResults) {
+    const badge =
+      w.status === "found" ? "🏅 in the register — verify & add"
+      : w.status === "unavailable" ? "⏭️ register unavailable"
+      : "✅ not listed yet";
+    lines.push(`| ${w.label} | — | — | — | ${badge} |`);
+  }
   const table = lines.join("\n");
 
   let report = `## 📊 Burna Boy Stats — data monitor\n\n`;
-  if (actionable.length) {
-    report += `**${actionable.length} figure(s) need a look.** Verify against the primary source, then update the site (and the baseline in \`scripts/watched-metrics.json\`).\n\n`;
+  if (actionable.length || certHits.length) {
+    report += `**${actionable.length + certHits.length} item(s) need a look.** Verify against the primary source, then update the site (and the baseline in \`scripts/watched-metrics.json\`).\n\n`;
   } else {
     report += `All watched figures are within tolerance. Nothing to do.\n\n`;
   }
   report += table + "\n\n";
   for (const r of actionable) {
     report += `- **${r.label}**: site baseline ${fmt(r.baseline)} → source shows ${fmt(r.live)}. ${r.note ?? ""} (Source: ${r.sourceName} — ${r.sourceUrl})\n`;
+  }
+  for (const w of certHits) {
+    report += `- **${w.label}** is now IN the register. ${w.note ?? ""} (Register: ${w.sourceName} — ${w.sourceUrl})\n`;
   }
 
   console.log(report);
@@ -115,7 +150,7 @@ async function main() {
     await appendFile(process.env.GITHUB_STEP_SUMMARY, report);
   }
   if (process.env.GITHUB_OUTPUT) {
-    await appendFile(process.env.GITHUB_OUTPUT, `has_drift=${actionable.length > 0}\n`);
+    await appendFile(process.env.GITHUB_OUTPUT, `has_drift=${actionable.length > 0 || certHits.length > 0}\n`);
   }
   await writeFile(path.join(process.cwd(), "drift-report.md"), report);
 }
