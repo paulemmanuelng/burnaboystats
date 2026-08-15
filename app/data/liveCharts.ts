@@ -2540,12 +2540,6 @@ export const liveCharts: LiveRelease[] = [
             "movement": 3
           },
           {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 26,
-            "movement": -21
-          },
-          {
             "country": "SG",
             "name": "Singapore",
             "position": 30,
@@ -2558,6 +2552,12 @@ export const liveCharts: LiveRelease[] = [
             "position": 32,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 36,
+            "movement": -31
           },
           {
             "country": "TR",
@@ -2591,15 +2591,9 @@ export const liveCharts: LiveRelease[] = [
             "movement": -60
           },
           {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 71,
-            "movement": -69
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 80,
+            "position": 95,
             "movement": null,
             "status": "new"
           },
@@ -2631,8 +2625,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "JP",
             "name": "Japan",
-            "position": 165,
-            "movement": -27
+            "position": 155,
+            "movement": -17
           }
         ]
       }
@@ -3949,7 +3943,7 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NO",
             "name": "Norway",
-            "position": 155,
+            "position": 179,
             "movement": null,
             "status": "new"
           }
@@ -4661,7 +4655,7 @@ export const liveCharts: LiveRelease[] = [
             "country": "BN",
             "name": "Brunei Darussalam",
             "position": 96,
-            "movement": -5
+            "movement": -3
           }
         ]
       }
@@ -4864,25 +4858,6 @@ export const liveCharts: LiveRelease[] = [
             "country": "KE",
             "name": "Kenya",
             "position": 40,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "City Boys",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 184,
             "movement": null,
             "status": "new"
           }
