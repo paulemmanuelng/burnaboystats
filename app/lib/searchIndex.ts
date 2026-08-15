@@ -21,6 +21,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["home", "start", "overview", "burna boy stats"],
   },
   {
+    title: "Career Timeline",
+    path: "/timeline",
+    section: "Site",
+    description: "Burna Boy's career year by year — from Port Harcourt to the World Cup Final, every milestone dated.",
+    keywords: ["timeline", "career", "history", "biography", "story", "milestones", "year by year", "journey"],
+  },
+  {
     title: "L.I.F.E",
     path: "/music/albums/life",
     section: "Album",
@@ -38,8 +45,8 @@ export const searchIndex: SearchDoc[] = [
     title: "Outside",
     path: "/music/albums/outside",
     section: "Album",
-    description: "The 2018 breakthrough — home of “Ye”, with J Hus, Lily Allen and Mabel.",
-    keywords: ["outside", "album", "2018", "ye", "j hus", "lily allen", "mabel", "breakthrough"],
+    description: "Home of “Ye” — the 2018 album, his first under Atlantic, with J Hus, Lily Allen and Mabel.",
+    keywords: ["outside", "album", "2018", "ye", "j hus", "lily allen", "mabel", "atlantic"],
   },
   {
     title: "African Giant",

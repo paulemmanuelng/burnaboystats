@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./about.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileAbout from "../components/MobileAbout";
@@ -164,6 +165,9 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+            <p className={styles.tMoreLink}>
+              <Link href="/timeline">The full career timeline — every milestone, dated →</Link>
+            </p>
           </div>
         </section>
 

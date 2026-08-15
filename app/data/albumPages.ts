@@ -83,9 +83,9 @@ export const albumPages: AlbumPage[] = [
   {
     slug: "outside",
     title: "Outside",
-    tagline: "The breakthrough — home of “Ye”",
+    tagline: "Home of “Ye” — the first album under Atlantic",
     blurb:
-      "His first release under Atlantic, Outside (2018) is the album that carried Burna Boy out — thirteen tracks with J Hus, Lily Allen and Mabel, and above all “Ye”, the song that became his global calling card. It won Album of the Year at the 2018 Nigeria Entertainment Awards and set up everything African Giant would claim a year later.",
+      "His first release under Atlantic, Outside (2018) is the album that carried his sound around the world — thirteen tracks with J Hus, Lily Allen and Mabel, and above all “Ye”, the song that became his global calling card. It won Album of the Year at the 2018 Nigeria Entertainment Awards and set up everything African Giant would claim a year later.",
     extraFacts: [
       { v: "2018", l: "Album of the Year — Nigeria Entertainment Awards" },
       { v: "13", l: "tracks, with J Hus, Lily Allen and Mabel featuring" },
@@ -105,9 +105,9 @@ export const albumPages: AlbumPage[] = [
         a: "Yes — Outside won Album of the Year at the 2018 Nigeria Entertainment Awards and earned a Best R&B/Pop Album nomination at the 2019 Headies.",
       },
     ],
-    metaTitle: "Outside — Burna Boy's 2018 Breakthrough Album",
+    metaTitle: "Outside — Burna Boy's 2018 Album, Home of “Ye”",
     metaDescription:
-      "Outside (2018), the album that broke Burna Boy worldwide: home of “Ye”, features from J Hus, Lily Allen and Mabel, and Album of the Year at the 2018 NEA.",
+      "Outside (2018): home of “Ye”, Burna Boy's first album under Atlantic — features from J Hus, Lily Allen and Mabel, and Album of the Year at the 2018 NEA.",
   },
   {
     slug: "african-giant",

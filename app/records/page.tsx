@@ -26,6 +26,7 @@ const subs = [
   { href: "/live-charts", title: "Live Charts", desc: "Where every release is charting right now, refreshed hourly" },
   { href: "/records/awards", title: "Awards", desc: "Every win & nomination to date" },
   { href: "/records/firsts", title: "Firsts", desc: "Every record broken & first achieved" },
+  { href: "/timeline", title: "Career Timeline", desc: "Sixteen years, era by era — every milestone dated" },
   { href: "/records/africas-biggest", title: "Africa's Biggest", desc: "Most-streamed African artists, year by year" },
   { href: "/records/tours", title: "Tours", desc: "Tour runs, dates & box-office grosses" },
   { href: "/records/tours/revenue", title: "Highest Revenue Per Show", desc: `The ${revenueShows.length} biggest single-show grosses by an African artist` },
