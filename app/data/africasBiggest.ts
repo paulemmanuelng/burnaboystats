@@ -93,9 +93,9 @@ export const statBoxes: LeaderboardBox[] = [
       {
         label: "2026",
         entries: [
-          { name: "Tems", value: "1.631B" },
-          { name: "Wizkid", value: "1.596B" },
-          { name: "Burna Boy", value: "1.536B" },
+          { name: "Tems", value: "1.637B" },
+          { name: "Wizkid", value: "1.603B" },
+          { name: "Burna Boy", value: "1.545B" },
           { name: "Asake", value: "1.224B" },
           { name: "Tyla", value: "1.069B" },
         ],
