@@ -140,7 +140,7 @@ export const albumPages: AlbumPage[] = [
   {
     slug: "twice-as-tall",
     title: "Twice as Tall",
-    tagline: "The Grammy winner — Best Global Music Album, 2021",
+    tagline: "The Grammy winner — the first-ever Best Global Music Album",
     blurb:
       "Released in August 2020, Twice as Tall won the 2021 Grammy for Best Global Music Album — the first winner of the category under that name, one year after African Giant's nomination. Recorded in lockdown and executive-produced by his mother and manager, Bose Ogulu, it reaches across continents: Youssou N'Dour, Chris Martin, Stormzy, Naughty by Nature and Sauti Sol all appear across its fifteen tracks.",
     extraFacts: [
