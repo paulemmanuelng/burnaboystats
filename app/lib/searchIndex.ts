@@ -45,8 +45,8 @@ export const searchIndex: SearchDoc[] = [
     title: "Outside",
     path: "/music/albums/outside",
     section: "Album",
-    description: "The 2018 breakthrough — home of “Ye”, with J Hus, Lily Allen and Mabel.",
-    keywords: ["outside", "album", "2018", "ye", "j hus", "lily allen", "mabel", "breakthrough"],
+    description: "Home of “Ye” — the 2018 album, his first under Atlantic, with J Hus, Lily Allen and Mabel.",
+    keywords: ["outside", "album", "2018", "ye", "j hus", "lily allen", "mabel", "atlantic"],
   },
   {
     title: "African Giant",
