@@ -69,7 +69,7 @@ export const timelineEras: TimelineEra[] = [
       { date: "Jun 2023", title: "First African artist to perform at a UEFA Champions League final", text: "Istanbul, before Manchester City vs Inter — his first global football stage.", href: "/records/firsts", kind: "milestone" },
       { date: "Aug 2023", title: "I Told Them… debuts at UK No. 1", text: "The first Afrobeats album ever to top the UK Official Albums Chart — and a No. 1 in Nigeria.", href: "/music/albums/i-told-them", kind: "album" },
       { date: "2023", title: "Stadium history, twice", text: "First African artist to headline and sell out a UK stadium (London Stadium) and a US stadium (Citi Field) — in the same year.", href: "/records/firsts", kind: "tour" },
-      { date: "2023–25", title: "The I Told Them… Tour", text: "Launched off the album in 2023, it ran into 2025 and closed at $30.46M with 302,801 tickets — the highest-grossing tour ever by an African artist.", href: "/records/tours", kind: "tour" },
+      { date: "2023", title: "The I Told Them… Tour", text: "The arena run behind the album. When Billboard Boxscore published the full tally in 2025, it stood at $30.46M and 302,801 tickets — the highest-grossing tour ever by an African artist.", href: "/records/tours", kind: "tour" },
       { date: "Feb 2024", title: "First African artist on the Grammys' main telecast stage", text: "A medley from I Told Them… with Brandy and 21 Savage.", href: "/records/firsts", kind: "milestone" },
       { date: "2024", title: "The biggest single show by any African artist", text: "London Stadium: $6.15M grossed and 58,973 tickets in one night.", href: "/records/tours/revenue", kind: "tour" },
     ],
