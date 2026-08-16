@@ -11,12 +11,14 @@ describe("mobile nav sheet", () => {
     expect(navGroups.map((g) => g.name)).toEqual(["Browse", "Deep data", "The site"]);
   });
 
-  it("lists 25 routes — 6 browse, 8 record books, 11 site", () => {
+  it("lists 26 routes — 6 browse, 8 record books, 12 site", () => {
     // 8 Aug 2026: +2 site routes — /curator and /press.
     // 11 Aug 2026: +/dai-dai/es. The Spanish edition had one inbound link in
     // the whole site; the sheet now carries it on every page.
-    expect(navGroups.map((g) => g.items.length)).toEqual([6, 8, 11]);
-    expect(navRoutes).toHaveLength(25);
+    // 16 Aug 2026: +/timeline. Search Console showed it with 2 inbound links
+    // against 50 for every established page — the sheet fixes that site-wide.
+    expect(navGroups.map((g) => g.items.length)).toEqual([6, 8, 12]);
+    expect(navRoutes).toHaveLength(26);
   });
 
   it("links every route exactly once", () => {

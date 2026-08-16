@@ -16,6 +16,7 @@
  */
 
 import { totalAwards } from "../data/certifications";
+import { timelineEntryCount } from "../data/timeline";
 import { chartEntryCount } from "../data/charts";
 import { totalWins } from "../data/awards";
 import { tours } from "../data/tours";
@@ -81,6 +82,7 @@ export const navGroups: NavGroup[] = [
       // page), which is thin for a page whose whole job is ranking in Spanish.
       { label: "Dai Dai en español", href: "/dai-dai/es", meta: "ES" },
       { label: "Stat cards", href: "/share", meta: "" },
+      { label: "Career timeline", href: "/timeline", meta: String(timelineEntryCount) },
       { label: "About", href: "/about", meta: "" },
       { label: "Analysis", href: "/analysis", meta: String(findings.length) },
       { label: "Methodology", href: "/methodology", meta: "" },
