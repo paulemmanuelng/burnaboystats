@@ -35,6 +35,18 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-16",
+    category: "Streaming",
+    text: "The most days at No. 1 of any song in 2026: a 33rd day atop Spotify's Global Daily Top Songs chart takes “Dai Dai” past Djo's “End of Beginning” (32) and clear of “Beauty And A Beat” (31) — 4,179,912 streams on the 14 August chart, 58 days inside the global Top 10 and 86 days on the chart.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-16",
+    category: "Charts",
+    text: "A 7th week at No. 1 in Germany: “Dai Dai” passes “Waka Waka” to become Shakira's second-longest-running No. 1 on the German singles chart, behind only “Whenever, Wherever” (11 weeks).",
+    href: "/records/charts",
+  },
+  {
     date: "2026-08-15",
     category: "Streaming",
     text: "A 32nd day as the most-streamed song on Earth: Spotify's Daily Top Songs Global for 13 August keeps “Dai Dai” at No. 1 with 3,925,226 streams — passing “Beauty And A Beat” (31) and tying Djo's “End of Beginning” for the most days at No. 1 by any song in 2026.",
