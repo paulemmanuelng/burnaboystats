@@ -2506,16 +2506,16 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 8,
-            "movement": -7
-          },
-          {
             "country": "KZ",
             "name": "Kazakhstan",
             "position": 8,
             "movement": -4
+          },
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 9,
+            "movement": -8
           },
           {
             "country": "LT",
@@ -2621,12 +2621,6 @@ export const liveCharts: LiveRelease[] = [
             "movement": -18
           },
           {
-            "country": "IL",
-            "name": "Israel",
-            "position": 70,
-            "movement": -68
-          },
-          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 72,
@@ -2641,6 +2635,12 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
+            "country": "IL",
+            "name": "Israel",
+            "position": 83,
+            "movement": -81
+          },
+          {
             "country": "ZA",
             "name": "South Africa",
             "position": 85,
@@ -2650,20 +2650,20 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "JP",
             "name": "Japan",
-            "position": 107,
-            "movement": 48
-          },
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 128,
-            "movement": null,
-            "status": "new"
+            "position": 120,
+            "movement": 35
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 130,
+            "position": 134,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 183,
             "movement": null,
             "status": "new"
           }
@@ -3064,8 +3064,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 78,
-            "movement": -15
+            "position": 79,
+            "movement": -16
           }
         ]
       }
@@ -4814,7 +4814,7 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
+            "position": 145,
             "movement": null,
             "status": "new"
           }
@@ -4891,25 +4891,6 @@ export const liveCharts: LiveRelease[] = [
     "kind": "song"
   },
   {
-    "title": "WE PRAY",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 14,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Naughty By Nature",
     "platforms": [
       {
@@ -4920,6 +4901,25 @@ export const liveCharts: LiveRelease[] = [
             "country": "NG",
             "name": "Nigeria",
             "position": 55,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "WE PRAY",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -5159,7 +5159,7 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 184,
+            "position": 188,
             "movement": null,
             "status": "new"
           }
