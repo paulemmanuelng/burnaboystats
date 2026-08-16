@@ -58,6 +58,7 @@ export const footerColumns: { label: string; links: { href: string; label: strin
       // Labelled in Spanish so a Spanish reader recognises it at a glance.
       { href: "/dai-dai/es", label: "Dai Dai en español" },
       { href: "/updates", label: "Updates" },
+      { href: "/timeline", label: "Career timeline" },
       { href: "/about", label: "About Burna Boy" },
       { href: "/music", label: "Song pages" },
       { href: "/rss.xml", label: "RSS feed" },
