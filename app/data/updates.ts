@@ -37,6 +37,12 @@ export const updates: Update[] = [
   {
     date: "2026-08-16",
     category: "Streaming",
+    text: "A 34th day at No. 1, and the lead widens: Spotify's Daily Top Songs Global for 15 August keeps “Dai Dai” on top with 4,219,912 streams — up on the day, two days clear of Djo's “End of Beginning” (32) as 2026's longest-running No. 1, with 59 days inside the global Top 10 and 87 days on the chart.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-16",
+    category: "Streaming",
     text: "The most days at No. 1 of any song in 2026: a 33rd day atop Spotify's Global Daily Top Songs chart takes “Dai Dai” past Djo's “End of Beginning” (32) and clear of “Beauty And A Beat” (31) — 4,179,912 streams on the 14 August chart, 58 days inside the global Top 10 and 86 days on the chart.",
     href: "/dai-dai",
   },
