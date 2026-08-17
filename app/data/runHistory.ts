@@ -1,12 +1,12 @@
 // GENERATED FILE — do not edit by hand.
 // Appended to by scripts/build-live-charts.mjs on every sweep.
 //
-// The long memory of WORLDWIDE chart positions. app/data/liveCharts.ts knows
-// only today; this knows every day it has watched, so a run — "Dai Dai" at
-// No. 1 on Spotify's global daily chart for 26 days — can be plotted rather
-// than only counted. One row per release, platform and day (the day's latest
-// reading). Collection began 2026-08-09; entries older than
-// 430 days are dropped.
+// The long memory of Burna Boy's WORLDWIDE chart positions. The live
+// snapshot beside it knows only today; this knows every day it has watched, so
+// a run — "Dai Dai" at No. 1 on Spotify's global daily chart for 26 days — can
+// be plotted rather than only counted. One row per release, platform and day
+// (the day's latest reading). Collection began 2026-08-09;
+// entries older than 430 days are dropped.
 
 export interface RunPoint {
   date: string; // ISO "YYYY-MM-DD"
