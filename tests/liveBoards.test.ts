@@ -100,3 +100,37 @@ describe("the board's live charts", () => {
     expect(liveBoardFor("nobody")).toBeUndefined();
   });
 });
+
+// The credit matcher decides whose rows a swept country chart contributes, and
+// a bare substring is not good enough: /rema/i matched "Reman - Ropero" and
+// "La Suprema Corte - Porque Fallaste", so two Burkinabè songs and an
+// Ecuadorian one shipped on Rema's live board.
+describe("credit matchers", () => {
+  it("is word-anchored for every artist", async () => {
+    const { LIVE_ARTISTS } = await import("../scripts/live-artists.mjs");
+    for (const [slug, a] of Object.entries(LIVE_ARTISTS)) {
+      const src = (a as { credit: RegExp }).credit.source;
+      expect(src.startsWith("\\b") && src.endsWith("\\b"), `${slug}: ${src}`).toBe(true);
+    }
+  });
+
+  it("does not fire on a name that merely contains the artist's", async () => {
+    const { LIVE_ARTISTS } = await import("../scripts/live-artists.mjs");
+    const cases: [string, string, boolean][] = [
+      ["Reman", "rema", false],
+      ["La Suprema Corte", "rema", false],
+      ["Rema", "rema", true],
+      ["Rema & Selena Gomez", "rema", true],
+      ["Systems", "tems", false],
+      ["Tems", "tems", true],
+      ["Tylan", "tyla", false],
+      ["Tyla", "tyla", true],
+      ["Davidson", "davido", false],
+      ["Davido", "davido", true],
+      ["WizKid", "wizkid", true],
+      ["Burna Boy", "burna-boy", true],
+    ];
+    for (const [credit, slug, want] of cases)
+      expect((LIVE_ARTISTS as Record<string, { credit: RegExp }>)[slug].credit.test(credit), `${credit} → ${slug}`).toBe(want);
+  });
+});

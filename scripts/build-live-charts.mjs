@@ -181,7 +181,32 @@ for (const spec of CHART_SWEEPS) {
     for (const w of work.values()) {
       const mine = rows.get(w.artist.slug);
       for (const row of mine) row.release = w.aliasByKey?.get(titleKey(row.release)) ?? row.release;
-      mergeChartPlacements(w.releases, mine);
+
+      // A sweep may only add placements to a release the artist page already
+      // knows, or to one an explicit alias named. Anything else is the credit
+      // matcher firing on somebody else: /rema/i matched "Reman - Ropero" and
+      // "La Suprema Corte - Porque Fallaste", and two Burkinabè songs and an
+      // Ecuadorian one appeared on Rema's board. Word-anchoring the matchers
+      // fixed those; this makes the whole class of mistake structural.
+      // A version of a known record still counts as the artist's: "soso
+      // (Remix)" is Omah Lay's even though his artist page lists only "soso",
+      // and the site's rule is that a remix charts as its own release rather
+      // than folding into the original. So the BASE title is what has to be
+      // known — which still excludes a stranger's song outright.
+      const base = (t) => titleKey(String(t).replace(/\s*[([-][^)\]]*\)?\s*$/, "").trim() || t);
+      const known = new Set(w.releases.flatMap((r) => [titleKey(r.title), base(r.title)]));
+      const alias = new Set([...(w.aliasByKey?.values() ?? [])].map(titleKey));
+      const kept = mine.filter(
+        (row) => known.has(titleKey(row.release)) || known.has(base(row.release)) || alias.has(titleKey(row.release))
+      );
+      const dropped = mine.filter((row) => !kept.includes(row));
+      if (dropped.length) {
+        console.error(
+          `  ${w.artist.name}: dropped ${dropped.length} swept row(s) for releases its artist page does not list — ` +
+            [...new Set(dropped.map((d) => `${d.release} (${d.country})`))].slice(0, 6).join(", ")
+        );
+      }
+      mergeChartPlacements(w.releases, kept);
     }
   } catch (err) {
     console.error(`${spec.platform.toUpperCase()} SWEEP FAILED: ${err.message}`);

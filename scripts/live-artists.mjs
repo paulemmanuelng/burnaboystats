@@ -14,6 +14,8 @@
  * @property {string} name        Display name, used in the file header.
  * @property {string} source      kworb artist page.
  * @property {RegExp} credit      Matches the CREDITED artist on a country chart.
+ *   ALWAYS word-anchored. A bare /rema/i matched "Reman" and "La Suprema
+ *   Corte", and put two Burkinabè songs and an Ecuadorian one on Rema's board.
  * @property {{artist: string, title: string, release: string}[]} aliases
  *   Records the artist is FEATURED on. kworb's country charts print the lead
  *   credit only ("Drake - One Dance"), so without these a swept chart never
@@ -37,7 +39,7 @@ export const LIVE_ARTISTS = {
     slug: "burna-boy",
     name: "Burna Boy",
     source: "https://kworb.net/itunes/artist/burnaboy.html",
-    credit: /burna\s*boy/i,
+    credit: /\bburna\s*boy\b/i,
     aliases: [{ artist: "Shakira", title: "Dai Dai", release: "Dai Dai" }],
     out: "liveCharts.ts",
     runOut: "runHistory.ts",
@@ -50,7 +52,7 @@ export const LIVE_ARTISTS = {
     name: "Wizkid",
     source: "https://kworb.net/itunes/artist/wizkid.html",
     // kworb writes it "WizKid" and "Wizkid" on different pages.
-    credit: /wiz\s*kid/i,
+    credit: /\bwiz\s*kid\b/i,
     // The records he is featured on that chart under someone else's name.
     // Read off his own certification and chart sweeps (15-17 Aug 2026).
     aliases: [
@@ -78,7 +80,7 @@ export const LIVE_ARTISTS = {
     slug: "davido",
     name: "Davido",
     source: "https://kworb.net/itunes/artist/davido.html",
-    credit: /davido/i,
+    credit: /\bdavido\b/i,
     aliases: [
       { artist: "Iyanya", title: "Like", release: "Like" },
       { artist: "TxC", title: "Nakupenda", release: "Nakupenda" },
@@ -92,7 +94,7 @@ export const LIVE_ARTISTS = {
     slug: "rema",
     name: "Rema",
     source: "https://kworb.net/itunes/artist/rema.html",
-    credit: /rema/i,
+    credit: /\brema\b/i,
     aliases: [
       { artist: "Ayra Starr", title: "Who's Dat Girl", release: "Who's Dat Girl" },
       { artist: "Don Toliver", title: "Secondhand", release: "Secondhand" },
@@ -108,7 +110,7 @@ export const LIVE_ARTISTS = {
     slug: "tems",
     name: "Tems",
     source: "https://kworb.net/itunes/artist/tems.html",
-    credit: /tems/i,
+    credit: /\btems\b/i,
     aliases: [
       { artist: "Dave", title: "Raindance", release: "Raindance" },
       { artist: "Future", title: "WAIT FOR U", release: "WAIT FOR U" },
@@ -123,7 +125,7 @@ export const LIVE_ARTISTS = {
     slug: "tyla",
     name: "Tyla",
     source: "https://kworb.net/itunes/artist/tyla.html",
-    credit: /tyla/i,
+    credit: /\btyla\b/i,
     aliases: [
       { artist: "Damiano David", title: "Talk to Me", release: "Talk to Me" },
     ],
@@ -135,7 +137,7 @@ export const LIVE_ARTISTS = {
     slug: "ayra-starr",
     name: "Ayra Starr",
     source: "https://kworb.net/itunes/artist/ayrastarr.html",
-    credit: /ayra\\s*starr/i,
+    credit: /\bayra\s*starr\b/i,
     aliases: [
       { artist: "Rvssian", title: "Santa", release: "Santa" },
       { artist: "Ninho", title: "No love", release: "No love" },
@@ -152,7 +154,7 @@ export const LIVE_ARTISTS = {
     slug: "asake",
     name: "Asake",
     source: "https://kworb.net/itunes/artist/asake.html",
-    credit: /asake/i,
+    credit: /\basake\b/i,
     aliases: [
 
       // No register sweep has run for this artist yet, so there is no verified
@@ -170,13 +172,16 @@ export const LIVE_ARTISTS = {
     slug: "omah-lay",
     name: "Omah Lay",
     source: "https://kworb.net/itunes/artist/omahlay.html",
-    credit: /omah\\s*lay/i,
+    credit: /\bomah\s*lay\b/i,
     aliases: [
 
       // No register sweep has run for this artist yet, so there is no verified
       // credit list to build from. Lead credits are caught by the matcher above;
       // records they are FEATURED on are under-reported until the sweep lands.
     ],
+    // YouTube names the remix, the artist page names the original, and the
+    // three rows are identical — one chart row, two names.
+    titleAliases: { "soso (Remix)": "soso" },
     out: "liveCharts.omah-lay.ts",
     runOut: "runHistory.omah-lay.ts",
     covers: true,
@@ -185,7 +190,7 @@ export const LIVE_ARTISTS = {
     slug: "seyi-vibez",
     name: "Seyi Vibez",
     source: "https://kworb.net/itunes/artist/seyivibez.html",
-    credit: /seyi\\s*vibez/i,
+    credit: /\bseyi\s*vibez\b/i,
     aliases: [
 
       // No register sweep has run for this artist yet, so there is no verified

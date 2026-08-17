@@ -558,7 +558,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 10,
+            "position": 9,
             "movement": null,
             "status": "new"
           },
@@ -1002,7 +1002,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 104,
+            "position": 108,
             "movement": null,
             "status": "new"
           }
