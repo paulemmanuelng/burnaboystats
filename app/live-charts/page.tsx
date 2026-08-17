@@ -260,6 +260,7 @@ function datasetJsonLd() {
     url: `${CANONICAL_ORIGIN}/live-charts`,
     dateModified: asDateTime(liveChartsUpdated),
     isAccessibleForFree: true,
+    license: "https://creativecommons.org/licenses/by/4.0/",
     creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     about: { "@type": "MusicGroup", name: "Burna Boy" },
     variableMeasured: ["Chart position", "Platform", "Country", "24-hour movement"],
