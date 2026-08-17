@@ -7,7 +7,8 @@ import ScrollRail from "./ScrollRail";
 import FilterEmpty from "./FilterEmpty";
 import { coverFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
-import type { ChartRelease, ChartCountry } from "../data/charts";
+import type { ChartCountry } from "../data/charts";
+import type { ExplorerRelease, CoverMap } from "./ChartExplorer";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 
@@ -75,17 +76,43 @@ export default function MobileOfficialCharts({
   numberOnes,
   releaseCount,
   sourceSplit,
+  covers,
+  sourceNote,
+  backHref = "/records",
+  backLabel = "Official charts",
+  heading,
+  lede,
+  countryRail,
+  showActionBar = true,
+  territoryNote = "+ 2 global",
 }: {
-  albums: ChartRelease[];
-  singles: ChartRelease[];
-  features: ChartRelease[];
+  albums: ExplorerRelease[];
+  singles: ExplorerRelease[];
+  features: ExplorerRelease[];
   countries: Record<string, ChartCountry>;
   entryCount: number;
   territoryCount: number;
   numberOnes: number;
   releaseCount: number;
-  sourceSplit: { nationalBody: number; billboardCountry: number; global: number };
+  sourceSplit?: { nationalBody: number; billboardCountry: number; global: number };
+  /** Artwork by release title — Burna's catalogue lookup by default. */
+  covers?: CoverMap;
+  /** Replaces the source footnote where the split is not ours to publish. */
+  sourceNote?: string;
+  backHref?: string;
+  backLabel?: string;
+  /** The screen's own H1, in two parts. Defaults to "Official charts". */
+  heading?: { lead: string; gold: string };
+  lede?: string;
+  /** Filter rail codes. Defaults to Burna's most-charted territories. */
+  countryRail?: string[];
+  /** The board's screens end in the five-tab bar instead of an action bar —
+   *  Paul's rule for pages reached laterally, same call as the story pages. */
+  showActionBar?: boolean;
+  /** Footnote under the territory count — Burna's two global charts by default. */
+  territoryNote?: string;
 }) {
+  const cover = (title: string) => (covers ? covers[title] : coverFor(title));
   const [peakMax, setPeakMax] = useState<number | null>(null);
   const [only, setOnly] = useState<string | null>(null);
   // Releases whose full chart list is unfolded. Dai Dai runs to 59 entries,
@@ -102,7 +129,7 @@ export default function MobileOfficialCharts({
   const all = [...albums, ...singles, ...features];
 
   const charted = new Set(all.flatMap((r) => r.entries.map((e) => e.c)));
-  const countryChips = COUNTRY_RAIL.filter((c) => charted.has(c));
+  const countryChips = (countryRail ?? COUNTRY_RAIL).filter((c) => charted.has(c));
 
   const sections = [
     { name: "Albums", list: albums },
@@ -146,12 +173,12 @@ export default function MobileOfficialCharts({
     <div className={styles.screen}>
       {/* Back bar */}
       <div className={styles.backBar}>
-        <BackLink href="/records" aria-label="Back" className={styles.backBtn}>
+        <BackLink href={backHref} aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
         </BackLink>
-        <span className={styles.backLabel}>Official charts</span>
+        <span className={styles.backLabel}>{backLabel}</span>
         <span className={styles.badge}>{entryCount}</span>
         <MobileMenuButton />
       </div>
@@ -163,11 +190,12 @@ export default function MobileOfficialCharts({
             carries two — one per layout, and only ever one is visible. The SEO
             gate checks that pairing rather than a bare count. */}
         <h1 className={styles.title}>
-          Official <span className={styles.gold}>charts</span>
+          {heading ? heading.lead : "Official"}{" "}
+          <span className={styles.gold}>{heading ? heading.gold : "charts"}</span>
         </h1>
         <p className={styles.lede}>
-          {entryCount} entries across {territoryCount} territories, {numberOnes} of them at
-          No. 1 — from Nigeria and the UK to South Africa, the Netherlands and Colombia.
+          {lede ??
+            `${entryCount} entries across ${territoryCount} territories, ${numberOnes} of them at No. 1 — from Nigeria and the UK to South Africa, the Netherlands and Colombia.`}
         </p>
       </div>
 
@@ -176,7 +204,7 @@ export default function MobileOfficialCharts({
         {[
           { v: entryCount, l: "Chart entries", n: "official charts only" },
           { v: numberOnes, l: "No. 1 peaks", n: "placements" },
-          { v: territoryCount, l: "Territories", n: "+ 2 global" },
+          { v: territoryCount, l: "Territories", n: territoryNote },
           { v: releaseCount, l: "Releases", n: "charting" },
         ].map((s) => (
           <div key={s.l} className={styles.statCell}>
@@ -296,7 +324,7 @@ export default function MobileOfficialCharts({
                   <span
                     className={styles.rowCover}
                     aria-hidden="true"
-                    style={{ backgroundImage: `url(${spotifyImage(coverFor(r.title) ?? "", 300)})` }}
+                    style={{ backgroundImage: `url(${spotifyImage(cover(r.title) ?? "", 300)})` }}
                   />
                   <span className={styles.rowMain}>
                     <span className={styles.rowTitle}>{r.title}</span>
@@ -314,7 +342,7 @@ export default function MobileOfficialCharts({
                   <div
                     className={styles.rowCover}
                     aria-hidden="true"
-                    style={{ backgroundImage: `url(${spotifyImage(coverFor(r.title) ?? "", 300)})` }}
+                    style={{ backgroundImage: `url(${spotifyImage(cover(r.title) ?? "", 300)})` }}
                   />
                   <div className={styles.rowMain}>
                     <div className={styles.rowTitle}>{r.title}</div>
@@ -366,18 +394,21 @@ export default function MobileOfficialCharts({
       ))}
 
       <p className={styles.footNote}>
-        Peaks on each country&apos;s principal national chart — {sourceSplit.nationalBody}{" "}
-        national bodies, {sourceSplit.billboardCountry} Billboard country charts and{" "}
-        {sourceSplit.global} worldwide. Airplay and genre charts excluded.
+        {sourceNote ??
+          (sourceSplit
+            ? `Peaks on each country's principal national chart — ${sourceSplit.nationalBody} national bodies, ${sourceSplit.billboardCountry} Billboard country charts and ${sourceSplit.global} worldwide. Airplay and genre charts excluded.`
+            : "Peaks on each country's principal national chart. Airplay and genre charts excluded.")}
       </p>
 
       <div className={styles.spacer} />
 
-      <div className={styles.actionBar}>
-        <Link href="/share" className={styles.actionPrimary}>
-          Make a stat card
-        </Link>
-      </div>
+      {showActionBar && (
+        <div className={styles.actionBar}>
+          <Link href="/share" className={styles.actionPrimary}>
+            Make a stat card
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

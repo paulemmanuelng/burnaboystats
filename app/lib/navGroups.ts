@@ -16,6 +16,7 @@
  */
 
 import { totalAwards } from "../data/certifications";
+import { afrobeatsArtists } from "../data/afrobeats";
 import { timelineEntryCount } from "../data/timeline";
 import { chartEntryCount } from "../data/charts";
 import { totalWins } from "../data/awards";
@@ -83,6 +84,7 @@ export const navGroups: NavGroup[] = [
       { label: "Dai Dai en español", href: "/dai-dai/es", meta: "ES" },
       { label: "Stat cards", href: "/share", meta: "" },
       { label: "Career timeline", href: "/timeline", meta: String(timelineEntryCount) },
+      { label: "The Afrobeats Board", href: "/afrobeats", meta: String(afrobeatsArtists.length) },
       { label: "About", href: "/about", meta: "" },
       { label: "Analysis", href: "/analysis", meta: String(findings.length) },
       { label: "Methodology", href: "/methodology", meta: "" },
