@@ -533,7 +533,7 @@ export default function VisualizedPage() {
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
             <span className={styles.captionLead}>
-              {livePlacementTotal} placements on today&apos;s board
+              {`${livePlacementTotal} placements on today’s board`}
             </span>{" "}
             — country charts only, refreshed hourly. Last swept {liveChartsUpdated}.
           </p>

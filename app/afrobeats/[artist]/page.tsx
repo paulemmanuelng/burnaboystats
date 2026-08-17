@@ -165,11 +165,11 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         <section className={styles.sectionPad}>
           <div className={styles.pending}>
             <div className={styles.pendingKicker}>Sweep scheduled</div>
+            {/* One expression, not an expression followed by wrapped text: JSX
+                dropped the space after {a.name} when the sentence wrapped, and
+                every pending page published "Omah Layis on the board". */}
             <p className={styles.pendingBody}>
-              {a.name} is on the board because the streaming data puts them in the genre&apos;s top
-              tier, but their registers have not been read yet. This site does not publish figures it
-              has not verified at source, so there are no numbers here until the sweep runs — rather
-              than a fan tally standing in for one.
+              {`${a.name} is on the board because the streaming data puts them in the genre’s top tier, but their registers have not been read yet. This site does not publish figures it has not verified at source, so there are no numbers here until the sweep runs — rather than a fan tally standing in for one.`}
             </p>
           </div>
         </section>

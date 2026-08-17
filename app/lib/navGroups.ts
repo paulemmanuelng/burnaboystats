@@ -70,6 +70,7 @@ export const navGroups: NavGroup[] = [
       // Deep data, so the figure is that group's length rather than a literal.
       { label: "Records", href: "/records", meta: `${deepData.length} books` },
       { label: "Live charts", href: "/live-charts", meta: `${liveNumberOnes} No. 1s` },
+      { label: "The Afrobeats Board", href: "/afrobeats", meta: String(afrobeatsArtists.length) },
       { label: "Updates", href: "/updates", meta: String(updates.length) },
     ],
   },
@@ -84,7 +85,6 @@ export const navGroups: NavGroup[] = [
       { label: "Dai Dai en español", href: "/dai-dai/es", meta: "ES" },
       { label: "Stat cards", href: "/share", meta: "" },
       { label: "Career timeline", href: "/timeline", meta: String(timelineEntryCount) },
-      { label: "The Afrobeats Board", href: "/afrobeats", meta: String(afrobeatsArtists.length) },
       { label: "About", href: "/about", meta: "" },
       { label: "Analysis", href: "/analysis", meta: String(findings.length) },
       { label: "Methodology", href: "/methodology", meta: "" },

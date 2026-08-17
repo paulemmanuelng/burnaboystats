@@ -137,9 +137,9 @@ export default async function AfroArtistChartsPage({
             {a.name} <span className="inkText">Charts</span>
           </h1>
           <p className={styles.lede}>
-            {a.name}&apos;s peak positions on the world&apos;s official charts — {entries} entries
-            across {territories} territories, {no1s} of them at No. 1, each read from the country&apos;s
-            own principal chart rather than a platform or genre listing.
+            {/* A single expression: JSX drops the space after an expression when
+                the sentence wraps to the next line, which published "24of them". */}
+            {`${a.name}’s peak positions on the world’s official charts — ${entries} entries across ${territories} territories, ${no1s} of them at No. 1, each read from the country’s own principal chart rather than a platform or genre listing.`}
           </p>
 
           <div className={styles.statGrid}>

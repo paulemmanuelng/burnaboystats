@@ -401,13 +401,6 @@ a {
     gap: 10px;
   }
 }
-/* Between 1240 and 1360 the bar loses its outer padding and closes the link
-   gaps rather than wrapping — the last step before the hamburger takes over. */
-@media (max-width: 1360px) {
-  .navInner { padding-inline: 32px; }
-  .navLinks { gap: 12px; }
-  .navRight { gap: 12px; }
-}
 .brand {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -459,6 +452,19 @@ a {
 }
 .navLinks a:hover::after {
   width: 100%;
+}
+
+/* Between 900 and 1360 the bar loses its outer padding and closes the link
+   gaps rather than wrapping — the last step before the hamburger takes over.
+   It must sit AFTER the base .navLinks rules: it used to live above them, so
+   at equal specificity the base won and every declaration in here was dead.
+   Tightened when Afrobeats became the tenth link (17 Aug 2026) — with the
+   block live again at 1280 the bar fits with room to spare. */
+@media (max-width: 1360px) {
+  .navInner { padding-inline: 24px; }
+  .navLinks { gap: 10px; margin-left: 18px; }
+  .navLinks a { letter-spacing: 0.1em; font-size: 12px; }
+  .navRight { gap: 10px; }
 }
 
 /* Hamburger toggle — hidden on desktop, shown on mobile */
