@@ -52,7 +52,7 @@ jobs:
       # here leaves the last good snapshot in place rather than blanking a page.
       - name: Rebuild the board's live charts
         continue-on-error: true
-        run: node scripts/build-live-charts.mjs --artist=wizkid
+        run: node scripts/build-live-charts.mjs --artist=wizkid,davido,rema,tems,tyla,ayra-starr,asake,omah-lay,seyi-vibez
 
       # Gate on the working tree, not on one step's output: either generator
       # can be the only thing that changed, and keying off just the first would

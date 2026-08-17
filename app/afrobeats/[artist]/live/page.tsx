@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
   const a = artistBySlug(slug);
   if (!board || !a) return {};
   return pageMetadata({
-    title: `${a.name} Live Charts — Where He's Charting Right Now`,
+    title: `${a.name} Live Charts — Charting Right Now, Worldwide`,
     description: `Every ${a.name} release charting right now: ${board.placements} live placements across ${board.countries} countries on Spotify, Apple Music, YouTube, Deezer, iTunes and Shazam.`,
     path: `/afrobeats/${slug}/live`,
     shareTitle: `${a.name} — Live Charts`,
@@ -146,7 +146,7 @@ export default async function AfroLiveChartsPage({
               This page tracks the country charts of Spotify, Apple Music, iTunes, Deezer and
               Shazam, which refresh daily, plus YouTube&apos;s, which refreshes weekly — where a
               record sits <em>right now</em>. {a.name}&apos;s official national peaks, and the
-              career records they produce, are counted separately on his{" "}
+              career records they produce, are counted separately on the{" "}
               <Link href={`/afrobeats/${slug}/charts`}>chart board</Link>. A No. 1 here is not
               the same thing as a No. 1 there.
             </div>
@@ -239,9 +239,9 @@ export default async function AfroLiveChartsPage({
               “RE-ENTRY” that it charted before, dropped off and came back, and no marker means
               the platform doesn&apos;t publish movement for that chart. Spotify, Apple Music,
               iTunes, Deezer and Shazam are daily, so a placement can appear and vanish within a
-              day; YouTube&apos;s is a weekly chart. The official peaks on his{" "}
+              day; YouTube&apos;s is a weekly chart. The official peaks on the{" "}
               <Link href={`/afrobeats/${slug}/charts`}>chart board</Link> are permanent by
-              contrast, and the certifications on his{" "}
+              contrast, and the certifications on the{" "}
               <Link href={`/afrobeats/${slug}`}>artist page</Link> are read from the issuing
               bodies&apos; own registers. How every figure here is sourced is set out in the{" "}
               <Link href="/methodology">methodology</Link>.

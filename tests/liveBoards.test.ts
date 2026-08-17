@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { LIVE_BOARDS, liveBoardFor, hasLiveBoard } from "../app/data/liveBoards";
 import { liveCharts as burnaLive } from "../app/data/liveCharts";
-import { artistBySlug } from "../app/data/afrobeats";
+import { artistBySlug, afrobeatsSlugs } from "../app/data/afrobeats";
 import sitemap from "../app/sitemap";
 import { searchIndex } from "../app/lib/searchIndex";
 
@@ -45,18 +45,26 @@ describe("the board's live charts", () => {
         }
   });
 
-  // "Kese" and "Kese (Dance)" are one record under two names, and shipped as
-  // two rows both at Nigeria #57 until scripts/live-artists.mjs learned the
-  // alias. Two rows whose titles differ only by a parenthetical are the shape
-  // of that bug.
-  it("does not carry the same record under two names", () => {
+  // "Kese" and "Kese (Dance)", "Wa" and "Wa (Live)", "Ako" and "Ako - Live in
+  // London": one record under two names, the same chart row counted twice,
+  // until scripts/live-artists.mjs learned the alias. Titles alone are a weak
+  // test — this checks the thing that is actually wrong, two releases holding
+  // the SAME position on the SAME chart. Song and album charts are separate
+  // charts, so a song and an album may share a position legitimately.
+  it("never counts one chart row under two titles", () => {
     for (const b of LIVE_BOARDS) {
-      const bare = (t: string) => t.replace(/\s*\([^)]*\)\s*$/, "").toLowerCase().trim();
-      const songs = b.releases.filter((r) => r.kind === "song").map((r) => r.title);
-      const dupes = songs.filter(
-        (t, i) => songs.some((o, j) => i !== j && bare(o) === bare(t) && o !== t)
-      );
-      expect(dupes, b.slug).toEqual([]);
+      const seen = new Map<string, Set<string>>();
+      for (const r of b.releases)
+        for (const p of r.platforms)
+          for (const e of p.entries) {
+            const key = `${r.kind}|${p.platform}|${e.country}|${e.position}`;
+            if (!seen.has(key)) seen.set(key, new Set());
+            seen.get(key)!.add(r.title);
+          }
+      const clashes = [...seen.entries()]
+        .filter(([, titles]) => titles.size > 1)
+        .map(([key, titles]) => `${key}: ${[...titles].join(" / ")}`);
+      expect(clashes, b.slug).toEqual([]);
     }
   });
 
@@ -81,9 +89,14 @@ describe("the board's live charts", () => {
     }
   });
 
-  it("knows who has a live board and who does not", () => {
+  it("covers every artist on the board, and nobody else", () => {
+    // A live board needs no register sweep — the platform charts are readable
+    // today — so the pending three have one as well.
+    expect(LIVE_BOARDS.map((b) => b.slug).sort()).toEqual(afrobeatsSlugs.slice().sort());
     expect(hasLiveBoard("wizkid")).toBe(true);
-    expect(hasLiveBoard("tems")).toBe(false);
+    expect(hasLiveBoard("seyi-vibez")).toBe(true);
+    // Burna Boy's live charts are the site's own page, not a board entry.
+    expect(hasLiveBoard("burna-boy")).toBe(false);
     expect(liveBoardFor("nobody")).toBeUndefined();
   });
 });

@@ -74,6 +74,128 @@ export const LIVE_ARTISTS = {
     runOut: "runHistory.wizkid.ts",
     covers: true,
   },
+  "davido": {
+    slug: "davido",
+    name: "Davido",
+    source: "https://kworb.net/itunes/artist/davido.html",
+    credit: /davido/i,
+    aliases: [
+      { artist: "Iyanya", title: "Like", release: "Like" },
+      { artist: "TxC", title: "Nakupenda", release: "Nakupenda" },
+      { artist: "Stonebwoy", title: "Activate", release: "Activate" },
+    ],
+    out: "liveCharts.davido.ts",
+    runOut: "runHistory.davido.ts",
+    covers: true,
+  },
+  "rema": {
+    slug: "rema",
+    name: "Rema",
+    source: "https://kworb.net/itunes/artist/rema.html",
+    credit: /rema/i,
+    aliases: [
+      { artist: "Ayra Starr", title: "Who's Dat Girl", release: "Who's Dat Girl" },
+      { artist: "Don Toliver", title: "Secondhand", release: "Secondhand" },
+      { artist: "Young Jonn", title: "Lalala", release: "Lalala" },
+      { artist: "Victony", title: "Soweto", release: "Soweto" },
+    ],
+    titleAliases: { "Baby (Is it a Crime)": "Baby" },
+    out: "liveCharts.rema.ts",
+    runOut: "runHistory.rema.ts",
+    covers: true,
+  },
+  "tems": {
+    slug: "tems",
+    name: "Tems",
+    source: "https://kworb.net/itunes/artist/tems.html",
+    credit: /tems/i,
+    aliases: [
+      { artist: "Dave", title: "Raindance", release: "Raindance" },
+      { artist: "Future", title: "WAIT FOR U", release: "WAIT FOR U" },
+      { artist: "Wizkid", title: "Essence", release: "Essence" },
+      { artist: "Drake", title: "Fountains", release: "Fountains" },
+    ],
+    out: "liveCharts.tems.ts",
+    runOut: "runHistory.tems.ts",
+    covers: true,
+  },
+  "tyla": {
+    slug: "tyla",
+    name: "Tyla",
+    source: "https://kworb.net/itunes/artist/tyla.html",
+    credit: /tyla/i,
+    aliases: [
+      { artist: "Damiano David", title: "Talk to Me", release: "Talk to Me" },
+    ],
+    out: "liveCharts.tyla.ts",
+    runOut: "runHistory.tyla.ts",
+    covers: true,
+  },
+  "ayra-starr": {
+    slug: "ayra-starr",
+    name: "Ayra Starr",
+    source: "https://kworb.net/itunes/artist/ayrastarr.html",
+    credit: /ayra\\s*starr/i,
+    aliases: [
+      { artist: "Rvssian", title: "Santa", release: "Santa" },
+      { artist: "Ninho", title: "No love", release: "No love" },
+      { artist: "Crayon", title: "Ngozi", release: "Ngozi" },
+      { artist: "Mavo", title: "Escaladizzy II", release: "Escaladizzy II" },
+      { artist: "FOLA", title: "treat u right", release: "treat u right" },
+      { artist: "Johnny Drille", title: "Colorado", release: "Colorado" },
+    ],
+    out: "liveCharts.ayra-starr.ts",
+    runOut: "runHistory.ayra-starr.ts",
+    covers: true,
+  },
+  "asake": {
+    slug: "asake",
+    name: "Asake",
+    source: "https://kworb.net/itunes/artist/asake.html",
+    credit: /asake/i,
+    aliases: [
+
+      // No register sweep has run for this artist yet, so there is no verified
+      // credit list to build from. Lead credits are caught by the matcher above;
+      // records they are FEATURED on are under-reported until the sweep lands.
+    ],
+    // Live cuts of the same song: YouTube charts them under the live name,
+    // the artist page under the studio one, and the row landed twice.
+    titleAliases: { "Wa (Live)": "Wa", "Ako - Live in London": "Ako" },
+    out: "liveCharts.asake.ts",
+    runOut: "runHistory.asake.ts",
+    covers: true,
+  },
+  "omah-lay": {
+    slug: "omah-lay",
+    name: "Omah Lay",
+    source: "https://kworb.net/itunes/artist/omahlay.html",
+    credit: /omah\\s*lay/i,
+    aliases: [
+
+      // No register sweep has run for this artist yet, so there is no verified
+      // credit list to build from. Lead credits are caught by the matcher above;
+      // records they are FEATURED on are under-reported until the sweep lands.
+    ],
+    out: "liveCharts.omah-lay.ts",
+    runOut: "runHistory.omah-lay.ts",
+    covers: true,
+  },
+  "seyi-vibez": {
+    slug: "seyi-vibez",
+    name: "Seyi Vibez",
+    source: "https://kworb.net/itunes/artist/seyivibez.html",
+    credit: /seyi\\s*vibez/i,
+    aliases: [
+
+      // No register sweep has run for this artist yet, so there is no verified
+      // credit list to build from. Lead credits are caught by the matcher above;
+      // records they are FEATURED on are under-reported until the sweep lands.
+    ],
+    out: "liveCharts.seyi-vibez.ts",
+    runOut: "runHistory.seyi-vibez.ts",
+    covers: true,
+  },
 };
 
 export const liveArtist = (slug) => {

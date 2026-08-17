@@ -214,8 +214,13 @@ describe("the board's crawl surface", () => {
       if (a.charts.length)
         expect(routes.some((u) => u.endsWith(`/afrobeats/${a.slug}/charts`)), `${a.slug} charts`).toBe(true);
     }
-    for (const a of pendingArtists)
-      expect(routes.some((u) => u.includes(`/afrobeats/${a.slug}`)), a.slug).toBe(false);
+    // A pending artist's own page stays out — it has no verified figures to
+    // rank for. Their live board is a different thing: platform charts are
+    // readable today, so it is indexable and listed.
+    for (const a of pendingArtists) {
+      expect(routes.some((u) => u.endsWith(`/afrobeats/${a.slug}`)), a.slug).toBe(false);
+      expect(routes.some((u) => u.endsWith(`/afrobeats/${a.slug}/charts`)), a.slug).toBe(false);
+    }
   });
 
   it("gives every swept artist a chart board and no pending artist one", () => {

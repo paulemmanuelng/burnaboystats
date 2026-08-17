@@ -1,7 +1,7 @@
 // GENERATED FILE — do not edit by hand.
-  // Appended to by scripts/build-live-charts.mjs --artist=wizkid on every sweep.
+  // Appended to by scripts/build-live-charts.mjs --artist=tems on every sweep.
   //
-  // The long memory of Wizkid's WORLDWIDE chart positions. The live
+  // The long memory of Tems's WORLDWIDE chart positions. The live
   // snapshot beside it knows only today; this knows every day it has watched, so
   // a run — "Dai Dai" at No. 1 on Spotify's global daily chart for 26 days — can
   // be plotted rather than only counted. One row per release, platform and day
@@ -18,9 +18,15 @@
   export const runHistory: RunPoint[] = [
   {
     "date": "2026-08-17",
-    "release": "One Dance",
+    "release": "Raindance",
+    "platform": "Shazam",
+    "position": 22
+  },
+  {
+    "date": "2026-08-17",
+    "release": "Raindance",
     "platform": "Spotify",
-    "position": 58
+    "position": 48
   }
 ];
   
