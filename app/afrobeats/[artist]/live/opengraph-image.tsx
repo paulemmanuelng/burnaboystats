@@ -29,14 +29,26 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
   const a = artistBySlug(slug);
   const b = liveBoardFor(slug);
 
-  const top = (b?.releases ?? [])
-    .map((r) => ({
+  // One row per TITLE. A title track charts as both a song and an album —
+  // Seyi Vibez's "FUJI MOTO" is both — and the card listed the same name twice
+  // at two positions, which reads as a bug rather than as two charts.
+  const byTitle = new Map<string, { title: string; best: number; reach: number }>();
+  for (const r of b?.releases ?? []) {
+    const positions = r.platforms.flatMap((p) => p.entries.map((e) => e.position));
+    if (!positions.length) continue;
+    const row = {
       title: r.title,
-      best: Math.min(...r.platforms.flatMap((p) => p.entries.map((e) => e.position))),
+      best: Math.min(...positions),
       reach: r.platforms.reduce((n, p) => n + p.entries.length, 0),
-    }))
-    .sort((x, y) => y.reach - x.reach)
-    .slice(0, 4);
+    };
+    const seen = byTitle.get(r.title);
+    if (!seen || row.reach > seen.reach) {
+      byTitle.set(r.title, seen ? { ...row, reach: seen.reach + row.reach, best: Math.min(seen.best, row.best) } : row);
+    } else {
+      byTitle.set(r.title, { ...seen, reach: seen.reach + row.reach, best: Math.min(seen.best, row.best) });
+    }
+  }
+  const top = [...byTitle.values()].sort((x, y) => y.reach - x.reach).slice(0, 4);
 
   const stats = b
     ? [
@@ -79,12 +91,12 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
             <div style={{ display: "flex", width: 16, height: 16, borderRadius: 8, background: LIVE }} />
             Charting right now
           </div>
-          <div style={{ display: "flex", fontSize: 92, fontWeight: 800, letterSpacing: -3, lineHeight: 1, marginTop: 16, color: GOLD }}>
+          <div style={{ display: "flex", fontSize: 88, fontWeight: 800, letterSpacing: -3, lineHeight: 1, marginTop: 14, marginBottom: 10, color: GOLD }}>
             {a?.name ?? "Artist"}
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 8 }}>
           {top.map((t) => (
             <div key={t.title} style={{ display: "flex", alignItems: "center", gap: 18 }}>
               <div

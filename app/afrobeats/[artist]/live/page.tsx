@@ -68,6 +68,9 @@ export default async function AfroLiveChartsPage({
   const a = artistBySlug(slug);
   if (!board || !a) notFound();
 
+  // The three artists whose register sweeps are still scheduled have no chart
+  // board to link to; /afrobeats/<slug>/charts 404s for them.
+  const hasChartBoard = a.charts.length > 0;
   const songs = board.releases.filter((r) => r.kind === "song");
   const albums = board.releases.filter((r) => r.kind === "album");
   const updatedLabel = new Date(`${board.updated}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -145,10 +148,21 @@ export default async function AfroLiveChartsPage({
               <strong>These are platform charts, not official charts.</strong>{" "}
               This page tracks the country charts of Spotify, Apple Music, iTunes, Deezer and
               Shazam, which refresh daily, plus YouTube&apos;s, which refreshes weekly — where a
-              record sits <em>right now</em>. {a.name}&apos;s official national peaks, and the
-              career records they produce, are counted separately on the{" "}
-              <Link href={`/afrobeats/${slug}/charts`}>chart board</Link>. A No. 1 here is not
-              the same thing as a No. 1 there.
+              record sits <em>right now</em>.{" "}
+              {hasChartBoard ? (
+                <>
+                  {a.name}&apos;s official national peaks, and the career records they produce, are
+                  counted separately on the{" "}
+                  <Link href={`/afrobeats/${slug}/charts`}>chart board</Link>. A No. 1 here is not
+                  the same thing as a No. 1 there.
+                </>
+              ) : (
+                <>
+                  A No. 1 here is not the same thing as a No. 1 on an official national chart —{" "}
+                  {a.name}&apos;s official peaks are not published here until the registers behind
+                  them have been read at source.
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -239,11 +253,24 @@ export default async function AfroLiveChartsPage({
               “RE-ENTRY” that it charted before, dropped off and came back, and no marker means
               the platform doesn&apos;t publish movement for that chart. Spotify, Apple Music,
               iTunes, Deezer and Shazam are daily, so a placement can appear and vanish within a
-              day; YouTube&apos;s is a weekly chart. The official peaks on the{" "}
-              <Link href={`/afrobeats/${slug}/charts`}>chart board</Link> are permanent by
-              contrast, and the certifications on the{" "}
-              <Link href={`/afrobeats/${slug}`}>artist page</Link> are read from the issuing
-              bodies&apos; own registers. How every figure here is sourced is set out in the{" "}
+              day; YouTube&apos;s is a weekly chart.{" "}
+              {hasChartBoard ? (
+                <>
+                  The official peaks on the{" "}
+                  <Link href={`/afrobeats/${slug}/charts`}>chart board</Link> are permanent by
+                  contrast, and the certifications on the{" "}
+                  <Link href={`/afrobeats/${slug}`}>artist page</Link> are read from the issuing
+                  bodies&apos; own registers.
+                </>
+              ) : (
+                <>
+                  Official chart peaks and certifications are a different kind of record — permanent,
+                  and read from the issuing bodies&apos; own registers — and are not published on{" "}
+                  <Link href={`/afrobeats/${slug}`}>this artist&apos;s page</Link> until that sweep has
+                  run.
+                </>
+              )}{" "}
+              How every figure here is sourced is set out in the{" "}
               <Link href="/methodology">methodology</Link>.
             </p>
             <div className={styles.actions}>
