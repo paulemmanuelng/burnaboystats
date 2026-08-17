@@ -1,11 +1,10 @@
 // GENERATED FILE — do not edit by hand.
 // Rebuilt hourly by scripts/build-live-charts.mjs from kworb's artist page.
 //
-// PLATFORM chart data for Burna Boy: where each release is sitting RIGHT
-// NOW on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country
-// charts. This is not official-chart data — the official national peaks that
-// feed the site's headline totals live elsewhere, and the two are kept apart
-// on purpose.
+// PLATFORM chart data: where each release is sitting RIGHT NOW on Spotify,
+// Apple Music, iTunes, Deezer, Shazam and YouTube country charts. This is not
+// official-chart data — app/data/charts.ts holds the official national peaks
+// that feed the site's headline totals, and the two are kept apart on purpose.
 
 export interface LiveEntry {
   country: string; // ISO alpha-2
@@ -28,9 +27,6 @@ export interface LivePlatform {
 export interface LiveRelease {
   title: string;
   kind: "song" | "album";
-  /** Release artwork, resolved at build time. Absent means unresolved — the
-   *  page draws a monogram rather than borrowing another release's cover. */
-  cover?: string;
   platforms: LivePlatform[];
 }
 
@@ -2462,6 +2458,12 @@ export const liveCharts: LiveRelease[] = [
             "movement": 0
           },
           {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 3,
+            "movement": 27
+          },
+          {
             "country": "LK",
             "name": "Sri Lanka",
             "position": 3,
@@ -2525,17 +2527,17 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
-            "country": "SG",
-            "name": "Singapore",
-            "position": 9,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "AU",
             "name": "Australia",
             "position": 10,
             "movement": 9
+          },
+          {
+            "country": "SG",
+            "name": "Singapore",
+            "position": 10,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BR",
@@ -2558,6 +2560,13 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
+            "country": "PE",
+            "name": "Peru",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "US",
             "name": "United States",
             "position": 13,
@@ -2571,12 +2580,6 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 24,
-            "movement": -21
-          },
-          {
             "country": "ID",
             "name": "Indonesia",
             "position": 24,
@@ -2584,10 +2587,10 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 28,
-            "movement": 2
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 34,
+            "movement": -31
           },
           {
             "country": "NZ",
@@ -2623,22 +2626,15 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "IN",
             "name": "India",
-            "position": 112,
+            "position": 114,
             "movement": null,
             "status": "new"
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 144,
-            "movement": -132
-          },
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 188,
-            "movement": null,
-            "status": "new"
+            "position": 162,
+            "movement": -150
           }
         ]
       }
