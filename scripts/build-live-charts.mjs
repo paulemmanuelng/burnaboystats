@@ -13,13 +13,8 @@
 // never be merged: one is where a record is placing right now, the other is the
 // highest it has ever officially reached.
 //
-// The same pipeline serves the Afrobeats Board: pass --artist to build for
-// anyone in scripts/live-artists.mjs. Burna Boy is the default, so the hourly
-// job's command line and his generated file are unchanged.
-//
-//   node scripts/build-live-charts.mjs                    # Burna Boy
-//   node scripts/build-live-charts.mjs --artist=wizkid    # a board artist
-//   node scripts/build-live-charts.mjs --dry              # summary only
+//   node scripts/build-live-charts.mjs           # write the file
+//   node scripts/build-live-charts.mjs --dry     # print a summary only
 
 import { writeFile, readFile } from "node:fs/promises";
 import {
@@ -28,19 +23,15 @@ import {
   extractCountryChart,
   mergeChartPlacements,
 } from "./stats-lib.mjs";
-import { liveArtist } from "./live-artists.mjs";
 
-const ARTIST = liveArtist(
-  process.argv.find((a) => a.startsWith("--artist="))?.slice("--artist=".length) ?? "burna-boy"
-);
-const SOURCE = ARTIST.source;
+const SOURCE = "https://kworb.net/itunes/artist/burnaboy.html";
 const UA = { "user-agent": "burnaboystats-bot" };
-const OUT = new URL(`../app/data/${ARTIST.out}`, import.meta.url);
+const OUT = new URL("../app/data/liveCharts.ts", import.meta.url);
 // Append-only daily record of worldwide chart positions. liveCharts.ts is a
 // SNAPSHOT — it only ever knows today — so a run like "Dai Dai" spending
 // weeks at No. 1 globally leaves no trace the site can plot. This file is the
 // memory: one row per release/platform/day.
-const RUN_OUT = ARTIST.runOut ? new URL(`../app/data/${ARTIST.runOut}`, import.meta.url) : null;
+const RUN_OUT = new URL("../app/data/runHistory.ts", import.meta.url);
 // ~14 months, so a chart can always show a full year without the file growing
 // without limit.
 const RUN_KEEP_DAYS = 430;
@@ -49,7 +40,7 @@ const DRY = process.argv.includes("--dry");
 // A run that returns far less than usual almost certainly means the page
 // changed shape, not that Burna Boy fell off every chart at once. Refuse to
 // overwrite good data with that.
-const MIN_PLACEMENTS = ARTIST.slug === "burna-boy" ? 50 : 25;
+const MIN_PLACEMENTS = 50;
 
 const reach = (r) => r.platforms.reduce((n, p) => n + p.entries.length, 0);
 
@@ -114,7 +105,7 @@ for (const spec of CHART_SWEEPS) {
       try {
         const r = await fetch(spec.url(cc), { headers: UA });
         if (!r.ok) throw new Error(String(r.status));
-        rows.push(...extractCountryChart(await r.text(), cc, spec, ARTIST));
+        rows.push(...extractCountryChart(await r.text(), cc, spec));
       } catch (err) {
         failed++;
         console.error(`  ${spec.platform}/${cc}: ${err.message}`);
@@ -130,53 +121,11 @@ for (const spec of CHART_SWEEPS) {
     if (rows.length === 0 || failed > codes.length / 2) {
       throw new Error(`returned ${rows.length} rows with ${failed}/${codes.length} failures`);
     }
-    for (const row of rows) row.release = ARTIST.titleAliases?.[row.release] ?? row.release;
     mergeChartPlacements(releases, rows);
   } catch (err) {
     console.error(`${spec.platform.toUpperCase()} SWEEP FAILED: ${err.message}`);
     process.exit(1);
   }
-}
-
-// ── Artwork ──────────────────────────────────────────────────────────────
-// The site's own cover lookup (app/lib/covers.ts) only knows Burna Boy's
-// catalogue, so a board artist's releases would render as monograms. Resolve
-// each title once here, from Deezer's open API, and ship the URL in the data.
-// Artwork is decoration: a title that cannot be resolved keeps its monogram
-// rather than borrowing another release's cover.
-if (ARTIST.covers) {
-  const previousCovers = new Map(
-    previous.filter((r) => r.cover).map((r) => [r.title, r.cover])
-  );
-  let found = 0;
-  for (const r of releases) {
-    const carried = previousCovers.get(r.title);
-    if (carried) {
-      r.cover = carried;
-      found++;
-      continue;
-    }
-    const base = r.title.replace(/\s*[([](?:feat|ft|with|w\/)\.?\s[^)\]]*[)\]]/gi, "").trim();
-    for (const q of [`artist:"${ARTIST.name}" ${r.kind === "album" ? "album" : "track"}:"${base}"`, `${ARTIST.name} ${base}`]) {
-      try {
-        const res = await fetch(
-          `https://api.deezer.com/search?q=${encodeURIComponent(q)}&limit=3`,
-          { headers: UA }
-        );
-        if (!res.ok) continue;
-        const hit = (await res.json()).data?.find((d) => d.album?.cover_big || d.album?.cover_medium);
-        if (hit) {
-          r.cover = hit.album.cover_big ?? hit.album.cover_medium;
-          found++;
-          break;
-        }
-      } catch {
-        /* artwork is optional — never fail a build over a cover */
-      }
-      await new Promise((ok) => setTimeout(ok, 250));
-    }
-  }
-  console.error(`artwork: ${found}/${releases.length} releases`);
 }
 
 const placements = releases.reduce((n, r) => n + reach(r), 0);
@@ -207,13 +156,12 @@ if (DRY) {
 }
 
 const body = `// GENERATED FILE — do not edit by hand.
-// Rebuilt hourly by scripts/build-live-charts.mjs${ARTIST.slug === "burna-boy" ? "" : ` --artist=${ARTIST.slug}`} from kworb's artist page.
+// Rebuilt hourly by scripts/build-live-charts.mjs from kworb's artist page.
 //
-// PLATFORM chart data for ${ARTIST.name}: where each release is sitting RIGHT
-// NOW on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country
-// charts. This is not official-chart data — the official national peaks that
-// feed the site's headline totals live elsewhere, and the two are kept apart
-// on purpose.
+// PLATFORM chart data: where each release is sitting RIGHT NOW on Spotify,
+// Apple Music, iTunes, Deezer, Shazam and YouTube country charts. This is not
+// official-chart data — app/data/charts.ts holds the official national peaks
+// that feed the site's headline totals, and the two are kept apart on purpose.
 
 export interface LiveEntry {
   country: string; // ISO alpha-2
@@ -236,9 +184,6 @@ export interface LivePlatform {
 export interface LiveRelease {
   title: string;
   kind: "song" | "album";
-  /** Release artwork, resolved at build time. Absent means unresolved — the
-   *  page draws a monogram rather than borrowing another release's cover. */
-  cover?: string;
   platforms: LivePlatform[];
 }
 
@@ -281,9 +226,6 @@ await writeFile(OUT, body);
 console.error(`wrote ${OUT.pathname}`);
 
 // ── Worldwide run history ────────────────────────────────────────────────
-// Burna Boy only: this file is the memory behind his trend charts, and nothing
-// on the board plots one yet.
-if (RUN_OUT) {
 // Today's worldwide positions, appended to the long record. Runs on every
 // sweep; the day's row is upserted rather than duplicated, so the hourly
 // cadence leaves exactly one reading per day (the most recent one).
@@ -307,14 +249,14 @@ const mergedRuns = [...priorRuns.filter((x) => !isToday(x) && x.date >= keptFrom
 );
 
 const runBody = `// GENERATED FILE — do not edit by hand.
-// Appended to by scripts/build-live-charts.mjs${ARTIST.slug === "burna-boy" ? "" : ` --artist=${ARTIST.slug}`} on every sweep.
+// Appended to by scripts/build-live-charts.mjs on every sweep.
 //
-// The long memory of ${ARTIST.name}'s WORLDWIDE chart positions. The live
-// snapshot beside it knows only today; this knows every day it has watched, so
-// a run — "Dai Dai" at No. 1 on Spotify's global daily chart for 26 days — can
-// be plotted rather than only counted. One row per release, platform and day
-// (the day's latest reading). Collection began ${mergedRuns[0]?.date ?? today};
-// entries older than ${RUN_KEEP_DAYS} days are dropped.
+// The long memory of WORLDWIDE chart positions. app/data/liveCharts.ts knows
+// only today; this knows every day it has watched, so a run — "Dai Dai" at
+// No. 1 on Spotify's global daily chart for 26 days — can be plotted rather
+// than only counted. One row per release, platform and day (the day's latest
+// reading). Collection began ${mergedRuns[0]?.date ?? today}; entries older than
+// ${RUN_KEEP_DAYS} days are dropped.
 
 export interface RunPoint {
   date: string; // ISO "YYYY-MM-DD"
@@ -342,5 +284,3 @@ console.error(
     new Set(mergedRuns.map((r) => r.date)).size
   } days)`
 );
-}
-

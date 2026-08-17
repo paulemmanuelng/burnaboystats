@@ -16,7 +16,6 @@
  */
 
 import { totalAwards } from "../data/certifications";
-import { afrobeatsArtists } from "../data/afrobeats";
 import { timelineEntryCount } from "../data/timeline";
 import { chartEntryCount } from "../data/charts";
 import { totalWins } from "../data/awards";
@@ -70,7 +69,6 @@ export const navGroups: NavGroup[] = [
       // Deep data, so the figure is that group's length rather than a literal.
       { label: "Records", href: "/records", meta: `${deepData.length} books` },
       { label: "Live charts", href: "/live-charts", meta: `${liveNumberOnes} No. 1s` },
-      { label: "The Afrobeats Board", href: "/afrobeats", meta: String(afrobeatsArtists.length) },
       { label: "Updates", href: "/updates", meta: String(updates.length) },
     ],
   },

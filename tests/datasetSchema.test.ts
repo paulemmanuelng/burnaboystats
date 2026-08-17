@@ -28,13 +28,10 @@ describe("Dataset structured data", () => {
   const withDataset = FILES.filter((f) => read(f).includes('"@type": "Dataset"'));
 
   it("finds every Dataset block in the app", () => {
-    // Four: lib/seo's shared helper, /api, /live-charts, and the board's live
-    // boards at /afrobeats/[artist]/live — which hand-roll theirs for the same
-    // reason /live-charts does, a dateModified the helper does not take.
-    // (/press publishes a licence too, but on a WebPage, not a Dataset.) If
-    // this count rises, a new Dataset has appeared and the licence assertion
-    // below now covers it.
-    expect(withDataset.length).toBe(4);
+    // Three: lib/seo's shared helper, /api and /live-charts. (/press publishes
+    // a licence too, but on a WebPage, not a Dataset.) If this count rises,
+    // a new Dataset has appeared and the licence assertion below now covers it.
+    expect(withDataset.length).toBe(3);
   });
 
   it("gives every Dataset a license", () => {

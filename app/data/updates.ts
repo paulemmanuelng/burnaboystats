@@ -36,30 +36,6 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-17",
-    category: "Charts",
-    text: "Both Billboard global charts, a month after the Final: “Dai Dai” takes a 5th week at No. 1 on the Global 200 and an 8th atop the Global 200 Excl. US on the charts dated 22 August — Billboard writing it up as the song still topping its global charts a month after the World Cup ended.",
-    href: "/records/charts",
-  },
-  {
-    date: "2026-08-17",
-    category: "Streaming",
-    text: "A 35th day as the most-streamed song on Earth: “Dai Dai” extends the longest run at No. 1 on Spotify's Global Daily Top Songs chart of any song in 2026 — three days clear of Djo's “End of Beginning” (32) and four of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31).",
-    href: "/dai-dai",
-  },
-  {
-    date: "2026-08-17",
-    category: "Charts",
-    text: "Europe still will not let go: a 10th week at No. 1 in Switzerland and a 13th on its chart, an 8th week on top in Wallonia and a 7th in Flanders, a 6th on France's SNEP chart, a 4th in Italy, and a 2nd atop the UK's Big Top 40.",
-    href: "/records/charts",
-  },
-  {
-    date: "2026-08-17",
-    category: "Streaming",
-    text: "351 days on Spotify's Global Daily Top Artists chart, the longest any African artist has lasted there — Burna Boy is the only one in its Top 100 on the 16 August list, at No. 98 against a career peak of No. 40.",
-    href: "/records/africas-biggest",
-  },
-  {
-    date: "2026-08-17",
     category: "Certifications",
     text: "Gold in Italy: FIMI certifies “Dai Dai” for 100,000 units in its week-33 list — Burna Boy's 230th certification worldwide, and only his second Italian plaque after “Jerusalema (Remix)” went 4× Platinum there.",
     href: "/certifications",

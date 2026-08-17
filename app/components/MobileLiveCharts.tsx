@@ -48,9 +48,6 @@ function movement(e: { movement?: number | null; status?: "new" | "re" }) {
 export interface ReleasePreview {
   kind: "song" | "album";
   title: string;
-  /** Artwork shipped with the release, for artists whose covers the site's own
-   *  catalogue does not hold. */
-  cover?: string;
   total: number;
   no1: number;
   top: { country: string; position: number; movement?: number | null; status?: "new" | "re" }[];
@@ -63,10 +60,6 @@ export default function MobileLiveCharts({
   countries,
   numberOnes,
   updated,
-  backHref = "/records",
-  backLabel = "Live charts",
-  heading,
-  source,
 }: {
   releases: ReleasePreview[];
   platforms: { platform: string; placements: number; numberOnes: number }[];
@@ -74,12 +67,6 @@ export default function MobileLiveCharts({
   countries: number;
   numberOnes: number;
   updated: string;
-  backHref?: string;
-  backLabel?: string;
-  /** The screen's own H1, in two parts. Defaults to "Live Charts". */
-  heading?: { lead: string; gold: string };
-  /** Where the expanded rows fetch their country lists from. */
-  source?: string;
 }) {
   const [open, setOpen] = useState<string | null>(null);
 
@@ -92,12 +79,12 @@ export default function MobileLiveCharts({
     <div className={styles.screen}>
       {/* Back bar */}
       <div className={styles.backBar}>
-        <BackLink href={backHref} aria-label="Back" className={styles.backBtn}>
+        <BackLink href="/" aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
         </BackLink>
-        <span className={styles.backLabel}>{backLabel}</span>
+        <span className={styles.backLabel}>Live Charts</span>
         <span className={styles.livePill}>
           <span className={styles.liveDot} aria-hidden="true" />
           Live
@@ -109,8 +96,7 @@ export default function MobileLiveCharts({
       <div className={styles.hero}>
         <div className={styles.kicker}>Tracked as it happens</div>
         <h1 className={styles.h1}>
-          {heading ? heading.lead : "Live"}{" "}
-          <span className={styles.gold}>{heading ? heading.gold : "Charts"}</span>
+          Live <span className={styles.gold}>Charts</span>
         </h1>
         <p className={styles.lede}>
           {placements} placements across {countries} countries, refreshed hourly. Snapshot{" "}
@@ -177,7 +163,7 @@ export default function MobileLiveCharts({
                 <span className={styles.rowTop}>
                   <span
                     className={styles.rowCover}
-                    style={{ backgroundImage: `url(${spotifyImage(r.cover ?? coverFor(r.title) ?? "", 300)})` }}
+                    style={{ backgroundImage: `url(${spotifyImage(coverFor(r.title) ?? "", 300)})` }}
                   />
                   <span className={styles.rowMain}>
                     <span className={styles.rowTitle}>
@@ -203,12 +189,12 @@ export default function MobileLiveCharts({
                 {/* The design's preview chips — shut state only. */}
                 {!isOpen && (
                   <span className={styles.chips}>
-                    {r.top.map((e, i) => {
+                    {r.top.map((e) => {
                       const m = movement(e);
                       const top = e.position === 1;
                       return (
                         <span
-                          key={`${e.country}-${e.position}-${i}`}
+                          key={`${e.country}-${e.position}`}
                           className={`${styles.chip} ${top ? styles.chipTop : ""}`}
                         >
                           <span className={styles.chipFlag} aria-hidden="true">{flagFor(e.country)}</span>
@@ -224,7 +210,7 @@ export default function MobileLiveCharts({
                 )}
               </button>
 
-              {isOpen && <LivePanel title={r.title} panelId={panelId} source={source} />}
+              {isOpen && <LivePanel title={r.title} panelId={panelId} />}
             </div>
           );
         })}
@@ -242,8 +228,8 @@ export default function MobileLiveCharts({
  * /api/v1/live-charts snapshot — shipping all ~790 rows as props made this
  * page the heaviest thing the site sent, for panels most readers never open.
  */
-function LivePanel({ title, panelId, source }: { title: string; panelId: string; source?: string }) {
-  const { release, error, loading, retry } = useLiveRelease(title, true, source);
+function LivePanel({ title, panelId }: { title: string; panelId: string }) {
+  const { release, error, loading, retry } = useLiveRelease(title, true);
   if (loading) return <div id={panelId} className={styles.panelNote}>Loading the country list…</div>;
   if (error || !release)
     return (

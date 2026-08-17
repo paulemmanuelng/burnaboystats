@@ -14,29 +14,23 @@ import type { LiveRelease } from "../data/liveCharts";
  *
  * The promise is cleared on failure so a retry can actually retry.
  */
-// One cached promise PER endpoint. It was a single module-level promise, which
-// was right while Burna Boy had the only live-charts page — with the board's
-// artists it would have served his snapshot on their pages.
-const snapshots = new Map<string, Promise<Map<string, LiveRelease>>>();
+let snapshot: Promise<Map<string, LiveRelease>> | null = null;
 
-function load(source: string): Promise<Map<string, LiveRelease>> {
-  const cached = snapshots.get(source);
-  if (cached) return cached;
-  const pending = fetch(source)
+function load(): Promise<Map<string, LiveRelease>> {
+  snapshot ??= fetch("/api/v1/live-charts")
     .then((r) => {
       if (!r.ok) throw new Error(`live snapshot ${r.status}`);
       return r.json() as Promise<{ releases: LiveRelease[] }>;
     })
     .then((d) => new Map(d.releases.map((r) => [r.title, r])))
     .catch((e) => {
-      snapshots.delete(source);
+      snapshot = null;
       throw e;
     });
-  snapshots.set(source, pending);
-  return pending;
+  return snapshot;
 }
 
-export function useLiveRelease(title: string, active: boolean, source = "/api/v1/live-charts") {
+export function useLiveRelease(title: string, active: boolean) {
   const [state, setState] = useState<{
     release?: LiveRelease;
     error?: boolean;
@@ -47,13 +41,13 @@ export function useLiveRelease(title: string, active: boolean, source = "/api/v1
   useEffect(() => {
     if (!active) return;
     let on = true;
-    load(source)
+    load()
       .then((m) => on && setState({ release: m.get(title) }))
       .catch(() => on && setState({ error: true }));
     return () => {
       on = false;
     };
-  }, [active, title, attempt, source]);
+  }, [active, title, attempt]);
 
   return {
     release: state.release,
