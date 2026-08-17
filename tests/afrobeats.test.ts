@@ -1,9 +1,11 @@
 import { describe, it, expect } from "vitest";
+import sitemap from "../app/sitemap";
 import {
   afrobeatsArtists,
   sweptArtists,
   pendingArtists,
   chartEntries,
+  chartTerritories,
   chartNo1s,
   certCount,
   countryCount,
@@ -126,17 +128,69 @@ describe("the Afrobeats board", () => {
     }
   });
 
-  // The chart detail is machine-extracted from the sweep documents while the
-  // headline is the sweep's own verified figure. Extracting MORE than the
-  // headline means the parser is reading something that is not a chart entry —
-  // which is exactly how summary rows once became fake releases.
-  it("chart detail never exceeds the verified headline", () => {
+  // The chart rows are extracted from the sweep documents; the headline is the
+  // sweep's own verified figure. They now agree exactly for every artist, so
+  // this is equality rather than a bound: a row that goes missing, a peak that
+  // moves to the wrong chart, or a parser that invents an entry all break it.
+  it("chart detail reproduces the verified headline exactly", () => {
     for (const a of sweptArtists) {
-      const detail = a.charts.reduce((n, r) => n + r.entries.length, 0);
-      expect(detail, `${a.slug} detail vs headline`).toBeLessThanOrEqual(chartEntries(a));
-      const detailNo1 = a.charts.reduce((n, r) => n + r.entries.filter((e) => e.peak === 1).length, 0);
-      expect(detailNo1, `${a.slug} No. 1s`).toBe(chartNo1s(a));
+      const rows = a.charts.flatMap((r) => r.entries);
+      expect(rows.length, `${a.slug} entries`).toBe(chartEntries(a));
+      expect(new Set(rows.map((e) => e.c)).size, `${a.slug} territories`).toBe(chartTerritories(a));
+      expect(rows.filter((e) => e.peak === 1).length, `${a.slug} No. 1s`).toBe(chartNo1s(a));
     }
+  });
+
+  // Billboard's two worldwide charts are the one pair a reader cannot sanity-
+  // check by eye, and the sweep documents disagree on which globe emoji means
+  // which — Wizkid's file uses 🌐 for the Global 200, Tems's uses 🌍. The first
+  // extraction pass applied one convention to every file and silently swapped
+  // eleven of Tems's peaks while leaving her totals correct. These are read off
+  // each document directly.
+  it("pins both Billboard worldwide charts where an artist holds them", () => {
+    const globals: Record<string, Record<string, { GLB?: number; GLBX?: number }>> = {
+      tems: {
+        Raindance: { GLB: 12, GLBX: 8 },
+        "Wait For U": { GLB: 2, GLBX: 29 },
+        Essence: { GLB: 28, GLBX: 60 },
+        Fountains: { GLB: 26, GLBX: 45 },
+        Move: { GLB: 53, GLBX: 179 },
+        "Bunce Road Blues": { GLB: 75 },
+      },
+      rema: {
+        "Calm Down": { GLB: 3, GLBX: 1 },
+        Secondhand: { GLB: 39, GLBX: 94 },
+        Baby: { GLB: 192, GLBX: 148 },
+      },
+      "ayra-starr": {
+        Rush: { GLB: 115, GLBX: 87 },
+        Santa: { GLB: 24, GLBX: 14 },
+      },
+      wizkid: { Essence: { GLB: 28, GLBX: 60 } },
+      tyla: { Water: { GLB: 6, GLBX: 6 }, Chanel: { GLB: 11, GLBX: 8 } },
+    };
+    for (const [slug, releases] of Object.entries(globals)) {
+      const a = artistBySlug(slug)!;
+      for (const [title, want] of Object.entries(releases)) {
+        const row = a.charts.find((r) => r.title === title);
+        expect(row, `${slug} → ${title}`).toBeTruthy();
+        for (const [code, peak] of Object.entries(want))
+          expect(row!.entries.find((e) => e.c === code)?.peak, `${slug} → ${title} → ${code}`).toBe(peak);
+      }
+    }
+  });
+
+  // A release cannot hold the same position on both worldwide charts unless it
+  // genuinely did (Water did, at No. 6). Anything else that matches is the
+  // duplication bug that produced the swap.
+  it("keeps the two worldwide charts distinct", () => {
+    for (const a of sweptArtists)
+      for (const r of a.charts) {
+        const glb = r.entries.find((e) => e.c === "GLB");
+        const glbx = r.entries.find((e) => e.c === "GLBX");
+        if (glb && glbx && glb.peak === glbx.peak)
+          expect(`${a.slug}/${r.title}`, "identical worldwide peaks").toBe("tyla/Water");
+      }
   });
 
   it("no chart release lists the same country twice", () => {
@@ -145,5 +199,26 @@ describe("the Afrobeats board", () => {
         const codes = r.entries.map((e) => e.c);
         expect(new Set(codes).size, `${a.slug} → ${r.title}`).toBe(codes.length);
       }
+  });
+});
+
+// The three "sweep scheduled" pages carry no figures, and read alike. They are
+// noindex until their registers are read — and a noindexed page must not be in
+// the sitemap. Both flip on their own the week `swept` becomes true.
+describe("the board's crawl surface", () => {
+  it("keeps pending artists out of the sitemap and swept artists in", async () => {
+    const routes = (await sitemap()).map((e) => e.url);
+    for (const a of sweptArtists) {
+      expect(routes.some((u) => u.endsWith(`/afrobeats/${a.slug}`)), a.slug).toBe(true);
+      if (a.charts.length)
+        expect(routes.some((u) => u.endsWith(`/afrobeats/${a.slug}/charts`)), `${a.slug} charts`).toBe(true);
+    }
+    for (const a of pendingArtists)
+      expect(routes.some((u) => u.includes(`/afrobeats/${a.slug}`)), a.slug).toBe(false);
+  });
+
+  it("gives every swept artist a chart board and no pending artist one", () => {
+    for (const a of sweptArtists) expect(a.charts.length, a.slug).toBeGreaterThan(0);
+    for (const a of pendingArtists) expect(a.charts.length, a.slug).toBe(0);
   });
 });

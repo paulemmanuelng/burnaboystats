@@ -33,12 +33,18 @@ export function pageMetadata(opts: {
   languages?: Record<string, string>;
   /** Open Graph locale, e.g. "es_ES". Defaults to en_US. */
   locale?: string;
+  /** Keep the page out of the index while still following its links. Used for
+   *  a page that exists for readers but has no data of its own yet — three
+   *  near-identical "sweep scheduled" pages are thin content until they carry
+   *  figures, and this flips off on its own the week they do. */
+  noindex?: boolean;
 }): Metadata {
   const ogTitle = opts.shareTitle ?? opts.title;
   const ogDescription = opts.shareDescription ?? opts.description;
   return {
     title: opts.title,
     description: opts.description,
+    ...(opts.noindex ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: opts.path,
       ...(opts.languages ? { languages: opts.languages } : {}),

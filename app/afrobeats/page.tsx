@@ -4,7 +4,7 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import MobileMenuButton from "../components/MobileMenuButton";
 import BackLink from "../components/BackLink";
-import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, breadcrumbList } from "../lib/seo";
 import {
   sweptArtists,
   pendingArtists,
@@ -53,6 +53,10 @@ export default function AfrobeatsPage() {
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList("/afrobeats")) }}
+      />
 
       <div className={styles.mobileBackBar}>
         <BackLink href="/" aria-label="Back home" className={styles.mobileBackBtn}>

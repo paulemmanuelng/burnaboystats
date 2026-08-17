@@ -4,7 +4,7 @@ import styles from "./artist.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import MobileMenuButton from "../../components/MobileMenuButton";
 import BackLink from "../../components/BackLink";
-import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, breadcrumbList } from "../../lib/seo";
 import { tierOf, totalAwards, countryCount as burnaCountries } from "../../data/certifications";
 import { numberOnes as burnaNo1s, chartEntryCount as burnaEntries } from "../../data/charts";
 import {
@@ -47,6 +47,9 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
     shareDescription: a.swept
       ? `${certCount(a)} certifications, ${countryCount(a)} countries, verified at source.`
       : "Register sweep scheduled — no figures until they are read at source.",
+    // Indexable the moment the sweep lands; until then the page has no figures
+    // a search engine could rank it for, and three of them read alike.
+    noindex: !a.swept,
   });
 }
 
@@ -98,6 +101,10 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList(`/afrobeats/${a.slug}`)) }}
+      />
 
       <nav className={styles.crumbs} aria-label="Breadcrumb">
         <Link href="/afrobeats">← The Afrobeats Board</Link>

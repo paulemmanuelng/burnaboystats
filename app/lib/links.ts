@@ -104,6 +104,10 @@ export const exploreFor: Record<string, string[]> = {
   "/records/firsts": ["dai-dai", "charts", "certifications"],
   "/records/africas-biggest": ["certifications", "charts", "share"],
   "/share": ["dai-dai", "certifications", "records"],
+  // The board is the one section about other artists. Every way out of it leads
+  // back to the subject of the site — a reader who arrived on "wizkid
+  // certifications" should land somewhere that is Burna Boy's record.
+  "/afrobeats": ["certifications", "charts", "africas-biggest"],
 };
 
 /**

@@ -5,7 +5,7 @@ import KeepExploring from "../../../components/KeepExploring";
 import MobileOfficialCharts from "../../../components/MobileOfficialCharts";
 import ChartExplorer from "../../../components/ChartExplorer";
 import bar from "../artist.module.css";
-import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
+import { pageMetadata, datasetJsonLd, breadcrumbList } from "../../../lib/seo";
 import { numberOnes as burnaNo1s, chartEntryCount as burnaEntries } from "../../../data/charts";
 import {
   artistBySlug,
@@ -96,6 +96,10 @@ export default async function AfroArtistChartsPage({
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList(`/afrobeats/${a.slug}/charts`)) }}
+      />
 
       {/* Mobile keeps its own dedicated charts screen — the peak pills, the
           country rail and the grouping are the whole point of the page, and a
@@ -205,7 +209,7 @@ export default async function AfroArtistChartsPage({
           </div>
         </section>
 
-        <KeepExploring current="/records/charts" />
+        <KeepExploring current="/afrobeats" />
       </div>
     </main>
   );
