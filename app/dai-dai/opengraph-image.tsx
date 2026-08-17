@@ -108,7 +108,7 @@ export default function Image() {
                 maxWidth: 700,
               }}
             >
-              The official 2026 FIFA World Cup anthem — 34 days as the most-streamed song on
+              The official 2026 FIFA World Cup anthem — 35 days as the most-streamed song on
               Earth, live at the Final halftime show on 19 July.
             </div>
 

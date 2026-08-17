@@ -445,6 +445,10 @@ const CREDIT_ALIASES = [
   { artist: "Shakira", title: "Dai Dai", release: "Dai Dai" },
 ];
 
+/** Burna Boy's own matcher, kept as the default so existing callers behave
+ *  exactly as before. Other artists pass their own via `who`. */
+const DEFAULT_WHO = { credit: /burna\s*boy/i, aliases: CREDIT_ALIASES };
+
 /**
  * The charts we sweep directly. Both page types put position in column 0,
  * movement in column 1 and the credit in column 2, so one row parser serves
@@ -477,10 +481,10 @@ export const CHART_SWEEPS = [
 ];
 
 /**
- * Pull Burna Boy's rows out of one country chart.
+ * Pull one artist's rows out of one country chart.
  * Returns [{ platform, release, country, name, position, movement, status? }].
  */
-export function extractCountryChart(html, code, spec) {
+export function extractCountryChart(html, code, spec, who = DEFAULT_WHO) {
   const name = html.match(spec.title)?.[1]?.trim();
   if (!name) return []; // not the page we expected — don't guess at its shape
   const country = code.toUpperCase();
@@ -502,9 +506,9 @@ export function extractCountryChart(html, code, spec) {
     const title = (split < 0 ? credit : credit.slice(split + 3)).trim();
 
     let release = null;
-    if (/burna\s*boy/i.test(artist)) release = title;
+    if (who.credit.test(artist)) release = title;
     else {
-      const alias = CREDIT_ALIASES.find(
+      const alias = (who.aliases ?? []).find(
         (a) =>
           a.artist.toLowerCase() === artist.toLowerCase() &&
           a.title.toLowerCase() === title.toLowerCase()

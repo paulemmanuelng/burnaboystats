@@ -45,6 +45,15 @@ jobs:
       - name: Rebuild live platform charts
         run: node scripts/build-live-charts.mjs
 
+      # The Afrobeats Board's live boards, same pipeline and same sanity gate.
+      # `continue-on-error`: a board artist's source page going missing must
+      # never block Burna Boy's own refresh, which is what this job exists for.
+      # The build refuses to write a suspiciously small result, so a failure
+      # here leaves the last good snapshot in place rather than blanking a page.
+      - name: Rebuild the board's live charts
+        continue-on-error: true
+        run: node scripts/build-live-charts.mjs --artist=wizkid
+
       # Gate on the working tree, not on one step's output: either generator
       # can be the only thing that changed, and keying off just the first would
       # silently drop the other's work.

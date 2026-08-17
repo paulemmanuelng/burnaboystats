@@ -36,3 +36,42 @@ describe("searchDocs", () => {
     expect(new Set(paths).size).toBe(paths.length);
   });
 });
+
+// The board's search docs were first inserted at the TOP of the index, which
+// broke "billboard" — score() ties resolve on array order, so Wizkid's chart
+// page displaced Burna Boy's. This site is about Burna Boy: a generic query
+// stays on his pages, and the board earns its traffic on artist names.
+describe("The Afrobeats Board in search", () => {
+  it("never displaces Burna Boy's own pages on a generic query", () => {
+    for (const q of ["billboard", "certifications", "charts", "gold", "platinum", "number one"]) {
+      const top = searchDocs(q)[0];
+      expect(top.path.startsWith("/afrobeats"), `"${q}" → ${top.path}`).toBe(false);
+    }
+  });
+
+  it("finds each board artist by name", () => {
+    for (const [q, path] of [
+      ["wizkid", "/afrobeats/wizkid"],
+      ["tems", "/afrobeats/tems"],
+      ["ayra starr", "/afrobeats/ayra-starr"],
+      ["asake", "/afrobeats/asake"],
+      ["seyi vibez", "/afrobeats/seyi-vibez"],
+    ] as const) {
+      expect(searchDocs(q).some((d) => d.path === path), q).toBe(true);
+    }
+  });
+
+  it("finds an artist's chart board by an artist-qualified query", () => {
+    expect(searchDocs("wizkid chart history").some((d) => d.path === "/afrobeats/wizkid/charts")).toBe(true);
+    expect(searchDocs("tyla charts").some((d) => d.path === "/afrobeats/tyla/charts")).toBe(true);
+  });
+
+  it("indexes every board route", () => {
+    const paths = new Set(searchIndex.map((d) => d.path));
+    expect(paths.has("/afrobeats")).toBe(true);
+    for (const slug of ["wizkid", "davido", "rema", "tems", "tyla", "ayra-starr", "asake", "omah-lay", "seyi-vibez"])
+      expect(paths.has(`/afrobeats/${slug}`), slug).toBe(true);
+    for (const slug of ["wizkid", "davido", "rema", "tems", "tyla", "ayra-starr"])
+      expect(paths.has(`/afrobeats/${slug}/charts`), slug).toBe(true);
+  });
+});

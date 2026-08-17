@@ -2,13 +2,31 @@
 
 import { useEffect, useMemo, useState } from "react";
 import styles from "../records/charts/charts.module.css";
-import { chartTier, type ChartCountry, type ChartRelease } from "../data/charts";
+import { chartTier, type ChartCountry } from "../data/charts";
 import { track } from "../lib/analytics";
 import { coverFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
 import FilterEmpty from "./FilterEmpty";
 
 type Countries = Record<string, ChartCountry>;
+
+/** The explorer is the site's one official-charts template, used by Burna's
+ *  /records/charts and by every Afrobeats Board artist. The two differ only in
+ *  what they can source: his releases carry a verified year and artwork we hold,
+ *  theirs carry artwork from the release itself and no year we have verified.
+ *  So the year is optional and the cover lookup is injectable — everything else,
+ *  including every colour and interaction, is shared. */
+export interface ExplorerRelease {
+  title: string;
+  credit?: string;
+  year?: number;
+  note?: string;
+  entries: { c: string; peak: number; note?: string }[];
+}
+/** Title → artwork URL. A plain map rather than a lookup function, because a
+ *  server page cannot hand a function to a client component. Omitted means
+ *  "use Burna's own catalogue lookup". */
+export type CoverMap = Record<string, string | undefined>;
 
 const PEAKS = [
   { key: "one", label: "No. 1", max: 1 },
@@ -21,11 +39,13 @@ function Row({
   countries,
   country,
   peakMax,
+  cover,
 }: {
-  item: ChartRelease;
+  item: ExplorerRelease;
   countries: Countries;
   country: string | null;
   peakMax: number | null;
+  cover: (title: string) => string | undefined;
 }) {
   const entries = [...item.entries].sort((a, b) => a.peak - b.peak);
   return (
@@ -38,13 +58,15 @@ function Row({
         <span
           className={styles.rowCover}
           aria-hidden="true"
-          style={{ backgroundImage: `url(${spotifyImage(coverFor(item.title) ?? "", 300)})` }}
+          style={{ backgroundImage: `url(${spotifyImage(cover(item.title) ?? "", 300)})` }}
         />
         <span className={styles.rowText}>
         <span className={styles.title}>{item.title}</span>
-        <span className={styles.credit}>
-          {item.credit ? `${item.credit} · ${item.year}` : item.year}
-        </span>
+        {(item.credit || item.year) && (
+          <span className={styles.credit}>
+            {[item.credit, item.year].filter(Boolean).join(" · ")}
+          </span>
+        )}
         {item.note ? <span className={styles.releaseNote}>{item.note}</span> : null}
         </span>
       </div>
@@ -75,7 +97,7 @@ type SortKey = "song" | "country" | "peak" | "year";
 interface FlatRow {
   song: string;
   credit?: string;
-  year: number;
+  year?: number;
   type: string;
   code: string;
   peak: number;
@@ -93,12 +115,22 @@ export default function ChartExplorer({
   singles,
   features,
   countries,
+  covers,
+  featuredLabel = "Featured",
 }: {
-  albums: ChartRelease[];
-  singles: ChartRelease[];
-  features: ChartRelease[];
+  albums: ExplorerRelease[];
+  singles: ExplorerRelease[];
+  features: ExplorerRelease[];
   countries: Countries;
+  /** Artwork by release title. Defaults to Burna's catalogue lookup. */
+  covers?: CoverMap;
+  featuredLabel?: string;
 }) {
+  const cover = (title: string) => (covers ? covers[title] : coverFor(title));
+
+  // Year is only a column where every release actually carries one — an empty
+  // column that cannot be sorted is worse than no column.
+  const showYear = [...albums, ...singles, ...features].every((r) => r.year !== undefined);
   const [country, setCountry] = useState<string | null>(null);
   const [peak, setPeak] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -124,22 +156,23 @@ export default function ChartExplorer({
   }, [country, peak]);
 
   const peakMax = peak ? PEAKS.find((p) => p.key === peak)!.max : null;
-  const keep = (it: ChartRelease) =>
+  const keep = (it: ExplorerRelease) =>
     (!focus || it.title === focus) &&
     (!country || it.entries.some((e) => e.c === country)) &&
     (!peakMax || it.entries.some((e) => e.peak <= peakMax));
 
   // Most-charted first: rank by how many territories a release charted in, then
   // by its best (lowest) peak, then newest — so the biggest hits lead each list.
-  const byReach = (a: ChartRelease, b: ChartRelease) =>
+  const byReach = (a: ExplorerRelease, b: ExplorerRelease) =>
     b.entries.length - a.entries.length ||
     Math.min(...a.entries.map((e) => e.peak)) - Math.min(...b.entries.map((e) => e.peak)) ||
-    b.year - a.year;
+    (b.year ?? 0) - (a.year ?? 0) ||
+    a.title.localeCompare(b.title);
 
   const groups = [
     { label: "Albums", items: albums.filter(keep).sort(byReach) },
     { label: "Singles", items: singles.filter(keep).sort(byReach) },
-    { label: "Featured", items: features.filter(keep).sort(byReach) },
+    { label: featuredLabel, items: features.filter(keep).sort(byReach) },
   ];
   const totalAll = albums.length + singles.length + features.length;
   const totalShown = groups.reduce((n, g) => n + g.items.length, 0);
@@ -191,7 +224,7 @@ export default function ChartExplorer({
       let cmp =
         sortKey === "song" ? a.song.localeCompare(b.song)
         : sortKey === "country" ? countries[a.code].name.localeCompare(countries[b.code].name)
-        : sortKey === "year" ? a.year - b.year
+        : sortKey === "year" ? (a.year ?? 0) - (b.year ?? 0)
         : a.peak - b.peak;
       if (cmp === 0) cmp = a.peak - b.peak || a.song.localeCompare(b.song);
       return cmp * dir;
@@ -346,7 +379,7 @@ export default function ChartExplorer({
                   </h2>
                   <div className={styles.list} role="list" aria-label={`${g.label} — chart peaks by release`}>
                     {g.items.map((it) => (
-                      <Row key={it.title} item={it} countries={countries} country={country} peakMax={peakMax} />
+                      <Row key={it.title} item={it} countries={countries} country={country} peakMax={peakMax} cover={cover} />
                     ))}
                   </div>
                 </div>
@@ -366,7 +399,7 @@ export default function ChartExplorer({
                 ["peak", "Peak"],
                 ["song", "Song"],
                 ["country", "Chart"],
-                ["year", "Year"],
+                ...(showYear ? ([["year", "Year"]] as [SortKey, string][]) : []),
               ] as [SortKey, string][]
             ).map(([k, label]) => (
               <button
@@ -386,7 +419,7 @@ export default function ChartExplorer({
                 {headerCell("Song", "song")}
                 {headerCell("Chart", "country")}
                 {headerCell("Peak", "peak", true)}
-                {headerCell("Year", "year", true)}
+                {showYear && headerCell("Year", "year", true)}
               </tr>
             </thead>
             <tbody>
@@ -396,7 +429,7 @@ export default function ChartExplorer({
                     <span
                       className={styles.tCover}
                       aria-hidden="true"
-                      style={{ backgroundImage: `url(${spotifyImage(coverFor(r.song) ?? "", 64)})` }}
+                      style={{ backgroundImage: `url(${spotifyImage(cover(r.song) ?? "", 64)})` }}
                     />
                     <span className={styles.tSong}>
                       {r.song}
@@ -411,7 +444,7 @@ export default function ChartExplorer({
                     </span>
                   </td>
                   <td className={`${styles.tdPeak} ${PK_CLASS[chartTier(r.peak)] ?? ""}`} data-label="Peak">#{r.peak}</td>
-                  <td className={styles.tdYear} data-label="Year">{r.year}</td>
+                  {showYear && <td className={styles.tdYear} data-label="Year">{r.year}</td>}
                 </tr>
               ))}
             </tbody>

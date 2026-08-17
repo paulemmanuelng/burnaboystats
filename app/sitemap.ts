@@ -3,6 +3,8 @@ import { siteUrl } from "./site";
 import { updates } from "./data/updates";
 import { songs } from "./data/songs";
 import { albumPages } from "./data/albumPages";
+import { afrobeatsArtists } from "./data/afrobeats";
+import { LIVE_BOARDS } from "./data/liveBoards";
 
 // lastmod is derived from the real content log (updates.ts), NOT the build time.
 // A sitemap where every URL always reads "modified now" on each deploy trains
@@ -42,6 +44,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...songs.map((sg) => ({ path: `/music/${sg.slug}`, priority: 0.8, changeFrequency: "weekly" as const })),
     ...albumPages.map((al) => ({ path: `/music/albums/${al.slug}`, priority: 0.8, changeFrequency: "weekly" as const })),
     { path: "/timeline", priority: 0.8, changeFrequency: "weekly" },
+    { path: "/afrobeats", priority: 0.8, changeFrequency: "weekly" },
+    // Swept artists only: the pending three are noindex until their registers
+    // are read, and a sitemap entry for a noindexed page is a contradiction.
+    ...afrobeatsArtists
+      .filter((a) => a.swept)
+      .map((a) => ({ path: `/afrobeats/${a.slug}`, priority: 0.7, changeFrequency: "weekly" as const })),
+    // Chart boards exist only for artists whose sweep has run.
+    ...afrobeatsArtists
+      .filter((a) => a.charts.length > 0)
+      .map((a) => ({ path: `/afrobeats/${a.slug}/charts`, priority: 0.7, changeFrequency: "weekly" as const })),
+    // Live boards are rebuilt hourly; "daily" is the strongest signal this
+    // sitemap's own type allows, and it is what /live-charts declares too.
+    ...LIVE_BOARDS.map((b) => ({
+      path: `/afrobeats/${b.slug}/live`,
+      priority: 0.6,
+      changeFrequency: "daily" as const,
+    })),
     { path: "/analysis", priority: 0.8, changeFrequency: "weekly" },
     { path: "/records/awards", priority: 0.8, changeFrequency: "weekly" },
     { path: "/records/tours", priority: 0.8, changeFrequency: "weekly" },
