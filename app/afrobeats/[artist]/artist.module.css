@@ -510,3 +510,12 @@
 @media (prefers-reduced-motion: reduce) {
   .liveDot { animation: none; }
 }
+
+/* Hero actions — the chart board and the live board, named with their own
+   figures so the button says what is behind it. */
+.heroActions { display: flex; flex-wrap: wrap; gap: 12px; }
+.heroLive { display: inline-flex; align-items: center; gap: 9px; }
+@media (max-width: 760px) {
+  .heroActions { flex-direction: column; align-items: stretch; }
+  .heroActions a { justify-content: center; text-align: center; }
+}

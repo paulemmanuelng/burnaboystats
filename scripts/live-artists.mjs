@@ -67,9 +67,11 @@ export const LIVE_ARTISTS = {
     ],
     titleAliases: { "Kese (Dance)": "Kese" },
     out: "liveCharts.wizkid.ts",
-    // No run history yet: that file is the memory behind Burna Boy's own
-    // trend charts, and nothing on the board plots a trend line.
-    runOut: null,
+    // Collection starts the day this is switched on — a run can only ever be
+    // plotted from the first day something was watching. Turned on 17 Aug 2026
+    // on Paul's call, so the board's trend data begins accumulating now even
+    // though nothing plots it yet.
+    runOut: "runHistory.wizkid.ts",
     covers: true,
   },
 };

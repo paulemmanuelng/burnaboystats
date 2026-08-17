@@ -150,14 +150,21 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
               <h1 className={styles.title}>{a.name}</h1>
               <p className={styles.fullName}>{a.fullName}</p>
               <p className={styles.hook}>{a.hook}</p>
-              <a
-                className="btn btnPrimary"
-                href={`https://open.spotify.com/artist/${a.spotifyId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                ▶ Open on Spotify ↗
-              </a>
+              {/* The two things this page is for, reachable from the hero
+                  rather than only from the panels further down. */}
+              <div className={styles.heroActions}>
+                {a.charts.length > 0 && (
+                  <Link href={`/afrobeats/${a.slug}/charts`} className="btn btnPrimary">
+                    Official chart peaks — {chartEntries(a)} entries
+                  </Link>
+                )}
+                {live && (
+                  <Link href={`/afrobeats/${a.slug}/live`} className={`btn btnSecondary ${styles.heroLive}`}>
+                    <span className={styles.liveDot} aria-hidden="true" />
+                    Live charts — {live.placements} placements today
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         </div>

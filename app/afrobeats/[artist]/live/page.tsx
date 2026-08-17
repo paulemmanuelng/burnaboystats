@@ -109,8 +109,8 @@ export default async function AfroLiveChartsPage({
         numberOnes={board.numberOnes}
         updated={updatedLabel}
         backHref={`/afrobeats/${slug}`}
-        backLabel={`${a.name} · live`}
-        heading={{ lead: a.name, gold: "Live" }}
+        backLabel={`${a.name} · live charts`}
+        heading={{ lead: `${a.name} Live`, gold: "Charts" }}
         source={board.api}
       />
 
@@ -131,7 +131,7 @@ export default async function AfroLiveChartsPage({
               Tracked as it happens
             </div>
             <h1 className={styles.h1}>
-              {a.name} <span className="inkText">Live</span>
+              {a.name} Live <span className="inkText">Charts</span>
             </h1>
             <p className={styles.lede}>
               {`Where every ${a.name} record is charting right now — ${board.placements} placements across ${board.countries} countries, refreshed every hour.`}

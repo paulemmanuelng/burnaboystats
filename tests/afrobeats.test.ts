@@ -290,3 +290,32 @@ describe("records that appear on two boards", () => {
     );
   });
 });
+
+// Wizkid's tile used to read "Afrobeats' first global crossover", which is a
+// claim about history the site cannot source — Paul's call to drop it (17 Aug
+// 2026). What replaced it is a claim about the register, so it is checked
+// against the register: if a sixth country certifies "One Dance" Diamond, this
+// fails and the sentence gets rewritten rather than quietly going stale.
+describe("hooks that state a figure", () => {
+  it("keeps Wizkid's hook true to the ledger", () => {
+    const a = artistBySlug("wizkid")!;
+    const oneDance = a.releases.find((r) => r.title === "One Dance");
+    const diamonds = oneDance!.certs.filter((c) => c.level === "Diamond");
+    expect(diamonds.length, "One Dance Diamond countries").toBe(5);
+    expect(a.hook).toContain("Diamond in five countries");
+    // And the comparative half: most-certified on this board after Burna Boy.
+    const ranked = [...sweptArtists].sort((x, y) => certCount(y) - certCount(x));
+    expect(ranked[0].slug).toBe("wizkid");
+  });
+
+  // Not a ban on the word: Tyla's hook says she won the FIRST Best African
+  // Music Performance Grammy, which is a dated fact about a named award. What
+  // is not sourceable is a "first" about the genre's own history — who crossed
+  // over first, who broke a market first. So this is a tripwire: a new hook
+  // claiming a first has to be added here deliberately, and justified.
+  it("claims a first only where a named award makes it datable", () => {
+    const firsts = afrobeatsArtists.filter((a) => /\bfirst\b/i.test(a.hook)).map((a) => a.slug);
+    expect(firsts).toEqual(["tyla"]);
+    expect(artistBySlug("tyla")!.hook).toContain("first Best African Music Performance Grammy");
+  });
+});

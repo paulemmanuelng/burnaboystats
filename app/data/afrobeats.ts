@@ -85,7 +85,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Ayodeji Ibrahim Balogun",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Afrobeats' first global crossover — and the genre's most-certified artist after Burna Boy.",
+    hook: "“One Dance” is Diamond in five countries — the deepest plaque count on this board after Burna Boy.",
     spotifyId: "3tVQdUvClmAT7URs9V3rsp",
     wikipedia: "https://en.wikipedia.org/wiki/Wizkid",
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
