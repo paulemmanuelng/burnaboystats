@@ -88,7 +88,7 @@ export const albums: Release[] = [
 export const singles: Release[] = [
   { title: "Dai Dai", credit: "Shakira X Burna Boy", year: 2026, certs: [
     { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
-    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" },
+    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -551,6 +551,11 @@ export const certHistory: CertEvent[] = [
   // worldwide plaque total stays put while Platinum crosses 100; the HU Gold
   // row above stays, per the append-never-rewrite rule.
   { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "HU", level: "Platinum", year: 2026 },
+  // FIMI week 33/2026 — read at the register's own search endpoint
+  // (fimi.it/ajax/filter-certificazioni.php, formato=2&year=2026): "DAI DAI /
+  // SHAKIRA & BURNA BOY / COLUMBIA-ATLANTIC / oro / Singoli Online". Burna's
+  // second Italian certification, after Jerusalema (Remix)'s 4x Platinum.
+  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "IT", level: "Gold", year: 2026 },
 ];
 
 // Helpers

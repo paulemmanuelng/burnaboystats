@@ -52,7 +52,7 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(229); // Hungary's Platinum is an upgrade — the plaque count holds, the tier split moves
+    expect(totalAwards()).toBe(230); // 230th: Dai Dai Gold in Italy, at FIMI's register 17 Aug 2026
     expect(countryCount).toBe(26);
     expect(certifiedReleaseCount).toBe(85); // TaTaTa, Update, Love, Dem Dey join via TCSN
   });
@@ -78,13 +78,13 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 logs 51 international certifications (59 events with Nigeria)", () => {
+  it("2026 logs 52 international certifications (60 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 8 events would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(51);
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(59);
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(52);
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(60); // 60th: the Italy Gold
   });
 
   it("2025 has the published count of 29 certifications", () => {
