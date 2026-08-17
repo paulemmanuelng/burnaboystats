@@ -19,6 +19,7 @@
 //
 //   node scripts/build-live-charts.mjs                    # Burna Boy
 //   node scripts/build-live-charts.mjs --artist=wizkid    # a board artist
+//   node scripts/build-live-charts.mjs --artist=board     # every board artist
 //   node scripts/build-live-charts.mjs --dry              # summary only
 
 import { writeFile, readFile } from "node:fs/promises";
@@ -29,15 +30,22 @@ import {
   mergeChartPlacements,
   titleKey,
 } from "./stats-lib.mjs";
-import { liveArtist } from "./live-artists.mjs";
+import { liveArtist, LIVE_ARTISTS } from "./live-artists.mjs";
 
 // One process can build several artists. That matters because the Deezer and
 // YouTube sweeps read the SAME 204 country charts for everyone: fetching them
 // once per artist would be ~1,600 requests an hour against a free service, so
 // each chart is fetched once and every artist is matched against it.
-const SLUGS = (
+// "--artist=board" means every artist on the Afrobeats Board — i.e. the whole
+// registry except Burna Boy, whose live charts are the site's own page. The
+// hourly job passes that rather than a hardcoded list, so adding an artist to
+// the registry is genuinely one edit.
+const requested = (
   process.argv.find((a) => a.startsWith("--artist="))?.slice("--artist=".length) ?? "burna-boy"
 ).split(",").map((x) => x.trim()).filter(Boolean);
+const SLUGS = requested.flatMap((slug) =>
+  slug === "board" ? Object.keys(LIVE_ARTISTS).filter((s) => s !== "burna-boy") : [slug]
+);
 const ARTISTS = SLUGS.map(liveArtist);
 const UA = { "user-agent": "burnaboystats-bot" };
 // Append-only daily record of worldwide chart positions. liveCharts.ts is a

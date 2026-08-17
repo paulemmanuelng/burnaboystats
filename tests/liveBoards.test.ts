@@ -1,4 +1,6 @@
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { LIVE_BOARDS, liveBoardFor, hasLiveBoard } from "../app/data/liveBoards";
 import { liveCharts as burnaLive } from "../app/data/liveCharts";
 import { artistBySlug, afrobeatsSlugs } from "../app/data/afrobeats";
@@ -132,5 +134,21 @@ describe("credit matchers", () => {
     ];
     for (const [credit, slug, want] of cases)
       expect((LIVE_ARTISTS as Record<string, { credit: RegExp }>)[slug].credit.test(credit), `${credit} → ${slug}`).toBe(want);
+  });
+});
+
+// The hourly job used to name all nine artists on its command line, which
+// meant adding one to the registry silently left it un-refreshed. It passes
+// "--artist=board" now; this holds the two ends together.
+describe("the hourly refresh", () => {
+  it("builds every board artist, and the registry matches the pages", async () => {
+    const { LIVE_ARTISTS } = await import("../scripts/live-artists.mjs");
+    const registry = Object.keys(LIVE_ARTISTS).filter((s) => s !== "burna-boy").sort();
+    expect(registry).toEqual(LIVE_BOARDS.map((b) => b.slug).sort());
+
+    const workflow = readFileSync(join(process.cwd(), ".github/workflows/stats-live.yml"), "utf8");
+    expect(workflow).toContain("build-live-charts.mjs --artist=board");
+    // Burna Boy's own refresh must still run, and must run unqualified.
+    expect(workflow).toMatch(/build-live-charts\.mjs\s*$/m);
   });
 });
