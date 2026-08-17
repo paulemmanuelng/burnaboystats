@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { globSync } from "node:fs";
 
 // Search Console reported "Missing field license" against the Dataset on
 // /live-charts (first detected 10 Jul 2026). The cause was structural: that
@@ -13,7 +12,17 @@ import { globSync } from "node:fs";
 // Assert it at the source: every Dataset block in the app must carry a licence.
 const read = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
 
-const FILES = globSync("app/**/*.{ts,tsx}", { cwd: process.cwd() });
+// A plain recursive walk, not fs.globSync — that needs Node 22 and CI runs 20,
+// so the glob version passed locally and failed in CI.
+function walk(dir: string): string[] {
+  return readdirSync(join(process.cwd(), dir), { withFileTypes: true }).flatMap((e) => {
+    const rel = `${dir}/${e.name}`;
+    if (e.isDirectory()) return walk(rel);
+    return /\.tsx?$/.test(e.name) ? [rel] : [];
+  });
+}
+
+const FILES = walk("app");
 
 describe("Dataset structured data", () => {
   const withDataset = FILES.filter((f) => read(f).includes('"@type": "Dataset"'));
