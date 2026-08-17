@@ -81,7 +81,10 @@ async function main() {
   // appear. A hit is actionable exactly like drift: verify at the register,
   // then update the site by hand.
   const certWatchResults = [];
-  for (const w of config.certWatches ?? []) {
+  // A watch with `resolved` has already been found and published — polling it
+  // again would trip the drift issue every week for a certification that is
+  // long since on the site.
+  for (const w of (config.certWatches ?? []).filter((c) => !c.resolved)) {
     let status = "unavailable";
     try {
       const res = await fetch(w.endpoint, {

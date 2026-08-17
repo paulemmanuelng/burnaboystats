@@ -33,18 +33,18 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 229 certifications across 26 countries", () => {
+  it("counts 230 certifications across 26 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
-    expect(certs).toBe(229); // Hungary's Platinum is an upgrade — total unchanged
+    expect(certs).toBe(230); // + Dai Dai Gold in Italy (FIMI wk 33/2026)
     expect(countries).toBe(26); // Czechia joins
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 6 Diamond / 100 Platinum / 92 Gold / 31 Silver", () => {
+  it("splits into 6 Diamond / 100 Platinum / 93 Gold / 31 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -54,11 +54,11 @@ describe("handoff checklist — data integrity", () => {
     // showed 7 was the one carrying the typo.
     expect(byLevel("Diamond")).toBe(6);
     expect(byLevel("Platinum")).toBe(100); // the 100th: Dai Dai's Hungary upgrade
-    expect(byLevel("Gold")).toBe(92); // − Hungary, now a Platinum // three golds upgraded to Platinum at TCSN, one gold added
+    expect(byLevel("Gold")).toBe(93); // + Italy
     expect(byLevel("Silver")).toBe(31);
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(229);
+    expect(sum).toBe(230);
   });
 
   it("counts 280 chart entries across 71 territories, 48 of them at No. 1", () => {
