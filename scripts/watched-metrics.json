@@ -129,7 +129,7 @@
       "extractor": "youtubeViews",
       "kind": "drift",
       "threshold": 0.001,
-      "baseline": 820897500,
+      "baseline": 822112251,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -146,9 +146,9 @@
           "describes": "displayed view count (whole millions) on /dai-dai"
         }
       ],
-      "lastChanged": "2026-08-16",
-      "lastSeenValue": 821261522,
-      "lastSeenAt": "2026-08-16"
+      "lastChanged": "2026-08-17",
+      "lastSeenValue": 822112251,
+      "lastSeenAt": "2026-08-17"
     },
     {
       "id": "yt-views-last-last",
@@ -750,7 +750,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Tems",
       "kind": "accumulate",
-      "baseline": 1642738000,
+      "baseline": 1648309000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -768,9 +768,9 @@
           "describes": "Tems 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1642738000,
-      "lastSeenAt": "2026-08-16",
-      "lastChanged": "2026-08-16"
+      "lastSeenValue": 1648309000,
+      "lastSeenAt": "2026-08-17",
+      "lastChanged": "2026-08-17"
     },
     {
       "id": "streams-2026-wizkid",
@@ -780,7 +780,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Wizkid",
       "kind": "accumulate",
-      "baseline": 1609032000,
+      "baseline": 1615798000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -798,9 +798,9 @@
           "describes": "Wizkid 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1609032000,
-      "lastSeenAt": "2026-08-16",
-      "lastChanged": "2026-08-16"
+      "lastSeenValue": 1615798000,
+      "lastSeenAt": "2026-08-17",
+      "lastChanged": "2026-08-17"
     },
     {
       "id": "streams-2026-burna",
@@ -810,7 +810,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Burna Boy",
       "kind": "accumulate",
-      "baseline": 1555051000,
+      "baseline": 1564720000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -828,9 +828,9 @@
           "describes": "Burna Boy 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1555051000,
-      "lastSeenAt": "2026-08-16",
-      "lastChanged": "2026-08-16"
+      "lastSeenValue": 1564720000,
+      "lastSeenAt": "2026-08-17",
+      "lastChanged": "2026-08-17"
     }
   ],
   "certWatches": [
