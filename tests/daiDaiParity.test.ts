@@ -102,3 +102,26 @@ describe("Dai Dai: Spanish edition matches the English one", () => {
     }
   });
 });
+
+// The certification-country prose exists in six places (EN stat-line, EN FAQ,
+// EN story band, and the three Spanish equivalents). On 16-17 Aug 2026 the
+// story band was left behind twice in a row: it still listed Hungary as Gold
+// after its Platinum upgrade, and missed Italy's Gold entirely, so the band
+// contradicted the stat-line directly above it. Assert the tier groupings
+// agree across every copy rather than trusting six hand-edits to stay in step.
+describe("Dai Dai certification prose stays consistent across all copies", () => {
+  const en = [read("app/dai-dai/page.tsx"), read("app/components/DaiDaiStory.tsx")].join("\n");
+  const goldLists = [...en.matchAll(/Gold in ([^.]*?), and Silver/g)].map((m) => m[1]);
+
+  it("finds a Gold list in every English copy", () => {
+    expect(goldLists.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it("never lists Hungary among the Golds — it is Platinum", () => {
+    for (const list of goldLists) expect(list).not.toMatch(/Hungary/);
+  });
+
+  it("lists Italy among the Golds in every English copy", () => {
+    for (const list of goldLists) expect(list).toMatch(/Italy/);
+  });
+});
