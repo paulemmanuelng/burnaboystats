@@ -5,6 +5,7 @@ import KeepExploring from "../components/KeepExploring";
 import MobileMenuButton from "../components/MobileMenuButton";
 import BackLink from "../components/BackLink";
 import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
+import { LIVE_BOARDS } from "../data/liveBoards";
 import {
   sweptArtists,
   pendingArtists,
@@ -158,6 +159,8 @@ export default function AfrobeatsPage() {
           </Link>
         </div>
 
+        {/* Two rails, two kinds of record. Without these the chart boards and
+            the live boards were each reachable from one page only. */}
         <div className={styles.chartRail}>
           <span className={styles.railLabel}>Chart peaks</span>
           {ranked.map((a) => (
@@ -165,6 +168,23 @@ export default function AfrobeatsPage() {
               {a.name} <span className={styles.railNum}>{chartEntries(a)}</span>
             </Link>
           ))}
+        </div>
+
+        <div className={styles.chartRail}>
+          <span className={`${styles.railLabel} ${styles.railLive}`}>
+            <span className={styles.railDot} aria-hidden="true" />
+            Charting now
+          </span>
+          {[...LIVE_BOARDS]
+            .sort((a, b) => b.placements - a.placements)
+            .map((b) => {
+              const artist = [...sweptArtists, ...pendingArtists].find((a) => a.slug === b.slug);
+              return (
+                <Link key={b.slug} href={`/afrobeats/${b.slug}/live`} className={styles.railLink}>
+                  {artist?.name ?? b.slug} <span className={styles.railNum}>{b.placements}</span>
+                </Link>
+              );
+            })}
         </div>
 
         {pendingArtists.length > 0 && (
