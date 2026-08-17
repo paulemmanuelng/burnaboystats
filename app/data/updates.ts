@@ -35,6 +35,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-17",
+    category: "Certifications",
+    text: "Gold in Italy: FIMI certifies “Dai Dai” for 100,000 units in its week-33 list — Burna Boy's 230th certification worldwide, and only his second Italian plaque after “Jerusalema (Remix)” went 4× Platinum there.",
+    href: "/certifications",
+  },
+  {
     date: "2026-08-16",
     category: "Streaming",
     text: "A 34th day at No. 1, and the lead widens: Spotify's Daily Top Songs Global for 15 August keeps “Dai Dai” on top with 4,219,912 streams — up on the day, two days clear of Djo's “End of Beginning” (32) as 2026's longest-running No. 1, with 59 days inside the global Top 10 and 87 days on the chart.",
