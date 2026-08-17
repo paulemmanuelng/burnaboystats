@@ -7,6 +7,7 @@ import BackLink from "../../components/BackLink";
 import { pageMetadata, CANONICAL_ORIGIN, datasetJsonLd } from "../../lib/seo";
 import { tierOf, totalAwards, countryCount as burnaCountries } from "../../data/certifications";
 import { numberOnes as burnaNo1s, chartEntryCount as burnaEntries } from "../../data/charts";
+import { liveBoardFor } from "../../data/liveBoards";
 import {
   artistBySlug,
   afrobeatsSlugs,
@@ -70,6 +71,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const a = artistBySlug(slug);
   if (!a) notFound();
 
+  const live = liveBoardFor(a.slug);
   const total = certCount(a);
   const countries = countryCount(a);
   const burnaTotal = totalAwards();
@@ -323,6 +325,42 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         </section>
       )}
 
+      {/* ── Live charts, where they are placing right now ────── */}
+      {live && (
+        <section className={styles.chartPad} aria-labelledby="live">
+          <Link href={`/afrobeats/${a.slug}/live`} className={`${styles.chartCta} ${styles.liveCta}`}>
+            <span className={styles.chartCtaGlow} aria-hidden="true" />
+            <span className={styles.chartCtaBody}>
+              <span className={styles.liveKicker}>
+                <span className={styles.liveDot} aria-hidden="true" />
+                Live now
+              </span>
+              <h2 id="live" className={styles.chartCtaTitle}>
+                Where {a.name} is charting today
+              </h2>
+              <span className={styles.chartCtaFigures}>
+                <span className={styles.chartFig}>
+                  <b>{live.placements}</b> placements
+                </span>
+                <span className={styles.chartFig}>
+                  <b>{live.countries}</b> countries
+                </span>
+                <span className={styles.chartFig}>
+                  <b>{live.platformTotals.length}</b> platforms
+                </span>
+              </span>
+              <span className={styles.chartCtaNote}>
+                Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts, rebuilt
+                hourly by the same job that tracks Burna Boy — platform charts, not official ones.
+              </span>
+            </span>
+            <span className={styles.chartCtaArrow} aria-hidden="true">
+              Open the live board →
+            </span>
+          </Link>
+        </section>
+      )}
+
       {/* ── Against Burna ────────────────────────────────────── */}
       {a.swept && (
       <section className={styles.compare} aria-labelledby="vs">
@@ -360,6 +398,11 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         {a.charts.length > 0 && (
           <Link href={`/afrobeats/${a.slug}/charts`} className="btn btnSecondary">
             Chart peaks ↗
+          </Link>
+        )}
+        {live && (
+          <Link href={`/afrobeats/${a.slug}/live`} className="btn btnSecondary">
+            Live charts ↗
           </Link>
         )}
         <Link href="/certifications" className="btn btnSecondary">Burna Boy&apos;s ledger ↗</Link>

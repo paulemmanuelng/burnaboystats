@@ -107,6 +107,7 @@ export const SEGMENT_LABELS: Record<string, string> = {
   "by-the-numbers": "By the Numbers",
   visualized: "Visualized",
   charts: "Official Charts",
+  live: "Live Charts",
   awards: "Awards",
   tours: "Tours & Live",
   festivals: "Festivals & Shows",

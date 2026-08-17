@@ -389,6 +389,13 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["wizkid", "wizzy", "star boy", "starboy", "ayodeji balogun", "big wiz", "made in lagos", "wizkid certifications", "wizkid plaques", "wizkid awards"],
   },
   {
+    title: "Wizkid — Live Charts",
+    path: "/afrobeats/wizkid/live",
+    section: "Afrobeats",
+    description: "Where every Wizkid release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    keywords: ["wizkid live charts", "wizkid charting now", "wizkid today", "wizkid spotify chart", "wizkid apple music chart", "wizkid shazam"],
+  },
+  {
     title: "Wizkid — Chart History",
     path: "/afrobeats/wizkid/charts",
     section: "Afrobeats",
