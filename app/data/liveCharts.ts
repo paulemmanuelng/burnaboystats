@@ -2583,22 +2583,22 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "IN",
             "name": "India",
-            "position": 117,
+            "position": 127,
             "movement": null,
             "status": "new"
           },
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 119,
+            "position": 137,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CL",
             "name": "Chile",
-            "position": 144,
-            "movement": -141
+            "position": 179,
+            "movement": -176
           },
           {
             "country": "JP",
@@ -3464,19 +3464,6 @@ export const liveCharts: LiveRelease[] = [
             "name": "Nigeria",
             "position": 155,
             "movement": 1
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 163,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
