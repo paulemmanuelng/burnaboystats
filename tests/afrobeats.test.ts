@@ -12,6 +12,7 @@ import {
   tierCount,
   topAward,
   artistBySlug,
+  plaqueLabel,
 } from "../app/data/afrobeats";
 import { countryMeta } from "../app/data/afrobeats";
 
@@ -132,12 +133,12 @@ describe("the Afrobeats board", () => {
   // sweep's own verified figure. They now agree exactly for every artist, so
   // this is equality rather than a bound: a row that goes missing, a peak that
   // moves to the wrong chart, or a parser that invents an entry all break it.
-  it("chart detail reproduces the verified headline exactly", () => {
+  it("chart rows reproduce each sweep's published headline exactly", () => {
     for (const a of sweptArtists) {
-      const rows = a.charts.flatMap((r) => r.entries);
-      expect(rows.length, `${a.slug} entries`).toBe(chartEntries(a));
-      expect(new Set(rows.map((e) => e.c)).size, `${a.slug} territories`).toBe(chartTerritories(a));
-      expect(rows.filter((e) => e.peak === 1).length, `${a.slug} No. 1s`).toBe(chartNo1s(a));
+      expect(a.chartPublished, a.slug).toBeTruthy();
+      expect(chartEntries(a), `${a.slug} entries`).toBe(a.chartPublished!.entries);
+      expect(chartTerritories(a), `${a.slug} territories`).toBe(a.chartPublished!.territories);
+      expect(chartNo1s(a), `${a.slug} No. 1s`).toBe(a.chartPublished!.no1s);
     }
   });
 
@@ -220,5 +221,72 @@ describe("the board's crawl surface", () => {
   it("gives every swept artist a chart board and no pending artist one", () => {
     for (const a of sweptArtists) expect(a.charts.length, a.slug).toBeGreaterThan(0);
     for (const a of pendingArtists) expect(a.charts.length, a.slug).toBe(0);
+  });
+});
+
+// The tier LABEL is the thing a reader screenshots, and a multiplier is the
+// easiest part of it to drop — "Water" shipped as a plain Brazilian Diamond
+// when Pro-Música's register carries it at 2×, understating the biggest plaque
+// on the board. These are the highest award each swept artist holds, read from
+// their certification sweeps.
+describe("the board's headline plaques", () => {
+  const TOP = [
+    ["tyla", "Water", "BR", "2× Diamond"],
+    ["tyla", "Water", "FR", "Diamond"],
+    ["wizkid", "One Dance", "US", "Diamond"],
+    ["wizkid", "One Dance", "AU", "17× Platinum"],
+    ["tems", "Wait For U", "US", "Diamond"],
+    ["rema", "Calm Down", "FR", "Diamond"],
+  ] as const;
+
+  it("labels each artist's biggest plaque exactly as its register does", () => {
+    for (const [slug, title, code, label] of TOP) {
+      const a = artistBySlug(slug)!;
+      const cert = a.releases.find((r) => r.title === title)?.certs.find((c) => c.c === code);
+      expect(cert, `${slug} → ${title} → ${code}`).toBeTruthy();
+      expect(plaqueLabel(cert!), `${slug} → ${title} → ${code}`).toBe(label);
+    }
+  });
+});
+
+// Six records appear on two boards at once, and the boards were built from six
+// separate sweep documents that never saw each other. Where two artists share a
+// record, the site must not publish two different answers for the same chart.
+describe("records that appear on two boards", () => {
+  const shared = () => {
+    const byTitle = new Map<string, Map<string, Map<string, number>>>();
+    for (const a of sweptArtists)
+      for (const r of a.charts) {
+        if (!byTitle.has(r.title)) byTitle.set(r.title, new Map());
+        const per = byTitle.get(r.title)!;
+        per.set(a.slug, new Map(r.entries.map((e) => [e.c, e.peak])));
+      }
+    return [...byTitle].filter(([, per]) => per.size > 1);
+  };
+
+  it("gives one answer per chart for every co-credited record", () => {
+    // "Dynamite" is the one live disagreement, and it is a conflict between the
+    // SOURCES, not a slip: Wizkid's sweep registers a South African #45 while
+    // flagging every TOSAC peak in that file unverified, and Tyla's sweep
+    // removes the same row as sitting below TOSAC's published depth in that
+    // release window. Pinned here so it stays visible and nothing else joins it
+    // silently — Paul's call which sweep wins.
+    const known = new Set(["Dynamite|ZA"]);
+    const conflicts: string[] = [];
+    for (const [title, per] of shared()) {
+      const slugs = [...per.keys()];
+      const codes = new Set([...per.values()].flatMap((m) => [...m.keys()]));
+      for (const c of codes) {
+        const peaks = slugs.map((s) => per.get(s)!.get(c));
+        if (new Set(peaks).size > 1) conflicts.push(`${title}|${c}`);
+      }
+    }
+    expect(conflicts.filter((c) => !known.has(c))).toEqual([]);
+  });
+
+  it("still carries the shared records it is supposed to", () => {
+    expect(shared().map(([t]) => t).sort()).toEqual(
+      ["2 Sugar", "Dynamite", "Essence", "Gimme Dat", "Who's Dat Girl", "Won Da Mo"].sort()
+    );
   });
 });

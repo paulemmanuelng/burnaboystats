@@ -276,3 +276,45 @@
 @media (max-width: 760px) {
   .ruleBody { display: none; }
 }
+
+/* Chart rail — the second way into the six chart boards, so they are not each
+   reachable from one page only. Reads as a footnote to the grid, not a nav. */
+.chartRail {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.railLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 4px;
+}
+.railLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12.5px;
+  transition: border-color 200ms var(--ease), color 200ms var(--ease);
+}
+.railLink:hover { border-color: var(--gold); color: var(--gold); }
+.railNum {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--gold);
+}
+@media (max-width: 760px) {
+  .chartRail { margin-top: 16px; }
+}

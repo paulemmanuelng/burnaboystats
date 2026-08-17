@@ -63,6 +63,10 @@ export interface AfroArtist {
   flag: string;
   hook: string;
   spotifyId: string;
+  /** English Wikipedia article. An authority link so a search engine can resolve
+   *  the MusicGroup to the right human — each one opened and confirmed to be the
+   *  musician, not a namesake, on 17 Aug 2026. */
+  wikipedia: string;
   image: string;
   verifiedOn: string;
   /** false while the register sweep is still scheduled — the page says so. */
@@ -83,6 +87,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     flag: "🇳🇬",
     hook: "Afrobeats' first global crossover — and the genre's most-certified artist after Burna Boy.",
     spotifyId: "3tVQdUvClmAT7URs9V3rsp",
+    wikipedia: "https://en.wikipedia.org/wiki/Wizkid",
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: true,
@@ -227,6 +232,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     flag: "🇳🇬",
     hook: "Seventeen Nigerian No. 1s — more home-chart chart-toppers than anyone else in this field.",
     spotifyId: "0Y3agQaa6g2r0YmHPOO9rh",
+    wikipedia: "https://en.wikipedia.org/wiki/Davido",
     image: "https://i.scdn.co/image/ab6761610000e5eb2bf250c3e92f9e7542efd95c",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: true,
@@ -357,6 +363,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     flag: "🇳🇬",
     hook: "“Calm Down” is the most widely certified Afrobeats record ever made.",
     spotifyId: "46pWGuE3dSwY3bMMXGBvVS",
+    wikipedia: "https://en.wikipedia.org/wiki/Rema_(musician)",
     image: "https://i.scdn.co/image/ab6761610000e5ebe3b85a0f16eaab80965c6ef3",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: true,
@@ -448,6 +455,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     flag: "🇳🇬",
     hook: "Holds a US Diamond — the only artist in this field who does.",
     spotifyId: "687cZJR45JO7jhk1LHIbgq",
+    wikipedia: "https://en.wikipedia.org/wiki/Tems_(singer)",
     image: "https://i.scdn.co/image/ab6761610000e5eb22d7d6f8981c7a27bf68a382",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: true,
@@ -496,6 +504,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     flag: "🇿🇦",
     hook: "“Water” took amapiano worldwide and won the first Best African Music Performance Grammy.",
     spotifyId: "3SozjO3Lat463tQICI9LcE",
+    wikipedia: "https://en.wikipedia.org/wiki/Tyla",
     image: "https://i.scdn.co/image/ab6761610000e5eb69719e4164b893213a525d25",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: true,
@@ -503,7 +512,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     releases: [
       { title: "Tyla", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "DK", level: "Gold" }] },
       { title: "Tyla +", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg", certs: [{ c: "NO", level: "Gold" }] },
-      { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond" }, { c: "FR", level: "Diamond" }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "SE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] },
+      { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond", x: 2 }, { c: "FR", level: "Diamond" }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "SE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] },
       { title: "Push 2 Start", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "GR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "UK", level: "Gold" }] },
       { title: "Chanel", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Truth or Dare", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
@@ -541,6 +550,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     flag: "🇳🇬",
     hook: "The youngest of the field, and the fastest-rising — “Rush” went Diamond in France.",
     spotifyId: "3ZpEKRjHaHANcpk10u6Ntq",
+    wikipedia: "https://en.wikipedia.org/wiki/Ayra_Starr",
     image: "https://i.scdn.co/image/ab6761610000e5ebc2074e9ac0e35662936cde67",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: true,
@@ -618,6 +628,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     flag: "🇳🇬",
     hook: "Among the genre's most-streamed acts — his register sweep is scheduled.",
     spotifyId: "3a1tBryiczPAZpgoZN9Rzg",
+    wikipedia: "https://en.wikipedia.org/wiki/Asake",
     image: "https://i.scdn.co/image/ab6761610000e5ebff54cbafa23b728b49954587",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: false,
@@ -632,6 +643,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     flag: "🇳🇬",
     hook: "A fixture of the daily African streaming top ten — sweep scheduled.",
     spotifyId: "5yOvAmpIR7hVxiS6Ls5DPO",
+    wikipedia: "https://en.wikipedia.org/wiki/Omah_Lay",
     image: "https://i.scdn.co/image/ab6761610000e5eb35ba3ee6067196268c5528cb",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: false,
@@ -646,6 +658,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     flag: "🇳🇬",
     hook: "One of Nigeria's fastest-rising streaming forces — sweep scheduled.",
     spotifyId: "4zmZ8lVLzGc84S4v2B1rLx",
+    wikipedia: "https://en.wikipedia.org/wiki/Seyi_Vibez",
     image: "https://i.scdn.co/image/ab6761610000e5eb9902f473df31601d5938e0bd",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: false,
@@ -690,14 +703,20 @@ export const countryCount = (a: AfroArtist) =>
 export const tierCount = (a: AfroArtist, tier: Tier) =>
   a.releases.reduce((n, r) => n + r.certs.filter((c) => c.level === tier).length, 0);
 
-/** Chart headline: the sweep's verified figure where we have it, else the
- *  extracted rows. Never silently mixes the two. */
-export const chartEntries = (a: AfroArtist) =>
-  a.chartPublished?.entries ?? a.charts.reduce((n, r) => n + r.entries.length, 0);
+/** Chart headline, counted from the rows the page actually renders.
+ *
+ *  These used to prefer `chartPublished`, which meant a page could assert
+ *  "118 entries across 53 territories" in its title, meta description, OG card
+ *  and Dataset schema while the table below it drew 115 rows and a 52-country
+ *  rail — a structured-data claim contradicted by the visible page, on the one
+ *  page type built to be cited as a source. `chartPublished` is still here as
+ *  the sweep's own verified assertion, and a test holds these to it; it is a
+ *  check on the rows, not a substitute for counting them. */
+export const chartEntries = (a: AfroArtist) => a.charts.reduce((n, r) => n + r.entries.length, 0);
 export const chartTerritories = (a: AfroArtist) =>
-  a.chartPublished?.territories ?? new Set(a.charts.flatMap((r) => r.entries.map((e) => e.c))).size;
+  new Set(a.charts.flatMap((r) => r.entries.map((e) => e.c))).size;
 export const chartNo1s = (a: AfroArtist) =>
-  a.chartPublished?.no1s ?? a.charts.reduce((n, r) => n + r.entries.filter((e) => e.peak === 1).length, 0);
+  a.charts.reduce((n, r) => n + r.entries.filter((e) => e.peak === 1).length, 0);
 
 export const topAward = (a: AfroArtist) => {
   const rank: Record<Tier, number> = { Diamond: 0, Platinum: 1, Gold: 2, Silver: 3 };

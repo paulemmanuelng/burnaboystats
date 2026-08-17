@@ -102,7 +102,7 @@ export const exploreFor: Record<string, string[]> = {
   "/dai-dai": ["live-charts", "charts", "share"],
   "/records/tours": ["records", "certifications", "charts"],
   "/records/firsts": ["dai-dai", "charts", "certifications"],
-  "/records/africas-biggest": ["certifications", "charts", "share"],
+  "/records/africas-biggest": ["afrobeats", "certifications", "charts"],
   "/share": ["dai-dai", "certifications", "records"],
   // The board is the one section about other artists. Every way out of it leads
   // back to the subject of the site — a reader who arrived on "wizkid

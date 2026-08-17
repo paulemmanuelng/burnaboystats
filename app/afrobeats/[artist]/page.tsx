@@ -4,7 +4,7 @@ import styles from "./artist.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import MobileMenuButton from "../../components/MobileMenuButton";
 import BackLink from "../../components/BackLink";
-import { pageMetadata, CANONICAL_ORIGIN, breadcrumbList } from "../../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN, datasetJsonLd } from "../../lib/seo";
 import { tierOf, totalAwards, countryCount as burnaCountries } from "../../data/certifications";
 import { numberOnes as burnaNo1s, chartEntryCount as burnaEntries } from "../../data/charts";
 import {
@@ -20,6 +20,7 @@ import {
   chartEntries,
   chartTerritories,
   chartNo1s,
+  topAward,
   type Tier,
 } from "../../data/afrobeats";
 
@@ -33,15 +34,16 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
   const a = artistBySlug(slug);
   if (!a) return {};
   // Both strings stay inside the SEO gate's limits at every artist's name
-  // length, so the description is figures rather than the hook sentence.
+  // length. The title carries the page's ranking claim as a figure, the way the
+  // site's own certification titles do, and it moves when the register does —
+  // a pending artist has nothing verified yet, so it must not claim a number.
   return pageMetadata({
-    // A pending artist has nothing verified yet, so the title must not claim it.
     title: a.swept
-      ? `${a.name} Certifications & Charts — Verified`
+      ? `${a.name} Certifications — ${certCount(a)} Awards in ${countryCount(a)} Countries`
       : `${a.name} — The Afrobeats Board`,
     description: a.swept
-      ? `${a.name}: ${certCount(a)} certifications across ${countryCount(a)} countries and ${chartEntries(a)} official chart entries, each read at source.`
-      : `${a.name} on The Afrobeats Board. His certification and chart registers are scheduled to be read at source — no figures published until they are.`,
+      ? `${a.name}: ${certCount(a)} certifications across ${countryCount(a)} countries, topped by ${topAward(a) ? plaqueLabel(topAward(a)!) : "a plaque"}, plus ${chartEntries(a)} official chart entries and ${chartNo1s(a)} No. 1s — every figure read at source.`
+      : `${a.name} on The Afrobeats Board. The certification and chart registers are scheduled to be read at source — no figures are published here until they are.`,
     path: `/afrobeats/${a.slug}`,
     shareTitle: `${a.name} — The Afrobeats Board`,
     shareDescription: a.swept
@@ -88,6 +90,17 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
     (p, q) => rank[p[1].level] - rank[q[1].level] || (q[1].x ?? 1) - (p[1].x ?? 1)
   );
 
+  const dataset = a.swept
+    ? datasetJsonLd({
+        name: `${a.name} music certifications by country`,
+        description: `Every certification held by ${a.name} — ${total} plaques across ${countries} countries, each read in the issuing body's own register and counted one plaque per title per country at its current tier.`,
+        path: `/afrobeats/${a.slug}`,
+        keywords: [a.name, "certifications", "RIAA", "BPI", "gold", "platinum", "diamond", "Afrobeats"],
+        variableMeasured: ["Certification tier", "Country / territory", "Release", "Certifying body"],
+        about: { name: a.name, sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`] },
+      })
+    : null;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MusicGroup",
@@ -95,16 +108,15 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
     alternateName: a.fullName,
     url: `${CANONICAL_ORIGIN}/afrobeats/${a.slug}`,
     image: a.image,
-    sameAs: [`https://open.spotify.com/artist/${a.spotifyId}`],
+    sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`],
   };
 
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList(`/afrobeats/${a.slug}`)) }}
-      />
+      {dataset && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
+      )}
 
       <nav className={styles.crumbs} aria-label="Breadcrumb">
         <Link href="/afrobeats">← The Afrobeats Board</Link>
@@ -285,9 +297,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
             <span className={styles.chartCtaGlow} aria-hidden="true" />
             <span className={styles.chartCtaBody}>
               <span className={styles.chartCtaKicker}>Official charts</span>
-              <span id="charts" className={styles.chartCtaTitle}>
+              <h2 id="charts" className={styles.chartCtaTitle}>
                 {a.name}&apos;s peak positions, country by country
-              </span>
+              </h2>
               <span className={styles.chartCtaFigures}>
                 <span className={styles.chartFig}>
                   <b>{chartEntries(a)}</b> entries

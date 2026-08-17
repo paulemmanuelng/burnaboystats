@@ -4,22 +4,28 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import MobileMenuButton from "../components/MobileMenuButton";
 import BackLink from "../components/BackLink";
-import { pageMetadata, CANONICAL_ORIGIN, breadcrumbList } from "../lib/seo";
+import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
 import {
   sweptArtists,
   pendingArtists,
   certCount,
   countryCount,
   topAward,
+  chartEntries,
   BURNA,
   AFROBEATS_VERIFIED_ON,
 } from "../data/afrobeats";
 import { totalAwards, countryCount as burnaCountries } from "../data/certifications";
 
+// Names, and the count in the eyebrow, come from the data: adding an artist to
+// the board must not leave the copy describing the old one.
+const boardNames = [BURNA.name, ...[...sweptArtists].sort((a, b) => certCount(b) - certCount(a)).map((a) => a.name)];
+const nameList = `${boardNames.slice(0, -1).join(", ")} and ${boardNames.at(-1)}`;
+
 export const metadata = pageMetadata({
   title: "The Afrobeats Board — Certifications & Charts",
   description:
-    "Burna Boy, Wizkid, Davido, Rema, Tems, Tyla and Ayra Starr, counted by one rule — every plaque read in the issuing body's own register.",
+    `${nameList}, counted by one rule — every plaque read in the issuing body's own register, never a fan tally.`,
   path: "/afrobeats",
   shareTitle: "The Afrobeats Board",
   shareDescription: "The genre's biggest names, counted by one rule.",
@@ -42,21 +48,25 @@ const jsonLd = {
   url: `${CANONICAL_ORIGIN}/afrobeats`,
   description:
     "Certification and chart records for Afrobeats' biggest artists, each read in the issuing body's own register.",
-  hasPart: [...sweptArtists, ...pendingArtists].map((a) => ({
-    "@type": "MusicGroup",
-    name: a.name,
-    url: `${CANONICAL_ORIGIN}/afrobeats/${a.slug}`,
-  })),
+  // An ItemList, not hasPart: hasPart takes CreativeWork parts of this page,
+  // while what the board actually publishes is a ranked list of artists.
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: ranked.length + pendingArtists.length,
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    itemListElement: [...ranked, ...pendingArtists].map((a, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${CANONICAL_ORIGIN}/afrobeats/${a.slug}`,
+      name: a.name,
+    })),
+  },
 };
 
 export default function AfrobeatsPage() {
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList("/afrobeats")) }}
-      />
 
       <div className={styles.mobileBackBar}>
         <BackLink href="/" aria-label="Back home" className={styles.mobileBackBtn}>
@@ -76,7 +86,7 @@ export default function AfrobeatsPage() {
       <section className={styles.hero}>
         <div className={styles.eyebrow}>
           <span className={styles.eyebrowRule} aria-hidden="true" />
-          One rule, seven artists
+          One rule, {boardNames.length} verified artists
         </div>
         <h1 className={styles.h1}>
           The Afrobeats <span className="inkText">Board</span>
@@ -146,6 +156,15 @@ export default function AfrobeatsPage() {
               <span className={styles.ruleLink}>How the counting works →</span>
             </span>
           </Link>
+        </div>
+
+        <div className={styles.chartRail}>
+          <span className={styles.railLabel}>Chart peaks</span>
+          {ranked.map((a) => (
+            <Link key={a.slug} href={`/afrobeats/${a.slug}/charts`} className={styles.railLink}>
+              {a.name} <span className={styles.railNum}>{chartEntries(a)}</span>
+            </Link>
+          ))}
         </div>
 
         {pendingArtists.length > 0 && (

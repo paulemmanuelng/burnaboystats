@@ -74,6 +74,11 @@ export function datasetJsonLd(opts: {
   path: string;
   keywords: string[];
   variableMeasured: string[];
+  /** Who the dataset is ABOUT. Defaults to Burna Boy, which is every page on
+   *  the site except the Afrobeats Board — where declaring his name on another
+   *  artist's chart record would tell a search engine the page is about the
+   *  wrong entity. Pass the artist's name and Spotify URL there. */
+  about?: { name: string; sameAs?: string[] };
 }) {
   return {
     "@context": "https://schema.org",
@@ -85,7 +90,11 @@ export function datasetJsonLd(opts: {
     isAccessibleForFree: true,
     license: "https://creativecommons.org/licenses/by/4.0/",
     creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
-    about: { "@type": "MusicGroup", name: "Burna Boy" },
+    about: {
+      "@type": "MusicGroup",
+      name: opts.about?.name ?? "Burna Boy",
+      ...(opts.about?.sameAs ? { sameAs: opts.about.sameAs } : {}),
+    },
     variableMeasured: opts.variableMeasured,
   };
 }

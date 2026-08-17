@@ -425,6 +425,7 @@
 }
 .chartCtaTitle {
   display: block;
+  margin: 0;
   margin-top: 10px;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
