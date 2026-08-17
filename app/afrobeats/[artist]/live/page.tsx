@@ -15,14 +15,30 @@ export function generateStaticParams() {
   return LIVE_BOARDS.map((b) => ({ artist: b.slug }));
 }
 
+/** The record doing the most work on a board right now — most charts, best
+ *  position as the tie-break. It names the page rather than leaving nine
+ *  descriptions identical but for two numbers. */
+function leadRelease(board: LiveBoard) {
+  return [...board.releases]
+    .map((r) => {
+      const positions = r.platforms.flatMap((p) => p.entries.map((e) => e.position));
+      return { title: r.title, charts: positions.length, best: Math.min(...positions) };
+    })
+    .filter((r) => r.charts > 0)
+    .sort((x, y) => y.charts - x.charts || x.best - y.best)[0];
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ artist: string }> }) {
   const { artist: slug } = await params;
   const board = liveBoardFor(slug);
   const a = artistBySlug(slug);
   if (!board || !a) return {};
+  const lead = leadRelease(board);
   return pageMetadata({
     title: `${a.name} Live Charts — Charting Right Now, Worldwide`,
-    description: `Every ${a.name} release charting right now: ${board.placements} live placements across ${board.countries} countries on Spotify, Apple Music, YouTube, Deezer, iTunes and Shazam.`,
+    description: lead
+      ? `${a.name} is on ${board.placements} platform charts in ${board.countries} countries right now, led by “${lead.title}” at No. ${lead.best} across ${lead.charts}. Updated hourly.`
+      : `Every ${a.name} release charting right now: ${board.placements} live placements across ${board.countries} countries, updated hourly.`,
     path: `/afrobeats/${slug}/live`,
     shareTitle: `${a.name} — Live Charts`,
     shareDescription: `${board.placements} live placements across ${board.countries} countries, refreshed hourly.`,
