@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { LIVE_BOARDS, liveBoardFor, hasLiveBoard } from "../app/data/liveBoards";
 import { liveCharts as burnaLive } from "../app/data/liveCharts";
 import { artistBySlug, afrobeatsSlugs } from "../app/data/afrobeats";
+import { countriesOf } from "../app/lib/liveChartMeta";
 import sitemap from "../app/sitemap";
 import { searchIndex } from "../app/lib/searchIndex";
 
@@ -33,7 +34,10 @@ describe("the board's live charts", () => {
     for (const b of LIVE_BOARDS) {
       const entries = b.releases.flatMap((r) => r.platforms.flatMap((p) => p.entries));
       expect(b.placements, b.slug).toBe(entries.length);
-      expect(b.countries, b.slug).toBe(new Set(entries.map((e) => e.country)).size);
+      // Counted the way the page counts them: "UK" and "GB" are one country
+      // and "WW" is none, so the raw code set is an upper bound.
+      expect(b.countries, b.slug).toBe(countriesOf(entries));
+      expect(b.countries, b.slug).toBeLessThanOrEqual(new Set(entries.map((e) => e.country)).size);
       expect(b.platformTotals.reduce((n, p) => n + p.placements, 0), b.slug).toBe(entries.length);
     }
   });

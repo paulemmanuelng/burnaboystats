@@ -63,8 +63,10 @@ export default function MobileLiveCharts({
   countries,
   numberOnes,
   updated,
-  backHref = "/records",
-  backLabel = "Live charts",
+  // Defaults are BURNA BOY's, because his page passes neither and this
+  // component was his before it was shared. The board passes its own.
+  backHref = "/",
+  backLabel = "Live Charts",
   heading,
   source,
 }: {

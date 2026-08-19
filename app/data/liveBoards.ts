@@ -11,6 +11,7 @@
 // the builder, and add a row here. The route, the API endpoint, the OG card
 // and the button on their artist page all follow from this.
 
+import { countriesOf } from "../lib/liveChartMeta";
 import { liveCharts as wizkid, liveChartsUpdated as wizkidAt, type LiveRelease } from "./liveCharts.wizkid";
 import { liveCharts as davido, liveChartsUpdated as davidoAt } from "./liveCharts.davido";
 import { liveCharts as rema, liveChartsUpdated as remaAt } from "./liveCharts.rema";
@@ -43,7 +44,7 @@ function board(slug: string, releases: LiveRelease[], updated: string): LiveBoar
     updated,
     api: `/api/v1/live-charts/${slug}`,
     placements: entries.length,
-    countries: new Set(entries.map((e) => e.country)).size,
+    countries: countriesOf(entries),
     numberOnes: releases.reduce((n, r) => n + r.platforms.reduce((m, p) => m + p.numberOnes, 0), 0),
     platformTotals: platforms
       .map((platform) => {
