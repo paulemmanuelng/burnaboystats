@@ -1,6 +1,6 @@
 "use client"; // the tier rail filters the list
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
 import { badgeWeight } from "../lib/certs";
@@ -8,6 +8,7 @@ import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
 import { coverFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
+import { portraitArtFor } from "../lib/portraitArt";
 import type { CertEvent, Country, Release } from "../data/certifications";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -53,6 +54,7 @@ export default function MobileCerts({
   countryCount,
   covers,
   portrait,
+  portraitSlug,
   backHref = "/",
   backLabel = "Certifications",
   lede,
@@ -76,6 +78,8 @@ export default function MobileCerts({
   lede?: string;
   /** The artist's portrait, blended into the hero behind the type. */
   portrait?: string;
+  /** Which artist's treatment to use — see app/lib/portraitArt.ts. */
+  portraitSlug?: string;
   /** The board's screens end in the five-tab bar instead of an action bar. */
   showActionBar?: boolean;
 }) {
@@ -84,6 +88,7 @@ export default function MobileCerts({
   // saying — on desktop the three are separate sections and the grouping does
   // this job for free.
   const albumTitles = new Set(albums.map((a) => titleKey(a.title)));
+  const portraitArt = portraitArtFor(portraitSlug ?? "burna-boy");
   const [tier, setTier] = useState<Tier | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [year, setYear] = useState(YEARS[0]);
@@ -138,7 +143,16 @@ export default function MobileCerts({
       <div className={styles.hero}>
         {portrait && (
           <>
-            <span className={styles.heroArt} style={{ backgroundImage: `url(${portrait})` }} aria-hidden="true" />
+            <span
+              className={portraitArt.mode === "emblem" ? `${styles.heroArt} ${styles.heroArtEmblem}` : styles.heroArt}
+              style={{
+                backgroundImage: `url(${portrait})`,
+                "--focal": portraitArt.focal,
+                "--portrait-opacity": portraitArt.opacity,
+                "--grayscale": portraitArt.grayscale,
+              } as CSSProperties}
+              aria-hidden="true"
+            />
             <span className={styles.heroScrim} aria-hidden="true" />
           </>
         )}

@@ -70,18 +70,41 @@
    artist hero, so the two screens feel like one system. */
 .heroArt {
   position: absolute;
-  top: -18%;
-  right: -26%;
-  width: 78%;
-  height: 136%;
+  top: -14%;
+  right: -24%;
+  width: 76%;
+  height: 132%;
   background-size: cover;
-  background-position: center 22%;
-  filter: saturate(1.05) contrast(1.02);
-  opacity: 0.5;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 26%, #000 62%);
-  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 26%, #000 62%);
+  /* Focal point, opacity and grey are per-artist — ten photographs, ten
+     backdrops. app/lib/portraitArt.ts holds the values and the reasons. */
+  background-position: var(--focal, center 24%);
+  /* Grayscale-leaning and type-first, as the design has it: the portrait sits
+     behind the type, so it must not be the brightest or the warmest thing in
+     the hero. It used to run saturate(1.05), which pushed the other way. */
+  filter: grayscale(var(--grayscale, 0.25)) contrast(1.03);
+  opacity: var(--portrait-opacity, 0.42);
+  /* Opens at 44%, not the design's 62%. The art box overhangs the card by 24%,
+     so only its last few per cent were ever fully opaque — and with cover
+     scaling by height there is not enough horizontal overflow to walk a face
+     that far right. At 62% every portrait read as a smudge; at 44% the subject
+     lands in the opaque zone and the left edge still dissolves before the type. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 14%, #000 44%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 14%, #000 44%);
   z-index: -2;
   pointer-events: none;
+}
+
+/* Davido's shot reads as a crown mark rather than a face, so it is contained
+   rather than cropped and keeps its edges instead of dissolving into the page. */
+.heroArtEmblem {
+  top: 4%;
+  right: -4%;
+  width: 58%;
+  height: 92%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 /* Two scrims: one vertical so the kicker and lede sit on near-black, one
    horizontal so the portrait dissolves rather than ending in a hard edge. */
@@ -91,7 +114,10 @@
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(90deg, var(--bg) 34%, rgba(10, 10, 11, 0.72) 62%, rgba(10, 10, 11, 0.35) 100%),
+    /* Pushed out from 34%/0.72: the type has to clear 4.5:1 against the
+       brightest region behind it, and several of these shots have pale
+       backdrops. Darken the horizontal scrim until it does, per the spec. */
+    linear-gradient(90deg, var(--bg) 38%, rgba(10, 10, 11, 0.78) 62%, rgba(10, 10, 11, 0.35) 100%),
     linear-gradient(180deg, rgba(10, 10, 11, 0.55) 0%, rgba(10, 10, 11, 0.1) 40%, var(--bg) 100%);
 }
 @media (prefers-reduced-motion: no-preference) {
