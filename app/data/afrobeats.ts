@@ -12,10 +12,10 @@ import { CHART_COUNTRIES } from "./charts";
 //  on its principal national chart, no platform or genre charts, airplay only
 //  where a country publishes nothing else.
 //
-//  Every figure was read in an issuing body's own register during the 15-17 Aug
-//  2026 sweeps. `chartPublished` carries the sweep's verified headline and the
+//  Every figure was read in an issuing body's own register: 15-17 Aug 2026 for
+//  the first six artists, 19 Aug for Asake, Omah Lay and Seyi Vibez. `chartPublished` carries the sweep's verified headline and the
 //  `charts` rows are the extracted detail; since the 17 Aug repair the two agree
-//  EXACTLY for all six artists, and a test enforces that.
+//  EXACTLY for all nine artists, and a test enforces that.
 //
 //  THE TWO BILLBOARD WORLDWIDE CHARTS (GLB = Global 200, GLBX = Global Excl.
 //  U.S.) are the one pair no reader can eyeball. The sweep documents do not
@@ -33,6 +33,16 @@ import { CHART_COUNTRIES } from "./charts";
 //
 //  TITLES: stored as the release is named. The sweeps' working annotations
 //  ("(new)", "(2021)", "(register-only find)") are stripped; a test keeps them out.
+//
+//  ONE RECORD, TWO SWEEPS: where a release sits on two boards, the register
+//  wins over a file's own text-mined rows. "Bad Girl" was Nigeria #4 in
+//  Wizkid's file (text-mined, and flagged unverifiable there) against #2 read
+//  in the register by Asake's later sweep — #2 stands. "Dynamite" carried a
+//  South African #45 in Wizkid's file and none in Tyla's, which removed it as
+//  below TOSAC's published depth in that release window; Wizkid's own file
+//  deletes "Money & Love" ZA #98 for exactly that reason, so the same rule is
+//  applied to #45 and his entry count is 153, not 154. A test holds every
+//  co-credited record to one answer per chart.
 //
 //  CADENCE: reviewed WEEKLY. Burna Boy's own pages stay daily.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -77,6 +87,9 @@ export interface AfroArtist {
 }
 
 export const AFROBEATS_VERIFIED_ON = "2026-08-17";
+/** Asake, Omah Lay and Seyi Vibez were swept two days after the other six, and
+ *  their pages print this date as "last verified", so it has to be their own. */
+export const AFROBEATS_VERIFIED_ON_2 = "2026-08-19";
 
 export const afrobeatsArtists: AfroArtist[] = [
   {
@@ -91,7 +104,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: true,
-    chartPublished: { entries: 154, territories: 32, no1s: 24 },
+    chartPublished: { entries: 153, territories: 32, no1s: 24 },
     releases: [
       { title: "Made in Lagos", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "NG", level: "Gold" }] },
       { title: "Essence", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b0/09/8e/b0098ed0-ef53-f2b5-386a-c8e6181f3c8a/886448775256.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 7 }, { c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
@@ -201,7 +214,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Kese", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/82/60/3b/82603b3c-1aad-6e37-3b81-d5451046accf/196872637434.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 78 }] },
       { title: "Bad to Me", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/92/b6/d2/92b6d228-245b-8525-4801-bdb630c2be67/196589446022.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 3 }, { c: "UK", peak: 98 }] },
       { title: "Checklist", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/e3/6a/7f/e36a7feb-468a-d7d0-4431-97bc75f6455e/886447381151.jpg/300x300bb.jpg", entries: [{ c: "IE", peak: 76 }, { c: "UK", peak: 98 }] },
-      { title: "Dynamite", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8e/dc/d6/8edcd6ad-068b-b33f-0f13-44e20e07bdbe/196873431987.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 13 }, { c: "ZA", peak: 45 }] },
+      { title: "Dynamite", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8e/dc/d6/8edcd6ad-068b-b33f-0f13-44e20e07bdbe/196873431987.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 13 }] },
       { title: "G Love", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/9e/a9/4e/9ea94e1e-4660-1d37-6296-389df09e4085/888915614945_cover.jpg/300x300bb.jpg", entries: [{ c: "UK", peak: 28 }] },
       { title: "Energy", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/6f/e8/33/6fe83312-989e-c6ef-2cf0-e79f1c573f64/196871664691.jpg/300x300bb.jpg", entries: [{ c: "UK", peak: 59 }] },
       { title: "I Like", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/e0/b5/1f/e0b51fd9-77ff-5696-26c7-f2a47cd7d9d0/190295392284.jpg/300x300bb.jpg", entries: [{ c: "UK", peak: 74 }] },
@@ -630,7 +643,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3a1tBryiczPAZpgoZN9Rzg",
     wikipedia: "https://en.wikipedia.org/wiki/Asake",
     image: "https://i.scdn.co/image/ab6761610000e5ebff54cbafa23b728b49954587",
-    verifiedOn: AFROBEATS_VERIFIED_ON,
+    verifiedOn: AFROBEATS_VERIFIED_ON_2,
     swept: true,
     chartPublished: { entries: 123, territories: 11, no1s: 24 },
     releases: [
@@ -815,7 +828,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "5yOvAmpIR7hVxiS6Ls5DPO",
     wikipedia: "https://en.wikipedia.org/wiki/Omah_Lay",
     image: "https://i.scdn.co/image/ab6761610000e5eb35ba3ee6067196268c5528cb",
-    verifiedOn: AFROBEATS_VERIFIED_ON,
+    verifiedOn: AFROBEATS_VERIFIED_ON_2,
     swept: true,
     chartPublished: { entries: 70, territories: 16, no1s: 6 },
     releases: [
@@ -926,7 +939,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "4zmZ8lVLzGc84S4v2B1rLx",
     wikipedia: "https://en.wikipedia.org/wiki/Seyi_Vibez",
     image: "https://i.scdn.co/image/ab6761610000e5eb9902f473df31601d5938e0bd",
-    verifiedOn: AFROBEATS_VERIFIED_ON,
+    verifiedOn: AFROBEATS_VERIFIED_ON_2,
     swept: true,
     chartPublished: { entries: 114, territories: 1, no1s: 11 },
     releases: [

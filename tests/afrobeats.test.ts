@@ -286,7 +286,10 @@ describe("records that appear on two boards", () => {
     // "Bad Girl" was a second, and was settled: Wizkid's file had Nigeria #4
     // from its text-mined block, which that document itself flags as
     // unverifiable, while Asake's later sweep read #2 in the register.
-    const known = new Set(["Dynamite|ZA"]);
+    // Nothing is excused any more. "Dynamite" ZA was the last exception and is
+    // settled: Wizkid's file deletes "Money & Love" ZA #98 on the ground that
+    // TOSAC published a Top 10 in that window, and #45 fails the same test.
+    const known = new Set<string>();
     const conflicts: string[] = [];
     for (const [title, per] of shared()) {
       const slugs = [...per.keys()];
@@ -340,6 +343,29 @@ describe("hooks that state a figure", () => {
   // is not sourceable is a "first" about the genre's own history — who crossed
   // over first, who broke a market first. So this is a tripwire: a new hook
   // claiming a first has to be added here deliberately, and justified.
+  it("keeps the three newest hooks true to their sweeps", () => {
+    // Written from the 19 Aug sweeps. Each states a figure, so each is checked
+    // against the data rather than left to drift.
+    const asake = artistBySlug("asake")!;
+    expect(chartNo1s(asake), "Asake No. 1s").toBe(24);
+    expect(asake.charts.every((r) => r.entries.every((e) => e.peak !== 1 || e.c === "NG")), "all Asake No. 1s Nigerian").toBe(true);
+    expect(asake.hook).toContain("24 Nigerian No. 1s");
+
+    const omah = artistBySlug("omah-lay")!;
+    const diamonds = omah.releases.flatMap((r) => r.certs.filter((c) => c.level === "Diamond"));
+    expect(diamonds.length, "Omah Lay Diamonds").toBe(2);
+    expect(diamonds.every((c) => c.c === "FR"), "both French").toBe(true);
+    expect(countryCount(omah), "Omah Lay countries").toBe(9);
+    expect(omah.hook).toContain("nine countries");
+
+    const seyi = artistBySlug("seyi-vibez")!;
+    expect(certCount(seyi)).toBe(103);
+    expect(chartEntries(seyi)).toBe(114);
+    // The whole point of his line: everything he has is Nigerian.
+    expect(new Set(seyi.releases.flatMap((r) => r.certs.map((c) => c.c)))).toEqual(new Set(["NG"]));
+    expect(new Set(seyi.charts.flatMap((r) => r.entries.map((e) => e.c)))).toEqual(new Set(["NG"]));
+  });
+
   it("claims a first only where a named award makes it datable", () => {
     const firsts = afrobeatsArtists.filter((a) => /\bfirst\b/i.test(a.hook)).map((a) => a.slug);
     expect(firsts).toEqual(["tyla"]);

@@ -57,7 +57,7 @@ export default function Image() {
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", fontSize: 26, letterSpacing: 6, color: GOLD, textTransform: "uppercase", fontWeight: 700 }}>
-            One rule · seven artists
+            {`One rule · ${sweptArtists.length + 1} artists`}
           </div>
           <div style={{ display: "flex", fontSize: 92, fontWeight: 800, letterSpacing: -3, lineHeight: 1, marginTop: 18 }}>
             The Afrobeats Board
