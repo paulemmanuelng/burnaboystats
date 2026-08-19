@@ -80,9 +80,22 @@ These are not preferences. Previous passes broke on them.
 
 ---
 
-## 4. JOB 1 — the board on mobile is unusable
+## 4. JOB 1 — the board on mobile
 
-### What is wrong, measured
+> **Update, 19 August, after this brief was first written.** The worst of this
+> has been fixed in code, so you are not starting from the state described
+> below. The artist page now uses the site's existing mobile certifications
+> screen (`MobileCerts`, screen 02) instead of the desktop layout narrowed by
+> CSS — the same reuse already made for the chart and live boards. What follows
+> is the measured problem as it was; read it as *why* the page is built the way
+> it now is, and as the density brief for the pages that still carry it.
+>
+> **Still yours to solve:** the density of the chart and live screens at board
+> volumes (§4, "What we need from you"), the board hub, which still has no
+> mobile screen of its own, and whether a reused screen is the right long-term
+> answer for an artist page or only a good stopgap.
+
+### What was wrong, measured
 
 Open `/afrobeats/seyi-vibez` at 375×812. Measured on the branch today:
 
@@ -144,7 +157,7 @@ Constraints:
 
 - It must not fight the wordmark. "Global Certifications" is the page's loudest element and stays that way.
 - The site's existing portrait treatments are worth copying rather than reinventing: the artist hero on `/afrobeats/[artist]` uses a blurred, scaled copy of the same image as a backdrop under a scrim, with the sharp portrait on top. The home page's "Today's number" card uses cover art in a bordered rounded tile.
-- Give us the **mobile** answer too. The mobile certifications screen (`MobileCerts.tsx`) has its own hero; a portrait may or may not belong there. If it does not, say so — that is a legitimate answer.
+- **The mobile half is already done as a first pass, and it is yours to refine.** Paul asked for the portrait to be blended into the mobile hero on *every* certifications screen — all nine board artists **and** Burna Boy's own. It ships today as: a scaled copy of the artist image bled off the right edge, `mask-image` fading its left edge to nothing, under two scrims (one horizontal so it dissolves, one vertical so the kicker and lede keep their contrast), at 50% opacity. See `.heroArt` / `.heroScrim` in `app/components/mobileCerts.module.css`. It works, but it was built by an engineer to a rule, not designed — the opacity, the mask stops, the crop focus and how it behaves against ten very different press shots are all open. Some portraits are busy, some are dark, one is a gold crown on black (Davido).
 - Nothing may push the "230 certifications" figure or the two buttons below the fold on a 1280×800 laptop.
 
 ---
@@ -229,6 +242,7 @@ That table is the design problem in miniature: **these artists are not the same 
 4. **The two boards per artist.** Chart peaks and live charts are different kinds of fact — permanent vs right-now. They currently look nearly identical apart from a green pulse. Make the difference legible.
 5. **Burna Boy's primacy.** He leads the board and his tile goes home. Nothing here should look more important than his own pages.
 6. **Both platforms, drawn separately** — per §3.1. Mobile is not an afterthought here; it is Job 1.
+7. **Carry the blended portrait through.** It now appears on all ten mobile certification heroes (§5). Decide whether it belongs on the artist page's desktop hero, the chart and live screens, and the board hub too — and if it does, make one treatment that works across ten different press shots rather than ten one-offs.
 
 ### 7d. Content quirks you must design around, not away
 
