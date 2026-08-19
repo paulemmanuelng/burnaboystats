@@ -157,8 +157,22 @@ Constraints:
 
 - It must not fight the wordmark. "Global Certifications" is the page's loudest element and stays that way.
 - The site's existing portrait treatments are worth copying rather than reinventing: the artist hero on `/afrobeats/[artist]` uses a blurred, scaled copy of the same image as a backdrop under a scrim, with the sharp portrait on top. The home page's "Today's number" card uses cover art in a bordered rounded tile.
-- **The mobile half is already done as a first pass, and it is yours to refine.** Paul asked for the portrait to be blended into the mobile hero on *every* certifications screen — all nine board artists **and** Burna Boy's own. It ships today as: a scaled copy of the artist image bled off the right edge, `mask-image` fading its left edge to nothing, under two scrims (one horizontal so it dissolves, one vertical so the kicker and lede keep their contrast), at 50% opacity. See `.heroArt` / `.heroScrim` in `app/components/mobileCerts.module.css`. It works, but it was built by an engineer to a rule, not designed — the opacity, the mask stops, the crop focus and how it behaves against ten very different press shots are all open. Some portraits are busy, some are dark, one is a gold crown on black (Davido).
 - Nothing may push the "230 certifications" figure or the two buttons below the fold on a 1280×800 laptop.
+
+### 5a. The mobile portrait exists, and Paul wants it made properly
+
+This is the part he has actually seen, and his note is short: **make it better.**
+
+It ships today on *every* certifications screen — all nine board artists **and** Burna Boy's own — as a scaled copy of the artist image bled off the right edge, `mask-image` fading its left edge to nothing, under two scrims, at 50% opacity. See `.heroArt` / `.heroScrim` in `app/components/mobileCerts.module.css`.
+
+**Treat that as a placeholder, not a design.** It was built by an engineer to a rule: one set of numbers applied to ten different photographs. It is good enough to ship and not good enough to keep. What "better" has to mean here:
+
+1. **It must survive ten very different press shots.** Go and look at all ten before drawing anything — `/certifications` plus `/afrobeats/<slug>` for wizkid, davido, rema, tems, tyla, ayra-starr, asake, omah-lay, seyi-vibez. Tems' is soft and dark. Seyi Vibez's is busy with strong pattern. **Davido's is not a portrait at all — it is a gold crown on black**, and the current treatment makes it read as a smudge. One rule cannot serve all ten; say what the rule is *and* what the exceptions are.
+2. **The face must survive the crop.** The current `background-position: center 22%` is a guess that works for some and beheads others. If per-artist focal points are the answer, specify them and we will add a focal-point field to the data.
+3. **The type wins, always.** The total ("230", "103"), the kicker and the lede must keep their contrast at every opacity you choose — ≥ 4.5:1 measured against the brightest part of the image behind them, not against the flat background colour.
+4. **It must not turn into another gold field.** Several of these shots are warm and gold-heavy; at 50% over a near-black surface they push the hero back toward the problem Job 3 is fixing on the home page.
+5. **Decide the relationship between the mobile and desktop treatments.** They do not have to match, but they should look like decisions from the same person. §3.1 still applies — draw them separately.
+6. **One treatment, ten artists.** If the answer needs per-artist values (opacity, focal point, a flipped side), give us a table of them, not ten bespoke layouts.
 
 ---
 
