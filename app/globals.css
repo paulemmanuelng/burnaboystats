@@ -276,6 +276,15 @@ a {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Paints the glyph, not the line box. background-clip:text fills the PADDING
+     box and clips that to the glyphs, so any ink outside it renders invisible —
+     and Anton's ink overruns every sub-1 line-height on this site. The pad
+     grows the paint area only: on a block it is cancelled by the margin, and on
+     an inline span vertical margins do not apply in the first place. 0.2em, not
+     the 0.12em the spec suggests: measured on the real page, a descender at
+     line-height 0.86 needs 0.119em, which left 0.0px of headroom. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
 }
 
 /* A reusable text-gradient (used on accent words). */
@@ -284,6 +293,15 @@ a {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Paints the glyph, not the line box. background-clip:text fills the PADDING
+     box and clips that to the glyphs, so any ink outside it renders invisible —
+     and Anton's ink overruns every sub-1 line-height on this site. The pad
+     grows the paint area only: on a block it is cancelled by the margin, and on
+     an inline span vertical margins do not apply in the first place. 0.2em, not
+     the 0.12em the spec suggests: measured on the real page, a descender at
+     line-height 0.86 needs 0.119em, which left 0.0px of headroom. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
 }
 
 /* -----------------------------------------------------------
@@ -1582,12 +1600,29 @@ a[class*="__certRow"]:focus-visible,
 
 /* The nav's gold action. Slightly shorter than a page button so it sits
    comfortably in the bar; hidden on mobile, where the tab bar takes over. */
+/* The nav's Stat card action. It carries .btnPrimary for its shape and type,
+   but NOT its gold fill: the bar sits on every page, and the Stat card is never
+   any page's primary action. One gold action per screen — on the home page that
+   is "View certifications", and a second gold pill 400px above it was competing
+   with it. This is the one change here that touches every route. */
 .navStatCard {
   height: 38px;
   padding: 0 18px;
   font-size: 11.5px;
   gap: 8px;
   flex: none;
+  background-color: transparent;
+  background-image: none;
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  border-color: rgba(245, 244, 240, 0.42);
+  box-shadow: none;
+}
+.navStatCard:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  -webkit-text-fill-color: var(--gold);
+  box-shadow: none;
 }
 @media (max-width: 900px) {
   .navStatCard { display: none; }

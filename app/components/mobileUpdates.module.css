@@ -93,6 +93,15 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Paints the glyph, not the line box. background-clip:text fills the PADDING
+     box and clips that to the glyphs, so any ink outside it renders invisible —
+     and Anton's ink overruns every sub-1 line-height on this site. The pad
+     grows the paint area only: on a block it is cancelled by the margin, and on
+     an inline span vertical margins do not apply in the first place. 0.2em, not
+     the 0.12em the spec suggests: measured on the real page, a descender at
+     line-height 0.86 needs 0.119em, which left 0.0px of headroom. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
 }
 .lede { font-size: 14px; line-height: 1.5; color: #d8d8de; margin: 12px 0 0; }
 .lastEntry {

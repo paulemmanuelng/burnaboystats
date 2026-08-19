@@ -9,14 +9,18 @@
   color: var(--text);
   padding: 28px 32px;
   flex: 1;
-  /* The panel is no longer a gold fill. It is the page surface lit from two
-     corners, so the numeral is the brightest thing in it rather than
-     competing with its own background. */
+  /* Surface, hairline, ONE corner glow — the Job 3 rule: gold marks figures and
+     a single action, and surfaces stay near-black. This panel used to carry two
+     radial washes plus an inset gold glow, stacked directly under the live band
+     running the identical pair, which turned the whole top of the page into one
+     warm field. Now the numeral is the only bright thing in it. */
   background-color: var(--bg-soft);
-  background-image:
-    radial-gradient(110% 85% at 0% 0%, rgba(255, 182, 39, 0.2), transparent 58%),
-    radial-gradient(85% 80% at 100% 100%, rgba(255, 122, 26, 0.13), transparent 62%);
-  box-shadow: inset 0 0 60px rgba(255, 182, 39, 0.05);
+  background-image: radial-gradient(110% 85% at 0% 0%, rgba(255, 182, 39, 0.14), transparent 58%);
+  /* No border. Job 3 asks for "border 1px var(--line)", but that rule is written
+     for the mobile card, which floats. Here the panel is a full-bleed cell of
+     the hero grid — it is already enclosed by the column's border-left, the
+     band's border-bottom above it and the status row's border-top below — so a
+     border of its own just drew a second line 1px inside the first. */
 }
 
 /* Burnt glyphs, well under the text. Decorative only. */
@@ -29,14 +33,14 @@
 .glyphs span {
   position: absolute;
   display: block;
-  opacity: 0.07;
+  opacity: 0.05;
   font-size: 30px;
   line-height: 1;
 }
 .g1 { top: 12%;  right: 14%; font-size: 38px; }
-.g2 { top: 44%;  right: 7%;  font-size: 26px; opacity: 0.1 !important; }
+.g2 { top: 44%;  right: 7%;  font-size: 26px; opacity: 0.06 !important; }
 .g3 { bottom: 24%; left: 8%; font-size: 32px; }
-.g4 { top: 26%;  left: 26%;  font-size: 22px; opacity: 0.09 !important; }
+.g4 { top: 26%;  left: 26%;  font-size: 22px; opacity: 0.055 !important; }
 .g5 { bottom: 12%; right: 27%; font-size: 20px; }
 .ring1,
 .ring2 {
@@ -68,9 +72,11 @@
   font-size: 11.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gold);
+  /* Mono muted, not gold: the rule gives gold to figures and one action, and
+     this is a label sitting directly above the figure it names. */
+  color: var(--text-muted);
 }
-.kickerRule { width: 20px; height: 1px; background: var(--gold); display: block; flex: none; }
+.kickerRule { width: 20px; height: 1px; background: var(--rule); display: block; flex: none; }
 
 .row {
   position: relative;
@@ -92,6 +98,19 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Paints the glyph, not the line box. background-clip:text fills the PADDING
+     box and clips that to the glyphs, so any ink outside it renders invisible —
+     and Anton's ink overruns every sub-1 line-height on this site. The pad
+     grows the paint area only: on a block it is cancelled by the margin, and on
+     an inline span vertical margins do not apply in the first place. 0.2em, not
+     the 0.12em the spec suggests: measured on the real page, a descender at
+     line-height 0.86 needs 0.119em, which left 0.0px of headroom. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
+  /* Optical alignment. The row starts the numeral and the cover art on the same
+     line, but Anton's half-leading put the digits' cap-top 4.9px above the
+     cover's top edge — measured, not guessed. This drops the ink onto it. */
+  transform: translateY(5px);
 }
 
 .cover {
