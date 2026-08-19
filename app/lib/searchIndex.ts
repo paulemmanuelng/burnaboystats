@@ -491,68 +491,81 @@ export const searchIndex: SearchDoc[] = [
     path: "/afrobeats/wizkid/live",
     section: "Afrobeats",
     description: "Where every Wizkid release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
-    keywords: ["wizkid live charts", "wizkid charting now", "wizkid today", "wizkid spotify chart", "wizkid apple music chart", "wizkid shazam"],
+    keywords: ["wizkid live charts", "wizkid charting now", "wizkid today"],
   },
   {
     title: "Davido — Live Charts",
     path: "/afrobeats/davido/live",
     section: "Afrobeats",
     description: "Where every Davido release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
-    keywords: ["davido live charts", "davido charting now", "davido today", "davido spotify chart", "davido apple music chart", "davido shazam"],
+    keywords: ["davido live charts", "davido charting now", "davido today"],
   },
   {
     title: "Rema — Live Charts",
     path: "/afrobeats/rema/live",
     section: "Afrobeats",
     description: "Where every Rema release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
-    keywords: ["rema live charts", "rema charting now", "rema today", "rema spotify chart", "rema apple music chart", "rema shazam"],
+    keywords: ["rema live charts", "rema charting now", "rema today"],
   },
   {
     title: "Tems — Live Charts",
     path: "/afrobeats/tems/live",
     section: "Afrobeats",
     description: "Where every Tems release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
-    keywords: ["tems live charts", "tems charting now", "tems today", "tems spotify chart", "tems apple music chart", "tems shazam"],
+    keywords: ["tems live charts", "tems charting now", "tems today"],
   },
   {
     title: "Tyla — Live Charts",
     path: "/afrobeats/tyla/live",
     section: "Afrobeats",
     description: "Where every Tyla release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
-    keywords: ["tyla live charts", "tyla charting now", "tyla today", "tyla spotify chart", "tyla apple music chart", "tyla shazam"],
+    keywords: ["tyla live charts", "tyla charting now", "tyla today"],
   },
   {
     title: "Ayra Starr — Live Charts",
     path: "/afrobeats/ayra-starr/live",
     section: "Afrobeats",
     description: "Where every Ayra Starr release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
-    keywords: ["ayra starr live charts", "ayra starr charting now", "ayra starr today", "ayra starr spotify chart", "ayra starr apple music chart", "ayra starr shazam"],
+    keywords: ["ayra starr live charts", "ayra starr charting now", "ayra starr today"],
   },
   {
     title: "Asake — Live Charts",
     path: "/afrobeats/asake/live",
     section: "Afrobeats",
     description: "Where every Asake release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
-    keywords: ["asake live charts", "asake charting now", "asake today", "asake spotify chart", "asake apple music chart", "asake shazam"],
+    keywords: ["asake live charts", "asake charting now", "asake today"],
   },
   {
     title: "Omah Lay — Live Charts",
     path: "/afrobeats/omah-lay/live",
     section: "Afrobeats",
     description: "Where every Omah Lay release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
-    keywords: ["omah lay live charts", "omah lay charting now", "omah lay today", "omah lay spotify chart", "omah lay apple music chart", "omah lay shazam"],
+    keywords: ["omah lay live charts", "omah lay charting now", "omah lay today"],
   },
   {
     title: "Seyi Vibez — Live Charts",
     path: "/afrobeats/seyi-vibez/live",
     section: "Afrobeats",
     description: "Where every Seyi Vibez release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
-    keywords: ["seyi vibez live charts", "seyi vibez charting now", "seyi vibez today", "seyi vibez spotify chart", "seyi vibez apple music chart", "seyi vibez shazam"],
+    keywords: ["seyi vibez live charts", "seyi vibez charting now", "seyi vibez today"],
   },
 ];
 
 // Score a doc against a query. Higher = better. 0 = no match.
+// This site is about Burna Boy. The Afrobeats Board's 25 docs are about other
+// artists, and their titles contain the same generic words his pages compete
+// for — ten of them are literally "<Artist> — Live Charts", so a search for
+// "charts" scored them all above his own Chart Records page and filled the
+// palette's eight slots. They are damped so a board page can only outrank his
+// when it genuinely matches better: an artist's name still wins outright,
+// because that scores on an exact title or keyword rather than a substring.
+const SECTION_WEIGHT: Record<string, number> = { Afrobeats: 0.7 };
+
 function score(doc: SearchDoc, q: string): number {
+  return raw(doc, q) * (SECTION_WEIGHT[doc.section] ?? 1);
+}
+
+function raw(doc: SearchDoc, q: string): number {
   const title = doc.title.toLowerCase();
   const desc = doc.description.toLowerCase();
   if (title === q) return 100;

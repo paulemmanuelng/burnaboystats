@@ -42,10 +42,27 @@ describe("searchDocs", () => {
 // page displaced Burna Boy's. This site is about Burna Boy: a generic query
 // stays on his pages, and the board earns its traffic on artist names.
 describe("The Afrobeats Board in search", () => {
+  // This asserted only the FIRST result, and passed while ranks 2-8 were
+  // entirely board pages: a search for "charts" offered ten other artists'
+  // boards and pushed /records/charts to twelfth, and "spotify" returned nine
+  // board pages and none of his. The palette shows eight, so eight is what has
+  // to be checked.
   it("never displaces Burna Boy's own pages on a generic query", () => {
-    for (const q of ["billboard", "certifications", "charts", "gold", "platinum", "number one"]) {
-      const top = searchDocs(q)[0];
-      expect(top.path.startsWith("/afrobeats"), `"${q}" → ${top.path}`).toBe(false);
+    const HIS = {
+      charts: "/records/charts",
+      chart: "/records/charts",
+      billboard: "/records/charts",
+      spotify: "/live-charts",
+      "apple music": "/live-charts",
+      live: "/live-charts",
+      certifications: "/certifications",
+      gold: "/certifications",
+      platinum: "/certifications",
+    };
+    for (const [q, his] of Object.entries(HIS)) {
+      const top = searchDocs(q, 8).map((d) => d.path);
+      expect(top[0].startsWith("/afrobeats"), `"${q}" leads with ${top[0]}`).toBe(false);
+      expect(top, `"${q}" should still surface ${his}; got ${top.join(", ")}`).toContain(his);
     }
   });
 
