@@ -296,7 +296,8 @@ Same shape as previous passes:
 
 ---
 
-## 9. Questions for Paul, not the designer
+## 9. Open with Paul
 
-1. Should the designer get Vercel preview access, or a bypass link? Nothing in Jobs 1 and 4 is viewable without one.
-2. The board goes live on your word. Does the design pass block the launch, or does it ship as built and get redesigned after?
+1. ~~Preview access.~~ **Settled 19 August** — the designer is being added to the Vercel project and should use the branch alias in §0.
+2. **Does this design pass block the launch?** The board is data-complete, verified and tested, and the artist page now has a real mobile screen, so our recommendation is that it does **not**: ship it, and let this pass land as an improvement to a live section rather than a gate in front of it. Paul's call.
+3. **Focal points.** If the portrait treatment in §5a needs a per-artist crop point, say so and we will add a focal-point field to `app/data/afrobeats.ts` — it is a small change and better than ten bespoke layouts.
