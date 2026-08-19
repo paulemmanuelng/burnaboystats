@@ -134,8 +134,25 @@
   --color-accent-200: rgba(255, 182, 39, 0.13);
   --color-accent-700: var(--gold);
   --color-neutral-600: #9b9ba3;
+  /* The rest of the spec's ramp, so CSS lifted from a design file resolves
+     rather than silently rendering an empty value. The dark theme flattens
+     400/600 to the bright gold and 700/800 to the base — that is what the
+     design files themselves paint. */
+  --color-accent-400: var(--gold-bright);
+  --color-accent-600: var(--gold-bright);
+  --color-accent-800: var(--gold);
+  --color-neutral-100: rgba(245, 244, 240, 0.08);
+  --color-neutral-300: rgba(245, 244, 240, 0.1);
+  --color-neutral-800: var(--text);
+  --color-neutral-900: var(--bg-soft);
   --font-heading: var(--font-anton);
   --font-body: var(--font-geist-sans);
+  /* Anton ships one cut. Naming the weight stops a heading being asked for a
+     bold the family does not have, which browsers fake by smearing strokes. */
+  --font-heading-weight: 400;
+  /* Live-data green. Distinct from --green (#3ed17f, the "verified/ok" state)
+     because a pulsing live dot next to it must not read as the same signal. */
+  --live: #70e0a0;
 }
 
 /* Figures line up in columns only if the numerals are tabular. The site is
@@ -365,12 +382,22 @@ a {
 /* Once scrolled off the hero (or when the mobile menu is open): a solid,
    blurred bar so nav links stay legible over the content scrolling beneath. */
 .navbar.navScrolled {
-  /* near-solid so links stay legible over busy content regardless of whether
-     backdrop-filter survives the build; blur is a bonus where supported */
+  /* Near-solid by default so links stay legible over busy content on a browser
+     with no backdrop-filter — one that ignores the blur below, as CSS already
+     does for a property it doesn't know. Where the blur IS supported the bar
+     drops to the design's own 0.92 and the frost does the legibility work.
+     Only the background moves inside @supports: the blur declarations cannot
+     live there, because the CSS minifier drops a declaration whose property
+     is the very thing the condition tests, and the bar shipped unblurred. */
   background-color: rgba(10, 10, 11, 0.96);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* Unprefixed only — the build adds -webkit- itself. Writing the prefixed
+     line by hand made the CSS pipeline collapse the pair to the prefixed form
+     alone, which Firefox does not read, so the bar was flat there. */
+  backdrop-filter: blur(14px);
   border-bottom-color: var(--line);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .navbar.navScrolled { background-color: rgba(10, 10, 11, 0.92); }
 }
 .navInner {
   display: flex;
@@ -660,7 +687,7 @@ a {
 .cardNum {
   font-family: var(--font-display), sans-serif;
   color: var(--gold);
-  font-weight: 700;
+  font-weight: 400; /* Anton has no bold cut */
   font-size: 1.05rem;
 }
 .cardMeta {
@@ -724,7 +751,7 @@ a.fact:hover {
 }
 .tYear {
   font-family: var(--font-display), sans-serif;
-  font-weight: 700;
+  font-weight: 400; /* Anton has no bold cut */
   color: var(--gold);
   font-size: 1.15rem;
 }
@@ -974,7 +1001,7 @@ a.fact:hover {
 .modalTitle {
   font-family: var(--font-display), sans-serif;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 400; /* Anton has no bold cut */
 }
 .spotifyBtn {
   display: inline-flex;
@@ -1414,8 +1441,10 @@ a[class*="__certRow"]:focus-visible,
   background: color-mix(in srgb, var(--gold) 18%, transparent);
 }
 
-/* Icon-only button. 44px, not the base sheet's 36px — the design's
-   accessibility floor for a tap target is 44 and this ships on phones. */
+/* Icon-only button. 36px on a mouse, which is the base sheet's size and what
+   the design files draw; 44px on touch, which is the accessibility floor this
+   handoff sets and the same step the chrome-link rule takes. The comment here
+   used to claim 44 while the rule set 36 — on a phone it was 36. */
 .btnIcon {
   /* Transparent by default, per the base sheet — a quiet control that only
      picks up colour on hover. It is not a filled circle. */
@@ -1425,6 +1454,12 @@ a[class*="__certRow"]:focus-visible,
   padding: 0;
   background: transparent;
   border-color: transparent;
+}
+@media (pointer: coarse) {
+  .btnIcon {
+    width: 44px;
+    height: 44px;
+  }
 }
 
 .tag {

@@ -10,8 +10,9 @@
   border-radius: 50%;
   border: 1px solid var(--line);
   background: rgba(20, 20, 23, 0.9);
+  /* Unprefixed only — the build adds -webkit- itself. Writing both by hand
+     makes the pipeline keep the prefixed line alone, which Firefox ignores. */
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   color: var(--gold);
   font-size: 1.25rem;
   line-height: 1;
