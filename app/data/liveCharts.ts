@@ -2469,6 +2469,13 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NO",
             "name": "Norway",
             "position": 13,
@@ -2481,13 +2488,6 @@ export const liveCharts: LiveRelease[] = [
             "movement": -9
           },
           {
-            "country": "CL",
-            "name": "Chile",
-            "position": 17,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "MY",
             "name": "Malaysia",
             "position": 17,
@@ -2498,6 +2498,13 @@ export const liveCharts: LiveRelease[] = [
             "name": "United States",
             "position": 17,
             "movement": -1
+          },
+          {
+            "country": "CL",
+            "name": "Chile",
+            "position": 19,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "DO",
@@ -2521,15 +2528,8 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "BY",
             "name": "Belarus",
-            "position": 34,
-            "movement": -21
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 41,
-            "movement": null,
-            "status": "new"
+            "position": 36,
+            "movement": -23
           },
           {
             "country": "LU",
@@ -2558,12 +2558,6 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
-            "country": "RO",
-            "name": "Romania",
-            "position": 80,
-            "movement": -15
-          },
-          {
             "country": "UA",
             "name": "Ukraine",
             "position": 82,
@@ -2579,15 +2573,14 @@ export const liveCharts: LiveRelease[] = [
           {
             "country": "PE",
             "name": "Peru",
-            "position": 94,
-            "movement": -1
+            "position": 100,
+            "movement": -7
           },
           {
-            "country": "IN",
-            "name": "India",
-            "position": 152,
-            "movement": null,
-            "status": "new"
+            "country": "RO",
+            "name": "Romania",
+            "position": 101,
+            "movement": -36
           },
           {
             "country": "CO",
@@ -2597,9 +2590,9 @@ export const liveCharts: LiveRelease[] = [
             "status": "new"
           },
           {
-            "country": "FI",
-            "name": "Finland",
-            "position": 167,
+            "country": "IN",
+            "name": "India",
+            "position": 166,
             "movement": null,
             "status": "new"
           },
@@ -4877,25 +4870,6 @@ export const liveCharts: LiveRelease[] = [
     "kind": "song"
   },
   {
-    "title": "Own It",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RU",
-            "name": "Russia",
-            "position": 177,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Kilometre",
     "platforms": [
       {
@@ -4907,6 +4881,25 @@ export const liveCharts: LiveRelease[] = [
             "name": "Cape Verde",
             "position": 68,
             "movement": 2
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Own It",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RU",
+            "name": "Russia",
+            "position": 198,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
