@@ -44,7 +44,7 @@ export const songs: Song[] = [
     slug: "last-last",
     title: "Last Last",
     year: 2022,
-    spotifyStreams: "604M",
+    spotifyStreams: "605M",
     album: "Love, Damini",
     cover: "https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2",
     spotify: "https://open.spotify.com/track/4LPNkxES0zCGn6S2Y1vmJN",
@@ -119,7 +119,7 @@ export const songs: Song[] = [
     album: "African Giant",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     spotify: "https://open.spotify.com/track/1zIk8RJEKGvoH4FioFnGyJ",
-    ytViews: "477M",
+    ytViews: "478M",
     tagline: "The smooth love song that went Diamond in France",
     blurb:
       "A silky Afro-fusion love song from African Giant (2019), “On the Low” became one of Burna Boy's biggest records in Europe. It was certified Diamond in France — among the highest honours any African song has earned there — and picked up nine certifications worldwide.",
@@ -150,7 +150,7 @@ export const songs: Song[] = [
     album: "The Last Wun",
     cover: "https://i.scdn.co/image/ab67616d0000b27303a253cffd6d9e556ef4eec5",
     spotify: "https://open.spotify.com/track/0WsC4ETIXyiHDMXRaPMvKe",
-    spotifyStreams: "292M",
+    spotifyStreams: "293M",
     tagline: "Burna Boy's highest-ever Billboard Hot 100 peak",
     blurb:
       "A feature on Gunna's 2025 album The Last Wun, “WGFT” gave Burna Boy his highest position ever on the US Billboard Hot 100 — No. 16 — blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 12 countries and put him back in the US Top 20.",
