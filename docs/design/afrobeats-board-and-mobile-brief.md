@@ -11,15 +11,17 @@
 
 Three of the four jobs concern pages you cannot reach from burnaboystats.com, because they have never been deployed. Do not design from this document alone; look at the real thing first.
 
-### Option A — the Vercel preview (fastest, needs Paul to open a door)
+### Option A — the Vercel preview (use this one)
 
-The branch builds a preview on every push. The current one is:
+Paul is adding you to the Vercel project. Once you have accepted the invitation and are signed in to Vercel, this URL always shows the **latest** build of the branch:
 
 ```
-https://burnaboystats-ohf81oitr-paulemmanuelngs-projects.vercel.app
+https://burnaboystats-git-feat-afrobeats-board-paulemmanuelngs-projects.vercel.app
 ```
 
-It currently answers **302** to the public — Vercel Deployment Protection is on. **Paul:** either add the designer to the Vercel project, or generate a *Protection Bypass for Automation* / *shareable link* under **Vercel → burnaboystats → Settings → Deployment Protection**. Until that is done, this link is useless to anyone outside the team.
+Use that, not a per-deployment link: the branch alias follows every push, so it stays current as the work continues. If it bounces you to a Vercel login, you are either signed out or the invitation is still pending — it answers 302 to anyone who is not on the project.
+
+Every route in the table below hangs off it, e.g. `…vercel.app/afrobeats/seyi-vibez`.
 
 ### Option B — run it locally (always works)
 
