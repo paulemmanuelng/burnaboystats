@@ -170,7 +170,14 @@
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: var(--gold);
+  /* Same gold ramp as .btnPrimary and the home screen's own .primary — every
+     gold action on the site runs one gradient, or the phone shows two golds. */
+  background-color: var(--gold);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  color: #000;
+  -webkit-text-fill-color: #000;
+  /* Promotes the layer at rest — see .btnPrimary for the iPhone reason. */
+  transform: translateZ(0);
   color: #0a0a0b;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
