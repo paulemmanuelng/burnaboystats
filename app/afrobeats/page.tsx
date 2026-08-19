@@ -17,6 +17,8 @@ import {
   AFROBEATS_VERIFIED_ON,
 } from "../data/afrobeats";
 import { totalAwards, countryCount as burnaCountries } from "../data/certifications";
+import { chartEntryCount as burnaChartEntries } from "../data/charts";
+import { livePlacementCount as burnaLivePlacements } from "../data/liveCharts";
 
 // Names, and the count in the eyebrow, come from the data: adding an artist to
 // the board must not leave the copy describing the old one.
@@ -37,6 +39,36 @@ export const metadata = pageMetadata({
 // Ordered by verified plaque count — the board's whole point is comparability,
 // so the order has to be the number, not an opinion.
 const ranked = [...sweptArtists].sort((a, b) => certCount(b) - certCount(a));
+
+// Both rails carry Burna Boy alongside the board. The page's question is where
+// he stands among them, and a rail he is absent from cannot answer it. He is
+// sorted on his own figure like everyone else rather than pinned to the front —
+// he leads both today, and if that ever changes the rail should say so. His
+// chips link to his own pages, which is why the rows are built rather than
+// mapped straight off the board arrays.
+interface Rail { key: string; name: string; href: string; value: number; isBurna: boolean }
+
+const chartPeakRail: Rail[] = [
+  { key: "burna-boy", name: "Burna Boy", href: "/records/charts", value: burnaChartEntries, isBurna: true },
+  ...sweptArtists.map((a) => ({
+    key: a.slug,
+    name: a.name,
+    href: `/afrobeats/${a.slug}/charts`,
+    value: chartEntries(a),
+    isBurna: false,
+  })),
+].sort((x, y) => y.value - x.value);
+
+const liveRail: Rail[] = [
+  { key: "burna-boy", name: "Burna Boy", href: "/live-charts", value: burnaLivePlacements, isBurna: true },
+  ...LIVE_BOARDS.map((b) => ({
+    key: b.slug,
+    name: [...sweptArtists, ...pendingArtists].find((a) => a.slug === b.slug)?.name ?? b.slug,
+    href: `/afrobeats/${b.slug}/live`,
+    value: b.placements,
+    isBurna: false,
+  })),
+].sort((x, y) => y.value - x.value);
 
 const badge = (a: (typeof sweptArtists)[number]) => {
   const t = topAward(a);
@@ -137,7 +169,8 @@ export default function AfrobeatsPage() {
                 </span>
                 <span className={styles.tileName}>{a.name}</span>
                 <span className={styles.tileStat}>
-                  <strong>{certCount(a)}</strong> certifications · {countryCount(a)} countries
+                  <strong>{certCount(a)}</strong> certifications · {countryCount(a)}{" "}
+                  {countryCount(a) === 1 ? "country" : "countries"}
                 </span>
                 <span className={styles.tileHook}>{a.hook}</span>
               </span>
@@ -165,9 +198,13 @@ export default function AfrobeatsPage() {
             the live boards were each reachable from one page only. */}
         <div className={styles.chartRail}>
           <span className={styles.railLabel}>Chart peaks</span>
-          {ranked.map((a) => (
-            <Link key={a.slug} href={`/afrobeats/${a.slug}/charts`} className={styles.railLink}>
-              {a.name} <span className={styles.railNum}>{chartEntries(a)}</span>
+          {chartPeakRail.map((r) => (
+            <Link
+              key={r.key}
+              href={r.href}
+              className={r.isBurna ? `${styles.railLink} ${styles.railAnchor}` : styles.railLink}
+            >
+              {r.name} <span className={styles.railNum}>{r.value}</span>
             </Link>
           ))}
         </div>
@@ -177,16 +214,15 @@ export default function AfrobeatsPage() {
             <span className={styles.railDot} aria-hidden="true" />
             Charting now
           </span>
-          {[...LIVE_BOARDS]
-            .sort((a, b) => b.placements - a.placements)
-            .map((b) => {
-              const artist = [...sweptArtists, ...pendingArtists].find((a) => a.slug === b.slug);
-              return (
-                <Link key={b.slug} href={`/afrobeats/${b.slug}/live`} className={styles.railLink}>
-                  {artist?.name ?? b.slug} <span className={styles.railNum}>{b.placements}</span>
-                </Link>
-              );
-            })}
+          {liveRail.map((r) => (
+            <Link
+              key={r.key}
+              href={r.href}
+              className={r.isBurna ? `${styles.railLink} ${styles.railAnchor}` : styles.railLink}
+            >
+              {r.name} <span className={styles.railNum}>{r.value}</span>
+            </Link>
+          ))}
         </div>
 
         {pendingArtists.length > 0 && (

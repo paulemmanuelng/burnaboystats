@@ -4,8 +4,8 @@ import styles from "./artist.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import MobileCerts from "../../components/MobileCerts";
 import { pageMetadata, CANONICAL_ORIGIN, datasetJsonLd } from "../../lib/seo";
-import { tierOf, totalAwards, countryCount as burnaCountries, type Release, type Country } from "../../data/certifications";
-import { numberOnes as burnaNo1s, chartEntryCount as burnaEntries } from "../../data/charts";
+import { tierOf, type Release, type Country } from "../../data/certifications";
+import { opponentOf } from "../../lib/headToHead";
 import { liveBoardFor } from "../../data/liveBoards";
 import {
   artistBySlug,
@@ -75,7 +75,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const live = liveBoardFor(a.slug);
   const total = certCount(a);
   const countries = countryCount(a);
-  const burnaTotal = totalAwards();
+  const rival = opponentOf(a);
   const idx = afrobeatsArtists.findIndex((x) => x.slug === a.slug);
   const next = afrobeatsArtists[(idx + 1) % afrobeatsArtists.length];
 
@@ -242,8 +242,8 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
             month: "long",
             year: "numeric",
           })}
-          . Counted by the same rules as{" "}
-          <Link href="/certifications">Burna Boy&apos;s {burnaTotal}</Link>: one plaque per title per
+          . Counted by the same rules, set out in the{" "}
+          <Link href="/methodology#principles">methodology</Link>: one plaque per title per
           country at its current tier, lead and featured credits both.
         </p>
       </section>
@@ -348,8 +348,11 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
                 </span>
               </span>
               <span className={styles.chartCtaNote}>
-                Principal national chart per country — the same standard as Burna Boy&apos;s{" "}
-                {burnaEntries} entries and {burnaNo1s} No. 1s.
+                {/* Plain text, not a link: this whole card is an anchor, and a
+                    nested <a> is invalid HTML — it broke hydration. The
+                    methodology link the reader needs is in the provenance line
+                    above, outside the card. */}
+                Principal national chart per country — the standard set out in the methodology.
               </span>
             </span>
             <span className={styles.chartCtaArrow} aria-hidden="true">
@@ -395,31 +398,39 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         </section>
       )}
 
-      {/* ── Against Burna ────────────────────────────────────── */}
-      {a.swept && (
+      {/* ── Head to head ─────────────────────────────────────── */}
+      {a.swept && rival && (
       <section className={styles.compare} aria-labelledby="vs">
         <div className={styles.compareKicker}>Head to head</div>
         <h2 id="vs" className={styles.compareTitle}>
-          {a.name} and Burna Boy, same rules
+          {a.name} and {rival.name}, same rules
         </h2>
         <div className={styles.compareGrid}>
           <div className={styles.compareCell}>
             <span className={styles.compareName}>{a.name}</span>
             <span className={styles.compareValue}>{total}</span>
             <span className={styles.compareLabel}>
-              {countries} countries · {chartNo1s(a)} chart No. 1s
+              {countries} {countries === 1 ? "country" : "countries"} · {chartNo1s(a)} chart No. 1s
             </span>
           </div>
           <div className={styles.compareCell}>
-            <span className={styles.compareName}>Burna Boy</span>
-            <span className={`${styles.compareValue} ${styles.compareGold}`}>{burnaTotal}</span>
+            <span className={styles.compareName}>{rival.name}</span>
+            {/* Gold marks Burna, and only Burna. Two board artists are peers
+                here, so neither cell gets to be the headline. */}
+            <span className={rival.isBurna ? `${styles.compareValue} ${styles.compareGold}` : styles.compareValue}>
+              {rival.total}
+            </span>
             <span className={styles.compareLabel}>
-              {burnaCountries} countries · {burnaNo1s} chart No. 1s
+              {rival.countries} {rival.countries === 1 ? "country" : "countries"} · {rival.no1s} chart No. 1s
             </span>
           </div>
         </div>
         <p className={styles.compareNote}>
-          Both counted identically. Burna Boy&apos;s figures update daily; this board is reviewed weekly.
+          Both counted identically.{" "}
+          {rival.isBurna
+            ? "Burna Boy's figures update daily; this board is reviewed weekly."
+            : "Both are read at source and reviewed weekly."}{" "}
+          <Link href={rival.href}>{rival.name}&apos;s page ↗</Link>
         </p>
       </section>
       )}

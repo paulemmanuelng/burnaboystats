@@ -168,7 +168,7 @@ export default function MobileLiveCharts({
           const isOpen = open === r.title;
           const panelId = `live-${r.title.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
           return (
-            <div key={r.title} className={`${styles.row} ${isOpen ? styles.rowOpen : ""}`}>
+            <div key={`${r.kind}:${r.title}`} className={`${styles.row} ${isOpen ? styles.rowOpen : ""}`}>
               <button
                 type="button"
                 className={styles.rowBtn}

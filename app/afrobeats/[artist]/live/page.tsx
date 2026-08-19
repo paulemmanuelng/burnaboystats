@@ -237,7 +237,7 @@ export default async function AfroLiveChartsPage({
             </p>
             <div className={styles.releaseList}>
               {songs.map((r) => (
-                <LiveReleaseBlock key={r.title} r={summarize(r)} source={board.api} />
+                <LiveReleaseBlock key={`${r.kind}:${r.title}`} r={summarize(r)} source={board.api} />
               ))}
             </div>
           </div>
@@ -252,7 +252,7 @@ export default async function AfroLiveChartsPage({
               </div>
               <div className={styles.releaseList}>
                 {albums.map((r) => (
-                  <LiveReleaseBlock key={r.title} r={summarize(r)} source={board.api} />
+                  <LiveReleaseBlock key={`${r.kind}:${r.title}`} r={summarize(r)} source={board.api} />
                 ))}
               </div>
             </div>

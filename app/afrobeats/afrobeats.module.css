@@ -334,3 +334,12 @@
   100% { box-shadow: 0 0 0 0 rgba(112, 224, 160, 0); }
 }
 @media (prefers-reduced-motion: reduce) { .railDot { animation: none; } }
+
+/* Burna Boy's chip in the two rails. Gold means "his" everywhere else on the
+   site, and the rails are the one place he is measured against the board rather
+   than introduced by it — so the reader has to be able to find him at a glance. */
+.railAnchor {
+  border-color: rgba(255, 182, 39, 0.42);
+  color: var(--gold);
+}
+.railAnchor:hover { border-color: var(--gold); }

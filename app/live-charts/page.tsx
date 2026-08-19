@@ -204,7 +204,7 @@ export default function LiveChartsPage() {
             </p>
             <div className={styles.releaseList}>
               {songs.map((r) => (
-                <LiveReleaseBlock key={r.title} r={summarize(r)} />
+                <LiveReleaseBlock key={`${r.kind}:${r.title}`} r={summarize(r)} />
               ))}
             </div>
           </div>
@@ -219,7 +219,7 @@ export default function LiveChartsPage() {
               </div>
               <div className={styles.releaseList}>
                 {albums.map((r) => (
-                  <LiveReleaseBlock key={r.title} r={summarize(r)} />
+                  <LiveReleaseBlock key={`${r.kind}:${r.title}`} r={summarize(r)} />
                 ))}
               </div>
             </div>

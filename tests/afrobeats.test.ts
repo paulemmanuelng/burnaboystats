@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import sitemap from "../app/sitemap";
+import { HEAD_TO_HEAD, opponentOf } from "../app/lib/headToHead";
 import {
   afrobeatsArtists,
   sweptArtists,
@@ -370,5 +371,43 @@ describe("hooks that state a figure", () => {
     const firsts = afrobeatsArtists.filter((a) => /\bfirst\b/i.test(a.hook)).map((a) => a.slug);
     expect(firsts).toEqual(["tyla"]);
     expect(artistBySlug("tyla")!.hook).toContain("first Best African Music Performance Grammy");
+  });
+});
+
+// ── Head to head ───────────────────────────────────────────────────────────
+// The pairings are editorial, but their SHAPE is not: a pairing that is not
+// mutual shows one artist a rival who does not show them back, and a pairing
+// pointing at an unswept artist renders a blank cell.
+describe("head-to-head pairings", () => {
+  it("gives every swept artist exactly one opponent", () => {
+    for (const a of sweptArtists) {
+      expect(HEAD_TO_HEAD[a.slug], `${a.slug} has no opponent`).toBeTruthy();
+      expect(opponentOf(a), `${a.slug} resolves to nothing`).not.toBeNull();
+    }
+  });
+
+  it("pairs artists mutually, and never with themselves", () => {
+    for (const [slug, rival] of Object.entries(HEAD_TO_HEAD)) {
+      expect(rival, `${slug} is paired with itself`).not.toBe(slug);
+      // Burna has no board page, so his side of the pairing lives off the board.
+      if (rival === "burna-boy") continue;
+      expect(HEAD_TO_HEAD[rival], `${slug} → ${rival} is not returned`).toBe(slug);
+    }
+  });
+
+  it("names Burna Boy for Wizkid alone", () => {
+    const againstBurna = Object.entries(HEAD_TO_HEAD)
+      .filter(([, rival]) => rival === "burna-boy")
+      .map(([slug]) => slug);
+    expect(againstBurna).toEqual(["wizkid"]);
+  });
+
+  it("only ever points at a swept artist", () => {
+    for (const [slug, rival] of Object.entries(HEAD_TO_HEAD)) {
+      if (rival === "burna-boy") continue;
+      const o = afrobeatsArtists.find((x) => x.slug === rival);
+      expect(o, `${slug} → ${rival} is not a board artist`).toBeTruthy();
+      expect(o!.swept, `${slug} → ${rival} is not swept`).toBe(true);
+    }
   });
 });
