@@ -129,6 +129,7 @@ export default async function AfroLiveChartsPage({
         updated={updatedLabel}
         backHref={`/afrobeats/${slug}`}
         backLabel={`${a.name} · live charts`}
+        chartsHref={a.charts.length > 0 ? `/afrobeats/${slug}/charts` : `/afrobeats/${slug}`}
         heading={{ lead: `${a.name} Live`, gold: "Charts" }}
         source={board.api}
       />

@@ -67,6 +67,7 @@ export default function MobileLiveCharts({
   // component was his before it was shared. The board passes its own.
   backHref = "/",
   backLabel = "Live Charts",
+  chartsHref = "/records/charts",
   heading,
   source,
 }: {
@@ -78,6 +79,10 @@ export default function MobileLiveCharts({
   updated: string;
   backHref?: string;
   backLabel?: string;
+  /** Where this artist's OFFICIAL chart peaks live. Defaults to Burna Boy's,
+   *  which is right on his own page and wrong on all nine board pages — they
+   *  were sending readers to his chart records instead of the artist's. */
+  chartsHref?: string;
   /** The screen's own H1, in two parts. Defaults to "Live Charts". */
   heading?: { lead: string; gold: string };
   /** Where the expanded rows fetch their country lists from. */
@@ -120,7 +125,7 @@ export default function MobileLiveCharts({
         </p>
         <div className={styles.notice}>
           <strong>Platform charts, not official charts.</strong> Career peaks live on{" "}
-          <Link href="/records/charts">Chart Records</Link>.
+          <Link href={chartsHref}>Chart Records</Link>.
         </div>
       </div>
 
@@ -232,7 +237,7 @@ export default function MobileLiveCharts({
         })}
       </div>
 
-      <Link href="/records/charts" className={styles.allBtn}>
+      <Link href={chartsHref} className={styles.allBtn}>
         Official chart records<span aria-hidden="true">↗</span>
       </Link>
     </div>
