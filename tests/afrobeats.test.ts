@@ -23,6 +23,9 @@ import { countryMeta } from "../app/data/afrobeats";
 // Davido a Diamond he does not have while leaving his total untouched. Totals
 // alone would not have caught it — the tier split is what did.
 const EXPECTED = {
+  asake: { total: 79, diamond: 0 },
+  "omah-lay": { total: 61, diamond: 2 },
+  "seyi-vibez": { total: 103, diamond: 0 },
   wizkid: { total: 155, diamond: 6 },
   davido: { total: 91, diamond: 0 },
   rema: { total: 80, diamond: 4 },
@@ -36,8 +39,11 @@ describe("the Afrobeats board", () => {
     expect(sweptArtists.map((a) => a.slug).sort()).toEqual(Object.keys(EXPECTED).sort());
   });
 
-  it("carries the artists whose sweep is still scheduled, with no figures", () => {
-    expect(pendingArtists.map((a) => a.slug).sort()).toEqual(["asake", "omah-lay", "seyi-vibez"]);
+  it("has no artist left waiting for a sweep", () => {
+    // Asake, Omah Lay and Seyi Vibez were swept on 19 Aug 2026. The pending
+    // state and its guards stay — the board will take more artists — but
+    // nobody is in it today.
+    expect(pendingArtists.map((a) => a.slug).sort()).toEqual([]);
     // The whole point of the pending state: a tile, never a number we cannot source.
     for (const a of pendingArtists) {
       expect(certCount(a), a.slug).toBe(0);
@@ -276,22 +282,38 @@ describe("records that appear on two boards", () => {
     // removes the same row as sitting below TOSAC's published depth in that
     // release window. Pinned here so it stays visible and nothing else joins it
     // silently — Paul's call which sweep wins.
+    // "Dynamite" is the one live disagreement between two SOURCES; see below.
+    // "Bad Girl" was a second, and was settled: Wizkid's file had Nigeria #4
+    // from its text-mined block, which that document itself flags as
+    // unverifiable, while Asake's later sweep read #2 in the register.
     const known = new Set(["Dynamite|ZA"]);
     const conflicts: string[] = [];
     for (const [title, per] of shared()) {
       const slugs = [...per.keys()];
       const codes = new Set([...per.values()].flatMap((m) => [...m.keys()]));
       for (const c of codes) {
-        const peaks = slugs.map((s) => per.get(s)!.get(c));
-        if (new Set(peaks).size > 1) conflicts.push(`${title}|${c}`);
+        // Only where BOTH boards carry the country. One sweep recording a
+        // territory another's did not reach is coverage, not disagreement —
+        // each sweep covers its own artist's credits.
+        const peaks = slugs.map((s) => per.get(s)!.get(c)).filter((p) => p !== undefined);
+        if (peaks.length > 1 && new Set(peaks).size > 1) conflicts.push(`${title}|${c}`);
       }
     }
     expect(conflicts.filter((c) => !known.has(c))).toEqual([]);
   });
 
   it("still carries the shared records it is supposed to", () => {
+    // Nineteen records now sit on two boards at once — the three sweeps of
+    // 19 Aug added thirteen, because Asake, Omah Lay and Seyi Vibez guest on
+    // each other's records and on the six already here. Pinned so a record
+    // cannot quietly appear on, or vanish from, a second board.
     expect(shared().map(([t]) => t).sort()).toEqual(
-      ["2 Sugar", "Dynamite", "Essence", "Gimme Dat", "Who's Dat Girl", "Won Da Mo"].sort()
+      [
+        "2 Sugar", "99", "Alaska", "Bad Girl", "Bad Vibes", "Dynamite", "Essence",
+        "Gang", "Gimme Dat", "Jogodo", "MMS", "MY HEALER", "No Competition",
+        "One Call", "REAL, Vol. 1 – EP", "Turbulence", "Who's Dat Girl",
+        "With You", "Won Da Mo",
+      ].sort()
     );
   });
 });

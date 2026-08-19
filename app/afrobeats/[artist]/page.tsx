@@ -40,7 +40,9 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
   // a pending artist has nothing verified yet, so it must not claim a number.
   return pageMetadata({
     title: a.swept
-      ? `${a.name} Certifications — ${certCount(a)} Awards in ${countryCount(a)} Countries`
+      ? `${a.name} Certifications — ${certCount(a)} Awards in ${countryCount(a)} ${
+          countryCount(a) === 1 ? "Country" : "Countries"
+        }`
       : `${a.name} — The Afrobeats Board`,
     description: a.swept
       ? `${a.name}: ${certCount(a)} certifications across ${countryCount(a)} countries, topped by ${topAward(a) ? plaqueLabel(topAward(a)!) : "a plaque"}, plus ${chartEntries(a)} official chart entries and ${chartNo1s(a)} No. 1s — every figure read at source.`

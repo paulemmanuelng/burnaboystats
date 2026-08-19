@@ -21,7 +21,9 @@ import { totalAwards, countryCount as burnaCountries } from "../data/certificati
 // Names, and the count in the eyebrow, come from the data: adding an artist to
 // the board must not leave the copy describing the old one.
 const boardNames = [BURNA.name, ...[...sweptArtists].sort((a, b) => certCount(b) - certCount(a)).map((a) => a.name)];
-const nameList = `${boardNames.slice(0, -1).join(", ")} and ${boardNames.at(-1)}`;
+// Ten names no longer fit a meta description, so the biggest five lead and the
+// rest are counted. Still derived: adding an artist moves the number.
+const nameList = `${boardNames.slice(0, 5).join(", ")} and ${boardNames.length - 5} more`;
 
 export const metadata = pageMetadata({
   title: "The Afrobeats Board — Certifications & Charts",
