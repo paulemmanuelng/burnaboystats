@@ -2,10 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./artist.module.css";
 import KeepExploring from "../../components/KeepExploring";
-import MobileMenuButton from "../../components/MobileMenuButton";
-import BackLink from "../../components/BackLink";
+import MobileCerts from "../../components/MobileCerts";
 import { pageMetadata, CANONICAL_ORIGIN, datasetJsonLd } from "../../lib/seo";
-import { tierOf, totalAwards, countryCount as burnaCountries } from "../../data/certifications";
+import { tierOf, totalAwards, countryCount as burnaCountries, type Release, type Country } from "../../data/certifications";
 import { numberOnes as burnaNo1s, chartEntryCount as burnaEntries } from "../../data/charts";
 import { liveBoardFor } from "../../data/liveBoards";
 import {
@@ -105,6 +104,22 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
       })
     : null;
 
+  // The mobile screen is Burna Boy's certifications screen (screen 02), reused
+  // rather than redrawn — it already solves "hundreds of plaques on a phone",
+  // with the tier bars, the tier rail and the expandable list. It takes the
+  // site's own Release shape, so the board's rows are mapped onto it.
+  const mobileReleases: Release[] = a.releases.map((r) => ({
+    title: r.title,
+    certs: r.certs.map((c) => ({ c: c.c, level: c.level, ...(c.x ? { x: c.x } : {}) })),
+  }));
+  const mobileAlbums = mobileReleases.filter((r) =>
+    a.releases.some((x) => x.title === r.title && x.kind === "Albums")
+  );
+  const mobileCountries: Record<string, Country> = Object.fromEntries(
+    [...new Set(a.releases.flatMap((r) => r.certs.map((c) => c.c)))].map((code) => [code, countryMeta(code)])
+  );
+  const mobileCovers = Object.fromEntries(a.releases.map((r) => [r.title, r.cover]));
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MusicGroup",
@@ -122,21 +137,31 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
       )}
 
+      {/* Mobile is its own screen, not this page narrowed — the same rule the
+          rest of the site follows. Burna Boy's certifications screen already
+          carries 230 plaques on a phone; a board artist's 103 fit the same
+          design. */}
+      <MobileCerts
+        releases={mobileReleases}
+        albums={mobileAlbums}
+        history={[]}
+        countries={mobileCountries}
+        total={total}
+        countryCount={countries}
+        covers={mobileCovers}
+        portrait={a.image}
+        backHref="/afrobeats"
+        backLabel={a.name}
+        lede={`Every ${a.name} plaque, read in the issuing body's own register — ${total} across ${countries} ${countries === 1 ? "country" : "countries"}, from ${a.releases.length} certified releases.`}
+        showActionBar={false}
+      />
+
+      <div className={styles.desktopOnly}>
       <nav className={styles.crumbs} aria-label="Breadcrumb">
         <Link href="/afrobeats">← The Afrobeats Board</Link>
         <span aria-hidden="true">/</span>
         <span className={styles.crumbCurrent}>{a.name}</span>
       </nav>
-
-      <div className={styles.mobileBackBar}>
-        <BackLink href="/afrobeats" aria-label="Back to the board" className={styles.mobileBackBtn}>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
-            <path d="M15 5l-7 7 7 7" />
-          </svg>
-        </BackLink>
-        <span className={styles.mobileBackLabel}>{a.name}</span>
-        <MobileMenuButton />
-      </div>
 
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className={styles.heroPad}>
@@ -416,6 +441,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         )}
         <Link href="/certifications" className="btn btnSecondary">Burna Boy&apos;s ledger ↗</Link>
       </section>
+      </div>
 
       <div className={styles.desktopOnly}>
         <KeepExploring current="/afrobeats" />

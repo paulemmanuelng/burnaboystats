@@ -51,14 +51,35 @@ export default function MobileCerts({
   countries,
   total,
   countryCount,
+  covers,
+  portrait,
+  backHref = "/",
+  backLabel = "Certifications",
+  lede,
+  showActionBar = true,
 }: {
   releases: Release[];
   albums: Release[];
+  /** The by-year log. Empty hides that section: the Afrobeats Board's artists
+   *  have plaques but no dated award events, and a year rail over nothing is
+   *  worse than no rail. */
   history: CertEvent[];
   countries: Record<string, Country>;
   total: number;
   countryCount: number;
+  /** Artwork by release title. Burna Boy's page passes nothing, because the
+   *  site's own catalogue lookup knows every one of his releases. */
+  covers?: Record<string, string | undefined>;
+  backHref?: string;
+  backLabel?: string;
+  /** Replaces the hero sentence, which names Burna Boy's own certifying bodies. */
+  lede?: string;
+  /** The artist's portrait, blended into the hero behind the type. */
+  portrait?: string;
+  /** The board's screens end in the five-tab bar instead of an action bar. */
+  showActionBar?: boolean;
 }) {
+  const art = (title: string) => (covers ? covers[title] : coverFor(title));
   // The list runs albums, singles and features together, so an album needs
   // saying — on desktop the three are separate sections and the grouping does
   // this job for free.
@@ -103,18 +124,24 @@ export default function MobileCerts({
     <div className={styles.screen}>
       {/* Back bar */}
       <div className={styles.backBar}>
-        <BackLink href="/" aria-label="Back" className={styles.backBtn}>
+        <BackLink href={backHref} aria-label="Back" className={styles.backBtn}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M15 5l-7 7 7 7" />
           </svg>
         </BackLink>
-        <span className={styles.backLabel}>Certifications</span>
+        <span className={styles.backLabel}>{backLabel}</span>
         <span className={styles.backCount}>{total}</span>
         <MobileMenuButton />
       </div>
 
       {/* Hero */}
       <div className={styles.hero}>
+        {portrait && (
+          <>
+            <span className={styles.heroArt} style={{ backgroundImage: `url(${portrait})` }} aria-hidden="true" />
+            <span className={styles.heroScrim} aria-hidden="true" />
+          </>
+        )}
         <div className={styles.kicker}>Certified worldwide</div>
         {/* The page's <h1>. Screen 02 leads with the total rather than a worded
             title, so the total IS the heading — it reads "221 awards, 25
@@ -125,16 +152,16 @@ export default function MobileCerts({
           <span className={styles.totalUnit}>
             awards
             <br />
-            {countryCount} countries
+            {countryCount} {countryCount === 1 ? "country" : "countries"}
           </span>
         </h1>
         <p className={styles.lede}>
-          Silver, Gold, Platinum and Diamond awards from the RIAA, BPI, SNEP, Music Canada
-          and {countryCount - 4} more — across {releases.length} certified releases.
+          {lede ??
+            `Silver, Gold, Platinum and Diamond awards from the RIAA, BPI, SNEP, Music Canada and ${countryCount - 4} more — across ${releases.length} certified releases.`}
         </p>
 
         <div className={styles.tierList}>
-          {TIER_ORDER.map((name) => (
+          {TIER_ORDER.filter((name) => tierCount[name] > 0).map((name) => (
             <div key={name} className={styles.tierRow}>
               <div className={styles.tierTop}>
                 <span className={styles.tierName} style={{ color: INK[name] }}>{name}</span>
@@ -164,7 +191,7 @@ export default function MobileCerts({
           {!tier ? null : <span className={styles.chipDot} style={{ background: INK.Gold }} />}
           All {total}
         </button>
-        {TIER_ORDER.map((name) => (
+        {TIER_ORDER.filter((name) => tierCount[name] > 0).map((name) => (
           <button
             key={name}
             type="button"
@@ -194,7 +221,7 @@ export default function MobileCerts({
               <span
                 className={styles.rowCover}
                 aria-hidden="true"
-                style={{ backgroundImage: `url(${spotifyImage(coverFor(r.title) ?? "", 300)})` }}
+                style={{ backgroundImage: `url(${spotifyImage(art(r.title) ?? "", 300)})` }}
               />
               <div className={styles.rowMain}>
                 <div className={styles.rowTitle}>
@@ -251,6 +278,7 @@ export default function MobileCerts({
       )}
 
       {/* ── The dated log ─────────────────────────────────────────── */}
+      {history.length > 0 && (
       <section className={styles.log}>
         <div className={styles.logHead}>
           <div className={styles.logKicker}>The dated log</div>
@@ -302,10 +330,12 @@ export default function MobileCerts({
           })}
         </div>
       </section>
+      )}
 
       <div className={styles.spacer} />
 
       {/* Action bar — replaces the tab bar on a deep screen */}
+      {showActionBar && (
       <div className={styles.actionBar}>
         <Link href="/share" className={styles.actionPrimary}>
           Make a stat card ↗
@@ -321,6 +351,7 @@ export default function MobileCerts({
           </svg>
         </button>
       </div>
+      )}
     </div>
   );
 }

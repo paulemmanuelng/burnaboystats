@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./certifications.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileCerts from "../components/MobileCerts";
+import { BURNA } from "../data/afrobeats";
 import CertExplorer from "../components/CertExplorer";
 import CertHistoryByYear from "../components/CertHistoryByYear";
 import KeepExploring from "../components/KeepExploring";
@@ -88,6 +89,7 @@ export default function CertificationsPage() {
         countries={COUNTRIES}
         total={total}
         countryCount={countryCount}
+        portrait={BURNA.image}
       />
 
       <div className={styles.desktopOnly}>

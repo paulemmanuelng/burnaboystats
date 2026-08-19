@@ -1036,7 +1036,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Bounce", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/541a6bd7704ca3ec57542cd9b964479c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Let There Be Light", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0d3b3f15e7c633880a6653e97ab81cd2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Gang", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ba2c077cd1d6f4e3b15a2b06c58da85c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "On God", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/4bd46ae32cb5d4ceaf64d487aa4bcb07/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "On God (Vibez Inc, ODUMODUBLVCK & Tml Vibez)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/4bd46ae32cb5d4ceaf64d487aa4bcb07/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Richer", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/cbece273781ad75851cb62a87fe877e2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "40 Btc", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/7ed287317374905089708c8db5e302ab/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "4ck Up", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/4235ec7d2986f726a07f8093fd2b6061/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -1044,7 +1044,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Goated", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/b1dc126a2f91edc548817a2f1a55473f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Malaika", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ff588634a842a66d624f256a55bfd975/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "No Caution (Gbemidebe)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/eb65f956f5669e899d233fa4e4a41edf/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "On God", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/4bd46ae32cb5d4ceaf64d487aa4bcb07/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "On God (Kashy)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/4bd46ae32cb5d4ceaf64d487aa4bcb07/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Road Runners", kind: "Featured appearances", certs: [{ c: "NG", level: "Silver" }] },
     ],
     charts: [
