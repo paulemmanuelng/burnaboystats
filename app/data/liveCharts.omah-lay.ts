@@ -1163,8 +1163,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 90,
-            "movement": 1
+            "position": 92,
+            "movement": -1
           },
           {
             "country": "GH",

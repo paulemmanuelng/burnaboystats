@@ -1919,8 +1919,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 45,
-            "movement": -33
+            "position": 48,
+            "movement": -36
           }
         ]
       }
@@ -2714,8 +2714,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
-            "movement": -20
+            "position": 23,
+            "movement": -21
           }
         ]
       }
