@@ -291,8 +291,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
-            "movement": -20
+            "position": 67,
+            "movement": -2
           }
         ]
       }
@@ -528,7 +528,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 5,
-            "movement": -1
+            "movement": -2
           }
         ]
       },
@@ -885,7 +885,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 14,
-            "movement": -6
+            "movement": -4
           }
         ]
       },
@@ -1163,7 +1163,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 15,
-            "movement": -5
+            "movement": -11
           }
         ]
       },
@@ -1441,7 +1441,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 4,
-            "movement": 44
+            "movement": 16
           }
         ]
       }
@@ -1532,13 +1532,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 3,
-            "movement": 2
+            "movement": 3
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 33,
-            "movement": -22
+            "movement": -19
           }
         ]
       },
@@ -1677,7 +1677,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 24,
-            "movement": 59
+            "movement": 2
           }
         ]
       },
@@ -1835,7 +1835,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 63,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "BF",
@@ -1854,7 +1854,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 135,
-            "movement": -20
+            "movement": -18
           }
         ]
       }
@@ -2086,7 +2086,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 134,
-            "movement": -21
+            "movement": -19
           }
         ]
       },
@@ -2361,7 +2361,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 66,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "BF",
@@ -2373,7 +2373,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 71,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "ZW",
@@ -2385,7 +2385,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 119,
-            "movement": -21
+            "movement": -19
           }
         ]
       }
@@ -2888,7 +2888,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 146,
-            "movement": -20
+            "movement": -18
           }
         ]
       },
@@ -2932,7 +2932,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 36,
-            "movement": -22
+            "movement": -19
           }
         ]
       },
@@ -2970,7 +2970,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 138,
-            "movement": -21
+            "movement": -19
           }
         ]
       },
@@ -3038,7 +3038,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 83,
-            "movement": 3
+            "movement": 5
           }
         ]
       }
@@ -3082,7 +3082,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 125,
-            "movement": -21
+            "movement": -19
           }
         ]
       },
@@ -3324,7 +3324,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 151,
-            "movement": -22
+            "movement": -20
           }
         ]
       }

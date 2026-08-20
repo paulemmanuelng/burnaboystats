@@ -256,7 +256,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 26,
-            "movement": 1
+            "movement": -13
           }
         ]
       }
@@ -913,7 +913,7 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 27,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "BF",
@@ -1095,7 +1095,8 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 59,
-            "movement": 131
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1550,8 +1551,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 141,
-            "movement": null,
-            "status": "new"
+            "movement": -108
           }
         ]
       }

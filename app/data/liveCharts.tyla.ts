@@ -906,8 +906,7 @@
             "country": "AU",
             "name": "Australia",
             "position": 56,
-            "movement": null,
-            "status": "new"
+            "movement": 15
           }
         ]
       }
@@ -939,7 +938,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 144,
-            "movement": -20
+            "movement": -18
           }
         ]
       }

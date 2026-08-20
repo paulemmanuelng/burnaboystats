@@ -1159,17 +1159,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KG",
-            "name": "Kyrgyzstan",
-            "position": 4,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "RO",
             "name": "Romania",
             "position": 6,
-            "movement": 24
+            "movement": -1
+          },
+          {
+            "country": "KG",
+            "name": "Kyrgyzstan",
+            "position": 7,
+            "movement": -6
           },
           {
             "country": "NG",
@@ -1182,43 +1181,44 @@
             "country": "MD",
             "name": "Moldova",
             "position": 21,
-            "movement": -11
+            "movement": -10
           },
           {
             "country": "IN",
             "name": "India",
             "position": 38,
-            "movement": -27
+            "movement": -26
           },
           {
             "country": "AZ",
             "name": "Azerbaijan",
             "position": 45,
-            "movement": -18
+            "movement": -17
           },
           {
             "country": "UA",
             "name": "Ukraine",
             "position": 48,
-            "movement": -28
+            "movement": -46
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 64,
-            "movement": -5
+            "movement": -4
           },
           {
             "country": "PT",
             "name": "Portugal",
             "position": 67,
-            "movement": -9
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "KZ",
             "name": "Kazakhstan",
             "position": 73,
-            "movement": -11
+            "movement": -70
           },
           {
             "country": "CZ",
@@ -1237,7 +1237,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 134,
-            "movement": -79
+            "movement": -40
           }
         ]
       },
@@ -1256,32 +1256,31 @@
             "country": "LT",
             "name": "Lithuania",
             "position": 32,
-            "movement": null,
-            "status": "new"
+            "movement": 53
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 33,
-            "movement": -2
+            "movement": 41
           },
           {
             "country": "SN",
             "name": "Senegal",
             "position": 34,
-            "movement": -2
+            "movement": 43
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 43,
-            "movement": 1
+            "movement": 34
           },
           {
             "country": "ZA",
             "name": "South Africa",
             "position": 65,
-            "movement": -9
+            "movement": 10
           }
         ]
       }
@@ -1505,7 +1504,7 @@
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 71,
-            "movement": -13
+            "movement": -10
           }
         ]
       },
@@ -1675,13 +1674,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 4,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 35,
-            "movement": -22
+            "movement": -19
           },
           {
             "country": "KE",
@@ -1759,8 +1758,9 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 158,
-            "movement": 31
+            "position": 159,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -2111,7 +2111,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 51,
-            "movement": -43
+            "movement": -9
           }
         ]
       }
