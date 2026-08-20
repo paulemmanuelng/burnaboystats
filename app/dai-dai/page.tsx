@@ -153,7 +153,7 @@ export default function DaiDaiPage() {
   const heroNumbers: { v: string; l: string }[] = [
     { v: `${daiDaiChartEntryCount}`, l: "official chart entries worldwide — on national singles charts across the globe, plus both of Billboard's global charts" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
-    { v: "No. 1", l: "on both Billboard global charts — 4 consecutive weeks atop the Global 200 (a first for an African artist, and Shakira's 2nd) and a 7th consecutive week atop the Global 200 Excl. US, still counting" },
+    { v: "No. 1", l: "on both Billboard global charts — a 5th week atop the Global 200 (a first for an African artist, and Shakira's 2nd), retaken on the chart dated 22 August after a week at No. 3, and an 8th consecutive week atop the Global 200 Excl. US" },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 35 days as the most-streamed song on Earth" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, France, Slovakia, Portugal & Hungary, Gold in Colombia, Greece, the Czech Republic & Italy, and Silver in the UK" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
@@ -164,9 +164,9 @@ export default function DaiDaiPage() {
       label: "The streaming streaks",
       intro: "The daily and weekly runs — every one still counting.",
       items: [
-        { v: "35 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, now three clear of Djo's “End of Beginning” (32) and four of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31); past 59 days inside the global Top 10 and 87 days on the chart, all still counting" },
+        { v: "35 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, now three clear of Djo's “End of Beginning” (32) and four of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31); past 62 days inside the global Top 10 and 90 days on the chart, both still counting" },
         { v: "4 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
-        { v: "50 days", l: "at No. 1 on Apple Music's European songs chart — a 50th milestone day — plus 11 days atop the worldwide Apple Music chart" },
+        { v: "57 days", l: "at No. 1 on Apple Music's European songs chart — plus 11 days atop the worldwide Apple Music chart" },
         { v: "34 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
         { v: "No. 1", l: liveOnesLabel },
       ],
@@ -192,9 +192,9 @@ export default function DaiDaiPage() {
       intro: "The charts that rank the whole planet at once.",
       items: [
         { v: "7 weeks", l: "at No. 1 on Mediatraffic's United World Chart — 347,000 points in the week to 15 August, and the first Burna Boy song ever to top it" },
-        { v: "No. 1", l: "iTunes song chart in 72 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, the Philippines the newest" },
+        { v: "No. 1", l: "iTunes song chart in 73 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, Belarus the newest" },
         { v: "No. 13", l: "Deezer Worldwide Top 100 — a new peak, charting in 57 countries and No. 1 in 23 of them" },
-        { v: "17 days", l: "at No. 1 on Spotify's Global Music Video chart — more than any other song has managed there" },
+        { v: "25 days", l: "at No. 1 on Spotify's Global Music Video chart — more than any other song has managed there" },
         { v: "No. 14", l: "Burna Boy's position on the Global Digital Artist ranking (1,739 points) during the run" },
       ],
     },

@@ -96,7 +96,7 @@ function buildSteps(p: Props): Step[] {
       scene: "global1",
       kicker: "The record",
       title: "No. 1 on the Billboard Global 200",
-      body: "Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. Its Global 200 run closed at four straight weeks, and it still leads the Global 200 Excl. US — a seventh consecutive week and counting.",
+      body: "Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. After four straight weeks it slipped to No. 3, then took the chart back on 22 August for a fifth week — a month after the World Cup ended. It has never left the top of the Global 200 Excl. US, where it is now eight weeks in.",
     },
     {
       scene: "no1s",

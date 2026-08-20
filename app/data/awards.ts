@@ -239,6 +239,13 @@ export const ceremonies: Ceremony[] = [
     noms: [
       { year: 2025, category: "Best Afrobeats", work: "TaTaTa (with Travis Scott)", won: false },
       { year: 2025, category: "Video for Good", work: "Higher", won: false },
+      // Announced 18 Aug 2026; the ceremony is 27 Sep, so both stay won:false
+      // until MTV publishes winners. Note the Best Latin nomination is not a
+      // miscategorisation — "Dai Dai" is a Shakira record as much as his, and
+      // MTV placed it in that field. The Afrobeats category was not held this
+      // year, which is why neither nomination sits in it.
+      { year: 2026, category: "Best Collaboration", work: "Dai Dai (with Shakira)", won: false },
+      { year: 2026, category: "Best Latin", work: "Dai Dai (with Shakira)", won: false },
     ],
   },
   {

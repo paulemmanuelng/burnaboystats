@@ -81,15 +81,19 @@ describe("handoff checklist — data integrity", () => {
     expect(numberOnes).toBe(ones);
   });
 
-  it("counts 82 award wins from 234 nominations across 46 bodies", () => {
+  it("counts 82 award wins from 236 nominations across 46 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
     // Year, shared with Dammy Krane; AEA USA 2025 International Artist of
     // the Year per AEAUSA's own winners PDF), +24 entries, +2 bodies
     // (Channel O MVA, SA Hip Hop Awards). Details in app/data/awards.ts.
+    //
+    // 234 -> 236 on 20 Aug 2026: the two 2026 MTV VMA nominations for
+    // "Dai Dai" (Best Collaboration, Best Latin), announced 18 August. Wins
+    // stay at 82 — the ceremony is 27 September, so both are pending.
     expect(wins).toBe(82);
-    expect(allNoms.length).toBe(234);
+    expect(allNoms.length).toBe(236);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
     expect(ceremonyCount).toBe(46);
