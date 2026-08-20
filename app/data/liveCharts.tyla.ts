@@ -487,6 +487,19 @@
             "movement": 0
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SG",
+            "name": "Singapore",
+            "position": 26,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "album",
@@ -713,8 +726,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 34,
-            "movement": -32
+            "position": 38,
+            "movement": -33
           }
         ]
       }
@@ -763,7 +776,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 55,
-            "movement": -2
+            "movement": -1
           }
         ]
       },
@@ -824,7 +837,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 70,
+            "position": 81,
             "movement": null,
             "status": "new"
           }
@@ -862,7 +875,7 @@
           {
             "country": "LU",
             "name": "Luxembourg",
-            "position": 16,
+            "position": 21,
             "movement": null,
             "status": "new"
           },
@@ -944,8 +957,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 33,
-            "movement": -32
+            "position": 37,
+            "movement": -33
           },
           {
             "country": "NG",
@@ -988,7 +1001,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 172,
+            "position": 188,
             "movement": null,
             "status": "new"
           }

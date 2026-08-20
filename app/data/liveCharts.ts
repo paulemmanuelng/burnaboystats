@@ -2295,7 +2295,7 @@
             "country": "NO",
             "name": "Norway",
             "position": 1,
-            "movement": 12
+            "movement": 0
           },
           {
             "country": "SK",
@@ -2308,6 +2308,12 @@
             "country": "SE",
             "name": "Sweden",
             "position": 1,
+            "movement": 0
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 2,
             "movement": 0
           },
           {
@@ -2338,25 +2344,25 @@
             "country": "BE",
             "name": "Belgium",
             "position": 3,
-            "movement": 0
+            "movement": -2
           },
           {
             "country": "CA",
             "name": "Canada",
             "position": 3,
-            "movement": 2
+            "movement": 1
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 3,
+            "movement": 6
           },
           {
             "country": "CH",
             "name": "Switzerland",
             "position": 3,
             "movement": 0
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 4,
-            "movement": -2
           },
           {
             "country": "DE",
@@ -2372,23 +2378,16 @@
             "status": "new"
           },
           {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 5,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 5,
-            "movement": -2
-          },
-          {
             "country": "ES",
             "name": "Spain",
             "position": 5,
             "movement": -2
+          },
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 6,
+            "movement": 4
           },
           {
             "country": "IT",
@@ -2407,20 +2406,12 @@
             "country": "BR",
             "name": "Brazil",
             "position": 9,
-            "movement": null,
-            "status": "new"
+            "movement": -2
           },
           {
             "country": "MX",
             "name": "Mexico",
             "position": 10,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 11,
             "movement": null,
             "status": "new"
           },
@@ -2439,10 +2430,17 @@
             "status": "new"
           },
           {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 13,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "US",
             "name": "United States",
             "position": 15,
-            "movement": 2
+            "movement": 1
           },
           {
             "country": "LK",
@@ -2459,20 +2457,20 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 19,
-            "movement": 11
+            "position": 22,
+            "movement": 18
           },
           {
             "country": "BY",
             "name": "Belarus",
             "position": 50,
-            "movement": -14
+            "movement": -13
           },
           {
             "country": "DO",
             "name": "Dominican Republic",
             "position": 62,
-            "movement": -42
+            "movement": -39
           },
           {
             "country": "KG",
@@ -2483,7 +2481,7 @@
           {
             "country": "HK",
             "name": "Hong Kong",
-            "position": 85,
+            "position": 97,
             "movement": null,
             "status": "new"
           },
@@ -2657,16 +2655,29 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 2,
+            "movement": 145
+          },
+          {
             "country": "NA",
             "name": "Namibia",
             "position": 32,
             "movement": 0
           },
           {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 34,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "GH",
             "name": "Ghana",
             "position": 58,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "BW",
@@ -2679,12 +2690,6 @@
             "name": "Uganda",
             "position": 63,
             "movement": 1
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 155,
-            "movement": -8
           }
         ]
       }
@@ -3706,6 +3711,13 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 3,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "GM",
             "name": "Gambia",
             "position": 20,
@@ -3721,7 +3733,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 155,
-            "movement": 1
+            "movement": 2
           }
         ]
       }
@@ -4074,8 +4086,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 26,
-            "movement": 2
+            "position": 29,
+            "movement": -3
           },
           {
             "country": "NE",
@@ -4763,8 +4775,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 65,
-            "movement": -4
+            "position": 66,
+            "movement": -5
           }
         ]
       }
@@ -4889,27 +4901,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 172,
-            "movement": 6
-          }
-        ]
-      }
-    ],
-    "kind": "album"
-  },
-  {
-    "title": "On a Spaceship",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 200,
-            "movement": null,
-            "status": "new"
+            "position": 173,
+            "movement": 5
           }
         ]
       }

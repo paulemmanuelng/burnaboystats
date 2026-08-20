@@ -919,8 +919,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 29,
-            "movement": -2
+            "position": 26,
+            "movement": -1
           },
           {
             "country": "BF",
@@ -1087,7 +1087,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 5,
+            "position": 9,
             "movement": null,
             "status": "new"
           },

@@ -291,8 +291,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
-            "movement": -4
+            "position": 63,
+            "movement": -3
           }
         ]
       }
@@ -2446,7 +2446,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 58,
-            "movement": -2
+            "movement": -1
           }
         ]
       }

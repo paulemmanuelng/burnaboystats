@@ -1121,7 +1121,7 @@
             "country": "BY",
             "name": "Belarus",
             "position": 68,
-            "movement": -14
+            "movement": -13
           }
         ]
       }
@@ -1286,8 +1286,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 92,
-            "movement": 0
+            "position": 93,
+            "movement": -1
           }
         ]
       }
