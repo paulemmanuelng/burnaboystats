@@ -2424,10 +2424,10 @@
             "status": "new"
           },
           {
-            "country": "MD",
-            "name": "Moldova",
-            "position": 13,
-            "movement": -11
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 12,
+            "movement": -5
           },
           {
             "country": "CZ",
@@ -2441,6 +2441,12 @@
             "position": 15,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "MD",
+            "name": "Moldova",
+            "position": 15,
+            "movement": -13
           },
           {
             "country": "US",
@@ -2459,12 +2465,6 @@
             "name": "Australia",
             "position": 22,
             "movement": -14
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 26,
-            "movement": -19
           },
           {
             "country": "BY",
@@ -2500,7 +2500,7 @@
           {
             "country": "HK",
             "name": "Hong Kong",
-            "position": 125,
+            "position": 126,
             "movement": null,
             "status": "new"
           }
@@ -2681,7 +2681,7 @@
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 45,
+            "position": 55,
             "movement": null,
             "status": "new"
           },

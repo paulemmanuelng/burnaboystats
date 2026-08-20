@@ -629,8 +629,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 138,
-            "movement": -20
+            "position": 156,
+            "movement": -38
           }
         ]
       }
@@ -855,7 +855,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 116,
+            "position": 118,
             "movement": null,
             "status": "new"
           }
@@ -900,7 +900,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 60,
+            "position": 72,
             "movement": null,
             "status": "new"
           }
@@ -987,8 +987,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 151,
-            "movement": -22
+            "position": 150,
+            "movement": -21
           }
         ]
       }
@@ -1006,7 +1006,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 168,
+            "position": 197,
             "movement": null,
             "status": "new"
           }

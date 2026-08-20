@@ -1054,7 +1054,7 @@
           {
             "country": "HK",
             "name": "Hong Kong",
-            "position": 157,
+            "position": 168,
             "movement": null,
             "status": "new"
           }
@@ -2916,15 +2916,15 @@
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 104,
+            "position": 105,
             "movement": null,
             "status": "new"
           },
           {
             "country": "IT",
             "name": "Italy",
-            "position": 167,
-            "movement": -140
+            "position": 196,
+            "movement": -169
           }
         ]
       }
