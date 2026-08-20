@@ -214,7 +214,7 @@ export const singleCharts: ChartRelease[] = [
   //   Remix/instrumental rows (Greece, Poland, Lithuania) are versions, not
   //   the song, and genre/format charts (Latin Airplay, Pop Songs, Rhythmic,
   //   ARIA Hip Hop, Canada AC/CHR) stay out of country entries as always.
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", year: 2026, entries: [
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", year: 2026, entries: [
     { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1 }, { c: "LU", peak: 1 }, { c: "PT", peak: 1 }, { c: "PA", peak: 1 }, { c: "SE", peak: 1 }, { c: "IT", peak: 1 }, { c: "IN", peak: 1 }, { c: "CZ", peak: 1 }, { c: "IS", peak: 1, note: "Billboard Iceland Songs" }, { c: "VE", peak: 1 }, { c: "SV", peak: 1 }, { c: "DO", peak: 1 }, { c: "NO", peak: 1 }, { c: "EC", peak: 1 }, { c: "EE", peak: 1 }, { c: "GLB", peak: 1 }, { c: "GLBX", peak: 1 },
     { c: "UK", peak: 2 }, { c: "ES", peak: 2 }, { c: "UY", peak: 2 }, { c: "PR", peak: 2 },
     { c: "CA", peak: 3 }, { c: "SA", peak: 3 }, { c: "SG", peak: 3 }, { c: "BG", peak: 3 }, { c: "IE", peak: 3 }, { c: "PY", peak: 3 },
