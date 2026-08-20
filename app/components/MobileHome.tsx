@@ -19,7 +19,7 @@ import {
   albumCharts,
   CHART_COUNTRIES,
   numberOnes,
-  chartCountryCount,
+  numberOneCountryCount,
 } from "../data/charts";
 import { totalAwards, countryCount as certCountries } from "../data/certifications";
 import { albums as studioAlbums } from "../data/albums";
@@ -123,7 +123,7 @@ const years = studioAlbums.map((a) => a.year);
 // behind it that shows the working.
 const stats = [
   { glyph: "certs" as const, value: String(totalAwards()), label: "Certifications", source: `${certCountries} countries`, href: "/certifications" },
-  { glyph: "no1s" as const, value: String(numberOnes), label: "No. 1s worldwide", source: `${chartCountryCount} countries`, href: "/records/charts" },
+  { glyph: "no1s" as const, value: String(numberOnes), label: "No. 1s worldwide", source: `in ${numberOneCountryCount} countries`, href: "/records/charts" },
   { glyph: "albums" as const, value: String(studioAlbums.length), label: "Studio albums", source: `${Math.min(...years)} — ${Math.max(...years)}`, href: "/music" },
   { glyph: "tour" as const, value: topTour?.gross ?? "—", label: "Top tour gross", source: "Boxscore", href: "/records/tours" },
 ];

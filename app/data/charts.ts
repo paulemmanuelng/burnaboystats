@@ -375,6 +375,16 @@ export const numberOnes = allChartItems.reduce(
   (n, r) => n + r.entries.filter((e) => e.peak === 1).length,
   0
 );
+// The two country figures are NOT the same and must not be paired with the
+// wrong one. `chartCountryCount` is every territory he has CHARTED in; this is
+// the subset where a release actually reached No. 1 — 33 against 71. A stat
+// tile reading "48 No. 1s / 71 countries" says he topped the chart in 71
+// places, which is not what the data says. Use this wherever the figure beside
+// a No. 1s count is meant to describe those No. 1s.
+export const numberOneCountryCount = new Set(
+  allChartItems.flatMap((r) => r.entries.filter((e) => e.peak === 1).map((e) => e.c))
+).size;
+
 // Where the tracked charts actually come from, counted from the data rather
 // than asserted. Published on /methodology and /records/charts so the mix of
 // sources is visible instead of implied: most territories use their national

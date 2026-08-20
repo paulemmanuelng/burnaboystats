@@ -9,6 +9,7 @@ import {
   numberOneReleases,
   daiDaiNumberOnes,
   daiDaiChartEntryCount,
+  numberOneCountryCount,
 } from "../app/data/charts";
 
 // The chart dataset drives the headline numbers on the homepage, /records/charts,
@@ -141,5 +142,48 @@ describe("Dai Dai", () => {
     for (const code of ["GLB", "GLBX"]) {
       expect(daiDai.entries.find((e) => e.c === code)?.peak, code).toBe(1);
     }
+  });
+});
+
+// Two country figures live in this file and they are not interchangeable:
+// every territory he has charted in (71) versus the subset where something
+// reached No. 1 (33). A home stat tile paired the No. 1s count with the first
+// one, which reads as "topped the chart in 71 countries".
+describe("the two country figures stay distinct", () => {
+  it("counts No. 1 countries as a strict subset of charted territories", () => {
+    expect(numberOneCountryCount).toBeLessThan(chartCountryCount);
+    const no1 = new Set(
+      allChartItems.flatMap((r) => r.entries.filter((e) => e.peak === 1).map((e) => e.c))
+    );
+    const charted = new Set(allChartItems.flatMap((r) => r.entries.map((e) => e.c)));
+    for (const c of no1) expect(charted.has(c), `${c} at No.1 but not charted`).toBe(true);
+    expect(no1.size).toBe(numberOneCountryCount);
+  });
+
+  it("never has more No. 1 countries than No. 1 placements", () => {
+    expect(numberOneCountryCount).toBeLessThanOrEqual(numberOnes);
+  });
+});
+
+// The peak map's ramp runs bright-gold (No. 1) to deep-red (No. 100), and two
+// captions describe it — one per layout. The mobile one said "darker gold is a
+// higher peak", which is the scale backwards. Pin the direction so a caption
+// and the ramp cannot disagree again.
+describe("peak map colour ramp", () => {
+  it("runs bright at No. 1 and dark at No. 100", async () => {
+    const src = await import("node:fs").then((fs) =>
+      fs.readFileSync("app/components/PeakMap.tsx", "utf8")
+    );
+    const stops = [...src.matchAll(/\[([\d.]+), \[(\d+), (\d+), (\d+)\]\]/g)].map((m) => ({
+      t: Number(m[1]),
+      lum: (Number(m[2]) * 299 + Number(m[3]) * 587 + Number(m[4]) * 114) / 1000,
+    }));
+    expect(stops.length).toBeGreaterThanOrEqual(2);
+    const first = stops[0];
+    const last = stops[stops.length - 1];
+    expect(first.t).toBe(0);
+    expect(last.t).toBe(1);
+    // t=0 is peak 1. Brighter there, or every caption on the site is wrong.
+    expect(first.lum).toBeGreaterThan(last.lum);
   });
 });

@@ -82,9 +82,16 @@
 
 /* A donut sits on its own panel beside its legend. */
 .donutPanel {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 44px;
+  /* One child, not two. This was `grid-template-columns: 260px 1fr`, which
+     expects a donut and a legend as separate children — but TierDonut renders a
+     single root that already lays the two out as a flex row. So the whole
+     component was squeezed into the 260px column and the 1fr column sat empty:
+     inside it the donut takes up to 220px and the legend, which is flex:1 with
+     min-width:0, was left nothing. It collapsed to zero width, and with the
+     legend row a `14px 1fr auto` grid, the 1fr label column went to 0 while the
+     auto value column kept its size — so all three donuts showed bare counts
+     and percentages with no tier names beside them. */
+  display: block;
   align-items: center;
   margin-top: 28px;
   border: 1px solid var(--line);
@@ -103,7 +110,7 @@
 }
 @media (max-width: 1239px) {
   .h1 { font-size: 60px; }
-  .donutPanel { grid-template-columns: 1fr; gap: 24px; }
+  .donutPanel { padding: 20px; }
 }
 
 .pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 52px 40px 72px; }

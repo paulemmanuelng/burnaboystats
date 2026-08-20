@@ -328,7 +328,7 @@ export default function VisualizedPage() {
           },
           {
             title: "Best chart peak by country",
-            note: "Darker gold is a higher peak — tap a country for the song that got there.",
+            note: "Brighter gold is a higher peak — tap a country for the song that got there.",
             chart: (
               <PeakMap
                 data={peakByISO}
