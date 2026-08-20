@@ -303,7 +303,7 @@
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 133,
+            "position": 143,
             "movement": null,
             "status": "new"
           }
@@ -1460,14 +1460,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 35,
-            "movement": -24
+            "position": 38,
+            "movement": -27
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 181,
-            "movement": -158
+            "position": 184,
+            "movement": -161
           }
         ]
       },
@@ -1624,7 +1624,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
+            "position": 35,
             "movement": null,
             "status": "new"
           }
@@ -2979,7 +2979,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
+            "position": 38,
             "movement": null,
             "status": "new"
           }
@@ -3654,7 +3654,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 64,
+            "position": 66,
             "movement": null,
             "status": "new"
           }
@@ -3710,8 +3710,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 189,
-            "movement": -154
+            "position": 192,
+            "movement": -157
           }
         ]
       }
@@ -4429,7 +4429,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
+            "position": 31,
             "movement": null,
             "status": "new"
           }
