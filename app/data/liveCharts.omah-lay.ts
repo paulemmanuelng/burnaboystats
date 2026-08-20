@@ -298,14 +298,14 @@
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 125,
-            "movement": -7
+            "position": 119,
+            "movement": 6
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 152,
-            "movement": -2
+            "position": 162,
+            "movement": -10
           }
         ]
       },
@@ -571,8 +571,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 29,
-            "movement": 80
+            "position": 32,
+            "movement": -23
           }
         ]
       },
@@ -583,14 +583,14 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 122,
-            "movement": -6
+            "position": 118,
+            "movement": 4
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 172,
-            "movement": -9
+            "position": 169,
+            "movement": 3
           }
         ]
       },
@@ -748,7 +748,7 @@
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 192,
-            "movement": -14
+            "movement": 0
           }
         ]
       }
@@ -757,7 +757,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/f31fc975fcb1a6ea4130d536558ecd96/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "soso",
+    "title": "Soso",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -849,6 +849,19 @@
             "position": 92,
             "movement": null,
             "status": "re"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 181,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1103,20 +1116,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 32,
-            "movement": 3
+            "position": 25,
+            "movement": 7
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 53,
-            "movement": 10
+            "position": 47,
+            "movement": 6
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 143,
-            "movement": 32
+            "movement": 0
           }
         ]
       },
@@ -1151,8 +1164,8 @@
           {
             "country": "BY",
             "name": "Belarus",
-            "position": 71,
-            "movement": -26
+            "position": 63,
+            "movement": -18
           }
         ]
       }
@@ -1171,19 +1184,19 @@
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 99,
-            "movement": 5
+            "movement": 0
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 151,
-            "movement": -7
+            "position": 149,
+            "movement": 2
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 161,
-            "movement": -11
+            "position": 193,
+            "movement": -32
           }
         ]
       },
@@ -1200,7 +1213,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 196,
+            "position": 198,
             "movement": -4
           }
         ]

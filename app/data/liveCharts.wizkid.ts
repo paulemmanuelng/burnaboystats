@@ -346,25 +346,18 @@
             "country": "MN",
             "name": "Mongolia",
             "position": 52,
-            "movement": -20
+            "movement": -21
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 57,
-            "movement": -5
+            "position": 56,
+            "movement": -4
           },
           {
             "country": "CL",
             "name": "Chile",
-            "position": 58,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 135,
+            "position": 74,
             "movement": null,
             "status": "new"
           }
@@ -537,56 +530,56 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 23,
-            "movement": -2
+            "position": 22,
+            "movement": 1
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 28,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 44,
-            "movement": 3
+            "position": 38,
+            "movement": 6
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
-            "movement": 3
+            "position": 71,
+            "movement": -1
           },
           {
             "country": "CM",
             "name": "Cameroon",
             "position": 74,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 77,
-            "movement": -1
+            "position": 79,
+            "movement": -2
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 79,
-            "movement": -5
+            "position": 86,
+            "movement": -7
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 106,
+            "position": 100,
             "movement": 6
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 131,
-            "movement": -3
+            "movement": 0
           }
         ]
       },
@@ -755,7 +748,7 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 59,
+            "position": 62,
             "movement": -3
           }
         ]
@@ -2155,7 +2148,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 98,
-            "movement": 1
+            "movement": 2
           },
           {
             "country": "NG",
@@ -2285,8 +2278,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 63,
-            "movement": 13
+            "position": 60,
+            "movement": 3
           }
         ]
       }
@@ -2305,15 +2298,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 188,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 200,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -2448,8 +2439,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
-            "movement": 4
+            "position": 153,
+            "movement": -12
           }
         ]
       }
@@ -2467,14 +2458,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 86,
-            "movement": 15
+            "position": 89,
+            "movement": -3
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 160,
-            "movement": 27
+            "movement": 0
           }
         ]
       }
@@ -2696,26 +2687,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Kese",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 101,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b83e12a893bcd9bca6f6e84283dbedaa/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Ebelebe",
     "platforms": [
       {
@@ -2755,25 +2726,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e5bc56dd547bcc84a47089b865230cb/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Alive",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 119,
-            "movement": 2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "The Matter",
     "platforms": [
       {
@@ -2791,6 +2743,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/18fe03d4a766bab13d51da24e73e425c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Alive",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 140,
+            "movement": -21
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Apple Music Live: Wizkid",
