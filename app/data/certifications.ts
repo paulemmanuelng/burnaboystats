@@ -86,7 +86,21 @@ export const albums: Release[] = [
 
 // Burna Boy's own (lead) singles.
 export const singles: Release[] = [
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", year: 2026, certs: [
+  // Billed "Shakira & Burna Boy" — Deezer's contributor list for every edition
+  // reads ["Shakira", "Burna Boy"], Wikipedia's infobox says "Shakira and Burna
+  // Boy", and Billboard writes it with an ampersand. The "X" this once carried
+  // was a site invention and the only credit here not in the "A & B" / "A ft. B"
+  // form the rest of the file uses.
+  //
+  // The US plaque is the site's ONLY Latin-program award, and the program is not
+  // interchangeable with the main one: RIAA Latin (Premios de Oro y Platino)
+  // certifies at 30,000 units for Oro, 60,000 for Platino and 120,000 for 2x —
+  // against 500,000 and 1,000,000 for the standard awards — and needs a
+  // recording that is at least 51% Spanish. So this 2x Platino is ~120,000
+  // units, NOT 2,000,000, which is why `body` overrides it to "RIAA Latin" and
+  // the explorer paints a program marker beside the tier. Never total it against
+  // standard-programme plaques as if the tiers meant the same thing.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", year: 2026, certs: [
     { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
     { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
   ] },
@@ -432,14 +446,14 @@ export const certHistory: CertEvent[] = [
   { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "NZ", level: "Platinum", year: 2026 },
   { title: "Gbona", country: "NZ", level: "Gold", year: 2026 },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "PL", level: "Platinum", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "US", level: "Platinum", x: 2, year: 2026, body: "RIAA Latin" },
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "CO", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "ES", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "FR", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "HU", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "SK", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "PT", level: "Gold", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "GR", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "US", level: "Platinum", x: 2, year: 2026, body: "RIAA Latin" },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CO", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "ES", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "FR", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "HU", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "SK", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PT", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "GR", level: "Gold", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "ZA", level: "Platinum", x: 2, year: 2026 },
   { title: "Gbona", country: "FR", level: "Diamond", year: 2026 },
 
@@ -534,28 +548,28 @@ export const certHistory: CertEvent[] = [
   { title: "Ye", country: "CH", level: "Platinum", year: 2023 },
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "CH", level: "Gold", year: 2023 },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", country: "AU", level: "Gold", year: 2023 },
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "ES", level: "Platinum", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "FR", level: "Platinum", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "ES", level: "Platinum", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "FR", level: "Platinum", year: 2026 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "SE", level: "Platinum", year: 2026 },
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "SK", level: "Platinum", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "SK", level: "Platinum", year: 2026 },
   // Gold→Platinum upgrade, verified in AFP/Audiogest's own week-31 2026 PDF
   // (Top 200 Singles, pos. 1, Gal. "PL", 11th week on top).
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "PT", level: "Platinum", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PT", level: "Platinum", year: 2026 },
   // Announced by the BRIT Awards' own account (#BRITcertified), 7 Aug 2026.
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "UK", level: "Silver", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "UK", level: "Silver", year: 2026 },
   // 225th: gold badge ("Zlatý singl") on ČNS IFPI's own Singles Digital Top 100, week 32/2026 — 2.5M streams.
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "CZ", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CZ", level: "Gold", year: 2026 },
   // Gold→Platinum upgrade — verified at MAHASZ's own register search
   // (slagerlistak.hu/arany-es-platinalemezek/kereso) 14 Aug 2026, which returns
   // the row under Platinalemez and nothing under Aranylemez. An upgrade, so the
   // worldwide plaque total stays put while Platinum crosses 100; the HU Gold
   // row above stays, per the append-never-rewrite rule.
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "HU", level: "Platinum", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "HU", level: "Platinum", year: 2026 },
   // FIMI week 33/2026 — read at the register's own search endpoint
   // (fimi.it/ajax/filter-certificazioni.php, formato=2&year=2026): "DAI DAI /
   // SHAKIRA & BURNA BOY / COLUMBIA-ATLANTIC / oro / Singoli Online". Burna's
   // second Italian certification, after Jerusalema (Remix)'s 4x Platinum.
-  { title: "Dai Dai", credit: "Shakira X Burna Boy", country: "IT", level: "Gold", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "IT", level: "Gold", year: 2026 },
 ];
 
 // Helpers

@@ -8,6 +8,7 @@ import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
 import { coverFor } from "../lib/covers";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
+import { count } from "../lib/plural";
 import { BLANK_PIXEL } from "../lib/blankPixel";
 import { portraitArtFor } from "../lib/portraitArt";
 import type { CertEvent, Country, Release } from "../data/certifications";
@@ -304,7 +305,7 @@ export default function MobileCerts({
                   {[r.credit, r.year].filter(Boolean).join(" · ")}
                 </div>
               </div>
-              <span className={styles.rowCount}>{r.certs.length} certs</span>
+              <span className={styles.rowCount}>{count(r.certs.length, "cert", "certs")}</span>
             </div>
             <div className={styles.badges}>
               {(() => {

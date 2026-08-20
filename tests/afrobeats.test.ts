@@ -450,6 +450,41 @@ describe("hub scatter", () => {
 // a song of the same name the wrong artist's artwork won: Omah Lay's "Reason"
 // wore Asake's Mr. Money With The Vibe sleeve, his "You" wore Davido's 5ive.
 //
+// The hooks make comparative claims — "the only artist who", "more than anyone
+// else" — against data that moves under them. Two shipped wrong: Tems claimed
+// the board's only US Diamond while Wizkid's "One Dance" is also one, and
+// Davido claimed seventeen Nigerian No. 1s and the most in the field when the
+// data says sixteen and Asake has 24 — a claim that contradicted Asake's own
+// hook on the same page. Superlatives get pinned to what the data actually says.
+describe("hooks agree with the data underneath them", () => {
+  const usDiamondHolders = () =>
+    afrobeatsArtists
+      .filter((a) => a.releases.some((r) => r.certs.some((c) => c.c === "US" && c.level === "Diamond")))
+      .map((a) => a.slug)
+      .sort();
+
+  const ngNumberOnes = (slug: string) =>
+    afrobeatsArtists
+      .find((a) => a.slug === slug)!
+      .charts.filter((r) => r.entries.some((e) => e.c === "NG" && e.peak === 1)).length;
+
+  it("no artist can claim the board's ONLY US Diamond — two hold one", () => {
+    expect(usDiamondHolders()).toEqual(["tems", "wizkid"]);
+    for (const a of afrobeatsArtists)
+      expect(a.hook, `${a.slug} hook`).not.toMatch(/only artist in this field/i);
+  });
+
+  it("Asake leads the Nigerian No. 1s, and Davido's hook says his real count", () => {
+    const counts = afrobeatsArtists.map((a) => [a.slug, ngNumberOnes(a.slug)] as const);
+    const top = [...counts].sort((x, y) => y[1] - x[1])[0];
+    expect(top[0]).toBe("asake");
+    const davido = afrobeatsArtists.find((a) => a.slug === "davido")!;
+    expect(ngNumberOnes("davido")).toBe(16);
+    expect(davido.hook).toContain("sixteen");
+    expect(davido.hook, "must not out-claim Asake").not.toMatch(/anyone else|more than any/i);
+  });
+});
+
 // Two artists SHOULD share a cover when the entry is the same recording — a
 // collaboration, or a track on the other's album. Every pair below was checked
 // against Deezer's contributor list, not just its title. A NEW pair appearing
@@ -481,6 +516,49 @@ describe("cover art", () => {
 
   it("shares a cover across artists only where the recording is shared", () => {
     expect(sharedPairs()).toEqual(VERIFIED_SHARES);
+  });
+
+  // The list above only walks `releases`. The chart rows carry covers too, and
+  // that is where Omah Lay's "Blessings" sat wearing Fridayy's "Blessings
+  // (Remix)" sleeve — Asake's feature — while Omah Lay's is KAESTYLE's, on
+  // "Kae's Study" (contributors: KAESTYLE, Omah Lay). Releases-only checking
+  // could not see it, so this walks both lists.
+  const VERIFIED_SHARES_WITH_CHARTS = [
+    "asake+ayra-starr", "asake+davido", "asake+rema", "asake+seyi-vibez+wizkid",
+    "asake+tems", "asake+wizkid", "asake+wizkid", "asake+wizkid",
+    "ayra-starr+omah-lay", "ayra-starr+rema", "ayra-starr+rema",
+    "ayra-starr+seyi-vibez", "ayra-starr+wizkid", "davido+omah-lay",
+    "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+tyla", "omah-lay+wizkid",
+    "tems+wizkid",
+  ];
+
+  it("shares a cover across artists only where the recording is shared, charts included", () => {
+    const byCover = new Map<string, Set<string>>();
+    for (const a of afrobeatsArtists) {
+      for (const r of [...a.releases, ...a.charts]) {
+        if (!r.cover) continue;
+        if (!byCover.has(r.cover)) byCover.set(r.cover, new Set());
+        byCover.get(r.cover)!.add(a.slug);
+      }
+    }
+    const pairs = [...byCover.values()]
+      .filter((s) => s.size > 1)
+      .map((s) => [...s].sort().join("+"))
+      .sort();
+    expect(pairs).toEqual(VERIFIED_SHARES_WITH_CHARTS);
+  });
+
+  it("gives Omah Lay's Blessings KAESTYLE's sleeve, not Asake's", () => {
+    const omah = afrobeatsArtists.find((a) => a.slug === "omah-lay")!;
+    const asake = afrobeatsArtists.find((a) => a.slug === "asake")!;
+    const theirs = [...asake.releases, ...asake.charts]
+      .filter((r) => r.title.startsWith("Blessings"))
+      .map((r) => r.cover);
+    const ours = [...omah.releases, ...omah.charts]
+      .find((r) => r.title === "Blessings")?.cover;
+    expect(ours, "Omah Lay's Blessings").toBeTruthy();
+    expect(theirs.length, "Asake's Blessings rows").toBeGreaterThan(0);
+    expect(theirs).not.toContain(ours);
   });
 
   it("never gives Omah Lay Asake's or Davido's sleeve", () => {

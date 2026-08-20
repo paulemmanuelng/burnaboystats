@@ -265,7 +265,8 @@ export default async function AfroLiveChartsPage({
               <span className={styles.count}>({songs.length})</span>
             </div>
             <p className={styles.hint}>
-              <strong>Click any title</strong> to open it — every country it&apos;s charting in,
+              <strong>Click any title</strong>{" "}
+              to open it — every country it&apos;s charting in,
               its position, and how far it moved since the last edition.
             </p>
             <div className={styles.releaseList}>
