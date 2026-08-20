@@ -617,8 +617,20 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 130,
+            "position": 143,
             "movement": -13
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 132,
+            "movement": -14
           }
         ]
       }
@@ -714,7 +726,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 59,
+            "position": 57,
             "movement": 2
           }
         ]
@@ -727,7 +739,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 39,
-            "movement": -34
+            "movement": -33
           }
         ]
       }
@@ -776,7 +788,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 57,
-            "movement": -3
+            "movement": -2
           }
         ]
       },
@@ -882,7 +894,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 48,
+            "position": 60,
             "movement": null,
             "status": "new"
           }
@@ -958,12 +970,12 @@
             "country": "KE",
             "name": "Kenya",
             "position": 38,
-            "movement": -34
+            "movement": -33
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
+            "position": 110,
             "movement": null,
             "status": "new"
           },
@@ -971,13 +983,45 @@
             "country": "GH",
             "name": "Ghana",
             "position": 150,
-            "movement": -23
+            "movement": -21
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Talk to Me",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 156,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 105,
+            "movement": 23
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT",
@@ -1073,25 +1117,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Talk to Me",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 105,
-            "movement": 23
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Water",

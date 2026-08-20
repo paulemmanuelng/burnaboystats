@@ -203,7 +203,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 26,
-            "movement": 13
+            "movement": 0
           },
           {
             "country": "NG",
@@ -449,8 +449,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": 0
+            "position": 40,
+            "movement": 1
           }
         ]
       },
@@ -560,7 +560,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 39,
-            "movement": -24
+            "movement": -22
           }
         ]
       },
@@ -589,8 +589,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": 4
+            "position": 110,
+            "movement": 1
           }
         ]
       },
@@ -901,8 +901,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 152,
-            "movement": 1
+            "position": 157,
+            "movement": -5
           }
         ]
       },
@@ -1090,18 +1090,6 @@
         ]
       },
       {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 174,
-            "movement": 22
-          }
-        ]
-      },
-      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -1121,7 +1109,7 @@
             "country": "BY",
             "name": "Belarus",
             "position": 70,
-            "movement": -15
+            "movement": -9
           }
         ]
       }
@@ -1163,7 +1151,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 128,
+            "position": 126,
             "movement": 2
           }
         ]
@@ -1206,8 +1194,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 56,
-            "movement": 1
+            "position": 53,
+            "movement": 3
           }
         ]
       }
@@ -1418,8 +1406,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
-            "movement": 26
+            "position": 117,
+            "movement": -2
           }
         ]
       },
@@ -1508,8 +1496,28 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 167,
-            "movement": 1
+            "position": 160,
+            "movement": 7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "ARTIFICIAL HAPPINESS",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 176,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1604,7 +1612,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 38,
-            "movement": 17
+            "movement": 0
           }
         ]
       }

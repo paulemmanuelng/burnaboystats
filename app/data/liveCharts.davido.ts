@@ -291,7 +291,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
+            "position": 69,
             "movement": -10
           }
         ]
@@ -527,8 +527,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": -4
+            "position": 10,
+            "movement": -6
           }
         ]
       },
@@ -714,8 +714,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 44,
-            "movement": 0
+            "position": 48,
+            "movement": -4
           }
         ]
       },
@@ -872,8 +872,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": -1
+            "position": 13,
+            "movement": -5
           }
         ]
       },
@@ -1151,7 +1151,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 10,
-            "movement": -2
+            "movement": 0
           }
         ]
       },
@@ -1428,8 +1428,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
-            "movement": 3
+            "position": 76,
+            "movement": -15
           }
         ]
       },
@@ -1538,7 +1538,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 39,
-            "movement": -24
+            "movement": -22
           }
         ]
       },
@@ -1567,8 +1567,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": 4
+            "position": 110,
+            "movement": 1
           }
         ]
       },
@@ -1652,8 +1652,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
-            "movement": -5
+            "position": 44,
+            "movement": -2
           }
         ]
       },
@@ -1854,7 +1854,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 141,
-            "movement": -23
+            "movement": -21
           }
         ]
       }
@@ -1926,8 +1926,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
-            "movement": -5
+            "position": 57,
+            "movement": -9
           }
         ]
       },
@@ -2073,8 +2073,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 75,
-            "movement": 6
+            "position": 82,
+            "movement": -7
           }
         ]
       },
@@ -2086,7 +2086,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 140,
-            "movement": -24
+            "movement": -22
           }
         ]
       },
@@ -2379,13 +2379,13 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 88,
-            "movement": -1
+            "movement": 2
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 125,
-            "movement": -24
+            "movement": -22
           }
         ]
       }
@@ -2433,8 +2433,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
-            "movement": 4
+            "position": 92,
+            "movement": -20
           }
         ]
       },
@@ -2446,7 +2446,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 60,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
@@ -2586,8 +2586,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
-            "movement": -8
+            "position": 80,
+            "movement": -6
           }
         ]
       },
@@ -2635,8 +2635,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": -2
+            "position": 71,
+            "movement": -4
           }
         ]
       },
@@ -2649,49 +2649,6 @@
             "name": "Nigeria",
             "position": 82,
             "movement": -54
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Constantly",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 57,
-            "movement": 0
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 68,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 130,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 101,
-            "movement": 0
           }
         ]
       }
@@ -2737,6 +2694,49 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/594be4990d2be6af325a4a0825960a9a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Constantly",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 57,
+            "movement": 0
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 68,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 130,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 112,
+            "movement": -11
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Julie",
     "platforms": [
       {
@@ -2770,8 +2770,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
-            "movement": -23
+            "position": 124,
+            "movement": 18
           }
         ]
       }
@@ -2813,8 +2813,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
-            "movement": -15
+            "position": 137,
+            "movement": -8
           }
         ]
       }
@@ -2856,8 +2856,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": -14
+            "position": 123,
+            "movement": -13
           }
         ]
       }
@@ -2888,7 +2888,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 152,
-            "movement": -23
+            "movement": -21
           }
         ]
       },
@@ -2932,7 +2932,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 42,
-            "movement": -24
+            "movement": -22
           }
         ]
       },
@@ -2970,7 +2970,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 144,
-            "movement": -24
+            "movement": -22
           }
         ]
       },
@@ -3082,7 +3082,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 131,
-            "movement": -24
+            "movement": -22
           }
         ]
       },
@@ -3178,6 +3178,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1713aad5a0a697ac1db7ce7b8a167c27/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "GROOVING",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 37,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Like",
@@ -3284,7 +3304,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
+            "position": 131,
             "movement": null,
             "status": "new"
           }
@@ -3324,7 +3344,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 157,
-            "movement": -25
+            "movement": -23
           }
         ]
       }
