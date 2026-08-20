@@ -31,6 +31,16 @@ function Badge({ cert, countries, dim }: { cert: Cert; countries: Countries; dim
       <span className={styles.flag}>{country.flag}</span>
       {cert.x ? `${cert.x}× ` : ""}
       {cert.level}
+      {/* A separate program is a different award, and a tooltip is not a
+          distinction a phone can see. Dai Dai's US plaque is RIAA LATIN — a
+          different register with different thresholds from the main program —
+          and it rendered identically to one. The marker is derived: whatever
+          the override adds beyond the country's default body. */}
+      {cert.body && cert.body !== country.body && (
+        <span className={styles.badgeProgram}>
+          {cert.body.replace(country.body, "").trim() || cert.body}
+        </span>
+      )}
     </span>
   );
 }

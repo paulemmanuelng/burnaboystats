@@ -563,3 +563,40 @@
 @media (max-width: 359px) {
   .boards { grid-template-columns: 1fr; }
 }
+
+/* Program marker — see certifications.module.css .badgeProgram. */
+.badgeProgram {
+  margin-left: 4px;
+  padding-left: 5px;
+  border-left: 1px solid currentColor;
+  font-size: 0.82em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* The fold control at the end of a long badge wall. Reads like the quiet
+   "+47 / − less" chip the chart screens already use; the ::after stretches the
+   tap target to the 44px floor without growing the pill. */
+.badgeMore {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px dashed var(--rule);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.badgeMore::after {
+  content: "";
+  position: absolute;
+  inset: -8px 0;
+}
+.badgeMore[aria-expanded="true"] { color: var(--gold); border-color: var(--gold); }
