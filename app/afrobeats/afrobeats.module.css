@@ -343,3 +343,14 @@
   color: var(--gold);
 }
 .railAnchor:hover { border-color: var(--gold); }
+
+/* The provenance tile's kicker — the rule tile beside it leads with a glyph,
+   this one with a mono label, exactly as the design has them. */
+.ruleKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--gold);
+}

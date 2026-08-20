@@ -4,6 +4,7 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import MobileMenuButton from "../components/MobileMenuButton";
 import BackLink from "../components/BackLink";
+import HubScatter, { type ScatterDot } from "../components/HubScatter";
 import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
 import { LIVE_BOARDS } from "../data/liveBoards";
 import {
@@ -15,6 +16,7 @@ import {
   chartEntries,
   BURNA,
   AFROBEATS_VERIFIED_ON,
+  AFROBEATS_VERIFIED_ON_2,
 } from "../data/afrobeats";
 import { totalAwards, countryCount as burnaCountries } from "../data/certifications";
 import { chartEntryCount as burnaChartEntries } from "../data/charts";
@@ -39,6 +41,33 @@ export const metadata = pageMetadata({
 // Ordered by verified plaque count — the board's whole point is comparability,
 // so the order has to be the number, not an opinion.
 const ranked = [...sweptArtists].sort((a, b) => certCount(b) - certCount(a));
+
+// The two sweep dates as one range — "17–19 August 2026" — so the provenance
+// tile moves when the sweeps do instead of carrying a typed string.
+const sweptRange = (() => {
+  const d = (iso: string) => new Date(`${iso}T12:00:00Z`);
+  const a = d(AFROBEATS_VERIFIED_ON);
+  const b = d(AFROBEATS_VERIFIED_ON_2);
+  const month = (x: Date) => x.toLocaleDateString("en-GB", { month: "long", timeZone: "UTC" });
+  const year = b.getUTCFullYear();
+  if (a.getTime() === b.getTime()) return `${a.getUTCDate()} ${month(a)} ${year}`;
+  return month(a) === month(b) && a.getUTCFullYear() === year
+    ? `${a.getUTCDate()}–${b.getUTCDate()} ${month(b)} ${year}`
+    : `${a.getUTCDate()} ${month(a)} – ${b.getUTCDate()} ${month(b)} ${year}`;
+})();
+
+// Every dot is a computed pair. Burna leads the list so he paints last-but-one
+// under nobody; the plot itself does not care about order.
+const scatterDots: ScatterDot[] = [
+  { slug: "burna-boy", name: BURNA.name, countries: burnaCountries, plaques: totalAwards(), anchor: true },
+  ...sweptArtists.map((a) => ({
+    slug: a.slug,
+    name: a.name,
+    countries: countryCount(a),
+    plaques: certCount(a),
+    anchor: false,
+  })),
+];
 
 // Both rails carry Burna Boy alongside the board. The page's question is where
 // he stands among them, and a rail he is absent from cannot answer it. He is
@@ -192,7 +221,26 @@ export default function AfrobeatsPage() {
               <span className={styles.ruleLink}>How the counting works →</span>
             </span>
           </Link>
+
+          {/* The twelfth cell. Ten artists and the rule leave one hole in a
+              four-column grid, and the design fills it with where the figures
+              came from — which is the board's whole claim. The date range is
+              the two sweep dates, not a typed string. */}
+          <Link href="/methodology" className={`${styles.tile} ${styles.tileRule}`}>
+            <span className={styles.tileBody}>
+              <span className={styles.ruleKicker}>Provenance</span>
+              <span className={styles.ruleName}>Read at source, {sweptRange}</span>
+              <span className={styles.ruleBody}>
+                {sweptArtists.length} register sweeps — RIAA, BPI, SNEP, TurnTable and their
+                equivalents — re-read weekly. A figure with no register behind it is not
+                published.
+              </span>
+              <span className={styles.ruleLink}>Methodology →</span>
+            </span>
+          </Link>
         </div>
+
+        <HubScatter dots={scatterDots} />
 
         {/* Two rails, two kinds of record. Without these the chart boards and
             the live boards were each reachable from one page only. */}

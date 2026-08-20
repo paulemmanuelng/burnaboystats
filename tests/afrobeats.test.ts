@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import sitemap from "../app/sitemap";
 import { HEAD_TO_HEAD, opponentOf } from "../app/lib/headToHead";
+import { totalAwards, countryCount as burnaCountryCount } from "../app/data/certifications";
 import {
   afrobeatsArtists,
   sweptArtists,
@@ -408,6 +409,38 @@ describe("head-to-head pairings", () => {
       const o = afrobeatsArtists.find((x) => x.slug === rival);
       expect(o, `${slug} → ${rival} is not a board artist`).toBeTruthy();
       expect(o!.swept, `${slug} → ${rival} is not swept`).toBe(true);
+    }
+  });
+});
+
+// ── The hub scatter ────────────────────────────────────────────────────────
+// The plot's whole claim is "every dot verified", so the pairs must be the same
+// numbers the tiles show, and they must fall inside the axes the design draws.
+describe("hub scatter", () => {
+  const X_MAX = 26;
+  const Y_MAX = 240;
+
+  it("plots every swept artist plus Burna Boy", () => {
+    expect(sweptArtists.length + 1).toBe(10);
+  });
+
+  it("keeps every pair inside the drawn axes", () => {
+    const pairs: [string, number, number][] = [
+      ["Burna Boy", burnaCountryCount, totalAwards()],
+      ...sweptArtists.map((a) => [a.name, countryCount(a), certCount(a)] as [string, number, number]),
+    ];
+    for (const [name, x, y] of pairs) {
+      expect(x, `${name} x`).toBeGreaterThanOrEqual(0);
+      expect(x, `${name} x past the axis`).toBeLessThanOrEqual(X_MAX);
+      expect(y, `${name} y`).toBeGreaterThanOrEqual(0);
+      expect(y, `${name} y past the axis`).toBeLessThanOrEqual(Y_MAX);
+    }
+  });
+
+  it("leaves Burna Boy the deepest and widest dot on the board", () => {
+    for (const a of sweptArtists) {
+      expect(certCount(a), `${a.name} plaques`).toBeLessThan(totalAwards());
+      expect(countryCount(a), `${a.name} countries`).toBeLessThanOrEqual(burnaCountryCount);
     }
   });
 });
