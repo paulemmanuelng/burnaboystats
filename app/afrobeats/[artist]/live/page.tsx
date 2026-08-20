@@ -36,9 +36,12 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
   const lead = leadRelease(board);
   return pageMetadata({
     title: `${a.name} Live Charts — Charting Right Now, Worldwide`,
+    // The budget is 160 characters and these were spending 110, which throws
+    // away the surface long-tail queries land on. Naming the platforms is what
+    // a reader searching "wizkid spotify chart" is actually asking for.
     description: lead
-      ? `${a.name} is on ${board.placements} platform charts in ${board.countries} countries right now, led by “${lead.title}” at No. ${lead.best} across ${lead.charts}. Updated hourly.`
-      : `Every ${a.name} release charting right now: ${board.placements} live placements across ${board.countries} countries, updated hourly.`,
+      ? `${a.name} is on ${board.placements} platform charts in ${board.countries} countries right now, led by “${lead.title}” at No. ${lead.best} across ${lead.charts}. Spotify, Apple Music, Shazam and more, refreshed hourly.`
+      : `Every ${a.name} release charting right now: ${board.placements} live placements across ${board.countries} countries on Spotify, Apple Music, Shazam and more. Refreshed hourly.`,
     path: `/afrobeats/${slug}/live`,
     shareTitle: `${a.name} — Live Charts`,
     shareDescription: `${board.placements} live placements across ${board.countries} countries, refreshed hourly.`,
