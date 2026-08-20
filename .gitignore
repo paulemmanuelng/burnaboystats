@@ -50,3 +50,11 @@ refresh-pr-body.md
 # Stray verification artifacts (downloaded chart pages, test card renders)
 /card-*.png
 /*.html
+
+# The designer's handoff bundle (1.5MB of .dc.html prototypes + specs). Kept on
+# disk, not in the repo: source comments across app/ cite these files by name as
+# the source of truth for their values — app/page.tsx names "Burna Boy Stats
+# .dc.html", song.module.css names "Song.dc.html, values verbatim" — so it has
+# to stay readable. It is reference, never imported, and 40 HTML prototypes do
+# not belong in the build.
+design_handoff_burnaboystats/
