@@ -1169,33 +1169,21 @@
           {
             "country": "CZ",
             "name": "Czech Republic",
-            "position": 9,
+            "position": 13,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 9,
-            "movement": 12
-          },
-          {
             "country": "UA",
             "name": "Ukraine",
-            "position": 11,
-            "movement": -3
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 13,
-            "movement": -1
+            "position": 14,
+            "movement": -6
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 14,
-            "movement": -2
+            "position": 15,
+            "movement": -3
           },
           {
             "country": "MD",
@@ -1204,16 +1192,28 @@
             "movement": -9
           },
           {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 34,
-            "movement": 20
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 24,
+            "movement": -3
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 25,
+            "movement": -13
           },
           {
             "country": "AZ",
             "name": "Azerbaijan",
             "position": 39,
             "movement": -15
+          },
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 46,
+            "movement": 8
           },
           {
             "country": "UG",
@@ -1224,21 +1224,21 @@
           {
             "country": "GT",
             "name": "Guatemala",
-            "position": 71,
-            "movement": -50
+            "position": 76,
+            "movement": -55
           },
           {
             "country": "PL",
             "name": "Poland",
-            "position": 106,
+            "position": 115,
             "movement": null,
             "status": "new"
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 174,
-            "movement": -85
+            "position": 179,
+            "movement": -90
           }
         ]
       },
@@ -1681,8 +1681,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 30,
-            "movement": -20
+            "position": 32,
+            "movement": -22
           },
           {
             "country": "GH",
@@ -1719,6 +1719,91 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/21ffdcad2bde4b25ba9a5a3a53193b05/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "What You Need",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 20,
+            "movement": 0
+          },
+          {
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 34,
+            "movement": 0
+          },
+          {
+            "country": "VG",
+            "name": "British Virgin Islands",
+            "position": 38,
+            "movement": 0
+          },
+          {
+            "country": "BS",
+            "name": "The Bahamas",
+            "position": 75,
+            "movement": 0
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 116,
+            "movement": 0
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 144,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 14,
+            "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 187,
+            "movement": -30
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 28,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Free Mind",
@@ -1799,79 +1884,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "What You Need",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 20,
-            "movement": 0
-          },
-          {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 34,
-            "movement": 0
-          },
-          {
-            "country": "VG",
-            "name": "British Virgin Islands",
-            "position": 38,
-            "movement": 0
-          },
-          {
-            "country": "BS",
-            "name": "The Bahamas",
-            "position": 75,
-            "movement": 0
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 116,
-            "movement": 0
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 144,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 14,
-            "movement": 3
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 28,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Born in the Wild",

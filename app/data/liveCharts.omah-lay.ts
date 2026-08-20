@@ -757,7 +757,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/f31fc975fcb1a6ea4130d536558ecd96/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Soso",
+    "title": "soso",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -849,19 +849,6 @@
             "position": 92,
             "movement": null,
             "status": "re"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 181,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -1164,8 +1151,8 @@
           {
             "country": "BY",
             "name": "Belarus",
-            "position": 63,
-            "movement": -18
+            "position": 64,
+            "movement": -19
           }
         ]
       }

@@ -345,8 +345,8 @@
           {
             "country": "MN",
             "name": "Mongolia",
-            "position": 52,
-            "movement": -21
+            "position": 53,
+            "movement": -22
           },
           {
             "country": "ZW",
@@ -357,7 +357,7 @@
           {
             "country": "CL",
             "name": "Chile",
-            "position": 74,
+            "position": 141,
             "movement": null,
             "status": "new"
           }
@@ -735,7 +735,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
+            "position": 56,
             "movement": null,
             "status": "new"
           }
@@ -1500,7 +1500,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
+            "position": 46,
             "movement": null,
             "status": "new"
           }
@@ -2560,8 +2560,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
-            "movement": 39
+            "position": 29,
+            "movement": 34
           }
         ]
       }
@@ -2579,8 +2579,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
-            "movement": 84
+            "position": 30,
+            "movement": 79
           }
         ]
       }
@@ -2598,7 +2598,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
+            "position": 38,
             "movement": null,
             "status": "new"
           }
@@ -2618,7 +2618,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 46,
+            "position": 51,
             "movement": null,
             "status": "new"
           }
@@ -2638,7 +2638,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
+            "position": 54,
             "movement": null,
             "status": "new"
           }
