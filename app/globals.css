@@ -29,6 +29,11 @@
   --text-muted: #9b9ba3;
 
   /* Brand accent — brighter "African Giant" gold (one loud accent) */
+  /* THE gold — token truth, per the designer's own ask ("pick one gold: #FBB417
+     site vs #ffb627 design corpus"). Paul picked this one, with the ramp
+     (--gold-bright -> --gold -> --gold-dim) as the standard treatment for any
+     gold FILL. Flat gold survives only where a gradient cannot read: hairline
+     rules, dots, and data ink. */
   --gold: #ffb627;
   --gold-bright: #ffd24a;
   --gold-dim: #c98a2e;
@@ -152,7 +157,12 @@
   --font-heading-weight: 400;
   /* Live-data green. Distinct from --green (#3ed17f, the "verified/ok" state)
      because a pulsing live dot next to it must not read as the same signal. */
-  --live: #70e0a0;
+  /* One green. This was #70e0a0, a second live-green living beside --green,
+     and the board pages painted whichever they happened to reference. The
+     designer's own ask ("pick one --live green") names the site's #3ED17F as
+     the truth, so --live is now an alias, kept only so the name still says
+     what the colour is FOR. */
+  --live: var(--green);
 }
 
 /* Figures line up in columns only if the numerals are tabular. The site is
@@ -1327,7 +1337,8 @@ a.fact:hover {
   left: 12px;
   top: -64px;
   z-index: 200;
-  background: var(--gold);
+  background-color: var(--gold);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
   color: #1a1303;
   /* It measured 42px when focused — the first tab stop on every page, 2px under
      the floor. The padding stays; a min-height carries it the rest of the way. */

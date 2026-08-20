@@ -278,7 +278,7 @@
 }
 .liveLabel {
   padding: 14px 18px 0;
-  color: var(--live, #70e0a0);
+  color: var(--live, #3ed17f);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -288,7 +288,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--live, #70e0a0);
+  background: var(--live, #3ed17f);
   box-shadow: 0 0 8px rgba(62, 209, 127, 0.55);
   flex: none;
 }
@@ -317,7 +317,7 @@
   flex: none;
 }
 .pillNum { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--gold); }
-.pillNumLive { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--live, #70e0a0); }
+.pillNumLive { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--live, #3ed17f); }
 .pillLive { border-color: rgba(62, 209, 127, 0.32); }
 .pillAnchor { border-color: rgba(255, 182, 39, 0.42); color: var(--gold); }
 .railNote {

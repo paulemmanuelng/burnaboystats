@@ -178,7 +178,12 @@
   transition: color 0.15s ease, background 0.15s ease;
 }
 .viewBtn:not(.viewBtnOn):hover { color: var(--text); }
-.viewBtnOn { background: var(--gold); color: #14100a; -webkit-text-fill-color: #14100a; }
+.viewBtnOn {
+  background-color: var(--gold);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  color: #14100a;
+  -webkit-text-fill-color: #14100a;
+}
 .viewHint {
   font-family: var(--font-mono), monospace;
   font-size: 0.72rem;

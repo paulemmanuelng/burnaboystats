@@ -22,7 +22,7 @@ export const contentType = "image/png";
 export const alt = "Live platform chart placements, refreshed hourly";
 
 const GOLD = "#ffb627";
-const LIVE = "#70e0a0";
+const LIVE = "#3ed17f"; // the site green — one green, per the token decision
 
 export default async function Image({ params }: { params: Promise<{ artist: string }> }) {
   const { artist: slug } = await params;
@@ -82,7 +82,7 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
             width: 580,
             height: 580,
             display: "flex",
-            background: "radial-gradient(circle, rgba(112,224,160,0.20), rgba(112,224,160,0) 70%)",
+            background: "radial-gradient(circle, rgba(62,209,127,0.20), rgba(62,209,127,0) 70%)",
           }}
         />
 
