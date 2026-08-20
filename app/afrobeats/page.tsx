@@ -213,7 +213,12 @@ export default function AfrobeatsPage() {
           </Link>
 
           {ranked.map((a) => (
-            <Link key={a.slug} href={`/afrobeats/${a.slug}`} className={styles.tile}>
+            <Link
+              key={a.slug}
+              href={`/afrobeats/${a.slug}`}
+              className={styles.tile}
+              prefetch={false}
+            >
               <span className={styles.art} style={{ backgroundImage: `url(${a.image})` }} aria-hidden="true" />
               <span className={styles.scrim} aria-hidden="true" />
               <span className={styles.tileBody}>
@@ -280,6 +285,7 @@ export default function AfrobeatsPage() {
               key={r.key}
               href={r.href}
               className={r.isBurna ? `${styles.railLink} ${styles.railAnchor}` : styles.railLink}
+              prefetch={false}
             >
               {r.name} <span className={styles.railNum}>{r.value}</span>
             </Link>
@@ -296,6 +302,7 @@ export default function AfrobeatsPage() {
               key={r.key}
               href={r.href}
               className={r.isBurna ? `${styles.railLink} ${styles.railAnchor}` : styles.railLink}
+              prefetch={false}
             >
               {r.name} <span className={styles.railNum}>{r.value}</span>
             </Link>
