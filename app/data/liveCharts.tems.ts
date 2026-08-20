@@ -1202,19 +1202,19 @@
             "country": "KZ",
             "name": "Kazakhstan",
             "position": 7,
-            "movement": 1
+            "movement": 3
           },
           {
             "country": "UA",
             "name": "Ukraine",
             "position": 9,
-            "movement": 14
+            "movement": -4
           },
           {
             "country": "RO",
             "name": "Romania",
             "position": 10,
-            "movement": -4
+            "movement": -1
           },
           {
             "country": "IN",
@@ -1226,43 +1226,43 @@
             "country": "MD",
             "name": "Moldova",
             "position": 17,
-            "movement": -8
+            "movement": -7
           },
           {
             "country": "PT",
             "name": "Portugal",
             "position": 17,
-            "movement": 19
+            "movement": 34
           },
           {
             "country": "AZ",
             "name": "Azerbaijan",
             "position": 39,
-            "movement": -20
+            "movement": -16
           },
           {
             "country": "GT",
             "name": "Guatemala",
             "position": 61,
-            "movement": -48
+            "movement": -41
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 62,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "PL",
             "name": "Poland",
             "position": 81,
-            "movement": 58
+            "movement": 101
           },
           {
             "country": "UK",
             "name": "United Kingdom",
             "position": 189,
-            "movement": -70
+            "movement": -104
           }
         ]
       },
@@ -1524,7 +1524,7 @@
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 66,
-            "movement": -12
+            "movement": -10
           }
         ]
       },
@@ -1634,7 +1634,7 @@
             "country": "BB",
             "name": "Barbados",
             "position": 29,
-            "movement": -21
+            "movement": -20
           }
         ]
       }
@@ -1701,14 +1701,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 26,
-            "movement": -19
+            "movement": -16
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 26,
-            "movement": null,
-            "status": "new"
+            "movement": -17
           }
         ]
       },
@@ -1806,7 +1805,7 @@
             "country": "US",
             "name": "United States",
             "position": 188,
-            "movement": -64
+            "movement": -42
           }
         ]
       },
@@ -1885,7 +1884,7 @@
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 59,
-            "movement": -15
+            "movement": -14
           }
         ]
       },
@@ -1905,6 +1904,67 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Essence",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 7,
+            "movement": 1
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 34,
+            "movement": 1
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 200,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 139,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 164,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 148,
+            "movement": 12
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Born in the Wild",
@@ -2003,61 +2063,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Essence",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 139,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 164,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 7,
-            "movement": 2
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 34,
-            "movement": 1
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 148,
-            "movement": 12
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Damages",

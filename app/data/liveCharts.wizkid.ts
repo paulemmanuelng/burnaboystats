@@ -363,7 +363,7 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 53,
+            "position": 56,
             "movement": null,
             "status": "new"
           },
@@ -378,7 +378,7 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 57,
-            "movement": -7
+            "movement": -5
           }
         ]
       },
@@ -1121,25 +1121,25 @@
             "country": "UG",
             "name": "Uganda",
             "position": 49,
-            "movement": 5
+            "movement": 1
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 65,
-            "movement": 0
+            "movement": -1
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 88,
-            "movement": 2
+            "movement": -3
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 110,
-            "movement": -1
+            "movement": -10
           }
         ]
       }
@@ -1242,7 +1242,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 20,
-            "movement": -19
+            "movement": -18
           }
         ]
       }
@@ -1843,6 +1843,67 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Essence",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 7,
+            "movement": 1
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 34,
+            "movement": 1
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 200,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 139,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 164,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 148,
+            "movement": 12
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Ojuelegba",
     "platforms": [
       {
@@ -1852,8 +1913,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 76,
-            "movement": 0
+            "position": 80,
+            "movement": -4
           },
           {
             "country": "KE",
@@ -1939,61 +2000,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f830d11dfb6ee3025b93e60a0e15f075/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Essence",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 139,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 164,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 7,
-            "movement": 2
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 34,
-            "movement": 1
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 148,
-            "movement": 12
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "More Love, Less Ego",
@@ -2167,7 +2173,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 47,
-            "movement": 0
+            "movement": -1
           },
           {
             "country": "GD",
@@ -2178,15 +2184,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 99,
-            "movement": null,
-            "status": "new"
+            "position": 98,
+            "movement": 1
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 119,
-            "movement": -8
+            "movement": -7
           }
         ]
       }
@@ -2374,7 +2379,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 159,
-            "movement": 2
+            "movement": -7
           }
         ]
       }
@@ -2523,8 +2528,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 25,
-            "movement": 0
+            "position": 19,
+            "movement": 6
           }
         ]
       }
@@ -2582,8 +2587,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 19,
-            "movement": null,
-            "status": "new"
+            "movement": 40
           }
         ]
       }
@@ -2602,7 +2606,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 21,
-            "movement": 65
+            "movement": 83
           }
         ]
       }

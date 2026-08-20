@@ -617,7 +617,7 @@
             "country": "IN",
             "name": "India",
             "position": 73,
-            "movement": 30
+            "movement": 35
           }
         ]
       }
@@ -701,7 +701,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 133,
+            "position": 143,
             "movement": null,
             "status": "new"
           }
@@ -1027,7 +1027,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 17,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "NG",
@@ -1040,7 +1040,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 135,
-            "movement": -17
+            "movement": -15
           }
         ]
       }
