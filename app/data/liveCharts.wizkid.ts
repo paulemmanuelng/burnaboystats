@@ -351,7 +351,7 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 56,
+            "position": 58,
             "movement": -4
           }
         ]
@@ -557,8 +557,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 131,
-            "movement": 0
+            "position": 122,
+            "movement": 9
           }
         ]
       },
@@ -714,7 +714,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 76,
+            "position": 83,
             "movement": null,
             "status": "new"
           }
@@ -963,6 +963,18 @@
         ]
       },
       {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 35,
+            "movement": -2
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -972,18 +984,6 @@
             "position": 46,
             "movement": null,
             "status": "re"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 35,
-            "movement": -2
           }
         ]
       }
@@ -1454,6 +1454,26 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 73,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 166,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -1462,19 +1482,6 @@
             "name": "Nigeria",
             "position": 99,
             "movement": -16
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 66,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -1889,7 +1896,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
+            "position": 14,
             "movement": null,
             "status": "new"
           },
@@ -2062,7 +2069,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 99,
+            "position": 98,
             "movement": 1
           },
           {
@@ -2205,8 +2212,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 200,
-            "movement": 0
+            "position": 199,
+            "movement": 1
           }
         ]
       },
@@ -2473,8 +2480,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 50,
-            "movement": -43
+            "position": 57,
+            "movement": -50
           }
         ]
       }
@@ -2492,8 +2499,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
-            "movement": 70
+            "position": 58,
+            "movement": 63
           }
         ]
       }
@@ -2511,7 +2518,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 58,
+            "position": 65,
             "movement": null,
             "status": "new"
           }
@@ -2541,6 +2548,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Mood",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 153,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Love My Baby",
     "platforms": [
       {
@@ -2550,7 +2576,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 71,
+            "position": 78,
             "movement": null,
             "status": "new"
           }
@@ -2570,7 +2596,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
+            "position": 81,
             "movement": null,
             "status": "new"
           }
@@ -2579,25 +2605,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Mood",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 153,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ebelebe",

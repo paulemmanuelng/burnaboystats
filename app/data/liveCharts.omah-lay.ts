@@ -560,7 +560,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 33,
-            "movement": -24
+            "movement": -22
           }
         ]
       },
@@ -716,8 +716,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 192,
-            "movement": 0
+            "position": 179,
+            "movement": 13
           }
         ]
       }
@@ -1120,8 +1120,8 @@
           {
             "country": "BY",
             "name": "Belarus",
-            "position": 64,
-            "movement": -19
+            "position": 66,
+            "movement": -15
           }
         ]
       }
@@ -1139,8 +1139,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 99,
-            "movement": 0
+            "position": 104,
+            "movement": -5
           },
           {
             "country": "CM",
@@ -1170,7 +1170,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 199,
-            "movement": -5
+            "movement": -3
           }
         ]
       }

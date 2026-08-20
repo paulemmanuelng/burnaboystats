@@ -176,17 +176,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 109,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "GH",
             "name": "Ghana",
             "position": 114,
-            "movement": -23
+            "movement": -21
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 116,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -504,16 +504,16 @@
             "movement": 0
           },
           {
+            "country": "BN",
+            "name": "Brunei Darussalam",
+            "position": 23,
+            "movement": 0
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
             "position": 27,
             "movement": 0
-          },
-          {
-            "country": "BN",
-            "name": "Brunei Darussalam",
-            "position": 37,
-            "movement": -14
           },
           {
             "country": "BJ",
@@ -685,7 +685,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
+            "position": 122,
             "movement": null,
             "status": "new"
           }
@@ -966,8 +966,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 44,
-            "movement": -9
+            "position": 51,
+            "movement": -16
           }
         ]
       }
