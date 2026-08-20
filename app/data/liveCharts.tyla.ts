@@ -604,8 +604,8 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 117,
-            "movement": -12
+            "position": 130,
+            "movement": -13
           }
         ]
       },
@@ -701,7 +701,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 143,
+            "position": 144,
             "movement": null,
             "status": "new"
           }
@@ -733,8 +733,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 61,
-            "movement": 47
+            "position": 59,
+            "movement": 2
           }
         ]
       },
@@ -1039,8 +1039,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 138,
-            "movement": -18
+            "position": 140,
+            "movement": -20
           }
         ]
       }

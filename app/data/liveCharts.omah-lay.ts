@@ -317,7 +317,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 41,
-            "movement": -1
+            "movement": 0
           }
         ]
       },
@@ -571,8 +571,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 27,
-            "movement": 82
+            "position": 29,
+            "movement": 80
           }
         ]
       },
@@ -620,8 +620,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
-            "movement": 5
+            "position": 111,
+            "movement": 4
           }
         ]
       },
@@ -932,8 +932,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 153,
-            "movement": 8
+            "position": 152,
+            "movement": 1
           }
         ]
       },
@@ -1127,8 +1127,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 196,
-            "movement": -16
+            "position": 174,
+            "movement": 22
           }
         ]
       },
@@ -1200,8 +1200,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 194,
-            "movement": -2
+            "position": 196,
+            "movement": -4
           }
         ]
       }
@@ -1243,8 +1243,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 130,
-            "movement": -9
+            "position": 128,
+            "movement": 2
           }
         ]
       }
@@ -1286,8 +1286,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 57,
-            "movement": -2
+            "position": 56,
+            "movement": 1
           }
         ]
       }
@@ -1455,8 +1455,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
-            "movement": 0
+            "position": 115,
+            "movement": 26
           }
         ]
       },
@@ -1525,8 +1525,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 168,
-            "movement": 13
+            "position": 167,
+            "movement": 1
           }
         ]
       }
@@ -1552,25 +1552,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "ARTIFICIAL HAPPINESS",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 190,
-            "movement": 3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "10 Toes",
