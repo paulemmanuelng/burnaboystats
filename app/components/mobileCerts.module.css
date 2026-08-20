@@ -70,10 +70,26 @@
    artist hero, so the two screens feel like one system. */
 .heroArt {
   position: absolute;
-  top: -14%;
+  /* Anchored, not stretched. The height used to be 132% OF THE HERO, and the
+     hero grows with the lede — 551px for most artists, 477px for Seyi Vibez,
+     whose copy is a line shorter. `cover` scales a 640 square by the taller
+     axis, so that left 431px of horizontal overflow on one artist and 334px on
+     another, and the SAME focal point framed a different crop on each. The face
+     drifted whenever the words above it changed length.
+     A fixed aspect ratio makes the box the same shape on every screen, so a
+     focal point means one thing everywhere. */
+  top: 50%;
   right: -24%;
   width: 76%;
-  height: 132%;
+  aspect-ratio: 2 / 5;
+  transform: translateY(-50%);
+  /* Stays `cover`. Over-scaling to give the Y axis room sounds like an
+     improvement, and it is not: every focal point in portraitArt.ts was chosen
+     while Y did nothing, so switching Y on re-framed all ten at once — onto the
+     empty backdrop above their heads. Cover fills the box on the short axis and
+     the X half of the focal point does the aiming, which is what those values
+     were tuned against. The fixed box above is what stops the drift; the
+     scaling never needed to change. */
   background-size: cover;
   /* Focal point, opacity and grey are per-artist — ten photographs, ten
      backdrops. app/lib/portraitArt.ts holds the values and the reasons. */
