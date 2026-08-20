@@ -102,6 +102,8 @@ export default function MobileCerts({
   const albumTitles = new Set(albums.map((a) => titleKey(a.title)));
   const portraitArt = portraitArtFor(portraitSlug ?? "burna-boy");
   const [tier, setTier] = useState<Tier | null>(null);
+  // Rows whose full badge wall is open — keyed by title, folded by default.
+  const [openBadges, setOpenBadges] = useState<Set<string>>(new Set());
   const [expanded, setExpanded] = useState(false);
   const [year, setYear] = useState(YEARS[0]);
 
@@ -263,8 +265,17 @@ export default function MobileCerts({
               <span className={styles.rowCount}>{r.certs.length} certs</span>
             </div>
             <div className={styles.badges}>
-              {[...r.certs]
-                .sort((x, y) => badgeWeight(y) - badgeWeight(x))
+              {(() => {
+                // A row with 20+ plaques is a wall on a phone — Dai Dai and
+                // Last Last each push past a dozen and a board artist can go
+                // further. Past 15 the row folds: the twelve biggest show, a
+                // "+N" chip opens the rest in place, "− less" folds it back.
+                // Thresholds live here on purpose: fold at >15, show 12, so
+                // the chip never appears just to hide two badges.
+                const sorted = [...r.certs].sort((x, y) => badgeWeight(y) - badgeWeight(x));
+                const folded = sorted.length > 15 && !openBadges.has(r.title);
+                return (folded ? sorted.slice(0, 12) : sorted);
+              })()
                 .map((c) => {
                   // Keyed off the level itself. tierOf() returns a lowercase
                   // slug ("gold"), which never matched this map — every badge
@@ -279,9 +290,31 @@ export default function MobileCerts({
                       <span className={styles.flag}>{countries[c.c].flag}</span>
                       {c.x ? `${c.x}× ` : ""}
                       {c.level}
+                      {c.body && c.body !== countries[c.c].body && (
+                        <span className={styles.badgeProgram}>
+                          {c.body.replace(countries[c.c].body, "").trim() || c.body}
+                        </span>
+                      )}
                     </span>
                   );
                 })}
+              {r.certs.length > 15 && (
+                <button
+                  type="button"
+                  className={styles.badgeMore}
+                  aria-expanded={openBadges.has(r.title)}
+                  onClick={() =>
+                    setOpenBadges((prev) => {
+                      const next = new Set(prev);
+                      if (next.has(r.title)) next.delete(r.title);
+                      else next.add(r.title);
+                      return next;
+                    })
+                  }
+                >
+                  {openBadges.has(r.title) ? "− less" : `+${r.certs.length - 12}`}
+                </button>
+              )}
             </div>
           </div>
         ))}

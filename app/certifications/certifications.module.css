@@ -848,3 +848,16 @@
   background-color: var(--bg-soft);
   border: 1px solid var(--line);
 }
+
+/* The program marker inside a badge — "LATIN" on Dai Dai's US plaque. A
+   different register is a different award; the pill has to say so itself
+   rather than leaving it to a hover tooltip a phone will never show. */
+.badgeProgram {
+  margin-left: 5px;
+  padding-left: 6px;
+  border-left: 1px solid currentColor;
+  font-size: 0.82em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
