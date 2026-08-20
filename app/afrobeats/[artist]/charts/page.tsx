@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "../../../records/charts/charts.module.css";
 import KeepExploring from "../../../components/KeepExploring";
-import MobileOfficialCharts from "../../../components/MobileOfficialCharts";
+import MobileBandCharts from "../../../components/MobileBandCharts";
 import ChartExplorer from "../../../components/ChartExplorer";
 import bar from "../artist.module.css";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
@@ -76,6 +76,14 @@ export default async function AfroArtistChartsPage({
       a.charts.filter((r) => r.entries.some((e) => e.c === x)).length
   );
 
+  // The mobile rail wants the count too, so a reader can see which register
+  // holds the record before tapping it.
+  const territoryRail = railOrder.map((code) => ({
+    code,
+    ...countryMeta(code),
+    count: a.charts.reduce((n, r) => n + r.entries.filter((e) => e.c === code).length, 0),
+  }));
+
   const dataset = datasetJsonLd({
     name: `${a.name} official chart peaks by country`,
     description: `${a.name}'s peak positions on official singles and album charts across ${territories} territories — every charting release and its highest position, country by country, including ${no1s} No. 1 peaks.`,
@@ -92,7 +100,7 @@ export default async function AfroArtistChartsPage({
     { num: releases, label: "Charting releases", note: "albums and singles" },
   ];
 
-  const sourceNote = `Peaks on each country's principal national chart, the same standard used for Burna Boy. Airplay, genre and platform charts excluded.`;
+  const sourceNote = `Peaks on each country's principal national chart, the same standard used for Burna Boy. Airplay, genre and platform charts excluded. Board reviewed weekly.`;
 
   return (
     <main id="content">
@@ -101,24 +109,17 @@ export default async function AfroArtistChartsPage({
       {/* Mobile keeps its own dedicated charts screen — the peak pills, the
           country rail and the grouping are the whole point of the page, and a
           flat list would throw all three away. */}
-      <MobileOfficialCharts
-        albums={albums}
-        singles={singles}
-        features={[]}
-        countries={countries}
+      <MobileBandCharts
+        releases={a.charts}
+        territories={territoryRail}
         entryCount={entries}
         territoryCount={territories}
         numberOnes={no1s}
         releaseCount={releases}
-        covers={covers}
-        countryRail={railOrder}
+        artistName={a.name}
         backHref={`/afrobeats/${a.slug}`}
-        backLabel={`${a.name} · charts`}
-        heading={{ lead: a.name, gold: "charts" }}
-        lede={`${entries} entries across ${territories} territories, ${no1s} of them at No. 1 — every peak read from the country's own chart.`}
         sourceNote={sourceNote}
-        showActionBar={false}
-        territoryNote="national charts"
+        lede={`${entries} entries across ${territories} territories, ${no1s} of them at No. 1 — every peak read from the country's own chart.`}
       />
 
       <div className={styles.desktopOnly}>
