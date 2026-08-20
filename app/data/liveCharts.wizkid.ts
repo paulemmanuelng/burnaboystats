@@ -357,7 +357,7 @@
           {
             "country": "CL",
             "name": "Chile",
-            "position": 176,
+            "position": 196,
             "movement": null,
             "status": "new"
           }
@@ -1733,19 +1733,6 @@
         ]
       },
       {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 33,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -1755,6 +1742,18 @@
             "position": 49,
             "movement": null,
             "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 33,
+            "movement": 7
           }
         ]
       }

@@ -616,7 +616,7 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 132,
+            "position": 177,
             "movement": null,
             "status": "new"
           }
@@ -956,7 +956,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 103,
+            "position": 108,
             "movement": null,
             "status": "new"
           }
@@ -1051,7 +1051,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 127,
+            "position": 150,
             "movement": null,
             "status": "new"
           }

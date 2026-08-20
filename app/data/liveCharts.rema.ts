@@ -211,21 +211,21 @@
             "name": "Tanzania",
             "position": 61,
             "movement": null,
-            "status": "re"
+            "status": "new"
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 68,
             "movement": null,
-            "status": "re"
+            "status": "new"
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 95,
             "movement": null,
-            "status": "re"
+            "status": "new"
           }
         ]
       },
@@ -905,13 +905,13 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 89,
-            "movement": 0
+            "position": 88,
+            "movement": 1
           },
           {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 181,
+            "country": "IN",
+            "name": "India",
+            "position": 179,
             "movement": null,
             "status": "new"
           }
@@ -962,8 +962,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 70,
-            "movement": null,
-            "status": "re"
+            "movement": 1
           }
         ]
       }
@@ -1140,19 +1139,6 @@
         ]
       },
       {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 37,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -1162,6 +1148,18 @@
             "position": 95,
             "movement": null,
             "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 37,
+            "movement": 11
           }
         ]
       }
@@ -1391,19 +1389,6 @@
             "name": "Malawi",
             "position": 184,
             "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CR",
-            "name": "Costa Rica",
-            "position": 5,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
