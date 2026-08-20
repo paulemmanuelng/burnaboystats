@@ -571,8 +571,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 32,
-            "movement": -23
+            "position": 33,
+            "movement": -24
           }
         ]
       },
@@ -1115,8 +1115,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 143,
-            "movement": 0
+            "position": 124,
+            "movement": 19
           }
         ]
       },
@@ -1200,8 +1200,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 198,
-            "movement": -4
+            "position": 199,
+            "movement": -5
           }
         ]
       }

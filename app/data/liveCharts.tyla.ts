@@ -586,14 +586,26 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 159,
-            "movement": -3
+            "position": 152,
+            "movement": 7
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 159,
             "movement": 4
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 130,
+            "movement": -13
           }
         ]
       },
@@ -607,24 +619,6 @@
             "position": 132,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 192,
-            "movement": 7
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 130,
-            "movement": -13
           }
         ]
       }
@@ -696,25 +690,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 24,
-            "movement": -22
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 163,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -741,6 +716,18 @@
             "name": "South Africa",
             "position": 59,
             "movement": 2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 27,
+            "movement": -25
           }
         ]
       },
@@ -969,7 +956,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 30,
+            "position": 103,
             "movement": null,
             "status": "new"
           }
@@ -1032,21 +1019,21 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 23,
-            "movement": -22
+            "position": 26,
+            "movement": -25
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
+            "position": 41,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 143,
-            "movement": -21
+            "position": 144,
+            "movement": -22
           }
         ]
       }
