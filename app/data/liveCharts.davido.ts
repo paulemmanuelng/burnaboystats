@@ -291,8 +291,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": -2
+            "position": 61,
+            "movement": 4
           }
         ]
       }
@@ -1828,8 +1828,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 17,
-            "movement": 0
+            "position": 18,
+            "movement": -1
           },
           {
             "country": "MZ",
@@ -2348,8 +2348,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 15,
-            "movement": 0
+            "position": 16,
+            "movement": -1
           },
           {
             "country": "NE",

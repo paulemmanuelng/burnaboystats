@@ -1920,8 +1920,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 48,
-            "movement": -36
+            "position": 51,
+            "movement": -39
           }
         ]
       }
@@ -2915,7 +2915,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 185,
+            "position": 189,
             "movement": null,
             "status": "new"
           }

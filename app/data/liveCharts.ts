@@ -2277,7 +2277,7 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 2,
+        "numberOnes": 3,
         "entries": [
           {
             "country": "FR",
@@ -2293,9 +2293,9 @@
             "status": "new"
           },
           {
-            "country": "AT",
-            "name": "Austria",
-            "position": 2,
+            "country": "SE",
+            "name": "Sweden",
+            "position": 1,
             "movement": 0
           },
           {
@@ -2317,34 +2317,28 @@
             "movement": 71
           },
           {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 2,
-            "movement": -1
-          },
-          {
             "country": "UK",
             "name": "United Kingdom",
             "position": 2,
             "movement": 0
           },
           {
-            "country": "DK",
-            "name": "Denmark",
+            "country": "BE",
+            "name": "Belgium",
             "position": 3,
             "movement": 0
           },
           {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 4,
-            "movement": -1
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 3,
+            "movement": 0
           },
           {
-            "country": "CA",
-            "name": "Canada",
+            "country": "AT",
+            "name": "Austria",
             "position": 4,
-            "movement": 1
+            "movement": -2
           },
           {
             "country": "DE",
@@ -2366,17 +2360,30 @@
             "movement": -1
           },
           {
-            "country": "RO",
-            "name": "Romania",
+            "country": "CA",
+            "name": "Canada",
+            "position": 5,
+            "movement": 0
+          },
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
             "position": 5,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "CH",
-            "name": "Switzerland",
+            "country": "DK",
+            "name": "Denmark",
             "position": 5,
             "movement": -2
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 5,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "IT",
@@ -2398,22 +2405,16 @@
             "movement": -6
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 13,
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 11,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 13,
-            "movement": 17
-          },
-          {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 13,
+            "country": "BR",
+            "name": "Brazil",
+            "position": 14,
             "movement": null,
             "status": "new"
           },
@@ -2421,6 +2422,13 @@
             "country": "MX",
             "name": "Mexico",
             "position": 14,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 15,
             "movement": null,
             "status": "new"
           },
@@ -2443,10 +2451,16 @@
             "movement": 0
           },
           {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 19,
+            "movement": 11
+          },
+          {
             "country": "BY",
             "name": "Belarus",
-            "position": 48,
-            "movement": -12
+            "position": 50,
+            "movement": -14
           },
           {
             "country": "PT",
@@ -2457,8 +2471,8 @@
           {
             "country": "DO",
             "name": "Dominican Republic",
-            "position": 58,
-            "movement": -38
+            "position": 62,
+            "movement": -42
           },
           {
             "country": "KG",
@@ -2473,9 +2487,9 @@
             "movement": -72
           },
           {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 86,
+            "country": "HK",
+            "name": "Hong Kong",
+            "position": 85,
             "movement": null,
             "status": "new"
           },
@@ -2487,29 +2501,23 @@
             "status": "new"
           },
           {
-            "country": "IL",
-            "name": "Israel",
-            "position": 98,
-            "movement": -87
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 131,
-            "movement": -123
-          },
-          {
             "country": "PH",
             "name": "Philippines",
-            "position": 156,
+            "position": 184,
             "movement": null,
             "status": "new"
           },
           {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 188,
+            "movement": -180
+          },
+          {
             "country": "CL",
             "name": "Chile",
-            "position": 195,
-            "movement": -176
+            "position": 199,
+            "movement": -180
           }
         ]
       }
@@ -3604,8 +3612,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 59,
-            "movement": 1
+            "position": 60,
+            "movement": 0
           }
         ]
       },
@@ -4084,8 +4092,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 28,
-            "movement": 0
+            "position": 26,
+            "movement": 2
           },
           {
             "country": "NE",
@@ -4363,54 +4371,6 @@
     "kind": "song"
   },
   {
-    "title": "My Oasis",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 24,
-            "movement": 0
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 26,
-            "movement": 0
-          },
-          {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 156,
-            "movement": 0
-          },
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 157,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 99,
-            "movement": -29
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "23",
     "platforms": [
       {
@@ -4459,6 +4419,42 @@
     "kind": "song"
   },
   {
+    "title": "My Oasis",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 24,
+            "movement": 0
+          },
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 26,
+            "movement": 0
+          },
+          {
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 156,
+            "movement": 0
+          },
+          {
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 157,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "For My Hand",
     "platforms": [
       {
@@ -4480,8 +4476,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 74,
-            "movement": 1
+            "position": 75,
+            "movement": 0
           },
           {
             "country": "ZW",
@@ -4798,24 +4794,6 @@
     "kind": "song"
   },
   {
-    "title": "Baddest",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 64,
-            "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "WE PRAY",
     "platforms": [
       {
@@ -4827,6 +4805,24 @@
             "name": "Czech Republic",
             "position": 166,
             "movement": 2
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Baddest",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 65,
+            "movement": 0
           }
         ]
       }

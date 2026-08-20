@@ -1120,8 +1120,8 @@
           {
             "country": "BY",
             "name": "Belarus",
-            "position": 66,
-            "movement": -12
+            "position": 68,
+            "movement": -14
           }
         ]
       }
