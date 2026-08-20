@@ -143,6 +143,19 @@ for (const spec of CHART_SWEEPS) {
       // Never carry nothing: on a fresh checkout there is no previous file, and
       // skipping would ship the page without the platform entirely.
       if (carried.length > 0) {
+        // The carried snapshot is the platform's ENTIRE truth — it was
+        // reconciled against the chart's real pages at its last fresh sweep.
+        // The artist page's own copy of this platform lags those pages (it
+        // still listed a row the chart had replaced), and merging the two put
+        // one chart position under two titles on every carry-forward hour —
+        // the fresh path was fixed for this and this path re-created it six
+        // times a day. So the artist page's entries for this platform go
+        // entirely, and the carried set stands alone. A release the artist
+        // page learned about since the last sweep waits for the next one,
+        // at most six hours: consistency beats freshness on a weekly chart.
+        for (const r of w.releases) {
+          r.platforms = r.platforms.filter((pf) => pf.platform !== spec.platform);
+        }
         mergeChartPlacements(w.releases, carried);
         any = true;
       }
