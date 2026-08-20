@@ -9,6 +9,7 @@ import { tierOf, type Release, type Country } from "../../data/certifications";
 import { opponentOf } from "../../lib/headToHead";
 import { andMore, topBody, topPlatform } from "../../lib/boardNotes";
 import { liveBoardFor } from "../../data/liveBoards";
+import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import {
   artistBySlug,
   afrobeatsSlugs,
@@ -182,10 +183,42 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className={styles.heroPad}>
         <div className={styles.heroCard}>
-          <img className={styles.heroBackdrop} src={a.image} alt="" aria-hidden="true" />
+          {/* The backdrop is blurred 34px at 0.36 opacity, so resolution is thrown
+              away by the filter — it was shipping the 640px portrait (~100KB) to
+              paint a colour wash. The 160px rung looks identical through that blur
+              and is the largest element on the page, so it also carries the
+              priority hint: this is the LCP image. */}
+          {/* eslint-disable-next-line @next/next/no-img-element -- decorative CDN backdrop */}
+          <img
+            className={styles.heroBackdrop}
+            src={spotifyImage(a.image, 160)}
+            alt=""
+            aria-hidden="true"
+            width={160}
+            height={160}
+            /* Lazy, not eager: this sits in the desktop-only layout, and a hidden
+               <img> is still fetched when eager while a hidden background never
+               was. Lazy keeps phones from paying for it. In-viewport lazy images
+               load at layout anyway, and at the 160 rung it is ~8KB. */
+            loading="lazy"
+            decoding="async"
+          />
           <div className={styles.heroScrim} />
           <div className={styles.heroGrid}>
-            <img className={styles.portrait} src={a.image} alt={`${a.name}`} width={220} height={220} />
+            {/* 220px on desktop, 140px below 900px — the 320 rung covers both at
+                DPR 1 and the srcset lets denser screens ask for 640 themselves. */}
+            {/* eslint-disable-next-line @next/next/no-img-element -- remote CDN portrait */}
+            <img
+              className={styles.portrait}
+              src={spotifyImage(a.image, 320)}
+              srcSet={spotifySrcSet(a.image)}
+              sizes="(max-width: 900px) 140px, 220px"
+              alt={`${a.name}`}
+              width={220}
+              height={220}
+              loading="lazy"
+              decoding="async"
+            />
             <div>
               <div className={styles.kicker}>
                 {a.flag} {a.country}

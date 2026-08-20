@@ -107,8 +107,16 @@
 .doorArt {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center 22%;
+  /* An <img> inside an <a> is draggable, and a long press on iOS raises the
+     "Save Image" sheet instead of the link actions the <span> used to give. */
+  pointer-events: none;
+  /* These four replace background-size/background-position now that the element
+     is an <img> — same framing, same crop, but discoverable by the preload
+     scanner. width/height keep it filling the box the way inset:0 did. */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
   /* No grey here. His is the one full-colour image on the screen — that is how
      the door reads as a door and the wall behind it as a field. */
   filter: contrast(1.05);
@@ -196,8 +204,13 @@
 .art {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center 22%;
+  /* An <img> inside an <a> is draggable, and a long press on iOS raises the
+     "Save Image" sheet instead of the link actions the <span> used to give. */
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
   /* Greyed, so the field reads as a field and the door keeps the colour. */
   filter: grayscale(0.35) contrast(1.02);
   z-index: -2;
@@ -344,4 +357,4 @@
   grid-column: 1 / -1;
   aspect-ratio: 2 / 1;
 }
-.tile:last-child:nth-child(odd) .art { background-position: center 18%; }
+.tile:last-child:nth-child(odd) .art { object-position: center 18%; }

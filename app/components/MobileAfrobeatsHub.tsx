@@ -3,6 +3,8 @@ import styles from "./mobileAfrobeatsHub.module.css";
 import BackLink from "./BackLink";
 import MobileMenuButton from "./MobileMenuButton";
 import ScrollRail from "./ScrollRail";
+import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
+import { BLANK_PIXEL } from "../lib/blankPixel";
 
 /**
  * Mobile screen for /afrobeats.
@@ -83,11 +85,41 @@ export default function MobileAfrobeatsHub({
       {/* The door. He is not a cell in the wall — he is the way into the site. */}
       <div className={styles.doorPad}>
         <Link href={burna.href} className={styles.door}>
-          <span
-            className={styles.doorArt}
-            style={{ backgroundImage: `url(${burna.image})` }}
-            aria-hidden="true"
+          {/* A real <img>, not a CSS background. The preload scanner cannot see a
+              background-image, so this one — the largest thing on the screen and
+              this page's LCP element — did not begin downloading until CSS had
+              parsed and the box had been laid out. As an <img> it is discovered
+              while the HTML is still streaming, and the priority hint puts it
+              ahead of the nine greyed tiles behind it. */}
+          {/* Gated behind a media query for the same reason the hero portrait is:
+              this screen is display:none on desktop, where a hidden EAGER <img>
+              would still be fetched though the old background never was. The
+              scanner reads `media` before fetching, so desktop takes the 1x1. */}
+          {/* Same reasoning as the certs hero: hoisted into <head> by React, gated
+              to phones so desktop never fetches it. This is the board's LCP. */}
+          <link
+            rel="preload"
+            as="image"
+            imageSrcSet={spotifySrcSet(burna.image)}
+            imageSizes="calc(100vw - 36px)"
+            media="(max-width: 900px)"
           />
+          <picture style={{ display: "contents" }}>
+            <source
+              media="(max-width: 900px)"
+              srcSet={spotifySrcSet(burna.image)}
+              sizes="calc(100vw - 36px)"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element -- decorative CDN portrait */}
+            <img
+              className={styles.doorArt}
+              src={BLANK_PIXEL}
+              alt=""
+              aria-hidden="true"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
           <span className={styles.doorScrim} aria-hidden="true" />
           <span className={styles.doorBody}>
             <span className={styles.doorTop}>
@@ -108,11 +140,28 @@ export default function MobileAfrobeatsHub({
       <div className={styles.wallPad}>
         <div className={styles.wall}>
           {artists.map((a) => (
-            <Link key={a.slug} href={`/afrobeats/${a.slug}`} className={styles.tile}>
-              <span
+            <Link
+              key={a.slug}
+              href={`/afrobeats/${a.slug}`}
+              className={styles.tile}
+              prefetch={false}
+            >
+              {/* Lazy: at 412x915 only the first row of the wall is on screen, so
+                  the rest no longer compete with the door for bandwidth. */}
+              {/* Lazy is already enough to keep the hidden desktop layout from
+                  fetching these, so no media gate is needed here. `cover` on a
+                  187x220 tile fits the square by HEIGHT, so it paints 220 wide,
+                  not 187 — sizes describes the render, not the box. */}
+              {/* eslint-disable-next-line @next/next/no-img-element -- decorative CDN portrait */}
+              <img
                 className={styles.art}
-                style={{ backgroundImage: `url(${a.image})` }}
+                src={spotifyImage(a.image, 320)}
+                srcSet={spotifySrcSet(a.image, 320)}
+                sizes="calc((100vw - 39px) * 0.59)"
+                alt=""
                 aria-hidden="true"
+                loading="lazy"
+                decoding="async"
               />
               <span className={styles.scrim} aria-hidden="true" />
               <span className={styles.tileBody}>
@@ -147,6 +196,7 @@ export default function MobileAfrobeatsHub({
               key={r.key}
               href={r.href}
               className={r.isBurna ? `${styles.pill} ${styles.pillAnchor}` : styles.pill}
+              prefetch={false}
             >
               {r.name} <span className={styles.pillNum}>{r.value}</span>
             </Link>
@@ -165,6 +215,7 @@ export default function MobileAfrobeatsHub({
               className={
                 r.isBurna ? `${styles.pill} ${styles.pillAnchor}` : `${styles.pill} ${styles.pillLive}`
               }
+              prefetch={false}
             >
               {r.name} <span className={styles.pillNumLive}>{r.value}</span>
             </Link>

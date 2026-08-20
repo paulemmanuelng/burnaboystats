@@ -7,7 +7,8 @@ import { badgeWeight } from "../lib/certs";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
 import { coverFor } from "../lib/covers";
-import { spotifyImage } from "../lib/spotifyImage";
+import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
+import { BLANK_PIXEL } from "../lib/blankPixel";
 import { portraitArtFor } from "../lib/portraitArt";
 import type { CertEvent, Country, Release } from "../data/certifications";
 import MobileMenuButton from "./MobileMenuButton";
@@ -157,16 +158,57 @@ export default function MobileCerts({
       <div className={styles.hero}>
         {portrait && (
           <>
-            <span
+            {/* An <img>, not a background. This is the LCP element on both screens
+                that use it — the artist page and /certifications — and a CSS
+                background can carry neither a priority hint nor a srcset, and is
+                not discoverable by the preload scanner at all. The focal, opacity
+                and grey custom properties are untouched: only the paint mechanism
+                changed.
+
+                The <source media> is load-bearing. Both layouts sit in every
+                document with one hidden by display:none, and the two mechanisms
+                differ there — a hidden background is never fetched, a hidden EAGER
+                <img> is. Without the gate, making this eager for mobile would bill
+                every desktop visitor for a portrait they never see. The preload
+                scanner evaluates `media` before it fetches, so desktop takes the
+                1x1 and mobile still gets an eager, prioritised image.
+
+                sizes is 190vw rather than the box's 76vw because the box is ~313px
+                but its aspect-ratio is 2/5, and `cover` fits the 640 square by the
+                LONG axis — so the image paints ~783px wide and is cropped to 313.
+                Describing the box would let a DPR-1 phone pick the 320 rung for a
+                783px render: a soft hero where the background always fetched 640. */}
+            {/* Preload, media-gated to phones. React hoists this into <head>, which
+                is the earliest a fetch can possibly start — earlier even than the
+                scanner reaching this element. Worth doing because of an accident
+                this conversion removed: the desktop hero used to be an EAGER <img>
+                on the same URL, so phones were quietly riding its fetch. Now that
+                the desktop copy is correctly lazy and on a smaller rung, the phone
+                has to ask for its own, and this is what keeps that ask early. */}
+            <link
+              rel="preload"
+              as="image"
+              imageSrcSet={spotifySrcSet(portrait)}
+              imageSizes="190vw"
+              media="(max-width: 900px)"
+            />
+            <picture style={{ display: "contents" }}>
+              <source media="(max-width: 900px)" srcSet={spotifySrcSet(portrait)} sizes="190vw" />
+            {/* eslint-disable-next-line @next/next/no-img-element -- decorative CDN portrait */}
+            <img
               className={portraitArt.mode === "emblem" ? `${styles.heroArt} ${styles.heroArtEmblem}` : styles.heroArt}
+              src={BLANK_PIXEL}
+              alt=""
               style={{
-                backgroundImage: `url(${portrait})`,
                 "--focal": portraitArt.focal,
                 "--portrait-opacity": portraitArt.opacity,
                 "--grayscale": portraitArt.grayscale,
               } as CSSProperties}
               aria-hidden="true"
+              fetchPriority="high"
+              decoding="async"
             />
+            </picture>
             <span className={styles.heroScrim} aria-hidden="true" />
           </>
         )}

@@ -90,10 +90,10 @@
      the X half of the focal point does the aiming, which is what those values
      were tuned against. The fixed box above is what stops the drift; the
      scaling never needed to change. */
-  background-size: cover;
+  object-fit: cover;
   /* Focal point, opacity and grey are per-artist — ten photographs, ten
      backdrops. app/lib/portraitArt.ts holds the values and the reasons. */
-  background-position: var(--focal, center 24%);
+  object-position: var(--focal, center 24%);
   /* Grayscale-leaning and type-first, as the design has it: the portrait sits
      behind the type, so it must not be the brightest or the warmest thing in
      the hero. It used to run saturate(1.05), which pushed the other way. */
@@ -117,8 +117,7 @@
   right: -4%;
   width: 58%;
   height: 92%;
-  background-size: contain;
-  background-repeat: no-repeat;
+  object-fit: contain;
   -webkit-mask-image: none;
   mask-image: none;
 }
