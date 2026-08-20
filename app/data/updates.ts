@@ -763,12 +763,6 @@ export const updates: Update[] = [
   {
     date: "2026-07-25",
     category: "Charts",
-    text: "18 days at the summit: “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 6.23 million streams — an 18-day run at the top for the World Cup anthem.",
-    href: "/dai-dai",
-  },
-  {
-    date: "2026-07-25",
-    category: "Charts",
     text: "Apple Music and iTunes milestones: “Dai Dai” reaches a 30th day at No. 1 on Apple Music's European chart, and has now spent 22 days atop the worldwide iTunes songs chart — and it is No. 1 on Apple Music in 26 countries.",
     href: "/dai-dai",
   },

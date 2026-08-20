@@ -66,7 +66,7 @@ const EN_SCENE: SceneCopy = {
   no1sLink: "See every Dai Dai chart position →",
   streamingNote: "Daily & Weekly · 35 days as Earth's most-streamed song",
   certsLabel: "certifications for Dai Dai",
-  certsNote: "2× Platinum (Latin) US · Gold in 5 more",
+  certsNote: "2× Platinum (Latin) US · Platinum in 5 more",
   certsLink: "See the Dai Dai certifications →",
   worldsongWord: "BIGGEST\nWORLD CUP\nANTHEM EVER",
   worldsongLabel: "Highest-peaking on Spotify Global",

@@ -304,7 +304,7 @@ export default function DaiDaiPageES() {
             no1sLink: "Ver todas las posiciones de Dai Dai →",
             streamingNote: "Diaria y semanal · 35 días como la canción más escuchada del mundo",
             certsLabel: "certificaciones de Dai Dai",
-            certsNote: "Doble platino (latino) en EE. UU. · oro en 5 países más",
+            certsNote: "Doble platino (latino) en EE. UU. · platino en 5 países más",
             certsLink: "Ver las certificaciones de Dai Dai →",
             worldsongWord: "EL HIMNO\nMUNDIALISTA\nMÁS GRANDE",
             worldsongLabel: "El pico más alto en el Spotify Global",

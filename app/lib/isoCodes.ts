@@ -8,4 +8,9 @@ export const A2_TO_ISO: Record<string, number> = {
   HK: 344, IN: 356, IL: 376, IS: 352, AE: 784, SA: 682, LB: 422, RO: 642, SK: 703, CZ: 203,
   LT: 440, NO: 578, PL: 616, NG: 566, ZA: 710, SR: 740, AR: 32, CO: 170, EC: 218, VN: 704,
   BR: 76, JP: 392, SG: 702, LU: 442, PA: 591, CR: 188, LV: 428, EG: 818, MY: 458, CL: 152, PE: 604, BO: 68,
+  // Seventeen charting countries were missing, so the peak map coloured 52 of
+  // the 69 in CHART_COUNTRIES and silently dropped the rest — most of Latin
+  // America and eastern Europe. Every one already had a shape in worldShapes.
+  BG: 100, HR: 191, EE: 233, MD: 498, UA: 804, RU: 643, TR: 792, KZ: 398,
+  UY: 858, VE: 862, SV: 222, DO: 214, GT: 320, HN: 340, NI: 558, PY: 600, PR: 630,
 };

@@ -197,7 +197,7 @@ export default function ApiPage() {
             ))}
           </div>
           <p className={styles.note}>
-            A directory of all {endpoints.length} lives at{" "}
+            A directory of all {endpoints.length} endpoints lives at{" "}
             <a href={`/api/${API_VERSION}`} target="_blank" rel="noreferrer">
               /api/{API_VERSION}
             </a>

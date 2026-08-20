@@ -169,8 +169,7 @@ export default function MobileStatCards({
       </div>
 
       <p className={styles.note}>
-        Renders at 2× — {size.width * 2} × {size.height * 2} px. Every card carries its
-        source line.
+        Renders at {size.width} × {size.height} px. Every card carries its source line.
       </p>
 
       <div className={styles.spacer} />

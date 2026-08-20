@@ -187,3 +187,17 @@ describe("peak map colour ramp", () => {
     expect(first.lum).toBeGreaterThan(last.lum);
   });
 });
+
+// isoCodes.ts claims it "covers exactly the countries in CHART_COUNTRIES", and a
+// guard was said to enforce it. Neither was true: seventeen charting countries
+// had no entry, so the peak map rendered 52 of 69 and dropped the rest without
+// erroring. This is that guard.
+describe("every charting country can be drawn on the map", () => {
+  it("has an ISO numeric for each chart country", async () => {
+    const { A2_TO_ISO } = await import("../app/lib/isoCodes");
+    const missing = Object.keys(CHART_COUNTRIES)
+      .filter((c) => c !== "GLB" && c !== "GLBX")
+      .filter((c) => !(c in A2_TO_ISO));
+    expect(missing, `chart codes missing from A2_TO_ISO: ${missing.join(", ")}`).toEqual([]);
+  });
+});

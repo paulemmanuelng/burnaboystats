@@ -105,12 +105,12 @@ export const findings: Finding[] = [
       `The pattern holds beyond those two. ${marketsByVolume
         .slice(0, 5)
         .map((m) => m.country)
-        .join(", ")} lead the table, and the countries where he reaches No. 1 are overwhelmingly European.`,
+        .join(", ")} lead the table. His No. 1s are not only European, though: of the 31 countries where a release has topped the chart, 18 are in Europe and 13 are not — Nigeria and South Africa, and a run through Latin America and the Gulf.`,
       `This matters because the standard narrative treats American success as the measure of an Afrobeats crossover. By that yardstick Burna Boy looks like a near-miss. By the actual record, he is an established European chart fixture who happens to be a cult concern in the US — a materially different, and more interesting, career shape.`,
     ],
     links: [
       { href: "/records/charts", label: "Chart records by country" },
-      { href: "/music/wgft", label: "His highest US peak" },
+      { href: "/music/wgft", label: "His highest Hot 100 peak" },
     ],
     chartLabel: "Chart entries by market",
     bars: toBars(

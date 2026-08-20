@@ -79,7 +79,7 @@ export const performedCountries: PerformedCountry[] = [
   { name: "United Arab Emirates", code: 784, region: "Asia", flag: "🇦🇪", events: ["One Africa Music Festival, Dubai (2019)"] },
 
   // ── North America ──
-  { name: "United States", code: 840, region: "North America", flag: "🇺🇸", events: ["Madison Square Garden, New York (2022)", "Citi Field, New York (2022)"], more: true },
+  { name: "United States", code: 840, region: "North America", flag: "🇺🇸", events: ["Madison Square Garden, New York (2022)", "Citi Field, New York (2023)"], more: true },
   { name: "Canada", code: 124, region: "North America", flag: "🇨🇦", events: ["Scotiabank Arena, Toronto (2024 & 2025)", "Bell Centre, Montréal (2024)"], more: true },
   { name: "Mexico", code: 484, region: "North America", flag: "🇲🇽", events: ["FIFA World Cup Opening Ceremony, Mexico City (2026)"] },
 
