@@ -46,3 +46,13 @@
 .specimenH2 { font-size: 34px; }
 .specimenFigure { font-size: 58px; color: var(--gold); font-variant-numeric: tabular-nums; }
 .specimenBody { margin: 14px 0 0; max-width: 62ch; color: var(--text-muted); }
+
+/* The three darks only read as three when they touch — apart, each looks black. */
+.surfaces { display: flex; flex-wrap: wrap; gap: 0; border-radius: 8px; overflow: hidden; margin-top: 18px; }
+.surface {
+  flex: 1 1 170px; min-height: 84px; padding: 12px 14px;
+  font-family: var(--font-mono), monospace; font-size: 11px;
+  letter-spacing: 0.05em; color: var(--text-muted);
+}
+/* The block button is full-width by definition, so it needs a width to fill. */
+.blockWrap { max-width: 320px; }

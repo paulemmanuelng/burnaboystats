@@ -21,8 +21,9 @@
     padding-left: calc(10px + env(safe-area-inset-left, 0px));
     padding-right: calc(10px + env(safe-area-inset-right, 0px));
     background: rgba(12, 10, 9, 0.94);
+    /* Unprefixed only — the build adds -webkit- itself. Writing both by hand
+       makes the pipeline keep the prefixed line alone, which Firefox ignores. */
     backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
     border-top: 1px solid var(--line);
   }
 }

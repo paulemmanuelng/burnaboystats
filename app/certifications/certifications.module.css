@@ -323,8 +323,103 @@
 }
 
 /* ── Hero ─────────────────────────────────────────────────────────────── */
-.hero { border-bottom: 1px solid var(--line); }
+.hero {
+  border-bottom: 1px solid var(--line);
+  /* The portrait bleeds off the right edge, so the hero has to clip it and own
+     its own stacking context — otherwise the art escapes into the band below. */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Burna Boy's portrait, behind the hero.
+   The spec's JOB 2 draws this as a sharp 423px framed card at right:40px, but
+   that was written for a hero with an empty right side. This one carries the
+   tier rail there, and a framed card would land on top of it. So the desktop
+   takes the mobile screen's idea instead — a portrait bled off the right edge
+   and dissolved before it reaches the type — at desktop scale, keeping the
+   grayscale-leaning, type-first character the two screens share.
+   The blurred understudy below is JOB 2's, and it survives the change: it gives
+   the sharp copy something to sit on so the right edge does not read as a
+   cut-out pasted onto flat black. */
+.heroArt {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  /* 40%, not the half-width first tried. The source is a 640 square: across a
+     half-width box, cover scales it to the box width and his face lands at 42%
+     of it — which is exactly where the mask is still fading, so the hero showed
+     braids and a shoulder rather than a portrait. A narrower box lets cover
+     scale by height instead, and the face moves into the opaque zone. */
+  width: 40%;
+  background-size: cover;
+  background-position: var(--focal, center 24%);
+  pointer-events: none;
+  /* Fades at BOTH ends. The left dissolve is what keeps the portrait off the
+     type; a gentler version of it on the right takes the shoulder down behind
+     the tier percentages, which sit in the brightest part of the frame. It only
+     goes to 0.42, not to nothing — enough to let the figures read, not so much
+     that the portrait stops at a visible edge. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.25) 18%, #000 52%, #000 74%, rgba(0, 0, 0, 0.42) 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.25) 18%, #000 52%, #000 74%, rgba(0, 0, 0, 0.42) 100%);
+}
+
+/* The blurred understudy runs wider, so the sharp copy has something to sit on
+   and the right edge does not read as a cut-out pasted onto flat black. */
+.heroArtBlur {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 58%;
+  background-size: cover;
+  background-position: var(--focal, center 24%);
+  pointer-events: none;
+  /* The understudy tapers with it, or the blur would leave a bright rim exactly
+     where the sharp copy has just been taken down. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 22%, #000 60%, #000 78%, rgba(0, 0, 0, 0.5) 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 22%, #000 60%, #000 78%, rgba(0, 0, 0, 0.5) 100%);
+}
+.heroArt {
+  z-index: -2;
+  filter: grayscale(var(--grayscale, 0.3)) contrast(1.03);
+  opacity: var(--portrait-opacity, 0.38);
+}
+.heroArtBlur {
+  z-index: -3;
+  filter: blur(34px) saturate(1.1) grayscale(0.15);
+  opacity: 0.28;
+}
+
+/* The scrim the type is read against. Two gradients: one across, so the copy
+   column sits on solid page ground and the tier rail's numbers stay legible
+   over the shoulder of the photograph; one down, so the hero's own top and
+   bottom edges meet the bands above and below without a seam. */
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    /* Last stop 0.62, not 0.46. The tier percentages sit at the far right,
+       where the portrait is brightest and the scrim thinnest, and sampling the
+       rendered pixels put them at 4.24:1 — under AA for 12px text. */
+    linear-gradient(90deg, var(--bg) 40%, rgba(10, 10, 11, 0.82) 66%, rgba(10, 10, 11, 0.62) 100%),
+    linear-gradient(180deg, rgba(10, 10, 11, 0.5) 0%, rgba(10, 10, 11, 0.08) 34%, rgba(10, 10, 11, 0.62) 100%);
+}
+
+/* Below the two-column breakpoint the rail stacks under the copy and there is no
+   right-hand space left to bleed into, so the portrait goes rather than sitting
+   behind a full-width text column. The phone has its own hero. */
+@media (max-width: 900px) {
+  .heroArt,
+  .heroArtBlur,
+  .heroScrim { display: none; }
+}
+
 .heroGrid {
+  position: relative;
   max-width: 1360px;
   margin: 0 auto;
   padding: 0 40px;

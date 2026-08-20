@@ -744,7 +744,19 @@ aa
   line-height: 0.9;
   letter-spacing: 0.01em;
   font-variant-numeric: tabular-nums;
-  color: var(--gold);
+  /* The five figures carry the same gold ramp as the primary button rather than
+     one flat bright gold across the whole row. Bright to dim, no orange turn.
+     The dimmest stop is 6.8:1 on the page ground, so the bottom of every digit
+     still clears AA for body text, let alone the 3:1 this size needs. */
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 50%, var(--gold-dim) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* Same paint-box pair as every other gradient word on the site — at
+     line-height 0.9 the ink overruns the line box and the ends of the digits
+     would go unpainted. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
 }
 .scoreLabel {
   font-family: var(--font-mono), monospace;
@@ -785,7 +797,9 @@ aa
   font-size: 11.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--grad-b);
+  /* Mono muted. It was warm orange, which put a third accent colour on the
+     first screen next to the gold figures and the gold CTA. */
+  color: var(--text-muted);
 }
 .historyTitle {
   font-family: var(--font-anton), sans-serif;
@@ -808,7 +822,25 @@ aa
   max-width: 56ch;
   opacity: 0.85;
 }
-.historyCta { flex: none; }
+/* The screen already has its one gold action — "View certifications" in the
+   hero. This is the second-most-important thing on the page, so it takes the
+   secondary treatment rather than a second gold fill. Scoped to the home page:
+   .btnPrimary itself is a global primitive used on ~26 files. */
+.historyCta {
+  flex: none;
+  background-color: transparent;
+  background-image: none;
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  border-color: rgba(245, 244, 240, 0.42);
+  box-shadow: none;
+}
+.historyCta:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  -webkit-text-fill-color: var(--gold);
+  box-shadow: none;
+}
 
 /* ── Shared section furniture ───────────────────────────────────────── */
 .section { border-bottom: 1px solid var(--line); }

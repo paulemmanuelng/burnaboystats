@@ -7,6 +7,7 @@ export const navItems = [
   { href: "/certifications", label: "Certifications" },
   { href: "/records", label: "Records" },
   { href: "/live-charts", label: "Live Charts" },
+  { href: "/afrobeats", label: "Afrobeats" },
   { href: "/updates", label: "Updates" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
@@ -48,6 +49,7 @@ export const footerColumns: { label: string; links: { href: string; label: strin
       { href: "/records/tours/map", label: "Tour map" },
       { href: "/records/firsts", label: "Firsts" },
       { href: "/records/africas-biggest", label: "Africa's Biggest" },
+      { href: "/afrobeats", label: "The Afrobeats Board" },
       { href: "/records/cars", label: "Car collection" },
     ],
   },
@@ -101,8 +103,12 @@ export const exploreFor: Record<string, string[]> = {
   "/dai-dai": ["live-charts", "charts", "share"],
   "/records/tours": ["records", "certifications", "charts"],
   "/records/firsts": ["dai-dai", "charts", "certifications"],
-  "/records/africas-biggest": ["certifications", "charts", "share"],
+  "/records/africas-biggest": ["afrobeats", "certifications", "charts"],
   "/share": ["dai-dai", "certifications", "records"],
+  // The board is the one section about other artists. Every way out of it leads
+  // back to the subject of the site — a reader who arrived on "wizkid
+  // certifications" should land somewhere that is Burna Boy's record.
+  "/afrobeats": ["certifications", "charts", "africas-biggest"],
 };
 
 /**
@@ -229,6 +235,7 @@ export const footerFor: Record<string, FooterVariant> = {
       { href: "/records/tours", label: "Tours" },
       { href: "/records/tours/festivals", label: "Festivals" },
       { href: "/records/africas-biggest", label: "Africa's Biggest" },
+      { href: "/afrobeats", label: "The Afrobeats Board" },
       { href: "/methodology", label: "Methodology" },
     ],
   },

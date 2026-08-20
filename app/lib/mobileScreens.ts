@@ -16,6 +16,7 @@
 export const BACK_BAR_ROUTES = new Set<string>([
   "/certifications",
   "/timeline",
+  "/afrobeats",
   // Screen 27's sticky search field stands in for the nav. It is NOT in
   // ACTION_BAR_ROUTES: the design keeps the five-tab bar at its foot.
   "/search",
@@ -85,6 +86,16 @@ export const ACTION_BAR_ROUTES = new Set<string>([
 const isSongPage = (pathname: string) => pathname.startsWith("/music/");
 
 /**
+ * The Afrobeats Board's pages — the grid, each artist, each artist's charts.
+ *
+ * They draw their own back bar, so the nav hides. They do NOT take an action
+ * bar: Paul's call (17 Aug 2026) is that the board keeps the standard five-tab
+ * footer, the same decision already made for the story pages, so a reader can
+ * jump straight to home, music or certifications from any artist.
+ */
+const isBoardPage = (pathname: string) => pathname.startsWith("/afrobeats/");
+
+/**
  * Language editions inherit their parent screen's chrome.
  *
  * The sets above are exact-match, so /dai-dai/es did not count as /dai-dai and
@@ -99,6 +110,6 @@ const withoutLocale = (pathname: string) => {
 };
 
 export const hasOwnMobileChrome = (pathname: string) =>
-  BACK_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname);
+  BACK_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname) || isBoardPage(pathname);
 export const hasOwnActionBar = (pathname: string) =>
   ACTION_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname);

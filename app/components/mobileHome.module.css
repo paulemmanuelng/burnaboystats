@@ -77,7 +77,9 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  /* Muted, as the desktop hero's eyebrow already is — it is a label, not a
+     figure. The gold tick beside it still carries the accent. */
+  color: var(--text-muted);
 }
 .rule {
   width: 16px;
@@ -100,6 +102,15 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Paints the glyph, not the line box. background-clip:text fills the PADDING
+     box and clips that to the glyphs, so any ink outside it renders invisible —
+     and Anton's ink overruns every sub-1 line-height on this site. The pad
+     grows the paint area only: on a block it is cancelled by the margin, and on
+     an inline span vertical margins do not apply in the first place. 0.2em, not
+     the 0.12em the spec suggests: measured on the real page, a descender at
+     line-height 0.86 needs 0.119em, which left 0.0px of headroom. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
 }
 .lede {
   font-size: 15px;
@@ -130,10 +141,17 @@
   text-decoration: none;
 }
 .primary {
-  background: var(--gold);
-  color: var(--bg);
+  /* Same ramp as .btnPrimary — this screen has its own button rule, so the two
+     have to be changed together or the phone and the desktop show two golds. */
+  background-color: var(--gold);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  color: #000;
+  -webkit-text-fill-color: #000;
   border: 1px solid var(--gold);
   box-shadow: 0 0 26px rgba(255, 182, 39, 0.24);
+  /* Promotes the layer at rest, for the same iPhone compositing reason as
+     .btnPrimary in globals.css. */
+  transform: translateZ(0);
 }
 .secondary {
   background: var(--bg-soft);
@@ -149,14 +167,14 @@
   padding: 20px;
   border-radius: 16px;
   color: var(--text);
-  /* Off the gold fill, as on desktop: the surface lit from two corners, with
-     the numeral carrying the gradient instead of the background. */
-  border: 1px solid rgba(255, 182, 39, 0.32);
+  /* Surface, hairline, ONE corner glow — the Job 3 rule, and this card is the
+     element it names by measurement: at 366x351 it covers a third of the phone
+     screen, and it was carrying a gold border, two warm radials AND an outer
+     gold glow. The numeral is the gold in it now. Unlike the desktop panel this
+     card floats, so it keeps a border — just not a gold one. */
+  border: 1px solid var(--line);
   background-color: var(--bg-soft);
-  background-image:
-    radial-gradient(120% 90% at 0% 0%, rgba(255, 182, 39, 0.22), transparent 58%),
-    radial-gradient(90% 80% at 100% 100%, rgba(255, 122, 26, 0.14), transparent 60%);
-  box-shadow: 0 0 40px rgba(255, 182, 39, 0.07);
+  background-image: radial-gradient(120% 90% at 0% 0%, rgba(255, 182, 39, 0.14), transparent 58%);
 }
 .todayGlyphs {
   position: absolute;
@@ -175,7 +193,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--gold);
+  /* Mono muted, matching the desktop panel — a label above the figure it names. */
+  color: var(--text-muted);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
@@ -188,7 +207,7 @@
   gap: 16px;
   margin-top: 10px;
 }
-.todayKickerRule { width: 16px; height: 1px; background: var(--gold); display: block; flex: none; }
+.todayKickerRule { width: 16px; height: 1px; background: var(--rule); display: block; flex: none; }
 .todayFigure {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -199,6 +218,15 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Paints the glyph, not the line box. background-clip:text fills the PADDING
+     box and clips that to the glyphs, so any ink outside it renders invisible —
+     and Anton's ink overruns every sub-1 line-height on this site. The pad
+     grows the paint area only: on a block it is cancelled by the margin, and on
+     an inline span vertical margins do not apply in the first place. 0.2em, not
+     the 0.12em the spec suggests: measured on the real page, a descender at
+     line-height 0.86 needs 0.119em, which left 0.0px of headroom. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
 }
 .todayCover {
   margin-left: auto;

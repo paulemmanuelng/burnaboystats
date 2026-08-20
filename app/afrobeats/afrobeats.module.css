@@ -1,0 +1,356 @@
+/* The Afrobeats Board — a cover-art grid in the house style: dark surface,
+   hairline seams, gold reserved for the figures and the anchor tile. The tiles
+   borrow the album-wall feel from /music rather than inventing a new one. */
+
+.desktopOnly { display: block; }
+.desktopCrumbs { display: block; }
+
+.mobileBackBar {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.mobileBackBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+.mobileBackLabel {
+  flex: 1;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+/* ── Hero ──────────────────────────────────────────────────── */
+.hero {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 46px 40px 26px;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.eyebrowRule { width: 26px; height: 2px; background: var(--gold); }
+.h1 {
+  margin: 14px 0 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(44px, 7vw, 92px);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+.lede {
+  margin: 18px 0 0;
+  max-width: 660px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.cadence {
+  margin: 12px 0 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+/* ── Grid ──────────────────────────────────────────────────── */
+.gridPad {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 10px 40px 46px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1.12;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  text-decoration: none;
+  isolation: isolate;
+}
+
+/* The art sits behind a scrim so the type stays legible over any photo —
+   these are press shots we do not control the contrast of. */
+.art {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 22%;
+  transform: scale(1.02);
+  transition: transform 420ms var(--ease), filter 420ms var(--ease);
+  filter: grayscale(0.35) contrast(1.02);
+}
+.tile:hover .art { transform: scale(1.07); filter: grayscale(0) contrast(1.04); }
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 11, 0.15) 0%, rgba(10, 10, 11, 0.62) 52%, rgba(10, 10, 11, 0.93) 100%);
+}
+
+.tileBody {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px 18px 18px;
+}
+.tileTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.flag { font-size: 18px; line-height: 1; }
+
+.topBadge,
+.anchorTag {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(10, 10, 11, 0.55);
+  color: var(--muted);
+}
+.anchorTag { color: var(--gold); border-color: var(--gold); }
+
+.tileName {
+  margin-top: auto;
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(22px, 2.3vw, 30px);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+}
+.tileStat {
+  margin-top: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tileStat strong { color: var(--gold); font-size: 14px; }
+.tileHook {
+  margin-top: 8px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 260ms var(--ease), max-height 260ms var(--ease);
+}
+.tile:hover .tileHook { opacity: 1; max-height: 60px; }
+
+/* The anchor tile reads as the site itself, not a peer. */
+.tileAnchor .art { filter: grayscale(0) contrast(1.05); }
+.tileAnchor::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: 2px solid var(--gold);
+  pointer-events: none;
+}
+
+.foot {
+  margin: 18px 0 0;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.foot a { color: var(--gold); }
+
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 760px) {
+  .mobileBackBar { display: flex; }
+  .desktopCrumbs { display: none; }
+  .desktopOnly { display: none; }
+  .hero { padding: 26px 18px 18px; }
+  .gridPad { padding: 6px 18px 34px; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .tileHook { display: none; }
+}
+
+.pendingHead {
+  margin: 34px 0 4px;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(20px, 2.4vw, 28px);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+.pendingLede { margin: 0 0 16px; max-width: 620px; font-size: 13px; color: var(--muted); line-height: 1.55; }
+.tilePending .art { filter: grayscale(0.85) contrast(0.95); opacity: 0.55; }
+.tilePending:hover .art { filter: grayscale(0.6); opacity: 0.75; }
+.pendingBadge {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px dashed var(--line);
+  background: rgba(10, 10, 11, 0.55);
+  color: var(--muted);
+}
+
+/* The methodology tile — the grid's eighth cell. No photo, so it reads as a
+   note pinned to the board rather than an eighth artist. */
+.tileRule {
+  background: var(--bg-soft);
+  border: none;
+}
+.tileRule .tileBody { justify-content: flex-start; }
+.ruleMark {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.8;
+}
+.ruleName {
+  margin-top: 16px;
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(19px, 1.9vw, 24px);
+  text-transform: uppercase;
+  line-height: 1.06;
+  letter-spacing: 0.01em;
+}
+.ruleBody {
+  margin-top: 10px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.ruleLink {
+  margin-top: auto;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+@media (max-width: 760px) {
+  .ruleBody { display: none; }
+}
+
+/* Chart rail — the second way into the six chart boards, so they are not each
+   reachable from one page only. Reads as a footnote to the grid, not a nav. */
+.chartRail {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.railLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 4px;
+}
+.railLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12.5px;
+  transition: border-color 200ms var(--ease), color 200ms var(--ease);
+}
+.railLink:hover { border-color: var(--gold); color: var(--gold); }
+.railNum {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--gold);
+}
+@media (max-width: 760px) {
+  .chartRail { margin-top: 16px; }
+}
+
+/* The live rail's label carries the same pulse the live pages use. */
+.railLive { display: inline-flex; align-items: center; gap: 7px; color: var(--live, #70e0a0); }
+.railDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--live, #70e0a0);
+  animation: railPulse 2.4s var(--ease) infinite;
+}
+@keyframes railPulse {
+  0% { box-shadow: 0 0 0 0 rgba(112, 224, 160, 0.5); }
+  70% { box-shadow: 0 0 0 6px rgba(112, 224, 160, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(112, 224, 160, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .railDot { animation: none; } }
+
+/* Burna Boy's chip in the two rails. Gold means "his" everywhere else on the
+   site, and the rails are the one place he is measured against the board rather
+   than introduced by it — so the reader has to be able to find him at a glance. */
+.railAnchor {
+  border-color: rgba(255, 182, 39, 0.42);
+  color: var(--gold);
+}
+.railAnchor:hover { border-color: var(--gold); }
+
+/* The provenance tile's kicker — the rule tile beside it leads with a glyph,
+   this one with a mono label, exactly as the design has them. */
+.ruleKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--gold);
+}

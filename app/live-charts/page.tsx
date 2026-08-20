@@ -3,7 +3,7 @@ import styles from "./liveCharts.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileLiveCharts, { type ReleasePreview } from "../components/MobileLiveCharts";
-import { cadenceOf, reachOf, numberOnesOf } from "../lib/liveChartMeta";
+import { cadenceOf, reachOf, numberOnesOf, countriesOf } from "../lib/liveChartMeta";
 import LiveReleaseBlock, { type ReleaseSummary } from "../components/LiveReleaseBlock";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { coverFor, monogramFor } from "../lib/covers";
@@ -13,11 +13,14 @@ import {
   liveChartsUpdated,
   livePlacementCount,
   liveNumberOnes,
-  liveCountryCount,
   livePlatformTotals,
   type LiveEntry,
 } from "../data/liveCharts";
 import { isEp } from "../data/albums";
+
+// Counted here rather than read from the generated file, which counts raw
+// kworb codes — "UK" and "GB" are one country and "WW" is none.
+const liveCountryCount = countriesOf(liveCharts.flatMap((r) => r.platforms.flatMap((p) => p.entries)));
 
 export const metadata = pageMetadata({
   title: "Burna Boy Live Charts — Where He's Charting Right Now",
@@ -201,7 +204,7 @@ export default function LiveChartsPage() {
             </p>
             <div className={styles.releaseList}>
               {songs.map((r) => (
-                <LiveReleaseBlock key={r.title} r={summarize(r)} />
+                <LiveReleaseBlock key={`${r.kind}:${r.title}`} r={summarize(r)} />
               ))}
             </div>
           </div>
@@ -216,7 +219,7 @@ export default function LiveChartsPage() {
               </div>
               <div className={styles.releaseList}>
                 {albums.map((r) => (
-                  <LiveReleaseBlock key={r.title} r={summarize(r)} />
+                  <LiveReleaseBlock key={`${r.kind}:${r.title}`} r={summarize(r)} />
                 ))}
               </div>
             </div>

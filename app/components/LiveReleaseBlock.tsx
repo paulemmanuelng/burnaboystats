@@ -20,6 +20,9 @@ import type { LiveEntry } from "../data/liveCharts";
  */
 
 export interface ReleaseSummary {
+  /** Artwork shipped with the release (board artists), if the site's own
+   *  catalogue does not hold it. */
+  cover?: string;
   title: string;
   kind: "song" | "album";
   ep: boolean;
@@ -43,10 +46,19 @@ function Move({ e }: { e: LiveEntry }) {
   );
 }
 
-export default function LiveReleaseBlock({ r }: { r: ReleaseSummary }) {
+export default function LiveReleaseBlock({
+  r,
+  source,
+}: {
+  r: ReleaseSummary;
+  /** Where the country panels fetch from, and whose artwork to draw. Burna
+   *  Boy's page passes nothing: his covers are in the site's own catalogue.
+   *  A board artist ships the URL with the release, resolved at build time. */
+  source?: string;
+}) {
   const [opened, setOpened] = useState(false);
-  const { release, error, loading, retry } = useLiveRelease(r.title, opened);
-  const art = coverFor(r.title);
+  const { release, error, loading, retry } = useLiveRelease(r.title, opened, source);
+  const art = r.cover ?? coverFor(r.title);
 
   return (
     <details

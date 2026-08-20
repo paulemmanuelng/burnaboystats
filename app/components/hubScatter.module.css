@@ -1,0 +1,66 @@
+/* "The shape of the field" — the hub's scatter. Values from the delivered
+   design's own markup (Afrobeats Board.dc.html), which draws it as one inline
+   SVG in a 1280x330 viewBox inside a bordered surface panel. */
+
+.wrap { padding: 36px 40px 0; }
+
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.h2 {
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.plot {
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  padding: 24px 20px 10px;
+}
+.svg { width: 100%; display: block; }
+
+.legend {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  padding: 8px 4px 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.key { display: inline-flex; align-items: center; }
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--rule);
+  margin-right: 6px;
+}
+.dotAnchor { background: var(--gold); border-color: var(--gold); }
+.read { color: var(--text-muted); }
+
+/* Below the desktop grid the plot stops being readable: ten labelled dots in a
+   1280-wide viewBox scale down to unreadable type on a phone, and the mobile
+   screen has its own way of saying this. The rails above it already carry the
+   same figures, so nothing is lost by dropping it. */
+@media (max-width: 900px) {
+  .wrap { display: none; }
+}

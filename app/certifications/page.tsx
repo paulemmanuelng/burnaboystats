@@ -1,7 +1,9 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import styles from "./certifications.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileCerts from "../components/MobileCerts";
+import { BURNA } from "../data/afrobeats";
 import CertExplorer from "../components/CertExplorer";
 import CertHistoryByYear from "../components/CertHistoryByYear";
 import KeepExploring from "../components/KeepExploring";
@@ -11,6 +13,7 @@ import {
   totalAwards, certifiedReleaseCount, countryCount,
 } from "../data/certifications";
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
+import { portraitArtFor } from "../lib/portraitArt";
 
 export const metadata = pageMetadata({
   title: `Burna Boy Certifications — ${totalAwards()} Awards Across ${countryCount} Countries`,
@@ -39,6 +42,8 @@ const certDataset = datasetJsonLd({
   keywords: ["Burna Boy", "certifications", "RIAA", "BPI", "Gold", "Platinum", "Diamond", "music sales"],
   variableMeasured: ["Certification level", "Country", "Release"],
 });
+
+const burnaArt = portraitArtFor("burna-boy");
 
 // ── Derived figures for the hero rail and the summary strip ───────────────
 const TIER_ORDER = ["Diamond", "Platinum", "Gold", "Silver"] as const;
@@ -88,6 +93,10 @@ export default function CertificationsPage() {
         countries={COUNTRIES}
         total={total}
         countryCount={countryCount}
+        portrait={BURNA.image}
+        portraitSlug="burna-boy"
+        chartsHref="/records/charts"
+        liveHref="/live-charts"
       />
 
       <div className={styles.desktopOnly}>
@@ -95,6 +104,24 @@ export default function CertificationsPage() {
 
       {/* ── Hero: copy left, tier rail right ─────────────────────────── */}
       <section className={styles.hero}>
+        {/* Behind the type: the blurred understudy, the portrait, then the
+            scrim the copy is read against. All three are decorative. */}
+        <span
+          className={styles.heroArtBlur}
+          style={{ backgroundImage: `url(${BURNA.image})`, "--focal": burnaArt.focal } as CSSProperties}
+          aria-hidden="true"
+        />
+        <span
+          className={styles.heroArt}
+          style={{
+            backgroundImage: `url(${BURNA.image})`,
+            "--focal": burnaArt.focal,
+            "--portrait-opacity": burnaArt.opacity,
+            "--grayscale": burnaArt.grayscale,
+          } as CSSProperties}
+          aria-hidden="true"
+        />
+        <span className={styles.heroScrim} aria-hidden="true" />
         <div className={styles.heroGrid}>
           <div className={styles.heroCopy}>
             <div className={styles.eyebrow}>

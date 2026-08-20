@@ -370,10 +370,223 @@ export const searchIndex: SearchDoc[] = [
     description: "Report a correction or get in touch.",
     keywords: ["contact", "email", "correction", "report", "get in touch"],
   },
+  // ── The Afrobeats Board ───────────────────────────────────────────────
+  // Appended, not prepended: score() ties break on array order, so a generic
+  // query like "billboard" or "certifications" must keep landing on Burna Boy's
+  // own pages. These docs earn their traffic on artist-qualified terms instead.
+  {
+    title: "The Afrobeats Board",
+    path: "/afrobeats",
+    section: "Afrobeats",
+    description: "Wizkid, Davido, Rema, Tems, Tyla and Ayra Starr counted by the same rules as Burna Boy — every plaque read at source.",
+    keywords: ["afrobeats board", "afrobeats artists", "compare afrobeats", "wizkid", "davido", "rema", "tems", "tyla", "ayra starr", "asake", "omah lay", "seyi vibez", "most certified afrobeats artist", "who has more certifications"],
+  },
+  {
+    title: "Wizkid",
+    path: "/afrobeats/wizkid",
+    section: "Afrobeats",
+    description: "Wizkid's 155 certifications across 21 countries and his official chart peaks, verified at source.",
+    keywords: ["wizkid", "wizzy", "star boy", "starboy", "ayodeji balogun", "big wiz", "made in lagos", "wizkid certifications", "wizkid plaques", "wizkid awards"],
+  },
+  {
+    title: "Wizkid — Chart History",
+    path: "/afrobeats/wizkid/charts",
+    section: "Afrobeats",
+    description: "Every Wizkid official chart entry and peak — 154 entries and 24 No. 1 placements, country by country.",
+    keywords: ["wizkid", "wizzy", "star boy", "wizkid charts", "wizkid chart history", "wizkid chart peaks", "wizkid number ones"],
+  },
+  {
+    title: "Davido",
+    path: "/afrobeats/davido",
+    section: "Afrobeats",
+    description: "Davido's 91 certifications across 9 countries and his official chart peaks, verified at source.",
+    keywords: ["davido", "obo", "david adeleke", "30bg", "timeless", "davido certifications", "davido plaques", "davido awards"],
+  },
+  {
+    title: "Davido — Chart History",
+    path: "/afrobeats/davido/charts",
+    section: "Afrobeats",
+    description: "Every Davido official chart entry and peak — 66 entries and 17 No. 1 placements, country by country.",
+    keywords: ["davido", "obo", "david adeleke", "davido charts", "davido chart history", "davido chart peaks", "davido number ones"],
+  },
+  {
+    title: "Rema",
+    path: "/afrobeats/rema",
+    section: "Afrobeats",
+    description: "Rema's 80 certifications across 20 countries and his official chart peaks, verified at source.",
+    keywords: ["rema", "calm down", "divine ikubor", "heis", "ravage", "rema certifications", "rema plaques", "rema awards"],
+  },
+  {
+    title: "Rema — Chart History",
+    path: "/afrobeats/rema/charts",
+    section: "Afrobeats",
+    description: "Every Rema official chart entry and peak — 118 entries and 17 No. 1 placements, country by country.",
+    keywords: ["rema", "calm down", "divine ikubor", "rema charts", "rema chart history", "rema chart peaks", "rema number ones"],
+  },
+  {
+    title: "Tems",
+    path: "/afrobeats/tems",
+    section: "Afrobeats",
+    description: "Tems's 70 certifications across 19 countries and her official chart peaks, verified at source.",
+    keywords: ["tems", "temilade openiyi", "born in the wild", "free mind", "tems certifications", "tems plaques", "tems awards"],
+  },
+  {
+    title: "Tems — Chart History",
+    path: "/afrobeats/tems/charts",
+    section: "Afrobeats",
+    description: "Every Tems official chart entry and peak — 124 entries and 7 No. 1 placements, country by country.",
+    keywords: ["tems", "temilade openiyi", "born in the wild", "tems charts", "tems chart history", "tems chart peaks", "tems number ones"],
+  },
+  {
+    title: "Tyla",
+    path: "/afrobeats/tyla",
+    section: "Afrobeats",
+    description: "Tyla's 62 certifications across 23 countries and her official chart peaks, verified at source.",
+    keywords: ["tyla", "water", "amapiano", "tyla seethal", "push 2 start", "tyla certifications", "tyla plaques", "tyla awards"],
+  },
+  {
+    title: "Tyla — Chart History",
+    path: "/afrobeats/tyla/charts",
+    section: "Afrobeats",
+    description: "Every Tyla official chart entry and peak — 174 entries and 3 No. 1 placements, country by country.",
+    keywords: ["tyla", "water", "amapiano", "tyla charts", "tyla chart history", "tyla chart peaks", "tyla number ones"],
+  },
+  {
+    title: "Ayra Starr",
+    path: "/afrobeats/ayra-starr",
+    section: "Afrobeats",
+    description: "Ayra Starr's 41 certifications across 12 countries and her official chart peaks, verified at source.",
+    keywords: ["ayra starr", "rush", "sability", "commas", "oyinkansola", "ayra starr certifications", "ayra starr plaques", "ayra starr awards"],
+  },
+  {
+    title: "Ayra Starr — Chart History",
+    path: "/afrobeats/ayra-starr/charts",
+    section: "Afrobeats",
+    description: "Every Ayra Starr official chart entry and peak — 78 entries and 10 No. 1 placements, country by country.",
+    keywords: ["ayra starr", "rush", "sability", "ayra starr charts", "ayra starr chart history", "ayra starr chart peaks", "ayra starr number ones"],
+  },
+  {
+    title: "Asake",
+    path: "/afrobeats/asake",
+    section: "Afrobeats",
+    description: "Asake's 79 certifications across 3 countries and 123 official chart entries, verified at source.",
+    keywords: ["asake", "ahmed ololade", "mr money", "lonely at the top", "asake certifications"],
+  },
+  {
+    title: "Omah Lay",
+    path: "/afrobeats/omah-lay",
+    section: "Afrobeats",
+    description: "Omah Lay's 61 certifications across 9 countries and 70 official chart entries, verified at source.",
+    keywords: ["omah lay", "understand", "soso", "boy alone", "omah lay certifications"],
+  },
+  {
+    title: "Seyi Vibez",
+    path: "/afrobeats/seyi-vibez",
+    section: "Afrobeats",
+    description: "Seyi Vibez's 103 certifications across 1 country and 114 official chart entries, verified at source.",
+    keywords: ["seyi vibez", "loseyi professor", "memory card", "seyi vibez certifications"],
+  },
+  {
+    title: "Wizkid — Live Charts",
+    path: "/afrobeats/wizkid/live",
+    section: "Afrobeats",
+    description: "Where every Wizkid release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    keywords: ["wizkid live charts", "wizkid charting now", "wizkid today"],
+  },
+  {
+    title: "Davido — Live Charts",
+    path: "/afrobeats/davido/live",
+    section: "Afrobeats",
+    description: "Where every Davido release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    keywords: ["davido live charts", "davido charting now", "davido today"],
+  },
+  {
+    title: "Rema — Live Charts",
+    path: "/afrobeats/rema/live",
+    section: "Afrobeats",
+    description: "Where every Rema release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    keywords: ["rema live charts", "rema charting now", "rema today"],
+  },
+  {
+    title: "Tems — Live Charts",
+    path: "/afrobeats/tems/live",
+    section: "Afrobeats",
+    description: "Where every Tems release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    keywords: ["tems live charts", "tems charting now", "tems today"],
+  },
+  {
+    title: "Tyla — Live Charts",
+    path: "/afrobeats/tyla/live",
+    section: "Afrobeats",
+    description: "Where every Tyla release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    keywords: ["tyla live charts", "tyla charting now", "tyla today"],
+  },
+  {
+    title: "Ayra Starr — Live Charts",
+    path: "/afrobeats/ayra-starr/live",
+    section: "Afrobeats",
+    description: "Where every Ayra Starr release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    keywords: ["ayra starr live charts", "ayra starr charting now", "ayra starr today"],
+  },
+  {
+    title: "Asake — Chart History",
+    path: "/afrobeats/asake/charts",
+    section: "Afrobeats",
+    description: "Every Asake official chart entry and peak — 123 entries and 24 No. 1 placements, country by country.",
+    keywords: ["asake", "ahmed ololade", "mr money", "asake charts", "asake chart history", "asake number ones"],
+  },
+  {
+    title: "Asake — Live Charts",
+    path: "/afrobeats/asake/live",
+    section: "Afrobeats",
+    description: "Where every Asake release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    keywords: ["asake live charts", "asake charting now", "asake today"],
+  },
+  {
+    title: "Omah Lay — Chart History",
+    path: "/afrobeats/omah-lay/charts",
+    section: "Afrobeats",
+    description: "Every Omah Lay official chart entry and peak — 70 entries and 6 No. 1 placements, country by country.",
+    keywords: ["omah lay", "understand", "soso", "omah lay charts", "omah lay chart history", "omah lay number ones"],
+  },
+  {
+    title: "Omah Lay — Live Charts",
+    path: "/afrobeats/omah-lay/live",
+    section: "Afrobeats",
+    description: "Where every Omah Lay release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    keywords: ["omah lay live charts", "omah lay charting now", "omah lay today"],
+  },
+  {
+    title: "Seyi Vibez — Chart History",
+    path: "/afrobeats/seyi-vibez/charts",
+    section: "Afrobeats",
+    description: "Every Seyi Vibez official chart entry and peak — 114 entries and 11 No. 1 placements, country by country.",
+    keywords: ["seyi vibez", "loseyi professor", "memory card", "seyi vibez charts", "seyi vibez chart history", "seyi vibez number ones"],
+  },
+  {
+    title: "Seyi Vibez — Live Charts",
+    path: "/afrobeats/seyi-vibez/live",
+    section: "Afrobeats",
+    description: "Where every Seyi Vibez release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    keywords: ["seyi vibez live charts", "seyi vibez charting now", "seyi vibez today"],
+  },
 ];
 
 // Score a doc against a query. Higher = better. 0 = no match.
+// This site is about Burna Boy. The Afrobeats Board's 25 docs are about other
+// artists, and their titles contain the same generic words his pages compete
+// for — ten of them are literally "<Artist> — Live Charts", so a search for
+// "charts" scored them all above his own Chart Records page and filled the
+// palette's eight slots. They are damped so a board page can only outrank his
+// when it genuinely matches better: an artist's name still wins outright,
+// because that scores on an exact title or keyword rather than a substring.
+const SECTION_WEIGHT: Record<string, number> = { Afrobeats: 0.7 };
+
 function score(doc: SearchDoc, q: string): number {
+  return raw(doc, q) * (SECTION_WEIGHT[doc.section] ?? 1);
+}
+
+function raw(doc: SearchDoc, q: string): number {
   const title = doc.title.toLowerCase();
   const desc = doc.description.toLowerCase();
   if (title === q) return 100;

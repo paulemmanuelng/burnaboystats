@@ -33,12 +33,18 @@ export function pageMetadata(opts: {
   languages?: Record<string, string>;
   /** Open Graph locale, e.g. "es_ES". Defaults to en_US. */
   locale?: string;
+  /** Keep the page out of the index while still following its links. Used for
+   *  a page that exists for readers but has no data of its own yet — three
+   *  near-identical "sweep scheduled" pages are thin content until they carry
+   *  figures, and this flips off on its own the week they do. */
+  noindex?: boolean;
 }): Metadata {
   const ogTitle = opts.shareTitle ?? opts.title;
   const ogDescription = opts.shareDescription ?? opts.description;
   return {
     title: opts.title,
     description: opts.description,
+    ...(opts.noindex ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: opts.path,
       ...(opts.languages ? { languages: opts.languages } : {}),
@@ -68,6 +74,11 @@ export function datasetJsonLd(opts: {
   path: string;
   keywords: string[];
   variableMeasured: string[];
+  /** Who the dataset is ABOUT. Defaults to Burna Boy, which is every page on
+   *  the site except the Afrobeats Board — where declaring his name on another
+   *  artist's chart record would tell a search engine the page is about the
+   *  wrong entity. Pass the artist's name and Spotify URL there. */
+  about?: { name: string; sameAs?: string[] };
 }) {
   return {
     "@context": "https://schema.org",
@@ -79,7 +90,11 @@ export function datasetJsonLd(opts: {
     isAccessibleForFree: true,
     license: "https://creativecommons.org/licenses/by/4.0/",
     creator: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
-    about: { "@type": "MusicGroup", name: "Burna Boy" },
+    about: {
+      "@type": "MusicGroup",
+      name: opts.about?.name ?? "Burna Boy",
+      ...(opts.about?.sameAs ? { sameAs: opts.about.sameAs } : {}),
+    },
     variableMeasured: opts.variableMeasured,
   };
 }
@@ -92,6 +107,7 @@ export const SEGMENT_LABELS: Record<string, string> = {
   "by-the-numbers": "By the Numbers",
   visualized: "Visualized",
   charts: "Official Charts",
+  live: "Live Charts",
   awards: "Awards",
   tours: "Tours & Live",
   festivals: "Festivals & Shows",
@@ -102,6 +118,17 @@ export const SEGMENT_LABELS: Record<string, string> = {
   "africas-biggest": "Africa's Biggest",
   updates: "Latest Updates",
   timeline: "Career Timeline",
+  afrobeats: "The Afrobeats Board",
+  // Board artists, so /afrobeats/<slug>/charts reads as words in the trail.
+  wizkid: "Wizkid",
+  davido: "Davido",
+  rema: "Rema",
+  tems: "Tems",
+  tyla: "Tyla",
+  "ayra-starr": "Ayra Starr",
+  asake: "Asake",
+  "omah-lay": "Omah Lay",
+  "seyi-vibez": "Seyi Vibez",
   "dai-dai": "The Dai Dai Story",
   share: "Stat Cards",
   faq: "FAQ",

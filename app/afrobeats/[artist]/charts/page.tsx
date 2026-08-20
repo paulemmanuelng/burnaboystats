@@ -1,0 +1,213 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import styles from "../../../records/charts/charts.module.css";
+import KeepExploring from "../../../components/KeepExploring";
+import MobileOfficialCharts from "../../../components/MobileOfficialCharts";
+import ChartExplorer from "../../../components/ChartExplorer";
+import bar from "../artist.module.css";
+import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
+import { numberOnes as burnaNo1s, chartEntryCount as burnaEntries } from "../../../data/charts";
+import {
+  artistBySlug,
+  afrobeatsArtists,
+  countryMeta,
+  chartEntries,
+  chartTerritories,
+  chartNo1s,
+  type AfroArtist,
+} from "../../../data/afrobeats";
+
+export const dynamicParams = false;
+export function generateStaticParams() {
+  // Only artists whose registers have actually been read have a chart board.
+  return afrobeatsArtists.filter((a) => a.charts.length > 0).map((a) => ({ artist: a.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ artist: string }> }) {
+  const { artist: slug } = await params;
+  const a = artistBySlug(slug);
+  if (!a) return {};
+  return pageMetadata({
+    title: `${a.name} Chart History — ${chartNo1s(a)} No.1s & Chart Peaks`,
+    description: `Every ${a.name} official chart entry and peak position worldwide — ${chartEntries(a)} entries across ${chartTerritories(a)} territories, read from each country's principal national chart.`,
+    path: `/afrobeats/${a.slug}/charts`,
+    shareTitle: `${a.name} — Official Chart Peaks`,
+    shareDescription: `${chartEntries(a)} entries, ${chartTerritories(a)} territories, ${chartNo1s(a)} No. 1s.`,
+  });
+}
+
+/** The explorer wants releases; the board stores them by kind. Albums and
+ *  singles only — the sweeps record a featured credit as the release it is. */
+const split = (a: AfroArtist) => ({
+  albums: a.charts.filter((r) => r.kind === "Albums"),
+  singles: a.charts.filter((r) => r.kind === "Singles"),
+});
+
+export default async function AfroArtistChartsPage({
+  params,
+}: {
+  params: Promise<{ artist: string }>;
+}) {
+  const { artist: slug } = await params;
+  const a = artistBySlug(slug);
+  if (!a || a.charts.length === 0) notFound();
+
+  const { albums, singles } = split(a);
+  const entries = chartEntries(a);
+  const territories = chartTerritories(a);
+  const no1s = chartNo1s(a);
+  const releases = a.charts.length;
+
+  // Only the territories this artist has actually charted in, so the filter
+  // rail is their record rather than a list of places to find nothing in.
+  const codes = [...new Set(a.charts.flatMap((r) => r.entries.map((e) => e.c)))].sort((x, y) =>
+    countryMeta(x).name.localeCompare(countryMeta(y).name)
+  );
+  const countries = Object.fromEntries(codes.map((c) => [c, countryMeta(c)]));
+
+  // Artwork comes from the release itself — the site's own cover lookup only
+  // knows Burna's catalogue. A map, not a function: this is a server component.
+  const covers = Object.fromEntries(a.charts.map((r) => [r.title, r.cover]));
+
+  // Most-charted first, which is also the mobile rail's order of usefulness.
+  const railOrder = [...codes].sort(
+    (x, y) =>
+      a.charts.filter((r) => r.entries.some((e) => e.c === y)).length -
+      a.charts.filter((r) => r.entries.some((e) => e.c === x)).length
+  );
+
+  const dataset = datasetJsonLd({
+    name: `${a.name} official chart peaks by country`,
+    description: `${a.name}'s peak positions on official singles and album charts across ${territories} territories — every charting release and its highest position, country by country, including ${no1s} No. 1 peaks.`,
+    path: `/afrobeats/${a.slug}/charts`,
+    keywords: [a.name, "chart positions", "official charts", "peak chart position", "Afrobeats charts"],
+    variableMeasured: ["Peak chart position", "Country / territory", "Release", "Chart"],
+    about: { name: a.name, sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`] },
+  });
+
+  const stats = [
+    { num: entries, label: "Chart entries", note: "official charts only" },
+    { num: no1s, label: "No. 1 peaks", note: "placements, not releases" },
+    { num: territories, label: "Territories", note: "national charts" },
+    { num: releases, label: "Charting releases", note: "albums and singles" },
+  ];
+
+  const sourceNote = `Peaks on each country's principal national chart, the same standard used for Burna Boy. Airplay, genre and platform charts excluded.`;
+
+  return (
+    <main id="content">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
+
+      {/* Mobile keeps its own dedicated charts screen — the peak pills, the
+          country rail and the grouping are the whole point of the page, and a
+          flat list would throw all three away. */}
+      <MobileOfficialCharts
+        albums={albums}
+        singles={singles}
+        features={[]}
+        countries={countries}
+        entryCount={entries}
+        territoryCount={territories}
+        numberOnes={no1s}
+        releaseCount={releases}
+        covers={covers}
+        countryRail={railOrder}
+        backHref={`/afrobeats/${a.slug}`}
+        backLabel={`${a.name} · charts`}
+        heading={{ lead: a.name, gold: "charts" }}
+        lede={`${entries} entries across ${territories} territories, ${no1s} of them at No. 1 — every peak read from the country's own chart.`}
+        sourceNote={sourceNote}
+        showActionBar={false}
+        territoryNote="national charts"
+      />
+
+      <div className={styles.desktopOnly}>
+        <nav className={bar.crumbs} aria-label="Breadcrumb">
+          <Link href="/afrobeats">The Afrobeats Board</Link>
+          <span aria-hidden="true">/</span>
+          <Link href={`/afrobeats/${a.slug}`}>{a.name}</Link>
+          <span aria-hidden="true">/</span>
+          <span className={bar.crumbCurrent}>Official charts</span>
+        </nav>
+
+        {/* ── Hero ───────────────────────────────────────────────── */}
+        <section className={styles.heroWrap}>
+          <div className={styles.kicker}>Peak positions worldwide</div>
+          <h1 className={styles.h1}>
+            {a.name} <span className="inkText">Charts</span>
+          </h1>
+          <p className={styles.lede}>
+            {/* A single expression: JSX drops the space after an expression when
+                the sentence wraps to the next line, which published "24of them". */}
+            {`${a.name}’s peak positions on the world’s official charts — ${entries} entries across ${territories} territories, ${no1s} of them at No. 1, each read from the country’s own principal chart rather than a platform or genre listing.`}
+          </p>
+
+          <div className={styles.statGrid}>
+            {stats.map((s) => (
+              <div key={s.label} className={styles.statCell}>
+                <div className={styles.statNum}>{s.num}</div>
+                <div className={styles.statLabel}>{s.label}</div>
+                <div className={styles.statNote}>{s.note}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <div className={styles.explorerWrap}>
+          <ChartExplorer
+            albums={albums}
+            singles={singles}
+            features={[]}
+            countries={countries}
+            covers={covers}
+          />
+        </div>
+
+        {/* ── Where the charts come from ─────────────────────────── */}
+        <section className={styles.sourceWrap}>
+          <div className={styles.sourceGrid}>
+            <p className={styles.source}>
+              Peak positions on each country&apos;s principal national chart — the Official Charts
+              Company, SNEP, GfK, FIMI, PROMUSICAE, ARIA, Recorded Music NZ, TurnTable, The Official
+              SA Charts and their equivalents, with Billboard&apos;s charts used where a territory
+              publishes none of its own. Genre listings, below-the-main-chart &ldquo;bubbling&rdquo;
+              sections and platform charts are excluded, as are airplay charts except in the few
+              countries that publish no non-airplay chart at all. Counted by exactly the standard
+              behind Burna Boy&apos;s{" "}
+              <Link href="/records/charts">{burnaEntries} entries and {burnaNo1s} No. 1s</Link>, so
+              the two records can be read side by side. The board is reviewed weekly.
+            </p>
+            <div className={styles.splitPanel}>
+              <div className={styles.splitKicker}>This artist&apos;s record</div>
+              <div className={styles.splitList}>
+                <div className={styles.splitRow}>
+                  <span className={styles.splitNum}>{entries}</span>
+                  <span className={styles.splitLabel}>official chart entries</span>
+                </div>
+                <div className={styles.splitRow}>
+                  <span className={styles.splitNum}>{territories}</span>
+                  <span className={styles.splitLabel}>territories charted in</span>
+                </div>
+                <div className={styles.splitRow}>
+                  <span className={styles.splitNum}>{no1s}</span>
+                  <span className={styles.splitLabel}>peaks at No. 1</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Onward ─────────────────────────────────────────────── */}
+        <section className={styles.actionWrap}>
+          <div className={styles.actions}>
+            <Link href={`/afrobeats/${a.slug}`} className="btn btnSecondary">← {a.name}</Link>
+            <Link href="/afrobeats" className="btn btnPrimary">The Afrobeats Board ↗</Link>
+            <Link href="/records/charts" className="btn btnSecondary">Burna Boy&apos;s charts ↗</Link>
+          </div>
+        </section>
+
+        <KeepExploring current="/afrobeats" />
+      </div>
+    </main>
+  );
+}

@@ -32,6 +32,7 @@ const TOKENS = [
   ["--cyan", "Diamond · Top 10"],
   ["--silver", "Platinum · Top 40"],
   ["--green", "Live · positive"],
+  ["--live", "Live-data pulse"],
 ];
 
 export default function PrimitivesPage() {
@@ -58,6 +59,17 @@ export default function PrimitivesPage() {
             </div>
           ))}
         </div>
+        <div className={styles.surfaces}>
+          <div className={styles.surface} style={{ background: "var(--bg)" }}>--bg</div>
+          <div className={styles.surface} style={{ background: "var(--bg-soft)" }}>--bg-soft</div>
+          <div className={styles.surface} style={{ background: "var(--bg-soft-2)" }}>--bg-soft-2</div>
+        </div>
+        <p className={styles.note}>
+          The handoff&rsquo;s spec names alias onto these: <code>--color-bg</code>,{" "}
+          <code>--color-surface</code>, <code>--color-surface-2</code>, <code>--color-divider</code>,{" "}
+          <code>--color-text</code>, <code>--muted</code>, <code>--color-accent</code>. CSS lifted
+          from a design file resolves unchanged.
+        </p>
       </section>
 
       <section className={styles.section}>
@@ -73,9 +85,29 @@ export default function PrimitivesPage() {
           </button>
           <button type="button" className="btn btnPrimary" disabled>Disabled</button>
         </div>
+        <div className={`${styles.row} ${styles.blockWrap}`} style={{ marginTop: 14 }}>
+          <button type="button" className="btn btnSecondary btnBlock">Block</button>
+        </div>
         <p className={styles.note}>
           Hover a button: 3px lift, shadow deepens 0 8px 30px → 0 14px 44px.
-          Secondary turns its border and label gold.
+          Secondary turns its border and label gold. The icon button is 36px on a
+          mouse and 44px on touch; the lift is dropped under prefers-reduced-motion.
+        </p>
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.h2}>Segmented control</h2>
+        <fieldset style={{ border: 0, padding: 0, margin: 0 }}>
+          <legend className={styles.kicker} style={{ marginBottom: 8 }}>View</legend>
+          <div className="seg">
+            <label className="segOpt"><input type="radio" name="p-view" defaultChecked /> All</label>
+            <label className="segOpt"><input type="radio" name="p-view" /> Certified</label>
+            <label className="segOpt"><input type="radio" name="p-view" /> Charted</label>
+          </div>
+        </fieldset>
+        <p className={styles.note}>
+          Radio-driven, so it works without JavaScript and reads to a screen reader
+          as one named group. :has() paints the selected segment.
         </p>
       </section>
 
@@ -105,9 +137,17 @@ export default function PrimitivesPage() {
             <tr><td>United Kingdom</td><td>Official Charts Company</td><td>1</td></tr>
             <tr><td>France</td><td>SNEP</td><td>1</td></tr>
             <tr><td>United States</td><td>Billboard Hot 100</td><td>17</td></tr>
+            <tr>
+              <td>Nigeria</td>
+              <td>TurnTable Top 100</td>
+              <td><span className="notReported" title="Not reported by the source">—</span></td>
+            </tr>
           </tbody>
         </table>
-        <p className={styles.note}>Row hover tints gold at 6%. Numerals are tabular.</p>
+        <p className={styles.note}>
+          Row hover tints gold at 6%. Numerals are tabular. The em dash is state E —
+          a figure the source never reported. It reads dim, and it never means zero.
+        </p>
       </section>
 
       <section className={styles.section}>
@@ -119,6 +159,24 @@ export default function PrimitivesPage() {
         <p className={styles.specimenBody}>
           Body copy in Geist. Every certification, chart peak and record —
           sourced line by line, updated the day it changes.
+        </p>
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.h2}>Chrome &amp; focus</h2>
+        <p className={styles.lede} style={{ marginTop: 0 }}>
+          The sticky nav above and the footer below are the real ones. The warm wash
+          behind this page is <code>body::before</code> and the vignette is{" "}
+          <code>body::after</code> — both at negative z-index, so neither can dim
+          content or swallow a click.
+        </p>
+        <div className={styles.row} style={{ marginTop: 16 }}>
+          <a className="ui-link" href="#content">A chrome link</a>
+          <button type="button" className="btn btnSecondary">Tab to me</button>
+        </div>
+        <p className={styles.note}>
+          Every control takes a 2px --gold-bright ring at a 3px offset. Chrome links
+          hold a 24px target on a mouse and 44px on touch.
         </p>
       </section>
     </main>

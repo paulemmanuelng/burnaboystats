@@ -134,8 +134,25 @@
   --color-accent-200: rgba(255, 182, 39, 0.13);
   --color-accent-700: var(--gold);
   --color-neutral-600: #9b9ba3;
+  /* The rest of the spec's ramp, so CSS lifted from a design file resolves
+     rather than silently rendering an empty value. The dark theme flattens
+     400/600 to the bright gold and 700/800 to the base — that is what the
+     design files themselves paint. */
+  --color-accent-400: var(--gold-bright);
+  --color-accent-600: var(--gold-bright);
+  --color-accent-800: var(--gold);
+  --color-neutral-100: rgba(245, 244, 240, 0.08);
+  --color-neutral-300: rgba(245, 244, 240, 0.1);
+  --color-neutral-800: var(--text);
+  --color-neutral-900: var(--bg-soft);
   --font-heading: var(--font-anton);
   --font-body: var(--font-geist-sans);
+  /* Anton ships one cut. Naming the weight stops a heading being asked for a
+     bold the family does not have, which browsers fake by smearing strokes. */
+  --font-heading-weight: 400;
+  /* Live-data green. Distinct from --green (#3ed17f, the "verified/ok" state)
+     because a pulsing live dot next to it must not read as the same signal. */
+  --live: #70e0a0;
 }
 
 /* Figures line up in columns only if the numerals are tabular. The site is
@@ -259,6 +276,15 @@ a {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Paints the glyph, not the line box. background-clip:text fills the PADDING
+     box and clips that to the glyphs, so any ink outside it renders invisible —
+     and Anton's ink overruns every sub-1 line-height on this site. The pad
+     grows the paint area only: on a block it is cancelled by the margin, and on
+     an inline span vertical margins do not apply in the first place. 0.2em, not
+     the 0.12em the spec suggests: measured on the real page, a descender at
+     line-height 0.86 needs 0.119em, which left 0.0px of headroom. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
 }
 
 /* A reusable text-gradient (used on accent words). */
@@ -267,6 +293,15 @@ a {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Paints the glyph, not the line box. background-clip:text fills the PADDING
+     box and clips that to the glyphs, so any ink outside it renders invisible —
+     and Anton's ink overruns every sub-1 line-height on this site. The pad
+     grows the paint area only: on a block it is cancelled by the margin, and on
+     an inline span vertical margins do not apply in the first place. 0.2em, not
+     the 0.12em the spec suggests: measured on the real page, a descender at
+     line-height 0.86 needs 0.119em, which left 0.0px of headroom. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
 }
 
 /* -----------------------------------------------------------
@@ -296,12 +331,20 @@ a {
     background var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .btnPrimary {
-  /* Solid fill declared first so the label never sits over a gradient if the
+  /* Solid fill declared first so the label never sits over nothing if the
      gradient fails to paint. */
-  /* Flat gold. The design fills this with --color-accent; the gradient here
-     was ours, and it is what the label was being composited against. */
   background-color: var(--gold);
-  background-image: none;
+  /* Gold ramp rather than one flat bright gold, which read as glare at this
+     size. It stays inside the gold family — bright to dim, no orange turn — so
+     the pill reads as lit metal rather than a colour shift.
+     CAUTION, and the reason this line is written this way: a gradient here is
+     what the label was composited against when it rendered orange-on-gold on
+     an iPhone. The three guards that fixed it are all still below — the pinned
+     -webkit-text-fill-color, the filter/blend/opacity resets, and the up-front
+     translateZ that promotes the layer at rest. The ramp is also deliberately
+     narrow: black on its darkest stop is 7.2:1, so even a partial composite
+     could not take the label below AA. */
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
   /* Pure black, pinned twice: WebKit resolves -webkit-text-fill-color ahead of
      `color`. This label was reported rendering orange-on-gold on an iPhone
      while measuring 10.6:1 in every desktop browser — no rule in this codebase
@@ -365,12 +408,22 @@ a {
 /* Once scrolled off the hero (or when the mobile menu is open): a solid,
    blurred bar so nav links stay legible over the content scrolling beneath. */
 .navbar.navScrolled {
-  /* near-solid so links stay legible over busy content regardless of whether
-     backdrop-filter survives the build; blur is a bonus where supported */
+  /* Near-solid by default so links stay legible over busy content on a browser
+     with no backdrop-filter — one that ignores the blur below, as CSS already
+     does for a property it doesn't know. Where the blur IS supported the bar
+     drops to the design's own 0.92 and the frost does the legibility work.
+     Only the background moves inside @supports: the blur declarations cannot
+     live there, because the CSS minifier drops a declaration whose property
+     is the very thing the condition tests, and the bar shipped unblurred. */
   background-color: rgba(10, 10, 11, 0.96);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* Unprefixed only — the build adds -webkit- itself. Writing the prefixed
+     line by hand made the CSS pipeline collapse the pair to the prefixed form
+     alone, which Firefox does not read, so the bar was flat there. */
+  backdrop-filter: blur(14px);
   border-bottom-color: var(--line);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .navbar.navScrolled { background-color: rgba(10, 10, 11, 0.92); }
 }
 .navInner {
   display: flex;
@@ -400,13 +453,6 @@ a {
   .navRight {
     gap: 10px;
   }
-}
-/* Between 1240 and 1360 the bar loses its outer padding and closes the link
-   gaps rather than wrapping — the last step before the hamburger takes over. */
-@media (max-width: 1360px) {
-  .navInner { padding-inline: 32px; }
-  .navLinks { gap: 12px; }
-  .navRight { gap: 12px; }
 }
 .brand {
   font-family: var(--font-anton), sans-serif;
@@ -459,6 +505,19 @@ a {
 }
 .navLinks a:hover::after {
   width: 100%;
+}
+
+/* Between 900 and 1360 the bar loses its outer padding and closes the link
+   gaps rather than wrapping — the last step before the hamburger takes over.
+   It must sit AFTER the base .navLinks rules: it used to live above them, so
+   at equal specificity the base won and every declaration in here was dead.
+   Tightened when Afrobeats became the tenth link (17 Aug 2026) — with the
+   block live again at 1280 the bar fits with room to spare. */
+@media (max-width: 1360px) {
+  .navInner { padding-inline: 24px; }
+  .navLinks { gap: 10px; margin-left: 18px; }
+  .navLinks a { letter-spacing: 0.1em; font-size: 12px; }
+  .navRight { gap: 10px; }
 }
 
 /* Hamburger toggle — hidden on desktop, shown on mobile */
@@ -654,7 +713,7 @@ a {
 .cardNum {
   font-family: var(--font-display), sans-serif;
   color: var(--gold);
-  font-weight: 700;
+  font-weight: 400; /* Anton has no bold cut */
   font-size: 1.05rem;
 }
 .cardMeta {
@@ -718,7 +777,7 @@ a.fact:hover {
 }
 .tYear {
   font-family: var(--font-display), sans-serif;
-  font-weight: 700;
+  font-weight: 400; /* Anton has no bold cut */
   color: var(--gold);
   font-size: 1.15rem;
 }
@@ -968,7 +1027,7 @@ a.fact:hover {
 .modalTitle {
   font-family: var(--font-display), sans-serif;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 400; /* Anton has no bold cut */
 }
 .spotifyBtn {
   display: inline-flex;
@@ -1408,8 +1467,10 @@ a[class*="__certRow"]:focus-visible,
   background: color-mix(in srgb, var(--gold) 18%, transparent);
 }
 
-/* Icon-only button. 44px, not the base sheet's 36px — the design's
-   accessibility floor for a tap target is 44 and this ships on phones. */
+/* Icon-only button. 36px on a mouse, which is the base sheet's size and what
+   the design files draw; 44px on touch, which is the accessibility floor this
+   handoff sets and the same step the chrome-link rule takes. The comment here
+   used to claim 44 while the rule set 36 — on a phone it was 36. */
 .btnIcon {
   /* Transparent by default, per the base sheet — a quiet control that only
      picks up colour on hover. It is not a filled circle. */
@@ -1419,6 +1480,12 @@ a[class*="__certRow"]:focus-visible,
   padding: 0;
   background: transparent;
   border-color: transparent;
+}
+@media (pointer: coarse) {
+  .btnIcon {
+    width: 44px;
+    height: 44px;
+  }
 }
 
 .tag {
@@ -1541,12 +1608,29 @@ a[class*="__certRow"]:focus-visible,
 
 /* The nav's gold action. Slightly shorter than a page button so it sits
    comfortably in the bar; hidden on mobile, where the tab bar takes over. */
+/* The nav's Stat card action. It carries .btnPrimary for its shape and type,
+   but NOT its gold fill: the bar sits on every page, and the Stat card is never
+   any page's primary action. One gold action per screen — on the home page that
+   is "View certifications", and a second gold pill 400px above it was competing
+   with it. This is the one change here that touches every route. */
 .navStatCard {
   height: 38px;
   padding: 0 18px;
   font-size: 11.5px;
   gap: 8px;
   flex: none;
+  background-color: transparent;
+  background-image: none;
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  border-color: rgba(245, 244, 240, 0.42);
+  box-shadow: none;
+}
+.navStatCard:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  -webkit-text-fill-color: var(--gold);
+  box-shadow: none;
 }
 @media (max-width: 900px) {
   .navStatCard { display: none; }

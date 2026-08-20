@@ -320,14 +320,29 @@
 }
 .inlineLink:hover { color: var(--gold-bright); }
 
+/* A row of footer actions. This used to be `styles.actions`, which was never
+   declared — so the container rendered with className={undefined} and the two
+   pills sat as inline boxes on a text baseline with no gap. That, plus .back
+   overriding the button primitive below, is why they did not line up. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+/* .back was written as a standalone text link and is now composed with
+   `btn btnSecondary` at both call sites. It must not fight the primitive: no
+   display and no font-size of its own, or the pill stops being flex-centred and
+   its label sets a half-pixel larger than the button beside it. It keeps only
+   its own top margin, for the page where it stands alone. */
 .back {
-  display: inline-block;
   margin: 26px 0 0;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.85rem;
   color: var(--gold);
   text-decoration: none;
 }
+.actions .back { margin-top: 0; }
 .back:hover { text-decoration: underline; }
 
 @media (max-width: 620px) {
@@ -586,6 +601,7 @@
 }
 .source a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
 .back { margin-top: 20px; }
+.actions .back { margin-top: 0; }
 
 @media (max-width: 1239px) {
   .wide, .summaryGrid { padding-inline: 32px; }
