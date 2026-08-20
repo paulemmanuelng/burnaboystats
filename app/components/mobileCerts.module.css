@@ -484,3 +484,50 @@
   background-color: var(--bg-soft);
   border: 1px solid var(--line);
 }
+
+/* The two onward boards, side by side under the ledger. Sized for a thumb, not
+   scaled down from the desktop panels: 52px tall clears the 44px floor with
+   room, and an even split keeps them equal in weight — neither is the primary
+   action on this screen, the stat-card bar below is. */
+.boards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 14px 18px 4px;
+}
+.boardBtn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 52px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg-soft);
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
+}
+.boardBtn:active { background: var(--bg-soft-2); }
+.boardLabel { flex: 1; }
+.boardGo { color: var(--gold); font-size: 12px; }
+/* The live board keeps the green it uses everywhere else, so the two buttons
+   say which kind of record they lead to before the label is read. */
+.boardLive .boardGo { color: var(--live, #70e0a0); }
+.boardDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--live, #70e0a0);
+  flex: none;
+}
+
+/* At 320px the two labels stop fitting side by side, so they stack. */
+@media (max-width: 359px) {
+  .boards { grid-template-columns: 1fr; }
+}

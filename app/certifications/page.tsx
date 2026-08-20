@@ -95,6 +95,8 @@ export default function CertificationsPage() {
         countryCount={countryCount}
         portrait={BURNA.image}
         portraitSlug="burna-boy"
+        chartsHref="/records/charts"
+        liveHref="/live-charts"
       />
 
       <div className={styles.desktopOnly}>

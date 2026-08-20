@@ -55,6 +55,8 @@ export default function MobileCerts({
   covers,
   portrait,
   portraitSlug,
+  chartsHref,
+  liveHref,
   backHref = "/",
   backLabel = "Certifications",
   lede,
@@ -80,6 +82,10 @@ export default function MobileCerts({
   portrait?: string;
   /** Which artist's treatment to use — see app/lib/portraitArt.ts. */
   portraitSlug?: string;
+  /** This artist's official chart peaks, if they have a board. */
+  chartsHref?: string;
+  /** This artist's live board, if they have one. */
+  liveHref?: string;
   /** The board's screens end in the five-tab bar instead of an action bar. */
   showActionBar?: boolean;
 }) {
@@ -289,6 +295,30 @@ export default function MobileCerts({
           {expanded ? `Show the top ${ROWS_SHOWN}` : `All ${matching.length} releases`}
           <span aria-hidden="true">{expanded ? "↑" : `+${hidden}`}</span>
         </button>
+      )}
+
+      {/* The two other boards, side by side. The desktop page carries these as
+          full-width panels, but both sat inside .desktopOnly — so on a phone
+          this screen was a dead end: no way to reach the chart peaks or the
+          live board without going back out through the hub. Under the ledger
+          is where they belong, because that is the point a reader has finished
+          with the plaques and wants the next kind of record. */}
+      {(chartsHref || liveHref) && (
+        <div className={styles.boards}>
+          {chartsHref && (
+            <Link href={chartsHref} className={styles.boardBtn}>
+              <span className={styles.boardLabel}>Chart peaks</span>
+              <span className={styles.boardGo} aria-hidden="true">↗</span>
+            </Link>
+          )}
+          {liveHref && (
+            <Link href={liveHref} className={`${styles.boardBtn} ${styles.boardLive}`}>
+              <span className={styles.boardDot} aria-hidden="true" />
+              <span className={styles.boardLabel}>Live charts</span>
+              <span className={styles.boardGo} aria-hidden="true">↗</span>
+            </Link>
+          )}
+        </div>
       )}
 
       {/* ── The dated log ─────────────────────────────────────────── */}
