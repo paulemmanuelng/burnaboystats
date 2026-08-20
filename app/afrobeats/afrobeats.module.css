@@ -354,3 +354,10 @@
   text-transform: uppercase;
   color: var(--gold);
 }
+
+/* The whole desktop page hides below the breakpoint now that the phone has a
+   screen of its own — it used to reflow into two cramped columns. */
+.desktopBody { display: block; }
+@media (max-width: 900px) {
+  .desktopBody { display: none; }
+}
