@@ -200,6 +200,14 @@
 .zoomBtn:hover:not(:disabled) { border-color: var(--gold); background: var(--bg-soft-2); }
 .zoomBtn:disabled { opacity: 0.4; cursor: default; }
 
+/* 34px is right beside a mouse; a thumb gets the 44px floor, the same split the
+   icon button primitive makes. The country shapes themselves stay as geography
+   draws them — WCAG's essential-size exception — and the phone screen carries
+   the list equivalent for anyone who can't work the map. */
+@media (pointer: coarse) {
+  .zoomBtn { width: 44px; height: 44px; }
+}
+
 /* countries with no documented show — the muted base map */
 .off { fill: var(--bg-soft-2); stroke: rgba(12, 10, 9, 0.9); stroke-width: 0.4; }
 
