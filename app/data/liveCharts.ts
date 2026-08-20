@@ -2284,17 +2284,11 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 4,
+        "numberOnes": 3,
         "entries": [
           {
             "country": "FR",
             "name": "France",
-            "position": 1,
-            "movement": 0
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
             "position": 1,
             "movement": 0
           },
@@ -2312,39 +2306,20 @@
             "movement": 0
           },
           {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 2,
-            "movement": 18
-          },
-          {
             "country": "NL",
             "name": "Netherlands",
             "position": 2,
             "movement": 8
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 2,
+            "movement": -1
+          },
+          {
             "country": "PL",
             "name": "Poland",
-            "position": 2,
-            "movement": 1
-          },
-          {
-            "country": "SI",
-            "name": "Slovenia",
-            "position": 2,
-            "movement": 73
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 2,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
             "position": 2,
             "movement": 3
           },
@@ -2355,28 +2330,47 @@
             "movement": 0
           },
           {
-            "country": "AT",
-            "name": "Austria",
-            "position": 3,
-            "movement": -1
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 3,
-            "movement": -1
-          },
-          {
             "country": "CA",
             "name": "Canada",
-            "position": 4,
-            "movement": 0
+            "position": 3,
+            "movement": 1
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 3,
+            "movement": 2
           },
           {
             "country": "DE",
             "name": "Germany",
             "position": 4,
             "movement": -2
+          },
+          {
+            "country": "HU",
+            "name": "Hungary",
+            "position": 4,
+            "movement": 26
+          },
+          {
+            "country": "SI",
+            "name": "Slovenia",
+            "position": 4,
+            "movement": 84
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 4,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 5,
+            "movement": -3
           },
           {
             "country": "DK",
@@ -2392,22 +2386,22 @@
             "status": "new"
           },
           {
-            "country": "IT",
-            "name": "Italy",
-            "position": 6,
+            "country": "ES",
+            "name": "Spain",
+            "position": 5,
             "movement": -1
           },
           {
-            "country": "ES",
-            "name": "Spain",
+            "country": "BE",
+            "name": "Belgium",
             "position": 6,
-            "movement": -2
+            "movement": -4
           },
           {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 9,
-            "movement": 8
+            "country": "IT",
+            "name": "Italy",
+            "position": 7,
+            "movement": -2
           },
           {
             "country": "BR",
@@ -2433,8 +2427,13 @@
             "country": "MD",
             "name": "Moldova",
             "position": 13,
-            "movement": null,
-            "status": "new"
+            "movement": -11
+          },
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 14,
+            "movement": 3
           },
           {
             "country": "ID",
@@ -2452,8 +2451,8 @@
           {
             "country": "LK",
             "name": "Sri Lanka",
-            "position": 17,
-            "movement": -9
+            "position": 19,
+            "movement": -10
           },
           {
             "country": "AU",
@@ -2465,43 +2464,43 @@
             "country": "MY",
             "name": "Malaysia",
             "position": 26,
-            "movement": -4
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 35,
-            "movement": 24
+            "movement": -19
           },
           {
             "country": "BY",
             "name": "Belarus",
-            "position": 52,
-            "movement": -9
+            "position": 53,
+            "movement": -10
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 55,
+            "movement": 4
           },
           {
             "country": "DO",
             "name": "Dominican Republic",
-            "position": 65,
-            "movement": -34
+            "position": 67,
+            "movement": -36
           },
           {
             "country": "KG",
             "name": "Kyrgyzstan",
-            "position": 74,
-            "movement": -18
+            "position": 75,
+            "movement": -16
           },
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 97,
+            "position": 98,
             "movement": null,
             "status": "new"
           },
           {
             "country": "HK",
             "name": "Hong Kong",
-            "position": 114,
+            "position": 125,
             "movement": null,
             "status": "new"
           }
@@ -2676,8 +2675,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 32,
-            "movement": 0
+            "position": 33,
+            "movement": -1
           },
           {
             "country": "DK",
@@ -3458,17 +3457,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 19,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "DM",
             "name": "Dominica",
             "position": 21,
             "movement": 2
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 21,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "SZ",
@@ -4098,8 +4097,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 27,
-            "movement": -1
+            "position": 29,
+            "movement": -3
           },
           {
             "country": "NE",
@@ -4123,7 +4122,8 @@
             "country": "BW",
             "name": "Botswana",
             "position": 84,
-            "movement": 8
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -4207,7 +4207,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 78,
-            "movement": 1
+            "movement": 2
           }
         ]
       }
@@ -4404,7 +4404,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 20,
+            "position": 22,
             "movement": null,
             "status": "new"
           }
@@ -4462,42 +4462,6 @@
     "kind": "song"
   },
   {
-    "title": "For My Hand",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AI",
-            "name": "Anguilla",
-            "position": 47,
-            "movement": 4
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 72,
-            "movement": 3
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 75,
-            "movement": 0
-          },
-          {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 92,
-            "movement": 2
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Outside",
     "platforms": [
       {
@@ -4532,6 +4496,36 @@
       }
     ],
     "kind": "album"
+  },
+  {
+    "title": "For My Hand",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AI",
+            "name": "Anguilla",
+            "position": 37,
+            "movement": 4
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 72,
+            "movement": 3
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 75,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "Common Person",
@@ -4671,7 +4665,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
+            "position": 28,
             "movement": null,
             "status": "new"
           }
@@ -4690,7 +4684,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
+            "position": 39,
             "movement": null,
             "status": "new"
           }
@@ -4784,25 +4778,6 @@
             "name": "Cape Verde",
             "position": 68,
             "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "Don't Let Me Drown",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 96,
-            "movement": null,
-            "status": "new"
           }
         ]
       }

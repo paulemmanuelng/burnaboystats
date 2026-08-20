@@ -495,7 +495,7 @@
           {
             "country": "SG",
             "name": "Singapore",
-            "position": 29,
+            "position": 33,
             "movement": null,
             "status": "new"
           }
@@ -629,8 +629,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 132,
-            "movement": -14
+            "position": 138,
+            "movement": -20
           }
         ]
       }
@@ -702,6 +702,24 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 41,
+            "movement": -35
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 50,
+            "movement": 47
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -728,18 +746,6 @@
             "name": "South Africa",
             "position": 57,
             "movement": 2
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 39,
-            "movement": -33
           }
         ]
       }
@@ -787,8 +793,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 57,
-            "movement": -2
+            "position": 59,
+            "movement": -4
           }
         ]
       },
@@ -849,7 +855,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 100,
+            "position": 116,
             "movement": null,
             "status": "new"
           }
@@ -887,7 +893,7 @@
           {
             "country": "LU",
             "name": "Luxembourg",
-            "position": 30,
+            "position": 35,
             "movement": null,
             "status": "new"
           },
@@ -969,21 +975,20 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 38,
-            "movement": -33
+            "position": 40,
+            "movement": -35
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": null,
-            "status": "new"
+            "position": 128,
+            "movement": -102
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 150,
-            "movement": -21
+            "position": 151,
+            "movement": -22
           }
         ]
       }
@@ -1001,7 +1006,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 156,
+            "position": 168,
             "movement": null,
             "status": "new"
           }

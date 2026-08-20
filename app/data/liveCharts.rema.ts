@@ -249,6 +249,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 105,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -705,7 +718,7 @@
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 46,
+            "position": 51,
             "movement": null,
             "status": "new"
           },
@@ -713,12 +726,13 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 88,
-            "movement": 1
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 116,
+            "position": 123,
             "movement": null,
             "status": "new"
           }
@@ -1094,16 +1108,15 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 9,
+            "position": 10,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": null,
-            "status": "new"
+            "position": 123,
+            "movement": -103
           }
         ]
       }
@@ -1554,25 +1567,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Moviestar",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 187,
-            "movement": -145
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9325d60121f76e74c613c9f0d463ea0e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Commando - EP",
