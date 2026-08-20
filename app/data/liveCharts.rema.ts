@@ -255,7 +255,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 121,
+            "position": 141,
             "movement": null,
             "status": "new"
           }
@@ -718,7 +718,14 @@
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 51,
+            "position": 62,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 79,
             "movement": null,
             "status": "new"
           },
@@ -726,13 +733,6 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 88,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 134,
             "movement": null,
             "status": "new"
           }
@@ -1108,15 +1108,15 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 10,
+            "position": 15,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 123,
-            "movement": -103
+            "position": 133,
+            "movement": -113
           }
         ]
       }

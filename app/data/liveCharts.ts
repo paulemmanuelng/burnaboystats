@@ -1292,16 +1292,16 @@
             "movement": 0
           },
           {
-            "country": "US",
-            "name": "United States",
-            "position": 151,
-            "movement": 0
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 161,
             "movement": 0
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 162,
+            "movement": -11
           },
           {
             "country": "BZ",
@@ -2284,13 +2284,19 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 3,
+        "numberOnes": 4,
         "entries": [
           {
             "country": "FR",
             "name": "France",
             "position": 1,
             "movement": 0
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 1,
+            "movement": 5
           },
           {
             "country": "SK",
@@ -2306,18 +2312,6 @@
             "movement": 0
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 2,
-            "movement": 8
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 2,
-            "movement": -1
-          },
-          {
             "country": "PL",
             "name": "Poland",
             "position": 2,
@@ -2330,16 +2324,34 @@
             "movement": 0
           },
           {
-            "country": "CA",
-            "name": "Canada",
+            "country": "AT",
+            "name": "Austria",
             "position": 3,
-            "movement": 1
+            "movement": -1
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 3,
+            "movement": 0
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 3,
+            "movement": -2
           },
           {
             "country": "CH",
             "name": "Switzerland",
             "position": 3,
-            "movement": 2
+            "movement": 3
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 4,
+            "movement": 0
           },
           {
             "country": "DE",
@@ -2348,35 +2360,28 @@
             "movement": -2
           },
           {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 4,
-            "movement": 26
-          },
-          {
             "country": "SI",
             "name": "Slovenia",
             "position": 4,
             "movement": 84
           },
           {
-            "country": "ZA",
-            "name": "South Africa",
+            "country": "ES",
+            "name": "Spain",
             "position": 4,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
-            "country": "AT",
-            "name": "Austria",
+            "country": "CZ",
+            "name": "Czech Republic",
             "position": 5,
-            "movement": -3
+            "movement": 12
           },
           {
-            "country": "DK",
-            "name": "Denmark",
+            "country": "IE",
+            "name": "Ireland",
             "position": 5,
-            "movement": 3
+            "movement": 0
           },
           {
             "country": "SA",
@@ -2386,16 +2391,10 @@
             "status": "new"
           },
           {
-            "country": "ES",
-            "name": "Spain",
-            "position": 5,
-            "movement": -1
-          },
-          {
             "country": "BE",
             "name": "Belgium",
             "position": 6,
-            "movement": -4
+            "movement": -5
           },
           {
             "country": "IT",
@@ -2404,10 +2403,24 @@
             "movement": -2
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 10,
-            "movement": -1
+            "country": "HU",
+            "name": "Hungary",
+            "position": 8,
+            "movement": 22
+          },
+          {
+            "country": "MX",
+            "name": "Mexico",
+            "position": 8,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 9,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "RO",
@@ -2417,11 +2430,10 @@
             "status": "new"
           },
           {
-            "country": "MX",
-            "name": "Mexico",
-            "position": 11,
-            "movement": null,
-            "status": "new"
+            "country": "BR",
+            "name": "Brazil",
+            "position": 12,
+            "movement": -5
           },
           {
             "country": "MY",
@@ -2430,23 +2442,10 @@
             "movement": -5
           },
           {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 14,
-            "movement": 3
-          },
-          {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 15,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "MD",
             "name": "Moldova",
-            "position": 15,
-            "movement": -13
+            "position": 16,
+            "movement": -14
           },
           {
             "country": "US",
@@ -2455,34 +2454,55 @@
             "movement": 2
           },
           {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 17,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 19,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "LK",
             "name": "Sri Lanka",
-            "position": 19,
-            "movement": -10
+            "position": 22,
+            "movement": -13
           },
           {
             "country": "AU",
             "name": "Australia",
-            "position": 22,
+            "position": 23,
             "movement": -14
+          },
+          {
+            "country": "PH",
+            "name": "Philippines",
+            "position": 24,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BY",
             "name": "Belarus",
-            "position": 53,
-            "movement": -10
+            "position": 56,
+            "movement": -6
           },
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 55,
-            "movement": 4
+            "position": 62,
+            "movement": -60
           },
           {
             "country": "DO",
             "name": "Dominican Republic",
-            "position": 67,
-            "movement": -36
+            "position": 73,
+            "movement": -42
           },
           {
             "country": "KG",
@@ -2493,14 +2513,14 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 98,
+            "position": 102,
             "movement": null,
             "status": "new"
           },
           {
             "country": "HK",
             "name": "Hong Kong",
-            "position": 126,
+            "position": 132,
             "movement": null,
             "status": "new"
           }
@@ -2670,20 +2690,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 2,
-            "movement": 145
+            "movement": 150
           },
           {
             "country": "NA",
             "name": "Namibia",
             "position": 33,
             "movement": -1
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 55,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "GH",
@@ -2695,13 +2708,20 @@
             "country": "BW",
             "name": "Botswana",
             "position": 61,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 63,
             "movement": 1
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 68,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -3082,7 +3102,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 54,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -3732,7 +3752,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 20,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "BF",
@@ -4092,7 +4112,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 17,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "SZ",
@@ -4121,7 +4141,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 84,
+            "position": 85,
             "movement": null,
             "status": "new"
           }
@@ -4508,7 +4528,7 @@
             "country": "AI",
             "name": "Anguilla",
             "position": 37,
-            "movement": 4
+            "movement": 0
           },
           {
             "country": "BF",
@@ -4730,24 +4750,6 @@
     "kind": "song"
   },
   {
-    "title": "Wetin Man Go Do",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 66,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Love",
     "platforms": [
       {
@@ -4760,6 +4762,24 @@
             "position": 189,
             "movement": null,
             "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Wetin Man Go Do",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 67,
+            "movement": -4
           }
         ]
       }
@@ -4903,7 +4923,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 176,
-            "movement": 2
+            "movement": -7
           }
         ]
       }

@@ -291,8 +291,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 75,
-            "movement": -16
+            "position": 69,
+            "movement": -2
           }
         ]
       }
@@ -400,8 +400,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 167,
-            "movement": 0
+            "position": 170,
+            "movement": -3
           },
           {
             "country": "ZW",
@@ -502,7 +502,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 122,
+            "position": 143,
             "movement": null,
             "status": "new"
           }
@@ -1545,7 +1545,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 40,
-            "movement": -23
+            "movement": -16
           }
         ]
       },
@@ -1842,7 +1842,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 64,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "BF",
@@ -1861,7 +1861,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 141,
-            "movement": -21
+            "movement": -14
           }
         ]
       }
@@ -2093,7 +2093,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 140,
-            "movement": -22
+            "movement": -15
           }
         ]
       },
@@ -2368,7 +2368,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 67,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "BF",
@@ -2385,14 +2385,14 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 90,
-            "movement": 0
+            "position": 94,
+            "movement": -9
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 125,
-            "movement": -22
+            "movement": -15
           }
         ]
       }
@@ -2895,7 +2895,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 152,
-            "movement": -21
+            "movement": -15
           }
         ]
       },
@@ -2939,7 +2939,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 43,
-            "movement": -23
+            "movement": -16
           }
         ]
       },
@@ -2971,13 +2971,13 @@
             "country": "GM",
             "name": "Gambia",
             "position": 65,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 144,
-            "movement": -22
+            "movement": -15
           }
         ]
       },
@@ -3039,13 +3039,13 @@
             "country": "GM",
             "name": "Gambia",
             "position": 23,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 84,
-            "movement": 4
+            "position": 83,
+            "movement": 5
           }
         ]
       }
@@ -3089,7 +3089,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 131,
-            "movement": -22
+            "movement": -15
           }
         ]
       },
@@ -3341,26 +3341,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d5dfc880396e953e316456a394d7353/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "1 Milli",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 149,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Very Special",
     "platforms": [
       {
@@ -3371,13 +3351,33 @@
             "country": "GH",
             "name": "Ghana",
             "position": 157,
-            "movement": -23
+            "movement": -16
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "1 Milli",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 159,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Father",

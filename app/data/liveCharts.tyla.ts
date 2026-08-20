@@ -495,7 +495,7 @@
           {
             "country": "SG",
             "name": "Singapore",
-            "position": 33,
+            "position": 34,
             "movement": null,
             "status": "new"
           }
@@ -629,8 +629,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 156,
-            "movement": -38
+            "position": 164,
+            "movement": -97
           }
         ]
       }
@@ -708,14 +708,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 41,
-            "movement": -35
+            "position": 50,
+            "movement": -41
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 50,
-            "movement": 47
+            "position": 65,
+            "movement": 48
           }
         ]
       },
@@ -855,7 +855,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 118,
+            "position": 138,
             "movement": null,
             "status": "new"
           }
@@ -893,14 +893,14 @@
           {
             "country": "LU",
             "name": "Luxembourg",
-            "position": 35,
+            "position": 56,
             "movement": null,
             "status": "new"
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 72,
+            "position": 83,
             "movement": null,
             "status": "new"
           }
@@ -975,20 +975,20 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 40,
-            "movement": -35
+            "position": 49,
+            "movement": -41
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 128,
-            "movement": -102
+            "position": 138,
+            "movement": -112
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 150,
-            "movement": -21
+            "movement": -15
           }
         ]
       }
@@ -1006,7 +1006,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 197,
+            "position": 199,
             "movement": null,
             "status": "new"
           }
@@ -1141,6 +1141,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "RIGHT NOW",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 149,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   }
 ];
   
