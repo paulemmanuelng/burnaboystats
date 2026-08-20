@@ -5,7 +5,7 @@
   // snapshot beside it knows only today; this knows every day it has watched, so
   // a run — "Dai Dai" at No. 1 on Spotify's global daily chart for 26 days — can
   // be plotted rather than only counted. One row per release, platform and day
-  // (the day's latest reading). Collection began 2026-08-17;
+  // (the day's latest reading). Collection began 2026-08-20;
   // entries older than 430 days are dropped.
   
   export interface RunPoint {
