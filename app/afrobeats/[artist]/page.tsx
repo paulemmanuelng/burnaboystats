@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import styles from "./artist.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import MobileCerts from "../../components/MobileCerts";
+import CertExplorer from "../../components/CertExplorer";
 import { pageMetadata, CANONICAL_ORIGIN, datasetJsonLd } from "../../lib/seo";
 import { tierOf, type Release, type Country } from "../../data/certifications";
 import { opponentOf } from "../../lib/headToHead";
@@ -59,14 +60,9 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
 }
 
 const TIERS: Tier[] = ["Diamond", "Platinum", "Gold", "Silver"];
-const SECTIONS = ["Albums", "Lead singles", "Featured appearances"] as const;
 
 /** Highest tier first, then bigger multipliers — same order the site's own
  *  certification ledger uses, so the two read identically. */
-function sortCerts(a: AfroArtist["releases"][number]["certs"]) {
-  const rank: Record<Tier, number> = { Diamond: 0, Platinum: 1, Gold: 2, Silver: 3 };
-  return [...a].sort((x, y) => rank[x.level] - rank[y.level] || (y.x ?? 1) - (x.x ?? 1));
-}
 
 export default async function AfroArtistPage({ params }: { params: Promise<{ artist: string }> }) {
   const { artist: slug } = await params;
@@ -126,6 +122,14 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
     [...new Set(a.releases.flatMap((r) => r.certs.map((c) => c.c)))].map((code) => [code, countryMeta(code)])
   );
   const mobileCovers = Object.fromEntries(a.releases.map((r) => [r.title, r.cover]));
+
+  // The explorer takes Burna's three groups; the board names them differently
+  // ("Lead singles" / "Featured appearances") but they are the same split.
+  const explorerGroups = {
+    albums: mobileReleases.filter((_, idx) => a.releases[idx].kind === "Albums"),
+    singles: mobileReleases.filter((_, idx) => a.releases[idx].kind === "Lead singles"),
+    features: mobileReleases.filter((_, idx) => a.releases[idx].kind === "Featured appearances"),
+  };
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -284,59 +288,21 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
       </section>
       )}
 
-      {/* ── Release tables ───────────────────────────────────── */}
-      {SECTIONS.map((sec) => {
-        const rows = a.releases.filter((r) => r.kind === sec);
-        if (!rows.length) return null;
-        const n = rows.reduce((x, r) => x + r.certs.length, 0);
-        return (
-          <section key={sec} className={styles.sectionPad} aria-labelledby={`sec-${sec}`}>
-            <div className={styles.sectionHead}>
-              <h2 id={`sec-${sec}`} className={styles.h2}>{sec}</h2>
-              <span className={styles.sectionMeta}>
-                {rows.length} {rows.length === 1 ? "release" : "releases"} · {n}{" "}
-                {n === 1 ? "plaque" : "plaques"}
-              </span>
-            </div>
-            <div className={styles.rows}>
-              {[...rows]
-                .sort((x, y) => y.certs.length - x.certs.length)
-                .map((r) => (
-                  <div key={`${sec}-${r.title}`} className={styles.row}>
-                    <div className={styles.rowHead}>
-                      {r.cover ? (
-                        // eslint-disable-next-line @next/next/no-img-element -- remote artwork at a fixed 44px
-                        <img className={styles.cover} src={r.cover} alt="" width={44} height={44} loading="lazy" />
-                      ) : (
-                        <span className={styles.coverBlank} aria-hidden="true" />
-                      )}
-                      <span className={styles.rowTitle}>{r.title}</span>
-                      <span className={styles.rowCount}>
-                        {r.certs.length} {r.certs.length === 1 ? "plaque" : "plaques"}
-                      </span>
-                    </div>
-                    <div className={styles.rowCerts}>
-                      {sortCerts(r.certs).map((c) => {
-                        const meta = countryMeta(c.c);
-                        return (
-                          <span
-                            key={`${r.title}-${c.c}`}
-                            className={`${styles.cert} ${styles[tierOf(c.level)]}`}
-                            title={`${meta.name} — ${meta.body}`}
-                          >
-                            <span className={styles.flag} aria-hidden="true">{meta.flag}</span>
-                            {plaqueLabel(c)}
-                            <span className={styles.certCountry}>{meta.name}</span>
-                          </span>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </section>
-        );
-      })}
+      {/* ── The ledger, Burna's own explorer ─────────────────── */}
+      {/* The page used to hand-roll its release tables — no tier or country
+          filters, no "Showing X of Y" band, a different pill. Paul's call:
+          every board artist's certs should read exactly like Burna's page, so
+          this is the SAME component, fed this artist's catalogue. The only
+          seam it needed was injectable artwork, the seam MobileCerts already
+          had, because the site's own cover lookup knows one catalogue. */}
+      <CertExplorer
+        albums={explorerGroups.albums}
+        singles={explorerGroups.singles}
+        features={explorerGroups.features}
+        countries={mobileCountries}
+        totalCerts={total}
+        covers={mobileCovers}
+      />
 
       {/* ── Official charts, its own board ───────────────────── */}
       {a.charts.length > 0 && (
