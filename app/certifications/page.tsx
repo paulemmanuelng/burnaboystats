@@ -14,6 +14,9 @@ import {
 } from "../data/certifications";
 import { pageMetadata, datasetJsonLd } from "../lib/seo";
 import { portraitArtFor } from "../lib/portraitArt";
+import { andMore, topBody, topPlatform } from "../lib/boardNotes";
+import { allChartItems, CHART_COUNTRIES, type ChartRelease } from "../data/charts";
+import { livePlatformTotals } from "../data/liveCharts";
 
 export const metadata = pageMetadata({
   title: `Burna Boy Certifications — ${totalAwards()} Awards Across ${countryCount} Countries`,
@@ -44,6 +47,15 @@ const certDataset = datasetJsonLd({
 });
 
 const burnaArt = portraitArtFor("burna-boy");
+
+// Which register and which platform sit behind the two buttons on the phone.
+const burnaBodies = topBody(
+  allChartItems.flatMap((r: ChartRelease) => r.entries),
+  (c) => CHART_COUNTRIES[c]?.body ?? ""
+);
+const burnaChartsNote = andMore(burnaBodies.top, burnaBodies.total);
+const burnaPlats = topPlatform(livePlatformTotals);
+const burnaLiveNote = andMore(burnaPlats.top, burnaPlats.total);
 
 // ── Derived figures for the hero rail and the summary strip ───────────────
 const TIER_ORDER = ["Diamond", "Platinum", "Gold", "Silver"] as const;
@@ -97,6 +109,8 @@ export default function CertificationsPage() {
         portraitSlug="burna-boy"
         chartsHref="/records/charts"
         liveHref="/live-charts"
+        chartsNote={burnaChartsNote}
+        liveNote={burnaLiveNote}
       />
 
       <div className={styles.desktopOnly}>

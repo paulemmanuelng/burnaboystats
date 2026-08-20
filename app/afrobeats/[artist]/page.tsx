@@ -6,6 +6,7 @@ import MobileCerts from "../../components/MobileCerts";
 import { pageMetadata, CANONICAL_ORIGIN, datasetJsonLd } from "../../lib/seo";
 import { tierOf, type Release, type Country } from "../../data/certifications";
 import { opponentOf } from "../../lib/headToHead";
+import { andMore, topBody, topPlatform } from "../../lib/boardNotes";
 import { liveBoardFor } from "../../data/liveBoards";
 import {
   artistBySlug,
@@ -76,6 +77,12 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const total = certCount(a);
   const countries = countryCount(a);
   const rival = opponentOf(a);
+  // Which register and which platform a reader is about to open. Both derived:
+  // "and more" only appears when there genuinely is more than one.
+  const bodies = topBody(a.charts.flatMap((r) => r.entries), (c) => countryMeta(c).body);
+  const chartsNote = andMore(bodies.top, bodies.total);
+  const plats = live ? topPlatform(live.platformTotals) : { total: 0 };
+  const liveNote = andMore(plats.top, plats.total);
   const idx = afrobeatsArtists.findIndex((x) => x.slug === a.slug);
   const next = afrobeatsArtists[(idx + 1) % afrobeatsArtists.length];
 
@@ -153,6 +160,8 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         portraitSlug={a.slug}
         chartsHref={a.charts.length > 0 ? `/afrobeats/${a.slug}/charts` : undefined}
         liveHref={live ? `/afrobeats/${a.slug}/live` : undefined}
+        chartsNote={chartsNote}
+        liveNote={liveNote}
         backHref="/afrobeats"
         backLabel={a.name}
         lede={`Every ${a.name} plaque, read in the issuing body's own register — ${total} across ${countries} ${countries === 1 ? "country" : "countries"}, from ${a.releases.length} certified releases.`}

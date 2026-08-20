@@ -206,8 +206,12 @@ export default function AfrobeatsPage() {
             </Link>
           ))}
           {/* Seven artists in a four-column grid leaves one cell empty. The
-              rule they are all counted by is the honest thing to put in it. */}
-          <Link href="/methodology" className={`${styles.tile} ${styles.tileRule}`}>
+              rule they are all counted by is the honest thing to put in it.
+              This tile and the provenance one beside it used to point at the
+              same bare /methodology, so two tiles with different labels led to
+              the same place. They ask different questions, and the methodology
+              page answers them in two different sections. */}
+          <Link href="/methodology#principles" className={`${styles.tile} ${styles.tileRule}`}>
             <span className={styles.tileBody}>
               <span className={styles.tileTop}>
                 <span className={styles.ruleMark} aria-hidden="true">§</span>
@@ -226,7 +230,7 @@ export default function AfrobeatsPage() {
               four-column grid, and the design fills it with where the figures
               came from — which is the board's whole claim. The date range is
               the two sweep dates, not a typed string. */}
-          <Link href="/methodology" className={`${styles.tile} ${styles.tileRule}`}>
+          <Link href="/methodology#sources" className={`${styles.tile} ${styles.tileRule}`}>
             <span className={styles.tileBody}>
               <span className={styles.ruleKicker}>Provenance</span>
               <span className={styles.ruleName}>Read at source, {sweptRange}</span>
@@ -235,7 +239,7 @@ export default function AfrobeatsPage() {
                 equivalents — re-read weekly. A figure with no register behind it is not
                 published.
               </span>
-              <span className={styles.ruleLink}>Methodology →</span>
+              <span className={styles.ruleLink}>Where the figures come from →</span>
             </span>
           </Link>
         </div>
