@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { count } from "../../../lib/plural";
 import { notFound } from "next/navigation";
 import styles from "../../../records/charts/charts.module.css";
 import KeepExploring from "../../../components/KeepExploring";
@@ -29,10 +30,10 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
   if (!a) return {};
   return pageMetadata({
     title: `${a.name} Chart History — ${chartNo1s(a)} No.1s & Chart Peaks`,
-    description: `Every ${a.name} official chart entry and peak position worldwide — ${chartEntries(a)} entries across ${chartTerritories(a)} territories, read from each country's principal national chart.`,
+    description: `Every ${a.name} official chart entry and peak position worldwide — ${count(chartEntries(a), "entry", "entries")} across ${count(chartTerritories(a), "territory", "territories")}, read from each country's principal national chart.`,
     path: `/afrobeats/${a.slug}/charts`,
     shareTitle: `${a.name} — Official Chart Peaks`,
-    shareDescription: `${chartEntries(a)} entries, ${chartTerritories(a)} territories, ${chartNo1s(a)} No. 1s.`,
+    shareDescription: `${count(chartEntries(a), "entry", "entries")}, ${count(chartTerritories(a), "territory", "territories")}, ${chartNo1s(a)} No. 1s.`,
   });
 }
 
@@ -115,7 +116,7 @@ export default async function AfroArtistChartsPage({
         backHref={`/afrobeats/${a.slug}`}
         backLabel={`${a.name} · charts`}
         heading={{ lead: a.name, gold: "charts" }}
-        lede={`${entries} entries across ${territories} territories, ${no1s} of them at No. 1 — every peak read from the country's own chart.`}
+        lede={`${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}, ${no1s} of them at No. 1 — every peak read from the country's own chart.`}
         sourceNote={sourceNote}
         showActionBar={false}
         territoryNote="national charts"
@@ -139,7 +140,7 @@ export default async function AfroArtistChartsPage({
           <p className={styles.lede}>
             {/* A single expression: JSX drops the space after an expression when
                 the sentence wraps to the next line, which published "24of them". */}
-            {`${a.name}’s peak positions on the world’s official charts — ${entries} entries across ${territories} territories, ${no1s} of them at No. 1, each read from the country’s own principal chart rather than a platform or genre listing.`}
+            {`${a.name}’s peak positions on the world’s official charts — ${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}, ${no1s} of them at No. 1, each read from the country’s own principal chart rather than a platform or genre listing.`}
           </p>
 
           <div className={styles.statGrid}>

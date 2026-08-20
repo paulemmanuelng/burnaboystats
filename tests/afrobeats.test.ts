@@ -450,6 +450,41 @@ describe("hub scatter", () => {
 // a song of the same name the wrong artist's artwork won: Omah Lay's "Reason"
 // wore Asake's Mr. Money With The Vibe sleeve, his "You" wore Davido's 5ive.
 //
+// The hooks make comparative claims — "the only artist who", "more than anyone
+// else" — against data that moves under them. Two shipped wrong: Tems claimed
+// the board's only US Diamond while Wizkid's "One Dance" is also one, and
+// Davido claimed seventeen Nigerian No. 1s and the most in the field when the
+// data says sixteen and Asake has 24 — a claim that contradicted Asake's own
+// hook on the same page. Superlatives get pinned to what the data actually says.
+describe("hooks agree with the data underneath them", () => {
+  const usDiamondHolders = () =>
+    afrobeatsArtists
+      .filter((a) => a.releases.some((r) => r.certs.some((c) => c.c === "US" && c.level === "Diamond")))
+      .map((a) => a.slug)
+      .sort();
+
+  const ngNumberOnes = (slug: string) =>
+    afrobeatsArtists
+      .find((a) => a.slug === slug)!
+      .charts.filter((r) => r.entries.some((e) => e.c === "NG" && e.peak === 1)).length;
+
+  it("no artist can claim the board's ONLY US Diamond — two hold one", () => {
+    expect(usDiamondHolders()).toEqual(["tems", "wizkid"]);
+    for (const a of afrobeatsArtists)
+      expect(a.hook, `${a.slug} hook`).not.toMatch(/only artist in this field/i);
+  });
+
+  it("Asake leads the Nigerian No. 1s, and Davido's hook says his real count", () => {
+    const counts = afrobeatsArtists.map((a) => [a.slug, ngNumberOnes(a.slug)] as const);
+    const top = [...counts].sort((x, y) => y[1] - x[1])[0];
+    expect(top[0]).toBe("asake");
+    const davido = afrobeatsArtists.find((a) => a.slug === "davido")!;
+    expect(ngNumberOnes("davido")).toBe(16);
+    expect(davido.hook).toContain("sixteen");
+    expect(davido.hook, "must not out-claim Asake").not.toMatch(/anyone else|more than any/i);
+  });
+});
+
 // Two artists SHOULD share a cover when the entry is the same recording — a
 // collaboration, or a track on the other's album. Every pair below was checked
 // against Deezer's contributor list, not just its title. A NEW pair appearing

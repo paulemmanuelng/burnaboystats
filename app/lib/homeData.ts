@@ -22,6 +22,7 @@ import { sameTitle, titleKey } from "./titleKey";
 import { isRecentNumberOne, recentNumberOneTitle } from "./recentNumberOnes";
 import { coverFor } from "./covers";
 import { spotifyImage } from "./spotifyImage";
+import { count } from "./plural";
 
 /**
  * Everything the homepage sections need, derived.
@@ -291,7 +292,7 @@ export const albumCards = [...studioAlbums]
       year: a.year,
       cover: a.cover,
       peak: best ? `${best.c} No. ${best.peak}` : null,
-      certs: cert ? `${cert.certs.length} certs` : null,
+      certs: cert ? count(cert.certs.length, "cert", "certs") : null,
     };
   });
 
