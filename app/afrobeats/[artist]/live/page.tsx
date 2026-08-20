@@ -28,6 +28,32 @@ function leadRelease(board: LiveBoard) {
     .sort((x, y) => y.charts - x.charts || x.best - y.best)[0];
 }
 
+/**
+ * The live page's meta description, kept under Google's ~160 characters
+ * whatever the data does. Tails run longest-first; the first that fits wins,
+ * and the shortest is short enough that nothing can overflow it.
+ */
+const LIVE_TAILS = [
+  "Spotify, Apple Music, Shazam and more, refreshed hourly.",
+  "Spotify, Apple Music and more, refreshed hourly.",
+  "Refreshed hourly.",
+];
+
+function liveDescription(
+  name: string,
+  board: { placements: number; countries: number },
+  lead?: { title: string; best: number; charts: number }
+): string {
+  const head = lead
+    ? `${name} is on ${board.placements} platform charts in ${board.countries} countries right now, led by \u201C${lead.title}\u201D at No. ${lead.best} across ${lead.charts}.`
+    : `Every ${name} release charting right now: ${board.placements} live placements across ${board.countries} countries.`;
+  for (const tail of LIVE_TAILS) {
+    const full = `${head} ${tail}`;
+    if (full.length <= 160) return full;
+  }
+  return head.slice(0, 160);
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ artist: string }> }) {
   const { artist: slug } = await params;
   const board = liveBoardFor(slug);
@@ -39,9 +65,12 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
     // The budget is 160 characters and these were spending 110, which throws
     // away the surface long-tail queries land on. Naming the platforms is what
     // a reader searching "wizkid spotify chart" is actually asking for.
-    description: lead
-      ? `${a.name} is on ${board.placements} platform charts in ${board.countries} countries right now, led by “${lead.title}” at No. ${lead.best} across ${lead.charts}. Spotify, Apple Music, Shazam and more, refreshed hourly.`
-      : `Every ${a.name} release charting right now: ${board.placements} live placements across ${board.countries} countries on Spotify, Apple Music, Shazam and more. Refreshed hourly.`,
+    //
+    // The length turns on the lead title, which is data, so a fixed tail cannot
+    // be safe: "Understand" fits and "Holy Ghost (Reverse Interlude)" does not.
+    // Take the longest tail that still clears 160 rather than tuning a string
+    // that the next sweep breaks.
+    description: liveDescription(a.name, board, lead),
     path: `/afrobeats/${slug}/live`,
     shareTitle: `${a.name} — Live Charts`,
     shareDescription: `${board.placements} live placements across ${board.countries} countries, refreshed hourly.`,
