@@ -2552,21 +2552,21 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 102,
+            "position": 107,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 126,
-            "movement": -114
+            "position": 163,
+            "movement": -151
           },
           {
             "country": "CL",
             "name": "Chile",
-            "position": 147,
-            "movement": -140
+            "position": 167,
+            "movement": -160
           }
         ]
       }
@@ -3783,12 +3783,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BN",
-            "name": "Brunei Darussalam",
-            "position": 24,
-            "movement": 0
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
             "position": 24,
@@ -3799,6 +3793,12 @@
             "name": "Ghana",
             "position": 37,
             "movement": 0
+          },
+          {
+            "country": "BN",
+            "name": "Brunei Darussalam",
+            "position": 38,
+            "movement": -14
           },
           {
             "country": "GM",
