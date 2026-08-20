@@ -40,11 +40,13 @@ function CertCard({
   countries,
   country,
   tier,
+  covers,
 }: {
   item: Release;
   countries: Countries;
   country: string | null;
   tier: string | null;
+  covers?: Record<string, string | undefined>;
 }) {
   return (
     <div className={styles.certRow}>
@@ -52,7 +54,9 @@ function CertCard({
         <span
           className={styles.certCover}
           aria-hidden="true"
-          style={{ backgroundImage: `url(${spotifyImage(coverFor(item.title) ?? "", 300)})` }}
+          /* The site's own lookup knows Burna's catalogue only — a board artist
+             passes their covers in, exactly as MobileCerts does. */
+          style={{ backgroundImage: `url(${spotifyImage((covers ? covers[item.title] : coverFor(item.title)) ?? "", 300)})` }}
         />
         <span className={styles.certText}>
           <span className={styles.certTitle}>{item.title}</span>
@@ -84,12 +88,15 @@ export default function CertExplorer({
   features,
   countries,
   totalCerts,
+  covers,
 }: {
   albums: Release[];
   singles: Release[];
   features: Release[];
   countries: Countries;
   totalCerts: number;
+  /** Artwork by title for a non-Burna catalogue; absent = Burna's own lookup. */
+  covers?: Record<string, string | undefined>;
 }) {
   const [country, setCountry] = useState<string | null>(null);
   const [tier, setTier] = useState<string | null>(null);
@@ -254,7 +261,7 @@ export default function CertExplorer({
                   </div>
                   <div className={styles.groupList}>
                     {g.items.map((it) => (
-                      <CertCard key={it.title} item={it} countries={countries} country={country} tier={tier} />
+                      <CertCard key={it.title} item={it} countries={countries} country={country} tier={tier} covers={covers} />
                     ))}
                   </div>
                 </div>
