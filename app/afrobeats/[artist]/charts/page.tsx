@@ -6,6 +6,7 @@ import KeepExploring from "../../../components/KeepExploring";
 import MobileOfficialCharts from "../../../components/MobileOfficialCharts";
 import ChartExplorer from "../../../components/ChartExplorer";
 import bar from "../artist.module.css";
+import { lastUpdated } from "../../../lib/api";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 import { numberOnes as burnaNo1s, chartEntryCount as burnaEntries } from "../../../data/charts";
 import {
@@ -83,6 +84,7 @@ export default async function AfroArtistChartsPage({
     path: `/afrobeats/${a.slug}/charts`,
     keywords: [a.name, "chart positions", "official charts", "peak chart position", "Afrobeats charts"],
     variableMeasured: ["Peak chart position", "Country / territory", "Release", "Chart"],
+        dateModified: lastUpdated,
     about: { name: a.name, sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`] },
   });
 

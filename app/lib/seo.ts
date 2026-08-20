@@ -79,6 +79,10 @@ export function datasetJsonLd(opts: {
    *  artist's chart record would tell a search engine the page is about the
    *  wrong entity. Pass the artist's name and Spotify URL there. */
   about?: { name: string; sameAs?: string[] };
+  /** ISO date the underlying figures were last read at source. Answer engines
+   *  weight recency, and a Dataset with no date looks static to them — these
+   *  boards are reviewed weekly, which is worth saying in the markup. */
+  dateModified?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -96,6 +100,7 @@ export function datasetJsonLd(opts: {
       ...(opts.about?.sameAs ? { sameAs: opts.about.sameAs } : {}),
     },
     variableMeasured: opts.variableMeasured,
+    ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
   };
 }
 

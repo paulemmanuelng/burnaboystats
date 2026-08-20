@@ -4,7 +4,10 @@ import styles from "./artist.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import MobileCerts from "../../components/MobileCerts";
 import CertExplorer from "../../components/CertExplorer";
+import { lastUpdated } from "../../lib/api";
 import { pageMetadata, CANONICAL_ORIGIN, datasetJsonLd } from "../../lib/seo";
+import { artistFaqs, faqJsonLd } from "../../lib/boardFaqs";
+import { totalAwards } from "../../data/certifications";
 import { tierOf, type Release, type Country } from "../../data/certifications";
 import { opponentOf } from "../../lib/headToHead";
 import { andMore, topBody, topPlatform } from "../../lib/boardNotes";
@@ -71,6 +74,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   if (!a) notFound();
 
   const live = liveBoardFor(a.slug);
+  const faqs = artistFaqs(a, totalAwards());
   const total = certCount(a);
   const countries = countryCount(a);
   const rival = opponentOf(a);
@@ -104,6 +108,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         path: `/afrobeats/${a.slug}`,
         keywords: [a.name, "certifications", "RIAA", "BPI", "gold", "platinum", "diamond", "Afrobeats"],
         variableMeasured: ["Certification tier", "Country / territory", "Release", "Certifying body"],
+        dateModified: lastUpdated,
         about: { name: a.name, sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`] },
       })
     : null;
@@ -145,6 +150,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
       {dataset && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
       )}
@@ -462,6 +468,24 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
           </Link>
         )}
         <Link href="/certifications" className="btn btnSecondary">Burna Boy&apos;s ledger ↗</Link>
+      </section>
+
+      {/* ── Common questions ───────────────────────────────────── */}
+      {/* Answer-first, and every figure computed — see lib/boardFaqs.ts. These
+          are the questions readers and answer engines actually ask about a
+          board artist, and a well-formed FAQ is the most liftable shape there
+          is for an AI answer. Rendered visibly AND as FAQPage structured data,
+          the same way /dai-dai and /records/africas-biggest already do it. */}
+      <section id="faq" className={styles.faqPad}>
+        <h2 className={styles.h2}>Common questions</h2>
+        <div className={styles.faqList}>
+          {faqs.map((f) => (
+            <div key={f.q} className={styles.faqItem}>
+              <h3 className={styles.faqQ}>{f.q}</h3>
+              <p className={styles.faqA}>{f.a}</p>
+            </div>
+          ))}
+        </div>
       </section>
       </div>
 
