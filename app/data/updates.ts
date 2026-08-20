@@ -35,9 +35,45 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-19",
+    category: "Streaming",
+    text: "A 90th day on Spotify's Global Daily Top Songs chart: “Dai Dai” holds at No. 2 with 3,605,012 streams on the 18 August list — 62 of those days spent inside the global Top 10, and 35 of them at No. 1.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-19",
+    category: "Charts",
+    text: "Fifty-seven days on top in Europe: Apple Music's European songs chart has now held “Dai Dai” at No. 1 for 57 days, closing on two full months at the summit of the continent's Apple ranking.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-18",
+    category: "Awards",
+    text: "Two nominations at the 2026 MTV Video Music Awards: “Dai Dai” is up for Best Collaboration, and for Best Latin against Bad Bunny, Karol G and Rosalía. The ceremony is on 27 September at the Peacock Theater in Los Angeles — and with no Afrobeats category held this year, both of Burna Boy's nominations sit in open fields.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-08-18",
+    category: "Streaming",
+    text: "A 25th day at the top of Spotify's Global Music Video chart — no other song has led it for anywhere near as long.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-18",
+    category: "Charts",
+    text: "The iTunes sweep reaches 73 countries: Belarus becomes the newest territory to have put “Dai Dai” at the summit of its iTunes songs chart.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-18",
+    category: "Streaming",
+    text: "352 days on Spotify's Global Daily Top Artists chart: Burna Boy stretches the longest run any African artist has managed there, at No. 105 on the 17 August list against a career peak of No. 40 — and still the only African name on it.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-08-17",
     category: "Charts",
-    text: "Both Billboard global charts, a month after the Final: “Dai Dai” takes a 5th week at No. 1 on the Global 200 and an 8th atop the Global 200 Excl. US on the charts dated 22 August — Billboard writing it up as the song still topping its global charts a month after the World Cup ended.",
+    text: "Both Billboard global charts, a month after the Final: “Dai Dai” retakes the Global 200 for a 5th week at No. 1 after a week at No. 3, and holds the Global 200 Excl. US for an 8th straight week, on the charts dated 22 August — 44.1 million streams worldwide in the 7–13 August tracking week.",
     href: "/records/charts",
   },
   {

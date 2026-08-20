@@ -214,6 +214,9 @@
    only difference a reader should notice is that tapping it works. */
 .rowToggle {
   width: 100%;
+  /* The whole release header is the unfold control, and it measured 43px —
+     one pixel under the touch floor the rest of the site holds. */
+  min-height: 44px;
   background: none;
   border: 0;
   padding: 0;
