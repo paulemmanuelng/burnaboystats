@@ -1329,6 +1329,11 @@ a.fact:hover {
   z-index: 200;
   background: var(--gold);
   color: #1a1303;
+  /* It measured 42px when focused — the first tab stop on every page, 2px under
+     the floor. The padding stays; a min-height carries it the rest of the way. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: 10px 18px;
   border-radius: 4px;
   font-weight: 700;

@@ -123,10 +123,14 @@ export default function MobileLiveCharts({
           {placements} placements across {countries} countries, refreshed hourly. Snapshot{" "}
           {updated}.
         </p>
-        <div className={styles.notice}>
+        {/* A <p>, not a <div>: this is a sentence, and the link inside it is an
+            inline prose link — which is what exempts it from the 44px target
+            floor. The markup should say so rather than leaving an audit to
+            guess from a div. */}
+        <p className={styles.notice}>
           <strong>Platform charts, not official charts.</strong> Career peaks live on{" "}
           <Link href={chartsHref}>Chart Records</Link>.
-        </div>
+        </p>
       </div>
 
       {/* Summary — two up */}
