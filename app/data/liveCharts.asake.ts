@@ -1004,7 +1004,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 53,
-            "movement": 1
+            "movement": -47
           },
           {
             "country": "ML",
@@ -1173,7 +1173,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 71,
-            "movement": -20
+            "movement": -69
           },
           {
             "country": "DZ",

@@ -400,6 +400,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "HU",
+            "name": "Hungary",
+            "position": 77,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -427,7 +440,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 33,
-            "movement": 0
+            "movement": 14
           },
           {
             "country": "UG",
@@ -627,7 +640,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 36,
-            "movement": 0
+            "movement": 17
           },
           {
             "country": "NG",
@@ -912,7 +925,7 @@
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 17,
+            "position": 21,
             "movement": null,
             "status": "new"
           },
@@ -926,7 +939,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 88,
-            "movement": 2
+            "movement": 1
           }
         ]
       },
@@ -1551,7 +1564,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 171,
-            "movement": -138
+            "movement": -129
           }
         ]
       }
@@ -1570,7 +1583,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 37,
-            "movement": 0
+            "movement": 17
           }
         ]
       }

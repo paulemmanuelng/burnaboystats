@@ -2289,7 +2289,7 @@
             "country": "HU",
             "name": "Hungary",
             "position": 1,
-            "movement": 10
+            "movement": 19
           },
           {
             "country": "NO",
@@ -2332,7 +2332,7 @@
             "country": "SI",
             "name": "Slovenia",
             "position": 2,
-            "movement": 71
+            "movement": 73
           },
           {
             "country": "UK",
@@ -2378,12 +2378,6 @@
             "status": "new"
           },
           {
-            "country": "ES",
-            "name": "Spain",
-            "position": 5,
-            "movement": -2
-          },
-          {
             "country": "CZ",
             "name": "Czech Republic",
             "position": 6,
@@ -2396,35 +2390,34 @@
             "movement": 2
           },
           {
+            "country": "ES",
+            "name": "Spain",
+            "position": 6,
+            "movement": -3
+          },
+          {
             "country": "RO",
             "name": "Romania",
-            "position": 8,
+            "position": 9,
             "movement": null,
             "status": "new"
           },
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 9,
-            "movement": -2
+            "position": 10,
+            "movement": -3
           },
           {
             "country": "MX",
             "name": "Mexico",
-            "position": 10,
+            "position": 11,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 12,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ID",
-            "name": "Indonesia",
             "position": 13,
             "movement": null,
             "status": "new"
@@ -2437,6 +2430,13 @@
             "status": "new"
           },
           {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 15,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "US",
             "name": "United States",
             "position": 15,
@@ -2445,20 +2445,26 @@
           {
             "country": "LK",
             "name": "Sri Lanka",
-            "position": 16,
+            "position": 17,
             "movement": -9
           },
           {
             "country": "AU",
             "name": "Australia",
-            "position": 19,
-            "movement": -11
+            "position": 22,
+            "movement": -14
           },
           {
             "country": "BG",
             "name": "Bulgaria",
             "position": 22,
             "movement": 18
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 26,
+            "movement": -4
           },
           {
             "country": "BY",
@@ -2475,8 +2481,8 @@
           {
             "country": "KG",
             "name": "Kyrgyzstan",
-            "position": 73,
-            "movement": -20
+            "position": 74,
+            "movement": -18
           },
           {
             "country": "HK",
@@ -2915,7 +2921,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 23,
-            "movement": 0
+            "movement": 13
           },
           {
             "country": "SL",
@@ -3648,7 +3654,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 44,
-            "movement": 0
+            "movement": 20
           },
           {
             "country": "LR",
@@ -4110,8 +4116,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 85,
-            "movement": 7
+            "position": 84,
+            "movement": 8
           }
         ]
       },
@@ -4668,6 +4674,37 @@
     "kind": "song"
   },
   {
+    "title": "WE PRAY",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "HU",
+            "name": "Hungary",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 166,
+            "movement": 2
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Laho II",
     "platforms": [
       {
@@ -4813,24 +4850,6 @@
             "name": "Niger",
             "position": 131,
             "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "WE PRAY",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 166,
-            "movement": 2
           }
         ]
       }
