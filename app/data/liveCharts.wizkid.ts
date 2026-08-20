@@ -357,7 +357,7 @@
           {
             "country": "CL",
             "name": "Chile",
-            "position": 141,
+            "position": 140,
             "movement": null,
             "status": "new"
           }
@@ -2036,7 +2036,7 @@
             "country": "DM",
             "name": "Dominica",
             "position": 34,
-            "movement": 0
+            "movement": 1
           }
         ]
       }
@@ -2542,7 +2542,7 @@
             "country": "LA",
             "name": "Laos",
             "position": 17,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
@@ -2561,7 +2561,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 29,
-            "movement": 34
+            "movement": 41
           }
         ]
       }
@@ -2580,7 +2580,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 30,
-            "movement": 79
+            "movement": 86
           }
         ]
       }

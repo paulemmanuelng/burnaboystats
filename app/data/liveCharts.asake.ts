@@ -303,7 +303,7 @@
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 146,
+            "position": 147,
             "movement": null,
             "status": "new"
           }
@@ -504,7 +504,8 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 9,
-            "movement": 186
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1479,7 +1480,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 194,
-            "movement": -167
+            "movement": -160
           }
         ]
       },

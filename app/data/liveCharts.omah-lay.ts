@@ -566,7 +566,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 5,
-            "movement": 3
+            "movement": -1
           },
           {
             "country": "GH",

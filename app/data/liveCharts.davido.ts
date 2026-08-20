@@ -291,8 +291,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": -26
+            "position": 64,
+            "movement": -19
           }
         ]
       }
@@ -509,8 +509,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 13,
-            "movement": 4
+            "position": 11,
+            "movement": 2
           }
         ]
       },
@@ -534,7 +534,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 4,
-            "movement": 3
+            "movement": 13
           }
         ]
       },
@@ -1182,7 +1182,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 190,
-            "movement": -167
+            "movement": -160
           }
         ]
       },
@@ -1285,7 +1285,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 5,
-            "movement": 3
+            "movement": -1
           },
           {
             "country": "GH",
@@ -1876,7 +1876,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 63,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "BF",
@@ -1902,6 +1902,104 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f5e2eeac47abb6bf1bcc293125e0016/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Tell Everybody",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 56,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 64,
+            "movement": 0
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 67,
+            "movement": 0
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 133,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 3,
+            "movement": 2
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 3,
+            "movement": 12
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 20,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 72,
+            "movement": 4
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 58,
+            "movement": -2
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 16,
+            "movement": 28
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Yaya",
@@ -1994,99 +2092,6 @@
             "name": "Nigeria",
             "position": 27,
             "movement": 35
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Tell Everybody",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 56,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 64,
-            "movement": 0
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 67,
-            "movement": 0
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 133,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 5,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 15,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 72,
-            "movement": 4
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 58,
-            "movement": -2
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 16,
-            "movement": 28
           }
         ]
       }
@@ -2508,7 +2513,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 66,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "BW",

@@ -1177,13 +1177,13 @@
             "country": "UA",
             "name": "Ukraine",
             "position": 14,
-            "movement": -6
+            "movement": 0
           },
           {
             "country": "RO",
             "name": "Romania",
             "position": 15,
-            "movement": -3
+            "movement": 5
           },
           {
             "country": "MD",
@@ -1195,13 +1195,13 @@
             "country": "KZ",
             "name": "Kazakhstan",
             "position": 24,
-            "movement": -3
+            "movement": 9
           },
           {
             "country": "IN",
             "name": "India",
             "position": 25,
-            "movement": -13
+            "movement": -17
           },
           {
             "country": "AZ",
@@ -1213,7 +1213,7 @@
             "country": "PT",
             "name": "Portugal",
             "position": 46,
-            "movement": 8
+            "movement": 9
           },
           {
             "country": "UG",
@@ -1225,7 +1225,7 @@
             "country": "GT",
             "name": "Guatemala",
             "position": 76,
-            "movement": -55
+            "movement": -42
           },
           {
             "country": "PL",
@@ -1238,7 +1238,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 179,
-            "movement": -90
+            "movement": -111
           }
         ]
       },
@@ -1676,7 +1676,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 3,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "KE",
@@ -1772,7 +1772,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 14,
+            "position": 11,
             "movement": 3
           }
         ]
@@ -1785,7 +1785,7 @@
             "country": "US",
             "name": "United States",
             "position": 187,
-            "movement": -30
+            "movement": 1
           }
         ]
       },
@@ -1864,7 +1864,7 @@
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 60,
-            "movement": -12
+            "movement": -8
           }
         ]
       },
@@ -2018,7 +2018,7 @@
             "country": "DM",
             "name": "Dominica",
             "position": 34,
-            "movement": 0
+            "movement": 1
           }
         ]
       }

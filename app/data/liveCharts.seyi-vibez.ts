@@ -942,7 +942,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 23,
-            "movement": -1
+            "movement": 6
           }
         ]
       }

@@ -604,15 +604,15 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 115,
+            "position": 132,
             "movement": null,
             "status": "new"
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 126,
-            "movement": 3
+            "position": 192,
+            "movement": 7
           }
         ]
       },
@@ -1064,7 +1064,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 115,
+            "position": 127,
             "movement": null,
             "status": "new"
           }
@@ -1173,7 +1173,7 @@
             "country": "LA",
             "name": "Laos",
             "position": 17,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
