@@ -444,3 +444,59 @@ describe("hub scatter", () => {
     }
   });
 });
+
+// ── Cover art ──────────────────────────────────────────────────────────────
+// Cover art was originally resolved by TITLE ALONE, so wherever two artists had
+// a song of the same name the wrong artist's artwork won: Omah Lay's "Reason"
+// wore Asake's Mr. Money With The Vibe sleeve, his "You" wore Davido's 5ive.
+//
+// Two artists SHOULD share a cover when the entry is the same recording — a
+// collaboration, or a track on the other's album. Every pair below was checked
+// against Deezer's contributor list, not just its title. A NEW pair appearing
+// here is not automatically wrong, but it is unverified: check it the same way
+// before adding it, because a wrong cover is worse than none.
+describe("cover art", () => {
+  const VERIFIED_SHARES = [
+    "asake+ayra-starr", "asake+davido", "asake+rema", "asake+seyi-vibez+wizkid",
+    "asake+tems", "asake+wizkid", "asake+wizkid", "asake+wizkid",
+    "ayra-starr+omah-lay", "ayra-starr+rema", "ayra-starr+rema",
+    "ayra-starr+seyi-vibez", "ayra-starr+wizkid", "davido+omah-lay",
+    "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+wizkid", "tems+wizkid",
+  ];
+
+  const sharedPairs = () => {
+    const byCover = new Map<string, Set<string>>();
+    for (const a of afrobeatsArtists) {
+      for (const r of a.releases) {
+        if (!r.cover) continue;
+        if (!byCover.has(r.cover)) byCover.set(r.cover, new Set());
+        byCover.get(r.cover)!.add(a.slug);
+      }
+    }
+    return [...byCover.values()]
+      .filter((s) => s.size > 1)
+      .map((s) => [...s].sort().join("+"))
+      .sort();
+  };
+
+  it("shares a cover across artists only where the recording is shared", () => {
+    expect(sharedPairs()).toEqual(VERIFIED_SHARES);
+  });
+
+  it("never gives Omah Lay Asake's or Davido's sleeve", () => {
+    const omah = afrobeatsArtists.find((a) => a.slug === "omah-lay")!;
+    const asake = afrobeatsArtists.find((a) => a.slug === "asake")!;
+    const mmwtv = asake.releases.find((r) => r.title === "Mr. Money With The Vibe")?.cover;
+    const reason = omah.releases.find((r) => r.title === "Reason")?.cover;
+    expect(reason, "Omah Lay's Reason").toBeTruthy();
+    expect(reason).not.toBe(mmwtv);
+  });
+
+  it("leaves a cover off rather than showing the wrong one", () => {
+    // Seyi Vibez's "Ama" wore the MY HEALER single's sleeve, and that release is
+    // a one-track single — so it cannot be right. No correct art was findable,
+    // so the field is absent and the monogram fallback renders.
+    const seyi = afrobeatsArtists.find((a) => a.slug === "seyi-vibez")!;
+    expect(seyi.releases.find((r) => r.title === "Ama")?.cover).toBeUndefined();
+  });
+});

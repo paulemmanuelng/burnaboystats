@@ -497,10 +497,11 @@
 }
 .boardBtn {
   display: flex;
-  align-items: center;
-  gap: 7px;
-  min-height: 52px;
-  padding: 0 14px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  min-height: 58px;
+  padding: 9px 14px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--bg-soft);
@@ -514,7 +515,20 @@
   -webkit-tap-highlight-color: transparent;
 }
 .boardBtn:active { background: var(--bg-soft-2); }
+.boardTop { display: flex; align-items: center; gap: 7px; }
 .boardLabel { flex: 1; }
+/* Italic, and set in the body face rather than the mono the button uses — it is
+   an aside about what is behind the door, not part of the label. */
+.boardNote {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-muted);
+  line-height: 1.25;
+}
 .boardGo { color: var(--gold); font-size: 12px; }
 /* The live board keeps the green it uses everywhere else, so the two buttons
    say which kind of record they lead to before the label is read. */

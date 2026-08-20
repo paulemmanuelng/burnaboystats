@@ -57,6 +57,8 @@ export default function MobileCerts({
   portraitSlug,
   chartsHref,
   liveHref,
+  chartsNote,
+  liveNote,
   backHref = "/",
   backLabel = "Certifications",
   lede,
@@ -86,6 +88,10 @@ export default function MobileCerts({
   chartsHref?: string;
   /** This artist's live board, if they have one. */
   liveHref?: string;
+  /** Which register carries most of their peaks — "TurnTable and more". */
+  chartsNote?: string;
+  /** Which platform carries most of their live placements. */
+  liveNote?: string;
   /** The board's screens end in the five-tab bar instead of an action bar. */
   showActionBar?: boolean;
 }) {
@@ -307,15 +313,21 @@ export default function MobileCerts({
         <div className={styles.boards}>
           {chartsHref && (
             <Link href={chartsHref} className={styles.boardBtn}>
-              <span className={styles.boardLabel}>Chart peaks</span>
-              <span className={styles.boardGo} aria-hidden="true">↗</span>
+              <span className={styles.boardTop}>
+                <span className={styles.boardLabel}>Chart peaks</span>
+                <span className={styles.boardGo} aria-hidden="true">↗</span>
+              </span>
+              {chartsNote && <span className={styles.boardNote}>{chartsNote}</span>}
             </Link>
           )}
           {liveHref && (
             <Link href={liveHref} className={`${styles.boardBtn} ${styles.boardLive}`}>
-              <span className={styles.boardDot} aria-hidden="true" />
-              <span className={styles.boardLabel}>Live charts</span>
-              <span className={styles.boardGo} aria-hidden="true">↗</span>
+              <span className={styles.boardTop}>
+                <span className={styles.boardDot} aria-hidden="true" />
+                <span className={styles.boardLabel}>Live charts</span>
+                <span className={styles.boardGo} aria-hidden="true">↗</span>
+              </span>
+              {liveNote && <span className={styles.boardNote}>{liveNote}</span>}
             </Link>
           )}
         </div>
