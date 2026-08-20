@@ -628,8 +628,8 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 24,
-            "movement": -6
+            "position": 25,
+            "movement": -7
           },
           {
             "country": "UA",
@@ -640,8 +640,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 93,
-            "movement": -2
+            "position": 95,
+            "movement": -4
           },
           {
             "country": "NO",
@@ -1028,7 +1028,7 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 5,
+            "position": 6,
             "movement": null,
             "status": "new"
           },
@@ -1048,8 +1048,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 71,
-            "movement": -22
+            "position": 73,
+            "movement": -24
           },
           {
             "country": "BS",
@@ -1060,14 +1060,14 @@
           {
             "country": "HK",
             "name": "Hong Kong",
-            "position": 123,
+            "position": 139,
             "movement": null,
             "status": "new"
           },
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 166,
+            "position": 192,
             "movement": null,
             "status": "new"
           }
@@ -1329,7 +1329,7 @@
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 45,
+            "position": 55,
             "movement": null,
             "status": "new"
           }
@@ -1445,8 +1445,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 61,
-            "movement": -1
+            "position": 63,
+            "movement": -3
           },
           {
             "country": "NG",
@@ -1942,15 +1942,15 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 71,
+            "position": 84,
             "movement": null,
             "status": "new"
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 88,
-            "movement": 0
+            "position": 89,
+            "movement": -1
           },
           {
             "country": "UG",
@@ -2727,81 +2727,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Wo, man",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 10,
-            "movement": 0
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 14,
-            "movement": 0
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 60,
-            "movement": -6
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 188,
-            "movement": -6
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 190,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 190,
-            "movement": 5
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SV",
-            "name": "El Salvador",
-            "position": 51,
-            "movement": -17
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 75,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 138,
-            "movement": -109
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Midnight in New York",
     "platforms": [
       {
@@ -2873,6 +2798,81 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Wo, man",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 10,
+            "movement": 0
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 14,
+            "movement": 0
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 60,
+            "movement": -6
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 188,
+            "movement": -6
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 190,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 190,
+            "movement": 5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SV",
+            "name": "El Salvador",
+            "position": 52,
+            "movement": -18
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 90,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 138,
+            "movement": -109
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Pressure",
@@ -3546,8 +3546,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 80,
-            "movement": -22
+            "position": 82,
+            "movement": -24
           }
         ]
       },

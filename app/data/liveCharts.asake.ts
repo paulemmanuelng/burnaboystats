@@ -1907,8 +1907,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 55,
-            "movement": -40
+            "position": 56,
+            "movement": -41
           }
         ]
       }
@@ -2143,8 +2143,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 57,
-            "movement": -1
+            "position": 59,
+            "movement": -3
           }
         ]
       },
@@ -2701,8 +2701,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
-            "movement": -5
+            "position": 28,
+            "movement": -8
           }
         ]
       }

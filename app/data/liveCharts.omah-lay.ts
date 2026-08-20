@@ -559,8 +559,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 37,
-            "movement": -22
+            "position": 39,
+            "movement": -24
           }
         ]
       },
@@ -1120,8 +1120,8 @@
           {
             "country": "BY",
             "name": "Belarus",
-            "position": 68,
-            "movement": -13
+            "position": 70,
+            "movement": -15
           }
         ]
       }
