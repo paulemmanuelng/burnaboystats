@@ -63,7 +63,7 @@ const pageFaqs = [
   },
   {
     q: "Which African artist has the most Billboard Hot 100 entries?",
-    a: "Burna Boy, with nine career entries — the record for any African act, ahead of Tems (eight) and the South African rock band Seether (seven). Wizkid (five) and Tyla (three) complete the top five.",
+    a: "Burna Boy, with nine career entries — the record for any African act, ahead of Tems (eight) and the South African rock band Seether (seven). Wizkid is next on five, then Tyla and Hugh Masekela tied on four.",
   },
   {
     q: "Who is the most-streamed African artist on Spotify?",

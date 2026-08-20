@@ -123,6 +123,16 @@ const winsSeries = (() => {
   return out;
 })();
 const bestWinYear = winYears.reduce((a, b) => (winYearCounts[b] > winYearCounts[a] ? b : a));
+
+// The heading over this chart said "Fifteen years of winning" while the axis ran
+// 2012-2025 — fourteen. Derived now, so the words cannot drift from the bars.
+const WIN_SPAN_WORDS = [
+  "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+  "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen",
+  "Seventeen", "Eighteen", "Nineteen", "Twenty",
+];
+const winSpan = winYears[winYears.length - 1] - winYears[0] + 1;
+const winSpanWord = WIN_SPAN_WORDS[winSpan] ?? String(winSpan);
 const winsAnnotations: SeriesAnnotation[] = [
   { date: `${bestWinYear}-06-30`, label: String(bestWinYear) },
 ];
@@ -194,14 +204,16 @@ const tierSegments: DonutSeg[] = [
 ];
 
 // ── Donut: chart entries by how high they peaked ──
-const peakBands = { "No. 1": 0, "Top 5": 0, "Top 10": 0, "Top 40": 0, "41–100": 0 };
+// The last band is unbounded, not 41-100: the data holds peaks of 143 and 194,
+// and the binning below is an `else`. Labelled 41+ so it says what it holds.
+const peakBands = { "No. 1": 0, "Top 5": 0, "Top 10": 0, "Top 40": 0, "41+": 0 };
 for (const r of [...albumCharts, ...singleCharts, ...featureCharts])
   for (const e of r.entries) {
     if (e.peak === 1) peakBands["No. 1"]++;
     else if (e.peak <= 5) peakBands["Top 5"]++;
     else if (e.peak <= 10) peakBands["Top 10"]++;
     else if (e.peak <= 40) peakBands["Top 40"]++;
-    else peakBands["41–100"]++;
+    else peakBands["41+"]++;
   }
 const totalEntries = Object.values(peakBands).reduce((a, b) => a + b, 0);
 const top5Count = peakBands["No. 1"] + peakBands["Top 5"];
@@ -210,7 +222,7 @@ const peakSegments: DonutSeg[] = [
   { label: "Top 5", value: peakBands["Top 5"], color: "#ffb627" },
   { label: "Top 10", value: peakBands["Top 10"], color: "#c98a2e" },
   { label: "Top 40", value: peakBands["Top 40"], color: "#8a7a52" },
-  { label: "41–100", value: peakBands["41–100"], color: "#5a5a62" },
+  { label: "41+", value: peakBands["41+"], color: "#5a5a62" },
 ];
 
 // ── Comparison: most-streamed African artists in 2025 (Burna vs peers) ──
@@ -328,7 +340,7 @@ export default function VisualizedPage() {
           },
           {
             title: "Best chart peak by country",
-            note: "Darker gold is a higher peak — tap a country for the song that got there.",
+            note: "Brighter gold is a higher peak — tap a country for the song that got there.",
             chart: (
               <PeakMap
                 data={peakByISO}
@@ -349,7 +361,7 @@ export default function VisualizedPage() {
               "Burna Boy's Spotify monthly listeners, daily, from the start of July 2026 to today",
           },
           {
-            title: "Fifteen years of winning",
+            title: `${winSpanWord} years of winning`,
             note: `${bestWinYear} was the peak — ${winYearCounts[bestWinYear]} wins in a single year, of ${totalWins} in all.`,
             points: winsSeries,
             annotations: winsAnnotations,
@@ -498,7 +510,7 @@ export default function VisualizedPage() {
         {/* ── Awards by year ─────────────────────────────────── */}
         <section id="wins-by-year" className={`${styles.wrap} ${styles.sectionPad}`}>
           <div className={styles.eyebrow}>Awards · wins per year</div>
-          <h2 className={styles.h2}>Fifteen years of winning</h2>
+          <h2 className={styles.h2}>{winSpanWord} years of winning</h2>
           <div className={styles.chartBody}>
             <TimeSeriesChart
               points={winsSeries}
@@ -714,8 +726,8 @@ export default function VisualizedPage() {
           </div>
           <p className={styles.caption}>
             Where his {totalWins} wins come from — the top {winsByBody.length} award bodies
-            by number of trophies, the Grammy and BET Awards alongside a deep African-awards
-            haul.
+            by number of trophies, the BET Awards alongside a deep African-awards haul. The
+            Grammy is a single win, so it does not reach a chart ranked by volume.
           </p>
           <Link href="/records/awards" className={`btn btnSecondary ${styles.cta}`}>
             Every award ↗

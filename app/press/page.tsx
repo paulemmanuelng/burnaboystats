@@ -5,7 +5,10 @@ import KeepExploring from "../components/KeepExploring";
 import CopyButton from "../components/CopyButton";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
-import { chartEntryCount, numberOnes, chartCountryCount } from "../data/charts";
+import { chartEntryCount, numberOnes } from "../data/charts";
+// 69, not the headline 71: two of those are Billboard's worldwide charts,
+// which are not territories, and this strip is quoted by journalists.
+import { chartedCountryCount } from "../lib/analysis";
 import { totalWins, totalNominations } from "../data/awards";
 import { countryCount as performedCountryCount } from "../data/performedCountries";
 import { spotifyTotalStreams } from "../data/streamingTotals";
@@ -36,12 +39,12 @@ const CITATION_LINKED = 'Data: <a href="https://burnaboystats.com">Burna Boy Sta
 // The headline figures a writer most often needs, every one derived live from
 // the same data the pages render — this strip can never go stale on its own.
 const figures = [
-  { value: String(totalAwards()), label: "Certifications", sub: `${countryCount} countries` },
-  { value: String(chartEntryCount), label: "Chart entries", sub: `${chartCountryCount} territories` },
-  { value: String(numberOnes), label: "No. 1 placements", sub: "worldwide" },
-  { value: String(totalWins), label: "Award wins", sub: `${totalNominations} nominations` },
-  { value: spotifyTotalStreams, label: "Career streams", sub: "Spotify, all credits" },
-  { value: String(performedCountryCount), label: "Countries performed in", sub: "7 regions" },
+  { value: String(totalAwards()), label: "Certifications", sub: `${countryCount} countries`, href: "/certifications" },
+  { value: String(chartEntryCount), label: "Chart entries", sub: `${chartedCountryCount} territories`, href: "/records/charts" },
+  { value: String(numberOnes), label: "No. 1 placements", sub: "worldwide", href: "/records/charts" },
+  { value: String(totalWins), label: "Award wins", sub: `${totalNominations} nominations`, href: "/records/awards" },
+  { value: spotifyTotalStreams, label: "Career streams", sub: "Spotify, all credits", href: "/records/by-the-numbers" },
+  { value: String(performedCountryCount), label: "Countries performed in", sub: "7 regions", href: "/records/tours/map" },
 ];
 
 const X_CONTACT = "https://x.com/paulemmanuelng";
@@ -95,11 +98,11 @@ export default function PressPage() {
         </p>
         <div className={styles.figures}>
           {figures.map((f) => (
-            <div key={f.label} className={styles.figure}>
+            <Link key={f.label} href={f.href} className={styles.figure}>
               <div className={styles.figureValue}>{f.value}</div>
               <div className={styles.figureLabel}>{f.label}</div>
               <div className={styles.figureSub}>{f.sub}</div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

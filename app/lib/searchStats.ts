@@ -1,3 +1,4 @@
+import { liveCharts } from "../data/liveCharts";
 import { totalAwards, countryCount } from "../data/certifications";
 import { chartEntryCount, chartCountryCount, numberOnes } from "../data/charts";
 import { totalWins, ceremonyCount } from "../data/awards";
@@ -31,7 +32,9 @@ export const searchStats: Record<string, string> = {
   "/music": `${albums.length} albums`,
   "/certifications": String(totalAwards()),
   "/records/charts": `${chartEntryCount} entries`,
-  "/live-charts": `${numberOnes} No. 1s`,
+  // NOT `numberOnes` — that is the official-chart figure. This row is the live
+  // platform board, and the nav drawer beside it already shows the live count.
+  "/live-charts": `${liveCharts.length} live`,
   "/records/firsts": String(firstsCount),
   "/records/awards": `${totalWins} wins`,
   "/records/tours": tours.find((t) => t.record)?.gross ?? "",

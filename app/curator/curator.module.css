@@ -40,6 +40,10 @@
 .reviewedDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: block; }
 
 .sectionPad { padding: 40px 40px 0; }
+/* The last section on this page is a .sectionPad sitting directly above the
+   KeepExploring band, whose own top margin is zeroed there — so with no
+   bottom padding the band's kicker landed on the paragraph's last line. */
+.sectionPad:last-of-type { padding-bottom: 56px; }
 .block { margin: 0 0 34px; }
 .h2 {
   font-family: var(--font-anton), sans-serif;
