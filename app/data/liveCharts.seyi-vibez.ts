@@ -517,16 +517,16 @@
             "movement": 0
           },
           {
-            "country": "BN",
-            "name": "Brunei Darussalam",
-            "position": 23,
-            "movement": 0
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
             "position": 27,
             "movement": 0
+          },
+          {
+            "country": "BN",
+            "name": "Brunei Darussalam",
+            "position": 37,
+            "movement": -14
           },
           {
             "country": "BJ",
