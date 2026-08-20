@@ -1065,6 +1065,100 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KG",
+            "name": "Kyrgyzstan",
+            "position": 3,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 15,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MD",
+            "name": "Moldova",
+            "position": 20,
+            "movement": -10
+          },
+          {
+            "country": "UA",
+            "name": "Ukraine",
+            "position": 30,
+            "movement": -10
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 33,
+            "movement": -22
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 34,
+            "movement": -4
+          },
+          {
+            "country": "AZ",
+            "name": "Azerbaijan",
+            "position": 44,
+            "movement": -17
+          },
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 50,
+            "movement": 5
+          },
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 51,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 51,
+            "movement": 11
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 62,
+            "movement": -3
+          },
+          {
+            "country": "GT",
+            "name": "Guatemala",
+            "position": 84,
+            "movement": -45
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 90,
+            "movement": -35
+          },
+          {
+            "country": "PL",
+            "name": "Poland",
+            "position": 178,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -1155,133 +1249,46 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KG",
-            "name": "Kyrgyzstan",
-            "position": 3,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MD",
-            "name": "Moldova",
-            "position": 20,
-            "movement": -10
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 21,
-            "movement": -1
-          },
-          {
-            "country": "UA",
-            "name": "Ukraine",
-            "position": 21,
-            "movement": -7
-          },
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 24,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 30,
-            "movement": -22
-          },
-          {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 37,
-            "movement": -4
-          },
-          {
-            "country": "AZ",
-            "name": "Azerbaijan",
-            "position": 39,
-            "movement": -15
-          },
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 50,
-            "movement": 5
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 62,
-            "movement": -3
-          },
-          {
-            "country": "GT",
-            "name": "Guatemala",
-            "position": 80,
-            "movement": -46
-          },
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 178,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 188,
-            "movement": -120
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TN",
-            "name": "Tunisia",
-            "position": 20,
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 31,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LT",
+            "name": "Lithuania",
+            "position": 32,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
-            "movement": -43
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 75,
-            "movement": -19
+            "position": 33,
+            "movement": -2
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 77,
-            "movement": -45
+            "position": 34,
+            "movement": -2
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 77,
-            "movement": -33
+            "position": 43,
+            "movement": 1
           },
           {
-            "country": "LT",
-            "name": "Lithuania",
-            "position": 85,
-            "movement": null,
-            "status": "new"
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 65,
+            "movement": -9
           }
         ]
       }
@@ -1674,8 +1681,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": 0
+            "position": 4,
+            "movement": -1
           },
           {
             "country": "GH",
@@ -1686,8 +1693,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 35,
-            "movement": -25
+            "position": 36,
+            "movement": -26
           }
         ]
       },
@@ -1700,18 +1707,6 @@
             "name": "South Africa",
             "position": 156,
             "movement": 3
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 41,
-            "movement": -34
           }
         ]
       }
@@ -1765,6 +1760,18 @@
         ]
       },
       {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 11,
+            "movement": 3
+          }
+        ]
+      },
+      {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
@@ -1772,7 +1779,7 @@
             "country": "US",
             "name": "United States",
             "position": 170,
-            "movement": 18
+            "movement": 19
           }
         ]
       },
@@ -1785,18 +1792,6 @@
             "name": "United States",
             "position": 28,
             "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 14,
-            "movement": -3
           }
         ]
       }
@@ -1864,19 +1859,6 @@
             "name": "Trinidad and Tobago",
             "position": 61,
             "movement": -9
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 85,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -1986,6 +1968,31 @@
     "title": "Essence",
     "platforms": [
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 7,
+            "movement": 1
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 13,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 34,
+            "movement": 1
+          }
+        ]
+      },
+      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -2000,24 +2007,6 @@
             "name": "Liberia",
             "position": 164,
             "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 7,
-            "movement": 1
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 34,
-            "movement": 1
           }
         ]
       }
@@ -2128,8 +2117,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 42,
-            "movement": -34
+            "position": 51,
+            "movement": -43
           }
         ]
       }
