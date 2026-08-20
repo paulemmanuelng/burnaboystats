@@ -483,6 +483,49 @@ describe("cover art", () => {
     expect(sharedPairs()).toEqual(VERIFIED_SHARES);
   });
 
+  // The list above only walks `releases`. The chart rows carry covers too, and
+  // that is where Omah Lay's "Blessings" sat wearing Fridayy's "Blessings
+  // (Remix)" sleeve — Asake's feature — while Omah Lay's is KAESTYLE's, on
+  // "Kae's Study" (contributors: KAESTYLE, Omah Lay). Releases-only checking
+  // could not see it, so this walks both lists.
+  const VERIFIED_SHARES_WITH_CHARTS = [
+    "asake+ayra-starr", "asake+davido", "asake+rema", "asake+seyi-vibez+wizkid",
+    "asake+tems", "asake+wizkid", "asake+wizkid", "asake+wizkid",
+    "ayra-starr+omah-lay", "ayra-starr+rema", "ayra-starr+rema",
+    "ayra-starr+seyi-vibez", "ayra-starr+wizkid", "davido+omah-lay",
+    "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+tyla", "omah-lay+wizkid",
+    "tems+wizkid",
+  ];
+
+  it("shares a cover across artists only where the recording is shared, charts included", () => {
+    const byCover = new Map<string, Set<string>>();
+    for (const a of afrobeatsArtists) {
+      for (const r of [...a.releases, ...a.charts]) {
+        if (!r.cover) continue;
+        if (!byCover.has(r.cover)) byCover.set(r.cover, new Set());
+        byCover.get(r.cover)!.add(a.slug);
+      }
+    }
+    const pairs = [...byCover.values()]
+      .filter((s) => s.size > 1)
+      .map((s) => [...s].sort().join("+"))
+      .sort();
+    expect(pairs).toEqual(VERIFIED_SHARES_WITH_CHARTS);
+  });
+
+  it("gives Omah Lay's Blessings KAESTYLE's sleeve, not Asake's", () => {
+    const omah = afrobeatsArtists.find((a) => a.slug === "omah-lay")!;
+    const asake = afrobeatsArtists.find((a) => a.slug === "asake")!;
+    const theirs = [...asake.releases, ...asake.charts]
+      .filter((r) => r.title.startsWith("Blessings"))
+      .map((r) => r.cover);
+    const ours = [...omah.releases, ...omah.charts]
+      .find((r) => r.title === "Blessings")?.cover;
+    expect(ours, "Omah Lay's Blessings").toBeTruthy();
+    expect(theirs.length, "Asake's Blessings rows").toBeGreaterThan(0);
+    expect(theirs).not.toContain(ours);
+  });
+
   it("never gives Omah Lay Asake's or Davido's sleeve", () => {
     const omah = afrobeatsArtists.find((a) => a.slug === "omah-lay")!;
     const asake = afrobeatsArtists.find((a) => a.slug === "asake")!;

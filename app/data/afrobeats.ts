@@ -917,7 +917,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "temptations", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 47 }] },
       { title: "understand", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ebaba8c1ec645c396628a92f7aca871b/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 60 }] },
       { title: "how to luv", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 68 }] },
-      { title: "Blessings", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/af30a7aeb43913343236936ca5237084/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 79 }] },
+      { title: "Blessings", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/02e3bf9a87b002f4e52e9395e8a7348b/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 79 }] },
       { title: "Damn", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 83 }] },
       { title: "i", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 85 }] },
       { title: "safe haven", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 88 }] },
