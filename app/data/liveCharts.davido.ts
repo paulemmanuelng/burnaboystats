@@ -291,8 +291,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 66,
-            "movement": -22
+            "position": 62,
+            "movement": -21
           }
         ]
       }
@@ -534,7 +534,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 4,
-            "movement": -1
+            "movement": 3
           }
         ]
       },
@@ -889,7 +889,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 33,
+            "position": 42,
             "movement": null,
             "status": "new"
           }
@@ -1181,8 +1181,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 181,
-            "movement": -162
+            "position": 188,
+            "movement": -165
           }
         ]
       },
@@ -1285,7 +1285,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 5,
-            "movement": -1
+            "movement": 3
           },
           {
             "country": "GH",
@@ -1887,8 +1887,9 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 85,
-            "movement": 6
+            "position": 86,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GH",
@@ -2512,7 +2513,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 69,
+            "position": 70,
             "movement": -2
           },
           {
@@ -3145,7 +3146,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 86,
-            "movement": 2
+            "movement": 0
           }
         ]
       }
@@ -3287,26 +3288,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1713aad5a0a697ac1db7ce7b8a167c27/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "1 Milli",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 50,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Like",
     "platforms": [
       {
@@ -3324,6 +3305,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "1 Milli",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 53,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dun Rich",

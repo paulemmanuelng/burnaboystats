@@ -742,7 +742,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
+            "position": 51,
             "movement": null,
             "status": "new"
           }
@@ -1121,7 +1121,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 88,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "NG",
@@ -1507,7 +1507,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
+            "position": 41,
             "movement": null,
             "status": "new"
           }
@@ -2043,7 +2043,7 @@
             "country": "DM",
             "name": "Dominica",
             "position": 34,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -2569,7 +2569,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 20,
+            "position": 24,
             "movement": 39
           }
         ]
@@ -2588,34 +2588,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
-            "movement": 82
+            "position": 25,
+            "movement": 84
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Kese",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 29,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b83e12a893bcd9bca6f6e84283dbedaa/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Girl",
@@ -2627,7 +2607,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
+            "position": 33,
             "movement": null,
             "status": "new"
           }
@@ -2647,7 +2627,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 44,
+            "position": 46,
             "movement": null,
             "status": "new"
           }
@@ -2656,6 +2636,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee5775a4038904759fa2911ca20e4913/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Blessed",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 49,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Time",
@@ -2694,6 +2694,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Kese",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 101,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b83e12a893bcd9bca6f6e84283dbedaa/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ebelebe",

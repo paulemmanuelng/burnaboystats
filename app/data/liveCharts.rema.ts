@@ -900,19 +900,18 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 25,
-            "movement": 1
+            "movement": -1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 88,
-            "movement": null,
-            "status": "new"
+            "movement": 1
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 179,
+            "position": 193,
             "movement": null,
             "status": "new"
           }
@@ -1085,8 +1084,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 23,
-            "movement": 145
+            "position": 26,
+            "movement": 152
           }
         ]
       },
@@ -1513,26 +1512,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Moviestar",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 103,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9325d60121f76e74c613c9f0d463ea0e/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Trouble Maker",
     "platforms": [
       {
@@ -1569,6 +1548,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Moviestar",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 110,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9325d60121f76e74c613c9f0d463ea0e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Commando - EP",
