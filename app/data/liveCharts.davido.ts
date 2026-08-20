@@ -291,8 +291,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
-            "movement": 4
+            "position": 69,
+            "movement": -4
           }
         ]
       }
@@ -527,8 +527,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
-            "movement": -2
+            "position": 8,
+            "movement": -5
           }
         ]
       },
@@ -1537,8 +1537,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 33,
-            "movement": -19
+            "position": 37,
+            "movement": -23
           }
         ]
       },
@@ -1853,8 +1853,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 135,
-            "movement": -18
+            "position": 139,
+            "movement": -22
           }
         ]
       }
@@ -2085,8 +2085,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 134,
-            "movement": -19
+            "position": 138,
+            "movement": -23
           }
         ]
       },
@@ -2378,14 +2378,14 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 86,
-            "movement": 1
+            "position": 87,
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
-            "movement": -19
+            "position": 123,
+            "movement": -23
           }
         ]
       }
@@ -2887,8 +2887,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 146,
-            "movement": -18
+            "position": 150,
+            "movement": -22
           }
         ]
       },
@@ -2931,8 +2931,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 36,
-            "movement": -19
+            "position": 40,
+            "movement": -23
           }
         ]
       },
@@ -2969,8 +2969,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 138,
-            "movement": -19
+            "position": 142,
+            "movement": -23
           }
         ]
       },
@@ -3037,8 +3037,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 83,
-            "movement": 5
+            "position": 85,
+            "movement": 3
           }
         ]
       }
@@ -3081,8 +3081,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 125,
-            "movement": -19
+            "position": 129,
+            "movement": -23
           }
         ]
       },
@@ -3237,26 +3237,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4285de11c037b6bce20faa82338358ed/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "1 Milli",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 85,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Assurance",
     "platforms": [
       {
@@ -3295,6 +3275,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/80fe4f71f92865be0d0f8d558cf54a72/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "1 Milli",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 115,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Activate",
     "platforms": [
       {
@@ -3323,8 +3323,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 151,
-            "movement": -20
+            "position": 155,
+            "movement": -24
           }
         ]
       }

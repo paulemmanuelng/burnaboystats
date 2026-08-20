@@ -640,14 +640,14 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 88,
-            "movement": -7
+            "position": 81,
+            "movement": 0
           },
           {
             "country": "NO",
             "name": "Norway",
-            "position": 131,
-            "movement": -85
+            "position": 170,
+            "movement": -124
           }
         ]
       }
@@ -1035,8 +1035,8 @@
           {
             "country": "VE",
             "name": "Venezuela",
-            "position": 10,
-            "movement": -2
+            "position": 9,
+            "movement": -1
           },
           {
             "country": "KE",
@@ -1048,8 +1048,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 67,
-            "movement": -19
+            "position": 71,
+            "movement": -23
           },
           {
             "country": "BS",
@@ -1060,14 +1060,14 @@
           {
             "country": "HK",
             "name": "Hong Kong",
-            "position": 102,
+            "position": 103,
             "movement": null,
             "status": "new"
           },
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 122,
+            "position": 128,
             "movement": null,
             "status": "new"
           }
@@ -1443,16 +1443,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 60,
-            "movement": -47
-          },
-          {
             "country": "GD",
             "name": "Grenada",
             "position": 61,
             "movement": -2
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 90,
+            "movement": -77
           }
         ]
       },
@@ -1609,8 +1609,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 50,
-            "movement": 31
+            "position": 80,
+            "movement": 1
           }
         ]
       },
@@ -1949,8 +1949,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 87,
-            "movement": 1
+            "position": 88,
+            "movement": 0
           },
           {
             "country": "UG",
@@ -2127,7 +2127,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
+            "position": 98,
             "movement": null,
             "status": "new"
           }
@@ -2569,88 +2569,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7b49d51e89ff07824c8c62043775a2ab/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Wo, man",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 10,
-            "movement": 0
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 14,
-            "movement": 0
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 60,
-            "movement": -6
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 188,
-            "movement": -6
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 190,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 190,
-            "movement": 5
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SV",
-            "name": "El Salvador",
-            "position": 51,
-            "movement": -21
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 64,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 94,
-            "movement": -71
-          },
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 165,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Ms. Paper",
     "platforms": [
       {
@@ -2734,6 +2652,88 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Wo, man",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 10,
+            "movement": 0
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 14,
+            "movement": 0
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 60,
+            "movement": -6
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 188,
+            "movement": -6
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 190,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 190,
+            "movement": 5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SV",
+            "name": "El Salvador",
+            "position": 51,
+            "movement": -21
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 64,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 108,
+            "movement": -85
+          },
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 183,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "19 & Dangerous",
@@ -3378,7 +3378,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
+            "position": 91,
             "movement": null,
             "status": "new"
           }
@@ -3553,8 +3553,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 76,
-            "movement": -19
+            "position": 80,
+            "movement": -23
           }
         ]
       },
