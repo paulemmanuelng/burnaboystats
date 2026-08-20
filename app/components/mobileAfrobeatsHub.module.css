@@ -1,0 +1,347 @@
+/* Mobile screen for /afrobeats. Values from the delivered design
+   (designs/mobile/Afrobeats - Mobile Hub.dc.html), with the site's own
+   safe-area and token conventions applied. Shown only below the desktop
+   breakpoint; the desktop page hides itself at the same width. */
+
+.screen { display: none; }
+
+@media (max-width: 900px) {
+  .screen { display: block; }
+}
+
+/* ── Chrome ─────────────────────────────────────────────────────────────── */
+.backBar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  padding-left: calc(18px + env(safe-area-inset-left, 0px));
+  padding-right: calc(18px + env(safe-area-inset-right, 0px));
+  background: rgba(10, 10, 11, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.backBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  flex: none;
+}
+.backLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.hero { padding: 24px 18px 18px; }
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.eyebrowRule { width: 26px; height: 2px; background: var(--gold); flex: none; }
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 0.95;
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+.ink {
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* The paint-box pair every gradient word on this site carries — without it
+     Anton's ink overruns the 0.95 line box and the ends go unpainted. */
+  padding: 0.2em 0;
+  margin: -0.2em 0;
+}
+.lede {
+  margin: 14px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+.cadence {
+  margin-top: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+/* ── The door ───────────────────────────────────────────────────────────── */
+.doorPad { padding: 0 18px; }
+.door {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  min-height: 150px;
+  border: 2px solid var(--gold);
+  text-decoration: none;
+  color: var(--text);
+}
+.doorArt {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 22%;
+  /* No grey here. His is the one full-colour image on the screen — that is how
+     the door reads as a door and the wall behind it as a field. */
+  filter: contrast(1.05);
+  z-index: -2;
+}
+.doorScrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 11, 0.14) 0%,
+    rgba(10, 10, 11, 0.6) 50%,
+    rgba(10, 10, 11, 0.93) 100%
+  );
+}
+.doorBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 16px 16px;
+}
+.doorTop { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.doorFoot { display: flex; flex-direction: column; gap: 3px; margin-top: 26px; }
+.doorName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.doorStat {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.doorStat strong { color: var(--gold); font-weight: 700; }
+.doorLink {
+  margin-top: 6px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.flag { font-size: 17px; line-height: 1; }
+.anchorTag {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  background: rgba(10, 10, 11, 0.55);
+}
+
+/* ── The wall ───────────────────────────────────────────────────────────── */
+.wallPad { padding: 18px 18px 0; }
+/* The 1px gap over a --line background is what draws the seams; the tiles carry
+   no border of their own. */
+.wall {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.tile {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  aspect-ratio: 1 / 1.18;
+  background: var(--bg);
+  text-decoration: none;
+  color: var(--text);
+  -webkit-tap-highlight-color: transparent;
+}
+.art {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 22%;
+  /* Greyed, so the field reads as a field and the door keeps the colour. */
+  filter: grayscale(0.35) contrast(1.02);
+  z-index: -2;
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 11, 0.1) 0%,
+    rgba(10, 10, 11, 0.62) 52%,
+    rgba(10, 10, 11, 0.94) 100%
+  );
+}
+.tileBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px 12px 12px;
+}
+.tileTop { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.tileFoot { display: flex; flex-direction: column; gap: 2px; }
+.tileName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+.tileStat {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.tileStat strong { color: var(--gold); font-weight: 700; }
+.badge {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--rule-soft);
+  color: var(--text);
+  background: rgba(10, 10, 11, 0.5);
+  white-space: nowrap;
+}
+/* A dashed slot where the register pins no top award — the absence is stated
+   rather than left as an empty corner. */
+.badgeBound {
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 999px;
+  border: 1px dashed var(--rule);
+  color: var(--dim);
+  white-space: nowrap;
+}
+
+/* ── Rails ──────────────────────────────────────────────────────────────── */
+.rails { padding: 20px 0 0; }
+.railLabel,
+.liveLabel {
+  padding: 0 18px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.liveLabel {
+  padding: 14px 18px 0;
+  color: var(--live, #3ed17f);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* Static glow, not the desktop's pulse — no motion to switch off on a phone. */
+.liveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--live, #3ed17f);
+  box-shadow: 0 0 8px rgba(62, 209, 127, 0.55);
+  flex: none;
+}
+/* ScrollRail adds only the edge mask — the layout is the caller's, and mine was
+   missing it, so ten pills wrapped into four rows instead of scrolling. */
+.rail {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 12px 18px 4px;
+  -webkit-overflow-scrolling: touch;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12.5px;
+  white-space: nowrap;
+  flex: none;
+}
+.pillNum { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--gold); }
+.pillNumLive { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--live, #3ed17f); }
+.pillLive { border-color: rgba(62, 209, 127, 0.32); }
+.pillAnchor { border-color: rgba(255, 182, 39, 0.42); color: var(--gold); }
+.railNote {
+  margin: 10px 18px 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* ── Foot ───────────────────────────────────────────────────────────────── */
+.foot {
+  margin: 20px 18px 0;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+.foot p { margin: 0; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
+.foot a { color: var(--gold); text-decoration: none; }
+
+/* Nine artists in two columns leaves the last row half empty. The desktop grid
+   fills its orphan with the rule and provenance cards, but on mobile those are
+   a footer line — so the last tile takes the whole row instead of sitting
+   beside a hole. Wider than it is tall, which suits a portrait crop anyway. */
+.tile:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  aspect-ratio: 2 / 1;
+}
+.tile:last-child:nth-child(odd) .art { background-position: center 18%; }

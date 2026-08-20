@@ -1168,8 +1168,8 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 19,
-            "movement": -9
+            "position": 20,
+            "movement": -10
           },
           {
             "country": "RO",
@@ -1229,7 +1229,7 @@
           {
             "country": "PL",
             "name": "Poland",
-            "position": 132,
+            "position": 178,
             "movement": null,
             "status": "new"
           },
@@ -1765,18 +1765,6 @@
         ]
       },
       {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 11,
-            "movement": 3
-          }
-        ]
-      },
-      {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
@@ -1797,6 +1785,18 @@
             "name": "United States",
             "position": 28,
             "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 14,
+            "movement": -3
           }
         ]
       }

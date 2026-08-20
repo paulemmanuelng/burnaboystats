@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { noteNavigation } from "../lib/backNav";
+import { noteNavigation, notePop } from "../lib/backNav";
 
 /**
  * Records that a client-side navigation happened, so the mobile back bars can
@@ -19,6 +19,13 @@ export default function NavHistoryTracker() {
     if (seen.current) noteNavigation();
     seen.current = true;
   }, [pathname]);
+
+  // Back and forward are history traversals, not new pages — depth must fall,
+  // not rise, or the back button at the top of the stack exits the site.
+  useEffect(() => {
+    window.addEventListener("popstate", notePop);
+    return () => window.removeEventListener("popstate", notePop);
+  }, []);
 
   return null;
 }

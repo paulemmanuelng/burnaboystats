@@ -129,18 +129,6 @@
         ]
       },
       {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 4,
-            "movement": -2
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -150,6 +138,18 @@
             "position": 79,
             "movement": null,
             "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 4,
+            "movement": -2
           }
         ]
       }
@@ -327,8 +327,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 48,
-            "movement": null,
-            "status": "re"
+            "movement": -4
           }
         ]
       }
@@ -377,8 +376,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 50,
-            "movement": null,
-            "status": "re"
+            "movement": 3
           }
         ]
       }

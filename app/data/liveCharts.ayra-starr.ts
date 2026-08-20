@@ -638,10 +638,16 @@
             "movement": -4
           },
           {
+            "country": "US",
+            "name": "United States",
+            "position": 81,
+            "movement": 14
+          },
+          {
             "country": "NO",
             "name": "Norway",
-            "position": 110,
-            "movement": -95
+            "position": 126,
+            "movement": -111
           }
         ]
       }
@@ -1007,6 +1013,13 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 2,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
             "position": 2,
@@ -1041,39 +1054,8 @@
           {
             "country": "BS",
             "name": "The Bahamas",
-            "position": 90,
-            "movement": -23
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 2,
-            "movement": 1
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 4,
-            "movement": 8
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 14,
-            "movement": 5
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 17,
-            "movement": null,
-            "status": "new"
+            "position": 91,
+            "movement": -24
           }
         ]
       },
@@ -1295,7 +1277,7 @@
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 29,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -1447,19 +1429,6 @@
         ]
       },
       {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 41,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -1480,6 +1449,18 @@
             "name": "Nigeria",
             "position": 38,
             "movement": 39
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 41,
+            "movement": 8
           }
         ]
       }
@@ -1928,8 +1909,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 62,
-            "movement": 2
+            "position": 63,
+            "movement": 1
           },
           {
             "country": "ZW",
@@ -1989,15 +1970,13 @@
             "country": "KE",
             "name": "Kenya",
             "position": 49,
-            "movement": null,
-            "status": "re"
+            "movement": 5
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 95,
-            "movement": null,
-            "status": "re"
+            "movement": -5
           }
         ]
       },
@@ -3062,14 +3041,14 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 40,
-            "movement": 108
+            "position": 46,
+            "movement": 102
           },
           {
             "country": "SV",
             "name": "El Salvador",
-            "position": 48,
-            "movement": -27
+            "position": 49,
+            "movement": -28
           },
           {
             "country": "FI",
@@ -3227,9 +3206,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
-            "movement": null,
-            "status": "new"
+            "position": 60,
+            "movement": -4
           }
         ]
       }

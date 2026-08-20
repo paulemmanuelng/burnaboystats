@@ -92,7 +92,7 @@ export default async function AfroArtistChartsPage({
     { num: releases, label: "Charting releases", note: "albums and singles" },
   ];
 
-  const sourceNote = `Peaks on each country's principal national chart, the same standard used for Burna Boy. Airplay, genre and platform charts excluded.`;
+  const sourceNote = `Peaks on each country's principal national chart, the same standard used for Burna Boy. Airplay, genre and platform charts excluded. Board reviewed weekly.`;
 
   return (
     <main id="content">

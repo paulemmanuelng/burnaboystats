@@ -322,19 +322,6 @@
         ]
       },
       {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 69,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -343,6 +330,18 @@
             "name": "Nigeria",
             "position": 62,
             "movement": -46
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 69,
+            "movement": -2
           }
         ]
       }
@@ -595,25 +594,6 @@
         ]
       },
       {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 59,
-            "movement": -30
-          },
-          {
-            "country": "JO",
-            "name": "Jordan",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -622,18 +602,6 @@
             "name": "Nigeria",
             "position": 111,
             "movement": 4
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 11,
-            "movement": -1
           }
         ]
       }
@@ -840,8 +808,7 @@
             "country": "TZ",
             "name": "Tanzania",
             "position": 67,
-            "movement": null,
-            "status": "re"
+            "movement": 4
           },
           {
             "country": "PT",
@@ -1487,8 +1454,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 67,
-            "movement": null,
-            "status": "re"
+            "movement": 12
           }
         ]
       }

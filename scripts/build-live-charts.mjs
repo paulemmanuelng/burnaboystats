@@ -160,6 +160,9 @@ for (const spec of CHART_SWEEPS) {
     if (codes.length === 0) throw new Error("index listed no country charts");
 
     const rows = new Map(SLUGS.map((slug) => [slug, []]));
+    // The countries whose chart page was actually READ this run. For those,
+    // the sweep is the chart's current edition and outranks anything else.
+    const okCodes = new Set();
     let failed = 0;
     // Sequential on purpose — a courtesy scrape of small pages against a free
     // service, not a race.
@@ -168,6 +171,7 @@ for (const spec of CHART_SWEEPS) {
         const r = await fetch(spec.url(cc), { headers: UA });
         if (!r.ok) throw new Error(String(r.status));
         const html = await r.text();
+        okCodes.add(cc === "global" ? "WW" : cc.toUpperCase());
         for (const w of work.values())
           rows.get(w.artist.slug).push(...extractCountryChart(html, cc, spec, w.artist));
       } catch (err) {
@@ -213,6 +217,23 @@ for (const spec of CHART_SWEEPS) {
           `  ${w.artist.name}: dropped ${dropped.length} swept row(s) for releases its artist page does not list — ` +
             [...new Set(dropped.map((d) => `${d.release} (${d.country})`))].slice(0, 6).join(", ")
         );
+      }
+      // The artist page carries its own copy of these platform blocks, and it
+      // LAGS the weekly country pages: it still listed "Tell Everybody" at
+      // YouTube Ghana #3 while the Ghana page's current edition had "B4 B4"
+      // there — one physical chart row, two titles, and the board double-
+      // counted it. A freshly read country page IS the current edition, so its
+      // rows replace the artist page's for that platform and country — which
+      // also removes the row entirely where the artist has dropped off, the
+      // case a merge alone can never fix. Countries the sweep failed to fetch
+      // keep their artist-page rows: stale beats absent.
+      for (const r of w.releases) {
+        for (const pf of r.platforms) {
+          if (pf.platform !== spec.platform) continue;
+          pf.entries = pf.entries.filter((e) => !okCodes.has(e.country));
+          pf.numberOnes = pf.entries.filter((e) => e.position === 1).length;
+        }
+        r.platforms = r.platforms.filter((pf) => pf.entries.length > 0);
       }
       mergeChartPlacements(w.releases, kept);
     }

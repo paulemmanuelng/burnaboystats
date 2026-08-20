@@ -266,7 +266,9 @@
   transform: translateY(-2px);
 }
 .yearBtnOn {
-  background: var(--gold);
+  background-color: var(--gold);
+  /* The gold ramp — the site's one treatment for a gold fill. */
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
   color: var(--bg); -webkit-text-fill-color: var(--bg);
   border-color: var(--gold);
   box-shadow: 0 6px 18px rgba(255, 182, 39, 0.24);
@@ -441,7 +443,7 @@
 .eyebrowRule {
   width: 22px;
   height: 2px;
-  background: var(--gold);
+  background: var(--gold); /* a 2px rule — a gradient renders as mud here */
   display: block;
   flex: none;
 }
@@ -774,7 +776,9 @@
   transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .yearBtnOn {
-  background: var(--gold);
+  background-color: var(--gold);
+  /* The gold ramp — the site's one treatment for a gold fill. */
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
   border-color: var(--gold);
   color: #0a0a0b;
 }

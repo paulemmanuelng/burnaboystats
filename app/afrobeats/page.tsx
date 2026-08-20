@@ -4,6 +4,7 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import MobileMenuButton from "../components/MobileMenuButton";
 import BackLink from "../components/BackLink";
+import MobileAfrobeatsHub from "../components/MobileAfrobeatsHub";
 import HubScatter, { type ScatterDot } from "../components/HubScatter";
 import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
 import { LIVE_BOARDS } from "../data/liveBoards";
@@ -58,6 +59,10 @@ const sweptRange = (() => {
 
 // Every dot is a computed pair. Burna leads the list so he paints last-but-one
 // under nobody; the plot itself does not care about order.
+// The live rail's own caption, one sentence, shared by both layouts.
+const liveCadenceNote =
+  "Live placements across Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts — platform charts, not official ones.";
+
 const scatterDots: ScatterDot[] = [
   { slug: "burna-boy", name: BURNA.name, countries: burnaCountries, plaques: totalAwards(), anchor: true },
   ...sweptArtists.map((a) => ({
@@ -132,16 +137,36 @@ export default function AfrobeatsPage() {
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <div className={styles.mobileBackBar}>
-        <BackLink href="/" aria-label="Back home" className={styles.mobileBackBtn}>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
-            <path d="M15 5l-7 7 7 7" />
-          </svg>
-        </BackLink>
-        <span className={styles.mobileBackLabel}>The Afrobeats Board</span>
-        <MobileMenuButton />
-      </div>
+      {/* The phone gets its own screen. It used to get this page's grid squeezed
+          by media queries — four columns down to two, and Burna the first
+          half-width cell among ten on the one page whose job is to place him
+          against the field. */}
+      <MobileAfrobeatsHub
+        boardCount={sweptArtists.length + 1}
+        burna={{
+          name: BURNA.name,
+          flag: BURNA.flag,
+          image: BURNA.image,
+          href: BURNA.href,
+          certs: totalAwards(),
+          countries: burnaCountries,
+        }}
+        artists={ranked.map((a) => ({
+          slug: a.slug,
+          name: a.name,
+          flag: a.flag,
+          image: a.image,
+          certs: certCount(a),
+          countries: countryCount(a),
+          badge: badge(a),
+        }))}
+        chartRail={chartPeakRail}
+        liveRail={liveRail}
+        sweptRange={sweptRange}
+        liveNote={liveCadenceNote}
+      />
 
+      <div className={styles.desktopBody}>
       <div className={styles.desktopCrumbs}>
         <BreadcrumbBar path="/afrobeats" />
       </div>
@@ -305,16 +330,13 @@ export default function AfrobeatsPage() {
         )}
 
         <p className={styles.foot}>
-          Counted under the rules on the <Link href="/methodology">methodology page</Link>. Last read
-          at source{" "}
-          {new Date(`${AFROBEATS_VERIFIED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
-          .
+          Counted under the rules on the{" "}
+          <Link href="/methodology#principles">methodology page</Link>. Last read at source{" "}
+          {sweptRange}.
         </p>
       </section>
+
+      </div>
 
       <div className={styles.desktopOnly}>
         <KeepExploring current="/afrobeats" />

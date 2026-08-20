@@ -23,7 +23,21 @@ const TABS = [
   { icon: "★", label: "Certs", href: "/certifications" },
   { icon: "▲", label: "Charts", href: "/live-charts" },
   { icon: "⌗", label: "Records", href: "/records" },
-];
+] as const;
+
+/**
+ * Routes that belong to a tab but do not sit under its href.
+ *
+ * A tab lights when the path starts with its own href, which covers every
+ * top-level section. The board breaks that: a chart board lives at
+ * /afrobeats/{artist}/charts and a live board at /afrobeats/{artist}/live, so
+ * both are charts pages that begin with neither /live-charts nor /records. The
+ * bar lit nothing at all on eighteen routes.
+ */
+const ALSO: Record<string, RegExp> = {
+  "/live-charts": /^\/(records\/charts|afrobeats\/[^/]+\/(charts|live))$/,
+  "/certifications": /^\/afrobeats\/[^/]+$/,
+};
 
 export default function MobileTabBar() {
   const pathname = usePathname();
@@ -38,7 +52,10 @@ export default function MobileTabBar() {
       {TABS.map((t) => {
         // "/" only matches exactly; the rest match their whole section, so a
         // song page still shows Music as the active tab.
-        const active = t.href === "/" ? pathname === "/" : pathname.startsWith(t.href);
+        const active =
+          t.href === "/"
+            ? pathname === "/"
+            : pathname.startsWith(t.href) || (ALSO[t.href]?.test(pathname) ?? false);
         return (
           <Link
             key={t.href}
