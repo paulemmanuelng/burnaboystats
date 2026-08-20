@@ -17,6 +17,15 @@ const aiCrawlers = [
   "Applebot-Extended", // Apple Intelligence
   "Amazonbot",
   "Bingbot", // Bing — powers Copilot & feeds ChatGPT
+  // xAI / Grok. Listed for completeness, with a caveat worth keeping: xAI
+  // publishes no crawler documentation and no token appears in its own
+  // robots.txt, and Grok's retrieval has been reported fetching with ordinary
+  // browser user-agents. So these names may govern nothing. They cost nothing
+  // either, and the "*" rule above already allows Grok however it arrives —
+  // which is the part that actually matters. Nothing here is ever disallowed.
+  "xAI-Bot",
+  "GrokBot",
+  "Grok",
 ];
 
 export default function robots(): MetadataRoute.Robots {
