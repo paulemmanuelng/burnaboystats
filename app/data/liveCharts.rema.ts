@@ -682,8 +682,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 29,
-            "movement": -1
+            "position": 26,
+            "movement": 3
           },
           {
             "country": "BF",
@@ -884,8 +884,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 62,
-            "movement": -8
+            "position": 63,
+            "movement": -9
           },
           {
             "country": "KE",
@@ -1078,7 +1078,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
+            "position": 114,
             "movement": null,
             "status": "new"
           }
@@ -1129,14 +1129,13 @@
             "country": "KE",
             "name": "Kenya",
             "position": 10,
-            "movement": null,
-            "status": "new"
+            "movement": -5
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 85,
-            "movement": -26
+            "movement": -16
           }
         ]
       }
