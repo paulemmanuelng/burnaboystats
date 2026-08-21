@@ -621,20 +621,20 @@
           {
             "country": "UA",
             "name": "Ukraine",
-            "position": 57,
-            "movement": -11
+            "position": 58,
+            "movement": -12
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 92,
-            "movement": 41
+            "position": 80,
+            "movement": 53
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 139,
-            "movement": -77
+            "position": 167,
+            "movement": -105
           }
         ]
       }
@@ -1008,8 +1008,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 7,
-            "movement": -2
+            "position": 9,
+            "movement": -4
           },
           {
             "country": "VE",
@@ -1020,29 +1020,22 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 14,
+            "position": 18,
             "movement": null,
             "status": "new"
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 25,
+            "position": 27,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 94,
-            "movement": -33
-          },
-          {
-            "country": "HK",
-            "name": "Hong Kong",
-            "position": 179,
-            "movement": null,
-            "status": "new"
+            "position": 95,
+            "movement": -34
           }
         ]
       },
@@ -1302,8 +1295,8 @@
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 74,
-            "movement": -48
+            "position": 83,
+            "movement": -57
           }
         ]
       }
@@ -1415,16 +1408,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 67,
-            "movement": -6
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
-            "movement": -135
+            "position": 29,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 68,
+            "movement": -7
           }
         ]
       },
@@ -1581,8 +1575,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
-            "movement": -139
+            "position": 196,
+            "movement": -184
           }
         ]
       },
@@ -1914,19 +1908,19 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 89,
-            "movement": -3
+            "position": 92,
+            "movement": -6
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 92,
-            "movement": -3
+            "position": 94,
+            "movement": -5
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 157,
+            "position": 158,
             "movement": null,
             "status": "new"
           }
@@ -2099,8 +2093,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 168,
-            "movement": -135
+            "position": 25,
+            "movement": 152
           }
         ]
       },
@@ -2748,23 +2742,23 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SV",
+            "name": "El Salvador",
+            "position": 56,
+            "movement": -16
+          },
+          {
             "country": "DK",
             "name": "Denmark",
-            "position": 43,
+            "position": 69,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "SV",
-            "name": "El Salvador",
-            "position": 55,
-            "movement": -15
-          },
-          {
             "country": "IT",
             "name": "Italy",
-            "position": 125,
-            "movement": -96
+            "position": 138,
+            "movement": -109
           }
         ]
       }
@@ -3114,6 +3108,19 @@
             "movement": -2
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 54,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -3297,6 +3304,43 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/12ca87c2ea2fa9506d6fc562bd8f5a01/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Commas",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 20,
+            "movement": 0
+          },
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 71,
+            "movement": 0
+          },
+          {
+            "country": "SC",
+            "name": "Seychelles",
+            "position": 158,
+            "movement": 0
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 191,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Letter To God",
     "platforms": [
       {
@@ -3334,59 +3378,10 @@
             "movement": -41
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 161,
-            "movement": -134
-          }
-        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Commas",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 20,
-            "movement": 0
-          },
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 71,
-            "movement": 0
-          },
-          {
-            "country": "SC",
-            "name": "Seychelles",
-            "position": 158,
-            "movement": 0
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 191,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bloody Samaritan",
@@ -3541,8 +3536,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 102,
-            "movement": -32
+            "position": 103,
+            "movement": -33
           }
         ]
       },
@@ -3708,6 +3703,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c22b652917676317beb469e5bce1cd24/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "2 Sugar",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 76,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
   }
 ];
   

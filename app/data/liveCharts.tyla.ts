@@ -483,7 +483,7 @@
           {
             "country": "SG",
             "name": "Singapore",
-            "position": 39,
+            "position": 41,
             "movement": null,
             "status": "new"
           }
@@ -576,7 +576,7 @@
             "country": "SE",
             "name": "Sweden",
             "position": 80,
-            "movement": -9
+            "movement": 52
           },
           {
             "country": "BG",
@@ -607,18 +607,6 @@
             "name": "Sweden",
             "position": 143,
             "movement": -13
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 197,
-            "movement": -124
           }
         ]
       }
@@ -696,8 +684,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 51,
-            "movement": -30
+            "position": 53,
+            "movement": -32
           },
           {
             "country": "ZA",
@@ -781,8 +769,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 61,
-            "movement": -6
+            "position": 62,
+            "movement": -7
           }
         ]
       },
@@ -794,56 +782,6 @@
             "country": "IT",
             "name": "Italy",
             "position": 79,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "FAIRYTALE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 50,
-            "movement": 0
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 51,
-            "movement": 0
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 61,
-            "movement": 0
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 82,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 189,
             "movement": null,
             "status": "new"
           }
@@ -881,14 +819,14 @@
           {
             "country": "LU",
             "name": "Luxembourg",
-            "position": 64,
+            "position": 70,
             "movement": null,
             "status": "new"
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 98,
+            "position": 107,
             "movement": null,
             "status": "new"
           }
@@ -954,6 +892,43 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "FAIRYTALE",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 50,
+            "movement": 0
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 51,
+            "movement": 0
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 61,
+            "movement": 0
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 82,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "PUSH 2 START",
     "platforms": [
       {
@@ -963,20 +938,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 50,
-            "movement": -30
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 165,
-            "movement": -135
+            "position": 52,
+            "movement": -32
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 169,
-            "movement": -31
+            "position": 170,
+            "movement": -32
           }
         ]
       }
@@ -1090,7 +1059,7 @@
             "country": "FI",
             "name": "Finland",
             "position": 105,
-            "movement": 23
+            "movement": -29
           }
         ]
       }
@@ -1116,26 +1085,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "RIGHT NOW",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 200,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   }
 ];
   
