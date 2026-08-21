@@ -14,6 +14,13 @@ export interface Country {
   name: string;
   flag: string;
   body: string;
+  /** The certifying body's own site — where a reader can check the plaque.
+   *  The site names RIAA, BPI, SNEP and the rest on nearly every figure and
+   *  linked none of them, a strange gap on a page whose whole claim is that
+   *  each number is traced to the body that awarded it. Optional: only bodies
+   *  whose page has been opened and confirmed are listed, because a dead link
+   *  to a primary source is worse than no link. */
+  url?: string;
 }
 
 export interface Cert {
@@ -31,18 +38,18 @@ export interface Release {
 }
 
 export const COUNTRIES: Record<string, Country> = {
-  US: { name: "United States", flag: "🇺🇸", body: "RIAA" },
-  UK: { name: "United Kingdom", flag: "🇬🇧", body: "BPI" },
-  CA: { name: "Canada", flag: "🇨🇦", body: "Music Canada" },
-  FR: { name: "France", flag: "🇫🇷", body: "SNEP" },
-  DE: { name: "Germany", flag: "🇩🇪", body: "BVMI" },
-  IT: { name: "Italy", flag: "🇮🇹", body: "FIMI" },
+  US: { name: "United States", flag: "🇺🇸", body: "RIAA", url: "https://www.riaa.com/gold-platinum/" },
+  UK: { name: "United Kingdom", flag: "🇬🇧", body: "BPI", url: "https://www.bpi.co.uk/award/" },
+  CA: { name: "Canada", flag: "🇨🇦", body: "Music Canada", url: "https://musiccanada.com/gold-platinum/" },
+  FR: { name: "France", flag: "🇫🇷", body: "SNEP", url: "https://snepmusique.com/les-certifications/" },
+  DE: { name: "Germany", flag: "🇩🇪", body: "BVMI", url: "https://www.musikindustrie.de/" },
+  IT: { name: "Italy", flag: "🇮🇹", body: "FIMI", url: "https://www.fimi.it/" },
   BE: { name: "Belgium", flag: "🇧🇪", body: "BEA" },
   SE: { name: "Sweden", flag: "🇸🇪", body: "GLF" },
-  NL: { name: "Netherlands", flag: "🇳🇱", body: "NVPI" },
+  NL: { name: "Netherlands", flag: "🇳🇱", body: "NVPI", url: "https://www.nvpi.nl/" },
   AU: { name: "Australia", flag: "🇦🇺", body: "ARIA" },
   NZ: { name: "New Zealand", flag: "🇳🇿", body: "RMNZ" },
-  ES: { name: "Spain", flag: "🇪🇸", body: "Promusicae" },
+  ES: { name: "Spain", flag: "🇪🇸", body: "Promusicae", url: "https://www.elportaldemusica.es/" },
   DK: { name: "Denmark", flag: "🇩🇰", body: "IFPI Denmark" },
   NO: { name: "Norway", flag: "🇳🇴", body: "IFPI Norway" },
   CH: { name: "Switzerland", flag: "🇨🇭", body: "IFPI" },
@@ -53,14 +60,14 @@ export const COUNTRIES: Record<string, Country> = {
   PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV" },
   PT: { name: "Portugal", flag: "🇵🇹", body: "AFP" },
   GR: { name: "Greece", flag: "🇬🇷", body: "IFPI Greece" },
-  ZA: { name: "South Africa", flag: "🇿🇦", body: "RiSA" },
+  ZA: { name: "South Africa", flag: "🇿🇦", body: "RiSA", url: "https://risa.org.za/" },
   // TCSN's public register (turntablecharts.com/certification) is REQUEST-based
   // and paid — "certification is not automatic" — so it will never mirror every
   // award, and absence from it proves nothing. Silver IS a real TCSN tier (their
   // application form: "Silver, Gold, Platinum or Multi-Platinum") even though
   // the register currently displays no Silver awards for anyone. Do not "clean
   // up" NG entries against the register — see PR #97 and its correction comment.
-  NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable (TCSN)" },
+  NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable (TCSN)", url: "https://turntablecharts.com/certification" },
   BR: { name: "Brazil", flag: "🇧🇷", body: "Pro-Música Brasil" },
   CO: { name: "Colombia", flag: "🇨🇴", body: "Sony Music Colombia" },
 };

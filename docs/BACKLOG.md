@@ -92,7 +92,7 @@ beats expensive-and-worthy.
       *Effort: large — it is a schema change across two datasets and their
       consumers, so it wants its own plan.*
 
-- [ ] **Certification thresholds are never published.** The dataset records tier
+- [x] **Certification thresholds are never published.** The dataset records tier
       and multiplier but nowhere states what a tier means in units, so 230 unequal
       plaques are presented as equals. Grep of the rendered text of
       `/certifications`, `/methodology` and `/faq` finds no unit figure and not
@@ -100,6 +100,7 @@ beats expensive-and-worthy.
       units sitting beside a 1,000,000-unit Platinum with nothing saying so.
       *Done when:* each certifying body's thresholds are stated somewhere a reader
       can reach from a plaque.
+      **DONE — Stated where it matters rather than as 26 threshold tables: a tier is a statement about one market, thresholds differ by body, so the totals count PLAQUES and a plaque count is never a sales figure. Uses the site's own verified example — RIAA Latin certifies 2x at 120,000 units against a standard Platinum's 1,000,000.**
 
 - [ ] **Nigerian chart coverage is far thinner than the Nigerian certification
       data.** 63 NG-certified releases against 20 with an NG chart peak.
@@ -123,12 +124,13 @@ beats expensive-and-worthy.
 
 ## 4. Credibility and reuse — the stated bottleneck is authority
 
-- [ ] **No outbound link to a primary source.** The site names RIAA, BPI, SNEP,
+- [x] **No outbound link to a primary source.** The site names RIAA, BPI, SNEP,
       the Official Charts Company, TurnTable and Billboard on nearly every figure
       and links none of them. `/records/cars` is the single exception, and it
       proves the pattern is acceptable here.
       *Done when:* a reader can click through from a figure to the register that
       awarded it.
+      **DONE — /methodology now carries a register list linking each certifying body's own page. Derived from COUNTRIES, so it cannot name a body no plaque here came from. Ten bodies, every URL opened in a real browser and confirmed by page title first — a dead link to a primary source is worse than none, which is why the other sixteen are absent rather than guessed.**
 
 - [ ] **No public record that a figure ever changed or was corrected.** No
       corrections log, no per-figure history. `grep -rIn "github" app/ public/`
@@ -153,22 +155,26 @@ beats expensive-and-worthy.
 
 ## 5. Accessibility
 
-- [ ] **Silver tier badge text fails WCAG AA contrast.** `--tier-silver` (#626B77)
+- [x] **Silver tier badge text fails WCAG AA contrast.** `--tier-silver` (#626B77)
       is used as *text* colour, ~175 instances, on the site's headline dataset.
+      **DONE — #626B77 (3.66:1 on --bg, 3.14:1 on --bg-soft-2) raised to #848F9E — 5.18:1 worst case, same blue-grey, still the dimmest of the four so the tiers keep reading in order.**
 
-- [ ] **Desktop filter chips expose no selected state and filtering is never
+- [x] **Desktop filter chips expose no selected state and filtering is never
       announced.** All 15 `.fChip` sites across `CertExplorer`, `ChartExplorer`
       and `AwardExplorer` carry selection in `className` only — no
       `aria-pressed`, no live region. WCAG 4.1.3.
+      **DONE — All 15 chips across the three explorers now carry aria-pressed off the same condition that sets the class, and a polite live region announces the filtered count.**
 
-- [ ] **The contact form gives no feedback a screen reader can perceive.**
+- [x] **The contact form gives no feedback a screen reader can perceive.**
       `ContactForm.tsx` — no `autoComplete`, the error branch is a bare `<p>` with
       no `role`, and the success state is an early return with no announcement.
       This is the page the methodology names as the way to report an error.
+      **DONE — autoComplete on name/email, role="alert" on the error (it was a bare <p>), and role="status" + tabIndex on the success state, which replaces the form outright and used to leave focus on a control that no longer existed.**
 
-- [ ] **Bar charts publish their numbers to sighted readers only.**
+- [x] **Bar charts publish their numbers to sighted readers only.**
       `RankedBars.tsx:33` wraps rows in `<figure role="img">`, which hides the row
       text from assistive tech.
+      **DONE — role="img" collapsed the chart into a single image, hiding every row's name and value. Dropped; the figure keeps its aria-label, the rows are read as the text they already are, and only the drawn bar is marked decorative.**
 
 - [ ] **No accessibility statement.** Low impact, listed for completeness.
 

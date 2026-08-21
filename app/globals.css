@@ -93,7 +93,13 @@
   --tier-platinum: #EFEDE6;  /* L* 93.7 · 16.86:1 */
   --tier-gold: #FBB417;      /* L* 78.0 · 10.95:1 — same as --gold */
   --tier-diamond: #31A1C0;   /* L* 61.6 ·  6.58:1 */
-  --tier-silver: #626B77;    /* L* 44.9 ·  3.66:1 */
+  /* Was #626B77, and the comment beside it recorded its own failure: 3.66:1
+     against --bg, 3.14:1 against --bg-soft-2, where AA wants 4.5 for text.
+     This is a TEXT colour on the badge, not just its edge, and it is the
+     tier that appears most on the ledger. Same blue-grey, lifted until it
+     clears on the darkest surface it sits on — and still the dimmest of the
+     four, which is what keeps the tiers reading in order. */
+  --tier-silver: #848F9E;    /* L* 59.7 ·  5.18:1 worst case */
   /* Type floor: nothing on this site sets a font-size below 11px. When
      auditing that, check BOTH units — the Aug 2026 pass found 274 px
      declarations under the floor and then another 27 in rem (down to 0.6rem
@@ -101,7 +107,7 @@
   --tier-platinum-edge: rgba(239, 237, 230, 0.29);
   --tier-gold-edge: rgba(251, 180, 23, 0.37);
   --tier-diamond-edge: rgba(49, 161, 192, 0.50);
-  --tier-silver-edge: rgba(98, 107, 119, 0.73);
+  --tier-silver-edge: rgba(132, 143, 158, 0.62);
   --green: #3ed17f;   /* live / positive delta */
   --red: #c0392b;     /* ambient background wash only — NEVER for text */
   --red-ink: #e0796d; /* negative deltas and "sold" labels: the readable red.
