@@ -636,7 +636,7 @@
             "country": "WW",
             "name": "Worldwide",
             "position": 22,
-            "movement": 0
+            "movement": -2
           },
           {
             "country": "SG",

@@ -471,7 +471,7 @@
           {
             "country": "SG",
             "name": "Singapore",
-            "position": 75,
+            "position": 80,
             "movement": null,
             "status": "new"
           }
@@ -587,26 +587,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 122,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 183,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -615,6 +595,19 @@
             "name": "Sweden",
             "position": 143,
             "movement": -13
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 123,
+            "movement": null,
+            "status": "new"
           }
         ]
       }

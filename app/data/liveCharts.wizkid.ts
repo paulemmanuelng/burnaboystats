@@ -353,7 +353,7 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 55,
+            "position": 61,
             "movement": null,
             "status": "new"
           },
@@ -868,7 +868,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 148,
+            "position": 167,
             "movement": null,
             "status": "new"
           }
@@ -1119,8 +1119,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": -13
+            "position": 128,
+            "movement": -15
           }
         ]
       }
@@ -1222,8 +1222,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 46,
-            "movement": -23
+            "position": 48,
+            "movement": -25
           }
         ]
       }
@@ -2095,8 +2095,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 140,
-            "movement": -18
+            "position": 142,
+            "movement": -20
           }
         ]
       }
@@ -2350,8 +2350,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 180,
-            "movement": -18
+            "position": 182,
+            "movement": -20
           }
         ]
       }
@@ -2466,25 +2466,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Bella",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 24,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/72cef83ff7a8c740f94ccf2ea5e0fdb7/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "DYNAMITE",
     "platforms": [
       {
@@ -2502,6 +2483,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Bella",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 45,
+            "movement": -26
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/72cef83ff7a8c740f94ccf2ea5e0fdb7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Time",
