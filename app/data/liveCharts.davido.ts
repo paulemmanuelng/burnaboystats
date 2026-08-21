@@ -700,7 +700,7 @@
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 106,
+            "position": 127,
             "movement": null,
             "status": "new"
           }
@@ -888,7 +888,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
+            "position": 23,
             "movement": null,
             "status": "new"
           }
@@ -1654,7 +1654,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -2356,7 +2356,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 51,
+            "position": 65,
             "movement": null,
             "status": "new"
           }
@@ -2996,8 +2996,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 82,
-            "movement": 4
+            "position": 79,
+            "movement": 7
           }
         ]
       }
@@ -3151,6 +3151,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1713aad5a0a697ac1db7ce7b8a167c27/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Skelewu",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 28,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/23726f80ac87dcce3846c3b638cba30d/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Electricity",
     "platforms": [
       {
@@ -3218,7 +3238,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
+            "position": 40,
             "movement": null,
             "status": "new"
           }
@@ -3276,7 +3296,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
+            "position": 172,
             "movement": null,
             "status": "new"
           }
@@ -3296,7 +3316,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 171,
+            "position": 179,
             "movement": null,
             "status": "new"
           }
