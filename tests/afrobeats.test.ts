@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { artistFaqs } from "../app/lib/boardFaqs";
 import sitemap from "../app/sitemap";
 import { HEAD_TO_HEAD, opponentOf } from "../app/lib/headToHead";
 import { totalAwards, countryCount as burnaCountryCount } from "../app/data/certifications";
@@ -576,5 +577,53 @@ describe("cover art", () => {
     // so the field is absent and the monogram fallback renders.
     const seyi = afrobeatsArtists.find((a) => a.slug === "seyi-vibez")!;
     expect(seyi.releases.find((r) => r.title === "Ama")?.cover).toBeUndefined();
+  });
+});
+
+// The FAQ's comparison must read off the same map as the head-to-head panel.
+// It first shipped measuring every artist against Burna Boy — the exact mistake
+// headToHead.ts was written to undo ("nine pages asked the same question and
+// got the same answer: he is bigger"). He is the opponent for Wizkid alone.
+describe("board FAQ comparisons", () => {
+  const comparisonOf = (slug: string) => {
+    const a = afrobeatsArtists.find((x) => x.slug === slug)!;
+    return artistFaqs(a).find((f) => f.q.startsWith("Is "));
+  };
+
+  it("measures each artist against its head-to-head peer, not Burna Boy", () => {
+    for (const a of afrobeatsArtists) {
+      const cmp = comparisonOf(a.slug);
+      const rival = opponentOf(a);
+      if (!rival) {
+        expect(cmp, `${a.slug} has no pairing, so it must have no comparison`).toBeUndefined();
+        continue;
+      }
+      expect(cmp?.q, `${a.slug} comparison`).toBe(`Is ${a.name} more certified than ${rival.name}?`);
+    }
+  });
+
+  it("names Burna Boy for Wizkid and for nobody else", () => {
+    const mentions = afrobeatsArtists
+      .filter((a) => comparisonOf(a.slug)?.q.includes("Burna Boy"))
+      .map((a) => a.slug);
+    expect(mentions).toEqual(["wizkid"]);
+  });
+
+  it("agrees with itself from either side of a mutual pairing", () => {
+    for (const a of afrobeatsArtists) {
+      const rival = opponentOf(a);
+      if (!rival || rival.isBurna) continue;
+      const mine = comparisonOf(a.slug)!.a;
+      const theirs = comparisonOf(rival.href.split("/").pop()!)!.a;
+      const pair = [mine, theirs];
+      const yes = pair.filter((t) => t.startsWith("Yes")).length;
+      const no = pair.filter((t) => t.startsWith("No.")).length;
+      const level = pair.filter((t) => t.startsWith("They are level")).length;
+      // Either the two are level from both sides, or exactly one says yes and
+      // the other says no. Both claiming "yes" would mean the pair disagrees
+      // about which record is bigger.
+      const coherent = level === 2 || (yes === 1 && no === 1);
+      expect(coherent, `${a.slug} vs ${rival.name}: ${yes} yes / ${no} no / ${level} level`).toBe(true);
+    }
   });
 });
