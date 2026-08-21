@@ -17,6 +17,41 @@ import { CHART_COUNTRIES } from "./charts";
 //  `charts` rows are the extracted detail; since the 17 Aug repair the two agree
 //  EXACTLY for all nine artists, and a test enforces that.
 //
+//  THE SWEEP DOCUMENTS ARE IN docs/sweeps/ — one certifications file and one
+//  chart-peaks file per artist, and every figure below traces to a row in one
+//  of them. Read those before changing a number here.
+//
+//  NIGERIA WILL NOT MATCH TURNTABLE'S LIVE DASHBOARD, AND IS NOT MEANT TO.
+//  "Read in the issuing body's own register" is true of every NG plaque, but
+//  for many of them the register was read in its OWN ARCHIVED CAPTURES rather
+//  than live — and the live page is the one a reader checks. Verified against
+//  both sources on 21 Aug 2026:
+//
+//    * turntablecharts.com/certification serves a hard cap of exactly 500 rows
+//      — 456 Platinum, 44 Gold, ZERO Silver. It truncates mid-Gold, so it
+//      serves none of the Silver tier for ANY artist.
+//    * The Wayback captures of that same URL hold the rest. The richest,
+//      20260221224010 (39 MB, 2,477 rows), covers every artist on this board.
+//    * Seyi Vibez is the extreme case: the live page shows 51 of his 103
+//      plaques. The other 52 — 32 Gold and all 20 Silver — exist only in the
+//      captures. Anyone spot-checking him against the live dashboard will find
+//      the Silvers missing and conclude this file is wrong. It is not.
+//
+//  Silver IS a real TCSN tier (their application form lists it); see the fuller
+//  note above the NG entry in certifications.ts. Do NOT "correct" NG rows
+//  against the live register.
+//
+//  RE-DERIVING A NIGERIAN COUNT — two traps, both of which cost a wrong answer
+//  the first time:
+//    1. Key on (title, artiste), never title alone. "On God" is two different
+//       records — Vibez Inc/Seyi Vibez/ODUMODUBLVCK/Tml Vibez (Gold) and Kashy
+//       ft. Seyi Vibez (Silver). Collapsing them loses a plaque: 19, not 20.
+//    2. Then fold artist-string variants of the SAME record, or you overcount.
+//       "Gwagwalada" is filed as both "BNXN, Seyi Vibez & Kizz Daniel" and
+//       "BNXN, Seyi Vibez, Kizz Daniel"; "Bad Vibes" appears twice. Take the
+//       highest tier per record. That is what turns the capture's raw 46
+//       Platinum into this file's correct 44.
+//
 //  THE TWO BILLBOARD WORLDWIDE CHARTS (GLB = Global 200, GLBX = Global Excl.
 //  U.S.) are the one pair no reader can eyeball. The sweep documents do not
 //  share a convention — Wizkid's file uses 🌐 for the Global 200, Tems's uses
