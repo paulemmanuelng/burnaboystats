@@ -200,7 +200,7 @@
             "country": "WW",
             "name": "Worldwide",
             "position": 184,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "CI",
@@ -1021,7 +1021,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 162,
+            "position": 164,
             "movement": null,
             "status": "new"
           }
@@ -1335,8 +1335,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": -11
+            "position": 136,
+            "movement": -13
           }
         ]
       },
@@ -1423,7 +1423,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 122,
+            "position": 129,
             "movement": null,
             "status": "new"
           }

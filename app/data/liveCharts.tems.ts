@@ -623,7 +623,7 @@
             "country": "WW",
             "name": "Worldwide",
             "position": 22,
-            "movement": 0
+            "movement": -2
           },
           {
             "country": "SG",
@@ -1136,27 +1136,27 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 123,
+            "position": 125,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
-            "movement": -111
+            "position": 131,
+            "movement": -113
           },
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 141,
-            "movement": 56
+            "position": 145,
+            "movement": 52
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 171,
-            "movement": -69
+            "position": 157,
+            "movement": -55
           }
         ]
       },
@@ -1671,8 +1671,8 @@
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 76,
-            "movement": -14
+            "position": 79,
+            "movement": -17
           }
         ]
       }
@@ -1739,8 +1739,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 177,
-            "movement": -20
+            "position": 160,
+            "movement": -3
           }
         ]
       },

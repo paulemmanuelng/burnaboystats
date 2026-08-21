@@ -270,7 +270,7 @@
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 38,
+            "position": 45,
             "movement": null,
             "status": "new"
           },
@@ -418,7 +418,7 @@
             "country": "WW",
             "name": "Worldwide",
             "position": 41,
-            "movement": -12
+            "movement": -6
           },
           {
             "country": "ZM",
@@ -700,7 +700,7 @@
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 147,
+            "position": 149,
             "movement": null,
             "status": "new"
           }
@@ -3334,8 +3334,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 183,
-            "movement": -143
+            "position": 185,
+            "movement": -145
           }
         ]
       }
@@ -3353,8 +3353,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 190,
-            "movement": -146
+            "position": 192,
+            "movement": -148
           }
         ]
       }

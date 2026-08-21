@@ -436,8 +436,8 @@
           {
             "country": "SG",
             "name": "Singapore",
-            "position": 90,
-            "movement": -57
+            "position": 99,
+            "movement": -66
           }
         ]
       }
@@ -934,6 +934,19 @@
             "name": "Micronesia",
             "position": 160,
             "movement": 34
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PH",
+            "name": "Philippines",
+            "position": 135,
+            "movement": null,
+            "status": "new"
           }
         ]
       }

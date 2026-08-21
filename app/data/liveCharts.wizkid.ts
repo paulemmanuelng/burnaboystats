@@ -917,7 +917,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 144,
+            "position": 146,
             "movement": null,
             "status": "new"
           }
@@ -2240,7 +2240,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 184,
+            "position": 186,
             "movement": null,
             "status": "new"
           }
@@ -2541,26 +2541,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/afea1bda5fb6b9c56301ea949d4516bf/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Daddy Yo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 159,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Alive",
     "platforms": [
       {
@@ -2578,6 +2558,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Daddy Yo",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 161,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SoundMan, Vol. 1",
