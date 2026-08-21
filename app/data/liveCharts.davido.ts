@@ -291,8 +291,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 81,
-            "movement": -16
+            "position": 87,
+            "movement": -22
           }
         ]
       }
@@ -455,7 +455,7 @@
             "country": "WW",
             "name": "Worldwide",
             "position": 41,
-            "movement": -6
+            "movement": -12
           },
           {
             "country": "ZM",
@@ -473,7 +473,7 @@
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 90,
-            "movement": -8
+            "movement": 3
           },
           {
             "country": "AE",
@@ -3362,8 +3362,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 178,
-            "movement": -27
+            "position": 177,
+            "movement": -26
           }
         ]
       }

@@ -564,7 +564,7 @@
             "country": "SE",
             "name": "Sweden",
             "position": 98,
-            "movement": 22
+            "movement": -18
           },
           {
             "country": "BG",
@@ -600,7 +600,7 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 117,
+            "position": 142,
             "movement": null,
             "status": "new"
           }
@@ -722,7 +722,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 63,
+            "position": 64,
             "movement": -36
           }
         ]
@@ -956,7 +956,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 62,
+            "position": 63,
             "movement": -36
           },
           {

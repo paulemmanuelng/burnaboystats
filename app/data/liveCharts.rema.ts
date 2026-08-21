@@ -184,14 +184,13 @@
             "country": "WW",
             "name": "Worldwide",
             "position": 184,
-            "movement": -2
+            "movement": -3
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 193,
-            "movement": null,
-            "status": "new"
+            "movement": 4
           }
         ]
       },
@@ -683,7 +682,7 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 26,
+            "position": 29,
             "movement": -1
           },
           {
@@ -1129,7 +1128,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 7,
+            "position": 8,
             "movement": null,
             "status": "new"
           },
