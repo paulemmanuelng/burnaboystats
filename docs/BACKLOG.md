@@ -51,6 +51,34 @@ beats expensive-and-worthy.
       logs loudly instead of returning `[]`.
       **DONE — one `readGenerated()` helper now separates the three outcomes the old code folded together: file absent (fine, first run), unreadable, and present-but-unparseable. The last two stop the run. Both branches proven against a real file.**
 
+- [x] **Platform streaks had no guard and two were wrong on the live site.**
+      Spotify daily/weekly, Apple Music, iTunes, Mediatraffic and YouTube counts
+      are not official national charts, so they get no `ChartEntry` and none of
+      the protection the Billboard week counts got; the stats bot does not fetch
+      them either, so `watched-metrics.json` never saw them. Found 21 Aug 2026:
+      the Spotify Global Weekly card read "4 weeks" during the 5th, and the
+      YouTube most-viewed run read "33 days" during the 48th.
+      **DONE — `tests/streakParity.test.ts` holds all seven streaks to
+      `updates.ts`. The feed had BOTH correct figures already; only the cards
+      had been left behind, which is what makes this checkable at all. The rule
+      is a floor, not equality: a card may run ahead of the feed (Paul updates
+      from live tracking without writing an entry every tick) but never behind,
+      because that is the site contradicting its own published log. Verified by
+      reintroducing both bugs and watching it fail on exactly those two.
+      Two traps it now encodes: read the capture GROUP, never "first digits in
+      the match" — "at No. 1 for 57 days" yields the 1 — and fail when a newer
+      entry states the streak in wording the patterns cannot read, or coverage
+      is lost silently while the suite still reports green.**
+
+- [ ] **Davido's chart peaks are materially incomplete.** 0.73 entries per
+      certification, the lowest on the board, 53% Nigerian, and eight
+      internationally-certified songs carry no chart data at all — including
+      "Fall", which is RIAA Platinum and Canada Platinum. His certifications
+      were checked against RIAA's own database and are complete; only the peaks
+      lag.
+      *Done when:* the eight are researched across US/CA/UK, or the gap is
+      stated in the methodology the way Nigeria's pre-2022 gap now is.
+
 ## 2. The front door is broken
 
 - [x] **Search cannot find the site's own records.** `app/lib/searchIndex.ts` is 79
@@ -176,6 +204,22 @@ beats expensive-and-worthy.
       figure and the source body but no date, and the date is rendered inches away
       on screen. A card outlives the number on it.
       **DONE — Cards now print "As of <date>" beneath the source body. It matters more here than anywhere else on the site: a card outlives the figure on it — saved, reposted, quoted months later — while the page it came from showed the date inches away.**
+
+- [ ] **The board never tells a reader how to check it.** Nigeria's counts cannot
+      be reproduced from TurnTable's live dashboard — it caps at 500 rows and
+      serves zero Silver — so a fan spot-checking Seyi Vibez finds his 20 Silvers
+      missing and reasonably concludes the site invented them. The answer exists
+      (`docs/sweeps/`, and the Feb 2026 Wayback capture) but only in the repo,
+      where no reader looks.
+      *Done when:* /afrobeats or the artist pages carry the archive link and the
+      "search his name" instruction, so the next fan asks the site instead of
+      asking Paul.
+
+- [ ] **The chart-peaks sweep documents state their totals three different ways.**
+      "104 + 19 = 123 chart entries", "49 singles + 17 albums = 66 chart
+      entries", "= 118 total chart entries". `tests/sweepDocs.test.ts` absorbs it
+      by anchoring on the sum, but a v2 sweep should normalise the line so the
+      check can be exact. Cosmetic; listed so it is not rediscovered.
 
 ## 5. Accessibility
 
