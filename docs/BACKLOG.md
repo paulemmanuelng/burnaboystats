@@ -159,11 +159,18 @@ beats expensive-and-worthy.
       year-end/end-of-year/annual-rank returns zero chart data. Billboard,
       Official Charts and others publish them, and they are a natural question.
 
-- [ ] **The board has no awards for any of the nine artists.** `AfroArtist` carries
+- [-] **The board has no awards for any of the nine artists.** `AfroArtist` carries
       certifications and chart peaks and nothing else, so "who has the most
       Grammys/BET/Headies" — the most natural question a ten-artist comparison
       invites — cannot be asked.
       *Effort: large.* Nine artists' award histories, each primary-sourced.
+      **NOT DOING — Paul's call, 21 Aug 2026.** Marked `[-]` so it counts as
+      neither open nor done. The cost is nine full award histories sourced to
+      each ceremony's own winners list, which is the whole Burna Boy awards
+      audit done eight more times; the payoff is one comparison question. If it
+      is ever revisited, note that award data is the one board field with no
+      register to sweep — it is press-release territory, which is exactly where
+      this site's counting rules say not to go.
 
 - [ ] **No country view.** Three country-keyed datasets exist (230 certifications
       across 26 countries, 280 chart entries across 71 territories, 57 countries
