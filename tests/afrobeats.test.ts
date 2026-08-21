@@ -26,7 +26,7 @@ import { countryMeta } from "../app/data/afrobeats";
 // Davido a Diamond he does not have while leaving his total untouched. Totals
 // alone would not have caught it — the tier split is what did.
 const EXPECTED = {
-  asake: { total: 79, diamond: 0 },
+  asake: { total: 80, diamond: 0 },
   "omah-lay": { total: 61, diamond: 2 },
   "seyi-vibez": { total: 103, diamond: 0 },
   wizkid: { total: 155, diamond: 6 },

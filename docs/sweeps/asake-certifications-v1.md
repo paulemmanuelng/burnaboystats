@@ -2,7 +2,14 @@
 
 **Method:** identical to burnaboystats.com — a certification counts when it appears in the **issuing body's own register**; one plaque per title per country at its **current** tier (an 8× Platinum is one plaque, not eight); lead, co-billed and featured **artist** credits all count, writer/producer credits do not. A press announcement is not a register. Sweep run **19 Aug 2026** in two halves: Nigeria + Africa, and the non-African bodies. ✓ = seen in the issuing body's own live database. ✓ᴬ = confirmed in the body's own **archived** register (Wayback capture of the same URL, where the live page no longer serves the row).
 
-## Total: **79 certifications** across **3 countries** — **79 of 79 verified body-side**
+## Total: **80 certifications** across **4 countries** — **80 of 80 verified body-side**
+
+> **Update, 21 Aug 2026 — one plaque added after this sweep ran.** Recorded Music NZ
+> certified *Bandana* (Fireboy DML And Asake) **Gold on 2026-08-20**, the day after this
+> document was compiled, so its absence here was correct at the time rather than a miss.
+> Read in RMNZ's own register, which it publishes through RadioScope as a TablePress
+> table (id 2052, 24,196 single rows) rather than on recordedmusic.co.nz — a search there
+> for `Asake` returns exactly this one row. New Zealand is his fourth country.
 
 | | |
 |---|---|

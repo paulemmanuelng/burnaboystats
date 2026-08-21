@@ -36,6 +36,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-21",
+    category: "Certifications",
+    text: "Asake picks up a fourth country: Recorded Music NZ certified “Bandana”, his 7× Platinum record with Fireboy DML, Gold in New Zealand on 20 August — read in RMNZ's own register, which it publishes through RadioScope rather than on its main site. It takes him to 80 plaques, and the Afrobeats Board to 743.",
+    href: "/afrobeats/asake",
+  },
+  {
+    date: "2026-08-21",
     category: "Charts",
     text: "An 8th straight week as the world's biggest song: “Dai Dai” holds No. 1 on Mediatraffic's United World Chart with 326,000 points in the week to 22 August — while Switzerland gives it a 10th week on top, Germany a 7th and France a 6th.",
     href: "/dai-dai",
