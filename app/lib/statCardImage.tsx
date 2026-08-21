@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import type { StatCard } from "./statCards";
 import { CARD_SIZES, type CardRatio } from "./cardSizes";
 import { BURNA_PORTRAIT } from "./artistImages";
+import { lastUpdated } from "./api";
 
 /**
  * The downloadable share card, built from designs/desktop/Share.dc.html.
@@ -279,11 +280,17 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
             <div style={{ display: "flex", fontSize: tall ? 32 : 27, lineHeight: 1.5, color: "#CFC7BB", maxWidth: textW * 0.72 }}>
               {card.kicker}
             </div>
-            {/* Every card carries the body behind the number, so a screenshot
-                can always be traced back to its source. */}
+            {/* Every card carries the body behind the number AND the date it was
+                read, so a screenshot can be traced back to its source and placed
+                in time. The date matters more here than anywhere else on the
+                site: a card outlives the figure printed on it — it gets saved,
+                reposted and quoted months later — and the page it came from
+                shows the date inches away while the image itself did not. */}
             <div
               style={{
                 display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-end",
                 marginLeft: "auto",
                 paddingLeft: 24,
                 fontSize: tall ? 24 : 21,
@@ -292,7 +299,10 @@ export function statCardImage(card: StatCard, ratio: CardRatio = "square") {
                 color: "#8A8279",
               }}
             >
-              {card.source}
+              <div style={{ display: "flex" }}>{card.source}</div>
+              <div style={{ display: "flex", color: "#6B655D", marginTop: 6 }}>
+                As of {lastUpdated}
+              </div>
             </div>
           </div>
         </div>

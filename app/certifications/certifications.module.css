@@ -861,3 +861,15 @@
   text-transform: uppercase;
   opacity: 0.85;
 }
+
+/* A ledger title that has its own page. Same type as .certTitle — only the
+   affordance is added, because the row's rhythm is the design and a link that
+   changes weight or size would break the column. */
+.certTitleLink {
+  composes: certTitle;
+  color: inherit;
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+.certTitleLink:hover,
+.certTitleLink:focus-visible { text-decoration: underline; color: var(--gold); }
