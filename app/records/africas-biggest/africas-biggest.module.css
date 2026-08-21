@@ -141,6 +141,17 @@
   margin-top: 22px;
   border: 1px solid var(--rule-soft);
 }
+/* Partial last row stretches the final cell — RESPONSIVE-AND-STATES.md,
+   archetype 2: "Never leave a phantom empty cell." This grid paints its rule
+   colour behind 1px gaps, so an empty cell is a grey slab, not space. The
+   second grid on this page runs to ELEVEN boxes and was shipping one.
+   Parity is not simply "odd is orphaned", because `.boxFeatured` spans the
+   whole row and shifts everything after it — so the rule is written twice, once
+   for a grid without a featured box and once for a grid with one. */
+.boxGrid > :last-child:nth-child(2n + 1) { grid-column: span 2; }
+.boxGrid > .boxFeatured ~ :last-child:nth-child(2n + 1) { grid-column: auto; }
+.boxGrid > .boxFeatured ~ :last-child:nth-child(2n) { grid-column: span 2;
+}
 
 /* ── Stat box ───────────────────────────────────────────────────────────── */
 .box { background: var(--bg); padding: 24px 26px 22px; display: flex; flex-direction: column; }
@@ -311,5 +322,8 @@
   .trendChart { border-left: 0; border-top: 1px solid var(--border); }
   .trendValue { font-size: 56px; }
   .boxGrid { grid-template-columns: 1fr; }
+  /* One column: the stretch rules must stand down or they invent a
+     second track that does not exist. */
+  .boxGrid > :last-child, .boxGrid > .boxFeatured ~ :last-child { grid-column: auto; }
   .faqItem { grid-template-columns: 1fr; gap: 10px; }
 }

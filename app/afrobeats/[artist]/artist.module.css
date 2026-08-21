@@ -146,6 +146,16 @@
   background: var(--line);
   border: 1px solid var(--line);
 }
+/* Partial last row stretches the final cell — RESPONSIVE-AND-STATES.md,
+   archetype 2: "Never leave a phantom empty cell." The grid paints its line
+   colour behind 1px gaps, so an empty track is a grey slab. The card count is
+   not fixed — an artist who charts in one country renders five, not six — and
+   five orphans at EVERY breakpoint here (5 of 6, then 2 of 3, then 1 of 2). */
+.numGrid > :last-child:nth-child(6n + 1) { grid-column: span 6; }
+.numGrid > :last-child:nth-child(6n + 2) { grid-column: span 5; }
+.numGrid > :last-child:nth-child(6n + 3) { grid-column: span 4; }
+.numGrid > :last-child:nth-child(6n + 4) { grid-column: span 3; }
+.numGrid > :last-child:nth-child(6n + 5) { grid-column: span 2; }
 .numCard { background: var(--bg); padding: 20px 18px 16px; }
 .numLead .numValue { color: var(--gold); }
 .numValue {
@@ -277,6 +287,11 @@
 
 @media (max-width: 900px) {
   .numGrid { grid-template-columns: repeat(3, 1fr); }
+  /* Re-derive the stretch for three tracks; the six-column rules above would
+     otherwise span more columns than exist. */
+  .numGrid > :last-child { grid-column: auto; }
+  .numGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .numGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
 }
 /* 900, not 760: MobileCerts paints itself below 900, so a 760 cutoff here left
    a 140px band — every tablet held upright — where BOTH layouts rendered, two
@@ -291,6 +306,8 @@
   .portrait { width: 140px; height: 140px; }
   .sectionPad { padding: 26px 18px 0; }
   .numGrid { grid-template-columns: repeat(2, 1fr); }
+  .numGrid > :last-child { grid-column: auto; }
+  .numGrid > :last-child:nth-child(2n + 1) { grid-column: span 2; }
   .row { grid-template-columns: 1fr; gap: 8px; }
   .compare { padding: 24px 18px 28px; }
   .onward { padding: 22px 18px 34px; }

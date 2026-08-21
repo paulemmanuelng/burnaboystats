@@ -320,6 +320,36 @@ beats expensive-and-worthy.
       by anchoring on the sum, but a v2 sweep should normalise the line so the
       check can be exact. Cosmetic; listed so it is not rediscovered.
 
+- [x] **Hairline grids were leaving phantom empty cells on live pages.** The
+      house pattern — `display: grid` + `gap: 1px` + a `background` painting the
+      rule colour through the gaps — renders any partial last row as a solid
+      grey slab rather than as space. RESPONSIVE-AND-STATES.md archetype 2
+      already forbids this ("Never leave a phantom empty cell — that shipped
+      visibly in the first build"), so these were violations of a documented
+      rule, not a missing pattern. Three were introduced in one day before the
+      pattern was recognised.
+      **DONE — audited by measurement, not by eye.** 35 hairline grids exist; 29
+      had no orphan rule, but most are fed by fixed-length content and cannot
+      orphan. Rendering each page and measuring every row against its grid width
+      found **two genuinely broken on live pages**:
+      `/records/africas-biggest` `.boxGrid` — 11 boxes in 2 columns, the last
+      row 581px short of 1160. Fixed, but note the trap: the first grid on that
+      page leads with `.boxFeatured` spanning `1 / -1`, which flips the parity,
+      so a naive `:last-child:nth-child(2n + 1)` would have stretched a cell
+      that was already correct and orphaned the one before it. The rule is
+      written twice — once for a grid with a featured box, once without.
+      `/afrobeats/[artist]` `.numGrid` — 6 columns rendering 5 cards for any
+      artist who charts in one country, 220px short. Guarded at all three
+      breakpoints, though only the 6-column case is reachable: below 900px the
+      whole desktop grid is `display: none`.
+      *Re-run the audit* by loading a page and measuring, since static analysis
+      cannot tell a fixed-length `.map()` from a variable one. For each grid with
+      `display:grid`, a 1px gap and a non-transparent background, group children
+      by `y` and flag any row whose summed width falls more than half a cell
+      short of the grid's width. A few px short is sub-pixel rounding, not a bug.
+      *Not swept:* every route at every breakpoint. Home, timeline, press,
+      analysis, methodology and the artist pages are clean at the widths checked.
+
 ## 5. Accessibility
 
 - [x] **Silver tier badge text fails WCAG AA contrast.** `--tier-silver` (#626B77)
