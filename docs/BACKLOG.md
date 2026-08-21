@@ -9,6 +9,11 @@ Tick an item when it ships. Keep the evidence line — it is what makes the item
 actionable months later, and several of these look wrong until you see the
 number.
 
+**Markers.** `[ ]` open and actionable. `[x]` shipped. `[-]` decided against —
+left in place with the reasoning so it is not re-raised as a fresh idea later.
+`[~]` parked with a trigger: worth doing, deliberately not now, and the entry
+says what should wake it up.
+
 **Order is by what I would do first, not by severity.** Cheap-and-load-bearing
 beats expensive-and-worthy.
 
@@ -213,7 +218,7 @@ beats expensive-and-worthy.
       web.archive.org rate-limits hard above roughly one request every few
       seconds.
 
-- [ ] **Year-end charts are absent entirely.** Repo-wide grep for
+- [~] **Year-end charts are absent entirely.** Repo-wide grep for
       year-end/end-of-year/annual-rank returns zero chart data. Billboard,
       Official Charts and others publish them, and they are a natural question.
       **FEASIBILITY ESTABLISHED 21 Aug 2026 — buildable, but larger and more
@@ -240,11 +245,13 @@ beats expensive-and-worthy.
       *Size:* ~7 years x singles and albums x 2+ countries is 28+ chart reads,
       each needing year verification, plus a dataset, a display surface and
       tests. Same class as the two items dropped above.
-      *Recommendation: park until December 2026.* The natural trigger is the
-      2026 year-end publishing — "Dai Dai" spent five weeks at No. 1 on the
+      **PARKED — Paul's call, 21 Aug 2026. Trigger: the 2026 year-end charts
+      publishing, around December.** "Dai Dai" spent five weeks at No. 1 on the
       Global 200 and is near-certain to place high, which is a far stronger
-      reason to build the surface than backfilling historical placings. Build it
-      then, with the current year as the headline and the history behind it.
+      reason to build the surface than backfilling historical placings alone.
+      Build it then, with the current year as the headline and the history
+      behind it — and re-check the year mapping described above before trusting
+      a single row, because it is the kind of fault that ships silently.
 
 - [-] **The board has no awards for any of the nine artists.** `AfroArtist` carries
       certifications and chart peaks and nothing else, so "who has the most
