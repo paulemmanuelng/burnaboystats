@@ -33,6 +33,10 @@ const X_PERSONAL = "https://x.com/paulemmanuelng";
 // sameAs wants profiles that corroborate the person, not just reach him. The
 // contact route stays X — see "Reach me" below.
 const LINKEDIN = "https://www.linkedin.com/in/paulemmanuelng";
+// The site is built in the open and never said so. Every figure here has a
+// commit behind it saying what changed and why, which is a stronger claim to
+// rigour than any sentence on this page — and it was invisible.
+const REPO = "https://github.com/paulemmanuelng/burnaboystats";
 
 // First person throughout — this page is the curator speaking, not the site
 // describing him in the third person.
@@ -138,6 +142,14 @@ export default function CuratorPage() {
           citation-ready figures, and the{" "}
           <Link href="/methodology" className={styles.link}>methodology</Link> shows how each
           one earned its place.
+        </p>
+        <p className={styles.p}>
+          The site is open source. Every figure on it has a commit behind it recording
+          what changed and why, so if you want to check how a number got here — or when
+          it last moved — the whole history is at{" "}
+          <a href={REPO} rel="noopener" target="_blank" className={styles.link}>
+            github.com/paulemmanuelng/burnaboystats
+          </a>.
         </p>
       </section>
 

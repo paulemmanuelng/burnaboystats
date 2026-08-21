@@ -165,7 +165,17 @@ export default function PressPage() {
           The verification standard is public: primary sources only, conflicts resolve to
           the body that owns the data, and nothing ships unverified — the{" "}
           <Link href="/methodology" className={styles.link}>methodology</Link> spells it
-          out, and the <Link href="/curator" className={styles.link}>curator page</Link>{" "}
+          out, the source is open at{" "}
+          <a
+            href="https://github.com/paulemmanuelng/burnaboystats"
+            rel="noopener"
+            target="_blank"
+            className={styles.link}
+          >
+            github.com/paulemmanuelng/burnaboystats
+          </a>{" "}
+          with a commit behind every figure, and the{" "}
+          <Link href="/curator" className={styles.link}>curator page</Link>{" "}
           says who does the work. For data requests, corrections or anything else, DM{" "}
           <a href={X_CONTACT} rel="noopener" target="_blank" className={styles.link}>
             @paulemmanuelng

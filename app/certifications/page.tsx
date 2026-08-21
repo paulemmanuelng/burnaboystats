@@ -4,6 +4,7 @@ import styles from "./certifications.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileCerts from "../components/MobileCerts";
 import { BURNA } from "../data/afrobeats";
+import { releasePageLinks } from "../lib/releasePages";
 import CertExplorer from "../components/CertExplorer";
 import CertHistoryByYear from "../components/CertHistoryByYear";
 import KeepExploring from "../components/KeepExploring";
@@ -187,6 +188,7 @@ export default function CertificationsPage() {
 
       {/* ── Filter card + the three release groups ───────────────────── */}
       <CertExplorer
+        links={releasePageLinks()}
         albums={certAlbums}
         singles={singles}
         features={features}

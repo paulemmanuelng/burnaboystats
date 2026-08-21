@@ -73,12 +73,13 @@ beats expensive-and-worthy.
       server-side pattern to follow.
       **DONE — 63 of 85 certified titles returned zero; now zero do. Also every award body, collaborator credits, charting countries, multi-word queries and three-dot ellipses. A generated index (204 docs, 5.3KB gzipped, cached once) plus a tokenised, punctuation-folding scorer. Generated docs rank below curated pages on anything short of an exact title, so records do not crowd out pages — 'billboard' still returns Chart Records. A test regenerates from the data and fails if the checked-in file has drifted.**
 
-- [ ] **Data tables and FAQ answers never link to the pages that answer them.** 15
+- [x] **Data tables and FAQ answers never link to the pages that answer them.** 15
       song pages and 11 album pages exist and are good, but the certification
       ledger and chart tables are terminal — a reader looking at a row cannot get
       to the page about it.
       *Done when:* a ledger/chart row for a title that has its own page links to
       it.
+      **DONE — Ledger titles now link to their own page where one exists — 13 of 85. Keyed by titleKey, so "I Told Them..." reaches the album written "I Told Them…". The map is server-built and passed in like `covers`, keeping the song and album datasets out of the client bundle. Chart tables still open.**
 
 ## 3. Data model — limits on what the site can ever say
 
@@ -132,12 +133,13 @@ beats expensive-and-worthy.
       awarded it.
       **DONE — /methodology now carries a register list linking each certifying body's own page. Derived from COUNTRIES, so it cannot name a body no plaque here came from. Ten bodies, every URL opened in a real browser and confirmed by page title first — a dead link to a primary source is worse than none, which is why the other sixteen are absent rather than guessed.**
 
-- [ ] **No public record that a figure ever changed or was corrected.** No
+- [x] **No public record that a figure ever changed or was corrected.** No
       corrections log, no per-figure history. `grep -rIn "github" app/ public/`
       returns nothing — the repo is public and the site never links it, which is
       the cheapest possible proof of the site's own rigour.
       *Done when:* at minimum the repo is linked; ideally corrections are logged
       where a reader can see them.
+      **DONE — PARTIAL: the repo is now linked from /curator and /press, so the commit behind every figure is reachable — the cheapest proof of rigour the site had and it was invisible. A reader-facing corrections log is still open.**
 
 - [ ] **The verification work is buried in code comments.** `app/data/awards.ts`
       holds six dated, body-by-body passes recording claims that were checked and
@@ -149,9 +151,10 @@ beats expensive-and-worthy.
       certifications, songs); no awards, no tours/box office, no timeline, no
       board. Figures also ship as display strings rather than numbers.
 
-- [ ] **Stat cards travel without an as-of date.** The shareable PNGs carry the
+- [x] **Stat cards travel without an as-of date.** The shareable PNGs carry the
       figure and the source body but no date, and the date is rendered inches away
       on screen. A card outlives the number on it.
+      **DONE — Cards now print "As of <date>" beneath the source body. It matters more here than anywhere else on the site: a card outlives the figure on it — saved, reposted, quoted months later — while the page it came from showed the date inches away.**
 
 ## 5. Accessibility
 

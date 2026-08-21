@@ -1,9 +1,12 @@
 "use client"; // interactive: filter releases by tier and country
 
+import Link from "next/link";
+
 import { useEffect, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
 import { matches, badgeWeight, byMostCertified } from "../lib/certs";
+import { releasePathFor } from "../lib/releasePages";
 import { coverFor } from "../lib/covers";
 import { spotifyImage } from "../lib/spotifyImage";
 import { track } from "../lib/analytics";
@@ -51,12 +54,16 @@ function CertCard({
   country,
   tier,
   covers,
+  links,
 }: {
   item: Release;
   countries: Countries;
   country: string | null;
   tier: string | null;
   covers?: Record<string, string | undefined>;
+  /** title -> its own page, when it has one. Server-built (lib/releasePages)
+   *  and passed in, so the song and album datasets stay out of this bundle. */
+  links?: Record<string, string>;
 }) {
   return (
     <div className={styles.certRow}>
@@ -69,7 +76,17 @@ function CertCard({
           style={{ backgroundImage: `url(${spotifyImage((covers ? covers[item.title] : coverFor(item.title)) ?? "", 300)})` }}
         />
         <span className={styles.certText}>
-          <span className={styles.certTitle}>{item.title}</span>
+          {/* A row was a dead end: the best writing on the site lives on the
+              song and album pages, and nothing here pointed at it. Linked only
+              where a page exists — 13 of the 85 certified titles — so the rest
+              stay plain text rather than becoming links that go nowhere. */}
+          {releasePathFor(links, item.title) ? (
+            <Link href={releasePathFor(links, item.title)!} className={styles.certTitleLink}>
+              {item.title}
+            </Link>
+          ) : (
+            <span className={styles.certTitle}>{item.title}</span>
+          )}
           <span className={styles.certCredit}>
             {/* Not every release carries a year. Joining unconditionally printed
                 "feat. Khalid · undefined" on the live page. */}
@@ -99,6 +116,7 @@ export default function CertExplorer({
   countries,
   totalCerts,
   covers,
+  links,
 }: {
   albums: Release[];
   singles: Release[];
@@ -107,6 +125,9 @@ export default function CertExplorer({
   totalCerts: number;
   /** Artwork by title for a non-Burna catalogue; absent = Burna's own lookup. */
   covers?: Record<string, string | undefined>;
+  /** title -> its own page. Server-built (lib/releasePages) and passed in,
+   *  so the song and album datasets stay out of this client bundle. */
+  links?: Record<string, string>;
 }) {
   const [country, setCountry] = useState<string | null>(null);
   const [tier, setTier] = useState<string | null>(null);
@@ -283,7 +304,7 @@ export default function CertExplorer({
                   </div>
                   <div className={styles.groupList}>
                     {g.items.map((it) => (
-                      <CertCard key={it.title} item={it} countries={countries} country={country} tier={tier} covers={covers} />
+                      <CertCard key={it.title} item={it} countries={countries} country={country} tier={tier} covers={covers} links={links} />
                     ))}
                   </div>
                 </div>
