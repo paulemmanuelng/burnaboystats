@@ -39,6 +39,18 @@
     "release": "Raindance",
     "platform": "Spotify",
     "position": 50
+  },
+  {
+    "date": "2026-08-21",
+    "release": "Raindance",
+    "platform": "Shazam",
+    "position": 20
+  },
+  {
+    "date": "2026-08-21",
+    "release": "Raindance",
+    "platform": "Spotify",
+    "position": 50
   }
 ];
   

@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-20";
+  export const liveChartsUpdated = "2026-08-21";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -123,8 +123,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 147,
-            "movement": 0
+            "position": 145,
+            "movement": 2
           },
           {
             "country": "UG",
@@ -352,14 +352,14 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 66,
-            "movement": -9
+            "position": 67,
+            "movement": -10
           },
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 84,
-            "movement": -37
+            "position": 94,
+            "movement": -47
           }
         ]
       },
@@ -720,8 +720,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 157,
-            "movement": -115
+            "position": 179,
+            "movement": -132
           }
         ]
       },
@@ -1079,25 +1079,25 @@
             "country": "UG",
             "name": "Uganda",
             "position": 49,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 65,
-            "movement": 0
+            "position": 64,
+            "movement": 1
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 88,
-            "movement": 0
+            "position": 89,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
-            "movement": -8
+            "position": 109,
+            "movement": 1
           }
         ]
       }
@@ -1477,9 +1477,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": null,
-            "status": "new"
+            "position": 169,
+            "movement": -133
           }
         ]
       }
@@ -1894,15 +1893,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
+            "position": 21,
             "movement": null,
             "status": "new"
           },
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 34,
-            "movement": 1
+            "position": 32,
+            "movement": 3
           }
         ]
       },
@@ -2055,8 +2054,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 47,
-            "movement": 0
+            "position": 46,
+            "movement": 1
           },
           {
             "country": "GD",
@@ -2073,8 +2072,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 127,
-            "movement": -8
+            "position": 124,
+            "movement": -5
           }
         ]
       }
@@ -2327,8 +2326,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": -7
+            "position": 164,
+            "movement": -5
           }
         ]
       }
@@ -2471,8 +2470,8 @@
           {
             "country": "LA",
             "name": "Laos",
-            "position": 17,
-            "movement": -1
+            "position": 18,
+            "movement": -2
           }
         ]
       }
@@ -2547,8 +2546,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
-            "movement": -113
+            "position": 153,
+            "movement": -134
           }
         ]
       }
@@ -2566,73 +2565,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 132,
-            "movement": null,
-            "status": "new"
+            "position": 154,
+            "movement": -133
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Bad Girl",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 139,
-            "movement": -112
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love My Baby",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 152,
-            "movement": -114
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee5775a4038904759fa2911ca20e4913/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Blessed",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 155,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Matter",
@@ -2671,6 +2611,64 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Bad Girl",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 161,
+            "movement": -131
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love My Baby",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 174,
+            "movement": -131
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee5775a4038904759fa2911ca20e4913/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Blessed",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 177,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Apple Music Live: Wizkid",

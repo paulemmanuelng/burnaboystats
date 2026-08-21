@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-20";
+  export const liveChartsUpdated = "2026-08-21";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","iTunes"];
@@ -199,12 +199,6 @@
             "movement": 0
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 49,
-            "movement": 0
-          },
-          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 49,
@@ -215,6 +209,12 @@
             "name": "Liberia",
             "position": 50,
             "movement": 0
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 53,
+            "movement": 5
           },
           {
             "country": "SE",
@@ -229,16 +229,16 @@
             "movement": 0
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 58,
-            "movement": 0
-          },
-          {
             "country": "MZ",
             "name": "Mozambique",
             "position": 60,
             "movement": 0
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 65,
+            "movement": 34
           },
           {
             "country": "SA",
@@ -257,6 +257,18 @@
             "name": "Romania",
             "position": 70,
             "movement": 0
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 73,
+            "movement": -24
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 76,
+            "movement": 51
           },
           {
             "country": "SG",
@@ -292,12 +304,6 @@
             "country": "LU",
             "name": "Luxembourg",
             "position": 98,
-            "movement": 0
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 99,
             "movement": 0
           },
           {
@@ -343,12 +349,6 @@
             "movement": 0
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 121,
-            "movement": 0
-          },
-          {
             "country": "LY",
             "name": "Libya",
             "position": 123,
@@ -358,12 +358,6 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 123,
-            "movement": 0
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 127,
             "movement": 0
           },
           {
@@ -385,15 +379,15 @@
             "movement": 0
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 138,
+            "movement": -17
+          },
+          {
             "country": "SC",
             "name": "Seychelles",
             "position": 140,
-            "movement": 0
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 152,
             "movement": 0
           },
           {
@@ -401,6 +395,24 @@
             "name": "Papua New Guinea",
             "position": 159,
             "movement": 0
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 160,
+            "movement": 29
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 164,
+            "movement": 9
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 164,
+            "movement": -12
           },
           {
             "country": "AT",
@@ -415,22 +427,10 @@
             "movement": 0
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 173,
-            "movement": 0
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 180,
-            "movement": 0
-          },
-          {
             "country": "CA",
             "name": "Canada",
-            "position": 182,
-            "movement": 0
+            "position": 181,
+            "movement": 1
           },
           {
             "country": "TH",
@@ -442,18 +442,6 @@
             "country": "AG",
             "name": "Antigua and Barbuda",
             "position": 187,
-            "movement": 0
-          },
-          {
-            "country": "ES",
-            "name": "Spain",
-            "position": 187,
-            "movement": 0
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 189,
             "movement": 0
           },
           {
@@ -485,6 +473,12 @@
             "name": "Malaysia",
             "position": 195,
             "movement": 0
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 196,
+            "movement": -16
           }
         ]
       },
@@ -495,7 +489,7 @@
           {
             "country": "SG",
             "name": "Singapore",
-            "position": 34,
+            "position": 39,
             "movement": null,
             "status": "new"
           }
@@ -629,8 +623,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 164,
-            "movement": -97
+            "position": 179,
+            "movement": -112
           }
         ]
       }
@@ -708,14 +702,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 50,
-            "movement": -41
+            "position": 51,
+            "movement": -42
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 65,
-            "movement": 48
+            "position": 75,
+            "movement": 38
           }
         ]
       },
@@ -793,8 +787,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 59,
-            "movement": -4
+            "position": 60,
+            "movement": -5
           }
         ]
       },
@@ -855,7 +849,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 138,
+            "position": 165,
             "movement": null,
             "status": "new"
           }
@@ -893,14 +887,14 @@
           {
             "country": "LU",
             "name": "Luxembourg",
-            "position": 56,
+            "position": 64,
             "movement": null,
             "status": "new"
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 83,
+            "position": 98,
             "movement": null,
             "status": "new"
           }
@@ -975,58 +969,26 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 49,
-            "movement": -41
+            "position": 50,
+            "movement": -42
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": -112
+            "position": 160,
+            "movement": -131
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 150,
-            "movement": -15
+            "position": 169,
+            "movement": -34
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Talk to Me",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 105,
-            "movement": 23
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT",
@@ -1114,14 +1076,33 @@
           {
             "country": "LA",
             "name": "Laos",
-            "position": 17,
-            "movement": -1
+            "position": 18,
+            "movement": -2
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Talk to Me",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 105,
+            "movement": 23
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Water",
@@ -1152,7 +1133,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 149,
+            "position": 177,
             "movement": null,
             "status": "new"
           }

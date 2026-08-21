@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-20";
+  export const liveChartsUpdated = "2026-08-21";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -135,8 +135,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 18,
-            "movement": 0
+            "position": 19,
+            "movement": -1
           },
           {
             "country": "IE",
@@ -154,12 +154,6 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 38,
-            "movement": 0
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 51,
             "movement": 0
           },
           {
@@ -185,6 +179,12 @@
             "name": "Senegal",
             "position": 69,
             "movement": 0
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 70,
+            "movement": -19
           },
           {
             "country": "MR",
@@ -291,8 +291,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
-            "movement": -2
+            "position": 67,
+            "movement": 0
           }
         ]
       }
@@ -400,8 +400,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 170,
-            "movement": -3
+            "position": 160,
+            "movement": 7
           },
           {
             "country": "ZW",
@@ -496,13 +496,13 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": -4
+            "position": 7,
+            "movement": -1
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 143,
+            "position": 170,
             "movement": null,
             "status": "new"
           }
@@ -1538,14 +1538,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
+            "position": 4,
             "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 40,
-            "movement": -16
+            "position": 60,
+            "movement": -36
           }
         ]
       },
@@ -1841,27 +1841,27 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 64,
-            "movement": 0
+            "position": 63,
+            "movement": 1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 81,
-            "movement": 2
+            "position": 77,
+            "movement": 6
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 87,
+            "position": 81,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 141,
-            "movement": -14
+            "position": 160,
+            "movement": -33
           }
         ]
       }
@@ -2092,8 +2092,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 140,
-            "movement": -15
+            "position": 159,
+            "movement": -34
           }
         ]
       },
@@ -2365,34 +2365,34 @@
             "movement": 0
           },
           {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 46,
+            "movement": 25
+          },
+          {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 67,
-            "movement": 0
+            "position": 66,
+            "movement": 1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 70,
-            "movement": 3
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 71,
-            "movement": 0
+            "position": 68,
+            "movement": 5
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 94,
-            "movement": -9
+            "position": 88,
+            "movement": -3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 125,
-            "movement": -15
+            "position": 145,
+            "movement": -35
           }
         ]
       }
@@ -2452,8 +2452,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 62,
-            "movement": -4
+            "position": 63,
+            "movement": -5
           }
         ]
       }
@@ -2894,8 +2894,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 152,
-            "movement": -15
+            "position": 171,
+            "movement": -34
           }
         ]
       },
@@ -2915,6 +2915,43 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Jowo",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 64,
+            "movement": 1
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 163,
+            "movement": -34
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 139,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Aye",
@@ -2938,8 +2975,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 43,
-            "movement": -16
+            "position": 63,
+            "movement": -36
           }
         ]
       },
@@ -2959,43 +2996,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9119c622011c2f9e2c0fd2ae9bcaec51/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Jowo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 65,
-            "movement": 0
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 144,
-            "movement": -15
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 139,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Oriade",
@@ -3019,8 +3019,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 103,
-            "movement": 0
+            "position": 123,
+            "movement": -20
           }
         ]
       }
@@ -3044,8 +3044,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 83,
-            "movement": 5
+            "position": 81,
+            "movement": 4
           }
         ]
       }
@@ -3088,8 +3088,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 131,
-            "movement": -15
+            "position": 150,
+            "movement": -34
           }
         ]
       },
@@ -3196,7 +3196,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
+            "position": 49,
             "movement": null,
             "status": "new"
           }
@@ -3205,26 +3205,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "GROOVING",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 44,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Like",
@@ -3263,6 +3243,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f964c43946dc4486205f00b98a75176d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "GROOVING",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 54,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Para",
@@ -3341,45 +3341,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d5dfc880396e953e316456a394d7353/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Very Special",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 157,
-            "movement": -16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "1 Milli",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 159,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Father",
     "platforms": [
       {
@@ -3397,6 +3358,45 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/132d4358890f5675bd291681812647e5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Very Special",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 176,
+            "movement": -35
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "1 Milli",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 181,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bum Bum",
