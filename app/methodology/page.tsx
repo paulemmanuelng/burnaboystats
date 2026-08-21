@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { unsourcedBodies, disputedCounts, correctionsMade } from "../data/rejectedClaims";
 import styles from "./methodology.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
@@ -225,6 +226,85 @@ export default function MethodologyPage() {
         </section>
 
         {/* ── Primary sources ────────────────────────────────── */}
+        {/* An accessibility statement, on the methodology page rather than its own
+            route: it belongs beside the other statements about how this site is
+            built, and a route nobody links reads as compliance theatre. Written
+            as what is true today including what is not done, because a statement
+            that only claims successes is worth nothing to the person relying on
+            it. */}
+        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="accessibility">
+          <div className={styles.eyebrow}>Accessibility</div>
+          <h2 id="accessibility" className={styles.h2}>Who can read this site</h2>
+          <p className={styles.p}>
+            The target is WCAG 2.1 AA. In practice that means every page works from the
+            keyboard alone with a visible focus ring, the interactive parts — search, the
+            filters, the tour map — are operable without a mouse, text meets AA contrast
+            against the dark ground, images that carry meaning have alt text while
+            decorative ones are hidden from screen readers, motion respects
+            <code> prefers-reduced-motion</code>, and controls meet the 44px touch
+            target — some of them through an extended hit area rather than a larger
+            visible box, which is why a few look smaller than they are.
+          </p>
+          <p className={styles.p}>
+            Known gaps, because a statement listing only successes is no use to the person
+            relying on it: the world map on the tours page is a visual first and its
+            country shapes cannot be reached by keyboard — the same journeys are listed as
+            text on the same page, and on a phone the list is what renders. Some data
+            tables scroll horizontally on narrow screens. If something here does not work
+            for you, the{" "}
+            <Link href="/contact" className={styles.link}>contact page</Link> reaches me
+            directly and it is worth reporting — it will get fixed.
+          </p>
+        </section>
+
+        {/* What was checked and NOT published. This lived in comments at the top
+            of awards.ts where no reader could see it, and it is the strongest
+            evidence of rigour the site has: anyone can publish a big number,
+            publishing the ones you refused is the part that is hard to fake.
+            It also answers the question an inflated tally raises every few
+            months — "why is your count lower" — with a list instead of an
+            assertion. */}
+        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="rejected">
+          <div className={styles.eyebrow}>What did not make it</div>
+          <h2 id="rejected" className={styles.h2}>Claims checked and not published</h2>
+          <p className={styles.p}>
+            Bigger totals for this artist circulate every few months. Each one has been
+            walked body by body against the awarding organisation&apos;s own records, and
+            what could not be traced is not here. The checks cut both ways — three of them
+            changed figures on this site.
+          </p>
+
+          <h3 className={styles.blockH}>No primary source names him</h3>
+          <dl className={styles.rejectList}>
+            {unsourcedBodies.map((r) => (
+              <div key={r.claim} className={styles.rejectRow}>
+                <dt className={styles.rejectClaim}>{r.claim}</dt>
+                <dd className={styles.rejectReason}>{r.reason}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <h3 className={styles.blockH}>Counts that circulate higher than ours</h3>
+          <dl className={styles.rejectList}>
+            {disputedCounts.map((r) => (
+              <div key={r.claim} className={styles.rejectRow}>
+                <dt className={styles.rejectClaim}>{r.claim}</dt>
+                <dd className={styles.rejectReason}>{r.reason}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <h3 className={styles.blockH}>Checks that changed our own figures</h3>
+          <dl className={styles.rejectList}>
+            {correctionsMade.map((r) => (
+              <div key={r.claim} className={styles.rejectRow}>
+                <dt className={styles.rejectClaim}>{r.claim}</dt>
+                <dd className={styles.rejectReason}>{r.reason}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
         {/* The registers themselves, and the one thing a plaque count hides.
             The site names these bodies on nearly every figure and linked none
             of them, which is an odd gap on a page whose claim is that each

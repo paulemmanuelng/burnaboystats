@@ -62,6 +62,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily" as const,
     })),
     { path: "/analysis", priority: 0.8, changeFrequency: "weekly" },
+    // A standing correction rather than a moving figure — it is written to be
+    // found and cited years from now, so it is indexed at the same weight as
+    // the analysis page it sits under.
+    { path: "/analysis/spotify-unmerge", priority: 0.8, changeFrequency: "monthly" },
     { path: "/records/awards", priority: 0.8, changeFrequency: "weekly" },
     { path: "/records/tours", priority: 0.8, changeFrequency: "weekly" },
     { path: "/records/firsts", priority: 0.7, changeFrequency: "monthly" },

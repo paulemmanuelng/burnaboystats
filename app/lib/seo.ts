@@ -111,6 +111,7 @@ export const SEGMENT_LABELS: Record<string, string> = {
   records: "Career Records",
   "by-the-numbers": "By the Numbers",
   visualized: "Visualized",
+  "spotify-unmerge": "The Spotify Correction",
   charts: "Official Charts",
   live: "Live Charts",
   awards: "Awards",
