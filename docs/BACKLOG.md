@@ -172,10 +172,26 @@ beats expensive-and-worthy.
       register to sweep — it is press-release territory, which is exactly where
       this site's counting rules say not to go.
 
-- [ ] **No country view.** Three country-keyed datasets exist (230 certifications
+- [-] **No country view.** Three country-keyed datasets exist (230 certifications
       across 26 countries, 280 chart entries across 71 territories, 57 countries
       performed in) and no page joins them, so "what has he done in my country?"
       has no answer.
+      **NOT DOING for now — Paul's call, 21 Aug 2026.** The join was costed
+      first, so this is a decision against real numbers rather than a guess.
+      Joining all three (they share no key — certs/charts use `FR`, the map uses
+      numeric ISO `250`; `A2_TO_ISO` bridges them) yields ~98 possible country
+      pages, of which only **20 are rich** (>=8 datapoints) and **9 medium**;
+      **40 are thin** (<=3, often a single chart entry) and **29 more have a
+      performance and nothing else**. Shipping 98 routes where ~69 are
+      near-empty is doorway-content shaped, and ranking authority is already the
+      stated bottleneck — the downside outweighed the upside.
+      *If revisited:* gate it. Routes only for the ~29 that clear a content bar,
+      with one index listing the rest as rows. And check Search Console for
+      country-name queries first — that settles it in a minute either way.
+      *Worth keeping either way:* 29 countries have a performance but no chart
+      or certification data, almost all African. That is not a gap to close —
+      most have no national chart and no certifying body — it is a real finding
+      about what the industry measures, and it deserves saying somewhere.
 
 ## 4. Credibility and reuse — the stated bottleneck is authority
 
@@ -212,7 +228,7 @@ beats expensive-and-worthy.
       on screen. A card outlives the number on it.
       **DONE — Cards now print "As of <date>" beneath the source body. It matters more here than anywhere else on the site: a card outlives the figure on it — saved, reposted, quoted months later — while the page it came from showed the date inches away.**
 
-- [ ] **The board never tells a reader how to check it.** Nigeria's counts cannot
+- [x] **The board never tells a reader how to check it.** Nigeria's counts cannot
       be reproduced from TurnTable's live dashboard — it caps at 500 rows and
       serves zero Silver — so a fan spot-checking Seyi Vibez finds his 20 Silvers
       missing and reasonably concludes the site invented them. The answer exists
@@ -221,6 +237,24 @@ beats expensive-and-worthy.
       *Done when:* /afrobeats or the artist pages carry the archive link and the
       "search his name" instruction, so the next fan asks the site instead of
       asking Paul.
+      **DONE — two places, both computed.** /methodology gains "When a source
+      shows less than it awarded" with the Feb 2026 capture link and the live
+      page beside it for comparison; and `boardFaqs.ts` asks "Why don't
+      <artist>'s Nigerian certifications match TurnTable's website?" on the
+      eight artists who hold Nigerian Silver, naming their own Silver and
+      Nigerian totals. Tyla holds none, so she is not asked an objection nobody
+      can raise about her. It lands in the FAQPage schema, which is what AI
+      answers lift.
+      *Three traps hit while building it.* /methodology renders its closing
+      blocks as hardcoded JSX on desktop but from the `closingSections` array on
+      mobile — the same three sections already carried DIFFERENT wording — so an
+      addition to one ships nothing to the other; both were edited and a test
+      now holds both. The new mobile link used `var(--accent)`, which this site
+      does not define, so it silently inherited body white and stood 19px tall
+      against a 44px minimum; the house rule in mobileAbout.module.css was
+      copied instead. And placing a full-width block mid-grid orphaned two cells
+      in a 2-column grid that paints its background behind 1px gaps, rendering
+      them as grey slabs — wide blocks go last.
 
 - [ ] **The chart-peaks sweep documents state their totals three different ways.**
       "104 + 19 = 123 chart entries", "49 singles + 17 albums = 66 chart

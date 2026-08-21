@@ -162,6 +162,22 @@
   margin: 0;
 }
 .sectionTitle + .itemBody { margin-top: 8px; }
+/* Matches the arrow-link shape used on the other mobile screens
+   (mobileAbout.module.css): a 44px tap target and the gold token. Written from
+   scratch the first time, this used `var(--accent)` — which this site does not
+   define, so it silently inherited body white — and stood 19px tall against a
+   44px minimum. Copy the house rule rather than inventing one. */
+.sectionLink {
+  display: inline-block;
+  margin-top: 4px;
+  min-height: 44px;
+  line-height: 44px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  text-decoration: none;
+}
 
 /* ── Action bar ───────────────────────────────────────────────────────── */
 .spacer { height: 104px; }

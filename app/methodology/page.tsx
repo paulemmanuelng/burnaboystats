@@ -131,6 +131,12 @@ const closingSections = [
     p: "Accuracy matters more than being first. Send the primary source — an official chart card, a certification database entry, a platform screenshot — via the contact page. Verified corrections are applied quickly and noted on the feed.",
   },
   {
+    h: "When a source shows less than it awarded",
+    p: "A register can publish fewer awards than it has issued, and absence from one is not evidence against it. Nigeria is the sharpest case: TurnTable's public certification page serves a hard cap of 500 rows, and currently no Silver awards at all — for any artist. This site reads that same register's own archived captures alongside the live page, so its Nigerian counts run higher than TurnTable's site shows today. Nothing is inferred: it is the same register, read further back. Open the capture below and search an artist's name to check any figure yourself.",
+    href: "https://web.archive.org/web/20260221224010/https://turntablecharts.com/certification",
+    linkLabel: "TurnTable's register, Feb 2026 capture",
+  },
+  {
     h: "Independence",
     p: "A fan-made, portfolio project with no affiliation to Burna Boy or his team, no sponsorship and no advertising. There is no commercial incentive to inflate a number.",
   },
@@ -384,6 +390,43 @@ export default function MethodologyPage() {
               <div className={styles.blockLinks}>
                 <Link href="/contact" className={styles.blockLink}>Contact →</Link>
                 <Link href="/faq" className={styles.blockLink}>FAQ →</Link>
+              </div>
+            </div>
+
+            {/* Wide blocks go LAST. This is a 2-column grid painting its own
+                background behind 1px gaps, so a full-width block placed mid-flow
+                leaves the cell beside the preceding half-width block empty — and
+                an empty cell here renders as a grey slab, not as space. Putting
+                this one second orphaned two of them.
+                NOTE: these desktop blocks are hardcoded, while MobileMethodology
+                renders the `closingSections` array — the same three sections
+                already carry different wording in the two layouts. Anything
+                added here must be added there too, or one layout silently ships
+                without it. */}
+            <div className={`${styles.block} ${styles.blockWide}`}>
+              <h2 className={styles.blockH}>When a source shows less than it awarded</h2>
+              <p className={styles.blockP}>
+                A register can publish fewer awards than it has issued, and absence from one
+                is not evidence against it. Nigeria is the sharpest case: TurnTable&apos;s
+                public certification page serves a hard cap of 500 rows, and currently no
+                Silver awards at all — for any artist. This site reads that same
+                register&apos;s own archived captures alongside the live page, so its
+                Nigerian counts run higher than TurnTable&apos;s site shows today. Nothing is
+                inferred: it is the same register, read further back. Open the capture and
+                search an artist&apos;s name to check any figure here yourself.
+              </p>
+              <div className={styles.blockLinks}>
+                <a
+                  href="https://web.archive.org/web/20260221224010/https://turntablecharts.com/certification"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.blockLink}
+                >
+                  TurnTable&apos;s register, Feb 2026 capture →
+                </a>
+                <a href="https://turntablecharts.com/certification" target="_blank" rel="noopener noreferrer" className={styles.blockLink}>
+                  The live page, for comparison →
+                </a>
               </div>
             </div>
 

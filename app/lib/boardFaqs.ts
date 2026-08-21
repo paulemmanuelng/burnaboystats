@@ -107,6 +107,29 @@ export function artistFaqs(a: AfroArtist): Faq[] {
     },
   ];
 
+  // The question a real reader arrived with, twice: the Nigerian counts here do
+  // not match TurnTable's own website, because that page serves a hard cap of
+  // 500 rows and currently displays NO Silver awards for anyone. An artist with
+  // Silver plaques therefore CANNOT be reconciled against the live page, and a
+  // fan checking in good faith concludes the site invented them. Only asked
+  // where it applies — one artist on the board holds no Nigerian Silver at all,
+  // and answering an objection nobody can raise about her is noise.
+  const ngCerts = a.releases.flatMap((r) => r.certs).filter((c) => c.c === "NG");
+  const ngSilver = ngCerts.filter((c) => c.level === "Silver").length;
+  if (ngSilver > 0) {
+    faqs.push({
+      q: `Why don't ${a.name}'s Nigerian certifications match TurnTable's website?`,
+      a:
+        `Because TurnTable's public certification page shows only part of its own register: it ` +
+        `serves a hard cap of 500 rows and currently displays no Silver awards at all, for any ` +
+        `artist. ${a.name} holds ${count(ngSilver, "Silver plaque", "Silver plaques")} among ` +
+        `${count(ngCerts.length, "Nigerian plaque", "Nigerian plaques")} here, so at least that many ` +
+        `cannot appear on the live page. They are read from the same register's own archived ` +
+        `captures rather than inferred — open the February 2026 capture and search ` +
+        `${a.name}'s name to see them.`,
+    });
+  }
+
   // Only when the artist has a pairing — a new artist joins the board before
   // anyone decides who they belong next to, and a comparison against nobody is
   // worse than no question.

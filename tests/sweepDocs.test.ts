@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { afrobeatsArtists, certCount, chartEntries } from "../app/data/afrobeats";
+import { artistFaqs } from "../app/lib/boardFaqs";
 
 // The sweep documents in docs/sweeps/ are the evidence for every figure on the
 // Afrobeats Board. They lived outside the repo until 21 Aug 2026, which meant
@@ -62,6 +63,30 @@ describe("sweep documents back the Afrobeats Board", () => {
       } else {
         expect(stated, `${a.name}: the sweep document and afrobeats.ts disagree on the chart-entry count`).toBe(chartEntries(a));
       }
+    }
+  });
+
+  it("tells a READER why Nigeria will not match TurnTable, on both layouts", () => {
+    // The comment in afrobeats.ts only helps someone reading the repo. The fan
+    // who checks the live dashboard and finds the Silvers missing never sees
+    // it. This holds the reader-facing explanation in place — and on BOTH
+    // layouts, because /methodology renders its closing blocks as hardcoded
+    // JSX on desktop and from the `closingSections` array on mobile, so an
+    // addition to one ships nothing to the other.
+    const CAPTURE = "web.archive.org/web/20260221224010";
+    const method = readFileSync(join(process.cwd(), "app", "methodology", "page.tsx"), "utf8");
+    const desktop = method.slice(method.indexOf("Closing blocks"));
+    const mobileArray = method.slice(0, method.indexOf("export default"));
+    expect(desktop, "the desktop closing blocks lost the Nigeria explanation").toContain(CAPTURE);
+    expect(mobileArray, "closingSections lost it, so mobile ships without it").toContain(CAPTURE);
+    for (const src of [desktop, mobileArray]) expect(src).toContain("500 rows");
+  });
+
+  it("asks the Nigeria question on exactly the artists it applies to", () => {
+    for (const a of afrobeatsArtists) {
+      const silver = a.releases.flatMap((r) => r.certs).filter((c) => c.c === "NG" && c.level === "Silver").length;
+      const asked = artistFaqs(a).some((f) => f.q.includes("TurnTable"));
+      expect(asked, `${a.name} has ${silver} Nigerian Silver plaques but the FAQ ${asked ? "asks" : "does not ask"} the question`).toBe(silver > 0);
     }
   });
 

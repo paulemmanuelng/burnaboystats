@@ -27,7 +27,10 @@ export default function MobileMethodology({
   reviewedLabel: string;
   principles: { h: string; p: string }[];
   sources: { area: string; detail: string }[];
-  sections: { h: string; p: string }[];
+  /** `href`/`linkLabel` are optional: only the Nigeria block needs to send the
+   *  reader somewhere, and a "here is how to check it yourself" section with no
+   *  tappable link is half a section on the layout most readers are on. */
+  sections: { h: string; p: string; href?: string; linkLabel?: string }[];
 }) {
   return (
     <div className={styles.screen}>
@@ -82,6 +85,11 @@ export default function MobileMethodology({
         <div key={x.h} className={styles.section}>
           <h2 className={styles.sectionTitle}>{x.h}</h2>
           <p className={styles.itemBody}>{x.p}</p>
+          {x.href && (
+            <a className={styles.sectionLink} href={x.href} target="_blank" rel="noopener noreferrer">
+              {x.linkLabel} →
+            </a>
+          )}
         </div>
       ))}
 
