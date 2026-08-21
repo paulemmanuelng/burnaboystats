@@ -53,7 +53,7 @@ beats expensive-and-worthy.
 
 ## 2. The front door is broken
 
-- [ ] **Search cannot find the site's own records.** `app/lib/searchIndex.ts` is 79
+- [x] **Search cannot find the site's own records.** `app/lib/searchIndex.ts` is 79
       hand-written *page* docs with no data rows, and the scorer is a whole-string
       substring match with no tokenisation or punctuation folding.
       *Reproduced against the real data:* **63 of 85 certified titles return zero
@@ -71,6 +71,7 @@ beats expensive-and-worthy.
       charting country finds something. Note `searchIndex.ts` is deliberately
       free of data imports for bundle size — `app/lib/searchStats.ts` shows the
       server-side pattern to follow.
+      **DONE — 63 of 85 certified titles returned zero; now zero do. Also every award body, collaborator credits, charting countries, multi-word queries and three-dot ellipses. A generated index (204 docs, 5.3KB gzipped, cached once) plus a tokenised, punctuation-folding scorer. Generated docs rank below curated pages on anything short of an exact title, so records do not crowd out pages — 'billboard' still returns Chart Records. A test regenerates from the data and fails if the checked-in file has drifted.**
 
 - [ ] **Data tables and FAQ answers never link to the pages that answer them.** 15
       song pages and 11 album pages exist and are good, but the certification

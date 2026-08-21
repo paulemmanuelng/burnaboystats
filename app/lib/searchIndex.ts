@@ -1,8 +1,20 @@
-// Static, dependency-free search index of every page on the site. Kept free of
-// data imports so it's safe in the client bundle (the palette + /search both
-// use it). Each doc carries extra `keywords` so a query like "grammy", "net
-// worth" or "ferrari" lands on the right page even when the word isn't in the
-// title.
+// Search index for the site. Two halves: the hand-written page docs below, and
+// searchIndex.generated.ts, which carries the site's own RECORDS — releases,
+// award bodies, countries.
+//
+// This file still imports no datasets. That rule was about bundle size, and it
+// holds: the generated half is names, paths and keywords, no figures, 5KB
+// gzipped and cached once for the whole site — where importing the datasets
+// would ship megabytes and passing them as props would bill every page, since
+// the palette is in the header everywhere.
+//
+// It exists because this file alone could find pages and never records. Against
+// the real data, 63 of 85 certified titles returned nothing, "Location" among
+// them, as did all 46 award bodies and every charting country — the exact four
+// categories the search box's own placeholder invites.
+//
+// Each doc carries extra `keywords` so a query like "grammy", "net worth" or
+// "ferrari" lands on the right page even when the word isn't in the title.
 
 export type SearchDoc = {
   title: string;
@@ -10,7 +22,16 @@ export type SearchDoc = {
   section: string;
   description: string;
   keywords: string[];
+  /** Set on docs built from the datasets (searchIndex.generated.ts). They rank
+   *  below the hand-written page docs on anything short of an exact title
+   *  match — a curated keyword is somebody deliberately mapping a word to a
+   *  page, and that should beat a record whose title merely starts with it.
+   *  Without this, "billboard" returned the Billboard Music Awards instead of
+   *  the chart records page. */
+  generated?: true;
 };
+
+import { generatedDocs } from "./searchIndex.generated";
 
 export const searchIndex: SearchDoc[] = [
   {
@@ -586,24 +607,66 @@ function score(doc: SearchDoc, q: string): number {
   return raw(doc, q) * (SECTION_WEIGHT[doc.section] ?? 1);
 }
 
-function raw(doc: SearchDoc, q: string): number {
-  const title = doc.title.toLowerCase();
-  const desc = doc.description.toLowerCase();
-  if (title === q) return 100;
-  if (title.startsWith(q)) return 80;
-  if (title.includes(q)) return 60;
-  if (doc.keywords.some((k) => k === q)) return 55;
-  if (doc.keywords.some((k) => k.startsWith(q))) return 45;
-  if (doc.keywords.some((k) => k.includes(q))) return 35;
-  if (desc.includes(q)) return 20;
+/**
+ * Fold a string the way titles are folded elsewhere, so "I Told Them..." and
+ * "I Told Them…" are the same query. app/lib/titleKey.ts does this for data
+ * joins; search needs it for the same reason and did not have it — three dots
+ * returned nothing while the ellipsis character worked.
+ */
+const fold = (s: string) =>
+  s
+    .replace(/…/g, "...")
+    .replace(/[‘’]/g, "'")
+    .replace(/[“”]/g, '"')
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+
+/** Score one field against one word. */
+function wordScore(doc: SearchDoc, w: string): number {
+  const title = fold(doc.title);
+  const desc = fold(doc.description);
+  // An exact title is an exact title wherever it came from — typing "Location"
+  // should reach the record, not a page that merely mentions it.
+  if (title === w) return 100;
+  const g = doc.generated === true;
+  if (title.startsWith(w)) return g ? 50 : 80;
+  if (title.includes(w)) return g ? 30 : 60;
+  if (doc.keywords.some((k) => fold(k) === w)) return g ? 40 : 55;
+  if (doc.keywords.some((k) => fold(k).startsWith(w))) return g ? 25 : 45;
+  if (doc.keywords.some((k) => fold(k).includes(w))) return g ? 18 : 35;
+  if (desc.includes(w)) return g ? 10 : 20;
   return 0;
+}
+
+/**
+ * Score a whole query.
+ *
+ * The old scorer matched the entire query as one string, so any multi-word
+ * question — "burna boy grammy", "how old", "no 1 songs" — scored zero against
+ * everything. Words are scored separately and summed, and a doc must match
+ * EVERY word to place at all, which keeps two-word queries precise rather than
+ * returning anything that matched "boy".
+ */
+function raw(doc: SearchDoc, q: string): number {
+  const whole = wordScore(doc, q);
+  const words = q.split(" ").filter(Boolean);
+  if (words.length < 2) return whole;
+  let sum = 0;
+  for (const w of words) {
+    const s = wordScore(doc, w);
+    if (s === 0) return whole; // not every word matched — fall back to the phrase
+    sum += s;
+  }
+  // The phrase matching outright still beats a bag of words.
+  return Math.max(whole, Math.round(sum / words.length) + 5);
 }
 
 // Rank the index for a query. Empty query returns [] (callers show a default).
 export function searchDocs(query: string, limit = 8): SearchDoc[] {
-  const q = query.trim().toLowerCase();
+  const q = fold(query);
   if (!q) return [];
-  return searchIndex
+  return [...searchIndex, ...generatedDocs]
     .map((doc) => ({ doc, s: score(doc, q) }))
     .filter((r) => r.s > 0)
     .sort((a, b) => b.s - a.s)
