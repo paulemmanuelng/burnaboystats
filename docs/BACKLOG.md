@@ -173,12 +173,14 @@ beats expensive-and-worthy.
 
 ## 6. Infrastructure (found outside the audit)
 
-- [ ] **No Content-Security-Policy header.** Every other security header is set in
+- [x] **No Content-Security-Policy header.** Every other security header is set in
       `next.config.mjs` — HSTS, referrer-policy, nosniff, X-Frame-Options,
       permissions-policy. CSP is the one missing.
+      **DONE — Added REPORT-ONLY, deliberately: the app ships 29 files of inline JSON-LD plus Next's bootstrap, so an enforcing policy that is slightly wrong takes the site down rather than degrading it. Verified shipping with zero violations across four pages, which is what makes enforcing it the next safe step.**
 
-- [ ] **No `global-error.tsx`.** An error in the root layout renders Next's default
+- [x] **No `global-error.tsx`.** An error in the root layout renders Next's default
       white page instead of the site's own.
+      **DONE — Added. Replaces <html>/<body> with inline styles in the site's own tokens, because a global error may be the stylesheet itself failing. Uses a plain <a>, not next/link — the router is exactly what cannot be trusted in this boundary.**
 
 ---
 
