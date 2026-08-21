@@ -42,13 +42,14 @@ beats expensive-and-worthy.
       it trips the staleness check that already exists for his own figures.
       **DONE — The board step keeps continue-on-error so it cannot block his refresh, but a failure now fails the run at the end, after the commit publishes.**
 
-- [ ] **The generator re-parses its own output with a regex and silently falls back
+- [x] **The generator re-parses its own output with a regex and silently falls back
       to empty.** `build-live-charts.mjs:108-111` and `:425-427` both do
       `t.match(/…/)?.[1] ?? "[]"` inside `.catch(() => [])`, with no logging on
       the empty path. Latent rather than live — no occurrence in 13 days of hourly
       runs — but it couples the writer to its own formatting.
       *Done when:* the carry-forward path reads structured data, or at minimum
       logs loudly instead of returning `[]`.
+      **DONE — one `readGenerated()` helper now separates the three outcomes the old code folded together: file absent (fine, first run), unreadable, and present-but-unparseable. The last two stop the run. Both branches proven against a real file.**
 
 ## 2. The front door is broken
 

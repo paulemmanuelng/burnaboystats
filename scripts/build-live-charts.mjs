@@ -106,9 +106,53 @@ for (const w of work.values()) {
 }
 
 for (const w of work.values()) {
-  w.previous = await readFile(new URL(`../app/data/${w.artist.out}`, import.meta.url), "utf8")
-    .then((t) => JSON.parse(t.match(/export const liveCharts: LiveRelease\[\] = (\[[\s\S]*?\n\]);/)?.[1] ?? "[]"))
-    .catch(() => []);
+  w.previous = await readGenerated(
+    new URL(`../app/data/${w.artist.out}`, import.meta.url),
+    /export const liveCharts: LiveRelease\[\] = (\[[\s\S]*?\n\]);/,
+    `${w.artist.slug}'s live charts file`
+  );
+}
+
+/**
+ * Read a previously generated array back out of its own file.
+ *
+ * The two call sites used to be `t.match(...)?.[1] ?? "[]"` inside a
+ * `.catch(() => [])`, which folds three very different outcomes into one silent
+ * empty array: the file is not there yet (fine — first run), the file is there
+ * and unreadable (a real failure), and the file is there but the regex no longer
+ * matches it (a real failure, and the likeliest one, because the pattern is
+ * coupled to the formatting of output this same script writes).
+ *
+ * That last case is quietly destructive for the run history, which is
+ * append-only: parsing it as empty drops every day already collected and the
+ * data cannot be re-fetched, only re-observed. So a missing file is allowed and
+ * anything else stops the run.
+ */
+async function readGenerated(url, pattern, what) {
+  let text;
+  try {
+    text = await readFile(url, "utf8");
+  } catch (err) {
+    if (err?.code === "ENOENT") return []; // first run for this artist
+    console.error(`REFUSING TO CONTINUE: could not read ${what} (${err?.code ?? err}).`);
+    process.exit(1);
+  }
+  const match = text.match(pattern);
+  if (!match) {
+    console.error(
+      `REFUSING TO CONTINUE: ${what} exists but its array could not be found. ` +
+        `This script writes that file, so its own output has probably been reformatted ` +
+        `and the pattern needs updating. Continuing would treat the file as empty and ` +
+        `discard what it holds.`
+    );
+    process.exit(1);
+  }
+  try {
+    return JSON.parse(match[1]);
+  } catch {
+    console.error(`REFUSING TO CONTINUE: ${what} contains an array that is not valid JSON.`);
+    process.exit(1);
+  }
 }
 
 const carryForward = (platform, previous) => {
@@ -449,9 +493,13 @@ for (const w of work.values()) {
     }
   }
   
-  const priorRuns = await readFile(RUN_OUT, "utf8")
-    .then((t) => JSON.parse(t.match(/export const runHistory: RunPoint\[\] = (\[[\s\S]*?\n\]);/)?.[1] ?? "[]"))
-    .catch(() => []);
+  // This one is append-only and irreplaceable: a silent empty here drops every
+  // day already collected, and those readings cannot be fetched again.
+  const priorRuns = await readGenerated(
+    RUN_OUT,
+    /export const runHistory: RunPoint\[\] = (\[[\s\S]*?\n\]);/,
+    `${artist.slug}'s run history`
+  );
   
   const isToday = (x) => x.date === today;
   const keptFrom = new Date(Date.now() - RUN_KEEP_DAYS * 86_400_000).toISOString().slice(0, 10);
