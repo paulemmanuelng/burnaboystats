@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { spotifyTotalStreams } from "../app/data/streamingTotals";
+import { spotifyTotalStreams, spotifyTotalStreamsExact } from "../app/data/streamingTotals";
 
 // This page exists to be cited — by search engines, by answer engines, and by
 // anyone re-litigating the February 2026 "bot streams" claim years from now.
@@ -47,14 +47,23 @@ describe("the unmerge arithmetic", () => {
 
 describe("the live total the page derives from", () => {
   it("is a shape the page can parse", () => {
-    // The page turns "10.78B" into a number to compute the gain since the
-    // correction. If the bot ever writes a different shape the page drops the
-    // sentence rather than printing nonsense — but this should fail first.
+    // The page parses the exact string to compute the gain. If the bot ever
+    // writes a different shape the page drops the sentence rather than printing
+    // nonsense — but this should fail first.
+    expect(spotifyTotalStreamsExact).toMatch(/^[\d,]+$/);
     expect(spotifyTotalStreams).toMatch(/^\d+(\.\d+)?B$/);
   });
 
+  it("keeps the exact and rounded totals agreeing", () => {
+    // Both are written by the same daily metric, so a disagreement means one
+    // target stopped firing — which would otherwise be invisible.
+    const exact = Number(spotifyTotalStreamsExact.replace(/,/g, ""));
+    const rounded = Number(spotifyTotalStreams.replace("B", "")) * 1_000_000_000;
+    expect(Math.abs(exact - rounded)).toBeLessThan(10_000_000); // within the rounding
+  });
+
   it("is still above the corrected 2025 close", () => {
-    const parsed = Math.round(Number(spotifyTotalStreams.replace("B", "")) * 1_000_000_000);
-    expect(parsed).toBeGreaterThan(CORRECTED_2025_CLOSE);
+    const exact = Number(spotifyTotalStreamsExact.replace(/,/g, ""));
+    expect(exact).toBeGreaterThan(CORRECTED_2025_CLOSE);
   });
 });

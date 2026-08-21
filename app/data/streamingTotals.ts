@@ -21,5 +21,15 @@
 // metric's 3% threshold, so the bot will never self-correct it.
 export const spotifyTotalStreams = "10.78B";
 
+// The same daily figure, unrounded.
+//
+// The compact string above is what the site shows nearly everywhere, and it is
+// the right choice there — "10.78B" is what a reader takes in. But
+// /analysis/spotify-unmerge argues from arithmetic a reader is invited to check,
+// and rounding the one live input forced its derived figures to be rounded too.
+// Both are written by the SAME metric on the same daily run, so they cannot
+// disagree with each other.
+export const spotifyTotalStreamsExact = "10,778,724,833";
+
 // Every Burna Boy video on YouTube, across his channel and others'.
 export const youtubeTotalViews = "3.18B";

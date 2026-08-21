@@ -4,7 +4,7 @@ import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../lib/seo";
 import { lastUpdated } from "../../lib/api";
-import { spotifyTotalStreams } from "../../data/streamingTotals";
+import { spotifyTotalStreams, spotifyTotalStreamsExact } from "../../data/streamingTotals";
 
 /**
  * The February 2026 Spotify correction, explained once, properly.
@@ -46,19 +46,20 @@ const VERIFIED_ON = "21 August 2026";
 // from a rounded input would be false precision dressed up as arithmetic.
 const CORRECTED_2025_CLOSE = 9_199_552_674;
 
-/** "10.78B" -> 10780000000. Returns null for anything unexpected rather than
- *  guessing, so a change in the bot's format shows up as an absent sentence
- *  rather than a wrong number. */
-function parseBillions(display: string): number | null {
-  const m = /^([\d.]+)B$/.exec(display.trim());
-  if (!m) return null;
-  const n = Number(m[1]);
-  return Number.isFinite(n) ? Math.round(n * 1_000_000_000) : null;
+/** "10,778,724,833" -> 10778724833. Returns null for anything unexpected rather
+ *  than guessing, so a change in the bot's format shows up as an absent
+ *  sentence rather than a wrong number. */
+function parseExact(display: string): number | null {
+  if (!/^[\d,]+$/.test(display.trim())) return null;
+  const n = Number(display.replace(/,/g, ""));
+  return Number.isFinite(n) && n > 0 ? n : null;
 }
 
-const totalToday = parseBillions(spotifyTotalStreams);
+const totalToday = parseExact(spotifyTotalStreamsExact);
 const gainedSinceCorrection = totalToday === null ? null : totalToday - CORRECTED_2025_CLOSE;
-/** 1580447326 -> "1.58 billion", matching the precision of the input. */
+/** The gain, exact, with a rounded gloss — the digits for anyone checking the
+ *  subtraction, the billions for anyone reading the sentence. */
+const exactly = (n: number) => n.toLocaleString("en-US");
 const asBillions = (n: number) => `${(n / 1_000_000_000).toFixed(2)} billion`;
 
 // The arithmetic, as separate rows so it can be read line by line rather than
@@ -95,7 +96,7 @@ const faqs = [
   },
   {
     q: "How many Spotify streams does Burna Boy have now?",
-    a: `His career total stands at ${spotifyTotalStreams}. Measured against his corrected 2025 close of 9,199,552,674 — the figure after the reallocated streams were taken out — that is roughly ${totalToday !== null ? asBillions(totalToday - CORRECTED_2025_CLOSE) : "one and a half billion"} added since. Every one of those arrived on a counter that no longer contained the moved streams.`,
+    a: `His career total stands at ${spotifyTotalStreamsExact} (${spotifyTotalStreams}), read from Spotify daily. Measured against his corrected 2025 close of 9,199,552,674 — the figure after the reallocated streams were taken out — that is ${totalToday !== null ? exactly(totalToday - CORRECTED_2025_CLOSE) : "over a billion"} added since. Every one of those arrived on a counter that no longer contained the moved streams.`,
   },
   {
     q: "How can this be checked?",
@@ -239,11 +240,11 @@ export default function SpotifyUnmergePage() {
           <>
             <p className={styles.p}>
               His career Spotify total now stands at{" "}
-              <strong>{spotifyTotalStreams}</strong> — about{" "}
-              <strong>{asBillions(gainedSinceCorrection)}</strong> more than the corrected
-              2025 close of 9,199,552,674. Every one of those was added after the
-              correction, on a counter that already had the reallocated streams taken out
-              of it.
+              <strong>{spotifyTotalStreamsExact}</strong> ({spotifyTotalStreams}) — exactly{" "}
+              <strong>{exactly(gainedSinceCorrection)}</strong> more than the corrected 2025
+              close of 9,199,552,674, or about {asBillions(gainedSinceCorrection)}. Every
+              one of those was added after the correction, on a counter that already had
+              the reallocated streams taken out of it.
             </p>
             <p className={styles.p}>
               That is the number the &ldquo;bot purge&rdquo; framing cannot account for. A
@@ -254,11 +255,11 @@ export default function SpotifyUnmergePage() {
           </>
         ) : null}
         <p className={styles.sub}>
-          The career total is read from Spotify daily and updates on its own; the figures
-          in the table above are fixed points and do not move. The gain is given to the
-          same precision as the total it is derived from — the underlying count is exact,
-          the published one is rounded, and inventing digits it does not have would be
-          false precision.
+          The career total is read from Spotify daily and updates on its own, so this
+          figure moves; the table above is fixed points that do not. Both the exact count
+          and the rounded one are written by the same daily job, so they can never
+          disagree — and the subtraction is shown in full rather than rounded, because a
+          page arguing that the numbers can be checked should let you check this one.
         </p>
 
         <h2 className={styles.h2}>How to check it yourself</h2>
