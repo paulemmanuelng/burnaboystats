@@ -174,6 +174,25 @@ export default function AnalysisPage() {
           </section>
         ))}
 
+        {/* ── The correction ─────────────────────────────────── */}
+        {/* The unmerge explainer lives under this section but was reachable only
+            from search and the sitemap — it had no route in from the page it
+            sits beneath, which is the one place a reader looking for it would
+            start. A page nobody can navigate to is a page that only answer
+            engines ever see. */}
+        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="correction">
+          <h2 id="correction" className={styles.h2}>A claim worth correcting</h2>
+          <p className={styles.intro}>
+            Every few months the same story circulates: that Burna Boy lost Spotify
+            streams in February 2026 because they were bot-generated. He did not — Spotify
+            un-merged two remixes and about 309 million streams moved to the original
+            recordings that had earned them. Nothing was deleted.
+          </p>
+          <Link href="/analysis/spotify-unmerge" className="btn btnSecondary">
+            The February 2026 correction, with the arithmetic ↗
+          </Link>
+        </section>
+
         {/* ── How to check this ──────────────────────────────── */}
         <section className={`${styles.wrap} ${styles.methodPad}`} aria-labelledby="how">
           <div className={styles.method}>

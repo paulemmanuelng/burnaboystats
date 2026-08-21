@@ -241,3 +241,24 @@
   text-align: center;
   box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
 }
+
+/* The outlined sibling of .actionPrimary — same pill, same height, no gold
+   fill, so the two sit level in the action bar and only one of them shouts. */
+.actionSecondary {
+  flex: 1;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  padding: 0 14px;
+}

@@ -224,3 +224,7 @@
   .chartCol { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 40px; }
   .statV { font-size: 40px; }
 }
+
+/* The correction block, between the findings and the how-to-check note. */
+.sectionPad { padding: 44px 40px 0; }
+@media (max-width: 900px) { .sectionPad { padding: 30px 18px 0; } }

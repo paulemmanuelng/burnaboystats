@@ -102,6 +102,11 @@ export default function MobileAnalysis({
 
       <div className={styles.spacer} />
       <div className={styles.actionBar}>
+        {/* Same route in as the desktop page: the correction sits under
+            /analysis and was reachable only from search. */}
+        <Link href="/analysis/spotify-unmerge" className={styles.actionSecondary}>
+          The Feb 2026 Spotify correction
+        </Link>
         <Link href="/api" className={styles.actionPrimary}>
           Open the data API
         </Link>
