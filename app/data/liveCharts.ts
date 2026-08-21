@@ -2510,16 +2510,16 @@
             "movement": -58
           },
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 121,
+            "country": "TR",
+            "name": "Turkey",
+            "position": 142,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "TR",
-            "name": "Turkey",
-            "position": 127,
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 156,
             "movement": null,
             "status": "new"
           }

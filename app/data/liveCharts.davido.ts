@@ -3348,8 +3348,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 179,
-            "movement": -28
+            "position": 178,
+            "movement": -27
           }
         ]
       }
