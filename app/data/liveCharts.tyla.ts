@@ -190,16 +190,16 @@
             "movement": 6
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 56,
-            "movement": 2
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 60,
             "movement": -10
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 61,
+            "movement": -3
           },
           {
             "country": "BS",
@@ -252,8 +252,8 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 91,
-            "movement": 8
+            "position": 87,
+            "movement": 12
           },
           {
             "country": "SA",
@@ -282,8 +282,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 111,
-            "movement": 16
+            "position": 118,
+            "movement": 9
           },
           {
             "country": "CY",
@@ -318,8 +318,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 135,
-            "movement": -86
+            "position": 144,
+            "movement": -95
           },
           {
             "country": "OM",
@@ -343,8 +343,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 161,
-            "movement": -40
+            "position": 162,
+            "movement": -41
           },
           {
             "country": "MY",
@@ -385,16 +385,10 @@
             "movement": -67
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 186,
-            "movement": -13
-          },
-          {
             "country": "US",
             "name": "United States",
-            "position": 186,
-            "movement": -34
+            "position": 190,
+            "movement": -38
           },
           {
             "country": "VN",
@@ -402,6 +396,12 @@
             "position": 191,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 194,
+            "movement": -21
           },
           {
             "country": "IE",
@@ -420,6 +420,12 @@
             "name": "Thailand",
             "position": 198,
             "movement": -12
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 200,
+            "movement": -11
           }
         ]
       },
@@ -539,8 +545,8 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 143,
-            "movement": -13
+            "position": 148,
+            "movement": -5
           }
         ]
       },
@@ -551,9 +557,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 63,
-            "movement": null,
-            "status": "new"
+            "position": 62,
+            "movement": 76
           }
         ]
       }
@@ -643,8 +648,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 57,
-            "movement": 2
+            "position": 61,
+            "movement": -4
           }
         ]
       },
@@ -655,8 +660,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 68,
-            "movement": -30
+            "position": 70,
+            "movement": -32
           }
         ]
       }
@@ -756,74 +761,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "CHANEL",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 57,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 58,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 64,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 99,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 100,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 186,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "IS IT LOVE",
     "platforms": [
       {
@@ -872,6 +809,61 @@
             "name": "Grenada",
             "position": 62,
             "movement": -7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "CHANEL",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 57,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 58,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 64,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 93,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 99,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 100,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -992,8 +984,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 67,
-            "movement": -30
+            "position": 69,
+            "movement": -32
           },
           {
             "country": "GH",
