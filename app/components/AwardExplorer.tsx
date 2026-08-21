@@ -75,16 +75,25 @@ export default function AwardExplorer() {
           onClick={() => setFiltersOpen((o) => !o)}
         >
           <span>Filters{active ? ` · ${totalShown} shown` : ""}</span>
+          {/* Filtering is a mouse-and-eyes affordance without this: the list
+              changes and nothing announces it. The count beside "Filters" is
+              the same fact, but it is inside a collapsed control and only
+              appears once a filter is active. Polite, so it waits for a pause
+              rather than interrupting. */}
+          <span aria-live="polite" className="visuallyHidden">
+            {totalShown} {totalShown === 1 ? "nomination" : "nominations"} shown
+          </span>
           <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
         </button>
         <div id="award-filters" className={`${styles.filterBody} ${filtersOpen ? styles.filterOpen : ""}`}>
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Result</span>
-            <button className={`${styles.fChip} ${!result ? styles.fChipOn : ""}`} onClick={() => setResult(null)}>All</button>
+            <button aria-pressed={!result} className={`${styles.fChip} ${!result ? styles.fChipOn : ""}`} onClick={() => setResult(null)}>All</button>
             {RESULTS.map((r) => (
               <button
                 key={r.key}
                 className={`${styles.fChip} ${result === r.key ? styles.fChipOn : ""}`}
+                aria-pressed={result === r.key}
                 onClick={() => setResult(result === r.key ? null : r.key)}
               >
                 {r.label}
@@ -93,11 +102,12 @@ export default function AwardExplorer() {
           </div>
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Year</span>
-            <button className={`${styles.fChip} ${!year ? styles.fChipOn : ""}`} onClick={() => setYear(null)}>All</button>
+            <button aria-pressed={!year} className={`${styles.fChip} ${!year ? styles.fChipOn : ""}`} onClick={() => setYear(null)}>All</button>
             {YEARS.map((y) => (
               <button
                 key={y}
                 className={`${styles.fChip} ${year === y ? styles.fChipOn : ""}`}
+                aria-pressed={year === y}
                 onClick={() => setYear(year === y ? null : y)}
               >
                 {y}
@@ -106,7 +116,7 @@ export default function AwardExplorer() {
           </div>
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Award body</span>
-            <button className={`${styles.fChip} ${!ceremony ? styles.fChipOn : ""}`} onClick={() => setCeremony(null)}>All</button>
+            <button aria-pressed={!ceremony} className={`${styles.fChip} ${!ceremony ? styles.fChipOn : ""}`} onClick={() => setCeremony(null)}>All</button>
             {(showAllBodies
               ? ceremonies
               : ceremonies.filter((c, i) => i < BODY_PREVIEW || c.name === ceremony)
@@ -114,6 +124,7 @@ export default function AwardExplorer() {
               <button
                 key={c.name}
                 className={`${styles.fChip} ${ceremony === c.name ? styles.fChipOn : ""}`}
+                aria-pressed={ceremony === c.name}
                 onClick={() => setCeremony(ceremony === c.name ? null : c.name)}
               >
                 {c.name}

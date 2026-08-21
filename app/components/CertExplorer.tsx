@@ -169,6 +169,14 @@ export default function CertExplorer({
           onClick={() => setFiltersOpen((o) => !o)}
         >
           <span>Filters{active ? ` · ${totalShown} shown` : ""}</span>
+          {/* Filtering is a mouse-and-eyes affordance without this: the list
+              changes and nothing announces it. The count beside "Filters" is
+              the same fact, but it is inside a collapsed control and only
+              appears once a filter is active. Polite, so it waits for a pause
+              rather than interrupting. */}
+          <span aria-live="polite" className="visuallyHidden">
+            {totalShown} {totalShown === 1 ? "release" : "releases"} shown, {shownCerts} {shownCerts === 1 ? "certification" : "certifications"}
+          </span>
           <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
         </button>
 
@@ -178,6 +186,7 @@ export default function CertExplorer({
             <button
               type="button"
               className={`${styles.fChip} ${!tier ? styles.fChipOn : ""}`}
+              aria-pressed={!tier}
               onClick={() => setTier(null)}
             >
               All
@@ -187,6 +196,7 @@ export default function CertExplorer({
                 key={t}
                 type="button"
                 className={`${styles.fChip} ${tier === t ? styles.fChipOn : ""}`}
+                aria-pressed={tier === t}
                 onClick={() => setTier(tier === t ? null : t)}
               >
                 <span className={styles.chipDot} style={{ background: TIER_INK[t] }} aria-hidden="true" />
@@ -200,6 +210,7 @@ export default function CertExplorer({
             <button
               type="button"
               className={`${styles.fChip} ${!country ? styles.fChipOn : ""}`}
+              aria-pressed={!country}
               onClick={() => setCountry(null)}
             >
               All
@@ -209,6 +220,7 @@ export default function CertExplorer({
                 key={code}
                 type="button"
                 className={`${styles.fChip} ${country === code ? styles.fChipOn : ""}`}
+                aria-pressed={country === code}
                 title={`${c.name} — ${c.body}`}
                 onClick={() => setCountry(country === code ? null : code)}
               >

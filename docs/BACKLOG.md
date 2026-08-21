@@ -153,22 +153,26 @@ beats expensive-and-worthy.
 
 ## 5. Accessibility
 
-- [ ] **Silver tier badge text fails WCAG AA contrast.** `--tier-silver` (#626B77)
+- [x] **Silver tier badge text fails WCAG AA contrast.** `--tier-silver` (#626B77)
       is used as *text* colour, ~175 instances, on the site's headline dataset.
+      **DONE — #626B77 (3.66:1 on --bg, 3.14:1 on --bg-soft-2) raised to #848F9E — 5.18:1 worst case, same blue-grey, still the dimmest of the four so the tiers keep reading in order.**
 
-- [ ] **Desktop filter chips expose no selected state and filtering is never
+- [x] **Desktop filter chips expose no selected state and filtering is never
       announced.** All 15 `.fChip` sites across `CertExplorer`, `ChartExplorer`
       and `AwardExplorer` carry selection in `className` only — no
       `aria-pressed`, no live region. WCAG 4.1.3.
+      **DONE — All 15 chips across the three explorers now carry aria-pressed off the same condition that sets the class, and a polite live region announces the filtered count.**
 
-- [ ] **The contact form gives no feedback a screen reader can perceive.**
+- [x] **The contact form gives no feedback a screen reader can perceive.**
       `ContactForm.tsx` — no `autoComplete`, the error branch is a bare `<p>` with
       no `role`, and the success state is an early return with no announcement.
       This is the page the methodology names as the way to report an error.
+      **DONE — autoComplete on name/email, role="alert" on the error (it was a bare <p>), and role="status" + tabIndex on the success state, which replaces the form outright and used to leave focus on a control that no longer existed.**
 
-- [ ] **Bar charts publish their numbers to sighted readers only.**
+- [x] **Bar charts publish their numbers to sighted readers only.**
       `RankedBars.tsx:33` wraps rows in `<figure role="img">`, which hides the row
       text from assistive tech.
+      **DONE — role="img" collapsed the chart into a single image, hiding every row's name and value. Dropped; the figure keeps its aria-label, the rows are read as the text they already are, and only the drawn bar is marked decorative.**
 
 - [ ] **No accessibility statement.** Low impact, listed for completeness.
 

@@ -327,11 +327,12 @@ export default function ChartExplorer({
         <div id="chart-filters" className={`${styles.filterBody} ${filtersOpen ? styles.filterOpen : ""}`}>
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Peak</span>
-            <button className={`${styles.fChip} ${!peak ? styles.fChipOn : ""}`} onClick={() => setPeak(null)}>All</button>
+            <button aria-pressed={!peak} className={`${styles.fChip} ${!peak ? styles.fChipOn : ""}`} onClick={() => setPeak(null)}>All</button>
             {PEAKS.map((p) => (
               <button
                 key={p.key}
                 className={`${styles.fChip} ${peak === p.key ? styles.fChipOn : ""}`}
+                aria-pressed={peak === p.key}
                 onClick={() => setPeak(peak === p.key ? null : p.key)}
               >
                 {p.label}
@@ -340,11 +341,12 @@ export default function ChartExplorer({
           </div>
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Country</span>
-            <button className={`${styles.fChip} ${!country ? styles.fChipOn : ""}`} onClick={() => setCountry(null)}>All</button>
+            <button aria-pressed={!country} className={`${styles.fChip} ${!country ? styles.fChipOn : ""}`} onClick={() => setCountry(null)}>All</button>
             {Object.entries(countries).map(([code, c]) => (
               <button
                 key={code}
                 className={`${styles.fChip} ${country === code ? styles.fChipOn : ""}`}
+                aria-pressed={country === code}
                 title={`${c.name} — ${c.body}`}
                 onClick={() => setCountry(country === code ? null : code)}
               >
@@ -406,6 +408,7 @@ export default function ChartExplorer({
                 key={k}
                 type="button"
                 className={`${styles.fChip} ${sortKey === k ? styles.fChipOn : ""}`}
+                aria-pressed={sortKey === k}
                 onClick={() => onSort(k)}
               >
                 {label}

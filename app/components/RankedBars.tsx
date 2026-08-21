@@ -30,7 +30,12 @@ export default function RankedBars({
 }) {
   const peak = max ?? Math.max(...items.map((i) => i.value), 1);
   return (
-    <figure className={styles.chart} role="img" aria-label={ariaLabel}>
+    // role="img" collapsed the whole chart into one image, so every row's name
+    // and value — real text, already on the page — was hidden from assistive
+    // tech and only the summary label survived. Without the role the figure
+    // keeps its name and the rows are read as the text they are; only the
+    // drawn bar is decorative, and it says so below.
+    <figure className={styles.chart} aria-label={ariaLabel}>
       {items.map((it, i) => (
         <div key={i} className={`${styles.row} ${it.tone === "muted" ? styles.muted : ""}`}>
           <div className={styles.head}>
@@ -41,7 +46,7 @@ export default function RankedBars({
             </span>
             <span className={styles.value}>{it.displayValue}</span>
           </div>
-          <div className={styles.track}>
+          <div className={styles.track} aria-hidden="true">
             <div className={styles.fill} style={{ width: `${Math.max((it.value / peak) * 100, 1.5)}%` }} />
           </div>
         </div>

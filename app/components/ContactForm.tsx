@@ -68,7 +68,10 @@ export default function ContactForm({
 
   if (sent) {
     return (
-      <div className="success">
+      // The form is replaced outright, so a screen reader is left on a control
+      // that no longer exists and hears nothing. role="status" announces the
+      // confirmation; tabIndex lets the success message take focus.
+      <div className="success" role="status" tabIndex={-1}>
         <h3>Thanks, {form.name || "friend"}! 🎉</h3>
         <p>Your message has been sent — it&apos;ll land in our inbox. We&apos;ll get back to you soon.</p>
       </div>
@@ -83,6 +86,7 @@ export default function ContactForm({
           className="input"
           id={`${idPrefix}name`}
           name="name"
+          autoComplete="name"
           placeholder="Your name"
           value={form.name}
           onChange={update}
@@ -96,6 +100,7 @@ export default function ContactForm({
           id={`${idPrefix}email`}
           name="email"
           type="email"
+          autoComplete="email"
           placeholder="you@example.com"
           value={form.email}
           onChange={update}
@@ -114,8 +119,11 @@ export default function ContactForm({
           required
         />
       </div>
+      {/* role="alert" so a failure is spoken. It was a bare <p>: a sighted user
+          saw the message appear, a screen-reader user was told nothing and had
+          no way to know the send had failed. */}
       {error && (
-        <p style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>{error}</p>
+        <p role="alert" style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>{error}</p>
       )}
       <button
         type="submit"
