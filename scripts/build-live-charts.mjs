@@ -106,9 +106,53 @@ for (const w of work.values()) {
 }
 
 for (const w of work.values()) {
-  w.previous = await readFile(new URL(`../app/data/${w.artist.out}`, import.meta.url), "utf8")
-    .then((t) => JSON.parse(t.match(/export const liveCharts: LiveRelease\[\] = (\[[\s\S]*?\n\]);/)?.[1] ?? "[]"))
-    .catch(() => []);
+  w.previous = await readGenerated(
+    new URL(`../app/data/${w.artist.out}`, import.meta.url),
+    /export const liveCharts: LiveRelease\[\] = (\[[\s\S]*?\n\]);/,
+    `${w.artist.slug}'s live charts file`
+  );
+}
+
+/**
+ * Read a previously generated array back out of its own file.
+ *
+ * The two call sites used to be `t.match(...)?.[1] ?? "[]"` inside a
+ * `.catch(() => [])`, which folds three very different outcomes into one silent
+ * empty array: the file is not there yet (fine — first run), the file is there
+ * and unreadable (a real failure), and the file is there but the regex no longer
+ * matches it (a real failure, and the likeliest one, because the pattern is
+ * coupled to the formatting of output this same script writes).
+ *
+ * That last case is quietly destructive for the run history, which is
+ * append-only: parsing it as empty drops every day already collected and the
+ * data cannot be re-fetched, only re-observed. So a missing file is allowed and
+ * anything else stops the run.
+ */
+async function readGenerated(url, pattern, what) {
+  let text;
+  try {
+    text = await readFile(url, "utf8");
+  } catch (err) {
+    if (err?.code === "ENOENT") return []; // first run for this artist
+    console.error(`REFUSING TO CONTINUE: could not read ${what} (${err?.code ?? err}).`);
+    process.exit(1);
+  }
+  const match = text.match(pattern);
+  if (!match) {
+    console.error(
+      `REFUSING TO CONTINUE: ${what} exists but its array could not be found. ` +
+        `This script writes that file, so its own output has probably been reformatted ` +
+        `and the pattern needs updating. Continuing would treat the file as empty and ` +
+        `discard what it holds.`
+    );
+    process.exit(1);
+  }
+  try {
+    return JSON.parse(match[1]);
+  } catch {
+    console.error(`REFUSING TO CONTINUE: ${what} contains an array that is not valid JSON.`);
+    process.exit(1);
+  }
 }
 
 const carryForward = (platform, previous) => {
@@ -263,6 +307,10 @@ for (const w of work.values()) {
   const OUT = new URL(`../app/data/${artist.out}`, import.meta.url);
   const RUN_OUT = artist.runOut ? new URL(`../app/data/${artist.runOut}`, import.meta.url) : null;
   const MIN_PLACEMENTS = artist.slug === "burna-boy" ? 50 : 25;
+  // How much of the previous run may vanish before this is a source failure
+  // rather than a quiet week. Chart churn moves these files by a few per cent
+  // an hour; 40% is far outside that and well inside a half-scraped page.
+  const MAX_DROP = 0.4;
 
 // ── Artwork ──────────────────────────────────────────────────────────────
   // The site's own cover lookup (app/lib/covers.ts) only knows Burna Boy's
@@ -325,6 +373,29 @@ for (const w of work.values()) {
         `The source page has probably changed shape — check the extractor.`
     );
     process.exit(1);
+  }
+
+  // The absolute floor above is a backstop, not a guard. It sits at 50 against a
+  // real value in the hundreds — Burna Boy's file carries ~709 placements — so a
+  // sweep could lose 90% of its data and still write. What catches a partial
+  // source failure is the size of the DROP, not the size of what survived.
+  //
+  // Counting `"position":` in the previous file rather than re-parsing it: the
+  // count is a structural property of the data, so it survives any reformatting
+  // of the generated output, which a regex over the whole array does not.
+  const priorFile = await readFile(OUT, "utf8").catch(() => "");
+  const before = (priorFile.match(/"position":/g) ?? []).length;
+  if (before > 0) {
+    const drop = (before - placements) / before;
+    if (drop > MAX_DROP) {
+      console.error(
+        `REFUSING TO WRITE: ${placements} placements against ${before} last time — ` +
+          `a ${Math.round(drop * 100)}% drop, over the ${Math.round(MAX_DROP * 100)}% limit. ` +
+          `Part of the source is probably missing. The previous file is left in place; ` +
+          `re-run once the source is healthy, or raise MAX_DROP if the fall is real.`
+      );
+      process.exit(1);
+    }
   }
   
   if (DRY) {
@@ -422,9 +493,13 @@ for (const w of work.values()) {
     }
   }
   
-  const priorRuns = await readFile(RUN_OUT, "utf8")
-    .then((t) => JSON.parse(t.match(/export const runHistory: RunPoint\[\] = (\[[\s\S]*?\n\]);/)?.[1] ?? "[]"))
-    .catch(() => []);
+  // This one is append-only and irreplaceable: a silent empty here drops every
+  // day already collected, and those readings cannot be fetched again.
+  const priorRuns = await readGenerated(
+    RUN_OUT,
+    /export const runHistory: RunPoint\[\] = (\[[\s\S]*?\n\]);/,
+    `${artist.slug}'s run history`
+  );
   
   const isToday = (x) => x.date === today;
   const keptFrom = new Date(Date.now() - RUN_KEEP_DAYS * 86_400_000).toISOString().slice(0, 10);
