@@ -277,8 +277,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
-            "movement": -22
+            "position": 92,
+            "movement": -19
           }
         ]
       }
@@ -700,7 +700,7 @@
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 136,
+            "position": 147,
             "movement": null,
             "status": "new"
           }
@@ -888,7 +888,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 23,
+            "position": 25,
             "movement": null,
             "status": "new"
           }
@@ -995,7 +995,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 63,
-            "movement": -26
+            "movement": -23
           }
         ]
       },
@@ -1654,7 +1654,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 32,
+            "position": 36,
             "movement": null,
             "status": "new"
           }
@@ -2054,7 +2054,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 63,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "BF",
@@ -2072,7 +2072,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 164,
-            "movement": -25
+            "movement": -22
           }
         ]
       },
@@ -2133,7 +2133,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 66,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "BF",
@@ -2145,13 +2145,13 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 94,
-            "movement": -7
+            "movement": -4
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 149,
-            "movement": -26
+            "movement": -23
           }
         ]
       },
@@ -2225,7 +2225,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 163,
-            "movement": -25
+            "movement": -22
           }
         ]
       },
@@ -2356,7 +2356,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 65,
+            "position": 73,
             "movement": null,
             "status": "new"
           }
@@ -2525,7 +2525,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 65,
-            "movement": -7
+            "movement": -3
           }
         ]
       },
@@ -2848,7 +2848,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 154,
-            "movement": -25
+            "movement": -22
           }
         ]
       },
@@ -2891,7 +2891,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 175,
-            "movement": -25
+            "movement": -22
           }
         ]
       },
@@ -2996,8 +2996,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 79,
-            "movement": 5
+            "position": 82,
+            "movement": 2
           }
         ]
       }
@@ -3028,7 +3028,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 66,
-            "movement": -26
+            "movement": -23
           }
         ]
       }
@@ -3053,7 +3053,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 166,
-            "movement": -24
+            "movement": -21
           }
         ]
       }
@@ -3160,7 +3160,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
+            "position": 30,
             "movement": null,
             "status": "new"
           }
@@ -3229,6 +3229,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Baddest Boy",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 33,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Doe",
     "platforms": [
       {
@@ -3238,7 +3257,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
+            "position": 44,
             "movement": null,
             "status": "new"
           }
@@ -3287,25 +3306,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d5dfc880396e953e316456a394d7353/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Be There Still",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 174,
-            "movement": -134
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Very Special",
     "platforms": [
       {
@@ -3316,13 +3316,32 @@
             "country": "GH",
             "name": "Ghana",
             "position": 180,
-            "movement": -25
+            "movement": -22
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Be There Still",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 183,
+            "movement": -143
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "GROOVING",
@@ -3334,8 +3353,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 181,
-            "movement": -137
+            "position": 190,
+            "movement": -146
           }
         ]
       }

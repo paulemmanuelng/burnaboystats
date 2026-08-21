@@ -262,8 +262,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 175,
-            "movement": -28
+            "position": 173,
+            "movement": -26
           },
           {
             "country": "SE",
@@ -277,13 +277,6 @@
             "position": 188,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 197,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -294,20 +287,20 @@
           {
             "country": "MN",
             "name": "Mongolia",
-            "position": 66,
-            "movement": -9
+            "position": 70,
+            "movement": -13
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 73,
-            "movement": -14
+            "movement": -11
           },
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 76,
-            "movement": -3
+            "position": 86,
+            "movement": -13
           }
         ]
       },
@@ -924,7 +917,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 135,
+            "position": 144,
             "movement": null,
             "status": "new"
           }
@@ -1243,8 +1236,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 64,
-            "movement": 1
+            "position": 68,
+            "movement": -3
           },
           {
             "country": "KE",
@@ -1571,7 +1564,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
+            "position": 41,
             "movement": null,
             "status": "new"
           }
@@ -1872,7 +1865,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
+            "position": 34,
             "movement": null,
             "status": "new"
           },
@@ -2036,8 +2029,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 46,
-            "movement": 1
+            "position": 50,
+            "movement": -3
           },
           {
             "country": "GD",
@@ -2048,8 +2041,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 99,
-            "movement": -1
+            "position": 100,
+            "movement": -2
           },
           {
             "country": "NG",
@@ -2247,7 +2240,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 175,
+            "position": 184,
             "movement": null,
             "status": "new"
           }
@@ -2529,26 +2522,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f25b7d9807558219cbe7646ad27e092/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Daddy Yo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 150,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Ebelebe",
     "platforms": [
       {
@@ -2566,6 +2539,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/afea1bda5fb6b9c56301ea949d4516bf/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Daddy Yo",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 159,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Alive",

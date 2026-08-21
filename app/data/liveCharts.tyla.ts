@@ -437,7 +437,7 @@
             "country": "SG",
             "name": "Singapore",
             "position": 90,
-            "movement": -64
+            "movement": -57
           }
         ]
       }
@@ -557,8 +557,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 62,
-            "movement": 76
+            "position": 71,
+            "movement": 67
           }
         ]
       }
@@ -661,7 +661,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 70,
-            "movement": -32
+            "movement": -29
           }
         ]
       }
@@ -808,7 +808,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 62,
-            "movement": -7
+            "movement": -3
           }
         ]
       }
@@ -985,13 +985,13 @@
             "country": "KE",
             "name": "Kenya",
             "position": 69,
-            "movement": -32
+            "movement": -29
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 173,
-            "movement": -25
+            "movement": -22
           }
         ]
       },
