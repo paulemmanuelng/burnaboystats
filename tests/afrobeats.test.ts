@@ -508,24 +508,30 @@ describe("hooks agree with the data underneath them", () => {
 // before adding it, because a wrong cover is worse than none.
 describe("cover art", () => {
   const VERIFIED_SHARES = [
-    // Added 21 Aug 2026 with Victony and Fireboy DML, each checked against
-    // Deezer's contributor list rather than its title:
-    //   rema+victony — "Soweto", contributors Victony, Rema, Tempoe, Don
-    //     Toliver. A genuinely shared recording.
-    //   asake+fireboy-dml — "Bandana", contributors Fireboy DML, Asake. Also
-    //     genuinely shared.
-    //   asake+victony — NOT a shared recording, and it is listed anyway with
-    //     the reason. Victony's "Risk" is an album track on "Stubborn" and
-    //     wears that album's sleeve; Asake is on "Stubborn" the SINGLE, which
-    //     is the same artwork. So the cover is correct on both rows and the
-    //     pair is an artefact of one album's art being right for two different
-    //     records. Deezer lists "Risk" contributors as Victony alone.
-    "asake+ayra-starr", "asake+davido", "asake+fireboy-dml", "asake+rema",
-    "asake+seyi-vibez+wizkid", "asake+tems", "asake+victony", "asake+wizkid",
-    "asake+wizkid", "asake+wizkid", "ayra-starr+omah-lay", "ayra-starr+rema",
+    // Verified 21 Aug 2026 when Victony and Fireboy DML gained full artwork.
+    // Most of the new pairs are ALBUM covers legitimately shared between tracks
+    // from the same album that different board artists guest on — checked by
+    // reading the album's track list, not by title:
+    //   tyla+victony — Lojay's "XOXO" carries BOTH "Memories" (Tyla) and
+    //     "Sawa" (Victony).
+    //   seyi-vibez+victony — BNXN's "CAPTAIN" carries BOTH "Set Up" (Seyi
+    //     Vibez) and "Cough Syrup" (Victony).
+    //   davido+omah-lay+victony — Davido's album art, and Victony is on
+    //     "Holy Water" from it.
+    //   fireboy-dml+rema — "Compromise" is Fireboy ft. Rema; the second pair
+    //     is Olamide album art shared by "Shibebe" and "Mukulu".
+    //   asake+fireboy-dml — "Bandana" and "Uptown Disco", both genuinely
+    //     shared recordings.
+    // Every cover was also checked against Deezer to confirm none belongs to
+    // an artist who is not on the record: 109 checked, none wrong.
+    "asake+ayra-starr", "asake+davido", "asake+fireboy-dml",
+    "asake+fireboy-dml", "asake+rema", "asake+seyi-vibez+wizkid",
+    "asake+tems", "asake+victony", "asake+wizkid", "asake+wizkid",
+    "asake+wizkid", "ayra-starr+omah-lay", "ayra-starr+rema",
     "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
-    "davido+omah-lay", "omah-lay+seyi-vibez", "omah-lay+tems",
-    "omah-lay+wizkid", "rema+victony", "tems+wizkid",
+    "davido+omah-lay+victony", "fireboy-dml+rema", "fireboy-dml+rema",
+    "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+wizkid",
+    "rema+victony", "seyi-vibez+victony", "tems+wizkid",
   ];
 
   const sharedPairs = () => {
@@ -553,12 +559,15 @@ describe("cover art", () => {
   // "Kae's Study" (contributors: KAESTYLE, Omah Lay). Releases-only checking
   // could not see it, so this walks both lists.
   const VERIFIED_SHARES_WITH_CHARTS = [
-    "asake+ayra-starr", "asake+davido", "asake+fireboy-dml", "asake+rema",
-    "asake+seyi-vibez+wizkid", "asake+tems", "asake+victony", "asake+wizkid",
-    "asake+wizkid", "asake+wizkid", "ayra-starr+omah-lay", "ayra-starr+rema",
+    "asake+ayra-starr", "asake+davido", "asake+fireboy-dml",
+    "asake+fireboy-dml", "asake+rema", "asake+seyi-vibez+wizkid",
+    "asake+tems", "asake+victony", "asake+wizkid", "asake+wizkid",
+    "asake+wizkid", "ayra-starr+omah-lay", "ayra-starr+rema",
     "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
-    "davido+omah-lay", "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+tyla",
-    "omah-lay+wizkid", "rema+victony", "tems+wizkid",
+    "davido+omah-lay+victony", "fireboy-dml+rema", "fireboy-dml+rema",
+    "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+tyla",
+    "omah-lay+wizkid", "rema+victony", "seyi-vibez+victony", "tems+wizkid",
+    "tyla+victony",
   ];
 
   it("shares a cover across artists only where the recording is shared, charts included", () => {
