@@ -353,13 +353,13 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 70,
-            "movement": -13
+            "movement": -14
           },
           {
             "country": "BR",
             "name": "Brazil",
             "position": 176,
-            "movement": -120
+            "movement": -2
           }
         ]
       },
@@ -849,6 +849,19 @@
             "name": "Mauritius",
             "position": 180,
             "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 6,
+            "movement": null,
+            "status": "new"
           }
         ]
       }

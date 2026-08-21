@@ -690,8 +690,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 84,
-            "movement": 59
+            "position": 92,
+            "movement": 61
           }
         ]
       },
@@ -945,7 +945,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 170,
-            "movement": -32
+            "movement": -27
           }
         ]
       }
