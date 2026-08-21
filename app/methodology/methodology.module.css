@@ -107,6 +107,11 @@
   border: 1px solid var(--rule-soft);
   margin-top: 24px;
 }
+/* Partial last row stretches the final cell (RESPONSIVE-AND-STATES.md,
+   archetype 2). This grid paints its rule colour behind 1px gaps, so a lone
+   fifth principle leaves an empty cell that reads as a grey slab, not as
+   space. Written against row position so it holds at any count. */
+.principleGrid > :last-child:nth-child(2n + 1) { grid-column: span 2; }
 .principle { background: var(--bg); padding: 26px 28px; }
 .principleHead { display: flex; align-items: baseline; gap: 12px; }
 /* Outlined numeral — position without competing with the rule itself. */
@@ -211,6 +216,9 @@
   .counts > :last-child:nth-child(3n + 1) { grid-column: span 3; }
   .counts > :last-child:nth-child(3n + 2) { grid-column: span 2; }
   .principleGrid { grid-template-columns: 1fr; }
+  /* One column here, so the stretch rule above must stand down or it
+     would conjure a second column that does not exist. */
+  .principleGrid > :last-child:nth-child(2n + 1) { grid-column: auto; }
   .sourceRow { grid-template-columns: 1fr; gap: 12px; }
   .blocks { grid-template-columns: 1fr; }
 }

@@ -70,7 +70,7 @@ beats expensive-and-worthy.
       entry states the streak in wording the patterns cannot read, or coverage
       is lost silently while the suite still reports green.**
 
-- [ ] **Davido's chart peaks are materially incomplete.** 0.73 entries per
+- [x] **Davido's chart peaks are materially incomplete.** 0.73 entries per
       certification, the lowest on the board, 53% Nigerian, and eight
       internationally-certified songs carry no chart data at all — including
       "Fall", which is RIAA Platinum and Canada Platinum. His certifications
@@ -78,6 +78,34 @@ beats expensive-and-worthy.
       lag.
       *Done when:* the eight are researched across US/CA/UK, or the gap is
       stated in the methodology the way Nigeria's pre-2022 gap now is.
+      **DONE via the second branch — and the framing above was wrong.** I raised
+      this as incomplete data. It largely is not. The sweep had already
+      investigated all eight, and `docs/sweeps/davido-chart-peaks-v1.md` records
+      the findings:
+      *UK* — "Blow My Mind", "Risky" (and "If") have NO Official Singles Chart
+      entry. An earlier pass had promoted them from the Official **Video
+      Streaming** Chart; re-reading Davido's OCC artist page section by section
+      on 17 Aug 2026 showed the Singles section holds exactly five titles and
+      none of these is among them. The rows were correctly deleted.
+      *US / Canada* — a certification without a chart run is a real thing, not a
+      missing row. The document names it exactly: "A Canadian certification
+      without a Canadian chart entry is exactly the figure that gets miscounted
+      as a placement."
+      *South Africa* — a named, documented gap: TOSAC published only a Top 10
+      across 2023–24 and the site now serves anti-crawler filler, so a plaque
+      that peaked outside the top 10 cannot be read at source.
+      The 43 Nigeria-only certified releases with no chart row hit the same
+      pre-July-2022 TurnTable Top 50 gap already documented elsewhere.
+      *The ratio check that settles it:* entries-per-certification across the
+      board runs Davido 0.73, Wizkid 0.99, Seyi Vibez 1.11, Omah Lay 1.15,
+      Rema 1.48, Asake 1.56, Tems 1.77, Ayra Starr 1.90, Tyla 2.81. The two
+      lowest are the two longest Nigerian-era catalogues, which is what the
+      documented gap predicts — not evidence of a sloppier sweep.
+      *Shipped instead:* a fifth methodology principle, "A plaque is not a chart
+      entry", carrying the verified UK component-chart example. It is in the
+      shared `principles` array, so both layouts get it, and the principles grid
+      gained the archetype-2 orphan rule because a fifth item in a 2-column grid
+      that paints its rule colour behind 1px gaps leaves a grey slab.
 
 ## 2. The front door is broken
 

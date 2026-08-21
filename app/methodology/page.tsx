@@ -113,6 +113,10 @@ const principles = [
     p: `Similar-sounding figures are kept distinct — chart entries versus peaks, worldwide charts versus US-inclusive ones, and “No. 1s” counted as the number of times a song reached the top spot, not the number of songs released. Today the site tracks ${chartEntryCount} chart entries, ${numberOnes} worldwide No. 1s and ${totalAwards()} certifications across ${countryCount} countries.`,
   },
   {
+    h: "A plaque is not a chart entry",
+    p: "A certification counts units sold or streamed across a release's whole life; a chart entry counts one week against everything else out that week. A song can clear a certification threshold without ever entering a country's principal chart, so the two are never merged and a plaque is never promoted into a placing. Davido's “Blow My Mind” and “Risky” are the clearest case: both appear on the UK's Official Video Streaming Chart, and neither has ever entered the Official Singles Chart. A component chart is not the chart, and reading one as the other is the most common way these tallies inflate.",
+  },
+  {
     h: "Conflicts resolve to the source of record",
     p: "When two sources disagree, the one that owns the data wins: SNEP for the French chart, Billboard for the Global 200, the RIAA for US certifications. A louder or more recent headline doesn't override the official record.",
   },
