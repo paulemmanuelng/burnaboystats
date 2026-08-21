@@ -54,6 +54,15 @@
   background: var(--rule);
   border: 1px solid var(--rule-soft);
 }
+/* Same partial-last-row rule the 3-column breakpoint already carries
+   (RESPONSIVE-AND-STATES.md, archetype 2), which the 4-column default never
+   needed while the list was exactly the four findings. The correction entry
+   made it a five-item list, and because the grid paints its rule colour behind
+   1px gaps, the three empty cells read as a solid grey slab rather than as
+   space. Written against row position, so it holds at any count. */
+.toc > :last-child:nth-child(4n + 1) { grid-column: span 4; }
+.toc > :last-child:nth-child(4n + 2) { grid-column: span 3; }
+.toc > :last-child:nth-child(4n + 3) { grid-column: span 2; }
 .tocItem {
   background: var(--bg);
   padding: 20px 22px;

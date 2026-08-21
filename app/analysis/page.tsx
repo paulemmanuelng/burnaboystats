@@ -106,6 +106,17 @@ export default function AnalysisPage() {
                 <span className={styles.tocLabel}>{f.h}</span>
               </a>
             ))}
+            {/* The correction is a section of this page, but it is not a
+                finding, so it is not in `findings` and was therefore missing
+                from the only index a desktop reader gets. Adding the section
+                without adding it here left it discoverable by scrolling and by
+                nothing else — which is how it stayed unfindable even after it
+                had a link. Numbered past the findings so the list still reads
+                in page order. */}
+            <a href="#correction" className={styles.tocItem}>
+              <span className={styles.tocNum}>{String(findings.length + 1).padStart(2, "0")}</span>
+              <span className={styles.tocLabel}>A claim worth correcting</span>
+            </a>
           </div>
         </nav>
 
