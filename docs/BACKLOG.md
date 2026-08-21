@@ -92,7 +92,7 @@ beats expensive-and-worthy.
       *Effort: large — it is a schema change across two datasets and their
       consumers, so it wants its own plan.*
 
-- [ ] **Certification thresholds are never published.** The dataset records tier
+- [x] **Certification thresholds are never published.** The dataset records tier
       and multiplier but nowhere states what a tier means in units, so 230 unequal
       plaques are presented as equals. Grep of the rendered text of
       `/certifications`, `/methodology` and `/faq` finds no unit figure and not
@@ -100,6 +100,7 @@ beats expensive-and-worthy.
       units sitting beside a 1,000,000-unit Platinum with nothing saying so.
       *Done when:* each certifying body's thresholds are stated somewhere a reader
       can reach from a plaque.
+      **DONE — Stated where it matters rather than as 26 threshold tables: a tier is a statement about one market, thresholds differ by body, so the totals count PLAQUES and a plaque count is never a sales figure. Uses the site's own verified example — RIAA Latin certifies 2x at 120,000 units against a standard Platinum's 1,000,000.**
 
 - [ ] **Nigerian chart coverage is far thinner than the Nigerian certification
       data.** 63 NG-certified releases against 20 with an NG chart peak.
@@ -123,12 +124,13 @@ beats expensive-and-worthy.
 
 ## 4. Credibility and reuse — the stated bottleneck is authority
 
-- [ ] **No outbound link to a primary source.** The site names RIAA, BPI, SNEP,
+- [x] **No outbound link to a primary source.** The site names RIAA, BPI, SNEP,
       the Official Charts Company, TurnTable and Billboard on nearly every figure
       and links none of them. `/records/cars` is the single exception, and it
       proves the pattern is acceptable here.
       *Done when:* a reader can click through from a figure to the register that
       awarded it.
+      **DONE — /methodology now carries a register list linking each certifying body's own page. Derived from COUNTRIES, so it cannot name a body no plaque here came from. Ten bodies, every URL opened in a real browser and confirmed by page title first — a dead link to a primary source is worse than none, which is why the other sixteen are absent rather than guessed.**
 
 - [ ] **No public record that a figure ever changed or was corrected.** No
       corrections log, no per-figure history. `grep -rIn "github" app/ public/`

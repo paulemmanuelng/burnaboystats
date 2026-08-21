@@ -5,7 +5,7 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileMethodology from "../components/MobileMethodology";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { updates } from "../data/updates";
-import { totalAwards, countryCount } from "../data/certifications";
+import { totalAwards, countryCount, COUNTRIES } from "../data/certifications";
 import { chartEntryCount, numberOnes, chartSourceSplit, chartCountryCount } from "../data/charts";
 import { ceremonyCount } from "../data/awards";
 import { tours } from "../data/tours";
@@ -79,6 +79,24 @@ const counts = [
   { value: String(chartEntryCount), label: "Chart entries" },
   { value: String(numberOnes), label: "Worldwide No. 1s" },
 ];
+
+// Certifying bodies the site actually cites AND whose register has a confirmed
+// link. Derived from COUNTRIES so it cannot list a body no plaque here came
+// from, and cannot miss one that gains a URL later.
+const certBodies = (() => {
+  const byBody = new Map<string, { body: string; url: string; flags: string; where: string }>();
+  for (const [, c] of Object.entries(COUNTRIES)) {
+    if (!c.url) continue;
+    const e = byBody.get(c.body);
+    if (e) {
+      e.flags += ` ${c.flag}`;
+      e.where += `, ${c.name}`;
+    } else {
+      byBody.set(c.body, { body: c.body, url: c.url, flags: c.flag, where: c.name });
+    }
+  }
+  return [...byBody.values()].sort((a, b) => a.body.localeCompare(b.body));
+})();
 
 const principles = [
   {
@@ -207,6 +225,39 @@ export default function MethodologyPage() {
         </section>
 
         {/* ── Primary sources ────────────────────────────────── */}
+        {/* The registers themselves, and the one thing a plaque count hides.
+            The site names these bodies on nearly every figure and linked none
+            of them, which is an odd gap on a page whose claim is that each
+            number is traced to whoever awarded it. Only bodies whose page has
+            been opened and confirmed are listed — a dead link to a primary
+            source is worse than no link. */}
+        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="registers">
+          <div className={styles.eyebrow}>The registers</div>
+          <h2 id="registers" className={styles.h2}>Who awards a plaque, and what it means</h2>
+          <p className={styles.p}>
+            A certification is awarded by one country&apos;s industry body against that
+            body&apos;s own threshold, and the thresholds are not the same. A tier is a
+            statement about one market, not a common unit — so the totals on this
+            site count <strong>plaques</strong>, and a plaque count is never a sales
+            figure. The clearest example is on this site already: &ldquo;Dai Dai&rdquo; holds
+            2× Platinum from the RIAA&apos;s <em>Latin</em> programme, which certifies at
+            120,000 units, while a standard RIAA Platinum is 1,000,000 — the same two
+            words meaning roughly a sixteenth as much. Never add tiers across
+            programmes and read the result as scale.
+          </p>
+          <ul className={styles.registerList}>
+            {certBodies.map((b) => (
+              <li key={b.body} className={styles.registerRow}>
+                <span className={styles.registerFlag} aria-hidden="true">{b.flags}</span>
+                <a href={b.url} target="_blank" rel="noopener noreferrer" className={styles.registerLink}>
+                  {b.body}
+                </a>
+                <span className={styles.registerWhere}>{b.where}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="sources">
           <div className={styles.eyebrow}>Primary sources</div>
           <h2 id="sources" className={styles.h2}>Where the numbers come from</h2>
