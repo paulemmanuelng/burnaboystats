@@ -1177,7 +1177,7 @@
             "country": "KZ",
             "name": "Kazakhstan",
             "position": 2,
-            "movement": 5
+            "movement": 6
           },
           {
             "country": "HU",
@@ -1196,13 +1196,13 @@
             "country": "RO",
             "name": "Romania",
             "position": 14,
-            "movement": -5
+            "movement": -4
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 18,
-            "movement": -8
+            "position": 16,
+            "movement": -4
           },
           {
             "country": "NG",
@@ -1215,13 +1215,13 @@
             "country": "MD",
             "name": "Moldova",
             "position": 33,
-            "movement": -20
+            "movement": -15
           },
           {
             "country": "AZ",
             "name": "Azerbaijan",
-            "position": 56,
-            "movement": -20
+            "position": 58,
+            "movement": -19
           },
           {
             "country": "UG",
@@ -1232,20 +1232,20 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 93,
-            "movement": 56
+            "position": 91,
+            "movement": 59
           },
           {
             "country": "AU",
             "name": "Australia",
-            "position": 111,
+            "position": 122,
             "movement": null,
             "status": "new"
           },
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 145,
+            "position": 162,
             "movement": null,
             "status": "new"
           }
@@ -1306,14 +1306,14 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "US",
-            "name": "United States",
-            "position": 19,
-            "movement": 1
-          },
-          {
             "country": "MW",
             "name": "Malawi",
+            "position": 20,
+            "movement": 0
+          },
+          {
+            "country": "US",
+            "name": "United States",
             "position": 20,
             "movement": 0
           },
@@ -1506,8 +1506,8 @@
           {
             "country": "UZ",
             "name": "Uzbekistan",
-            "position": 79,
-            "movement": -14
+            "position": 80,
+            "movement": -12
           }
         ]
       },
@@ -1616,7 +1616,7 @@
             "country": "BB",
             "name": "Barbados",
             "position": 98,
-            "movement": -89
+            "movement": -69
           }
         ]
       }
@@ -1682,7 +1682,7 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 13,
+            "position": 14,
             "movement": null,
             "status": "new"
           },
@@ -1690,13 +1690,13 @@
             "country": "KE",
             "name": "Kenya",
             "position": 59,
-            "movement": -42
+            "movement": -30
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 62,
-            "movement": -36
+            "movement": -33
           }
         ]
       },
@@ -1750,8 +1750,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 110,
-            "movement": 6
+            "position": 111,
+            "movement": 5
           },
           {
             "country": "DM",
@@ -1769,7 +1769,7 @@
             "country": "US",
             "name": "United States",
             "position": 181,
-            "movement": 0
+            "movement": 19
           }
         ]
       },
@@ -1860,7 +1860,7 @@
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 62,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
@@ -1990,7 +1990,7 @@
             "country": "DM",
             "name": "Dominica",
             "position": 32,
-            "movement": 3
+            "movement": 2
           }
         ]
       },
@@ -2101,7 +2101,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 55,
-            "movement": 0
+            "movement": -1
           }
         ]
       }
@@ -2177,7 +2177,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 85,
-            "movement": 2
+            "movement": 0
           }
         ]
       }

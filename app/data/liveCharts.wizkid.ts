@@ -358,8 +358,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 94,
-            "movement": -47
+            "position": 115,
+            "movement": -59
           }
         ]
       },
@@ -720,8 +720,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 179,
-            "movement": -132
+            "position": 181,
+            "movement": -133
           }
         ]
       },
@@ -1477,8 +1477,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
-            "movement": -133
+            "position": 173,
+            "movement": -135
           }
         ]
       }
@@ -1790,7 +1790,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 80,
-            "movement": -4
+            "movement": 0
           },
           {
             "country": "KE",
@@ -1901,7 +1901,7 @@
             "country": "DM",
             "name": "Dominica",
             "position": 32,
-            "movement": 3
+            "movement": 2
           }
         ]
       },
@@ -2061,19 +2061,19 @@
             "country": "GD",
             "name": "Grenada",
             "position": 87,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 99,
-            "movement": 0
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 124,
-            "movement": -5
+            "position": 123,
+            "movement": -4
           }
         ]
       }
@@ -2326,8 +2326,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
-            "movement": -5
+            "position": 163,
+            "movement": -4
           }
         ]
       }
@@ -2452,7 +2452,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 19,
-            "movement": 6
+            "movement": 0
           }
         ]
       }
@@ -2471,7 +2471,7 @@
             "country": "LA",
             "name": "Laos",
             "position": 18,
-            "movement": -2
+            "movement": -1
           }
         ]
       }
@@ -2537,44 +2537,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/afea1bda5fb6b9c56301ea949d4516bf/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BROWN SKIN GIRL",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 153,
-            "movement": -134
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Bad For You",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 154,
-            "movement": -133
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "The Matter",
     "platforms": [
       {
@@ -2592,6 +2554,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/18fe03d4a766bab13d51da24e73e425c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BROWN SKIN GIRL",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 157,
+            "movement": -137
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Alive",
@@ -2613,6 +2594,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Bad For You",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 158,
+            "movement": -136
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Bad Girl",
     "platforms": [
       {
@@ -2622,8 +2622,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
-            "movement": -131
+            "position": 164,
+            "movement": -133
           }
         ]
       }
@@ -2641,8 +2641,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 174,
-            "movement": -131
+            "position": 178,
+            "movement": -134
           }
         ]
       }
@@ -2660,7 +2660,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 177,
+            "position": 180,
             "movement": null,
             "status": "new"
           }

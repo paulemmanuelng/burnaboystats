@@ -567,13 +567,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 4,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 60,
-            "movement": -36
+            "movement": -33
           }
         ]
       },
@@ -1122,7 +1122,7 @@
             "country": "BY",
             "name": "Belarus",
             "position": 82,
-            "movement": -14
+            "movement": -11
           }
         ]
       }
