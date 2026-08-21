@@ -604,6 +604,48 @@ export const searchIndex: SearchDoc[] = [
     description: "Where every Seyi Vibez release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
     keywords: ["seyi vibez live charts", "seyi vibez charting now", "seyi vibez today"],
   },
+  {
+    title: "Victony — Certifications & Chart Records",
+    path: "/afrobeats/victony",
+    section: "Afrobeats",
+    description: "Victony's 22 certifications across 4 countries and 40 official chart entries, verified at source.",
+    keywords: ["victony", "anthony victor", "outlaw", "stubborn", "soweto", "victony certifications"],
+  },
+  {
+    title: "Victony — Official Chart Peaks",
+    path: "/afrobeats/victony/charts",
+    section: "Afrobeats",
+    description: "Every official chart peak Victony has reached, country by country, read from each chart body's own run.",
+    keywords: ["victony charts", "victony chart peaks", "victony soweto chart", "victony highest chart position"],
+  },
+  {
+    title: "Victony — Live Charts",
+    path: "/afrobeats/victony/live",
+    section: "Afrobeats",
+    description: "Where every Victony release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    keywords: ["victony live charts", "victony charting now", "victony today"],
+  },
+  {
+    title: "Fireboy DML — Certifications & Chart Records",
+    path: "/afrobeats/fireboy-dml",
+    section: "Afrobeats",
+    description: "Fireboy DML's 36 certifications across 6 countries and 67 official chart entries, verified at source.",
+    keywords: ["fireboy dml", "adedamola adefolahan", "peru", "bandana", "playboy", "fireboy dml certifications"],
+  },
+  {
+    title: "Fireboy DML — Official Chart Peaks",
+    path: "/afrobeats/fireboy-dml/charts",
+    section: "Afrobeats",
+    description: "Every official chart peak Fireboy DML has reached, country by country, read from each chart body's own run.",
+    keywords: ["fireboy dml charts", "peru chart position", "fireboy dml uk chart", "fireboy dml chart peaks"],
+  },
+  {
+    title: "Fireboy DML — Live Charts",
+    path: "/afrobeats/fireboy-dml/live",
+    section: "Afrobeats",
+    description: "Where every Fireboy DML release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — refreshed hourly.",
+    keywords: ["fireboy dml live charts", "fireboy dml charting now", "fireboy dml today"],
+  },
 ];
 
 // Score a doc against a query. Higher = better. 0 = no match.

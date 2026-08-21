@@ -30,6 +30,8 @@ const EXPECTED = {
   "omah-lay": { total: 61, diamond: 2 },
   "seyi-vibez": { total: 103, diamond: 0 },
   wizkid: { total: 155, diamond: 6 },
+  victony: { total: 22, diamond: 0 },
+  "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
   rema: { total: 80, diamond: 4 },
   tems: { total: 70, diamond: 1 },
@@ -292,7 +294,19 @@ describe("records that appear on two boards", () => {
     // Nothing is excused any more. "Dynamite" ZA was the last exception and is
     // settled: Wizkid's file deletes "Money & Love" ZA #98 on the ground that
     // TOSAC published a Top 10 in that window, and #45 fails the same test.
-    const known = new Set<string>();
+    // Two titles collide across boards WITHOUT being the same record, which the
+    // title-only key above cannot see. Both were checked in TurnTable's own
+    // chart data before being excused:
+    //   "Pressure" is FIVE different records there — M3LON #43, Peruzzi ft.
+    //   Fireboy DML #25, Seyi Vibez #1, Seyi Vibez & French Montana #1, and
+    //   Wizkid #39. Fireboy's #25 and Seyi Vibez's #1 are different songs that
+    //   share a very common title.
+    //   "Apollo" is Victony's SINGLE (category 1, #82) against Fireboy DML's
+    //   ALBUM of the same name (category 2, #39) — different chart, different
+    //   record. The `kind` field already says so on both rows.
+    // Anything else that lands here is a real disagreement and must be settled,
+    // not added to this list.
+    const known = new Set<string>(["Pressure|NG", "Apollo|NG"]);
     const conflicts: string[] = [];
     for (const [title, per] of shared()) {
       const slugs = [...per.keys()];
@@ -309,16 +323,17 @@ describe("records that appear on two boards", () => {
   });
 
   it("still carries the shared records it is supposed to", () => {
-    // Nineteen records now sit on two boards at once — the three sweeps of
+    // Twenty-five records now sit on two boards at once — the three sweeps of
     // 19 Aug added thirteen, because Asake, Omah Lay and Seyi Vibez guest on
     // each other's records and on the six already here. Pinned so a record
     // cannot quietly appear on, or vanish from, a second board.
     expect(shared().map(([t]) => t).sort()).toEqual(
       [
-        "2 Sugar", "99", "Alaska", "Bad Girl", "Bad Vibes", "Dynamite", "Essence",
-        "Gang", "Gimme Dat", "Jogodo", "MMS", "MY HEALER", "No Competition",
-        "One Call", "REAL, Vol. 1 – EP", "Turbulence", "Who's Dat Girl",
-        "With You", "Won Da Mo",
+        "2 Sugar", "99", "Alaska", "Apollo", "Bad Girl", "Bad Vibes", "Bandana",
+        "Dynamite", "Essence", "Gang", "Gimme Dat", "Jogodo", "MMS", "MY HEALER",
+        "No Competition", "One Call", "Pressure", "REAL, Vol. 1 – EP", "Soweto",
+        "Stubborn", "Turbulence", "Uptown Disco", "Who's Dat Girl", "With You",
+        "Won Da Mo",
       ].sort()
     );
   });
@@ -422,7 +437,7 @@ describe("hub scatter", () => {
   const Y_MAX = 240;
 
   it("plots every swept artist plus Burna Boy", () => {
-    expect(sweptArtists.length + 1).toBe(10);
+    expect(sweptArtists.length + 1).toBe(12);
   });
 
   it("keeps every pair inside the drawn axes", () => {
@@ -493,11 +508,24 @@ describe("hooks agree with the data underneath them", () => {
 // before adding it, because a wrong cover is worse than none.
 describe("cover art", () => {
   const VERIFIED_SHARES = [
-    "asake+ayra-starr", "asake+davido", "asake+rema", "asake+seyi-vibez+wizkid",
-    "asake+tems", "asake+wizkid", "asake+wizkid", "asake+wizkid",
-    "ayra-starr+omah-lay", "ayra-starr+rema", "ayra-starr+rema",
-    "ayra-starr+seyi-vibez", "ayra-starr+wizkid", "davido+omah-lay",
-    "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+wizkid", "tems+wizkid",
+    // Added 21 Aug 2026 with Victony and Fireboy DML, each checked against
+    // Deezer's contributor list rather than its title:
+    //   rema+victony — "Soweto", contributors Victony, Rema, Tempoe, Don
+    //     Toliver. A genuinely shared recording.
+    //   asake+fireboy-dml — "Bandana", contributors Fireboy DML, Asake. Also
+    //     genuinely shared.
+    //   asake+victony — NOT a shared recording, and it is listed anyway with
+    //     the reason. Victony's "Risk" is an album track on "Stubborn" and
+    //     wears that album's sleeve; Asake is on "Stubborn" the SINGLE, which
+    //     is the same artwork. So the cover is correct on both rows and the
+    //     pair is an artefact of one album's art being right for two different
+    //     records. Deezer lists "Risk" contributors as Victony alone.
+    "asake+ayra-starr", "asake+davido", "asake+fireboy-dml", "asake+rema",
+    "asake+seyi-vibez+wizkid", "asake+tems", "asake+victony", "asake+wizkid",
+    "asake+wizkid", "asake+wizkid", "ayra-starr+omah-lay", "ayra-starr+rema",
+    "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
+    "davido+omah-lay", "omah-lay+seyi-vibez", "omah-lay+tems",
+    "omah-lay+wizkid", "rema+victony", "tems+wizkid",
   ];
 
   const sharedPairs = () => {
@@ -525,12 +553,12 @@ describe("cover art", () => {
   // "Kae's Study" (contributors: KAESTYLE, Omah Lay). Releases-only checking
   // could not see it, so this walks both lists.
   const VERIFIED_SHARES_WITH_CHARTS = [
-    "asake+ayra-starr", "asake+davido", "asake+rema", "asake+seyi-vibez+wizkid",
-    "asake+tems", "asake+wizkid", "asake+wizkid", "asake+wizkid",
-    "ayra-starr+omah-lay", "ayra-starr+rema", "ayra-starr+rema",
-    "ayra-starr+seyi-vibez", "ayra-starr+wizkid", "davido+omah-lay",
-    "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+tyla", "omah-lay+wizkid",
-    "tems+wizkid",
+    "asake+ayra-starr", "asake+davido", "asake+fireboy-dml", "asake+rema",
+    "asake+seyi-vibez+wizkid", "asake+tems", "asake+victony", "asake+wizkid",
+    "asake+wizkid", "asake+wizkid", "ayra-starr+omah-lay", "ayra-starr+rema",
+    "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
+    "davido+omah-lay", "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+tyla",
+    "omah-lay+wizkid", "rema+victony", "tems+wizkid",
   ];
 
   it("shares a cover across artists only where the recording is shared, charts included", () => {

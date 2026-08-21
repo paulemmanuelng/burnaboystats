@@ -37,6 +37,12 @@ export const updates: Update[] = [
   {
     date: "2026-08-21",
     category: "Certifications",
+    text: "Two artists join the Afrobeats Board: Victony (22 certifications across 4 countries, 40 chart entries) and Fireboy DML (36 across 6, 67 entries — including a French Diamond and a UK 3× Platinum for “Peru”). Both swept the same way as the other nine: every plaque read in an issuing body's own register, every chart peak in the chart body's own run. The board is now 11 artists and 801 plaques.",
+    href: "/afrobeats",
+  },
+  {
+    date: "2026-08-21",
+    category: "Certifications",
     text: "Asake picks up a fourth country: Recorded Music NZ certified “Bandana”, his 7× Platinum record with Fireboy DML, Gold in New Zealand on 20 August — read in RMNZ's own register, which it publishes through RadioScope rather than on its main site. It takes him to 80 plaques, and the Afrobeats Board to 743.",
     href: "/afrobeats/asake",
   },

@@ -21,6 +21,8 @@ import { liveCharts as ayra, liveChartsUpdated as ayraAt } from "./liveCharts.ay
 import { liveCharts as asake, liveChartsUpdated as asakeAt } from "./liveCharts.asake";
 import { liveCharts as omahLay, liveChartsUpdated as omahLayAt } from "./liveCharts.omah-lay";
 import { liveCharts as seyiVibez, liveChartsUpdated as seyiVibezAt } from "./liveCharts.seyi-vibez";
+import { liveCharts as victony, liveChartsUpdated as victonyAt } from "./liveCharts.victony";
+import { liveCharts as fireboyDml, liveChartsUpdated as fireboyDmlAt } from "./liveCharts.fireboy-dml";
 
 export interface LiveBoard {
   slug: string;
@@ -72,6 +74,8 @@ export const LIVE_BOARDS: LiveBoard[] = [
   board("asake", asake, asakeAt),
   board("omah-lay", omahLay, omahLayAt),
   board("seyi-vibez", seyiVibez, seyiVibezAt),
+  board("victony", victony, victonyAt),
+  board("fireboy-dml", fireboyDml, fireboyDmlAt),
 ];
 
 export const liveBoardFor = (slug: string) => LIVE_BOARDS.find((b) => b.slug === slug);

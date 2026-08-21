@@ -186,6 +186,52 @@ export const LIVE_ARTISTS = {
     runOut: "runHistory.omah-lay.ts",
     covers: true,
   },
+  victony: {
+    slug: "victony",
+    name: "Victony",
+    source: "https://kworb.net/itunes/artist/victony.html",
+    // Distinctive enough to anchor on the whole name; still word-anchored,
+    // because that is the rule that stopped a bare /rema/i putting Burkinabè
+    // songs on someone else's board.
+    credit: /\bvictony\b/i,
+    // Records where he is FEATURED, so a country chart prints someone else's
+    // name and the credit matcher never sees him. Co-billed records
+    // ("Victony & Shallipopi", "ODUMODUBLVCK & Victony") are not listed —
+    // his name is in those credits already and an alias would double-count.
+    // Read off his own certification and chart sweeps (21 Aug 2026).
+    aliases: [
+      { artist: "Burna Boy", title: "Different Size", release: "Different Size" },
+      { artist: "Mayorkun", title: "Holy Father", release: "Holy Father" },
+      { artist: "Davido", title: "Holy Water", release: "Holy Water" },
+      { artist: "Patoranking", title: "Babylon", release: "Babylon" },
+    ],
+    out: "liveCharts.victony.ts",
+    runOut: "runHistory.victony.ts",
+    covers: true,
+  },
+  "fireboy-dml": {
+    slug: "fireboy-dml",
+    name: "Fireboy DML",
+    source: "https://kworb.net/itunes/artist/fireboydml.html",
+    // Anchored on the full name, not a bare /fireboy/i: the short form is a
+    // common enough word in track and artist names to sweep in strangers.
+    credit: /\bfireboy\s*dml\b/i,
+    // Featured credits only — "Fireboy DML & Asake", "Ayo Maff & Fireboy DML"
+    // and the "Fireboy DML & Ed Sheeran" billing of Peru all carry his name
+    // already and are matched by `credit`.
+    // Read off his own certification and chart sweeps (21 Aug 2026).
+    aliases: [
+      { artist: "Cheque", title: "History", release: "History" },
+      { artist: "Ladipoe", title: "Running", release: "Running" },
+      { artist: "ODUMODUBLVCK", title: "FIREGUN", release: "FIREGUN" },
+      { artist: "Lil Kesh", title: "Vex For U", release: "Vex For U" },
+      { artist: "Peruzzi", title: "Southy Love", release: "Southy Love" },
+      { artist: "Mayorkun", title: "Innocent", release: "Innocent" },
+    ],
+    out: "liveCharts.fireboy-dml.ts",
+    runOut: "runHistory.fireboy-dml.ts",
+    covers: true,
+  },
   "seyi-vibez": {
     slug: "seyi-vibez",
     name: "Seyi Vibez",

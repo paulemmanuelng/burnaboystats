@@ -35,6 +35,13 @@ export const HEAD_TO_HEAD: Record<string, string> = {
   "ayra-starr": "davido",
   davido: "ayra-starr",
 
+  // The two who joined on 21 Aug 2026, paired with each other: both Nigerian,
+  // both built almost entirely at home, and both carry every one of their
+  // non-Nigerian plaques on a single crossover record — "Soweto" for one,
+  // "Peru" for the other. 22 plaques against 36.
+  victony: "fireboy-dml",
+  "fireboy-dml": "victony",
+
   // 80 plaques across 20 countries against 70 across 19. The closest
   // like-for-like on the board: same era, same reach, same shape.
   rema: "tems",
