@@ -609,6 +609,19 @@
             "movement": -13
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 184,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -826,7 +839,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 107,
+            "position": 111,
             "movement": null,
             "status": "new"
           }
@@ -944,8 +957,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 170,
-            "movement": -27
+            "position": 172,
+            "movement": -29
           }
         ]
       }

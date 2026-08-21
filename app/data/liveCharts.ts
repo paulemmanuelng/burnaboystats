@@ -2392,10 +2392,11 @@
             "movement": 0
           },
           {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 10,
-            "movement": 14
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 9,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "US",
@@ -2404,47 +2405,27 @@
             "movement": 2
           },
           {
-            "country": "RO",
-            "name": "Romania",
-            "position": 13,
-            "movement": 0
-          },
-          {
             "country": "HU",
             "name": "Hungary",
-            "position": 14,
-            "movement": -8
+            "position": 17,
+            "movement": -11
           },
           {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 14,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 19,
-            "movement": 4
+            "country": "RO",
+            "name": "Romania",
+            "position": 17,
+            "movement": -4
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 20,
-            "movement": -14
+            "position": 21,
+            "movement": -15
           },
           {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 22,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 23,
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 21,
             "movement": null,
             "status": "new"
           },
@@ -2457,21 +2438,34 @@
           {
             "country": "LK",
             "name": "Sri Lanka",
-            "position": 23,
-            "movement": -9
-          },
-          {
-            "country": "GR",
-            "name": "Greece",
-            "position": 25,
-            "movement": null,
-            "status": "new"
+            "position": 24,
+            "movement": -10
           },
           {
             "country": "CZ",
             "name": "Czech Republic",
             "position": 27,
             "movement": -16
+          },
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 28,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 30,
+            "movement": -6
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 31,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BR",
@@ -2484,6 +2478,13 @@
             "name": "Australia",
             "position": 36,
             "movement": -27
+          },
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 40,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "ZA",
@@ -2501,20 +2502,14 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 74,
-            "movement": -68
+            "position": 75,
+            "movement": -69
           },
           {
             "country": "KG",
             "name": "Kyrgyzstan",
             "position": 79,
             "movement": -11
-          },
-          {
-            "country": "TR",
-            "name": "Turkey",
-            "position": 97,
-            "movement": 53
           },
           {
             "country": "PH",
@@ -2528,6 +2523,12 @@
             "name": "Dominican Republic",
             "position": 112,
             "movement": -70
+          },
+          {
+            "country": "TR",
+            "name": "Turkey",
+            "position": 115,
+            "movement": 35
           }
         ]
       }
@@ -3490,7 +3491,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 59,
             "movement": null,
             "status": "new"
           },
@@ -3642,13 +3643,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "VG",
             "name": "British Virgin Islands",
-            "position": 1,
-            "movement": 0
+            "position": 2,
+            "movement": -1
           }
         ]
       }
@@ -4146,8 +4147,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 78,
-            "movement": 6
+            "position": 79,
+            "movement": 5
           }
         ]
       }
@@ -4428,7 +4429,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 47,
+            "position": 64,
             "movement": null,
             "status": "new"
           }
@@ -4531,8 +4532,8 @@
           {
             "country": "AI",
             "name": "Anguilla",
-            "position": 44,
-            "movement": -7
+            "position": 34,
+            "movement": 3
           },
           {
             "country": "BF",
@@ -4680,16 +4681,35 @@
     "kind": "song"
   },
   {
-    "title": "Gum Body",
+    "title": "Talibans II",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 56,
+            "country": "BB",
+            "name": "Barbados",
+            "position": 2,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Pree Me",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 14,
             "movement": null,
             "status": "new"
           }
@@ -4772,7 +4792,7 @@
     "kind": "song"
   },
   {
-    "title": "Higher",
+    "title": "Gum Body",
     "platforms": [
       {
         "platform": "iTunes",
@@ -4802,6 +4822,25 @@
             "name": "Uganda",
             "position": 73,
             "movement": -10
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Higher",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 89,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
