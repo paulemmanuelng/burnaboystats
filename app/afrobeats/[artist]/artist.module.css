@@ -533,8 +533,16 @@
 .faqItem { border-top: 1px solid var(--line); padding-top: 18px; }
 .faqQ {
   margin: 0 0 8px;
+  /* The body face, not the display one. Global `h1, h2, h3` sets
+     --font-display with letter-spacing -0.02em and line-height 1.05, which is
+     right for a headline and squeezed to the point of being hard to read as a
+     sentence — and these are sentences. Same override the site already makes
+     for .tContent h3 in globals.css. */
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: 17px;
-  font-weight: 650;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.35;
   color: var(--text);
 }
 .faqA { margin: 0; font-size: 15px; line-height: 1.65; color: var(--text-muted); max-width: 72ch; }

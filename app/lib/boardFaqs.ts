@@ -32,6 +32,7 @@ import {
   type AfroArtist,
 } from "../data/afrobeats";
 import { count } from "./plural";
+import { opponentOf } from "./headToHead";
 
 export interface Faq {
   q: string;
@@ -64,11 +65,18 @@ function topPlaque(a: AfroArtist): string | undefined {
 }
 
 /**
- * The four questions a reader brings to a board artist page, answered in the
- * first sentence. `burnaCerts` is passed in so the comparison cites a live
- * figure rather than a number baked into a string.
+ * The questions a reader brings to a board artist page, answered in the first
+ * sentence.
+ *
+ * The comparison uses the artist's HEAD-TO-HEAD PEER, not Burna Boy. That
+ * pairing already exists in headToHead.ts and its comment explains why: nine
+ * pages all measured against him asked the same question and got the same
+ * answer, "he is bigger". Burna is the opponent for Wizkid alone, because that
+ * is the one comparison that has always been the genre's actual argument. This
+ * FAQ reads off the same map, so the page and its Q&A cannot disagree about who
+ * an artist is measured against.
  */
-export function artistFaqs(a: AfroArtist, burnaCerts: number): Faq[] {
+export function artistFaqs(a: AfroArtist): Faq[] {
   const total = certCount(a);
   const countries = countryCount(a);
   const no1s = chartNo1s(a);
@@ -97,17 +105,30 @@ export function artistFaqs(a: AfroArtist, burnaCerts: number): Faq[] {
             `release reaches the top of a country's chart, not the number of releases that have done ` +
             `it, and platform charts are counted separately on the live board.`,
     },
-    {
-      q: `Is ${a.name} more certified than Burna Boy?`,
-      a:
-        total >= burnaCerts
-          ? `Yes — ${a.name} holds ${count(total, "plaque", "plaques")} to Burna Boy's ${burnaCerts}, ` +
-            `both counted under the same rule: one plaque per title per country at its current tier.`
-          : `No. ${a.name} holds ${count(total, "plaque", "plaques")}; Burna Boy holds ${burnaCerts}, ` +
-            `counted under the same rule — one plaque per title per country at its current tier. The ` +
-            `two records are built the same way, which is the point of this board.`,
-    },
   ];
+
+  // Only when the artist has a pairing — a new artist joins the board before
+  // anyone decides who they belong next to, and a comparison against nobody is
+  // worse than no question.
+  const rival = opponentOf(a);
+  if (rival) {
+    faqs.push({
+      q: `Is ${a.name} more certified than ${rival.name}?`,
+      a:
+        total === rival.total
+          ? `They are level: ${a.name} and ${rival.name} both hold ` +
+            `${count(total, "plaque", "plaques")}, counted under the same rule — one plaque per title ` +
+            `per country at its current tier. ${a.name} holds them across ` +
+            `${count(countries, "country", "countries")}, ${rival.name} across ${rival.countries}.`
+          : total > rival.total
+            ? `Yes. ${a.name} holds ${count(total, "plaque", "plaques")} to ${rival.name}'s ` +
+              `${rival.total}, counted under the same rule: one plaque per title per country at its ` +
+              `current tier. The country spread differs too — ${countries} against ${rival.countries}.`
+            : `No. ${a.name} holds ${count(total, "plaque", "plaques")}; ${rival.name} holds ` +
+              `${rival.total}, counted under the same rule — one plaque per title per country at its ` +
+              `current tier. The country spread differs too: ${countries} against ${rival.countries}.`,
+    });
+  }
 
   if (countries > 0) {
     // Names, not the two-letter codes — "NG, US" is not an answer a reader or an

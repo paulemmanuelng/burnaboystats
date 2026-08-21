@@ -7,7 +7,6 @@ import CertExplorer from "../../components/CertExplorer";
 import { lastUpdated } from "../../lib/api";
 import { pageMetadata, CANONICAL_ORIGIN, datasetJsonLd } from "../../lib/seo";
 import { artistFaqs, faqJsonLd } from "../../lib/boardFaqs";
-import { totalAwards } from "../../data/certifications";
 import { tierOf, type Release, type Country } from "../../data/certifications";
 import { opponentOf } from "../../lib/headToHead";
 import { andMore, topBody, topPlatform } from "../../lib/boardNotes";
@@ -74,7 +73,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   if (!a) notFound();
 
   const live = liveBoardFor(a.slug);
-  const faqs = artistFaqs(a, totalAwards());
+  const faqs = artistFaqs(a);
   const total = certCount(a);
   const countries = countryCount(a);
   const rival = opponentOf(a);
