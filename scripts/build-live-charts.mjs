@@ -338,7 +338,23 @@ for (const w of work.values()) {
             { headers: UA }
           );
           if (!res.ok) continue;
-          const hit = (await res.json()).data?.find((d) => d.album?.cover_big || d.album?.cover_medium);
+          // The artist on the RESULT has to be the artist we asked for.
+          // Without this, a common title takes whatever Deezer returns first:
+          // Ayra Starr's "Dangerous" was shipping Cheque's "Bravo" artwork,
+          // because `artist:"..."` is a fuzzy filter and the second query is
+          // plain text. `artist.credit` is the same word-anchored regex the
+          // chart matcher uses, so it already knows the difference between
+          // "Rema" and "Reman".
+          // A featured record is billed to its LEAD on Deezer, so the alias
+          // list supplies the name to expect there instead.
+          const alias = (artist.aliases ?? []).find((al) => al.release === r.title);
+          const rightArtist = (n) =>
+            !!n &&
+            (artist.credit.test(n) ||
+              (alias && n.toLowerCase().includes(alias.artist.toLowerCase())));
+          const hit = (await res.json()).data?.find(
+            (d) => (d.album?.cover_big || d.album?.cover_medium) && rightArtist(d.artist?.name)
+          );
           if (hit) {
             r.cover = hit.album.cover_big ?? hit.album.cover_medium;
             found++;
