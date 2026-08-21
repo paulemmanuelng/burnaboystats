@@ -868,7 +868,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 80,
+            "position": 119,
             "movement": null,
             "status": "new"
           }
@@ -984,7 +984,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 64,
+            "position": 95,
             "movement": null,
             "status": "new"
           }
@@ -1101,8 +1101,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 49,
-            "movement": 0
+            "position": 50,
+            "movement": -1
           },
           {
             "country": "GH",
@@ -1222,8 +1222,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
-            "movement": -21
+            "position": 46,
+            "movement": -24
           }
         ]
       }
@@ -1910,8 +1910,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": -53
+            "position": 98,
+            "movement": -84
           }
         ]
       },
@@ -1977,7 +1977,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
+            "position": 24,
             "movement": null,
             "status": "new"
           }
@@ -2089,8 +2089,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 98,
-            "movement": 0
+            "position": 99,
+            "movement": -1
           },
           {
             "country": "NG",
@@ -2542,26 +2542,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Daddy Yo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 80,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Ebelebe",
     "platforms": [
       {
@@ -2581,6 +2561,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/afea1bda5fb6b9c56301ea949d4516bf/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Daddy Yo",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 112,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "2 Sugar",
     "platforms": [
       {
@@ -2590,7 +2590,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
+            "position": 137,
             "movement": null,
             "status": "new"
           }

@@ -471,7 +471,7 @@
           {
             "country": "SG",
             "name": "Singapore",
-            "position": 62,
+            "position": 75,
             "movement": null,
             "status": "new"
           }
@@ -593,14 +593,14 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 84,
+            "position": 110,
             "movement": null,
             "status": "new"
           },
           {
             "country": "DE",
             "name": "Germany",
-            "position": 142,
+            "position": 182,
             "movement": null,
             "status": "new"
           }
@@ -722,8 +722,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 64,
-            "movement": -36
+            "position": 66,
+            "movement": -38
           }
         ]
       }
@@ -807,7 +807,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 125,
+            "position": 151,
             "movement": null,
             "status": "new"
           }
@@ -816,6 +816,62 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "TYLA +",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NP",
+            "name": "Nepal",
+            "position": 154,
+            "movement": 0
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 170,
+            "movement": 0
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 186,
+            "movement": 0
+          },
+          {
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 190,
+            "movement": 0
+          },
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 199,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 1,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT LOVE",
@@ -867,49 +923,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "TYLA +",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NP",
-            "name": "Nepal",
-            "position": 154,
-            "movement": 0
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 170,
-            "movement": 0
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 186,
-            "movement": 0
-          },
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 190,
-            "movement": 0
-          },
-          {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 199,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "FAIRYTALE",
     "platforms": [
       {
@@ -956,14 +969,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 63,
-            "movement": -36
+            "position": 65,
+            "movement": -38
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 172,
-            "movement": -28
+            "position": 173,
+            "movement": -29
           }
         ]
       }
