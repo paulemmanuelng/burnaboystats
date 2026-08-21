@@ -216,6 +216,35 @@ beats expensive-and-worthy.
 - [ ] **Year-end charts are absent entirely.** Repo-wide grep for
       year-end/end-of-year/annual-rank returns zero chart data. Billboard,
       Official Charts and others publish them, and they are a natural question.
+      **FEASIBILITY ESTABLISHED 21 Aug 2026 — buildable, but larger and more
+      treacherous than it looks. Not started; scope it before starting.**
+      *The sources are readable.* Billboard's `/charts/year-end/{year}/...` and
+      the OCC's `/charts/end-of-year-singles-chart/{year}0101/37501/` both serve
+      real HTML to a plain fetch. Real placings exist: "Own It" at UK year-end
+      No. 9, "Location" at 13 and later 68, "Last Last" at 26 and 94. Billboard's
+      2022 year-end Hot 100 holds him nowhere, which is a proven absence and
+      worth recording as one.
+      *THE TRAP THAT DECIDES THE COST.* Neither the URL nor the page title
+      reliably identifies which year a chart covers. Checked across seven years:
+      the 2021 URL returns a page titled "on 1/1/2022"; the 2022 URL returns one
+      titled "on 1/1/2023"; and the 2023 URL silently REDIRECTS to the 2022
+      chart — byte-identical file, canonical rewritten to 20220101. So every
+      year fetched must be cross-verified against a known placing for that year
+      before its rows can be trusted. A naive year-to-URL loop would publish
+      mislabelled years, which is the worst failure this site has.
+      *It also needs its own schema.* A year-end rank is not a `ChartEntry`: it
+      measures a year's cumulative performance, not a week's peak, so a song can
+      hold both. Adding these as entries would break "one entry per country per
+      chart", inflate `chartEntryCount` with a different kind of thing, and
+      corrupt the No. 1 tally, since a year-end No. 1 is not a weekly No. 1.
+      *Size:* ~7 years x singles and albums x 2+ countries is 28+ chart reads,
+      each needing year verification, plus a dataset, a display surface and
+      tests. Same class as the two items dropped above.
+      *Recommendation: park until December 2026.* The natural trigger is the
+      2026 year-end publishing — "Dai Dai" spent five weeks at No. 1 on the
+      Global 200 and is near-certain to place high, which is a far stronger
+      reason to build the surface than backfilling historical placings. Build it
+      then, with the current year as the headline and the history behind it.
 
 - [-] **The board has no awards for any of the nine artists.** `AfroArtist` carries
       certifications and chart peaks and nothing else, so "who has the most
