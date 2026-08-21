@@ -194,8 +194,9 @@ export default function AfrobeatsPage() {
       <section className={styles.gridPad} aria-labelledby="the-field">
         <h2 id="the-field" className="visuallyHidden">The field</h2>
         <div className={styles.grid}>
-          {/* Burna leads the board and goes home, not to a profile — he is the
-              site's subject, so his tile is the door back to all of it. */}
+          {/* Burna leads the board and goes to his ledger, not to a profile: he
+              is the site's subject, so there is no /afrobeats page for him, and
+              this tile states a plaque count — so the count is what it opens. */}
           <Link href={BURNA.href} className={`${styles.tile} ${styles.tileAnchor}`}>
             <span className={styles.art} style={{ backgroundImage: `url(${BURNA.image})` }} aria-hidden="true" />
             <span className={styles.scrim} aria-hidden="true" />

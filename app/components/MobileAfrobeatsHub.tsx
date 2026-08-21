@@ -131,7 +131,7 @@ export default function MobileAfrobeatsHub({
               <span className={styles.doorStat}>
                 <strong>{burna.certs}</strong> certifications · {burna.countries} countries
               </span>
-              <span className={styles.doorLink}>His full record — this site →</span>
+              <span className={styles.doorLink}>His certifications, in full →</span>
             </span>
           </span>
         </Link>
