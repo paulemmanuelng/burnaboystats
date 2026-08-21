@@ -145,16 +145,16 @@
             "movement": 85
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 31,
+            "movement": -12
+          },
+          {
             "country": "IE",
             "name": "Ireland",
             "position": 33,
             "movement": -7
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 33,
-            "movement": -15
           },
           {
             "country": "BW",
@@ -189,8 +189,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 79,
-            "movement": -28
+            "position": 81,
+            "movement": -11
           },
           {
             "country": "TD",
@@ -277,8 +277,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
-            "movement": -19
+            "position": 93,
+            "movement": -24
           }
         ]
       }
@@ -389,6 +389,12 @@
             "name": "United Arab Emirates",
             "position": 188,
             "movement": -6
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 199,
+            "movement": -29
           }
         ]
       },
@@ -989,7 +995,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 2,
-            "movement": 1
+            "movement": 2
           },
           {
             "country": "GH",
@@ -1173,6 +1179,19 @@
             "country": "TD",
             "name": "Chad",
             "position": 130,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 4,
             "movement": null,
             "status": "new"
           }
@@ -2787,44 +2806,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Oriade",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 6,
-            "movement": -2
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 51,
-            "movement": -1
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 138,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 182,
-            "movement": -79
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Fans Mi",
     "platforms": [
       {
@@ -2981,6 +2962,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Oriade",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 6,
+            "movement": -2
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 51,
+            "movement": -1
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 138,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "FIA",
     "platforms": [
       {
@@ -2997,7 +3010,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 82,
-            "movement": 2
+            "movement": 1
           }
         ]
       }
@@ -3315,8 +3328,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 180,
-            "movement": -22
+            "position": 178,
+            "movement": -20
           }
         ]
       }
@@ -3335,7 +3348,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 185,
-            "movement": -145
+            "movement": -142
           }
         ]
       }
@@ -3354,7 +3367,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 192,
-            "movement": -148
+            "movement": -144
           }
         ]
       }

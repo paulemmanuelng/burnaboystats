@@ -263,7 +263,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 173,
-            "movement": -26
+            "movement": -27
           },
           {
             "country": "SE",
@@ -299,8 +299,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 86,
-            "movement": -13
+            "position": 100,
+            "movement": -16
           }
         ]
       },
@@ -1236,8 +1236,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 68,
-            "movement": -3
+            "position": 69,
+            "movement": -4
           },
           {
             "country": "KE",
@@ -1249,7 +1249,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 128,
-            "movement": -10
+            "movement": -19
           }
         ]
       }
@@ -1803,7 +1803,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 182,
-            "movement": -16
+            "movement": -18
           }
         ]
       }
@@ -1910,8 +1910,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 89,
-            "movement": -9
+            "position": 95,
+            "movement": -15
           },
           {
             "country": "NE",
@@ -2029,8 +2029,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 50,
-            "movement": -3
+            "position": 51,
+            "movement": -4
           },
           {
             "country": "GD",
@@ -2042,13 +2042,13 @@
             "country": "UG",
             "name": "Uganda",
             "position": 100,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 142,
-            "movement": -15
+            "movement": -18
           }
         ]
       }
@@ -2335,8 +2335,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 45,
-            "movement": -26
+            "position": 51,
+            "movement": -32
           }
         ]
       }

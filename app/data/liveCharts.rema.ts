@@ -642,8 +642,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 63,
-            "movement": -9
+            "position": 69,
+            "movement": -15
           },
           {
             "country": "KE",
@@ -1336,7 +1336,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 136,
-            "movement": -13
+            "movement": 4
           }
         ]
       },
@@ -1423,7 +1423,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 129,
+            "position": 140,
             "movement": null,
             "status": "new"
           }
