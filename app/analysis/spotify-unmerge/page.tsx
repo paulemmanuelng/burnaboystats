@@ -4,6 +4,7 @@ import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../lib/seo";
 import { lastUpdated } from "../../lib/api";
+import { spotifyTotalStreams } from "../../data/streamingTotals";
 
 /**
  * The February 2026 Spotify correction, explained once, properly.
@@ -34,6 +35,31 @@ import { lastUpdated } from "../../lib/api";
  */
 
 const VERIFIED_ON = "21 August 2026";
+
+// The one live input on this page, and everything after it is derived.
+//
+// spotifyTotalStreams is the site's own published career figure, written daily
+// by the stats bot — so quoting it here means this page moves with the rest of
+// the site instead of freezing on the day it was written. It is a display
+// string ("10.78B"), rounded to two decimals, and that rounding is the reason
+// the gain below is stated as "about": deriving an exact-looking 1,580,447,326
+// from a rounded input would be false precision dressed up as arithmetic.
+const CORRECTED_2025_CLOSE = 9_199_552_674;
+
+/** "10.78B" -> 10780000000. Returns null for anything unexpected rather than
+ *  guessing, so a change in the bot's format shows up as an absent sentence
+ *  rather than a wrong number. */
+function parseBillions(display: string): number | null {
+  const m = /^([\d.]+)B$/.exec(display.trim());
+  if (!m) return null;
+  const n = Number(m[1]);
+  return Number.isFinite(n) ? Math.round(n * 1_000_000_000) : null;
+}
+
+const totalToday = parseBillions(spotifyTotalStreams);
+const gainedSinceCorrection = totalToday === null ? null : totalToday - CORRECTED_2025_CLOSE;
+/** 1580447326 -> "1.58 billion", matching the precision of the input. */
+const asBillions = (n: number) => `${(n / 1_000_000_000).toFixed(2)} billion`;
 
 // The arithmetic, as separate rows so it can be read line by line rather than
 // taken on trust. Every figure here is a fixed point in the calculation, not a
@@ -66,6 +92,10 @@ const faqs = [
   {
     q: "What is a Spotify merge, and why does it happen?",
     a: "Spotify sometimes combines the play counts of two recordings it treats as the same track — commonly an original and a remix sharing a title. While merged, both show the combined figure. When the platform separates them, each recording keeps only its own plays, so one number falls and the other rises by the same amount. The catalogue is unchanged; only the attribution is corrected.",
+  },
+  {
+    q: "How many Spotify streams does Burna Boy have now?",
+    a: `His career total stands at ${spotifyTotalStreams}. Measured against his corrected 2025 close of 9,199,552,674 — the figure after the reallocated streams were taken out — that is roughly ${totalToday !== null ? asBillions(totalToday - CORRECTED_2025_CLOSE) : "one and a half billion"} added since. Every one of those arrived on a counter that no longer contained the moved streams.`,
   },
   {
     q: "How can this be checked?",
@@ -202,6 +232,33 @@ export default function SpotifyUnmergePage() {
           So the year that supposedly went backwards was, in fact,{" "}
           <strong>239 million streams forward</strong> by 12 February. The drop everyone
           saw was a correction applied to the past, not a loss in the present.
+        </p>
+
+        <h2 className={styles.h2}>Where that leaves him today</h2>
+        {totalToday !== null && gainedSinceCorrection !== null ? (
+          <>
+            <p className={styles.p}>
+              His career Spotify total now stands at{" "}
+              <strong>{spotifyTotalStreams}</strong> — about{" "}
+              <strong>{asBillions(gainedSinceCorrection)}</strong> more than the corrected
+              2025 close of 9,199,552,674. Every one of those was added after the
+              correction, on a counter that already had the reallocated streams taken out
+              of it.
+            </p>
+            <p className={styles.p}>
+              That is the number the &ldquo;bot purge&rdquo; framing cannot account for. A
+              catalogue that had been inflated by fake plays does not add{" "}
+              {asBillions(gainedSinceCorrection)} in the months after the platform
+              supposedly cleaned it up.
+            </p>
+          </>
+        ) : null}
+        <p className={styles.sub}>
+          The career total is read from Spotify daily and updates on its own; the figures
+          in the table above are fixed points and do not move. The gain is given to the
+          same precision as the total it is derived from — the underlying count is exact,
+          the published one is rounded, and inventing digits it does not have would be
+          false precision.
         </p>
 
         <h2 className={styles.h2}>How to check it yourself</h2>
