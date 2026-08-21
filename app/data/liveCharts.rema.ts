@@ -135,8 +135,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": 1
+            "position": 9,
+            "movement": -1
           },
           {
             "country": "GH",
@@ -147,49 +147,49 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 70,
-            "movement": 5
+            "position": 63,
+            "movement": 7
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 72,
+            "position": 66,
             "movement": 6
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 91,
-            "movement": 4
-          },
-          {
-            "country": "ZM",
-            "name": "Zambia",
-            "position": 100,
-            "movement": 3
+            "position": 89,
+            "movement": 2
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 117,
-            "movement": 34
+            "position": 106,
+            "movement": 11
+          },
+          {
+            "country": "ZM",
+            "name": "Zambia",
+            "position": 107,
+            "movement": -7
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 158,
-            "movement": 5
+            "position": 155,
+            "movement": 3
           },
           {
             "country": "WW",
             "name": "Worldwide",
             "position": 182,
-            "movement": -9
+            "movement": 0
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 197,
+            "position": 193,
             "movement": null,
             "status": "new"
           }
@@ -426,8 +426,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 33,
-            "movement": 0
+            "position": 34,
+            "movement": -1
           },
           {
             "country": "UG",
@@ -626,8 +626,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 36,
-            "movement": 0
+            "position": 37,
+            "movement": -1
           },
           {
             "country": "NG",
@@ -699,8 +699,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 28,
-            "movement": -3
+            "position": 29,
+            "movement": -4
           },
           {
             "country": "PT",
@@ -718,7 +718,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 91,
+            "position": 118,
             "movement": null,
             "status": "new"
           }
@@ -863,8 +863,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 54,
-            "movement": 0
+            "position": 62,
+            "movement": -8
           },
           {
             "country": "KE",
@@ -893,20 +893,20 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 73,
-            "movement": -2
+            "position": 70,
+            "movement": 3
           },
           {
             "country": "TN",
             "name": "Tunisia",
-            "position": 161,
-            "movement": 13
+            "position": 147,
+            "movement": 14
           },
           {
             "country": "DZ",
             "name": "Algeria",
-            "position": 184,
-            "movement": -5
+            "position": 163,
+            "movement": 21
           }
         ]
       },
@@ -1115,7 +1115,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 22,
-            "movement": 1
+            "movement": 4
           }
         ]
       }
@@ -1334,50 +1334,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Lalala",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 95,
-            "movement": 23
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 167,
-            "movement": 11
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 189,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 184,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "For Her",
     "platforms": [
       {
@@ -1426,6 +1382,37 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Lalala",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 184,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 138,
+            "movement": -43
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "RAVAGE - EP",
@@ -1577,8 +1564,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 37,
-            "movement": 0
+            "position": 38,
+            "movement": -1
           }
         ]
       }

@@ -298,14 +298,14 @@
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 119,
-            "movement": 6
+            "position": 89,
+            "movement": 30
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 162,
-            "movement": -10
+            "movement": 0
           }
         ]
       },
@@ -361,8 +361,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 26,
-            "movement": 0
+            "position": 27,
+            "movement": -1
           },
           {
             "country": "NG",
@@ -584,14 +584,14 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 118,
-            "movement": 4
+            "position": 117,
+            "movement": 1
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 169,
-            "movement": 3
+            "position": 167,
+            "movement": 2
           }
         ]
       },
@@ -729,8 +729,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 179,
-            "movement": 13
+            "position": 176,
+            "movement": 16
           }
         ]
       }
@@ -1085,20 +1085,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
-            "movement": 7
+            "position": 26,
+            "movement": -1
           },
           {
             "country": "CM",
             "name": "Cameroon",
             "position": 47,
-            "movement": 6
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 124,
-            "movement": 19
+            "position": 123,
+            "movement": 20
           }
         ]
       },
@@ -1254,49 +1254,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/bd76a1b1daca04cea85edf1c9b022a27/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Forever",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 104,
-            "movement": -5
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 149,
-            "movement": 2
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 193,
-            "movement": -32
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 95,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "DON'T LOVE ME",
     "platforms": [
       {
@@ -1328,6 +1285,68 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Forever",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 113,
+            "movement": -14
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 158,
+            "movement": -9
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 97,
+            "movement": -7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Namek",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 65,
+            "movement": 1
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 135,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "WATER SPIRIT",
     "platforms": [
       {
@@ -1351,31 +1370,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Namek",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 67,
-            "movement": -1
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 135,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "reason",
@@ -1624,8 +1618,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 38,
-            "movement": 0
+            "position": 39,
+            "movement": -1
           }
         ]
       }
