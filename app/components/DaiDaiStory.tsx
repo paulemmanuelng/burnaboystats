@@ -8,6 +8,7 @@ import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import { cardinalWord, ordinalWord } from "../lib/plural";
 
 // Every figure here is "Dai Dai"'s OWN — never Burna Boy's artist-wide totals
 // (monthly listeners, YouTube audience, career certs). Burna had a huge
@@ -16,6 +17,12 @@ import BackLink from "./BackLink";
 interface Props {
   daiDaiNo1s: number; // Dai Dai's No. 1 countries
   daiDaiCerts: number; // certifications for Dai Dai specifically
+  /** Weeks atop each Billboard global chart, read from the chart entries by
+   *  the page so this client component never pulls charts.ts into the bundle. */
+  weeksGLB: number | null;
+  weeksGLBX: number | null;
+  /** Which language to spell those two counts in. */
+  lang?: "en" | "es";
   /** Override the narrative — the Spanish edition passes its own. Scene keys
    *  stay the same, so the artwork and layout are shared and only the words
    *  change. Omitted everywhere else, which keeps the English page untouched. */
@@ -96,7 +103,7 @@ function buildSteps(p: Props): Step[] {
       scene: "global1",
       kicker: "The record",
       title: "No. 1 on the Billboard Global 200",
-      body: "Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. After four straight weeks it slipped to No. 3, then took the chart back on 22 August for a fifth week — a month after the World Cup ended. It has never left the top of the Global 200 Excl. US, where it is now eight weeks in.",
+      body: `Within weeks their song topped Billboard's flagship, US-inclusive worldwide chart — Shakira's second-ever Global 200 No. 1, and the first time in history an African artist has helped lead it. After four straight weeks it slipped to No. 3, then took the chart back on 22 August for a ${ordinalWord(p.weeksGLB, p.lang ?? "en")} week — a month after the World Cup ended. It has never left the top of the Global 200 Excl. US, where it is now ${cardinalWord(p.weeksGLBX, p.lang ?? "en")} weeks in.`,
     },
     {
       scene: "no1s",

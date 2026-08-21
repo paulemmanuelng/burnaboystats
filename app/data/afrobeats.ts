@@ -50,7 +50,16 @@ import { CHART_COUNTRIES } from "./charts";
 export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
 
 export interface AfroCert { c: string; level: Tier; x?: number }
-export interface AfroPeak { c: string; peak: number }
+export interface AfroPeak {
+  c: string;
+  peak: number;
+  /** Weeks at the peak position — same field and same rule as charts.ts
+   *  ChartEntry, so the board and his own record describe longevity the same
+   *  way. Optional, and absent unless the chart body publishes it. */
+  weeksAtPeak?: number;
+  /** Total weeks on that country's chart. */
+  weeks?: number;
+}
 
 export interface AfroRelease {
   title: string;

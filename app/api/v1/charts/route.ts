@@ -21,6 +21,12 @@ const releases = allChartItems.map((r) => ({
     country: CHART_COUNTRIES[e.c]?.name ?? e.c,
     chart: CHART_COUNTRIES[e.c]?.body ?? null,
     peak: e.peak,
+    // Longevity travels with the peak, because a peak alone cannot tell a
+    // consumer whether a No. 1 lasted a week or ten. Spread conditionally so
+    // the shape stays stable: an entry we have not researched omits the keys
+    // rather than publishing a null that reads like a measured zero.
+    ...(e.weeksAtPeak !== undefined ? { weeksAtPeak: e.weeksAtPeak } : {}),
+    ...(e.weeks !== undefined ? { weeks: e.weeks } : {}),
   })),
 }));
 

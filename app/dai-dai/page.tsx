@@ -6,7 +6,7 @@ import KeepExploring from "../components/KeepExploring";
 import DaiDaiNumbers from "../components/DaiDaiNumbers";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { lastUpdated } from "../lib/api";
-import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES } from "../data/charts";
+import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES, weeksAtPeak } from "../data/charts";
 import { liveCharts } from "../data/liveCharts";
 import { daiDaiCertCount } from "../data/certifications";
 import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS } from "../data/daiDai";
@@ -31,6 +31,15 @@ const conquestTotal = conquestCountries.length;
 const conquestNo1 = conquestCountries.filter((c) => c.peak === 1).length;
 // Built as a plain string (not inline JSX) so the numbers always keep their
 // spacing — inline `{n} word` was rendering as "17word".
+// Longevity is read from the chart entries, not typed here. These three used to
+// be hand-written numbers in the sentences below, which is how the same figures
+// went stale elsewhere on the site — see the weeksAtPeak comment in charts.ts.
+const weeksDE = weeksAtPeak("Dai Dai", "DE");
+const weeksCH = weeksAtPeak("Dai Dai", "CH");
+const weeksFR = weeksAtPeak("Dai Dai", "FR");
+const weeksGLB = weeksAtPeak("Dai Dai", "GLB");
+const weeksGLBX = weeksAtPeak("Dai Dai", "GLBX");
+
 const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries — and reached No. 1 in ${conquestNo1} of them. The No. 1 countries are gold; the rest charted without topping.`;
 
 
@@ -153,7 +162,7 @@ export default function DaiDaiPage() {
   const heroNumbers: { v: string; l: string }[] = [
     { v: `${daiDaiChartEntryCount}`, l: "official chart entries worldwide — on national singles charts across the globe, plus both of Billboard's global charts" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
-    { v: "No. 1", l: "on both Billboard global charts — a 5th week atop the Global 200 (a first for an African artist, and Shakira's 2nd), retaken on the chart dated 22 August after a week at No. 3, and an 8th consecutive week atop the Global 200 Excl. US" },
+    { v: "No. 1", l: `on both Billboard global charts — a ${weeksGLB}th week atop the Global 200 (a first for an African artist, and Shakira's 2nd), retaken on the chart dated 22 August after a week at No. 3, and an ${weeksGLBX}th consecutive week atop the Global 200 Excl. US` },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 35 days as the most-streamed song on Earth" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, France, Slovakia, Portugal & Hungary, Gold in Colombia, Greece, the Czech Republic & Italy, and Silver in the UK" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
@@ -165,7 +174,7 @@ export default function DaiDaiPage() {
       intro: "The daily and weekly runs — every one still counting.",
       items: [
         { v: "35 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, now three clear of Djo's “End of Beginning” (32) and four of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31); past 62 days inside the global Top 10 and 90 days on the chart, both still counting" },
-        { v: "4 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, peaking at 40.28M streams in a single week" },
+        { v: "5 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, in its 12th week on it — peaking at 40.28M streams in a single week" },
         { v: "58 days", l: "at No. 1 on Apple Music's European songs chart — plus 11 days atop the worldwide Apple Music chart" },
         { v: "40 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
         { v: "No. 1", l: liveOnesLabel },
@@ -175,9 +184,9 @@ export default function DaiDaiPage() {
       label: "The national charts",
       intro: "Country by country, on the official singles charts.",
       items: [
-        { v: "7 weeks", l: "at No. 1 on Germany's official singles chart — and named the country's official Sommerhit 2026 by GfK Entertainment, which compiles the charts, after nearly 60 million German streams" },
-        { v: "10 weeks", l: "at No. 1 on Switzerland's official chart — the longest run at No. 1 by any song there so far this year" },
-        { v: "6 weeks", l: "at No. 1 on France's Official Singles Chart (SNEP)" },
+        { v: `${weeksDE} weeks`, l: "at No. 1 on Germany's official singles chart — and named the country's official Sommerhit 2026 by GfK Entertainment, which compiles the charts, after nearly 60 million German streams" },
+        { v: `${weeksCH} weeks`, l: "at No. 1 on Switzerland's official chart — the longest run at No. 1 by any song there so far this year" },
+        { v: `${weeksFR} weeks`, l: "at No. 1 on France's Official Singles Chart (SNEP)" },
         { v: "No. 1", l: "India's IMI International Top 20 Singles Chart — the first Burna Boy song to top a chart in India" },
         { v: "No. 1", l: "Official MENA Chart Top 20 — still on top in the latest week — and Billboard's US World Digital Song Sales chart" },
         { v: "No. 2", l: "UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)" },
@@ -203,7 +212,7 @@ export default function DaiDaiPage() {
       intro: "The “Dai Dai” video, on a tear of its own.",
       items: [
         { v: DAI_DAI_VIDEO_VIEWS, l: "YouTube views for the “Dai Dai” video — 600 million in 67 days, the fastest music video of either artist's career to the mark and the first and only 2026 video to reach it. It passed 500 million in 59.4 days (12th fastest ever) and 700 million in 74.8 days — the 8th fastest music video in YouTube history" },
-        { v: "33 days", l: "as the most-viewed music video on YouTube worldwide, and No. 1 in 59 countries — now past 6.1 million likes" },
+        { v: "48 days", l: "as the most-viewed music video on YouTube worldwide — now past 6.1 million likes" },
       ],
     },
   ];
@@ -310,7 +319,7 @@ export default function DaiDaiPage() {
       </section>
 
       <div className={styles.wrap}>
-        <DaiDaiStory daiDaiNo1s={daiDaiNumberOnes} daiDaiCerts={daiDaiCertCount} />
+        <DaiDaiStory daiDaiNo1s={daiDaiNumberOnes} daiDaiCerts={daiDaiCertCount} weeksGLB={weeksGLB} weeksGLBX={weeksGLBX} />
 
         <section className={styles.section} aria-labelledby="dd-lineup">
           <div className={styles.kicker}>19 July 2026 · MetLife Stadium</div>

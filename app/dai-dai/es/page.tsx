@@ -10,6 +10,7 @@ import {
   daiDaiChartEntryCount,
   allChartItems,
   CHART_COUNTRIES,
+  weeksAtPeak,
 } from "../../data/charts";
 import { liveCharts } from "../../data/liveCharts";
 import { daiDaiCertCount } from "../../data/certifications";
@@ -45,6 +46,16 @@ const conquestCountries: ConquestCountry[] = (daiDai?.entries ?? [])
   }));
 const conquestTotal = conquestCountries.length;
 const conquestNo1 = conquestCountries.filter((c) => c.peak === 1).length;
+// Las semanas se leen de los datos, igual que en la edición inglesa — una cifra
+// escrita a mano en dos idiomas se desincroniza el doble de rápido.
+import { cardinalWord, ordinalWord } from "../../lib/plural";
+
+const weeksDE = weeksAtPeak("Dai Dai", "DE");
+const weeksCH = weeksAtPeak("Dai Dai", "CH");
+const weeksFR = weeksAtPeak("Dai Dai", "FR");
+const weeksGLB = weeksAtPeak("Dai Dai", "GLB");
+const weeksGLBX = weeksAtPeak("Dai Dai", "GLBX");
+
 const conquestIntro = `“Dai Dai” ha entrado en las listas de ${conquestTotal} países — y ha llegado al número 1 en ${conquestNo1} de ellos. Los países en dorado son los número 1; el resto entró sin llegar a la cima.`;
 
 // Same derivation as the English page: the live board decides, not a sentence.
@@ -114,7 +125,7 @@ export default function DaiDaiPageES() {
       scene: "global1",
       kicker: "El récord",
       title: "Número 1 en el Billboard Global 200",
-      body: "En cuestión de semanas la canción lideró la lista mundial insignia de Billboard, la que incluye a Estados Unidos: el segundo número 1 de Shakira en el Global 200 y la primera vez en la historia que un artista africano ayuda a encabezarla. Tras cuatro semanas consecutivas bajó al N.º 3, y el 22 de agosto recuperó la cima para una quinta semana, un mes después del final del Mundial. Nunca ha dejado el número 1 del Global 200 Excl. US, donde ya suma ocho semanas.",
+      body: `En cuestión de semanas la canción lideró la lista mundial insignia de Billboard, la que incluye a Estados Unidos: el segundo número 1 de Shakira en el Global 200 y la primera vez en la historia que un artista africano ayuda a encabezarla. Tras cuatro semanas consecutivas bajó al N.º 3, y el 22 de agosto recuperó la cima para una ${ordinalWord(weeksGLB, "es")} semana, un mes después del final del Mundial. Nunca ha dejado el número 1 del Global 200 Excl. US, donde ya suma ${cardinalWord(weeksGLBX, "es")} semanas.`,
     },
     {
       scene: "no1s",
@@ -151,7 +162,7 @@ export default function DaiDaiPageES() {
   const heroNumbers: { v: string; l: string }[] = [
     { v: `${daiDaiChartEntryCount}`, l: "entradas en listas oficiales de todo el mundo — en listas nacionales de sencillos, más las dos listas globales de Billboard" },
     { v: `${daiDaiNumberOnes}`, l: "países con la canción en el número 1 de su lista oficial de sencillos — de Francia y Alemania a Emiratos Árabes Unidos" },
-    { v: "N.º 1", l: "en las dos listas globales de Billboard — quinta semana en la cima del Global 200 (algo inédito para un artista africano, y el segundo de Shakira), recuperada en la lista del 22 de agosto tras una semana en el N.º 3, y octava semana consecutiva en el Global 200 Excl. US" },
+    { v: "N.º 1", l: `en las dos listas globales de Billboard — ${ordinalWord(weeksGLB, "es")} semana en la cima del Global 200 (algo inédito para un artista africano, y el segundo de Shakira), recuperada en la lista del 22 de agosto tras una semana en el N.º 3, y ${ordinalWord(weeksGLBX, "es")} semana consecutiva en el Global 200 Excl. US` },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano, tras 35 días como la canción más escuchada del planeta" },
     { v: `${daiDaiCertCount}`, l: "certificaciones — doble platino (latino) en EE. UU., platino en España, Francia, Eslovaquia, Portugal y Hungría, oro en Colombia, Grecia, Chequia e Italia, y plata en el Reino Unido" },
     { v: "19 jul", l: "Shakira y Burna Boy interpretaron “Dai Dai” en vivo en el primer show de medio tiempo de una Final del Mundial de la FIFA" },
@@ -163,7 +174,7 @@ export default function DaiDaiPageES() {
       intro: "Las rachas diarias y semanales, todas todavía en marcha.",
       items: [
         { v: "35 días", l: "en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y recuperado en agosto como la racha más larga de cualquier lanzamiento de 2026—; la canción con más días en el número 1 de todo 2026, ahora tres por delante de “End of Beginning” de Djo (32) y cuatro de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31); más de 62 días dentro del top 10 mundial y 90 en la lista" },
-        { v: "4 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify, con un pico de 40,28 millones de reproducciones en una sola semana" },
+        { v: "5 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify, en su 12.ª semana en ella — con un pico de 40,28 millones de reproducciones en una sola semana" },
         { v: "58 días", l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music" },
         { v: "40 días", l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes" },
         { v: "N.º 1", l: liveOnesLabel },
@@ -173,9 +184,9 @@ export default function DaiDaiPageES() {
       label: "Las listas nacionales",
       intro: "País por país, en las listas oficiales de sencillos.",
       items: [
-        { v: "7 semanas", l: "en el número 1 de la lista oficial de sencillos de Alemania — y elegida Sommerhit 2026, la canción del verano del país, por GfK Entertainment, tras casi 60 millones de reproducciones alemanas" },
-        { v: "10 semanas", l: "en el número 1 de la lista oficial de Suiza — la racha más larga de cualquier canción en el país en lo que va de año" },
-        { v: "6 semanas", l: "en el número 1 de la lista oficial de sencillos de Francia (SNEP)" },
+        { v: `${weeksDE} semanas`, l: "en el número 1 de la lista oficial de sencillos de Alemania — y elegida Sommerhit 2026, la canción del verano del país, por GfK Entertainment, tras casi 60 millones de reproducciones alemanas" },
+        { v: `${weeksCH} semanas`, l: "en el número 1 de la lista oficial de Suiza — la racha más larga de cualquier canción en el país en lo que va de año" },
+        { v: `${weeksFR} semanas`, l: "en el número 1 de la lista oficial de sencillos de Francia (SNEP)" },
         { v: "N.º 1", l: "en la lista IMI International Top 20 Singles de la India — la primera canción de Burna Boy que encabeza una lista en ese país" },
         { v: "N.º 1", l: "en el Official MENA Chart Top 20 —todavía en la cima en su última semana— y en la lista US World Digital Song Sales de Billboard" },
         { v: "N.º 2", l: "en la lista oficial de sencillos del Reino Unido — la primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira" },
@@ -201,7 +212,7 @@ export default function DaiDaiPageES() {
       intro: "El video de “Dai Dai”, con carrera propia.",
       items: [
         { v: DAI_DAI_VIDEO_VIEWS, l: "visualizaciones en YouTube — 600 millones en 67 días, el video musical más rápido de la carrera de ambos artistas hasta esa cifra y el único de 2026 en alcanzarla. Superó los 500 millones en 59,4 días (el 12.º más rápido de la historia) y los 700 millones en 74,8 días — el 8.º video musical más rápido en la historia de YouTube" },
-        { v: "33 días", l: "como el video musical más visto del mundo en YouTube, y número 1 en 59 países — ya supera los 6,1 millones de “me gusta”" },
+        { v: "48 días", l: "como el video musical más visto del mundo en YouTube — ya supera los 6,1 millones de “me gusta”" },
       ],
     },
   ];
@@ -296,6 +307,9 @@ export default function DaiDaiPageES() {
         <DaiDaiStory
           daiDaiNo1s={daiDaiNumberOnes}
           daiDaiCerts={daiDaiCertCount}
+          weeksGLB={weeksGLB}
+          weeksGLBX={weeksGLBX}
+          lang="es"
           steps={steps}
           sceneCopy={{
             heroLabel: "Dai Dai · Shakira × Burna Boy",

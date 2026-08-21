@@ -1,4 +1,7 @@
 import { describe, it, expect } from "vitest";
+import { cardinalWord, ordinalWord } from "../app/lib/plural";
+import { weeksAtPeak, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
+import { daiDaiCertCount } from "../app/data/certifications";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -24,16 +27,80 @@ const lineupOf = (src: string) => {
 // { v: <value>, l: "<description>" } — the shape every number card uses.
 // `v` may not span lines, so the `{ v: string; l: string }[]` type annotation
 // above the array can't bridge into the first real entry.
+// `v` may be a plain string OR a template literal — longevity figures are read
+// from the chart data now rather than typed, so a card can read
+// `${weeksDE} weeks`. The old pattern excluded braces and silently dropped
+// those three cards, which shifted every later index and made card 0 compare
+// against card 3's value.
 const cardsOf = (src: string) =>
-  [...src.matchAll(/\{\s*v:\s*([^,{}\n]+?),\s*l:\s*"((?:[^"\\]|\\.)*)"\s*\}/g)].map((m) => ({
-    v: m[1].trim(),
-    l: m[2],
+  [...src.matchAll(/\{\s*v:\s*(`(?:[^`\\]|\\.)*`|[^,{}\n]+?),\s*l:\s*(?:"((?:[^"\\]|\\.)*)"|`((?:[^`\\]|\\.)*)`)\s*\}/g)].map((m) => ({
+    v: resolve(m[1].trim()),
+    // `l` may be a template literal too, now that the Billboard card reads its
+    // week counts from the data. Matching only double-quoted descriptions made
+    // that card vanish from the English side and silently misaligned every
+    // comparison after it — which is worse than failing, because the pairs it
+    // then compared were real cards that simply were not each other's twin.
+    l: resolve((m[2] ?? m[3] ?? "").trim()),
   }));
+
+// Both editions read these from app/data/charts.ts, so they cannot disagree by
+// construction — but the comparison still has to see a number, not the name of
+// a variable. Resolving here keeps the test checking figures rather than
+// identifiers, and it fails loudly if a page starts referencing something this
+// map does not know.
+const DERIVED: Record<string, number | string | null> = {
+  weeksDE: weeksAtPeak("Dai Dai", "DE"),
+  weeksCH: weeksAtPeak("Dai Dai", "CH"),
+  weeksFR: weeksAtPeak("Dai Dai", "FR"),
+  weeksGLB: weeksAtPeak("Dai Dai", "GLB"),
+  weeksGLBX: weeksAtPeak("Dai Dai", "GLBX"),
+  // These three pre-date the longevity work. The old pattern excluded braces,
+  // so it had been silently skipping the three hero cards for as long as they
+  // have been template literals — the parity check was covering 20 cards and
+  // quietly ignoring the biggest three.
+  daiDaiChartEntryCount,
+  daiDaiNumberOnes,
+  daiDaiCertCount,
+};
+// Two interpolation shapes appear in the cards: a bare `${weeksDE}`, and a
+// `${ordinalWord(weeksGLB, "es")}` where the Spanish edition needs the word
+// rather than the digit. The word form is resolved by calling the real helper,
+// so this checks the shipped output and not a second copy of the number table.
+const WORD_FNS: Record<string, (n: number | null, l: "en" | "es") => string> = {
+  ordinalWord,
+  cardinalWord,
+};
+
+const resolve = (v: string) => {
+  const out = v
+    .replace(/\$\{(\w+)\((\w+),\s*"(en|es)"\)\}/g, (_, fn: string, name: string, lang: string) => {
+      const f = WORD_FNS[fn];
+      if (!f) throw new Error(`parity test cannot resolve the call "${fn}(...)" — add it to WORD_FNS`);
+      const n = DERIVED[name];
+      if (n == null) throw new Error(`parity test cannot resolve "${name}" — add it to DERIVED`);
+      return f(Number(n), lang as "en" | "es");
+    })
+    .replace(/\$\{(\w+)\}/g, (_, name: string) => {
+      const n = DERIVED[name];
+      if (n == null) throw new Error(`parity test cannot resolve "${name}" — add it to DERIVED`);
+      return String(n);
+    });
+  // An interpolation this function does not understand used to survive as
+  // literal text, so its figure simply vanished from the comparison and the
+  // card looked like it had none. Fail loudly instead of comparing a lie.
+  if (out.includes("${")) throw new Error(`parity test left an unresolved interpolation in: ${out}`);
+  return out;
+};
 
 // Good Spanish spells small ordinals out — English's "a 4th consecutive week"
 // becomes "cuarta semana consecutiva" — so a digit-only comparison would flag
 // correct prose. These count as their numeral.
 const ES_NUMERALS: Record<string, string> = {
+  // Multiplier words, which Spanish prefers to a numeral: English's
+  // "2x Platinum" is "doble platino", and neither carries a digit. Missing
+  // these read as the Spanish edition having dropped a figure it states
+  // perfectly well — it was only hidden until the card alignment was fixed.
+  doble: "2", triple: "3", cuádruple: "4", quíntuple: "5",
   primer: "1", primera: "1", primero: "1",
   segundo: "2", segunda: "2", dos: "2",
   tercer: "3", tercera: "3", tercero: "3", tres: "3",

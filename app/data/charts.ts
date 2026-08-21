@@ -138,6 +138,26 @@ export interface ChartEntry {
   c: string;
   peak: number;
   note?: string;
+  /**
+   * How long the release held its peak, and how long it charted at all.
+   *
+   * Both OPTIONAL, and both absent on nearly every entry — a peak is published
+   * by every chart body, longevity is not, and inventing it would be worse than
+   * omitting it. Populate only where the owning body states it.
+   *
+   * These exist because longevity had nowhere to live and so lived in prose,
+   * where nothing could keep it honest. The note on "Dai Dai" below read "a 4th
+   * week atop the Global 200 and a 6th week atop the Global 200 Excl. US" while
+   * the true figures were the 5th and the 8th — wrong on a page that had been
+   * serving it for days, with no test able to see it. A number in a sentence
+   * cannot be checked against anything; a number in a field can.
+   *
+   * `weeksAtPeak` counts weeks AT the peak position, which for a No. 1 is the
+   * figure people mean by "N weeks at No. 1". It is not a total.
+   */
+  weeksAtPeak?: number;
+  /** Total weeks on that country's chart, where the body publishes a run. */
+  weeks?: number;
 }
 
 export interface ChartRelease {
@@ -215,7 +235,7 @@ export const singleCharts: ChartRelease[] = [
   //   the song, and genre/format charts (Latin Airplay, Pop Songs, Rhythmic,
   //   ARIA Hip Hop, Canada AC/CHR) stay out of country entries as always.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", year: 2026, entries: [
-    { c: "CH", peak: 1 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1 }, { c: "LU", peak: 1 }, { c: "PT", peak: 1 }, { c: "PA", peak: 1 }, { c: "SE", peak: 1 }, { c: "IT", peak: 1 }, { c: "IN", peak: 1 }, { c: "CZ", peak: 1 }, { c: "IS", peak: 1, note: "Billboard Iceland Songs" }, { c: "VE", peak: 1 }, { c: "SV", peak: 1 }, { c: "DO", peak: 1 }, { c: "NO", peak: 1 }, { c: "EC", peak: 1 }, { c: "EE", peak: 1 }, { c: "GLB", peak: 1 }, { c: "GLBX", peak: 1 },
+    { c: "CH", peak: 1, weeksAtPeak: 10 }, { c: "NL", peak: 1 }, { c: "SR", peak: 1 }, { c: "CO", peak: 1 }, { c: "AE", peak: 1 }, { c: "AT", peak: 1 }, { c: "BE", peak: 1, note: "Wallonia #1 · Flanders #1" }, { c: "SK", peak: 1 }, { c: "DE", peak: 1, weeksAtPeak: 7 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1 }, { c: "AR", peak: 1 }, { c: "FR", peak: 1, weeksAtPeak: 6 }, { c: "LU", peak: 1 }, { c: "PT", peak: 1 }, { c: "PA", peak: 1 }, { c: "SE", peak: 1 }, { c: "IT", peak: 1 }, { c: "IN", peak: 1 }, { c: "CZ", peak: 1 }, { c: "IS", peak: 1, note: "Billboard Iceland Songs" }, { c: "VE", peak: 1 }, { c: "SV", peak: 1 }, { c: "DO", peak: 1 }, { c: "NO", peak: 1 }, { c: "EC", peak: 1 }, { c: "EE", peak: 1 }, { c: "GLB", peak: 1, weeksAtPeak: 5 }, { c: "GLBX", peak: 1, weeksAtPeak: 8 },
     { c: "UK", peak: 2 }, { c: "ES", peak: 2 }, { c: "UY", peak: 2 }, { c: "PR", peak: 2 },
     { c: "CA", peak: 3 }, { c: "SA", peak: 3 }, { c: "SG", peak: 3 }, { c: "BG", peak: 3 }, { c: "IE", peak: 3 }, { c: "PY", peak: 3 },
     // HU sits at 8, not the fan-circulated 2: MAHASZ's own Single Top 40 (live
@@ -230,7 +250,7 @@ export const singleCharts: ChartRelease[] = [
     { c: "EG", peak: 14 }, { c: "CL", peak: 14 }, { c: "US", peak: 17 }, { c: "ZA", peak: 20 },
     { c: "PE", peak: 23 }, { c: "BO", peak: 25 }, { c: "JP", peak: 25 }, { c: "BR", peak: 27 },
     { c: "RU", peak: 31 }, { c: "MD", peak: 34 }, { c: "UA", peak: 90 }, { c: "VN", peak: 93 },
-  ], note: "No.1 on both Billboard global charts — a 4th week atop the Global 200 and a 6th week atop the Global 200 Excl. US. Also No.1 on Billboard's US World Digital Song Sales and Latin Airplay charts, No.1 on the IFPI Middle East & North Africa chart (No.3 on North Africa), and No.1 on BMAT's Central America & Caribbean airplay chart." },
+  ], note: "No.1 on both Billboard global charts — the week counts are on the entries themselves, so this sentence cannot go stale again. Also No.1 on Billboard's US World Digital Song Sales and Latin Airplay charts, No.1 on the IFPI Middle East & North Africa chart (No.3 on North Africa), and No.1 on BMAT's Central America & Caribbean airplay chart." },
   { title: "Last Last", year: 2022, entries: [
     { c: "ZA", peak: 1 }, { c: "NG", peak: 2 }, { c: "UK", peak: 4 }, { c: "NZ", peak: 12 },
     { c: "NL", peak: 14 }, { c: "SE", peak: 21 }, { c: "FR", peak: 23 }, { c: "IE", peak: 27 },
@@ -361,6 +381,30 @@ export const daiDaiChartEntryCount = (() => {
   const dd = allChartItems.find((r) => r.title === "Dai Dai");
   return dd ? dd.entries.length : 0;
 })();
+/**
+ * Weeks at the peak for one release in one country, or null where the chart
+ * body publishes no run.
+ *
+ * The point of this helper is that prose calls it instead of stating a number.
+ * A sentence that says "six weeks at No. 1 in France" is a claim nothing can
+ * check; a sentence that renders weeksAtPeak("Dai Dai", "FR") is the same claim
+ * wired to the thing it describes, so the two cannot drift apart. That drift is
+ * not hypothetical — the note on "Dai Dai" was serving "a 4th week atop the
+ * Global 200" to /records/charts while the real figure was the 5th.
+ */
+export function weeksAtPeak(title: string, country: string): number | null {
+  const r = allChartItems.find((x) => x.title === title);
+  return r?.entries.find((e) => e.c === country)?.weeksAtPeak ?? null;
+}
+
+/** Every entry that carries a published run, for tests and for any page that
+ *  wants to show longevity without knowing which entries have it. */
+export const entriesWithLongevity = allChartItems.flatMap((r) =>
+  r.entries
+    .filter((e) => e.weeksAtPeak !== undefined || e.weeks !== undefined)
+    .map((e) => ({ title: r.title, country: e.c, peak: e.peak, weeksAtPeak: e.weeksAtPeak ?? null, weeks: e.weeks ?? null }))
+);
+
 export const chartEntryCount = allChartItems.reduce((n, r) => n + r.entries.length, 0);
 export const chartedReleaseCount = allChartItems.length;
 // Distinct releases that topped at least one country's main chart.

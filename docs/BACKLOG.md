@@ -83,15 +83,34 @@ beats expensive-and-worthy.
 
 ## 3. Data model — limits on what the site can ever say
 
-- [ ] **Chart entries carry no date and no longevity.** `ChartEntry` in
+- [x] **Chart entries carry no date and no longevity.** `ChartEntry` in
       `app/data/charts.ts:137` is `{ c, peak, note? }`; the board's `AfroPeak` is
       the same shape. No date reached, no weeks on chart, no weeks at No. 1, not
       even a chart year. So longevity lives only in prose — which is exactly how
       the "5 weeks / 8 weeks" Billboard figures drifted and had to be corrected by
       hand.
       *Done when:* longevity is a field, and the prose reads from it.
-      *Effort: large — it is a schema change across two datasets and their
-      consumers, so it wants its own plan.*
+      *Done:* `weeksAtPeak?` / `weeks?` added to both `ChartEntry` and `AfroPeak`
+      as optional fields, so no existing entry had to change. `weeksAtPeak()`
+      reads them. Populated for the five "Dai Dai" No. 1s (CH 10, DE 7, FR 6,
+      GLB 5, GLBX 8) and now the single source for every place those numbers are
+      stated: both dai-dai editions' cards, both story paragraphs (via new
+      `ordinalWord`/`cardinalWord` helpers, because the prose spells them out),
+      and the chart note that had gone stale.
+      *Two things the plan missed.* `/api/v1/charts` enumerates its output
+      fields, so additive-on-the-interface was NOT additive on the published
+      JSON — the new fields were silently dropped until added there explicitly.
+      And the parity test's card parser only accepted double-quoted values, so
+      converting a card to a template literal made it vanish from the comparison
+      rather than fail; it now resolves the helpers and throws on any
+      interpolation it cannot resolve.
+      *Scope limit:* this reaches official national and Billboard global charts
+      only. Platform streaks — United World Chart, Apple Music, iTunes, Spotify
+      daily/weekly, YouTube — have no `ChartEntry` to live on by design, so they
+      are still prose and still hand-maintained. Two of them were stale when
+      this landed: Spotify Global Weekly read "4 weeks" during the 5th, and the
+      YouTube most-viewed run read "33 days" during the 48th. Both fixed in both
+      editions.
 
 - [x] **Certification thresholds are never published.** The dataset records tier
       and multiplier but nowhere states what a tier means in units, so 230 unequal
