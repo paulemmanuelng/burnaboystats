@@ -30,6 +30,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
+
+      # Needed for the verification step below. Cached, so it costs seconds.
+      - run: npm ci
 
       - name: Refresh live figures (sanity-gated)
         id: live
@@ -51,12 +55,28 @@ jobs:
       # The build refuses to write a suspiciously small result, so a failure
       # here leaves the last good snapshot in place rather than blanking a page.
       - name: Rebuild the board's live charts
+        id: board
         continue-on-error: true
         run: node scripts/build-live-charts.mjs --artist=board
 
       # Gate on the working tree, not on one step's output: either generator
       # can be the only thing that changed, and keying off just the first would
       # silently drop the other's work.
+      # The bot's commits used to carry [skip ci], so CI never saw them — roughly
+      # 24 pushes a day, and the only writes to the fastest-moving figures on the
+      # site, went out with nothing checking them. Verifying HERE rather than
+      # un-skipping CI is the stronger order: a bad regeneration is caught before
+      # it is published, not reported once it is already live.
+      #
+      # Types and tests only. The build and the SEO gate take minutes and cover
+      # page structure, which a data refresh cannot change; the 300-odd tests are
+      # what actually validate the shape and internal consistency of this data.
+      - name: Verify the regenerated data
+        run: |
+          set -euo pipefail
+          npx tsc --noEmit
+          npm run test
+
       - name: Commit to main
         run: |
           set -euo pipefail
@@ -68,3 +88,14 @@ jobs:
           git add -A
           git commit -m "chore(stats): live refresh of tracked figures [skip ci]"
           git push origin HEAD:main
+
+      # The board rebuild is allowed to fail without blocking his refresh — that
+      # is what continue-on-error buys, and it is the right trade. What it must
+      # not buy is silence: without this the nine board pages can freeze on a
+      # stale snapshot behind a green tick, indefinitely. Runs last so the commit
+      # above still publishes.
+      - name: Surface a failed board rebuild
+        if: steps.board.outcome == 'failure'
+        run: |
+          echo "::error::The board's live charts failed to rebuild. His own figures were published; the nine board live pages are serving the previous snapshot until this is fixed."
+          exit 1

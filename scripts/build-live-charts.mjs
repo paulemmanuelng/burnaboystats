@@ -263,6 +263,10 @@ for (const w of work.values()) {
   const OUT = new URL(`../app/data/${artist.out}`, import.meta.url);
   const RUN_OUT = artist.runOut ? new URL(`../app/data/${artist.runOut}`, import.meta.url) : null;
   const MIN_PLACEMENTS = artist.slug === "burna-boy" ? 50 : 25;
+  // How much of the previous run may vanish before this is a source failure
+  // rather than a quiet week. Chart churn moves these files by a few per cent
+  // an hour; 40% is far outside that and well inside a half-scraped page.
+  const MAX_DROP = 0.4;
 
 // ── Artwork ──────────────────────────────────────────────────────────────
   // The site's own cover lookup (app/lib/covers.ts) only knows Burna Boy's
@@ -325,6 +329,29 @@ for (const w of work.values()) {
         `The source page has probably changed shape — check the extractor.`
     );
     process.exit(1);
+  }
+
+  // The absolute floor above is a backstop, not a guard. It sits at 50 against a
+  // real value in the hundreds — Burna Boy's file carries ~709 placements — so a
+  // sweep could lose 90% of its data and still write. What catches a partial
+  // source failure is the size of the DROP, not the size of what survived.
+  //
+  // Counting `"position":` in the previous file rather than re-parsing it: the
+  // count is a structural property of the data, so it survives any reformatting
+  // of the generated output, which a regex over the whole array does not.
+  const priorFile = await readFile(OUT, "utf8").catch(() => "");
+  const before = (priorFile.match(/"position":/g) ?? []).length;
+  if (before > 0) {
+    const drop = (before - placements) / before;
+    if (drop > MAX_DROP) {
+      console.error(
+        `REFUSING TO WRITE: ${placements} placements against ${before} last time — ` +
+          `a ${Math.round(drop * 100)}% drop, over the ${Math.round(MAX_DROP * 100)}% limit. ` +
+          `Part of the source is probably missing. The previous file is left in place; ` +
+          `re-run once the source is healthy, or raise MAX_DROP if the fall is real.`
+      );
+      process.exit(1);
+    }
   }
   
   if (DRY) {

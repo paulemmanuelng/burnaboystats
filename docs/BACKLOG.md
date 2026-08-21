@@ -16,28 +16,31 @@ beats expensive-and-worthy.
 
 ## 1. Correctness risks — a wrong figure could ship silently
 
-- [ ] **CI never runs on the bot's commits.** `.github/workflows/stats-live.yml:69`
+- [x] **CI never runs on the bot's commits.** `.github/workflows/stats-live.yml:69`
       commits with `[skip ci]`, and `ci.yml` triggers only on pushes it therefore
       ignores. That is ~24 pushes a day, and they are the only writes to the
       fastest-moving published figures. No typecheck, no tests, no SEO gate —
       the sole guards are the generators' own "refuse a small result" checks.
       *Done when:* the bot's pushes run at least typecheck + tests, and a red
       result stops the publish rather than being invisible.
+      **DONE — Verification now runs INSIDE the bot's own job, before the push — a bad regeneration is stopped rather than reported once live.**
 
-- [ ] **The wholesale live-chart rewrite is gated by a floor set ~14× too low.**
+- [x] **The wholesale live-chart rewrite is gated by a floor set ~14× too low.**
       `scripts/build-live-charts.mjs:322` refuses to write only when total
       placements fall below `MIN_PLACEMENTS` (50 for Burna Boy, 25 for a board
       artist) against a real value in the hundreds. A sweep that loses 80% of its
       data still writes.
       *Done when:* the guard is relative to the previous run, not an absolute
       floor — refuse a drop beyond some proportion and keep the last good file.
+      **DONE — Guard is now proportional: refuses a drop of more than 40% against the previous run, absolute floor kept as a backstop.**
 
-- [ ] **`continue-on-error: true` freezes all nine board live pages behind a green
+- [x] **`continue-on-error: true` freezes all nine board live pages behind a green
       workflow.** `stats-live.yml:53-56` — Burna Boy's identical step runs bare,
       the board's does not, and nothing downstream checks board freshness, so the
       pages quietly serve the last good snapshot forever.
       *Done when:* a failed board rebuild is visible — either it fails the job or
       it trips the staleness check that already exists for his own figures.
+      **DONE — The board step keeps continue-on-error so it cannot block his refresh, but a failure now fails the run at the end, after the commit publishes.**
 
 - [ ] **The generator re-parses its own output with a regex and silently falls back
       to empty.** `build-live-charts.mjs:108-111` and `:425-427` both do
