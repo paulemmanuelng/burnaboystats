@@ -104,6 +104,7 @@ export const exploreFor: Record<string, string[]> = {
   "/records/tours": ["records", "certifications", "charts"],
   "/records/firsts": ["dai-dai", "charts", "certifications"],
   "/records/africas-biggest": ["afrobeats", "certifications", "charts"],
+  "/analysis/spotify-unmerge": ["analysis", "by-the-numbers", "methodology"],
   "/share": ["dai-dai", "certifications", "records"],
   // The board is the one section about other artists. Every way out of it leads
   // back to the subject of the site — a reader who arrived on "wizkid

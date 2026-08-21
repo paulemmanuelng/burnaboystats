@@ -1,0 +1,94 @@
+/* The February 2026 correction. Built to be read once and quoted — narrow
+   measure, big answer, the sum laid out as a ledger rather than a paragraph. */
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+.heroPad { padding: 44px 40px 0; }
+.sectionPad { padding: 44px 40px 0; }
+
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 0.98;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+  max-width: 20ch;
+}
+/* The answer paragraph is deliberately the largest text after the heading: it
+   is the whole point of the page, and the thing most likely to be lifted. */
+.answer {
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--text);
+  max-width: 68ch;
+  margin: 22px 0 0;
+  text-wrap: pretty;
+}
+.sub { font-size: 14.5px; line-height: 1.6; color: var(--text-muted); max-width: 68ch; margin: 14px 0 0; }
+
+.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 34px 0 0;
+}
+.p { font-size: 16px; line-height: 1.7; color: var(--text-muted); max-width: 72ch; margin: 16px 0 0; }
+.p strong { color: var(--text); }
+.link { color: var(--gold); text-decoration: none; }
+.link:hover { text-decoration: underline; }
+
+/* The sum. A definition list because that is what it is, and monospaced figures
+   so the digits line up and can be checked column-wise. */
+.sums { margin: 20px 0 0; display: grid; gap: 2px; max-width: 62rem; }
+.sumRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.sumLabel { font-size: 14.5px; color: var(--text); display: flex; flex-direction: column; gap: 3px; }
+.sumNote { font-size: 12.5px; color: var(--dim); }
+.sumValue {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 15px;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.faqList { display: grid; gap: 22px; margin-top: 20px; }
+.faqItem { border-top: 1px solid var(--line); padding-top: 18px; }
+.faqQ {
+  /* The body face, not the display one — these are sentences, and the display
+     face's -0.02em tracking squeezes them past comfortable reading. */
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.35;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.faqA { margin: 0; font-size: 15px; line-height: 1.65; color: var(--text-muted); max-width: 74ch; }
+
+@media (max-width: 900px) {
+  .wrap { padding: 0 18px; }
+  .heroPad { padding: 26px 18px 0; }
+  .sectionPad { padding: 30px 18px 0; }
+  .answer { font-size: 17.5px; }
+  .sumRow { grid-template-columns: 1fr; gap: 4px; }
+  .sumValue { font-size: 16px; }
+}

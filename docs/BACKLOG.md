@@ -141,11 +141,12 @@ beats expensive-and-worthy.
       where a reader can see them.
       **DONE — PARTIAL: the repo is now linked from /curator and /press, so the commit behind every figure is reachable — the cheapest proof of rigour the site had and it was invisible. A reader-facing corrections log is still open.**
 
-- [ ] **The verification work is buried in code comments.** `app/data/awards.ts`
+- [x] **The verification work is buried in code comments.** `app/data/awards.ts`
       holds six dated, body-by-body passes recording claims that were checked and
       **rejected** — ASCAP, The FABYs, That Grape Juice, Africa Golden Awards,
       Odudu PH City. That is the strongest evidence of rigour on the site and no
       reader can see any of it.
+      **DONE — /methodology now carries "Claims checked and not published" — the unsourced bodies, the counts that circulate higher than ours, and the three checks that changed our own figures. Every entry re-verified against live data first, which caught a stale one: an earlier pass rejected a tenth Headies win, a later pass FOUND it, and publishing that rejection would have been the exact error this list exists to prevent. A test now asserts no rejection names a body the site since added.**
 
 - [ ] **The API omits what journalists quote.** Four endpoints (stats, charts,
       certifications, songs); no awards, no tours/box office, no timeline, no
@@ -179,7 +180,8 @@ beats expensive-and-worthy.
       text from assistive tech.
       **DONE — role="img" collapsed the chart into a single image, hiding every row's name and value. Dropped; the figure keeps its aria-label, the rows are read as the text they already are, and only the drawn bar is marked decorative.**
 
-- [ ] **No accessibility statement.** Low impact, listed for completeness.
+- [x] **No accessibility statement.** Low impact, listed for completeness.
+      **DONE — On /methodology rather than its own route — it belongs beside the other statements about how the site is built, and a route nobody links reads as compliance theatre. States the known gaps too, since a statement listing only successes is no use to the person relying on it.**
 
 ## 6. Infrastructure (found outside the audit)
 

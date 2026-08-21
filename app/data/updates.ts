@@ -35,6 +35,24 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-21",
+    category: "Charts",
+    text: "An 8th straight week as the world's biggest song: “Dai Dai” holds No. 1 on Mediatraffic's United World Chart with 326,000 points in the week to 22 August — while Switzerland gives it a 10th week on top, Germany a 7th and France a 6th.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-21",
+    category: "Charts",
+    text: "A new US airplay peak: “Dai Dai” reaches No. 3 on Billboard's Rhythmic Airplay chart and No. 26 on Pop Airplay — Burna Boy's fourth Rhythmic top 10, and Shakira's first in twenty years.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-21",
+    category: "Streaming",
+    text: "Setting the record straight on the February drop: Spotify did not remove streams from Burna Boy for being artificial — it un-merged two remixes whose plays had been wrongly combined with the original recordings, moving about 309 million streams to the versions that earned them. The full arithmetic is now on the site, checkable against Spotify's own per-track counts.",
+    href: "/analysis/spotify-unmerge",
+  },
+  {
     date: "2026-08-19",
     category: "Streaming",
     text: "A 90th day on Spotify's Global Daily Top Songs chart: “Dai Dai” holds at No. 2 with 3,605,012 streams on the 18 August list — 62 of those days spent inside the global Top 10, and 35 of them at No. 1.",

@@ -42,6 +42,19 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["home", "start", "overview", "burna boy stats"],
   },
   {
+    title: "The Spotify Correction",
+    path: "/analysis/spotify-unmerge",
+    section: "Analysis",
+    description:
+      "Did Burna Boy lose Spotify streams to bots? No — two remixes were un-merged and ~309M streams moved to the original recordings.",
+    keywords: [
+      "bot streams", "bots", "fake streams", "stream farming", "fraud",
+      "spotify deduction", "streams removed", "streams deducted", "lost streams",
+      "unmerge", "un-merge", "merged streams", "february 2026", "enjoy yourself",
+      "finders keepers", "pop smoke", "chartmasters", "9.2 billion", "309 million",
+    ],
+  },
+  {
     title: "Career Timeline",
     path: "/timeline",
     section: "Site",
