@@ -477,7 +477,7 @@
           {
             "country": "SG",
             "name": "Singapore",
-            "position": 47,
+            "position": 55,
             "movement": null,
             "status": "new"
           }
@@ -570,7 +570,7 @@
             "country": "SE",
             "name": "Sweden",
             "position": 98,
-            "movement": -18
+            "movement": 22
           },
           {
             "country": "BG",
@@ -582,7 +582,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 167,
-            "movement": -8
+            "movement": -15
           },
           {
             "country": "AE",
@@ -611,7 +611,7 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 191,
+            "position": 106,
             "movement": null,
             "status": "new"
           }
@@ -691,13 +691,13 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 57,
-            "movement": -30
+            "position": 63,
+            "movement": -36
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 124,
+            "position": 191,
             "movement": null,
             "status": "new"
           }
@@ -827,14 +827,14 @@
           {
             "country": "LU",
             "name": "Luxembourg",
-            "position": 76,
+            "position": 90,
             "movement": null,
             "status": "new"
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 111,
+            "position": 119,
             "movement": null,
             "status": "new"
           }
@@ -946,14 +946,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 56,
-            "movement": -30
+            "position": 62,
+            "movement": -36
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 171,
-            "movement": -27
+            "position": 172,
+            "movement": -28
           }
         ]
       }
@@ -1047,8 +1047,8 @@
           {
             "country": "LA",
             "name": "Laos",
-            "position": 18,
-            "movement": -1
+            "position": 19,
+            "movement": -2
           }
         ]
       }

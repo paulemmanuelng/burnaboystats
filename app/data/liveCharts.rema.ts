@@ -142,7 +142,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 57,
-            "movement": -11
+            "movement": 0
           },
           {
             "country": "KE",
@@ -183,8 +183,8 @@
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 182,
-            "movement": 0
+            "position": 184,
+            "movement": -2
           },
           {
             "country": "CI",
@@ -966,7 +966,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
+            "position": 75,
             "movement": null,
             "status": "new"
           }
@@ -979,31 +979,6 @@
   {
     "title": "Calm Down",
     "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 29,
-            "movement": -4
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 85,
-            "movement": 4
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 179,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
       {
         "platform": "Deezer",
         "numberOnes": 0,
@@ -1028,6 +1003,24 @@
             "position": 90,
             "movement": null,
             "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 26,
+            "movement": -1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 84,
+            "movement": 5
           }
         ]
       },
@@ -1095,20 +1088,20 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 1,
+            "position": 7,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
-            "movement": -5
+            "position": 45,
+            "movement": -10
           }
         ]
       }
@@ -1480,7 +1473,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 84,
+            "position": 85,
             "movement": null,
             "status": "new"
           }

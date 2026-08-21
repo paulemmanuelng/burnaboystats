@@ -1,16 +1,16 @@
 {
-  "$comment": "What the stats monitor watches. It NEVER edits site data \u2014 it only alerts (via a GitHub issue) when a public source drifts from these baselines, so a human can verify in-app and update. When you confirm and update a real figure on the site, bump its baseline here too.",
+  "$comment": "What the stats monitor watches. It NEVER edits site data — it only alerts (via a GitHub issue) when a public source drifts from these baselines, so a human can verify in-app and update. When you confirm and update a real figure on the site, bump its baseline here too.",
   "metrics": [
     {
       "id": "spotify-monthly-listeners",
       "label": "Spotify monthly listeners",
-      "sourceName": "kworb.net \u2014 Spotify listeners",
+      "sourceName": "kworb.net — Spotify listeners",
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "drift",
       "threshold": 0.03,
       "baseline": 59537366,
-      "note": "Current monthly listeners (kworb). NOTE: Spotify\u2019s own artist page is fresher, but it only serves the full page to curl/browsers \u2014 node fetch (which the workflow uses) gets a stub, so kworb is the reliable CI source.",
+      "note": "Current monthly listeners (kworb). NOTE: Spotify’s own artist page is fresher, but it only serves the full page to curl/browsers — node fetch (which the workflow uses) gets a stub, so kworb is the reliable CI source.",
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "monthlyListeners",
       "lastChanged": "2026-08-03"
@@ -18,7 +18,7 @@
     {
       "id": "spotify-peak-listeners",
       "label": "Spotify peak monthly listeners (all-time high)",
-      "sourceName": "kworb.net \u2014 Spotify listeners",
+      "sourceName": "kworb.net — Spotify listeners",
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "kind": "peak",
@@ -38,7 +38,7 @@
           "format": "M2",
           "template": "\"%s\"",
           "describes": "Burna Boy's peak monthly listeners (the one home for the figure)",
-          "$comment": "Anchored on the constant, NOT on the leaderboard id. applyAnchoredReplace takes the FIRST match after the anchor, and Burna Boy's cell on that board holds this constant rather than a literal \u2014 so a bare \\d+M pattern matched the NEXT artist's value. The bot overwrote Tyla's peak with his on every run from 31 Jul (46.58M -> 58.77M -> 58.99M -> 59.21M) while the figure it was meant to update never moved off 58.48M."
+          "$comment": "Anchored on the constant, NOT on the leaderboard id. applyAnchoredReplace takes the FIRST match after the anchor, and Burna Boy's cell on that board holds this constant rather than a literal — so a bare \\d+M pattern matched the NEXT artist's value. The bot overwrote Tyla's peak with his on every run from 31 Jul (46.58M -> 58.77M -> 58.99M -> 59.21M) while the figure it was meant to update never moved off 58.48M."
         }
       ],
       "manualAfter": [
@@ -61,7 +61,7 @@
     {
       "id": "spotify-listeners-rank",
       "label": "Global rank by Spotify monthly listeners",
-      "sourceName": "kworb.net \u2014 Spotify listeners",
+      "sourceName": "kworb.net — Spotify listeners",
       "sourceUrl": "https://kworb.net/spotify/listeners.html",
       "extractor": "kworbListeners",
       "artistId": "3wcj11K77LjEY1PkEazffa",
@@ -93,13 +93,13 @@
     {
       "id": "spotify-total-streams",
       "label": "Total Spotify streams (all songs)",
-      "sourceName": "kworb.net \u2014 Spotify artist total",
+      "sourceName": "kworb.net — Spotify artist total",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbTotalStreams",
       "kind": "drift",
       "threshold": 0.03,
       "baseline": 10778724833,
-      "note": "Auto-published daily. kworb's artist page undercounts featured credits, so a pipeline offset is added before the display string is written. RE-MEASURE THE OFFSET when the gap moves \u2014 it grows as featured songs accrue streams: +107,613,681 on 31 Jul 2026, +129,703,877 on 11 Aug 2026 (22,090,196 of drift in 11 days), each measured as tracked_total minus kworb's raw sum on the same day. Do NOT hand-edit the display instead; the offset is what keeps it tracking.",
+      "note": "Auto-published daily. kworb's artist page undercounts featured credits, so a pipeline offset is added before the display string is written. RE-MEASURE THE OFFSET when the gap moves — it grows as featured songs accrue streams: +107,613,681 on 31 Jul 2026, +129,703,877 on 11 Aug 2026 (22,090,196 of drift in 11 days), each measured as tracked_total minus kworb's raw sum on the same day. Do NOT hand-edit the display instead; the offset is what keeps it tracking.",
       "live": true,
       "siteTargets": [
         {
@@ -131,8 +131,8 @@
     },
     {
       "id": "dai-dai-video-views",
-      "label": "\u201cDai Dai\u201d official video \u2014 YouTube views",
-      "sourceName": "YouTube \u2014 Dai Dai (Official Video)",
+      "label": "“Dai Dai” official video — YouTube views",
+      "sourceName": "YouTube — Dai Dai (Official Video)",
       "sourceUrl": "https://www.youtube.com/watch?v=fcnDmrtj6Sk",
       "extractor": "youtubeViews",
       "kind": "drift",
@@ -144,7 +144,7 @@
         "min": 500000000,
         "max": 2000000000
       },
-      "note": "Paul asked to always keep the Dai Dai video count current \u2014 now auto-published hourly behind the sanity gate. The DAI_DAI_VIDEO_VIEWS display string drives the figure on /dai-dai; it re-commits only when it crosses a whole million. The min bound rejects a mis-read of a smaller related-video count; the jump bound rejects a wildly-off read.",
+      "note": "Paul asked to always keep the Dai Dai video count current — now auto-published hourly behind the sanity gate. The DAI_DAI_VIDEO_VIEWS display string drives the figure on /dai-dai; it re-commits only when it crosses a whole million. The min bound rejects a mis-read of a smaller related-video count; the jump bound rejects a wildly-off read.",
       "siteTargets": [
         {
           "file": "app/data/daiDai.ts",
@@ -155,13 +155,13 @@
         }
       ],
       "lastChanged": "2026-08-21",
-      "lastSeenValue": 858949014,
+      "lastSeenValue": 859199004,
       "lastSeenAt": "2026-08-21"
     },
     {
       "id": "yt-views-last-last",
-      "label": "\u201cLast Last\u201d video \u2014 YouTube views",
-      "sourceName": "kworb \u2014 Burna Boy YouTube",
+      "label": "“Last Last” video — YouTube views",
+      "sourceName": "kworb — Burna Boy YouTube",
       "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
       "extractor": "kworbYouTubeVideo",
       "match": "Last Last [Official Music Video]",
@@ -174,7 +174,7 @@
         "min": 1000000,
         "max": 5000000000
       },
-      "note": "Views of the official \u201cLast Last\u201d video, shown on /music/last-last. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy \u2014 hence the long staleness window.",
+      "note": "Views of the official “Last Last” video, shown on /music/last-last. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy — hence the long staleness window.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -192,8 +192,8 @@
     },
     {
       "id": "yt-views-ye",
-      "label": "\u201cYe\u201d video \u2014 YouTube views",
-      "sourceName": "kworb \u2014 Burna Boy YouTube",
+      "label": "“Ye” video — YouTube views",
+      "sourceName": "kworb — Burna Boy YouTube",
       "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
       "extractor": "kworbYouTubeVideo",
       "match": "Ye [Official Music Video]",
@@ -206,7 +206,7 @@
         "min": 1000000,
         "max": 5000000000
       },
-      "note": "Views of the official \u201cYe\u201d video, shown on /music/ye. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy \u2014 hence the long staleness window.",
+      "note": "Views of the official “Ye” video, shown on /music/ye. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy — hence the long staleness window.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -224,8 +224,8 @@
     },
     {
       "id": "yt-views-on-the-low",
-      "label": "\u201cOn the Low\u201d video \u2014 YouTube views",
-      "sourceName": "kworb \u2014 Burna Boy YouTube",
+      "label": "“On the Low” video — YouTube views",
+      "sourceName": "kworb — Burna Boy YouTube",
       "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
       "extractor": "kworbYouTubeVideo",
       "match": "On The Low [Official Music Video]",
@@ -238,7 +238,7 @@
         "min": 1000000,
         "max": 5000000000
       },
-      "note": "Views of the official \u201cOn the Low\u201d video, shown on /music/on-the-low. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy \u2014 hence the long staleness window.",
+      "note": "Views of the official “On the Low” video, shown on /music/on-the-low. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy — hence the long staleness window.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -256,8 +256,8 @@
     },
     {
       "id": "yt-views-city-boys",
-      "label": "\u201cCity Boys\u201d video \u2014 YouTube views",
-      "sourceName": "kworb \u2014 Burna Boy YouTube",
+      "label": "“City Boys” video — YouTube views",
+      "sourceName": "kworb — Burna Boy YouTube",
       "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
       "extractor": "kworbYouTubeVideo",
       "match": "City Boys [Official Music Video]",
@@ -270,7 +270,7 @@
         "min": 1000000,
         "max": 5000000000
       },
-      "note": "Views of the official \u201cCity Boys\u201d video, shown on /music/city-boys. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy \u2014 hence the long staleness window.",
+      "note": "Views of the official “City Boys” video, shown on /music/city-boys. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy — hence the long staleness window.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -289,13 +289,13 @@
     {
       "id": "youtube-total-views",
       "label": "Total YouTube views (all videos)",
-      "sourceName": "kworb \u2014 Burna Boy YouTube",
+      "sourceName": "kworb — Burna Boy YouTube",
       "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
       "extractor": "kworbYouTubeTotal",
       "kind": "drift",
       "threshold": 0.001,
       "baseline": 3175893629,
-      "note": "Cumulative views across every Burna Boy video \u2014 a milestone figure as it climbs.",
+      "note": "Cumulative views across every Burna Boy video — a milestone figure as it climbs.",
       "live": true,
       "siteTargets": [
         {
@@ -319,8 +319,8 @@
     },
     {
       "id": "spotify-streams-last-last",
-      "label": "\u201cLast Last\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“Last Last” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Last Last",
@@ -333,7 +333,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cLast Last\u201d, shown on /music/last-last.",
+      "note": "Total Spotify streams for “Last Last”, shown on /music/last-last.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -350,8 +350,8 @@
     },
     {
       "id": "spotify-streams-on-the-low",
-      "label": "\u201cOn the Low\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“On the Low” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "On the Low",
@@ -364,7 +364,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cOn the Low\u201d, shown on /music/on-the-low.",
+      "note": "Total Spotify streams for “On the Low”, shown on /music/on-the-low.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -381,8 +381,8 @@
     },
     {
       "id": "spotify-streams-ye",
-      "label": "\u201cYe\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“Ye” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Ye",
@@ -395,7 +395,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cYe\u201d, shown on /music/ye.",
+      "note": "Total Spotify streams for “Ye”, shown on /music/ye.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -412,8 +412,8 @@
     },
     {
       "id": "spotify-streams-city-boys",
-      "label": "\u201cCity Boys\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“City Boys” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "City Boys",
@@ -426,7 +426,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cCity Boys\u201d, shown on /music/city-boys.",
+      "note": "Total Spotify streams for “City Boys”, shown on /music/city-boys.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -443,8 +443,8 @@
     },
     {
       "id": "spotify-streams-wgft",
-      "label": "\u201cWGFT\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“WGFT” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "wgft (feat. Burna Boy)",
@@ -457,7 +457,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cWGFT\u201d, shown on /music/wgft.",
+      "note": "Total Spotify streams for “WGFT”, shown on /music/wgft.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -474,8 +474,8 @@
     },
     {
       "id": "spotify-streams-alone",
-      "label": "\u201cAlone\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“Alone” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Alone",
@@ -488,7 +488,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cAlone\u201d, shown on /music/alone.",
+      "note": "Total Spotify streams for “Alone”, shown on /music/alone.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -505,8 +505,8 @@
     },
     {
       "id": "spotify-streams-23",
-      "label": "\u201c23\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“23” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "23",
@@ -519,7 +519,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201c23\u201d, shown on /music/23.",
+      "note": "Total Spotify streams for “23”, shown on /music/23.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -536,8 +536,8 @@
     },
     {
       "id": "spotify-streams-like-to-party",
-      "label": "\u201cLike to Party\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“Like to Party” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Like to Party",
@@ -550,7 +550,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cLike to Party\u201d, shown on /music/like-to-party.",
+      "note": "Total Spotify streams for “Like to Party”, shown on /music/like-to-party.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -567,8 +567,8 @@
     },
     {
       "id": "spotify-streams-rizzla",
-      "label": "\u201cRizzla\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“Rizzla” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Rizzla",
@@ -581,7 +581,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cRizzla\u201d, shown on /music/rizzla.",
+      "note": "Total Spotify streams for “Rizzla”, shown on /music/rizzla.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -598,8 +598,8 @@
     },
     {
       "id": "spotify-streams-boshe-nlo",
-      "label": "\u201cBoshe Nlo\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“Boshe Nlo” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Boshe Nlo",
@@ -612,7 +612,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cBoshe Nlo\u201d, shown on /music/boshe-nlo.",
+      "note": "Total Spotify streams for “Boshe Nlo”, shown on /music/boshe-nlo.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -629,8 +629,8 @@
     },
     {
       "id": "spotify-streams-darko",
-      "label": "\u201cDarko\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“Darko” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Darko",
@@ -643,7 +643,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cDarko\u201d, shown on /music/darko.",
+      "note": "Total Spotify streams for “Darko”, shown on /music/darko.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -660,8 +660,8 @@
     },
     {
       "id": "spotify-streams-dai-dai",
-      "label": "\u201cDai Dai\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“Dai Dai” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Dai Dai",
@@ -673,7 +673,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cDai Dai\u201d. kind:\"peak\" because a cumulative play count only ever rises: kworb trails Spotify's own track page by a few million (318.2M vs 322.5M on 10 Aug 2026), and without the guard that lag would walk the published figure backwards every time the site is updated from Spotify directly. Same reasoning as spotify-peak-listeners.",
+      "note": "Total Spotify streams for “Dai Dai”. kind:\"peak\" because a cumulative play count only ever rises: kworb trails Spotify's own track page by a few million (318.2M vs 322.5M on 10 Aug 2026), and without the guard that lag would walk the published figure backwards every time the site is updated from Spotify directly. Same reasoning as spotify-peak-listeners.",
       "siteTargets": [
         {
           "file": "app/data/daiDai.ts",
@@ -690,8 +690,8 @@
     },
     {
       "id": "spotify-streams-tatata",
-      "label": "\u201cTaTaTa\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“TaTaTa” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "TaTaTa (feat. Travis Scott)",
@@ -704,7 +704,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cTaTaTa\u201d.",
+      "note": "Total Spotify streams for “TaTaTa”.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -721,8 +721,8 @@
     },
     {
       "id": "spotify-streams-smoke",
-      "label": "\u201cSmoke\u201d \u2014 Spotify streams",
-      "sourceName": "kworb \u2014 Burna Boy Spotify songs",
+      "label": "“Smoke” — Spotify streams",
+      "sourceName": "kworb — Burna Boy Spotify songs",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Smoke (feat. Onosz)",
@@ -735,7 +735,7 @@
         "min": 100000,
         "max": 20000000000
       },
-      "note": "Total Spotify streams for \u201cSmoke\u201d.",
+      "note": "Total Spotify streams for “Smoke”.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -752,8 +752,8 @@
     },
     {
       "id": "streams-2026-tems",
-      "label": "Tems \u2014 2026 Spotify streams (running total)",
-      "sourceName": "kworb \u2014 all-artists daily table",
+      "label": "Tems — 2026 Spotify streams (running total)",
+      "sourceName": "kworb — all-artists daily table",
       "sourceUrl": "https://kworb.net/spotify/artists.html",
       "extractor": "kworbArtistDaily",
       "match": "Tems",
@@ -765,7 +765,7 @@
         "min": 1000000000,
         "max": 6000000000
       },
-      "note": "Year-to-date total, auto-accumulated: kworb publishes only a per-day figure, so each new kworb day ADDS the daily to this baseline (gated once per date \u2014 the live workflow is hourly, the source daily). Checkpointed to the fan tracker's cumulative count through 11 Aug 2026; re-checkpoint against the tracker if the two drift by more than a day's streams. Rows in the board are ordered by hand \u2014 if the order changes, reorder africasBiggest.ts manually.",
+      "note": "Year-to-date total, auto-accumulated: kworb publishes only a per-day figure, so each new kworb day ADDS the daily to this baseline (gated once per date — the live workflow is hourly, the source daily). Checkpointed to the fan tracker's cumulative count through 11 Aug 2026; re-checkpoint against the tracker if the two drift by more than a day's streams. Rows in the board are ordered by hand — if the order changes, reorder africasBiggest.ts manually.",
       "siteTargets": [
         {
           "file": "app/data/africasBiggest.ts",
@@ -782,8 +782,8 @@
     },
     {
       "id": "streams-2026-wizkid",
-      "label": "Wizkid \u2014 2026 Spotify streams (running total)",
-      "sourceName": "kworb \u2014 all-artists daily table",
+      "label": "Wizkid — 2026 Spotify streams (running total)",
+      "sourceName": "kworb — all-artists daily table",
       "sourceUrl": "https://kworb.net/spotify/artists.html",
       "extractor": "kworbArtistDaily",
       "match": "Wizkid",
@@ -795,7 +795,7 @@
         "min": 1000000000,
         "max": 6000000000
       },
-      "note": "Year-to-date total, auto-accumulated: kworb publishes only a per-day figure, so each new kworb day ADDS the daily to this baseline (gated once per date \u2014 the live workflow is hourly, the source daily). Checkpointed to the fan tracker's cumulative count through 11 Aug 2026; re-checkpoint against the tracker if the two drift by more than a day's streams. Rows in the board are ordered by hand \u2014 if the order changes, reorder africasBiggest.ts manually.",
+      "note": "Year-to-date total, auto-accumulated: kworb publishes only a per-day figure, so each new kworb day ADDS the daily to this baseline (gated once per date — the live workflow is hourly, the source daily). Checkpointed to the fan tracker's cumulative count through 11 Aug 2026; re-checkpoint against the tracker if the two drift by more than a day's streams. Rows in the board are ordered by hand — if the order changes, reorder africasBiggest.ts manually.",
       "siteTargets": [
         {
           "file": "app/data/africasBiggest.ts",
@@ -812,8 +812,8 @@
     },
     {
       "id": "streams-2026-burna",
-      "label": "Burna Boy \u2014 2026 Spotify streams (running total)",
-      "sourceName": "kworb \u2014 all-artists daily table",
+      "label": "Burna Boy — 2026 Spotify streams (running total)",
+      "sourceName": "kworb — all-artists daily table",
       "sourceUrl": "https://kworb.net/spotify/artists.html",
       "extractor": "kworbArtistDaily",
       "match": "Burna Boy",
@@ -825,7 +825,7 @@
         "min": 1000000000,
         "max": 6000000000
       },
-      "note": "Year-to-date total, auto-accumulated: kworb publishes only a per-day figure, so each new kworb day ADDS the daily to this baseline (gated once per date \u2014 the live workflow is hourly, the source daily). Checkpointed to the fan tracker's cumulative count through 11 Aug 2026; re-checkpoint against the tracker if the two drift by more than a day's streams. Rows in the board are ordered by hand \u2014 if the order changes, reorder africasBiggest.ts manually.",
+      "note": "Year-to-date total, auto-accumulated: kworb publishes only a per-day figure, so each new kworb day ADDS the daily to this baseline (gated once per date — the live workflow is hourly, the source daily). Checkpointed to the fan tracker's cumulative count through 11 Aug 2026; re-checkpoint against the tracker if the two drift by more than a day's streams. Rows in the board are ordered by hand — if the order changes, reorder africasBiggest.ts manually.",
       "siteTargets": [
         {
           "file": "app/data/africasBiggest.ts",
@@ -844,13 +844,13 @@
   "certWatches": [
     {
       "id": "fimi-dai-dai",
-      "label": "Dai Dai \u2014 Italy (FIMI) certification",
-      "sourceName": "FIMI \u2014 certificazioni register",
+      "label": "Dai Dai — Italy (FIMI) certification",
+      "sourceName": "FIMI — certificazioni register",
       "sourceUrl": "https://www.fimi.it/top-of-the-music/certificazioni/",
       "endpoint": "https://www.fimi.it/ajax/filter-certificazioni.php",
       "body": "formato=2&year=2026&numweek=0&searchtext=Dai+Dai",
       "pattern": "Dai Dai",
-      "note": "LANDED 17 Aug 2026: FIMI certified Dai Dai Gold, week 33/2026, read at the register's own search endpoint. The certification is published on the site (230 total, 93 Gold). Kept here as the worked example of a cert watch \u2014 set resolved and the monitor stops flagging it.",
+      "note": "LANDED 17 Aug 2026: FIMI certified Dai Dai Gold, week 33/2026, read at the register's own search endpoint. The certification is published on the site (230 total, 93 Gold). Kept here as the worked example of a cert watch — set resolved and the monitor stops flagging it.",
       "resolved": "2026-08-17"
     }
   ]

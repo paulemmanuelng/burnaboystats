@@ -360,14 +360,14 @@
           {
             "country": "MN",
             "name": "Mongolia",
-            "position": 60,
-            "movement": -7
+            "position": 62,
+            "movement": -9
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 69,
-            "movement": -13
+            "position": 70,
+            "movement": -14
           }
         ]
       },
@@ -530,7 +530,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 28,
-            "movement": 0
+            "movement": -2
           },
           {
             "country": "SN",
@@ -572,7 +572,8 @@
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 110,
-            "movement": 21
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -867,7 +868,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 20,
+            "position": 54,
             "movement": null,
             "status": "new"
           }
@@ -983,7 +984,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
+            "position": 56,
             "movement": null,
             "status": "new"
           }
@@ -1221,8 +1222,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": -19
+            "position": 42,
+            "movement": -20
           }
         ]
       }
@@ -1909,7 +1910,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 54,
+            "position": 59,
             "movement": null,
             "status": "new"
           }
@@ -2264,7 +2265,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 164,
-            "movement": 24
+            "movement": 8
           },
           {
             "country": "NG",
@@ -2438,7 +2439,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 193,
-            "movement": -33
+            "movement": -22
           }
         ]
       }
@@ -2494,34 +2495,14 @@
           {
             "country": "LA",
             "name": "Laos",
-            "position": 18,
-            "movement": -1
+            "position": 19,
+            "movement": -2
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Daddy Yo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 67,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Time",
@@ -2541,6 +2522,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Daddy Yo",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 72,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Mood",
@@ -2571,7 +2572,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
+            "position": 97,
             "movement": null,
             "status": "new"
           }
