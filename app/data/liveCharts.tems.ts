@@ -1195,6 +1195,12 @@
             "movement": 1
           },
           {
+            "country": "HU",
+            "name": "Hungary",
+            "position": 3,
+            "movement": 7
+          },
+          {
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 3,
@@ -1204,26 +1210,26 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 10,
+            "position": 11,
             "movement": -1
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 11,
-            "movement": 35
+            "position": 13,
+            "movement": 41
           },
           {
             "country": "KG",
             "name": "Kyrgyzstan",
             "position": 21,
-            "movement": -14
+            "movement": -13
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 36,
-            "movement": -14
+            "position": 37,
+            "movement": -11
           },
           {
             "country": "AZ",
@@ -1232,30 +1238,30 @@
             "movement": -16
           },
           {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 73,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 73,
             "movement": -9
           },
           {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 92,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "DK",
             "name": "Denmark",
-            "position": 78,
+            "position": 101,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 89,
-            "movement": -73
+            "position": 105,
+            "movement": -89
           }
         ]
       },
@@ -1304,8 +1310,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 14,
-            "movement": 6
+            "position": 18,
+            "movement": 2
           },
           {
             "country": "MW",
@@ -1503,7 +1509,7 @@
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 89,
-            "movement": -18
+            "movement": -17
           }
         ]
       },
@@ -1531,12 +1537,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 63,
-            "movement": 0
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 82,
@@ -1557,20 +1557,34 @@
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 124,
-            "movement": 0
+            "position": 92,
+            "movement": 32
           },
           {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 129,
-            "movement": 0
+            "country": "AG",
+            "name": "Antigua and Barbuda",
+            "position": 95,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 136,
             "movement": 0
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 143,
+            "movement": -80
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 145,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "ZW",
@@ -1601,6 +1615,13 @@
             "name": "Senegal",
             "position": 174,
             "movement": 0
+          },
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 182,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1672,7 +1693,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
+            "position": 12,
             "movement": -5
           },
           {
@@ -1686,7 +1707,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 65,
-            "movement": -27
+            "movement": -26
           },
           {
             "country": "KE",
@@ -1711,6 +1732,77 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/21ffdcad2bde4b25ba9a5a3a53193b05/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Born in the Wild",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 108,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 110,
+            "movement": 0
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 115,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SC",
+            "name": "Seychelles",
+            "position": 120,
+            "movement": 0
+          },
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 137,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 147,
+            "movement": 0
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 158,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 186,
+            "movement": 0
+          },
+          {
+            "country": "DZ",
+            "name": "Algeria",
+            "position": 197,
+            "movement": -188
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "What You Need",
@@ -1746,8 +1838,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 110,
-            "movement": 6
+            "position": 105,
+            "movement": 11
           },
           {
             "country": "DM",
@@ -1853,55 +1945,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Born in the Wild",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "DZ",
-            "name": "Algeria",
-            "position": 9,
-            "movement": 0
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 110,
-            "movement": 0
-          },
-          {
-            "country": "SC",
-            "name": "Seychelles",
-            "position": 120,
-            "movement": 0
-          },
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 147,
-            "movement": 0
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 169,
-            "movement": 0
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 186,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Love Is A Kingdom",
     "platforms": [
       {
@@ -1909,15 +1952,22 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 80,
+            "movement": 115
+          },
+          {
+            "country": "AG",
+            "name": "Antigua and Barbuda",
+            "position": 131,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "LC",
             "name": "St. Lucia",
             "position": 137,
-            "movement": 0
-          },
-          {
-            "country": "BS",
-            "name": "The Bahamas",
-            "position": 138,
             "movement": 0
           },
           {
@@ -1930,12 +1980,6 @@
             "country": "VG",
             "name": "British Virgin Islands",
             "position": 181,
-            "movement": 0
-          },
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 195,
             "movement": 0
           },
           {
@@ -1972,8 +2016,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 107,
-            "movement": -93
+            "position": 123,
+            "movement": -109
           }
         ]
       },
@@ -2062,37 +2106,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Black Panther: Wakanda Forever - Music From and Inspired By",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 180,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 55,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6d416dc66a55cc8914425c365c1e7b74/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Fountains",
     "platforms": [
       {
@@ -2129,6 +2142,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8e6a8bc36abf9401abf57794db386b13/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Black Panther: Wakanda Forever - Music From and Inspired By",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 55,
+            "movement": -1
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6d416dc66a55cc8914425c365c1e7b74/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "If Orange Was A Place - EP",
