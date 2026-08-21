@@ -1242,7 +1242,12 @@ export const BURNA = {
   name: "Burna Boy",
   flag: "🇳🇬",
   country: "Nigeria",
-  href: "/",
+  // His tile and door both advertise a plaque count — "230 certifications · 26
+  // countries" — so that is where a click should land. It pointed at the home
+  // page on the reasoning that he is the site's subject and his tile is the way
+  // back into all of it, but a control labelled with a certification total and
+  // wired to the home page is a promise the click does not keep.
+  href: "/certifications",
   image: "https://i.scdn.co/image/ab6761610000e5ebb4e44d0f4e3e47af2cf06f3f",
   hook: "The African Giant — this site's subject, updated daily.",
 };
