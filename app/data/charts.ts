@@ -64,6 +64,36 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   LU: { name: "Luxembourg", flag: "🇱🇺", body: "Billboard Luxembourg Songs" },
   NO: { name: "Norway", flag: "🇳🇴", body: "VG-lista" },
   PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV Streaming Top 100" },
+  // NIGERIAN COVERAGE IS THINNER THAN THE NIGERIAN CERTIFICATION DATA, AND
+  // CANNOT BE FULLY CLOSED. 63 releases hold a Nigerian plaque; 16 have a
+  // Nigerian chart peak. That gap was investigated properly on 21 Aug 2026 and
+  // the limit is structural, not effort:
+  //   * TurnTable serves ONLY the current week at /charts/1 — `?week=` and
+  //     `?weekNumber=` are ignored — and publishes no per-artist or per-song
+  //     chart-history page. Its routes are charts, certification, news,
+  //     magazine, business, powerlist. There is nothing to read a peak off.
+  //   * The Wayback archive of /charts/1 holds 154 captures, July 2022 → Aug
+  //     2026, and they ARE machine-readable: `__NEXT_DATA__` →
+  //     props.pageProps.chartData.chartItems, each row carrying rank,
+  //     highestPosition and weeksOnChart. But they cover ~120 distinct weeks of
+  //     the ~213 in that era. A sample, never a register read in full.
+  //   * Everything before July 2022 is invisible: the predecessor TurnTable Top
+  //     50 archived as a Nuxt shell whose state object carries `charts:[]`, the
+  //     rows having been fetched from a backend that is now dead and was never
+  //     archived.
+  // A 63-week sample surfaced 47 titles with no Nigerian entry here. They were
+  // NOT added. `highestPosition` read from a sampled week is a FLOOR — "at
+  // least #N" — not the proven peak every other entry in this file is, and the
+  // one provable class (a peak of 1, which cannot improve) turned out to be
+  // empty: all four Nigerian No. 1s the archive shows are already on file. So
+  // adding them would have traded a uniform standard for a bigger count.
+  // The same sample independently reproduced 11 of the peaks already here and
+  // contradicted none of them, which is the reassuring half of the exercise.
+  // If you revisit this: read the ALBUMS chart (chartCategoryId 2) separately —
+  // "I Told Them...", "Love, Damini" and "No Sign of Weakness" are albums here
+  // and same-named songs sit at 23, 36 and 19 on the songs chart, so a naive
+  // title join silently overwrites three album peaks. And fetch slowly;
+  // web.archive.org rate-limits hard above about one request every few seconds.
   NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable Top 100" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "The Official SA Charts" },
   SR: { name: "Suriname", flag: "🇸🇷", body: "Nationale Top 40" },

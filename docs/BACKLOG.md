@@ -178,10 +178,40 @@ beats expensive-and-worthy.
       can reach from a plaque.
       **DONE — Stated where it matters rather than as 26 threshold tables: a tier is a statement about one market, thresholds differ by body, so the totals count PLAQUES and a plaque count is never a sales figure. Uses the site's own verified example — RIAA Latin certifies 2x at 120,000 units against a standard Platinum's 1,000,000.**
 
-- [ ] **Nigerian chart coverage is far thinner than the Nigerian certification
+- [x] **Nigerian chart coverage is far thinner than the Nigerian certification
       data.** 63 NG-certified releases against 20 with an NG chart peak.
       *Done when:* the gap is closed from TurnTable's own register, or the
       methodology states why it cannot be.
+      **DONE via the second branch — the gap cannot be fully closed, and that is
+      now documented above the `NG` entry in `app/data/charts.ts`.** Investigated
+      21 Aug 2026 rather than assumed:
+      *There is no register to read a peak off.* TurnTable serves only the
+      current week at `/charts/1` (`?week=` and `?weekNumber=` are ignored) and
+      publishes no per-artist or per-song chart-history page — its routes are
+      charts, certification, news, magazine, business, powerlist.
+      *The archive is a sample, not a register.* 154 Wayback captures of
+      `/charts/1` (Jul 2022 → Aug 2026) ARE machine-readable — `__NEXT_DATA__` →
+      `chartData.chartItems`, carrying rank, highestPosition and weeksOnChart —
+      but cover ~120 distinct weeks of the ~213 in that era.
+      *Everything before Jul 2022 is gone.* The predecessor Top 50 archived as a
+      Nuxt shell with `charts:[]`; its backend is dead and was never archived.
+      *What was found and deliberately not shipped:* a 63-week sample surfaced
+      65 Burna Boy titles, 47 of them with no Nigerian entry on file (29
+      NG-certified). They were not added. A `highestPosition` from a sampled
+      week is a FLOOR — "at least #N" — not the proven peak every other entry in
+      charts.ts is; the one provable class (peak of 1, which cannot improve) was
+      empty, since all four Nigerian No. 1s the archive shows are already on
+      file. Carrying "at least" would need a schema field that the API, the
+      board, the tallies and the tests would each have to understand, for one
+      country, diluting 280 uniformly-sourced entries to make a count larger.
+      *The reassuring half:* the same sample independently reproduced 11 peaks
+      already on file and contradicted none.
+      *Two traps recorded for anyone who revisits it:* read the ALBUMS chart
+      (`chartCategoryId` 2) separately, or a naive title join overwrites the
+      "I Told Them...", "Love, Damini" and "No Sign of Weakness" album peaks
+      with same-named songs sitting at 23, 36 and 19; and fetch slowly, because
+      web.archive.org rate-limits hard above roughly one request every few
+      seconds.
 
 - [ ] **Year-end charts are absent entirely.** Repo-wide grep for
       year-end/end-of-year/annual-rank returns zero chart data. Billboard,
