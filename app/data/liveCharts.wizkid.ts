@@ -353,21 +353,21 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 49,
+            "position": 50,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MN",
             "name": "Mongolia",
-            "position": 62,
-            "movement": -9
+            "position": 64,
+            "movement": -11
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 70,
-            "movement": -14
+            "position": 71,
+            "movement": -13
           }
         ]
       },
@@ -376,10 +376,11 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 31,
-            "movement": 68
+            "country": "PT",
+            "name": "Portugal",
+            "position": 17,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -868,7 +869,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 54,
+            "position": 80,
             "movement": null,
             "status": "new"
           }
@@ -984,7 +985,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 56,
+            "position": 64,
             "movement": null,
             "status": "new"
           }
@@ -997,8 +998,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
-            "movement": -11
+            "position": 72,
+            "movement": -37
           }
         ]
       },
@@ -1119,8 +1120,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": -10
+            "position": 123,
+            "movement": -11
           }
         ]
       }
@@ -1579,8 +1580,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
-            "movement": -54
+            "position": 36,
+            "movement": 33
           }
         ]
       }
@@ -1910,9 +1911,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 59,
-            "movement": null,
-            "status": "new"
+            "position": 67,
+            "movement": -53
           }
         ]
       },
@@ -1978,7 +1978,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
+            "position": 17,
             "movement": null,
             "status": "new"
           }
@@ -2090,14 +2090,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 99,
+            "position": 98,
             "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 136,
-            "movement": -15
+            "position": 137,
+            "movement": -16
           }
         ]
       }
@@ -2351,8 +2351,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 176,
-            "movement": -15
+            "position": 177,
+            "movement": -16
           }
         ]
       }
@@ -2524,26 +2524,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Daddy Yo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 72,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Mood",
     "platforms": [
       {
@@ -2563,7 +2543,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "2 Sugar",
+    "title": "Daddy Yo",
     "platforms": [
       {
         "platform": "iTunes",
@@ -2572,7 +2552,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
+            "position": 80,
             "movement": null,
             "status": "new"
           }
@@ -2580,7 +2560,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ebelebe",
@@ -2600,6 +2580,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/afea1bda5fb6b9c56301ea949d4516bf/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "2 Sugar",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 105,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Matter",

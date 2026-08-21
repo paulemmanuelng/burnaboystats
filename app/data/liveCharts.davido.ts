@@ -135,8 +135,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 20,
-            "movement": -2
+            "position": 23,
+            "movement": -5
           },
           {
             "country": "IE",
@@ -175,6 +175,12 @@
             "movement": 0
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 69,
+            "movement": -18
+          },
+          {
             "country": "SN",
             "name": "Senegal",
             "position": 69,
@@ -185,12 +191,6 @@
             "name": "Mauritania",
             "position": 70,
             "movement": 0
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 71,
-            "movement": -20
           },
           {
             "country": "CY",
@@ -400,8 +400,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 164,
-            "movement": 3
+            "position": 161,
+            "movement": 6
           },
           {
             "country": "ZW",
@@ -527,8 +527,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": 1
+            "position": 6,
+            "movement": -1
           }
         ]
       },
@@ -539,8 +539,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
-            "movement": -3
+            "position": 4,
+            "movement": 1
           }
         ]
       }
@@ -718,19 +718,6 @@
             "movement": -4
           }
         ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -866,6 +853,25 @@
         ]
       },
       {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 14,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 15,
+            "movement": -1
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -874,18 +880,6 @@
             "name": "Nigeria",
             "position": 13,
             "movement": -5
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 14,
-            "movement": -4
           }
         ]
       },
@@ -1162,8 +1156,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": -11
+            "position": 14,
+            "movement": 1
           }
         ]
       },
@@ -1440,8 +1434,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 4,
-            "movement": 16
+            "position": 49,
+            "movement": -45
           }
         ]
       }
@@ -1531,8 +1525,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
-            "movement": -1
+            "position": 2,
+            "movement": 1
           },
           {
             "country": "GH",
@@ -1569,6 +1563,19 @@
             "name": "Nigeria",
             "position": 110,
             "movement": 1
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 49,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1670,7 +1677,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
+            "position": 16,
             "movement": null,
             "status": "new"
           }
@@ -1681,7 +1688,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Gimme Dat Ting",
+    "title": "Yaya",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -1690,50 +1697,69 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 28,
+            "position": 27,
             "movement": 0
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 35,
-            "movement": 0
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 56,
-            "movement": 0
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 69,
-            "movement": 0
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 135,
-            "movement": 0
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 150,
+            "position": 55,
             "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 154,
+            "position": 58,
             "movement": 0
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 166,
+            "position": 130,
             "movement": 0
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 180,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 100,
+            "movement": -5
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 190,
+            "movement": -7
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 3,
+            "movement": 2
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 80,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1744,20 +1770,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 44,
-            "movement": -2
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 24,
-            "movement": 2
+            "position": 57,
+            "movement": -9
           }
         ]
       },
@@ -1768,8 +1782,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
-            "movement": -16
+            "position": 98,
+            "movement": -71
           }
         ]
       }
@@ -1848,7 +1862,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 81,
-            "movement": 5
+            "movement": 6
           },
           {
             "country": "GH",
@@ -1863,7 +1877,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f5e2eeac47abb6bf1bcc293125e0016/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Yaya",
+    "title": "Gimme Dat Ting",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -1872,50 +1886,50 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 27,
+            "position": 28,
             "movement": 0
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 55,
+            "position": 35,
+            "movement": 0
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 56,
+            "movement": 0
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 69,
+            "movement": 0
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 135,
+            "movement": 0
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 150,
             "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 58,
+            "position": 154,
             "movement": 0
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 130,
+            "position": 166,
             "movement": 0
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 180,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 100,
-            "movement": -5
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 190,
-            "movement": -7
           }
         ]
       },
@@ -1926,21 +1940,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 57,
-            "movement": -9
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 5,
-            "movement": null,
-            "status": "new"
+            "position": 44,
+            "movement": -2
           }
         ]
       },
@@ -1951,8 +1952,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
-            "movement": -71
+            "position": 40,
+            "movement": -16
           }
         ]
       }
@@ -2229,6 +2230,80 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Tell Everybody",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 56,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 64,
+            "movement": 0
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 67,
+            "movement": 0
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 133,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 92,
+            "movement": -20
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 65,
+            "movement": -7
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 74,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "D & G",
     "platforms": [
       {
@@ -2361,7 +2436,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 46,
-            "movement": 24
+            "movement": 25
           },
           {
             "country": "MZ",
@@ -2373,13 +2448,13 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 68,
-            "movement": 2
+            "movement": 1
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 91,
-            "movement": -7
+            "position": 92,
+            "movement": -6
           },
           {
             "country": "GH",
@@ -2392,67 +2467,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7de07d81ce22dcf5be4caa2b2b9faace/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Tell Everybody",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 56,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 64,
-            "movement": 0
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 67,
-            "movement": 0
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 133,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 92,
-            "movement": -20
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 65,
-            "movement": -7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Blow My Mind",
@@ -2968,8 +2982,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 150,
-            "movement": -47
+            "position": 183,
+            "movement": -80
           }
         ]
       }
@@ -2994,7 +3008,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 82,
-            "movement": 2
+            "movement": 1
           }
         ]
       }
@@ -3251,7 +3265,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
+            "position": 104,
             "movement": null,
             "status": "new"
           }
@@ -3260,26 +3274,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "GROOVING",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 103,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Sound",
@@ -3299,6 +3293,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/80fe4f71f92865be0d0f8d558cf54a72/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "GROOVING",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 111,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Activate",

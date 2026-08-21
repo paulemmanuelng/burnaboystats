@@ -115,16 +115,16 @@
             "movement": 0
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 19,
-            "movement": 4
-          },
-          {
             "country": "MU",
             "name": "Mauritius",
             "position": 20,
             "movement": 0
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 21,
+            "movement": 2
           },
           {
             "country": "AO",
@@ -1191,46 +1191,45 @@
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 9,
-            "movement": 28
+            "position": 11,
+            "movement": 62
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 17,
+            "movement": 16
           },
           {
             "country": "KG",
             "name": "Kyrgyzstan",
             "position": 19,
-            "movement": -16
+            "movement": -15
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 26,
-            "movement": -5
-          },
-          {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 29,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 30,
-            "movement": 0
+            "position": 32,
+            "movement": 2
           },
           {
             "country": "MD",
             "name": "Moldova",
             "position": 35,
-            "movement": -16
+            "movement": -14
+          },
+          {
+            "country": "HU",
+            "name": "Hungary",
+            "position": 40,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
-            "movement": null,
-            "status": "new"
+            "position": 48,
+            "movement": -32
           },
           {
             "country": "AZ",
@@ -1247,13 +1246,13 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 109,
-            "movement": 79
+            "position": 117,
+            "movement": -3
           },
           {
             "country": "AU",
             "name": "Australia",
-            "position": 148,
+            "position": 156,
             "movement": null,
             "status": "new"
           }
@@ -1264,41 +1263,29 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 31,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LT",
-            "name": "Lithuania",
-            "position": 32,
-            "movement": 53
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 39,
+            "movement": 4
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
-            "movement": 41
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 34,
-            "movement": 43
-          },
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
             "position": 43,
-            "movement": 34
+            "movement": -10
+          },
+          {
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 46,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 65,
-            "movement": 10
+            "position": 90,
+            "movement": -25
           }
         ]
       }
@@ -1316,8 +1303,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 18,
-            "movement": 2
+            "position": 16,
+            "movement": 4
           },
           {
             "country": "MW",
@@ -1514,8 +1501,8 @@
           {
             "country": "UZ",
             "name": "Uzbekistan",
-            "position": 84,
-            "movement": -14
+            "position": 86,
+            "movement": -15
           }
         ]
       },
@@ -1682,17 +1669,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 15,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
-            "movement": -39
+            "position": 9,
+            "movement": -5
+          },
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 17,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GH",
@@ -1855,8 +1842,8 @@
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 72,
-            "movement": -11
+            "position": 73,
+            "movement": -12
           }
         ]
       }
@@ -1984,9 +1971,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 59,
-            "movement": null,
-            "status": "new"
+            "position": 67,
+            "movement": -53
           }
         ]
       },
@@ -2104,25 +2090,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6d416dc66a55cc8914425c365c1e7b74/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love Me JeJe",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 51,
-            "movement": -9
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fountains",
