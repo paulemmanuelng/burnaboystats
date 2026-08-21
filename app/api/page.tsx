@@ -10,6 +10,9 @@ import { chartEntryCount, chartCountryCount, numberOnes, CHART_COUNTRIES, allCha
 import { totalAwards } from "../data/certifications";
 import { chartedCountryCount } from "../lib/analysis";
 import { songs } from "../data/songs";
+import { totalNominations } from "../data/awards";
+import { tours } from "../data/tours";
+import { afrobeatsArtists } from "../data/afrobeats";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Open Data API — Free Chart & Certification Dataset",
@@ -42,6 +45,26 @@ const endpoints = [
     path: "/songs",
     what: "The song catalogue, with verified Spotify track IDs and streaming totals.",
     size: `${songs.length} songs`,
+  },
+  {
+    path: "/awards",
+    what: "Every competitive nomination as one row — ceremony, year, category, work, won — plus the honours, listed apart from the competitive total.",
+    size: `${totalNominations} nominations`,
+  },
+  {
+    path: "/tours",
+    what: "Tours, festivals and one-off shows, with box-office figures where a source publishes them, plus the highest-grossing-show board.",
+    size: `${tours.length} tours`,
+  },
+  {
+    path: "/afrobeats",
+    what: "The Afrobeats Board — ten artists' certifications and chart records, counted by one stated rule so the totals compare.",
+    size: `${afrobeatsArtists.length + 1} artists`,
+  },
+  {
+    path: "/live-charts",
+    what: "Current platform positions across six services, rebuilt hourly. Add /{artist} for a board artist.",
+    size: "hourly",
   },
 ];
 

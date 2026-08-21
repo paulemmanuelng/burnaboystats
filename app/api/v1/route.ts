@@ -21,6 +21,26 @@ const endpoints = [
     path: `/api/${API_VERSION}/songs`,
     description: "The song catalogue behind the per-song pages, with streaming totals.",
   },
+  {
+    path: `/api/${API_VERSION}/awards`,
+    description:
+      "Every competitive nomination as one row — ceremony, year, category, work, won — plus the honours listed separately from the competitive total.",
+  },
+  {
+    path: `/api/${API_VERSION}/tours`,
+    description:
+      "Tours, festivals and one-off shows with box-office figures where a source publishes them, plus the cross-artist highest-grossing-show board.",
+  },
+  {
+    path: `/api/${API_VERSION}/afrobeats`,
+    description:
+      "The Afrobeats Board — ten artists' certifications and chart records counted by one stated rule, so the totals are comparable.",
+  },
+  {
+    path: `/api/${API_VERSION}/live-charts`,
+    description:
+      "Current platform positions across Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts, rebuilt hourly. Add /{artist} for a board artist.",
+  },
 ];
 
 export function GET() {

@@ -148,9 +148,10 @@ beats expensive-and-worthy.
       reader can see any of it.
       **DONE — /methodology now carries "Claims checked and not published" — the unsourced bodies, the counts that circulate higher than ours, and the three checks that changed our own figures. Every entry re-verified against live data first, which caught a stale one: an earlier pass rejected a tenth Headies win, a later pass FOUND it, and publishing that rejection would have been the exact error this list exists to prevent. A test now asserts no rejection names a body the site since added.**
 
-- [ ] **The API omits what journalists quote.** Four endpoints (stats, charts,
+- [x] **The API omits what journalists quote.** Four endpoints (stats, charts,
       certifications, songs); no awards, no tours/box office, no timeline, no
       board. Figures also ship as display strings rather than numbers.
+      **DONE — four to eight endpoints: /awards (236 nominations, one row each, honours listed apart), /tours (box office where a source publishes it, plus the cross-artist grossing board), /afrobeats (ten artists with the counting rule stated in the payload), and /live-charts, which existed but was undocumented. A test asserts route, docs page and JSON index all agree — a route nobody lists is a route nobody finds. Figures stay as their sources publish them: "$30.46M" is not parsed to 30460000, because that would invent precision Billboard Boxscore never claimed.**
 
 - [x] **Stat cards travel without an as-of date.** The shareable PNGs carry the
       figure and the source body but no date, and the date is rendered inches away
