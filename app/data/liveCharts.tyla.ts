@@ -694,6 +694,25 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 84,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 97,
+            "movement": -31
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -720,18 +739,6 @@
             "name": "South Africa",
             "position": 61,
             "movement": -4
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 97,
-            "movement": -31
           }
         ]
       }
@@ -826,7 +833,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 78,
+            "position": 87,
             "movement": null,
             "status": "new"
           }
@@ -1011,8 +1018,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 179,
-            "movement": -6
+            "position": 188,
+            "movement": -15
           }
         ]
       },

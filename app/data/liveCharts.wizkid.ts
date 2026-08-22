@@ -293,26 +293,26 @@
           {
             "country": "MN",
             "name": "Mongolia",
-            "position": 74,
-            "movement": -10
+            "position": 77,
+            "movement": -13
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 80,
-            "movement": -9
+            "position": 81,
+            "movement": -10
           },
           {
             "country": "ES",
             "name": "Spain",
-            "position": 120,
+            "position": 135,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 166,
+            "position": 185,
             "movement": null,
             "status": "new"
           }
@@ -1585,8 +1585,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 88,
-            "movement": -62
+            "position": 100,
+            "movement": -74
           }
         ]
       }
@@ -1790,14 +1790,14 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 75,
+            "position": 77,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 76,
+            "position": 88,
             "movement": null,
             "status": "new"
           }
@@ -2236,7 +2236,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 76,
+            "position": 78,
             "movement": null,
             "status": "new"
           }

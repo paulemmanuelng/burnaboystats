@@ -256,9 +256,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SI",
+            "name": "Slovenia",
+            "position": 6,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
+            "position": 14,
             "movement": null,
             "status": "new"
           },
@@ -384,13 +391,13 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 82,
-            "movement": 3
+            "position": 83,
+            "movement": 2
           },
           {
             "country": "VN",
             "name": "Vietnam",
-            "position": 168,
+            "position": 175,
             "movement": null,
             "status": "new"
           }
@@ -669,7 +676,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 75,
-            "movement": -13
+            "movement": -12
           },
           {
             "country": "MR",
@@ -1335,7 +1342,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
+            "position": 36,
             "movement": null,
             "status": "new"
           }
@@ -1443,8 +1450,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 93,
-            "movement": -7
+            "position": 102,
+            "movement": -16
           }
         ]
       }
