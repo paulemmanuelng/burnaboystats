@@ -598,3 +598,8 @@
 /* Gradient text carries no selection colour of its own; without this,
    highlighting the name blanks it. */
 [data-brand="starrgirl"] .title::selection { color: #ffffff; background: #7a2fb0; }
+
+/* The headline certification count. Solid magenta at 7.39:1 — no gradient
+   here, because this figure also appears at small sizes elsewhere and a flat
+   colour survives that where clipped text does not. */
+[data-brand="starrgirl"] .numLead .numValue { color: #f06ae0; }
