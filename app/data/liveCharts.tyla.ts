@@ -736,8 +736,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 90,
-            "movement": -26
+            "position": 92,
+            "movement": -28
           }
         ]
       }
@@ -1012,8 +1012,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 87,
-            "movement": -24
+            "position": 89,
+            "movement": -26
           },
           {
             "country": "GH",

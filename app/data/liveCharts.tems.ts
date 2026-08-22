@@ -1190,8 +1190,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 17,
-            "movement": 0
+            "position": 16,
+            "movement": 1
           },
           {
             "country": "KG",
@@ -1224,17 +1224,17 @@
             "movement": -12
           },
           {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 48,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "HU",
             "name": "Hungary",
             "position": 64,
             "movement": -24
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 71,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "UG",
@@ -1245,8 +1245,8 @@
           {
             "country": "AZ",
             "name": "Azerbaijan",
-            "position": 81,
-            "movement": -22
+            "position": 82,
+            "movement": -23
           },
           {
             "country": "NL",
@@ -1633,8 +1633,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 96,
-            "movement": -24
+            "position": 98,
+            "movement": -26
           }
         ]
       },
