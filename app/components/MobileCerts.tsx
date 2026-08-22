@@ -57,6 +57,7 @@ export default function MobileCerts({
   covers,
   portrait,
   portraitSlug,
+  brand,
   chartsHref,
   liveHref,
   chartsNote,
@@ -80,6 +81,9 @@ export default function MobileCerts({
   covers?: Record<string, string | undefined>;
   backHref?: string;
   backLabel?: string;
+  /** Art-direction token — see AfroArtist.brand. Undefined everywhere but
+   *  the one artist whose campaign has its own palette. */
+  brand?: string;
   /** Replaces the hero sentence, which names Burna Boy's own certifying bodies. */
   lede?: string;
   /** The artist's portrait, blended into the hero behind the type. */
@@ -142,7 +146,7 @@ export default function MobileCerts({
   }, {});
 
   return (
-    <div className={styles.screen}>
+    <div className={styles.screen} data-brand={brand}>
       {/* Back bar */}
       <div className={styles.backBar}>
         <BackLink href={backHref} aria-label="Back" className={styles.backBtn}>

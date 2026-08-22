@@ -566,3 +566,68 @@
 @media (max-width: 900px) {
   .faqPad { padding: 34px 18px 8px; }
 }
+
+/* ── Starrgirl art direction ──────────────────────────────────────────────
+   Ayra Starr's current album is Starrgirl (14 Aug 2026), and its artwork is a
+   hot magenta laser burning into a violet starburst on black. These three
+   stops are sampled from the cover itself rather than picked by eye: the peak
+   magenta pixel of the beam is #f456f1 and the violet glow around the star
+   averages #632497, lifted here so it still reads as text on a dark ground.
+
+   Scoped to [data-brand="starrgirl"], which only her own pages set. The board,
+   the hub and every shared surface keep the site's gold — an artist campaign
+   colouring pages that are not hers would be the site wearing her branding.
+
+   The solid colour is declared FIRST and is the real fallback: where
+   background-clip:text is unsupported the headings render in magenta rather
+   than disappearing, which is what transparent text does on its own.
+
+   The violet end is #9a5cf4 and not the artwork's own #8b3df0. Sampled
+   faithfully it gives 3.79:1 on this background, which clears WCAG's 3:1 for
+   large text but not the 4.5:1 that .h2's smallest clamp step — 22px at weight
+   400 — actually needs. Lifted to 4.91:1, same hue. The magenta end is
+   7.31:1 and needed nothing. */
+[data-brand="starrgirl"] .h2,
+[data-brand="starrgirl"] .chartCtaTitle,
+[data-brand="starrgirl"] .compareTitle,
+[data-brand="starrgirl"] .title {
+  color: #f06ae0;
+}
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  [data-brand="starrgirl"] .h2,
+  [data-brand="starrgirl"] .chartCtaTitle,
+  [data-brand="starrgirl"] .compareTitle,
+  [data-brand="starrgirl"] .title {
+    background-image: linear-gradient(96deg, #ff5cd6 0%, #c94ae8 46%, #9a5cf4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+/* Gradient text cannot carry a text-shadow or a selection colour, so give the
+   selection an explicit one — otherwise highlighting a heading blanks it. */
+[data-brand="starrgirl"] .h2::selection,
+[data-brand="starrgirl"] .chartCtaTitle::selection,
+[data-brand="starrgirl"] .compareTitle::selection,
+[data-brand="starrgirl"] .title::selection {
+  color: #ffffff;
+  background: #7a2fb0;
+}
+
+/* Starrgirl: the decorative gold accents on her page only.
+   DELIBERATELY NOT INCLUDED — the tier colours. A "Gold" badge, the Gold
+   filter chip and the tier name are gold because the plaque IS Gold; that
+   gold is data, not decoration, and repainting it would make a Gold
+   certification unreadable as one. Diamond stays cyan and Platinum stays
+   silver for the same reason. */
+[data-brand="starrgirl"] .kicker,
+[data-brand="starrgirl"] .compareKicker,
+[data-brand="starrgirl"] .numLead .numValue,
+[data-brand="starrgirl"] .compareGold,
+[data-brand="starrgirl"] .rowCount,
+[data-brand="starrgirl"] .crumbs a,
+[data-brand="starrgirl"] .provenance a,
+[data-brand="starrgirl"] .source a {
+  color: #f06ae0;
+}
+[data-brand="starrgirl"] .rowCount { border-color: #c94ae8; }

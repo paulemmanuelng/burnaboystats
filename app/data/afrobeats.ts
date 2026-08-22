@@ -122,6 +122,11 @@ export interface AfroArtist {
    *  musician, not a namesake, on 17 Aug 2026. */
   wikipedia: string;
   image: string;
+  /** Optional art-direction token for an artist whose current campaign has its
+   *  own palette. Only the headings change, and only on that artist's own
+   *  pages — the board and every shared surface keep the site's gold. Empty
+   *  for everyone else, which is the default. */
+  brand?: string;
   verifiedOn: string;
   /** false while the register sweep is still scheduled — the page says so. */
   swept: boolean;
@@ -612,6 +617,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3ZpEKRjHaHANcpk10u6Ntq",
     wikipedia: "https://en.wikipedia.org/wiki/Ayra_Starr",
     image: "https://i.scdn.co/image/ab6761610000e5ebc2074e9ac0e35662936cde67",
+    brand: "starrgirl",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: true,
     chartPublished: { entries: 78, territories: 30, no1s: 10 },
@@ -1230,7 +1236,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     releases: [
       { title: "Pity This Boy", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Soweto", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ES", level: "Gold" }] },
-      { title: "Stubborn (Victony)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9006b3beadf51c1be30df723a7edc6c0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
+      { title: "Stubborn (Victony)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Different Size", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Everything (Victony)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/04f0aa35363a5f1d380cf0d898738084/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Golibe (Fola)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a742269ca782601c794d592fc3570628/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -1251,7 +1257,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     charts: [
       { title: "SLICK", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/3be386ed5da6f28d57ce4808d7d07802/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 99 }] },
       { title: "PITY THIS BOY", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
-      { title: "Stubborn", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/9006b3beadf51c1be30df723a7edc6c0/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
+      { title: "Stubborn", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "Soweto", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 4 }, { c: "CH", peak: 29 }, { c: "NL", peak: 46 }, { c: "UK", peak: 65 }, { c: "CA", peak: 76 }, { c: "GLBX", peak: 175 }] },
       { title: "OHEMA", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 5 }] },
       { title: "Everything", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/04f0aa35363a5f1d380cf0d898738084/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 6 }] },

@@ -1699,3 +1699,22 @@ a[class*="__certRow"]:focus-visible,
 body.navSheetOpen .mobileTabBarPresent { display: none; }
 /* The page behind the sheet must not scroll under it. */
 body.navSheetOpen { overflow: hidden; }
+
+/* ── Starrgirl art direction: the primary button ──────────────────────────
+   .btnPrimary is global and gold everywhere on this site. Scoped here to
+   [data-brand="starrgirl"], which only Ayra Starr's own pages set, so no other
+   page is touched. The gold ramp is replaced by the campaign's magenta→violet
+   one, and the solid background-color is declared first for the same reason
+   the gold rule does it: the label must never sit over nothing.
+
+   -webkit-text-fill-color is pinned to black deliberately. The gold button
+   carries that guard because the label once composited orange-on-gold on an
+   iPhone; changing the fill without carrying the guard would reopen it. */
+[data-brand="starrgirl"] .btnPrimary {
+  background-color: #c94ae8;
+  background-image: linear-gradient(180deg, #ff5cd6 0%, #c94ae8 52%, #9a5cf4 100%);
+  border-color: #c94ae8;
+  color: #0a0a0b;
+  -webkit-text-fill-color: #0a0a0b;
+}
+[data-brand="starrgirl"] .btnPrimary:hover { background-color: #d661ee; border-color: #d661ee; }
