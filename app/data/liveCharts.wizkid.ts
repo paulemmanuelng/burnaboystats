@@ -251,7 +251,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 165,
-            "movement": -11
+            "movement": 0
           },
           {
             "country": "NP",
@@ -269,7 +269,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 182,
-            "movement": -1
+            "movement": -3
           },
           {
             "country": "SE",
@@ -305,7 +305,7 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 93,
+            "position": 117,
             "movement": null,
             "status": "new"
           }
@@ -316,11 +316,24 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 17,
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 38,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 50,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 71,
+            "movement": -54
           }
         ]
       }
@@ -924,8 +937,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
-            "movement": -37
+            "position": 50,
+            "movement": 22
           }
         ]
       },
@@ -1243,7 +1256,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 112,
-            "movement": 10
+            "movement": 14
           }
         ]
       }
@@ -1420,7 +1433,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 55,
-            "movement": -13
+            "movement": -12
           }
         ]
       }
@@ -1469,7 +1482,7 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 84,
+            "position": 67,
             "movement": null,
             "status": "new"
           },
@@ -1687,18 +1700,6 @@
             "movement": -1
           }
         ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 36,
-            "movement": 33
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -1789,7 +1790,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 73,
+            "position": 74,
             "movement": null,
             "status": "new"
           }
@@ -1855,7 +1856,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 181,
-            "movement": -5
+            "movement": -1
           }
         ]
       }
@@ -1900,6 +1901,51 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/09422f55197ec57417a5742ce5801f13/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ojuelegba",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 66,
+            "movement": 20
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 146,
+            "movement": -30
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 154,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 78,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sponono",
@@ -2017,45 +2063,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 139,
-            "movement": -3
+            "movement": 1
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ojuelegba",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 66,
-            "movement": 20
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 146,
-            "movement": -30
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 154,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "One Condition",
@@ -2215,7 +2229,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 74,
+            "position": 75,
             "movement": null,
             "status": "new"
           }
@@ -2305,6 +2319,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Can't Believe",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 170,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2f25b7d9807558219cbe7646ad27e092/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DYNAMITE",
@@ -2519,26 +2553,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Can't Believe",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 170,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2f25b7d9807558219cbe7646ad27e092/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ebelebe",

@@ -196,16 +196,16 @@
             "movement": -10
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 62,
-            "movement": -14
-          },
-          {
             "country": "BS",
             "name": "The Bahamas",
             "position": 62,
             "movement": -21
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 64,
+            "movement": -16
           },
           {
             "country": "BG",
@@ -250,16 +250,16 @@
             "movement": 7
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 86,
-            "movement": 0
-          },
-          {
             "country": "SA",
             "name": "Saudi Arabia",
             "position": 92,
             "movement": -26
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 94,
+            "movement": 13
           },
           {
             "country": "GD",
@@ -280,6 +280,12 @@
             "movement": -88
           },
           {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 118,
+            "movement": -20
+          },
+          {
             "country": "CY",
             "name": "Cyprus",
             "position": 121,
@@ -290,12 +296,6 @@
             "name": "Kuwait",
             "position": 124,
             "movement": -32
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 126,
-            "movement": -50
           },
           {
             "country": "PH",
@@ -316,10 +316,10 @@
             "movement": -17
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 138,
-            "movement": -17
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 141,
+            "movement": -32
           },
           {
             "country": "OM",
@@ -335,16 +335,16 @@
             "status": "new"
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 155,
-            "movement": -14
-          },
-          {
             "country": "DK",
             "name": "Denmark",
             "position": 157,
             "movement": 32
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 158,
+            "movement": -8
           },
           {
             "country": "MY",
@@ -412,13 +412,125 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 198,
-            "movement": -31
+            "position": 200,
+            "movement": -28
           }
         ]
       }
     ],
     "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "CHANEL",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 41,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 41,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 41,
+            "movement": 17
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 51,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 51,
+            "movement": 13
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 56,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 60,
+            "movement": 33
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 61,
+            "movement": -4
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 61,
+            "movement": 38
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 66,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 69,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 81,
+            "movement": 19
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 89,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 97,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 100,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
@@ -624,7 +736,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 89,
+            "position": 90,
             "movement": -26
           }
         ]
@@ -721,7 +833,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 50,
+            "position": 63,
             "movement": null,
             "status": "new"
           }
@@ -780,61 +892,6 @@
             "name": "Grenada",
             "position": 68,
             "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "CHANEL",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 57,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 58,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 64,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 99,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 100,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -955,7 +1012,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 86,
+            "position": 87,
             "movement": -24
           },
           {

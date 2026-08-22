@@ -101,7 +101,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 18,
-            "movement": 1
+            "movement": 3
           },
           {
             "country": "UZ",
@@ -275,7 +275,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 44,
-            "movement": -4
+            "movement": -1
           },
           {
             "country": "MG",
@@ -378,7 +378,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 75,
-            "movement": -6
+            "movement": 0
           },
           {
             "country": "TJ",
@@ -432,7 +432,7 @@
             "country": "AU",
             "name": "Australia",
             "position": 93,
-            "movement": -6
+            "movement": -8
           },
           {
             "country": "KH",
@@ -444,7 +444,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 101,
-            "movement": -12
+            "movement": -18
           },
           {
             "country": "EE",
@@ -587,7 +587,7 @@
             "country": "FR",
             "name": "France",
             "position": 199,
-            "movement": -9
+            "movement": -5
           }
         ]
       },
@@ -1177,27 +1177,15 @@
           {
             "country": "UZ",
             "name": "Uzbekistan",
-            "position": 5,
+            "position": 7,
             "movement": null,
             "status": "new"
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 23,
-            "movement": 7
-          },
-          {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 24,
-            "movement": -15
-          },
-          {
-            "country": "KG",
-            "name": "Kyrgyzstan",
-            "position": 32,
-            "movement": -13
+            "position": 17,
+            "movement": 0
           },
           {
             "country": "RO",
@@ -1206,17 +1194,16 @@
             "movement": -6
           },
           {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 33,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "HU",
             "name": "Hungary",
             "position": 35,
             "movement": -6
+          },
+          {
+            "country": "KG",
+            "name": "Kyrgyzstan",
+            "position": 35,
+            "movement": -16
           },
           {
             "country": "NG",
@@ -1225,10 +1212,23 @@
             "movement": -1
           },
           {
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 43,
+            "movement": -34
+          },
+          {
             "country": "MD",
             "name": "Moldova",
-            "position": 43,
-            "movement": -8
+            "position": 44,
+            "movement": -9
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 48,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "UG",
@@ -1240,13 +1240,14 @@
             "country": "AZ",
             "name": "Azerbaijan",
             "position": 81,
-            "movement": -23
+            "movement": -22
           },
           {
             "country": "AU",
             "name": "Australia",
-            "position": 174,
-            "movement": -26
+            "position": 179,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1255,29 +1256,24 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 39,
-            "movement": 4
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 43,
-            "movement": -10
-          },
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 46,
+            "country": "SN",
+            "name": "Senegal",
+            "position": 29,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 90,
-            "movement": -25
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 64,
+            "movement": -18
+          },
+          {
+            "country": "LV",
+            "name": "Latvia",
+            "position": 79,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1293,17 +1289,17 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "US",
+            "name": "United States",
+            "position": 11,
+            "movement": 5
+          },
+          {
             "country": "SR",
             "name": "Suriname",
             "position": 13,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 18,
-            "movement": 0
           },
           {
             "country": "MZ",
@@ -1631,7 +1627,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 95,
+            "position": 96,
             "movement": -24
           }
         ]
@@ -1656,6 +1652,19 @@
             "country": "IL",
             "name": "Israel",
             "position": 168,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 92,
             "movement": null,
             "status": "new"
           }
@@ -1748,7 +1757,20 @@
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 92,
-            "movement": -20
+            "movement": -18
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 77,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1790,8 +1812,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 116,
-            "movement": -7
+            "position": 113,
+            "movement": -4
           },
           {
             "country": "DM",
@@ -1918,7 +1940,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 73,
+            "position": 74,
             "movement": null,
             "status": "new"
           }
@@ -2068,6 +2090,46 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Me JeJe",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Burning",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 100,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "What You Need - A COLORS SHOW",
