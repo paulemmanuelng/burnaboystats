@@ -71,7 +71,7 @@
             "country": "LU",
             "name": "Luxembourg",
             "position": 9,
-            "movement": 7
+            "movement": 0
           },
           {
             "country": "AE",
@@ -130,8 +130,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 20,
-            "movement": 1
+            "position": 21,
+            "movement": 0
           },
           {
             "country": "MZ",
@@ -203,7 +203,7 @@
             "country": "CH",
             "name": "Switzerland",
             "position": 32,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "KW",
@@ -299,7 +299,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 54,
-            "movement": -16
+            "movement": -13
           },
           {
             "country": "TC",
@@ -414,7 +414,7 @@
             "country": "AU",
             "name": "Australia",
             "position": 85,
-            "movement": -5
+            "movement": -7
           },
           {
             "country": "GH",
@@ -432,7 +432,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 90,
-            "movement": -14
+            "movement": -16
           },
           {
             "country": "KH",
@@ -450,7 +450,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 111,
-            "movement": -37
+            "movement": -36
           },
           {
             "country": "GM",
@@ -542,7 +542,7 @@
             "country": "IE",
             "name": "Ireland",
             "position": 165,
-            "movement": -34
+            "movement": 0
           },
           {
             "country": "SK",
@@ -560,8 +560,7 @@
             "country": "RO",
             "name": "Romania",
             "position": 181,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "MM",
@@ -587,13 +586,13 @@
             "country": "FR",
             "name": "France",
             "position": 197,
-            "movement": -3
+            "movement": 0
           },
           {
             "country": "CA",
             "name": "Canada",
             "position": 198,
-            "movement": -22
+            "movement": -18
           }
         ]
       },
@@ -1190,32 +1189,32 @@
           {
             "country": "UZ",
             "name": "Uzbekistan",
-            "position": 7,
-            "movement": -4
+            "position": 9,
+            "movement": -6
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 18,
-            "movement": -7
+            "position": 19,
+            "movement": -6
           },
           {
             "country": "KG",
             "name": "Kyrgyzstan",
-            "position": 39,
-            "movement": -18
+            "position": 41,
+            "movement": -20
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 49,
-            "movement": -13
+            "position": 55,
+            "movement": -19
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
-            "movement": 24
+            "position": 74,
+            "movement": 15
           },
           {
             "country": "UG",
@@ -1228,13 +1227,6 @@
             "name": "Azerbaijan",
             "position": 82,
             "movement": -20
-          },
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 90,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "RO",
@@ -1292,7 +1284,7 @@
             "country": "US",
             "name": "United States",
             "position": 11,
-            "movement": 3
+            "movement": 7
           },
           {
             "country": "SR",
@@ -1427,7 +1419,7 @@
             "country": "RO",
             "name": "Romania",
             "position": 173,
-            "movement": 4
+            "movement": 0
           },
           {
             "country": "ZW",
@@ -1476,8 +1468,8 @@
           {
             "country": "CG",
             "name": "Republic of the Congo",
-            "position": 58,
-            "movement": 91
+            "position": 52,
+            "movement": 6
           },
           {
             "country": "TZ",
@@ -1499,10 +1491,23 @@
             "movement": -17
           },
           {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 107,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "GH",
             "name": "Ghana",
             "position": 117,
             "movement": 40
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 121,
+            "movement": 65
           },
           {
             "country": "PG",
@@ -1510,12 +1515,6 @@
             "position": 123,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 134,
-            "movement": -52
           },
           {
             "country": "KE",
@@ -1533,8 +1532,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": -11
+            "position": 150,
+            "movement": -3
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 156,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "ZW",
@@ -1543,17 +1549,10 @@
             "movement": -13
           },
           {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 186,
-            "movement": -12
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 164,
+            "movement": -30
           }
         ]
       }
@@ -1644,7 +1643,7 @@
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 92,
-            "movement": -18
+            "movement": -16
           }
         ]
       },
@@ -1713,20 +1712,20 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 32,
-            "movement": -14
+            "position": 33,
+            "movement": -15
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 64,
-            "movement": -53
+            "position": 73,
+            "movement": -62
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 80,
-            "movement": -15
+            "position": 83,
+            "movement": -18
           }
         ]
       },
@@ -1806,8 +1805,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 114,
-            "movement": -4
+            "position": 111,
+            "movement": -6
           },
           {
             "country": "DM",
@@ -1860,6 +1859,20 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 86,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 90,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "TZ",
             "name": "Tanzania",
             "position": 108,
@@ -1867,16 +1880,9 @@
             "status": "new"
           },
           {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 115,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 137,
+            "country": "CG",
+            "name": "Republic of the Congo",
+            "position": 131,
             "movement": null,
             "status": "new"
           },
@@ -1934,7 +1940,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 88,
+            "position": 97,
             "movement": null,
             "status": "new"
           }
@@ -1956,46 +1962,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love Is A Kingdom",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 80,
-            "movement": 115
-          },
-          {
-            "country": "AG",
-            "name": "Antigua and Barbuda",
-            "position": 131,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BB",
-            "name": "Barbados",
-            "position": 142,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Damages",
@@ -2027,6 +1993,39 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3d1528266cd1263f06d630c1c73376d5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Is A Kingdom",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 130,
+            "movement": -50
+          },
+          {
+            "country": "AG",
+            "name": "Antigua and Barbuda",
+            "position": 131,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BB",
+            "name": "Barbados",
+            "position": 142,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Isaka II",
