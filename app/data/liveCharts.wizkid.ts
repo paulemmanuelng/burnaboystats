@@ -287,8 +287,8 @@
           {
             "country": "MN",
             "name": "Mongolia",
-            "position": 70,
-            "movement": -10
+            "position": 71,
+            "movement": -11
           },
           {
             "country": "ZW",
@@ -299,8 +299,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 132,
-            "movement": -16
+            "position": 138,
+            "movement": -22
           }
         ]
       },
@@ -1235,8 +1235,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 106,
-            "movement": 3
+            "position": 110,
+            "movement": -1
           }
         ]
       }
@@ -1412,8 +1412,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
-            "movement": -21
+            "position": 53,
+            "movement": -25
           }
         ]
       }
@@ -1551,7 +1551,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
+            "position": 53,
             "movement": null,
             "status": "new"
           }
@@ -1769,14 +1769,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
+            "position": 42,
             "movement": null,
             "status": "new"
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 70,
+            "position": 72,
             "movement": null,
             "status": "new"
           }
@@ -1841,8 +1841,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 175,
-            "movement": -12
+            "position": 179,
+            "movement": -16
           }
         ]
       }
@@ -2035,14 +2035,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 99,
-            "movement": 0
+            "position": 98,
+            "movement": 1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 133,
-            "movement": -10
+            "position": 137,
+            "movement": -14
           }
         ]
       }
@@ -2155,39 +2155,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BROWN SKIN GIRL",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 192,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 71,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BIG TIME",
     "platforms": [
       {
@@ -2217,6 +2184,39 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BROWN SKIN GIRL",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SR",
+            "name": "Suriname",
+            "position": 192,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 73,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Final",

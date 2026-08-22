@@ -533,8 +533,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 96,
-            "movement": 101
+            "position": 99,
+            "movement": 98
           }
         ]
       }
@@ -636,8 +636,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 82,
-            "movement": -29
+            "position": 86,
+            "movement": -33
           }
         ]
       }
@@ -733,7 +733,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 40,
+            "position": 44,
             "movement": null,
             "status": "new"
           }
@@ -927,7 +927,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 151,
+            "position": 155,
             "movement": null,
             "status": "new"
           }
@@ -980,14 +980,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 79,
-            "movement": -27
+            "position": 83,
+            "movement": -31
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 177,
-            "movement": -7
+            "position": 179,
+            "movement": -9
           }
         ]
       },

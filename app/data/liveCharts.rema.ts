@@ -200,7 +200,7 @@
             "country": "WW",
             "name": "Worldwide",
             "position": 184,
-            "movement": -2
+            "movement": -3
           },
           {
             "country": "CI",
@@ -289,7 +289,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 9,
+            "position": 13,
             "movement": null,
             "status": "new"
           }
@@ -1320,26 +1320,35 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Baby",
+    "title": "Goals",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 25,
-            "movement": -24
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 68,
+            "movement": null,
+            "status": "new"
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 193,
-            "movement": -173
+            "country": "TH",
+            "name": "Thailand",
+            "position": 83,
+            "movement": null,
+            "status": "new"
           }
         ]
-      },
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Baby",
+    "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
@@ -1351,37 +1360,22 @@
             "movement": -29
           }
         ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Goals",
-    "platforms": [
+      },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 61,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 80,
-            "movement": null,
-            "status": "new"
+            "country": "KE",
+            "name": "Kenya",
+            "position": 29,
+            "movement": -28
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lalala",
@@ -1469,7 +1463,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 90,
+            "position": 92,
             "movement": null,
             "status": "new"
           }
