@@ -251,7 +251,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 163,
-            "movement": -17
+            "movement": -18
           },
           {
             "country": "NP",
@@ -294,13 +294,13 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 75,
-            "movement": -9
+            "movement": -5
           },
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 124,
-            "movement": -40
+            "position": 132,
+            "movement": -16
           }
         ]
       },
@@ -911,19 +911,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 184,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -1237,13 +1224,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 68,
-            "movement": -3
+            "movement": -4
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 86,
-            "movement": 2
+            "movement": 3
           },
           {
             "country": "NG",
@@ -1777,7 +1764,7 @@
             "country": "DM",
             "name": "Dominica",
             "position": 34,
-            "movement": 0
+            "movement": -2
           },
           {
             "country": "NG",
@@ -1855,7 +1842,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 175,
-            "movement": -11
+            "movement": -12
           }
         ]
       }
@@ -1917,8 +1904,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 95,
-            "movement": -15
+            "position": 99,
+            "movement": -19
           },
           {
             "country": "NE",
@@ -2037,7 +2024,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 50,
-            "movement": -3
+            "movement": -4
           },
           {
             "country": "GD",
@@ -2055,7 +2042,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 133,
-            "movement": -9
+            "movement": -10
           }
         ]
       }
@@ -2324,7 +2311,7 @@
             "country": "LA",
             "name": "Laos",
             "position": 22,
-            "movement": -5
+            "movement": -4
           }
         ]
       }
@@ -2342,8 +2329,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 51,
-            "movement": -32
+            "position": 55,
+            "movement": -36
           }
         ]
       }
@@ -2565,26 +2552,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Daddy Yo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SoundMan, Vol. 1",

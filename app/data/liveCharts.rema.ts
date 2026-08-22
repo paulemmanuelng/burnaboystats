@@ -406,13 +406,13 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 25,
-            "movement": 1
+            "movement": 3
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 82,
-            "movement": 6
+            "movement": 3
           }
         ]
       },
@@ -551,17 +551,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 37,
-            "movement": -1
-          },
-          {
             "country": "YE",
             "name": "Yemen",
             "position": 37,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 38,
+            "movement": -2
           },
           {
             "country": "BJ",
@@ -653,16 +653,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 69,
-            "movement": -15
-          },
-          {
             "country": "KE",
             "name": "Kenya",
             "position": 71,
             "movement": 4
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 73,
+            "movement": -19
           },
           {
             "country": "MR",
@@ -905,8 +905,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 34,
-            "movement": -1
+            "position": 35,
+            "movement": -2
           },
           {
             "country": "NG",
@@ -1330,13 +1330,13 @@
             "country": "KE",
             "name": "Kenya",
             "position": 25,
-            "movement": -10
+            "movement": -24
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 174,
-            "movement": -34
+            "position": 193,
+            "movement": -173
           }
         ]
       },
@@ -1508,8 +1508,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 38,
-            "movement": -1
+            "position": 39,
+            "movement": -2
           }
         ]
       }
