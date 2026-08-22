@@ -611,3 +611,18 @@
 [data-brand="starrgirl"] .kicker {
   color: #f06ae0;
 }
+
+/* The active filter pill. Same deepened ramp and white label as the primary
+   button in the header, for the same reason: on the bright display stops
+   white measures 2.71:1, which is below what a button label needs. These
+   hues at 72% value put it above 5:1.
+
+   Only .chipOn — the ACTIVE pill. The per-tier chips beside it keep their
+   tier colours, because that is what distinguishes Diamond from Gold. */
+[data-brand="starrgirl"] .chipOn {
+  background-color: #8f2fa7;
+  background-image: linear-gradient(180deg, #b73c98 0%, #8f2fa7 52%, #6b3caf 100%);
+  border-color: #8f2fa7;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+}
