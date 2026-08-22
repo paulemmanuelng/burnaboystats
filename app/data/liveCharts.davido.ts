@@ -277,8 +277,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
-            "movement": -15
+            "position": 99,
+            "movement": -18
           }
         ]
       }
@@ -423,8 +423,8 @@
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 41,
-            "movement": -6
+            "position": 43,
+            "movement": -2
           },
           {
             "country": "ZM",
@@ -471,7 +471,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 33,
+            "position": 39,
             "movement": null,
             "status": "new"
           }
@@ -713,7 +713,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
+            "position": 49,
             "movement": null,
             "status": "new"
           }
@@ -901,7 +901,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 48,
             "movement": null,
             "status": "new"
           }
@@ -1333,7 +1333,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 39,
+            "position": 5,
             "movement": null,
             "status": "new"
           }
@@ -1694,8 +1694,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 57,
-            "movement": -47
+            "position": 63,
+            "movement": -53
           }
         ]
       }
@@ -3197,26 +3197,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/dd374a6d185e39c6c4f847704afc827e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Skelewu",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 48,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/23726f80ac87dcce3846c3b638cba30d/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Like",
     "platforms": [
       {
@@ -3255,6 +3235,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Skelewu",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 54,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/23726f80ac87dcce3846c3b638cba30d/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Intro",
     "platforms": [
       {
@@ -3264,7 +3264,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 79,
+            "position": 85,
             "movement": null,
             "status": "new"
           }
@@ -3284,7 +3284,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
+            "position": 61,
             "movement": null,
             "status": "new"
           }
@@ -3303,7 +3303,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
+            "position": 80,
             "movement": null,
             "status": "new"
           }

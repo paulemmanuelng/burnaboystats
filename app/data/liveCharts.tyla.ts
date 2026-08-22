@@ -503,8 +503,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 167,
-            "movement": 0
+            "position": 186,
+            "movement": -19
           },
           {
             "country": "AE",

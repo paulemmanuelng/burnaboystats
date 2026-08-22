@@ -293,8 +293,8 @@
           {
             "country": "MN",
             "name": "Mongolia",
-            "position": 71,
-            "movement": -9
+            "position": 72,
+            "movement": -10
           },
           {
             "country": "ZW",
@@ -1565,8 +1565,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
-            "movement": -57
+            "position": 74,
+            "movement": -63
           }
         ]
       }
@@ -1782,7 +1782,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 56,
+            "position": 62,
             "movement": null,
             "status": "new"
           },
