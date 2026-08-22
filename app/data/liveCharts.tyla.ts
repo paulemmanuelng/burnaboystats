@@ -194,16 +194,16 @@
             "movement": 37
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 68,
+            "movement": -6
+          },
+          {
             "country": "RO",
             "name": "Romania",
             "position": 70,
             "movement": -19
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 71,
-            "movement": -10
           },
           {
             "country": "BZ",
@@ -310,7 +310,19 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 122,
-            "movement": -4
+            "movement": -5
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 122,
+            "movement": -41
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 124,
+            "movement": 27
           },
           {
             "country": "BM",
@@ -326,18 +338,6 @@
             "status": "new"
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 131,
-            "movement": -44
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 138,
-            "movement": 6
-          },
-          {
             "country": "BG",
             "name": "Bulgaria",
             "position": 156,
@@ -346,7 +346,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 160,
+            "position": 156,
             "movement": 2
           },
           {
@@ -392,6 +392,12 @@
             "name": "Greece",
             "position": 195,
             "movement": -24
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 199,
+            "movement": -4
           },
           {
             "country": "VN",
@@ -512,6 +518,19 @@
             "status": "new"
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 58,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -611,9 +630,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 109,
-            "movement": null,
-            "status": "new"
+            "position": 123,
+            "movement": -18
           }
         ]
       }
@@ -716,7 +734,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 117,
+            "position": 126,
             "movement": null,
             "status": "new"
           }
@@ -864,8 +882,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 68,
-            "movement": -6
+            "position": 69,
+            "movement": -2
           }
         ]
       }
@@ -911,6 +929,45 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 51,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 91,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 30,
+            "movement": 130
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "PUSH 2 START",
     "platforms": [
       {
@@ -925,15 +982,9 @@
             "status": "new"
           },
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 100,
-            "movement": -31
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 195,
+            "position": 198,
             "movement": -22
           }
         ]
@@ -941,38 +992,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 30,
-            "movement": 130
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT",
