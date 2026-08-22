@@ -599,35 +599,3 @@
   inset: -8px 0;
 }
 .badgeMore[aria-expanded="true"] { color: var(--gold); border-color: var(--gold); }
-
-/* Starrgirl art direction — see the note in artist.module.css. Screen 02's
-   <h1> is .totalRow, whose big numeral is .total, and .kicker is the eyebrow
-   above it. Same sampled stops, same solid-colour fallback first. */
-[data-brand="starrgirl"] .total,
-[data-brand="starrgirl"] .kicker {
-  color: #f06ae0;
-}
-@supports ((background-clip: text) or (-webkit-background-clip: text)) {
-  [data-brand="starrgirl"] .total,
-  [data-brand="starrgirl"] .kicker {
-    background-image: linear-gradient(96deg, #ff5cd6 0%, #c94ae8 46%, #9a5cf4 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-}
-[data-brand="starrgirl"] .total::selection,
-[data-brand="starrgirl"] .kicker::selection {
-  color: #ffffff;
-  background: #7a2fb0;
-}
-
-/* Starrgirl on screen 02. The ACTIVE filter pill only — the per-tier chips
-   keep their tier colours, because that is what tells Diamond from Gold. */
-[data-brand="starrgirl"] .chipOn {
-  background-color: #c94ae8;
-  background-image: linear-gradient(180deg, #ff5cd6 0%, #c94ae8 52%, #9a5cf4 100%);
-  border-color: #c94ae8;
-  color: #0a0a0b;
-}
-[data-brand="starrgirl"] .rowCount { color: #f06ae0; }

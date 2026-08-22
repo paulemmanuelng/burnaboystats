@@ -873,18 +873,3 @@
 }
 .certTitleLink:hover,
 .certTitleLink:focus-visible { text-decoration: underline; color: var(--gold); }
-
-/* Starrgirl art direction — see app/afrobeats/[artist]/artist.module.css.
-   .groupTitle is defined here because CertExplorer is shared with Burna Boy's
-   own certifications page, so this MUST stay scoped to [data-brand]: without
-   that scope one artist's campaign would repaint his page too. */
-[data-brand="starrgirl"] .groupTitle { color: #f06ae0; }
-@supports ((background-clip: text) or (-webkit-background-clip: text)) {
-  [data-brand="starrgirl"] .groupTitle {
-    background-image: linear-gradient(96deg, #ff5cd6 0%, #c94ae8 46%, #9a5cf4 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-}
-[data-brand="starrgirl"] .groupTitle::selection { color: #fff; background: #7a2fb0; }
