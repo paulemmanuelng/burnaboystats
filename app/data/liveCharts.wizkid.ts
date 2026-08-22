@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-21";
+  export const liveChartsUpdated = "2026-08-22";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -248,6 +248,12 @@
             "movement": 16
           },
           {
+            "country": "DE",
+            "name": "Germany",
+            "position": 163,
+            "movement": -17
+          },
+          {
             "country": "NP",
             "name": "Nepal",
             "position": 166,
@@ -258,12 +264,6 @@
             "name": "Uganda",
             "position": 169,
             "movement": -16
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 173,
-            "movement": -27
           },
           {
             "country": "SE",
@@ -288,19 +288,19 @@
             "country": "MN",
             "name": "Mongolia",
             "position": 70,
-            "movement": -13
+            "movement": -10
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 73,
-            "movement": -11
+            "position": 75,
+            "movement": -9
           },
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 100,
-            "movement": -16
+            "position": 124,
+            "movement": -40
           }
         ]
       },
@@ -917,7 +917,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 146,
+            "position": 184,
             "movement": null,
             "status": "new"
           }
@@ -1230,26 +1230,26 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 50,
-            "movement": -1
+            "position": 49,
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 69,
-            "movement": -4
+            "position": 68,
+            "movement": -3
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 90,
-            "movement": -2
+            "position": 86,
+            "movement": 2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 128,
-            "movement": -19
+            "position": 106,
+            "movement": 3
           }
         ]
       }
@@ -1425,8 +1425,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
-            "movement": -20
+            "position": 49,
+            "movement": -21
           }
         ]
       }
@@ -1564,7 +1564,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
+            "position": 51,
             "movement": null,
             "status": "new"
           }
@@ -1761,6 +1761,58 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Essence",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 7,
+            "movement": 0
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 34,
+            "movement": 0
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 40,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 70,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 152,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Superstar",
     "platforms": [
       {
@@ -1802,8 +1854,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
-            "movement": -18
+            "position": 175,
+            "movement": -11
           }
         ]
       }
@@ -1848,51 +1900,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/09422f55197ec57417a5742ce5801f13/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Essence",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 7,
-            "movement": 0
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 34,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 35,
-            "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 152,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ojuelegba",
@@ -2029,8 +2036,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 51,
-            "movement": -4
+            "position": 50,
+            "movement": -3
           },
           {
             "country": "GD",
@@ -2041,14 +2048,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 100,
-            "movement": -1
+            "position": 99,
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
-            "movement": -18
+            "position": 133,
+            "movement": -9
           }
         ]
       }
@@ -2161,6 +2168,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "BROWN SKIN GIRL",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SR",
+            "name": "Suriname",
+            "position": 192,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 71,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "BIG TIME",
     "platforms": [
       {
@@ -2216,39 +2256,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3cda4cca35e5a322d6ad9e71c49dbecf/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "2 Sugar",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 193,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 186,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Tonight",
@@ -2316,8 +2323,8 @@
           {
             "country": "LA",
             "name": "Laos",
-            "position": 19,
-            "movement": -2
+            "position": 22,
+            "movement": -5
           }
         ]
       }
@@ -2482,16 +2489,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BROWN SKIN GIRL",
+    "title": "2 Sugar",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 192,
+            "country": "TD",
+            "name": "Chad",
+            "position": 193,
             "movement": null,
             "status": "new"
           }
@@ -2499,7 +2506,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Can't Believe",
@@ -2569,7 +2576,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
+            "position": 199,
             "movement": null,
             "status": "new"
           }

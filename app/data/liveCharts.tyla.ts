@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-21";
+  export const liveChartsUpdated = "2026-08-22";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","iTunes"];
@@ -416,18 +416,6 @@
             "movement": -12
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SG",
-            "name": "Singapore",
-            "position": 99,
-            "movement": -66
-          }
-        ]
       }
     ],
     "kind": "album",
@@ -545,8 +533,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 82,
-            "movement": 94
+            "position": 96,
+            "movement": 80
           }
         ]
       }
@@ -648,8 +636,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 70,
-            "movement": -29
+            "position": 82,
+            "movement": -32
           }
         ]
       }
@@ -741,6 +729,13 @@
             "position": 1,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 40,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -795,8 +790,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 62,
-            "movement": -3
+            "position": 67,
+            "movement": -8
           }
         ]
       }
@@ -932,7 +927,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 140,
+            "position": 152,
             "movement": null,
             "status": "new"
           }
@@ -985,14 +980,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 69,
-            "movement": -29
+            "position": 79,
+            "movement": -30
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 173,
-            "movement": -22
+            "position": 176,
+            "movement": -26
           }
         ]
       },
@@ -1042,8 +1037,8 @@
           {
             "country": "LA",
             "name": "Laos",
-            "position": 19,
-            "movement": -2
+            "position": 22,
+            "movement": -5
           }
         ]
       }
