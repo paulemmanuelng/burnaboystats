@@ -390,6 +390,13 @@
             "movement": -13
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 155,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 162,
@@ -399,13 +406,6 @@
             "country": "BW",
             "name": "Botswana",
             "position": 170,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 175,
             "movement": null,
             "status": "new"
           },
@@ -516,8 +516,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": -5
+            "position": 9,
+            "movement": -6
           }
         ]
       },
@@ -710,8 +710,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
-            "movement": -70
+            "position": 114,
+            "movement": -89
           }
         ]
       },
@@ -893,7 +893,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
+            "position": 13,
             "movement": null,
             "status": "new"
           }
@@ -1372,7 +1372,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
+            "position": 11,
             "movement": null,
             "status": "new"
           }
@@ -1746,8 +1746,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": -74
+            "position": 128,
+            "movement": -92
           }
         ]
       }
@@ -1996,8 +1996,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 66,
-            "movement": 16
+            "position": 67,
+            "movement": 15
           },
           {
             "country": "BF",
@@ -2469,8 +2469,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 47,
-            "movement": 0
+            "position": 48,
+            "movement": -1
           },
           {
             "country": "BF",
@@ -3219,25 +3219,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9119c622011c2f9e2c0fd2ae9bcaec51/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Skelewu",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 101,
-            "movement": -71
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/23726f80ac87dcce3846c3b638cba30d/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Risky",
     "platforms": [
       {
@@ -3277,7 +3258,7 @@
     "kind": "song"
   },
   {
-    "title": "Intro",
+    "title": "Skelewu",
     "platforms": [
       {
         "platform": "iTunes",
@@ -3286,15 +3267,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 132,
-            "movement": null,
-            "status": "new"
+            "position": 119,
+            "movement": -89
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/23726f80ac87dcce3846c3b638cba30d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Father",
@@ -3314,6 +3294,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/132d4358890f5675bd291681812647e5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Intro",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 150,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Activate",
@@ -3344,8 +3344,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": -75
+            "position": 126,
+            "movement": -93
           }
         ]
       }
@@ -3381,8 +3381,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 127,
-            "movement": -83
+            "position": 145,
+            "movement": -101
           }
         ]
       }

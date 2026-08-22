@@ -2298,17 +2298,16 @@
         "numberOnes": 6,
         "entries": [
           {
-            "country": "FR",
-            "name": "France",
+            "country": "EE",
+            "name": "Estonia",
             "position": 1,
             "movement": 1
           },
           {
-            "country": "IL",
-            "name": "Israel",
+            "country": "FR",
+            "name": "France",
             "position": 1,
-            "movement": null,
-            "status": "new"
+            "movement": 1
           },
           {
             "country": "NO",
@@ -2340,6 +2339,13 @@
             "name": "Belgium",
             "position": 2,
             "movement": 0
+          },
+          {
+            "country": "IL",
+            "name": "Israel",
+            "position": 2,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "UK",
@@ -2443,16 +2449,16 @@
             "status": "new"
           },
           {
-            "country": "PE",
-            "name": "Peru",
-            "position": 15,
+            "country": "SG",
+            "name": "Singapore",
+            "position": 17,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "SG",
-            "name": "Singapore",
-            "position": 16,
+            "country": "PE",
+            "name": "Peru",
+            "position": 18,
             "movement": null,
             "status": "new"
           },
@@ -2477,7 +2483,7 @@
           {
             "country": "VN",
             "name": "Vietnam",
-            "position": 30,
+            "position": 34,
             "movement": null,
             "status": "new"
           },
@@ -2487,12 +2493,6 @@
             "position": 36,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "EE",
-            "name": "Estonia",
-            "position": 42,
-            "movement": -40
           },
           {
             "country": "TH",
@@ -2537,13 +2537,6 @@
             "name": "Dominican Republic",
             "position": 185,
             "movement": -54
-          },
-          {
-            "country": "JP",
-            "name": "Japan",
-            "position": 198,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -3098,7 +3091,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
+            "position": 42,
             "movement": null,
             "status": "new"
           }
@@ -3271,7 +3264,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 80,
+            "position": 81,
             "movement": null,
             "status": "new"
           }
@@ -4216,8 +4209,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 54,
-            "movement": 13
+            "position": 55,
+            "movement": 12
           }
         ]
       }
@@ -4327,8 +4320,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 63,
-            "movement": 16
+            "position": 64,
+            "movement": 15
           }
         ]
       },
@@ -4789,7 +4782,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 39,
+            "position": 47,
             "movement": null,
             "status": "new"
           }

@@ -256,7 +256,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
+            "position": 21,
             "movement": null,
             "status": "new"
           },
@@ -546,7 +546,7 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 152,
+            "position": 186,
             "movement": null,
             "status": "new"
           }
@@ -1376,7 +1376,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
+            "position": 64,
             "movement": null,
             "status": "new"
           }
@@ -1499,7 +1499,7 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 176,
+            "position": 193,
             "movement": null,
             "status": "new"
           }
