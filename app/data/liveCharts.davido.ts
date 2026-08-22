@@ -145,16 +145,16 @@
             "movement": 85
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 32,
-            "movement": -12
-          },
-          {
             "country": "IE",
             "name": "Ireland",
             "position": 33,
             "movement": -7
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 33,
+            "movement": -12
           },
           {
             "country": "BW",
@@ -189,8 +189,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 85,
-            "movement": -12
+            "position": 86,
+            "movement": -15
           },
           {
             "country": "TD",
@@ -270,15 +270,15 @@
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 65,
+            "position": 89,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": -27
+            "position": 100,
+            "movement": -23
           }
         ]
       }
@@ -387,8 +387,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 184,
-            "movement": -24
+            "position": 172,
+            "movement": -9
           },
           {
             "country": "AE",
@@ -2170,7 +2170,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 55,
+            "position": 56,
             "movement": 12
           },
           {
@@ -2394,7 +2394,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 118,
+            "position": 130,
             "movement": null,
             "status": "new"
           }
@@ -2562,7 +2562,7 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 70,
+            "position": 71,
             "movement": -6
           }
         ]
@@ -2825,6 +2825,44 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Oriade",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 6,
+            "movement": -2
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 51,
+            "movement": -1
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 138,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 194,
+            "movement": -69
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Fans Mi",
     "platforms": [
       {
@@ -2981,38 +3019,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Oriade",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 6,
-            "movement": -2
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 51,
-            "movement": -1
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 138,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "FIA",
     "platforms": [
       {
@@ -3028,7 +3034,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 77,
+            "position": 80,
             "movement": 2
           }
         ]
