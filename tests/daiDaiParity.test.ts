@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { cardinalWord, ordinalWord } from "../app/lib/plural";
-import { weeksAtPeak, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
+import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
 import { daiDaiCertCount } from "../app/data/certifications";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -54,6 +54,13 @@ const DERIVED: Record<string, number | string | null> = {
   weeksFR: weeksAtPeak("Dai Dai", "FR"),
   weeksGLB: weeksAtPeak("Dai Dai", "GLB"),
   weeksGLBX: weeksAtPeak("Dai Dai", "GLBX"),
+  weeksAT: weeksAtPeak("Dai Dai", "AT"),
+  weeksBE: weeksAtPeak("Dai Dai", "BE"),
+  weeksNL: weeksAtPeak("Dai Dai", "NL"),
+  weeksSE: weeksAtPeak("Dai Dai", "SE"),
+  weeksNO: weeksAtPeak("Dai Dai", "NO"),
+  weeksUK: weeksAtPeak("Dai Dai", "UK"),
+  runUK: weeksOnChart("Dai Dai", "UK"),
   // These three pre-date the longevity work. The old pattern excluded braces,
   // so it had been silently skipping the three hero cards for as long as they
   // have been template literals — the parity check was covering 20 cards and

@@ -14,6 +14,13 @@ export const alt =
 const COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 const GOLD = "#ffb627";
 
+// Days at No. 1 on Spotify's Global Daily chart. Declared here rather than
+// written into the sentence below because the id underneath has to see it:
+// this figure is not part of `stats`, so a card whose only change was the
+// prose would keep its old id and stay frozen at the previous number in
+// every preview that had already cached it.
+const DAYS_AT_NO1 = 36;
+
 const stats = [
   { v: "No.1", l: "Global 200" },
   { v: `${daiDaiNumberOnes}`, l: "Country No.1s" },
@@ -24,7 +31,7 @@ const stats = [
 // Versioned by the stats on the card, so a share preview can't stay frozen at
 // last month's numbers once a platform has cached it.
 export const generateImageMetadata = () => [
-  { id: ogId(stats.map((s) => s.v).join("-")), alt, size, contentType },
+  { id: ogId([...stats.map((s) => s.v), DAYS_AT_NO1].join("-")), alt, size, contentType },
 ];
 
 export default function Image() {
@@ -108,7 +115,7 @@ export default function Image() {
                 maxWidth: 700,
               }}
             >
-              The official 2026 FIFA World Cup anthem — 35 days as the most-streamed song on
+              The official 2026 FIFA World Cup anthem — {DAYS_AT_NO1} days as the most-streamed song on
               Earth, live at the Final halftime show on 19 July.
             </div>
 

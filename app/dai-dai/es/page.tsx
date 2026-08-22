@@ -11,6 +11,7 @@ import {
   allChartItems,
   CHART_COUNTRIES,
   weeksAtPeak,
+  weeksOnChart,
 } from "../../data/charts";
 import { liveCharts } from "../../data/liveCharts";
 import { daiDaiCertCount } from "../../data/certifications";
@@ -55,6 +56,17 @@ const weeksCH = weeksAtPeak("Dai Dai", "CH");
 const weeksFR = weeksAtPeak("Dai Dai", "FR");
 const weeksGLB = weeksAtPeak("Dai Dai", "GLB");
 const weeksGLBX = weeksAtPeak("Dai Dai", "GLBX");
+// The national runs verified on 22 Aug 2026, each read in the chart body's own
+// week-by-week run rather than off a round-up. Norway carries no weeksOnChart:
+// VG-lista's song page says 10 weeks where the circulating figure said 13, and
+// an unpublished longevity figure is omitted here, never guessed.
+const weeksAT = weeksAtPeak("Dai Dai", "AT");
+const weeksBE = weeksAtPeak("Dai Dai", "BE");
+const weeksNL = weeksAtPeak("Dai Dai", "NL");
+const weeksSE = weeksAtPeak("Dai Dai", "SE");
+const weeksNO = weeksAtPeak("Dai Dai", "NO");
+const weeksUK = weeksAtPeak("Dai Dai", "UK");
+const runUK = weeksOnChart("Dai Dai", "UK");
 
 const conquestIntro = `“Dai Dai” ha entrado en las listas de ${conquestTotal} países — y ha llegado al número 1 en ${conquestNo1} de ellos. Los países en dorado son los número 1; el resto entró sin llegar a la cima.`;
 
@@ -75,7 +87,7 @@ const liveOnesLabel = `ahora mismo en las listas diarias de ${platformOnes
 export const metadata = pageMetadata({
   title: "Dai Dai — el himno del Mundial 2026 de Shakira y Burna Boy",
   description:
-    "“Dai Dai”, de Shakira y Burna Boy: 35 días como la canción más escuchada del mundo, número 1 en 27 países y el show de medio tiempo de la Final del Mundial.",
+    "“Dai Dai”, de Shakira y Burna Boy: 36 días como la canción más escuchada del mundo, número 1 en 27 países y el show de medio tiempo de la Final del Mundial.",
   path: ES_PATH,
   shareTitle: "La historia de Dai Dai — Shakira y Burna Boy",
   shareDescription:
@@ -137,7 +149,7 @@ export default function DaiDaiPageES() {
       scene: "streaming",
       kicker: "En streaming",
       title: "La canción más escuchada del planeta",
-      body: "“Dai Dai” lideró la lista Global Top Songs de Spotify tanto en su versión diaria como en la semanal: 35 días como la canción más escuchada del mundo, una racha recuperada en agosto, y la primera vez que un artista africano la encabeza.",
+      body: "“Dai Dai” lideró la lista Global Top Songs de Spotify tanto en su versión diaria como en la semanal: 36 días como la canción más escuchada del mundo, una racha recuperada en agosto, y la primera vez que un artista africano la encabeza.",
     },
     {
       scene: "certs",
@@ -163,7 +175,7 @@ export default function DaiDaiPageES() {
     { v: `${daiDaiChartEntryCount}`, l: "entradas en listas oficiales de todo el mundo — en listas nacionales de sencillos, más las dos listas globales de Billboard" },
     { v: `${daiDaiNumberOnes}`, l: "países con la canción en el número 1 de su lista oficial de sencillos — de Francia y Alemania a Emiratos Árabes Unidos" },
     { v: "N.º 1", l: `en las dos listas globales de Billboard — ${ordinalWord(weeksGLB, "es")} semana en la cima del Global 200 (algo inédito para un artista africano, y el segundo de Shakira), recuperada en la lista del 22 de agosto tras una semana en el N.º 3, y ${ordinalWord(weeksGLBX, "es")} semana consecutiva en el Global 200 Excl. US` },
-    { v: DAI_DAI_SPOTIFY_STREAMS, l: "reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano, tras 35 días como la canción más escuchada del planeta" },
+    { v: DAI_DAI_SPOTIFY_STREAMS, l: "reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano, tras 36 días como la canción más escuchada del planeta" },
     { v: `${daiDaiCertCount}`, l: "certificaciones — doble platino (latino) en EE. UU., platino en España, Francia, Eslovaquia, Portugal y Hungría, oro en Colombia, Grecia, Chequia e Italia, y plata en el Reino Unido" },
     { v: "19 jul", l: "Shakira y Burna Boy interpretaron “Dai Dai” en vivo en el primer show de medio tiempo de una Final del Mundial de la FIFA" },
   ];
@@ -173,8 +185,8 @@ export default function DaiDaiPageES() {
       label: "Las rachas en streaming",
       intro: "Las rachas diarias y semanales, todas todavía en marcha.",
       items: [
-        { v: "35 días", l: "en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y recuperado en agosto como la racha más larga de cualquier lanzamiento de 2026—; la canción con más días en el número 1 de todo 2026, ahora tres por delante de “End of Beginning” de Djo (32) y cuatro de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31); más de 62 días dentro del top 10 mundial y 90 en la lista" },
-        { v: "5 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify, en su 12.ª semana en ella — con un pico de 40,28 millones de reproducciones en una sola semana" },
+        { v: "36 días", l: "en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y recuperado en agosto como la racha más larga de cualquier lanzamiento de 2026—; la canción con más días en el número 1 de todo 2026, ahora cuatro por delante de “End of Beginning” de Djo (32) y cinco de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31); más de 65 días dentro del top 10 mundial y 93 en la lista" },
+        { v: "6 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify, en su 13.ª semana en ella — con un pico de 40,28 millones de reproducciones en una sola semana" },
         { v: "58 días", l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music" },
         { v: "40 días", l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes" },
         { v: "N.º 1", l: liveOnesLabel },
@@ -187,9 +199,14 @@ export default function DaiDaiPageES() {
         { v: `${weeksDE} semanas`, l: "en el número 1 de la lista oficial de sencillos de Alemania — y elegida Sommerhit 2026, la canción del verano del país, por GfK Entertainment, tras casi 60 millones de reproducciones alemanas" },
         { v: `${weeksCH} semanas`, l: "en el número 1 de la lista oficial de Suiza — la racha más larga de cualquier canción en el país en lo que va de año" },
         { v: `${weeksFR} semanas`, l: "en el número 1 de la lista oficial de sencillos de Francia (SNEP)" },
+        { v: `${weeksAT} semanas`, l: "en el número 1 del Ö3 Austria Top 40 — una racha ininterrumpida desde finales de junio, con 13 semanas en lista" },
+        { v: `${weeksBE} semanas`, l: "en el número 1 del Ultratop 50 de Valonia — nueve seguidas, y número 1 también en Flandes" },
+        { v: `${weeksNL} semanas`, l: "en el número 1 del Single Top 100 neerlandés — dos en junio y cinco más desde finales de julio, en una permanencia de 13 semanas" },
+        { v: `${weeksSE} semanas`, l: "en el número 1 de la Sverigetopplistan sueca, recuperado en la semana 34 — 14 semanas en lista" },
+        { v: `${weeksNO} semanas`, l: "en el número 1 de la VG-lista Topp 40 de Noruega — cuatro semanas consecutivas, desde la semana 31" },
         { v: "N.º 1", l: "en la lista IMI International Top 20 Singles de la India — la primera canción de Burna Boy que encabeza una lista en ese país" },
         { v: "N.º 1", l: "en el Official MENA Chart Top 20 —todavía en la cima en su última semana— y en la lista US World Digital Song Sales de Billboard" },
-        { v: "N.º 2", l: "en la lista oficial de sencillos del Reino Unido — la primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira" },
+        { v: "N.º 2", l: `en la lista oficial de sencillos del Reino Unido — ${weeksUK}.ª semana en ese pico, ya con ${runUK} semanas en lista. La primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira` },
         { v: "N.º 3", l: "en el Billboard Canadian Hot 100 — un nuevo pico y el primer top 10 de Burna Boy en Canadá, donde su mejor posición había sido el N.º 14. Es también el primer top 10 canadiense de Shakira desde “She Wolf” en 2009" },
         { v: "N.º 17", l: "en el Billboard Hot 100 de Estados Unidos — un salto del 42 al 17 en la lista del 1 de agosto, el pico más alto de una canción mundialista en la historia del Hot 100. Luminate registró 8,6 millones de reproducciones en Estados Unidos (+69 %), 13,9 millones de audiencia radial (+11 %) y 7.000 copias vendidas (+322 %) en la semana de seguimiento del 17 al 23 de julio" },
         { v: "N.º 1", l: "en el Big Top 40 del Reino Unido — la cuenta atrás nacional de las cadenas Capital y Heart, con Burna Boy recibiendo la placa de número 1" },
@@ -316,7 +333,7 @@ export default function DaiDaiPageES() {
             global1Note: "Primer artista africano en lograrlo · el 2.º de Shakira",
             no1sLabel: "países en el n.º 1",
             no1sLink: "Ver todas las posiciones de Dai Dai →",
-            streamingNote: "Diaria y semanal · 35 días como la canción más escuchada del mundo",
+            streamingNote: "Diaria y semanal · 36 días como la canción más escuchada del mundo",
             certsLabel: "certificaciones de Dai Dai",
             certsNote: "Doble platino (latino) en EE. UU. · platino en 5 países más",
             certsLink: "Ver las certificaciones de Dai Dai →",

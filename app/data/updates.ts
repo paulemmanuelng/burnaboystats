@@ -35,6 +35,24 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-22",
+    category: "Streaming",
+    text: "A 36th day as the most-streamed song on Earth: “Dai Dai” climbs two places back to No. 1 on Spotify's Global Daily Top Songs chart for 21 August, with 3,768,605 filtered streams. That puts it four days clear of Djo's “End of Beginning” (32) as the longest run at No. 1 by any song in 2026 — 65 days inside the global Top 10 and 93 days on the chart, both still counting.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-22",
+    category: "Streaming",
+    text: "“Dai Dai” holds the summit of Spotify's Weekly Top Songs Global with 26,441,866 filtered streams — a 6th week atop the weekly list, in its 13th week on it.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-22",
+    category: "Charts",
+    text: "Six national No. 1s in a single week, every run still lengthening: “Dai Dai” holds the summit in Austria for a 9th week and in Belgium's Wallonia for a 9th, in Germany for an 8th, the Netherlands for a 7th and Norway for a 4th — and climbs back to the top in Sweden for a 6th week there. In the UK it spends a 5th week at its No. 2 peak, 12 weeks into the run. Every figure was counted in the chart body's own week-by-week run rather than taken from a round-up.",
+    href: "/records/charts",
+  },
+  {
     date: "2026-08-21",
     category: "Certifications",
     text: "Two artists join the Afrobeats Board: Victony (22 certifications across 4 countries, 40 chart entries) and Fireboy DML (36 across 6, 67 entries — including a French Diamond and a UK 3× Platinum for “Peru”). Both swept the same way as the other nine: every plaque read in an issuing body's own register, every chart peak in the chart body's own run. The board is now 11 artists and 801 plaques.",

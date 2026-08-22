@@ -71,7 +71,7 @@ const EN_SCENE: SceneCopy = {
   global1Note: "First African artist ever · Shakira's 2nd",
   no1sLabel: "countries at No. 1",
   no1sLink: "See every Dai Dai chart position →",
-  streamingNote: "Daily & Weekly · 35 days as Earth's most-streamed song",
+  streamingNote: "Daily & Weekly · 36 days as Earth's most-streamed song",
   certsLabel: "certifications for Dai Dai",
   certsNote: "2× Platinum (Latin) US · Platinum in 5 more",
   certsLink: "See the Dai Dai certifications →",
@@ -115,7 +115,7 @@ function buildSteps(p: Props): Step[] {
       scene: "streaming",
       kicker: "On streaming",
       title: "The most-streamed song on Earth",
-      body: "“Dai Dai” topped Spotify's Global Top Songs chart on both the Daily and Weekly lists — 35 days as the single most-streamed song on the planet, a run reclaimed in August, and the first time an African artist has ever led it.",
+      body: "“Dai Dai” topped Spotify's Global Top Songs chart on both the Daily and Weekly lists — 36 days as the single most-streamed song on the planet, a run reclaimed in August, and the first time an African artist has ever led it.",
     },
     {
       scene: "certs",

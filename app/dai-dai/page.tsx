@@ -6,7 +6,7 @@ import KeepExploring from "../components/KeepExploring";
 import DaiDaiNumbers from "../components/DaiDaiNumbers";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { lastUpdated } from "../lib/api";
-import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES, weeksAtPeak } from "../data/charts";
+import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES, weeksAtPeak, weeksOnChart } from "../data/charts";
 import { liveCharts } from "../data/liveCharts";
 import { daiDaiCertCount } from "../data/certifications";
 import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS } from "../data/daiDai";
@@ -39,6 +39,17 @@ const weeksCH = weeksAtPeak("Dai Dai", "CH");
 const weeksFR = weeksAtPeak("Dai Dai", "FR");
 const weeksGLB = weeksAtPeak("Dai Dai", "GLB");
 const weeksGLBX = weeksAtPeak("Dai Dai", "GLBX");
+// The national runs verified on 22 Aug 2026, each read in the chart body's own
+// week-by-week run rather than off a round-up. Norway carries no weeksOnChart:
+// VG-lista's song page says 10 weeks where the circulating figure said 13, and
+// an unpublished longevity figure is omitted here, never guessed.
+const weeksAT = weeksAtPeak("Dai Dai", "AT");
+const weeksBE = weeksAtPeak("Dai Dai", "BE");
+const weeksNL = weeksAtPeak("Dai Dai", "NL");
+const weeksSE = weeksAtPeak("Dai Dai", "SE");
+const weeksNO = weeksAtPeak("Dai Dai", "NO");
+const weeksUK = weeksAtPeak("Dai Dai", "UK");
+const runUK = weeksOnChart("Dai Dai", "UK");
 
 const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries — and reached No. 1 in ${conquestNo1} of them. The No. 1 countries are gold; the rest charted without topping.`;
 
@@ -63,7 +74,7 @@ const liveOnesLabel = `right now on the daily charts of ${platformOnes
 export const metadata = pageMetadata({
   title: "Dai Dai — Shakira & Burna Boy's 2026 World Cup Anthem",
   description:
-    "Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: 35 days as Earth's most-streamed song, No. 1 in 27 countries, and the Final halftime show.",
+    "Shakira & Burna Boy's “Dai Dai” — the World Cup anthem: 36 days as Earth's most-streamed song, No. 1 in 27 countries, and the Final halftime show.",
   path: "/dai-dai",
   shareTitle: "The Dai Dai Story — Shakira & Burna Boy",
   shareDescription: "Shakira & Burna Boy's World Cup anthem — No.1 worldwide, and performed at the Final halftime show.",
@@ -163,7 +174,7 @@ export default function DaiDaiPage() {
     { v: `${daiDaiChartEntryCount}`, l: "official chart entries worldwide — on national singles charts across the globe, plus both of Billboard's global charts" },
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "No. 1", l: `on both Billboard global charts — a ${weeksGLB}th week atop the Global 200 (a first for an African artist, and Shakira's 2nd), retaken on the chart dated 22 August after a week at No. 3, and an ${weeksGLBX}th consecutive week atop the Global 200 Excl. US` },
-    { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 35 days as the most-streamed song on Earth" },
+    { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 36 days as the most-streamed song on Earth" },
     { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, France, Slovakia, Portugal & Hungary, Gold in Colombia, Greece, the Czech Republic & Italy, and Silver in the UK" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
@@ -173,8 +184,8 @@ export default function DaiDaiPage() {
       label: "The streaming streaks",
       intro: "The daily and weekly runs — every one still counting.",
       items: [
-        { v: "35 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, now three clear of Djo's “End of Beginning” (32) and four of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31); past 62 days inside the global Top 10 and 90 days on the chart, both still counting" },
-        { v: "5 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, in its 12th week on it — peaking at 40.28M streams in a single week" },
+        { v: "36 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, now four clear of Djo's “End of Beginning” (32) and five of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31); past 65 days inside the global Top 10 and 93 days on the chart, both still counting" },
+        { v: "6 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, in its 13th week on it — peaking at 40.28M streams in a single week" },
         { v: "58 days", l: "at No. 1 on Apple Music's European songs chart — plus 11 days atop the worldwide Apple Music chart" },
         { v: "40 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
         { v: "No. 1", l: liveOnesLabel },
@@ -187,9 +198,14 @@ export default function DaiDaiPage() {
         { v: `${weeksDE} weeks`, l: "at No. 1 on Germany's official singles chart — and named the country's official Sommerhit 2026 by GfK Entertainment, which compiles the charts, after nearly 60 million German streams" },
         { v: `${weeksCH} weeks`, l: "at No. 1 on Switzerland's official chart — the longest run at No. 1 by any song there so far this year" },
         { v: `${weeksFR} weeks`, l: "at No. 1 on France's Official Singles Chart (SNEP)" },
+        { v: `${weeksAT} weeks`, l: "at No. 1 on Austria's Ö3 Top 40 — an unbroken run since late June, and 13 weeks on the chart" },
+        { v: `${weeksBE} weeks`, l: "at No. 1 on the Ultratop 50 in Wallonia — nine straight, and No. 1 in Flanders too" },
+        { v: `${weeksNL} weeks`, l: "at No. 1 on the Dutch Single Top 100 — two in June, then five more from late July, in a 13-week run" },
+        { v: `${weeksSE} weeks`, l: "at No. 1 on Sweden's Sverigetopplistan, retaken in week 34 — 14 weeks on the list" },
+        { v: `${weeksNO} weeks`, l: "at No. 1 on Norway's VG-lista Topp 40 — four consecutive weeks, from week 31" },
         { v: "No. 1", l: "India's IMI International Top 20 Singles Chart — the first Burna Boy song to top a chart in India" },
         { v: "No. 1", l: "Official MENA Chart Top 20 — still on top in the latest week — and Billboard's US World Digital Song Sales chart" },
-        { v: "No. 2", l: "UK Official Singles Chart — the first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)" },
+        { v: "No. 2", l: `UK Official Singles Chart — a ${weeksUK}th week at that peak, ${runUK} weeks in. The first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)` },
         { v: "No. 3", l: "Billboard Canadian Hot 100 — a new peak and Burna Boy's first-ever top 10 in Canada, where his best song placing had been No. 14. It is also Shakira's first Canadian top 10 since “She Wolf” in 2009" },
         { v: "No. 17", l: "Billboard Hot 100 (US) — a 42-to-17 jump on the chart dated 1 August, the highest-charting World Cup song in Hot 100 history. Luminate logged 8.6M US streams (+69%), 13.9M radio airplay audience (+11%) and 7,000 sold (+322%) in the 17–23 July tracking week" },
         { v: "No. 1", l: "on the UK's Big Top 40 — the Capital and Heart networks' national countdown, with Burna Boy presented the No. 1 plaque" },
