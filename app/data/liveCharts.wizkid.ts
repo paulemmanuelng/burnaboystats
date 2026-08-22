@@ -242,16 +242,16 @@
             "movement": 19
           },
           {
+            "country": "DE",
+            "name": "Germany",
+            "position": 159,
+            "movement": -14
+          },
+          {
             "country": "KW",
             "name": "Kuwait",
             "position": 160,
             "movement": 16
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 163,
-            "movement": -18
           },
           {
             "country": "NP",
@@ -295,12 +295,6 @@
             "name": "Zimbabwe",
             "position": 75,
             "movement": -5
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 138,
-            "movement": -22
           }
         ]
       },
@@ -1551,7 +1545,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
+            "position": 57,
             "movement": null,
             "status": "new"
           }
@@ -1769,7 +1763,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 45,
             "movement": null,
             "status": "new"
           },
@@ -1887,44 +1881,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/09422f55197ec57417a5742ce5801f13/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ojuelegba",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 66,
-            "movement": 20
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 99,
-            "movement": -19
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 146,
-            "movement": -30
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 154,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sponono",
@@ -2049,6 +2005,38 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ojuelegba",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 66,
+            "movement": 20
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 146,
+            "movement": -30
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 154,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "One Condition",
@@ -2329,8 +2317,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 55,
-            "movement": -36
+            "position": 57,
+            "movement": -38
           }
         ]
       }

@@ -252,6 +252,26 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 13,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -279,19 +299,6 @@
             "name": "Nigeria",
             "position": 5,
             "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 13,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -661,8 +668,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 73,
-            "movement": -19
+            "position": 75,
+            "movement": -21
           },
           {
             "country": "MR",

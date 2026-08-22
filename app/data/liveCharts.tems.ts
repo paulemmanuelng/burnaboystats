@@ -274,8 +274,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 45,
-            "movement": -2
+            "position": 44,
+            "movement": -1
           },
           {
             "country": "MG",
@@ -1163,12 +1163,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 3,
-            "movement": -1
-          },
-          {
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 3,
@@ -1176,10 +1170,10 @@
             "status": "new"
           },
           {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 11,
-            "movement": -4
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 4,
+            "movement": -2
           },
           {
             "country": "IN",
@@ -1197,14 +1191,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": -3
+            "position": 19,
+            "movement": -7
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 19,
-            "movement": -5
+            "position": 23,
+            "movement": -9
+          },
+          {
+            "country": "HU",
+            "name": "Hungary",
+            "position": 26,
+            "movement": -19
           },
           {
             "country": "KG",
@@ -1240,7 +1240,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 186,
+            "position": 192,
             "movement": null,
             "status": "new"
           }
@@ -1792,8 +1792,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": 1
+            "position": 20,
+            "movement": -3
           },
           {
             "country": "MU",
@@ -1906,7 +1906,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 45,
             "movement": null,
             "status": "new"
           },
