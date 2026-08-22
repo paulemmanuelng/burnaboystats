@@ -145,16 +145,16 @@
             "movement": 85
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 31,
-            "movement": -8
-          },
-          {
             "country": "IE",
             "name": "Ireland",
             "position": 33,
             "movement": -7
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 35,
+            "movement": -6
           },
           {
             "country": "BW",
@@ -190,7 +190,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 79,
-            "movement": -10
+            "movement": -13
           },
           {
             "country": "TD",
@@ -270,7 +270,7 @@
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 19,
+            "position": 21,
             "movement": null,
             "status": "new"
           },
@@ -278,7 +278,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 100,
-            "movement": -13
+            "movement": -9
           }
         ]
       }
@@ -387,8 +387,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 157,
-            "movement": 4
+            "position": 179,
+            "movement": 14
           },
           {
             "country": "AE",
@@ -471,7 +471,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 51,
+            "position": 83,
             "movement": null,
             "status": "new"
           }
@@ -694,7 +694,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 54,
+            "position": 63,
             "movement": null,
             "status": "new"
           }
@@ -894,7 +894,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
+            "position": 62,
             "movement": null,
             "status": "new"
           }
@@ -1707,8 +1707,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
-            "movement": -52
+            "position": 77,
+            "movement": -61
           }
         ]
       }
@@ -2019,8 +2019,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 63,
-            "movement": 18
+            "position": 64,
+            "movement": 17
           },
           {
             "country": "BF",
@@ -2232,8 +2232,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 44,
-            "movement": 2
+            "position": 45,
+            "movement": 1
           },
           {
             "country": "BF",
@@ -2991,8 +2991,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 79,
-            "movement": 3
+            "position": 78,
+            "movement": 4
           }
         ]
       }
@@ -3213,7 +3213,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 59,
+            "position": 68,
             "movement": null,
             "status": "new"
           }
@@ -3233,7 +3233,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 90,
+            "position": 99,
             "movement": null,
             "status": "new"
           }
@@ -3253,7 +3253,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 66,
+            "position": 75,
             "movement": null,
             "status": "new"
           }
@@ -3261,26 +3261,6 @@
       }
     ],
     "kind": "song"
-  },
-  {
-    "title": "Doe",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 85,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/af0fe2d45c77e4c6ce3a82432577c861/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Father",
@@ -3300,6 +3280,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/132d4358890f5675bd291681812647e5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Doe",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 94,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/af0fe2d45c77e4c6ce3a82432577c861/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Activate",
