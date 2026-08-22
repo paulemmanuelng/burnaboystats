@@ -265,7 +265,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 14,
+            "position": 16,
             "movement": null,
             "status": "new"
           }
@@ -424,7 +424,7 @@
           {
             "country": "VN",
             "name": "Vietnam",
-            "position": 94,
+            "position": 116,
             "movement": null,
             "status": "new"
           }
@@ -1355,8 +1355,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 47,
-            "movement": -40
+            "position": 49,
+            "movement": -42
           }
         ]
       }
@@ -1450,7 +1450,7 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 81,
+            "position": 87,
             "movement": null,
             "status": "new"
           }
@@ -1471,8 +1471,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 92,
-            "movement": null,
-            "status": "new"
+            "movement": -7
           }
         ]
       }
