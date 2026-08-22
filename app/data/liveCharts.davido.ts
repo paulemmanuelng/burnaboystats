@@ -153,8 +153,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 36,
-            "movement": -3
+            "position": 35,
+            "movement": -2
           },
           {
             "country": "IE",
@@ -195,8 +195,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 79,
-            "movement": -6
+            "position": 80,
+            "movement": -1
           },
           {
             "country": "SN",
@@ -271,13 +271,13 @@
             "country": "TR",
             "name": "Turkey",
             "position": 41,
-            "movement": -4
+            "movement": 4
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
-            "movement": -7
+            "position": 100,
+            "movement": -8
           }
         ]
       }
@@ -405,7 +405,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 183,
+            "position": 175,
             "movement": null,
             "status": "new"
           },
@@ -485,13 +485,13 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": -4
+            "position": 8,
+            "movement": -5
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 140,
+            "position": 164,
             "movement": null,
             "status": "new"
           }
@@ -717,8 +717,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
-            "movement": -61
+            "position": 95,
+            "movement": -73
           }
         ]
       },
@@ -900,7 +900,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
+            "position": 96,
             "movement": null,
             "status": "new"
           }
@@ -1060,8 +1060,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 81,
-            "movement": -18
+            "position": 82,
+            "movement": -19
           }
         ]
       },
@@ -1379,7 +1379,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
+            "position": 9,
             "movement": null,
             "status": "new"
           }
@@ -1753,8 +1753,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
-            "movement": -69
+            "position": 110,
+            "movement": -81
           }
         ]
       }
@@ -2015,8 +2015,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 181,
-            "movement": -17
+            "position": 182,
+            "movement": -18
           }
         ]
       },
@@ -2114,8 +2114,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 183,
-            "movement": -20
+            "position": 184,
+            "movement": -21
           }
         ]
       },
@@ -2494,8 +2494,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 166,
-            "movement": -17
+            "position": 167,
+            "movement": -18
           }
         ]
       }
@@ -2715,8 +2715,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 171,
-            "movement": -17
+            "position": 172,
+            "movement": -18
           }
         ]
       },
@@ -2826,8 +2826,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 193,
-            "movement": -18
+            "position": 194,
+            "movement": -19
           }
         ]
       },
@@ -3058,8 +3058,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 184,
-            "movement": -18
+            "position": 185,
+            "movement": -19
           }
         ]
       }
@@ -3216,8 +3216,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 84,
-            "movement": -18
+            "position": 85,
+            "movement": -19
           }
         ]
       }
@@ -3235,7 +3235,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 89,
+            "position": 101,
             "movement": null,
             "status": "new"
           }
@@ -3294,7 +3294,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 120,
+            "position": 132,
             "movement": null,
             "status": "new"
           }
@@ -3324,25 +3324,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/132d4358890f5675bd291681812647e5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Baddest Boy",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 96,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Activate",
     "platforms": [
       {
@@ -3362,7 +3343,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d5dfc880396e953e316456a394d7353/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Doe",
+    "title": "Baddest Boy",
     "platforms": [
       {
         "platform": "iTunes",
@@ -3371,14 +3352,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
-            "movement": -80
+            "position": 108,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/af0fe2d45c77e4c6ce3a82432577c861/500x500-000000-80-0-0.jpg"
+    "kind": "song"
   },
   {
     "title": "Bum Bum",
@@ -3400,6 +3381,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/40df9e584ee9772e237099eb66366cd1/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Doe",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 127,
+            "movement": -92
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/af0fe2d45c77e4c6ce3a82432577c861/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Very Special",
     "platforms": [
       {
@@ -3409,8 +3409,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 198,
-            "movement": -18
+            "position": 199,
+            "movement": -19
           }
         ]
       }
