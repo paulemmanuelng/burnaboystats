@@ -379,6 +379,38 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 25,
+            "movement": 4
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 82,
+            "movement": 2
+          },
+          {
+            "country": "VN",
+            "name": "Vietnam",
+            "position": 94,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MX",
+            "name": "Mexico",
+            "position": 199,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -400,31 +432,6 @@
             "country": "MV",
             "name": "Maldives",
             "position": 158,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 25,
-            "movement": 4
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 82,
-            "movement": 2
-          },
-          {
-            "country": "MX",
-            "name": "Mexico",
-            "position": 150,
             "movement": null,
             "status": "new"
           }
@@ -1350,7 +1357,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 144,
+            "position": 169,
             "movement": null,
             "status": "new"
           }
@@ -1382,8 +1389,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 30,
-            "movement": -29
+            "position": 47,
+            "movement": -46
           }
         ]
       }

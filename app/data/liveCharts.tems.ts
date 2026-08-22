@@ -1184,15 +1184,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 11,
-            "movement": 6
-          },
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 18,
-            "movement": null,
-            "status": "new"
+            "position": 15,
+            "movement": 2
           },
           {
             "country": "NG",
@@ -1205,6 +1198,13 @@
             "name": "Romania",
             "position": 23,
             "movement": -9
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 23,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "HU",
@@ -1227,9 +1227,15 @@
           {
             "country": "CZ",
             "name": "Czech Republic",
-            "position": 53,
+            "position": 71,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 80,
+            "movement": -8
           },
           {
             "country": "AZ",
@@ -1238,16 +1244,10 @@
             "movement": -24
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 81,
-            "movement": -9
-          },
-          {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 199,
-            "movement": -103
+            "position": 200,
+            "movement": -104
           }
         ]
       },
@@ -1906,8 +1906,8 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 34,
-            "movement": -2
+            "position": 35,
+            "movement": -3
           },
           {
             "country": "NG",
@@ -1919,7 +1919,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 72,
+            "position": 73,
             "movement": null,
             "status": "new"
           }

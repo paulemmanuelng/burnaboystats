@@ -533,7 +533,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 124,
+            "position": 153,
             "movement": null,
             "status": "new"
           }
@@ -734,7 +734,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 44,
+            "position": 49,
             "movement": null,
             "status": "new"
           }
@@ -918,19 +918,6 @@
             "name": "Micronesia",
             "position": 160,
             "movement": 34
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 179,
-            "movement": null,
-            "status": "new"
           }
         ]
       }

@@ -268,13 +268,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TR",
-            "name": "Turkey",
-            "position": 89,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
             "position": 98,
@@ -2099,8 +2092,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 61,
-            "movement": 20
+            "position": 62,
+            "movement": 19
           },
           {
             "country": "BF",
@@ -2166,8 +2159,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 42,
-            "movement": 4
+            "position": 43,
+            "movement": 3
           },
           {
             "country": "BF",
@@ -2396,7 +2389,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 132,
+            "position": 170,
             "movement": null,
             "status": "new"
           }
@@ -2692,6 +2685,57 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Oriade",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 6,
+            "movement": -2
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 51,
+            "movement": -1
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 138,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 194,
+            "movement": -69
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TR",
+            "name": "Turkey",
+            "position": 111,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Guide",
     "platforms": [
       {
@@ -2824,44 +2868,6 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Oriade",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 6,
-            "movement": -2
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 51,
-            "movement": -1
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 138,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 194,
-            "movement": -69
-          }
-        ]
-      }
-    ],
-    "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
