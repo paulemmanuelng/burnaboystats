@@ -599,3 +599,15 @@
   inset: -8px 0;
 }
 .badgeMore[aria-expanded="true"] { color: var(--gold); border-color: var(--gold); }
+
+/* Starrgirl on screen 02 — the headline figure and its eyebrow only, matching
+   the desktop page's own certification figure. Solid #f06ae0 rather than the
+   name's gradient: this hero sits over the artist portrait, and a flat colour
+   holds up over a photograph where clipped gradient text would not.
+
+   Scoped to [data-brand], which is what keeps Burna Boy's certifications
+   screen — the other caller of this component — on the site's gold. */
+[data-brand="starrgirl"] .total,
+[data-brand="starrgirl"] .kicker {
+  color: #f06ae0;
+}

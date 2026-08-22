@@ -168,6 +168,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         covers={mobileCovers}
         portrait={a.image}
         portraitSlug={a.slug}
+        brand={a.brand}
         chartsHref={a.charts.length > 0 ? `/afrobeats/${a.slug}/charts` : undefined}
         liveHref={live ? `/afrobeats/${a.slug}/live` : undefined}
         chartsNote={chartsNote}
