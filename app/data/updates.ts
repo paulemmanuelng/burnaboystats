@@ -37,6 +37,12 @@ export const updates: Update[] = [
   {
     date: "2026-08-22",
     category: "Streaming",
+    text: "A 28th day at the top of Spotify's Global Music Video chart — a lead that has stopped being a contest. The next-longest run any song has managed there is three days.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-22",
+    category: "Streaming",
     text: "A 36th day as the most-streamed song on Earth: “Dai Dai” climbs two places back to No. 1 on Spotify's Global Daily Top Songs chart for 21 August, with 3,768,605 filtered streams. That puts it four days clear of Djo's “End of Beginning” (32) as the longest run at No. 1 by any song in 2026 — 65 days inside the global Top 10 and 93 days on the chart, both still counting.",
     href: "/dai-dai",
   },
