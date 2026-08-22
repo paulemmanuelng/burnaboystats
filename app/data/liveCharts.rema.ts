@@ -249,7 +249,7 @@
           {
             "country": "SI",
             "name": "Slovenia",
-            "position": 7,
+            "position": 12,
             "movement": null,
             "status": "new"
           },
@@ -295,7 +295,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 5,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -427,8 +427,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 162,
-            "movement": 2
+            "position": 193,
+            "movement": -31
           }
         ]
       }
@@ -534,8 +534,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 25,
-            "movement": 1
+            "position": 28,
+            "movement": -2
           },
           {
             "country": "BF",
@@ -546,7 +546,7 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 116,
+            "position": 131,
             "movement": null,
             "status": "new"
           }
@@ -814,14 +814,95 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 167,
-            "movement": 7
+            "position": 180,
+            "movement": -13
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e26def467fccdcadca010b8c0f00fd0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Soweto",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 56,
+            "movement": 66
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 83,
+            "movement": 9
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 119,
+            "movement": 8
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 145,
+            "movement": -23
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 154,
+            "movement": -82
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 162,
+            "movement": 2
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 168,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 190,
+            "movement": -24
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 198,
+            "movement": -7
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 198,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "HEIS",
@@ -899,74 +980,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Soweto",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 56,
-            "movement": 66
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 83,
-            "movement": 9
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 119,
-            "movement": 8
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 145,
-            "movement": -23
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 154,
-            "movement": -82
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 162,
-            "movement": 2
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 168,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 190,
-            "movement": -24
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 198,
-            "movement": -7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Who's Dat Girl",
     "platforms": [
       {
@@ -1019,8 +1032,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 54,
-            "movement": -5
+            "position": 74,
+            "movement": -20
           }
         ]
       }
@@ -1231,8 +1244,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
-            "movement": -1
+            "position": 51,
+            "movement": -14
           }
         ]
       },
@@ -1296,6 +1309,50 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Lalala",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 199,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 188,
+            "movement": 5
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 157,
+            "movement": -19
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Trouble Maker",
@@ -1388,37 +1445,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Lalala",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 188,
-            "movement": 5
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 157,
-            "movement": -19
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "RAVAGE - EP",
     "platforms": [
       {
@@ -1454,7 +1480,7 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 5,
+            "position": 6,
             "movement": null,
             "status": "new"
           }
@@ -1560,25 +1586,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Fi Kan We Kan",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 178,
-            "movement": 16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Commando - EP",
