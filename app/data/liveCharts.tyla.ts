@@ -479,38 +479,38 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 37,
-            "movement": -4
+            "position": 35,
+            "movement": 2
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 81,
-            "movement": -19
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 98,
-            "movement": -18
+            "position": 88,
+            "movement": -7
           },
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 124,
-            "movement": -5
+            "position": 114,
+            "movement": 10
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 117,
+            "movement": -19
           },
           {
             "country": "DE",
             "name": "Germany",
             "position": 167,
-            "movement": -15
+            "movement": 0
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 178,
-            "movement": -19
+            "position": 189,
+            "movement": -11
           }
         ]
       },
@@ -607,14 +607,14 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 123,
-            "movement": 2
+            "position": 122,
+            "movement": 1
           },
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 184,
-            "movement": -12
+            "position": 163,
+            "movement": 21
           }
         ]
       },
@@ -928,7 +928,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 180,
+            "position": 179,
             "movement": null,
             "status": "new"
           }
@@ -1057,8 +1057,8 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 91,
-            "movement": 14
+            "position": 98,
+            "movement": -7
           }
         ]
       }

@@ -277,6 +277,12 @@
             "position": 188,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 198,
+            "movement": -5
           }
         ]
       },
@@ -446,55 +452,55 @@
             "country": "KE",
             "name": "Kenya",
             "position": 21,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 28,
+            "position": 30,
             "movement": -2
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 39,
-            "movement": -1
+            "position": 38,
+            "movement": 1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
-            "movement": 2
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 77,
-            "movement": -3
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 83,
+            "position": 73,
             "movement": -4
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 85,
+            "position": 73,
+            "movement": 12
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 76,
+            "movement": 1
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 87,
+            "movement": -4
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 109,
             "movement": 1
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 101,
-            "movement": -1
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 110,
-            "movement": 12
+            "position": 118,
+            "movement": -17
           }
         ]
       },
@@ -660,8 +666,8 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 56,
-            "movement": 6
+            "position": 47,
+            "movement": 9
           }
         ]
       }
@@ -1967,8 +1973,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
-            "movement": 5
+            "position": 52,
+            "movement": 3
           }
         ]
       }
@@ -2223,21 +2229,45 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 164,
-            "movement": 8
+            "position": 158,
+            "movement": 6
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 200,
-            "movement": null,
-            "status": "new"
+            "position": 195,
+            "movement": 5
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3cda4cca35e5a322d6ad9e71c49dbecf/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Call Me Every Day",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 105,
+            "movement": 5
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 148,
+            "movement": 45
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cc269116fe4da8b1054a18ef7f1e39a8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Tonight",
@@ -2261,39 +2291,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 153,
-            "movement": 0
+            "position": 146,
+            "movement": 7
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Call Me Every Day",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 110,
-            "movement": -21
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 193,
-            "movement": -22
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cc269116fe4da8b1054a18ef7f1e39a8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DYNAMITE",
@@ -2325,7 +2330,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 57,
-            "movement": -38
+            "movement": -33
           }
         ]
       }
@@ -2491,6 +2496,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Alive",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 128,
+            "movement": 14
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Can't Believe",
     "platforms": [
       {
@@ -2528,25 +2552,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/afea1bda5fb6b9c56301ea949d4516bf/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Alive",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 142,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SoundMan, Vol. 1",
