@@ -165,8 +165,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 38,
-            "movement": -3
+            "position": 36,
+            "movement": -6
           },
           {
             "country": "IE",
@@ -193,16 +193,16 @@
             "movement": 29
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 81,
-            "movement": -1
-          },
-          {
             "country": "SN",
             "name": "Senegal",
             "position": 86,
             "movement": 11
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 89,
+            "movement": -9
           },
           {
             "country": "AO",
@@ -391,16 +391,16 @@
             "movement": -15
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 181,
+            "movement": -26
+          },
+          {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 188,
             "movement": 5
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 196,
-            "movement": -21
           }
         ]
       },
@@ -1732,8 +1732,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 21,
-            "movement": null,
-            "status": "new"
+            "movement": -17
           }
         ]
       }
@@ -2169,13 +2168,13 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 57,
-            "movement": 19
+            "movement": -3
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 62,
-            "movement": 5
+            "position": 63,
+            "movement": -1
           }
         ]
       },
@@ -2206,69 +2205,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f5e2eeac47abb6bf1bcc293125e0016/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Tell Everybody",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 73,
-            "movement": -3
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 75,
-            "movement": 17
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 103,
-            "movement": -9
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 6,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 54,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 112,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Amazing Grace",
@@ -2378,8 +2314,7 @@
             "country": "AI",
             "name": "Anguilla",
             "position": 56,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -2440,6 +2375,69 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e8b1b523f139f23bac60bc70528f386a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Tell Everybody",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 73,
+            "movement": -3
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 75,
+            "movement": 17
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 103,
+            "movement": -9
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 6,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 54,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 112,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "If",
     "platforms": [
       {
@@ -2461,14 +2459,14 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 40,
-            "movement": 8
+            "position": 41,
+            "movement": -1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 48,
-            "movement": 9
+            "movement": -3
           },
           {
             "country": "MZ",
@@ -2659,13 +2657,13 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 63,
-            "movement": 15
+            "position": 62,
+            "movement": -2
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 143,
+            "position": 156,
             "movement": null,
             "status": "new"
           }

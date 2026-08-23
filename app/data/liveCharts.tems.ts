@@ -93,8 +93,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 20,
-            "movement": 1
+            "position": 19,
+            "movement": 2
           },
           {
             "country": "CV",
@@ -226,7 +226,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 48,
-            "movement": 3
+            "movement": 2
           },
           {
             "country": "BZ",
@@ -364,7 +364,7 @@
             "country": "AU",
             "name": "Australia",
             "position": 83,
-            "movement": -4
+            "movement": -2
           },
           {
             "country": "KN",
@@ -376,7 +376,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 94,
-            "movement": 15
+            "movement": 13
           },
           {
             "country": "EE",
@@ -406,7 +406,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 98,
-            "movement": -10
+            "movement": -9
           },
           {
             "country": "GY",
@@ -1053,14 +1053,14 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 17,
-            "movement": 4
+            "position": 21,
+            "movement": -4
           },
           {
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 23,
-            "movement": -13
+            "movement": -6
           },
           {
             "country": "LT",
@@ -1085,19 +1085,12 @@
             "country": "KG",
             "name": "Kyrgyzstan",
             "position": 81,
-            "movement": -35
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 90,
-            "movement": null,
-            "status": "new"
+            "movement": -30
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 95,
+            "position": 98,
             "movement": null,
             "status": "new"
           },
@@ -1108,16 +1101,16 @@
             "movement": -14
           },
           {
-            "country": "PL",
-            "name": "Poland",
-            "position": 121,
+            "country": "FR",
+            "name": "France",
+            "position": 105,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 124,
+            "country": "PL",
+            "name": "Poland",
+            "position": 126,
             "movement": null,
             "status": "new"
           },
@@ -1129,10 +1122,17 @@
             "status": "new"
           },
           {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 130,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "RO",
             "name": "Romania",
-            "position": 137,
-            "movement": -128
+            "position": 148,
+            "movement": -139
           }
         ]
       },
@@ -1574,8 +1574,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 45,
-            "movement": -11
+            "position": 46,
+            "movement": -12
           },
           {
             "country": "GH",
@@ -1714,7 +1714,7 @@
             "country": "US",
             "name": "United States",
             "position": 112,
-            "movement": -1
+            "movement": 6
           }
         ]
       },
@@ -1820,8 +1820,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 73,
-            "movement": 5
+            "position": 74,
+            "movement": -1
           }
         ]
       },
@@ -2118,7 +2118,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 84,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
