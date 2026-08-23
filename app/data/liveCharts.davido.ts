@@ -434,28 +434,28 @@
             "movement": -1
           },
           {
-            "country": "WW",
-            "name": "Worldwide",
-            "position": 43,
-            "movement": -2
-          },
-          {
             "country": "ZM",
             "name": "Zambia",
             "position": 48,
             "movement": 3
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 66,
-            "movement": 0
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 52,
+            "movement": -9
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
+            "position": 77,
+            "movement": 1
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
             "position": 78,
-            "movement": 0
+            "movement": -12
           },
           {
             "country": "AE",
@@ -1033,8 +1033,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 185,
-            "movement": 0
+            "position": 186,
+            "movement": -1
           }
         ]
       },
@@ -2350,7 +2350,7 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 114,
+            "position": 122,
             "movement": null,
             "status": "new"
           }

@@ -510,8 +510,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 109,
-            "movement": 0
+            "position": 103,
+            "movement": 6
           },
           {
             "country": "TZ",

@@ -190,12 +190,6 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 184,
-            "movement": 0
-          },
-          {
-            "country": "WW",
-            "name": "Worldwide",
             "position": 188,
             "movement": -4
           }

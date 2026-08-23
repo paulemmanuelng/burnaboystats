@@ -45,12 +45,6 @@
     "release": "Calm Down",
     "platform": "Deezer",
     "position": 96
-  },
-  {
-    "date": "2026-08-23",
-    "release": "TEA",
-    "platform": "Shazam",
-    "position": 188
   }
 ];
   
