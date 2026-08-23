@@ -87,7 +87,7 @@ const liveOnesLabel = `ahora mismo en las listas diarias de ${platformOnes
 export const metadata = pageMetadata({
   title: "Dai Dai — el himno del Mundial 2026 de Shakira y Burna Boy",
   description:
-    "“Dai Dai”, de Shakira y Burna Boy: 36 días como la canción más escuchada del mundo, número 1 en 27 países y el show de medio tiempo de la Final del Mundial.",
+    "“Dai Dai”, de Shakira y Burna Boy: 37 días como la canción más escuchada del mundo, número 1 en 27 países y el show de medio tiempo de la Final del Mundial.",
   path: ES_PATH,
   shareTitle: "La historia de Dai Dai — Shakira y Burna Boy",
   shareDescription:
@@ -149,7 +149,7 @@ export default function DaiDaiPageES() {
       scene: "streaming",
       kicker: "En streaming",
       title: "La canción más escuchada del planeta",
-      body: "“Dai Dai” lideró la lista Global Top Songs de Spotify tanto en su versión diaria como en la semanal: 36 días como la canción más escuchada del mundo, una racha recuperada en agosto, y la primera vez que un artista africano la encabeza.",
+      body: "“Dai Dai” lideró la lista Global Top Songs de Spotify tanto en su versión diaria como en la semanal: 37 días como la canción más escuchada del mundo, una racha recuperada en agosto, y la primera vez que un artista africano la encabeza.",
     },
     {
       scene: "certs",
@@ -175,7 +175,7 @@ export default function DaiDaiPageES() {
     { v: `${daiDaiChartEntryCount}`, l: "entradas en listas oficiales de todo el mundo — en listas nacionales de sencillos, más las dos listas globales de Billboard" },
     { v: `${daiDaiNumberOnes}`, l: "países con la canción en el número 1 de su lista oficial de sencillos — de Francia y Alemania a Emiratos Árabes Unidos" },
     { v: "N.º 1", l: `en las dos listas globales de Billboard — ${ordinalWord(weeksGLB, "es")} semana en la cima del Global 200 (algo inédito para un artista africano, y el segundo de Shakira), recuperada en la lista del 22 de agosto tras una semana en el N.º 3, y ${ordinalWord(weeksGLBX, "es")} semana consecutiva en el Global 200 Excl. US` },
-    { v: DAI_DAI_SPOTIFY_STREAMS, l: "reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano, tras 36 días como la canción más escuchada del planeta" },
+    { v: DAI_DAI_SPOTIFY_STREAMS, l: "reproducciones en Spotify — la octava canción de Burna Boy que supera los 300 millones, más que ningún otro artista africano, tras 37 días como la canción más escuchada del planeta" },
     { v: `${daiDaiCertCount}`, l: "certificaciones — doble platino (latino) en EE. UU., platino en España, Francia, Eslovaquia, Portugal y Hungría, oro en Colombia, Grecia, Chequia e Italia, y plata en el Reino Unido" },
     { v: "19 jul", l: "Shakira y Burna Boy interpretaron “Dai Dai” en vivo en el primer show de medio tiempo de una Final del Mundial de la FIFA" },
   ];
@@ -185,7 +185,7 @@ export default function DaiDaiPageES() {
       label: "Las rachas en streaming",
       intro: "Las rachas diarias y semanales, todas todavía en marcha.",
       items: [
-        { v: "36 días", l: "en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y recuperado en agosto como la racha más larga de cualquier lanzamiento de 2026—; la canción con más días en el número 1 de todo 2026, ahora cuatro por delante de “End of Beginning” de Djo (32) y cinco de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31); más de 65 días dentro del top 10 mundial y 93 en la lista" },
+        { v: "37 días", l: "en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y recuperado en agosto como la racha más larga de cualquier lanzamiento de 2026—; la canción con más días en el número 1 de todo 2026, ahora cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31); más de 65 días dentro del top 10 mundial y 93 en la lista" },
         { v: "6 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify, en su 13.ª semana en ella — con un pico de 40,28 millones de reproducciones en una sola semana" },
         { v: "58 días", l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music" },
         { v: "40 días", l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes" },
@@ -333,7 +333,7 @@ export default function DaiDaiPageES() {
             global1Note: "Primer artista africano en lograrlo · el 2.º de Shakira",
             no1sLabel: "países en el n.º 1",
             no1sLink: "Ver todas las posiciones de Dai Dai →",
-            streamingNote: "Diaria y semanal · 36 días como la canción más escuchada del mundo",
+            streamingNote: "Diaria y semanal · 37 días como la canción más escuchada del mundo",
             certsLabel: "certificaciones de Dai Dai",
             certsNote: "Doble platino (latino) en EE. UU. · platino en 5 países más",
             certsLink: "Ver las certificaciones de Dai Dai →",

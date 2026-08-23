@@ -99,9 +99,11 @@ describe("handoff checklist — data integrity", () => {
     expect(ceremonyCount).toBe(46);
   });
 
-  it("counts 57 countries performed in and 49 firsts", () => {
+  it("counts 57 countries performed in and 50 firsts", () => {
     expect(performedCountryCount).toBe(57);
-    expect(firstsCount).toBe(49); // 49th: first African artist to 60M Spotify monthly listeners (8 Aug 2026)
+    // 50th: first African artist with four albums past 500M Spotify streams
+    // ("Outside" crossed the mark, 22 Aug 2026). 49th was 60M monthly listeners.
+    expect(firstsCount).toBe(50);
   });
 
   it("values the current car collection at $16.46M — current only", () => {

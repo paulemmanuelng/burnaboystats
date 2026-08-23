@@ -37,6 +37,24 @@ export const updates: Update[] = [
   {
     date: "2026-08-22",
     category: "Streaming",
+    text: "A 37th day as the most-streamed song on Earth — and a record equalled. “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 3,898,249 streams, drawing level with “WAP” by Cardi B and Megan Thee Stallion for the most days any song has ever spent atop the chart. No other African artist has reached No. 1 on it at all, let alone stayed 30 days.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-22",
+    category: "Firsts & Records",
+    text: "A fourth album past half a billion: “Outside” crosses 500 million Spotify streams, joining “Love, Damini” (1.71 billion), “African Giant” (1.35 billion) and “I Told Them…” (868 million). No other African artist has four — among Nigerian acts the next-best tally is three.",
+    href: "/records/firsts",
+  },
+  {
+    date: "2026-08-22",
+    category: "Streaming",
+    text: "A new board on Africa's Biggest, and one he does not top: biggest single day on Spotify, counting a whole catalogue's streams in 24 hours. Burna Boy's best is 14.3 million, fourth among Nigerian artists behind Wizkid (21.6M), Asake (18M) and Davido (17.3M) — a measure that rewards the size of a release day rather than the length of a run.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-08-22",
+    category: "Streaming",
     text: "A 28th day at the top of Spotify's Global Music Video chart — a lead that has stopped being a contest. The next-longest run any song has managed there is three days.",
     href: "/dai-dai",
   },

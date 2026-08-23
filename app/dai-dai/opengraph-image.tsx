@@ -19,7 +19,7 @@ const GOLD = "#ffb627";
 // this figure is not part of `stats`, so a card whose only change was the
 // prose would keep its old id and stay frozen at the previous number in
 // every preview that had already cached it.
-const DAYS_AT_NO1 = 36;
+const DAYS_AT_NO1 = 37;
 
 const stats = [
   { v: "No.1", l: "Global 200" },

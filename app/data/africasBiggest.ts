@@ -246,9 +246,25 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Rema & Tyla", sub: "🇳🇬🇿🇦 “Calm Down” (Remix) / “Water” & “Chanel” · tied", value: "#8" },
       { name: "CKay", sub: "🇳🇬 “love nwantiti (ah ah ah)”", value: "#9" },
     ],
-    note: "Burna Boy is the first and only African artist to reach No. 1 on Spotify's Global Daily Top Songs chart — no other African artist has ever cracked the top 4.",
+    note: "Burna Boy is the first and only African artist to reach No. 1 on Spotify's Global Daily Top Songs chart — no other African artist has ever cracked the top 4. “Dai Dai” has now held that No. 1 for 37 days in total, tying “WAP” by Cardi B and Megan Thee Stallion for the most days any song has spent on top of the chart.",
     source:
-      "Peak positions on Spotify's Daily Top Songs Global chart, each artist's best-charting song across all credits, from chart-tracking accounts. As of July 2026.",
+      "Peak positions on Spotify's Daily Top Songs Global chart, each artist's best-charting song across all credits, from chart-tracking accounts. As of August 2026.",
+  },
+  {
+    id: "daily-peak-streams-ng",
+    title: "Biggest single day on Spotify",
+    meta: "Spotify · Nigerian artists · best day on record",
+    layout: "list",
+    entries: [
+      { name: "Wizkid", value: "21.6M" },
+      { name: "Asake", value: "18M" },
+      { name: "Davido", value: "17.3M" },
+      { name: "Burna Boy", value: "14.3M" },
+      { name: "Tems", value: "10.6M" },
+    ],
+    note: "The board on this page Burna Boy does not lead, and it is here for that reason. It counts one day's streams across an artist's entire catalogue, which peaks hardest the day an album lands — so it rewards the size of a release week rather than the length of a run. His best day is 14.3 million, fourth behind Wizkid, Asake and Davido.",
+    source:
+      "Highest single-day Spotify streams across an artist's full catalogue, from chart-tracking accounts, as of 22 August 2026. Nigerian artists only — a national list, not the pan-African comparison the rest of this page makes. Top five shown; the ranking continues CKay (8.2M), Ayra Starr (7.8M), Omah Lay (7.7M), ODUMODUBLVCK (7.5M) and Olamide (7.4M).",
   },
   {
     id: "youtube-music-audience-peak",
