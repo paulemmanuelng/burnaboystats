@@ -142,7 +142,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 29,
-            "movement": 3
+            "movement": 4
           },
           {
             "country": "BW",
@@ -195,7 +195,7 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 83,
+            "position": 84,
             "movement": 2
           },
           {
@@ -393,7 +393,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 139,
-            "movement": 45
+            "movement": 33
           },
           {
             "country": "AE",
@@ -709,7 +709,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 148,
+            "position": 151,
             "movement": -120
           }
         ]
@@ -892,8 +892,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": 21
+            "position": 10,
+            "movement": 22
           }
         ]
       },
@@ -1051,8 +1051,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 114,
-            "movement": -46
+            "position": 115,
+            "movement": -47
           }
         ]
       },
@@ -1369,8 +1369,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
-            "movement": 19
+            "position": 8,
+            "movement": 20
           }
         ]
       },
@@ -1742,7 +1742,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
+            "position": 164,
             "movement": -118
           }
         ]
@@ -2377,62 +2377,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "If",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 11,
-            "movement": 3
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 28,
-            "movement": 0
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 40,
-            "movement": 2
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 46,
-            "movement": 9
-          },
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 51,
-            "movement": 10
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 200,
-            "movement": -46
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7de07d81ce22dcf5be4caa2b2b9faace/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Blow My Mind",
     "platforms": [
       {
@@ -2493,6 +2437,56 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9b38babe761ad3914bfd843b8c199555/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "If",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 11,
+            "movement": 3
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 28,
+            "movement": 0
+          },
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 40,
+            "movement": 2
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 46,
+            "movement": 9
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 51,
+            "movement": 10
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 93,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7de07d81ce22dcf5be4caa2b2b9faace/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Tell Everybody",
@@ -3217,8 +3211,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 117,
-            "movement": -46
+            "position": 118,
+            "movement": -47
           }
         ]
       }
@@ -3255,7 +3249,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
+            "position": 154,
             "movement": -117
           }
         ]
@@ -3293,8 +3287,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
-            "movement": -119
+            "position": 185,
+            "movement": -117
           }
         ]
       }
@@ -3331,7 +3325,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
+            "position": 162,
             "movement": -118
           }
         ]
@@ -3349,8 +3343,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 178,
-            "movement": -119
+            "position": 181,
+            "movement": -118
           }
         ]
       }
