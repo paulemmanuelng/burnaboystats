@@ -243,8 +243,8 @@
           {
             "country": "SI",
             "name": "Slovenia",
-            "position": 31,
-            "movement": -25
+            "position": 37,
+            "movement": -31
           },
           {
             "country": "KE",
@@ -255,8 +255,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": -53
+            "position": 89,
+            "movement": -75
           }
         ]
       },
@@ -554,7 +554,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 65,
+            "position": 66,
             "movement": 18
           }
         ]
@@ -576,6 +576,94 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Rave & Roses",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 35,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 36,
+            "movement": -30
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 42,
+            "movement": -1
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 47,
+            "movement": 44
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 50,
+            "movement": 13
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 58,
+            "movement": 3
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 71,
+            "movement": -9
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 95,
+            "movement": 64
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 97,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 100,
+            "movement": 38
+          },
+          {
+            "country": "AO",
+            "name": "Angola",
+            "position": 154,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CG",
+            "name": "Republic of the Congo",
+            "position": 163,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Rema Compilation",
     "platforms": [
       {
@@ -591,32 +679,32 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 60,
-            "movement": 0
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 70,
-            "movement": -12
+            "position": 41,
+            "movement": 19
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 77,
-            "movement": 3
+            "position": 83,
+            "movement": -6
           },
           {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 101,
-            "movement": -64
+            "country": "GH",
+            "name": "Ghana",
+            "position": 102,
+            "movement": 12
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 104,
             "movement": 33
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 104,
+            "movement": -34
           },
           {
             "country": "BJ",
@@ -632,19 +720,6 @@
             "status": "new"
           },
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 114,
-            "movement": 7
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 140,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "CG",
             "name": "Republic of the Congo",
             "position": 143,
@@ -653,95 +728,27 @@
           {
             "country": "MW",
             "name": "Malawi",
-            "position": 182,
+            "position": 146,
+            "movement": 36
+          },
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 175,
             "movement": null,
             "status": "new"
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 182,
-            "movement": -46
+            "position": 178,
+            "movement": 4
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Rave & Roses",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 6,
-            "movement": 125
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 35,
-            "movement": 0
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 41,
-            "movement": 0
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 47,
-            "movement": 44
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 61,
-            "movement": 5
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 62,
-            "movement": 1
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 63,
-            "movement": 13
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 100,
-            "movement": 38
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 159,
-            "movement": -13
-          },
-          {
-            "country": "CG",
-            "name": "Republic of the Congo",
-            "position": 163,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bounce",
@@ -925,6 +932,12 @@
             "movement": 13
           },
           {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 61,
+            "movement": 20
+          },
+          {
             "country": "KE",
             "name": "Kenya",
             "position": 71,
@@ -933,19 +946,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 73,
-            "movement": -10
+            "position": 71,
+            "movement": 2
           },
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 81,
-            "movement": -31
+            "country": "MR",
+            "name": "Mauritania",
+            "position": 89,
+            "movement": null,
+            "status": "new"
           },
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 141,
+            "country": "ML",
+            "name": "Mali",
+            "position": 128,
             "movement": null,
             "status": "new"
           },
@@ -958,15 +972,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 151,
-            "movement": -46
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 170,
-            "movement": null,
-            "status": "new"
+            "position": 162,
+            "movement": -11
           },
           {
             "country": "CM",
@@ -975,10 +982,11 @@
             "movement": -21
           },
           {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 184,
-            "movement": -63
+            "country": "TD",
+            "name": "Chad",
+            "position": 192,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1419,37 +1427,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Trouble Maker",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 161,
-            "movement": -10
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 122,
-            "movement": -86
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "DND",
     "platforms": [
       {
@@ -1477,30 +1454,35 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "RAVAGE - EP",
+    "title": "Trouble Maker",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 161,
+            "movement": -10
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 157,
-            "movement": 10
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 186,
-            "movement": null,
-            "status": "new"
+            "position": 144,
+            "movement": -102
           }
         ]
       }
     ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1b515afac4090505a9f4531e553f82a8/500x500-000000-80-0-0.jpg"
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "For Her",
@@ -1591,7 +1573,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 140,
+            "position": 143,
             "movement": -38
           }
         ]
@@ -1618,6 +1600,25 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d386058066ab6b2b140515ed5c591a1f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "RAVAGE - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 184,
+            "movement": -27
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1b515afac4090505a9f4531e553f82a8/500x500-000000-80-0-0.jpg"
   }
 ];
   
