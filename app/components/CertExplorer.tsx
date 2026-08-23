@@ -135,9 +135,22 @@ export default function CertExplorer({
   // A single-release focus, deep-linked via ?release=… (e.g. from the Dai Dai story).
   const [focus, setFocus] = useState<string | null>(null);
 
-  // Read the ?release= deep-link once on mount (client-only, keeps the page static).
+  // Read the deep-link once on mount (client-only, keeps the page static).
+  //
+  // The FRAGMENT is the live form; the query string is still read so older
+  // links keep working. They behave identically for a reader — this component
+  // has always applied the focus client-side on mount — but not for Google. A
+  // "?release=" URL is a separate URL: it got crawled, its canonical correctly
+  // pointed back to /certifications, and Search Console then listed it forever
+  // under "Alternate page with proper canonical tag". That status is not a
+  // fault (it is the canonical working), but it can never be validated away
+  // while the URL exists, so every validation run on it failed. A fragment is
+  // never sent to the server and is not a separate URL, so the variant simply
+  // stops existing to a crawler.
   useEffect(() => {
-    const r = new URLSearchParams(window.location.search).get("release");
+    const hash = window.location.hash.replace(/^#/, "");
+    const fromHash = new URLSearchParams(hash).get("release");
+    const r = fromHash ?? new URLSearchParams(window.location.search).get("release");
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount read of a browser-only URL param
     if (r) setFocus(r);
   }, []);
