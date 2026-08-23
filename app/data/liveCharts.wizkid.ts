@@ -245,14 +245,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 164,
-            "movement": 11
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 176,
-            "movement": 6
+            "position": 156,
+            "movement": 12
           },
           {
             "country": "AO",
@@ -279,6 +273,13 @@
             "name": "Uganda",
             "position": 187,
             "movement": -35
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 189,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "KZ",
@@ -939,9 +940,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 81,
-            "movement": null,
-            "status": "new"
+            "position": 103,
+            "movement": -87
           }
         ]
       },
@@ -1673,8 +1673,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 124,
-            "movement": -90
+            "position": 146,
+            "movement": -97
           }
         ]
       },
@@ -1731,7 +1731,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 73,
-            "movement": 4
+            "movement": 5
           }
         ]
       },
@@ -2124,7 +2124,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 98,
+            "position": 97,
             "movement": 1
           },
           {
@@ -2452,13 +2452,32 @@
             "country": "BW",
             "name": "Botswana",
             "position": 74,
-            "movement": 4
+            "movement": 5
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Jahs Love is True",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 31,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "Frames",

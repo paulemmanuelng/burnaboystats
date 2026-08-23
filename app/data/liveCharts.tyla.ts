@@ -178,7 +178,7 @@
             "country": "BR",
             "name": "Brazil",
             "position": 75,
-            "movement": 5
+            "movement": -4
           },
           {
             "country": "LR",
@@ -254,22 +254,22 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 123,
-            "movement": 36
-          },
-          {
             "country": "NZ",
             "name": "New Zealand",
             "position": 124,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "BM",
             "name": "Bermuda",
             "position": 129,
             "movement": -1
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 129,
+            "movement": 2
           },
           {
             "country": "FJ",
@@ -303,6 +303,12 @@
             "movement": -43
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 143,
+            "movement": -5
+          },
+          {
             "country": "IE",
             "name": "Ireland",
             "position": 145,
@@ -320,12 +326,6 @@
             "position": 146,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 153,
-            "movement": -11
           },
           {
             "country": "CV",
@@ -348,16 +348,16 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 184,
+            "movement": -24
+          },
+          {
             "country": "JO",
             "name": "Jordan",
             "position": 187,
             "movement": -94
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 187,
-            "movement": -25
           },
           {
             "country": "GH",
@@ -480,102 +480,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "CHANEL",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 70,
-            "movement": -19
-          },
-          {
-            "country": "SV",
-            "name": "El Salvador",
-            "position": 76,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 80,
-            "movement": -39
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 88,
-            "movement": -27
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 92,
-            "movement": -31
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 97,
-            "movement": -37
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 98,
-            "movement": -32
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 98,
-            "movement": -57
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 99,
-            "movement": -43
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 77,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 116,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 127,
+            "position": 82,
             "movement": null,
             "status": "new"
           }
@@ -667,8 +572,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 36,
-            "movement": 48
+            "position": 61,
+            "movement": 54
           }
         ]
       },
@@ -690,56 +595,84 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Water",
+    "title": "CHANEL",
     "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 70,
+            "movement": -19
+          },
+          {
+            "country": "SV",
+            "name": "El Salvador",
+            "position": 76,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 80,
+            "movement": -39
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 88,
+            "movement": -27
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 92,
+            "movement": -31
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 97,
+            "movement": -37
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 98,
+            "movement": -32
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 98,
+            "movement": -57
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 99,
+            "movement": -43
+          }
+        ]
+      },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 51,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ES",
-            "name": "Spain",
-            "position": 94,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 120,
+            "position": 149,
             "movement": null,
             "status": "new"
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 193,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 9,
-            "movement": 21
-          },
-          {
-            "country": "NP",
-            "name": "Nepal",
-            "position": 190,
+            "position": 160,
             "movement": null,
             "status": "new"
           }
@@ -747,7 +680,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA +",
@@ -807,6 +740,58 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 64,
+            "movement": 5
+          },
+          {
+            "country": "ES",
+            "name": "Spain",
+            "position": 121,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 142,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 9,
+            "movement": 21
+          },
+          {
+            "country": "NP",
+            "name": "Nepal",
+            "position": 190,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "IS IT LOVE",
     "platforms": [
       {
@@ -834,7 +819,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 52,
+            "position": 82,
             "movement": null,
             "status": "new"
           }
@@ -895,40 +880,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "PUSH 2 START",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IL",
-            "name": "Israel",
-            "position": 81,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "EE",
-            "name": "Estonia",
-            "position": 82,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 88,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Talk to Me",
     "platforms": [
       {
@@ -938,7 +889,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 107,
+            "position": 129,
             "movement": null,
             "status": "new"
           }
@@ -959,6 +910,52 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "EE",
+            "name": "Estonia",
+            "position": 92,
+            "movement": -61
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 125,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "On My Body",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 13,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DYNAMITE",

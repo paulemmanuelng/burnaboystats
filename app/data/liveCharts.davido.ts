@@ -166,7 +166,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 38,
-            "movement": -2
+            "movement": -3
           },
           {
             "country": "IE",
@@ -195,8 +195,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 77,
-            "movement": 2
+            "position": 81,
+            "movement": -1
           },
           {
             "country": "SN",
@@ -278,8 +278,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 45,
-            "movement": 54
+            "position": 41,
+            "movement": 59
           }
         ]
       }
@@ -399,8 +399,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 190,
-            "movement": -7
+            "position": 196,
+            "movement": -21
           }
         ]
       },
@@ -515,8 +515,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": -7
+            "position": 15,
+            "movement": -6
           }
         ]
       },
@@ -899,8 +899,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
-            "movement": 78
+            "position": 2,
+            "movement": 11
           }
         ]
       },
@@ -1045,14 +1045,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": 2
+            "position": 3,
+            "movement": 1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
-            "movement": -38
+            "position": 129,
+            "movement": -44
           }
         ]
       },
@@ -1235,8 +1235,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
-            "movement": 4
+            "position": 5,
+            "movement": 6
           }
         ]
       },
@@ -2033,7 +2033,7 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 51,
+            "position": 52,
             "movement": 7
           },
           {
@@ -2046,12 +2046,12 @@
             "country": "BW",
             "name": "Botswana",
             "position": 62,
-            "movement": 4
+            "movement": 5
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 153,
+            "position": 197,
             "movement": null,
             "status": "new"
           }
@@ -2237,7 +2237,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 40,
-            "movement": 7
+            "movement": 8
           },
           {
             "country": "BF",
@@ -2248,20 +2248,20 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 54,
+            "position": 55,
             "movement": 7
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 93,
+            "position": 94,
             "movement": null,
             "status": "new"
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 143,
+            "position": 188,
             "movement": null,
             "status": "new"
           }
@@ -2591,38 +2591,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/594be4990d2be6af325a4a0825960a9a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "FIA",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 23,
-            "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 61,
-            "movement": 18
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Guide",
     "platforms": [
       {
@@ -2695,6 +2663,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "FIA",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 23,
+            "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 63,
+            "movement": 15
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 137,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Constantly",
@@ -2986,8 +2986,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
-            "movement": 109
+            "position": 12,
+            "movement": 138
           }
         ]
       }
@@ -3005,7 +3005,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
+            "position": 28,
             "movement": null,
             "status": "new"
           }
@@ -3179,8 +3179,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 122,
-            "movement": -38
+            "position": 132,
+            "movement": -44
           }
         ]
       }
