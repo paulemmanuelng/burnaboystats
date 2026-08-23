@@ -13,14 +13,10 @@ import {
   regionCount,
 } from "../../data/performedCountries";
 import { albums } from "../../data/albums";
-import { monthlyListenersSeries } from "../../data/trends";
 import { spotifyGlobalRank } from "../../data/spotify";
 import { spotifyTotalStreams, youtubeTotalViews } from "../../data/streamingTotals";
-import { BURNA_YT_AUDIENCE } from "../../data/africasBiggest";
+import { BURNA_YT_AUDIENCE, BURNA_PEAK_LISTENERS } from "../../data/africasBiggest";
 
-const listenersLatest = monthlyListenersSeries[monthlyListenersSeries.length - 1].value;
-const listenersPct =
-  ((listenersLatest - monthlyListenersSeries[0].value) / monthlyListenersSeries[0].value) * 100;
 
 // The two worldwide charts sit in the same table as the national ones, so the
 // national count is the total minus whatever peaked at No. 1 on a global chart.
@@ -70,7 +66,7 @@ export const stats: {
   { num: "$30.46M", label: "Highest-grossing African tour", sub: "the I Told Them… Tour — a world record for an African act", href: "/records/tours", big: true },
   { num: "$6.15M", label: "Biggest concert by an African artist", sub: "London Stadium, June 2024 — 58,973 fans", href: "/records/tours" },
   { num: "9", label: "Billboard Hot 100 entries", sub: "the most by any African artist, six years running", href: "/records/charts" },
-  { num: `${listenersLatest}M`, label: "Spotify monthly listeners", sub: "the first African artist ever to reach 60 million", href: "/records/africas-biggest", delta: listenersPct, big: true },
+  { num: BURNA_PEAK_LISTENERS, label: "Spotify monthly listeners, at peak", sub: "the first African artist ever to reach 60 million", href: "/records/africas-biggest", big: true },
   { num: spotifyTotalStreams, label: "Spotify streams, all-time", sub: "every song, lead and featured credits combined", href: "/music" },
   { num: youtubeTotalViews, label: "YouTube views, all-time", sub: "every video, across his channel and others'", href: "/music" },
   // YouTube figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.

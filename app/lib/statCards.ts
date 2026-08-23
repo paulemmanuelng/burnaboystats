@@ -3,10 +3,9 @@ import { firstGroups } from "../data/firsts";
 import { titleKey } from "./titleKey";
 import { badgeWeight } from "./certs";
 import { numberOnes, chartEntryCount, chartCountryCount, daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
-import { monthlyListenersValues } from "../data/trends";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { spotifyFollowersDisplay } from "../data/spotify";
-import { BURNA_YT_AUDIENCE } from "../data/africasBiggest";
+import { BURNA_YT_AUDIENCE, BURNA_PEAK_LISTENERS } from "../data/africasBiggest";
 
 // Shareable "stat cards" — a Burna Boy headline stat rendered as a downloadable
 // image (the Receiptify/Volt.fm-style viral artifact). Values are data-driven so
@@ -41,7 +40,6 @@ const tierCount = (tier: "diamond" | "platinum") =>
   allItems.reduce((n, it) => n + it.certs.filter((c) => tierOf(c.level) === tier).length, 0);
 
 export function getStatCards(): StatCard[] {
-  const listeners = monthlyListenersValues[monthlyListenersValues.length - 1];
   const diamond = tierCount("diamond");
   const platinum = tierCount("platinum");
 
@@ -100,10 +98,10 @@ export function getStatCards(): StatCard[] {
       watermark: "PLAY",
       href: "/records/africas-biggest",
       detail: `Read from Spotify's own artist page rather than a tracker. The first African artist ever past 60 million monthly listeners.`,
-      value: `${listeners}M`,
-      label: "Spotify monthly listeners",
+      value: BURNA_PEAK_LISTENERS,
+      label: "peak Spotify monthly listeners",
       kicker: "The most of any African artist",
-      chip: "Monthly listeners",
+      chip: "Peak listeners",
       stats: [
         { value: spotifyFollowersDisplay, label: "Followers" },
         { value: BURNA_YT_AUDIENCE, label: "YouTube peak" },
@@ -169,7 +167,7 @@ export function getStatCards(): StatCard[] {
       kicker: "The most-followed African artist on Spotify",
       chip: "Followers",
       stats: [
-        { value: `${listeners}M`, label: "Monthly listeners" },
+        { value: BURNA_PEAK_LISTENERS, label: "Peak listeners" },
         { value: BURNA_YT_AUDIENCE, label: "YouTube peak" },
         { value: "#1", label: "Most-followed" },
       ],
