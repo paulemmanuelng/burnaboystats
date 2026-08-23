@@ -630,8 +630,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 127,
-            "movement": -83
+            "position": 131,
+            "movement": -87
           }
         ]
       }
@@ -734,7 +734,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 152,
+            "position": 158,
             "movement": null,
             "status": "new"
           }
@@ -933,14 +933,14 @@
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 109,
+            "position": 126,
             "movement": null,
             "status": "new"
           },
           {
             "country": "PE",
             "name": "Peru",
-            "position": 122,
+            "position": 131,
             "movement": null,
             "status": "new"
           }
@@ -985,7 +985,7 @@
           {
             "country": "PE",
             "name": "Peru",
-            "position": 161,
+            "position": 170,
             "movement": null,
             "status": "new"
           }
@@ -1043,7 +1043,7 @@
           {
             "country": "EE",
             "name": "Estonia",
-            "position": 39,
+            "position": 40,
             "movement": null,
             "status": "new"
           }

@@ -533,14 +533,14 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 24,
-            "movement": 1
+            "position": 21,
+            "movement": 4
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 62,
-            "movement": 20
+            "position": 63,
+            "movement": 19
           }
         ]
       },
@@ -571,7 +571,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 38,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "UG",
@@ -671,7 +671,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 35,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "NG",
@@ -745,7 +745,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 75,
-            "movement": -6
+            "movement": -2
           },
           {
             "country": "NG",
@@ -1571,7 +1571,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 39,
-            "movement": -1
+            "movement": 0
           }
         ]
       }

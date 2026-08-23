@@ -1196,16 +1196,17 @@
             "status": "new"
           },
           {
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 6,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "RO",
             "name": "Romania",
             "position": 11,
             "movement": 8
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 15,
-            "movement": -4
           },
           {
             "country": "KZ",
@@ -1214,10 +1215,16 @@
             "movement": -13
           },
           {
+            "country": "IN",
+            "name": "India",
+            "position": 17,
+            "movement": -6
+          },
+          {
             "country": "UZ",
             "name": "Uzbekistan",
-            "position": 17,
-            "movement": -14
+            "position": 20,
+            "movement": -17
           },
           {
             "country": "KG",
@@ -1228,14 +1235,14 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 56,
-            "movement": -13
+            "position": 57,
+            "movement": -14
           },
           {
             "country": "AZ",
             "name": "Azerbaijan",
-            "position": 86,
-            "movement": -14
+            "position": 90,
+            "movement": -18
           },
           {
             "country": "NG",
@@ -1244,16 +1251,16 @@
             "movement": -108
           },
           {
-            "country": "TR",
-            "name": "Turkey",
-            "position": 165,
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 144,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 195,
+            "country": "TR",
+            "name": "Turkey",
+            "position": 166,
             "movement": null,
             "status": "new"
           }
@@ -1630,8 +1637,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 34,
-            "movement": -11
+            "position": 35,
+            "movement": -12
           },
           {
             "country": "GH",

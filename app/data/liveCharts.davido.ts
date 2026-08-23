@@ -270,8 +270,8 @@
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 47,
-            "movement": 18
+            "position": 51,
+            "movement": 14
           },
           {
             "country": "NG",
@@ -1999,14 +1999,14 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 47,
-            "movement": 11
+            "position": 48,
+            "movement": 10
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 54,
-            "movement": 21
+            "position": 55,
+            "movement": 20
           },
           {
             "country": "BW",
@@ -2411,14 +2411,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 45,
-            "movement": 10
+            "position": 46,
+            "movement": 9
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 50,
-            "movement": 11
+            "position": 51,
+            "movement": 10
           },
           {
             "country": "UG",
