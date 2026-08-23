@@ -1021,8 +1021,14 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 1,
+            "movement": 80
+          },
           {
             "country": "BG",
             "name": "Bulgaria",
@@ -1059,8 +1065,8 @@
           {
             "country": "LT",
             "name": "Lithuania",
-            "position": 41,
-            "movement": -39
+            "position": 63,
+            "movement": -61
           },
           {
             "country": "MD",
@@ -1104,20 +1110,7 @@
           {
             "country": "PL",
             "name": "Poland",
-            "position": 100,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 120,
-            "movement": -111
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 124,
+            "position": 121,
             "movement": null,
             "status": "new"
           },
@@ -1127,6 +1120,19 @@
             "position": 124,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 127,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 137,
+            "movement": -128
           }
         ]
       },
@@ -2007,7 +2013,7 @@
           {
             "country": "SK",
             "name": "Slovakia",
-            "position": 60,
+            "position": 70,
             "movement": null,
             "status": "new"
           }

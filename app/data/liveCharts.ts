@@ -2327,17 +2327,17 @@
             "movement": 0
           },
           {
-            "country": "GR",
-            "name": "Greece",
-            "position": 3,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "CA",
             "name": "Canada",
             "position": 4,
             "movement": 1
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 4,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "IE",
@@ -2365,6 +2365,13 @@
             "movement": 0
           },
           {
+            "country": "PL",
+            "name": "Poland",
+            "position": 6,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "UA",
             "name": "Ukraine",
             "position": 6,
@@ -2386,8 +2393,8 @@
           {
             "country": "HU",
             "name": "Hungary",
-            "position": 10,
-            "movement": -7
+            "position": 11,
+            "movement": -8
           },
           {
             "country": "US",
@@ -2414,13 +2421,6 @@
             "movement": -2
           },
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 33,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "TR",
             "name": "Turkey",
             "position": 34,
@@ -2428,10 +2428,11 @@
             "status": "new"
           },
           {
-            "country": "PL",
-            "name": "Poland",
-            "position": 40,
-            "movement": -36
+            "country": "KE",
+            "name": "Kenya",
+            "position": 42,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "IN",
@@ -2477,41 +2478,29 @@
             "movement": -53
           },
           {
-            "country": "SI",
-            "name": "Slovenia",
-            "position": 99,
-            "movement": -29
-          },
-          {
             "country": "TH",
             "name": "Thailand",
-            "position": 103,
-            "movement": -60
+            "position": 104,
+            "movement": -61
           },
           {
             "country": "PE",
             "name": "Peru",
-            "position": 149,
-            "movement": -131
+            "position": 152,
+            "movement": -134
           },
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 162,
-            "movement": -156
+            "position": 167,
+            "movement": -161
           },
           {
             "country": "JP",
             "name": "Japan",
-            "position": 180,
+            "position": 169,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "DO",
-            "name": "Dominican Republic",
-            "position": 199,
-            "movement": -14
           }
         ]
       }
@@ -3358,8 +3347,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 140,
-            "movement": -98
+            "position": 164,
+            "movement": -122
           }
         ]
       },
@@ -3497,8 +3486,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 18,
-            "movement": -8
+            "position": 19,
+            "movement": -9
           }
         ]
       },
@@ -4154,8 +4143,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 21,
-            "movement": 5
+            "position": 22,
+            "movement": 4
           },
           {
             "country": "DM",
@@ -4456,7 +4445,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
+            "position": 128,
             "movement": null,
             "status": "new"
           }
@@ -4578,7 +4567,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
+            "position": 49,
             "movement": null,
             "status": "new"
           }
@@ -4720,25 +4709,6 @@
     "kind": "song"
   },
   {
-    "title": "Like to Party",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 20,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Talibans II",
     "platforms": [
       {
@@ -4748,8 +4718,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 22,
-            "movement": -14
+            "position": 23,
+            "movement": -15
           }
         ]
       }
@@ -4757,45 +4727,7 @@
     "kind": "song"
   },
   {
-    "title": "Rizzla",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 24,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "Pree Me",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 25,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "Won da Mo",
+    "title": "Like to Party",
     "platforms": [
       {
         "platform": "iTunes",
@@ -4814,7 +4746,7 @@
     "kind": "song"
   },
   {
-    "title": "Jahs Love is True",
+    "title": "Rizzla",
     "platforms": [
       {
         "platform": "iTunes",
@@ -4833,7 +4765,7 @@
     "kind": "song"
   },
   {
-    "title": "Monsters You Made",
+    "title": "Pree Me",
     "platforms": [
       {
         "platform": "iTunes",
@@ -4842,7 +4774,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -4852,7 +4784,26 @@
     "kind": "song"
   },
   {
-    "title": "If People Must Die",
+    "title": "Won da Mo",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 33,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Jahs Love is True",
     "platforms": [
       {
         "platform": "iTunes",
@@ -4871,7 +4822,7 @@
     "kind": "song"
   },
   {
-    "title": "Sampudi",
+    "title": "Monsters You Made",
     "platforms": [
       {
         "platform": "iTunes",
@@ -4880,7 +4831,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
+            "position": 41,
             "movement": null,
             "status": "new"
           }
@@ -4908,6 +4859,25 @@
     "kind": "song"
   },
   {
+    "title": "If People Must Die",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 46,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "My Oasis",
     "platforms": [
       {
@@ -4919,6 +4889,25 @@
             "name": "Micronesia",
             "position": 64,
             "movement": -56
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Sampudi",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 48,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -4954,8 +4943,8 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 66,
-            "movement": 0
+            "position": 67,
+            "movement": -1
           }
         ]
       }
@@ -4974,25 +4963,6 @@
             "name": "Czech Republic",
             "position": 108,
             "movement": 5
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "Turn Up",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 33,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -5029,6 +4999,25 @@
             "name": "Uganda",
             "position": 171,
             "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Turn Up",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 40,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -5138,8 +5127,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 144,
-            "movement": -97
+            "position": 168,
+            "movement": -121
           }
         ]
       }

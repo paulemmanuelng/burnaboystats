@@ -291,6 +291,25 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MN",
+            "name": "Mongolia",
+            "position": 85,
+            "movement": -7
+          },
+          {
+            "country": "PH",
+            "name": "Philippines",
+            "position": 103,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -306,18 +325,6 @@
             "name": "Portugal",
             "position": 60,
             "movement": 11
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MN",
-            "name": "Mongolia",
-            "position": 85,
-            "movement": -7
           }
         ]
       },
@@ -940,8 +947,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 103,
-            "movement": -87
+            "position": 127,
+            "movement": -111
           }
         ]
       },
@@ -1673,8 +1680,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 146,
-            "movement": -97
+            "position": 170,
+            "movement": -121
           }
         ]
       },
@@ -2470,7 +2477,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
+            "position": 38,
             "movement": null,
             "status": "new"
           }
