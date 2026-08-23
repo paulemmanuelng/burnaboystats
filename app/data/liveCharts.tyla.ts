@@ -500,7 +500,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 20,
+            "position": 28,
             "movement": null,
             "status": "new"
           }
@@ -617,8 +617,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 165,
-            "movement": -78
+            "position": 180,
+            "movement": -93
           }
         ]
       }
@@ -721,7 +721,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 88,
+            "position": 45,
             "movement": null,
             "status": "new"
           }
@@ -802,7 +802,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 90,
+            "position": 105,
             "movement": null,
             "status": "new"
           }
@@ -910,6 +910,26 @@
     "title": "Water",
     "platforms": [
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ES",
+            "name": "Spain",
+            "position": 65,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -918,19 +938,6 @@
             "name": "Micronesia",
             "position": 30,
             "movement": 130
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 83,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -948,7 +955,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 176,
+            "position": 73,
             "movement": null,
             "status": "new"
           }
@@ -980,7 +987,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 125,
+            "position": 149,
             "movement": null,
             "status": "new"
           }
@@ -1010,26 +1017,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "KISS",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 171,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "DOUBLE BLIND",
     "platforms": [
       {
@@ -1041,6 +1028,26 @@
             "name": "South Africa",
             "position": 200,
             "movement": -10
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "KISS",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 194,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1089,26 +1096,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "PUSH 2 START",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "EE",
-            "name": "Estonia",
-            "position": 63,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "DYNAMITE",
     "platforms": [
       {
@@ -1126,6 +1113,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "EE",
+            "name": "Estonia",
+            "position": 75,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   }
 ];
   
