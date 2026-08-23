@@ -55,6 +55,39 @@ const nextConfig = {
         missing: [{ type: "host", value: "burnaboystats.com" }],
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
+      // Static assets are RESOURCES, not documents.
+      //
+      // Google has to fetch them to render the page, so it does — then finds
+      // they are not pages and files them under "Crawled - currently not
+      // indexed". Seven such URLs were sitting in that report on 22 Aug 2026:
+      // five .woff2 fonts, the favicon and the root Open Graph image. Nothing
+      // was broken; they were simply never indexable in the first place and
+      // nothing had said so.
+      //
+      // noindex says it explicitly WITHOUT disallowing the fetch, and that
+      // distinction is the whole point. robots.txt would stop Googlebot
+      // retrieving these — and blocking render-critical resources (fonts
+      // decide final text layout, and so CLS) costs more than the untidy
+      // report it would clean up. Crawling stays open; only indexing is
+      // declined.
+      //
+      // Social scrapers ignore X-Robots-Tag, so link previews are unaffected.
+      {
+        source: "/_next/static/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
+      {
+        source: "/favicon.ico",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
+      {
+        source: "/opengraph-image",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
+      {
+        source: "/:path*/opengraph-image/:id*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
     ];
   },
 
