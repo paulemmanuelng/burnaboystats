@@ -1189,40 +1189,40 @@
           {
             "country": "LT",
             "name": "Lithuania",
-            "position": 2,
+            "position": 3,
             "movement": null,
             "status": "new"
           },
           {
             "country": "FJ",
             "name": "Fiji",
-            "position": 5,
+            "position": 6,
             "movement": null,
             "status": "new"
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 17,
-            "movement": 6
+            "position": 18,
+            "movement": 5
           },
           {
             "country": "UZ",
             "name": "Uzbekistan",
-            "position": 20,
-            "movement": -15
+            "position": 21,
+            "movement": -16
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 22,
-            "movement": 10
+            "position": 27,
+            "movement": 5
           },
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 40,
-            "movement": -16
+            "position": 53,
+            "movement": -29
           },
           {
             "country": "MD",
@@ -1233,21 +1233,21 @@
           {
             "country": "KG",
             "name": "Kyrgyzstan",
-            "position": 64,
-            "movement": -32
+            "position": 66,
+            "movement": -34
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 66,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "AZ",
             "name": "Azerbaijan",
             "position": 89,
             "movement": -8
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 89,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "NG",
@@ -1258,7 +1258,7 @@
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 184,
+            "position": 192,
             "movement": null,
             "status": "new"
           }

@@ -309,8 +309,8 @@
           {
             "country": "MN",
             "name": "Mongolia",
-            "position": 83,
-            "movement": -11
+            "position": 84,
+            "movement": -12
           }
         ]
       },
@@ -1302,6 +1302,19 @@
             "name": "Nigeria",
             "position": 105,
             "movement": -24
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 41,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
