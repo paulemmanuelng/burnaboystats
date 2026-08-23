@@ -250,8 +250,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
-            "movement": -31
+            "position": 51,
+            "movement": -40
           },
           {
             "country": "KE",
@@ -561,7 +561,7 @@
           {
             "country": "ID",
             "name": "Indonesia",
-            "position": 169,
+            "position": 182,
             "movement": null,
             "status": "new"
           }
@@ -1448,8 +1448,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
-            "movement": -78
+            "position": 107,
+            "movement": -87
           }
         ]
       }
