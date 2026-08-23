@@ -450,8 +450,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 178,
-            "movement": -33
+            "position": 141,
+            "movement": 37
           },
           {
             "country": "RO",
@@ -601,14 +601,14 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 42,
-            "movement": -16
+            "position": 46,
+            "movement": -4
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 44,
-            "movement": -10
+            "position": 48,
+            "movement": -4
           },
           {
             "country": "BW",
@@ -690,6 +690,66 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 51,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ES",
+            "name": "Spain",
+            "position": 94,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 120,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 193,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 9,
+            "movement": 21
+          },
+          {
+            "country": "NP",
+            "name": "Nepal",
+            "position": 190,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "TYLA +",
     "platforms": [
       {
@@ -739,71 +799,12 @@
             "name": "Uganda",
             "position": 1,
             "movement": 0
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 193,
-            "movement": -99
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 51,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ES",
-            "name": "Spain",
-            "position": 82,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 120,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 193,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 30,
-            "movement": 130
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT LOVE",
@@ -813,21 +814,15 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 83,
+            "movement": 20
+          },
+          {
             "country": "ZA",
             "name": "South Africa",
             "position": 101,
-            "movement": -21
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 103,
-            "movement": -25
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 166,
             "movement": -21
           }
         ]
@@ -872,8 +867,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 52,
-            "movement": -8
+            "position": 49,
+            "movement": 3
           },
           {
             "country": "BW",
@@ -882,16 +877,16 @@
             "movement": -1
           },
           {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 82,
-            "movement": -8
-          },
-          {
             "country": "ZA",
             "name": "South Africa",
             "position": 95,
             "movement": -21
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 130,
+            "movement": -48
           }
         ]
       }
@@ -943,7 +938,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 94,
+            "position": 107,
             "movement": null,
             "status": "new"
           }
@@ -964,46 +959,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Truth or Dare",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NP",
-            "name": "Nepal",
-            "position": 122,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "ART",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NP",
-            "name": "Nepal",
-            "position": 135,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DYNAMITE",
