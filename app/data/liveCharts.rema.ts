@@ -264,7 +264,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 52,
-            "movement": -43
+            "movement": -39
           }
         ]
       },
@@ -540,7 +540,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 62,
-            "movement": 23
+            "movement": 20
           }
         ]
       },
@@ -1401,7 +1401,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 84,
-            "movement": -59
+            "movement": -55
           }
         ]
       }
@@ -1552,7 +1552,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 113,
-            "movement": -23
+            "movement": -21
           }
         ]
       }

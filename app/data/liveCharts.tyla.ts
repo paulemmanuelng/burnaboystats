@@ -196,8 +196,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 68,
-            "movement": -6
+            "position": 65,
+            "movement": -1
           },
           {
             "country": "RO",
@@ -295,6 +295,18 @@
             "status": "new"
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 117,
+            "movement": 34
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 118,
+            "movement": -8
+          },
+          {
             "country": "CY",
             "name": "Cyprus",
             "position": 120,
@@ -305,24 +317,6 @@
             "name": "Fiji",
             "position": 122,
             "movement": -79
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 122,
-            "movement": -5
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 122,
-            "movement": -41
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 124,
-            "movement": 27
           },
           {
             "country": "BM",
@@ -338,16 +332,22 @@
             "status": "new"
           },
           {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 156,
-            "movement": -90
+            "country": "NO",
+            "name": "Norway",
+            "position": 132,
+            "movement": -46
           },
           {
             "country": "UK",
             "name": "United Kingdom",
+            "position": 153,
+            "movement": 1
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
             "position": 156,
-            "movement": 2
+            "movement": -90
           },
           {
             "country": "PG",
@@ -396,8 +396,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 199,
-            "movement": -4
+            "position": 196,
+            "movement": -2
           },
           {
             "country": "VN",
@@ -631,7 +631,7 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 127,
-            "movement": -22
+            "movement": -83
           }
         ]
       }
@@ -734,7 +734,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 146,
+            "position": 152,
             "movement": null,
             "status": "new"
           }
@@ -933,14 +933,14 @@
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 106,
+            "position": 109,
             "movement": null,
             "status": "new"
           },
           {
             "country": "PE",
             "name": "Peru",
-            "position": 119,
+            "position": 122,
             "movement": null,
             "status": "new"
           }
@@ -961,32 +961,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PUSH 2 START",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "EE",
-            "name": "Estonia",
-            "position": 39,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 199,
-            "movement": -23
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Truth or Dare",
@@ -1011,7 +985,7 @@
           {
             "country": "PE",
             "name": "Peru",
-            "position": 154,
+            "position": 161,
             "movement": null,
             "status": "new"
           }
@@ -1058,6 +1032,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "EE",
+            "name": "Estonia",
+            "position": 39,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Talk to Me",
@@ -1109,7 +1103,7 @@
             "country": "LA",
             "name": "Laos",
             "position": 69,
-            "movement": -50
+            "movement": -47
           }
         ]
       }
