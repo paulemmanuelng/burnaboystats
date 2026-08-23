@@ -235,12 +235,6 @@
             "movement": -19
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 45,
-            "movement": 2
-          },
-          {
             "country": "LB",
             "name": "Lebanon",
             "position": 46,
@@ -257,6 +251,12 @@
             "name": "Cyprus",
             "position": 47,
             "movement": -17
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 49,
+            "movement": -2
           },
           {
             "country": "AO",
@@ -406,16 +406,16 @@
             "movement": 5
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 82,
-            "movement": -2
-          },
-          {
             "country": "BW",
             "name": "Botswana",
             "position": 87,
             "movement": -9
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 88,
+            "movement": -8
           },
           {
             "country": "AU",
@@ -448,6 +448,12 @@
             "movement": 10
           },
           {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 110,
+            "movement": 2
+          },
+          {
             "country": "AT",
             "name": "Austria",
             "position": 112,
@@ -465,12 +471,6 @@
             "position": 131,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 136,
-            "movement": -24
           },
           {
             "country": "NE",
@@ -1243,6 +1243,13 @@
             "name": "Kyrgyzstan",
             "position": 68,
             "movement": -31
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 71,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "KZ",
