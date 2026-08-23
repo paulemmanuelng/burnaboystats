@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-22";
+  export const liveChartsUpdated = "2026-08-23";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -235,17 +235,17 @@
             "movement": 17
           },
           {
+            "country": "DE",
+            "name": "Germany",
+            "position": 157,
+            "movement": 8
+          },
+          {
             "country": "LB",
             "name": "Lebanon",
             "position": 160,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 168,
-            "movement": -3
           },
           {
             "country": "MG",
@@ -310,13 +310,7 @@
           {
             "country": "MN",
             "name": "Mongolia",
-            "position": 81,
-            "movement": -11
-          },
-          {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 88,
+            "position": 83,
             "movement": -13
           }
         ]
@@ -895,8 +889,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": 141
+            "position": 19,
+            "movement": 138
           }
         ]
       },
@@ -1209,8 +1203,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 59,
-            "movement": -11
+            "position": 62,
+            "movement": -14
           }
         ]
       }
@@ -1324,8 +1318,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 49,
-            "movement": 1
+            "position": 48,
+            "movement": 2
           },
           {
             "country": "GH",
@@ -1336,14 +1330,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 88,
-            "movement": -2
+            "position": 85,
+            "movement": 1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 119,
-            "movement": 9
+            "position": 96,
+            "movement": 32
           }
         ]
       },
@@ -1456,76 +1450,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Gimme Dat",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 77,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 93,
-            "movement": -30
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 114,
-            "movement": -41
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 119,
-            "movement": -11
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 55,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 71,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 67,
-            "movement": -20
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "PAMI",
     "platforms": [
       {
@@ -1577,8 +1501,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 149,
-            "movement": -104
+            "position": 154,
+            "movement": -109
           }
         ]
       }
@@ -1640,6 +1564,69 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a8dc47ce1fd807b1814e8171a91c1fc9/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Gimme Dat",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 77,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 93,
+            "movement": -30
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 114,
+            "movement": -41
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 119,
+            "movement": -11
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 67,
+            "movement": -20
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 60,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sponono",
@@ -1776,8 +1763,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 188,
-            "movement": -6
+            "position": 166,
+            "movement": 16
           }
         ]
       }
@@ -1895,21 +1882,21 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 35,
-            "movement": 0
+            "position": 24,
+            "movement": 11
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 78,
+            "position": 73,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 137,
-            "movement": -101
+            "position": 142,
+            "movement": -106
           }
         ]
       }
@@ -1972,20 +1959,20 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 87,
-            "movement": 0
+            "position": 86,
+            "movement": 1
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 99,
-            "movement": 1
+            "position": 97,
+            "movement": 3
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 146,
-            "movement": -4
+            "position": 123,
+            "movement": 19
           }
         ]
       }
@@ -2048,7 +2035,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 57,
-            "movement": -12
+            "movement": -6
           },
           {
             "country": "ML",
@@ -2225,7 +2212,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 79,
+            "position": 74,
             "movement": null,
             "status": "new"
           }
@@ -2317,25 +2304,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "DYNAMITE",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LA",
-            "name": "Laos",
-            "position": 23,
-            "movement": -4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Slow",
     "platforms": [
       {
@@ -2353,6 +2321,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "DYNAMITE",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LA",
+            "name": "Laos",
+            "position": 69,
+            "movement": -50
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Time",
