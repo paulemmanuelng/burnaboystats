@@ -249,7 +249,7 @@
           {
             "country": "SI",
             "name": "Slovenia",
-            "position": 18,
+            "position": 23,
             "movement": null,
             "status": "new"
           },
@@ -1368,7 +1368,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 78,
+            "position": 83,
             "movement": null,
             "status": "new"
           }
@@ -1551,8 +1551,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 113,
-            "movement": -21
+            "position": 138,
+            "movement": -46
           }
         ]
       }
