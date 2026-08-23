@@ -84,7 +84,7 @@ export const songs: Song[] = [
     album: "Outside",
     cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
     spotify: "https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD",
-    ytViews: "308M",
+    ytViews: "309M",
     tagline: "The defiant life-anthem that became his global signature",
     blurb:
       "From the 2018 album Outside, “Ye” is one of Burna Boy's signature songs — the record that carried a career already six years deep into a worldwide audience. A defiant, celebratory Afro-fusion anthem about the will to live and enjoy every moment — “I no wan die, I wan enjoy” — it became a global streaming staple and went Platinum across the US, UK, France, Canada and beyond, all without ever needing a singles chart.",

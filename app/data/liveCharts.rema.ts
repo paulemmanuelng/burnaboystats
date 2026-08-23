@@ -142,56 +142,56 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": 1
+            "position": 10,
+            "movement": -2
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 54,
-            "movement": 12
+            "position": 45,
+            "movement": 9
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 56,
+            "position": 49,
             "movement": 7
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 66,
-            "movement": -9
+            "position": 71,
+            "movement": -5
           },
           {
             "country": "CM",
             "name": "Cameroon",
             "position": 83,
-            "movement": 6
-          },
-          {
-            "country": "ZM",
-            "name": "Zambia",
-            "position": 101,
-            "movement": 6
+            "movement": 0
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 113,
-            "movement": -7
+            "position": 97,
+            "movement": 16
+          },
+          {
+            "country": "ZM",
+            "name": "Zambia",
+            "position": 97,
+            "movement": 4
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 139,
-            "movement": 16
+            "position": 133,
+            "movement": 6
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 184,
-            "movement": 9
+            "movement": 0
           },
           {
             "country": "WW",
@@ -744,7 +744,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 75,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "NG",
@@ -781,20 +781,20 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 62,
-            "movement": 8
+            "position": 60,
+            "movement": 2
           },
           {
             "country": "TN",
             "name": "Tunisia",
-            "position": 127,
-            "movement": 20
+            "position": 130,
+            "movement": -3
           },
           {
             "country": "DZ",
             "name": "Algeria",
-            "position": 147,
-            "movement": 16
+            "position": 143,
+            "movement": 4
           }
         ]
       },
@@ -1336,8 +1336,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 157,
-            "movement": -19
+            "position": 178,
+            "movement": -21
           }
         ]
       }

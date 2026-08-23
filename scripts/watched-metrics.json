@@ -155,7 +155,7 @@
         }
       ],
       "lastChanged": "2026-08-23",
-      "lastSeenValue": 879613348,
+      "lastSeenValue": 879863767,
       "lastSeenAt": "2026-08-23"
     },
     {
@@ -186,8 +186,8 @@
         }
       ],
       "lastChanged": "2026-08-20",
-      "lastSeenValue": 360640155,
-      "lastSeenAt": "2026-08-20",
+      "lastSeenValue": 360958222,
+      "lastSeenAt": "2026-08-23",
       "stalenessDays": 45
     },
     {
@@ -199,7 +199,7 @@
       "match": "Ye [Official Music Video]",
       "kind": "drift",
       "threshold": 0.005,
-      "baseline": 307576033,
+      "baseline": 308659974,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
@@ -217,9 +217,9 @@
           "describes": "displayed YouTube views on /music/ye"
         }
       ],
-      "lastChanged": "2026-08-04",
-      "lastSeenValue": 308485699,
-      "lastSeenAt": "2026-08-20",
+      "lastChanged": "2026-08-23",
+      "lastSeenValue": 308659974,
+      "lastSeenAt": "2026-08-23",
       "stalenessDays": 60
     },
     {
@@ -250,8 +250,8 @@
         }
       ],
       "lastChanged": "2026-08-17",
-      "lastSeenValue": 478007839,
-      "lastSeenAt": "2026-08-20",
+      "lastSeenValue": 478410741,
+      "lastSeenAt": "2026-08-23",
       "stalenessDays": 45
     },
     {
@@ -282,8 +282,8 @@
         }
       ],
       "lastChanged": "2026-08-07",
-      "lastSeenValue": 117237043,
-      "lastSeenAt": "2026-08-20",
+      "lastSeenValue": 117377608,
+      "lastSeenAt": "2026-08-23",
       "stalenessDays": 30
     },
     {
@@ -313,8 +313,8 @@
         "max": 50000000000
       },
       "lastChanged": "2026-08-15",
-      "lastSeenValue": 3181607913,
-      "lastSeenAt": "2026-08-20",
+      "lastSeenValue": 3184717779,
+      "lastSeenAt": "2026-08-23",
       "stalenessDays": 21
     },
     {
