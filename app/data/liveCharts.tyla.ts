@@ -196,8 +196,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 60,
-            "movement": 5
+            "position": 62,
+            "movement": 0
           },
           {
             "country": "RO",
@@ -295,16 +295,16 @@
             "status": "new"
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 112,
+            "movement": 14
+          },
+          {
             "country": "CY",
             "name": "Cyprus",
             "position": 120,
             "movement": 1
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 121,
-            "movement": 22
           },
           {
             "country": "FJ",
@@ -319,12 +319,6 @@
             "movement": -54
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 129,
-            "movement": 9
-          },
-          {
             "country": "CH",
             "name": "Switzerland",
             "position": 130,
@@ -332,10 +326,10 @@
             "status": "new"
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 152,
-            "movement": -57
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 136,
+            "movement": 2
           },
           {
             "country": "BG",
@@ -344,10 +338,16 @@
             "movement": -90
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 158,
+            "movement": -72
+          },
+          {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 156,
-            "movement": 2
+            "position": 162,
+            "movement": -7
           },
           {
             "country": "PG",
@@ -397,7 +397,7 @@
             "country": "US",
             "name": "United States",
             "position": 199,
-            "movement": -7
+            "movement": -1
           },
           {
             "country": "VN",
@@ -409,131 +409,6 @@
       }
     ],
     "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "CHANEL",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 41,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 41,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 41,
-            "movement": 17
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 51,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 51,
-            "movement": 13
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 56,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 60,
-            "movement": 33
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 61,
-            "movement": -4
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 61,
-            "movement": 38
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 66,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "WW",
-            "name": "Worldwide",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 81,
-            "movement": 19
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 89,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 97,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 100,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 73,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
@@ -630,8 +505,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 133,
-            "movement": -89
+            "position": 150,
+            "movement": -100
           }
         ]
       }
@@ -837,6 +712,90 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "CHANEL",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 70,
+            "movement": -6
+          },
+          {
+            "country": "SV",
+            "name": "El Salvador",
+            "position": 76,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 80,
+            "movement": -22
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 88,
+            "movement": 11
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 92,
+            "movement": -35
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 97,
+            "movement": -4
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 99,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 73,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "IS IT LOVE",
     "platforms": [
       {
@@ -871,6 +830,19 @@
             "country": "MW",
             "name": "Malawi",
             "position": 182,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 53,
             "movement": null,
             "status": "new"
           }
@@ -937,13 +909,6 @@
             "position": 168,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 193,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -973,7 +938,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 80,
+            "position": 85,
             "movement": null,
             "status": "new"
           }

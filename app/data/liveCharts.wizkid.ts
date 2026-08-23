@@ -229,16 +229,16 @@
             "movement": 6
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 150,
-            "movement": 9
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 152,
             "movement": 17
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 154,
+            "movement": 11
           },
           {
             "country": "LB",
@@ -246,6 +246,12 @@
             "position": 160,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 177,
+            "movement": 5
           },
           {
             "country": "MG",
@@ -274,12 +280,6 @@
             "position": 194,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 195,
-            "movement": 3
           }
         ]
       },
@@ -288,24 +288,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 38,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 50,
+            "country": "SG",
+            "name": "Singapore",
+            "position": 56,
             "movement": null,
             "status": "new"
           },
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 71,
-            "movement": -54
+            "position": 60,
+            "movement": -43
           }
         ]
       },
@@ -317,7 +310,7 @@
             "country": "MN",
             "name": "Mongolia",
             "position": 83,
-            "movement": -12
+            "movement": -11
           }
         ]
       },
@@ -921,8 +914,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 50,
-            "movement": 22
+            "position": 23,
+            "movement": 49
           }
         ]
       },
@@ -1224,7 +1217,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 67,
-            "movement": -14
+            "movement": -12
           }
         ]
       }
@@ -1357,7 +1350,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 102,
-            "movement": 8
+            "movement": 10
           }
         ]
       },
@@ -1427,16 +1420,16 @@
             "movement": -33
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 82,
-            "movement": 72
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 84,
             "movement": 20
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 99,
+            "movement": -15
           },
           {
             "country": "NP",
@@ -1521,7 +1514,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 183,
-            "movement": -126
+            "movement": -109
           }
         ]
       }
@@ -1642,6 +1635,18 @@
             "status": "new"
           }
         ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 93,
+            "movement": -57
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -1697,6 +1702,68 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f830d11dfb6ee3025b93e60a0e15f075/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Turbulence",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 88,
+            "movement": 2
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 112,
+            "movement": 28
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 92,
+            "movement": -24
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 76,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 33,
+            "movement": 7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jam",
@@ -1783,107 +1850,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 170,
-            "movement": 9
+            "movement": 11
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6ddb34c26029baeb2bd73c71bb8d839f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Turbulence",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 88,
-            "movement": 2
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 112,
-            "movement": 28
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 92,
-            "movement": -24
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 33,
-            "movement": 7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ojuelegba",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 43,
-            "movement": 23
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 149,
-            "movement": 5
-          },
-          {
-            "country": "CG",
-            "name": "Republic of the Congo",
-            "position": 174,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 78,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Essence",
@@ -1902,19 +1875,19 @@
             "country": "DM",
             "name": "Dominica",
             "position": 24,
-            "movement": 10
+            "movement": 11
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 73,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 170,
-            "movement": -125
+            "movement": -108
           }
         ]
       }
@@ -1984,19 +1957,51 @@
             "country": "UG",
             "name": "Uganda",
             "position": 98,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 127,
-            "movement": 10
+            "movement": 12
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ojuelegba",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 43,
+            "movement": 23
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 149,
+            "movement": 5
+          },
+          {
+            "country": "CG",
+            "name": "Republic of the Congo",
+            "position": 174,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Stay For The Night",
@@ -2231,7 +2236,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 74,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -2321,6 +2326,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Man On A Mission",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 165,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Slow",
     "platforms": [
       {
@@ -2388,25 +2412,6 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 172,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "Man On A Mission",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 165,
             "movement": null,
             "status": "new"
           }
@@ -2510,12 +2515,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b6c9342dc0ab40a9e837ebb16a8b24dd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Can't Believe",
-    "platforms": [],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2f25b7d9807558219cbe7646ad27e092/500x500-000000-80-0-0.jpg"
   }
 ];
   

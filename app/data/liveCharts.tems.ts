@@ -91,6 +91,12 @@
             "movement": -15
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 17,
+            "movement": 1
+          },
+          {
             "country": "SR",
             "name": "Suriname",
             "position": 18,
@@ -101,12 +107,6 @@
             "name": "Kyrgyzstan",
             "position": 19,
             "movement": 6
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 19,
-            "movement": 1
           },
           {
             "country": "CV",
@@ -235,6 +235,12 @@
             "movement": -19
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 45,
+            "movement": -1
+          },
+          {
             "country": "LB",
             "name": "Lebanon",
             "position": 46,
@@ -257,12 +263,6 @@
             "name": "Angola",
             "position": 50,
             "movement": -14
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 50,
-            "movement": -6
           },
           {
             "country": "DZ",
@@ -408,8 +408,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 86,
-            "movement": -5
+            "position": 82,
+            "movement": -7
           },
           {
             "country": "BW",
@@ -426,8 +426,8 @@
           {
             "country": "AU",
             "name": "Australia",
-            "position": 94,
-            "movement": -6
+            "position": 96,
+            "movement": -3
           },
           {
             "country": "GD",
@@ -460,17 +460,17 @@
             "movement": -45
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 121,
-            "movement": -37
-          },
-          {
             "country": "TD",
             "name": "Chad",
             "position": 131,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 136,
+            "movement": -35
           },
           {
             "country": "NE",
@@ -1204,25 +1204,25 @@
             "country": "IN",
             "name": "India",
             "position": 17,
-            "movement": -6
+            "movement": 6
           },
           {
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 20,
-            "movement": -16
+            "movement": -15
           },
           {
             "country": "RO",
             "name": "Romania",
             "position": 22,
-            "movement": 1
+            "movement": 10
           },
           {
             "country": "KZ",
             "name": "Kazakhstan",
             "position": 40,
-            "movement": -36
+            "movement": -16
           },
           {
             "country": "MD",
@@ -1246,13 +1246,14 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 89,
-            "movement": 110
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 150,
-            "movement": -131
+            "movement": -112
           },
           {
             "country": "IE",
@@ -1268,24 +1269,23 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 46,
+            "movement": -7
+          },
+          {
             "country": "SN",
             "name": "Senegal",
-            "position": 29,
+            "position": 51,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 64,
-            "movement": -18
-          },
-          {
-            "country": "LV",
-            "name": "Latvia",
-            "position": 79,
-            "movement": null,
-            "status": "new"
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 74,
+            "movement": -31
           }
         ]
       }
@@ -1303,8 +1303,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 17,
-            "movement": 2
+            "position": 15,
+            "movement": 3
           },
           {
             "country": "BS",
@@ -1641,13 +1641,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 118,
-            "movement": -48
+            "movement": -47
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 149,
-            "movement": -129
+            "movement": -112
           }
         ]
       },
@@ -1682,7 +1682,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 92,
+            "position": 87,
             "movement": null,
             "status": "new"
           }
@@ -1708,8 +1708,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 117,
-            "movement": 1
+            "position": 112,
+            "movement": 4
           },
           {
             "country": "BS",
@@ -1821,50 +1821,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Free Mind",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 110,
-            "movement": -30
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 115,
-            "movement": 4
-          },
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 173,
-            "movement": -58
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 77,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Damages",
     "platforms": [
       {
@@ -1919,25 +1875,56 @@
             "country": "DM",
             "name": "Dominica",
             "position": 24,
-            "movement": 10
+            "movement": 11
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 73,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 170,
-            "movement": -125
+            "movement": -108
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Free Mind",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 110,
+            "movement": -30
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 115,
+            "movement": 4
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 173,
+            "movement": -58
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Isaka II",
@@ -2022,46 +2009,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0989302f2acc1132d8922b3f292abe4b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love Me JeJe",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Burning",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 100,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fountains",
