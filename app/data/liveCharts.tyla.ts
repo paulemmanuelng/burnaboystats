@@ -196,8 +196,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 63,
-            "movement": 1
+            "position": 65,
+            "movement": 6
           },
           {
             "country": "RO",
@@ -295,6 +295,12 @@
             "status": "new"
           },
           {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 116,
+            "movement": 11
+          },
+          {
             "country": "CY",
             "name": "Cyprus",
             "position": 120,
@@ -307,22 +313,16 @@
             "movement": -79
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 122,
-            "movement": -4
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 123,
-            "movement": 18
-          },
-          {
             "country": "BM",
             "name": "Bermuda",
             "position": 128,
             "movement": -54
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 130,
+            "movement": 37
           },
           {
             "country": "CH",
@@ -352,10 +352,10 @@
             "status": "new"
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 167,
-            "movement": -9
+            "country": "NO",
+            "name": "Norway",
+            "position": 169,
+            "movement": -53
           },
           {
             "country": "LR",
@@ -370,12 +370,6 @@
             "movement": -134
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 178,
-            "movement": -84
-          },
-          {
             "country": "DO",
             "name": "Dominican Republic",
             "position": 182,
@@ -386,6 +380,12 @@
             "name": "Thailand",
             "position": 187,
             "movement": 11
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 188,
+            "movement": -22
           },
           {
             "country": "GR",
@@ -618,7 +618,7 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 165,
-            "movement": -102
+            "movement": -78
           }
         ]
       }
@@ -948,7 +948,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 140,
+            "position": 176,
             "movement": null,
             "status": "new"
           }
@@ -971,6 +971,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "CRAZY OF ME",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 125,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "IS IT",
     "platforms": [
       {
@@ -982,6 +1002,26 @@
             "name": "South Africa",
             "position": 172,
             "movement": -18
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "KISS",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 171,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
