@@ -142,7 +142,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 28,
-            "movement": 5
+            "movement": 3
           },
           {
             "country": "BW",
@@ -195,7 +195,7 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 83,
+            "position": 81,
             "movement": -2
           },
           {
@@ -271,7 +271,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 100,
-            "movement": -4
+            "movement": 0
           }
         ]
       }
@@ -386,8 +386,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 141,
-            "movement": 37
+            "position": 139,
+            "movement": 18
           },
           {
             "country": "AE",
@@ -509,8 +509,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
-            "movement": -1
+            "position": 8,
+            "movement": -2
           }
         ]
       },
@@ -522,7 +522,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 2,
-            "movement": 2
+            "movement": 3
           }
         ]
       }
@@ -699,8 +699,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 75,
-            "movement": null,
-            "status": "new"
+            "movement": -26
           }
         ]
       },
@@ -723,8 +722,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
-            "movement": -110
+            "position": 165,
+            "movement": -112
           }
         ]
       }
@@ -893,8 +892,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": 34
+            "position": 3,
+            "movement": 51
           }
         ]
       },
@@ -906,7 +905,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 1,
-            "movement": 14
+            "movement": 12
           }
         ]
       },
@@ -1045,8 +1044,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": -1
+            "position": 5,
+            "movement": -2
           },
           {
             "country": "GH",
@@ -1064,14 +1063,14 @@
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 66,
-            "movement": -17
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 69,
-            "movement": null,
-            "status": "new"
+            "movement": 9
           }
         ]
       },
@@ -1362,8 +1361,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": -8
+            "position": 23,
+            "movement": -16
           }
         ]
       },
@@ -1375,7 +1374,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 4,
-            "movement": 10
+            "movement": 32
           }
         ]
       },
@@ -1536,7 +1535,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 84,
-            "movement": -35
+            "movement": -57
           }
         ]
       }
@@ -1742,8 +1741,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 171,
-            "movement": -108
+            "position": 178,
+            "movement": -110
           }
         ]
       }
@@ -2043,7 +2042,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 62,
-            "movement": 0
+            "movement": 1
           }
         ]
       }
@@ -2326,7 +2325,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 40,
-            "movement": 3
+            "movement": 4
           },
           {
             "country": "BF",
@@ -2343,14 +2342,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 93,
+            "position": 94,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 122,
+            "position": 160,
             "movement": null,
             "status": "new"
           }
@@ -2595,6 +2594,43 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Sensational",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 136,
+            "movement": -6
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 136,
+            "movement": 30
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 174,
+            "movement": -31
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 176,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e8b1b523f139f23bac60bc70528f386a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Guide",
     "platforms": [
       {
@@ -2642,43 +2678,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Sensational",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 136,
-            "movement": -6
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 136,
-            "movement": 30
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 174,
-            "movement": -31
-          },
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 176,
-            "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e8b1b523f139f23bac60bc70528f386a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Constantly",
@@ -2888,7 +2887,7 @@
             "country": "TR",
             "name": "Turkey",
             "position": 152,
-            "movement": -135
+            "movement": -133
           }
         ]
       }
@@ -2926,38 +2925,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/49e60bcc245747acb829b0a96723c176/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Funds",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 183,
-            "movement": -63
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 57,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FIA",
@@ -3012,6 +2979,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a880bf2aaa27d39c446bd9b19effd22e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Funds",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 183,
+            "movement": -63
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 57,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Twe Twe",
     "platforms": [
       {
@@ -3029,25 +3028,6 @@
       }
     ],
     "kind": "song"
-  },
-  {
-    "title": "AWAY",
-    "platforms": [
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 76,
-            "movement": 5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OVER DEM",
@@ -3241,25 +3221,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/132d4358890f5675bd291681812647e5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Skelewu",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 161,
-            "movement": -107
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/23726f80ac87dcce3846c3b638cba30d/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Activate",
     "platforms": [
       {
@@ -3279,6 +3240,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d5dfc880396e953e316456a394d7353/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Skelewu",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 168,
+            "movement": -109
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/23726f80ac87dcce3846c3b638cba30d/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Intro",
     "platforms": [
       {
@@ -3288,8 +3268,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 192,
-            "movement": -107
+            "position": 199,
+            "movement": -109
           }
         ]
       }
@@ -3307,8 +3287,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
-            "movement": -108
+            "position": 176,
+            "movement": -110
           }
         ]
       }
@@ -3325,8 +3305,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 188,
-            "movement": -108
+            "position": 195,
+            "movement": -110
           }
         ]
       }
@@ -3352,6 +3332,25 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/50d12a3358fb88c810b8c9231ced0cd6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "AWAY",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 76,
+            "movement": 5
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   }
 ];
   

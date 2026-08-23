@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-08-23";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -196,8 +196,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 62,
-            "movement": 0
+            "position": 63,
+            "movement": 1
           },
           {
             "country": "RO",
@@ -295,12 +295,6 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 112,
-            "movement": 14
-          },
-          {
             "country": "CY",
             "name": "Cyprus",
             "position": 120,
@@ -311,6 +305,18 @@
             "name": "Fiji",
             "position": 122,
             "movement": -79
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 122,
+            "movement": -4
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 123,
+            "movement": 18
           },
           {
             "country": "BM",
@@ -326,28 +332,10 @@
             "status": "new"
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 136,
-            "movement": 2
-          },
-          {
             "country": "BG",
             "name": "Bulgaria",
             "position": 156,
             "movement": -90
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 158,
-            "movement": -72
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 162,
-            "movement": -7
           },
           {
             "country": "PG",
@@ -364,6 +352,12 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 167,
+            "movement": -9
+          },
+          {
             "country": "LR",
             "name": "Liberia",
             "position": 170,
@@ -374,6 +368,12 @@
             "name": "Lithuania",
             "position": 174,
             "movement": -134
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 178,
+            "movement": -84
           },
           {
             "country": "DO",
@@ -394,12 +394,6 @@
             "movement": -24
           },
           {
-            "country": "US",
-            "name": "United States",
-            "position": 199,
-            "movement": -1
-          },
-          {
             "country": "VN",
             "name": "Vietnam",
             "position": 199,
@@ -409,6 +403,124 @@
       }
     ],
     "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "THAT GIRL",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 20,
+            "movement": 1
+          },
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 41,
+            "movement": -11
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 42,
+            "movement": -16
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 44,
+            "movement": -10
+          },
+          {
+            "country": "SR",
+            "name": "Suriname",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 114,
+            "movement": -35
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 159,
+            "movement": -7
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 186,
+            "movement": -34
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 119,
+            "movement": 3
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 182,
+            "movement": -19
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 77,
+            "movement": -16
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 87,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 14,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
@@ -506,105 +618,13 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 150,
-            "movement": -100
+            "movement": -87
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "THAT GIRL",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 20,
-            "movement": 1
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 41,
-            "movement": -11
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 42,
-            "movement": -16
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 44,
-            "movement": -10
-          },
-          {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 85,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 114,
-            "movement": -35
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 159,
-            "movement": -7
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 186,
-            "movement": -34
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 119,
-            "movement": 3
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 182,
-            "movement": -19
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 77,
-            "movement": -16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SHE DID IT AGAIN",
@@ -693,6 +713,19 @@
             "movement": -9
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 67,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -709,7 +742,7 @@
             "country": "IT",
             "name": "Italy",
             "position": 70,
-            "movement": -6
+            "movement": -19
           },
           {
             "country": "SV",
@@ -722,46 +755,43 @@
             "country": "CH",
             "name": "Switzerland",
             "position": 80,
-            "movement": -22
+            "movement": -39
           },
           {
             "country": "BE",
             "name": "Belgium",
             "position": 88,
-            "movement": 11
+            "movement": -27
           },
           {
             "country": "AT",
             "name": "Austria",
             "position": 92,
-            "movement": -35
+            "movement": -31
           },
           {
             "country": "NL",
             "name": "Netherlands",
             "position": 97,
-            "movement": -4
+            "movement": -37
           },
           {
             "country": "DK",
             "name": "Denmark",
             "position": 98,
-            "movement": null,
-            "status": "new"
+            "movement": -32
           },
           {
             "country": "NO",
             "name": "Norway",
             "position": 98,
-            "movement": null,
-            "status": "new"
+            "movement": -57
           },
           {
             "country": "SE",
             "name": "Sweden",
             "position": 99,
-            "movement": null,
-            "status": "new"
+            "movement": -43
           }
         ]
       },
@@ -772,7 +802,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 73,
+            "position": 81,
             "movement": null,
             "status": "new"
           }
@@ -877,45 +907,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 66,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "PE",
-            "name": "Peru",
-            "position": 200,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 30,
-            "movement": 130
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Talk to Me",
     "platforms": [
       {
@@ -925,7 +916,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 85,
+            "position": 106,
             "movement": null,
             "status": "new"
           }
@@ -946,6 +937,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 30,
+            "movement": 130
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 74,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT",
@@ -995,7 +1018,7 @@
           {
             "country": "EE",
             "name": "Estonia",
-            "position": 42,
+            "position": 47,
             "movement": null,
             "status": "new"
           }
