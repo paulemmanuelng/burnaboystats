@@ -249,15 +249,15 @@
           {
             "country": "SI",
             "name": "Slovenia",
-            "position": 24,
+            "position": 25,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
-            "movement": -24
+            "position": 34,
+            "movement": -29
           },
           {
             "country": "KE",
@@ -532,8 +532,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 21,
-            "movement": 4
+            "position": 24,
+            "movement": 1
           },
           {
             "country": "BF",
@@ -1398,7 +1398,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 86,
+            "position": 90,
             "movement": null,
             "status": "new"
           }
@@ -1471,7 +1471,7 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 7,
+            "position": 9,
             "movement": null,
             "status": "new"
           }
@@ -1550,8 +1550,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 139,
-            "movement": -47
+            "position": 140,
+            "movement": -48
           }
         ]
       }
