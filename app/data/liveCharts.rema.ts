@@ -243,8 +243,8 @@
           {
             "country": "SI",
             "name": "Slovenia",
-            "position": 30,
-            "movement": -24
+            "position": 31,
+            "movement": -25
           },
           {
             "country": "KE",
@@ -548,8 +548,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 21,
-            "movement": 6
+            "position": 23,
+            "movement": 4
           },
           {
             "country": "BF",

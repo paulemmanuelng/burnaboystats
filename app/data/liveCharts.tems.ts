@@ -1113,8 +1113,8 @@
           {
             "country": "LT",
             "name": "Lithuania",
-            "position": 5,
-            "movement": -3
+            "position": 19,
+            "movement": -17
           },
           {
             "country": "UZ",
@@ -1183,14 +1183,14 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 108,
+            "position": 121,
             "movement": null,
             "status": "new"
           },
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 125,
+            "position": 143,
             "movement": null,
             "status": "new"
           },
