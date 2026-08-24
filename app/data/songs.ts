@@ -115,7 +115,7 @@ export const songs: Song[] = [
     slug: "on-the-low",
     title: "On the Low",
     year: 2019,
-    spotifyStreams: "422M",
+    spotifyStreams: "423M",
     album: "African Giant",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     spotify: "https://open.spotify.com/track/1zIk8RJEKGvoH4FioFnGyJ",

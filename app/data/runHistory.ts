@@ -302,7 +302,7 @@
     "date": "2026-08-24",
     "release": "Dai Dai",
     "platform": "Spotify",
-    "position": 1
+    "position": 2
   }
 ];
   
