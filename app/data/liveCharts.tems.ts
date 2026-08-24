@@ -566,7 +566,7 @@
             "country": "US",
             "name": "United States",
             "position": 13,
-            "movement": 2
+            "movement": 1
           },
           {
             "country": "BR",
@@ -584,7 +584,7 @@
             "country": "WW",
             "name": "Worldwide",
             "position": 22,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "SG",
@@ -596,7 +596,7 @@
             "country": "AU",
             "name": "Australia",
             "position": 24,
-            "movement": -3
+            "movement": 0
           },
           {
             "country": "GR",
@@ -650,7 +650,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 45,
-            "movement": 1
+            "movement": -1
           },
           {
             "country": "RO",
@@ -686,7 +686,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 89,
-            "movement": 2
+            "movement": -1
           },
           {
             "country": "KZ",
@@ -710,7 +710,7 @@
             "country": "IT",
             "name": "Italy",
             "position": 105,
-            "movement": 32
+            "movement": 22
           },
           {
             "country": "IL",
@@ -755,6 +755,12 @@
             "movement": -6
           },
           {
+            "country": "FR",
+            "name": "France",
+            "position": 127,
+            "movement": 31
+          },
+          {
             "country": "TN",
             "name": "Tunisia",
             "position": 127,
@@ -794,13 +800,7 @@
             "country": "AZ",
             "name": "Azerbaijan",
             "position": 158,
-            "movement": -10
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 158,
-            "movement": 9
+            "movement": -4
           },
           {
             "country": "CM",
@@ -833,28 +833,22 @@
             "movement": -1
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 186,
-            "movement": -46
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 186,
-            "movement": -12
-          },
-          {
             "country": "AR",
             "name": "Argentina",
             "position": 188,
             "movement": -31
           },
           {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 188,
+            "movement": -2
+          },
+          {
             "country": "MX",
             "name": "Mexico",
             "position": 194,
-            "movement": 6
+            "movement": 1
           },
           {
             "country": "FI",
@@ -862,6 +856,12 @@
             "position": 196,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 198,
+            "movement": -12
           }
         ]
       },
@@ -1142,14 +1142,14 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 11,
+            "position": 13,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 17,
+            "position": 19,
             "movement": null,
             "status": "new"
           },
@@ -1180,34 +1180,13 @@
           {
             "country": "LT",
             "name": "Lithuania",
-            "position": 94,
-            "movement": -91
-          },
-          {
-            "country": "GR",
-            "name": "Greece",
-            "position": 100,
-            "movement": null,
-            "status": "new"
+            "position": 96,
+            "movement": -93
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 122,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 172,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 188,
+            "position": 161,
             "movement": null,
             "status": "new"
           }
@@ -1595,8 +1574,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 46,
-            "movement": -11
+            "position": 47,
+            "movement": -12
           },
           {
             "country": "GH",
@@ -1633,6 +1612,81 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/21ffdcad2bde4b25ba9a5a3a53193b05/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "What You Need",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 14,
+            "movement": -5
+          },
+          {
+            "country": "BS",
+            "name": "The Bahamas",
+            "position": 90,
+            "movement": 49
+          },
+          {
+            "country": "AI",
+            "name": "Anguilla",
+            "position": 112,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 118,
+            "movement": -6
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 194,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 34,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 11,
+            "movement": 3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Free Mind",
@@ -1828,68 +1882,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "What You Need",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 14,
-            "movement": -5
-          },
-          {
-            "country": "BS",
-            "name": "The Bahamas",
-            "position": 90,
-            "movement": 49
-          },
-          {
-            "country": "AI",
-            "name": "Anguilla",
-            "position": 112,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 118,
-            "movement": -6
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 34,
-            "movement": -3
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 11,
-            "movement": 3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Love Is A Kingdom",
@@ -2109,7 +2101,7 @@
             "country": "US",
             "name": "United States",
             "position": 153,
-            "movement": 0
+            "movement": 4
           }
         ]
       }

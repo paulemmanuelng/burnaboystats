@@ -159,8 +159,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 32,
-            "movement": -4
+            "position": 34,
+            "movement": -6
           },
           {
             "country": "TD",
@@ -193,16 +193,16 @@
             "movement": 29
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 86,
+            "movement": -3
+          },
+          {
             "country": "SN",
             "name": "Senegal",
             "position": 86,
             "movement": 11
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 87,
-            "movement": -4
           },
           {
             "country": "AO",
@@ -278,8 +278,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
-            "movement": 52
+            "position": 45,
+            "movement": 55
           }
         ]
       }
@@ -436,19 +436,19 @@
             "country": "WW",
             "name": "Worldwide",
             "position": 60,
-            "movement": -17
+            "movement": -8
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 72,
-            "movement": 6
+            "movement": 5
           },
           {
             "country": "UK",
             "name": "United Kingdom",
             "position": 96,
-            "movement": -30
+            "movement": -18
           },
           {
             "country": "AE",
@@ -515,8 +515,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": -16
+            "position": 36,
+            "movement": -31
           }
         ]
       },
@@ -722,8 +722,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 20,
-            "movement": 138
+            "position": 35,
+            "movement": 123
           }
         ]
       }
@@ -1057,8 +1057,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": -3
+            "position": 31,
+            "movement": -18
           }
         ]
       },
@@ -1217,7 +1217,7 @@
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 177,
-            "movement": 8
+            "movement": 9
           }
         ]
       },
@@ -1805,6 +1805,18 @@
             "name": "Tanzania",
             "position": 115,
             "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 6,
+            "movement": 165
           }
         ]
       }
@@ -2979,25 +2991,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Intro",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 37,
-            "movement": 155
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "The Best",
     "platforms": [
       {
@@ -3074,6 +3067,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Intro",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 52,
+            "movement": 140
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Nakupenda - I Love You",
     "platforms": [
       {
@@ -3112,26 +3124,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "All Of You",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 68,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/798485d74c5c9cd451070cd502092ea6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "AWAY",
     "platforms": [
       {
@@ -3152,7 +3144,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Funds",
+    "title": "All Of You",
     "platforms": [
       {
         "platform": "iTunes",
@@ -3161,7 +3153,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 80,
+            "position": 83,
             "movement": null,
             "status": "new"
           }
@@ -3169,7 +3161,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/798485d74c5c9cd451070cd502092ea6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Risky",
@@ -3209,6 +3201,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Funds",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Aye",
