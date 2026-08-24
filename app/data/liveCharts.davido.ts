@@ -201,8 +201,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 89,
-            "movement": -12
+            "position": 92,
+            "movement": -15
           },
           {
             "country": "SC",
@@ -494,8 +494,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 62,
-            "movement": -48
+            "position": 72,
+            "movement": -58
           }
         ]
       },
@@ -694,7 +694,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
+            "position": 71,
             "movement": null,
             "status": "new"
           }
@@ -846,8 +846,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
-            "movement": 0
+            "position": 8,
+            "movement": -2
           }
         ]
       },
@@ -1151,8 +1151,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 57,
-            "movement": -53
+            "position": 67,
+            "movement": -63
           }
         ]
       },
@@ -1555,7 +1555,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
+            "position": 12,
             "movement": null,
             "status": "new"
           }
@@ -2088,8 +2088,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 14,
-            "movement": -1
+            "position": 15,
+            "movement": -2
           },
           {
             "country": "MZ",
@@ -2504,8 +2504,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 12,
-            "movement": -1
+            "position": 13,
+            "movement": -2
           },
           {
             "country": "NE",
@@ -2855,8 +2855,8 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 2,
-            "movement": 0
+            "position": 4,
+            "movement": -2
           }
         ]
       }
@@ -2887,7 +2887,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 120,
+            "position": 129,
             "movement": null,
             "status": "new"
           }
@@ -3129,8 +3129,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 77,
-            "movement": -66
+            "position": 86,
+            "movement": -75
           }
         ]
       }
@@ -3206,8 +3206,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": -86
+            "position": 117,
+            "movement": -95
           }
         ]
       }

@@ -1150,36 +1150,29 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "IN",
+            "name": "India",
+            "position": 4,
+            "movement": 9
+          },
+          {
             "country": "FJ",
             "name": "Fiji",
             "position": 5,
             "movement": 1
           },
           {
-            "country": "IN",
-            "name": "India",
-            "position": 5,
-            "movement": 8
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
+            "position": 10,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 15,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 33,
-            "movement": 59
+            "country": "RO",
+            "name": "Romania",
+            "position": 10,
+            "movement": 98
           },
           {
             "country": "UZ",
@@ -1200,6 +1193,12 @@
             "movement": -28
           },
           {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 53,
+            "movement": 39
+          },
+          {
             "country": "MD",
             "name": "Moldova",
             "position": 70,
@@ -1208,8 +1207,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 85,
-            "movement": 33
+            "position": 93,
+            "movement": 25
           }
         ]
       },
