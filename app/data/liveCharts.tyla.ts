@@ -466,17 +466,10 @@
             "status": "new"
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 156,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "IN",
             "name": "India",
-            "position": 160,
-            "movement": -115
+            "position": 177,
+            "movement": -132
           }
         ]
       },
@@ -667,7 +660,7 @@
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 98,
+            "position": 143,
             "movement": null,
             "status": "new"
           }
@@ -800,7 +793,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 26,
+            "position": 43,
             "movement": null,
             "status": "new"
           }
@@ -858,7 +851,7 @@
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 101,
+            "position": 146,
             "movement": null,
             "status": "new"
           }

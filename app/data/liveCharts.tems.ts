@@ -1140,10 +1140,11 @@
             "movement": 17
           },
           {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 19,
-            "movement": 57
+            "country": "PT",
+            "name": "Portugal",
+            "position": 15,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BG",
@@ -1156,6 +1157,12 @@
             "name": "Uzbekistan",
             "position": 31,
             "movement": -10
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 33,
+            "movement": 43
           },
           {
             "country": "CY",
@@ -1171,16 +1178,16 @@
             "movement": -10
           },
           {
-            "country": "KG",
-            "name": "Kyrgyzstan",
-            "position": 96,
-            "movement": -23
-          },
-          {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 100,
-            "movement": 21
+            "position": 84,
+            "movement": 37
+          },
+          {
+            "country": "KG",
+            "name": "Kyrgyzstan",
+            "position": 98,
+            "movement": -25
           }
         ]
       },
@@ -1646,7 +1653,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 186,
+            "position": 185,
             "movement": null,
             "status": "new"
           }

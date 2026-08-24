@@ -531,6 +531,19 @@
             "movement": 12
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 17,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -2173,7 +2186,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 76,
+            "position": 87,
             "movement": null,
             "status": "new"
           }
@@ -2256,7 +2269,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 63,
-            "movement": -6
+            "movement": -5
           },
           {
             "country": "CM",
@@ -2414,7 +2427,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
+            "position": 35,
             "movement": null,
             "status": "new"
           }
@@ -2433,7 +2446,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 80,
+            "position": 91,
             "movement": null,
             "status": "new"
           }
@@ -2511,7 +2524,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
+            "position": 113,
             "movement": null,
             "status": "new"
           }
