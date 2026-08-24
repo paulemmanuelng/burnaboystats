@@ -549,8 +549,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 64,
-            "movement": 1
+            "position": 63,
+            "movement": 2
           }
         ]
       },

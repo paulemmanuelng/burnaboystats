@@ -165,8 +165,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 36,
-            "movement": -4
+            "position": 41,
+            "movement": -9
           },
           {
             "country": "IE",
@@ -278,8 +278,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 52,
-            "movement": -5
+            "position": 51,
+            "movement": -4
           }
         ]
       }
@@ -395,12 +395,6 @@
             "name": "Zimbabwe",
             "position": 188,
             "movement": 5
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 191,
-            "movement": -19
           }
         ]
       },
@@ -1381,8 +1375,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 4,
-            "movement": 0
+            "position": 5,
+            "movement": -1
           }
         ]
       }
@@ -1724,8 +1718,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
-            "movement": -10
+            "position": 29,
+            "movement": -11
           }
         ]
       }
@@ -2432,8 +2426,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 77,
-            "movement": -37
+            "position": 78,
+            "movement": -38
           },
           {
             "country": "UG",
@@ -2925,8 +2919,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 62,
-            "movement": -1
+            "position": 61,
+            "movement": 0
           }
         ]
       }
@@ -3131,26 +3125,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Dada",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8acc1f3ddee888bddeae4b71752c7757/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Risky",

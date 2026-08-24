@@ -343,16 +343,16 @@
             "movement": 21
           },
           {
+            "country": "AU",
+            "name": "Australia",
+            "position": 73,
+            "movement": 15
+          },
+          {
             "country": "LT",
             "name": "Lithuania",
             "position": 77,
             "movement": -26
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 79,
-            "movement": 9
           },
           {
             "country": "GH",
@@ -369,14 +369,14 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 82,
-            "movement": 21
+            "position": 80,
+            "movement": 23
           },
           {
             "country": "DE",
             "name": "Germany",
-            "position": 84,
-            "movement": 15
+            "position": 81,
+            "movement": 18
           },
           {
             "country": "KN",
@@ -527,7 +527,7 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 179,
+            "position": 178,
             "movement": null,
             "status": "new"
           },
@@ -1149,8 +1149,8 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 24,
-            "movement": -19
+            "position": 26,
+            "movement": -21
           },
           {
             "country": "UZ",
@@ -1167,7 +1167,7 @@
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 38,
+            "position": 39,
             "movement": null,
             "status": "new"
           },
@@ -1265,8 +1265,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 13,
-            "movement": -2
+            "position": 16,
+            "movement": -5
           },
           {
             "country": "BS",
@@ -1632,17 +1632,17 @@
             "movement": 49
           },
           {
+            "country": "US",
+            "name": "United States",
+            "position": 108,
+            "movement": 2
+          },
+          {
             "country": "AI",
             "name": "Anguilla",
             "position": 112,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 116,
-            "movement": -6
           }
         ]
       },
