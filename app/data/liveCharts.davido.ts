@@ -278,8 +278,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 45,
-            "movement": 55
+            "position": 46,
+            "movement": 54
           }
         ]
       }
@@ -393,8 +393,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 170,
-            "movement": -29
+            "position": 173,
+            "movement": -32
           },
           {
             "country": "ZW",
