@@ -1138,7 +1138,7 @@
             "country": "FJ",
             "name": "Fiji",
             "position": 5,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "IN",
@@ -1149,7 +1149,7 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 13,
+            "position": 15,
             "movement": null,
             "status": "new"
           },
@@ -1173,22 +1173,22 @@
             "movement": -11
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 87,
-            "movement": -4
-          },
-          {
             "country": "KG",
             "name": "Kyrgyzstan",
-            "position": 92,
-            "movement": -26
+            "position": 96,
+            "movement": -28
           },
           {
             "country": "LT",
             "name": "Lithuania",
             "position": 98,
             "movement": -93
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 100,
+            "movement": -17
           }
         ]
       },
@@ -1654,7 +1654,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 194,
+            "position": 181,
             "movement": null,
             "status": "new"
           }

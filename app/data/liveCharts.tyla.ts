@@ -193,22 +193,22 @@
             "movement": -35
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 86,
-            "movement": -23
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 89,
-            "movement": 33
-          },
-          {
             "country": "SB",
             "name": "Solomon Islands",
             "position": 90,
             "movement": -45
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 91,
+            "movement": -28
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 99,
+            "movement": 23
           },
           {
             "country": "SA",
@@ -285,12 +285,6 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 138,
-            "movement": -15
-          },
-          {
             "country": "PH",
             "name": "Philippines",
             "position": 141,
@@ -307,6 +301,12 @@
             "name": "Ireland",
             "position": 145,
             "movement": -46
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 145,
+            "movement": -22
           },
           {
             "country": "BS",
@@ -329,12 +329,6 @@
             "status": "new"
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 173,
-            "movement": 5
-          },
-          {
             "country": "DO",
             "name": "Dominican Republic",
             "position": 177,
@@ -348,16 +342,16 @@
             "status": "new"
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 184,
+            "movement": -6
+          },
+          {
             "country": "JO",
             "name": "Jordan",
             "position": 187,
             "movement": -94
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 188,
-            "movement": -21
           },
           {
             "country": "GH",
@@ -365,6 +359,12 @@
             "position": 190,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 190,
+            "movement": -23
           },
           {
             "country": "SL",
@@ -466,10 +466,17 @@
             "status": "new"
           },
           {
+            "country": "FR",
+            "name": "France",
+            "position": 127,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "IN",
             "name": "India",
-            "position": 139,
-            "movement": -72
+            "position": 141,
+            "movement": -74
           }
         ]
       },
@@ -571,8 +578,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 7,
-            "movement": 7
+            "position": 11,
+            "movement": 3
           }
         ]
       },
@@ -652,6 +659,19 @@
             "movement": 13
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -715,65 +735,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 9,
-            "movement": 21
-          },
-          {
-            "country": "NP",
-            "name": "Nepal",
-            "position": 190,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 26,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 197,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SI",
-            "name": "Slovenia",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "FAIRYTALE",
     "platforms": [
       {
@@ -809,6 +770,58 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 9,
+            "movement": 21
+          },
+          {
+            "country": "NP",
+            "name": "Nepal",
+            "position": 190,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PH",
+            "name": "Philippines",
+            "position": 26,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SI",
+            "name": "Slovenia",
+            "position": 54,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT LOVE",
