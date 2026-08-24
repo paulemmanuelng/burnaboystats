@@ -443,6 +443,26 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 33,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MD",
+            "name": "Moldova",
+            "position": 63,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -451,19 +471,6 @@
             "name": "Sweden",
             "position": 175,
             "movement": -21
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MD",
-            "name": "Moldova",
-            "position": 63,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -547,8 +554,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 30,
-            "movement": 31
+            "position": 31,
+            "movement": 30
           }
         ]
       },
@@ -802,7 +809,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 65,
+            "position": 66,
             "movement": null,
             "status": "new"
           }
@@ -848,7 +855,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 79,
+            "position": 149,
             "movement": null,
             "status": "new"
           }
@@ -868,7 +875,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 59,
+            "position": 60,
             "movement": null,
             "status": "new"
           }
@@ -908,8 +915,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 34,
-            "movement": -21
+            "position": 44,
+            "movement": -31
           }
         ]
       }

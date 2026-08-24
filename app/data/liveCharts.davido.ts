@@ -269,8 +269,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
-            "movement": -14
+            "position": 56,
+            "movement": -15
           }
         ]
       }
@@ -482,15 +482,15 @@
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 19,
+            "position": 23,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": -65
+            "position": 103,
+            "movement": -84
           }
         ]
       },
@@ -701,7 +701,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
+            "position": 102,
             "movement": null,
             "status": "new"
           }
@@ -853,8 +853,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": -6
+            "position": 11,
+            "movement": -7
           }
         ]
       },
@@ -1158,8 +1158,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 81,
-            "movement": -73
+            "position": 100,
+            "movement": -92
           }
         ]
       },
@@ -1273,8 +1273,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
-            "movement": -3
+            "position": 6,
+            "movement": -4
           },
           {
             "country": "ZW",
@@ -1286,8 +1286,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 150,
-            "movement": -21
+            "position": 160,
+            "movement": -31
           }
         ]
       },
@@ -1562,7 +1562,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
+            "position": 16,
             "movement": null,
             "status": "new"
           }
@@ -2101,8 +2101,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 41,
-            "movement": 11
+            "position": 42,
+            "movement": 10
           },
           {
             "country": "BF",
@@ -2521,22 +2521,22 @@
             "movement": 0
           },
           {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 45,
-            "movement": 10
-          },
-          {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 46,
             "movement": 2
           },
           {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 46,
+            "movement": 9
+          },
+          {
             "country": "BW",
             "name": "Botswana",
-            "position": 79,
-            "movement": -39
+            "position": 80,
+            "movement": -40
           },
           {
             "country": "UG",
@@ -2832,8 +2832,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 60,
-            "movement": 3
+            "position": 59,
+            "movement": 4
           }
         ]
       }
@@ -2873,39 +2873,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1713aad5a0a697ac1db7ce7b8a167c27/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Funds",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 146,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 141,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Risky",
     "platforms": [
       {
@@ -2930,6 +2897,39 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/da0c3e984d1fa2b9c54158ee1a02fbd1/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Funds",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 146,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 160,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Oriade",
@@ -3137,7 +3137,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
+            "position": 37,
             "movement": null,
             "status": "new"
           }
@@ -3164,25 +3164,6 @@
       }
     ],
     "kind": "song"
-  },
-  {
-    "title": "Intro",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 98,
-            "movement": -82
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Sound",
@@ -3224,6 +3205,25 @@
     "kind": "song"
   },
   {
+    "title": "Intro",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 117,
+            "movement": -101
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "All Of You",
     "platforms": [
       {
@@ -3233,8 +3233,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
-            "movement": -94
+            "position": 148,
+            "movement": -113
           }
         ]
       }
@@ -3252,8 +3252,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 152,
-            "movement": -20
+            "position": 162,
+            "movement": -30
           }
         ]
       }
