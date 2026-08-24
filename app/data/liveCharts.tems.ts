@@ -220,7 +220,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 44,
-            "movement": 1
+            "movement": 5
           },
           {
             "country": "CY",
@@ -364,19 +364,19 @@
             "country": "DE",
             "name": "Germany",
             "position": 83,
-            "movement": -1
+            "movement": 5
           },
           {
             "country": "AU",
             "name": "Australia",
             "position": 84,
-            "movement": 12
+            "movement": 8
           },
           {
             "country": "NZ",
             "name": "New Zealand",
             "position": 84,
-            "movement": 52
+            "movement": 26
           },
           {
             "country": "KN",
@@ -1135,16 +1135,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IN",
-            "name": "India",
-            "position": 3,
-            "movement": 15
-          },
-          {
             "country": "FJ",
             "name": "Fiji",
             "position": 5,
             "movement": 1
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 5,
+            "movement": 20
           },
           {
             "country": "BG",
@@ -1156,7 +1156,7 @@
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 19,
+            "position": 21,
             "movement": null,
             "status": "new"
           },
@@ -1175,8 +1175,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 77,
-            "movement": -11
+            "position": 87,
+            "movement": -4
           },
           {
             "country": "KG",
@@ -1187,15 +1187,8 @@
           {
             "country": "LT",
             "name": "Lithuania",
-            "position": 96,
+            "position": 98,
             "movement": -93
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 161,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -1274,7 +1267,7 @@
             "country": "US",
             "name": "United States",
             "position": 14,
-            "movement": 1
+            "movement": -2
           },
           {
             "country": "BS",
@@ -1650,7 +1643,7 @@
             "country": "US",
             "name": "United States",
             "position": 115,
-            "movement": -3
+            "movement": -4
           }
         ]
       },

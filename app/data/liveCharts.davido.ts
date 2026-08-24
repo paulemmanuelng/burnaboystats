@@ -196,7 +196,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 86,
-            "movement": -3
+            "movement": -5
           },
           {
             "country": "SN",
@@ -394,7 +394,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 173,
-            "movement": -32
+            "movement": -34
           },
           {
             "country": "ZW",
@@ -2185,18 +2185,18 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 46,
-            "movement": 5
+            "movement": 8
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 87,
+            "position": 88,
             "movement": 6
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 106,
+            "position": 145,
             "movement": null,
             "status": "new"
           }
@@ -2223,7 +2223,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 42,
-            "movement": 6
+            "movement": 9
           },
           {
             "country": "BW",
@@ -2937,8 +2937,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 61,
-            "movement": 0
+            "position": 59,
+            "movement": 4
           }
         ]
       }

@@ -196,13 +196,13 @@
             "country": "BR",
             "name": "Brazil",
             "position": 86,
-            "movement": -24
+            "movement": -23
           },
           {
             "country": "NZ",
             "name": "New Zealand",
             "position": 89,
-            "movement": 47
+            "movement": 33
           },
           {
             "country": "SB",
@@ -288,7 +288,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 138,
-            "movement": -26
+            "movement": -15
           },
           {
             "country": "PH",
@@ -332,7 +332,7 @@
             "country": "NO",
             "name": "Norway",
             "position": 173,
-            "movement": -15
+            "movement": 5
           },
           {
             "country": "DO",
@@ -357,7 +357,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 188,
-            "movement": -26
+            "movement": -21
           },
           {
             "country": "GH",
@@ -468,9 +468,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 123,
-            "movement": null,
-            "status": "new"
+            "position": 139,
+            "movement": -72
           }
         ]
       },
@@ -572,9 +571,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 152,
-            "movement": null,
-            "status": "new"
+            "position": 7,
+            "movement": 7
           }
         ]
       },
@@ -745,14 +743,14 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 25,
+            "position": 26,
             "movement": null,
             "status": "new"
           },
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 161,
+            "position": 197,
             "movement": null,
             "status": "new"
           }
@@ -830,19 +828,6 @@
             "name": "South Africa",
             "position": 101,
             "movement": -21
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 184,
-            "movement": null,
-            "status": "new"
           }
         ]
       }

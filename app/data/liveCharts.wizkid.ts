@@ -246,13 +246,13 @@
             "country": "DE",
             "name": "Germany",
             "position": 161,
-            "movement": -7
+            "movement": 7
           },
           {
             "country": "CA",
             "name": "Canada",
             "position": 176,
-            "movement": 1
+            "movement": -6
           },
           {
             "country": "AO",
@@ -290,25 +290,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MN",
-            "name": "Mongolia",
-            "position": 94,
-            "movement": -10
-          },
-          {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 196,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -325,6 +306,18 @@
             "position": 84,
             "movement": null,
             "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MN",
+            "name": "Mongolia",
+            "position": 94,
+            "movement": -10
           }
         ]
       },
@@ -1484,7 +1477,7 @@
             "country": "NO",
             "name": "Norway",
             "position": 59,
-            "movement": 40
+            "movement": 70
           },
           {
             "country": "KN",
