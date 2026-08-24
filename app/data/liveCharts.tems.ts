@@ -211,16 +211,16 @@
             "movement": 3
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 41,
+            "movement": 10
+          },
+          {
             "country": "BE",
             "name": "Belgium",
             "position": 44,
             "movement": 3
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 44,
-            "movement": 5
           },
           {
             "country": "CY",
@@ -349,6 +349,12 @@
             "movement": -26
           },
           {
+            "country": "AU",
+            "name": "Australia",
+            "position": 79,
+            "movement": 9
+          },
+          {
             "country": "GH",
             "name": "Ghana",
             "position": 79,
@@ -361,22 +367,16 @@
             "movement": 7
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 83,
-            "movement": 5
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 84,
-            "movement": 8
-          },
-          {
             "country": "NZ",
             "name": "New Zealand",
+            "position": 82,
+            "movement": 21
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
             "position": 84,
-            "movement": 26
+            "movement": 15
           },
           {
             "country": "KN",
@@ -527,7 +527,7 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 178,
+            "position": 179,
             "movement": null,
             "status": "new"
           },
@@ -547,13 +547,6 @@
             "country": "SG",
             "name": "Singapore",
             "position": 186,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 197,
             "movement": null,
             "status": "new"
           }
@@ -1144,45 +1137,44 @@
             "country": "IN",
             "name": "India",
             "position": 6,
-            "movement": 19
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 16,
-            "movement": null,
-            "status": "new"
+            "movement": 17
           },
           {
             "country": "MY",
             "name": "Malaysia",
             "position": 19,
-            "movement": 28
+            "movement": 57
           },
           {
-            "country": "CY",
-            "name": "Cyprus",
-            "position": 22,
-            "movement": null,
-            "status": "new"
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 24,
+            "movement": -19
           },
           {
             "country": "UZ",
             "name": "Uzbekistan",
-            "position": 26,
-            "movement": -5
+            "position": 31,
+            "movement": -10
+          },
+          {
+            "country": "CY",
+            "name": "Cyprus",
+            "position": 38,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 69,
-            "movement": -12
+            "position": 70,
+            "movement": -10
           },
           {
             "country": "KG",
             "name": "Kyrgyzstan",
             "position": 96,
-            "movement": -28
+            "movement": -23
           },
           {
             "country": "UK",
@@ -1266,8 +1258,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 14,
-            "movement": -3
+            "position": 13,
+            "movement": -2
           },
           {
             "country": "BS",
@@ -1574,14 +1566,14 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 47,
-            "movement": -12
+            "position": 48,
+            "movement": -11
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 142,
-            "movement": -24
+            "position": 151,
+            "movement": -33
           }
         ]
       },
@@ -1642,8 +1634,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 115,
-            "movement": -5
+            "position": 116,
+            "movement": -6
           }
         ]
       },
@@ -1754,77 +1746,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Essence",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 7,
-            "movement": 0
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 24,
-            "movement": 0
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 68,
-            "movement": 5
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 196,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 196,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 196,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Born in the Wild",
     "platforms": [
       {
@@ -1882,6 +1803,71 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Essence",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 7,
+            "movement": 0
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 24,
+            "movement": 0
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 93,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 196,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 196,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 196,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Love Is A Kingdom",

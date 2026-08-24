@@ -245,14 +245,14 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 161,
-            "movement": 7
+            "position": 170,
+            "movement": 1
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 176,
-            "movement": -6
+            "position": 174,
+            "movement": -5
           },
           {
             "country": "AO",
@@ -317,7 +317,7 @@
             "country": "MN",
             "name": "Mongolia",
             "position": 94,
-            "movement": -10
+            "movement": -9
           }
         ]
       },
@@ -1158,7 +1158,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 89,
-            "movement": -11
+            "movement": -10
           }
         ]
       }
@@ -1477,7 +1477,7 @@
             "country": "NO",
             "name": "Norway",
             "position": 58,
-            "movement": 71
+            "movement": 110
           },
           {
             "country": "KN",
@@ -1707,12 +1707,6 @@
             "name": "Dominica",
             "position": 24,
             "movement": 0
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 68,
-            "movement": 5
           },
           {
             "country": "UG",
@@ -2409,25 +2403,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BROWN SKIN GIRL",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 69,
-            "movement": 5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Cash Flow",

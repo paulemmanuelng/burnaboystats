@@ -202,13 +202,13 @@
             "country": "BR",
             "name": "Brazil",
             "position": 91,
-            "movement": -28
+            "movement": -26
           },
           {
             "country": "NZ",
             "name": "New Zealand",
             "position": 99,
-            "movement": 23
+            "movement": 17
           },
           {
             "country": "SA",
@@ -306,7 +306,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 145,
-            "movement": -22
+            "movement": -15
           },
           {
             "country": "BS",
@@ -345,7 +345,7 @@
             "country": "NO",
             "name": "Norway",
             "position": 184,
-            "movement": -6
+            "movement": -15
           },
           {
             "country": "JO",
@@ -364,7 +364,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 190,
-            "movement": -23
+            "movement": -2
           },
           {
             "country": "SL",
@@ -461,22 +461,22 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 62,
+            "position": 63,
             "movement": null,
             "status": "new"
           },
           {
             "country": "FR",
             "name": "France",
-            "position": 135,
+            "position": 156,
             "movement": null,
             "status": "new"
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 152,
-            "movement": -85
+            "position": 160,
+            "movement": -115
           }
         ]
       },
@@ -578,8 +578,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 11,
-            "movement": 3
+            "position": 18,
+            "movement": 10
           }
         ]
       },
@@ -882,6 +882,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "KISS",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 32,
+            "movement": 162
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "On My Body",
     "platforms": [
       {
@@ -891,7 +910,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 22,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
