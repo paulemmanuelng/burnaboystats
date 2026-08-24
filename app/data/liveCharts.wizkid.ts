@@ -257,8 +257,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 155,
-            "movement": 9
+            "position": 152,
+            "movement": 4
           },
           {
             "country": "UG",
@@ -304,12 +304,6 @@
             "name": "Luxembourg",
             "position": 182,
             "movement": -30
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 195,
-            "movement": -19
           }
         ]
       },
@@ -330,18 +324,6 @@
             "position": 84,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MN",
-            "name": "Mongolia",
-            "position": 97,
-            "movement": -12
           }
         ]
       },
@@ -1293,8 +1275,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 90,
-            "movement": -10
+            "position": 91,
+            "movement": -9
           }
         ]
       }
@@ -1398,7 +1380,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 117,
-            "movement": -3
+            "movement": -1
           }
         ]
       }
@@ -1932,7 +1914,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 172,
-            "movement": 10
+            "movement": 12
           }
         ]
       }
@@ -2118,13 +2100,13 @@
             "country": "UG",
             "name": "Uganda",
             "position": 98,
-            "movement": 0
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 130,
-            "movement": 9
+            "movement": 11
           }
         ]
       }
@@ -2348,6 +2330,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Alive",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 116,
+            "movement": 12
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Call Me Every Day",
     "platforms": [
       {
@@ -2489,25 +2503,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5956f4fdf351532267e5538e2373615b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Alive",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 116,
-            "movement": 12
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Tonight",
     "platforms": [
       {
@@ -2537,8 +2532,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 125,
-            "movement": null,
-            "status": "new"
+            "movement": -87
           }
         ]
       }

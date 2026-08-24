@@ -277,7 +277,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 127,
-            "movement": -4
+            "movement": 16
           },
           {
             "country": "KW",
@@ -315,7 +315,7 @@
             "country": "NO",
             "name": "Norway",
             "position": 148,
-            "movement": 5
+            "movement": -19
           },
           {
             "country": "KY",
@@ -340,7 +340,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 196,
-            "movement": -9
+            "movement": -12
           },
           {
             "country": "SE",
@@ -548,7 +548,7 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 26,
-            "movement": 10
+            "movement": 35
           }
         ]
       },
@@ -866,26 +866,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "On My Body",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 32,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "PUSH 2 START",
     "platforms": [
       {
@@ -904,6 +884,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "On My Body",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 34,
+            "movement": -21
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Talk to Me",
