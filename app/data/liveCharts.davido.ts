@@ -489,8 +489,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
-            "movement": -53
+            "position": 84,
+            "movement": -65
           }
         ]
       },
@@ -701,7 +701,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 71,
+            "position": 83,
             "movement": null,
             "status": "new"
           }
@@ -853,8 +853,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": -4
+            "position": 10,
+            "movement": -6
           }
         ]
       },
@@ -1158,8 +1158,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": -59
+            "position": 81,
+            "movement": -73
           }
         ]
       },
@@ -1273,8 +1273,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": -1
+            "position": 5,
+            "movement": -3
           },
           {
             "country": "ZW",
@@ -1562,7 +1562,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
+            "position": 14,
             "movement": null,
             "status": "new"
           }
@@ -2895,7 +2895,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
+            "position": 141,
             "movement": null,
             "status": "new"
           }
@@ -3128,7 +3128,7 @@
     "kind": "song"
   },
   {
-    "title": "Intro",
+    "title": "Holiday",
     "platforms": [
       {
         "platform": "iTunes",
@@ -3137,14 +3137,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 86,
-            "movement": -70
+            "position": 34,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
+    "kind": "song"
   },
   {
     "title": "Shakabulizzy",
@@ -3164,6 +3164,25 @@
       }
     ],
     "kind": "song"
+  },
+  {
+    "title": "Intro",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 98,
+            "movement": -82
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Sound",
@@ -3214,8 +3233,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": -82
+            "position": 129,
+            "movement": -94
           }
         ]
       }

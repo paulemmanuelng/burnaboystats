@@ -1151,34 +1151,34 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IN",
-            "name": "India",
-            "position": 4,
-            "movement": 13
-          },
-          {
             "country": "FJ",
             "name": "Fiji",
             "position": 5,
             "movement": 1
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 10,
-            "movement": null,
-            "status": "new"
+            "country": "IN",
+            "name": "India",
+            "position": 5,
+            "movement": 12
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 10,
-            "movement": 127
+            "position": 6,
+            "movement": 131
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 12,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "UA",
             "name": "Ukraine",
-            "position": 22,
+            "position": 25,
             "movement": null,
             "status": "new"
           },
@@ -1210,8 +1210,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 53,
-            "movement": 71
+            "position": 57,
+            "movement": 67
           },
           {
             "country": "MD",
@@ -1222,8 +1222,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 93,
-            "movement": 2
+            "position": 79,
+            "movement": 16
           }
         ]
       },

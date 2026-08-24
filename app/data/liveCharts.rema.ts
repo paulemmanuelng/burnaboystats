@@ -188,22 +188,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 80,
-            "movement": 55
-          },
-          {
             "country": "KE",
             "name": "Kenya",
-            "position": 89,
-            "movement": -15
+            "position": 91,
+            "movement": -17
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 92,
+            "movement": 43
           },
           {
             "country": "SI",
             "name": "Slovenia",
-            "position": 92,
-            "movement": -45
+            "position": 94,
+            "movement": -47
           }
         ]
       },
@@ -450,8 +450,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 23,
-            "movement": -2
+            "position": 25,
+            "movement": -4
           },
           {
             "country": "BF",
@@ -1085,7 +1085,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
+            "position": 86,
             "movement": null,
             "status": "new"
           }
@@ -1254,7 +1254,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 90,
+            "position": 102,
             "movement": null,
             "status": "new"
           }
@@ -1287,7 +1287,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
+            "position": 120,
             "movement": null,
             "status": "new"
           }
@@ -1527,8 +1527,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 58,
-            "movement": -44
+            "position": 59,
+            "movement": -45
           }
         ]
       }
