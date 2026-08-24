@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-23";
+  export const liveChartsUpdated = "2026-08-24";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -169,12 +169,6 @@
             "movement": -27
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 74,
-            "movement": -6
-          },
-          {
             "country": "RO",
             "name": "Romania",
             "position": 74,
@@ -193,10 +187,22 @@
             "movement": 38
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 85,
+            "movement": -23
+          },
+          {
             "country": "KN",
             "name": "Saint Kitts and Nevis",
             "position": 85,
             "movement": -35
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 86,
+            "movement": 50
           },
           {
             "country": "SB",
@@ -254,12 +260,6 @@
             "status": "new"
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 121,
-            "movement": 1
-          },
-          {
             "country": "BM",
             "name": "Bermuda",
             "position": 129,
@@ -303,12 +303,6 @@
             "movement": -46
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 145,
-            "movement": -23
-          },
-          {
             "country": "BS",
             "name": "The Bahamas",
             "position": 145,
@@ -324,8 +318,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 151,
-            "movement": -27
+            "position": 160,
+            "movement": -48
           },
           {
             "country": "CV",
@@ -341,10 +335,10 @@
             "movement": 5
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 181,
-            "movement": -25
+            "country": "NO",
+            "name": "Norway",
+            "position": 182,
+            "movement": -24
           },
           {
             "country": "MG",
@@ -358,6 +352,12 @@
             "name": "Jordan",
             "position": 187,
             "movement": -94
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 187,
+            "movement": -25
           },
           {
             "country": "GH",
@@ -381,49 +381,6 @@
   {
     "title": "SHE DID IT AGAIN",
     "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 34,
-            "movement": 1
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 103,
-            "movement": -15
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 109,
-            "movement": 5
-          },
-          {
-            "country": "HR",
-            "name": "Croatia",
-            "position": 137,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 145,
-            "movement": -28
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 192,
-            "movement": -6
-          }
-        ]
-      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
@@ -462,14 +419,38 @@
         ]
       },
       {
-        "platform": "Spotify",
+        "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
+            "country": "RO",
+            "name": "Romania",
+            "position": 36,
+            "movement": -2
+          },
+          {
+            "country": "HR",
+            "name": "Croatia",
+            "position": 102,
+            "movement": 35
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 115,
+            "movement": -6
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 122,
+            "movement": -19
+          },
+          {
             "country": "SE",
             "name": "Sweden",
-            "position": 154,
-            "movement": 3
+            "position": 145,
+            "movement": -28
           }
         ]
       },
@@ -478,11 +459,30 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IN",
-            "name": "India",
-            "position": 101,
+            "country": "MD",
+            "name": "Moldova",
+            "position": 61,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 110,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 154,
+            "movement": 3
           }
         ]
       }
@@ -542,14 +542,14 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 119,
-            "movement": 3
+            "position": 107,
+            "movement": 12
           },
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 182,
-            "movement": -19
+            "position": 172,
+            "movement": 10
           }
         ]
       },
@@ -572,8 +572,22 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 71,
-            "movement": 62
+            "position": 152,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 58,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -604,77 +618,40 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 70,
-            "movement": -19
+            "position": 64,
+            "movement": 6
           },
           {
-            "country": "SV",
-            "name": "El Salvador",
-            "position": 76,
+            "country": "AU",
+            "name": "Australia",
+            "position": 66,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 80,
-            "movement": -39
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 88,
-            "movement": -27
+            "position": 67,
+            "movement": 13
           },
           {
             "country": "AT",
             "name": "Austria",
-            "position": 92,
-            "movement": -31
+            "position": 69,
+            "movement": 23
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 97,
-            "movement": -37
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 98,
-            "movement": -32
+            "country": "CA",
+            "name": "Canada",
+            "position": 85,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NO",
             "name": "Norway",
-            "position": 98,
-            "movement": -57
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 99,
-            "movement": -43
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 178,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 183,
-            "movement": null,
-            "status": "new"
+            "position": 85,
+            "movement": 13
           }
         ]
       }
@@ -743,32 +720,6 @@
     "title": "Water",
     "platforms": [
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 64,
-            "movement": 27
-          },
-          {
-            "country": "ES",
-            "name": "Spain",
-            "position": 144,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 171,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -786,40 +737,22 @@
             "status": "new"
           }
         ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "IS IT LOVE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 83,
-            "movement": 20
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 101,
-            "movement": -21
-          }
-        ]
       },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 94,
+            "country": "PH",
+            "name": "Philippines",
+            "position": 25,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 161,
             "movement": null,
             "status": "new"
           }
@@ -830,9 +763,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 53,
+            "country": "SI",
+            "name": "Slovenia",
+            "position": 54,
             "movement": null,
             "status": "new"
           }
@@ -840,7 +773,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FAIRYTALE",
@@ -880,22 +813,74 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "PUSH 2 START",
+    "title": "IS IT LOVE",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 83,
+            "movement": 20
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 101,
+            "movement": -21
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 184,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "On My Body",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "EE",
-            "name": "Estonia",
-            "position": 92,
-            "movement": -53
-          },
+            "country": "GH",
+            "name": "Ghana",
+            "position": 21,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 138,
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 71,
             "movement": null,
             "status": "new"
           }
@@ -909,27 +894,14 @@
     "title": "Talk to Me",
     "platforms": [
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 149,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
             "country": "FI",
             "name": "Finland",
-            "position": 115,
-            "movement": -17
+            "position": 117,
+            "movement": -2
           }
         ]
       }
@@ -938,16 +910,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "On My Body",
+    "title": "Truth or Dare",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 13,
+            "country": "TH",
+            "name": "Thailand",
+            "position": 146,
             "movement": null,
             "status": "new"
           }
@@ -955,26 +927,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "DYNAMITE",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LA",
-            "name": "Laos",
-            "position": 70,
-            "movement": -47
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
   }
 ];
   
