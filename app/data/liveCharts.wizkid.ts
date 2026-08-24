@@ -1157,8 +1157,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 87,
-            "movement": -9
+            "position": 89,
+            "movement": -11
           }
         ]
       }
@@ -2179,7 +2179,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 71,
+            "position": 76,
             "movement": null,
             "status": "new"
           }
@@ -2430,6 +2430,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Cash Flow",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 28,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "On Top Your Matter",
     "platforms": [
       {
@@ -2439,7 +2458,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 75,
+            "position": 80,
             "movement": null,
             "status": "new"
           }
@@ -2517,7 +2536,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
+            "position": 102,
             "movement": null,
             "status": "new"
           }

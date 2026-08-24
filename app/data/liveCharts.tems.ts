@@ -76,7 +76,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 16,
-            "movement": 1
+            "movement": 4
           },
           {
             "country": "UG",
@@ -1143,20 +1143,26 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 5,
-            "movement": 20
+            "position": 6,
+            "movement": 19
           },
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 15,
+            "position": 16,
             "movement": null,
             "status": "new"
           },
           {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 19,
+            "movement": 28
+          },
+          {
             "country": "CY",
             "name": "Cyprus",
-            "position": 21,
+            "position": 22,
             "movement": null,
             "status": "new"
           },
@@ -1169,8 +1175,8 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 68,
-            "movement": -11
+            "position": 69,
+            "movement": -12
           },
           {
             "country": "KG",
@@ -1179,16 +1185,10 @@
             "movement": -28
           },
           {
-            "country": "LT",
-            "name": "Lithuania",
-            "position": 98,
-            "movement": -93
-          },
-          {
             "country": "UK",
             "name": "United Kingdom",
             "position": 100,
-            "movement": -17
+            "movement": 21
           }
         ]
       },
@@ -1267,7 +1267,7 @@
             "country": "US",
             "name": "United States",
             "position": 14,
-            "movement": -2
+            "movement": -3
           },
           {
             "country": "BS",
@@ -1580,8 +1580,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 141,
-            "movement": -23
+            "position": 142,
+            "movement": -24
           }
         ]
       },
@@ -1643,7 +1643,7 @@
             "country": "US",
             "name": "United States",
             "position": 115,
-            "movement": -4
+            "movement": -5
           }
         ]
       },
@@ -1654,7 +1654,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 181,
+            "position": 186,
             "movement": null,
             "status": "new"
           }
