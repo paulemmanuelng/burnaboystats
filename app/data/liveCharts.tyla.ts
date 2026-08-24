@@ -195,6 +195,12 @@
             "movement": -48
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 76,
+            "movement": -2
+          },
+          {
             "country": "SA",
             "name": "Saudi Arabia",
             "position": 76,
@@ -205,12 +211,6 @@
             "name": "Bahrain",
             "position": 91,
             "movement": -71
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 91,
-            "movement": -16
           },
           {
             "country": "BE",
@@ -233,8 +233,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 102,
-            "movement": 22
+            "position": 104,
+            "movement": 17
           },
           {
             "country": "AO",
@@ -268,16 +268,16 @@
             "status": "new"
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 120,
+            "movement": 31
+          },
+          {
             "country": "SG",
             "name": "Singapore",
             "position": 123,
             "movement": 10
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 127,
-            "movement": 16
           },
           {
             "country": "KW",
@@ -312,16 +312,16 @@
             "movement": 42
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 148,
-            "movement": -19
-          },
-          {
             "country": "KY",
             "name": "Cayman Islands",
             "position": 151,
             "movement": -30
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 151,
+            "movement": -6
           },
           {
             "country": "KH",
@@ -339,8 +339,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 196,
-            "movement": -12
+            "position": 192,
+            "movement": -11
           },
           {
             "country": "SE",
@@ -353,6 +353,19 @@
             "name": "Ireland",
             "position": 200,
             "movement": -55
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 6,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -456,7 +469,7 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 63,
+            "position": 65,
             "movement": null,
             "status": "new"
           }
@@ -554,8 +567,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 31,
-            "movement": 30
+            "position": 36,
+            "movement": 35
           }
         ]
       },
@@ -809,7 +822,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 66,
+            "position": 70,
             "movement": null,
             "status": "new"
           }
@@ -855,7 +868,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 149,
+            "position": 160,
             "movement": null,
             "status": "new"
           }
@@ -875,7 +888,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 60,
+            "position": 65,
             "movement": null,
             "status": "new"
           }
@@ -915,8 +928,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 44,
-            "movement": -31
+            "position": 52,
+            "movement": -39
           }
         ]
       }
