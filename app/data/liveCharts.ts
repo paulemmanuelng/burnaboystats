@@ -2327,9 +2327,9 @@
             "movement": -2
           },
           {
-            "country": "UA",
-            "name": "Ukraine",
-            "position": 4,
+            "country": "HU",
+            "name": "Hungary",
+            "position": 5,
             "movement": null,
             "status": "new"
           },
@@ -2350,6 +2350,13 @@
             "name": "Germany",
             "position": 6,
             "movement": 2
+          },
+          {
+            "country": "UA",
+            "name": "Ukraine",
+            "position": 7,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "DO",
@@ -2392,7 +2399,7 @@
           {
             "country": "SI",
             "name": "Slovenia",
-            "position": 38,
+            "position": 39,
             "movement": null,
             "status": "new"
           },
@@ -2403,41 +2410,29 @@
             "movement": 23
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 46,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 51,
-            "movement": -42
-          },
-          {
             "country": "AT",
             "name": "Austria",
             "position": 55,
             "movement": -34
           },
           {
-            "country": "TR",
-            "name": "Turkey",
-            "position": 59,
-            "movement": 6
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 58,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 64,
-            "movement": -7
+            "position": 65,
+            "movement": -8
           },
           {
-            "country": "GR",
-            "name": "Greece",
-            "position": 67,
-            "movement": 11
+            "country": "TR",
+            "name": "Turkey",
+            "position": 69,
+            "movement": -4
           },
           {
             "country": "KE",
@@ -2448,8 +2443,8 @@
           {
             "country": "LK",
             "name": "Sri Lanka",
-            "position": 74,
-            "movement": -10
+            "position": 75,
+            "movement": -11
           },
           {
             "country": "IN",
@@ -2458,18 +2453,10 @@
             "movement": 81
           },
           {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 86,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 115,
-            "movement": null,
-            "status": "new"
+            "country": "PT",
+            "name": "Portugal",
+            "position": 98,
+            "movement": -89
           },
           {
             "country": "HK",
@@ -2479,29 +2466,36 @@
             "status": "new"
           },
           {
-            "country": "RO",
-            "name": "Romania",
-            "position": 137,
+            "country": "CL",
+            "name": "Chile",
+            "position": 148,
+            "movement": -127
+          },
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 155,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "CL",
-            "name": "Chile",
-            "position": 143,
-            "movement": -122
-          },
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 158,
-            "movement": -155
+            "country": "RO",
+            "name": "Romania",
+            "position": 156,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "ID",
             "name": "Indonesia",
-            "position": 161,
-            "movement": -119
+            "position": 172,
+            "movement": -130
+          },
+          {
+            "country": "PL",
+            "name": "Poland",
+            "position": 186,
+            "movement": -183
           }
         ]
       }
@@ -3904,8 +3898,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": -6
+            "position": 15,
+            "movement": -8
           },
           {
             "country": "GM",
@@ -3916,8 +3910,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 29,
-            "movement": 0
+            "position": 30,
+            "movement": -1
           },
           {
             "country": "GH",
@@ -4126,6 +4120,100 @@
     "kind": "song"
   },
   {
+    "title": "Last Last",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 17,
+            "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 25,
+            "movement": 7
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 29,
+            "movement": -4
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 34,
+            "movement": 0
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 36,
+            "movement": -2
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 88,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 92,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 172,
+            "movement": -50
+          },
+          {
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 177,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 182,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 89,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Gbona",
     "platforms": [
       {
@@ -4199,94 +4287,6 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 87,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "Last Last",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 17,
-            "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 25,
-            "movement": 7
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 29,
-            "movement": -4
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 34,
-            "movement": 0
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 36,
-            "movement": -2
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 88,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 172,
-            "movement": -50
-          },
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 177,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 89,
             "movement": null,
             "status": "new"
           }
@@ -4686,7 +4686,26 @@
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 53,
+            "position": 55,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Loved By You",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 16,
             "movement": null,
             "status": "new"
           }
@@ -4815,8 +4834,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 88,
-            "movement": -63
+            "position": 100,
+            "movement": -75
           }
         ]
       }
@@ -4833,8 +4852,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
-            "movement": -5
+            "position": 33,
+            "movement": -7
           }
         ]
       }

@@ -220,8 +220,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 186,
-            "movement": -118
+            "position": 197,
+            "movement": -129
           }
         ]
       },
@@ -339,14 +339,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 82,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 198,
+            "position": 111,
             "movement": null,
             "status": "new"
           }
@@ -1043,15 +1036,15 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 25,
+            "position": 27,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 180,
-            "movement": -119
+            "position": 192,
+            "movement": -131
           }
         ]
       },
@@ -1121,58 +1114,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1232dc64734f222e05a866a61860169c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Baby",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 120,
-            "movement": -5
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 140,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 154,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 14,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 196,
-            "movement": -118
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FUN",
@@ -1298,6 +1239,52 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Baby",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 120,
+            "movement": -5
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 140,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 154,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 16,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "RAVAGE - EP",
     "platforms": [
       {
@@ -1352,7 +1339,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 35,
+            "position": 37,
             "movement": null,
             "status": "new"
           }
@@ -1411,8 +1398,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 30,
-            "movement": -23
+            "position": 31,
+            "movement": -24
           }
         ]
       }
@@ -1488,7 +1475,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
+            "position": 34,
             "movement": null,
             "status": "new"
           }
@@ -1508,7 +1495,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 34,
+            "position": 36,
             "movement": null,
             "status": "new"
           }
@@ -1583,8 +1570,8 @@
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 173,
-            "movement": -132
+            "position": 177,
+            "movement": -136
           }
         ]
       }

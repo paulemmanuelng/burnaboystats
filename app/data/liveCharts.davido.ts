@@ -269,8 +269,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 58,
-            "movement": -6
+            "position": 61,
+            "movement": -9
           }
         ]
       }
@@ -495,7 +495,7 @@
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 80,
+            "position": 90,
             "movement": null,
             "status": "new"
           }
@@ -872,8 +872,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
-            "movement": -46
+            "position": 63,
+            "movement": -58
           }
         ]
       },
@@ -987,20 +987,20 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 21,
-            "movement": -15
+            "position": 23,
+            "movement": -17
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 45,
-            "movement": -43
+            "position": 57,
+            "movement": -55
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 182,
-            "movement": -34
+            "position": 184,
+            "movement": -36
           }
         ]
       },
@@ -1348,8 +1348,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 177,
-            "movement": -123
+            "position": 189,
+            "movement": -135
           }
         ]
       },
@@ -1587,8 +1587,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 57,
-            "movement": -48
+            "position": 69,
+            "movement": -60
           }
         ]
       }
@@ -1852,8 +1852,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
-            "movement": -5
+            "position": 35,
+            "movement": -7
           }
         ]
       }
@@ -3090,8 +3090,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 36,
-            "movement": -23
+            "position": 37,
+            "movement": -24
           }
         ]
       }
@@ -3166,7 +3166,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
+            "position": 95,
             "movement": null,
             "status": "new"
           }
@@ -3185,33 +3185,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 184,
-            "movement": -34
+            "position": 186,
+            "movement": -36
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9119c622011c2f9e2c0fd2ae9bcaec51/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Intro",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
-            "movement": -118
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Son of Mercy - EP",

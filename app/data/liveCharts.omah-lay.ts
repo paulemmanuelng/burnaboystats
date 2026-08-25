@@ -447,20 +447,20 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 21,
-            "movement": -15
+            "position": 23,
+            "movement": -17
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 45,
-            "movement": -43
+            "position": 57,
+            "movement": -55
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 182,
-            "movement": -34
+            "position": 184,
+            "movement": -36
           }
         ]
       },

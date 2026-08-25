@@ -318,16 +318,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 80,
+            "country": "PE",
+            "name": "Peru",
+            "position": 91,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "PE",
-            "name": "Peru",
-            "position": 88,
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 109,
             "movement": null,
             "status": "new"
           }
@@ -577,8 +577,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 73,
-            "movement": -56
+            "position": 85,
+            "movement": -68
           }
         ]
       }
@@ -1299,8 +1299,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
-            "movement": -5
+            "position": 95,
+            "movement": -6
           }
         ]
       }
@@ -1403,8 +1403,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": 5
+            "position": 111,
+            "movement": 4
           }
         ]
       }
@@ -1650,7 +1650,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
+            "position": 65,
             "movement": null,
             "status": "new"
           }
@@ -1900,7 +1900,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
+            "position": 122,
             "movement": null,
             "status": "new"
           }
@@ -2018,8 +2018,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": 4
+            "position": 167,
+            "movement": 3
           }
         ]
       }
@@ -2160,14 +2160,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 97,
-            "movement": 1
+            "position": 98,
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": 6
+            "position": 123,
+            "movement": 5
           }
         ]
       }
@@ -2412,7 +2412,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -2509,7 +2509,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 63,
+            "position": 75,
             "movement": null,
             "status": "new"
           }
@@ -2528,7 +2528,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
+            "position": 77,
             "movement": null,
             "status": "new"
           }
@@ -2586,8 +2586,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 116,
-            "movement": -81
+            "position": 128,
+            "movement": -93
           }
         ]
       }
