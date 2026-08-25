@@ -269,8 +269,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
-            "movement": -10
+            "position": 51,
+            "movement": -6
           }
         ]
       }
@@ -489,20 +489,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": 24
+            "position": 28,
+            "movement": 8
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 49,
+            "position": 56,
             "movement": null,
             "status": "new"
           },
           {
             "country": "FR",
             "name": "France",
-            "position": 170,
+            "position": 198,
             "movement": null,
             "status": "new"
           }
@@ -715,8 +715,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 145,
-            "movement": -110
+            "position": 161,
+            "movement": -126
           }
         ]
       }
@@ -866,8 +866,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
-            "movement": -14
+            "position": 33,
+            "movement": -30
           }
         ]
       },
@@ -1171,8 +1171,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 143,
-            "movement": -112
+            "position": 159,
+            "movement": -128
           }
         ]
       },
@@ -1284,16 +1284,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 8,
-            "movement": -6
-          },
-          {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 15,
-            "movement": -12
+            "position": 21,
+            "movement": -18
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 24,
+            "movement": -22
           },
           {
             "country": "GH",
@@ -1573,8 +1573,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 23,
-            "movement": -17
+            "position": 39,
+            "movement": -33
           }
         ]
       }
@@ -2839,8 +2839,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 55,
-            "movement": 6
+            "position": 54,
+            "movement": 7
           }
         ]
       }
@@ -3160,25 +3160,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/80fe4f71f92865be0d0f8d558cf54a72/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Holiday",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 49,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Dun Rich",
     "platforms": [
       {
@@ -3198,6 +3179,25 @@
     "kind": "song"
   },
   {
+    "title": "Holiday",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 65,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Intro",
     "platforms": [
       {
@@ -3207,8 +3207,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
-            "movement": -107
+            "position": 175,
+            "movement": -123
           }
         ]
       }
@@ -3234,25 +3234,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9119c622011c2f9e2c0fd2ae9bcaec51/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "All Of You",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 190,
-            "movement": -107
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/798485d74c5c9cd451070cd502092ea6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Son of Mercy - EP",

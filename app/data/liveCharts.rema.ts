@@ -238,8 +238,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 153,
-            "movement": -108
+            "position": 169,
+            "movement": -124
           }
         ]
       }
@@ -422,7 +422,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 29,
+            "position": 42,
             "movement": null,
             "status": "new"
           },
@@ -1014,15 +1014,15 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 25,
+            "position": 24,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": -109
+            "position": 163,
+            "movement": -125
           }
         ]
       },
@@ -1136,8 +1136,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 163,
-            "movement": -107
+            "position": 179,
+            "movement": -123
           }
         ]
       }
@@ -1291,8 +1291,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 180,
-            "movement": -106
+            "position": 196,
+            "movement": -122
           }
         ]
       },
@@ -1471,7 +1471,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
+            "position": 21,
             "movement": null,
             "status": "new"
           }
@@ -1529,8 +1529,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 60,
-            "movement": -3
+            "position": 61,
+            "movement": -4
           }
         ]
       }
@@ -1585,8 +1585,8 @@
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 135,
-            "movement": -104
+            "position": 162,
+            "movement": -131
           }
         ]
       }

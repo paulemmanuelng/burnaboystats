@@ -608,14 +608,14 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 13,
-            "movement": 0
+            "position": 14,
+            "movement": -1
           },
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 16,
-            "movement": 0
+            "position": 17,
+            "movement": -1
           },
           {
             "country": "AE",
@@ -720,16 +720,16 @@
             "movement": 3
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 86,
-            "movement": 0
-          },
-          {
             "country": "SN",
             "name": "Senegal",
             "position": 90,
             "movement": -2
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 95,
+            "movement": -9
           },
           {
             "country": "IE",
@@ -780,6 +780,12 @@
             "movement": 12
           },
           {
+            "country": "FR",
+            "name": "France",
+            "position": 117,
+            "movement": 10
+          },
+          {
             "country": "MA",
             "name": "Morocco",
             "position": 117,
@@ -808,12 +814,6 @@
             "name": "Peru",
             "position": 121,
             "movement": -3
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 127,
-            "movement": 31
           },
           {
             "country": "MZ",
@@ -873,7 +873,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 176,
-            "movement": 10
+            "movement": 22
           },
           {
             "country": "HU",
@@ -884,14 +884,14 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 188,
+            "position": 190,
             "movement": -2
           },
           {
             "country": "MX",
             "name": "Mexico",
-            "position": 194,
-            "movement": 0
+            "position": 193,
+            "movement": 1
           },
           {
             "country": "FI",
@@ -1172,20 +1172,20 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 5,
-            "movement": -2
+            "position": 11,
+            "movement": -8
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 17,
+            "position": 25,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
+            "position": 37,
             "movement": null,
             "status": "new"
           },
@@ -1198,28 +1198,28 @@
           {
             "country": "UA",
             "name": "Ukraine",
-            "position": 45,
+            "position": 50,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CZ",
             "name": "Czech Republic",
-            "position": 67,
+            "position": 73,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 77,
-            "movement": -64
           },
           {
             "country": "MD",
             "name": "Moldova",
             "position": 77,
             "movement": -9
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 80,
+            "movement": -67
           },
           {
             "country": "CY",
@@ -1230,13 +1230,13 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 92,
-            "movement": -15
+            "position": 103,
+            "movement": -26
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 145,
+            "position": 184,
             "movement": null,
             "status": "new"
           }
@@ -1764,14 +1764,14 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 60,
+            "position": 80,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 79,
+            "position": 119,
             "movement": null,
             "status": "new"
           }
@@ -2182,6 +2182,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Try Me",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 9,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0989302f2acc1132d8922b3f292abe4b/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Burning",
     "platforms": [
       {
@@ -2191,7 +2211,7 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 70,
+            "position": 110,
             "movement": null,
             "status": "new"
           }
@@ -2211,7 +2231,7 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 74,
+            "position": 114,
             "movement": null,
             "status": "new"
           }
@@ -2230,7 +2250,7 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 80,
+            "position": 120,
             "movement": null,
             "status": "new"
           }
@@ -2239,26 +2259,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Try Me",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 9,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0989302f2acc1132d8922b3f292abe4b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "I'm Not Sure",
@@ -2349,8 +2349,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 153,
-            "movement": 0
+            "position": 155,
+            "movement": -2
           }
         ]
       }
