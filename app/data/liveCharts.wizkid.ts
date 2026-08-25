@@ -255,12 +255,6 @@
             "status": "new"
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 148,
-            "movement": -2
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 160,
@@ -272,6 +266,12 @@
             "position": 163,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 163,
+            "movement": -17
           },
           {
             "country": "NP",
@@ -308,8 +308,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 187,
-            "movement": 4
+            "position": 183,
+            "movement": 8
           }
         ]
       },
@@ -1528,12 +1528,6 @@
             "movement": -7
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 66,
-            "movement": -7
-          },
-          {
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 73,
@@ -1546,6 +1540,12 @@
             "position": 81,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 104,
+            "movement": -45
           },
           {
             "country": "UG",
@@ -2029,8 +2029,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 79,
-            "movement": 14
+            "position": 80,
+            "movement": 13
           }
         ]
       },
@@ -2611,6 +2611,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5956f4fdf351532267e5538e2373615b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Borrowed Love",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "VN",
+            "name": "Vietnam",
+            "position": 155,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "SoundMan, Vol. 1",

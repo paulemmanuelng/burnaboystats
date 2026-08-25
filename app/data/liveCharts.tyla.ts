@@ -195,16 +195,16 @@
             "movement": -48
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 76,
+            "movement": 10
+          },
+          {
             "country": "SA",
             "name": "Saudi Arabia",
             "position": 76,
             "movement": 26
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 84,
-            "movement": 2
           },
           {
             "country": "BH",
@@ -215,8 +215,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 93,
-            "movement": -4
+            "position": 94,
+            "movement": -5
           },
           {
             "country": "BE",
@@ -287,12 +287,6 @@
             "movement": -56
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 142,
-            "movement": -4
-          },
-          {
             "country": "OM",
             "name": "Oman",
             "position": 144,
@@ -324,16 +318,10 @@
             "movement": -18
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 184,
-            "movement": 4
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 185,
-            "movement": -12
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 172,
+            "movement": -34
           },
           {
             "country": "BG",
@@ -341,6 +329,12 @@
             "position": 191,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 194,
+            "movement": -6
           },
           {
             "country": "SE",
@@ -471,8 +465,15 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 1,
+            "movement": null,
+            "status": "new"
+          },
           {
             "country": "MD",
             "name": "Moldova",
@@ -580,8 +581,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 150,
-            "movement": 2
+            "position": 161,
+            "movement": -9
           }
         ]
       },
@@ -854,6 +855,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Talk to Me",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 105,
+            "movement": 12
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "IS IT",
     "platforms": [
       {
@@ -883,7 +916,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 188,
+            "position": 199,
             "movement": null,
             "status": "new"
           }
@@ -930,25 +963,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Talk to Me",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 105,
-            "movement": 12
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Truth or Dare",
