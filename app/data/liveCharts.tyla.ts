@@ -477,8 +477,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 28,
-            "movement": 149
+            "position": 36,
+            "movement": 141
           },
           {
             "country": "MD",
@@ -846,7 +846,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 132,
+            "position": 155,
             "movement": null,
             "status": "new"
           }

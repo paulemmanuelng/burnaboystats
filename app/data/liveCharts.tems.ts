@@ -1172,8 +1172,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 6,
-            "movement": 0
+            "position": 7,
+            "movement": -1
           },
           {
             "country": "UZ",
@@ -1202,13 +1202,6 @@
             "movement": -7
           },
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 80,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "BG",
             "name": "Bulgaria",
             "position": 91,
@@ -1228,10 +1221,17 @@
             "status": "new"
           },
           {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 103,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 154,
-            "movement": -70
+            "position": 159,
+            "movement": -75
           }
         ]
       },
@@ -1754,7 +1754,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 124,
+            "position": 147,
             "movement": null,
             "status": "new"
           }

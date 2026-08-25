@@ -2303,12 +2303,6 @@
             "movement": 0
           },
           {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 2,
-            "movement": 1
-          },
-          {
             "country": "UK",
             "name": "United Kingdom",
             "position": 2,
@@ -2319,6 +2313,12 @@
             "name": "Norway",
             "position": 3,
             "movement": -1
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 3,
+            "movement": 0
           },
           {
             "country": "DK",
@@ -2367,8 +2367,8 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 11,
-            "movement": 7
+            "position": 17,
+            "movement": 1
           },
           {
             "country": "US",
@@ -2390,12 +2390,6 @@
             "movement": -8
           },
           {
-            "country": "AT",
-            "name": "Austria",
-            "position": 36,
-            "movement": -15
-          },
-          {
             "country": "SI",
             "name": "Slovenia",
             "position": 38,
@@ -2405,8 +2399,8 @@
           {
             "country": "AU",
             "name": "Australia",
-            "position": 42,
-            "movement": 26
+            "position": 45,
+            "movement": 23
           },
           {
             "country": "NG",
@@ -2422,10 +2416,10 @@
             "movement": -42
           },
           {
-            "country": "IN",
-            "name": "India",
-            "position": 57,
-            "movement": 104
+            "country": "AT",
+            "name": "Austria",
+            "position": 55,
+            "movement": -34
           },
           {
             "country": "TR",
@@ -2458,6 +2452,12 @@
             "movement": -10
           },
           {
+            "country": "IN",
+            "name": "India",
+            "position": 80,
+            "movement": 81
+          },
+          {
             "country": "HU",
             "name": "Hungary",
             "position": 86,
@@ -2474,7 +2474,7 @@
           {
             "country": "HK",
             "name": "Hong Kong",
-            "position": 119,
+            "position": 137,
             "movement": null,
             "status": "new"
           },
@@ -2502,12 +2502,6 @@
             "name": "Indonesia",
             "position": 161,
             "movement": -119
-          },
-          {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 189,
-            "movement": -154
           }
         ]
       }
@@ -3929,7 +3923,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 157,
-            "movement": 0
+            "movement": -1
           }
         ]
       }

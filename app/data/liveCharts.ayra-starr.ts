@@ -938,13 +938,6 @@
             "name": "Kenya",
             "position": 94,
             "movement": -18
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 200,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -1456,7 +1449,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 170,
+            "position": 182,
             "movement": null,
             "status": "new"
           }

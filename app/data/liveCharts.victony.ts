@@ -915,6 +915,12 @@
             "movement": -56
           },
           {
+            "country": "DE",
+            "name": "Germany",
+            "position": 152,
+            "movement": -1
+          },
+          {
             "country": "PL",
             "name": "Poland",
             "position": 152,
@@ -925,12 +931,6 @@
             "name": "United States",
             "position": 152,
             "movement": -12
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 153,
-            "movement": -2
           },
           {
             "country": "AI",
