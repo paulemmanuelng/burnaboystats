@@ -1173,7 +1173,7 @@
             "country": "IN",
             "name": "India",
             "position": 5,
-            "movement": 12
+            "movement": -2
           },
           {
             "country": "RO",
@@ -1210,34 +1210,35 @@
             "status": "new"
           },
           {
-            "country": "MD",
-            "name": "Moldova",
-            "position": 76,
-            "movement": -7
-          },
-          {
             "country": "BG",
             "name": "Bulgaria",
             "position": 77,
-            "movement": -66
+            "movement": -64
+          },
+          {
+            "country": "MD",
+            "name": "Moldova",
+            "position": 77,
+            "movement": -9
           },
           {
             "country": "CY",
             "name": "Cyprus",
             "position": 91,
-            "movement": -76
+            "movement": -72
           },
           {
             "country": "UK",
             "name": "United Kingdom",
             "position": 92,
-            "movement": -22
+            "movement": -15
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 146,
-            "movement": 14
+            "position": 145,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1249,55 +1250,49 @@
             "country": "PT",
             "name": "Portugal",
             "position": 12,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "SV",
             "name": "El Salvador",
             "position": 22,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "SN",
             "name": "Senegal",
             "position": 30,
-            "movement": 21
+            "movement": 0
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 36,
-            "movement": 10
+            "movement": 0
           },
           {
             "country": "JM",
             "name": "Jamaica",
             "position": 39,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "TN",
             "name": "Tunisia",
             "position": 45,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "LT",
             "name": "Lithuania",
             "position": 89,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "SA",
             "name": "Saudi Arabia",
             "position": 89,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -1693,8 +1688,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 39,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -1873,13 +1867,13 @@
             "country": "MU",
             "name": "Mauritius",
             "position": 51,
-            "movement": -5
+            "movement": -4
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 183,
-            "movement": -45
+            "position": 185,
+            "movement": -44
           }
         ]
       },
@@ -2051,8 +2045,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 79,
-            "movement": null,
-            "status": "new"
+            "movement": 14
           }
         ]
       },
@@ -2122,8 +2115,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 11,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }

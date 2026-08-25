@@ -204,7 +204,7 @@
             "country": "BR",
             "name": "Brazil",
             "position": 84,
-            "movement": -9
+            "movement": 2
           },
           {
             "country": "BH",
@@ -216,7 +216,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 93,
-            "movement": 39
+            "movement": -4
           },
           {
             "country": "BE",
@@ -290,7 +290,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 142,
-            "movement": -2
+            "movement": -4
           },
           {
             "country": "OM",
@@ -327,13 +327,13 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 184,
-            "movement": -8
+            "movement": 4
           },
           {
             "country": "NO",
             "name": "Norway",
             "position": 185,
-            "movement": -47
+            "movement": -12
           },
           {
             "country": "BG",
@@ -476,15 +476,14 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 69,
-            "movement": null,
-            "status": "new"
+            "position": 70,
+            "movement": -9
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 150,
-            "movement": -82
+            "position": 183,
+            "movement": -73
           }
         ]
       },
@@ -581,7 +580,7 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 94,
-            "movement": -7
+            "movement": 58
           }
         ]
       },
@@ -593,8 +592,7 @@
             "country": "JM",
             "name": "Jamaica",
             "position": 58,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -697,39 +695,37 @@
             "country": "IT",
             "name": "Italy",
             "position": 64,
-            "movement": 6
+            "movement": 0
           },
           {
             "country": "AU",
             "name": "Australia",
             "position": 66,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "CH",
             "name": "Switzerland",
             "position": 67,
-            "movement": 13
+            "movement": 0
           },
           {
             "country": "AT",
             "name": "Austria",
             "position": 69,
-            "movement": 23
+            "movement": 0
           },
           {
             "country": "CA",
             "name": "Canada",
             "position": 85,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "NO",
             "name": "Norway",
             "position": 85,
-            "movement": 13
+            "movement": 0
           }
         ]
       }
@@ -835,9 +831,8 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 130,
-            "movement": null,
-            "status": "new"
+            "position": 128,
+            "movement": -103
           }
         ]
       },
@@ -849,47 +844,13 @@
             "country": "SI",
             "name": "Slovenia",
             "position": 54,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PUSH 2 START",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 169,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 71,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "KISS",
@@ -901,7 +862,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 133,
+            "position": 132,
             "movement": null,
             "status": "new"
           }
@@ -932,6 +893,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 71,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "On My Body",
     "platforms": [
       {
@@ -942,7 +922,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 64,
-            "movement": -48
+            "movement": -43
           }
         ]
       }
