@@ -203,14 +203,20 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 86,
-            "movement": -11
+            "position": 84,
+            "movement": -9
           },
           {
             "country": "BH",
             "name": "Bahrain",
             "position": 91,
             "movement": -71
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 93,
+            "movement": 39
           },
           {
             "country": "BE",
@@ -268,12 +274,6 @@
             "movement": 10
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 129,
-            "movement": 11
-          },
-          {
             "country": "KW",
             "name": "Kuwait",
             "position": 141,
@@ -281,16 +281,16 @@
             "status": "new"
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 141,
-            "movement": -9
-          },
-          {
             "country": "KN",
             "name": "Saint Kitts and Nevis",
             "position": 141,
             "movement": -56
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 142,
+            "movement": -2
           },
           {
             "country": "OM",
@@ -324,16 +324,16 @@
             "movement": -18
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 172,
-            "movement": -34
-          },
-          {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 186,
-            "movement": -10
+            "position": 184,
+            "movement": -8
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 185,
+            "movement": -47
           },
           {
             "country": "BG",
@@ -363,7 +363,14 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 9,
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 102,
             "movement": null,
             "status": "new"
           }
@@ -426,26 +433,26 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 36,
-            "movement": -2
+            "position": 37,
+            "movement": -1
           },
           {
             "country": "HR",
             "name": "Croatia",
-            "position": 102,
-            "movement": 35
+            "position": 74,
+            "movement": 28
           },
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 115,
-            "movement": -6
+            "position": 98,
+            "movement": 17
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 122,
-            "movement": -19
+            "position": 121,
+            "movement": 1
           },
           {
             "country": "SE",
@@ -462,22 +469,22 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 52,
+            "position": 62,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 67,
+            "position": 69,
             "movement": null,
             "status": "new"
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 121,
-            "movement": -53
+            "position": 132,
+            "movement": -64
           }
         ]
       },
@@ -543,14 +550,14 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 107,
-            "movement": 12
+            "position": 113,
+            "movement": -6
           },
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 172,
-            "movement": 10
+            "position": 171,
+            "movement": 1
           }
         ]
       },
@@ -852,6 +859,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 146,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 71,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "KISS",
     "platforms": [
       {
@@ -892,26 +932,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "PUSH 2 START",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 71,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "On My Body",
     "platforms": [
       {
@@ -921,8 +941,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 61,
-            "movement": -45
+            "position": 64,
+            "movement": -48
           }
         ]
       }
@@ -940,8 +960,8 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 117,
-            "movement": -2
+            "position": 105,
+            "movement": 12
           }
         ]
       }
@@ -959,9 +979,8 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 146,
-            "movement": null,
-            "status": "new"
+            "position": 134,
+            "movement": 12
           }
         ]
       }
