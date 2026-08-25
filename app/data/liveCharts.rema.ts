@@ -339,7 +339,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 111,
+            "position": 114,
             "movement": null,
             "status": "new"
           }
@@ -508,8 +508,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 94,
-            "movement": -13
+            "position": 95,
+            "movement": -14
           },
           {
             "country": "SN",

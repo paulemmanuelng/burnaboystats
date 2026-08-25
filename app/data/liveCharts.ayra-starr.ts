@@ -1397,8 +1397,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 64,
-            "movement": -13
+            "position": 65,
+            "movement": -14
           },
           {
             "country": "FM",
@@ -2565,8 +2565,8 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 12,
-            "movement": 7
+            "position": 17,
+            "movement": 2
           },
           {
             "country": "UK",

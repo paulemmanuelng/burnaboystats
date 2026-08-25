@@ -236,28 +236,28 @@
             "status": "new"
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 153,
+            "movement": -7
+          },
+          {
             "country": "SZ",
             "name": "Swaziland",
             "position": 169,
             "movement": -31
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 170,
-            "movement": -24
+            "country": "FR",
+            "name": "France",
+            "position": 172,
+            "movement": 3
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 172,
             "movement": -30
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 174,
-            "movement": 1
           },
           {
             "country": "BM",
@@ -492,8 +492,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 109,
-            "movement": -21
+            "position": 131,
+            "movement": -43
           }
         ]
       },
