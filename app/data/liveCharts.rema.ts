@@ -184,30 +184,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SI",
-            "name": "Slovenia",
-            "position": 97,
-            "movement": -30
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 100,
-            "movement": -14
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 151,
-            "movement": -128
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -253,6 +229,18 @@
             "name": "Nigeria",
             "position": 7,
             "movement": -2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 154,
+            "movement": -131
           }
         ]
       }
@@ -429,17 +417,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 21,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 28,
-            "movement": -4
+            "position": 25,
+            "movement": -1
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 29,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BF",
@@ -1029,15 +1017,15 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 24,
+            "position": 25,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 145,
-            "movement": -92
+            "position": 148,
+            "movement": -95
           }
         ]
       },
@@ -1151,8 +1139,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
-            "movement": -127
+            "position": 164,
+            "movement": -130
           }
         ]
       }
@@ -1306,7 +1294,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 178,
+            "position": 181,
             "movement": null,
             "status": "new"
           }
@@ -1488,7 +1476,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
+            "position": 6,
             "movement": null,
             "status": "new"
           }
@@ -1556,25 +1544,6 @@
     "kind": "song"
   },
   {
-    "title": "TOXIC",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Won Da Mo",
     "platforms": [
       {
@@ -1622,7 +1591,7 @@
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 106,
+            "position": 136,
             "movement": null,
             "status": "new"
           }

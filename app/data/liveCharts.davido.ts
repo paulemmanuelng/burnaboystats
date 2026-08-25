@@ -269,8 +269,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
-            "movement": -13
+            "position": 58,
+            "movement": -16
           }
         ]
       }
@@ -489,20 +489,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": 6
+            "position": 12,
+            "movement": 4
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 39,
+            "position": 49,
             "movement": null,
             "status": "new"
           },
           {
             "country": "FR",
             "name": "France",
-            "position": 153,
+            "position": 160,
             "movement": null,
             "status": "new"
           }
@@ -715,8 +715,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 143,
-            "movement": -128
+            "position": 146,
+            "movement": -131
           }
         ]
       }
@@ -866,8 +866,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": -12
+            "position": 17,
+            "movement": -14
           }
         ]
       },
@@ -1171,8 +1171,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
-            "movement": -130
+            "position": 144,
+            "movement": -133
           }
         ]
       },
@@ -1286,14 +1286,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
-            "movement": -5
+            "position": 8,
+            "movement": -7
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 10,
-            "movement": -9
+            "position": 15,
+            "movement": -14
           },
           {
             "country": "GH",
@@ -1574,7 +1574,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
+            "position": 23,
             "movement": null,
             "status": "new"
           }
@@ -1852,8 +1852,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
-            "movement": -10
+            "position": 32,
+            "movement": -9
           }
         ]
       }
@@ -2547,8 +2547,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 70,
-            "movement": 18
+            "position": 72,
+            "movement": 16
           },
           {
             "country": "BW",
@@ -2828,46 +2828,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Funds",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 184,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 146,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "FIA",
     "platforms": [
       {
@@ -3127,6 +3087,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Funds",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 146,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Nakupenda - I Love You",
     "platforms": [
       {
@@ -3193,7 +3173,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
+            "position": 49,
             "movement": null,
             "status": "new"
           }
@@ -3231,8 +3211,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 157,
-            "movement": -127
+            "position": 160,
+            "movement": -130
           }
         ]
       }
@@ -3269,8 +3249,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 188,
-            "movement": -128
+            "position": 191,
+            "movement": -131
           }
         ]
       }

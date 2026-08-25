@@ -340,7 +340,7 @@
           {
             "country": "PE",
             "name": "Peru",
-            "position": 36,
+            "position": 60,
             "movement": null,
             "status": "new"
           }
@@ -571,7 +571,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
+            "position": 39,
             "movement": null,
             "status": "new"
           }
@@ -1294,8 +1294,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
-            "movement": -10
+            "position": 93,
+            "movement": -9
           }
         ]
       }
@@ -1398,8 +1398,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": 0
+            "position": 109,
+            "movement": 1
           }
         ]
       }
@@ -1645,7 +1645,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
+            "position": 19,
             "movement": null,
             "status": "new"
           }
@@ -1957,8 +1957,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": -1
+            "position": 165,
+            "movement": 0
           }
         ]
       }
@@ -2025,7 +2025,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 77,
+            "position": 79,
             "movement": null,
             "status": "new"
           }
@@ -2149,8 +2149,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": 1
+            "position": 121,
+            "movement": 2
           }
         ]
       }
@@ -2269,8 +2269,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
-            "movement": -126
+            "position": 172,
+            "movement": -129
           }
         ]
       }
@@ -2398,6 +2398,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cc269116fe4da8b1054a18ef7f1e39a8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Kese",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 4,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "BROWN SKIN GIRL",
     "platforms": [
       {
@@ -2407,7 +2427,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
+            "position": 29,
             "movement": null,
             "status": "new"
           }
@@ -2426,7 +2446,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
+            "position": 31,
             "movement": null,
             "status": "new"
           }
@@ -2542,7 +2562,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 81,
+            "position": 82,
             "movement": null,
             "status": "new"
           }
@@ -2580,8 +2600,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 171,
-            "movement": -125
+            "position": 174,
+            "movement": -128
           }
         ]
       }
@@ -2599,8 +2619,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 196,
-            "movement": -129
+            "position": 199,
+            "movement": -132
           }
         ]
       }

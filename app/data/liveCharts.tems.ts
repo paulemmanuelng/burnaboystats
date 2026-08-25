@@ -1178,48 +1178,48 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 11,
+            "position": 17,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 20,
+            "position": 21,
             "movement": null,
             "status": "new"
           },
           {
             "country": "UZ",
             "name": "Uzbekistan",
-            "position": 39,
-            "movement": -13
+            "position": 41,
+            "movement": -15
           },
           {
             "country": "UA",
             "name": "Ukraine",
-            "position": 44,
+            "position": 45,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CZ",
             "name": "Czech Republic",
-            "position": 65,
+            "position": 67,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 74,
-            "movement": -63
           },
           {
             "country": "MD",
             "name": "Moldova",
             "position": 76,
             "movement": -7
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 77,
+            "movement": -66
           },
           {
             "country": "CY",
@@ -1236,8 +1236,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 99,
-            "movement": 61
+            "position": 146,
+            "movement": 14
           }
         ]
       },
@@ -1768,9 +1768,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "US",
-            "name": "United States",
-            "position": 175,
+            "country": "PH",
+            "name": "Philippines",
+            "position": 60,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 79,
             "movement": null,
             "status": "new"
           }
@@ -1865,8 +1872,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 50,
-            "movement": -4
+            "position": 51,
+            "movement": -5
           },
           {
             "country": "GH",
@@ -2043,7 +2050,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 77,
+            "position": 79,
             "movement": null,
             "status": "new"
           }
@@ -2181,6 +2188,65 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Burning",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 70,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "I THINK YOU'RE SPECIAL",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 74,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "First",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 80,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Try Me",

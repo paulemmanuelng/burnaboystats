@@ -370,7 +370,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 102,
+            "position": 57,
             "movement": null,
             "status": "new"
           }
@@ -483,8 +483,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 132,
-            "movement": -64
+            "position": 150,
+            "movement": -82
           }
         ]
       },
@@ -580,8 +580,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 65,
-            "movement": 22
+            "position": 94,
+            "movement": -7
           }
         ]
       },
@@ -835,7 +835,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 97,
+            "position": 130,
             "movement": null,
             "status": "new"
           }
@@ -868,7 +868,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 146,
+            "position": 169,
             "movement": null,
             "status": "new"
           }
@@ -901,7 +901,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 105,
+            "position": 133,
             "movement": null,
             "status": "new"
           }
