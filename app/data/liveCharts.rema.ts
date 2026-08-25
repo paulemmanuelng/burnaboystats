@@ -310,38 +310,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 26,
-            "movement": -4
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 58,
-            "movement": 7
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 145,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -362,6 +330,31 @@
             "country": "YE",
             "name": "Yemen",
             "position": 173,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 26,
+            "movement": -4
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 58,
+            "movement": 6
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 145,
             "movement": null,
             "status": "new"
           }
@@ -1139,8 +1132,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 30,
-            "movement": null,
-            "status": "new"
+            "movement": -15
           }
         ]
       },
@@ -1265,8 +1257,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 20,
-            "movement": null,
-            "status": "new"
+            "movement": -13
           }
         ]
       }
@@ -1328,8 +1319,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 41,
-            "movement": null,
-            "status": "new"
+            "movement": -23
           }
         ]
       }
@@ -1379,8 +1369,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 40,
-            "movement": null,
-            "status": "new"
+            "movement": -23
           }
         ]
       }
@@ -1398,7 +1387,7 @@
             "country": "QA",
             "name": "Qatar",
             "position": 40,
-            "movement": -32
+            "movement": -22
           }
         ]
       }
@@ -1416,7 +1405,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 46,
             "movement": null,
             "status": "new"
           }

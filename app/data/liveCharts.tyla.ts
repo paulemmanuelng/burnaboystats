@@ -854,7 +854,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 133,
+            "position": 141,
             "movement": null,
             "status": "new"
           }
@@ -971,7 +971,7 @@
           {
             "country": "PL",
             "name": "Poland",
-            "position": 107,
+            "position": 126,
             "movement": null,
             "status": "new"
           }
@@ -1033,6 +1033,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Show Me Love",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 196,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "On My Body",
     "platforms": [
       {
@@ -1043,7 +1062,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 70,
-            "movement": -38
+            "movement": -26
           }
         ]
       }

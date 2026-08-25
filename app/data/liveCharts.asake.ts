@@ -2031,7 +2031,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 65,
-            "movement": -38
+            "movement": -26
           }
         ]
       }
@@ -2147,7 +2147,7 @@
             "country": "QA",
             "name": "Qatar",
             "position": 41,
-            "movement": -32
+            "movement": -22
           }
         ]
       }
@@ -2482,7 +2482,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 95,
-            "movement": -5
+            "movement": -4
           }
         ]
       }
@@ -2587,7 +2587,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 73,
-            "movement": 5
+            "movement": 8
           }
         ]
       }
@@ -3547,7 +3547,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 133,
+            "position": 153,
             "movement": null,
             "status": "new"
           }
@@ -3809,8 +3809,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 75,
-            "movement": -7
+            "position": 95,
+            "movement": -27
           }
         ]
       }
@@ -3873,7 +3873,7 @@
             "country": "NA",
             "name": "Namibia",
             "position": 50,
-            "movement": -10
+            "movement": -9
           }
         ]
       }
@@ -4277,7 +4277,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 89,
+            "position": 109,
             "movement": null,
             "status": "new"
           }
