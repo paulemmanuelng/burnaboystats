@@ -108,7 +108,8 @@ for (const w of work.values()) {
 for (const w of work.values()) {
   w.previous = await readGenerated(
     new URL(`../app/data/${w.artist.out}`, import.meta.url),
-    /export const liveCharts: LiveRelease\[\] = (\[[\s\S]*?\n\]);/,
+    // Same empty-array case as the run history below.
+    /export const liveCharts: LiveRelease\[\] = (\[\]|\[[\s\S]*?\n\]);/,
     `${w.artist.slug}'s live charts file`
   );
 }
@@ -513,7 +514,13 @@ for (const w of work.values()) {
   // day already collected, and those readings cannot be fetched again.
   const priorRuns = await readGenerated(
     RUN_OUT,
-    /export const runHistory: RunPoint\[\] = (\[[\s\S]*?\n\]);/,
+    // `[]` is matched explicitly. JSON.stringify writes an EMPTY array as "[]"
+    // on one line, with no newline before the bracket, so the multi-line form
+    // below cannot match it — and readGenerated treats a non-match as "this
+    // file was reformatted" and halts the whole sweep. Five board artists had
+    // empty run histories, so every run died on the first of them (tyla) and
+    // the board's live pages froze while his own figures kept publishing.
+    /export const runHistory: RunPoint\[\] = (\[\]|\[[\s\S]*?\n\]);/,
     `${artist.slug}'s run history`
   );
   

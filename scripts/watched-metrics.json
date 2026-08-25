@@ -96,7 +96,7 @@
       "sourceName": "kworb.net — Spotify artist total",
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbTotalStreams",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.03,
       "baseline": 10779684199,
       "note": "Auto-published daily. kworb's artist page undercounts featured credits, so a pipeline offset is added before the display string is written. RE-MEASURE THE OFFSET when the gap moves — it grows as featured songs accrue streams: +107,613,681 on 31 Jul 2026, +129,703,877 on 11 Aug 2026 (22,090,196 of drift in 11 days), each measured as tracked_total minus kworb's raw sum on the same day. Do NOT hand-edit the display instead; the offset is what keeps it tracking.",
@@ -127,7 +127,9 @@
       "lastChanged": "2026-08-24",
       "offset": 129703877,
       "lastSeenValue": 10779684199,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "dai-dai-video-views",
@@ -135,7 +137,7 @@
       "sourceName": "YouTube — Dai Dai (Official Video)",
       "sourceUrl": "https://www.youtube.com/watch?v=fcnDmrtj6Sk",
       "extractor": "youtubeViews",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.001,
       "baseline": 899836308,
       "live": true,
@@ -156,7 +158,9 @@
       ],
       "lastChanged": "2026-08-25",
       "lastSeenValue": 900224653,
-      "lastSeenAt": "2026-08-25"
+      "lastSeenAt": "2026-08-25",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "yt-views-last-last",
@@ -165,7 +169,7 @@
       "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
       "extractor": "kworbYouTubeVideo",
       "match": "Last Last [Official Music Video]",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 360640155,
       "live": true,
@@ -188,7 +192,8 @@
       "lastChanged": "2026-08-20",
       "lastSeenValue": 360958222,
       "lastSeenAt": "2026-08-23",
-      "stalenessDays": 45
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "yt-views-ye",
@@ -197,7 +202,7 @@
       "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
       "extractor": "kworbYouTubeVideo",
       "match": "Ye [Official Music Video]",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 308659974,
       "live": true,
@@ -220,7 +225,8 @@
       "lastChanged": "2026-08-23",
       "lastSeenValue": 308659974,
       "lastSeenAt": "2026-08-23",
-      "stalenessDays": 60
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "yt-views-on-the-low",
@@ -229,7 +235,7 @@
       "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
       "extractor": "kworbYouTubeVideo",
       "match": "On The Low [Official Music Video]",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 477685266,
       "live": true,
@@ -252,7 +258,8 @@
       "lastChanged": "2026-08-17",
       "lastSeenValue": 478410741,
       "lastSeenAt": "2026-08-23",
-      "stalenessDays": 45
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "yt-views-city-boys",
@@ -261,7 +268,7 @@
       "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
       "extractor": "kworbYouTubeVideo",
       "match": "City Boys [Official Music Video]",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 116501289,
       "live": true,
@@ -284,7 +291,8 @@
       "lastChanged": "2026-08-07",
       "lastSeenValue": 117377608,
       "lastSeenAt": "2026-08-23",
-      "stalenessDays": 30
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "youtube-total-views",
@@ -292,7 +300,7 @@
       "sourceName": "kworb — Burna Boy YouTube",
       "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
       "extractor": "kworbYouTubeTotal",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.001,
       "baseline": 3175893629,
       "note": "Cumulative views across every Burna Boy video — a milestone figure as it climbs.",
@@ -315,7 +323,8 @@
       "lastChanged": "2026-08-15",
       "lastSeenValue": 3184717779,
       "lastSeenAt": "2026-08-23",
-      "stalenessDays": 21
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-last-last",
@@ -324,7 +333,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Last Last",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 605702525,
       "live": true,
@@ -346,7 +355,9 @@
       ],
       "lastChanged": "2026-08-23",
       "lastSeenValue": 605900894,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-on-the-low",
@@ -355,7 +366,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "On the Low",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 422577205,
       "live": true,
@@ -377,7 +388,9 @@
       ],
       "lastChanged": "2026-08-24",
       "lastSeenValue": 422577205,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-ye",
@@ -386,7 +399,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Ye",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 332619768,
       "live": true,
@@ -408,7 +421,9 @@
       ],
       "lastChanged": "2026-08-21",
       "lastSeenValue": 333031730,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-city-boys",
@@ -417,7 +432,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "City Boys",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 285589707,
       "live": true,
@@ -439,7 +454,9 @@
       ],
       "lastChanged": "2026-08-22",
       "lastSeenValue": 285841838,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-wgft",
@@ -448,7 +465,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "wgft (feat. Burna Boy)",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 295573622,
       "live": true,
@@ -470,7 +487,9 @@
       ],
       "lastChanged": "2026-08-23",
       "lastSeenValue": 296062094,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-alone",
@@ -479,7 +498,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Alone",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 212520898,
       "live": true,
@@ -501,7 +520,9 @@
       ],
       "lastChanged": "2026-08-13",
       "lastSeenValue": 213313821,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-23",
@@ -510,7 +531,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "23",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 70541450,
       "live": true,
@@ -532,7 +553,9 @@
       ],
       "lastChanged": "2026-08-21",
       "lastSeenValue": 70855444,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-like-to-party",
@@ -541,7 +564,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Like to Party",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 10214258,
       "live": true,
@@ -563,7 +586,9 @@
       ],
       "lastChanged": "2026-07-29",
       "lastSeenValue": 10435609,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-rizzla",
@@ -572,7 +597,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Rizzla",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 3754370,
       "live": true,
@@ -594,7 +619,9 @@
       ],
       "lastChanged": "2026-08-03",
       "lastSeenValue": 3787696,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-boshe-nlo",
@@ -603,7 +630,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Boshe Nlo",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 3651206,
       "live": true,
@@ -625,7 +652,9 @@
       ],
       "lastChanged": "2026-08-16",
       "lastSeenValue": 3671761,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-darko",
@@ -634,7 +663,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Darko",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 986529,
       "live": true,
@@ -656,7 +685,9 @@
       ],
       "lastChanged": "2026-08-08",
       "lastSeenValue": 987330,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-dai-dai",
@@ -686,7 +717,9 @@
       ],
       "lastChanged": "2026-08-24",
       "lastSeenValue": 378637627,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-tatata",
@@ -695,7 +728,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "TaTaTa (feat. Travis Scott)",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 66519812,
       "live": true,
@@ -717,7 +750,9 @@
       ],
       "lastChanged": "2026-08-08",
       "lastSeenValue": 67195377,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "spotify-streams-smoke",
@@ -726,7 +761,7 @@
       "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
       "extractor": "kworbSongStreams",
       "match": "Smoke (feat. Onosz)",
-      "kind": "drift",
+      "kind": "peak",
       "threshold": 0.005,
       "baseline": 3551832,
       "live": true,
@@ -748,7 +783,9 @@
       ],
       "lastChanged": "2026-08-07",
       "lastSeenValue": 3623133,
-      "lastSeenAt": "2026-08-24"
+      "lastSeenAt": "2026-08-24",
+      "stalenessDays": 3,
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
     {
       "id": "streams-2026-tems",
