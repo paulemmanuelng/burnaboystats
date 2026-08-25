@@ -549,8 +549,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 168,
-            "movement": 10
+            "position": 169,
+            "movement": 9
           },
           {
             "country": "NO",
@@ -582,13 +582,6 @@
             "country": "EG",
             "name": "Egypt",
             "position": 195,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 199,
             "movement": null,
             "status": "new"
           }
@@ -1160,8 +1153,15 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 1,
+            "movement": null,
+            "status": "new"
+          },
           {
             "country": "FJ",
             "name": "Fiji",
@@ -1171,20 +1171,13 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 13,
-            "movement": -8
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 25,
-            "movement": null,
-            "status": "new"
+            "position": 6,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
+            "position": 40,
             "movement": null,
             "status": "new"
           },
@@ -1202,10 +1195,24 @@
             "status": "new"
           },
           {
+            "country": "RO",
+            "name": "Romania",
+            "position": 71,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "MD",
             "name": "Moldova",
             "position": 77,
             "movement": -9
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 80,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BG",
@@ -1222,8 +1229,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 115,
-            "movement": -15
+            "position": 130,
+            "movement": -30
           }
         ]
       },
@@ -1749,14 +1756,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 103,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 188,
+            "position": 120,
             "movement": null,
             "status": "new"
           }
@@ -2029,8 +2029,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 80,
-            "movement": 13
+            "position": 84,
+            "movement": 9
           }
         ]
       },
@@ -2185,65 +2185,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0989302f2acc1132d8922b3f292abe4b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Burning",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 168,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "I THINK YOU'RE SPECIAL",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 179,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "First",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 189,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "I'm Not Sure",

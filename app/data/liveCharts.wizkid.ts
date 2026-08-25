@@ -576,7 +576,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
+            "position": 58,
             "movement": null,
             "status": "new"
           }
@@ -1391,7 +1391,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 66,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "KE",
@@ -1649,7 +1649,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
+            "position": 38,
             "movement": null,
             "status": "new"
           }
@@ -1899,7 +1899,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 91,
+            "position": 94,
             "movement": null,
             "status": "new"
           }
@@ -2029,8 +2029,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 80,
-            "movement": 13
+            "position": 84,
+            "movement": 9
           }
         ]
       },
@@ -2272,8 +2272,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 187,
-            "movement": -122
+            "position": 189,
+            "movement": -118
           }
         ]
       }
@@ -2410,7 +2410,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
+            "position": 13,
             "movement": null,
             "status": "new"
           }
@@ -2440,6 +2440,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Troubled Mind",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 118,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "BROWN SKIN GIRL",
     "platforms": [
       {
@@ -2449,7 +2469,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 45,
+            "position": 48,
             "movement": null,
             "status": "new"
           }
@@ -2468,27 +2488,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 47,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Troubled Mind",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 118,
+            "position": 50,
             "movement": null,
             "status": "new"
           }
@@ -2584,7 +2584,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
+            "position": 101,
             "movement": null,
             "status": "new"
           }
@@ -2603,33 +2603,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 189,
-            "movement": -120
+            "position": 191,
+            "movement": -116
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5956f4fdf351532267e5538e2373615b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Borrowed Love",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "VN",
-            "name": "Vietnam",
-            "position": 172,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
   },
   {
     "title": "SoundMan, Vol. 1",

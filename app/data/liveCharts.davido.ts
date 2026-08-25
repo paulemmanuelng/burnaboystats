@@ -489,8 +489,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
-            "movement": 8
+            "position": 32,
+            "movement": 10
           },
           {
             "country": "AE",
@@ -708,8 +708,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
-            "movement": -126
+            "position": 5,
+            "movement": 36
           }
         ]
       }
@@ -859,8 +859,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
-            "movement": -30
+            "position": 36,
+            "movement": -33
           }
         ]
       },
@@ -1164,8 +1164,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
-            "movement": -128
+            "position": 162,
+            "movement": -125
           }
         ]
       },
@@ -1285,8 +1285,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
-            "movement": -22
+            "position": 28,
+            "movement": -26
           },
           {
             "country": "GH",
@@ -1566,8 +1566,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 39,
-            "movement": -33
+            "position": 42,
+            "movement": -36
           }
         ]
       }
@@ -2534,16 +2534,16 @@
             "movement": 7
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 73,
-            "movement": 14
-          },
-          {
             "country": "BW",
             "name": "Botswana",
             "position": 78,
             "movement": -41
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 78,
+            "movement": 10
           }
         ]
       }
@@ -2832,8 +2832,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 54,
-            "movement": 7
+            "position": 55,
+            "movement": 4
           }
         ]
       }
@@ -3181,7 +3181,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
+            "position": 68,
             "movement": null,
             "status": "new"
           }
@@ -3200,8 +3200,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 175,
-            "movement": -123
+            "position": 177,
+            "movement": -119
           }
         ]
       }
