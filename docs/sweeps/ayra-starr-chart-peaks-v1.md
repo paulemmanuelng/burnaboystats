@@ -8,7 +8,13 @@
 
 ## Headline
 
-- **78 chart entries** (title × country pairs)
+> Added after the original sweep: **Starrgirl** entered the official French
+> albums chart (SNEP Top Albums) at **#100** in the week of 21 August 2026, read
+> on snepmusique.com — "Nouvelle entrée", "100e Meilleure Position". That is the
+> peak to date, not a closed run: the album released 14 August 2026 and could
+> still climb. Territories stay at 30, since France was already counted.
+
+- **79 chart entries** (title × country pairs)
 - **28 countries**, plus the two Billboard Global charts — **30 chart territories**
 - **10 No. 1 placements** across **5 countries**
 - **Major markets:** 🇺🇸 US — **no Hot 100 entry ever**; her only US placement is *The Year I Turned 21* at **No. 195** on the Billboard 200. 🇬🇧 UK — **No. 24** (*Rush*, Official Singles Chart). 🌐 Billboard Global 200 — **No. 24** (*Santa*); Global 200 Excl. US — **No. 14** (*Santa*), her best placement on any Billboard chart.
@@ -56,18 +62,19 @@ The shape of the career is unmistakable in the data: **28 of 78 entries (36%) ar
 
 **Singles subtotal:** 16 + 14 + (3 × 3) + (2 × 6) + (1 × 21) = 16 + 14 + 9 + 12 + 21 = **72**
 
-### Albums — 6
+### Albums — 7
 
 | release | chart peaks by country | |
 |---|---|---|
+| Starrgirl (2026) | 🇫🇷 #100 | **1** |
 | The Year I Turned 21 (2024) | 🇳🇬 #1 † · 🇫🇷 #72 · 🇬🇧 #80 · 🇨🇦 #89 · 🇺🇸 #195 | **5** |
 | 19 & Dangerous (2021) | 🇳🇬 #7 | **1** |
 
-**Albums subtotal:** 5 + 1 = **6**
+**Albums subtotal:** 1 + 5 + 1 = **7**
 
-**Total: 72 + 6 = 78 chart entries.**
+**Total: 72 + 7 = 79 chart entries.**
 
-Distribution check — the 78 entries fall in 28 countries plus the 2 supranational Billboard Global charts: 🇳🇬 28, 🇸🇷 9, 🇬🇧 5, 🇫🇷 4, then six territories with 2 each (🌐 GLB, 🌐 GLBX, 🇨🇦, 🇨🇭, 🇳🇱, 🇿🇦), then 20 with 1 each (🇱🇧 🇱🇺 🇧🇪 🇭🇺 🇮🇪 🇸🇪 🇪🇸 🇵🇪 🇧🇴 🇨🇴 🇪🇨 🇵🇦 🇨🇱 🇦🇷 🇲🇽 🇮🇹 🇵🇹 🇲🇹 🇷🇺 🇺🇸). Sum: 28 + 9 + 5 + 4 + (6 × 2) + 20 = **78** ✓. No country appears twice for the same title.
+Distribution check — the 79 entries fall in 28 countries plus the 2 supranational Billboard Global charts: 🇳🇬 28, 🇸🇷 9, 🇬🇧 5, 🇫🇷 5, then six territories with 2 each (🌐 GLB, 🌐 GLBX, 🇨🇦, 🇨🇭, 🇳🇱, 🇿🇦), then 20 with 1 each (🇱🇧 🇱🇺 🇧🇪 🇭🇺 🇮🇪 🇸🇪 🇪🇸 🇵🇪 🇧🇴 🇨🇴 🇪🇨 🇵🇦 🇨🇱 🇦🇷 🇲🇽 🇮🇹 🇵🇹 🇲🇹 🇷🇺 🇺🇸). Sum: 28 + 9 + 5 + 5 + (6 × 2) + 20 = **79** ✓. No country appears twice for the same title.
 
 ### No. 1 placements
 

@@ -620,7 +620,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     brand: "starrgirl",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: true,
-    chartPublished: { entries: 78, territories: 30, no1s: 10 },
+    chartPublished: { entries: 79, territories: 30, no1s: 10 },
     releases: [
       { title: "Rush", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ES", level: "Gold" }, { c: "DK", level: "Gold" }] },
       { title: "Santa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/965eeb50245f3178580ac5bda885e56b/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 16 }, { c: "ES", level: "Platinum", x: 5 }, { c: "MX", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "IT", level: "Gold" }] },
@@ -682,6 +682,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Jazzy's Song", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 24 }] },
       { title: "Aye Kan", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/5b1a13631d26a3e81a34f4abdd139a28/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 33 }] },
       { title: "Show Me", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/bcb9403427453639027af3debbd7acdd/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 54 }] },
+      { title: "Starrgirl", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg", entries: [{ c: "FR", peak: 100 }] },
       { title: "The Year I Turned 21", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }, { c: "FR", peak: 72 }, { c: "UK", peak: 80 }, { c: "CA", peak: 89 }, { c: "US", peak: 195 }] },
       { title: "19 & Dangerous", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 7 }] },
     ],
