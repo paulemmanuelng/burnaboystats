@@ -308,7 +308,7 @@
     "date": "2026-08-25",
     "release": "Dai Dai",
     "platform": "Deezer",
-    "position": 20
+    "position": 22
   },
   {
     "date": "2026-08-25",
