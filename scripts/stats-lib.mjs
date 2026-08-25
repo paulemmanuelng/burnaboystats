@@ -213,6 +213,48 @@ export function isActionable(status) {
   return status === "drift" || status === "new-peak" || status === "rank-change" || status === "accumulate";
 }
 
+// Watch the RAW source value behind an offset metric.
+//
+// An offset compensates for a source undercounting by a fixed, measured amount
+// (kworb's artist total misses some featured credits). That only holds while
+// the set of things the source counts stays the same. When it changes, the
+// offset is silently wrong in whichever direction the catalogue moved — and
+// nothing downstream can tell, because every later check runs in corrected
+// space where the arithmetic still looks consistent.
+//
+// It has already happened once: on 24 Aug 2026 kworb's raw sum fell about 17
+// million (a title leaving its tracked list, not plays being un-played), the
+// fixed offset carried the fall straight through, and the site published a
+// career total that had gone DOWN, 10.80B to 10.78B.
+//
+// The tell is a discontinuity. A cumulative sum cannot fall at all unless the
+// counted set changed, so any decrease is reportable on its own. A rise is
+// normal, so only an implausibly large one counts — the runs are hourly and a
+// normal hour adds a few hundred thousand.
+//
+// Returns null when there is nothing to say.
+export function offsetDrift(metric, live) {
+  if (metric.offset == null || live == null || Number.isNaN(live)) return null;
+  const raw = live - metric.offset;
+  const prev = metric.lastRawValue;
+  if (prev == null) return { raw, delta: null, kind: "first-reading" };
+  const delta = raw - prev;
+  if (delta < 0) {
+    return {
+      raw, delta, kind: "shrank",
+      why: `the source's raw sum FELL by ${Math.abs(delta).toLocaleString("en-US")}. A cumulative total cannot fall, so the counted set changed and the offset now UNDER-counts by that much. Re-measure it: add the drop to the offset and raise the baseline to match.`,
+    };
+  }
+  const limit = metric.rawJumpAlert;
+  if (limit != null && delta > limit) {
+    return {
+      raw, delta, kind: "jumped",
+      why: `the source's raw sum ROSE by ${delta.toLocaleString("en-US")} in one run, far above normal growth. Titles it had dropped have probably come back, which means the offset now OVER-counts by roughly that much and the published total is running high. Re-measure it.`,
+    };
+  }
+  return { raw, delta, kind: "ok" };
+}
+
 // Format a raw number the way a given site field displays it, so an auto-drafted
 // edit matches the surrounding style exactly.
 //   "M2"  → "56.52M"      (millions, 2dp — leaderboard values)

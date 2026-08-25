@@ -35,6 +35,7 @@ import {
   appendTrendPoint,
   withinSanity,
   staleMetrics,
+  offsetDrift,
 } from "./stats-lib.mjs";
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
@@ -182,7 +183,11 @@ async function main() {
       results.push({ ...metric, live: null, status: "unavailable", reason: err.message });
       continue;
     }
-    results.push(evaluateMetric(metric, live));
+    const r = evaluateMetric(metric, live);
+    // Judge the RAW value too: an offset is only valid while the source
+    // counts the same set of things, and corrected space cannot show that.
+    r.drift = offsetDrift(metric, live);
+    results.push(r);
   }
 
   // Diagnostic: every metric's fetch outcome, so the Actions log always shows
@@ -249,6 +254,16 @@ async function main() {
       m.lastSeenAt = new Date().toISOString().slice(0, 10);
       sourcesMoved = true;
     }
+    // The RAW reading behind an offset metric, recorded so the next run can
+    // see a discontinuity. Written even when the corrected value is unchanged:
+    // the point is to track the source's own shape, not the published figure.
+    if (r.drift && r.drift.raw != null) {
+      const raw = Math.round(r.drift.raw);
+      if (m.lastRawValue !== raw) {
+        m.lastRawValue = raw;
+        sourcesMoved = true;
+      }
+    }
   }
   if (sourcesMoved) files.set(configPath, JSON.stringify(config, null, 2) + "\n");
 
@@ -308,6 +323,21 @@ async function main() {
   }
   if (!applied.length && !manual.length && !rejected.length) {
     lines.push("All watched figures are within tolerance. Nothing to update.");
+  }
+
+  // Offset-drift alarm. Louder than staleness because it means a figure that
+  // looks healthy is actively wrong: the arithmetic downstream is consistent,
+  // it is the constant feeding it that no longer matches the source.
+  const drifted = results.filter((r) => r.drift && (r.drift.kind === "shrank" || r.drift.kind === "jumped"));
+  if (drifted.length) {
+    lines.push("");
+    lines.push(`### 🚨 ${drifted.length} offset(s) no longer match their source\n`);
+    for (const r of drifted) {
+      lines.push(`- **${r.label}** — ${r.drift.why}`);
+      lines.push(`  - raw now \`${fmt(r.drift.raw)}\`, previously \`${fmt(r.drift.raw - r.drift.delta)}\`, offset \`${fmt(r.offset)}\``);
+      lines.push(`  - published figure is ${r.drift.kind === "shrank" ? "running LOW" : "running HIGH"} by about \`${fmt(Math.abs(r.drift.delta))}\` until the offset is re-measured.`);
+    }
+    lines.push("");
   }
 
   // Staleness alarm. Runs on the config AFTER this run's writes, so a figure
