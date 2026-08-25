@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-24";
+  export const liveChartsUpdated = "2026-08-25";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -195,16 +195,16 @@
             "movement": -48
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 76,
-            "movement": -2
-          },
-          {
             "country": "SA",
             "name": "Saudi Arabia",
             "position": 76,
             "movement": 26
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 78,
+            "movement": -4
           },
           {
             "country": "BH",
@@ -231,12 +231,6 @@
             "movement": 45
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 104,
-            "movement": 17
-          },
-          {
             "country": "AO",
             "name": "Angola",
             "position": 106,
@@ -247,6 +241,12 @@
             "name": "Romania",
             "position": 108,
             "movement": -34
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 109,
+            "movement": 12
           },
           {
             "country": "SR",
@@ -268,16 +268,16 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 120,
-            "movement": 31
-          },
-          {
             "country": "SG",
             "name": "Singapore",
             "position": 123,
             "movement": 10
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 125,
+            "movement": 26
           },
           {
             "country": "KW",
@@ -318,16 +318,22 @@
             "movement": -30
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 151,
-            "movement": -6
-          },
-          {
             "country": "KH",
             "name": "Cambodia",
             "position": 153,
             "movement": -18
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 165,
+            "movement": -20
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 190,
+            "movement": -9
           },
           {
             "country": "BG",
@@ -335,12 +341,6 @@
             "position": 191,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 192,
-            "movement": -11
           },
           {
             "country": "SE",
@@ -462,14 +462,14 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 33,
+            "position": 50,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 65,
+            "position": 67,
             "movement": null,
             "status": "new"
           }
@@ -567,8 +567,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 36,
-            "movement": 35
+            "position": 49,
+            "movement": 22
           }
         ]
       },
@@ -822,7 +822,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 70,
+            "position": 71,
             "movement": null,
             "status": "new"
           }
@@ -846,29 +846,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "IS IT",
+    "title": "KISS",
     "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 187,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "RO",
-            "name": "Romania",
-            "position": 160,
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 88,
             "movement": null,
             "status": "new"
           }
@@ -879,16 +866,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "KISS",
+    "title": "IS IT",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 65,
+            "position": 187,
             "movement": null,
             "status": "new"
           }
@@ -928,8 +915,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 52,
-            "movement": -39
+            "position": 59,
+            "movement": -46
           }
         ]
       }

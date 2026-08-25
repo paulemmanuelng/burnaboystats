@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-24";
+  export const liveChartsUpdated = "2026-08-25";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -257,8 +257,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 152,
-            "movement": -3
+            "position": 146,
+            "movement": 3
           },
           {
             "country": "UG",
@@ -552,7 +552,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
+            "position": 33,
             "movement": null,
             "status": "new"
           }
@@ -1539,8 +1539,8 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 121,
-            "movement": 41
+            "position": 124,
+            "movement": 38
           },
           {
             "country": "TZ",
@@ -1626,8 +1626,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": 176
+            "position": 13,
+            "movement": 175
           }
         ]
       },
@@ -1875,7 +1875,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 56,
+            "position": 63,
             "movement": null,
             "status": "new"
           }
@@ -2005,7 +2005,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 93,
+            "position": 76,
             "movement": null,
             "status": "new"
           }
@@ -2123,7 +2123,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 97,
+            "position": 98,
             "movement": 0
           },
           {
@@ -2249,7 +2249,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 137,
+            "position": 147,
             "movement": null,
             "status": "new"
           }
@@ -2388,7 +2388,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
+            "position": 22,
             "movement": null,
             "status": "new"
           }
@@ -2407,7 +2407,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 23,
+            "position": 24,
             "movement": null,
             "status": "new"
           }
@@ -2437,25 +2437,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Bella",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 63,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/72cef83ff7a8c740f94ccf2ea5e0fdb7/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Troubled Mind",
     "platforms": [
       {
@@ -2474,6 +2455,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Bella",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 66,
+            "movement": -4
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/72cef83ff7a8c740f94ccf2ea5e0fdb7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Time",
@@ -2504,7 +2504,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
+            "position": 70,
             "movement": null,
             "status": "new"
           }
@@ -2533,26 +2533,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "On Top Your Matter",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 141,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5956f4fdf351532267e5538e2373615b/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Tonight",
     "platforms": [
       {
@@ -2572,6 +2552,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "On Top Your Matter",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 151,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5956f4fdf351532267e5538e2373615b/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Jahs Love is True",
     "platforms": [
       {
@@ -2581,8 +2581,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 163,
-            "movement": -121
+            "position": 173,
+            "movement": -131
           }
         ]
       }
