@@ -258,7 +258,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 150,
-            "movement": 1
+            "movement": -4
           },
           {
             "country": "UG",
@@ -309,7 +309,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 197,
-            "movement": 2
+            "movement": -6
           }
         ]
       },
@@ -1294,8 +1294,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
-            "movement": -9
+            "position": 94,
+            "movement": -10
           }
         ]
       }
@@ -1398,8 +1398,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": 1
+            "position": 110,
+            "movement": 0
           }
         ]
       }
@@ -1957,8 +1957,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
-            "movement": 0
+            "position": 166,
+            "movement": -1
           }
         ]
       }
@@ -2149,8 +2149,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 120,
-            "movement": 2
+            "position": 122,
+            "movement": 1
           }
         ]
       }
@@ -2270,8 +2270,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 161,
-            "movement": null,
-            "status": "new"
+            "movement": -118
           }
         ]
       }
@@ -2582,8 +2581,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 163,
-            "movement": null,
-            "status": "new"
+            "movement": -117
           }
         ]
       }
@@ -2602,7 +2600,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 188,
-            "movement": -138
+            "movement": -121
           }
         ]
       }
