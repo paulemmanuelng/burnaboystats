@@ -154,14 +154,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 19,
-            "movement": 0
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 26,
-            "movement": -6
+            "position": 18,
+            "movement": 1
           },
           {
             "country": "BJ",
@@ -170,10 +164,16 @@
             "movement": 4
           },
           {
+            "country": "NE",
+            "name": "Niger",
+            "position": 52,
+            "movement": -26
+          },
+          {
             "country": "GH",
             "name": "Ghana",
-            "position": 81,
-            "movement": 13
+            "position": 105,
+            "movement": -24
           },
           {
             "country": "GM",
@@ -186,13 +186,6 @@
             "country": "ML",
             "name": "Mali",
             "position": 164,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 168,
             "movement": null,
             "status": "new"
           },
@@ -346,50 +339,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Thy Kingdom Come",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 21,
-            "movement": 2
-          },
-          {
-            "country": "BN",
-            "name": "Brunei Darussalam",
-            "position": 37,
-            "movement": -14
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 41,
-            "movement": 9
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 133,
-            "movement": 63
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 193,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "99",
     "platforms": [
       {
@@ -439,6 +388,43 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Thy Kingdom Come",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 21,
+            "movement": 0
+          },
+          {
+            "country": "BN",
+            "name": "Brunei Darussalam",
+            "position": 37,
+            "movement": -14
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 41,
+            "movement": 9
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 139,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Vibe Till Thy Kingdom Come",
     "platforms": [
       {
@@ -454,8 +440,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
-            "movement": 0
+            "position": 60,
+            "movement": 1
           },
           {
             "country": "BJ",
@@ -466,9 +452,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 199,
-            "movement": null,
-            "status": "new"
+            "position": 148,
+            "movement": 51
           }
         ]
       }
@@ -598,8 +583,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
-            "movement": 6
+            "position": 50,
+            "movement": -2
           },
           {
             "country": "BJ",
@@ -744,8 +729,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
-            "movement": -1
+            "position": 47,
+            "movement": 4
           },
           {
             "country": "BJ",
@@ -769,8 +754,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 125,
-            "movement": -18
+            "position": 118,
+            "movement": 7
           },
           {
             "country": "BJ",
@@ -1005,8 +990,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 71,
-            "movement": 2
+            "position": 73,
+            "movement": -2
           }
         ]
       }
@@ -1024,8 +1009,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
-            "movement": -11
+            "position": 96,
+            "movement": 3
           }
         ]
       }
@@ -1040,9 +1025,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 165,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 182,
             "movement": null,
             "status": "new"
           }
