@@ -604,22 +604,22 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 6,
+            "movement": -1
+          },
+          {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 27,
             "movement": -20
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 91,
-            "movement": -86
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 188,
-            "movement": -28
+            "position": 191,
+            "movement": -31
           }
         ]
       },
@@ -1244,8 +1244,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 70,
-            "movement": 8
+            "position": 72,
+            "movement": 6
           }
         ]
       }
@@ -1326,8 +1326,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 67,
-            "movement": -4
+            "position": 69,
+            "movement": -6
           },
           {
             "country": "BE",

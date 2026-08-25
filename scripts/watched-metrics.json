@@ -141,7 +141,7 @@
       "extractor": "youtubeViews",
       "kind": "peak",
       "threshold": 0.001,
-      "baseline": 903724001,
+      "baseline": 904599477,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -159,7 +159,7 @@
         }
       ],
       "lastChanged": "2026-08-25",
-      "lastSeenValue": 904132191,
+      "lastSeenValue": 904599477,
       "lastSeenAt": "2026-08-25",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
@@ -192,8 +192,8 @@
         }
       ],
       "lastChanged": "2026-08-20",
-      "lastSeenValue": 360958222,
-      "lastSeenAt": "2026-08-23",
+      "lastSeenValue": 361237434,
+      "lastSeenAt": "2026-08-25",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -225,8 +225,8 @@
         }
       ],
       "lastChanged": "2026-08-23",
-      "lastSeenValue": 308659974,
-      "lastSeenAt": "2026-08-23",
+      "lastSeenValue": 308807152,
+      "lastSeenAt": "2026-08-25",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -239,7 +239,7 @@
       "match": "On The Low [Official Music Video]",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 477685266,
+      "baseline": 478779898,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
@@ -257,9 +257,9 @@
           "describes": "displayed YouTube views on /music/on-the-low"
         }
       ],
-      "lastChanged": "2026-08-17",
-      "lastSeenValue": 478410741,
-      "lastSeenAt": "2026-08-23",
+      "lastChanged": "2026-08-25",
+      "lastSeenValue": 478779898,
+      "lastSeenAt": "2026-08-25",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -272,7 +272,7 @@
       "match": "City Boys [Official Music Video]",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 116501289,
+      "baseline": 117502939,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
@@ -290,9 +290,9 @@
           "describes": "displayed YouTube views on /music/city-boys"
         }
       ],
-      "lastChanged": "2026-08-07",
-      "lastSeenValue": 117377608,
-      "lastSeenAt": "2026-08-23",
+      "lastChanged": "2026-08-25",
+      "lastSeenValue": 117502939,
+      "lastSeenAt": "2026-08-25",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -304,7 +304,7 @@
       "extractor": "kworbYouTubeTotal",
       "kind": "peak",
       "threshold": 0.001,
-      "baseline": 3175893629,
+      "baseline": 3187566461,
       "note": "Cumulative views across every Burna Boy video — a milestone figure as it climbs.",
       "live": true,
       "siteTargets": [
@@ -322,9 +322,9 @@
         "min": 1000000000,
         "max": 50000000000
       },
-      "lastChanged": "2026-08-15",
-      "lastSeenValue": 3184717779,
-      "lastSeenAt": "2026-08-23",
+      "lastChanged": "2026-08-25",
+      "lastSeenValue": 3187566461,
+      "lastSeenAt": "2026-08-25",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },

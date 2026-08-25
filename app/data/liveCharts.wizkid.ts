@@ -257,8 +257,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 159,
-            "movement": -7
+            "position": 156,
+            "movement": -4
           },
           {
             "country": "TT",
@@ -312,23 +312,30 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 6,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "PE",
             "name": "Peru",
-            "position": 113,
+            "position": 124,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 147,
+            "position": 157,
             "movement": null,
             "status": "new"
           },
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 155,
+            "position": 166,
             "movement": null,
             "status": "new"
           }
@@ -571,8 +578,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": -91
+            "position": 126,
+            "movement": -100
           }
         ]
       }
@@ -1100,7 +1107,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 114,
+            "position": 53,
             "movement": null,
             "status": "new"
           }
@@ -1767,7 +1774,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
+            "position": 108,
             "movement": null,
             "status": "new"
           }
@@ -1849,7 +1856,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 153,
+            "position": 162,
             "movement": null,
             "status": "new"
           }
@@ -1893,8 +1900,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 86,
-            "movement": 7
+            "position": 88,
+            "movement": 5
           }
         ]
       },
@@ -2457,8 +2464,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
-            "movement": -110
+            "position": 169,
+            "movement": -119
           }
         ]
       }
@@ -2475,7 +2482,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
+            "position": 27,
             "movement": null,
             "status": "new"
           }
@@ -2484,6 +2491,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Piece of Me",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 34,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Time",
@@ -2514,8 +2541,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": -89
+            "position": 117,
+            "movement": -98
           }
         ]
       }
@@ -2532,7 +2559,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 109,
+            "position": 118,
             "movement": null,
             "status": "new"
           }

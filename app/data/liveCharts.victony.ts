@@ -250,20 +250,20 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 156,
-            "movement": -4
+            "position": 140,
+            "movement": 12
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 170,
+            "movement": 9
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 170,
             "movement": 2
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 176,
-            "movement": 3
           },
           {
             "country": "SZ",
@@ -520,14 +520,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 8,
-            "movement": 20
+            "position": 10,
+            "movement": 18
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 12,
-            "movement": 161
+            "position": 16,
+            "movement": 157
           },
           {
             "country": "NA",
@@ -707,8 +707,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 18,
-            "movement": 0
+            "position": 17,
+            "movement": 1
           },
           {
             "country": "MU",
@@ -777,16 +777,16 @@
             "movement": -1
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 39,
-            "movement": 0
-          },
-          {
             "country": "NL",
             "name": "Netherlands",
+            "position": 36,
+            "movement": -9
+          },
+          {
+            "country": "FR",
+            "name": "France",
             "position": 41,
-            "movement": -14
+            "movement": -2
           },
           {
             "country": "TT",
@@ -906,14 +906,14 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 155,
-            "movement": -21
+            "position": 156,
+            "movement": -22
           },
           {
             "country": "DE",
             "name": "Germany",
-            "position": 156,
-            "movement": -14
+            "position": 159,
+            "movement": -17
           },
           {
             "country": "SA",
@@ -1516,6 +1516,76 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Soweto",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MR",
+            "name": "Mauritania",
+            "position": 53,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 74,
+            "movement": 46
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 93,
+            "movement": -1
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 110,
+            "movement": 26
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 141,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 152,
+            "movement": -47
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 165,
+            "movement": 15
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "TWIN",
     "platforms": [
       {
@@ -1578,63 +1648,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/da22875a6742ba991e3fe3ed2a3f8bed/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Soweto",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MR",
-            "name": "Mauritania",
-            "position": 53,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 74,
-            "movement": 46
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 93,
-            "movement": -1
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 110,
-            "movement": 26
-          },
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 141,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 152,
-            "movement": -47
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 165,
-            "movement": 15
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ARMED & DANGEROUS",
@@ -2073,7 +2086,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
+            "position": 25,
             "movement": null,
             "status": "new"
           }

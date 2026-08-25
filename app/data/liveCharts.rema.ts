@@ -354,7 +354,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 153,
+            "position": 163,
             "movement": null,
             "status": "new"
           }
@@ -1131,8 +1131,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
-            "movement": -15
+            "position": 34,
+            "movement": -19
           }
         ]
       },
@@ -1256,8 +1256,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 20,
-            "movement": -13
+            "position": 24,
+            "movement": -17
           }
         ]
       }
@@ -1318,8 +1318,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 41,
-            "movement": -23
+            "position": 45,
+            "movement": -27
           }
         ]
       }
@@ -1359,24 +1359,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Favourite Girl",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 40,
-            "movement": -23
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "BENIN BOYS",
     "platforms": [
       {
@@ -1386,14 +1368,32 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 40,
-            "movement": -22
+            "position": 42,
+            "movement": -24
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Favourite Girl",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 44,
+            "movement": -27
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "Wine",
@@ -1405,7 +1405,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 46,
+            "position": 54,
             "movement": null,
             "status": "new"
           }
@@ -1444,8 +1444,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 61,
-            "movement": -2
+            "position": 62,
+            "movement": -3
           }
         ]
       }

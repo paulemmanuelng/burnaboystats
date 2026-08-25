@@ -240,16 +240,16 @@
             "movement": 18
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 94,
-            "movement": -3
-          },
-          {
             "country": "RO",
             "name": "Romania",
             "position": 98,
             "movement": 10
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 99,
+            "movement": -8
           },
           {
             "country": "SE",
@@ -308,16 +308,16 @@
             "movement": 14
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 133,
+            "movement": -6
+          },
+          {
             "country": "PH",
             "name": "Philippines",
             "position": 135,
             "movement": 12
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 136,
-            "movement": -9
           },
           {
             "country": "SG",
@@ -347,8 +347,8 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 149,
-            "movement": -1
+            "position": 153,
+            "movement": -5
           },
           {
             "country": "MU",
@@ -384,6 +384,12 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 178,
+            "movement": 18
+          },
+          {
             "country": "MN",
             "name": "Mongolia",
             "position": 179,
@@ -394,12 +400,6 @@
             "name": "Ghana",
             "position": 191,
             "movement": -43
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 193,
-            "movement": 3
           }
         ]
       },
@@ -524,7 +524,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 5,
+            "position": 7,
             "movement": null,
             "status": "new"
           },
@@ -538,8 +538,8 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 73,
-            "movement": -10
+            "position": 74,
+            "movement": -11
           }
         ]
       },
@@ -854,7 +854,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 157,
+            "position": 162,
             "movement": null,
             "status": "new"
           }
@@ -901,6 +901,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 146,
+            "movement": -61
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 2,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Truth or Dare",
@@ -971,7 +1003,7 @@
           {
             "country": "PL",
             "name": "Poland",
-            "position": 132,
+            "position": 156,
             "movement": null,
             "status": "new"
           }
@@ -1033,6 +1065,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "ART",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 13,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "On My Body",
     "platforms": [
       {
@@ -1042,33 +1094,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 70,
-            "movement": -26
+            "position": 73,
+            "movement": -29
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 146,
-            "movement": -61
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   }
 ];
   
