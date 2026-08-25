@@ -76,7 +76,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 14,
-            "movement": 4
+            "movement": 2
           },
           {
             "country": "FJ",
@@ -269,7 +269,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 47,
-            "movement": -6
+            "movement": -3
           },
           {
             "country": "TJ",
@@ -402,7 +402,7 @@
             "country": "AU",
             "name": "Australia",
             "position": 80,
-            "movement": 11
+            "movement": 4
           },
           {
             "country": "BS",
@@ -432,7 +432,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 88,
-            "movement": -2
+            "movement": -4
           },
           {
             "country": "MD",
@@ -550,7 +550,7 @@
             "country": "FR",
             "name": "France",
             "position": 168,
-            "movement": 17
+            "movement": 10
           },
           {
             "country": "NO",
@@ -563,8 +563,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 189,
-            "movement": null,
-            "status": "new"
+            "movement": 8
           },
           {
             "country": "SI",
@@ -1172,7 +1171,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 11,
+            "position": 13,
             "movement": -8
           },
           {
@@ -1198,14 +1197,7 @@
           {
             "country": "UA",
             "name": "Ukraine",
-            "position": 50,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 73,
+            "position": 54,
             "movement": null,
             "status": "new"
           },
@@ -1218,20 +1210,20 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 80,
-            "movement": -67
+            "position": 85,
+            "movement": -70
           },
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 91,
-            "movement": -72
+            "position": 95,
+            "movement": -74
           },
           {
             "country": "UK",
             "name": "United Kingdom",
             "position": 115,
-            "movement": -38
+            "movement": -15
           }
         ]
       },
@@ -1304,7 +1296,7 @@
             "country": "US",
             "name": "United States",
             "position": 12,
-            "movement": 5
+            "movement": 2
           },
           {
             "country": "TC",
@@ -1712,7 +1704,7 @@
             "country": "US",
             "name": "United States",
             "position": 125,
-            "movement": -7
+            "movement": -10
           },
           {
             "country": "AI",
@@ -1757,14 +1749,14 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 80,
+            "position": 103,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 151,
+            "position": 188,
             "movement": null,
             "status": "new"
           }
@@ -2204,7 +2196,7 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 130,
+            "position": 168,
             "movement": null,
             "status": "new"
           }
@@ -2224,7 +2216,7 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 142,
+            "position": 179,
             "movement": null,
             "status": "new"
           }
@@ -2243,7 +2235,7 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 152,
+            "position": 189,
             "movement": null,
             "status": "new"
           }

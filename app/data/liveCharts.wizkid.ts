@@ -271,7 +271,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 163,
-            "movement": -17
+            "movement": -2
           },
           {
             "country": "NP",
@@ -309,7 +309,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 183,
-            "movement": 8
+            "movement": -7
           }
         ]
       },
@@ -320,14 +320,14 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 41,
+            "position": 57,
             "movement": null,
             "status": "new"
           },
           {
             "country": "PE",
             "name": "Peru",
-            "position": 82,
+            "position": 87,
             "movement": null,
             "status": "new"
           }
@@ -1298,8 +1298,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 93,
-            "movement": -8
+            "position": 94,
+            "movement": -7
           }
         ]
       }
@@ -1402,8 +1402,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 109,
-            "movement": 2
+            "position": 110,
+            "movement": 5
           }
         ]
       }
@@ -1545,7 +1545,7 @@
             "country": "NO",
             "name": "Norway",
             "position": 104,
-            "movement": -45
+            "movement": -46
           },
           {
             "country": "UG",
@@ -1961,8 +1961,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": 1
+            "position": 166,
+            "movement": 4
           }
         ]
       }
@@ -2152,8 +2152,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 121,
-            "movement": 3
+            "position": 122,
+            "movement": 6
           }
         ]
       }
@@ -2622,7 +2622,7 @@
           {
             "country": "VN",
             "name": "Vietnam",
-            "position": 155,
+            "position": 172,
             "movement": null,
             "status": "new"
           }

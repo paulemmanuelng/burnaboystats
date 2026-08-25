@@ -198,7 +198,7 @@
             "country": "BR",
             "name": "Brazil",
             "position": 76,
-            "movement": 10
+            "movement": 15
           },
           {
             "country": "SA",
@@ -216,7 +216,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 94,
-            "movement": -5
+            "movement": 5
           },
           {
             "country": "BE",
@@ -321,7 +321,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 172,
-            "movement": -34
+            "movement": -27
           },
           {
             "country": "BG",
@@ -334,7 +334,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 194,
-            "movement": -6
+            "movement": -4
           },
           {
             "country": "SE",
@@ -357,7 +357,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 14,
+            "position": 26,
             "movement": null,
             "status": "new"
           },
@@ -483,7 +483,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 80,
+            "position": 95,
             "movement": null,
             "status": "new"
           }
@@ -571,18 +571,6 @@
             "name": "South Africa",
             "position": 106,
             "movement": -4
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 161,
-            "movement": -9
           }
         ]
       },
@@ -833,8 +821,8 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 157,
-            "movement": -132
+            "position": 180,
+            "movement": -154
           }
         ]
       },
@@ -897,26 +885,6 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 187,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "KISS",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 199,
             "movement": null,
             "status": "new"
           }

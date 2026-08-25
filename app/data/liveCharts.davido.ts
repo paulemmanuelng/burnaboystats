@@ -154,7 +154,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 36,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "IE",
@@ -269,8 +269,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 58,
-            "movement": -13
+            "position": 51,
+            "movement": -5
           }
         ]
       }
@@ -495,7 +495,7 @@
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 56,
+            "position": 70,
             "movement": null,
             "status": "new"
           }
@@ -1280,7 +1280,7 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 21,
-            "movement": -18
+            "movement": -17
           },
           {
             "country": "NG",
@@ -1843,8 +1843,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 32,
-            "movement": -8
+            "position": 33,
+            "movement": -7
           }
         ]
       }
@@ -3105,8 +3105,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 31,
-            "movement": -18
+            "position": 35,
+            "movement": -22
           }
         ]
       }

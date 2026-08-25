@@ -417,20 +417,20 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 25,
-            "movement": -3
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 42,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 57,
             "movement": 6
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 59,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1014,7 +1014,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 24,
+            "position": 25,
             "movement": null,
             "status": "new"
           },
@@ -1426,8 +1426,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 25,
-            "movement": -18
+            "position": 29,
+            "movement": -22
           }
         ]
       }
@@ -1585,8 +1585,8 @@
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 163,
-            "movement": -132
+            "position": 170,
+            "movement": -135
           }
         ]
       }
