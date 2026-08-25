@@ -209,8 +209,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": -2
+            "position": 5,
+            "movement": 2
           }
         ]
       },
@@ -343,7 +343,7 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 26,
-            "movement": -4
+            "movement": -1
           },
           {
             "country": "BF",
@@ -354,7 +354,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 145,
+            "position": 153,
             "movement": null,
             "status": "new"
           }
@@ -459,8 +459,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 179,
-            "movement": -6
+            "position": 177,
+            "movement": 2
           }
         ]
       }
@@ -564,8 +564,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 175,
-            "movement": 5
+            "position": 195,
+            "movement": -20
           }
         ]
       }
@@ -979,8 +979,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 80,
-            "movement": -5
+            "position": 81,
+            "movement": -1
           }
         ]
       }
@@ -1163,8 +1163,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 47,
-            "movement": 1
+            "position": 45,
+            "movement": 2
           }
         ]
       },
@@ -1445,7 +1445,7 @@
             "country": "BM",
             "name": "Bermuda",
             "position": 61,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
@@ -1509,6 +1509,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Fi Kan We Kan",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 170,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "Bad Commando - EP",

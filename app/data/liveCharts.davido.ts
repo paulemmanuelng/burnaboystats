@@ -502,7 +502,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 4,
-            "movement": 58
+            "movement": 80
           }
         ]
       },
@@ -674,12 +674,12 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 97,
-            "movement": -91
+            "movement": -87
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 145,
+            "position": 161,
             "movement": null,
             "status": "new"
           }
@@ -692,8 +692,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": 0
+            "position": 13,
+            "movement": -1
           }
         ]
       },
@@ -885,8 +885,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
-            "movement": 3
+            "position": 43,
+            "movement": -1
           }
         ]
       },
@@ -898,7 +898,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 10,
-            "movement": 51
+            "movement": 73
           }
         ]
       },
@@ -1178,7 +1178,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 91,
-            "movement": -88
+            "movement": -86
           },
           {
             "country": "GH",
@@ -1239,8 +1239,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 125,
-            "movement": 12
+            "position": 144,
+            "movement": -19
           }
         ]
       },
@@ -1373,7 +1373,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
+            "position": 15,
             "movement": -2
           }
         ]
@@ -1612,7 +1612,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 103,
-            "movement": -93
+            "movement": -89
           }
         ]
       }
@@ -1724,7 +1724,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 72,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -2205,8 +2205,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 62,
-            "movement": -7
+            "position": 61,
+            "movement": 1
           }
         ]
       },
@@ -2267,7 +2267,7 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 17,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "MZ",
@@ -2327,8 +2327,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": 3
+            "position": 118,
+            "movement": -21
           }
         ]
       },
@@ -2389,8 +2389,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
-            "movement": -4
+            "position": 98,
+            "movement": -15
           }
         ]
       },
@@ -2421,7 +2421,7 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 14,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "NE",
@@ -2432,8 +2432,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 37,
-            "movement": 9
+            "position": 36,
+            "movement": 10
           },
           {
             "country": "MZ",
@@ -2450,8 +2450,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 83,
-            "movement": -3
+            "position": 84,
+            "movement": -4
           }
         ]
       }
@@ -2513,8 +2513,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": 1
+            "position": 117,
+            "movement": -6
           }
         ]
       }
@@ -2588,8 +2588,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 88,
-            "movement": 8
+            "position": 102,
+            "movement": -14
           }
         ]
       }
@@ -2625,8 +2625,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
-            "movement": -7
+            "position": 96,
+            "movement": -1
           }
         ]
       }
@@ -2662,8 +2662,46 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -36
+            "position": 167,
+            "movement": -2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Zanzibar",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 110,
+            "movement": -25
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 179,
+            "movement": -9
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 180,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -2832,31 +2870,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a880bf2aaa27d39c446bd9b19effd22e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Zanzibar",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 110,
-            "movement": -25
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 179,
-            "movement": -9
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "The Best",
     "platforms": [
       {
@@ -2892,8 +2905,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 179,
-            "movement": -23
+            "position": 183,
+            "movement": -4
           }
         ]
       },
@@ -3014,7 +3027,7 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 4,
-            "movement": -2
+            "movement": 0
           }
         ]
       }
@@ -3166,8 +3179,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 127,
-            "movement": null,
-            "status": "new"
+            "movement": -93
           }
         ]
       }

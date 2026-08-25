@@ -167,8 +167,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
-            "movement": 27
+            "position": 108,
+            "movement": -16
           }
         ]
       },
@@ -502,6 +502,19 @@
             "movement": -2
           }
         ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 187,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -632,8 +645,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 143,
-            "movement": -19
+            "position": 150,
+            "movement": -7
           }
         ]
       }

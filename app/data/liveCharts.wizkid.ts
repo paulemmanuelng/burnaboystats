@@ -51,50 +51,50 @@
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 36,
-            "movement": 1
+            "position": 34,
+            "movement": 2
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 63,
-            "movement": -2
+            "position": 59,
+            "movement": 4
           },
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 79,
-            "movement": 7
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 83,
-            "movement": -2
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 84,
-            "movement": 0
+            "position": 69,
+            "movement": 10
           },
           {
             "country": "GB",
             "name": "United Kingdom",
-            "position": 87,
-            "movement": -3
+            "position": 85,
+            "movement": 2
           },
           {
-            "country": "LT",
-            "name": "Lithuania",
+            "country": "CA",
+            "name": "Canada",
             "position": 88,
-            "movement": 16
+            "movement": -4
           },
           {
             "country": "LV",
             "name": "Latvia",
-            "position": 91,
-            "movement": -3
+            "position": 88,
+            "movement": 3
+          },
+          {
+            "country": "LT",
+            "name": "Lithuania",
+            "position": 89,
+            "movement": -1
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 90,
+            "movement": -7
           },
           {
             "country": "CY",
@@ -103,76 +103,77 @@
             "movement": -1
           },
           {
-            "country": "AU",
-            "name": "Australia",
+            "country": "EE",
+            "name": "Estonia",
             "position": 100,
-            "movement": -18
+            "movement": 9
           },
           {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 100,
-            "movement": 4
+            "country": "AU",
+            "name": "Australia",
+            "position": 108,
+            "movement": -8
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 108,
-            "movement": 8
-          },
-          {
-            "country": "EE",
-            "name": "Estonia",
-            "position": 109,
-            "movement": 20
+            "position": 113,
+            "movement": -5
           },
           {
             "country": "AT",
             "name": "Austria",
-            "position": 123,
-            "movement": 12
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 130,
-            "movement": -18
-          },
-          {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 132,
+            "position": 120,
             "movement": 3
           },
           {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 149,
-            "movement": -13
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 121,
+            "movement": -21
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 149,
-            "movement": 5
+            "position": 122,
+            "movement": 27
+          },
+          {
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 131,
+            "movement": 18
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 132,
+            "movement": -2
+          },
+          {
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 142,
+            "movement": -10
           },
           {
             "country": "DE",
             "name": "Germany",
-            "position": 166,
-            "movement": 15
+            "position": 174,
+            "movement": -8
           },
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 182,
-            "movement": 2
+            "position": 184,
+            "movement": -2
           },
           {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 191,
-            "movement": -4
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 184,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -320,14 +321,14 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 140,
+            "position": 147,
             "movement": null,
             "status": "new"
           },
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 143,
+            "position": 155,
             "movement": null,
             "status": "new"
           }
@@ -558,8 +559,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
-            "movement": 4
+            "position": 37,
+            "movement": -4
           }
         ]
       },
@@ -571,7 +572,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 117,
-            "movement": -99
+            "movement": -91
           }
         ]
       }
@@ -967,8 +968,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
-            "movement": 0
+            "position": 31,
+            "movement": -1
           }
         ]
       },
@@ -1000,6 +1001,114 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Morayo",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 10,
+            "movement": 7
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 13,
+            "movement": 0
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 27,
+            "movement": 0
+          },
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 48,
+            "movement": 33
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 52,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 85,
+            "movement": 35
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 91,
+            "movement": 26
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 115,
+            "movement": -1
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 124,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 139,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 167,
+            "movement": 25
+          },
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 177,
+            "movement": -104
+          },
+          {
+            "country": "MT",
+            "name": "Malta",
+            "position": 183,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 114,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "REAL, Vol. 1 - EP",
@@ -1192,8 +1301,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 84,
-            "movement": 1
+            "position": 85,
+            "movement": 0
           },
           {
             "country": "NG",
@@ -1387,109 +1496,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
-            "movement": 0
+            "position": 97,
+            "movement": 5
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9b36905d4dcb4eb744bb219d311a52e5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Morayo",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 10,
-            "movement": 7
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 13,
-            "movement": 0
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 27,
-            "movement": 0
-          },
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 48,
-            "movement": 33
-          },
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 52,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 85,
-            "movement": 35
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 91,
-            "movement": 26
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 115,
-            "movement": -1
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 124,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 139,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 167,
-            "movement": 25
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 177,
-            "movement": -104
-          },
-          {
-            "country": "MT",
-            "name": "Malta",
-            "position": 183,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Made In Lagos: Deluxe Edition",
@@ -1741,8 +1755,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 79,
-            "movement": -10
+            "position": 77,
+            "movement": 2
           }
         ]
       },
@@ -1823,8 +1837,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
-            "movement": 16
+            "position": 80,
+            "movement": -6
           }
         ]
       },
@@ -1891,8 +1905,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 189,
-            "movement": 7
+            "position": 181,
+            "movement": 8
           }
         ]
       },
@@ -2134,8 +2148,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 97,
-            "movement": 0
+            "position": 98,
+            "movement": -1
           },
           {
             "country": "NG",
@@ -2178,8 +2192,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
-            "movement": -12
+            "position": 133,
+            "movement": -4
           }
         ]
       }
@@ -2197,9 +2211,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": null,
-            "status": "new"
+            "position": 165,
+            "movement": -27
           }
         ]
       },
@@ -2258,37 +2271,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Alaye",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 155,
-            "movement": 13
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 194,
-            "movement": 3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BIG TIME",
     "platforms": [
       {
@@ -2298,9 +2280,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 188,
-            "movement": null,
-            "status": "new"
+            "position": 184,
+            "movement": 4
           }
         ]
       },
@@ -2319,6 +2300,37 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Alaye",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 171,
+            "movement": -16
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 194,
+            "movement": 3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bella",
@@ -2446,7 +2458,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 160,
-            "movement": -123
+            "movement": -110
           }
         ]
       }
@@ -2503,8 +2515,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 108,
-            "movement": null,
-            "status": "new"
+            "movement": -89
           }
         ]
       }

@@ -326,7 +326,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 176,
+            "position": 178,
             "movement": null,
             "status": "new"
           },
@@ -588,6 +588,13 @@
             "name": "Nigeria",
             "position": 2,
             "movement": 0
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 104,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1067,7 +1074,7 @@
             "country": "BB",
             "name": "Barbados",
             "position": 5,
-            "movement": -4
+            "movement": -2
           },
           {
             "country": "GH",
@@ -1078,7 +1085,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 124,
+            "position": 174,
             "movement": null,
             "status": "new"
           }
@@ -1249,8 +1256,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
-            "movement": 1
+            "position": 29,
+            "movement": 6
           }
         ]
       },
@@ -1262,7 +1269,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 11,
-            "movement": 58
+            "movement": 79
           }
         ]
       },
@@ -1377,8 +1384,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 107,
-            "movement": null,
-            "status": "new"
+            "movement": -89
           }
         ]
       },
@@ -1512,8 +1518,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": 0
+            "position": 19,
+            "movement": 2
           }
         ]
       },
@@ -1726,8 +1732,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 46,
-            "movement": -4
+            "position": 40,
+            "movement": 6
           }
         ]
       },
@@ -1820,13 +1826,13 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 18,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "SZ",
             "name": "Swaziland",
             "position": 22,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "AG",
@@ -1843,8 +1849,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 79,
-            "movement": -3
+            "position": 80,
+            "movement": -4
           }
         ]
       },
@@ -1922,8 +1928,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 75,
-            "movement": 5
+            "position": 69,
+            "movement": 6
           }
         ]
       },
@@ -1935,7 +1941,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 5,
-            "movement": -1
+            "movement": 2
           }
         ]
       },
@@ -2053,8 +2059,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 175,
-            "movement": -36
+            "position": 176,
+            "movement": -1
           }
         ]
       },
@@ -2486,8 +2492,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 154,
-            "movement": -12
+            "position": 152,
+            "movement": 2
           }
         ]
       },
@@ -2512,6 +2518,86 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 46,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ms. Paper",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 31,
+            "movement": 32
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 71,
+            "movement": -12
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 75,
+            "movement": -13
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 78,
+            "movement": 21
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 133,
+            "movement": 2
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 106,
+            "movement": 14
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 130,
+            "movement": 16
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 55,
             "movement": null,
             "status": "new"
           }
@@ -2574,8 +2660,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 80,
-            "movement": -5
+            "position": 81,
+            "movement": -1
           }
         ]
       },
@@ -2595,86 +2681,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ms. Paper",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 31,
-            "movement": 32
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 71,
-            "movement": -12
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 75,
-            "movement": -13
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 78,
-            "movement": 21
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 133,
-            "movement": 2
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 120,
-            "movement": -6
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 130,
-            "movement": 16
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 55,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Gimme Dat",
@@ -2716,8 +2722,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 79,
-            "movement": -10
+            "position": 77,
+            "movement": 2
           }
         ]
       },
@@ -2878,8 +2884,8 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 15,
-            "movement": -4
+            "position": 18,
+            "movement": -7
           },
           {
             "country": "UK",
@@ -2928,8 +2934,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 195,
-            "movement": -43
+            "position": 190,
+            "movement": 5
           }
         ]
       },
@@ -2941,7 +2947,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 152,
-            "movement": -124
+            "movement": -112
           }
         ]
       },
@@ -2961,62 +2967,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4b5a287c8f574407dc5b1b03b5ae0c58/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Midnight in New York",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 64,
-            "movement": 1
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 67,
-            "movement": -5
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 168,
-            "movement": -15
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 200,
-            "movement": -16
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 70,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bloody Samaritan",
@@ -3113,6 +3063,50 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Midnight in New York",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 64,
+            "movement": 1
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 67,
+            "movement": -5
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 168,
+            "movement": -15
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 70,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dance",
@@ -3315,8 +3309,8 @@
           {
             "country": "PA",
             "name": "Panama",
-            "position": 173,
-            "movement": 3
+            "position": 158,
+            "movement": 15
           }
         ]
       },

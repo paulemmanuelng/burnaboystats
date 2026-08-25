@@ -417,7 +417,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 74,
+            "position": 80,
             "movement": null,
             "status": "new"
           }
@@ -531,7 +531,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 55,
+            "position": 63,
             "movement": null,
             "status": "new"
           },
@@ -550,8 +550,8 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 175,
-            "movement": -21
+            "position": 176,
+            "movement": -1
           }
         ]
       }
@@ -792,8 +792,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 106,
-            "movement": -4
+            "position": 67,
+            "movement": 39
           }
         ]
       },
@@ -854,7 +854,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 141,
+            "position": 157,
             "movement": null,
             "status": "new"
           }
@@ -971,7 +971,7 @@
           {
             "country": "PL",
             "name": "Poland",
-            "position": 126,
+            "position": 132,
             "movement": null,
             "status": "new"
           }
@@ -1031,25 +1031,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Show Me Love",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 196,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
   },
   {
     "title": "On My Body",
