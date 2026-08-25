@@ -220,7 +220,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 101,
-            "movement": 7
+            "movement": 0
           },
           {
             "country": "QA",
@@ -251,13 +251,13 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 140,
-            "movement": 12
+            "movement": 9
           },
           {
             "country": "FR",
             "name": "France",
             "position": 170,
-            "movement": 9
+            "movement": 2
           },
           {
             "country": "AE",
@@ -520,20 +520,20 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 10,
-            "movement": 18
+            "position": 11,
+            "movement": 17
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 16,
-            "movement": 157
+            "position": 18,
+            "movement": -14
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 59,
-            "movement": -10
+            "position": 62,
+            "movement": -11
           }
         ]
       },
@@ -708,7 +708,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 17,
-            "movement": 1
+            "movement": -2
           },
           {
             "country": "MU",
@@ -744,7 +744,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 24,
-            "movement": -3
+            "movement": -1
           },
           {
             "country": "SC",
@@ -780,7 +780,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 36,
-            "movement": -9
+            "movement": -1
           },
           {
             "country": "FR",
@@ -907,13 +907,13 @@
             "country": "US",
             "name": "United States",
             "position": 156,
-            "movement": -22
+            "movement": -12
           },
           {
             "country": "DE",
             "name": "Germany",
             "position": 159,
-            "movement": -17
+            "movement": -15
           },
           {
             "country": "SA",
@@ -2086,7 +2086,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
+            "position": 29,
             "movement": null,
             "status": "new"
           }

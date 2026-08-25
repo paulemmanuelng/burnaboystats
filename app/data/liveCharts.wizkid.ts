@@ -258,7 +258,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 156,
-            "movement": -4
+            "movement": -9
           },
           {
             "country": "TT",
@@ -314,28 +314,28 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 6,
+            "position": 8,
             "movement": null,
             "status": "new"
           },
           {
             "country": "PE",
             "name": "Peru",
-            "position": 124,
+            "position": 138,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 157,
+            "position": 174,
             "movement": null,
             "status": "new"
           },
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 166,
+            "position": 190,
             "movement": null,
             "status": "new"
           }
@@ -578,8 +578,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": -100
+            "position": 142,
+            "movement": -116
           }
         ]
       }
@@ -1107,7 +1107,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 53,
+            "position": 75,
             "movement": null,
             "status": "new"
           }
@@ -1308,8 +1308,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 85,
-            "movement": 0
+            "position": 86,
+            "movement": -1
           },
           {
             "country": "NG",
@@ -1774,7 +1774,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
+            "position": 125,
             "movement": null,
             "status": "new"
           }
@@ -1817,6 +1817,13 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 6,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "TD",
             "name": "Chad",
             "position": 62,
@@ -1856,7 +1863,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 162,
+            "position": 178,
             "movement": null,
             "status": "new"
           }
@@ -1895,13 +1902,13 @@
             "country": "DM",
             "name": "Dominica",
             "position": 26,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 88,
-            "movement": 5
+            "position": 89,
+            "movement": 4
           }
         ]
       },
@@ -2155,8 +2162,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 98,
-            "movement": -1
+            "position": 97,
+            "movement": 1
           },
           {
             "country": "NG",
@@ -2349,8 +2356,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 77,
-            "movement": -14
+            "position": 78,
+            "movement": -15
           },
           {
             "country": "CM",
@@ -2464,13 +2471,33 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
-            "movement": -119
+            "position": 185,
+            "movement": -135
           }
         ]
       }
     ],
     "kind": "song"
+  },
+  {
+    "title": "Say My Name",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 21,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9348290ff2c42fef0438d57515d5233a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Kese",
@@ -2482,7 +2509,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 27,
+            "position": 31,
             "movement": null,
             "status": "new"
           }
@@ -2502,7 +2529,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
+            "position": 38,
             "movement": null,
             "status": "new"
           }
@@ -2532,44 +2559,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BROWN SKIN GIRL",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 117,
-            "movement": -98
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "Bad Girl",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 118,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Alive",
     "platforms": [
       {
@@ -2587,6 +2576,44 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BROWN SKIN GIRL",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 133,
+            "movement": -114
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Bad Girl",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 134,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Tonight",

@@ -327,8 +327,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 178,
-            "movement": null,
-            "status": "new"
+            "movement": 16
           },
           {
             "country": "AG",
@@ -443,7 +442,14 @@
             "country": "GH",
             "name": "Ghana",
             "position": 3,
-            "movement": -2
+            "movement": -1
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 6,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BF",
@@ -452,50 +458,42 @@
             "movement": -1
           },
           {
-            "country": "LT",
-            "name": "Lithuania",
-            "position": 11,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 11,
+            "position": 13,
             "movement": null,
             "status": "new"
           },
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 14,
-            "movement": -11
+            "position": 16,
+            "movement": -13
+          },
+          {
+            "country": "LT",
+            "name": "Lithuania",
+            "position": 24,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 52,
+            "position": 53,
             "movement": -14
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 74,
-            "movement": -9
-          },
-          {
-            "country": "UA",
-            "name": "Ukraine",
-            "position": 81,
-            "movement": null,
-            "status": "new"
+            "position": 77,
+            "movement": -10
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 174,
-            "movement": null,
-            "status": "new"
+            "position": 182,
+            "movement": -27
           }
         ]
       },
@@ -840,7 +838,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 30,
-            "movement": 3
+            "movement": 1
           },
           {
             "country": "CI",
@@ -882,7 +880,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 45,
-            "movement": -2
+            "movement": 5
           },
           {
             "country": "FR",
@@ -908,7 +906,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 52,
-            "movement": 7
+            "movement": 3
           },
           {
             "country": "CY",
@@ -1072,7 +1070,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 174,
+            "position": 188,
             "movement": null,
             "status": "new"
           }
@@ -1255,8 +1253,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": 78
+            "position": 13,
+            "movement": 77
           }
         ]
       },
@@ -1370,8 +1368,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 116,
-            "movement": -98
+            "position": 132,
+            "movement": -114
           }
         ]
       },
@@ -1769,8 +1767,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 65,
-            "movement": -14
+            "position": 66,
+            "movement": -15
           },
           {
             "country": "OM",
@@ -1824,20 +1822,20 @@
           {
             "country": "AG",
             "name": "Antigua and Barbuda",
-            "position": 65,
-            "movement": -1
+            "position": 66,
+            "movement": -2
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 71,
-            "movement": 6
+            "position": 72,
+            "movement": 5
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 80,
-            "movement": -4
+            "movement": -5
           }
         ]
       },
@@ -2383,7 +2381,7 @@
             "country": "FR",
             "name": "France",
             "position": 96,
-            "movement": 3
+            "movement": 2
           },
           {
             "country": "ML",
@@ -2491,7 +2489,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -2721,7 +2719,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
+            "position": 125,
             "movement": null,
             "status": "new"
           }
@@ -2871,8 +2869,8 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 18,
-            "movement": -7
+            "position": 19,
+            "movement": -6
           }
         ]
       }
@@ -2926,8 +2924,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
-            "movement": -121
+            "position": 177,
+            "movement": -137
           }
         ]
       },
@@ -2991,7 +2989,7 @@
             "country": "DM",
             "name": "Dominica",
             "position": 35,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -3225,7 +3223,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 17,
+            "position": 19,
             "movement": null,
             "status": "new"
           }
@@ -3433,25 +3431,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d47d959a99da468afdd69a8f855be482/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "My Baby",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
   },
   {
     "title": "Ayra Starr - EP",

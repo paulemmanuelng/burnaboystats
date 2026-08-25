@@ -354,7 +354,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 163,
+            "position": 181,
             "movement": null,
             "status": "new"
           }
@@ -490,8 +490,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 95,
-            "movement": -14
+            "position": 96,
+            "movement": -15
           },
           {
             "country": "LR",
@@ -1131,8 +1131,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 34,
-            "movement": -19
+            "position": 37,
+            "movement": -16
           }
         ]
       },
@@ -1256,8 +1256,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 24,
-            "movement": -17
+            "position": 26,
+            "movement": -15
           }
         ]
       }
@@ -1318,8 +1318,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 45,
-            "movement": -27
+            "position": 47,
+            "movement": -21
           }
         ]
       }
@@ -1368,8 +1368,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 42,
-            "movement": -24
+            "position": 43,
+            "movement": -25
           }
         ]
       }
@@ -1387,33 +1387,13 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 44,
-            "movement": -27
+            "position": 46,
+            "movement": -21
           }
         ]
       }
     ],
     "kind": "song"
-  },
-  {
-    "title": "Wine",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Trouble Maker",
@@ -1444,13 +1424,33 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 62,
-            "movement": -3
+            "position": 64,
+            "movement": -5
           }
         ]
       }
     ],
     "kind": "song"
+  },
+  {
+    "title": "Wine",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 64,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Holiday",

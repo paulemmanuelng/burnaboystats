@@ -612,14 +612,14 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 27,
-            "movement": -20
+            "position": 30,
+            "movement": -21
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 191,
-            "movement": -31
+            "position": 193,
+            "movement": -25
           }
         ]
       },
@@ -1244,8 +1244,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 72,
-            "movement": 6
+            "position": 73,
+            "movement": 5
           }
         ]
       }
@@ -1327,7 +1327,7 @@
             "country": "FR",
             "name": "France",
             "position": 69,
-            "movement": -6
+            "movement": -2
           },
           {
             "country": "BE",
