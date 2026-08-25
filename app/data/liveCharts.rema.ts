@@ -191,19 +191,19 @@
             "country": "SI",
             "name": "Slovenia",
             "position": 97,
-            "movement": -41
+            "movement": -31
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 100,
-            "movement": -23
+            "movement": -15
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 128,
-            "movement": 25
+            "position": 132,
+            "movement": -118
           }
         ]
       },
@@ -451,13 +451,13 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 23,
-            "movement": 1
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 57,
-            "movement": 9
+            "position": 58,
+            "movement": 5
           }
         ]
       },
@@ -583,7 +583,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 54,
-            "movement": -16
+            "movement": -17
           },
           {
             "country": "UG",
@@ -682,7 +682,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 48,
-            "movement": -13
+            "movement": -14
           },
           {
             "country": "TZ",
@@ -726,6 +726,81 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Soundgasm",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 64,
+            "movement": 8
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 80,
+            "movement": -2
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 86,
+            "movement": -15
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 100,
+            "movement": -40
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 119,
+            "movement": -1
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 127,
+            "movement": -21
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 133,
+            "movement": 49
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 164,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 156,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/813c9474be279f125aba17ccd6e2cea0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soweto",
@@ -861,68 +936,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Soundgasm",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 64,
-            "movement": 8
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 80,
-            "movement": -2
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 86,
-            "movement": -15
-          },
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 100,
-            "movement": -40
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 119,
-            "movement": -1
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 127,
-            "movement": -21
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 133,
-            "movement": 49
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 164,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/813c9474be279f125aba17ccd6e2cea0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Who's Dat Girl",
@@ -1092,7 +1105,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
+            "position": 126,
             "movement": null,
             "status": "new"
           }
@@ -1145,9 +1158,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": null,
-            "status": "new"
+            "position": 142,
+            "movement": -117
           }
         ]
       }
@@ -1301,7 +1313,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 156,
+            "position": 159,
             "movement": null,
             "status": "new"
           }
@@ -1439,7 +1451,7 @@
             "country": "QA",
             "name": "Qatar",
             "position": 21,
-            "movement": -16
+            "movement": -14
           }
         ]
       }
@@ -1554,7 +1566,7 @@
             "country": "BM",
             "name": "Bermuda",
             "position": 60,
-            "movement": -46
+            "movement": -29
           }
         ]
       }
@@ -1609,8 +1621,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 197,
-            "movement": -43
+            "position": 198,
+            "movement": -41
           }
         ]
       }
@@ -1629,7 +1641,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 55,
-            "movement": -16
+            "movement": -17
           }
         ]
       }
