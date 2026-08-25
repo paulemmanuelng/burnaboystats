@@ -202,8 +202,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 132,
-            "movement": -118
+            "position": 139,
+            "movement": -125
           }
         ]
       },
@@ -450,8 +450,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 23,
-            "movement": -2
+            "position": 25,
+            "movement": -4
           },
           {
             "country": "BF",
@@ -1105,7 +1105,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
+            "position": 133,
             "movement": null,
             "status": "new"
           }
@@ -1151,15 +1151,15 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 11,
+            "position": 12,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
-            "movement": -117
+            "position": 149,
+            "movement": -124
           }
         ]
       }
@@ -1313,7 +1313,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
+            "position": 166,
             "movement": null,
             "status": "new"
           }
@@ -1391,7 +1391,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 31,
+            "position": 33,
             "movement": null,
             "status": "new"
           }
@@ -1450,8 +1450,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 21,
-            "movement": -14
+            "position": 24,
+            "movement": -17
           }
         ]
       }
@@ -1526,7 +1526,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -1583,7 +1583,7 @@
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 81,
+            "position": 89,
             "movement": null,
             "status": "new"
           }
@@ -1621,8 +1621,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 198,
-            "movement": -41
+            "position": 200,
+            "movement": -43
           }
         ]
       }

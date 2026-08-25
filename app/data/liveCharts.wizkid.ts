@@ -328,6 +328,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PE",
+            "name": "Peru",
+            "position": 23,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -552,7 +565,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
+            "position": 35,
             "movement": null,
             "status": "new"
           }
@@ -1379,8 +1392,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
-            "movement": -9
+            "position": 108,
+            "movement": 1
           }
         ]
       }
@@ -1626,7 +1639,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
+            "position": 14,
             "movement": null,
             "status": "new"
           }
@@ -1876,7 +1889,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 63,
+            "position": 69,
             "movement": null,
             "status": "new"
           }
@@ -1938,8 +1951,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 173,
-            "movement": -9
+            "position": 164,
+            "movement": 0
           }
         ]
       }
@@ -2006,7 +2019,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 76,
+            "position": 75,
             "movement": null,
             "status": "new"
           }
@@ -2130,8 +2143,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
-            "movement": -9
+            "position": 120,
+            "movement": 2
           }
         ]
       }
@@ -2250,7 +2263,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
+            "position": 157,
             "movement": null,
             "status": "new"
           }
@@ -2389,7 +2402,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
+            "position": 24,
             "movement": null,
             "status": "new"
           }
@@ -2408,7 +2421,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
+            "position": 26,
             "movement": null,
             "status": "new"
           }
@@ -2496,25 +2509,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Cash Flow",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 70,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Alive",
     "platforms": [
       {
@@ -2532,6 +2526,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Cash Flow",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 76,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "Tonight",
@@ -2562,7 +2575,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 152,
+            "position": 159,
             "movement": null,
             "status": "new"
           }
@@ -2582,8 +2595,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 177,
-            "movement": -127
+            "position": 184,
+            "movement": -134
           }
         ]
       }

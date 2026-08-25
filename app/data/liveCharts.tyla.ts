@@ -472,6 +472,12 @@
             "position": 67,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 80,
+            "movement": -15
           }
         ]
       },
@@ -822,7 +828,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 71,
+            "position": 77,
             "movement": null,
             "status": "new"
           }
@@ -915,8 +921,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 59,
-            "movement": -44
+            "position": 61,
+            "movement": -46
           }
         ]
       }

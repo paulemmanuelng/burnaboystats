@@ -1158,8 +1158,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 6,
-            "movement": 11
+            "position": 5,
+            "movement": 12
           },
           {
             "country": "RO",
@@ -1171,14 +1171,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UA",
-            "name": "Ukraine",
-            "position": 38,
+            "position": 16,
             "movement": null,
             "status": "new"
           },
@@ -1189,17 +1182,24 @@
             "movement": -13
           },
           {
+            "country": "UA",
+            "name": "Ukraine",
+            "position": 40,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "CZ",
             "name": "Czech Republic",
-            "position": 49,
+            "position": 54,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 68,
-            "movement": 85
+            "position": 71,
+            "movement": 82
           },
           {
             "country": "BG",
@@ -1756,7 +1756,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 187,
+            "position": 183,
             "movement": null,
             "status": "new"
           }
@@ -1857,8 +1857,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 178,
-            "movement": -41
+            "position": 180,
+            "movement": -43
           }
         ]
       },
@@ -2029,7 +2029,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 76,
+            "position": 75,
             "movement": null,
             "status": "new"
           }

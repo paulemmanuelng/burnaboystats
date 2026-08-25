@@ -269,8 +269,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 50,
-            "movement": -11
+            "position": 56,
+            "movement": -17
           }
         ]
       }
@@ -701,8 +701,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 124,
-            "movement": -104
+            "position": 131,
+            "movement": -111
           }
         ]
       }
@@ -1157,8 +1157,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": -117
+            "position": 129,
+            "movement": -124
           }
         ]
       },
@@ -1284,8 +1284,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 175,
-            "movement": -41
+            "position": 177,
+            "movement": -43
           }
         ]
       },
@@ -1560,7 +1560,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
+            "position": 18,
             "movement": null,
             "status": "new"
           }
@@ -2093,8 +2093,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 14,
-            "movement": -1
+            "position": 16,
+            "movement": -3
           },
           {
             "country": "MZ",
@@ -2509,8 +2509,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 11,
-            "movement": 0
+            "position": 13,
+            "movement": -2
           },
           {
             "country": "NE",
@@ -2533,8 +2533,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 69,
-            "movement": 20
+            "position": 70,
+            "movement": 19
           },
           {
             "country": "BW",
@@ -2918,7 +2918,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 180,
+            "position": 187,
             "movement": null,
             "status": "new"
           }
@@ -3115,27 +3115,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 27,
-            "movement": -14
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "Holiday",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 42,
-            "movement": null,
-            "status": "new"
+            "position": 30,
+            "movement": -17
           }
         ]
       }
@@ -3153,6 +3134,25 @@
             "country": "NE",
             "name": "Niger",
             "position": 179,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Holiday",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 44,
             "movement": null,
             "status": "new"
           }
@@ -3210,8 +3210,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": -117
+            "position": 145,
+            "movement": -124
           }
         ]
       }
@@ -3229,8 +3229,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
-            "movement": -125
+            "position": 176,
+            "movement": -132
           }
         ]
       }
@@ -3248,8 +3248,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 177,
-            "movement": -41
+            "position": 179,
+            "movement": -43
           }
         ]
       }
