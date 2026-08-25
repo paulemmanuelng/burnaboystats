@@ -335,7 +335,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 162,
+            "position": 182,
             "movement": null,
             "status": "new"
           }
@@ -1138,7 +1138,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 26,
+            "position": 30,
             "movement": null,
             "status": "new"
           }
@@ -1264,7 +1264,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 16,
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -1327,7 +1327,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 37,
+            "position": 41,
             "movement": null,
             "status": "new"
           }
@@ -1378,7 +1378,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 36,
+            "position": 40,
             "movement": null,
             "status": "new"
           }
@@ -1397,8 +1397,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 36,
-            "movement": -28
+            "position": 40,
+            "movement": -32
           }
         ]
       }
@@ -1520,24 +1520,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BUBALU",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 181,
-            "movement": -140
-          }
-        ]
-      }
-    ],
-    "kind": "song"
   },
   {
     "title": "Bad Commando - EP",

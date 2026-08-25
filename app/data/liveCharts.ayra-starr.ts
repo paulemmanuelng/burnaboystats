@@ -326,8 +326,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 171,
-            "movement": 17
+            "position": 176,
+            "movement": 12
           },
           {
             "country": "AG",
@@ -441,8 +441,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 6,
-            "movement": -5
+            "position": 2,
+            "movement": -1
           },
           {
             "country": "BF",
@@ -458,6 +458,13 @@
             "status": "new"
           },
           {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 11,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 13,
@@ -466,8 +473,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 48,
-            "movement": -12
+            "position": 51,
+            "movement": -15
           },
           {
             "country": "UA",
@@ -479,27 +486,27 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 71,
-            "movement": -7
+            "position": 74,
+            "movement": -10
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 117,
+            "position": 125,
             "movement": null,
             "status": "new"
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 157,
+            "position": 177,
             "movement": null,
             "status": "new"
           },
           {
             "country": "AT",
             "name": "Austria",
-            "position": 165,
+            "position": 188,
             "movement": null,
             "status": "new"
           }
@@ -844,8 +851,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 32,
-            "movement": 1
+            "position": 31,
+            "movement": 2
           },
           {
             "country": "AE",
@@ -906,8 +913,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 57,
-            "movement": 2
+            "position": 55,
+            "movement": 4
           },
           {
             "country": "CY",
@@ -1033,16 +1040,16 @@
             "status": "new"
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 185,
-            "movement": -41
-          },
-          {
             "country": "FI",
             "name": "Finland",
             "position": 186,
             "movement": -82
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 199,
+            "movement": -55
           }
         ]
       },
@@ -1077,7 +1084,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 104,
+            "position": 124,
             "movement": null,
             "status": "new"
           }
@@ -1842,8 +1849,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 76,
-            "movement": -1
+            "position": 79,
+            "movement": -4
           }
         ]
       },
@@ -2877,8 +2884,8 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 17,
-            "movement": 1
+            "position": 15,
+            "movement": 3
           }
         ]
       }
@@ -3243,8 +3250,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 9,
-            "movement": 182
+            "position": 13,
+            "movement": 178
           }
         ]
       },

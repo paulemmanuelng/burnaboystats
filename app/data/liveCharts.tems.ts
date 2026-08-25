@@ -1166,23 +1166,29 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "UZ",
+            "name": "Uzbekistan",
+            "position": 2,
+            "movement": 33
+          },
+          {
             "country": "FJ",
             "name": "Fiji",
             "position": 6,
             "movement": -1
           },
           {
-            "country": "GR",
-            "name": "Greece",
-            "position": 6,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "IN",
             "name": "India",
+            "position": 6,
+            "movement": -1
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
             "position": 7,
-            "movement": -2
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "KZ",
@@ -1194,15 +1200,9 @@
           {
             "country": "LU",
             "name": "Luxembourg",
-            "position": 29,
+            "position": 55,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "UZ",
-            "name": "Uzbekistan",
-            "position": 46,
-            "movement": -11
           },
           {
             "country": "MD",
@@ -1217,28 +1217,22 @@
             "movement": -73
           },
           {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 99,
-            "movement": -60
-          },
-          {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 131,
-            "movement": -38
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 147,
-            "movement": null,
-            "status": "new"
+            "position": 98,
+            "movement": -5
           },
           {
             "country": "RO",
             "name": "Romania",
             "position": 151,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 162,
             "movement": null,
             "status": "new"
           },
@@ -1316,8 +1310,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 15,
-            "movement": 1
+            "position": 16,
+            "movement": 0
           },
           {
             "country": "LC",
@@ -1708,8 +1702,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 187,
-            "movement": -36
+            "position": 191,
+            "movement": -40
           }
         ]
       },
@@ -1867,8 +1861,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 116,
-            "movement": -8
+            "position": 118,
+            "movement": -10
           },
           {
             "country": "VG",
@@ -1896,17 +1890,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 180,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "US",
             "name": "United States",
-            "position": 190,
-            "movement": -2
+            "position": 192,
+            "movement": -4
+          },
+          {
+            "country": "PH",
+            "name": "Philippines",
+            "position": 199,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -2078,13 +2072,6 @@
             "name": "Uganda",
             "position": 86,
             "movement": 7
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 191,
-            "movement": null,
-            "status": "new"
           }
         ]
       },

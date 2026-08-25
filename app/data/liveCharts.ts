@@ -2219,19 +2219,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 3,
+        "numberOnes": 2,
         "entries": [
           {
             "country": "FR",
             "name": "France",
             "position": 1,
             "movement": 0
-          },
-          {
-            "country": "LU",
-            "name": "Luxembourg",
-            "position": 1,
-            "movement": 1
           },
           {
             "country": "SK",
@@ -2247,16 +2241,16 @@
             "movement": 0
           },
           {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 2,
-            "movement": 16
-          },
-          {
             "country": "SE",
             "name": "Sweden",
             "position": 2,
             "movement": 3
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 2,
+            "movement": 1
           },
           {
             "country": "UK",
@@ -2272,16 +2266,22 @@
             "status": "new"
           },
           {
+            "country": "LU",
+            "name": "Luxembourg",
+            "position": 3,
+            "movement": -1
+          },
+          {
             "country": "NL",
             "name": "Netherlands",
             "position": 3,
             "movement": 0
           },
           {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 3,
-            "movement": -1
+            "country": "AT",
+            "name": "Austria",
+            "position": 4,
+            "movement": 17
           },
           {
             "country": "DE",
@@ -2290,10 +2290,16 @@
             "movement": 2
           },
           {
-            "country": "CH",
-            "name": "Switzerland",
+            "country": "IE",
+            "name": "Ireland",
             "position": 4,
-            "movement": -1
+            "movement": 14
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 4,
+            "movement": -2
           },
           {
             "country": "HU",
@@ -2303,34 +2309,22 @@
             "status": "new"
           },
           {
-            "country": "AT",
-            "name": "Austria",
-            "position": 6,
-            "movement": 15
-          },
-          {
             "country": "CA",
             "name": "Canada",
-            "position": 6,
-            "movement": -2
+            "position": 7,
+            "movement": -3
           },
           {
             "country": "NO",
             "name": "Norway",
-            "position": 6,
-            "movement": -4
+            "position": 7,
+            "movement": -5
           },
           {
             "country": "ES",
             "name": "Spain",
             "position": 7,
             "movement": -6
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 9,
-            "movement": -7
           },
           {
             "country": "BR",
@@ -2344,6 +2338,12 @@
             "position": 10,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 12,
+            "movement": -10
           },
           {
             "country": "DO",
@@ -2418,33 +2418,33 @@
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 84,
-            "movement": -18
+            "position": 94,
+            "movement": -28
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 97,
+            "position": 111,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CL",
             "name": "Chile",
-            "position": 165,
-            "movement": -144
-          },
-          {
-            "country": "HK",
-            "name": "Hong Kong",
-            "position": 172,
-            "movement": null,
-            "status": "new"
+            "position": 173,
+            "movement": -152
           },
           {
             "country": "RO",
             "name": "Romania",
             "position": 184,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "HK",
+            "name": "Hong Kong",
+            "position": 188,
             "movement": null,
             "status": "new"
           }
@@ -3979,8 +3979,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 86,
-            "movement": 1
+            "position": 89,
+            "movement": -2
           }
         ]
       },
@@ -4131,13 +4131,6 @@
             "country": "UG",
             "name": "Uganda",
             "position": 90,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 92,
             "movement": null,
             "status": "new"
           }
@@ -4328,8 +4321,8 @@
           {
             "country": "AI",
             "name": "Anguilla",
-            "position": 37,
-            "movement": -10
+            "position": 27,
+            "movement": 0
           },
           {
             "country": "BF",
@@ -4752,27 +4745,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 35,
-            "movement": -12
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "Alone",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 59,
-            "movement": null,
-            "status": "new"
+            "position": 38,
+            "movement": -15
           }
         ]
       }
@@ -4827,6 +4801,25 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 198,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Alone",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CO",
+            "name": "Colombia",
+            "position": 80,
             "movement": null,
             "status": "new"
           }

@@ -606,8 +606,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 24,
-            "movement": -18
+            "position": 27,
+            "movement": -21
           },
           {
             "country": "NG",
@@ -618,8 +618,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 184,
-            "movement": -36
+            "position": 188,
+            "movement": -40
           }
         ]
       },
