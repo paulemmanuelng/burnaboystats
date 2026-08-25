@@ -245,7 +245,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 41,
-            "movement": 3
+            "movement": 0
           },
           {
             "country": "BE",
@@ -383,14 +383,14 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 73,
+            "position": 74,
             "movement": 10
           },
           {
             "country": "AU",
             "name": "Australia",
             "position": 77,
-            "movement": 7
+            "movement": 2
           },
           {
             "country": "GY",
@@ -402,7 +402,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 77,
-            "movement": 7
+            "movement": 5
           },
           {
             "country": "SC",
@@ -550,13 +550,7 @@
             "country": "FR",
             "name": "France",
             "position": 173,
-            "movement": 5
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 189,
-            "movement": 8
+            "movement": 6
           },
           {
             "country": "SI",
@@ -570,6 +564,13 @@
             "name": "Indonesia",
             "position": 193,
             "movement": -7
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 194,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "EG",
@@ -1178,7 +1179,7 @@
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 41,
-            "movement": -15
+            "movement": -10
           },
           {
             "country": "NG",
@@ -1198,7 +1199,7 @@
             "country": "MD",
             "name": "Moldova",
             "position": 77,
-            "movement": -9
+            "movement": -7
           },
           {
             "country": "ZA",
@@ -1211,13 +1212,13 @@
             "country": "BG",
             "name": "Bulgaria",
             "position": 91,
-            "movement": -76
+            "movement": -67
           },
           {
             "country": "CY",
             "name": "Cyprus",
             "position": 98,
-            "movement": -77
+            "movement": -60
           },
           {
             "country": "RO",
@@ -1707,8 +1708,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 125,
-            "movement": -9
+            "position": 123,
+            "movement": -7
           },
           {
             "country": "AI",
@@ -1849,13 +1850,13 @@
             "country": "MU",
             "name": "Mauritius",
             "position": 51,
-            "movement": -4
+            "movement": -3
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 185,
-            "movement": -44
+            "movement": -34
           }
         ]
       },
@@ -2132,26 +2133,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Love Me JeJe",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 186,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Try Me",
     "platforms": [
       {
@@ -2249,6 +2230,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b3aea8ba7c55e2eafd6672ff29668bdb/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Me JeJe",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 186,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "What You Need - A COLORS SHOW",

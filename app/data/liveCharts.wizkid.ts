@@ -268,12 +268,6 @@
             "status": "new"
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 163,
-            "movement": -2
-          },
-          {
             "country": "NP",
             "name": "Nepal",
             "position": 164,
@@ -284,6 +278,12 @@
             "name": "Austria",
             "position": 169,
             "movement": 11
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 171,
+            "movement": -1
           },
           {
             "country": "KW",
@@ -308,8 +308,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 183,
-            "movement": -7
+            "position": 191,
+            "movement": -17
           }
         ]
       },
@@ -578,8 +578,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 73,
-            "movement": null,
-            "status": "new"
+            "movement": -56
           }
         ]
       }
@@ -1301,7 +1300,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 94,
-            "movement": -7
+            "movement": -5
           }
         ]
       }
@@ -1901,7 +1900,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 109,
+            "position": 110,
             "movement": null,
             "status": "new"
           }
@@ -1922,55 +1921,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Superstar",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 47,
-            "movement": -4
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 50,
-            "movement": 65
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 119,
-            "movement": 21
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 162,
-            "movement": -40
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 166,
-            "movement": 4
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6ddb34c26029baeb2bd73c71bb8d839f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Essence",
@@ -2027,6 +1977,55 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Superstar",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 47,
+            "movement": -4
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 50,
+            "movement": 65
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 119,
+            "movement": 21
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 162,
+            "movement": -40
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 166,
+            "movement": 4
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6ddb34c26029baeb2bd73c71bb8d839f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jam",
@@ -2161,8 +2160,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 98,
-            "movement": 0
+            "position": 97,
+            "movement": 1
           },
           {
             "country": "NG",
@@ -2463,25 +2462,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Bella",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 73,
-            "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/72cef83ff7a8c740f94ccf2ea5e0fdb7/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Time",
     "platforms": [
       {
@@ -2499,6 +2479,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Bella",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 76,
+            "movement": -13
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/72cef83ff7a8c740f94ccf2ea5e0fdb7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BROWN SKIN GIRL",
@@ -2588,8 +2587,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 116,
-            "movement": null,
-            "status": "new"
+            "movement": -81
           }
         ]
       }

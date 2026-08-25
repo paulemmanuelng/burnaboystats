@@ -35,10 +35,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-21";
+  export const liveChartsUpdated = "2026-08-25";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -51,98 +51,106 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 27,
-            "movement": 0
+            "position": 37,
+            "movement": -4
           },
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 62,
-            "movement": 0
-          },
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 68,
-            "movement": 0
+            "country": "SR",
+            "name": "Suriname",
+            "position": 43,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 72,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 89,
-            "movement": 0
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 94,
-            "movement": 0
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 94,
-            "movement": 0
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 96,
-            "movement": 0
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 101,
-            "movement": 0
+            "position": 44,
+            "movement": 21
           },
           {
             "country": "MW",
             "name": "Malawi",
-            "position": 103,
-            "movement": 0
+            "position": 51,
+            "movement": -7
           },
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 118,
-            "movement": 0
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 123,
-            "movement": 0
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 124,
-            "movement": 0
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 172,
-            "movement": 0
-          },
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 180,
-            "movement": 0
+            "country": "KE",
+            "name": "Kenya",
+            "position": 60,
+            "movement": -7
           },
           {
             "country": "FJ",
             "name": "Fiji",
-            "position": 183,
-            "movement": 0
+            "position": 85,
+            "movement": 33
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 100,
+            "movement": -5
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 101,
+            "movement": -8
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 120,
+            "movement": -10
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 125,
+            "movement": 18
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 133,
+            "movement": -7
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 135,
+            "movement": 42
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 147,
+            "movement": 32
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 147,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 153,
+            "movement": -40
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 167,
+            "movement": -32
+          },
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 181,
+            "movement": -4
           }
         ]
       },
@@ -171,99 +179,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": -4
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 143,
-            "movement": -3
+            "position": 92,
+            "movement": 27
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3a0ea8b02098effdf5ecce496d515176/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Playboy",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 39,
-            "movement": 0
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 57,
-            "movement": 0
-          },
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 75,
-            "movement": 0
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 107,
-            "movement": 0
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 109,
-            "movement": 0
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 117,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 147,
-            "movement": 0
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 161,
-            "movement": 0
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 164,
-            "movement": 0
-          },
-          {
-            "country": "SC",
-            "name": "Seychelles",
-            "position": 195,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/20b709c21edd2d8924cf88132a94ff1e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Laughter, Tears & Goosebumps",
@@ -273,40 +196,61 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 42,
-            "movement": 0
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 41,
+            "movement": 37
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 46,
-            "movement": 0
+            "position": 42,
+            "movement": 3
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 50,
+            "movement": -12
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 74,
-            "movement": 0
+            "position": 55,
+            "movement": 5
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 98,
-            "movement": 0
+            "position": 86,
+            "movement": 9
           },
           {
-            "country": "OM",
-            "name": "Oman",
-            "position": 162,
-            "movement": 0
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 167,
+            "movement": null,
+            "status": "new"
           },
           {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 184,
-            "movement": 0
+            "country": "LR",
+            "name": "Liberia",
+            "position": 176,
+            "movement": -85
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 196,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 197,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -324,38 +268,130 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 69,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 73,
-            "movement": 0
+            "position": 56,
+            "movement": 19
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 100,
-            "movement": 0
-          },
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 176,
-            "movement": 0
+            "position": 95,
+            "movement": 25
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 193,
+            "position": 100,
+            "movement": -1
+          },
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 101,
+            "movement": -31
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 128,
             "movement": 0
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 138,
+            "movement": -35
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 188,
+            "movement": -40
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 189,
+            "movement": 6
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/20b709c21edd2d8924cf88132a94ff1e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Playboy",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 89,
+            "movement": 1
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 98,
+            "movement": 28
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 123,
+            "movement": -3
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 128,
+            "movement": 67
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/20b709c21edd2d8924cf88132a94ff1e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "APOLLO",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 24,
+            "movement": 97
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 107,
+            "movement": -3
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 126,
+            "movement": -75
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 170,
+            "movement": -118
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Need You",
@@ -367,77 +403,26 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 20,
-            "movement": 8
+            "position": 15,
+            "movement": 0
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 105,
-            "movement": 44
+            "position": 59,
+            "movement": -2
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 184,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 15,
-            "movement": null,
-            "status": "new"
+            "position": 146,
+            "movement": -2
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9b8ce8a62a6484f053bdd2cf80818a2d/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "APOLLO",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 105,
-            "movement": 0
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 108,
-            "movement": 0
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 138,
-            "movement": 0
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 155,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "So it Goes",
@@ -449,26 +434,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 36,
-            "movement": 0
+            "position": 40,
+            "movement": -4
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 61,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 125,
-            "movement": -26
+            "position": 47,
+            "movement": 40
           }
         ]
       }
@@ -477,30 +450,98 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "CLAAT",
+    "title": "Peru",
     "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 91,
+            "movement": -76
+          }
+        ]
+      },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 90,
-            "movement": -38
+            "country": "GM",
+            "name": "Gambia",
+            "position": 61,
+            "movement": 0
           }
         ]
-      },
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4ab733790d692331a550d79a27e254ae/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "iseoluwa",
+    "platforms": [
       {
-        "platform": "Deezer",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 16,
-            "movement": null,
-            "status": "new"
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 140,
+            "movement": -22
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 165,
+            "movement": 11
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "adedamola",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 86,
+            "movement": 1
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 94,
+            "movement": 69
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "CLAAT",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 44,
+            "movement": 35
           }
         ]
       },
@@ -522,106 +563,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/29bf5b5ad5f962997dbb7c369a8320d9/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "iseoluwa",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 111,
-            "movement": 0
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 154,
-            "movement": 0
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 171,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Champion",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 175,
-            "movement": 0
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 195,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "adedamola",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 86,
-            "movement": 0
-          },
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 167,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Peru",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 61,
-            "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4ab733790d692331a550d79a27e254ae/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "What If I Say",
     "platforms": [
       {
@@ -631,9 +572,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
-            "movement": null,
-            "status": "new"
+            "position": 143,
+            "movement": -19
           }
         ]
       }
@@ -651,8 +591,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 64,
-            "movement": 5
+            "position": 111,
+            "movement": -24
           }
         ]
       }
@@ -668,47 +608,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 186,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2454c47103560319b1992920e1a866e9/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Body",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "HR",
-            "name": "Croatia",
-            "position": 171,
-            "movement": -55
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c98671159d2fdba497f51ba29f0d610d/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Airplane Mode",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 139,
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 151,
             "movement": null,
             "status": "new"
           }
@@ -716,7 +618,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2454c47103560319b1992920e1a866e9/500x500-000000-80-0-0.jpg"
   }
 ];
   

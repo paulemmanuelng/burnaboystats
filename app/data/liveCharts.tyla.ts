@@ -198,7 +198,7 @@
             "country": "BR",
             "name": "Brazil",
             "position": 75,
-            "movement": 16
+            "movement": 4
           },
           {
             "country": "SA",
@@ -277,7 +277,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 134,
-            "movement": 11
+            "movement": 2
           },
           {
             "country": "KW",
@@ -357,14 +357,14 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 26,
+            "position": 33,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 64,
+            "position": 65,
             "movement": null,
             "status": "new"
           }
@@ -484,7 +484,7 @@
             "country": "MD",
             "name": "Moldova",
             "position": 70,
-            "movement": -9
+            "movement": -7
           },
           {
             "country": "FI",
@@ -945,7 +945,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 64,
-            "movement": -43
+            "movement": -32
           }
         ]
       }
