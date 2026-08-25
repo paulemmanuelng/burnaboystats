@@ -1216,7 +1216,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 103,
+            "position": 105,
             "movement": null,
             "status": "new"
           },
@@ -1300,8 +1300,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 12,
-            "movement": 1
+            "position": 15,
+            "movement": -2
           },
           {
             "country": "TC",
@@ -1708,8 +1708,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 123,
-            "movement": -7
+            "position": 116,
+            "movement": 0
           },
           {
             "country": "AI",
@@ -1754,7 +1754,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 147,
+            "position": 151,
             "movement": null,
             "status": "new"
           }

@@ -219,8 +219,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 100,
-            "movement": 0
+            "position": 101,
+            "movement": -1
           },
           {
             "country": "BW",

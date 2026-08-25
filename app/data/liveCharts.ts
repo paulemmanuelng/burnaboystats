@@ -2461,22 +2461,15 @@
           {
             "country": "HK",
             "name": "Hong Kong",
-            "position": 137,
+            "position": 149,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CL",
             "name": "Chile",
-            "position": 148,
-            "movement": -127
-          },
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 155,
-            "movement": null,
-            "status": "new"
+            "position": 151,
+            "movement": -130
           },
           {
             "country": "RO",
@@ -2486,10 +2479,17 @@
             "status": "new"
           },
           {
+            "country": "FI",
+            "name": "Finland",
+            "position": 167,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "ID",
             "name": "Indonesia",
-            "position": 172,
-            "movement": -130
+            "position": 182,
+            "movement": -140
           },
           {
             "country": "PL",
@@ -2656,8 +2656,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
-            "movement": -5
+            "position": 61,
+            "movement": -6
           },
           {
             "country": "UG",

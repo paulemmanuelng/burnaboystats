@@ -792,8 +792,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 165,
-            "movement": 2
+            "position": 171,
+            "movement": -4
           },
           {
             "country": "BB",
@@ -1473,13 +1473,6 @@
             "name": "Botswana",
             "position": 76,
             "movement": -3
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 182,
-            "movement": null,
-            "status": "new"
           }
         ]
       },

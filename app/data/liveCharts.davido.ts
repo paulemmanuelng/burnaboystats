@@ -269,8 +269,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
-            "movement": -9
+            "position": 58,
+            "movement": -6
           }
         ]
       }
