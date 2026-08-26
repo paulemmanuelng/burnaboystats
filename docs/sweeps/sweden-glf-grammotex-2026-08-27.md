@@ -13,20 +13,39 @@ stupid:
 died at the TLS handshake and the timeout was read as "site dead / no certification
 content". One character of protocol hid the register.
 
-## Why Grammotex is a body source
+## Is Grammotex a body source? Qualified no — and this was got wrong first
 
-Grammotex's own page footer:
+The first version of this document asserted that GLF **is** Ifpi Sverige, on the
+grounds that Grammotex's footer and ifpi.se/kontakt publish the same telephone
+number, **08-735 97 50**. That inference was wrong and is retracted here.
 
-> Grammotex Musikdatabas — Grammofon Leverantörernas Förening, Box 1429,
-> SE-111 84 Stockholm, Tel: **08-735 97 50**
+A shared switchboard evidences a shared secretariat, not a shared legal person.
+The two carry **different organisationsnummer and different legal forms**:
 
-ifpi.se/kontakt:
+| | Organisationsnummer | Legal form |
+|---|---|---|
+| Grammofonleverantörernas Förening (GLF) | 769601-2397 | ekonomisk förening |
+| Ifpi Svenska Gruppen / Ifpi Sverige | 802005-0186 | ideell förening (reg. 1973) |
 
-> info@ifpi.se eller **08-735 97 50**
+GLF compiled the official Swedish charts from 1975 until those duties passed to
+Ifpi Sverige, and sv.wikipedia records **"Organisationen upphörde 2021"** — GLF
+ceased in 2021. GLF has run Grammotex since 1986.
 
-Same telephone number, same organisation. GLF is Ifpi Sverige under its older name,
-and `certifications.ts` has credited "GLF" as a source since the file was written.
-So the `Guld/Platina` line is the certifying body's own record — not a cited table.
+Which leaves a real gap: these certificates are dated **2023-08-16**, after the
+date GLF is said to have wound up, in a database badged to GLF. So the
+`Guld/Platina` field is **the Swedish record industry's own record of a
+certification** — it is not demonstrably **the certifying body's own register
+entry**, and under this site's standing rule that distinction is the whole point.
+
+Counter-evidence, not suppressed: hitta.se attaches the GLF name to Ifpi's
+organisationsnummer 802005-0186 in its URL slug, though its record body shows an
+IFPI entity at a third address. And GLF's own registry body could not be read —
+merinfo returned 403, allabolag 404, vainu delisted — so GLF's org number rests
+on two aggregator listing titles rather than a Bolagsverket primary record.
+
+**What that means in practice:** the certificate numbers are strong
+corroboration, and better evidence than these rows have ever had. They are not
+yet a body reading. Closing it properly is one email to **info@ifpi.se**.
 
 ## How to read a record
 

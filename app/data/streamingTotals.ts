@@ -31,5 +31,7 @@ export const spotifyTotalStreams = "10.83B";
 // disagree with each other.
 export const spotifyTotalStreamsExact = "10,828,657,346";
 
-// Every Burna Boy video on YouTube, across his channel and others'.
-export const youtubeTotalViews = "3.19B";
+// Every Burna Boy video on YouTube, across his channel and others'. He leads
+// all Nigerian artists on this measure — 343 videos to 4.0 billion views, ahead
+// of Wizkid (2.66B), Rema (2.60B) and Davido (2.47B). Tracked 24 Aug 2026.
+export const youtubeTotalViews = "4.0B";

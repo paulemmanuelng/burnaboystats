@@ -93,14 +93,14 @@ export const statBoxes: LeaderboardBox[] = [
       {
         label: "2026",
         entries: [
-          { name: "Tems", value: "1.697B" },
-          { name: "Wizkid", value: "1.673B" },
+          { name: "Tems", value: "1.696B" },
+          { name: "Wizkid", value: "1.674B" },
           { name: "Burna Boy", value: "1.643B" },
-          { name: "Asake", value: "1.274B" },
-          { name: "Tyla", value: "1.10B" },
+          { name: "Asake", value: "1.335B" },
+          { name: "Tyla", value: "1.138B" },
         ],
         inProgress: true,
-        note: "Five African artists have passed a billion Spotify streams in 2026 so far — and three are past a billion and a half, with Burna Boy third behind Tems and Wizkid. The top three totals now update daily from each day's streams.",
+        note: "Five African artists have passed a billion Spotify streams in 2026 so far — and three are past a billion and a half, with Burna Boy third behind Tems and Wizkid, the three of them separated by about 53 million. All five totals are read together so the gaps stay comparable; the top three move most days.",
       },
       {
         label: "2025",
@@ -321,11 +321,11 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "Equivalent album sales · global · ChartMasters",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "14.75M" },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "14.59M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "14.96M" },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "14.73M" },
     ],
-    note: "Burna Boy is the No. 1 best-selling African artist of all time by equivalent album sales — and his lead over Wizkid has stretched from about 30,000 to some 164,000 through the “Dai Dai” run. Counts albums, physical and digital singles and streaming album-track equivalents.",
-    source: "Total equivalent album sales (EAS), per ChartMasters (CSPC methodology), read from their own Afrobeats board on 10 August 2026 (their figures dated 9 August): Burna Boy 14,750,000 to Wizkid's 14,586,000. The two have traded this lead before, so it is worth re-reading rather than assuming.",
+    note: "Burna Boy is the No. 1 best-selling African artist of all time by equivalent album sales — and his lead over Wizkid has stretched from about 30,000 to some 238,000 across the “Dai Dai” run. Counts albums, physical and digital singles and streaming album-track equivalents.",
+    source: "Total equivalent album sales (EAS), per ChartMasters (CSPC methodology): Burna Boy 14,964,000 to Wizkid's 14,726,000, as tracked on 26 August 2026. The previous reading, taken from ChartMasters' own Afrobeats board on 10 August 2026, was 14,750,000 to 14,586,000 — so both men gained and the gap widened from 164,000 to 238,000. The two have traded this lead before, so it is worth re-reading rather than assuming.",
   },
   {
     id: "spotify-top-artists-peak",

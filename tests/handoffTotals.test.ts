@@ -106,11 +106,12 @@ describe("handoff checklist — data integrity", () => {
     expect(ceremonyCount).toBe(46);
   });
 
-  it("counts 57 countries performed in and 50 firsts", () => {
+  it("counts 57 countries performed in and 51 firsts", () => {
     expect(performedCountryCount).toBe(57);
-    // 50th: first African artist with four albums past 500M Spotify streams
-    // ("Outside" crossed the mark, 22 Aug 2026). 49th was 60M monthly listeners.
-    expect(firstsCount).toBe(50);
+    // 51st: first entry on Billboard's Adult Contemporary chart ("Dai Dai"
+    // debuts at No. 14, chart dated 29 Aug 2026). 50th was four albums past
+    // 500M Spotify streams.
+    expect(firstsCount).toBe(51);
   });
 
   it("values the current car collection at $16.46M — current only", () => {

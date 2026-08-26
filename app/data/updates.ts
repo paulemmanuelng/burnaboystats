@@ -35,9 +35,21 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-25",
+    category: "Charts",
+    text: "A radio format that had never played him: “Dai Dai” debuts at No. 14 on Billboard's Adult Contemporary chart — Burna Boy's first entry there in his career, and Shakira's second after “Hips Don't Lie” peaked at No. 24 in 2007. Adult Contemporary is a format chart rather than a national one, so it does not appear among the official chart peaks.",
+    href: "/records/firsts",
+  },
+  {
+    date: "2026-08-26",
+    category: "Streaming",
+    text: "The best-selling African artist of all time pulls further clear: Burna Boy is on 14,964,000 equivalent album sales to Wizkid's 14,726,000 (ChartMasters, CSPC methodology). Both gained since the 10 August reading of 14.75 million to 14.59 million, but the gap widened from about 164,000 to some 238,000.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-08-27",
     category: "Certifications",
-    text: "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023 — his 231st certification worldwide. It surfaced with three others read the same day from Grammotex, the music database run by GLF, which is Ifpi Sverige under its older name: “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453). Sweden stopped publishing an awarded-certification register after 2004, so those last three had sat here for months carrying the right tier and no source. They now carry a certificate number.",
+    text: "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023 — his 231st certification worldwide. It surfaced with three others read the same day from Grammotex, the Swedish record industry's own trade database, which lists a certificate number and award date against each article: “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453). Sweden stopped publishing an awarded-certification register after 2004, so those last three had sat here for months carrying the right tier and no source. They now carry a certificate number — strong corroboration, though Grammotex is badged to GLF rather than to Ifpi Sverige itself, which are separate bodies sharing an office.",
     href: "/certifications",
   },
   {

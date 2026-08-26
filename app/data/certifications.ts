@@ -91,25 +91,41 @@ export const albums: Release[] = [
   ] },
 ];
 
-  // SWEDEN (GLF / Ifpi Sverige). Ifpi Sverige stopped publishing an awarded-
-  // certification register after 2004, which is why these rows sat unsourced for
-  // so long. The register did not disappear -- it moved behind the trade. GLF's
-  // own music database, Grammotex, carries a "Guld/Platina" line per article
-  // giving tier, certificate number and award date, and the record pages are
-  // PUBLIC at http://sys2.grammotex.se/netdata/grp006.MBR/artdata?sart=<id>
+  // SWEDEN. Ifpi Sverige stopped publishing an awarded-certification register
+  // after 2004, which is why these rows sat unsourced for so long. The tiers are
+  // now backed by records in Grammotex, the Swedish record industry's own trade
+  // database, which carries a "Guld/Platina" line per article giving tier,
+  // certificate number and award date. Record pages are PUBLIC at
+  //   http://sys2.grammotex.se/netdata/grp006.MBR/artdata?sart=<id>
   // (HTTP only -- https times out, which is what made earlier sweeps call the
-  // site dead). Only the SEARCH is login-walled, so ids must come from a trade
-  // account; the records themselves anyone can read.
+  // site dead and conclude, wrongly, that Swedish certs were unverifiable).
+  // Only the SEARCH is login-walled, so ids must come from a trade account.
   //
-  // GLF is Ifpi Sverige: the Grammotex footer and ifpi.se/kontakt publish the
-  // same telephone number, 08-735 97 50. So these are body records, not a cited
-  // table -- read directly on 27 Aug 2026:
-  //   On The Low      Platinum  cert. no. 10448  2023-08-16  (sart pending)
-  //   Ye ("Yeh")      Platinum  cert. no. 10450  2023-08-16  ISRC USAT21800327
-  //   African Giant   Guld      cert. no. 10452  2023-08-16  album
-  //   Gbona           Guld      cert. no. 10453  2023-08-16  sart=9225432
-  // All four were awarded the same day. 10449 and 10451 are unaccounted for and
-  // may well be his too -- worth a look if trade access is ever available.
+  // READ 27 Aug 2026, all four awarded 2023-08-16:
+  //   On The Low      Platinum  cert. no. 10448  (ISRC USAT21812249)
+  //   Ye ("Yeh")      Platinum  cert. no. 10450  (ISRC USAT21800327)
+  //   African Giant   Guld      cert. no. 10452  (album)
+  //   Gbona           Guld      cert. no. 10453  (sart=9225432, read directly)
+  // 10449 and 10451 fall inside the same run and are unaccounted for.
+  //
+  // PROVENANCE CAVEAT, and it matters. Grammotex is badged to Grammofon-
+  // leverantorernas Forening (GLF), which is NOT the same legal person as Ifpi
+  // Sverige: separate organisationsnummer (GLF 769601-2397, an ekonomisk
+  // forening; Ifpi Svenska Gruppen 802005-0186, an ideell forening) and
+  // separate legal forms. They share the switchboard 08-735 97 50, which
+  // evidences a shared secretariat, NOT shared identity -- an earlier version of
+  // this comment inferred exactly that and was wrong. GLF ran the official
+  // Swedish charts from 1975 until those duties passed to Ifpi Sverige, and
+  // sv.wikipedia records GLF as having ceased in 2021, yet these certificates
+  // are dated 2023. So the Guld/Platina field is the industry's own record of a
+  // certification, not demonstrably the certifying body's own register entry.
+  //
+  // The TIERS are nonetheless the best-evidenced Swedish rows this file has
+  // ever carried: Ye, African Giant and Gbona already held these exact tiers
+  // before Grammotex was read, and On The Low's Platinum is independently
+  // asserted elsewhere. Treat the certificate numbers as strong corroboration
+  // and not yet as a body reading. Closing it properly means one email to
+  // info@ifpi.se, who answer certification enquiries.
 
 // Burna Boy's own (lead) singles.
 export const singles: Release[] = [
