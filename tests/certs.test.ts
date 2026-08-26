@@ -52,7 +52,7 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(231); // 231st: On The Low Platinum in Sweden, GLF cert. no. 10448
+    expect(totalAwards()).toBe(239); // + On The Low's eight body-confirmed plaques (FR/UK/US/CA/DK/AU/CH/NG)
     expect(countryCount).toBe(26);
     expect(certifiedReleaseCount).toBe(86); // + On The Low, whose only sourced plaque so far is Swedish
   });
@@ -78,26 +78,26 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 logs 52 international certifications (60 events with Nigeria)", () => {
+  it("2026 logs 54 international certifications (62 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 8 events would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(52);
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(60); // 60th: the Italy Gold
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(54);
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(62); // + On The Low in Canada (2x Platinum) and the UK
   });
 
-  it("2025 has the published count of 29 certifications", () => {
-    expect(certHistory.filter((e) => e.year === 2025).length).toBe(29);
+  it("2025 has the published count of 30 certifications", () => {
+    expect(certHistory.filter((e) => e.year === 2025).length).toBe(30); // + On The Low Guld in Denmark
   });
 
   it("2024 has the published count of 20 certifications", () => {
     expect(certHistory.filter((e) => e.year === 2024).length).toBe(20);
   });
 
-  it("2023 has the published count of 43 certifications", () => {
+  it("2023 has the published count of 46 certifications", () => {
     // 39 + the four Swedish awards of 2023-08-16, read at GLF/Grammotex.
-    expect(certHistory.filter((e) => e.year === 2023).length).toBe(43);
+    expect(certHistory.filter((e) => e.year === 2023).length).toBe(46); // + On The Low in AU, CH and the UK's Gold step
   });
 });
 

@@ -35,6 +35,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-27",
+    category: "Certifications",
+    text: "“On The Low” goes from nothing to nine. A song that carried “African Giant” had not one certification recorded here; reading its claims at each certifying body's own register, one country at a time, returns eight more alongside the Swedish Platinum — Diamond in France (SNEP, 14 July 2022), 2× Platinum in Canada, Platinum in the UK and Switzerland, and Gold in Australia, Denmark, Nigeria and the United States. Two of those came back HIGHER than the tables that pointed at them: Canada is 2× Platinum rather than Platinum, and Nigeria is Gold rather than Silver. New Zealand's claimed Platinum is not included — Recorded Music NZ no longer publishes a register it could be read in, and the song never charted there. The catalogue now stands at 239 plaques.",
+    href: "/certifications",
+  },
+  {
     date: "2026-08-25",
     category: "Charts",
     text: "A radio format that had never played him: “Dai Dai” debuts at No. 14 on Billboard's Adult Contemporary chart — Burna Boy's first entry there in his career, and Shakira's second after “Hips Don't Lie” peaked at No. 24 in 2007. Adult Contemporary is a format chart rather than a national one, so it does not appear among the official chart peaks.",
@@ -49,7 +55,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-27",
     category: "Certifications",
-    text: "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023 — his 231st certification worldwide. It surfaced with three others read the same day from Grammotex, the Swedish record industry's own trade database, which lists a certificate number and award date against each article: “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453). Sweden stopped publishing an awarded-certification register after 2004, so those last three had sat here for months carrying the right tier and no source. They now carry a certificate number — strong corroboration, though Grammotex is badged to GLF rather than to Ifpi Sverige itself, which are separate bodies sharing an office.",
+    text: "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023. It surfaced with three others read the same day from Grammotex, the Swedish record industry's own trade database, which lists a certificate number and award date against each article: “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453). Sweden stopped publishing an awarded-certification register after 2004, so those last three had sat here for months carrying the right tier and no source. They now carry a certificate number — strong corroboration, though Grammotex is badged to GLF rather than to Ifpi Sverige itself, which are separate bodies sharing an office.",
     href: "/certifications",
   },
   {
@@ -187,7 +193,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-17",
     category: "Certifications",
-    text: "Gold in Italy: FIMI certifies “Dai Dai” for 100,000 units in its week-33 list — Burna Boy's 231st certification worldwide, and only his second Italian plaque after “Jerusalema (Remix)” went 4× Platinum there.",
+    text: "Gold in Italy: FIMI certifies “Dai Dai” for 100,000 units in its week-33 list — only his second Italian plaque after “Jerusalema (Remix)” went 4× Platinum there.",
     href: "/certifications",
   },
   {

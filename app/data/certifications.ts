@@ -176,13 +176,35 @@ export const singles: Release[] = [
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "CH", level: "Platinum" },
     { c: "SE", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Gold" },
   ] },
-  // Released 16 Nov 2018. Wikipedia's table also claims AU Gold, CA Platinum,
-  // DK Gold, FR Diamond, NZ Platinum, NG Silver, CH Platinum, UK Platinum and
-  // US Gold. NONE of those are here yet: a cited table is not a source, and each
-  // needs reading at its own body before it earns a row. Sweden leads because
-  // Sweden is the one that has been.
+  // Released 16 Nov 2018. Every row below was read in the certifying body's own
+  // register on 27 Aug 2026, one body at a time. Two tiers came back HIGHER than
+  // the Wikipedia table that pointed us at them: Canada is Double Platinum, not
+  // Platinum (Music Canada bulk-reprocessed its catalogue in Jan 2026), and
+  // Nigeria is Gold, not Silver. That gap is the argument for the rule.
+  //
+  // NEW ZEALAND is deliberately absent. RMNZ publishes no register covering
+  // international repertoire any more — radioscope.net.nz is dead and
+  // nztop40.co.nz/certifications 404s — so the claimed Platinum cannot be read
+  // anywhere. The song also never charted in NZ, which makes the claim
+  // improbable as well as unconfirmed. Unreadable means omit, not caveat.
+  //
+  // Per-row provenance notes worth keeping:
+  //  FR  SNEP register, "Date de constat" 14/07/2022. SNEP publishes no unit
+  //      count on the row — do not attach a stream figure to it.
+  //  UK  BPI publishes the full escalation: Silver 16 Oct 2020, Gold 7 Apr 2023,
+  //      Platinum 23 Jan 2026. The register moved to certified-awards.bpi.co.uk
+  //      and needs an HX-Request header to return results.
+  //  CH  Read on the swisscharts.com mirror. IFPI Schweiz calls its own register
+  //      non-exhaustive and label-issued, and publishes only a YEAR (2023).
+  //  NG  TCSN, archive rather than live register. Its "Feb 6, 2025" stamp is
+  //      shared by 1,274 entries and is a migration batch date, NOT an award
+  //      date — which is why NG is absent from the dated log below.
+  //  DK  IFPI Danmark; cite the register root, the ?page= offset drifts weekly.
   { title: "On The Low", year: 2018, certs: [
-    { c: "SE", level: "Platinum" },
+    { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum", x: 2 },
+    { c: "CH", level: "Platinum" }, { c: "SE", level: "Platinum" }, { c: "UK", level: "Platinum" },
+    { c: "AU", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "NG", level: "Gold" },
+    { c: "US", level: "Gold" },
   ] },
   { title: "It's Plenty", year: 2022, certs: [
     { c: "NG", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" },
@@ -558,6 +580,18 @@ export const certHistory: CertEvent[] = [
   { title: "City Boys", country: "FR", level: "Gold", year: 2024 },
   { title: "City Boys", country: "UK", level: "Silver", year: 2024 },
   { title: "I Told Them...", album: true, country: "UK", level: "Silver", year: 2024 },
+
+  // "On The Low", read body-by-body 27 Aug 2026. Nigeria is missing here by
+  // design: TCSN's date is a migration stamp, not an award date.
+  { title: "On The Low", country: "CA", level: "Platinum", x: 2, year: 2026 },
+  { title: "On The Low", country: "UK", level: "Platinum", year: 2026 },
+  { title: "On The Low", country: "DK", level: "Gold", year: 2025 },
+  { title: "On The Low", country: "AU", level: "Gold", year: 2023 },
+  { title: "On The Low", country: "CH", level: "Platinum", year: 2023 },
+  { title: "On The Low", country: "UK", level: "Gold", year: 2023 },
+  { title: "On The Low", country: "FR", level: "Diamond", year: 2022 },
+  { title: "On The Low", country: "US", level: "Gold", year: 2022 },
+  { title: "On The Low", country: "UK", level: "Silver", year: 2020 },
 
   // GLF/Grammotex, read 27 Aug 2026. All four certified 2023-08-16.
   { title: "On The Low", country: "SE", level: "Platinum", year: 2023 },
