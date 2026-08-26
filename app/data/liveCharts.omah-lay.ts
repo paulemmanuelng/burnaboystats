@@ -635,8 +635,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 30,
-            "movement": -9
+            "position": 31,
+            "movement": -10
           }
         ]
       },
@@ -1200,7 +1200,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 71,
-            "movement": -8
+            "movement": -3
           }
         ]
       }
@@ -1325,8 +1325,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 67,
-            "movement": -1
+            "position": 63,
+            "movement": 3
           },
           {
             "country": "BE",
@@ -1461,25 +1461,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "I Can't Stop",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 45,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Moving",
     "platforms": [
       {
@@ -1557,6 +1538,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d9cbcfdbfb5dab6a1a37aeae7039d83c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "I Can't Stop",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 84,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "understand",

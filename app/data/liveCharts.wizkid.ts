@@ -255,12 +255,6 @@
             "movement": 12
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 161,
-            "movement": 2
-          },
-          {
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 163,
@@ -272,6 +266,12 @@
             "name": "Qatar",
             "position": 166,
             "movement": -67
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 173,
+            "movement": -10
           },
           {
             "country": "BZ",
@@ -346,7 +346,7 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 29,
+            "position": 35,
             "movement": null,
             "status": "new"
           }
@@ -1205,7 +1205,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
+            "position": 98,
             "movement": -4
           }
         ]
@@ -1307,7 +1307,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
+            "position": 100,
             "movement": 10
           }
         ]
@@ -1899,7 +1899,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
+            "position": 161,
             "movement": 5
           }
         ]
@@ -1969,7 +1969,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 86,
-            "movement": -7
+            "movement": -2
           }
         ]
       },
@@ -2129,7 +2129,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
+            "position": 119,
             "movement": 3
           }
         ]
@@ -2306,38 +2306,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Cash Flow",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 179,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 162,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
   },
   {
     "title": "Bella",
@@ -2556,6 +2524,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Cash Flow",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 179,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "Tonight",

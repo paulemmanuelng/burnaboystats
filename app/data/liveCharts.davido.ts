@@ -133,16 +133,16 @@
             "movement": 33
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 34,
-            "movement": 2
-          },
-          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 35,
             "movement": -8
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 37,
+            "movement": -1
           },
           {
             "country": "BW",
@@ -262,8 +262,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 54,
-            "movement": -3
+            "position": 61,
+            "movement": -10
           }
         ]
       }
@@ -1340,8 +1340,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 30,
-            "movement": -9
+            "position": 31,
+            "movement": -10
           }
         ]
       },
@@ -1597,7 +1597,7 @@
           {
             "country": "IL",
             "name": "Israel",
-            "position": 11,
+            "position": 17,
             "movement": null,
             "status": "new"
           }
@@ -1852,7 +1852,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 36,
+            "position": 37,
             "movement": -4
           }
         ]
@@ -2259,7 +2259,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 8,
+            "position": 12,
             "movement": null,
             "status": "new"
           }
@@ -2327,8 +2327,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 36,
-            "movement": 0
+            "position": 37,
+            "movement": -1
           },
           {
             "country": "BF",
@@ -2432,8 +2432,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 39,
-            "movement": 0
+            "position": 40,
+            "movement": -1
           },
           {
             "country": "BW",
@@ -2445,7 +2445,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 81,
-            "movement": -9
+            "movement": -3
           }
         ]
       }
@@ -3156,7 +3156,7 @@
             "country": "QA",
             "name": "Qatar",
             "position": 56,
-            "movement": -25
+            "movement": -21
           }
         ]
       }

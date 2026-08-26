@@ -570,8 +570,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 26,
-            "movement": -1
+            "position": 24,
+            "movement": 1
           },
           {
             "country": "BF",
@@ -1093,8 +1093,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 46,
-            "movement": -22
+            "position": 50,
+            "movement": -25
           }
         ]
       },
@@ -1199,8 +1199,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 36,
-            "movement": -22
+            "position": 39,
+            "movement": -25
           }
         ]
       },
@@ -1305,8 +1305,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 57,
-            "movement": -22
+            "position": 60,
+            "movement": -25
           }
         ]
       }
@@ -1325,7 +1325,7 @@
             "country": "QA",
             "name": "Qatar",
             "position": 50,
-            "movement": -25
+            "movement": -21
           }
         ]
       }
@@ -1362,8 +1362,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 56,
-            "movement": -22
+            "position": 59,
+            "movement": -25
           }
         ]
       }
@@ -1419,8 +1419,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 70,
-            "movement": -9
+            "position": 71,
+            "movement": -10
           }
         ]
       }
