@@ -262,7 +262,7 @@
             "country": "BR",
             "name": "Brazil",
             "position": 103,
-            "movement": -17
+            "movement": -19
           },
           {
             "country": "AO",
@@ -305,7 +305,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 133,
-            "movement": -4
+            "movement": 9
           },
           {
             "country": "PH",
@@ -336,7 +336,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 144,
-            "movement": -3
+            "movement": -51
           },
           {
             "country": "BE",
@@ -381,13 +381,13 @@
             "country": "NO",
             "name": "Norway",
             "position": 174,
-            "movement": -2
+            "movement": 11
           },
           {
             "country": "UK",
             "name": "United Kingdom",
             "position": 175,
-            "movement": 11
+            "movement": 9
           },
           {
             "country": "MN",
@@ -411,14 +411,13 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 1,
-            "movement": 7
+            "movement": 9
           },
           {
             "country": "MY",
             "name": "Malaysia",
             "position": 82,
-            "movement": null,
-            "status": "new"
+            "movement": 20
           }
         ]
       }
@@ -530,14 +529,21 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 76,
+            "position": 78,
             "movement": -9
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 83,
-            "movement": -3
+            "position": 120,
+            "movement": 12
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 155,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -637,17 +643,102 @@
             "movement": -34
           }
         ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "THAT GIRL",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 15,
+            "movement": 4
+          },
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 26,
+            "movement": 10
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 35,
+            "movement": 6
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 70,
+            "movement": -8
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 127,
+            "movement": -3
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 113,
+            "movement": -6
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 171,
+            "movement": 1
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 67,
+            "movement": 39
+          }
+        ]
       },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "UA",
-            "name": "Ukraine",
-            "position": 94,
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 83,
+            "movement": -18
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 87,
             "movement": null,
-            "status": "new"
+            "status": "re"
           }
         ]
       }
@@ -738,92 +829,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "THAT GIRL",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 15,
-            "movement": 4
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 26,
-            "movement": 10
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 35,
-            "movement": 6
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 70,
-            "movement": -8
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 127,
-            "movement": -3
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 113,
-            "movement": -6
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 171,
-            "movement": 1
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 67,
-            "movement": 39
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 87,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT LOVE",
@@ -1080,7 +1085,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 82,
-            "movement": -21
+            "movement": -18
           }
         ]
       }

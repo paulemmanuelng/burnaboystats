@@ -320,7 +320,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 159,
-            "movement": 22
+            "movement": 21
           },
           {
             "country": "GY",
@@ -442,7 +442,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 6,
-            "movement": -4
+            "movement": -2
           },
           {
             "country": "UG",
@@ -467,27 +467,27 @@
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 20,
-            "movement": -10
+            "position": 19,
+            "movement": -8
           },
           {
             "country": "LT",
             "name": "Lithuania",
-            "position": 34,
+            "position": 36,
             "movement": null,
             "status": "new"
           },
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 54,
-            "movement": -13
+            "position": 57,
+            "movement": -12
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 83,
-            "movement": -13
+            "position": 87,
+            "movement": -17
           }
         ]
       },
@@ -874,7 +874,7 @@
             "country": "FR",
             "name": "France",
             "position": 46,
-            "movement": -3
+            "movement": 1
           },
           {
             "country": "LB",
@@ -894,13 +894,13 @@
             "country": "CA",
             "name": "Canada",
             "position": 50,
-            "movement": -3
+            "movement": -6
           },
           {
             "country": "NL",
             "name": "Netherlands",
             "position": 50,
-            "movement": 5
+            "movement": 3
           },
           {
             "country": "CY",
@@ -1041,7 +1041,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 1,
-            "movement": 0
+            "movement": 2
           },
           {
             "country": "DM",
@@ -1052,8 +1052,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 5,
-            "movement": -2
+            "position": 6,
+            "movement": -1
           },
           {
             "country": "GH",
@@ -1240,8 +1240,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": 121
+            "position": 33,
+            "movement": 116
           }
         ]
       },
@@ -1355,8 +1355,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 173,
-            "movement": -150
+            "position": 192,
+            "movement": -165
           }
         ]
       },
@@ -1816,13 +1816,13 @@
             "country": "UG",
             "name": "Uganda",
             "position": 69,
-            "movement": -10
+            "movement": -9
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 75,
-            "movement": 0
+            "movement": -1
           }
         ]
       },
@@ -1912,8 +1912,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
-            "movement": 4
+            "position": 23,
+            "movement": -11
           }
         ]
       },
@@ -2476,7 +2476,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
+            "position": 42,
             "movement": null,
             "status": "new"
           }
@@ -2706,8 +2706,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": -152
+            "position": 185,
+            "movement": -167
           }
         ]
       },
@@ -3198,7 +3198,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 26,
-            "movement": -21
+            "movement": -19
           }
         ]
       },
@@ -3364,6 +3364,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d30dbeb4d445f5cc6f7f100b830731c4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Toxic",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 16,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Comforter",

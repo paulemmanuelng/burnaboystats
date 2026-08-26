@@ -252,7 +252,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 148,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "UG",
@@ -314,7 +314,7 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 11,
+            "position": 20,
             "movement": null,
             "status": "new"
           },
@@ -328,15 +328,8 @@
           {
             "country": "PE",
             "name": "Peru",
-            "position": 160,
-            "movement": -137
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 184,
-            "movement": null,
-            "status": "new"
+            "position": 176,
+            "movement": -140
           }
         ]
       },
@@ -567,18 +560,6 @@
             "name": "Nigeria",
             "position": 37,
             "movement": -4
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 190,
-            "movement": -155
           }
         ]
       }
@@ -881,6 +862,19 @@
             "movement": -24
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -1106,7 +1100,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 82,
+            "position": 83,
             "movement": null,
             "status": "new"
           }
@@ -1211,8 +1205,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
-            "movement": -4
+            "position": 97,
+            "movement": -3
           }
         ]
       }
@@ -1313,8 +1307,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
-            "movement": 10
+            "position": 99,
+            "movement": 11
           }
         ]
       }
@@ -1773,8 +1767,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": -152
+            "position": 185,
+            "movement": -167
           }
         ]
       },
@@ -1893,7 +1887,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 85,
-            "movement": -10
+            "movement": -8
           }
         ]
       },
@@ -1967,7 +1961,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 160,
-            "movement": 4
+            "movement": 6
           }
         ]
       }
@@ -2147,14 +2141,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 98,
-            "movement": -1
+            "position": 97,
+            "movement": 1
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 118,
-            "movement": 2
+            "movement": 4
           }
         ]
       }
@@ -2443,7 +2437,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 26,
+            "position": 43,
             "movement": null,
             "status": "new"
           }
@@ -2463,7 +2457,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
+            "position": 55,
             "movement": null,
             "status": "new"
           }
@@ -2472,26 +2466,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Piece of Me",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 44,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Time",
@@ -2511,6 +2485,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Piece of Me",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 61,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Alive",
@@ -2579,8 +2573,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 174,
-            "movement": -150
+            "position": 193,
+            "movement": -165
           }
         ]
       }
@@ -2597,8 +2591,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 175,
-            "movement": -149
+            "position": 194,
+            "movement": -164
           }
         ]
       }
