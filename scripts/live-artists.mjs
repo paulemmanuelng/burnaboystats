@@ -186,6 +186,29 @@ export const LIVE_ARTISTS = {
     runOut: "runHistory.omah-lay.ts",
     covers: true,
   },
+  ckay: {
+    slug: "ckay",
+    name: "CKay",
+    source: "https://kworb.net/itunes/artist/ckay.html",
+    // Anchored on the whole name: "CKay" is short enough that an unanchored
+    // match would also catch "Mackay" and "McKay" credits that are not him.
+    credit: /\bckay\b/i,
+    // Records where he is FEATURED, so a chart prints someone else's name and
+    // the credit matcher never sees him. Read off his own sweep (26 Aug 2026).
+    aliases: [
+      { artist: "Ayra Starr", title: "Beggie Beggie", release: "Beggie Beggie" },
+      { artist: "Davido", title: "La La", release: "La La" },
+    ],
+    // kworb prints the guest in the title; the board names the record.
+    titleAliases: { "BODY (danz) (feat. MAVO)": "BODY (danz)" },
+    out: "liveCharts.ckay.ts",
+    runOut: "runHistory.ckay.ts",
+    covers: true,
+    // His breakout is a 2021 record, so on most days he holds no live platform
+    // placement anywhere. A clean sweep returning zero is the truth for him,
+    // not a failure — see the guard in build-live-charts.mjs.
+    mayChartNowhere: true,
+  },
   victony: {
     slug: "victony",
     name: "Victony",

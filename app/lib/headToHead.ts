@@ -6,10 +6,12 @@
 // side by side — and it stops the board reading as nine footnotes to his page.
 //
 // Pairs are MUTUAL, so each artist appears exactly once as an opponent and the
-// comparison says the same thing from either side. Burna is the opponent for
-// Wizkid alone: he has no board page of his own, so that is the one pairing
-// pointing off the board, and it is the one comparison that has always been the
-// genre's actual argument.
+// comparison says the same thing from either side. Two pairings point OFF the
+// board at Burna, who has no board page of his own: Wizkid, because that is the
+// comparison the genre has always actually argued, and Tyla, because her 23
+// certifying countries are the only spread on the board close to his 26. An even
+// number of artists would need only one; twelve leaves a remainder after Wizkid,
+// and a second off-board pairing is better than a peer pairing that says nothing.
 
 import {
   artistBySlug,
@@ -35,22 +37,28 @@ export const HEAD_TO_HEAD: Record<string, string> = {
   "ayra-starr": "davido",
   davido: "ayra-starr",
 
-  // The two who joined on 21 Aug 2026, paired with each other: both Nigerian,
-  // both built almost entirely at home, and both carry every one of their
-  // non-Nigerian plaques on a single crossover record — "Soweto" for one,
-  // "Peru" for the other. 22 plaques against 36.
-  victony: "fireboy-dml",
-  "fireboy-dml": "victony",
-
   // 80 plaques across 20 countries against 70 across 19. The closest
   // like-for-like on the board: same era, same reach, same shape.
   rema: "tems",
   tems: "rema",
 
-  // 62 plaques in 23 countries against 61 in 9. Near-identical weight, opposite
-  // shape — which is the whole point of putting the country count next to it.
-  tyla: "omah-lay",
-  "omah-lay": "tyla",
+  // 27 plaques in 14 countries against 22 in 4. The two careers here carried
+  // almost wholly by ONE crossover record — "love nwantiti" and "Soweto" — and
+  // the pairing shows how differently one record can travel: CKay's is
+  // certified in fourteen countries, Victony's in four.
+  ckay: "victony",
+  victony: "ckay",
+
+  // 36 plaques across 6 countries against 61 across 9. Both Nigerian, both
+  // built at home with a single record that crossed ("Peru", "Understand").
+  "fireboy-dml": "omah-lay",
+  "omah-lay": "fireboy-dml",
+
+  // The second pairing that leaves the board, and the reason is the country
+  // count: 23 certifying countries against Burna Boy's 26. Nobody else on the
+  // board comes within eight of him on spread, so this is the one other
+  // comparison where the answer is not simply "he is bigger".
+  tyla: "burna-boy",
 };
 
 export interface Opponent {

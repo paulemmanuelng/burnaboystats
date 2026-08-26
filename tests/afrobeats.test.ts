@@ -37,6 +37,7 @@ const EXPECTED = {
   tems: { total: 70, diamond: 1 },
   tyla: { total: 62, diamond: 2 },
   "ayra-starr": { total: 41, diamond: 2 },
+  ckay: { total: 27, diamond: 2 },
 } as const;
 
 describe("the Afrobeats board", () => {
@@ -412,11 +413,17 @@ describe("head-to-head pairings", () => {
     }
   });
 
-  it("names Burna Boy for Wizkid alone", () => {
+  it("points off the board only where the comparison earns it", () => {
+    // Two artists measure against Burna, and the list is closed on purpose: a
+    // pairing that leaves the board has to say something a peer pairing could
+    // not. Wizkid because that argument IS the genre's; Tyla because her 23
+    // certifying countries are the only spread within eight of his 26.
+    // Anything else here would be the "he is bigger" page this map replaced.
     const againstBurna = Object.entries(HEAD_TO_HEAD)
       .filter(([, rival]) => rival === "burna-boy")
-      .map(([slug]) => slug);
-    expect(againstBurna).toEqual(["wizkid"]);
+      .map(([slug]) => slug)
+      .sort();
+    expect(againstBurna).toEqual(["tyla", "wizkid"]);
   });
 
   it("only ever points at a swept artist", () => {
@@ -437,7 +444,7 @@ describe("hub scatter", () => {
   const Y_MAX = 240;
 
   it("plots every swept artist plus Burna Boy", () => {
-    expect(sweptArtists.length + 1).toBe(12);
+    expect(sweptArtists.length + 1).toBe(13);
   });
 
   it("keeps every pair inside the drawn axes", () => {
@@ -524,14 +531,21 @@ describe("cover art", () => {
     //     shared recordings.
     // Every cover was also checked against Deezer to confirm none belongs to
     // an artist who is not on the record: 109 checked, none wrong.
+    // CKay joined 26 Aug 2026. His three shared covers are all real shared
+    // recordings, checked against Deezer's contributor list: "Beggie Beggie" is
+    // Ayra Starr's record featuring him (its cover is her "19 & Dangerous"
+    // art, which is what revealed it was a FEATURE and not a lead single),
+    // "La La" sits on Davido's "A Better Time", and "WATAWI" is his own with
+    // Davido on it — so "ckay+davido" legitimately appears twice.
     "asake+ayra-starr", "asake+davido", "asake+fireboy-dml",
-    "asake+fireboy-dml", "asake+rema", "asake+seyi-vibez+wizkid",
-    "asake+tems", "asake+victony", "asake+wizkid", "asake+wizkid",
-    "asake+wizkid", "ayra-starr+omah-lay", "ayra-starr+rema",
-    "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
-    "davido+omah-lay+victony", "fireboy-dml+rema", "fireboy-dml+rema",
-    "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+wizkid",
-    "rema+victony", "seyi-vibez+victony", "tems+wizkid",
+   "asake+fireboy-dml", "asake+rema", "asake+seyi-vibez+wizkid", "asake+tems",
+   "asake+victony", "asake+wizkid", "asake+wizkid", "asake+wizkid",
+   "ayra-starr+ckay", "ayra-starr+omah-lay", "ayra-starr+rema",
+   "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
+   "ckay+davido", "ckay+davido", "davido+omah-lay+victony",
+   "fireboy-dml+rema", "fireboy-dml+rema", "omah-lay+seyi-vibez",
+   "omah-lay+tems", "omah-lay+wizkid", "rema+victony", "seyi-vibez+victony",
+   "tems+wizkid",
   ];
 
   const sharedPairs = () => {
@@ -559,15 +573,22 @@ describe("cover art", () => {
   // "Kae's Study" (contributors: KAESTYLE, Omah Lay). Releases-only checking
   // could not see it, so this walks both lists.
   const VERIFIED_SHARES_WITH_CHARTS = [
+
+    // CKay joined 26 Aug 2026. His three shared covers are all real shared
+    // recordings, checked against Deezer's contributor list: "Beggie Beggie" is
+    // Ayra Starr's record featuring him (its cover is her "19 & Dangerous"
+    // art, which is what revealed it was a FEATURE and not a lead single),
+    // "La La" sits on Davido's "A Better Time", and "WATAWI" is his own with
+    // Davido on it — so "ckay+davido" legitimately appears twice.
     "asake+ayra-starr", "asake+davido", "asake+fireboy-dml",
-    "asake+fireboy-dml", "asake+rema", "asake+seyi-vibez+wizkid",
-    "asake+tems", "asake+victony", "asake+wizkid", "asake+wizkid",
-    "asake+wizkid", "ayra-starr+omah-lay", "ayra-starr+rema",
-    "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
-    "davido+omah-lay+victony", "fireboy-dml+rema", "fireboy-dml+rema",
-    "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+tyla",
-    "omah-lay+wizkid", "rema+victony", "seyi-vibez+victony", "tems+wizkid",
-    "tyla+victony",
+   "asake+fireboy-dml", "asake+rema", "asake+seyi-vibez+wizkid", "asake+tems",
+   "asake+victony", "asake+wizkid", "asake+wizkid", "asake+wizkid",
+   "ayra-starr+ckay", "ayra-starr+omah-lay", "ayra-starr+rema",
+   "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
+   "ckay+davido", "ckay+davido", "davido+omah-lay+victony",
+   "fireboy-dml+rema", "fireboy-dml+rema", "omah-lay+seyi-vibez",
+   "omah-lay+tems", "omah-lay+tyla", "omah-lay+wizkid", "rema+victony",
+   "seyi-vibez+victony", "tems+wizkid", "tyla+victony",
   ];
 
   it("shares a cover across artists only where the recording is shared, charts included", () => {
@@ -639,11 +660,12 @@ describe("board FAQ comparisons", () => {
     }
   });
 
-  it("names Burna Boy for Wizkid and for nobody else", () => {
+  it("names Burna Boy in exactly the two FAQs that point off the board", () => {
     const mentions = afrobeatsArtists
       .filter((a) => comparisonOf(a.slug)?.q.includes("Burna Boy"))
-      .map((a) => a.slug);
-    expect(mentions).toEqual(["wizkid"]);
+      .map((a) => a.slug)
+      .sort();
+    expect(mentions).toEqual(["tyla", "wizkid"]);
   });
 
   it("agrees with itself from either side of a mutual pairing", () => {

@@ -88,6 +88,10 @@ export interface AfroCert { c: string; level: Tier; x?: number }
 export interface AfroPeak {
   c: string;
   peak: number;
+  /** Optional footnote, mirroring ChartEntry in charts.ts. Belgium is the case
+   *  that needed it: Ultratop runs SEPARATE Flanders and Wallonia lists, so one
+   *  "BE" row stands for two charts and has to say which peak came from which. */
+  note?: string;
   /** Weeks at the peak position — same field and same rule as charts.ts
    *  ChartEntry, so the board and his own record describe longevity the same
    *  way. Optional, and absent unless the chart body publishes it. */
@@ -142,6 +146,9 @@ export const AFROBEATS_VERIFIED_ON_2 = "2026-08-19";
 /** Victony and Fireboy DML joined the board on 21 Aug 2026 and were swept that
  *  day, so their pages print their own date rather than either earlier one. */
 export const AFROBEATS_VERIFIED_ON_3 = "2026-08-21";
+
+/** CKay, swept 26 Aug 2026 — the twelfth artist on the board. */
+export const AFROBEATS_VERIFIED_ON_4 = "2026-08-26";
 
 export const afrobeatsArtists: AfroArtist[] = [
   {
@@ -1390,6 +1397,40 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "ready", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 96 }] },
       { title: "change your life", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 100 }] },
       { title: "Body", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/c98671159d2fdba497f51ba29f0d610d/500x500-000000-80-0-0.jpg", entries: [{ c: "BE", peak: 17 }, { c: "NL", peak: 17 }] },
+    ],
+  },
+  {
+    slug: "ckay",
+    name: "CKay",
+    fullName: "Chukwuka Ekweani",
+    country: "Nigeria",
+    flag: "🇳🇬",
+    hook: "France certified two of his records Diamond — the only country that has given him anything above Platinum, and it did it twice.",
+    spotifyId: "048LktY5zMnakWq7PTtFrz",
+    wikipedia: "https://en.wikipedia.org/wiki/CKay",
+    image: "https://i.scdn.co/image/ab6761610000e5ebff101c2e561cfcff3f6195aa",
+    verifiedOn: AFROBEATS_VERIFIED_ON_4,
+    swept: true,
+    chartPublished: { entries: 22, territories: 16, no1s: 5 },
+    releases: [
+      { title: "love nwantiti (ah ah ah)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "US", level: "Platinum", x: 8 }, { c: "PT", level: "Platinum", x: 6 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PL", level: "Platinum", x: 4 }, { c: "NL", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "IT", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "NG", level: "Gold" }] },
+      { title: "Emiliana", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "UK", level: "Silver" }] },
+      { title: "BODY (danz)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
+      { title: "Beggie Beggie", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Felony", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9adfaa37a1fbd5ab5907e3fb78ff7a70/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "HALLELUJAH", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b606366687e3c46d407569aa03ae26bf/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "La La", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Trumpet", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c4230c9e47469a112e9f05745c603c44/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "WATAWI", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d35686d80a19646ea2d5c3584eb1e33f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "by now", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+    ],
+    charts: [
+      { title: "love nwantiti (ah ah ah)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg", entries: [{ c: "CH", peak: 1 }, { c: "FR", peak: 1 }, { c: "NL", peak: 1 }, { c: "NO", peak: 1 }, { c: "GLBX", peak: 2 }, { c: "NZ", peak: 2 }, { c: "UK", peak: 3 }, { c: "AT", peak: 4 }, { c: "SE", peak: 4 }, { c: "DE", peak: 6 }, { c: "DK", peak: 6 }, { c: "AU", peak: 8 }, { c: "BE", peak: 8, note: "Flanders #8 · Wallonia #10" }, { c: "IT", peak: 20 }, { c: "ES", peak: 46 }] },
+      { title: "BODY (danz)", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
+      { title: "Emiliana", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg", entries: [{ c: "SE", peak: 90 }] },
+      { title: "CKay The First", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg", entries: [{ c: "NL", peak: 12 }, { c: "DK", peak: 24 }, { c: "FR", peak: 35 }] },
+      { title: "Boyfriend", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg", entries: [{ c: "FR", peak: 60 }] },
+      { title: "Sad Romance", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg", entries: [{ c: "FR", peak: 88 }] },
     ],
   },
 ];

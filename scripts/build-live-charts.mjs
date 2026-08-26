@@ -245,7 +245,16 @@ for (const spec of CHART_SWEEPS) {
     // YouTube placements against real figures of ~58 and ~127. Zero rows, or
     // most charts failing, means the sweep is broken — not that he left the
     // platform. Fail rather than quietly shipping a 95% under-count.
-    if (swept === 0 || failed > codes.length / 2) {
+    // `mayChartNowhere` is an explicit per-artist opt-in for an artist whose
+    // catalogue genuinely holds no current placement — CKay's breakout is a
+    // 2021 record. It only excuses a CLEAN zero: if any chart in the sweep
+    // failed, or most of them did, this still throws, because that is the
+    // broken-sweep case the guard was written for. Never set it on an artist
+    // who charts; it is the difference between "nothing there" and "we could
+    // not see".
+    const zeroIsFine =
+      failed === 0 && [...work.values()].every((w) => w.artist.mayChartNowhere);
+    if ((swept === 0 && !zeroIsFine) || failed > codes.length / 2) {
       throw new Error(`returned ${swept} rows with ${failed}/${codes.length} failures`);
     }
     for (const w of work.values()) {
@@ -307,7 +316,7 @@ for (const w of work.values()) {
   const previous = w.previous;
   const OUT = new URL(`../app/data/${artist.out}`, import.meta.url);
   const RUN_OUT = artist.runOut ? new URL(`../app/data/${artist.runOut}`, import.meta.url) : null;
-  const MIN_PLACEMENTS = artist.slug === "burna-boy" ? 50 : 25;
+  const MIN_PLACEMENTS = artist.mayChartNowhere ? 0 : artist.slug === "burna-boy" ? 50 : 25;
   // How much of the previous run may vanish before this is a source failure
   // rather than a quiet week. Chart churn moves these files by a few per cent
   // an hour; 40% is far outside that and well inside a half-scraped page.

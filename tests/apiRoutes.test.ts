@@ -40,7 +40,7 @@ describe("the public API", () => {
   });
 
   it("covers the whole board plus its subject", () => {
-    expect(afrobeatsArtists.length).toBe(11);
+    expect(afrobeatsArtists.length).toBe(12);
     const src = readFileSync("app/api/v1/afrobeats/route.ts", "utf8");
     // The subject is included deliberately — a comparison dataset that omits
     // the artist it exists to compare against is a strange thing to publish.

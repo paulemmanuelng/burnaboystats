@@ -605,6 +605,27 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["seyi vibez live charts", "seyi vibez charting now", "seyi vibez today"],
   },
   {
+    title: "CKay — Certifications & Chart Records",
+    path: "/afrobeats/ckay",
+    section: "Afrobeats",
+    description: "CKay's 27 certifications across 14 countries and 22 official chart entries, verified at source.",
+    keywords: ["ckay", "chukwuka ekweani", "love nwantiti", "emiliana", "sad romance", "ckay certifications"],
+  },
+  {
+    title: "CKay — Official Chart Peaks",
+    path: "/afrobeats/ckay/charts",
+    section: "Afrobeats",
+    description: "Every official national chart peak for CKay — 22 entries across 16 territories, 5 of them No. 1.",
+    keywords: ["ckay charts", "love nwantiti chart", "ckay peak", "ckay number one"],
+  },
+  {
+    title: "CKay — Live Platform Charts",
+    path: "/afrobeats/ckay/live",
+    section: "Afrobeats",
+    description: "Where CKay is charting right now across Spotify, Apple Music, Deezer and YouTube.",
+    keywords: ["ckay live charts", "ckay today", "ckay streaming"],
+  },
+  {
     title: "Victony — Certifications & Chart Records",
     path: "/afrobeats/victony",
     section: "Afrobeats",
