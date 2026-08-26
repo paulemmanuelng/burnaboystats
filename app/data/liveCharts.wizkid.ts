@@ -349,13 +349,6 @@
             "position": 29,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 89,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -1107,7 +1100,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 86,
+            "position": 90,
             "movement": null,
             "status": "new"
           }
@@ -1669,8 +1662,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 195,
-            "movement": -160
+            "position": 200,
+            "movement": -165
           }
         ]
       },
@@ -1987,8 +1980,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 85,
-            "movement": -6
+            "position": 86,
+            "movement": -7
           }
         ]
       },
@@ -2239,38 +2232,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/27ab85a0fa9ffa1c5a337c8e8ce43194/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Cash Flow",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 179,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 51,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Slow",
     "platforms": [
       {
@@ -2295,6 +2256,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Cash Flow",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 179,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 123,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "BIG TIME",
@@ -2470,7 +2463,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 2,
+            "position": 14,
             "movement": null,
             "status": "new"
           }
@@ -2489,7 +2482,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 47,
+            "position": 52,
             "movement": null,
             "status": "new"
           }
@@ -2528,8 +2521,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 59,
-            "movement": -49
+            "position": 64,
+            "movement": -54
           }
         ]
       }
@@ -2547,7 +2540,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
+            "position": 70,
             "movement": null,
             "status": "new"
           }

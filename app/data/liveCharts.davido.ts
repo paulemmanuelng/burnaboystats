@@ -262,8 +262,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
-            "movement": -4
+            "position": 54,
+            "movement": -3
           }
         ]
       }
@@ -500,8 +500,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
-            "movement": 3
+            "position": 30,
+            "movement": -2
           }
         ]
       },
@@ -700,8 +700,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
-            "movement": 126
+            "position": 40,
+            "movement": 121
           }
         ]
       },
@@ -885,8 +885,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 192,
-            "movement": -159
+            "position": 197,
+            "movement": -164
           }
         ]
       },
@@ -1205,8 +1205,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
-            "movement": 125
+            "position": 39,
+            "movement": 120
           }
         ]
       },
@@ -1705,18 +1705,6 @@
             "name": "Gambia",
             "position": 119,
             "movement": -83
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 198,
-            "movement": -159
           }
         ]
       }
@@ -2468,8 +2456,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 79,
-            "movement": -7
+            "position": 81,
+            "movement": -9
           }
         ]
       }
@@ -2580,7 +2568,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
+            "position": 134,
             "movement": null,
             "status": "new"
           }
@@ -2636,17 +2624,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 20,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "GM",
             "name": "Gambia",
             "position": 23,
             "movement": 0
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 35,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BF",
