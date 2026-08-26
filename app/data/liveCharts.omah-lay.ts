@@ -326,14 +326,14 @@
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 70,
-            "movement": -3
+            "position": 65,
+            "movement": 5
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 125,
-            "movement": 19
+            "position": 122,
+            "movement": 3
           }
         ]
       },
@@ -406,7 +406,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 42,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "CV",
@@ -630,19 +630,19 @@
             "country": "CM",
             "name": "Cameroon",
             "position": 109,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 167,
-            "movement": 2
+            "position": 158,
+            "movement": 9
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 171,
-            "movement": 6
+            "movement": 0
           }
         ]
       },
@@ -1165,6 +1165,56 @@
     "kind": "album"
   },
   {
+    "title": "Forever",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 133,
+            "movement": -3
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 137,
+            "movement": 38
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 161,
+            "movement": 5
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 190,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 70,
+            "movement": -9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Waist",
     "platforms": [
       {
@@ -1207,50 +1257,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/39ef498a2ba8764bae8c87f00ae13441/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Forever",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 130,
-            "movement": -3
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 166,
-            "movement": 3
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 175,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 70,
-            "movement": -9
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Damn",
@@ -1325,8 +1331,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 69,
-            "movement": -5
+            "position": 68,
+            "movement": -4
           },
           {
             "country": "BE",
@@ -1350,13 +1356,13 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
+            "position": 61,
             "movement": -8
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 88,
+            "position": 97,
             "movement": -9
           }
         ]
@@ -1407,7 +1413,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 57,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "LR",
@@ -1588,8 +1594,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 185,
-            "movement": 7
+            "position": 177,
+            "movement": 8
           }
         ]
       }

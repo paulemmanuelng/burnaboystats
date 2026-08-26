@@ -138,49 +138,56 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 11,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 44,
-            "movement": -1
+            "position": 41,
+            "movement": 3
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 53,
-            "movement": -1
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 76,
-            "movement": 2
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 84,
-            "movement": 0
+            "position": 56,
+            "movement": -3
           },
           {
             "country": "SN",
             "name": "Senegal",
+            "position": 77,
+            "movement": 11
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 82,
+            "movement": -6
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
             "position": 88,
-            "movement": 1
+            "movement": -4
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 107,
-            "movement": -2
+            "position": 125,
+            "movement": -18
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 142,
-            "movement": 1
+            "position": 149,
+            "movement": -7
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 195,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -359,6 +366,19 @@
             "status": "new"
           }
         ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 194,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -491,7 +511,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 97,
-            "movement": -13
+            "movement": -6
           },
           {
             "country": "LR",
@@ -540,20 +560,20 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 60,
-            "movement": 2
+            "position": 62,
+            "movement": -2
           },
           {
             "country": "TN",
             "name": "Tunisia",
-            "position": 151,
-            "movement": -13
+            "position": 144,
+            "movement": 7
           },
           {
             "country": "DZ",
             "name": "Algeria",
-            "position": 156,
-            "movement": -16
+            "position": 151,
+            "movement": 5
           }
         ]
       },
@@ -602,7 +622,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 49,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "TZ",
@@ -742,7 +762,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 55,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "NG",
@@ -1143,9 +1163,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 114,
-            "movement": null,
-            "status": "new"
+            "position": 93,
+            "movement": 21
           }
         ]
       }
@@ -1539,7 +1558,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 56,
-            "movement": -1
+            "movement": 0
           }
         ]
       }

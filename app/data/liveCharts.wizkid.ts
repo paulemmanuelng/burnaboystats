@@ -328,8 +328,8 @@
           {
             "country": "PE",
             "name": "Peru",
-            "position": 176,
-            "movement": -140
+            "position": 180,
+            "movement": -144
           }
         ]
       },
@@ -359,8 +359,8 @@
           {
             "country": "PE",
             "name": "Peru",
-            "position": 127,
-            "movement": 12
+            "position": 116,
+            "movement": 11
           }
         ]
       }
@@ -498,56 +498,56 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 27,
-            "movement": -2
+            "position": 28,
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
-            "movement": 2
+            "position": 31,
+            "movement": -1
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 30,
-            "movement": -2
+            "position": 35,
+            "movement": -5
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 74,
-            "movement": -1
+            "position": 73,
+            "movement": 1
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 80,
-            "movement": 1
+            "position": 76,
+            "movement": 4
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 81,
-            "movement": -1
+            "position": 87,
+            "movement": -6
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 94,
-            "movement": -6
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 125,
-            "movement": -3
+            "position": 99,
+            "movement": -5
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 132,
-            "movement": -17
+            "position": 134,
+            "movement": -2
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 136,
+            "movement": -11
           }
         ]
       },
@@ -724,8 +724,8 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 54,
-            "movement": -5
+            "position": 51,
+            "movement": 3
           }
         ]
       }
@@ -1767,8 +1767,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 185,
-            "movement": -167
+            "position": 189,
+            "movement": -171
           }
         ]
       },
@@ -2228,8 +2228,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 77,
-            "movement": -15
+            "position": 88,
+            "movement": -11
           }
         ]
       }
@@ -2336,7 +2336,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 79,
-            "movement": -13
+            "movement": -6
           },
           {
             "country": "CM",
@@ -2361,14 +2361,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 138,
-            "movement": 9
+            "position": 143,
+            "movement": -5
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
-            "movement": 18
+            "position": 162,
+            "movement": 2
           }
         ]
       }
@@ -2412,14 +2412,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 113,
-            "movement": -1
+            "position": 123,
+            "movement": -10
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 125,
-            "movement": -5
+            "position": 128,
+            "movement": -3
           }
         ]
       }
@@ -2516,33 +2516,14 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 112,
-            "movement": 4
+            "position": 101,
+            "movement": 11
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Tonight",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 134,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Cash Flow",
@@ -2564,6 +2545,25 @@
     "kind": "song"
   },
   {
+    "title": "Tonight",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 142,
+            "movement": -8
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "BROWN SKIN GIRL",
     "platforms": [
       {
@@ -2573,8 +2573,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 193,
-            "movement": -165
+            "position": 197,
+            "movement": -169
           }
         ]
       }
@@ -2591,8 +2591,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 194,
-            "movement": -164
+            "position": 198,
+            "movement": -168
           }
         ]
       }
