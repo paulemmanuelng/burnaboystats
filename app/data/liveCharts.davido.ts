@@ -270,8 +270,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
-            "movement": -91
+            "position": 15,
+            "movement": -11
           }
         ]
       },
@@ -397,8 +397,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 41,
-            "movement": 2
+            "position": 42,
+            "movement": -4
           },
           {
             "country": "TD",
@@ -440,8 +440,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 103,
-            "movement": -2
+            "position": 113,
+            "movement": -12
           },
           {
             "country": "CG",
@@ -490,8 +490,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
-            "movement": -7
+            "position": 62,
+            "movement": -4
           }
         ]
       }
@@ -660,8 +660,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
-            "movement": -1
+            "position": 41,
+            "movement": 2
           }
         ]
       },
@@ -672,8 +672,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
-            "movement": -94
+            "position": 150,
+            "movement": -138
           }
         ]
       },
@@ -830,8 +830,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": -1
+            "position": 12,
+            "movement": 1
           }
         ]
       },
@@ -1123,7 +1123,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 15,
-            "movement": -2
+            "movement": 0
           }
         ]
       },
@@ -1134,7 +1134,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
+            "position": 17,
             "movement": null,
             "status": "new"
           }
@@ -1277,19 +1277,19 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 1,
-            "movement": 70
+            "position": 2,
+            "movement": 4
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 36,
-            "movement": -12
+            "position": 37,
+            "movement": -10
           }
         ]
       },
@@ -1300,8 +1300,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 144,
-            "movement": -19
+            "position": 127,
+            "movement": 17
           }
         ]
       },
@@ -1532,8 +1532,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
-            "movement": 0
+            "position": 67,
+            "movement": 5
           }
         ]
       },
@@ -1544,7 +1544,7 @@
           {
             "country": "IL",
             "name": "Israel",
-            "position": 38,
+            "position": 71,
             "movement": null,
             "status": "new"
           }
@@ -1936,8 +1936,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
-            "movement": -3
+            "position": 44,
+            "movement": -10
           }
         ]
       }
@@ -2040,8 +2040,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
-            "movement": 1
+            "position": 62,
+            "movement": -1
           }
         ]
       },
@@ -2114,8 +2114,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
-            "movement": -21
+            "position": 123,
+            "movement": -5
           }
         ]
       },
@@ -2126,7 +2126,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 18,
+            "position": 23,
             "movement": null,
             "status": "new"
           }
@@ -2238,13 +2238,13 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 16,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 37,
-            "movement": 0
+            "position": 38,
+            "movement": -3
           },
           {
             "country": "BF",
@@ -2281,25 +2281,25 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 36,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 40,
-            "movement": 0
+            "position": 41,
+            "movement": -3
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 80,
-            "movement": 0
+            "movement": 4
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 82,
-            "movement": -2
+            "position": 84,
+            "movement": -6
           }
         ]
       }
@@ -2361,65 +2361,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "On The Road",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 56,
-            "movement": 23
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 71,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 147,
-            "movement": -9
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 102,
-            "movement": -14
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 197,
-            "movement": null,
-            "status": "new"
+            "position": 121,
+            "movement": -4
           }
         ]
       }
@@ -2500,8 +2443,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
-            "movement": -15
+            "position": 103,
+            "movement": -5
           }
         ]
       },
@@ -2514,6 +2457,50 @@
             "name": "Nigeria",
             "position": 155,
             "movement": -12
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "On The Road",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 56,
+            "movement": 23
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 71,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 147,
+            "movement": -9
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 108,
+            "movement": -6
           }
         ]
       }
@@ -2556,46 +2543,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 167,
-            "movement": -2
+            "position": 163,
+            "movement": 4
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "FIA",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 23,
-            "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 52,
-            "movement": 2
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 108,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Guide",
@@ -2625,14 +2580,46 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
-            "movement": -1
+            "position": 116,
+            "movement": -20
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "FIA",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 23,
+            "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 53,
+            "movement": 3
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 147,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Julie",
@@ -2694,9 +2681,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 180,
-            "movement": null,
-            "status": "new"
+            "position": 194,
+            "movement": -14
           }
         ]
       }
@@ -2733,8 +2719,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 183,
-            "movement": -4
+            "position": 196,
+            "movement": -13
           }
         ]
       }
@@ -3032,7 +3018,7 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 70,
+            "position": 74,
             "movement": -28
           }
         ]

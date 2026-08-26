@@ -69,7 +69,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 114,
+            "position": 158,
             "movement": null,
             "status": "new"
           }
@@ -82,8 +82,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 127,
-            "movement": -4
+            "position": 132,
+            "movement": -5
           }
         ]
       },
@@ -175,8 +175,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": -14
+            "position": 119,
+            "movement": 7
           }
         ]
       }
@@ -185,21 +185,28 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Felony",
+    "title": "forever",
     "platforms": [
       {
-        "platform": "Spotify",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 192,
+            "position": 51,
             "movement": null,
             "status": "new"
           }
         ]
-      },
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Felony",
+    "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
@@ -216,26 +223,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "forever",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 31,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Boyfriend",

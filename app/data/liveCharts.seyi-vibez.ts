@@ -123,8 +123,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": 0
+            "position": 4,
+            "movement": -1
           }
         ]
       },
@@ -190,8 +190,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
-            "movement": -13
+            "position": 129,
+            "movement": 2
           }
         ]
       },
@@ -376,8 +376,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
-            "movement": 17
+            "position": 46,
+            "movement": 3
           }
         ]
       }
@@ -446,8 +446,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 91,
-            "movement": 5
+            "position": 89,
+            "movement": 2
           }
         ]
       }
@@ -484,8 +484,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 154,
-            "movement": 9
+            "position": 142,
+            "movement": 12
           }
         ]
       }
@@ -607,6 +607,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Where I'm from",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 182,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 160,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b4fe00e347d44e64c014306d1f5f778b/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Billion Dollar Baby 2.0",
     "platforms": [
       {
@@ -692,8 +724,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 82,
-            "movement": -19
+            "position": 65,
+            "movement": 17
           }
         ]
       }
@@ -711,8 +743,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 112,
-            "movement": 55
+            "position": 134,
+            "movement": -22
           }
         ]
       }
@@ -749,8 +781,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 145,
-            "movement": 14
+            "position": 148,
+            "movement": -3
           }
         ]
       }
@@ -768,8 +800,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": 19
+            "position": 180,
+            "movement": -14
           }
         ]
       }
@@ -806,8 +838,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 135,
-            "movement": 22
+            "position": 133,
+            "movement": 2
           }
         ]
       }
@@ -853,25 +885,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Where I'm from",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 160,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b4fe00e347d44e64c014306d1f5f778b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "NSNV",

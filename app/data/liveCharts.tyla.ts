@@ -200,16 +200,22 @@
             "movement": -37
           },
           {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 107,
-            "movement": -34
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 104,
+            "movement": 29
           },
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 110,
-            "movement": -16
+            "position": 106,
+            "movement": -4
+          },
+          {
+            "country": "QA",
+            "name": "Qatar",
+            "position": 107,
+            "movement": -34
           },
           {
             "country": "AI",
@@ -246,12 +252,6 @@
             "name": "Estonia",
             "position": 123,
             "movement": -48
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 126,
-            "movement": 10
           },
           {
             "country": "RO",
@@ -323,12 +323,6 @@
             "status": "new"
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 170,
-            "movement": -52
-          },
-          {
             "country": "KH",
             "name": "Cambodia",
             "position": 178,
@@ -342,10 +336,10 @@
             "movement": -143
           },
           {
-            "country": "NO",
-            "name": "Norway",
+            "country": "NZ",
+            "name": "New Zealand",
             "position": 183,
-            "movement": -34
+            "movement": -55
           },
           {
             "country": "LC",
@@ -369,14 +363,14 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 30,
-            "movement": -29
+            "position": 48,
+            "movement": -47
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 91,
-            "movement": -19
+            "position": 98,
+            "movement": -18
           }
         ]
       }
@@ -486,19 +480,26 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 11,
+            "position": 14,
             "movement": -6
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 25,
-            "movement": 20
+            "position": 23,
+            "movement": 56
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 105,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 65,
+            "position": 107,
             "movement": null,
             "status": "new"
           }
@@ -511,8 +512,8 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 176,
-            "movement": -1
+            "position": 197,
+            "movement": -21
           }
         ]
       }
@@ -587,8 +588,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 67,
-            "movement": 39
+            "position": 70,
+            "movement": -3
           }
         ]
       },
@@ -599,7 +600,7 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 98,
+            "position": 99,
             "movement": null,
             "status": "new"
           }
@@ -802,7 +803,7 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 2,
+            "position": 7,
             "movement": null,
             "status": "new"
           }
@@ -855,19 +856,6 @@
     "title": "HOT TUBS",
     "platforms": [
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 79,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -913,7 +901,7 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 15,
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -981,25 +969,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "On My Body",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 93,
-            "movement": -27
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "DOUBLE BLIND",
     "platforms": [
       {
@@ -1009,7 +978,7 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 95,
+            "position": 96,
             "movement": null,
             "status": "new"
           }
@@ -1018,6 +987,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "On My Body",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 98,
+            "movement": -28
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
   }
 ];
   

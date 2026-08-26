@@ -348,8 +348,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 47,
-            "movement": 4
+            "position": 40,
+            "movement": 7
           }
         ]
       },
@@ -490,19 +490,19 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 1,
-            "movement": 70
+            "position": 2,
+            "movement": 4
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 36,
-            "movement": -12
+            "position": 37,
+            "movement": -10
           }
         ]
       },
@@ -513,8 +513,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 144,
-            "movement": -19
+            "position": 127,
+            "movement": 17
           }
         ]
       }
@@ -807,8 +807,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 168,
-            "movement": -8
+            "position": 150,
+            "movement": 18
           }
         ]
       }
@@ -924,8 +924,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
-            "movement": -13
+            "position": 129,
+            "movement": 2
           }
         ]
       }
@@ -1075,8 +1075,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 50,
-            "movement": 9
+            "position": 47,
+            "movement": 3
           }
         ]
       }
@@ -1125,8 +1125,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 72,
-            "movement": -2
+            "position": 75,
+            "movement": -6
           }
         ]
       }
@@ -1178,6 +1178,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/bd76a1b1daca04cea85edf1c9b022a27/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Namek",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 70,
+            "movement": -1
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 153,
+            "movement": 0
+          },
+          {
+            "country": "DZ",
+            "name": "Algeria",
+            "position": 165,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Gut Genug",
     "platforms": [
       {
@@ -1210,55 +1242,10 @@
             "status": "new"
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 200,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f4f5c145b06c62888141b2a7eabad4b3/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Namek",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 64,
-            "movement": 1
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 153,
-            "movement": 0
-          },
-          {
-            "country": "DZ",
-            "name": "Algeria",
-            "position": 165,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DON'T LOVE ME",
@@ -1292,6 +1279,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "ARTIFICIAL HAPPINESS",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 173,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 35,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Isaka II",
     "platforms": [
       {
@@ -1301,8 +1321,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 127,
-            "movement": 5
+            "position": 118,
+            "movement": 9
           }
         ]
       },
@@ -1349,26 +1369,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "ARTIFICIAL HAPPINESS",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 35,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "COPING MECHANISM",
     "platforms": [
       {
@@ -1378,8 +1378,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 149,
-            "movement": 7
+            "position": 156,
+            "movement": -7
           }
         ]
       }
