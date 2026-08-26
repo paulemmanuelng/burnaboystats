@@ -1420,7 +1420,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Felony", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9adfaa37a1fbd5ab5907e3fb78ff7a70/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "HALLELUJAH", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b606366687e3c46d407569aa03ae26bf/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "La La", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Trumpet", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c4230c9e47469a112e9f05745c603c44/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Trumpet", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/c4230c9e47469a112e9f05745c603c44/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "WATAWI", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d35686d80a19646ea2d5c3584eb1e33f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "by now", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
     ],
