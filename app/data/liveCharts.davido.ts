@@ -500,8 +500,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
-            "movement": -2
+            "position": 36,
+            "movement": -4
           }
         ]
       },
@@ -700,8 +700,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
-            "movement": 121
+            "position": 46,
+            "movement": -41
           }
         ]
       },
@@ -875,18 +875,6 @@
             "name": "Nigeria",
             "position": 13,
             "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 197,
-            "movement": -164
           }
         ]
       },
@@ -1205,8 +1193,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 39,
-            "movement": 120
+            "position": 45,
+            "movement": 117
           }
         ]
       },
@@ -1346,8 +1334,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": 21
+            "position": 2,
+            "movement": 26
           },
           {
             "country": "ZW",
@@ -2345,8 +2333,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 46,
-            "movement": 4
+            "position": 48,
+            "movement": 2
           }
         ]
       }
@@ -2438,8 +2426,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 33,
-            "movement": 3
+            "position": 35,
+            "movement": 1
           },
           {
             "country": "MZ",
@@ -2568,7 +2556,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
+            "position": 140,
             "movement": null,
             "status": "new"
           }
@@ -2630,17 +2618,17 @@
             "movement": 0
           },
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 35,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 51,
-            "movement": 3
+            "movement": 4
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 53,
+            "movement": null,
+            "status": "new"
           }
         ]
       }

@@ -226,7 +226,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 109,
-            "movement": -6
+            "movement": -10
           },
           {
             "country": "KN",
@@ -251,13 +251,13 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 150,
-            "movement": 10
+            "movement": 24
           },
           {
             "country": "FR",
             "name": "France",
             "position": 165,
-            "movement": -2
+            "movement": -3
           },
           {
             "country": "AE",
@@ -500,7 +500,7 @@
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 35,
+            "position": 37,
             "movement": null,
             "status": "new"
           },
@@ -2138,8 +2138,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
-            "movement": -60
+            "position": 74,
+            "movement": -63
           }
         ]
       }

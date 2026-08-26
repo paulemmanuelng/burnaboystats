@@ -629,8 +629,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": 21
+            "position": 2,
+            "movement": 26
           },
           {
             "country": "ZW",
@@ -1326,7 +1326,7 @@
             "country": "FR",
             "name": "France",
             "position": 67,
-            "movement": -3
+            "movement": -1
           },
           {
             "country": "BE",

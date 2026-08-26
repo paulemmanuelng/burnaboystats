@@ -410,8 +410,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 82,
-            "movement": -22
+            "position": 84,
+            "movement": -20
           }
         ]
       }
