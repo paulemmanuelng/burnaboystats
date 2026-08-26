@@ -8,7 +8,7 @@
 - ✓* = confirmed body-side at the tier class, where the body's public record omits the exact multiplier
 - no mark = kept from Wikipedia because the body publishes no verifiable record (now only 🇳🇿 and 🇵🇱)
 
-## Total: **158 certifications** across 21 countries
+## Total: **157 certifications** across 21 countries
 
 > **Why the number moved from 117 → 155.** The second pass did two things. It **closed two of the four unverifiable bodies**: ARIA's register turned out to be alive inside a Dropbox folder of 68 accreditation PDFs (One Dance 17× Platinum and Brown Skin Girl Gold both confirmed at source), and IFPI Greece's certifications turned out to live in an unlabelled `Award` column inside the weekly digital-singles chart, reconstructible from 512 Wayback captures (One Dance 3× Platinum confirmed). Neither changed the count — both upgraded Wikipedia-cited rows to register-confirmed.
 >
@@ -236,29 +236,35 @@ full and matched what was already published exactly.
 
 ---
 
-## "Joro", 26 August 2026 — +2 (156 → 158)
+## "Joro", 26 August 2026 — +1 (156 → 157), and one figure withdrawn
 
-Paul flagged a Belgian certification for "Joro" that the sweeps had missed.
-Checking it turned up a second gap on the same record.
+Paul flagged a Belgian certification the sweeps had missed. Chasing it turned
+up a second, better-founded gap on the same record — and then the Belgian one
+was pulled back out.
 
-- **Belgium (BRMA) — Gold**, 20,000 units.
-- **Nigeria (TCSN) — 2× Platinum**, 200,000 units.
+**Kept: Nigeria (TCSN) — 2× Platinum**, certified 2023.
 
-**Provenance, stated because it is weaker than this file's usual standard.**
-Belgium's register could not be read. BEA's successor body BRMA publishes no
-register of its own — belgianentertainment.be redirects to brma.be, whose
-/awards path returns 404 — and Ultratop, the sole publisher, now sits behind a
-Cloudflare Turnstile with an interactive "verify you are human" checkbox. That
-is a bot check, and completing one is out of bounds, so the register is
-genuinely unreachable rather than merely awkward.
+This one is worth having for the reason it was missing. TCSN's live register
+caps at 500 rows and serves no Silver tier — the documented Nigerian gap on
+this board — so a 2× Platinum on a 2019 single sits exactly where those sweeps
+structurally cannot see. Other Wizkid titles may be missing Nigerian plaques
+for the same reason, and that has NOT been checked.
 
-Both figures therefore come from the song's cited certification table, which
-names BRMA and TCSN with unit thresholds — the same provenance this site
-already accepts for Billboard, where billboard.com is likewise unreadable.
-Recorded here so nobody mistakes it for a register read.
+**Withdrawn: Belgium (BRMA) — Gold.** Added on 26 Aug and removed the same day.
 
-**The Nigerian one is the more interesting miss.** TCSN's live register caps at
-500 rows and serves no Silver tier, which is the documented Nigerian gap on
-this board — so a 2× Platinum sitting outside that window is exactly the shape
-of thing those sweeps cannot see. Other Wizkid titles may be missing Nigerian
-plaques for the same reason, and that has NOT been checked.
+It was never read in a register. BRMA publishes none of its own —
+belgianentertainment.be redirects to brma.be, whose /awards path 404s — and
+Ultratop, the sole publisher, sits behind a Cloudflare "verify you are human"
+challenge that no automated route gets past. The figure rested on the song's
+cited certification table alone, which names BRMA and a 20,000-unit threshold
+but is not the body.
+
+That was too thin for a board whose entire claim is that every plaque was read
+at source, and it could not be shown to anyone who asked. Withdrawn rather than
+left standing. The two pages that would settle it, and which open normally for
+a person:
+
+- https://www.ultratop.be/nl/song/1d1ed1/Wizkid-Joro
+- https://www.ultratop.be/nl/goud-platina/2023
+
+If either shows the award, it goes back in with that as the citation.
