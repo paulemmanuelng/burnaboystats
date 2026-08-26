@@ -110,19 +110,19 @@
             "country": "RU",
             "name": "Russia",
             "position": 7,
-            "movement": 1
+            "movement": 2
           },
           {
             "country": "SZ",
             "name": "Swaziland",
             "position": 9,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 36,
-            "movement": 3
+            "position": 38,
+            "movement": 1
           }
         ]
       },
@@ -203,6 +203,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "forever",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 26,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT YOU",

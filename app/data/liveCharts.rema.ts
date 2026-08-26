@@ -229,7 +229,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 24,
-            "movement": 30
+            "movement": 7
           }
         ]
       }
@@ -364,7 +364,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 97,
-            "movement": -6
+            "movement": -3
           },
           {
             "country": "LR",
@@ -570,19 +570,19 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 24,
+            "position": 27,
             "movement": 1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 55,
-            "movement": 1
+            "movement": 3
           },
           {
             "country": "AT",
             "name": "Austria",
-            "position": 66,
+            "position": 153,
             "movement": null,
             "status": "new"
           }
@@ -596,13 +596,13 @@
             "country": "IT",
             "name": "Italy",
             "position": 68,
-            "movement": -13
+            "movement": 1
           },
           {
             "country": "CH",
             "name": "Switzerland",
             "position": 76,
-            "movement": -15
+            "movement": -18
           }
         ]
       },
@@ -1093,8 +1093,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 50,
-            "movement": -25
+            "position": 49,
+            "movement": -22
           }
         ]
       },
@@ -1200,7 +1200,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 39,
-            "movement": -25
+            "movement": -23
           }
         ]
       },
@@ -1306,7 +1306,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 60,
-            "movement": -25
+            "movement": -23
           }
         ]
       }
@@ -1315,23 +1315,36 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BENIN BOYS",
+    "title": "Fi Kan We Kan",
     "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 170,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 50,
-            "movement": -21
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 44,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
+    "kind": "song"
   },
   {
     "title": "Trouble Maker",
@@ -1363,12 +1376,31 @@
             "country": "GH",
             "name": "Ghana",
             "position": 59,
-            "movement": -25
+            "movement": -23
           }
         ]
       }
     ],
     "kind": "song"
+  },
+  {
+    "title": "BENIN BOYS",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "QA",
+            "name": "Qatar",
+            "position": 61,
+            "movement": -30
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dumebi",
@@ -1419,8 +1451,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 71,
-            "movement": -10
+            "position": 72,
+            "movement": -11
           }
         ]
       }
@@ -1466,25 +1498,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Fi Kan We Kan",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 170,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Wine",
     "platforms": [
       {
@@ -1494,8 +1507,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 114,
-            "movement": -90
+            "position": 150,
+            "movement": -116
           }
         ]
       }

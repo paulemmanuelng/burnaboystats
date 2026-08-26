@@ -270,8 +270,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 173,
-            "movement": -10
+            "position": 172,
+            "movement": -1
           },
           {
             "country": "BZ",
@@ -299,12 +299,6 @@
             "movement": -26
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 196,
-            "movement": -13
-          },
-          {
             "country": "SZ",
             "name": "Swaziland",
             "position": 197,
@@ -328,7 +322,8 @@
             "country": "MA",
             "name": "Morocco",
             "position": 69,
-            "movement": 3
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "TN",
@@ -346,7 +341,7 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 35,
+            "position": 50,
             "movement": null,
             "status": "new"
           }
@@ -870,7 +865,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -981,8 +976,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 30,
-            "movement": null,
-            "status": "new"
+            "movement": -15
           }
         ]
       },
@@ -1100,7 +1094,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 90,
+            "position": 98,
             "movement": null,
             "status": "new"
           }
@@ -1205,7 +1199,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
+            "position": 99,
             "movement": -4
           }
         ]
@@ -1301,13 +1295,13 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 79,
-            "movement": 4
+            "position": 81,
+            "movement": 2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 100,
+            "position": 101,
             "movement": 10
           }
         ]
@@ -1763,7 +1757,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 27,
-            "movement": 1
+            "movement": 70
           }
         ]
       },
@@ -1899,7 +1893,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
+            "position": 162,
             "movement": 5
           }
         ]
@@ -1968,8 +1962,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 86,
-            "movement": -2
+            "position": 87,
+            "movement": -3
           }
         ]
       },
@@ -2129,7 +2123,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 119,
+            "position": 120,
             "movement": 3
           }
         ]
@@ -2137,6 +2131,44 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Final",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 143,
+            "movement": -5
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 162,
+            "movement": 2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 9,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3cda4cca35e5a322d6ad9e71c49dbecf/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "One Condition",
@@ -2318,7 +2350,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 79,
-            "movement": -6
+            "movement": -3
           },
           {
             "country": "CM",
@@ -2332,31 +2364,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/72cef83ff7a8c740f94ccf2ea5e0fdb7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Final",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 143,
-            "movement": -5
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 162,
-            "movement": 2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3cda4cca35e5a322d6ad9e71c49dbecf/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "forever be mine",
@@ -2448,6 +2455,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "B. D'OR",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 27,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Say My Name",
     "platforms": [
       {
@@ -2457,7 +2483,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 58,
+            "position": 93,
             "movement": null,
             "status": "new"
           }
@@ -2477,8 +2503,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
-            "movement": -57
+            "position": 106,
+            "movement": -86
           }
         ]
       }
@@ -2496,7 +2522,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 76,
+            "position": 112,
             "movement": null,
             "status": "new"
           }

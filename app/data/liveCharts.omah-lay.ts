@@ -357,7 +357,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 12,
-            "movement": 71
+            "movement": 17
           }
         ]
       },
@@ -624,19 +624,19 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": 26
+            "position": 1,
+            "movement": 56
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 31,
-            "movement": -10
+            "movement": -8
           }
         ]
       },
@@ -1199,8 +1199,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 71,
-            "movement": -3
+            "position": 72,
+            "movement": -4
           }
         ]
       }
@@ -1326,7 +1326,7 @@
             "country": "FR",
             "name": "France",
             "position": 63,
-            "movement": 3
+            "movement": 2
           },
           {
             "country": "BE",
@@ -1538,25 +1538,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d9cbcfdbfb5dab6a1a37aeae7039d83c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "I Can't Stop",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 84,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
   },
   {
     "title": "understand",

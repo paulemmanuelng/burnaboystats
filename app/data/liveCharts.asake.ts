@@ -208,8 +208,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 55,
-            "movement": 0
+            "position": 58,
+            "movement": 2
           },
           {
             "country": "DM",
@@ -325,16 +325,16 @@
             "movement": -32
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 189,
-            "movement": -9
-          },
-          {
             "country": "MU",
             "name": "Mauritius",
             "position": 189,
             "movement": -102
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 194,
+            "movement": -19
           }
         ]
       }
@@ -512,7 +512,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 11,
-            "movement": 18
+            "movement": -4
           },
           {
             "country": "AE",
@@ -730,6 +730,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PH",
+            "name": "Philippines",
+            "position": 183,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -737,8 +750,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 50,
-            "movement": null,
-            "status": "new"
+            "movement": -5
           }
         ]
       },
@@ -930,7 +942,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 52,
+            "position": 87,
             "movement": null,
             "status": "new"
           }
@@ -944,8 +956,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 51,
-            "movement": null,
-            "status": "new"
+            "movement": -15
           }
         ]
       }
@@ -1110,7 +1121,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
+            "position": 5,
             "movement": null,
             "status": "new"
           }
@@ -1647,12 +1658,6 @@
             "status": "new"
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 165,
-            "movement": -7
-          },
-          {
             "country": "SN",
             "name": "Senegal",
             "position": 170,
@@ -1663,6 +1668,12 @@
             "name": "Cayman Islands",
             "position": 174,
             "movement": -136
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 181,
+            "movement": -18
           }
         ]
       }
@@ -1918,7 +1929,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 83,
-            "movement": -24
+            "movement": -22
           }
         ]
       }
@@ -2185,7 +2196,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
+            "position": 15,
             "movement": null,
             "status": "new"
           }
@@ -2302,8 +2313,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 51,
-            "movement": -21
+            "position": 62,
+            "movement": -30
           }
         ]
       }
@@ -2638,7 +2649,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
+            "position": 99,
             "movement": -4
           }
         ]
@@ -2962,7 +2973,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 50,
-            "movement": -6
+            "movement": -3
           },
           {
             "country": "KE",
@@ -3214,8 +3225,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 75,
-            "movement": null,
-            "status": "new"
+            "movement": -25
           }
         ]
       },
@@ -3746,7 +3756,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 98,
-            "movement": -6
+            "movement": -3
           },
           {
             "country": "NE",
@@ -3902,8 +3912,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 76,
-            "movement": -30
+            "position": 79,
+            "movement": -33
           }
         ]
       }
@@ -3935,7 +3945,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 44,
-            "movement": -5
+            "movement": -2
           }
         ]
       }
@@ -4273,26 +4283,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Che Che",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 23,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/dddc1ab2353b71ff80f1627a1e3e5f64/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "2Factor",
     "platforms": [
       {
@@ -4348,6 +4338,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/77fc9f281aabc0cfb5c17649afe08c8c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Che Che",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 37,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/dddc1ab2353b71ff80f1627a1e3e5f64/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Active",

@@ -141,7 +141,7 @@
       "extractor": "youtubeViews",
       "kind": "peak",
       "threshold": 0.001,
-      "baseline": 907529621,
+      "baseline": 909306412,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -159,7 +159,7 @@
         }
       ],
       "lastChanged": "2026-08-26",
-      "lastSeenValue": 908331654,
+      "lastSeenValue": 909306412,
       "lastSeenAt": "2026-08-26",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
