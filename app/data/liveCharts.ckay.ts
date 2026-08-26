@@ -69,7 +69,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 113,
+            "position": 114,
             "movement": null,
             "status": "new"
           }
@@ -84,19 +84,6 @@
             "name": "Morocco",
             "position": 127,
             "movement": -4
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MV",
-            "name": "Maldives",
-            "position": 184,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -124,10 +111,17 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 83,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 28,
-            "movement": 99
+            "position": 88,
+            "movement": -60
           },
           {
             "country": "NE",
@@ -144,15 +138,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 157,
-            "movement": -12
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 180,
-            "movement": null,
-            "status": "new"
+            "position": 152,
+            "movement": 5
           }
         ]
       }
@@ -170,14 +157,14 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 75,
-            "movement": 30
+            "position": 77,
+            "movement": -2
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 84,
-            "movement": -27
+            "position": 116,
+            "movement": -32
           }
         ]
       },
@@ -198,6 +185,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Felony",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 192,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 199,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "forever",
     "platforms": [
       {
@@ -216,46 +236,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "IS IT YOU",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 100,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf90f6a34d861f23d58fe02d6532673f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Felony",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Boyfriend",

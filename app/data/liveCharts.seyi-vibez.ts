@@ -93,8 +93,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 91,
-            "movement": 6
+            "position": 86,
+            "movement": 5
           }
         ]
       },
@@ -222,12 +222,18 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 18,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "NE",
             "name": "Niger",
             "position": 31,
+            "movement": 21
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 55,
             "movement": 21
           },
           {
@@ -237,16 +243,10 @@
             "movement": -15
           },
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 76,
-            "movement": 96
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 105,
-            "movement": -24
+            "position": 107,
+            "movement": -2
           },
           {
             "country": "CM",
@@ -311,44 +311,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Bad Vibes",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 125,
-            "movement": 2
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 133,
-            "movement": 6
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 185,
-            "movement": -5
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 189,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Thy Kingdom Come",
     "platforms": [
       {
@@ -356,10 +318,17 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": 0
+            "position": 20,
+            "movement": 1
           },
           {
             "country": "BN",
@@ -372,12 +341,6 @@
             "name": "Benin",
             "position": 48,
             "movement": 25
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 139,
-            "movement": -6
           }
         ]
       }
@@ -531,6 +494,37 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/aa8d9ee07662959c9f52b4e9282a0f54/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Bad Vibes",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 125,
+            "movement": 2
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 133,
+            "movement": 6
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 185,
+            "movement": -5
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Vibe Till Thy Kingdom Come",
     "platforms": [
       {
@@ -540,14 +534,14 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 7,
-            "movement": 6
+            "position": 9,
+            "movement": -2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
-            "movement": 1
+            "position": 58,
+            "movement": 2
           },
           {
             "country": "BJ",
@@ -620,16 +614,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 43,
+            "movement": 7
+          },
+          {
             "country": "BJ",
             "name": "Benin",
             "position": 45,
             "movement": -3
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 50,
-            "movement": -2
           }
         ]
       }
@@ -647,8 +641,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 47,
-            "movement": 4
+            "position": 48,
+            "movement": -1
           },
           {
             "country": "BJ",
@@ -673,8 +667,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
-            "movement": 3
+            "position": 102,
+            "movement": -6
           },
           {
             "country": "GD",
@@ -803,25 +797,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65338596d2138717cab1e115fd412599/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Sin City",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 154,
-            "movement": -12
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "GWAGWALADA",
     "platforms": [
       {
@@ -839,6 +814,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Sin City",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 158,
+            "movement": -4
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lagos",
@@ -889,8 +883,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 73,
-            "movement": -2
+            "position": 69,
+            "movement": 4
           }
         ]
       }
@@ -908,8 +902,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
-            "movement": 7
+            "position": 122,
+            "movement": -4
           }
         ]
       }
@@ -926,9 +920,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
-            "movement": null,
-            "status": "new"
+            "position": 191,
+            "movement": -9
           }
         ]
       }
