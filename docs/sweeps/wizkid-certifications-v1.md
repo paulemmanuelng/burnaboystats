@@ -8,7 +8,7 @@
 - ✓* = confirmed body-side at the tier class, where the body's public record omits the exact multiplier
 - no mark = kept from Wikipedia because the body publishes no verifiable record (now only 🇳🇿 and 🇵🇱)
 
-## Total: **157 certifications** across 21 countries
+## Total: **156 certifications** across 21 countries
 
 > **Why the number moved from 117 → 155.** The second pass did two things. It **closed two of the four unverifiable bodies**: ARIA's register turned out to be alive inside a Dropbox folder of 68 accreditation PDFs (One Dance 17× Platinum and Brown Skin Girl Gold both confirmed at source), and IFPI Greece's certifications turned out to live in an unlabelled `Award` column inside the weekly digital-singles chart, reconstructible from 512 Wayback captures (One Dance 3× Platinum confirmed). Neither changed the count — both upgraded Wikipedia-cited rows to register-confirmed.
 >
@@ -236,35 +236,42 @@ full and matched what was already published exactly.
 
 ---
 
-## "Joro", 26 August 2026 — +1 (156 → 157), and one figure withdrawn
+## "Joro", 26 August 2026 — both additions withdrawn (back to 156)
 
-Paul flagged a Belgian certification the sweeps had missed. Chasing it turned
-up a second, better-founded gap on the same record — and then the Belgian one
-was pulled back out.
+A Belgian Gold and a Nigerian 2x Platinum were added for "Joro" on 26 August
+and both were removed the same day. Neither could be confirmed at its
+certifying body. The record stands at FR Platinum, CH Platinum, US Gold,
+CA Gold, UK Silver.
 
-**Kept: Nigeria (TCSN) — 2× Platinum**, certified 2023.
+**Nigeria (TCSN) — REFUTED, not merely unconfirmed.** TurnTable's register was
+read directly. A search for "JORO" returns zero rows; a search for "WIZKID"
+returns thirty entries and Joro is not among them.
 
-This one is worth having for the reason it was missing. TCSN's live register
-caps at 500 rows and serves no Silver tier — the documented Nigerian gap on
-this board — so a 2× Platinum on a 2019 single sits exactly where those sweeps
-structurally cannot see. Other Wizkid titles may be missing Nigerian plaques
-for the same reason, and that has NOT been checked.
+The 500-row display cap does not explain it. With the search empty the register
+shows exactly 500 rows sorted by tier, and the tiers sum to 500: 8x 1, 7x 2,
+6x 4, 5x 8, 4x 33, 3x 51, **2x 89**, Platinum 268, Gold 44, Silver 0. The cut
+falls inside the GOLD band, so every one of the 89 2x Platinum entries is above
+it and visible. A 2x Platinum "Joro" would therefore be shown. It is not.
 
-**Withdrawn: Belgium (BRMA) — Gold.** Added on 26 Aug and removed the same day.
+The register is request-based and can omit a title entirely, so this is not
+proof the song was never certified — but it is proof the claimed TIER is not in
+a window that fully covers that tier, which is a stronger negative than the
+usual Nigerian gap.
 
-It was never read in a register. BRMA publishes none of its own —
-belgianentertainment.be redirects to brma.be, whose /awards path 404s — and
-Ultratop, the sole publisher, sits behind a Cloudflare "verify you are human"
-challenge that no automated route gets past. The figure rested on the song's
-cited certification table alone, which names BRMA and a 20,000-unit threshold
-but is not the body.
+Worth recording from the same read: all 30 Wizkid entries the live register
+displays are ALREADY on this board at matching tiers, and the board holds 72
+Nigerian plaques for him — far more than the 500-row window shows, because the
+original sweep used the deeper archive captures. Our Nigerian coverage is
+richer than the live register, not poorer.
 
-That was too thin for a board whose entire claim is that every plaque was read
-at source, and it could not be shown to anyone who asked. Withdrawn rather than
-left standing. The two pages that would settle it, and which open normally for
-a person:
+**Belgium (BRMA) — UNCONFIRMABLE.** BRMA publishes no register;
+belgianentertainment.be redirects to brma.be, whose /awards path 404s. Ultratop,
+the sole publisher, sits behind a Cloudflare "verify you are human" challenge
+that no automated route passes. These two pages would settle it and open
+normally for a person:
 
 - https://www.ultratop.be/nl/song/1d1ed1/Wizkid-Joro
 - https://www.ultratop.be/nl/goud-platina/2023
 
-If either shows the award, it goes back in with that as the citation.
+Both figures came from the song's cited certification table. A cited table is
+not a certifying body, and on this board that is the whole difference.
