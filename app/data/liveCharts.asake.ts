@@ -203,13 +203,13 @@
             "country": "CA",
             "name": "Canada",
             "position": 47,
-            "movement": -15
+            "movement": -13
           },
           {
             "country": "UK",
             "name": "United Kingdom",
             "position": 56,
-            "movement": -1
+            "movement": -4
           },
           {
             "country": "DM",
@@ -322,7 +322,7 @@
             "country": "FR",
             "name": "France",
             "position": 187,
-            "movement": -4
+            "movement": -12
           },
           {
             "country": "CY",
@@ -1623,7 +1623,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 162,
-            "movement": -6
+            "movement": -9
           },
           {
             "country": "SN",
@@ -2030,8 +2030,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 72,
-            "movement": -25
+            "position": 74,
+            "movement": -18
           }
         ]
       }
@@ -2146,8 +2146,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 46,
-            "movement": -27
+            "position": 50,
+            "movement": -25
           }
         ]
       }
@@ -2481,8 +2481,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
-            "movement": -3
+            "position": 96,
+            "movement": -4
           }
         ]
       }
@@ -2499,8 +2499,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 49,
-            "movement": -5
+            "position": 50,
+            "movement": -6
           },
           {
             "country": "KE",
@@ -2587,7 +2587,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 67,
-            "movement": 11
+            "movement": 5
           }
         ]
       }
@@ -3388,69 +3388,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6e1ad63b14bb184c957d0887f1097e43/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Turbulence",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 6,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 62,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 83,
-            "movement": 0
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 128,
-            "movement": -11
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 80,
-            "movement": -6
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 194,
-            "movement": -138
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Amen",
     "platforms": [
       {
@@ -3562,6 +3499,57 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6e1ad63b14bb184c957d0887f1097e43/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Turbulence",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 7,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 62,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 83,
+            "movement": 0
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 128,
+            "movement": -11
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 80,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ako",
@@ -3678,8 +3666,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 97,
-            "movement": -12
+            "position": 98,
+            "movement": -13
           },
           {
             "country": "NE",
@@ -3815,8 +3803,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 137,
-            "movement": -130
+            "position": 156,
+            "movement": -148
           }
         ]
       }
@@ -3878,8 +3866,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 53,
-            "movement": -10
+            "position": 59,
+            "movement": -13
           }
         ]
       }
@@ -3910,8 +3898,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 44,
-            "movement": -5
+            "position": 45,
+            "movement": -6
           }
         ]
       }
@@ -4121,6 +4109,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d3d1d769407f8180412a67a4f9ef7c85/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Olorun",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 20,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Psycho",
     "platforms": [
       {
@@ -4303,8 +4311,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
-            "movement": -127
+            "position": 169,
+            "movement": -143
           }
         ]
       }

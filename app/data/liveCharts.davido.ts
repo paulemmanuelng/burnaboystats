@@ -262,8 +262,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 57,
-            "movement": -5
+            "position": 55,
+            "movement": 1
           }
         ]
       }
@@ -502,7 +502,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 4,
-            "movement": 106
+            "movement": 3
           }
         ]
       },
@@ -694,8 +694,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": 95
+            "position": 15,
+            "movement": 116
           }
         ]
       },
@@ -879,8 +879,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 139,
-            "movement": -128
+            "position": 158,
+            "movement": -146
           }
         ]
       },
@@ -1072,7 +1072,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 6,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -1164,8 +1164,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": -4
+            "position": 8,
+            "movement": -5
           },
           {
             "country": "ZW",
@@ -1176,8 +1176,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 195,
-            "movement": -27
+            "position": 196,
+            "movement": -19
           }
         ]
       },
@@ -1378,8 +1378,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": 94
+            "position": 14,
+            "movement": 115
           }
         ]
       },
@@ -1616,8 +1616,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 144,
-            "movement": -128
+            "position": 163,
+            "movement": -145
           }
         ]
       }
@@ -1889,8 +1889,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
-            "movement": -3
+            "position": 35,
+            "movement": -4
           }
         ]
       }
@@ -2165,6 +2165,80 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Amazing Grace",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 21,
+            "movement": -2
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 59,
+            "movement": -21
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 122,
+            "movement": -67
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 145,
+            "movement": 4
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 118,
+            "movement": -21
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 3,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 42,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Gimme Dat Ting",
     "platforms": [
       {
@@ -2232,80 +2306,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Amazing Grace",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 21,
-            "movement": -2
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 59,
-            "movement": -21
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 122,
-            "movement": -67
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 145,
-            "movement": 4
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 118,
-            "movement": -21
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 10,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 42,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Fall",
     "platforms": [
       {
@@ -2346,19 +2346,19 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 16,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 35,
-            "movement": 7
+            "position": 36,
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 46,
-            "movement": 11
+            "movement": 4
           }
         ]
       }
@@ -2451,25 +2451,25 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 33,
-            "movement": 13
+            "movement": 3
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 38,
-            "movement": 8
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 78,
-            "movement": 9
+            "position": 39,
+            "movement": 0
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 79,
             "movement": 0
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 79,
+            "movement": -9
           }
         ]
       }
@@ -2580,7 +2580,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
+            "position": 105,
             "movement": null,
             "status": "new"
           }
@@ -2814,7 +2814,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 49,
-            "movement": 11
+            "movement": 6
           }
         ]
       }
@@ -3172,8 +3172,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 51,
-            "movement": -27
+            "position": 55,
+            "movement": -25
           }
         ]
       }
@@ -3190,8 +3190,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 197,
-            "movement": -27
+            "position": 198,
+            "movement": -19
           }
         ]
       }
@@ -3209,8 +3209,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 168,
-            "movement": -130
+            "position": 187,
+            "movement": -143
           }
         ]
       }

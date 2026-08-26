@@ -258,7 +258,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 149,
-            "movement": -2
+            "movement": -3
           },
           {
             "country": "TT",
@@ -314,28 +314,27 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 10,
+            "position": 11,
             "movement": null,
             "status": "new"
           },
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 62,
+            "position": 67,
             "movement": null,
             "status": "new"
           },
           {
             "country": "PE",
             "name": "Peru",
-            "position": 145,
-            "movement": null,
-            "status": "new"
+            "position": 146,
+            "movement": -123
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 183,
+            "position": 181,
             "movement": null,
             "status": "new"
           }
@@ -578,8 +577,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
-            "movement": -129
+            "position": 184,
+            "movement": -149
           }
         ]
       }
@@ -1107,7 +1106,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 78,
+            "position": 82,
             "movement": null,
             "status": "new"
           }
@@ -1212,8 +1211,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
-            "movement": -3
+            "position": 96,
+            "movement": -4
           }
         ]
       }
@@ -1303,19 +1302,19 @@
             "country": "GH",
             "name": "Ghana",
             "position": 65,
-            "movement": 2
+            "movement": 1
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 79,
-            "movement": 6
+            "movement": 4
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": 21
+            "position": 98,
+            "movement": 10
           }
         ]
       }
@@ -1774,8 +1773,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
-            "movement": -129
+            "position": 160,
+            "movement": -146
           }
         ]
       },
@@ -1818,7 +1817,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 6,
+            "position": 7,
             "movement": null,
             "status": "new"
           },
@@ -1852,18 +1851,6 @@
             "name": "Nigeria",
             "position": 80,
             "movement": -6
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 194,
-            "movement": -138
           }
         ]
       },
@@ -1905,8 +1892,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 84,
-            "movement": 9
+            "position": 85,
+            "movement": -10
           }
         ]
       },
@@ -1979,8 +1966,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
-            "movement": 15
+            "position": 159,
+            "movement": 5
           }
         ]
       }
@@ -2149,7 +2136,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 48,
-            "movement": 2
+            "movement": 1
           },
           {
             "country": "GD",
@@ -2160,14 +2147,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 97,
-            "movement": 1
+            "position": 98,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 116,
-            "movement": 15
+            "position": 117,
+            "movement": 3
           }
         ]
       }
@@ -2354,8 +2341,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 78,
-            "movement": -12
+            "position": 79,
+            "movement": -13
           },
           {
             "country": "CM",
@@ -2456,7 +2443,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
+            "position": 26,
             "movement": null,
             "status": "new"
           }
@@ -2476,7 +2463,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
+            "position": 38,
             "movement": null,
             "status": "new"
           }
@@ -2496,7 +2483,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
+            "position": 44,
             "movement": null,
             "status": "new"
           }
@@ -2545,43 +2532,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BROWN SKIN GIRL",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 149,
-            "movement": -128
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "Bad Girl",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 150,
-            "movement": -127
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Tonight",
     "platforms": [
       {
@@ -2618,6 +2568,43 @@
       }
     ],
     "kind": "song"
+  },
+  {
+    "title": "BROWN SKIN GIRL",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 168,
+            "movement": -144
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Bad Girl",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 169,
+            "movement": -143
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SoundMan, Vol. 1",

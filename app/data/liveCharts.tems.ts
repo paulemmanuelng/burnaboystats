@@ -124,7 +124,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 14,
-            "movement": 2
+            "movement": 1
           },
           {
             "country": "YE",
@@ -293,7 +293,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 47,
-            "movement": -1
+            "movement": -4
           },
           {
             "country": "LR",
@@ -389,7 +389,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 69,
-            "movement": 8
+            "movement": 6
           },
           {
             "country": "GH",
@@ -437,7 +437,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 80,
-            "movement": 9
+            "movement": 3
           },
           {
             "country": "SZ",
@@ -573,7 +573,7 @@
             "country": "FR",
             "name": "France",
             "position": 178,
-            "movement": 0
+            "movement": -3
           },
           {
             "country": "ID",
@@ -1190,7 +1190,7 @@
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 2,
-            "movement": 33
+            "movement": 37
           },
           {
             "country": "FJ",
@@ -1199,35 +1199,35 @@
             "movement": -1
           },
           {
+            "country": "RO",
+            "name": "Romania",
+            "position": 8,
+            "movement": -1
+          },
+          {
             "country": "IN",
             "name": "India",
             "position": 10,
-            "movement": -4
+            "movement": -5
           },
           {
-            "country": "GR",
-            "name": "Greece",
-            "position": 12,
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 16,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "RO",
-            "name": "Romania",
-            "position": 12,
-            "movement": -5
+            "country": "GR",
+            "name": "Greece",
+            "position": 17,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "HU",
             "name": "Hungary",
             "position": 31,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 43,
             "movement": null,
             "status": "new"
           },
@@ -1241,20 +1241,20 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 82,
-            "movement": -10
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 143,
-            "movement": -129
+            "position": 83,
+            "movement": -9
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 150,
-            "movement": -83
+            "position": 151,
+            "movement": -72
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 162,
+            "movement": -146
           }
         ]
       },
@@ -1735,8 +1735,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 198,
-            "movement": -27
+            "position": 200,
+            "movement": -20
           }
         ]
       },
@@ -1895,7 +1895,7 @@
             "country": "US",
             "name": "United States",
             "position": 134,
-            "movement": -15
+            "movement": -6
           },
           {
             "country": "VG",
@@ -2084,8 +2084,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 84,
-            "movement": 9
+            "position": 85,
+            "movement": -10
           }
         ]
       },
