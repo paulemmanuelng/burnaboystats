@@ -202,14 +202,14 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 47,
-            "movement": -13
+            "position": 49,
+            "movement": -15
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 56,
-            "movement": -4
+            "position": 53,
+            "movement": -1
           },
           {
             "country": "DM",
@@ -312,17 +312,17 @@
             "movement": -108
           },
           {
+            "country": "FR",
+            "name": "France",
+            "position": 181,
+            "movement": -6
+          },
+          {
             "country": "KW",
             "name": "Kuwait",
             "position": 185,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 187,
-            "movement": -12
           },
           {
             "country": "CY",
@@ -335,6 +335,12 @@
             "name": "Mauritius",
             "position": 189,
             "movement": -102
+          },
+          {
+            "country": "KY",
+            "name": "Cayman Islands",
+            "position": 200,
+            "movement": -135
           }
         ]
       }
@@ -1086,6 +1092,19 @@
             "name": "Malawi",
             "position": 180,
             "movement": -112
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 101,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -2030,8 +2049,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 74,
-            "movement": -18
+            "position": 77,
+            "movement": -21
           }
         ]
       }
@@ -3510,7 +3529,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 7,
+            "position": 10,
             "movement": null,
             "status": "new"
           },
@@ -3803,8 +3822,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 156,
-            "movement": -148
+            "position": 162,
+            "movement": -154
           }
         ]
       }
@@ -3898,8 +3917,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 45,
-            "movement": -6
+            "position": 44,
+            "movement": -5
           }
         ]
       }
@@ -4118,7 +4137,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 20,
+            "position": 23,
             "movement": null,
             "status": "new"
           }
@@ -4311,8 +4330,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
-            "movement": -143
+            "position": 175,
+            "movement": -149
           }
         ]
       }

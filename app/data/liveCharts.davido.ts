@@ -141,8 +141,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 38,
-            "movement": 1
+            "position": 37,
+            "movement": 2
           },
           {
             "country": "BW",
@@ -195,8 +195,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 101,
-            "movement": -3
+            "position": 103,
+            "movement": -5
           },
           {
             "country": "CG",
@@ -262,8 +262,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
-            "movement": 1
+            "position": 53,
+            "movement": 3
           }
         ]
       }
@@ -879,8 +879,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
-            "movement": -146
+            "position": 164,
+            "movement": -152
           }
         ]
       },
@@ -1176,8 +1176,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 196,
-            "movement": -19
+            "position": 199,
+            "movement": -22
           }
         ]
       },
@@ -1616,8 +1616,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 163,
-            "movement": -145
+            "position": 169,
+            "movement": -151
           }
         ]
       }
@@ -2216,7 +2216,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 3,
+            "position": 5,
             "movement": null,
             "status": "new"
           }
@@ -3181,25 +3181,6 @@
     "kind": "song"
   },
   {
-    "title": "Aye",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 198,
-            "movement": -19
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9119c622011c2f9e2c0fd2ae9bcaec51/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Holiday",
     "platforms": [
       {
@@ -3209,8 +3190,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 187,
-            "movement": -143
+            "position": 193,
+            "movement": -149
           }
         ]
       }

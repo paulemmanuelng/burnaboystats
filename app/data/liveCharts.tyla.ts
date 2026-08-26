@@ -252,17 +252,17 @@
             "movement": 99
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 102,
-            "movement": -16
-          },
-          {
             "country": "SB",
             "name": "Solomon Islands",
             "position": 102,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 103,
+            "movement": -17
           },
           {
             "country": "AO",
@@ -288,12 +288,6 @@
             "position": 116,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 128,
-            "movement": 13
           },
           {
             "country": "BM",
@@ -339,6 +333,12 @@
             "movement": -44
           },
           {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 144,
+            "movement": -3
+          },
+          {
             "country": "BE",
             "name": "Belgium",
             "position": 146,
@@ -371,12 +371,6 @@
             "status": "new"
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 165,
-            "movement": 7
-          },
-          {
             "country": "LU",
             "name": "Luxembourg",
             "position": 173,
@@ -384,10 +378,16 @@
             "status": "new"
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 174,
+            "movement": -2
+          },
+          {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 177,
-            "movement": 9
+            "position": 175,
+            "movement": 11
           },
           {
             "country": "MN",
@@ -635,6 +635,19 @@
             "name": "Australia",
             "position": 100,
             "movement": -34
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UA",
+            "name": "Ukraine",
+            "position": 94,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1066,8 +1079,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 79,
-            "movement": -18
+            "position": 82,
+            "movement": -21
           }
         ]
       }

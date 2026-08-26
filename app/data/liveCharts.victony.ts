@@ -217,16 +217,16 @@
             "movement": -52
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 104,
-            "movement": -3
-          },
-          {
             "country": "QA",
             "name": "Qatar",
             "position": 105,
             "movement": -76
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 107,
+            "movement": -6
           },
           {
             "country": "KN",
@@ -256,8 +256,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 169,
-            "movement": -3
+            "position": 163,
+            "movement": 3
           },
           {
             "country": "AE",
@@ -526,8 +526,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 22,
-            "movement": -18
+            "position": 25,
+            "movement": -21
           },
           {
             "country": "NA",
@@ -783,16 +783,16 @@
             "movement": -6
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 41,
-            "movement": -2
-          },
-          {
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 42,
             "movement": -9
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 44,
+            "movement": -5
           },
           {
             "country": "QA",
@@ -904,22 +904,28 @@
             "movement": -63
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 166,
-            "movement": -23
-          },
-          {
             "country": "SA",
             "name": "Saudi Arabia",
             "position": 167,
             "movement": -83
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 170,
+            "movement": -19
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 173,
+            "movement": -30
+          },
+          {
             "country": "US",
             "name": "United States",
-            "position": 170,
-            "movement": -20
+            "position": 174,
+            "movement": -24
           },
           {
             "country": "LU",

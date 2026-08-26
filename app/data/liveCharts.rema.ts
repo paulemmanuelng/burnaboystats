@@ -328,14 +328,14 @@
           {
             "country": "ES",
             "name": "Spain",
-            "position": 132,
+            "position": 173,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 188,
+            "position": 191,
             "movement": null,
             "status": "new"
           }
@@ -1138,8 +1138,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 40,
-            "movement": -18
+            "position": 43,
+            "movement": -21
           }
         ]
       },
@@ -1263,8 +1263,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
-            "movement": -18
+            "position": 33,
+            "movement": -21
           }
         ]
       }
@@ -1325,8 +1325,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 51,
-            "movement": -18
+            "position": 54,
+            "movement": -21
           }
         ]
       }
@@ -1394,8 +1394,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 50,
-            "movement": -18
+            "position": 53,
+            "movement": -21
           }
         ]
       }
