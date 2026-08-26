@@ -356,8 +356,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
-            "movement": 54
+            "position": 12,
+            "movement": 71
           }
         ]
       },
@@ -630,13 +630,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 3,
-            "movement": 3
+            "movement": 21
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 30,
-            "movement": -20
+            "movement": -9
           }
         ]
       },
@@ -1200,7 +1200,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 70,
-            "movement": -9
+            "movement": -7
           }
         ]
       }
@@ -1422,6 +1422,26 @@
     "kind": "album"
   },
   {
+    "title": "ARTIFICIAL HAPPINESS",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 35,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "I Can't Stop",
     "platforms": [
       {
@@ -1634,12 +1654,6 @@
       }
     ],
     "kind": "song"
-  },
-  {
-    "title": "People",
-    "platforms": [],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   }
 ];
   

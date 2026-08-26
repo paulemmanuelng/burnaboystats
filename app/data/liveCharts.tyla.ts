@@ -243,7 +243,7 @@
             "country": "BR",
             "name": "Brazil",
             "position": 98,
-            "movement": -14
+            "movement": -22
           },
           {
             "country": "RO",
@@ -317,7 +317,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 141,
-            "movement": 1
+            "movement": 31
           },
           {
             "country": "AG",
@@ -342,7 +342,7 @@
             "country": "NZ",
             "name": "New Zealand",
             "position": 153,
-            "movement": -60
+            "movement": -59
           },
           {
             "country": "MU",
@@ -381,7 +381,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 177,
-            "movement": 7
+            "movement": 17
           },
           {
             "country": "MN",
@@ -393,7 +393,8 @@
             "country": "NO",
             "name": "Norway",
             "position": 186,
-            "movement": -1
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GH",
@@ -411,13 +412,13 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 3,
-            "movement": 7
+            "movement": 11
           },
           {
             "country": "MY",
             "name": "Malaysia",
             "position": 82,
-            "movement": 20
+            "movement": -22
           }
         ]
       }
@@ -527,28 +528,16 @@
             "status": "new"
           },
           {
-            "country": "MD",
-            "name": "Moldova",
-            "position": 78,
-            "movement": -9
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 150,
-            "movement": -18
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 158,
+            "country": "IT",
+            "name": "Italy",
+            "position": 166,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "IT",
-            "name": "Italy",
-            "position": 166,
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 200,
             "movement": null,
             "status": "new"
           }
@@ -563,111 +552,6 @@
             "name": "Sweden",
             "position": 176,
             "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "CHANEL",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SV",
-            "name": "El Salvador",
-            "position": 9,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 50,
-            "movement": 14
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 57,
-            "movement": 10
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 68,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 69,
-            "movement": 0
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 75,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 76,
-            "movement": 9
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 77,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 85,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 100,
-            "movement": -34
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UA",
-            "name": "Ukraine",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 146,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -728,8 +612,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 83,
-            "movement": -18
+            "position": 127,
+            "movement": 23
           }
         ]
       },
@@ -934,44 +818,43 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "PUSH 2 START",
+    "title": "CHANEL",
     "platforms": [
       {
-        "platform": "Deezer",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 93,
+            "country": "UA",
+            "name": "Ukraine",
+            "position": 98,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "EE",
-            "name": "Estonia",
-            "position": 95,
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 188,
             "movement": null,
             "status": "new"
           }
         ]
       },
       {
-        "platform": "iTunes",
+        "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 135,
-            "movement": null,
-            "status": "new"
+            "country": "IT",
+            "name": "Italy",
+            "position": 83,
+            "movement": -19
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Water",
@@ -1004,6 +887,39 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 177,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "EE",
+            "name": "Estonia",
+            "position": 65,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DOUBLE BLIND",
@@ -1069,6 +985,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "HOT TUBS",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 20,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT",

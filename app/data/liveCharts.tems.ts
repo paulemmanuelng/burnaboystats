@@ -1187,17 +1187,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 2,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 2,
-            "movement": 37
+            "movement": 39
+          },
+          {
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 3,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "FJ",
@@ -1206,48 +1206,48 @@
             "movement": -1
           },
           {
+            "country": "IN",
+            "name": "India",
+            "position": 12,
+            "movement": -1
+          },
+          {
             "country": "ZA",
             "name": "South Africa",
-            "position": 9,
+            "position": 15,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "IN",
-            "name": "India",
-            "position": 11,
-            "movement": -6
-          },
-          {
             "country": "RO",
             "name": "Romania",
-            "position": 11,
-            "movement": 0
+            "position": 17,
+            "movement": 8
           },
           {
             "country": "GR",
             "name": "Greece",
-            "position": 31,
+            "position": 36,
             "movement": null,
             "status": "new"
           },
           {
             "country": "HU",
             "name": "Hungary",
-            "position": 36,
+            "position": 43,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 85,
-            "movement": -9
+            "position": 83,
+            "movement": -6
           },
           {
             "country": "LU",
             "name": "Luxembourg",
-            "position": 92,
+            "position": 95,
             "movement": null,
             "status": "new"
           },
@@ -1255,13 +1255,13 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 186,
-            "movement": -94
+            "movement": -83
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 191,
-            "movement": -171
+            "position": 197,
+            "movement": -160
           }
         ]
       },
@@ -1270,49 +1270,50 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "IL",
+            "name": "Israel",
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
+            "position": 21,
             "movement": null,
             "status": "new"
           },
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 27,
+            "position": 42,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 33,
-            "movement": -3
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 37,
-            "movement": -1
+            "position": 47,
+            "movement": -11
           },
           {
-            "country": "SG",
-            "name": "Singapore",
-            "position": 43,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 70,
-            "movement": -58
+            "country": "SN",
+            "name": "Senegal",
+            "position": 49,
+            "movement": -19
           },
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 82,
-            "movement": 7
+            "position": 71,
+            "movement": 18
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 97,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1725,7 +1726,7 @@
             "country": "MU",
             "name": "Mauritius",
             "position": 56,
-            "movement": -6
+            "movement": -5
           }
         ]
       },
@@ -1842,18 +1843,6 @@
             "position": 199,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 70,
-            "movement": -31
           }
         ]
       }
@@ -2074,7 +2063,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 84,
-            "movement": -7
+            "movement": -5
           }
         ]
       },
