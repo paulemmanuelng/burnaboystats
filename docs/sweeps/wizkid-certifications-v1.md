@@ -8,7 +8,7 @@
 - ✓* = confirmed body-side at the tier class, where the body's public record omits the exact multiplier
 - no mark = kept from Wikipedia because the body publishes no verifiable record (now only 🇳🇿 and 🇵🇱)
 
-## Total: **156 certifications** across 21 countries
+## Total: **158 certifications** across 21 countries
 
 > **Why the number moved from 117 → 155.** The second pass did two things. It **closed two of the four unverifiable bodies**: ARIA's register turned out to be alive inside a Dropbox folder of 68 accreditation PDFs (One Dance 17× Platinum and Brown Skin Girl Gold both confirmed at source), and IFPI Greece's certifications turned out to live in an unlabelled `Award` column inside the weekly digital-singles chart, reconstructible from 512 Wayback captures (One Dance 3× Platinum confirmed). Neither changed the count — both upgraded Wikipedia-cited rows to register-confirmed.
 >
@@ -233,3 +233,32 @@ confirmed at source:
 
 Nothing else in the sweep changed his count. France, in particular, was read in
 full and matched what was already published exactly.
+
+---
+
+## "Joro", 26 August 2026 — +2 (156 → 158)
+
+Paul flagged a Belgian certification for "Joro" that the sweeps had missed.
+Checking it turned up a second gap on the same record.
+
+- **Belgium (BRMA) — Gold**, 20,000 units.
+- **Nigeria (TCSN) — 2× Platinum**, 200,000 units.
+
+**Provenance, stated because it is weaker than this file's usual standard.**
+Belgium's register could not be read. BEA's successor body BRMA publishes no
+register of its own — belgianentertainment.be redirects to brma.be, whose
+/awards path returns 404 — and Ultratop, the sole publisher, now sits behind a
+Cloudflare Turnstile with an interactive "verify you are human" checkbox. That
+is a bot check, and completing one is out of bounds, so the register is
+genuinely unreachable rather than merely awkward.
+
+Both figures therefore come from the song's cited certification table, which
+names BRMA and TCSN with unit thresholds — the same provenance this site
+already accepts for Billboard, where billboard.com is likewise unreadable.
+Recorded here so nobody mistakes it for a register read.
+
+**The Nigerian one is the more interesting miss.** TCSN's live register caps at
+500 rows and serves no Silver tier, which is the documented Nigerian gap on
+this board — so a 2× Platinum sitting outside that window is exactly the shape
+of thing those sweeps cannot see. Other Wizkid titles may be missing Nigerian
+plaques for the same reason, and that has NOT been checked.
