@@ -486,20 +486,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": 0
+            "position": 17,
+            "movement": -2
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 59,
-            "movement": -2
+            "position": 62,
+            "movement": -3
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 146,
-            "movement": -2
+            "position": 154,
+            "movement": -8
           }
         ]
       },
@@ -664,8 +664,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 111,
-            "movement": -24
+            "position": 115,
+            "movement": -4
           }
         ]
       }

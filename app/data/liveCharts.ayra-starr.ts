@@ -460,12 +460,6 @@
             "movement": 0
           },
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 6,
-            "movement": -2
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 7,
@@ -477,6 +471,12 @@
             "name": "Burkina Faso",
             "position": 9,
             "movement": -2
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 9,
+            "movement": -5
           },
           {
             "country": "ZW",
@@ -492,6 +492,12 @@
             "movement": -8
           },
           {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 26,
+            "movement": 44
+          },
+          {
             "country": "LT",
             "name": "Lithuania",
             "position": 36,
@@ -503,12 +509,6 @@
             "name": "Barbados",
             "position": 57,
             "movement": -12
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 87,
-            "movement": -17
           }
         ]
       },
@@ -2876,8 +2876,8 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 24,
-            "movement": -11
+            "position": 25,
+            "movement": -12
           }
         ]
       }
@@ -3218,8 +3218,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 26,
-            "movement": -19
+            "position": 29,
+            "movement": -22
           }
         ]
       },
@@ -3385,6 +3385,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d30dbeb4d445f5cc6f7f100b830731c4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Take It To The Top",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "Toxic",

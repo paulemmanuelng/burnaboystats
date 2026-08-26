@@ -361,7 +361,7 @@
           {
             "country": "ES",
             "name": "Spain",
-            "position": 175,
+            "position": 190,
             "movement": null,
             "status": "new"
           }
@@ -1151,8 +1151,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 43,
-            "movement": -19
+            "position": 47,
+            "movement": -23
           }
         ]
       },
@@ -1275,8 +1275,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 33,
-            "movement": -19
+            "position": 36,
+            "movement": -22
           }
         ]
       }
@@ -1337,8 +1337,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 54,
-            "movement": -19
+            "position": 57,
+            "movement": -22
           }
         ]
       }
@@ -1387,32 +1387,14 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 49,
-            "movement": -24
+            "position": 50,
+            "movement": -25
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Favourite Girl",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 53,
-            "movement": -19
-          }
-        ]
-      }
-    ],
-    "kind": "song"
   },
   {
     "title": "Trouble Maker",
@@ -1434,6 +1416,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Favourite Girl",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 56,
+            "movement": -22
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "For Her",
     "platforms": [
       {
@@ -1443,8 +1443,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 64,
-            "movement": -4
+            "position": 65,
+            "movement": -5
           }
         ]
       }

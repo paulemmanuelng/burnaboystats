@@ -1254,8 +1254,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 182,
-            "movement": -90
+            "position": 186,
+            "movement": -94
           },
           {
             "country": "NG",
@@ -2073,8 +2073,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 85,
-            "movement": -8
+            "position": 84,
+            "movement": -7
           }
         ]
       },

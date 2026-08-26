@@ -525,14 +525,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 25,
-            "movement": -19
+            "position": 28,
+            "movement": -22
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 72,
-            "movement": -17
+            "position": 85,
+            "movement": -30
           }
         ]
       },
