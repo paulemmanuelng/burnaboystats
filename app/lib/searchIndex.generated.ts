@@ -2269,7 +2269,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On the Low",
     "path": "/music/on-the-low",
     "section": "Release",
-    "description": "9 certifications · 2 chart entries.",
+    "description": "10 certifications · 2 chart entries.",
     "keywords": [
       "song",
       "release"

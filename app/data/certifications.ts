@@ -91,6 +91,26 @@ export const albums: Release[] = [
   ] },
 ];
 
+  // SWEDEN (GLF / Ifpi Sverige). Ifpi Sverige stopped publishing an awarded-
+  // certification register after 2004, which is why these rows sat unsourced for
+  // so long. The register did not disappear -- it moved behind the trade. GLF's
+  // own music database, Grammotex, carries a "Guld/Platina" line per article
+  // giving tier, certificate number and award date, and the record pages are
+  // PUBLIC at http://sys2.grammotex.se/netdata/grp006.MBR/artdata?sart=<id>
+  // (HTTP only -- https times out, which is what made earlier sweeps call the
+  // site dead). Only the SEARCH is login-walled, so ids must come from a trade
+  // account; the records themselves anyone can read.
+  //
+  // GLF is Ifpi Sverige: the Grammotex footer and ifpi.se/kontakt publish the
+  // same telephone number, 08-735 97 50. So these are body records, not a cited
+  // table -- read directly on 27 Aug 2026:
+  //   On The Low      Platinum  cert. no. 10448  2023-08-16  (sart pending)
+  //   Ye ("Yeh")      Platinum  cert. no. 10450  2023-08-16  ISRC USAT21800327
+  //   African Giant   Guld      cert. no. 10452  2023-08-16  album
+  //   Gbona           Guld      cert. no. 10453  2023-08-16  sart=9225432
+  // All four were awarded the same day. 10449 and 10451 are unaccounted for and
+  // may well be his too -- worth a look if trade access is ever available.
+
 // Burna Boy's own (lead) singles.
 export const singles: Release[] = [
   // Billed "Shakira & Burna Boy" — Deezer's contributor list for every edition
@@ -139,6 +159,14 @@ export const singles: Release[] = [
   { title: "Gbona", year: 2018, certs: [
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "CH", level: "Platinum" },
     { c: "SE", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Gold" },
+  ] },
+  // Released 16 Nov 2018. Wikipedia's table also claims AU Gold, CA Platinum,
+  // DK Gold, FR Diamond, NZ Platinum, NG Silver, CH Platinum, UK Platinum and
+  // US Gold. NONE of those are here yet: a cited table is not a source, and each
+  // needs reading at its own body before it earns a row. Sweden leads because
+  // Sweden is the one that has been.
+  { title: "On The Low", year: 2018, certs: [
+    { c: "SE", level: "Platinum" },
   ] },
   { title: "It's Plenty", year: 2022, certs: [
     { c: "NG", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" },
@@ -515,6 +543,11 @@ export const certHistory: CertEvent[] = [
   { title: "City Boys", country: "UK", level: "Silver", year: 2024 },
   { title: "I Told Them...", album: true, country: "UK", level: "Silver", year: 2024 },
 
+  // GLF/Grammotex, read 27 Aug 2026. All four certified 2023-08-16.
+  { title: "On The Low", country: "SE", level: "Platinum", year: 2023 },
+  { title: "Ye", country: "SE", level: "Platinum", year: 2023 },
+  { title: "African Giant", album: true, country: "SE", level: "Gold", year: 2023 },
+  { title: "Gbona", country: "SE", level: "Gold", year: 2023 },
   { title: "Last Last", country: "FR", level: "Platinum", year: 2023 },
   { title: "Last Last", country: "NZ", level: "Platinum", year: 2023 },
   { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", country: "UK", level: "Platinum", x: 3, year: 2023 },

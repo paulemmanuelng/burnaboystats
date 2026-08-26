@@ -52,9 +52,9 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(230); // 230th: Dai Dai Gold in Italy, at FIMI's register 17 Aug 2026
+    expect(totalAwards()).toBe(231); // 231st: On The Low Platinum in Sweden, GLF cert. no. 10448
     expect(countryCount).toBe(26);
-    expect(certifiedReleaseCount).toBe(85); // TaTaTa, Update, Love, Dem Dey join via TCSN
+    expect(certifiedReleaseCount).toBe(86); // + On The Low, whose only sourced plaque so far is Swedish
   });
 });
 
@@ -95,8 +95,9 @@ describe("certHistory (certifications by year)", () => {
     expect(certHistory.filter((e) => e.year === 2024).length).toBe(20);
   });
 
-  it("2023 has the published count of 39 certifications", () => {
-    expect(certHistory.filter((e) => e.year === 2023).length).toBe(39);
+  it("2023 has the published count of 43 certifications", () => {
+    // 39 + the four Swedish awards of 2023-08-16, read at GLF/Grammotex.
+    expect(certHistory.filter((e) => e.year === 2023).length).toBe(43);
   });
 });
 

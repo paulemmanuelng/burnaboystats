@@ -35,6 +35,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-27",
+    category: "Certifications",
+    text: "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023 — his 231st certification worldwide. It surfaced with three others read the same day from Grammotex, the music database run by GLF, which is Ifpi Sverige under its older name: “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453). Sweden stopped publishing an awarded-certification register after 2004, so those last three had sat here for months carrying the right tier and no source. They now carry a certificate number.",
+    href: "/certifications",
+  },
+  {
     date: "2026-08-22",
     category: "Streaming",
     text: "A 37th day as the most-streamed song on Earth — and a record equalled. “Dai Dai” holds No. 1 on Spotify's Global Daily Top Songs chart with 3,898,249 streams, drawing level with “WAP” by Cardi B and Megan Thee Stallion for the most days any song has ever spent atop the chart. No other African artist has reached No. 1 on it at all, let alone stayed 30 days.",
@@ -169,7 +175,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-17",
     category: "Certifications",
-    text: "Gold in Italy: FIMI certifies “Dai Dai” for 100,000 units in its week-33 list — Burna Boy's 230th certification worldwide, and only his second Italian plaque after “Jerusalema (Remix)” went 4× Platinum there.",
+    text: "Gold in Italy: FIMI certifies “Dai Dai” for 100,000 units in its week-33 list — Burna Boy's 231st certification worldwide, and only his second Italian plaque after “Jerusalema (Remix)” went 4× Platinum there.",
     href: "/certifications",
   },
   {
