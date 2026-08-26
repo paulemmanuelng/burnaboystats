@@ -81,7 +81,7 @@ describe("handoff checklist — data integrity", () => {
     expect(numberOnes).toBe(ones);
   });
 
-  it("counts 82 award wins from 236 nominations across 46 bodies", () => {
+  it("counts 82 award wins from 240 nominations across 46 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -92,8 +92,15 @@ describe("handoff checklist — data integrity", () => {
     // 234 -> 236 on 20 Aug 2026: the two 2026 MTV VMA nominations for
     // "Dai Dai" (Best Collaboration, Best Latin), announced 18 August. Wins
     // stay at 82 — the ceremony is 27 September, so both are pending.
+    //
+    // 236 -> 240 on 26 Aug 2026: four nominations at the 18th Headies,
+    // announced that day, ceremony 25 October in Toronto. Wins stay at 82;
+    // all four are pending. The published lists group by song and so file
+    // "Producer of the Year" for "Bundle by Bundle" under his name — that one
+    // belongs to the producer, DK, and is deliberately NOT counted, which is
+    // why this is +4 and not +5.
     expect(wins).toBe(82);
-    expect(allNoms.length).toBe(236);
+    expect(allNoms.length).toBe(236 + 4);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
     expect(ceremonyCount).toBe(46);

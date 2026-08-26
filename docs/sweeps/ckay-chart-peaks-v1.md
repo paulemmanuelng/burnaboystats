@@ -8,11 +8,11 @@ charts are recorded separately as GLB and GLBX, not as countries.
 
 ## Headline
 
-- **22 chart entries** (title × country pairs)
-- **15 countries**, plus Billboard Global Excl. US — **16 chart territories**
+- **28 chart entries** (title × country pairs)
+- **15 countries**, plus the US, Canada and both Billboard global charts — **19 chart territories**
 - **5 No. 1 placements** across **5 countries**
 
-## Singles — 17
+## Singles — 21
 
 | release | chart peaks by country | |
 |---|---|---|
@@ -20,9 +20,9 @@ charts are recorded separately as GLB and GLBX, not as countries.
 | BODY (danz) | 🇳🇬 #1 | **1** |
 | Emiliana | 🇸🇪 #90 | **1** |
 
-**Singles subtotal: 15 + 1 + 1 = 17**
+**Singles subtotal: 18 + 1 + 2 = 21**
 
-## Albums — 5
+## Albums — 7
 
 | release | chart peaks by country | |
 |---|---|---|
@@ -30,13 +30,14 @@ charts are recorded separately as GLB and GLBX, not as countries.
 | Boyfriend | 🇫🇷 #60 | **1** |
 | Sad Romance | 🇫🇷 #88 | **1** |
 
-**Albums subtotal: 3 + 1 + 1 = 5**
+**Albums subtotal: 5 + 1 + 1 = 7**
 
-**Total: 17 + 5 = 22 chart entries.**
+**Total: 21 + 7 = 28 chart entries.**
 
-Distribution check — the 22 entries fall in 15 countries plus 1 supranational
-Billboard chart: 🇫🇷 4, 🇳🇱 2, 🇩🇰 2, 🇸🇪 2, then twelve territories with 1 each
-(🇨🇭 🇳🇴 🌐 GLBX 🇳🇿 🇬🇧 🇦🇹 🇩🇪 🇦🇺 🇧🇪 🇮🇹 🇪🇸 🇳🇬). Sum: 4 + 2 + 2 + 2 + 12 = **22** ✓
+Distribution check — the 28 entries fall in 17 countries plus both Billboard
+worldwide charts: 🇫🇷 4, 🇺🇸 2, 🇨🇦 2, 🌐 GLB 2, 🇳🇱 2, 🇩🇰 2, 🇸🇪 2, then twelve
+territories with 1 each (🇨🇭 🇳🇴 🌐 GLBX 🇳🇿 🇬🇧 🇦🇹 🇩🇪 🇦🇺 🇧🇪 🇮🇹 🇪🇸 🇳🇬).
+Sum: 4 + (6 × 2) + 12 = **28** ✓
 No country appears twice for the same title.
 
 ## The five No. 1s
@@ -71,3 +72,33 @@ Not counted, and not disproved:
 - **Finland** returned a clean nil: the chart loaded and CKay has no entry.
 
 Every one of these can only move the total UP.
+
+---
+
+## Billboard recovered, 26 August 2026 — 22 → 28 entries
+
+The original sweep marked Billboard INACCESSIBLE and published nothing from it.
+That was the wrong call: billboard.com being unreadable is not the same as the
+placements not existing, and "love nwantiti" is one of the best-known Afrobeats
+crossovers on the Hot 100. Paul caught the omission.
+
+Billboard's own site still serves a chart-less shell behind a TollBit paywall,
+so these come from Wikipedia chart tables citing Billboard — the provenance
+this site already accepts for Billboard specifically, and stated here rather
+than left implied.
+
+| release | chart | peak |
+|---|---|---|
+| love nwantiti (ah ah ah) | Billboard Hot 100 | **26** |
+| love nwantiti (ah ah ah) | Canadian Hot 100 | **5** |
+| love nwantiti (ah ah ah) | Billboard Global 200 | **2** |
+| Emiliana | Billboard Global 200 | 176 |
+| CKay The First | Billboard 200 | 117 |
+| CKay The First | Canadian Albums | 20 |
+
+Excluded as genre or format charts, and NOT counted: US Afrobeats Songs No. 1,
+Rhythmic Airplay No. 1, Pop Airplay No. 20 for "love nwantiti"; US Afrobeats
+Songs No. 10 for "Emiliana"; US World Albums No. 4 for the EP. A No. 1 on a
+genre chart is not a No. 1.
+
+Territories rise 16 → 19: the US, Canada and the Global 200 join.

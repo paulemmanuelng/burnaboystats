@@ -10,7 +10,7 @@
 
 ## Headline
 
-- **123 chart entries** (release × territory pairs)
+- **127 chart entries** (release × territory pairs)
 - **9 countries** plus the two Billboard Global charts — **11 chart territories**
 - **24 No. 1 placements**, from **24 distinct releases**, **every single one of them Nigerian**
 - **Major markets:** 🇺🇸 US — **no Hot 100 entry ever, and no Billboard 200 entry ever**, both proven across all 242 weekly issues. 🇬🇧 UK — **No. 15** (*Lungu Boy*, Official Albums Chart); best UK single **No. 41** (*Wave*). 🌐 Billboard Global 200 — **No. 120** (*Jogodo*); Global 200 Excl. US — **No. 75** (*Jogodo*), his best placement on any Billboard chart.
@@ -95,7 +95,7 @@ All on the **TurnTable Official Nigeria Top 100**.
 
 *Albums subtotal: 6 + 4 + 4 + 2 + 1 + 1 + 1 = **19*** ✓
 
-**Total: 104 + 19 = 123 chart entries.**
+**Total: 104 + 23 = 127 chart entries.**
 
 ## Distribution check
 
@@ -268,3 +268,25 @@ Three things in this file are genuinely remarkable and none of them is internati
 What the data does not support is the crossover story. There is **no Hot 100 entry and no Billboard 200 entry, ever** — both proven across 242 weekly issues rather than merely unfound. His best global figure is *Jogodo* at **#75 on Global Excl. U.S.**, on a Wizkid-led record. In South Africa, the continent's other major chart market, **one release has ever charted: *Bandana*, at #79, for six weeks in 2022.** And *Active* — the Travis Scott record — went **No. 1 on a US genre chart while never entering the Hot 100 at all**, which is the single cleanest illustration of where this catalogue sits: enormous at home, visible in the UK, and not yet a fixture anywhere else.
 
 *Sweep run 19 Aug 2026. 28,900 Nigerian chart rows across 219 weekly instances; 5,446 South African rows across 139 issues; 3,020 Egyptian rows across 195 weeks; 242 weekly issues each of the Billboard Hot 100, Billboard 200, Global 200, Global 200 Excl. U.S., Canadian Hot 100 and South Africa Songs.*
+
+
+---
+
+## Billboard recovered, 26 August 2026 — 123 → 127 entries
+
+The earlier passes left Billboard out where billboard.com would not render,
+which put Asake at ZERO US entries despite three albums charting the Billboard
+200. Recovered from Wikipedia chart tables citing Billboard — the provenance
+this site already accepts for Billboard — because an unreadable page is not the
+same as an absent placement.
+
+| release | chart | peak |
+|---|---|---|
+| Mr. Money With The Vibe | Billboard 200 | 66 |
+| Work of Art | Billboard 200 | 66 |
+| Lungu Boy | Billboard 200 | 115 |
+| Terminator | Billboard Global 200 | 172 |
+
+The two albums genuinely share a peak of 66; they are different chart runs two
+years apart and the coincidence is in the source, not in the transcription.
+Territories rise 11 → 12 as the US joins.

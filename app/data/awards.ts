@@ -303,6 +303,19 @@ export const ceremonies: Ceremony[] = [
       { year: 2025, category: "Best Performer (Live)", work: "African Giant Live From London", won: true },
       { year: 2025, category: "Best Recording of the Year", work: "Higher", won: false },
       { year: 2025, category: "Artiste of the Year", won: false },
+      // 18th Headies, announced 26 Aug 2026, ceremony 25 October 2026 in
+      // Toronto. PENDING — the ceremony has not happened, so every row is
+      // won:false and must stay that way until a winners list exists.
+      //
+      // The published nomination lists group by SONG, which puts "Producer of
+      // the Year" for "Bundle by Bundle" under his name. That nomination
+      // belongs to the producer, DK, not to him, and is deliberately not
+      // recorded here — the same rule that keeps producer credits out of the
+      // certification counts.
+      { year: 2026, category: "Best Male Artiste", won: false },
+      { year: 2026, category: "Afrobeats Album of the Year", work: "No Sign of Weakness", won: false },
+      { year: 2026, category: "Afrobeats Single of the Year", work: "Bundle by Bundle", won: false },
+      { year: 2026, category: "Music Video of the Year", work: "Bundle by Bundle", won: false },
     ],
   },
   {
