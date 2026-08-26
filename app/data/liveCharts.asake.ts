@@ -202,14 +202,14 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 45,
-            "movement": -8
+            "position": 44,
+            "movement": -7
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 54,
-            "movement": 1
+            "position": 51,
+            "movement": 4
           },
           {
             "country": "DM",
@@ -314,8 +314,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 184,
-            "movement": -4
+            "position": 181,
+            "movement": -1
           },
           {
             "country": "KW",
@@ -1649,8 +1649,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 168,
-            "movement": -10
+            "position": 159,
+            "movement": -1
           },
           {
             "country": "SN",

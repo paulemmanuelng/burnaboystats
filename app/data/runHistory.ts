@@ -332,7 +332,7 @@
     "date": "2026-08-26",
     "release": "Dai Dai",
     "platform": "Shazam",
-    "position": 10
+    "position": 11
   },
   {
     "date": "2026-08-26",

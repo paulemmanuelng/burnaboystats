@@ -1325,8 +1325,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 68,
-            "movement": -4
+            "position": 67,
+            "movement": -3
           },
           {
             "country": "BE",
@@ -1451,7 +1451,7 @@
           {
             "country": "CZ",
             "name": "Czech Republic",
-            "position": 11,
+            "position": 25,
             "movement": null,
             "status": "new"
           }

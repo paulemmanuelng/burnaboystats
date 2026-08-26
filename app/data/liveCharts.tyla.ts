@@ -242,8 +242,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 98,
-            "movement": -22
+            "position": 97,
+            "movement": -21
           },
           {
             "country": "RO",
@@ -314,12 +314,6 @@
             "movement": -16
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 141,
-            "movement": 31
-          },
-          {
             "country": "AG",
             "name": "Antigua and Barbuda",
             "position": 142,
@@ -333,16 +327,16 @@
             "movement": -44
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 143,
+            "movement": 29
+          },
+          {
             "country": "BE",
             "name": "Belgium",
             "position": 146,
             "movement": -51
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 153,
-            "movement": -59
           },
           {
             "country": "MU",
@@ -371,17 +365,17 @@
             "status": "new"
           },
           {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 171,
+            "movement": -77
+          },
+          {
             "country": "LU",
             "name": "Luxembourg",
             "position": 173,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 177,
-            "movement": 17
           },
           {
             "country": "MN",
@@ -390,11 +384,10 @@
             "movement": -59
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 186,
-            "movement": null,
-            "status": "new"
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 183,
+            "movement": 11
           },
           {
             "country": "GH",
@@ -411,8 +404,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 3,
-            "movement": 11
+            "position": 6,
+            "movement": 8
           },
           {
             "country": "MY",
@@ -510,9 +503,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 188,
-            "movement": null,
-            "status": "new"
+            "position": 195,
+            "movement": -7
           }
         ]
       },
@@ -524,13 +516,6 @@
             "country": "UG",
             "name": "Uganda",
             "position": 9,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 166,
             "movement": null,
             "status": "new"
           },
@@ -818,45 +803,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "CHANEL",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UA",
-            "name": "Ukraine",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 188,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 83,
-            "movement": -19
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Water",
     "platforms": [
       {
@@ -920,6 +866,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "CHANEL",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 188,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 83,
+            "movement": -19
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DOUBLE BLIND",

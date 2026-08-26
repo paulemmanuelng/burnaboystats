@@ -319,8 +319,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 165,
-            "movement": 15
+            "position": 163,
+            "movement": 17
           },
           {
             "country": "GY",
@@ -385,16 +385,16 @@
             "movement": 1
           },
           {
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 7,
+            "movement": 1
+          },
+          {
             "country": "SN",
             "name": "Senegal",
             "position": 8,
             "movement": 6
-          },
-          {
-            "country": "WW",
-            "name": "Worldwide",
-            "position": 8,
-            "movement": 0
           },
           {
             "country": "CI",
@@ -507,7 +507,13 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 57,
+            "position": 58,
+            "movement": -11
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 142,
             "movement": -10
           }
         ]
@@ -901,8 +907,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 47,
-            "movement": -3
+            "position": 45,
+            "movement": -1
           },
           {
             "country": "LB",
@@ -921,8 +927,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 49,
-            "movement": -5
+            "position": 50,
+            "movement": -6
           },
           {
             "country": "CY",
@@ -1029,6 +1035,13 @@
             "status": "new"
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 173,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "DZ",
             "name": "Algeria",
             "position": 174,
@@ -1074,8 +1087,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 6,
-            "movement": -1
+            "position": 7,
+            "movement": -2
           },
           {
             "country": "GH",
@@ -2488,16 +2501,16 @@
             "movement": 17
           },
           {
+            "country": "FR",
+            "name": "France",
+            "position": 94,
+            "movement": 4
+          },
+          {
             "country": "CM",
             "name": "Cameroon",
             "position": 95,
             "movement": -16
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 96,
-            "movement": 2
           },
           {
             "country": "ML",
@@ -2928,8 +2941,8 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 25,
-            "movement": -12
+            "position": 28,
+            "movement": -15
           }
         ]
       }
@@ -3519,25 +3532,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d30dbeb4d445f5cc6f7f100b830731c4/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Take It To The Top",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 12,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Toxic",
     "platforms": [
       {
@@ -3556,6 +3550,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Take It To The Top",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 26,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "Comforter",
