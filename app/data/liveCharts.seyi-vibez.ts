@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-25";
+  export const liveChartsUpdated = "2026-08-26";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","YouTube","iTunes"];
@@ -494,8 +494,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 121,
-            "movement": -115
+            "position": 137,
+            "movement": -130
           }
         ]
       }
@@ -822,26 +822,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b4fe00e347d44e64c014306d1f5f778b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "OPERA MINI",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 197,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5e37e124be45628fb7dfd24df7f1673d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Loseyi Professor",

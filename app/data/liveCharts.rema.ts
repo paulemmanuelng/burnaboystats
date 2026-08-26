@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-25";
+  export const liveChartsUpdated = "2026-08-26";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -310,6 +310,38 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 26,
+            "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 53,
+            "movement": 11
+          },
+          {
+            "country": "ES",
+            "name": "Spain",
+            "position": 117,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 190,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -330,31 +362,6 @@
             "country": "YE",
             "name": "Yemen",
             "position": 173,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 26,
-            "movement": -1
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 58,
-            "movement": 6
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 181,
             "movement": null,
             "status": "new"
           }
@@ -491,7 +498,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 96,
-            "movement": -15
+            "movement": -12
           },
           {
             "country": "LR",
@@ -602,7 +609,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 49,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "TZ",
@@ -742,7 +749,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 55,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "NG",
@@ -1131,8 +1138,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 37,
-            "movement": -16
+            "position": 38,
+            "movement": -17
           }
         ]
       },
@@ -1256,8 +1263,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 26,
-            "movement": -15
+            "position": 28,
+            "movement": -17
           }
         ]
       }
@@ -1318,8 +1325,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 47,
-            "movement": -21
+            "position": 49,
+            "movement": -23
           }
         ]
       }
@@ -1368,8 +1375,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 43,
-            "movement": -25
+            "position": 45,
+            "movement": -27
           }
         ]
       }
@@ -1387,8 +1394,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 46,
-            "movement": -21
+            "position": 48,
+            "movement": -23
           }
         ]
       }
@@ -1425,32 +1432,12 @@
             "country": "BM",
             "name": "Bermuda",
             "position": 64,
-            "movement": -5
+            "movement": -4
           }
         ]
       }
     ],
     "kind": "song"
-  },
-  {
-    "title": "Wine",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 64,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Holiday",
@@ -1471,6 +1458,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d4f61945703f34bba42311d1ec703f94/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Wine",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 71,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lalala",
@@ -1540,7 +1547,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 56,
-            "movement": -2
+            "movement": -1
           }
         ]
       }

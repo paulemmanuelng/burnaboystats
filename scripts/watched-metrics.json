@@ -141,7 +141,7 @@
       "extractor": "youtubeViews",
       "kind": "peak",
       "threshold": 0.001,
-      "baseline": 904599477,
+      "baseline": 905734879,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -158,9 +158,9 @@
           "describes": "displayed view count (whole millions) on /dai-dai"
         }
       ],
-      "lastChanged": "2026-08-25",
-      "lastSeenValue": 904599477,
-      "lastSeenAt": "2026-08-25",
+      "lastChanged": "2026-08-26",
+      "lastSeenValue": 905734879,
+      "lastSeenAt": "2026-08-26",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -797,7 +797,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Tems",
       "kind": "accumulate",
-      "baseline": 1691627000,
+      "baseline": 1696733000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -815,9 +815,9 @@
           "describes": "Tems 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1691627000,
-      "lastSeenAt": "2026-08-25",
-      "lastChanged": "2026-08-25"
+      "lastSeenValue": 1696733000,
+      "lastSeenAt": "2026-08-26",
+      "lastChanged": "2026-08-26"
     },
     {
       "id": "streams-2026-wizkid",
@@ -827,7 +827,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Wizkid",
       "kind": "accumulate",
-      "baseline": 1666419000,
+      "baseline": 1672563000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -845,9 +845,9 @@
           "describes": "Wizkid 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1666419000,
-      "lastSeenAt": "2026-08-25",
-      "lastChanged": "2026-08-25"
+      "lastSeenValue": 1672563000,
+      "lastSeenAt": "2026-08-26",
+      "lastChanged": "2026-08-26"
     },
     {
       "id": "streams-2026-burna",
@@ -857,7 +857,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Burna Boy",
       "kind": "accumulate",
-      "baseline": 1634417000,
+      "baseline": 1642586000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -875,9 +875,9 @@
           "describes": "Burna Boy 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1634417000,
-      "lastSeenAt": "2026-08-25",
-      "lastChanged": "2026-08-25"
+      "lastSeenValue": 1642586000,
+      "lastSeenAt": "2026-08-26",
+      "lastChanged": "2026-08-26"
     }
   ],
   "certWatches": [

@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-25";
+  export const liveChartsUpdated = "2026-08-26";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","YouTube","iTunes"];
@@ -664,7 +664,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 63,
+            "position": 70,
             "movement": null,
             "status": "new"
           }

@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-25";
+  export const liveChartsUpdated = "2026-08-26";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -246,16 +246,16 @@
             "movement": 10
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 99,
-            "movement": -21
-          },
-          {
             "country": "SE",
             "name": "Sweden",
             "position": 99,
             "movement": 99
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 102,
+            "movement": -24
           },
           {
             "country": "SB",
@@ -292,8 +292,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 118,
-            "movement": -9
+            "position": 128,
+            "movement": -19
           },
           {
             "country": "BM",
@@ -345,12 +345,6 @@
             "movement": -51
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 153,
-            "movement": 12
-          },
-          {
             "country": "MU",
             "name": "Mauritius",
             "position": 154,
@@ -377,6 +371,12 @@
             "status": "new"
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 165,
+            "movement": 0
+          },
+          {
             "country": "LU",
             "name": "Luxembourg",
             "position": 173,
@@ -386,8 +386,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 178,
-            "movement": 12
+            "position": 177,
+            "movement": 13
           },
           {
             "country": "MN",
@@ -536,7 +536,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 79,
+            "position": 81,
             "movement": null,
             "status": "new"
           }
@@ -814,56 +814,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "FAIRYTALE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 60,
-            "movement": 5
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 88,
-            "movement": 34
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 96,
-            "movement": -1
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 111,
-            "movement": -21
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 178,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "IS IT LOVE",
     "platforms": [
       {
@@ -894,6 +844,43 @@
             "name": "Botswana",
             "position": 190,
             "movement": -8
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "FAIRYTALE",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 60,
+            "movement": 5
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 88,
+            "movement": 34
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 96,
+            "movement": -1
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 111,
+            "movement": -21
           }
         ]
       }
@@ -993,38 +980,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Talk to Me",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 200,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 105,
-            "movement": 12
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "IS IT",
     "platforms": [
       {
@@ -1084,6 +1039,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Talk to Me",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 105,
+            "movement": 12
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "On My Body",
     "platforms": [
       {
@@ -1093,8 +1067,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 75,
-            "movement": -23
+            "position": 77,
+            "movement": -25
           }
         ]
       }

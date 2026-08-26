@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-25";
+  export const liveChartsUpdated = "2026-08-26";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -219,8 +219,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 101,
-            "movement": 0
+            "position": 104,
+            "movement": -3
           },
           {
             "country": "QA",
@@ -250,14 +250,14 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 140,
-            "movement": 9
+            "position": 148,
+            "movement": 1
           },
           {
             "country": "FR",
             "name": "France",
-            "position": 170,
-            "movement": 2
+            "position": 169,
+            "movement": 3
           },
           {
             "country": "AE",
@@ -526,8 +526,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 18,
-            "movement": -14
+            "position": 20,
+            "movement": -16
           },
           {
             "country": "NA",
@@ -707,8 +707,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 17,
-            "movement": -2
+            "position": 18,
+            "movement": -3
           },
           {
             "country": "MU",
@@ -779,8 +779,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 36,
-            "movement": -1
+            "position": 39,
+            "movement": -4
           },
           {
             "country": "FR",
@@ -904,22 +904,22 @@
             "movement": -63
           },
           {
-            "country": "US",
-            "name": "United States",
-            "position": 156,
-            "movement": -12
-          },
-          {
             "country": "DE",
             "name": "Germany",
-            "position": 159,
-            "movement": -15
+            "position": 166,
+            "movement": -22
           },
           {
             "country": "SA",
             "name": "Saudi Arabia",
             "position": 167,
             "movement": -83
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 170,
+            "movement": -26
           },
           {
             "country": "LU",
@@ -943,7 +943,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 42,
-            "movement": -5
+            "movement": -4
           }
         ]
       }
@@ -2086,7 +2086,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
+            "position": 39,
             "movement": null,
             "status": "new"
           }

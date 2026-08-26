@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-25";
+  export const liveChartsUpdated = "2026-08-26";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -257,8 +257,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 156,
-            "movement": -9
+            "position": 149,
+            "movement": -2
           },
           {
             "country": "TT",
@@ -314,28 +314,28 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 8,
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 62,
             "movement": null,
             "status": "new"
           },
           {
             "country": "PE",
             "name": "Peru",
-            "position": 138,
+            "position": 145,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 174,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 190,
+            "position": 183,
             "movement": null,
             "status": "new"
           }
@@ -578,8 +578,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
-            "movement": -116
+            "position": 158,
+            "movement": -129
           }
         ]
       }
@@ -1107,7 +1107,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 75,
+            "position": 78,
             "movement": null,
             "status": "new"
           }
@@ -1213,7 +1213,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 95,
-            "movement": -4
+            "movement": -3
           }
         ]
       }
@@ -1296,26 +1296,26 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 48,
-            "movement": 0
+            "position": 47,
+            "movement": 1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 66,
-            "movement": 1
+            "position": 65,
+            "movement": 2
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 86,
-            "movement": -1
+            "position": 79,
+            "movement": 6
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": 6
+            "position": 97,
+            "movement": 21
           }
         ]
       }
@@ -1774,9 +1774,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 125,
-            "movement": null,
-            "status": "new"
+            "position": 141,
+            "movement": -129
           }
         ]
       },
@@ -1863,9 +1862,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 178,
-            "movement": null,
-            "status": "new"
+            "position": 194,
+            "movement": -138
           }
         ]
       },
@@ -1907,8 +1905,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 89,
-            "movement": 4
+            "position": 84,
+            "movement": 9
           }
         ]
       },
@@ -1981,8 +1979,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 167,
-            "movement": 5
+            "position": 158,
+            "movement": 15
           }
         ]
       }
@@ -2150,8 +2148,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 49,
-            "movement": 1
+            "position": 48,
+            "movement": 2
           },
           {
             "country": "GD",
@@ -2168,8 +2166,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 123,
-            "movement": 7
+            "position": 116,
+            "movement": 15
           }
         ]
       }
@@ -2357,7 +2355,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 78,
-            "movement": -15
+            "movement": -12
           },
           {
             "country": "CM",
@@ -2449,37 +2447,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cc269116fe4da8b1054a18ef7f1e39a8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Cash Flow",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 179,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 185,
-            "movement": -135
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Say My Name",
     "platforms": [
       {
@@ -2489,7 +2456,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
+            "position": 24,
             "movement": null,
             "status": "new"
           }
@@ -2509,7 +2476,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
+            "position": 35,
             "movement": null,
             "status": "new"
           }
@@ -2529,7 +2496,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
+            "position": 41,
             "movement": null,
             "status": "new"
           }
@@ -2587,8 +2554,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 133,
-            "movement": -114
+            "position": 149,
+            "movement": -128
           }
         ]
       }
@@ -2605,9 +2572,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": null,
-            "status": "new"
+            "position": 150,
+            "movement": -127
           }
         ]
       }
@@ -2633,6 +2599,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Cash Flow",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 179,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "SoundMan, Vol. 1",
