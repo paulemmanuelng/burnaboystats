@@ -8,9 +8,9 @@ tier**. A 5× Platinum is one plaque, not five. Lead and featured credits both
 count; writer and producer credits do not. Every plaque below was read in an
 issuing body's own register.
 
-## Total: **27 certifications**
+## Total: **28 certifications**
 
-Across **14 countries**, on **10 titles**.
+Across **15 countries**, on **10 titles**.
 
 ## The shape of it
 
@@ -80,3 +80,15 @@ exist, and none was counted.
   from elsewhere in the sweep. See `project-tcsn-register-provenance`.
 
 A later pass with access to any of these can only move the total UP.
+
+---
+
+## Refresh, 26 August 2026 — +1 (27 → 28)
+
+Read on RMNZ's register (published through RadioScope) and confirmed at source
+during the same A–Z pass that added him:
+
+- **"love nwantiti (ah ah ah)"** — **3× Platinum**, New Zealand, 21 Nov 2024.
+
+New Zealand becomes his fifteenth certifying country. It is the same record as
+the other fourteen — one plaque, at its current tier.

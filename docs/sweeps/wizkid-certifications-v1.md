@@ -8,7 +8,7 @@
 - ✓* = confirmed body-side at the tier class, where the body's public record omits the exact multiplier
 - no mark = kept from Wikipedia because the body publishes no verifiable record (now only 🇳🇿 and 🇵🇱)
 
-## Total: **155 certifications** across 21 countries
+## Total: **156 certifications** across 21 countries
 
 > **Why the number moved from 117 → 155.** The second pass did two things. It **closed two of the four unverifiable bodies**: ARIA's register turned out to be alive inside a Dropbox folder of 68 accreditation PDFs (One Dance 17× Platinum and Brown Skin Girl Gold both confirmed at source), and IFPI Greece's certifications turned out to live in an unlabelled `Award` column inside the weekly digital-singles chart, reconstructible from 512 Wayback captures (One Dance 3× Platinum confirmed). Neither changed the count — both upgraded Wikipedia-cited rows to register-confirmed.
 >
@@ -216,3 +216,20 @@ Nigeria's internal arithmetic, since it carries most of the movement: 71 plaques
 
 ### Context
 Counted under identical rules: **Burna Boy 229 across 26 countries** on burnaboystats.com. The other five artists in this sweep, at their own deliverables' current figures: **Tems 68**, **Rema 61**, **Davido 60**, **Tyla 60**, **Ayra Starr 34**. Wizkid's verified floor is now **155 across 21 countries** — second only to Burna Boy among the seven, and the gap has narrowed from 150 to 74. It narrows mainly through the Nigerian register, which certifies both artists heavily and whose archive holds more than twice what its live page shows.
+
+---
+
+## Refresh, 26 August 2026 — +1 (155 → 156)
+
+An A–Z pass over every reachable certification register. Wizkid gained one
+plaque, and one existing plaque moved up a tier. Both are New Zealand, read on
+RMNZ's register (published through RadioScope, not on recordedmusic.co.nz) and
+confirmed at source:
+
+- **"Mood"** (WizKid feat. Buju) — **Gold**, 2 Oct 2025. New; NZ was not
+  previously recorded for this title.
+- **"Call Me Every Day"** (Chris Brown feat. WizKid) — **Gold → Platinum**,
+  8 Jan 2026. An upgrade, so it stays one plaque at its current tier.
+
+Nothing else in the sweep changed his count. France, in particular, was read in
+full and matched what was already published exactly.

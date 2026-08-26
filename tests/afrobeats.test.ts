@@ -29,7 +29,7 @@ const EXPECTED = {
   asake: { total: 80, diamond: 0 },
   "omah-lay": { total: 61, diamond: 2 },
   "seyi-vibez": { total: 103, diamond: 0 },
-  wizkid: { total: 155, diamond: 6 },
+  wizkid: { total: 156, diamond: 6 },
   victony: { total: 22, diamond: 0 },
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
@@ -37,7 +37,7 @@ const EXPECTED = {
   tems: { total: 70, diamond: 1 },
   tyla: { total: 62, diamond: 2 },
   "ayra-starr": { total: 41, diamond: 2 },
-  ckay: { total: 27, diamond: 2 },
+  ckay: { total: 28, diamond: 2 },
 } as const;
 
 describe("the Afrobeats board", () => {
