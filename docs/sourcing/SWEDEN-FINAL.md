@@ -36,6 +36,47 @@ All seven awarded **2023-08-16**. The gaps inside that run are **10449, 10454 an
 10456**. If Location carries a Swedish plaque from the same batch, its number is
 almost certainly one of those three.
 
+## Location's `sart` — searched for, not found (27 Aug 2026)
+
+Asked to find it directly. I could not, and here is exactly how far it got so
+nobody repeats the work.
+
+**What was tried**
+
+- Mapped the id space by ISRC year code. Grammotex ingests roughly
+  chronologically: 2018 records sit around 9.22M, **2019 spans about
+  9.50M–10.10M**, 2020 begins near 10.13M. Location (a 2019 release) is
+  therefore somewhere in a **~600,000-id band**.
+- Confirmed `artdata` takes **only** `sart` — no title, artist or ISRC parameter.
+- Enumerated the NET.DATA macro sections. The backend is IBM NET.DATA on AS/400
+  (`/QSYS.LIB/GRM.LIB/NETDATA.FILE/`), and an unknown section returns a
+  distinctive `No HTML(X) section` error, which makes enumeration cheap. Real
+  sections: `grp006/{artdata,place,lista}`, `grp008/{artdata,place,lista}`,
+  `grp004B/relspr`, `grp004/relspr`. No search section exists on the public side.
+- `lista` is a chart-list viewer that wants a list id; no plain integer works.
+- The public weekly lists on grammotex.se expose **no** record ids.
+- Sverigetopplistan exposes none either.
+
+**Where I stopped, deliberately.** `grp004/relspr` errors in a way that reveals a
+form posting to `grp005.mbr/place` carrying **`Vtxnr`** — the customer number.
+That is the logged-in area. Hunting for a way around a deliberately gated search
+is not something to do, so this line was abandoned rather than pushed.
+
+**A hypothesis that did NOT hold.** It looked like the discoverable ids were all
+titles with a Swedish chart row — which would have been an elegant explanation.
+It fails: 5 of the 12 known ids (Gbona, I Told Them…, Wild Dreams, Black Panther,
+Cheat on Me) have no Swedish chart row. **How those ids were originally obtained
+remains unexplained**, and should not be asserted.
+
+**Why brute force is out.** A ~600,000-id band, exhaustively, is hundreds of
+thousands of requests against a small trade server. Sampling cannot work either:
+finding one specific record needs every id, not every hundredth.
+
+**The remaining route is the trade account** — the same search that produced the
+On the Low / Ye / African Giant screenshots. One lookup for `Location` (credited
+to **DAVE**, not to Burna Boy) settles it, and the certificate number is most
+likely **10449, 10454 or 10456**, the three gaps in his 2023-08-16 run.
+
 ## Why the last three ids cannot be found from outside
 
 Confirmed dead ends, so nobody repeats them:
