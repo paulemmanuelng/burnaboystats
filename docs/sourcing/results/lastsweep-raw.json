@@ -1,0 +1,315 @@
+{
+ "results": [
+  {
+   "code": "CH",
+   "readable": true,
+   "route": "wayback",
+   "bodyExists": "yes",
+   "registerUrl": "https://web.archive.org/web/20201227094853/https://hitparade.ch/awards.asp",
+   "archivedDate": "2020-12-27",
+   "rows": [],
+   "wallReason": "Two separate walls, and the second one is the decisive one.\n\n(1) LIVE REGISTER — Cloudflare. https://hitparade.ch/awards.asp returns HTTP 403 with header `cf-mitigated: challenge` and the Turnstile interstitial (\"Just a moment...\"). Not attempted further, per instruction.\n\n(2) ARCHIVE COVERAGE STOPS BEFORE THE RELEVANT ERA. Wayback holds awards.asp year pages with status 200 for 1989-2018 only, plus base-page captures that render the 2019 and 2020 registers. From January 2021 onward EVERY Wayback capture of hitparade.ch/awards.asp is a 404 (checked bare host and www; 2021, 2022, 2023, 2024, 2025 all 404/301). CDX returns zero captures of any status for ?year=2019, 2020, 2021, 2022, 2023 or 2024 under either host form. So the register was pulled from that URL in early 2021 and the Afrobeats certification window (2021-2026) is not archived anywhere on the body's own host.\n\n(3) THE BODY ITSELF PUBLISHES NO REGISTER. IFPI Schweiz's live site was fully enumerated via its own sitemap. Its single Edelmetall page, https://www.ifpi.ch/edelmetallpruefung, is not a list of awarded titles — it is a paid application form: a label pays CHF 75 + 8.1% VAT for GfK to check whether a release has hit Gold or Platinum, and IFPI Schweiz publishes only the threshold guidelines. Same structural shape as TCSN: award-on-request, so absence is not evidence of non-certification. There is no /awards, /database, /search or /dashboard path on ifpi.ch.",
+   "summary": "Switzerland: partially read, ZERO rows found, but this is NOT a clean \"no Swiss plaques\" verdict — do not record it as one.\n\nWHAT I ACTUALLY READ (archived captures of the body-designated register, hitparade.ch/awards.asp, the Edelmetall page IFPI Schweiz's own site links to for the Schweizer Hitparade — not swisscharts.com):\n- year=2015 (capture 2020-09-20), ~76 rows\n- year=2016 (capture 2017-03-23), ~55 rows\n- year=2017 (capture 2020-07-04), ~116 rows\n- year=2018 (capture 2020-06-25), ~146 rows\n- EDELMETALL 2019 via base page (capture 2019-12-13), ~19 rows\n- EDELMETALL 2020 via base page (capture 2020-12-27), ~14 rows\n\nEvery one of those tables was parsed in full and searched for all 13 targets (Burna Boy, Wizkid, Davido, Rema, Tems, Tyla, Ayra Starr, Asake, Omah Lay, Seyi Vibez, Victony, Fireboy DML, CKay), including featured-credit strings. Result: zero hits, lead or featured. The only Drake credits anywhere in 2018 are \"Bad Bunny feat. Drake - Mia\" (Gold) and \"BlocBoy JB feat. Drake - Look Alive\" (Gold) — no Wizkid, so no \"One Dance\" row in the years captured.\n\nWHY THIS IS NOT A ZERO VERDICT: the years that matter are unreadable. Rema \"Calm Down\", Tyla \"Water\", CKay \"Love Nwantiti\", Wizkid \"Essence\", Burna Boy \"Last Last\" would all fall in 2021-2026, and the register 404s in every archived capture from Jan 2021 on while the live copy sits behind Turnstile. So Switzerland should stay OMITTED from the board rather than published as swept-and-empty.\n\nONE GENUINELY NEW STRUCTURAL FINDING worth writing into certifications.ts alongside the TCSN provenance note: Swiss certification is request-based. IFPI Schweiz publishes thresholds only; a label pays CHF 75 + VAT for a GfK check. Absence from any Swiss list therefore never implies uncertified. Also note the published thresholds, which the archived pages state directly: from 2017, Gold = 10,000 units and Platinum = 20,000 units for both singles and albums (2013-2016 singles were 15,000/30,000, albums 10,000/20,000).\n\nTwo dead ends closed for good, so nobody burns a fourth pass on them: ifpi.ch has no register path (full sitemap enumerated, 33 pages, only /edelmetallpruefung and its duplicate /kopie-von-gold-platin touch awards, both the same application form), and hitparade.ch has no alternate Edelmetall path — the site's own nav points \"Musik > Edelmetall\" straight at awards.asp, which is the URL that now 404s.\n\nHousekeeping: the Internet Archive was intermittently down mid-pass (HTTP 503 \"Temporarily Offline\"), which cost several retries; all findings above come from successful 200 responses after it recovered."
+  },
+  {
+   "code": "OK",
+   "readable": true,
+   "route": "wayback",
+   "bodyExists": "yes",
+   "registerUrl": "http://web.archive.org/web/20250124131652id_/https://www.ultratop.be/fr/certifications.asp?ann%C3%A9e=2022",
+   "archivedDate": "2025-01-24",
+   "wallReason": "LIVE is walled, ARCHIVE is not. Live https://www.ultratop.be/{nl,en,fr}/certifications.asp and /nl/awards all return HTTP 403 with a Cloudflare interstitial (\"Just a moment...\" + challenges.cloudflare.com CSP) — a bot check I did not attempt to pass. Separately, belgianentertainment.be (BEA) now 301-redirects to brma.be: BEA rebranded to BRMA (Belgian Recorded Music Association). I pulled brma.be/sitemap.xml in full (~160 URLs) — it contains only news posts, jobs, members and contact. BRMA publishes NO certification register of its own; the Belgian gold/platinum register is published by Ultratop, the official Belgian chart body. Also note ultratop.be/nl/awards has ZERO Wayback snapshots — that path is not the register. The register's real path is /fr/or-platine/<year>/<singles|albums> (NL: goud-platina); the legacy /certifications.asp endpoint still serves it and is well archived.",
+   "summary": "READABLE via Wayback — this body is now cracked. Two corrections to earlier passes: (1) BEA is not the register-keeper. belgianentertainment.be redirects to brma.be (renamed BRMA); its sitemap has no awards/certification section at all. Ultratop is the body that publishes Belgian Or/Platine awards. (2) The register did not die, it MOVED: not /nl/awards (zero snapshots ever) but /fr/or-platine/<year>/singles|albums. Live Ultratop is Cloudflare-403 walled on every path; the archived capture of Ultratop's own register is fully readable.\n\nThe archived 20250124 capture of certifications.asp returns the ALL-TIME singles register — 1971 certified titles spanning 2016-2024, each row carrying its full tier history with dates. I grepped all 13 target artists (binary-safe, case-insensitive, latin-1 decoded) and found exactly 4 entries, 2 of them featured credits.\n\nFOUND (singles): Drake feat. Wizkid & Kyla \"One Dance\" 3x Platine; Master KG feat. Burna Boy & Nomcebo Zikode \"Jerusalema (Remix)\" 2x Platine; Rema \"Calm Down\" 2x Platine; Tyla \"Water\" Platine.\n\nCorroboration: I independently fetched the year-filtered singles pages. 2024 singles (212 rows) contains Tyla and 2021 singles contains the Master KG/Burna Boy row — both matching the all-time list, so the all-time list is not truncated. 2025 singles (30 rows) has no targets. The 2019/2020/2022/2023 singles year-pages failed to fetch in the parallel batch, but the all-time register covers those years.\n\nALBUMS: I swept the album register for 2019, 2020, 2021, 2022, 2023, 2024 and 2025 (each confirmed as cat=albums; 6-44 rows per year). ZERO hits for any of the 13 artists. No Belgian album certification exists for any target artist.\n\nNOT CERTIFIED in Belgium (searched, genuinely absent): Davido, Tems, Ayra Starr, Asake, Omah Lay, Seyi Vibez, Victony, Fireboy DML, CKay. Notably \"Essence\" (Wizkid feat. Tems), \"Love Nwantiti\" (CKay) and \"Peru\" (Fireboy DML) are NOT in the Belgian register despite their chart runs — Wizkid's only Belgian plaque is the 2016 Drake feature.\n\nBurna Boy has NO lead-credit Belgian certification — his single Belgian plaque is a featured credit on Master KG's \"Jerusalema (Remix)\".",
+   "rows": [
+    {
+     "artist": "Master KG feat. Burna Boy & Nomcebo Zikode",
+     "title": "Jerusalema (Remix)",
+     "tier": "2x Platine (2x Platinum)",
+     "awardDate": "2021-04-02",
+     "quote": "04/09/2020: Or / 09/10/2020: Platine / 02/04/2021: 2x Platine",
+     "url": "http://web.archive.org/web/20250124131652id_/https://www.ultratop.be/fr/certifications.asp?ann%C3%A9e=2022"
+    },
+    {
+     "artist": "Drake feat. Wizkid & Kyla",
+     "title": "One Dance",
+     "tier": "3x Platine (3x Platinum)",
+     "awardDate": "2017-01-27",
+     "quote": "06/05/2016: Or / 17/06/2016: Platine / 19/08/2016: 2x Platine / 27/01/2017: 3x Platine",
+     "url": "http://web.archive.org/web/20250124131652id_/https://www.ultratop.be/fr/certifications.asp?ann%C3%A9e=2022"
+    },
+    {
+     "artist": "Rema",
+     "title": "Calm Down",
+     "tier": "2x Platine (2x Platinum)",
+     "awardDate": "2023-03-02",
+     "quote": "05/12/2022: Platine / 02/03/2023: 2x Platine",
+     "url": "http://web.archive.org/web/20250124131652id_/https://www.ultratop.be/fr/certifications.asp?ann%C3%A9e=2022"
+    },
+    {
+     "artist": "Tyla",
+     "title": "Water",
+     "tier": "Platine (Platinum)",
+     "awardDate": "2024-03-29",
+     "quote": "09/01/2024: Or / 29/03/2024: Platine",
+     "url": "http://web.archive.org/web/20250124131652id_/https://www.ultratop.be/fr/certifications.asp?ann%C3%A9e=2022"
+    }
+   ]
+  },
+  {
+   "code": "NO_PUBLIC_REGISTER",
+   "readable": false,
+   "route": "none",
+   "bodyExists": "yes",
+   "registerUrl": "https://ifpicr.cz/oceneni",
+   "wallReason": "Not a wall — no register exists to read. ČNS IFPI's site is live, fast, plain HTML with no Cloudflare, no login and no bot check. Its own \"Ocenění\" (Awards) page, loaded live at https://ifpicr.cz/oceneni (HTTP 200), publishes ONLY the rules for awarding certifications: six \"Pravidla pro udělování ocenění\" PDFs (CZ + SK, versions dated 20.10.2025, 1.1.2026 and 9.3.2026) plus the \"Žádost o udělení ocenění\" application form. It lists no awarded titles. Wayback confirms it never did: every /oceneni snapshot from May 2022 to date is 2.8-4.0 KB, matching today's rules-only page, and across 13,519 unique archived ifpicr.cz URLs (2022-2026) the only award-related URLs are rules PDFs (Pravidla-pro-udelovani-oceneni-*, Limity-pro-udelovani-oceneni-*) and the .doc application forms. The one promising legacy URL, ?section=goldplatin (2011), was fetched from the archive and renders an empty content pane containing only the site menu. The charts section (/hitparada and its detail pages) carries no gold/platinum badges. The body's own rules explain why nothing is published: certification is entirely request-based and private — the label emails a request to ifpicr@ifpicr.cz with its own usage figures, ČNS IFPI converts them, determines the tier and issues a certificate with a seal (chargeable for non-members). The rules contain no publication clause of any kind.",
+   "rows": [],
+   "summary": "ČNS IFPI (Czechia) does certify recordings, but it does not publish any register of who it has certified — live or archived. Its site is fully accessible; the awards page at https://ifpicr.cz/oceneni carries only the rules PDFs and the application form, and Wayback shows it has never carried a list (all /oceneni snapshots since May 2022 are the same 2.8-4.0 KB rules-only page, and no award-list URL appears among 13,519 archived ifpicr.cz URLs). The legacy ?section=goldplatin page from 2011 archives as an empty menu shell. The body's own current rules (effective 9.3.2026, text extracted from its PDF) confirm the process is private and request-based: the label emails a request with its own figures, ČNS IFPI converts them and issues a sealed certificate, chargeable for non-members; there is no publication commitment. Substantive facts from those rules: only two tiers exist in Czechia, Zlatý (gold) and Platinový (platinum), with no diamond; single thresholds are 2,500,000 subscription streams gold / 5,000,000 platinum, album 5,000,000 / 10,000,000; conversions are 1 subscription stream = 3 ad-supported, 1 download = 222, 1 CD = 2,220, 1 vinyl = 3,996; TikTok and Facebook streams are excluded, as are YouTube UGC and logged-out views; and crucially only releases issued on or after 1 January 2022 are eligible at all. Zero certifications can be reported for Burna Boy or any of the 12 Afrobeats board artists, and per the confirm-at-the-body rule none should be published with a caveat either. This is a stronger negative than the TCSN case: TCSN at least serves a request-based display register, whereas ČNS IFPI publishes nothing. The honest board entry for Czechia is \"the certifying body does not publish who it has certified\", not \"unreadable\"."
+  },
+  {
+   "code": "NO_PUBLIC_REGISTER",
+   "readable": false,
+   "route": "none",
+   "bodyExists": "yes",
+   "registerUrl": "https://ifpicr.cz/oceneni",
+   "wallReason": "Not a wall — no public register exists to read. ČNS IFPI runs the Slovak (SR) gold/platinum programme and publishes the SK award RULES, but has never published a list of awarded titles. Confirmed on the live site and across the whole Wayback record: (1) live https://ifpicr.cz/oceneni contains only threshold PDFs, incl. Slovak-language \"Pravidlá pre udeľovanie ocenení – SR\" (eff. 9.3.2026, 1.1.2026, 20.10.2025) — zero recipient names; (2) the pre-redesign equivalent, http://www.ifpicr.cz/metodika_oceneni/ (Wayback capture 2020-09-22), likewise lists only \"Limity pro udělování ocenění\" PDFs; (3) the legacy register-looking URL http://www.ifpicr.cz/?section=goldplatin has 17 captures 2011–2025, but every one I loaded (2025-02-25 and 2020-09-22) renders the plain homepage — the query string is ignored, there is no register content behind it; (4) a CDX sweep of all 4,152 unique archived ifpicr.cz URLs filtered on ocen|award|zlat|platin|diamant returned only album-cover JPEGs under /charts-titles/ plus that goldplatin URL — no register path anywhere; (5) the live SK charts do exist on the body's site (SK Albums Top 100 /hitparada/36, SK Radio Top 100 /hitparada/40, SK Singles Digital Top 100 /hitparada/43) but carry no certification markers and link to no awarded-titles list. Sister domains are dead, not walled: ifpi.sk fails to connect live (curl exit, no response) and its Wayback captures from 2013 onward are a default Apache install serving /manual/da/ documentation, i.e. a parked server — consistent with the body's own statement that SNS IFPI closed its Bratislava office in 2010 and Prague took over from 1 Jan 2010. hitparada.sk resolves and returns HTTP 200 but the body is literally \"<html><head></head><body></body></html>\" on both http and https (https additionally mismatches its TLS cert, which is issued for *.dsl.sk). No login, CAPTCHA, Cloudflare or bot check was encountered at any point.</wallReason>\n<parameter name=\"rows\">[]",
+   "summary": "Slovakia: still no certifications, but the reason is now settled rather than unknown — and it is not the reason the two previous sweeps assumed.\n\nA Slovak certifying body does exist. ČNS IFPI (Česká národní skupina IFPI, Prague) administers the Slovak awards, and says so on its own page https://ifpicr.cz/cns-ifpi/slovenska-republika: SNS IFPI shut its Bratislava office in 2010 and all activity moved to Prague on 1 Jan 2010. The programme is current — https://ifpicr.cz/oceneni carries separate Slovak-language rule sets (\"Pravidlá pre udeľovanie ocenení – SR\") effective 9.3.2026, 1.1.2026 and 20.10.2025, distinct from the Czech ones. So SK gold/platinum awards are real and are still being issued.\n\nWhat does not exist is a register of who received them. ČNS IFPI publishes thresholds, not recipients — for Slovakia or for the Czech Republic. This holds on both the current site and every historical version:\n- Live /oceneni: rules PDFs only, no names.\n- Old site's equivalent page, http://www.ifpicr.cz/metodika_oceneni/ (Wayback, captured 2020-09-22): again only \"Limity pro udělování ocenění\" PDFs.\n- The tempting legacy URL ?section=goldplatin has 17 captures spanning 2011–2025. I loaded the newest (2025-02-25) and a mid-period one (2020-09-22); both render the plain homepage. The query parameter was never a real page in any capture I could retrieve — it is a dead handle, not a lost register.\n- A CDX sweep of all 4,152 unique archived ifpicr.cz URLs, filtered on ocen|award|zlat|platin|diamant, surfaced nothing but album-cover JPEGs under /charts-titles/ (Czech albums whose *titles* contain \"zlatá\"/\"platinum\"). There is no /awards, /database, /certifications or dashboard path — I checked for the moved-register pattern specifically, and it is absent rather than relocated. sitemap.xml 404s.\n\nThe body does publish Slovak charts (SK Albums Top 100 at /hitparada/36, SK Radio Top 100 at /hitparada/40, SK Singles Digital Top 100 at /hitparada/43, plus SK-domestic variants), so it is not that ČNS IFPI ignores Slovakia. The chart rows simply carry no certification markers and link to no awarded-titles list.\n\nThe two sister domains are dead, not walled. ifpi.sk does not connect at all today, and its Wayback record from 2013 onward is a stock Apache install serving /manual/da/ docs — a parked box, not an IFPI site. hitparada.sk returns HTTP 200 but an empty document (\"<html><head></head><body></body></html>\") on both schemes, and its HTTPS cert is issued for *.dsl.sk, not for it.\n\nHonest bottom line: this is not a wall I failed to climb. I hit no login, no CAPTCHA, no Cloudflare, no JS-only app — I read the body's awards section successfully, live and archived, and it contains no recipient data by design. Any Slovak certification figure circulating for Burna Boy or the Afrobeats board cannot be confirmed at the body, and per the \"confirm at the body\" rule should be omitted rather than published with a caveat. Zero rows for all thirteen target artists, lead and featured.\n\nRecommendation: mark Slovakia (and, by the same evidence, the Czech Republic) as \"body publishes no register\" — a permanent structural fact — rather than leaving it queued for a fourth sweep. The only route that could ever yield SK certification data is a direct written enquiry to ifpicr@ifpicr.cz, which is a human decision for Paul, not something a sweep can resolve."
+  },
+  {
+   "code": "GR",
+   "readable": true,
+   "route": "live",
+   "bodyExists": "yes",
+   "registerUrl": "https://www.ifpi.gr/digital_iel.html",
+   "archivedDate": "2025-04-30 (chart week 17/2025); also read 2024-05-30 (wk 21/2024), 2023-11-25ish (wk 47/2023), wk 25/2023, wk 11/2022, wk 46/2012",
+   "summary": "READABLE — but not the way the earlier sweeps looked for it. IFPI Greece has no standalone certifications register and never has; the Wayback inventory of the whole domain (217 URLs, HTTP 200, collapse=urlkey) contains zero cert/gold/platinum/award paths, and the live site has no sitemap.xml, no robots.txt and a six-item nav with nothing resembling a database. What IFPI Greece actually does is print certifications as an \"Award\" column inside its own weekly Official IFPI Charts tables. That column is LIVE TODAY on the Digital Singles Chart (International) at https://www.ifpi.gr/digital_iel.html — headers: Rank | Artist | Title | Company | ISRC | Award | Week-1 | # of Weeks | Best Position | Best Week / Year | Status. Award values are unlabelled codes: G, P, 2P, 3P, D. The page prints NO legend, so the Gold / Platinum / 2x Platinum / 3x Platinum / Diamond reading is conventional, not stated by the body. The albums chart (charts_el.html) HAD an \"Awards\" column in the archived 2012 capture (wk 46/2012) and has DROPPED it on the live page (wk 30/2026) — so no album certifications are published any more, and no Burna Boy album cert is readable anywhere.  CRITICAL LIMITATION, please carry it forward: this is a rolling weekly chart, not a cumulative register. Each capture shows only the ~75-100 titles charting that week, with their award level AS OF that week. I read six weeks out of roughly 250 (live wk 30/2026, plus archived wk 17/2025, wk 21/2024, wk 47/2023, wk 25/2023, wk 11/2022). Absence from those six weeks is NOT evidence a title is uncertified, and a title's tier may have been upgraded in a week I did not read — Tyla's \"Water\" demonstrates exactly this, showing blank at wk 47/2023, P at wk 21/2024, and 2P at wk 17/2025. Rows below give the highest tier I personally saw. Nothing here should be published as a ceiling.  Found nothing at all, in any week read, for Wizkid as lead, Davido, Asake, Omah Lay, Seyi Vibez, Victony, Fireboy DML or Ayra Starr. Explicitly seen with a BLANK Award cell (i.e. read and uncertified as of that week): CKay \"love nwantiti (ah ah ah)\" at #31 wk 11/2022; Tyla \"Water (Remix)\" (w/ Travis Scott) and Tyla \"Jump\" (w/ Gunna, Skillibeng); Shakira & Burna Boy \"Dai Dai (Instrumental)\".  Two of the six live/archived hits are featured credits, as asked: Wizkid on Drake's \"One Dance\" and Tems on Dave's \"Raindance\". Note the register prints Dave's track with the artist field ordered \"Tems, Dave\" — I have quoted it exactly rather than normalising it. The charts are currently on summer hiatus (\"Ta Charts tha epistrepsoun to Septemvrio\"), so the live table is week 30/2026 frozen; it will refresh in September and is worth re-reading then. No wall, no login, no Cloudflare — the site is flat static HTML served over plain Apache.",
+   "rows": [
+    {
+     "artist": "Shakira, Burna Boy",
+     "title": "Dai Dai",
+     "tier": "Gold",
+     "awardDate": "observed on chart week 30/2026 (page read live 2026-08-27); register prints no award date",
+     "url": "https://www.ifpi.gr/digital_iel.html",
+     "quote": "1 | Shakira, Burna Boy | Dai Dai | Sony/Cobalt | USQX92602560 | G | 1 | 10 | 1 | 2026_29 | -"
+    },
+    {
+     "artist": "Drake",
+     "title": "One Dance (Feat. Wizkid & Kyla)",
+     "tier": "3x Platinum",
+     "awardDate": "observed on chart week 30/2026 (page read live 2026-08-27); register prints no award date",
+     "url": "https://www.ifpi.gr/digital_iel.html",
+     "quote": "71 | Drake | One Dance (Feat. Wizkid & Kyla) | Minos-EMI/Universal | USCM51600028 | 3P | 73 | 73 | 8 | 2017_2 | UP"
+    },
+    {
+     "artist": "Tems, Dave",
+     "title": "Raindance (feat. Tems)",
+     "tier": "2x Platinum",
+     "awardDate": "observed on chart week 30/2026 (page read live 2026-08-27); register prints no award date",
+     "url": "https://www.ifpi.gr/digital_iel.html",
+     "quote": "16 | Tems, Dave | Raindance (feat. Tems) | Universal-Sony | GBUM72506029 | 2P | 14 | 40 | 1 | 2026_15 | DOWN"
+    },
+    {
+     "artist": "Tyla",
+     "title": "Water",
+     "tier": "2x Platinum",
+     "awardDate": "observed on chart week 17/2025; archived capture of ifpi.gr dated 2025-04-30 (had shown P at week 21/2024)",
+     "url": "https://web.archive.org/web/20250501000000/https://www.ifpi.gr/digital_iel.html",
+     "quote": "92 | Tyla | Water | Sony Music | USSM12305126 | 2P | 80 | 77 | 5 | 2023_43 | DOWN"
+    },
+    {
+     "artist": "Tyla",
+     "title": "PUSH 2 START",
+     "tier": "Gold",
+     "awardDate": "observed on chart week 17/2025; archived capture of ifpi.gr dated 2025-04-30",
+     "url": "https://web.archive.org/web/20250501000000/https://www.ifpi.gr/digital_iel.html",
+     "quote": "67 | Tyla | PUSH 2 START | Sony Music | USSM12407085 | G | 75 | 18 | 18 | 2025_2 | UP"
+    },
+    {
+     "artist": "Selena Gomez, Rema",
+     "title": "Calm Down (with Selena Gomez)",
+     "tier": "Platinum",
+     "awardDate": "observed on chart week 25/2023; archived capture of ifpi.gr retrieved via the 2023-07-01 Wayback timestamp",
+     "url": "https://web.archive.org/web/20230701000000/https://www.ifpi.gr/digital_iel.html",
+     "quote": "12 | Selena Gomez, Rema | Calm Down (with Selena Gomez) | Minos-EMI/Universal | NGA3B2214021 | P | 11 | 42 | 4 | 2023_14 | DOWN"
+    }
+   ]
+  },
+  {
+   "code": "CO",
+   "bodyExists": "yes",
+   "readable": true,
+   "route": "live",
+   "registerUrl": "https://pro-musica.co/wp-content/uploads/2025/03/SNGLE-ALBUM-PRO-MUSICA-CERTIFICACIONES.pdf",
+   "rows": [
+    {
+     "artist": "FEID FEAT REMA",
+     "title": "BUBALU",
+     "tier": "DIAMANTE",
+     "awardDate": "29/11/2023",
+     "url": "https://pro-musica.co/wp-content/uploads/2025/03/SNGLE-ALBUM-PRO-MUSICA-CERTIFICACIONES.pdf",
+     "quote": "BUBALU | FEID FEAT REMA | UNIVERSAL MUSIC | ALBUM | DIAMANTE | 29/11/2023 | COLOMBIA"
+    }
+   ],
+   "summary": "A Colombian certifying body DOES exist, contradicting the premise that Colombia has none. It is Pro Musica (Promusica Colombia), the IFPI national group covering Colombia, Ecuador and Peru, at https://pro-musica.co/. ASINCOL, the historical body, is defunct. What defeated the two earlier sweeps is almost certainly that IFPI's own local-associations page still lists Colombia's URL as www.apdifcolombia.com, which is APDIF (the anti-piracy arm) and has been a suspended domain since roughly December 2023 (Wayback shows cgi-sys/suspendedpage.cgi captures). asincol.org has zero Wayback captures.\n\nROUTE: live, no wall, no login, no bot check. The body's Certificaciones page (https://pro-musica.co/certificaciones-2/) links one register file: https://pro-musica.co/wp-content/uploads/2025/03/SNGLE-ALBUM-PRO-MUSICA-CERTIFICACIONES.pdf — 4 pages, ~99 rows, 183KB. Columns: TITULO | ARTISTA | DISQUERA | FORMATO | CERTIFICACION OTORGADA | FECHA | TERRITORIO. Tiers are Oro / Platino / Diamante. Award dates span 31/08/2023 to 21/02/2025, almost all territory COLOMBIA (one PERU row). I parsed it by text geometry (x/y coordinates from the content stream) rather than reading order, because naive extraction scrambled rows at page boundaries and produced one misassigned row.\n\nHITS: exactly one across all thirteen target artists, a Rema FEATURED credit — \"BUBALU | FEID FEAT REMA | UNIVERSAL MUSIC | ALBUM | DIAMANTE | 29/11/2023 | COLOMBIA\" (page 4). The site currently records Bubalu for Rema with US Platinum x2 and ES Platinum only (app/data/afrobeats.ts:451), so Colombia Diamond is a genuine addition. Two caveats to carry with it: (1) the register's FORMATO cell reads ALBUM even though Bubalu is a single; (2) the register separately lists \"BUBALU | FEID | UNIVERSAL MUSIC | SINGLE | DIAMANTE | 6/03/2024 | COLOMBIA\" without the Rema credit. I recorded the row that actually names Rema.\n\nZERO ROWS for: Burna Boy, Wizkid, Davido, Tems, Tyla, Ayra Starr, Asake, Omah Lay, Seyi Vibez, Victony, Fireboy DML, CKay. Search was verified against known-present controls (KAROL G 18 hits, MYKE TOWERS 3 hits), so a zero here is evidence about the register, not about my query.\n\nSITE IMPLICATION (the important part): /Users/paulemmanuelng/burnaboy-website/app/data/certifications.ts:72 sets Colombia's body to \"Sony Music Colombia\", and line 513 records \"Dai Dai\" (Shakira & Burna Boy) as CO Gold, 2026. Colombia has a real national certifying body, so labelling a label as the national body is wrong. The Dai Dai Gold is NOT in Pro Musica's register — and it could not be, because the register has not been updated since 5 March 2025 (confirmed two ways: the PDF's last-modified HTTP header, and the site's own WordPress media API, which returns this as the only certification file ever uploaded). The register is about eighteen months stale even though the rest of the site is actively maintained (weekly chart PDFs and fortnightly bulletins uploaded through 26 August 2026). I also checked the two most recent bulletins (EDICION N0063 and N0064) for certification announcements and found none.\n\nSo the honest verdict is not \"no such body publishes a register\". It is: the body exists, publishes a register, that register is readable, and it neither contains nor could yet contain the Dai Dai award. Under the confirm-at-the-body rule the CO Dai Dai row should be dropped, or explicitly re-presented as a label announcement rather than a national certification, and the CO body label should be corrected from \"Sony Music Colombia\" to Pro Musica."
+  },
+  {
+   "code": "ZA",
+   "readable": true,
+   "route": "wayback",
+   "bodyExists": "yes",
+   "archivedDate": "2024-08-31",
+   "registerUrl": "http://web.archive.org/web/20250629052159id_/https://www.risa.org.za/website/certification/certifications/",
+   "summary": "READABLE — the RiSA register was cracked via the Wayback Machine. The key discovery: before RiSA migrated to WordPress, its register lived at a DIFFERENT path, https://www.risa.org.za/website/certification/certifications/, on an old server-rendered (Django-style) site that emitted a real HTML <table> AND accepted GET search params (?artist=&title=&label=). Wayback holds many 200 captures of that path, including per-artist searches. Award tier is encoded in the row's image filename (RISA-GOLD / RISA-PLATINUM / Risa-Double-platinum / RISA-MULTI-PLATINUM). The current live WordPress page (/certification-levels/certifications/) remains a dead end exactly as briefed — JS table plugin, no artist data in HTML, wp-json/wp/v2/wptb-tables empty anonymously; I did not need it.\n\nSPECIFIC QUESTION ANSWERED: Yes, \"No Stress\" IS RiSA-certified, and the register prints the credit as \"Wizkid feat. Burna Boy\" — NOT Wizkid alone. Platinum, certified 11 Sep 2023, label Starboy/RCA Records, format Single. I verified this at the raw-HTML level rather than trusting my parser; the archived markup reads literally: <img src=\"/static/images/RISA-PLATINUM.jpg\"> then <td>Wizkid feat. Burna Boy</td><td>No Stress</td> then 11 Sep, 2023. Two independent archived captures agree — the ?artist=Wizkid capture (31 Aug 2024) and the ?artist=Burna+Boy capture (17 Nov 2023). Worth flagging to Paul: \"No Stress\" on Made in Lagos is normally credited to Wizkid solo, so this is RiSA's own credit line and it differs from the standard release credit. Report it as RiSA prints it.\n\nBURNA BOY: searching the register for \"Burna Boy\" returns EXACTLY TWO rows, both featured credits under Wizkid (Ginger, Double Platinum; No Stress, Platinum). There is NO lead-credit Burna Boy certification anywhere in RiSA's register as archived. That is a read, not a gap.\n\nZERO-RESULT READS (register loaded fine, returned an empty table — these are genuine negatives for that capture date, not walls): Tyla — ?artist=Tyla (11 Dec 2024) and ?artist=Tyla&title=Water (16 Dec 2024) both returned header row only, no data. Omah Lay — ?artist=Gyakie feat. Omah Lay&title=Forever (Remix) (20 Jan 2025) returned no data. Tems has no solo entry; her only appearance is the featured credit on Wizkid's Essence.\n\nSTILL UNKNOWN (be honest — these are NOT negatives): Rema, Asake, Ayra Starr, Seyi Vibez, Victony, Fireboy DML, CKay. Wayback holds no archived per-artist query capture for any of them, and Wayback does NOT live-fetch un-crawled query URLs — it 404s. I confirmed that behaviour by requesting invented timestamps and getting 404s. So absence here is absence of an archived snapshot, not evidence of no certification. Do not publish these as uncertified.\n\nCOVERAGE CAVEAT: the archived register is paginated at ~25 rows/page across 23 pages (~575 entries) and the per-artist captures are single points in time (2023–2025). I crawled 5 of the 21 archived page= captures before hitting a timeout; those 5 (50 rows, 2022–2023 SA repertoire) contained no target artists. The per-artist searches, not the page crawl, are what produced the results above.",
+   "rows": [
+    {
+     "artist": "Wizkid feat. Burna Boy",
+     "title": "No Stress",
+     "tier": "Platinum",
+     "awardDate": "11 Sep, 2023",
+     "url": "http://web.archive.org/web/20240831125400id_/https://www.risa.org.za/website/certification/certifications/?artist=Wizkid&title=",
+     "quote": "<td>Wizkid feat. Burna Boy</td> <td>No Stress</td> ... RISA-PLATINUM.jpg ... 11 Sep, 2023 ... Starboy/RCA Records ... Single"
+    },
+    {
+     "artist": "Wizkid feat. Burna Boy",
+     "title": "Ginger",
+     "tier": "Double Platinum",
+     "awardDate": "11 Sep, 2023",
+     "url": "http://web.archive.org/web/20231117113954id_/https://www.risa.org.za/website/certification/certifications/?artist=Burna+Boy&title=&label=",
+     "quote": "Risa-Double-platinum | Wizkid feat. Burna Boy | Ginger | 11 Sep, 2023 | Starboy/RCA Records | Single"
+    },
+    {
+     "artist": "Wizkid feat. Tems",
+     "title": "Essence",
+     "tier": "Multi-Platinum",
+     "awardDate": "31 Aug, 2023",
+     "url": "http://web.archive.org/web/20240523075441id_/https://www.risa.org.za/website/certification/certifications/?artist=Tems&title=&label=",
+     "quote": "RISA-MULTI-PLATINUM | Wizkid feat. Tems | Essence | 31 Aug, 2023 | Starboy/RCA Records | Single"
+    },
+    {
+     "artist": "Wizkid",
+     "title": "Sweet One",
+     "tier": "Gold",
+     "awardDate": "06 Jun, 2024",
+     "url": "http://web.archive.org/web/20240831125400id_/https://www.risa.org.za/website/certification/certifications/?artist=Wizkid&title="
+    },
+    {
+     "artist": "Wizkid feat. Drake",
+     "title": "Come Closer",
+     "tier": "Multi-Platinum",
+     "awardDate": "06 Jun, 2024",
+     "url": "http://web.archive.org/web/20240831125400id_/https://www.risa.org.za/website/certification/certifications/?artist=Wizkid&title="
+    },
+    {
+     "artist": "Wizkid feat. Skepta",
+     "title": "Longtime",
+     "tier": "Platinum",
+     "awardDate": "23 Jan, 2024",
+     "url": "http://web.archive.org/web/20240831125400id_/https://www.risa.org.za/website/certification/certifications/?artist=Wizkid&title="
+    },
+    {
+     "artist": "Wizkid feat. Terri",
+     "title": "Roma",
+     "tier": "Gold",
+     "awardDate": "23 Jan, 2024",
+     "url": "http://web.archive.org/web/20240831125400id_/https://www.risa.org.za/website/certification/certifications/?artist=Wizkid&title="
+    },
+    {
+     "artist": "Wizkid",
+     "title": "Mighty Wine",
+     "tier": "Gold",
+     "awardDate": "23 Jan, 2024",
+     "url": "http://web.archive.org/web/20240831125400id_/https://www.risa.org.za/website/certification/certifications/?artist=Wizkid&title="
+    },
+    {
+     "artist": "Wizkid",
+     "title": "Reckless",
+     "tier": "Gold",
+     "awardDate": "23 Jan, 2024",
+     "url": "http://web.archive.org/web/20240831125400id_/https://www.risa.org.za/website/certification/certifications/?artist=Wizkid&title="
+    },
+    {
+     "artist": "Wizkid",
+     "title": "Gyrate",
+     "tier": "Gold",
+     "awardDate": "23 Jan, 2024",
+     "url": "http://web.archive.org/web/20240831125400id_/https://www.risa.org.za/website/certification/certifications/?artist=Wizkid&title="
+    },
+    {
+     "artist": "Wizkid",
+     "title": "Fever",
+     "tier": "Platinum",
+     "awardDate": "23 Jan, 2024",
+     "url": "http://web.archive.org/web/20240831125400id_/https://www.risa.org.za/website/certification/certifications/?artist=Wizkid&title="
+    },
+    {
+     "artist": "Wizkid feat. H.E.R.",
+     "title": "Smile",
+     "tier": "Platinum",
+     "awardDate": "01 Nov, 2023",
+     "url": "http://web.archive.org/web/20240831125400id_/https://www.risa.org.za/website/certification/certifications/?artist=Wizkid&title="
+    },
+    {
+     "artist": "Wizkid feat. Tay Iwar & Projexx",
+     "title": "True Love",
+     "tier": "Platinum",
+     "awardDate": "11 Sep, 2023",
+     "url": "http://web.archive.org/web/20240831125400id_/https://www.risa.org.za/website/certification/certifications/?artist=Wizkid&title="
+    },
+    {
+     "artist": "Wizkid feat. Skepta",
+     "title": "Longtime",
+     "tier": "Platinum",
+     "awardDate": "11 Sep, 2023",
+     "url": "http://web.archive.org/web/20240831125400id_/https://www.risa.org.za/website/certification/certifications/?artist=Wizkid&title=",
+     "quote": "Register lists Longtime twice, at 11 Sep 2023 and again at 23 Jan 2024, both Platinum"
+    },
+    {
+     "artist": "Davido",
+     "title": "A Good Time",
+     "tier": "Double Platinum",
+     "awardDate": "31 Mar, 2023",
+     "url": "http://web.archive.org/web/20231112020737id_/https://www.risa.org.za/website/certification/certifications/?artist=Davido&title=&label=",
+     "quote": "Risa-Double-platinum | Davido | A Good Time | 31 Mar, 2023 | Davido Worldwide Entertainment | Album"
+    },
+    {
+     "artist": "Davido feat. Summer Walker",
+     "title": "D&G",
+     "tier": "Platinum",
+     "awardDate": "30 Mar, 2023",
+     "url": "http://web.archive.org/web/20231112020737id_/https://www.risa.org.za/website/certification/certifications/?artist=Davido&title=&label="
+    },
+    {
+     "artist": "Davido",
+     "title": "Assurance",
+     "tier": "Platinum",
+     "awardDate": "30 Mar, 2023",
+     "url": "http://web.archive.org/web/20231112020737id_/https://www.risa.org.za/website/certification/certifications/?artist=Davido&title=&label="
+    },
+    {
+     "artist": "Davido x Chris Brown",
+     "title": "Blow My Mind",
+     "tier": "Multi-Platinum",
+     "awardDate": "30 Mar, 2023",
+     "url": "http://web.archive.org/web/20231112020737id_/https://www.risa.org.za/website/certification/certifications/?artist=Davido&title=&label=",
+     "quote": "Register credit is 'Davido x Chris Brown', not 'feat.'"
+    },
+    {
+     "artist": "Davido",
+     "title": "Jowo",
+     "tier": "Double Platinum",
+     "awardDate": "30 Mar, 2023",
+     "url": "http://web.archive.org/web/20231112020737id_/https://www.risa.org.za/website/certification/certifications/?artist=Davido&title=&label="
+    },
+    {
+     "artist": "Davido & Popcaan",
+     "title": "Risky",
+     "tier": "Multi-Platinum",
+     "awardDate": "30 Mar, 2023",
+     "url": "http://web.archive.org/web/20231112020737id_/https://www.risa.org.za/website/certification/certifications/?artist=Davido&title=&label=",
+     "quote": "Register credit is 'Davido & Popcaan'"
+    }
+   ],
+   "wallReason": "No wall for the artists above — the register was fully readable via archived captures. Partial wall only for Rema, Asake, Ayra Starr, Seyi Vibez, Victony, Fireboy DML and CKay: the old register was a GET-search page, so a result set exists only where the Wayback Machine happened to crawl that exact query string, and no crawl exists for those seven. Wayback returns 404 for un-crawled query URLs rather than live-fetching them (confirmed by testing invented timestamps), so those seven are UNKNOWN, not uncertified. Separately, the current live WordPress register at /certification-levels/certifications/ is still unreadable as briefed (JS table plugin, no data in HTML, empty wp-json response), and risa.org.za/robots.txt explicitly Disallows Claude-User, Claude-SearchBot and ClaudeBot from the whole site, so I stayed on the Internet Archive rather than scraping the live host."
+  }
+ ],
+ "verdict": "CH | NOT READ (partial: wayback, wrong years) | Archived hitparade.ch/awards.asp read in full for 2015–2020 (~426 rows), zero hits for all 13 artists; thresholds confirmed (from 2017 Gold 10,000 / Platinum 20,000 units, singles and albums); Swiss certification confirmed request-based — IFPI Schweiz sells a CHF 75 + VAT GfK check and publishes thresholds only, so absence never implies uncertified | The 2021–2026 window, i.e. every award that would matter (Calm Down, Water, Essence, Last Last, Love Nwantiti). Live register is Cloudflare Turnstile 403; every Wayback capture of awards.asp from Jan 2021 on is a 404, and CDX has zero captures for ?year=2019–2024. ifpi.ch has no register path (33-page sitemap enumerated); hitparade.ch has no alternate Edelmetall path.\n\nBE (returned as code \"OK\") | READ via wayback | Ultratop's all-time singles register (1971 titles, 2016–2024) plus year pages, fully parsed: Drake feat. Wizkid & Kyla \"One Dance\" 3x Platine; Master KG feat. Burna Boy & Nomcebo \"Jerusalema (Remix)\" 2x Platine; Rema \"Calm Down\" 2x Platine; Tyla \"Water\" Platine. Album register swept 2019–2025: zero. Genuine negatives for Davido, Tems, Ayra Starr, Asake, Omah Lay, Seyi Vibez, Victony, Fireboy DML, CKay — including \"Essence\", \"Love Nwantiti\" and \"Peru\". Burna Boy has no lead-credit Belgian plaque. Two earlier assumptions corrected: BEA is now BRMA and keeps no register (Ultratop does), and the register moved to /fr/or-platine/<year>/<singles|albums> — not /nl/awards, which has never had a snapshot | Nothing material. Live Ultratop is Cloudflare-403 on every path, so future refreshes must go through the archive; four 2019–2023 year pages failed to fetch but the all-time list covers them.\n\nCZ | NOT READ — nothing exists to read | ČNS IFPI's rules (effective 9.3.2026): only two tiers, Zlatý and Platinový, no diamond; single 2.5M subscription streams gold / 5M platinum, album 5M / 10M; 1 sub stream = 3 ad-supported, 1 download = 222, 1 CD = 2,220, 1 vinyl = 3,996; TikTok/Facebook and YouTube UGC excluded; only releases from 1 Jan 2022 are eligible at all | No wall — site is plain HTML, no Cloudflare, no login. The body simply never publishes recipients: /oceneni is rules PDFs plus an application form, all snapshots since May 2022 are the same 2.8–4.0 KB page, and no award-list URL appears among 13,519 archived ifpicr.cz URLs. The 2011 ?section=goldplatin URL archives as an empty menu shell.\n\nSK | NOT READ — nothing exists to read | Settled provenance: SNS IFPI closed Bratislava in 2010, ČNS IFPI Prague has run the Slovak programme since 1 Jan 2010 and still issues SK awards under separate Slovak-language rules (9.3.2026, 1.1.2026, 20.10.2025). SK charts are published (/hitparada/36, /40, /43) but carry no certification markers | Same structural absence as CZ, now proven: CDX sweep of all 4,152 archived ifpicr.cz URLs filtered on ocen|award|zlat|platin|diamant returned only album-cover JPEGs; the pre-redesign /metodika_oceneni/ page is also thresholds-only; ?section=goldplatin renders the plain homepage in every capture loaded. ifpi.sk is a parked Apache box; hitparada.sk returns an empty document with a cert issued for *.dsl.sk.\n\nGR | READ via live | IFPI Greece prints certifications as an unlabelled Award column (G/P/2P/3P/D) inside its weekly Official Charts, not as a register. Six weeks read: Shakira & Burna Boy \"Dai Dai\" Gold (wk 30/2026, live); Drake \"One Dance (Feat. Wizkid & Kyla)\" 3x Platinum; \"Tems, Dave\" — \"Raindance (feat. Tems)\" 2x Platinum; Tyla \"Water\" 2x Platinum (wk 17/2025); Tyla \"PUSH 2 START\" Gold; Selena Gomez & Rema \"Calm Down\" Platinum. Explicitly blank-award rows seen for CKay \"love nwantiti\", Tyla \"Water (Remix)\" and \"Jump\" | No wall at all — flat static HTML. The limitation is shape, not access: it is a rolling weekly chart, ~6 of ~250 weeks read, so absence proves nothing and tiers may have been upgraded in unread weeks (Water went blank → P → 2P across three samples). The albums chart dropped its Awards column after 2012, so no Greek album cert is readable. Charts are on summer hiatus; re-read in September.\n\nCO | READ via live | Premise corrected: Colombia does have a body — Pro Musica (IFPI national group for CO/EC/PE) at pro-musica.co; ASINCOL is defunct. Register PDF (~99 rows, Oro/Platino/Diamante, 31/08/2023–21/02/2025) parsed by text geometry. One hit across 13 artists: \"BUBALU | FEID FEAT REMA | UNIVERSAL MUSIC | ALBUM | DIAMANTE | 29/11/2023 | COLOMBIA\" — a genuine addition, since app/data/afrobeats.ts:451 currently lists only US 2x Platinum and ES Platinum. Zero for the other 12, validated against controls (KAROL G 18 hits, MYKE TOWERS 3) | No wall — what defeated earlier sweeps is that IFPI's own directory still points Colombia at apdifcolombia.com, a domain suspended since ~Dec 2023. Remaining blocker is staleness: the register has not been updated since 5 Mar 2025 (confirmed via last-modified header and the site's WordPress media API), so the \"Dai Dai\" CO Gold at /Users/paulemmanuelng/burnaboy-website/app/data/certifications.ts:513 cannot be confirmed there and could not be; certifications.ts:72 also mislabels the CO body as \"Sony Music Colombia\".\n\nZA | READ via wayback | The register was cracked at its pre-WordPress path, risa.org.za/website/certification/certifications/, which emitted a real HTML table and accepted ?artist=/?title= GET params that Wayback crawled. Tier is encoded in the row image filename. Yields 20 rows including Burna Boy's only two ZA plaques (both featured under Wizkid), Wizkid's full run, Tems via \"Essence\", and Davido's six. Confirmed zero-result reads (register loaded, empty table) for Tyla and for Gyakie feat. Omah Lay \"Forever (Remix)\" | Rema, Asake, Ayra Starr, Seyi Vibez, Victony, Fireboy DML and CKay are UNKNOWN, not uncertified — Wayback holds no crawl of those query strings and 404s rather than live-fetching un-crawled ones (verified with invented timestamps). The live WordPress register is still a JS table plugin with empty anonymous wp-json, and risa.org.za/robots.txt disallows ClaudeBot, Claude-User and Claude-SearchBot sitewide, so the live host is off-limits by policy, not just by tech.\n\n**\"No Stress\" credit: yes, established, and it is Wizkid featuring Burna Boy.** RiSA certified it Platinum on 11 Sep 2023 (Starboy/RCA Records, format Single), verified at raw-HTML level across two independent archived captures — the ?artist=Wizkid capture of 31 Aug 2024 and the ?artist=Burna+Boy capture of 17 Nov 2023. The markup reads literally:\n\n`<img src=\"/static/images/RISA-PLATINUM.jpg\"> ... <td>Wizkid feat. Burna Boy</td><td>No Stress</td> ... 11 Sep, 2023`\n\nFlag for Paul: \"No Stress\" on Made in Lagos is normally credited to Wizkid solo. This is RiSA's own credit line and it differs from the standard release credit — report it as RiSA prints it, and note that it is one of only two Burna Boy rows in the entire RiSA register, both featured credits under Wizkid (the other is \"Ginger\", Double Platinum). There is no lead-credit Burna Boy certification in RiSA's archived register — that is a read, not a gap.\n\n**Permanently unreadable — stop sweeping:**\n- **CZ and SK.** Not walls. Both were fully accessible and contain no recipient data by design; ČNS IFPI publishes thresholds and an application form, never names. Mark both \"body publishes no register\" — a structural fact, not a failed pass. The only remaining route is a written enquiry to ifpicr@ifpicr.cz, which is a human decision for Paul, not something a sweep resolves.\n- **CH, for the years that matter.** This wall is real and doubly sealed: Cloudflare Turnstile on the live register (which I will not attempt) and a hard archive void from Jan 2021 onward, with no alternate path on either hitparade.ch or ifpi.ch. Switzerland should stay OMITTED from the board — not published as swept-and-empty, since the zero comes entirely from 2015–2020. Do not queue a fourth pass on those URLs; only a new archive source or a direct approach to the body changes anything.\n\n**Merely needs a different route:**\n- **ZA** — the route works, it just needs more of it. Seven artists are blocked only by which query strings Wayback happened to crawl. The live host is closed by robots.txt, so the realistic next move is hunting more archived query captures or archived page= listings (only 5 of 21 crawled before timeout), not retrying the WordPress page.\n- **GR** — no wall whatsoever; the earlier sweeps just looked for a register that has never existed. Next pass is sampling many more chart weeks from the ~250 available, and re-reading live when charts resume in September.\n- **CO** — solved and readable; blocked only by the body's own 18-month-stale PDF. Re-check after Pro Musica next uploads.\n- **BE** — done, no fourth pass needed. Live is Cloudflare-walled permanently, but the archive route is fully open and the register was read end to end.\n\nThe honest count: of the seven, one wall is genuinely impassable (CH), two were never walls but empty rooms (CZ, SK), one is a policy boundary plus a crawl-coverage gap (ZA), and three were failures of navigation rather than access (BE went to the wrong body and the wrong path, CO to a suspended domain from IFPI's own stale directory, GR to a register that was always a chart column)."
+}
