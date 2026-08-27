@@ -999,7 +999,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     // "the most home-market record here" crowned a limitation as a superlative —
     // a ranking on a metric nobody measures. Paul called the tone out; the fact
     // states itself, and "so far" leaves the door open rather than closing it.
-    hook: "103 plaques and 114 chart entries, every one of them Nigerian — a record built at home, so far.",
+    hook: "102 plaques and 114 chart entries, every one of them Nigerian — a record built at home, so far.",
     spotifyId: "4zmZ8lVLzGc84S4v2B1rLx",
     wikipedia: "https://en.wikipedia.org/wiki/Seyi_Vibez",
     image: "https://i.scdn.co/image/ab6761610000e5eb9902f473df31601d5938e0bd",
