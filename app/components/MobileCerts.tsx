@@ -200,7 +200,7 @@ export default function MobileCerts({
             />
             <picture style={{ display: "contents" }}>
               <source media="(max-width: 900px)" srcSet={spotifySrcSet(portrait)} sizes="190vw" />
-            {/* eslint-disable-next-line @next/next/no-img-element -- decorative CDN portrait */}
+            { }
             <img
               className={portraitArt.mode === "emblem" ? `${styles.heroArt} ${styles.heroArtEmblem}` : styles.heroArt}
               src={BLANK_PIXEL}

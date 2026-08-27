@@ -203,7 +203,7 @@ describe("appendTrendPoint", () => {
 // ── The 2026 running-totals accumulator (streams-2026-*) ──────────────────────
 // kworb's all-artists table publishes values in MILLIONS with decimals, and
 // the artist link is wrapped in a div — both bit the first extractor draft.
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+ 
 // @ts-expect-error — plain ESM helper module
 import { extractKworbArtistDaily } from "../scripts/stats-lib.mjs";
 

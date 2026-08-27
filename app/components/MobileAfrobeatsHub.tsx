@@ -110,7 +110,7 @@ export default function MobileAfrobeatsHub({
               srcSet={spotifySrcSet(burna.image)}
               sizes="calc(100vw - 36px)"
             />
-            {/* eslint-disable-next-line @next/next/no-img-element -- decorative CDN portrait */}
+            { }
             <img
               className={styles.doorArt}
               src={BLANK_PIXEL}

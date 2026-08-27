@@ -14,7 +14,12 @@ const eslintConfig = defineConfig([
     // never ships, but ESLint still walks the working tree — and the
     // prototypes use ReactDOM.render and assign to `module`, which fails the
     // build for code we are only reading as a spec.
+    //
+    // Both spellings are listed on purpose: the handoff has landed in
+    // "design/" and in "design_handoff_burnaboystats/", and naming only the
+    // first meant three prototype errors leaked into every lint run.
     "design/**",
+    "design_handoff_burnaboystats/**",
   ]),
 ]);
 
