@@ -697,12 +697,12 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Belgium",
     "path": "/certifications",
     "section": "Country",
-    "description": "Certifications awarded in Belgium by BEA.",
+    "description": "Certifications awarded in Belgium by Ultratop.",
     "keywords": [
       "be",
       "country",
       "certified",
-      "bea"
+      "ultratop"
     ],
     "generated": true
   },
@@ -778,12 +778,12 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Colombia",
     "path": "/certifications",
     "section": "Country",
-    "description": "Certifications awarded in Colombia by Sony Music Colombia.",
+    "description": "Certifications awarded in Colombia by Pro Musica Colombia.",
     "keywords": [
       "co",
       "country",
       "certified",
-      "sony music colombia"
+      "pro musica colombia"
     ],
     "generated": true
   },

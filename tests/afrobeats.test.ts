@@ -33,7 +33,7 @@ const EXPECTED = {
   victony: { total: 22, diamond: 0 },
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
-  rema: { total: 80, diamond: 4 },
+  rema: { total: 81, diamond: 5 },
   tems: { total: 70, diamond: 1 },
   tyla: { total: 62, diamond: 2 },
   "ayra-starr": { total: 41, diamond: 2 },

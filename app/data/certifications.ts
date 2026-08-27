@@ -39,26 +39,32 @@ export interface Release {
 
 export const COUNTRIES: Record<string, Country> = {
   US: { name: "United States", flag: "🇺🇸", body: "RIAA", url: "https://www.riaa.com/gold-platinum/" },
-  UK: { name: "United Kingdom", flag: "🇬🇧", body: "BPI", url: "https://www.bpi.co.uk/award/" },
+  UK: { name: "United Kingdom", flag: "🇬🇧", body: "BPI", url: "https://certified-awards.bpi.co.uk/" },
   CA: { name: "Canada", flag: "🇨🇦", body: "Music Canada", url: "https://musiccanada.com/gold-platinum/" },
   FR: { name: "France", flag: "🇫🇷", body: "SNEP", url: "https://snepmusique.com/les-certifications/" },
   DE: { name: "Germany", flag: "🇩🇪", body: "BVMI", url: "https://www.musikindustrie.de/" },
   IT: { name: "Italy", flag: "🇮🇹", body: "FIMI", url: "https://www.fimi.it/" },
-  BE: { name: "Belgium", flag: "🇧🇪", body: "BEA" },
-  SE: { name: "Sweden", flag: "🇸🇪", body: "GLF" },
-  NL: { name: "Netherlands", flag: "🇳🇱", body: "NVPI", url: "https://www.nvpi.nl/" },
-  AU: { name: "Australia", flag: "🇦🇺", body: "ARIA" },
-  NZ: { name: "New Zealand", flag: "🇳🇿", body: "RMNZ" },
+  // BEA renamed to BRMA and publishes no register; Ultratop keeps the Belgian roster.
+  BE: { name: "Belgium", flag: "🇧🇪", body: "Ultratop", url: "https://www.ultratop.be/fr/or-platine" },
+  // http:// only — https times out, which is what made earlier sweeps call it dead.
+  SE: { name: "Sweden", flag: "🇸🇪", body: "GLF", url: "http://www.grammotex.se/catalogue.php?lang=en" },
+  NL: { name: "Netherlands", flag: "🇳🇱", body: "NVPI", url: "https://www.goudplatina.nl/database" },
+  AU: { name: "Australia", flag: "🇦🇺", body: "ARIA", url: "https://www.aria.com.au/accreditations" },
+  // RMNZ publishes no standalone register: certifications ride on chart rows.
+  NZ: { name: "New Zealand", flag: "🇳🇿", body: "RMNZ", url: "https://aotearoamusiccharts.co.nz/archive" },
   ES: { name: "Spain", flag: "🇪🇸", body: "Promusicae", url: "https://www.elportaldemusica.es/" },
-  DK: { name: "Denmark", flag: "🇩🇰", body: "IFPI Denmark" },
-  NO: { name: "Norway", flag: "🇳🇴", body: "IFPI Norway" },
-  CH: { name: "Switzerland", flag: "🇨🇭", body: "IFPI" },
-  AT: { name: "Austria", flag: "🇦🇹", body: "IFPI Austria" },
-  HU: { name: "Hungary", flag: "🇭🇺", body: "MAHASZ" },
+  DK: { name: "Denmark", flag: "🇩🇰", body: "IFPI Denmark", url: "http://ifpi.dk/certificeringer-0" },
+  NO: { name: "Norway", flag: "🇳🇴", body: "IFPI Norway", url: "https://ifpi.no/trofeoversikt/" },
+  // Swiss certification is REQUEST-BASED, like TCSN: ifpi.ch publishes thresholds only
+  // and charges CHF 75 + VAT for a GfK check, so absence never implies uncertified.
+  // The awarded roster sits on hitparade.ch, which is behind a Cloudflare bot-wall.
+  CH: { name: "Switzerland", flag: "🇨🇭", body: "IFPI", url: "https://www.ifpi.ch/edelmetallpruefung" },
+  AT: { name: "Austria", flag: "🇦🇹", body: "IFPI Austria", url: "https://ifpi.at/auszeichnungen/" },
+  HU: { name: "Hungary", flag: "🇭🇺", body: "MAHASZ", url: "https://slagerlistak.hu/arany-es-platinalemezek/adatbazis" },
   SK: { name: "Slovakia", flag: "🇸🇰", body: "ČNS IFPI" },
   CZ: { name: "Czech Republic", flag: "🇨🇿", body: "ČNS IFPI" },
-  PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV" },
-  PT: { name: "Portugal", flag: "🇵🇹", body: "AFP" },
+  PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV", url: "https://www.olis.pl/charts/oficjalna-lista-wyroznien/platynowe-plyty" },
+  PT: { name: "Portugal", flag: "🇵🇹", body: "AFP", url: "https://www.audiogest.pt/" },
   GR: { name: "Greece", flag: "🇬🇷", body: "IFPI Greece" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "RiSA", url: "https://risa.org.za/" },
   // TCSN's public register (turntablecharts.com/certification) is REQUEST-based
@@ -68,8 +74,8 @@ export const COUNTRIES: Record<string, Country> = {
   // the register currently displays no Silver awards for anyone. Do not "clean
   // up" NG entries against the register — see PR #97 and its correction comment.
   NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable (TCSN)", url: "https://turntablecharts.com/certification" },
-  BR: { name: "Brazil", flag: "🇧🇷", body: "Pro-Música Brasil" },
-  CO: { name: "Colombia", flag: "🇨🇴", body: "Sony Music Colombia" },
+  BR: { name: "Brazil", flag: "🇧🇷", body: "Pro-Música Brasil", url: "https://pro-musicabr.org.br/certificados/" },
+  CO: { name: "Colombia", flag: "🇨🇴", body: "Pro Musica Colombia", url: "https://pro-musica.co/" },
 };
 
 export const albums: Release[] = [
@@ -145,7 +151,11 @@ export const singles: Release[] = [
   // standard-programme plaques as if the tiers meant the same thing.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", year: 2026, certs: [
     { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
-    { c: "CO", level: "Gold" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
+    // Colombia ran no national certifier for years — ASINCOL closed around 2008 —
+    // so Colombian "disco de oro" announcements were label-issued, and this one is.
+    // Pro Musica Colombia (the IFPI national group) DOES publish a register, but its
+    // roster runs only to Aug 2024 and so cannot speak to a 2026 award either way.
+    { c: "CO", level: "Gold", body: "Sony Music Colombia" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
