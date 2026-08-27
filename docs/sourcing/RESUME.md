@@ -55,8 +55,11 @@ That was wrong. It has one; it is just not on a website.
   `https://www.audiogest.pt/tops-semanais-2026?lang=pt` — one PDF per Semana,
   four sections (Top 200 Álbuns, Stream Álbuns, Streams, **Singles**).
   `OU` = Ouro, `PL`…`9PL` = Platina. It annotates only titles charting that week.
-- **Off-chart awards are announced monthly on facebook.com/audiogest**, which is
-  **publicly readable logged out**. Month M is announced at the start of M+1
+- **Off-chart awards are announced monthly on facebook.com/audiogest.** The MOST
+  RECENT batch is readable logged out; **older months are not** — the logged-out page
+  serves only the latest ~10 photos and will not scroll, so the archive is closed by
+  this route. Wayback captures after 2022 are all 302 login redirects. Earlier sweeps
+  managed to read only the Feb and Mar 2026 tables. Month M is announced at the start of M+1
   ("Começamos o novo mês a anunciar os Galardões de Ouro de Maio de 2026").
   Each batch is a carousel: a cover slide plus cards of four awards, nationals
   first with an "ARTISTA NACIONAL" ribbon, then international alphabetically.

@@ -10,7 +10,7 @@ that AFP *does* publish a register — the project had it recorded as having non
 | `afp.org.pt` | **dead** — Wayback terminates January 2016 |
 | audiogest.pt home / news | no certification data at all |
 | **Charting titles** | the **`Gal.` column** on the weekly TOP PDF |
-| **Off-chart awards** | monthly carousels on **facebook.com/audiogest**, readable logged out |
+| **Off-chart awards** | monthly carousels on **facebook.com/audiogest** — the CURRENT batch is readable logged out; older months are not (the page serves only the latest ~10 photos and does not scroll) |
 
 Index: `https://www.audiogest.pt/tabelas-oficiais-de-vendas-?lang=pt` → TOPS
 Semanais by year → one PDF per Semana. Codes: `OU` = Ouro, `PL`…`9PL` = Platina.
