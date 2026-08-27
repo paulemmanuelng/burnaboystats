@@ -202,10 +202,18 @@
 @media (max-width: 1100px) {
   .grid { grid-template-columns: repeat(3, 1fr); }
 }
-@media (max-width: 760px) {
+/* The layout switch belongs at 900px, NOT 760px — that is where
+   mobileAfrobeatsHub.module.css turns .screen on, and where page.module.css and
+   certifications.module.css hide their own .desktopOnly. Held at 760px here,
+   this page rendered BOTH layouts at once from 761px to 900px — the whole iPad
+   portrait range, 768px included. Verified in-browser: at 820px the desktop
+   board and the mobile hub were both visible; at 1000px and 700px only one was. */
+@media (max-width: 900px) {
   .mobileBackBar { display: flex; }
   .desktopCrumbs { display: none; }
   .desktopOnly { display: none; }
+}
+@media (max-width: 760px) {
   .hero { padding: 26px 18px 18px; }
   .gridPad { padding: 6px 18px 34px; }
   .grid { grid-template-columns: repeat(2, 1fr); }

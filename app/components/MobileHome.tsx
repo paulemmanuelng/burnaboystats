@@ -19,8 +19,10 @@ import {
   albumCharts,
   CHART_COUNTRIES,
   numberOnes,
-  numberOneCountryCount,
 } from "../data/charts";
+// The country-only No. 1 set. charts.ts exports a same-named constant that
+// also counts Billboard's two Global charts, which are not countries.
+import { numberOneCountryCount } from "../lib/analysis";
 import { totalAwards, countryCount as certCountries } from "../data/certifications";
 import { albums as studioAlbums } from "../data/albums";
 import { tours } from "../data/tours";

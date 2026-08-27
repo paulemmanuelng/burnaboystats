@@ -1,4 +1,5 @@
-import { numberOnes, chartCountryCount } from "../data/charts";
+import { numberOnes } from "../data/charts";
+import { numberOneCountryCount } from "./analysis";
 import { totalAwards, countryCount as certCountryCount } from "../data/certifications";
 import { albums as studioAlbums } from "../data/albums";
 import { countryCount as playedCount, regionCount } from "../data/performedCountries";
@@ -41,7 +42,13 @@ export const homeScoreboard: ScoreboardStat[] = [
     value: String(numberOnes),
     label: "No. 1s worldwide",
     glyph: "no1s",
-    source: `${chartCountryCount} countries`,
+    // NOT chartCountryCount. That is every territory he has CHARTED in (71),
+    // and pairing it with a No. 1s count claims he topped the chart in 71
+    // places. charts.ts carries a comment forbidding exactly this, quoting the
+    // exact string this line used to render. analysis.numberOneCountryCount is
+    // the country-only No. 1 set (31); charts.numberOneCountryCount is 33
+    // because it counts Billboard's two Global charts, which are not countries.
+    source: `${numberOneCountryCount} countries`,
     href: "/records/charts",
   },
   {

@@ -304,7 +304,7 @@
       "extractor": "kworbYouTubeTotal",
       "kind": "peak",
       "threshold": 0.001,
-      "baseline": 3187566461,
+      "baseline": 4000000000,
       "note": "Cumulative views across every Burna Boy video — a milestone figure as it climbs.",
       "live": true,
       "siteTargets": [
@@ -322,11 +322,11 @@
         "min": 1000000000,
         "max": 50000000000
       },
-      "lastChanged": "2026-08-25",
-      "lastSeenValue": 3187566461,
+      "lastChanged": "2026-08-27",
+      "lastSeenValue": 4000000000,
       "lastSeenAt": "2026-08-25",
       "stalenessDays": 3,
-      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
+      "$comment": "SCOPE MISMATCH, needs a decision. The site publishes 4.0B — 343 videos across every channel, from Paul's tracking on 24 Aug 2026. This metric's extractor reads kworb's artist page, which covers a NARROWER set and stood at 3,187,566,461. Because kind is \"peak\", the bot publishes only when live > baseline; with the old 3.19B baseline it would have published \"3.2B\" the moment kworb ticked over, silently overwriting the published 4.0B with a LOWER number. Baseline raised to 4.0B so that cannot happen. Consequence: the metric will now read stale (see stalenessDays) until kworb's narrower count passes 4.0B, which is the loud failure rather than the silent one. Resolve by either pointing the extractor at the same all-channel measure the site publishes, or setting live:false and maintaining this figure by hand. Do not simply lower the site figure to match kworb — they count different things."
     },
     {
       "id": "spotify-streams-last-last",
