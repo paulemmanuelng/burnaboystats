@@ -4,32 +4,43 @@
 
 ## Total: **81 certifications** across **21 countries**
 
-> ***Secondhand* 🇵🇹 Gold — checked 27 Aug 2026, NOT added. The claim conflates
-> an ALBUM certification with a single.** A news account posted that Don
-> Toliver's *Secondhand* ft. Rema "is now certified GOLD in Portugal". What AFP
-> actually certified is **OCTANE — Don Toliver's album** — and *Secondhand (feat.
-> Rema)* is track material on it, not a certified title in its own right.
+> ***Secondhand* 🇵🇹 Gold — REFUTED at the issuing body, 27 Aug 2026.** Two X
+> posts claimed Don Toliver's *Secondhand* ft. Rema was "now certified Gold in
+> Portugal", one carrying a gold-disc award card. It is not, and this is a
+> refutation rather than a failure to confirm.
 >
-> Read in AFP's own weekly TOP, whose `Gal.` (Galardão) column is the only
-> certification data AFP publishes (`OU` = Ouro, `PL`…`9PL` = Platina). The
-> OCTANE row carries no Galardão in **Semanas 29 and 30**, and carries **`OU`**
-> from **Semana 31** onward through 32, 33 and 34 — the award landing in that
-> window, on the row credited `OCTANE / DON TOLIVER / ATLANTIC / WARNER`.
-> No row for a single called *Secondhand* exists in any of those six weeks.
+> **AFP/Audiogest published its own gold list two days before the posts, and the
+> song is not in it.** The Facebook carousel headed **"GALARDÕES DE OURO —
+> JULHO 2026"** carries a cover plus six cards of four awards each — 24 golds,
+> nationals first (with an "ARTISTA NACIONAL" ribbon), then international titles
+> strictly alphabetically. The run reads *Make It To The Morning · Maladie ·
+> No Chill* → *The Cure*: **no O/P/Q/R/S entry at all**. The count is exact and
+> the adjacent post ids return nothing, so the carousel was enumerated end to
+> end. Audiogest states it is the sole issuer: *"A AUDIOGEST é a única entidade
+> em Portugal a certificar e atribuir estes Galardões."*
 >
-> **First pass got this wrong, and the reason is worth keeping.** The first check
-> searched the weeklies for "Rema" and found nothing, and concluded the claim was
-> structurally unconfirmable. It searched for the FEATURED artist; AFP credits
-> the LEAD. Paul's correction — "check with Don Toliver" — turned an unreadable
-> into a clean answer in one step. (The same pass also had to discard a "REMA"
-> hit that was the substring inside *REMASTER*.)
+> **Its whole Portuguese chart run was read, and the Galardão column is blank.**
+> *Secondhand* charted **Semanas 6–13 of 2026**, debuting and peaking at **#40**
+> and gone after 26 March. All 16 of its rows carry an empty `Gal.` cell — with a
+> working positive control, since the same extraction picks up 455 galardão rows
+> in Semana 10 alone, including singles immediately above it.
 >
-> **No plaque follows for Rema.** The certified title is an album by another
-> artist, and every certified album row on this board is the artist's own —
-> *Made in Lagos*, *Timeless*, *Rave & Roses*, *Boy Alone*. A guest on one track
-> of someone else's certified album does not take an album plaque. Rema's
-> Portuguese count stays at **1** (*Calm Down*, 9× Platina); *Secondhand* keeps
-> its Canadian Gold and its Portuguese chart peak of #40.
+> **The circulating graphic is a fan tracker's card, not AFP's.** Audiogest
+> publishes one monthly batch carousel per tier, in Portuguese, with its own
+> wordmark. The card in the posts has no issuer mark and no Portuguese wording.
+>
+> No label or press announcement exists either — nothing from Warner Music
+> Portugal, Atlantic, Don Toliver or Rema, and nothing in the Portuguese trade
+> press that routinely itemises these batches.
+>
+> **The honest limit:** the May and June 2026 gold batches were not enumerated
+> slide by slide, so a *Secondhand* gold in one of those is not formally
+> excluded — though that would make the posts' "new certification" framing wrong
+> on its own terms. Either way nothing is published.
+>
+> Rema's Portuguese count stays at **1** (*Calm Down*, 9× Platina). *Secondhand*
+> keeps its Canadian Gold and its Portuguese chart peak of **#40**, the latter now
+> confirmed in AFP's own weekly TOP rather than from a chart aggregator.
 
 > **Correction, 27 Aug 2026 — Colombia was wrongly written off.** This file
 > recorded Colombia among the registers returning zero "for a structural reason",

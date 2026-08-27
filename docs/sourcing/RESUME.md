@@ -43,3 +43,33 @@ record, so a reader can check the plaque themselves. Ordered by Paul, 27 Aug 202
 ## Next
 
 Burna Boy first, then the 11 other board artists in `app/data/afrobeats.ts`.
+
+## Portugal (AFP/Audiogest) — READABLE, found 27 Aug 2026
+
+Earlier passes recorded Portugal as having no usable certification register.
+That was wrong. It has one; it is just not on a website.
+
+- `afp.org.pt` is dead (Wayback terminates January 2016) and audiogest.pt's
+  news feed carries no certification items. Both are dead ends.
+- **The register is the weekly TOP PDF's `Gal.` column**, at
+  `https://www.audiogest.pt/tops-semanais-2026?lang=pt` — one PDF per Semana,
+  four sections (Top 200 Álbuns, Stream Álbuns, Streams, **Singles**).
+  `OU` = Ouro, `PL`…`9PL` = Platina. It annotates only titles charting that week.
+- **Off-chart awards are announced monthly on facebook.com/audiogest**, which is
+  **publicly readable logged out**. Month M is announced at the start of M+1
+  ("Começamos o novo mês a anunciar os Galardões de Ouro de Maio de 2026").
+  Each batch is a carousel: a cover slide plus cards of four awards, nationals
+  first with an "ARTISTA NACIONAL" ribbon, then international alphabetically.
+
+**How to read the carousel** (no login, no bot-check): open the page, click
+Photos, pull `a[href*="fbid="]` hrefs, then for each permalink pull the
+`t39.30808-6` scontent image URL and navigate to that raw `.jpg` — the CDN image
+renders full-frame with no login modal. Post `og:title`/`og:description` also
+come back to a plain curl with a Googlebot UA on `/audiogest/photos/<slug>/<id>/`
+permalinks, though NOT on `photo.php?...&set=pb...`.
+
+Instagram is useless: every Wayback capture after 2022 is a 302 login redirect.
+
+**Consequence:** Portuguese certifications for NON-CHARTING titles are now
+verifiable, which they were not before. Worth a pass over every board artist's
+Portuguese rows, and over the monthly batches back through 2026.
