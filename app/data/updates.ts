@@ -37,7 +37,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-27",
     category: "Certifications",
-    text: "“On The Low” goes from nothing to nine. A song that carried “African Giant” had not one certification recorded here; reading its claims at each certifying body's own register, one country at a time, returns eight more alongside the Swedish Platinum — Diamond in France (SNEP, 14 July 2022), 2× Platinum in Canada, Platinum in the UK and Switzerland, and Gold in Australia, Denmark, Nigeria and the United States. Two of those came back HIGHER than the tables that pointed at them: Canada is 2× Platinum rather than Platinum, and Nigeria is Gold rather than Silver. New Zealand's claimed Platinum is not included — Recorded Music NZ no longer publishes a register it could be read in, and the song never charted there. The catalogue now stands at 239 plaques.",
+    text: "“On The Low” gains a plaque and corrects one. Reading its certifications at each issuing body's own register — SNEP, Music Canada, BPI, IFPI Schweiz, RIAA, ARIA, IFPI Danmark and TCSN — confirms the tiers already recorded here, adds Sweden (GLF, Platinum, certificate no. 10448, awarded 16 August 2023) and corrects Nigeria, which TCSN gives as Gold rather than Silver. That is ten countries for a song whose French plaque is a full Diamond. The catalogue stands at 231.",
     href: "/certifications",
   },
   {

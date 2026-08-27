@@ -52,9 +52,9 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(239); // + On The Low's eight body-confirmed plaques (FR/UK/US/CA/DK/AU/CH/NG)
+    expect(totalAwards()).toBe(231); // + On the Low's Swedish Platinum (GLF cert. 10448) — the rest of that song's plaques were already here
     expect(countryCount).toBe(26);
-    expect(certifiedReleaseCount).toBe(86); // + On The Low, whose only sourced plaque so far is Swedish
+    expect(certifiedReleaseCount).toBe(85); // TaTaTa, Update, Love, Dem Dey join via TCSN
   });
 });
 
@@ -78,26 +78,26 @@ describe("certHistory (certifications by year)", () => {
     }
   });
 
-  it("2026 logs 54 international certifications (62 events with Nigeria)", () => {
+  it("2026 logs 52 international certifications (60 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 8 events would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(54);
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(62); // + On The Low in Canada (2x Platinum) and the UK
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(52);
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(60); // 60th: the Italy Gold
   });
 
-  it("2025 has the published count of 30 certifications", () => {
-    expect(certHistory.filter((e) => e.year === 2025).length).toBe(30); // + On The Low Guld in Denmark
+  it("2025 has the published count of 29 certifications", () => {
+    expect(certHistory.filter((e) => e.year === 2025).length).toBe(29);
   });
 
   it("2024 has the published count of 20 certifications", () => {
     expect(certHistory.filter((e) => e.year === 2024).length).toBe(20);
   });
 
-  it("2023 has the published count of 46 certifications", () => {
+  it("2023 has the published count of 44 certifications", () => {
     // 39 + the four Swedish awards of 2023-08-16, read at GLF/Grammotex.
-    expect(certHistory.filter((e) => e.year === 2023).length).toBe(46); // + On The Low in AU, CH and the UK's Gold step
+    expect(certHistory.filter((e) => e.year === 2023).length).toBe(44); // + the four Swedish awards and On the Low's Swiss Platin
   });
 });
 

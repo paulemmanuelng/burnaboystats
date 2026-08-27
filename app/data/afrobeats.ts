@@ -1508,7 +1508,7 @@ export const BURNA = {
   name: "Burna Boy",
   flag: "🇳🇬",
   country: "Nigeria",
-  // His tile and door both advertise a plaque count — "239 certifications · 26
+  // His tile and door both advertise a plaque count — "231 certifications · 26
   // countries" — so that is where a click should land. It pointed at the home
   // page on the reasoning that he is the site's subject and his tile is the way
   // back into all of it, but a control labelled with a certification total and

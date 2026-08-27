@@ -88,32 +88,44 @@ worth checking whenever trade access is available.
 - Sweden is **not** a no-register country. It is a **trade-gated register** country.
   Absence from public view proves nothing either way — the same shape as TCSN.
 
-## On The Low, read body by body (27 Aug 2026)
+## On the Low, read body by body (27 Aug 2026)
 
-The Swedish find exposed a song with no certification data at all. Every claim
-against it was then read at the issuing body's own register:
+**Correction first.** An earlier pass of this sweep recorded "On The Low" as
+absent from the data layer and created a second entry for it. It was not absent:
+the release is titled **"On the Low"** (lower-case *the*) and already carried
+nine certifications. The case-sensitive grep that missed it produced a duplicate
+entry and double-counted nine plaques, briefly pushing the catalogue to a false
+239. The duplicate is removed and the total is **231** — 230 plus the one
+genuinely new plaque, Sweden.
 
-| Country | Body | Tier | Award date |
-|---|---|---|---|
-| 🇫🇷 France | SNEP | **Diamant** | 2022-07-14 (*date de constat*) |
-| 🇨🇦 Canada | Music Canada | **2× Platinum** | 2026-01-28 |
-| 🇨🇭 Switzerland | IFPI Schweiz | Platin | 2023 (year only) |
-| 🇸🇪 Sweden | GLF/Grammotex | Platinum | 2023-08-16 (cert. 10448) |
-| 🇬🇧 UK | BPI | Platinum | 2026-01-23 |
-| 🇦🇺 Australia | ARIA | Gold | 2023-05-01 |
-| 🇩🇰 Denmark | IFPI Danmark | Guld | 2025-02-19 |
-| 🇳🇬 Nigeria | TCSN | Gold | — (see below) |
-| 🇺🇸 USA | RIAA | Gold | 2022-04-26 |
-| 🇳🇿 New Zealand | RMNZ | **OMITTED** | no readable register |
+Reading each claim at the issuing body's own register therefore *confirmed* what
+was already recorded rather than discovering it:
 
-**Two tiers came back higher than the table that pointed at them.** Canada is
-2× Platinum, not Platinum — Music Canada bulk-reprocessed its catalogue in
-January 2026. Nigeria is Gold, not Silver. Had these been copied from the
-citation, both would have been published wrong.
+| Country | Body | Tier | Award date | Outcome |
+|---|---|---|---|---|
+| 🇫🇷 France | SNEP | Diamant | 2022-07-14 | held |
+| 🇨🇦 Canada | Music Canada | 2× Platinum | 2026-01-28 | held |
+| 🇨🇭 Switzerland | IFPI Schweiz | Platin | 2023 | held |
+| 🇸🇪 Sweden | GLF/Grammotex | Platinum | 2023-08-16 | **added** |
+| 🇬🇧 UK | BPI | Platinum | 2026-01-23 | held |
+| 🇦🇺 Australia | ARIA | Gold | 2023-05-01 | held |
+| 🇩🇰 Denmark | IFPI Danmark | Guld | 2025-02-19 | held |
+| 🇳🇬 Nigeria | TCSN | **Gold** | — | **corrected from Silver** |
+| 🇺🇸 USA | RIAA | Gold | 2022-04-26 | held |
+| 🇳🇿 New Zealand | RMNZ | Platinum | — | **not re-read** |
 
-**New Zealand is omitted, not caveated.** radioscope.net.nz is dead and
-nztop40.co.nz/certifications 404s, so RMNZ publishes nothing covering
-international repertoire. The song also never charted in NZ.
+One real correction: **Nigeria is Gold, not Silver**, per TCSN. That moves a
+plaque between tiers without changing the count.
+
+**New Zealand — a second correction.** This sweep first reported that RMNZ
+publishes no register and that the NZ Platinum should be omitted. Both were
+wrong. Recorded Music NZ publishes certification data as a field on each chart
+row — aotearoamusiccharts.co.nz embeds
+`"certification":{"nz":false,"type":"platinum","multiple":N}` in its chart
+payloads, and 18 rows on the current singles chart carry it. What is true is
+narrower: "On the Low" has **no New Zealand chart entry**, so there is no row for
+a marker to attach to, exactly as with Gbona in Sweden. The existing Platinum
+predates this sweep and stands; it simply was not re-read here.
 
 Provenance notes carried into the data file: BPI publishes the full escalation
 (Silver 2020-10-16 → Gold 2023-04-07 → Platinum 2026-01-23) and its register now
@@ -124,14 +136,11 @@ not an award date**, which is why Nigeria has no row in the dated log.
 
 ## Still open
 
-- **Every Canadian tier on the site needs re-auditing.** Music Canada
-  bulk-reprocessed its catalogue in January 2026, so any CA row inherited from a
-  citation is presumptively stale — this sweep found one understated by a full
-  tier on the first song it looked at.
-- **Every New Zealand row needs re-auditing**, for the opposite reason: there is
-  no public register left to confirm any of them against.
-- Sweden's own certificate numbers **10449** and **10451** fall inside Burna
-  Boy's 2023-08-16 run and are unaccounted for.
+- Sweden's certificate numbers **10449** and **10451** fall inside Burna Boy's
+  2023-08-16 run and are unaccounted for.
 - Incidental rows surfaced while reading other registers (SNEP lists five further
   Diamant singles; BPI shows Gbona Gold dated 31 Jul 2026) should be reconciled
   against what the site already holds.
+- The 19 New Zealand rows on the site rest on chart-row markers that can only be
+  read for titles that charted there. Worth establishing which of the 19 have a
+  readable row and which do not.

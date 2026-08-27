@@ -156,7 +156,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
 
       {/* Mobile is its own screen, not this page narrowed — the same rule the
           rest of the site follows. Burna Boy's certifications screen already
-          carries 239 plaques on a phone; a board artist's 103 fit the same
+          carries 231 plaques on a phone; a board artist's 103 fit the same
           design. */}
       <MobileCerts
         releases={mobileReleases}

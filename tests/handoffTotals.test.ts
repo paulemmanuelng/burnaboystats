@@ -33,18 +33,18 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 239 certifications across 26 countries", () => {
+  it("counts 231 certifications across 26 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
-    expect(certs).toBe(239); // + On The Low's eight body-confirmed plaques (FR/UK/US/CA/DK/AU/CH/NG)
+    expect(certs).toBe(231); // + On the Low's Swedish Platinum (GLF cert. 10448) — the rest of that song's plaques were already here
     expect(countries).toBe(26); // Czechia joins
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 7 Diamond / 104 Platinum / 97 Gold / 31 Silver", () => {
+  it("splits into 6 Diamond / 101 Platinum / 94 Gold / 30 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -52,13 +52,13 @@ describe("handoff checklist — data integrity", () => {
     // Diamond is 6, not 7. A 7 means the African Giant FR entry has been
     // changed to Diamond — the repo says Platinum, and the design file that
     // showed 7 was the one carrying the typo.
-    expect(byLevel("Diamond")).toBe(7); // the 7th: On The Low in France (SNEP, 14 Jul 2022)
-    expect(byLevel("Platinum")).toBe(104); // + On The Low in CA (2x), CH and UK
-    expect(byLevel("Gold")).toBe(97); // + On The Low in AU, DK, NG and US
-    expect(byLevel("Silver")).toBe(31);
+    expect(byLevel("Diamond")).toBe(6);
+    expect(byLevel("Platinum")).toBe(101); // the 101st: On the Low in Sweden (GLF)
+    expect(byLevel("Gold")).toBe(94); // + On the Low in Nigeria, which TCSN gives as Gold, not Silver
+    expect(byLevel("Silver")).toBe(30); // On the Low NG left this tier for Gold
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(239);
+    expect(sum).toBe(231);
   });
 
   it("counts 280 chart entries across 71 territories, 48 of them at No. 1", () => {
