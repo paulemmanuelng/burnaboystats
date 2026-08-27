@@ -4,13 +4,30 @@
 
 ✓ = seen in the issuing body's own **live** register. ✓ᴬ = confirmed in the issuing body's own **archived** register (Wayback capture of the same URL, `…id_/…` raw form).
 
-## Total: **103 certifications** — 103 of 103 verified body-side — across **1 country**
+## Total: **102 certifications** — 102 of 102 verified body-side — across **1 country**
+
+> **Removed 27 Aug 2026 — *Road Runners*, on the credit test.** This sweep
+> recorded it as *"Road Runners (Blaqbonez ft. Seyi Vibez)"*, Nigerian Silver,
+> **✓ᴬ — read in TCSN's own archived register**, so the row is real and the
+> transcription was faithful. The register's credit is what is wrong.
+>
+> **ROAD RUNNERS is Blaqbonez featuring Black Sherif**, from *Emeka Must Shine*
+> (27 Oct 2023). Deezer's contributor list for the track reads Blaqbonez (Main)
+> and Black Sherif (Featured) — no Seyi Vibez — and **no Seyi Vibez recording
+> matches the title across his 208 indexed tracks**. Confirmed by Paul.
+>
+> This is the same failure as *Bad Influence*, held off Asake for the same
+> reason: TCSN's `artiste` field carries errors, and a plaque that is genuine
+> still belongs to whoever actually made the record. The plaque is presumably
+> Blaqbonez's; it is not Seyi Vibez's, so it is not counted here.
+>
+> Net: 103 − 1 = **102**.
 
 | tier | count |
 |---|---|
 | Platinum (incl. multi-platinum) | 44 |
 | Gold | 39 |
-| Silver | 20 |
+| Silver | 19 |
 | **total** | **103** ✓ |
 
 | split | count |
@@ -137,7 +154,7 @@
 | Malaika (Vibez Inc, Seyi Vibez & Stonebwoy) | 🇳🇬 Silver ✓ᴬ |
 | No Caution (Gbemidebe) (Bella Shmurda & Seyi Vibez) | 🇳🇬 Silver ✓ᴬ |
 | On God (Kashy ft. Seyi Vibez) | 🇳🇬 Silver ✓ᴬ |
-| Road Runners (Blaqbonez ft. Seyi Vibez) | 🇳🇬 Silver ✓ᴬ |
+| ~~Road Runners (Blaqbonez ft. Seyi Vibez)~~ | **removed — see Removals: the recording is Blaqbonez ft. Black Sherif; TCSN's credit is wrong** |
 
 *Featured subtotal — Platinum 13 (2× 5×P, 1× 4×P, 2× 3×P, 1× 2×P, 7× 1×P) + Gold 6 + Silver 8 = **27*** ✓
 

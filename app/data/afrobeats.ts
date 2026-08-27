@@ -1109,7 +1109,6 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Malaika", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ff588634a842a66d624f256a55bfd975/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "No Caution (Gbemidebe)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/eb65f956f5669e899d233fa4e4a41edf/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "On God (Kashy)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/4bd46ae32cb5d4ceaf64d487aa4bcb07/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Road Runners", kind: "Featured appearances", certs: [{ c: "NG", level: "Silver" }] },
     ],
     charts: [
       { title: "99", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },

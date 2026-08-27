@@ -28,7 +28,7 @@ import { countryMeta } from "../app/data/afrobeats";
 const EXPECTED = {
   asake: { total: 80, diamond: 0 },
   "omah-lay": { total: 61, diamond: 2 },
-  "seyi-vibez": { total: 103, diamond: 0 },
+  "seyi-vibez": { total: 102, diamond: 0 },
   wizkid: { total: 156, diamond: 6 },
   victony: { total: 22, diamond: 0 },
   "fireboy-dml": { total: 36, diamond: 1 },
@@ -397,7 +397,10 @@ describe("hooks that state a figure", () => {
     expect(omah.hook).toContain("nine countries");
 
     const seyi = artistBySlug("seyi-vibez")!;
-    expect(certCount(seyi)).toBe(103);
+    // 102, not 103: "Road Runners" was removed on 27 Aug 2026 as a false
+    // credit — the track is Blaqbonez ft. Black Sherif, and Seyi Vibez has no
+    // recording of that title. Titles collide; match on artist AND title.
+    expect(certCount(seyi)).toBe(102);
     expect(chartEntries(seyi)).toBe(114);
     // The whole point of his line: everything he has is Nigerian.
     expect(new Set(seyi.releases.flatMap((r) => r.certs.map((c) => c.c)))).toEqual(new Set(["NG"]));
