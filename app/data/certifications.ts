@@ -64,7 +64,13 @@ export const COUNTRIES: Record<string, Country> = {
   SK: { name: "Slovakia", flag: "🇸🇰", body: "ČNS IFPI" },
   CZ: { name: "Czech Republic", flag: "🇨🇿", body: "ČNS IFPI" },
   PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV", url: "https://www.olis.pl/charts/oficjalna-lista-wyroznien/platynowe-plyty" },
-  PT: { name: "Portugal", flag: "🇵🇹", body: "AFP", url: "https://www.audiogest.pt/" },
+  // The register is the weekly TOP's "Gal." (Galardão) column — OU = Ouro,
+  // PL…9PL = Platina — published as one PDF per week under this index. AFP's own
+  // site afp.org.pt is dead (Wayback stops in Jan 2016), and audiogest.pt's home
+  // page carries no certification data, so this is the link that reaches it.
+  // Awards to titles NOT charting that week never appear here; those are
+  // announced monthly on facebook.com/audiogest. See docs/sourcing/RESUME.md.
+  PT: { name: "Portugal", flag: "🇵🇹", body: "AFP", url: "https://www.audiogest.pt/tabelas-oficiais-de-vendas-?lang=pt" },
   GR: { name: "Greece", flag: "🇬🇷", body: "IFPI Greece" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "RiSA", url: "https://risa.org.za/" },
   // TCSN's public register (turntablecharts.com/certification) is REQUEST-based
