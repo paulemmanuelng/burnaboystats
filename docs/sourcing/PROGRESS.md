@@ -69,3 +69,41 @@ for Switzerland, which is where the last pass failed.
 directory so the exact prompts are reproducible.
 
 ### Still not written to app/data — by instruction. Nothing pushed to main.
+
+## 2026-08-27, board pass complete
+
+### Board — 509 of 830 sourced (61%)
+Full write-up in `BOARD-FINDINGS.md`. Zero aggregator URLs. **The Switzerland
+fix held**: told explicitly not to cite swisscharts, the pass returned all 17
+Swiss rows as unreadable with no URL, which is the correct answer.
+
+Combined with Burna: **666 of 1,061 plaques now sourced at the issuing body.**
+
+### RiSA (South Africa) — investigated properly, genuinely walled
+The board pass reported HTTP 421. That turned out to be a red herring:
+
+- 421 was a protocol artefact; with `--http1.1` the host returns 200.
+- `risa.org.za/certification/` is a **404 page** — the real path is
+  `risa.org.za/certification-levels/certifications/`, found via the site's nav.
+- That page loads (335KB) but contains **no artist data at all** — it renders
+  through a WordPress table plugin (`wptb-tables`).
+- The plugin's REST endpoint `/wp-json/wp/v2/wptb-tables` returns an **empty
+  array** anonymously.
+
+So RiSA's certification data is not publicly readable, and no amount of
+retrying changes that. Recorded as unreadable with the reason, not guessed at.
+This also means **Burna's three "sourced" ZA rows cannot currently be
+reproduced** — including the "No Stress" Platinum flagged as a missing plaque.
+Do not publish that until RiSA is readable.
+
+### 11 of the 16 missing body links are now solved
+`results/verified-body-urls.json` — each loaded and returning 200 with real
+content on 27 Aug 2026, normalised to a **stable register root**. Artist-specific
+queries (`?busca_artista=Tyla`, `?searchterm=Tyla`), a dated PDF upload path
+(Audiogest) and a single archived chart week (NZ) were all stripped, because
+those rot. Still unlinked: CH, CO, SK, GR, CZ, BE — none has a readable register.
+
+### Next
+1. NZ re-read against `/archive` weeks — the biggest remaining *readable* gap.
+2. Build `certSources` and apply, once the sweep is complete.
+3. Nothing applied to `app/data/` yet. Nothing pushed to main.
