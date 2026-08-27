@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-26";
+  export const liveChartsUpdated = "2026-08-27";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -330,14 +330,33 @@
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 65,
-            "movement": 5
+            "position": 66,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
+            "position": 119,
             "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 14,
+            "movement": -2
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 96,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -350,18 +369,6 @@
             "name": "Nigeria",
             "position": 40,
             "movement": 7
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 12,
-            "movement": 17
           }
         ]
       },
@@ -471,20 +478,20 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 109,
-            "movement": 0
+            "position": 106,
+            "movement": 3
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 158,
-            "movement": 9
+            "position": 178,
+            "movement": -20
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 171,
-            "movement": 0
+            "position": 184,
+            "movement": -13
           }
         ]
       },
@@ -496,13 +503,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 2,
-            "movement": 4
+            "movement": 1
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 37,
-            "movement": -10
+            "position": 36,
+            "movement": -6
           }
         ]
       },
@@ -548,15 +555,15 @@
             "movement": 102
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 42,
-            "movement": 0
-          },
-          {
             "country": "GH",
             "name": "Ghana",
             "position": 42,
+            "movement": -1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 43,
             "movement": -1
           },
           {
@@ -817,6 +824,77 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "soso",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 88,
+            "movement": 15
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 114,
+            "movement": 6
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 121,
+            "movement": 48
+          },
+          {
+            "country": "AO",
+            "name": "Angola",
+            "position": 126,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 149,
+            "movement": -11
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 185,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TN",
+            "name": "Tunisia",
+            "position": 40,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 82,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Get Layd - EP",
     "platforms": [
       {
@@ -934,57 +1012,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ff869559b2b6b876cc2b7811bb7e4436/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "soso",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 88,
-            "movement": 15
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 114,
-            "movement": 6
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 121,
-            "movement": 48
-          },
-          {
-            "country": "AO",
-            "name": "Angola",
-            "position": 126,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 149,
-            "movement": -11
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 185,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Infinity",
     "platforms": [
       {
@@ -1092,29 +1119,28 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 133,
-            "movement": -3
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 137,
-            "movement": 38
+            "position": 118,
+            "movement": 19
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 125,
+            "movement": 8
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 161,
-            "movement": 5
+            "position": 148,
+            "movement": 13
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 190,
-            "movement": null,
-            "status": "new"
+            "position": 187,
+            "movement": 3
           }
         ]
       },
@@ -1125,8 +1151,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 75,
-            "movement": -6
+            "position": 65,
+            "movement": 5
           }
         ]
       }
@@ -1178,6 +1204,57 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/bd76a1b1daca04cea85edf1c9b022a27/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Gut Genug",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 68,
+            "movement": -7
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 114,
+            "movement": -17
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 148,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f4f5c145b06c62888141b2a7eabad4b3/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Namek",
     "platforms": [
       {
@@ -1187,8 +1264,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 70,
-            "movement": -1
+            "position": 64,
+            "movement": 3
           },
           {
             "country": "BE",
@@ -1208,44 +1285,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Gut Genug",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 61,
-            "movement": -8
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 97,
-            "movement": -9
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f4f5c145b06c62888141b2a7eabad4b3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DON'T LOVE ME",
@@ -1299,9 +1338,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 35,
+            "country": "SN",
+            "name": "Senegal",
+            "position": 89,
             "movement": null,
             "status": "new"
           }
@@ -1436,7 +1475,7 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 177,
+            "position": 169,
             "movement": 8
           }
         ]
@@ -1455,13 +1494,19 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 57,
-            "movement": 0
+            "position": 59,
+            "movement": -2
           }
         ]
       }
     ],
     "kind": "album"
+  },
+  {
+    "title": "People",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   }
 ];
   

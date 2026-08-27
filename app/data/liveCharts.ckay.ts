@@ -35,10 +35,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-26";
+  export const liveChartsUpdated = "2026-08-27";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -52,7 +52,7 @@
             "country": "RU",
             "name": "Russia",
             "position": 8,
-            "movement": 0
+            "movement": -1
           },
           {
             "country": "SZ",
@@ -63,15 +63,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 39,
-            "movement": 1
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 158,
-            "movement": null,
-            "status": "new"
+            "position": 40,
+            "movement": -4
           }
         ]
       },
@@ -94,8 +87,8 @@
           {
             "country": "KR",
             "name": "South Korea",
-            "position": 133,
-            "movement": -28
+            "position": 157,
+            "movement": -24
           }
         ]
       }
@@ -185,6 +178,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "emiliana",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 71,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "forever",
     "platforms": [
       {
@@ -194,7 +207,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
+            "position": 78,
             "movement": null,
             "status": "new"
           }
@@ -234,8 +247,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 54,
-            "movement": 0
+            "position": 56,
+            "movement": -2
           }
         ]
       }

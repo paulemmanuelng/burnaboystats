@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-26";
+  export const liveChartsUpdated = "2026-08-27";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -160,9 +160,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 66,
-            "movement": null,
-            "status": "new"
+            "position": 70,
+            "movement": -4
           }
         ]
       },
@@ -437,20 +436,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
-            "movement": -2
+            "position": 22,
+            "movement": -5
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 62,
-            "movement": -3
+            "position": 76,
+            "movement": -14
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 154,
-            "movement": -8
+            "position": 165,
+            "movement": -11
           }
         ]
       },
@@ -620,6 +619,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Tattoo",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 66,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "What If I Say",
     "platforms": [
       {
@@ -668,8 +687,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 115,
-            "movement": -4
+            "position": 125,
+            "movement": -10
           }
         ]
       }
