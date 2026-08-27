@@ -1,0 +1,50 @@
+{
+ "verifiedOn": "2026-08-27",
+ "note": "Each returned HTTP 200 with substantive content on 27 Aug 2026. Normalised to stable register roots — artist-specific queries, dated PDF paths and pagination offsets were stripped because they rot.",
+ "urls": {
+  "NZ": [
+   "Recorded Music NZ",
+   "https://aotearoamusiccharts.co.nz/archive"
+  ],
+  "AU": [
+   "ARIA",
+   "https://www.aria.com.au/accreditations"
+  ],
+  "DK": [
+   "IFPI Danmark",
+   "http://ifpi.dk/certificeringer-0"
+  ],
+  "SE": [
+   "GLF / Grammotex",
+   "http://www.grammotex.se/catalogue.php?lang=en"
+  ],
+  "PT": [
+   "AFP / Audiogest",
+   "https://www.audiogest.pt/"
+  ],
+  "AT": [
+   "IFPI Austria",
+   "https://ifpi.at/auszeichnungen/"
+  ],
+  "BR": [
+   "Pro-Música Brasil",
+   "https://pro-musicabr.org.br/certificados/"
+  ],
+  "HU": [
+   "MAHASZ",
+   "https://slagerlistak.hu/arany-es-platinalemezek/adatbazis"
+  ],
+  "NO": [
+   "IFPI Norge",
+   "https://ifpi.no/trofeoversikt/"
+  ],
+  "PL": [
+   "ZPAV / OLiS",
+   "https://www.olis.pl/charts/oficjalna-lista-wyroznien/platynowe-plyty"
+  ],
+  "MX": [
+   "AMPROFON",
+   "https://amprofon.com.mx/es/pages/certificaciones.php"
+  ]
+ }
+}

@@ -2,7 +2,19 @@
 
 **Method:** identical to burnaboystats.com — a certification counts when it appears in the issuing body's own records; **one plaque per title per country at its current tier** (a 5× Platinum is one plaque, not five); lead **and** featured artist credits both count, writer/producer-only credits do not. Registers that publish every tier step (Music Canada, BVMI, IFPI Switzerland, IFPI Danmark, FIMI, Promusicae, Ultratop, Pro-Música Brasil, AMPROFON, SNEP, NVPI, ZPAV, IFPI Norge, IFPI Greece) were collapsed to the highest tier per title per country. Wikipedia and fan lists were used only as candidate hints — the register is the truth. First body-side sweep **15 Aug 2026**; **gap sweep 16 Aug 2026** adding the national registers never queried in pass one plus a full TurnTable archive read. ✓ = personally read in the issuing body's own database; **⚠** = the register row was read but its credit line names only the lead artist (see verification notes); **▲** = read in an archived capture of the register itself, not in its currently-displayed rows (see the TurnTable note).
 
-## Total: **80 certifications** across **20 countries**
+## Total: **81 certifications** across **21 countries**
+
+> **Correction, 27 Aug 2026 — Colombia was wrongly written off.** This file
+> recorded Colombia among the registers returning zero "for a structural reason",
+> inheriting the finding that ASINCOL closed around 2008 and Colombian awards are
+> label-issued. That is out of date. **Pro Musica Colombia** — the IFPI national
+> group covering Colombia, Ecuador and Peru — publishes a certification roster at
+> pro-musica.co, and it carries Rema. The earlier sweeps missed it because IFPI's
+> own local-associations page still lists Colombia as `apdifcolombia.com`, a
+> domain suspended since December 2023, and asincol.org has no captures at all.
+> Read in Pro Musica's own register PDF:
+> `BUBALU | FEID FEAT REMA | UNIVERSAL MUSIC | ÁLBUM | DIAMANTE | 29/11/2023 | COLOMBIA`
+> Net: 80 + 1 = **81**.
 
 > **Why the number moved — pass one.** Wikipedia and the fan tallies carried **60** Rema claims. Ten did not survive a register check (Soweto's Spanish Gold belongs to Victony & Tempoe; two "RCN Nigeria" awards cite a dead domain of a body that is not TCSN; Ginger Me's and Soundgasm's Nigerian awards were absent from TurnTable's *displayed* register; Bubalu's and Rave & Roses' "US Gold" are each a duplicate of a plaque already counted; India, Chile and "Central America" had no register entry at all). That left **50**. Sweeping the registers found **11** certifications no secondary source listed. Net: 60 − 10 + 11 = **61**.
 >
@@ -26,7 +38,7 @@
 | Charm (2023) | 🇳🇬 3× Platinum ✓ *(Wikipedia says 2×)* · 🇫🇷 Platinum ✓ · 🇬🇧 Silver ✓ — **3** |
 | Dumebi (2019) | 🇫🇷 Platinum ✓ · 🇨🇭 Gold ✓ · 🇬🇧 Silver ✓ — **3** |
 | Soweto (w/ Victony, Tempoe & Don Toliver) (2023) | 🇳🇬 3× Platinum ✓ · 🇬🇧 Gold ✓ — **2** *(the 🇪🇸 Gold was REMOVED — see removals)* |
-| Bubalu (w/ Feid) (2023) | 🇺🇸 2× Platinum (Latin) ✓ · 🇪🇸 Platinum ✓ — **2** |
+| Bubalu (w/ Feid) (2023) | 🇨🇴 **Diamante** ✓ *(new, 27 Aug)* · 🇺🇸 2× Platinum (Latin) ✓ · 🇪🇸 Platinum ✓ — **3** |
 | Ozeba (2024) | 🇳🇬 3× Platinum ✓ *(Wikipedia says Platinum)* — **1** |
 | Fun (2025) | 🇳🇬 3× Platinum ✓ — **1** |
 | Benin Boys (w/ Shallipopi) (2024) | 🇳🇬 2× Platinum ✓ — **1** |
@@ -75,7 +87,7 @@
 *Featured subtotal: 11 single-entry rows = **11*** ✓
 
 ### Tier split (arithmetic check)
-- **Diamond 4** — Calm Down 🇫🇷 🇨🇦 🇧🇷 🇵🇱
+- **Diamond 5** — Calm Down 🇫🇷 🇨🇦 🇧🇷 🇵🇱 · Bubalu 🇨🇴
 - **Platinum tiers 41** — Calm Down ×14 (PT, AU, US, CH, ES, NZ, IT, UK, BE, NG, DE, DK, GR, NO) · Rave & Roses ×4 (CA, CH, FR, PL) · Rave & Roses Ultra ×1 (BR) · Charm ×2 (NG, FR) · Bubalu ×2 (US, ES) · one each for Soundgasm (FR), Dumebi (FR), Soweto (NG) = 3 · **15** single-country platinum rows: Ozeba, Fun, Benin Boys, HeHeHe, Baby (Is It a Crime), DND, Holiday, 44, Bout U, Azaman, Yayo (11 lead) + Fi Kan We Kan, Favourite Girl, Who's Dat Girl, Won Da Mo (4 featured) → 14+4+1+2+2+3+15 = **41**
 - **Gold 22** — Calm Down (AT, NL) 2 · Rave & Roses Ultra (US) 1 · Soundgasm (CH, NL, **NG**) 3 · Dumebi (CH) 1 · Soweto (UK) 1 · lead single-country golds: Trouble Maker 🇳🇬, Corny 🇫🇷, Fame – A COLORS ENCORE 🇧🇷, **Ginger Me 🇳🇬, HEIS 🇳🇬, War Machine 🇳🇬, Kelebu 🇳🇬, March Am 🇳🇬, Reason You 🇳🇬, Red Potion 🇳🇬** = 10 · featured golds: Secondhand 🇨🇦, Toxic 🇫🇷, **Compromise 🇳🇬, Lalala 🇳🇬** = 4 → 2+1+3+1+1+10+4 = **22**
 - **Silver 13** — 🇬🇧 ×4: Rave & Roses, Soundgasm, Charm, Dumebi · 🇳🇬 ×9: Bounce, Don't Leave, Egungun, Hov, Now I Know, Time N Affection (lead, 6) + Dimension, Mukulu, Too Correct (featured, 3) → **13**
