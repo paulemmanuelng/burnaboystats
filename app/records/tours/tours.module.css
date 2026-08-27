@@ -595,14 +595,19 @@
   color: #d8d8de;
   font-variant-numeric: tabular-nums;
 }
+/* Gold marks HIS gross, so it is not the default. This top ten is not all his —
+   Fally Ipupa's La Defense Arena night sits third — and lighting every figure
+   gold read as though the whole board belonged to Burna Boy. Same rule as the
+   43-row board on /records/tours/revenue and as mobileRevenue has always used. */
 .grossCell {
   text-align: right;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 19px;
-  color: var(--gold);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
+.grossCellHis { color: var(--gold); }
 .sourceNote {
   font-size: 12.5px;
   color: var(--text-muted);

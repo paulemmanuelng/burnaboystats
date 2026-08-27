@@ -240,7 +240,13 @@ export default function ToursPage() {
                       {s.tour} · {s.year}
                     </td>
                     <td className={styles.tickets}>{s.tickets ?? <NotReported />}</td>
-                    <td className={styles.grossCell}>${s.revenue.toLocaleString("en-US")}</td>
+                    <td
+                      className={`${styles.grossCell} ${
+                        s.artist === "Burna Boy" ? styles.grossCellHis : ""
+                      }`}
+                    >
+                      ${s.revenue.toLocaleString("en-US")}
+                    </td>
                   </tr>
                 ))}
               </tbody>

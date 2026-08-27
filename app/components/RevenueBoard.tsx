@@ -119,7 +119,10 @@ export default function RevenueBoard({
                 <span role="cell" className={styles.tickets}>
                   {s.tickets ?? <NotReported />}
                 </span>
-                <span role="cell" className={styles.gross}>
+                <span
+                  role="cell"
+                  className={`${styles.gross} ${s.artist === "Burna Boy" ? styles.grossHis : ""}`}
+                >
                   ${s.revenue.toLocaleString("en-US")}
                 </span>
               </div>
