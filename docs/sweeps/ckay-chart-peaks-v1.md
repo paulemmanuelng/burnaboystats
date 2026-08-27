@@ -32,7 +32,19 @@ charts are recorded separately as GLB and GLBX, not as countries.
 
 **Albums subtotal: 5 + 1 + 1 = 7**
 
-**Total: 21 + 7 = 28 chart entries.**
+**Total: 22 + 7 = 29 chart entries.**
+
+> **+1 on 27 Aug 2026 — 🇵🇹 Portugal, and it is a No. 1.** Found while verifying every
+> Portuguese certification on the board against AFP's own register. *love nwantiti*
+> topped the AFP/Audiogest Top 200 Singles for at least **seven consecutive weeks**,
+> Semanas 42–48 of 2021, read in the weekly PDFs themselves:
+> `1 · POS.MAX 1 · SEM.TOP 7→13 · PL · love nwantiti (Ah Ah Ah) · CKay · WARNER`.
+> The credit reads "CKay" (Semana 42 carries the fuller "CKay feat. Eunique & Pronto"),
+> so this is an artist-and-title match, not a title-only one.
+>
+> This pass was looking for certifications, and found a chart No. 1 the earlier sweep
+> had missed entirely — Portugal was absent from CKay's chart data altogether. His
+> No. 1 count goes 5 → **6**, territories 19 → **20**.
 
 Distribution check — the 28 entries fall in 17 countries plus both Billboard
 worldwide charts: 🇫🇷 4, 🇺🇸 2, 🇨🇦 2, 🌐 GLB 2, 🇳🇱 2, 🇩🇰 2, 🇸🇪 2, then twelve

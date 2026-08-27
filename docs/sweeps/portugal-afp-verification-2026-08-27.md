@@ -35,20 +35,56 @@ The column tracks upgrades live — *Raindance* is visible moving Gold → Plati
 → 2× Platinum across consecutive weeks — so a blank cell on a charting title is
 meaningful, not merely missing.
 
+## The pre-2026 rows, read in the 2018–2025 weeklies
+
+A second pass swept the earlier years — 130 weekly PDFs for 2018–2020 alone.
+
+| Artist | Title | Site | AFP `Gal.` | |
+|---|---|---|---|---|
+| Burna Boy | Jerusalema (Remix) | Platinum ×2 | blank → OU → PL → **2PL** | ✓ |
+| CKay | love nwantiti | Platinum ×6 | PL → 2PL → … → **6PL** | ✓ |
+| Ayra Starr | Santa | Platinum | OU → **PL** | ✓ |
+| Omah Lay | soso | Platinum | **PL** | ✓ |
+
+**Eleven of seventeen are now confirmed at the body**, each with the register's own
+row and, where the ladder was visible, the full upgrade path.
+
+## The other six — and why NONE is withdrawn
+
+Two findings look alike and are not:
+
+- **Blank while charting** — AFP printed the row, the column was live in that same
+  PDF, and it printed nothing. That is a reading, and it is evidence against an award
+  *during that run*.
+- **Never charted** — the weekly register only badges titles currently on chart, so a
+  non-charting title produces silence. Silence is not evidence in either direction.
+
+| Title | Site | Finding | Resolution |
+|---|---|---|---|
+| Tyla — Chanel | Gold | blank, 2025 S48 – 2026 S7 | **Already sourced.** `tyla-certifications-v1.md` records it in AFP's **March 2026 monthly award table** — an off-chart award, landing after the run ended. The blanks are exactly what that predicts. |
+| Tyla — Truth or Dare | Gold | never charted | **Already sourced** — AFP's **February 2026** table, explicitly "awarded to a song that never charted". |
+| Burna Boy — We Pray | Gold | blank, S41–S44 2024 | The site dates the award **2025**; the chart run was Sep–Nov 2024. The windows do not overlap, so the blank barely bears on it. |
+| Burna Boy — Own It | Gold | blank in ~20 rows, 2019 W48 – 2020 W21 | The strongest doubt of the six. It constrains only Nov 2019 – May 2020; a later off-chart award would be invisible here. |
+| Burna Boy — Gbona | Gold | never charted, 130 weeklies | No register evidence either way. Burna Boy's first Portuguese chart appearance in this register is *Own It*, 2019 W48. |
+| Burna Boy — Location | Gold | never charted, 105 weeklies | No register evidence either way. |
+
+**Nothing is withdrawn.** A "never charted" line cannot support a removal, and the two
+blanks that could be checked turned out to be already sourced in this repo.
+
+**One flag worth keeping:** the four Burna Boy Portuguese rows — Gbona, Location,
+Own It, We Pray — carry **no per-row register citation anywhere in the repo**, unlike
+every board row, which was read at a body. They are the least-evidenced Portuguese
+claims on the site. The route to settle them now exists: AFP's monthly carousels on
+facebook.com/audiogest, readable logged out, back through 2026 and earlier.
+
 ## Not confirmed — 1
+
 
 **Tyla — *Chanel* — recorded Gold.** It charted Semanas 1–7 of 2026, peaking at
 **#49** with ten weeks on chart, and its `Gal.` cell is **blank in every one**.
 That is not proof of absence: an award granted after it left the chart would
 appear only in a monthly carousel. But it is not confirmed at the body, and no
 other Portuguese row on the board is in that position.
-
-## Not yet covered — 9
-
-Older titles whose Portuguese chart runs predate 2026, so the weeks sampled
-cannot show them: Gbona, Location, We Pray, Own It, Jerusalema (Remix),
-Truth or Dare, Santa, soso, love nwantiti. These need the 2018–2025 weeklies,
-or the monthly carousels.
 
 ## Method note
 
