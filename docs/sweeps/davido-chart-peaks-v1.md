@@ -98,7 +98,24 @@ All five Nigerian album peaks were read directly from TurnTable's own chart payl
 
 **Country counts, albums:** 🇳🇬 5 · 🇬🇧 4 · 🇺🇸 2 · 🇮🇪 2 · 🇨🇭 1 · 🇫🇷 1 · 🇳🇱 1 · 🇨🇦 1 = 17 ✓
 
-**Grand total: 49 singles + 17 albums = 66 chart entries.** ✓
+**Grand total: 75 singles + 17 albums = 92 chart entries.** ✓
+
+> **Resweep, 27 Aug 2026 — +26 Nigerian peaks and one correction.** A body-by-body
+> repass added **21** TurnTable Top 100 peaks read in the register's own archived
+> captures, plus **5** carried with an open-peak note, and re-read
+> *Already Falling* from **#9 to #4** — the re-read this document asked for by
+> name. **Kante #7** is the headline: line 450 of this file left it open, saying
+> "the song certainly charted on the Top 100, but no source states that peak and
+> it will not be estimated." The register states it.
+>
+> Every added peak is the register's `highestPosition` taken from a week where it
+> differs from that week's `rank`. In a week-one payload the two are equal by
+> construction, which is a debut, not a peak — **eleven** candidate rows were
+> rejected on exactly that test, and five more were kept only with a note saying
+> the peak may still climb.
+>
+> The same repass found **zero new certifications**: all 22 certification rows it
+> re-read were already held at the tier already recorded. Net: 66 + 26 = **92**.
 **By country: 🇳🇬 35 + 🇬🇧 9 + 🇸🇷 4 + 🇺🇸 3 + 🇫🇷 3 + 🇳🇱 3 + 🇨🇭 2 + 🇮🇪 2 + 🇧🇪 1 + 🇮🇹 1 + 🇪🇸 1 + 🇨🇦 1 + 🇦🇷 1 = 66.** ✓
 
 ---

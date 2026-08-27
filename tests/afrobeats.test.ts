@@ -321,12 +321,19 @@ describe("records that appear on two boards", () => {
     //   Fireboy DML #25, Seyi Vibez #1, Seyi Vibez & French Montana #1, and
     //   Wizkid #39. Fireboy's #25 and Seyi Vibez's #1 are different songs that
     //   share a very common title.
+    //   "Away" is Davido's AWAY, from Timeless (2023), against Ayra Starr's
+    //   Away, from her 2021 self-titled EP — two unrelated records sharing one
+    //   very ordinary word. Checked at Deezer 27 Aug 2026: different artists,
+    //   different albums, different years. Davido's TurnTable peak is NG #8 and
+    //   Ayra Starr's is NG #4; both are right. It surfaced when Davido's
+    //   resweep added his, and it is the same title-only-matching trap that
+    //   mis-credited "Bad Influence" and "Road Runners" earlier the same day.
     //   "Apollo" is Victony's SINGLE (category 1, #82) against Fireboy DML's
     //   ALBUM of the same name (category 2, #39) — different chart, different
     //   record. The `kind` field already says so on both rows.
     // Anything else that lands here is a real disagreement and must be settled,
     // not added to this list.
-    const known = new Set<string>(["Pressure|NG", "Apollo|NG"]);
+    const known = new Set<string>(["Pressure|NG", "Apollo|NG", "Away|NG"]);
     const conflicts: string[] = [];
     for (const [title, per] of shared()) {
       const slugs = [...per.keys()];
@@ -349,7 +356,8 @@ describe("records that appear on two boards", () => {
     // cannot quietly appear on, or vanish from, a second board.
     expect(shared().map(([t]) => t).sort()).toEqual(
       [
-        "2 Sugar", "99", "Alaska", "Apollo", "Bad Girl", "Bad Vibes", "Bandana",
+        "2 Sugar", "99", "Alaska", "Apollo", "Away", "Bad Girl", "Bad Vibes",
+        "Bandana",
         "Dynamite", "Essence", "Gang", "Gimme Dat", "Jogodo", "MMS", "MY HEALER",
         "No Competition", "One Call", "Pressure", "REAL, Vol. 1 – EP", "Soweto",
         "Stubborn", "Turbulence", "Uptown Disco", "Who's Dat Girl", "With You",

@@ -308,7 +308,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     image: "https://i.scdn.co/image/ab6761610000e5eb2bf250c3e92f9e7542efd95c",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: true,
-    chartPublished: { entries: 66, territories: 13, no1s: 17 },
+    chartPublished: { entries: 92, territories: 13, no1s: 17 },
     releases: [
       { title: "A Good Time", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", x: 2 }, { c: "UK", level: "Silver" }] },
       { title: "Timeless", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/58fc25c84a0a2596d4ba450e836785ca/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Silver" }] },
@@ -402,7 +402,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Nakupenda", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/86051e2caa464c95b96cef12d3ae570a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 3 }] },
       { title: "Gimme Dat Ting", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 5 }] },
       { title: "If It's Okay", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/d18376c3bedbdcd7323453974cb46d03/500x500-000000-80-0-0.jpg", entries: [{ c: "SR", peak: 6 }] },
-      { title: "Already Falling", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 9 }] },
+      { title: "Already Falling", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 4 }] },
       { title: "Eva Longoria", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/7e1e2f156ee027d200a2424fd3dbf776/500x500-000000-80-0-0.jpg", entries: [{ c: "ES", peak: 10 }] },
       { title: "In the Garden", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 10 }] },
       { title: "Sensational", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e8b1b523f139f23bac60bc70528f386a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 12 }, { c: "UK", peak: 45 }, { c: "US", peak: 71 }] },
@@ -425,7 +425,43 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "A Better Time", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 29 }, { c: "IE", peak: 78 }, { c: "UK", peak: 88 }, { c: "US", peak: 170 }] },
       { title: "Oriade", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 98 }] },
       { title: "A Good Time", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 36 }] },
-    ],
+          // TurnTable Top 100 peaks recovered from the register's own archived
+      // captures, 27 Aug 2026. Each is the register's `highestPosition`, taken
+      // from a week where it differs from that week's `rank` — in a week-one
+      // payload the two are equal by construction, which is a debut and not a
+      // peak. Eleven candidate rows were rejected on exactly that test.
+      { title: "Kante", kind: "Singles", entries: [{ c: "NG", peak: 7 }] },
+      { title: "Be There Still", kind: "Singles", entries: [{ c: "NG", peak: 2 }] },
+      { title: "Electricity", kind: "Singles", entries: [{ c: "NG", peak: 3 }] },
+      { title: "Offa Me (ft. Victoria Monét)", kind: "Singles", entries: [{ c: "NG", peak: 3 }] },
+      { title: "Shakabulizzy (Remix)", kind: "Singles", entries: [{ c: "NG", peak: 3 }] },
+      { title: "Anything", kind: "Singles", entries: [{ c: "NG", peak: 6 }] },
+      { title: "Grooving (ODUMODUBLVCK, Davido & Seun Kuti)", kind: "Singles", entries: [{ c: "NG", peak: 6 }] },
+      { title: "Only God Can Save Me (Adekunle Gold & Davido)", kind: "Singles", entries: [{ c: "NG", peak: 7 }] },
+      { title: "Away", kind: "Singles", entries: [{ c: "NG", peak: 8 }] },
+      { title: "Na Money", kind: "Singles", entries: [{ c: "NG", peak: 9 }] },
+      { title: "10 Kilo", kind: "Singles", entries: [{ c: "NG", peak: 11 }] },
+      { title: "Hmmm", kind: "Singles", entries: [{ c: "NG", peak: 14 }] },
+      { title: "Like (Iyanya ft. Davido & Kizz Daniel)", kind: "Singles", entries: [{ c: "NG", peak: 15 }] },
+      { title: "E Pain Me", kind: "Singles", entries: [{ c: "NG", peak: 16 }] },
+      { title: "Godfather", kind: "Singles", entries: [{ c: "NG", peak: 17 }] },
+      { title: "Joy (Angelique Kidjo & Davido)", kind: "Singles", entries: [{ c: "NG", peak: 17 }] },
+      { title: "For the Road", kind: "Singles", entries: [{ c: "NG", peak: 19 }] },
+      { title: "Yebo Lapho", kind: "Singles", entries: [{ c: "NG", peak: 23 }] },
+      { title: "Right Now (Darkoo, Davido & Rvssian)", kind: "Singles", entries: [{ c: "NG", peak: 23 }] },
+      { title: "wap (Minz & Davido)", kind: "Singles", entries: [{ c: "NG", peak: 32 }] },
+      { title: "Nobody Has to Know (Chris Brown ft. Davido)", kind: "Singles", entries: [{ c: "NG", peak: 55 }] },
+      // Read in the first week or two of the run, so these peaks may still
+      // climb. Carried with a note rather than silently, and rather than
+      // withheld — the board already publishes eleven Nigerian peaks on the
+      // same footing, and consistency argues for marking all of them, not for
+      // holding these five to a stricter rule than the rows beside them.
+      { title: "Blessings on Blessings (Mayorkun ft. Davido)", kind: "Singles", entries: [{ c: "NG", peak: 22, note: "Peak still open — read in the release's first weeks on the Top 100, so it may yet climb. Re-read in a later capture." }] },
+      { title: "Magician (Morravey & Davido)", kind: "Singles", entries: [{ c: "NG", peak: 44, note: "Peak still open — read in the release's first weeks on the Top 100, so it may yet climb. Re-read in a later capture." }] },
+      { title: "Sober (Yung Alpha & Davido)", kind: "Singles", entries: [{ c: "NG", peak: 83, note: "Peak still open — read in the release's first weeks on the Top 100, so it may yet climb. Re-read in a later capture." }] },
+      { title: "Wallah Wallah (Badshah & Davido)", kind: "Singles", entries: [{ c: "NG", peak: 85, note: "Peak still open — read in the release's first weeks on the Top 100, so it may yet climb. Re-read in a later capture." }] },
+      { title: "Dodo", kind: "Singles", entries: [{ c: "NG", peak: 93, note: "Peak still open — read in the release's first weeks on the Top 100, so it may yet climb. Re-read in a later capture." }] },
+],
   },
   {
     slug: "rema",
