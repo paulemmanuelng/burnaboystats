@@ -89,7 +89,7 @@
       "lastChanged": "2026-08-25",
       "lastSeenValue": 46,
       "lastSeenAt": "2026-08-25",
-      "$comment": "sanity.maxJump was 10, but withinSanity reads maxJump as a FRACTION of the baseline \u2014 |live-46|/46 > 10 needs live > 506, and max:500 already rejected that, so the jump guard was unreachable and the rank published unguarded. It is now maxDelta: 10, an absolute bound of ten chart places, which is what the 10 meant."
+      "$comment": "sanity.maxJump was 10, but withinSanity reads maxJump as a FRACTION of the baseline — |live-46|/46 > 10 needs live > 506, and max:500 already rejected that, so the jump guard was unreachable and the rank published unguarded. It is now maxDelta: 10, an absolute bound of ten chart places, which is what the 10 meant."
     },
     {
       "id": "spotify-total-streams",
