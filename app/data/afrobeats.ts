@@ -308,7 +308,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     image: "https://i.scdn.co/image/ab6761610000e5eb2bf250c3e92f9e7542efd95c",
     verifiedOn: AFROBEATS_VERIFIED_ON,
     swept: true,
-    chartPublished: { entries: 92, territories: 13, no1s: 17 },
+    chartPublished: { entries: 93, territories: 13, no1s: 17 },
     releases: [
       { title: "A Good Time", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", x: 2 }, { c: "UK", level: "Silver" }] },
       { title: "Timeless", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/58fc25c84a0a2596d4ba450e836785ca/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Silver" }] },
@@ -368,7 +368,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Ke Star", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/5a54ff0e04934271e7acec9af3dd55d8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Yebo Lapho", kind: "Featured appearances", certs: [{ c: "ZA", level: "Platinum" }] },
       { title: "Gang", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/41fc3e7a3430f3a5e1c1780b57c3147f/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }] },
-      { title: "Galorizzy (Ecool, Davido, Mora & Morravey ft. Scotts Maphuma & Iphxne DJ)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/434231b43c8376a6a54dadff7316cc36/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Galorizzy (Ecool, Davido, Mavo & Morravey ft. Scotts Maphuma & Iphxne DJ)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/434231b43c8376a6a54dadff7316cc36/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Grooving (ODUMODUBLVCK, Davido & Seun Kuti)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Like (Iyanya ft. Davido & Kizz Daniel)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Money (Zlatan ft. Davido)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/fbd27ba3a7f60e17a3a1f8b628ac3888/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
@@ -431,6 +431,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       // payload the two are equal by construction, which is a debut and not a
       // peak. Eleven candidate rows were rejected on exactly that test.
       { title: "Kante", kind: "Singles", entries: [{ c: "NG", peak: 7 }] },
+      { title: "Galorizzy (Ecool, Davido, Mavo & Morravey ft. Scotts Maphuma & Iphxne DJ)", kind: "Singles", entries: [{ c: "NG", peak: 6 }] },
       { title: "Be There Still", kind: "Singles", entries: [{ c: "NG", peak: 2 }] },
       { title: "Electricity", kind: "Singles", entries: [{ c: "NG", peak: 3 }] },
       { title: "Offa Me (ft. Victoria Monét)", kind: "Singles", entries: [{ c: "NG", peak: 3 }] },

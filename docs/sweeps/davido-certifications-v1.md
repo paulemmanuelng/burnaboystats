@@ -81,7 +81,7 @@ No other Davido album is certified anywhere. *Omo Baba Olowo*, *Son of Mercy*, *
 | Ke Star (Remix) (Focalistic & Davido ft. Virgo Deep) | 🇳🇬 Platinum ✓ — **1** |
 | Yebo Lapho (TxC, Davido ft. Tony Duardo, LeeMcKrazy & Djy Biza) | 🇿🇦 Platinum ✓ — **1** |
 | Gang (Aya Nakamura ft. Davido) | 🇫🇷 Gold ✓ — **1** |
-| Galorizzy (Ecool, Davido, Mora & Morravey ft. Scotts Maphuma & Iphxne DJ) *(new)* | 🇳🇬 Gold ⧉ — **1** |
+| Galorizzy (Ecool, Davido, Mavo & Morravey ft. Scotts Maphuma & Iphxne DJ) *(new)* | 🇳🇬 Gold ⧉ — **1** |
 | Grooving (ODUMODUBLVCK, Davido & Seun Kuti) *(new)* | 🇳🇬 Gold ⧉ — **1** |
 | Like (Iyanya ft. Davido & Kizz Daniel) *(new)* | 🇳🇬 Gold ⧉ — **1** |
 | Money (Zlatan ft. Davido) *(new)* | 🇳🇬 Gold ⧉ — **1** |

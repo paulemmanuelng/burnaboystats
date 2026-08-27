@@ -98,7 +98,7 @@ All five Nigerian album peaks were read directly from TurnTable's own chart payl
 
 **Country counts, albums:** 🇳🇬 5 · 🇬🇧 4 · 🇺🇸 2 · 🇮🇪 2 · 🇨🇭 1 · 🇫🇷 1 · 🇳🇱 1 · 🇨🇦 1 = 17 ✓
 
-**Grand total: 75 singles + 17 albums = 92 chart entries.** ✓
+**Grand total: 76 singles + 17 albums = 93 chart entries.** ✓
 
 > **Resweep, 27 Aug 2026 — +26 Nigerian peaks and one correction.** A body-by-body
 > repass added **21** TurnTable Top 100 peaks read in the register's own archived
@@ -113,6 +113,16 @@ All five Nigerian album peaks were read directly from TurnTable's own chart payl
 > construction, which is a debut, not a peak — **eleven** candidate rows were
 > rejected on exactly that test, and five more were kept only with a note saying
 > the peak may still climb.
+>
+> ***Galorizzy* was held back and is now merged, with a credit correction.** The
+> certification row read "Ecool, Davido, **Mora** & Morravey"; the chart register
+> read "Davido, **Mavo** & Ecool". Deezer's contributor list for Ecool's
+> *Galorizzy* settles it — Ecool, Davido, **MaVo**, Morravey and Iphxne Dj as
+> mains, Scotts Maphuma featured, and **no "Mora" anywhere**. Confirmed by Paul:
+> Mavo is the artist, Mora was the typo, and Davido is on the record. The title
+> is corrected in both arrays and the Nigerian **#6** peak added. Note there is
+> also a separate artist *named* Galorizzy, unrelated to this track — one more
+> title-versus-name collision to watch.
 >
 > The same repass found **zero new certifications**: all 22 certification rows it
 > re-read were already held at the tier already recorded. Net: 66 + 26 = **92**.
