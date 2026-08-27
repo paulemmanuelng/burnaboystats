@@ -18,7 +18,12 @@ const REACHED_NUMBER_ONE = /\bNo\. 1s\b|\btops the\b|\btopped the\b|\benters at 
 const ageInDays = (date: string) =>
   (Date.now() - new Date(`${date}T12:00:00Z`).getTime()) / 86_400_000;
 
-const countryNames = Object.values(CHART_COUNTRIES).map((c) => c.name);
+// Real countries only. CHART_COUNTRIES also holds the two Billboard Global
+// charts, and any update mentioning "Billboard Global 200" would otherwise list
+// "Global" as a country that just arrived at No. 1.
+const countryNames = Object.entries(CHART_COUNTRIES)
+  .filter(([code]) => code !== "GLB" && code !== "GLBX")
+  .map(([, c]) => c.name);
 // Every release title the chart data knows, for reading WHICH song an update
 // reported — the feed writes titles exactly as charts.ts does.
 const knownTitles = allChartItems.map((r) => r.title);
@@ -30,10 +35,27 @@ const recentUpdates = updates.filter(
     countryNames.some((n) => u.text.includes(n))
 );
 
-const recentText = recentUpdates.map((u) => u.text).join(" ");
+// The country has to sit in the SAME CLAUSE as the No.-1 wording. Scanning the
+// whole update was the bug the doc comment above warns about: one feed entry
+// reads "tops the Official MENA Chart's Top 20 and Luxembourg's Billboard
+// chart, debuts at No.14 in Egypt and climbs to new peaks of No.26 in Hungary
+// and No.21 in Israel" — a single "tops the" that published Egypt, Hungary and
+// Israel as fresh No. 1s alongside the one country that had actually arrived.
+// Splitting on clause punctuation keeps "tops the ... Luxembourg" together and
+// leaves the No.14 / No.26 / No.21 clauses out.
+const numberOneClauses = (text: string) =>
+  text.split(/[,.;:]\s|[.;:]$/).filter((c) => REACHED_NUMBER_ONE.test(c));
+
+/** Countries an update reports ARRIVING at No. 1. Exported for tests. */
+export const arrivalsIn = (text: string) => {
+  const clauses = numberOneClauses(text);
+  return countryNames.filter((n) => clauses.some((c) => c.includes(n)));
+};
+
+const recentArrivalSet = new Set(recentUpdates.flatMap((u) => arrivalsIn(u.text)));
 
 /** True when this country is one the feed just reported topping. */
-export const isRecentNumberOne = (countryName: string) => recentText.includes(countryName);
+export const isRecentNumberOne = (countryName: string) => recentArrivalSet.has(countryName);
 
 /**
  * WHICH release the feed reported topping that country — the same update that
@@ -42,7 +64,7 @@ export const isRecentNumberOne = (countryName: string) => recentText.includes(co
  * happens to be a substring of the update's prose.
  */
 export const recentNumberOneTitle = (countryName: string): string | undefined => {
-  const update = recentUpdates.find((u) => u.text.includes(countryName));
+  const update = recentUpdates.find((u) => arrivalsIn(u.text).includes(countryName));
   if (!update) return undefined;
   return knownTitles
     .filter((t) => update.text.includes(t))
@@ -67,7 +89,7 @@ const listNames = (xs: string[]) => {
 };
 
 /** Countries the feed just reported topping, in the order the data holds them. */
-export const recentArrivals = countryNames.filter((n) => recentText.includes(n));
+export const recentArrivals = countryNames.filter((n) => recentArrivalSet.has(n));
 
 /** "'Dai Dai' with Shakira added X, Y and Z this week —" */
 export const recentArrivalSentence = (title: string) =>

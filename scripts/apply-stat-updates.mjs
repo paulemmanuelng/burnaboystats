@@ -284,6 +284,11 @@ async function main() {
         // which would have fired the staleness alarm on healthy sources.
         m.lastSeenValue = Math.round(r.live);
         m.lastSeenAt = m.lastChanged;
+        // Only an accumulate metric that actually LANDED may mark the day as
+        // counted. evaluateMetric reads this, and nothing else writes it — a
+        // rejected or failed increment must leave the day open so the next run
+        // can retry it, or the day's figure is lost from the running total.
+        if (r.kind === "accumulate") m.lastAccumulatedAt = m.lastChanged;
       }
     }
     files.set(configPath, JSON.stringify(config, null, 2) + "\n");

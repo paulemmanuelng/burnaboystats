@@ -126,8 +126,15 @@ export function extractSpotifyFollowers(json) {
 // kworb's documented failure mode is a sudden mis-read (e.g. reading a rank as a
 // listener count), which shows up as a huge % swing and gets rejected here so it
 // never reaches the site. A rejected value is skipped, not published.
-export function withinSanity(baseline, live, { maxJump = 0.15, min = 0, max = Infinity } = {}) {
-  if (live == null || Number.isNaN(live) || live <= min || live > max) return false;
+export function withinSanity(baseline, live, { maxJump = 0.15, maxDelta, min = 0, max = Infinity } = {}) {
+  if (live == null || Number.isNaN(live) || live < min || live > max) return false;
+  // maxDelta is an ABSOLUTE bound, for quantities where a percentage is
+  // meaningless — a chart rank being the case here. The rank metric configured
+  // `maxJump: 10` meaning "ten places", but maxJump is a FRACTION of the
+  // baseline: |live - 46| / 46 > 10 needs live > 506, while `max: 500` already
+  // rejects anything above 500. No reachable value could fail that guard, so
+  // the rank was published unguarded by the loosest extractor in the file.
+  if (maxDelta != null) return Math.abs(live - baseline) <= maxDelta;
   if (baseline && Math.abs(live - baseline) / baseline > maxJump) return false;
   return true;
 }
@@ -194,7 +201,14 @@ export function evaluateMetric(metric, liveValue) {
     // once, gated on the date, because the live workflow runs hourly and the
     // source refreshes daily. liveValue here is the DAY'S streams, not a total.
     const today = new Date().toISOString().slice(0, 10);
-    if (metric.lastSeenAt === today) {
+    // Gate on lastAccumulatedAt, NOT lastSeenAt. lastSeenAt means "the source
+    // moved", and it is stamped on every run that merely READ a new value —
+    // including runs where sanity rejected the increment or the anchored edit
+    // failed and the baseline was never bumped. Keying the guard off it marked
+    // such a day as already counted, so the day's streams were dropped from a
+    // running total for good, silently. lastAccumulatedAt is written only next
+    // to the baseline bump, so it means what this guard needs it to mean.
+    if (metric.lastAccumulatedAt === today) {
       return { ...metric, live: metric.baseline, status: "ok" };
     }
     return { ...metric, live: metric.baseline + liveValue, added: liveValue, status: "accumulate" };

@@ -232,9 +232,23 @@ describe("accumulate metrics", () => {
   });
   it("adds only once per day — the live workflow runs hourly", () => {
     const today = new Date().toISOString().slice(0, 10);
-    const r = evaluateMetric({ ...base, lastSeenAt: today }, 9_267_000);
+    const r = evaluateMetric({ ...base, lastAccumulatedAt: today }, 9_267_000);
     expect(r.status).toBe("ok");
     expect(r.live).toBe(base.baseline); // unchanged
+  });
+  it("retries a day the source was SEEN on but the increment never landed", () => {
+    // This test previously passed `lastSeenAt: today` and expected the day to
+    // be skipped — encoding the bug rather than the requirement. lastSeenAt is
+    // stamped on every run that merely READ a moved value, including runs where
+    // sanity rejected the increment or the anchored edit failed and the
+    // baseline was never bumped. Keying the guard off it marked such a day as
+    // already counted, so a day's streams vanished from a running total for
+    // good. Only lastAccumulatedAt, written beside the baseline bump, may close
+    // a day.
+    const today = new Date().toISOString().slice(0, 10);
+    const r = evaluateMetric({ ...base, lastSeenAt: today }, 9_267_000);
+    expect(r.status, "a seen-but-unapplied day must stay retryable").toBe("accumulate");
+    expect(r.live).toBe(base.baseline + 9_267_000);
   });
   it("formats the total the way the 2026 board displays it", () => {
     expect(formatStat(1_526_627_000, "B3")).toBe("1.527B");

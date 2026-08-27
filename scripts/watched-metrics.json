@@ -72,9 +72,9 @@
       "note": "Global rank by Spotify monthly listeners (lower is better). Auto-published hourly; displayed on /records/by-the-numbers.",
       "live": true,
       "sanity": {
-        "maxJump": 10,
         "min": 1,
-        "max": 500
+        "max": 500,
+        "maxDelta": 10
       },
       "siteTargets": [
         {
@@ -88,7 +88,8 @@
       ],
       "lastChanged": "2026-08-25",
       "lastSeenValue": 46,
-      "lastSeenAt": "2026-08-25"
+      "lastSeenAt": "2026-08-25",
+      "$comment": "sanity.maxJump was 10, but withinSanity reads maxJump as a FRACTION of the baseline \u2014 |live-46|/46 > 10 needs live > 506, and max:500 already rejected that, so the jump guard was unreachable and the rank published unguarded. It is now maxDelta: 10, an absolute bound of ten chart places, which is what the 10 meant."
     },
     {
       "id": "spotify-total-streams",
@@ -808,7 +809,7 @@
       "siteTargets": [
         {
           "file": "app/data/africasBiggest.ts",
-          "anchor": "{ name: \"Tems\", value: \"",
+          "anchor": "/* live:streams-2026-tems */",
           "pattern": "[\\d.]+B",
           "template": "%s",
           "format": "B3",
@@ -838,7 +839,7 @@
       "siteTargets": [
         {
           "file": "app/data/africasBiggest.ts",
-          "anchor": "{ name: \"Wizkid\", value: \"",
+          "anchor": "/* live:streams-2026-wizkid */",
           "pattern": "[\\d.]+B",
           "template": "%s",
           "format": "B3",
@@ -868,7 +869,7 @@
       "siteTargets": [
         {
           "file": "app/data/africasBiggest.ts",
-          "anchor": "{ name: \"Burna Boy\", value: \"",
+          "anchor": "/* live:streams-2026-burna */",
           "pattern": "[\\d.]+B",
           "template": "%s",
           "format": "B3",

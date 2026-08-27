@@ -681,6 +681,30 @@ export function totalAwards() {
 // everywhere else: the worldwide total, the country grid, every release's row.
 export const intlCertHistory = certHistory.filter((e) => e.country !== "NG");
 
+/** Every year the international log actually covers, newest first.
+ *
+ *  Derived, because both year rails used to hardcode [2026, 2025, 2024, 2023].
+ *  The log holds 2022 and 2020 events too — including the French Diamond for
+ *  "On the Low", the rarest tier on the site — and with no "All" chip they were
+ *  reachable from neither layout. A literal would also have quietly stopped
+ *  covering the current year on 1 Jan 2027. */
+export const certHistoryYears = [...new Set(intlCertHistory.map((e) => e.year))].sort(
+  (a, b) => b - a,
+);
+
+/** International plaques logged in one year. */
+export const intlCertsInYear = (year: number) =>
+  intlCertHistory.filter((e) => e.year === year).length;
+
+/** The best year before `year`, as [year, count] — or null if there is none. */
+export const bestIntlYearBefore = (year: number): [number, number] | null => {
+  const prior = certHistoryYears.filter((y) => y < year);
+  if (!prior.length) return null;
+  return prior
+    .map((y) => [y, intlCertsInYear(y)] as [number, number])
+    .sort((a, b) => b[1] - a[1])[0];
+};
+
 /** International certifications awarded in a given calendar year — the "most
  *  in one year" record on /records/firsts derives from this rather than
  *  freezing at the threshold it crossed. */

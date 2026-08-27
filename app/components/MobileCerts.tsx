@@ -11,6 +11,7 @@ import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { count } from "../lib/plural";
 import { BLANK_PIXEL } from "../lib/blankPixel";
 import { portraitArtFor } from "../lib/portraitArt";
+import { certHistoryYears } from "../data/certifications";
 import type { CertEvent, Country, Release } from "../data/certifications";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -45,7 +46,8 @@ const GRAD: Record<Tier, string> = {
 
 const ROWS_SHOWN = 10;
 
-const YEARS = [2026, 2025, 2024, 2023];
+// Derived, not a literal — see certHistoryYears in data/certifications.ts.
+const YEARS = certHistoryYears;
 
 export default function MobileCerts({
   releases,

@@ -92,10 +92,18 @@ export const statBoxes: LeaderboardBox[] = [
     rows: [
       {
         label: "2026",
+        // The /* live:… */ markers are the stats bot's anchors. Its anchored
+        // replace resolves with indexOf, and `{ name: "Burna Boy", value: "`
+        // occurs three times in this file — here, in the 2025 row below, and on
+        // the daily-peak board. It hit the right row only because this block
+        // happens to come first; adding a `sub:` field to these entries to match
+        // the other boards' styling would have silently redirected the daily
+        // write into the 2025 historical row. Keep a marker on every row the bot
+        // writes, and keep them unique. tests/watchedMetrics.test.ts enforces it.
         entries: [
-          { name: "Tems", value: "1.702B" },
-          { name: "Wizkid", value: "1.679B" },
-          { name: "Burna Boy", value: "1.651B" },
+          /* live:streams-2026-tems */ { name: "Tems", value: "1.702B" },
+          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.679B" },
+          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.651B" },
           { name: "Asake", value: "1.335B" },
           { name: "Tyla", value: "1.138B" },
         ],

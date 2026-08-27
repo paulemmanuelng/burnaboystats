@@ -2,14 +2,23 @@
 
 import { useState, useEffect } from "react";
 import styles from "../certifications/certifications.module.css";
-import { tierOf, type CertEvent, type Country } from "../data/certifications";
+import {
+  tierOf,
+  certHistoryYears,
+  intlCertsInYear,
+  bestIntlYearBefore,
+  type CertEvent,
+  type Country,
+} from "../data/certifications";
 
-const YEARS = [2026, 2025, 2024, 2023];
+const YEARS = certHistoryYears;
 
 // Notes shown under a year's log.
 //
-// The plaque counts in these lines come from certHistory itself, so they can't
-// drift. The "most certified African artist in <year>" half cannot: it needs
+// The plaque counts in these lines are now genuinely computed from certHistory,
+// so they cannot drift. They were not: this note read "Fifty-one international
+// plaques ... past his own previous best of 39 in 2023" while the arrays held 52
+// and 44, and the stat rail on the same page rendered the derived 52 beside it. The "most certified African artist in <year>" half cannot: it needs
 // every other African artist's per-year count, and no certifying body publishes
 // that, no aggregator compiles it. Those lines are maintained by Paul from the
 // fan community's own tracking, and are the only claims on this site not
@@ -17,7 +26,11 @@ const YEARS = [2026, 2025, 2024, 2023];
 // (The all-time "most certified African artist" record IS press-sourced; that's
 // a different claim and it lives in the updates feed.)
 const YEAR_NOTES: Partial<Record<number, string>> = {
-  2026: "Fifty-one international plaques and counting — the most certified African artist of 2026, and Burna Boy's biggest certification year on record, past his own previous best of 39 in 2023.",
+  2026: (() => {
+    const best = bestIntlYearBefore(2026);
+    const prior = best ? ` past his own previous best of ${best[1]} in ${best[0]}.` : ".";
+    return `${intlCertsInYear(2026)} international plaques and counting — the most certified African artist of 2026, and Burna Boy's biggest certification year on record,${prior}`;
+  })(),
   2025: "Burna Boy was the most certified African artist in 2025.",
 };
 
