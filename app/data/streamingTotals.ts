@@ -34,4 +34,19 @@ export const spotifyTotalStreamsExact = "10,859,883,490";
 // Every Burna Boy video on YouTube, across his channel and others'. He leads
 // all Nigerian artists on this measure — 343 videos to 4.0 billion views, ahead
 // of Wizkid (2.66B), Rema (2.60B) and Davido (2.47B). Tracked 24 Aug 2026.
+//
+// HAND-MAINTAINED, deliberately. The stats bot used to write this field from
+// kworb, and was taken off it on 27 Aug 2026 because kworb cannot measure it:
+// its page lists 187 videos totalling 3,187,566,461 against the 343 videos and
+// 4.0B counted here. Two populations, not two opinions about one number, and no
+// wider kworb view exists. Had it stayed wired up, the bot would have published
+// 3.2B over this the moment kworb's total passed its baseline — quietly swapping
+// an all-channel figure for a partial one.
+//
+// So do NOT "correct" this down to kworb's number, and do not re-point a metric
+// at it without a source that counts every channel. kworb is still watched for
+// its own sake (watched-metrics.json → youtube-total-views, watch-only), so its
+// movement still gets reported; it just no longer writes here.
 export const youtubeTotalViews = "4.0B";
+/** When the figure above was last measured — it is not bot-refreshed. */
+export const youtubeTotalViewsAsOf = "2026-08-24";

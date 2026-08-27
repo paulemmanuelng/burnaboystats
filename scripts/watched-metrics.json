@@ -299,35 +299,23 @@
     },
     {
       "id": "youtube-total-views",
-      "label": "Total YouTube views (all videos)",
+      "label": "YouTube views across kworb's tracked videos",
       "sourceName": "kworb — Burna Boy YouTube",
       "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
       "extractor": "kworbYouTubeTotal",
       "kind": "peak",
       "threshold": 0.001,
-      "baseline": 4000000000,
-      "note": "Cumulative views across every Burna Boy video — a milestone figure as it climbs.",
-      "live": true,
-      "siteTargets": [
-        {
-          "file": "app/data/streamingTotals.ts",
-          "anchor": "export const youtubeTotalViews =",
-          "pattern": "\"[\\d.]+[KMB]\"",
-          "template": "\"%s\"",
-          "format": "compact",
-          "describes": "Total YouTube views on /records/by-the-numbers"
-        }
-      ],
+      "baseline": 3187566461,
+      "note": "Cumulative views across the videos kworb tracks. WATCH ONLY — this metric writes nothing to the site, because it does not measure what the site publishes.",
       "sanity": {
         "maxJump": 0.1,
         "min": 1000000000,
         "max": 50000000000
       },
       "lastChanged": "2026-08-27",
-      "lastSeenValue": 4000000000,
+      "lastSeenValue": 3187566461,
       "lastSeenAt": "2026-08-25",
-      "stalenessDays": 3,
-      "$comment": "SCOPE MISMATCH, needs a decision. The site publishes 4.0B — 343 videos across every channel, from Paul's tracking on 24 Aug 2026. This metric's extractor reads kworb's artist page, which covers a NARROWER set and stood at 3,187,566,461. Because kind is \"peak\", the bot publishes only when live > baseline; with the old 3.19B baseline it would have published \"3.2B\" the moment kworb ticked over, silently overwriting the published 4.0B with a LOWER number. Baseline raised to 4.0B so that cannot happen. Consequence: the metric will now read stale (see stalenessDays) until kworb's narrower count passes 4.0B, which is the loud failure rather than the silent one. Resolve by either pointing the extractor at the same all-channel measure the site publishes, or setting live:false and maintaining this figure by hand. Do not simply lower the site figure to match kworb — they count different things."
+      "$comment": "SCOPE, settled 27 Aug 2026. This used to write app/data/streamingTotals.ts's youtubeTotalViews, and the two measure different things: kworb's page lists 187 videos totalling 3,187,566,461, while the figure the site publishes counts 343 videos across every channel. That is not a disagreement about one number, it is two different populations, and no wider kworb view exists (burnaboy_all.html and burnaboy_videos.html both 404). Left pointed at the site field, the bot would have published 3.2B over the 4.0B the moment kworb's total ticked past its old baseline — silently replacing an all-channel figure with a partial one. So the target is removed and this is now watch-only, like spotify-monthly-listeners: check-stats still reports kworb's movement for review, and nothing auto-writes. The published figure is hand-maintained; see the comment on youtubeTotalViews."
     },
     {
       "id": "spotify-streams-last-last",

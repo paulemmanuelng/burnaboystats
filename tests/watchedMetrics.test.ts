@@ -98,6 +98,29 @@ describe("watched-metrics site targets", () => {
   // only by source order. Adding a `sub:` field to the 2026 entries — a pure
   // styling edit, to match every other list board — would have redirected the
   // daily write into the 2025 row, rewriting history with today's number.
+  // youtubeTotalViews is hand-maintained. kworb's page lists 187 videos summing
+  // to 3,187,566,461; the site publishes 343 videos across every channel at
+  // 4.0B. Two populations, not two readings of one number — and no wider kworb
+  // view exists. While the two were wired together the bot would have published
+  // 3.2B over the 4.0B the moment kworb's total passed its baseline, swapping an
+  // all-channel figure for a partial one with nothing to show it had happened.
+  it("no metric writes the hand-maintained YouTube total", () => {
+    const writers = targets.filter((t) => t.anchor.includes("youtubeTotalViews"));
+    expect(
+      writers.map((t) => t.id),
+      "youtubeTotalViews counts every channel; no automated source measures that scope",
+    ).toEqual([]);
+  });
+
+  it("the kworb YouTube metric is watch-only", () => {
+    const m = config.metrics.find((x) => x.id === "youtube-total-views");
+    expect(m, "the kworb YouTube watch was removed entirely").toBeTruthy();
+    expect(m!.siteTargets ?? [], "a watch-only metric must write nothing").toEqual([]);
+    expect(m!.live, "live:true would put it back on the auto-write path").toBeFalsy();
+    // check-stats reports metrics with !live, so it is still monitored.
+    expect(!m!.live).toBe(true);
+  });
+
   it("every anchor occurs exactly once in its target file", () => {
     for (const t of targets) {
       const src = readFileSync(t.file, "utf8");
