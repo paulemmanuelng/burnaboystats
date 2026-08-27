@@ -55,7 +55,18 @@ That was wrong. It has one; it is just not on a website.
   `https://www.audiogest.pt/tops-semanais-2026?lang=pt` — one PDF per Semana,
   four sections (Top 200 Álbuns, Stream Álbuns, Streams, **Singles**).
   `OU` = Ouro, `PL`…`9PL` = Platina. It annotates only titles charting that week.
-- **Off-chart awards are announced monthly on facebook.com/audiogest.** The MOST
+- **Off-chart awards, the route that works: the ANNUAL `TOP AFP/AUDIOGEST`
+  reports.** Same `Gal.` column, cumulative over the year, and up to **10 000
+  positions deep** rather than 200 — so they cover titles that never charted at
+  all. Linked from the same index as the weeklies
+  (`/tabelas-oficiais-de-vendas-?lang=pt`). Two rules for using them:
+  the column **freezes at the period end, not publication** (11 titles awarded
+  between 8 Jan and 11 Mar 2021 are all still blank in the TOP Anual 2020,
+  published 26 Mar 2021), and **absence may be depth** — the reports run
+  2019→3000, 2020→3000, 2021→**1000**, 2022→**10000**, 2023→200, 2024→200, with
+  2025 and 2026 unpublished. Bracket an award between the last blank annual and
+  the first badged one, and ignore any annual too shallow to reach the position.
+- **Off-chart awards are also announced monthly on facebook.com/audiogest.** The MOST
   RECENT batch is readable logged out; **older months are not** — the logged-out page
   serves only the latest ~10 photos and will not scroll, so the archive is closed by
   this route. Wayback captures after 2022 are all 302 login redirects. Earlier sweeps
@@ -63,6 +74,9 @@ That was wrong. It has one; it is just not on a website.
   ("Começamos o novo mês a anunciar os Galardões de Ouro de Maio de 2026").
   Each batch is a carousel: a cover slide plus cards of four awards, nationals
   first with an "ARTISTA NACIONAL" ribbon, then international alphabetically.
+- **ineews.eu reproduces whole batches verbatim** (search `?s=galardões`), naming
+  AUDIOGEST — Feb 2026 (42 awards) and Mar 2026 (94) so far, one article a month.
+  Useful as a *lead*, but it is syndication: confirm at an AFP PDF before publishing.
 
 **How to read the carousel** (no login, no bot-check): open the page, click
 Photos, pull `a[href*="fbid="]` hrefs, then for each permalink pull the
@@ -74,5 +88,9 @@ permalinks, though NOT on `photo.php?...&set=pb...`.
 Instagram is useless: every Wayback capture after 2022 is a 302 login redirect.
 
 **Consequence:** Portuguese certifications for NON-CHARTING titles are now
-verifiable, which they were not before. Worth a pass over every board artist's
-Portuguese rows, and over the monthly batches back through 2026.
+verifiable, which they were not before — via the annuals, not the carousels.
+Burna Boy's four unsourced Portuguese Golds were all settled this way on
+27 Aug 2026 (see `docs/sweeps/portugal-afp-verification-2026-08-27.md`); three
+needed their dates corrected. **Still to do: the same annual-report pass over
+every other board artist's Portuguese rows** — the earlier sweep tested them
+against the weeklies only, which cannot see a non-charting or post-run award.

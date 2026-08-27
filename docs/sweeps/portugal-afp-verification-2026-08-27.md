@@ -11,6 +11,7 @@ that AFP *does* publish a register — the project had it recorded as having non
 | audiogest.pt home / news | no certification data at all |
 | **Charting titles** | the **`Gal.` column** on the weekly TOP PDF |
 | **Off-chart awards** | monthly carousels on **facebook.com/audiogest** — the CURRENT batch is readable logged out; older months are not (the page serves only the latest ~10 photos and does not scroll) |
+| **Off-chart awards, the route that works** | the **ANNUAL `TOP AFP/AUDIOGEST` reports** — same `Gal.` column, cumulative, and up to **10 000 positions deep** instead of 200. Linked from the same index as the weeklies. This is how the four Burna Boy rows were finally settled. |
 
 Index: `https://www.audiogest.pt/tabelas-oficiais-de-vendas-?lang=pt` → TOPS
 Semanais by year → one PDF per Semana. Codes: `OU` = Ouro, `PL`…`9PL` = Platina.
@@ -63,19 +64,53 @@ Two findings look alike and are not:
 |---|---|---|---|
 | Tyla — Chanel | Gold | blank, 2025 S48 – 2026 S7 | **Already sourced.** `tyla-certifications-v1.md` records it in AFP's **March 2026 monthly award table** — an off-chart award, landing after the run ended. The blanks are exactly what that predicts. |
 | Tyla — Truth or Dare | Gold | never charted | **Already sourced** — AFP's **February 2026** table, explicitly "awarded to a song that never charted". |
-| Burna Boy — We Pray | Gold | blank, S41–S44 2024 | The site dates the award **2025**; the chart run was Sep–Nov 2024. The windows do not overlap, so the blank barely bears on it. |
-| Burna Boy — Own It | Gold | blank in ~20 rows, 2019 W48 – 2020 W21 | The strongest doubt of the six. It constrains only Nov 2019 – May 2020; a later off-chart award would be invisible here. |
-| Burna Boy — Gbona | Gold | never charted, 130 weeklies | No register evidence either way. Burna Boy's first Portuguese chart appearance in this register is *Own It*, 2019 W48. |
-| Burna Boy — Location | Gold | never charted, 105 weeklies | No register evidence either way. |
+| Burna Boy — We Pray | Gold | blank, S41–S44 2024 | **Now confirmed** — `OU` at 168 in the **Semana 08 de 2025** weekly. The award came in Feb 2025, months after the 2024 run ended, which is why every 2024 row is blank. |
+| Burna Boy — Own It | Gold | blank in ~20 rows, 2019 W48 – 2020 W21 | **Now confirmed** — `OU` at 244 in the **TOP Anual 2020**, blank at 2824 in the 2019 annual. Awarded during 2020, after the weekly run. |
+| Burna Boy — Gbona | Gold | never charted, 130 weeklies | **Now confirmed** — `OU` at 1555 in the **TOP Anual 2022**. Never charting was irrelevant: the annual reaches 10 000. |
+| Burna Boy — Location | Gold | never charted, 105 weeklies | **Now confirmed** — `OU` at 568 in the **TOP Anual 2020** as *Dave feat. Burna Boy*, blank at 698 in 2019. |
 
 **Nothing is withdrawn.** A "never charted" line cannot support a removal, and the two
 blanks that could be checked turned out to be already sourced in this repo.
 
-**One flag worth keeping:** the four Burna Boy Portuguese rows — Gbona, Location,
-Own It, We Pray — carry **no per-row register citation anywhere in the repo**, unlike
-every board row, which was read at a body. They are the least-evidenced Portuguese
-claims on the site. The route to settle them now exists: AFP's monthly carousels on
-facebook.com/audiogest, readable logged out, back through 2026 and earlier.
+**The four flagged rows are now settled — at the body, not the carousels.** The
+carousels were a dead end; the annual reports were the answer, and the weekly sweep
+had simply been looking at the wrong document. All four Burna Boy Portuguese Golds
+are real. Three needed their dates corrected:
+
+| Row | Was | Now | Confirming document |
+|---|---|---|---|
+| Own It | undated | **2020** | TOP Anual 2020, `244 OU` |
+| Location | undated | **2020** | TOP Anual 2020, `568 OU` |
+| Gbona | 2023 | **2022** | TOP Anual 2022, `1555 OU` |
+| We Pray | 2025 | 2025 ✓ | Semana 08 de 2025 weekly, `168 OU` |
+
+### Two calibrations that make the annuals usable
+
+**The `Gal.` column freezes at the period end, not at publication.** Tested, not
+assumed: 11 titles that went from blank to `OU` between 8 Jan and 11 Mar 2021 —
+*Levitating*, *34+35*, *Wonder*, *Whoopty*, *Therefore I Am* among them — are **all
+still blank** in the TOP Anual 2020, which was published 26 Mar 2021, after every
+one of those awards. So an `OU` in an annual means the plaque existed by that
+report's last week.
+
+**Absence from an annual may be depth, not fact.** The reports vary enormously:
+2019 → 3 000, 2020 → 3 000, **2021 → 1 000**, 2022 → 10 000, 2023 → 200, 2024 → 200.
+*Gbona* sits at 1555, so the 2021 annual physically cannot show it — which is why
+its award can be bracketed only to 2021-or-2022, and the year recorded is the later
+bound. 2025 and 2026 annuals are listed as `#`, unpublished.
+
+**Why the credit test mattered.** In the TOP Anual 2020, Dave's *Location* carries
+`OU` at 568 — and Khalid's *Location* sits **blank at 571**, three lines below it,
+with Playboi Carti's *Location* also blank in 2022. A title-only match would have
+read all three as one plaque.
+
+### One lead, deliberately not published
+
+The March 2026 batch reportedly includes **WGFT — Gunna feat. Burna Boy — `Ouro`**,
+via ineews.eu, which reproduces AFP's whole table verbatim and names AUDIOGEST.
+That is syndication, not the body. *WGFT* never enters Portugal's Top 200, so no
+weekly can carry it, and no 2026 annual exists yet. **Not added.** Recheck when the
+TOP Anual 2026 publishes.
 
 ## Not confirmed — 1
 

@@ -604,7 +604,7 @@ export const certHistory: CertEvent[] = [
   { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", country: "UK", level: "Platinum", x: 3, year: 2023 },
   { title: "Ye", country: "US", level: "Platinum", year: 2023 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "DK", level: "Platinum", year: 2023 },
-  { title: "Gbona", country: "PT", level: "Gold", year: 2023 },
+  { title: "Gbona", country: "PT", level: "Gold", year: 2022 },
   { title: "Love, Damini", album: true, country: "UK", level: "Silver", year: 2023 },
   { title: "Gbona", country: "UK", level: "Gold", year: 2026 },
   { title: "Love, Damini", album: true, country: "DK", level: "Gold", year: 2023 },
@@ -661,6 +661,28 @@ export const certHistory: CertEvent[] = [
   // SHAKIRA & BURNA BOY / COLUMBIA-ATLANTIC / oro / Singoli Online". Burna's
   // second Italian certification, after Jerusalema (Remix)'s 4x Platinum.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "IT", level: "Gold", year: 2026 },
+
+  // AFP/Audiogest (Portugal), verified at the body 27 Aug 2026. Portugal has no
+  // standalone award register, but the ANNUAL "TOP AFP/AUDIOGEST" reports carry
+  // the same "Gal." column as the weeklies and run thousands of positions deep,
+  // so they serve as one. Two calibrations make them datable: the column is
+  // frozen at the period end -- 11 titles awarded OU between 8 Jan and 11 Mar
+  // 2021 are all still blank in the TOP Anual 2020, published 26 Mar 2021 -- and
+  // a title missing from a report may simply sit below its cut, since the annuals
+  // vary from 200 to 10000 deep. Never charting is not evidence either way: the
+  // weekly Top 200 only badges titles it already lists.
+  //   "Own It"   blank in TOP Anual 2019 (2824) -> OU in TOP Anual 2020 (244)
+  //   "Location" blank in TOP Anual 2019 (698)  -> OU in TOP Anual 2020 (568);
+  //              Khalid's "Location" sits blank three lines below at 571, so this
+  //              is matched on the credit, not the title
+  //   "Gbona"    blank through TOP Anual 2020 (1940) -> OU in TOP Anual 2022
+  //              (1555). The 2021 annual stops at 1000, so 2021 and 2022 cannot
+  //              be split; the year recorded here is the later bound, and the
+  //              2023 previously recorded was not supportable.
+  //   "We Pray"  OU in the Semana 08 de 2025 weekly (168), week of 14-20 Feb
+  //              2025 -- the one of the four that the weeklies do settle.
+  { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", country: "PT", level: "Gold", year: 2020 },
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "PT", level: "Gold", year: 2020 },
 ];
 
 // Helpers

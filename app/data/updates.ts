@@ -37,6 +37,12 @@ export const updates: Update[] = [
   {
     date: "2026-08-27",
     category: "Certifications",
+    text: "Four Portuguese Golds, confirmed at last. AFP/Audiogest's annual TOP reports — which carry the same Galardão column as the weekly charts but run to 10,000 positions instead of 200 — show “Gbona”, “Location” with Dave, “Own It” with Stormzy and Ed Sheeran, and “We Pray” with Coldplay all marked Ouro. Three were awarded earlier than recorded here: “Own It” and “Location” both during 2020, “Gbona” by the end of 2022. “Gbona” had never once entered Portugal's Top 200, which is why the weekly charts had nothing to say about it.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-08-27",
+    category: "Certifications",
     text: "“On The Low” gains a plaque and corrects one. Reading its certifications at each issuing body's own register — SNEP, Music Canada, BPI, IFPI Schweiz, RIAA, ARIA, IFPI Danmark and TCSN — confirms the tiers already recorded here, adds Sweden (GLF, Platinum, certificate no. 10448, awarded 16 August 2023) and corrects Nigeria, which TCSN gives as Gold rather than Silver. That is ten countries for a song whose French plaque is a full Diamond. The catalogue stands at 231.",
     href: "/certifications",
   },

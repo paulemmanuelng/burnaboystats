@@ -95,9 +95,25 @@ describe("certHistory (certifications by year)", () => {
     expect(certHistory.filter((e) => e.year === 2024).length).toBe(20);
   });
 
-  it("2023 has the published count of 44 certifications", () => {
-    // 39 + the four Swedish awards of 2023-08-16, read at GLF/Grammotex.
-    expect(certHistory.filter((e) => e.year === 2023).length).toBe(44); // + the four Swedish awards and On the Low's Swiss Platin
+  it("2023 has the published count of 43 certifications", () => {
+    // 39 + the four Swedish awards of 2023-08-16, read at GLF/Grammotex,
+    // less "Gbona"'s Portuguese Gold, which moved to 2022 once AFP/Audiogest's
+    // TOP Anual 2022 was read at the body: it is already OU there (1555), and
+    // that report's Gal. column freezes at 29 Dec 2022. 2023 was never
+    // supportable, only unchecked.
+    expect(certHistory.filter((e) => e.year === 2023).length).toBe(43);
+  });
+
+  it("the four Portuguese Golds are dated to the AFP report that shows them", () => {
+    const pt = (title: string) =>
+      certHistory.find((e) => e.country === "PT" && e.title === title)?.year;
+    // TOP Anual 2020 badges both; the TOP Anual 2019 leaves both blank.
+    expect(pt("Own It")).toBe(2020);
+    expect(pt("Location")).toBe(2020);
+    // Blank through the 2020 annual (1940), OU in the 2022 annual (1555).
+    expect(pt("Gbona")).toBe(2022);
+    // The only one the weeklies settle: OU in Semana 08 de 2025.
+    expect(pt("We Pray")).toBe(2025);
   });
 });
 
