@@ -4,31 +4,32 @@
 
 ## Total: **81 certifications** across **21 countries**
 
-> ***Secondhand* 🇵🇹 Gold — checked 27 Aug 2026, NOT added.** A news account
-> posted that Don Toliver's *Secondhand* ft. Rema "is now certified GOLD in
-> Portugal". It cannot be confirmed, and it cannot be refuted either, because of
-> how AFP publishes.
+> ***Secondhand* 🇵🇹 Gold — checked 27 Aug 2026, NOT added. The claim conflates
+> an ALBUM certification with a single.** A news account posted that Don
+> Toliver's *Secondhand* ft. Rema "is now certified GOLD in Portugal". What AFP
+> actually certified is **OCTANE — Don Toliver's album** — and *Secondhand (feat.
+> Rema)* is track material on it, not a certified title in its own right.
 >
-> **AFP has no standalone certification register.** Its own site, afp.org.pt, no
-> longer resolves at all — the Wayback record for it terminates in January 2016.
-> The only certification data AFP publishes is a **`Gal.` (Galardão) column on
-> the weekly TOP PDF** at audiogest.pt (`OU` = Ouro, `PL`/`2PL`…`9PL` = Platina),
-> and that column can only describe a title that is ON the chart that week.
+> Read in AFP's own weekly TOP, whose `Gal.` (Galardão) column is the only
+> certification data AFP publishes (`OU` = Ouro, `PL`…`9PL` = Platina). The
+> OCTANE row carries no Galardão in **Semanas 29 and 30**, and carries **`OU`**
+> from **Semana 31** onward through 32, 33 and 34 — the award landing in that
+> window, on the row credited `OCTANE / DON TOLIVER / ATLANTIC / WARNER`.
+> No row for a single called *Secondhand* exists in any of those six weeks.
 >
-> Six consecutive weeks were read end to end — **Semanas 29, 30, 31, 32, 33 and
-> 34 of 2026**, the last published on 26 Aug — and every one contains **zero
-> "Secondhand" and zero whole-word "Rema"**. (Note the trap: a naive search
-> matches "REMA" inside "REMASTER"; the counts above are word-boundary matches.)
-> The song has fallen off the Portuguese chart, so no row exists to carry a
-> Galardão, and a Gold awarded to a non-charting title is invisible in the only
-> format AFP publishes.
+> **First pass got this wrong, and the reason is worth keeping.** The first check
+> searched the weeklies for "Rema" and found nothing, and concluded the claim was
+> structurally unconfirmable. It searched for the FEATURED artist; AFP credits
+> the LEAD. Paul's correction — "check with Don Toliver" — turned an unreadable
+> into a clean answer in one step. (The same pass also had to discard a "REMA"
+> hit that was the substring inside *REMASTER*.)
 >
-> This is structurally the same wall as Gbona in Sweden: the body's sole public
-> surface is a chart row, and a title without one cannot be seen. Under the
-> standing rule — unreadable means **omit**, not publish-with-caveat — the plaque
-> is not added. Rema's Portuguese count stays at **1** (*Calm Down*, 9× Platina).
-> *Secondhand* keeps its Canadian Gold and its Portuguese chart peak of #40; only
-> the Portuguese certification is withheld.
+> **No plaque follows for Rema.** The certified title is an album by another
+> artist, and every certified album row on this board is the artist's own —
+> *Made in Lagos*, *Timeless*, *Rave & Roses*, *Boy Alone*. A guest on one track
+> of someone else's certified album does not take an album plaque. Rema's
+> Portuguese count stays at **1** (*Calm Down*, 9× Platina); *Secondhand* keeps
+> its Canadian Gold and its Portuguese chart peak of #40.
 
 > **Correction, 27 Aug 2026 — Colombia was wrongly written off.** This file
 > recorded Colombia among the registers returning zero "for a structural reason",
