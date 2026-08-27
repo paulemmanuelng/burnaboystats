@@ -42,3 +42,30 @@ any body so far. The UK entry should point there.
 2. Add per-plaque `src` links + a `certSources` provenance table.
 3. Fill the 16 missing country-level body URLs.
 4. Repeat for the 11 other board artists.
+
+## 2026-08-27, later
+
+### Burna Boy — pass 1 complete
+- **157 of 231 sourced** at the certifying body, with verbatim quotes.
+- **Zero aggregator URLs smuggled in** as body reads.
+- Six audit corrections applied — see `BURNA-FINDINGS.md`. The big ones:
+  Switzerland's 11 rows demoted (swisscharts is an aggregator, not IFPI Schweiz),
+  Nigeria's 34 award dates blanked (register-wide stamp, not award dates), and
+  France's 20 URLs swapped off title-only stubs onto the listing that shows the row.
+- **One genuinely missing plaque found:** "No Stress" (Wizkid feat. Burna Boy),
+  RiSA Platinum, South Africa.
+- **One conflict:** the site records Be Honest CA Gold; Music Canada returned absent.
+- **New Zealand needs its own pass** — 29 of 19+ rows came back absent, only 1 confirmed.
+
+### Board — pass 1 running
+Workflow `wf_110ab5eb-efd`, 11 agents. Organised **body-first, not artist-first**:
+Nigeria alone is 475 of the board's 830 plaques across all twelve artists, so one
+TCSN read covers 57% of the work. Every hard-won register quirk from the Burna pass
+is baked into the prompts, including the explicit instruction NOT to cite swisscharts
+for Switzerland, which is where the last pass failed.
+
+### Scripts
+`cert-sourcing.js` (Burna) and `board-sourcing.js` (board) are copied into this
+directory so the exact prompts are reproducible.
+
+### Still not written to app/data — by instruction. Nothing pushed to main.
