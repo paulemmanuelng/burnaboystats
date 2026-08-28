@@ -168,20 +168,19 @@
     {
       "id": "yt-views-last-last",
       "label": "“Last Last” video — YouTube views",
-      "sourceName": "kworb — Burna Boy YouTube",
-      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
-      "extractor": "kworbYouTubeVideo",
-      "match": "Last Last [Official Music Video]",
+      "sourceName": "YouTube — official video",
+      "sourceUrl": "https://www.youtube.com/watch?v=421w1j87fEM",
+      "extractor": "youtubeViews",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 360640155,
+      "baseline": 361468525,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
         "min": 1000000,
         "max": 5000000000
       },
-      "note": "Views of the official “Last Last” video, shown on /music/last-last. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy — hence the long staleness window.",
+      "note": "Views of the official “Last Last” video, shown on /music/last-last. Read from the video's own YouTube page, not from kworb. The display string only changes when it crosses a whole million, so weeks of quiet between rewrites is healthy — but the staleness alarm judges lastSeenAt (the raw source value), which on a real video moves every day, so the 3-day window is right.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -193,28 +192,27 @@
         }
       ],
       "lastChanged": "2026-08-20",
-      "lastSeenValue": 361237434,
-      "lastSeenAt": "2026-08-25",
+      "lastSeenValue": 361468525,
+      "lastSeenAt": "2026-08-28",
       "stalenessDays": 3,
-      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
     {
       "id": "yt-views-ye",
       "label": "“Ye” video — YouTube views",
-      "sourceName": "kworb — Burna Boy YouTube",
-      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
-      "extractor": "kworbYouTubeVideo",
-      "match": "Ye [Official Music Video]",
+      "sourceName": "YouTube — official video",
+      "sourceUrl": "https://www.youtube.com/watch?v=lPe09eE6Xio",
+      "extractor": "youtubeViews",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 308659974,
+      "baseline": 308936026,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
         "min": 1000000,
         "max": 5000000000
       },
-      "note": "Views of the official “Ye” video, shown on /music/ye. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy — hence the long staleness window.",
+      "note": "Views of the official “Ye” video, shown on /music/ye. Read from the video's own YouTube page, not from kworb. The display string only changes when it crosses a whole million, so weeks of quiet between rewrites is healthy — but the staleness alarm judges lastSeenAt (the raw source value), which on a real video moves every day, so the 3-day window is right.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -226,28 +224,27 @@
         }
       ],
       "lastChanged": "2026-08-23",
-      "lastSeenValue": 308807152,
-      "lastSeenAt": "2026-08-25",
+      "lastSeenValue": 308936026,
+      "lastSeenAt": "2026-08-28",
       "stalenessDays": 3,
-      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
     {
       "id": "yt-views-on-the-low",
       "label": "“On the Low” video — YouTube views",
-      "sourceName": "kworb — Burna Boy YouTube",
-      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
-      "extractor": "kworbYouTubeVideo",
-      "match": "On The Low [Official Music Video]",
+      "sourceName": "YouTube — official video",
+      "sourceUrl": "https://www.youtube.com/watch?v=Ecl8Aod0Tl0",
+      "extractor": "youtubeViews",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 478779898,
+      "baseline": 479088565,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
         "min": 1000000,
         "max": 5000000000
       },
-      "note": "Views of the official “On the Low” video, shown on /music/on-the-low. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy — hence the long staleness window.",
+      "note": "Views of the official “On the Low” video, shown on /music/on-the-low. Read from the video's own YouTube page, not from kworb. The display string only changes when it crosses a whole million, so weeks of quiet between rewrites is healthy — but the staleness alarm judges lastSeenAt (the raw source value), which on a real video moves every day, so the 3-day window is right.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -259,28 +256,27 @@
         }
       ],
       "lastChanged": "2026-08-25",
-      "lastSeenValue": 478779898,
-      "lastSeenAt": "2026-08-25",
+      "lastSeenValue": 479088565,
+      "lastSeenAt": "2026-08-28",
       "stalenessDays": 3,
-      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
     {
       "id": "yt-views-city-boys",
       "label": "“City Boys” video — YouTube views",
-      "sourceName": "kworb — Burna Boy YouTube",
-      "sourceUrl": "https://kworb.net/youtube/artist/burnaboy.html",
-      "extractor": "kworbYouTubeVideo",
-      "match": "City Boys [Official Music Video]",
+      "sourceName": "YouTube — official video",
+      "sourceUrl": "https://www.youtube.com/watch?v=hLDQ88vAhIs",
+      "extractor": "youtubeViews",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 117502939,
+      "baseline": 117608846,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
         "min": 1000000,
         "max": 5000000000
       },
-      "note": "Views of the official “City Boys” video, shown on /music/city-boys. Auto-published hourly; the display string only changes when it crosses a whole million. Slow mover: ~0.1%/day or less against the 0.5% drift gate, so weeks of quiet between rewrites is healthy — hence the long staleness window.",
+      "note": "Views of the official “City Boys” video, shown on /music/city-boys. Read from the video's own YouTube page, not from kworb. The display string only changes when it crosses a whole million, so weeks of quiet between rewrites is healthy — but the staleness alarm judges lastSeenAt (the raw source value), which on a real video moves every day, so the 3-day window is right.",
       "siteTargets": [
         {
           "file": "app/data/songs.ts",
@@ -292,10 +288,10 @@
         }
       ],
       "lastChanged": "2026-08-25",
-      "lastSeenValue": 117502939,
-      "lastSeenAt": "2026-08-25",
+      "lastSeenValue": 117608846,
+      "lastSeenAt": "2026-08-28",
       "stalenessDays": 3,
-      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
+      "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
     {
       "id": "youtube-total-views",
@@ -315,7 +311,7 @@
       "lastChanged": "2026-08-27",
       "lastSeenValue": 3187566461,
       "lastSeenAt": "2026-08-25",
-      "$comment": "SCOPE, settled 27 Aug 2026. This used to write app/data/streamingTotals.ts's youtubeTotalViews, and the two measure different things: kworb's page lists 187 videos totalling 3,187,566,461, while the figure the site publishes counts 343 videos across every channel. That is not a disagreement about one number, it is two different populations, and no wider kworb view exists (burnaboy_all.html and burnaboy_videos.html both 404). Left pointed at the site field, the bot would have published 3.2B over the 4.0B the moment kworb's total ticked past its old baseline — silently replacing an all-channel figure with a partial one. So the target is removed and this is now watch-only, like spotify-monthly-listeners: check-stats still reports kworb's movement for review, and nothing auto-writes. The published figure is hand-maintained; see the comment on youtubeTotalViews."
+      "$comment": "kworb's Burna Boy YouTube page went stale on 25 Aug 2026: it still returns HTTP 200 with a full page to any user agent, but its per-video totals stopped advancing while still printing a live daily-views rate, so nothing about the response looks broken. The four published per-video metrics were moved off it to youtube.com itself on 28 Aug 2026; this one is watch-only and stays as a canary. If it starts moving again, kworb has recovered."
     },
     {
       "id": "spotify-streams-last-last",

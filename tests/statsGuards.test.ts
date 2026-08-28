@@ -82,3 +82,30 @@ describe("withinSanity", () => {
     expect(rank.sanity.maxJump, "maxJump on a rank metric is meaningless").toBeUndefined();
   });
 });
+
+// kworb's Burna Boy YouTube page froze on 25 Aug 2026 — still HTTP 200, still a
+// full page, still printing a live "views per day" column, but the per-video
+// totals stopped advancing. Nothing about the response looked broken, and the
+// four published view figures would have quietly rotted; by 28 Aug YouTube was
+// between 105,907 and 308,667 views ahead on every one of them. A number the
+// site publishes should be read from the thing it is about.
+describe("published YouTube view figures are read from YouTube", () => {
+  const writesYouTubeViews = (m: { siteTargets?: { pattern?: string }[] }) =>
+    (m.siteTargets ?? []).some((t) => /ytViews/.test(t.pattern ?? ""));
+
+  it("no figure the site publishes as YouTube views comes from an aggregator", () => {
+    const offenders = CONFIG.metrics
+      .filter(writesYouTubeViews)
+      .filter((m: { sourceUrl?: string }) => !/(^|\.)youtube\.com\//.test(m.sourceUrl ?? ""))
+      .map((m: { id: string; sourceUrl?: string }) => `${m.id} ← ${m.sourceUrl}`);
+    expect(offenders, `read these from youtube.com itself: ${offenders.join(", ")}`).toEqual([]);
+  });
+
+  it("and each one names the video it counts, so the source is checkable", () => {
+    const vague = CONFIG.metrics
+      .filter(writesYouTubeViews)
+      .filter((m: { sourceUrl?: string }) => !/[?&]v=[A-Za-z0-9_-]{11}/.test(m.sourceUrl ?? ""))
+      .map((m: { id: string }) => m.id);
+    expect(vague, "a watch URL must carry an 11-character video id").toEqual([]);
+  });
+});
