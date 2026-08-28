@@ -55,7 +55,14 @@ That was wrong. It has one; it is just not on a website.
   `https://www.audiogest.pt/tops-semanais-2026?lang=pt` — one PDF per Semana,
   four sections (Top 200 Álbuns, Stream Álbuns, Streams, **Singles**).
   `OU` = Ouro, `PL`…`9PL` = Platina. It annotates only titles charting that week.
-- **Off-chart awards, the route that works: the ANNUAL `TOP AFP/AUDIOGEST`
+- - **The monthly AWARD CARDS are the only home for an off-chart Portuguese award,
+  and Paul can see them.** One card per plaque: title / artist credit / label,
+  the tier as a disc graphic. Posted to facebook.com/audiogest AND
+  instagram.com/audiogest. Logged out, only the ~10 most recent photos load and
+  the page will not scroll, so ASK PAUL for the batch rather than concluding a
+  title is absent — a refutation built on a partial read of these cards is how
+  *Secondhand* was wrongly refuted on 27 Aug 2026 (see RETRACTIONS.md #4).
+**Off-chart awards, the route that works: the ANNUAL `TOP AFP/AUDIOGEST`
   reports.** Same `Gal.` column, cumulative over the year, and up to **10 000
   positions deep** rather than 200 — so they cover titles that never charted at
   all. Linked from the same index as the weeklies

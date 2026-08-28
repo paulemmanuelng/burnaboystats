@@ -33,7 +33,7 @@ const EXPECTED = {
   victony: { total: 23, diamond: 0 }, // + "Soweto" 🇵🇹 1ª Platina, AFP March 2026 card
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
-  rema: { total: 81, diamond: 5 },
+  rema: { total: 82, diamond: 5 }, // + "Secondhand" 🇵🇹 Ouro, AFP's own July 2026 award card
   tems: { total: 71, diamond: 1 }, // + "Fountains" 🇵🇹 Ouro, AFP March 2026 card
   tyla: { total: 62, diamond: 2 },
   "ayra-starr": { total: 41, diamond: 2 },

@@ -2,45 +2,41 @@
 
 **Method:** identical to burnaboystats.com — a certification counts when it appears in the issuing body's own records; **one plaque per title per country at its current tier** (a 5× Platinum is one plaque, not five); lead **and** featured artist credits both count, writer/producer-only credits do not. Registers that publish every tier step (Music Canada, BVMI, IFPI Switzerland, IFPI Danmark, FIMI, Promusicae, Ultratop, Pro-Música Brasil, AMPROFON, SNEP, NVPI, ZPAV, IFPI Norge, IFPI Greece) were collapsed to the highest tier per title per country. Wikipedia and fan lists were used only as candidate hints — the register is the truth. First body-side sweep **15 Aug 2026**; **gap sweep 16 Aug 2026** adding the national registers never queried in pass one plus a full TurnTable archive read. ✓ = personally read in the issuing body's own database; **⚠** = the register row was read but its credit line names only the lead artist (see verification notes); **▲** = read in an archived capture of the register itself, not in its currently-displayed rows (see the TurnTable note).
 
-## Total: **81 certifications** across **21 countries**
+## Total: **82 certifications** across **21 countries**
 
-> ***Secondhand* 🇵🇹 Gold — REFUTED at the issuing body, 27 Aug 2026.** Two X
-> posts claimed Don Toliver's *Secondhand* ft. Rema was "now certified Gold in
-> Portugal", one carrying a gold-disc award card. It is not, and this is a
-> refutation rather than a failure to confirm.
+> ***Secondhand* 🇵🇹 Gold — RETRACTED REFUTATION, 28 Aug 2026. The plaque is
+> real and is now counted.** On 27 Aug this file refuted the claim. That was
+> wrong, and the error is worth stating precisely because the reasoning looked
+> rigorous.
 >
-> **AFP/Audiogest published its own gold list two days before the posts, and the
-> song is not in it.** The Facebook carousel headed **"GALARDÕES DE OURO —
-> JULHO 2026"** carries a cover plus six cards of four awards each — 24 golds,
-> nationals first (with an "ARTISTA NACIONAL" ribbon), then international titles
-> strictly alphabetically. The run reads *Make It To The Morning · Maladie ·
-> No Chill* → *The Cure*: **no O/P/Q/R/S entry at all**. The count is exact and
-> the adjacent post ids return nothing, so the carousel was enumerated end to
-> end. Audiogest states it is the sole issuer: *"A AUDIOGEST é a única entidade
-> em Portugal a certificar e atribuir estes Galardões."*
+> **AFP/Audiogest's own award card carries it.** The July 2026 Ouro batch,
+> posted by @audiogest, includes the card
+> *Secondhand — Don Toliver feat. Rema — Warner Music*, alongside *Porcelana*
+> and *Saoko* (Rosalía) and *Saudade De Quem Eu Sou* (Henrique & Juliano). The
+> post's own caption dates the batch: *"os grandes hits que receberam o Ouro em
+> Julho"*. This is the issuing body publishing the award itself.
 >
-> **Its whole Portuguese chart run was read, and the Galardão column is blank.**
-> *Secondhand* charted **Semanas 6–13 of 2026**, debuting and peaking at **#40**
-> and gone after 26 March. All 16 of its rows carry an empty `Gal.` cell — with a
-> working positive control, since the same extraction picks up 455 galardão rows
-> in Semana 10 alone, including singles immediately above it.
+> **What went wrong.** The refutation claimed the July carousel was "enumerated
+> end to end" at 24 golds across six cards, and that its alphabetical run held
+> "no O/P/Q/R/S entry at all". Both parts were false. The card above sits at
+> slide 5 of the batch and is entirely P and S titles, so the enumeration was
+> partial — the logged-out Facebook page serves only the most recent ~10 photos
+> and will not scroll, which is a limit this project had already documented, and
+> the refutation then treated a truncated read as a complete one. Absence from
+> a partial enumeration is not absence. The same mistake, in the same market,
+> that *Gbona* had already demonstrated.
 >
-> **The circulating graphic is a fan tracker's card, not AFP's.** Audiogest
-> publishes one monthly batch carousel per tier, in Portuguese, with its own
-> wordmark. The card in the posts has no issuer mark and no Portuguese wording.
+> The blank `Gal.` column across its Semanas 6–13 chart run was accurate but
+> irrelevant: the weekly TOP badges a title only while it is charting, and
+> *Secondhand* was gone by 26 March, months before a July award.
 >
-> No label or press announcement exists either — nothing from Warner Music
-> Portugal, Atlantic, Don Toliver or Rema, and nothing in the Portuguese trade
-> press that routinely itemises these batches.
+> The one claim that stands: the graphic circulating on X was not AFP's. The
+> genuine card looks different — it carries the Audiogest wordmark on the disc.
+> A fan card being fake does not make the underlying certification false, and
+> the refutation should never have leaned on it.
 >
-> **The honest limit:** the May and June 2026 gold batches were not enumerated
-> slide by slide, so a *Secondhand* gold in one of those is not formally
-> excluded — though that would make the posts' "new certification" framing wrong
-> on its own terms. Either way nothing is published.
->
-> Rema's Portuguese count stays at **1** (*Calm Down*, 9× Platina). *Secondhand*
-> keeps its Canadian Gold and its Portuguese chart peak of **#40**, the latter now
-> confirmed in AFP's own weekly TOP rather than from a chart aggregator.
+> Rema's Portuguese count is now **2** — *Calm Down* 9× Platina and *Secondhand*
+> Ouro. His total moves 81 → **82**.
 
 > **Correction, 27 Aug 2026 — Colombia was wrongly written off.** This file
 > recorded Colombia among the registers returning zero "for a structural reason",
@@ -114,7 +110,7 @@
 | Favourite Girl (Darkoo & Rema) (2024) | 🇳🇬 3× Platinum ✓ — **1** |
 | Who's Dat Girl (Ayra Starr & Rema) (2025) | 🇳🇬 Platinum ✓ — **1** |
 | Won Da Mo (Mavins, Boy Spyce & Rema ft. Crayon, Bayanni, Magixx, Ladipoe, Ayra Starr) (2022) | 🇳🇬 Platinum ✓ — **1** |
-| Secondhand (Don Toliver ft. Rema) (2026) | 🇨🇦 Gold ✓⚠ — **1** |
+| Secondhand (Don Toliver ft. Rema) (2026) | 🇨🇦 Gold ✓⚠ · 🇵🇹 Ouro ✓ (AFP award card, July 2026) — **2** |
 | Toxic (Hamza ft. Rema) (2025) | 🇫🇷 Gold ✓ — **1** |
 | Compromise (Fireboy DML ft. Rema) (2021) *(new)* | 🇳🇬 Gold ✓▲ — **1** |
 | Lalala (Young Jonn & Rema) (2023) *(new)* | 🇳🇬 Gold ✓▲ — **1** |
@@ -127,7 +123,7 @@
 ### Tier split (arithmetic check)
 - **Diamond 5** — Calm Down 🇫🇷 🇨🇦 🇧🇷 🇵🇱 · Bubalu 🇨🇴
 - **Platinum tiers 41** — Calm Down ×14 (PT, AU, US, CH, ES, NZ, IT, UK, BE, NG, DE, DK, GR, NO) · Rave & Roses ×4 (CA, CH, FR, PL) · Rave & Roses Ultra ×1 (BR) · Charm ×2 (NG, FR) · Bubalu ×2 (US, ES) · one each for Soundgasm (FR), Dumebi (FR), Soweto (NG) = 3 · **15** single-country platinum rows: Ozeba, Fun, Benin Boys, HeHeHe, Baby (Is It a Crime), DND, Holiday, 44, Bout U, Azaman, Yayo (11 lead) + Fi Kan We Kan, Favourite Girl, Who's Dat Girl, Won Da Mo (4 featured) → 14+4+1+2+2+3+15 = **41**
-- **Gold 22** — Calm Down (AT, NL) 2 · Rave & Roses Ultra (US) 1 · Soundgasm (CH, NL, **NG**) 3 · Dumebi (CH) 1 · Soweto (UK) 1 · lead single-country golds: Trouble Maker 🇳🇬, Corny 🇫🇷, Fame – A COLORS ENCORE 🇧🇷, **Ginger Me 🇳🇬, HEIS 🇳🇬, War Machine 🇳🇬, Kelebu 🇳🇬, March Am 🇳🇬, Reason You 🇳🇬, Red Potion 🇳🇬** = 10 · featured golds: Secondhand 🇨🇦, Toxic 🇫🇷, **Compromise 🇳🇬, Lalala 🇳🇬** = 4 → 2+1+3+1+1+10+4 = **22**
+- **Gold 23** — Calm Down (AT, NL) 2 · Rave & Roses Ultra (US) 1 · Soundgasm (CH, NL, **NG**) 3 · Dumebi (CH) 1 · Soweto (UK) 1 · lead single-country golds: Trouble Maker 🇳🇬, Corny 🇫🇷, Fame – A COLORS ENCORE 🇧🇷, **Ginger Me 🇳🇬, HEIS 🇳🇬, War Machine 🇳🇬, Kelebu 🇳🇬, March Am 🇳🇬, Reason You 🇳🇬, Red Potion 🇳🇬** = 10 · featured golds: Secondhand 🇨🇦, **Secondhand 🇵🇹**, Toxic 🇫🇷, **Compromise 🇳🇬, Lalala 🇳🇬** = 5 → 2+1+3+1+1+10+5 = **23**
 - **Silver 13** — 🇬🇧 ×4: Rave & Roses, Soundgasm, Charm, Dumebi · 🇳🇬 ×9: Bounce, Don't Leave, Egungun, Hov, Now I Know, Time N Affection (lead, 6) + Dimension, Mukulu, Too Correct (featured, 3) → **13**
 
 4 + 41 + 22 + 13 = **80** ✓ · Sections: 7 albums + 62 lead + 11 featured = **80** ✓

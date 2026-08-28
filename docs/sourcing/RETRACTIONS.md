@@ -55,3 +55,41 @@ Both of today's errors are the same error: **matching records on a normalised
 title instead of on the identity the source itself publishes.** It produced the
 duplicate "On the Low" entry this morning and five phantom tier upgrades this
 evening. The registers disambiguate; use their strings, not mine.
+
+---
+
+## 4. *Secondhand* 🇵🇹 Gold — I refuted a real certification (28 Aug 2026)
+
+**This one did change the data.** On 27 Aug I published a refutation of the claim
+that *Secondhand* (Don Toliver feat. Rema) was certified Gold in Portugal. The
+certification is real. AFP/Audiogest's own July 2026 Ouro batch carries the card
+*Secondhand — Don Toliver feat. Rema — Warner Music*, on the slide that also
+holds *Porcelana* and *Saoko* (Rosalía) and *Saudade De Quem Eu Sou*
+(Henrique & Juliano). Rema: 81 → **82** plaques, Portugal 1 → **2**.
+
+**The refutation's load-bearing sentence was false.** It said the July carousel
+"carries a cover plus six cards of four awards each — 24 golds… The count is
+exact and the adjacent post ids return nothing, so the carousel was enumerated
+end to end", and concluded there was "no O/P/Q/R/S entry at all". The card above
+is slide 5 and is entirely P and S titles. The enumeration was partial and I
+described it as complete.
+
+**Why that was avoidable.** This project had *already* documented that the
+logged-out Facebook page serves only the ~10 most recent photos and will not
+scroll — I wrote that correction myself, one day earlier, after overstating the
+same page's readability. Having established the limit, I then reasoned as though
+it did not exist.
+
+**The general rule this breaks, which the Portugal sweep states in its own
+words:** a register that badges a title only while it is charting cannot be read
+for an off-chart award, and *absence from a partial read is not absence*. The
+blank `Gal.` column across *Secondhand*'s Semanas 6–13 run was accurate and
+irrelevant — it was gone from the chart by 26 March, months before a July award.
+
+**What still stands:** the graphic circulating on X genuinely was not AFP's; the
+real card carries the Audiogest wordmark. But a fake fan card is not evidence
+against the underlying fact, and the refutation should never have rested on it.
+
+**Standing correction to how I argue:** "not found in the body's publication" is
+only a refutation when the publication was read in full AND is capable of
+carrying the award. Otherwise it is "not found", which is not a finding.

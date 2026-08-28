@@ -29,7 +29,7 @@
 ### Featured appearances — 40
 | song | certifications |
 |---|---|
-| Raindance (Dave ft. Tems) | 🇬🇧 2× Platinum ✓ (07.08.2026) · 🇵🇹 2× Platina ✓ · 🇧🇷 2× Platinum ✓ · 🇬🇷 2× Platinum ✓ (Jul 2026) · 🇫🇷 Platine ✓ (14.05.2026) · 🇨🇦 Platinum ✓ · 🇧🇪 Platinum ✓ (13.04.2026) · 🇳🇱 Platinum ✓ · 🇳🇿 Platinum ✓ · 🇦🇺 Platinum ✓ (Mar 2026) · 🇩🇰 Guld ✓ · 🇮🇹 Gold ✓ · 🇳🇬 Gold ✓ · 🇵🇱 Gold ✓ (05.08.2026) — **14** |
+| Raindance (Dave ft. Tems) | 🇬🇧 2× Platinum ✓ (07.08.2026) · 🇵🇹 2× Platina ✓ · 🇧🇷 2× Platinum ✓ · 🇬🇷 2× Platinum ✓ (Jul 2026) · 🇫🇷 Platine ✓ (14.05.2026) · 🇨🇦 Platinum ✓ · 🇧🇪 Platinum ✓ (13.04.2026) · 🇳🇱 Platinum ✓ · 🇳🇿 2× Platinum ✓ (27.08.2026) · 🇦🇺 Platinum ✓ (Mar 2026) · 🇩🇰 Guld ✓ · 🇮🇹 Gold ✓ · 🇳🇬 Gold ✓ · 🇵🇱 Gold ✓ (05.08.2026) — **14** |
 | Wait For U (Future ft. Drake & Tems) | 🇺🇸 **Diamond** (11× Platinum) ✓ (16.07.2026) · 🇳🇿 4× Platinum ✓ · 🇬🇧 2× Platinum ✓ · 🇨🇦 2× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇦🇺 2× Platinum ✓ (03.03.2023) · 🇵🇹 2× Platina ✓ (*new*) · 🇩🇰 Platin ✓ · 🇫🇷 Or ✓ (27.06.2024) · 🇦🇹 Gold ✓ · 🇮🇹 Gold ✓ · 🇪🇸 Gold ✓ · 🇵🇱 Gold ✓ — **13** |
 | Essence (Wizkid ft. Tems) | 🇺🇸 5× Platinum ✓ (02.06.2025) · 🇨🇦 3× Platinum ✓ · 🇳🇿 3× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇿🇦 Multi-Platinum ✓ · 🇬🇧 Platinum ✓ · 🇨🇭 Platinum ✓ · 🇫🇷 Or ✓ — **8** |
 | Fountains (Drake ft. Tems) | 🇳🇿 Gold ✓ · 🇦🇺 Gold ✓ (2024) · 🇵🇹 Ouro ✓ (AFP award card, March 2026) · 🇬🇧 Silver ✓ — **4** |
@@ -83,6 +83,15 @@ read off Audiogest's own award card ("Fountains / Drake feat. Tems / Universal
 Music"). It appears in the TOP Anual 2022 at 1876 with the `Gal.` cell **blank**
 and was not charting in 2026, so no weekly could ever have carried the badge —
 Portugal announces off-chart awards only in the monthly cards.
+
+**New Zealand, re-read 28 Aug 2026.** RMNZ's register (published through
+RadioScope, TablePress table 2052, 24,260 single rows) carries 23 Tems-crediting
+rows. Ten of the eleven NZ tiers in this file matched exactly; one had moved:
+*Raindance* reads **`Plat x2`, certified 27.08.2026** — the register appends each
+upgrade as its own row (Gold 05.02.2026 → Plat x1 19.03.2026 → Plat x2
+27.08.2026) and writes plain Platinum as `Plat x1`. Updated here and on the
+board. A fan account had it as 28 Aug; the register says 27 Aug, which is the
+date stamped across that whole weekly batch.
 
 **The Portuguese ladder, read week by week in AFP/Audiogest's own charts (all 32 published weeks of 2026, certification column `Gal.`):**
 
