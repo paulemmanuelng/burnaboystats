@@ -33,7 +33,65 @@ Nigeria alone.
 — note **no `id_`**, which returns gzip; the plain form gives the 39 MB page —
 then read `__NEXT_DATA__` → `props.pageProps.certEntries`.
 
-## IN FLIGHT — three sweeps
+## PARTIAL RESULTS — the session hit its usage limit mid-sweep (28 Aug 2026)
+
+Raw results are committed beside this file as `partial-sweep-results.json`.
+Of 18 agents across the three sweeps, **3 completed and 15 died on the limit.**
+
+### Established, and not to be redone
+**Certifications — proven zeros, each register read in full:**
+- **RIAA (US)** — 0 for both. Verified by exhaustion (the endpoint reports its own
+  result totals) plus a 27-name lead-act sweep. `sherif` returns only Warren G,
+  SHERIFF and Clapton's "I Shot The Sheriff"; `blacko` only Blackout collisions.
+- **Music Canada** — 0 for both. `sherif` returns the 1980s Canadian band SHERIFF.
+- **RMNZ (NZ)** — 0 for both, singles (24,260 rows) and albums (4,040).
+- **RiSA (ZA)** — 0 for both. Whole register read at the production host,
+  25 pages / 599 unique rows, 01 Jul 2015 → **09 Sep 2025**. Confirms again that
+  RiSA has no Diamond tier.
+
+**Chart peaks — proven zeros:** Germany (Offizielle), Netherlands (Single Top 100
+and Album Top 100), Switzerland (Hitparade), Austria (Ö3) — all nil for both
+artists, singles and albums.
+
+### TWO CANDIDATE ROWS THAT ARE **NOT** REFUTED
+`partial-sweep-results.json` files these under `rejected`, which is an artefact of
+the post-processing filter: their verifier agents died, so `verdict` is `null`,
+and `verdict?.standsUp` reads falsy. **They were never actually tested.** Both are
+BPI (UK), both read off the register with permalink detail:
+
+- **Olamide — "Infinity"** — credit `OLAMIDE FT OMAH LAY` — **Silver**, Single,
+  YBNL Nation, certified **07.08.2026**, released 09.10.2020.
+- **Olamide — "Amapiano"** — credit `ASAKE FT OLAMIDE` — **Silver**, Single,
+  YBNL Nation, certified **07.08.2026**, released 23.05.2023.
+
+Re-verify both before publishing either.
+
+### Gaps — never to be reported as zeros
+- **ARIA (AU)** — publishes no searchable register. Its only public list is
+  `aria.com.au/latest-accreditations`, whose own header says *"Current as of 31
+  August 2020"* — before every release at issue. Post-2020 accreditations are in
+  the member-gated ARIA Report.
+- **RiSA post-09 Sep 2025** — the register's newest row is ~11.5 months stale, so
+  the zero is proven only through that date.
+- **Ghana** — GHAMRO's host never completes a connection (read only via a Jan 2020
+  Wayback capture); MUSIGA has no DNS record. Whether Ghana operates a
+  certification programme at all is UNRESOLVED, and it matters for Black Sherif.
+- **France (SNEP) and Belgium (Ultratop)** chart archives — lescharts.com and
+  ultratop.be both sit behind a Cloudflare bot check. Not bypassed. GAP.
+- Egypt and other African societies — network-blocked from this environment.
+
+## STILL TO RUN
+
+Resume with `Workflow({scriptPath, resumeFromRunId})` — completed agents replay
+from cache, so only the dead ones re-run:
+
+| run | script | still needed |
+|---|---|---|
+| `wf_60143c18-b32` | `board-13-14-certifications` | Western Europe, Nordics/East, Southern Europe+LatAm clusters, and both verifiers |
+| `wf_707f9a7a-fe3` | `board-13-14-chart-peaks` | Nigeria/Africa, UK/IE/US/CA, Nordic/South, Oceania/Global |
+| `wf_b2060add-8a7` | `bnxn-certs-and-peaks` | everything — all 6 agents died |
+
+## ORIGINALLY IN FLIGHT — three sweeps
 
 Launched as workflows; results land in this session's task output files.
 

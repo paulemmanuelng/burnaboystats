@@ -1,0 +1,90 @@
+{
+ "certs_olamide_blacksherif": {
+  "confirmed": [],
+  "rejected": [
+   {
+    "artist": "Olamide",
+    "title": "Infinity",
+    "credit": "OLAMIDE FT OMAH LAY",
+    "country": "GB",
+    "body": "BPI",
+    "tier": "Silver",
+    "format": "Single",
+    "certDate": "2026-08-07",
+    "verbatim": "OLAMIDE FT OMAH LAY | INFINITY | Award Silver | Format Single | Corporate Group/Label YBNL NATION | Latest Certification 07.08.2026 | Released 09.10.2020 — permalink detail: \"Single | OLAMIDE FT OMAH LAY | INFINITY | Most Recent Certification Silver | Release Date 09 October 2020 | Corporate Group/Label YBNL NATION | Most Recent Certification Date 07 August 2026 | Certification history: 07 August 2026 Silver\"",
+    "verdict": null
+   },
+   {
+    "artist": "Olamide",
+    "title": "Amapiano",
+    "credit": "ASAKE FT OLAMIDE",
+    "country": "GB",
+    "body": "BPI",
+    "tier": "Silver",
+    "format": "Single",
+    "certDate": "2026-08-07",
+    "verbatim": "ASAKE FT OLAMIDE | AMAPIANO | Award Silver | Format Single | Corporate Group/Label YBNL NATION | Latest Certification 07.08.2026 | Released 23.05.2023 — permalink detail: \"Single | ASAKE FT OLAMIDE | AMAPIANO | Most Recent Certification Silver | Release Date 23 May 2023 | Corporate Group/Label YBNL NATION | Most Recent Certification Date 07 August 2026 | Certification history: 07 August 2026 Silver\"",
+    "verdict": null
+   }
+  ],
+  "provenZeros": [
+   "RIAA (US) — read in full. Endpoint reports its own result totals, so exhaustion is verifiable. Direct queries olamide=0, black sherif=0, kwaku the traveller=0, kwaku=0, second sermon=0, ybnl=2 (Fireboy DML/Asake only), baddo=0; 'sherif'=3 (Warren G / SHERIFF / Eric Clapton 'I Shot The Sheriff'), 'blacko'=9 (all Blackout/Blackowned collisions). Lead-act sweep of 27 names (fireboy, asake, wizkid, arrdee, darkoo, odumodublvck, portable, phyno, rema, bnxn, kizz daniel, young jonn, wande coal, lojay, cheque, t.i blaze, khaid, bella shmurda, omah lay, davido, tems, ckay, sarkodie, stonebwoy, shatta wale, amaarae, king promise) returned zero rows whose artist or title string contains Olamide, Sherif or Blacko. Neither artist holds an RIAA award.",
+   "Music Canada (CA) — read in full. FacetWP register, server-rendered, paginated to exhaustion with _paged. olamide=0 rows. 'sherif'=2 rows, both the 1980s Canadian band SHERIFF (self-titled Gold Album 1991-07-24; 'When I'm With You' Gold Physical Single 1991-07-24). 'blacko'=7 rows, all Blackout collisions (Britney Spears, Method Man & Redman, Scorpions). kwaku=0, ybnl=0, amapiano=0, bandana=0, fireboy=0, 'infinity' and 'second sermon' returned only unrelated titles. Lead-act sweep found no Olamide/Sherif credit; Omah Lay's four Canadian rows (Soso x2, Understand, attention) do not include 'Infinity'. Neither artist holds a Music Canada award.",
+   "RMNZ (NZ) — read in full, both tables. Singles = TablePress 2052 via /2024/00/00/single-cert-search/, recordsTotal 24,260; Albums = TablePress 2051 via /2024/00/00/album-cert-search/, recordsTotal 4,040. Server-side search runs against the entire row set, so filtered=0 is authoritative. Singles: olamide=0, black sherif=0, blacko=0, kwaku=0, second sermon=0, amapiano=0, ybnl=0; 'sherif'=3 (Bob Marley x2 / Eric Clapton 'I Shot The Sheriff'); 'infinity'=10, none Olamide. Albums: olamide=0, sherif=0, black sherif=0, blacko=0, kwaku=0, sermon=0, ybnl=0, asake=0. Neither artist holds an RMNZ award.",
+   "RiSA (South Africa) — the entire published register read in full at the production host https://risa-prod.trafficmanager.net/website/certification/certifications/ : 25 pages, 608 raw rows, 599 unique, 01 Jul 2015 → 09 Sep 2025. ZERO rows for Olamide and ZERO rows for Black Sherif, under every artist and title spelling tried. Tier vocabulary is Gold / Platinum / Double-Platinum / Multi-Platinum (288 Gold, 166 Platinum, 60 Double-Platinum, 85 Multi-Platinum) — no Diamond tier exists, confirming the brief."
+  ],
+  "gaps": [
+   "ARIA (AU) — GAP, not a zero. ARIA publishes no searchable certification register. Its only public list of awarded titles is https://www.aria.com.au/latest-accreditations, which is a static page whose own header reads \"Current as of 31 August 2020\". I read that page in full: 353 data rows (Artist / Title / Co. / Accreditation), containing no Olamide and no Black Sherif — but the only Afrobeats entries in it are 'Jorja Smith Feat. Burna Boy — Be Honest — ORCH — GOLD' and 'Stormzy Feat. Ed Sheeran & Burna Boy — Own It — WAR — GOLD', and the cutoff predates every release at issue (Olamide's 'Infinity' released 09.10.2020; 'Amapiano' 2023; Black Sherif's entire career from 2021). https://www.aria.com.au/accreditations is explanatory only (thresholds and application PDFs, no awarded titles); ARIA chart pages carry no accreditation badges; the sitemap exposes no other accreditation route; /charts/accreditations and /industry/accreditations both 404. Post-August-2020 ARIA accreditations are published only in the member-gated ARIA Report. Absence from the 2020 snapshot is therefore not evidence either artist is uncertified in Australia.",
+   "RiSA (South Africa), post-09 Sep 2025 window — the register is sorted newest-first and its newest row is 09 Sep 2025, i.e. ~11.5 months stale as of today. Anything RiSA has certified since then is not published and was not read. The proven zero is therefore proven only through 09 Sep 2025.",
+   "GHAMRO (Ghana) — ghamro.org resolves (54.88.98.248) but the host never completes a connection on either scheme; read only via the Wayback capture 20200120211233. A Ghanaian certification programme launched after Jan 2020 would not be visible in the bytes I actually read, though no other evidence of one was found.",
+   "MUSIGA (Ghana) — musiga.org.gh returns no DNS record at all. Not read.",
+   "Egypt — no Egyptian certification register was located to read. IFPI's member directory lists only two Egyptian entries and both are record companies (ALAM EL PHAN, Mazzika Group), not a national group. Nothing was read at an Egyptian body's own site, so Egypt is unread rather than swept.",
+   "Other African collecting societies (MCSK Kenya, COSOTA Tanzania, ZIMURA Zimbabwe, ONDA Algeria, BURIDA Côte d'Ivoire, SODAV Senegal, Tunisia SACEM, copyright.gov.gh) — every probe timed out from this environment, including risa.org.za which is known to respond. The uniform failure points at a network constraint here, not at dead hosts, so these were NOT read and their status is inherited from IFPI's directory rather than established first-hand."
+  ],
+  "byArtist": {
+   "Olamide": 0,
+   "Black Sherif": 0
+  }
+ },
+ "peaks_olamide_blacksherif": {
+  "confirmed": [],
+  "rejected": [],
+  "platformChartsRejected": [],
+  "provenZeros": [
+   "DE — Offizielle Deutsche Charts (GfK Entertainment), Single category — Olamide: 0 results. Official search read in full at offiziellecharts.de; page rendered 'SUCHEN NACH \"OLAMIDE\"' with no result block and no category tabs.",
+   "DE — Offizielle Deutsche Charts, Album category — Olamide: 0 results (same nil search; search is verified to cover both SINGLE and ALBUM categories).",
+   "DE — Offizielle Deutsche Charts, Single category — Black Sherif: 0 results. 'SUCHEN NACH \"BLACK SHERIF\"' returned no result block; broader query 'SUCHEN NACH \"SHERIF\"' also returned nothing.",
+   "DE — Offizielle Deutsche Charts, Album category — Black Sherif: 0 results (incl. 'The Villain I Never Was').",
+   "NL — Single Top 100 (MegaCharts) — Olamide: 0 charted titles. All 8 database rows returned blank Binnenkomst/Piek/Weken, e.g. 'Olamide feat. Omah Lay\\tInfinity\\t2020\\t \\t \\t ' and 'Asake & Olamide\\tAmapiano\\t \\t \\t \\t '.",
+   "NL — Album Top 100 (MegaCharts) — Olamide: 0. Rows: 'Olamide\\tCarpe Diem', 'Olamide\\tIkigai / 生き甲斐, Vol. 1\\t2025', 'Olamide\\tUnruly', 'Olamidé\\tOlamidé!' — all blank peak columns.",
+   "NL — Single Top 100 (MegaCharts) — Black Sherif: 0. Rows 'Black Sherif\\tJanuary 9th' and 'Black Sherif, Mabel\\tZero' both blank; title searches 'Second Sermon' → 'Niets gevonden.' and 'Kwaku' → no Black Sherif row.",
+   "NL — Album Top 100 (MegaCharts) — Black Sherif: 0. 'Black Sherif\\tThe Villain I Never Was\\t2024\\t \\t \\t ' — blank peak.",
+   "CH — Schweizer Hitparade, Single-Hitparade — Olamide: 0. All 8 rows fell under the heading 'Suchergebnisse in der Musikdatenbank:' (music-database-only section, i.e. never charted), e.g. 'Olamide feat. Omah Lay\\tInfinity\\t2020\\t\\t\\t'.",
+   "CH — Schweizer Hitparade, Album-Hitparade — Olamide: 0. 'Olamide\\tIkigai / 生き甲斐, Vol. 1\\t2025' and 3 others, all in the music-database section only.",
+   "CH — Schweizer Hitparade, Single-Hitparade — Black Sherif: 0. 'Black Sherif\\tJanuary 9th' / 'Black Sherif, Mabel\\tZero' in music-database section only; 'Suche nach: Second Sermon' → 'Nichts gefunden'; 'Kwaku' returned no Black Sherif row.",
+   "CH — Schweizer Hitparade, Album-Hitparade — Black Sherif: 0. 'Black Sherif\\tThe Villain I Never Was\\t2024' in music-database section only.",
+   "AT — Ö3 Austria Top 40, Singles Top 75 — Olamide: 0. All 8 rows blank in Eintritt/Peak/Wochen, e.g. 'Olamide feat. Bella Shmurda\\tTriumphant\\t \\t \\t \\t '.",
+   "AT — Ö3 Austria Top 40, Alben Top 75 — Olamide: 0. 'Olamide\\tIkigai / 生き甲斐, Vol. 1\\t2025\\t \\t \\t ' plus 3 others, all blank.",
+   "AT — Ö3 Austria Top 40, Singles Top 75 — Black Sherif: 0. 'Black Sherif\\tJanuary 9th\\t \\t \\t \\t ' and 'Black Sherif, Mabel\\tZero\\t \\t \\t \\t '; the wider 'Suche nach: Sherif' sweep confirmed the only charting 'Sherif' rows are Eric Clapton and Warren G ('I Shot The Sheriff'); 'Second Sermon' → 'Nichts gefunden.'",
+   "AT — Ö3 Austria Top 40, Alben Top 75 — Black Sherif: 0. 'Black Sherif\\tThe Villain I Never Was\\t2024\\t \\t \\t ' — blank peak."
+  ],
+  "gaps": [
+   "FR — SNEP Top Singles / Top Albums: COULD NOT READ. lescharts.com (the SNEP chart archive) served a persistent Cloudflare 'Performing security verification' interstitial across ~8 in-browser attempts including cumulative waits of 40s+ (Ray IDs a322bf9dac9a93d6, a322c5852a45d675 family), and returned HTTP 403 to direct fetches. I did not attempt to bypass the bot check. SNEP's own site (snepmusique.com) loaded but publishes only week-by-week 'Le Top de la semaine' tables with no artist-level archive search. Internet Archive CDX returned zero captures for the relevant lescharts.com pages. This is a GAP, not a zero.",
+   "BE Flanders — Ultratop 50 Singles / Ultratop 200 Albums (Vlaanderen): COULD NOT READ. ultratop.be sits behind the same Cloudflare bot-verification wall; ~5 in-browser attempts on both /nl/ and /fr/ paths and direct fetch (HTTP 403) all failed. Internet Archive holds no captures of the artist/search pages. GAP, not a zero.",
+   "BE Wallonia — Ultratop 50 Singles / Albums (Wallonie): COULD NOT READ, same ultratop.be Cloudflare wall. GAP, not a zero.",
+   "NL — 3fm Mega Top 50 specifically: the dutchcharts.nl chart-selector parameter (cat2=s3) proved inert — a control query returned identical Single Top 100 figures — so I could not filter that list independently. The NL zeros above are proven for the Single Top 100 and Album Top 100. Mitigating evidence only: every Olamide/Black Sherif row in the Dutch database carried no chart history of any kind."
+  ],
+  "byArtist": {
+   "Olamide": 0,
+   "Black Sherif": 0
+  }
+ },
+ "bnxn_all": {
+  "confirmedCerts": [],
+  "confirmedPeaks": [],
+  "rejected": [],
+  "bujuBantonCollisions": [],
+  "provenZeros": [],
+  "gaps": []
+ }
+}
