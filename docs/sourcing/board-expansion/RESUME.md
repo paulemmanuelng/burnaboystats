@@ -172,6 +172,49 @@ TurnTable chart peak does not need a whole agent.
    The 10 BNXN certifications and the ~59 non-Nigerian peaks are the only rows
    that genuinely need judgement — roughly 4 agents, not 300.
 
+
+## TRIAGE OF THE HARVESTED PEAKS — two real problems caught (28 Aug 2026)
+
+Applied the project's own rules to the 280 harvested chart peaks in code, no
+agents. Output committed as `peaks-triage.json`. **102 of 280 rows are not
+publishable as harvested.**
+
+### 52 rows must be EXCLUDED — genre and component charts
+`asake-chart-peaks-v1.md` states the rule this board runs on: genre and
+component charts do not count, only a country's principal national chart.
+- **48 × Billboard U.S. Afrobeats Songs** (BNXN) — a genre chart
+- **3 × Billboard World Albums** (BNXN) — a component chart
+- **1 × TOSAC/RiSA Local & International Streaming Chart** — a streaming
+  component chart
+
+Had these shipped, BNXN would have carried 48 American "chart entries" that this
+board does not recognise for any other artist. This is the same class of error as
+mixing Spotify placements into official-chart data.
+
+### 50 rows cite a week BEFORE the chart they name existed
+The **Official Nigeria Top 100 launched with the week of 1–7 Jul 2022**
+(instance 1146). Before it, Nigeria's principal chart was the **TurnTable Top
+50**, and this project has already established that the Top 50's weekly tables
+**cannot be recovered**: every surviving Wayback capture of `/Charts/Top50` from
+Nov 2020 to Jun 2022 is a Nuxt page archived with an empty client-side payload.
+
+- **31 rows** are labelled "TurnTable Top 50" with weeks from 2020–2022 — i.e.
+  they claim reads from tables the project has established are unreadable. Either
+  the sweep found a route the Asake sweep did not (which would be a real
+  discovery worth propagating to the Rema, Wizkid, Tyla and Ayra Starr files), or
+  the rows are not genuine reads. **Resolve before publishing any of them.**
+- **19 rows** (all BNXN) are labelled "Official Nigeria Top 100" but cite weeks in
+  2021 and early 2022, before that chart existed. That is an anachronism in the
+  label at minimum.
+
+Also inherited from the Asake file: the Top 100's first instance reset every
+counter (`weeksOnChart=1`, `highestPosition=rank`), so any release that charted
+before 11 Jul 2022 carries a **floor, not a peak**. That applies heavily to
+Olamide, whose catalogue is largely pre-2022.
+
+### 178 rows remain admissible — and still unverified
+Olamide 77 · BNXN 82 · Black Sherif 19. These are the rows to batch-verify.
+
 ## STILL TO RUN
 
 Resume with `Workflow({scriptPath, resumeFromRunId})` — completed agents replay
