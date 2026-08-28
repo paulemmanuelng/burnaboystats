@@ -23,6 +23,17 @@ remix. **They are one record and are counted once per country.** Counting the
 remixes separately is the single easiest way to inflate this artist's total,
 and several fan tallies do exactly that.
 
+**Portugal proves the rule is load-bearing rather than theoretical.** A full read
+of AFP/Audiogest's register on 28 Aug 2026 — 8 annual reports plus 295 weekly
+PDFs, 218,649 rows — shows AFP certifying **two** *love nwantiti* recordings as
+separate products: the main one, laddering `2PL` (TOP Anual 2021) → `3PL` →
+`4PL` → `5PL` → `6PL` (TOP Anual 2023), and **`love nwantiti / CKay feat.
+ElGrande Toto / WARNER` at `OU`, badged in the weekly of 22.10.2021**. Two more
+versions appear unbadged: *feat. Joeboy & Kuami Eugene* and *feat. Eunique &
+Pronto*. Counting the ElGrande Toto Ouro would give CKay a second Portuguese
+plaque for one song, so it is deliberately not counted — recorded here so a
+later sweep does not "discover" it and add it.
+
 **France certified two of his records Diamond** — "love nwantiti" and
 "Emiliana". No other country has given him anything above Platinum, and France
 gave him two.
