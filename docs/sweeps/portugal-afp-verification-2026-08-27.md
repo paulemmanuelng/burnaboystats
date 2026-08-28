@@ -104,13 +104,42 @@ bound. 2025 and 2026 annuals are listed as `#`, unpublished.
 with Playboi Carti's *Location* also blank in 2022. A title-only match would have
 read all three as one plaque.
 
-### One lead, deliberately not published
+### The monthly award cards — the route that closes Portugal
 
-The March 2026 batch reportedly includes **WGFT — Gunna feat. Burna Boy — `Ouro`**,
-via ineews.eu, which reproduces AFP's whole table verbatim and names AUDIOGEST.
-That is syndication, not the body. *WGFT* never enters Portugal's Top 200, so no
-weekly can carry it, and no 2026 annual exists yet. **Not added.** Recheck when the
-TOP Anual 2026 publishes.
+**28 Aug 2026.** AFP/Audiogest's monthly batches are published as **award cards**,
+one per plaque, printing title / artist credit / label and the tier as a disc
+graphic. They are the body's own artefact, and they are the ONLY place Portugal
+announces an award to a title that was not charting when the plaque landed. Read
+directly, the **March 2026** batch confirmed four plaques the site did not hold
+and one it did:
+
+| Artist | Title | Tier | Note |
+|---|---|---|---|
+| Burna Boy | **Wgft** (Gunna feat. Burna Boy) | Ouro | AFP prints the title `Wgft`, not `WGFT` |
+| Victony | **Soweto** (Victony & Tempoe) | 1ª Platina | credited to the ORIGINAL, not Rema's remix |
+| Tems | **Fountains** (Drake feat. Tems) | Ouro | featured credit |
+| Omah Lay | **understand** | Ouro | register prints it all-lowercase |
+| Tyla | Chanel | Ouro | already on the site — now confirmed at the body |
+
+February 2026 likewise confirms **Truth or Dare** (Tyla, Ouro) and **Raindance**
+(Dave & Tems, Platina), both already recorded.
+
+**Why no PDF could ever have shown these.** Every one was awarded off-chart:
+*Soweto* has never entered Portugal's Top 200 at all (zero rows in 8 annuals and
+~290 weeklies); *Wgft* charted four weeks in Feb 2026 with the `Gal.` cell blank
+and dropped off before the award; *Fountains* and *understand* sit in the TOP
+Anual 2022 unbadged and were not charting in 2026; *Chanel* ran Semanas 48/2025
+to 07/2026, blank throughout, and left before the March batch.
+
+**One correction this forces.** Victony's sweep listed 🇵🇹 AFP/Audiogest among his
+**proven zeros** — read in full, holding nothing. The reading was accurate and the
+conclusion was wrong: a register read in full is a proven zero only for the awards
+that register can express. Corrected in `victony-certifications-v1.md`.
+
+**Provenance note.** ineews.eu reproduces these batch tables verbatim and is a
+sound way to FIND a row, but it is syndication, not the body — and demonstrably
+imperfect: its February article says 42 awards while its table prints 41. Every
+row above was confirmed on Audiogest's own card before publication.
 
 ## Not confirmed — 1
 

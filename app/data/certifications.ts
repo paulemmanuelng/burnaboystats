@@ -414,6 +414,13 @@ export const features: Release[] = [
   ] },
   { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2025, certs: [
     { c: "NZ", level: "Platinum" }, { c: "UK", level: "Gold" },
+    // AFP/Audiogest Ouro, March 2026 batch — read off Audiogest's own award
+    // card ("Wgft / Gunna feat. Burna Boy / Warner Music"), which is where
+    // Portugal announces awards to titles that were not charting when the
+    // plaque landed. It charted Portugal for four weeks in Feb 2026 with the
+    // Gal. column blank throughout and left before the award, so no weekly TOP
+    // carries it and the 2026 annual is unpublished.
+    { c: "PT", level: "Gold" },
     // TCSN (TurnTable) Platinum, 100,000 units — via the song's certification
     // table sourced to TCSN's database. No announcement date published, so it
     // sits here and not in the dated log.
@@ -683,6 +690,13 @@ export const certHistory: CertEvent[] = [
   //              2025 -- the one of the four that the weeklies do settle.
   { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", country: "PT", level: "Gold", year: 2020 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "PT", level: "Gold", year: 2020 },
+
+  // AFP/Audiogest's March 2026 monthly batch, read off Audiogest's own award
+  // cards on 28 Aug 2026. Portugal announces off-chart awards this way and
+  // nowhere else: "Wgft" never carried a Gal. badge in the four weeks it
+  // charted, so neither the weekly TOP nor an annual could ever have shown it.
+  // AFP prints the title "Wgft", not "WGFT".
+  { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "PT", level: "Gold", year: 2026 },
 ];
 
 // Helpers

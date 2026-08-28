@@ -2,17 +2,17 @@
 
 **Method:** identical to the rest of this series — a certification counts when it appears in the **issuing body's own register**, never in a press release, a fan tally or a wiki. One plaque per title per country at its **current** tier (a 3× Platinum is one plaque, not three; an upgrade replaces, it does not add). **Lead, co-billed and featured credits all count**; writer and producer credits do not. A register read in full and holding nothing is a **proven zero**; a register that could not be read is a **gap**, never a zero. Swept **21 Aug 2026**.
 
-## Total: **22 certifications** across **4 countries**
+## Total: **23 certifications** across **5 countries**
 
 | tier | count |
 |---|---|
 | Diamond | 0 |
-| Platinum | 9 |
+| Platinum | 10 |
 | Gold | 6 |
 | Silver | 7 |
-| **total** | **22** |
+| **total** | **23** |
 
-**Country split:** 🇳🇬 NG 19 · 🇺🇸 US 1 · 🇬🇧 UK 1 · 🇪🇸 ES 1
+**Country split:** 🇳🇬 NG 19 · 🇵🇹 PT 1 · 🇺🇸 US 1 · 🇬🇧 UK 1 · 🇪🇸 ES 1
 
 ## Every certification
 
@@ -30,6 +30,7 @@
 | Apollo | 🇳🇬 NG | TurnTable (TCSN) | Gold |
 | Babylon | 🇳🇬 NG | TurnTable (TCSN) | Gold |
 | Jaga Jaga | 🇳🇬 NG | TurnTable (TCSN) | Gold |
+| Soweto | 🇵🇹 PT | AFP/Audiogest | Platinum |
 | Soweto | 🇺🇸 US | RIAA | Gold |
 | Soweto | 🇬🇧 UK | BPI | Gold |
 | Soweto | 🇪🇸 ES | Promusicae | Gold |
@@ -47,7 +48,16 @@ TurnTable's live register serves a hard cap of 500 rows and **no Silver at all**
 
 ## Proven zeros vs gaps
 
-**Proven zeros** — read in full, holding nothing: 🇨🇦 Music Canada · 🇫🇷 SNEP · 🇧🇪 BEA · 🇳🇱 NVPI · 🇩🇪 BVMI · 🇦🇹 IFPI Austria · 🇨🇭 IFPI Switzerland · 🇩🇰 IFPI Danmark · 🇳🇴 IFPI Norge · 🇮🇹 FIMI · 🇦🇺 ARIA · 🇳🇿 Recorded Music NZ · 🇿🇦 RiSA · 🇸🇪 IFPI Sverige · 🇵🇹 AFP/Audiogest
+**Proven zeros** — read in full, holding nothing: 🇨🇦 Music Canada · 🇫🇷 SNEP · 🇧🇪 BEA · 🇳🇱 NVPI · 🇩🇪 BVMI · 🇦🇹 IFPI Austria · 🇨🇭 IFPI Switzerland · 🇩🇰 IFPI Danmark · 🇳🇴 IFPI Norge · 🇮🇹 FIMI · 🇦🇺 ARIA · 🇳🇿 Recorded Music NZ · 🇿🇦 RiSA · 🇸🇪 IFPI Sverige
+
+**Correction, 28 Aug 2026 — Portugal was wrongly listed as a proven zero.** The
+21 Aug sweep read AFP/Audiogest's weekly TOP register in full and found nothing,
+which was true and still misleading: the weekly `Gal.` column badges only titles
+charting that week, and *Soweto* has **never** entered Portugal's Top 200 — zero
+rows across 8 annual reports and ~290 weekly PDFs. Portugal announces off-chart
+awards in a monthly batch instead, and AFP's own **March 2026** award card reads
+`1ª PLATINA — Soweto — Victony & Tempoe — The Orchard`. A register read in full
+is only a proven zero for the awards that register can express.
 
 **Gaps** — could not be read, and must never be quoted as zeros: 🇮🇪 IRMA — the register moved off irma.ie and then closed, so its 838 rows cannot answer for artists of this era. 🇬🇷 IFPI Greece — not reached.
 

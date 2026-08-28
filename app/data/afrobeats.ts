@@ -150,6 +150,13 @@ export const AFROBEATS_VERIFIED_ON_3 = "2026-08-21";
 /** CKay, swept 26 Aug 2026 — the twelfth artist on the board. */
 export const AFROBEATS_VERIFIED_ON_4 = "2026-08-26";
 
+/** Tems, Omah Lay and Victony, re-swept 28 Aug 2026 against AFP/Audiogest's
+ *  MONTHLY award cards. Every earlier Portuguese pass read the weekly TOP,
+ *  which badges only titles charting that week, so it could not see an award
+ *  granted off-chart — each of the three gained a plaque, and Victony's
+ *  Portugal had been recorded as a proven zero. */
+export const AFROBEATS_VERIFIED_ON_5 = "2026-08-28";
+
 export const afrobeatsArtists: AfroArtist[] = [
   {
     slug: "wizkid",
@@ -566,7 +573,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "687cZJR45JO7jhk1LHIbgq",
     wikipedia: "https://en.wikipedia.org/wiki/Tems_(singer)",
     image: "https://i.scdn.co/image/ab6761610000e5eb22d7d6f8981c7a27bf68a382",
-    verifiedOn: AFROBEATS_VERIFIED_ON,
+    verifiedOn: AFROBEATS_VERIFIED_ON_5,
     swept: true,
     chartPublished: { entries: 124, territories: 44, no1s: 7 },
     releases: [
@@ -583,7 +590,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Raindance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 2 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PL", level: "Gold" }] },
       { title: "Wait For U", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 2 }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "PL", level: "Gold" }] },
       { title: "Essence", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
-      { title: "Fountains", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "UK", level: "Silver" }] },
+      { title: "Fountains", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Move", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/c3e2a951678a28a3f541a69c866583d4/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Platinum" }, { c: "US", level: "Gold" }] },
     ],
     charts: [
@@ -926,13 +933,13 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "5yOvAmpIR7hVxiS6Ls5DPO",
     wikipedia: "https://en.wikipedia.org/wiki/Omah_Lay",
     image: "https://i.scdn.co/image/ab6761610000e5eb35ba3ee6067196268c5528cb",
-    verifiedOn: AFROBEATS_VERIFIED_ON_2,
+    verifiedOn: AFROBEATS_VERIFIED_ON_5,
     swept: true,
     chartPublished: { entries: 70, territories: 16, no1s: 6 },
     releases: [
       { title: "Boy Alone", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "soso", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum", x: 6 }, { c: "PT", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "UK", level: "Silver" }] },
-      { title: "Understand", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ebaba8c1ec645c396628a92f7aca871b/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }, { c: "FR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" }] },
+      { title: "Understand", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ebaba8c1ec645c396628a92f7aca871b/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }, { c: "FR", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Holy Ghost", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5b4fd7e67b985be9489dbf58dc74497b/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }, { c: "FR", level: "Gold" }] },
       { title: "Attention", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ae9663b409e03e98646161728b176979/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" }] },
       { title: "Reason", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 5 }] },
@@ -1270,16 +1277,16 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Anthony Ebuka Victor",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Outside Nigeria, three countries have certified him — and all three did it for the same record, “Soweto”.",
+    hook: "Outside Nigeria, four countries have certified him — and all four did it for the same record, “Soweto”.",
     spotifyId: "1E5hfn5BduN2nnoZCJmUVG",
     wikipedia: "https://en.wikipedia.org/wiki/Victony",
     image: "https://i.scdn.co/image/ab6761610000e5eb2edf000427bb95912c77163c",
-    verifiedOn: AFROBEATS_VERIFIED_ON_3,
+    verifiedOn: AFROBEATS_VERIFIED_ON_5,
     swept: true,
     chartPublished: { entries: 40, territories: 6, no1s: 1 },
     releases: [
       { title: "Pity This Boy", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
-      { title: "Soweto", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ES", level: "Gold" }] },
+      { title: "Soweto", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "PT", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ES", level: "Gold" }] },
       { title: "Stubborn (Victony)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Different Size", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Everything (Victony)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/04f0aa35363a5f1d380cf0d898738084/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },

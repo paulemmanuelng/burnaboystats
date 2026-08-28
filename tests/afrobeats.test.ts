@@ -27,14 +27,14 @@ import { countryMeta } from "../app/data/afrobeats";
 // alone would not have caught it — the tier split is what did.
 const EXPECTED = {
   asake: { total: 80, diamond: 0 },
-  "omah-lay": { total: 61, diamond: 2 },
+  "omah-lay": { total: 62, diamond: 2 }, // + "understand" 🇵🇹 Ouro, AFP March 2026 card
   "seyi-vibez": { total: 102, diamond: 0 },
   wizkid: { total: 156, diamond: 6 },
-  victony: { total: 22, diamond: 0 },
+  victony: { total: 23, diamond: 0 }, // + "Soweto" 🇵🇹 1ª Platina, AFP March 2026 card
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
   rema: { total: 81, diamond: 5 },
-  tems: { total: 70, diamond: 1 },
+  tems: { total: 71, diamond: 1 }, // + "Fountains" 🇵🇹 Ouro, AFP March 2026 card
   tyla: { total: 62, diamond: 2 },
   "ayra-starr": { total: 41, diamond: 2 },
   ckay: { total: 28, diamond: 2 },

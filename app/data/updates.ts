@@ -35,6 +35,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-28",
+    category: "Certifications",
+    text: "A 232nd plaque, from the one Portuguese route nobody had read: “Wgft” with Gunna is certified Ouro by AFP/Audiogest, announced on the body's own award card in its March 2026 batch. Portugal badges a record on its weekly chart only while that record is charting — “Wgft” spent four weeks there in February with the column blank and had already dropped off when the plaque landed, so the award exists in the monthly announcement and nowhere else. It is his seventh Portuguese plaque.",
+    href: "/certifications",
+  },
+  {
     date: "2026-08-27",
     category: "Certifications",
     text: "Four Portuguese Golds, confirmed at last. AFP/Audiogest's annual TOP reports — which carry the same Galardão column as the weekly charts but run to 10,000 positions instead of 200 — show “Gbona”, “Location” with Dave, “Own It” with Stormzy and Ed Sheeran, and “We Pray” with Coldplay all marked Ouro. Three were awarded earlier than recorded here: “Own It” and “Location” both during 2020, “Gbona” by the end of 2022. “Gbona” had never once entered Portugal's Top 200, which is why the weekly charts had nothing to say about it.",

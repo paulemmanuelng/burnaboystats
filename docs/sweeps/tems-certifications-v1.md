@@ -2,7 +2,7 @@
 
 **Method:** identical to burnaboystats.com — a certification counts when it appears in the issuing body's own records; one plaque per title per country at its **current** tier (a 5× Platinum is one plaque, not five); lead and featured **artist** credits both count, writer/producer credits do not. First pass 15 Aug 2026 (21 registers); **gap sweep 16 Aug 2026** added 13 national bodies never previously queried, re-attacked the three that had defeated the first pass (ARIA, ZPAV, IFPI Greece) and read the TurnTable archive in full. **36 bodies now appear in the coverage table.** ✓ = seen in the issuing body's own database. ✓ᴬ = confirmed in the body's own *archived* register (Wayback capture of the same URL). No tick = Wikipedia-cited only, because the body publishes no verifiable register.
 
-## Total: **70 certifications** — **70 of 70 verified body-side**
+## Total: **71 certifications** — **71 of 71 verified body-side**
 
 > **What the gap sweep changed:** no new plaques, and that is the finding. Thirteen national registers that had never been queried — Norway, Finland, Ireland, Singapore, Malaysia, India, Turkey, Croatia, Argentina, Chile, Colombia, Peru, Slovakia — returned **zero** Tems rows between them, and nine of the thirteen turn out to publish no usable certification register at all. What did change is provenance: the **six** plaques the first pass had to carry on Wikipedia's word alone — Australia (3), Poland (2), Greece (1) — were all found in the issuing bodies' own records and are now ticked. ARIA's register was not dead, only moved; ZPAV's had migrated to olis.pl; and IFPI Greece publishes certifications as an unlabelled award column inside its weekly chart. **The file no longer contains a single unverified claim.**
 
@@ -32,7 +32,7 @@
 | Raindance (Dave ft. Tems) | 🇬🇧 2× Platinum ✓ (07.08.2026) · 🇵🇹 2× Platina ✓ · 🇧🇷 2× Platinum ✓ · 🇬🇷 2× Platinum ✓ (Jul 2026) · 🇫🇷 Platine ✓ (14.05.2026) · 🇨🇦 Platinum ✓ · 🇧🇪 Platinum ✓ (13.04.2026) · 🇳🇱 Platinum ✓ · 🇳🇿 Platinum ✓ · 🇦🇺 Platinum ✓ (Mar 2026) · 🇩🇰 Guld ✓ · 🇮🇹 Gold ✓ · 🇳🇬 Gold ✓ · 🇵🇱 Gold ✓ (05.08.2026) — **14** |
 | Wait For U (Future ft. Drake & Tems) | 🇺🇸 **Diamond** (11× Platinum) ✓ (16.07.2026) · 🇳🇿 4× Platinum ✓ · 🇬🇧 2× Platinum ✓ · 🇨🇦 2× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇦🇺 2× Platinum ✓ (03.03.2023) · 🇵🇹 2× Platina ✓ (*new*) · 🇩🇰 Platin ✓ · 🇫🇷 Or ✓ (27.06.2024) · 🇦🇹 Gold ✓ · 🇮🇹 Gold ✓ · 🇪🇸 Gold ✓ · 🇵🇱 Gold ✓ — **13** |
 | Essence (Wizkid ft. Tems) | 🇺🇸 5× Platinum ✓ (02.06.2025) · 🇨🇦 3× Platinum ✓ · 🇳🇿 3× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇿🇦 Multi-Platinum ✓ · 🇬🇧 Platinum ✓ · 🇨🇭 Platinum ✓ · 🇫🇷 Or ✓ — **8** |
-| Fountains (Drake ft. Tems) | 🇳🇿 Gold ✓ · 🇦🇺 Gold ✓ (2024) · 🇬🇧 Silver ✓ — **3** |
+| Fountains (Drake ft. Tems) | 🇳🇿 Gold ✓ · 🇦🇺 Gold ✓ (2024) · 🇵🇹 Ouro ✓ (AFP award card, March 2026) · 🇬🇧 Silver ✓ — **4** |
 | Move (Beyoncé ft. Grace Jones & Tems) | 🇧🇷 Platinum ✓ · 🇺🇸 Gold ✓ — **2** |
 
 *Featured subtotal: 14+13+8+3+2 = **40*** ✓
@@ -48,7 +48,7 @@
 
 *Sections: 2 albums + 28 lead singles + 40 featured = **70*** ✓
 *Tier split: 1 + 36 + 28 + 5 = **70*** ✓
-*Per-tier derivation — Diamond: Wait For U 🇺🇸. Platinum: albums 0, lead singles 10 (Me & U ×3, Free Mind ×3, Higher ×2, Love Me JeJe, Isaka), featured 24 (Raindance ×10, Wait For U ×6, Essence ×7, Move ×1). Gold: albums 1, lead singles 14, featured 13. Silver: albums 1 (BOTW 🇬🇧), lead singles 3 (Higher 🇬🇧, Damages 🇬🇧, Get It Right 🇳🇬), featured 1 (Fountains 🇬🇧).*
+*Per-tier derivation — Diamond: Wait For U 🇺🇸. Platinum: albums 0, lead singles 10 (Me & U ×3, Free Mind ×3, Higher ×2, Love Me JeJe, Isaka), featured 24 (Raindance ×10, Wait For U ×6, Essence ×7, Move ×1). Gold: albums 1, lead singles 14, featured 14 (Fountains gains 🇵🇹). Silver: albums 1 (BOTW 🇬🇧), lead singles 3 (Higher 🇬🇧, Damages 🇬🇧, Get It Right 🇳🇬), featured 1 (Fountains 🇬🇧).*
 
 ## Award events vs plaques
 
@@ -76,6 +76,13 @@ Only some bodies publish the tier ladder as separate dated rows. Five of the reg
 ### The 2026 tally, reconciled — the ~41 is award events, and it is now explained
 
 **This is settled.** The fan compilation itself states the rule: *"Upgrades (Gold → Platinum, Platinum → multi-Platinum/Diamond) and multi-country awards for the same track are typically counted separately in fan tallies."* That is precisely the difference between the two numbers, and Portugal proves it end to end.
+
+**Added 28 Aug 2026 — a fourth Portuguese plaque the weekly ladder could not see.**
+*Fountains* (Drake feat. Tems) takes **Ouro** in AFP's **March 2026** monthly batch,
+read off Audiogest's own award card ("Fountains / Drake feat. Tems / Universal
+Music"). It appears in the TOP Anual 2022 at 1876 with the `Gal.` cell **blank**
+and was not charting in 2026, so no weekly could ever have carried the badge —
+Portugal announces off-chart awards only in the monthly cards.
 
 **The Portuguese ladder, read week by week in AFP/Audiogest's own charts (all 32 published weeks of 2026, certification column `Gal.`):**
 

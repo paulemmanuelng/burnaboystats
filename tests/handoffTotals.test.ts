@@ -33,18 +33,18 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 231 certifications across 26 countries", () => {
+  it("counts 232 certifications across 26 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
-    expect(certs).toBe(231); // + On the Low's Swedish Platinum (GLF cert. 10448) — the rest of that song's plaques were already here
+    expect(certs).toBe(232); // + "Wgft" in Portugal (AFP/Audiogest March 2026 award card)
     expect(countries).toBe(26); // Czechia joins
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 6 Diamond / 101 Platinum / 94 Gold / 30 Silver", () => {
+  it("splits into 6 Diamond / 101 Platinum / 95 Gold / 30 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -54,11 +54,11 @@ describe("handoff checklist — data integrity", () => {
     // showed 7 was the one carrying the typo.
     expect(byLevel("Diamond")).toBe(6);
     expect(byLevel("Platinum")).toBe(101); // the 101st: On the Low in Sweden (GLF)
-    expect(byLevel("Gold")).toBe(94); // + On the Low in Nigeria, which TCSN gives as Gold, not Silver
+    expect(byLevel("Gold")).toBe(95); // + "Wgft" in Portugal, off-chart award read off AFP's own card
     expect(byLevel("Silver")).toBe(30); // On the Low NG left this tier for Gold
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(231);
+    expect(sum).toBe(232);
   });
 
   it("counts 280 chart entries across 71 territories, 48 of them at No. 1", () => {

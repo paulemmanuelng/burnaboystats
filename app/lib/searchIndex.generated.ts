@@ -2645,7 +2645,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "WGFT",
     "path": "/music/wgft",
     "section": "Release",
-    "description": "Gunna ft. Burna Boy — 3 certifications · 13 chart entries.",
+    "description": "Gunna ft. Burna Boy — 4 certifications · 13 chart entries.",
     "keywords": [
       "gunna",
       "burna",

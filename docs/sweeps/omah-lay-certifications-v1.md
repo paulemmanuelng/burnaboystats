@@ -2,7 +2,7 @@
 
 **Method:** identical to burnaboystats.com — a certification counts when it appears in the **issuing body's own register**; one plaque per title per country at its **current** tier (a 6× Platinum is one plaque, not six); lead, co-billed and featured **artist** credits all count, writer/producer credits do not. A press announcement is not a register. Swept **19 August 2026** in two halves — Nigeria/Africa, and the rest of the world — then reconciled. ✓ = seen in the issuing body's own live database. ✓ᴬ = confirmed in the body's own **archived** register (Wayback capture of the same URL). No tick anywhere in this file: **every figure below was read in a register.**
 
-## Total: **61 certifications** across **9 countries** — 61 of 61 verified body-side
+## Total: **62 certifications** across **9 countries** — 62 of 62 verified body-side
 
 | tier | count |
 |---|---|
@@ -36,7 +36,7 @@
 | song | certifications | |
 |---|---|---|
 | soso | 🇫🇷 **Diamant** ✓ (constat 14/08/2025) · 🇳🇬 6× Platinum ✓ · 🇵🇹 Platina ✓ᴬ (wk 22.08.2024) · 🇨🇦 Platinum ✓ (12.07.2024) · 🇺🇸 Gold ✓ (09.09.2025) · 🇪🇸 Oro ✓ (2025, wk 9) · 🇬🇧 Silver ✓ (20.09.2024) | **7** |
-| Understand | 🇳🇬 4× Platinum ✓ · 🇫🇷 Or ✓ (04/07/2024) · 🇨🇦 Gold ✓ (15.06.2023) · 🇬🇧 Silver ✓ (15.11.2024) | **4** |
+| Understand | 🇳🇬 4× Platinum ✓ · 🇫🇷 Or ✓ (04/07/2024) · 🇨🇦 Gold ✓ (15.06.2023) · 🇵🇹 Ouro ✓ (AFP award card, March 2026) · 🇬🇧 Silver ✓ (15.11.2024) | **5** |
 | Holy Ghost | 🇳🇬 4× Platinum ✓ · 🇫🇷 Or ✓ (15/05/2025) | **2** |
 | Attention (Omah Lay & Justin Bieber) | 🇳🇬 Platinum ✓ · 🇨🇦 Gold ✓ (20.12.2022) | **2** |
 | Reason | 🇳🇬 5× Platinum ✓ | **1** |
@@ -97,7 +97,7 @@
 
 - **Diamond (2):** soso 🇫🇷, Namek 🇫🇷.
 - **Platinum incl. multi (23):** Nigeria 20 — 6× soso; 5× Reason; 4× Holy Ghost, Understand, With You; 3× Godly, I'm A Mess, Infinity, My Dealer; 2× Woman, Philo; 1× Attention, Bend You, It's Yours, Moving, Waist, Forever (Remix), Isaka (6AM), Last Time, Pami — plus 🇿🇦 Forever (Remix), 🇵🇹 soso, 🇨🇦 soso.
-- **Gold (23):** Nigeria 14 — Can't Relate, Come Closer, Confession, Damn, Damn (Remix), Joanna, Lo Lo, My Bebe, Safe Haven, Temptations, You, My Healer, People, Pronto — plus 🇫🇷 4 (Boy Alone, Understand, Holy Ghost, Bad), 🇨🇦 2 (Understand, Attention), 🇺🇸 1 (soso), 🇪🇸 1 (soso), 🇩🇪 1 (Another Vibe).
+- **Gold (24):** Nigeria 14 — Can't Relate, Come Closer, Confession, Damn, Damn (Remix), Joanna, Lo Lo, My Bebe, Safe Haven, Temptations, You, My Healer, People, Pronto — plus 🇫🇷 4 (Boy Alone, Understand, Holy Ghost, Bad), 🇨🇦 2 (Understand, Attention), 🇵🇹 1 (Understand), 🇺🇸 1 (soso), 🇪🇸 1 (soso), 🇩🇪 1 (Another Vibe).
 - **Silver (13):** Nigeria 9 — Do Not Disturb, Free My Mind, Hello Brother, How To Luv, I, Imagine, Never Forget, Recognize, Ye Ye Ye — plus 🇬🇧 4 (Boy Alone, soso, Understand, Infinity).
 
 20 + 3 = 23 Platinum; 14 + 9 = 23 Gold; 9 + 4 = 13 Silver; 2 Diamond. **Total 61** ✓
@@ -125,7 +125,7 @@ Ten Nigerian ladders are visible step by step in TurnTable's archive, so the **4
 | **SNEP (France)** | **swept ✓** | **6** — 7 award rows, no pagination; 6 plaques after collapsing the Namek Platine→Diamant ladder. Two of the six are French rap features (Jul, Ninho) that no artist-side fan list carries. |
 | **BPI (UK)** | **swept ✓** | **4** — Boy Alone Silver, soso Silver, Understand Silver, Infinity Silver. **The register has moved:** bpi.co.uk is now a Hivebrite community shell and `/brit-certified/` 404s; the live register is the htmx app at `certified-awards.bpi.co.uk`, driven by `GET / ?search=`. Control "TEMS" returned 175 lines including 3× Platinum tiers. |
 | **Music Canada** | **swept ✓** | **3** — soso Platinum, Understand Gold, Attention Gold. FacetWP JSON API `POST musiccanada.com/wp-json/facetwp/v1/refresh`; the facet is `gp_search`, not `gp_search_terms`. Artist-side plus 9 title-side queries. |
-| **AFP / Audiogest (Portugal)** | **swept ✓ᴬ** | **1** — soso **Platina**, the `Gal.` column reading `PL` in the weekly Top 200 of 22.08.2024. All **293** weekly PDFs 2021–2026 downloaded and text-extracted, 0 parse failures; control "Tems" appears in 97 of them. AFP shows a badge only while a title is charting, so this plaque is visible in exactly one of 293 weeks. |
+| **AFP / Audiogest (Portugal)** | **swept ✓ᴬ** | **2** — soso **Platina**, the `Gal.` column reading `PL` in the weekly Top 200 of 22.08.2024. All **293** weekly PDFs 2021–2026 downloaded and text-extracted, 0 parse failures; control "Tems" appears in 97 of them. AFP shows a badge only while a title is charting, so this plaque is visible in exactly one of 293 weeks. Added 28 Aug 2026: *understand* **Ouro**, from AFP's own **March 2026** monthly award card — it sits in the TOP Anual 2022 with the `Gal.` cell blank and was not charting in 2026, so the weekly register could never have shown it. Note the register prints the title all-lowercase, and that a second "Understand" (BoyWithUke, UNIVERSAL) sits in the same annual, so the row is matched on title **and** label. |
 | **RIAA (US)** | **swept ✓** | **1** — soso Gold, 09.09.2025. Badge alt-text decoded against controls (Essence `DI level 5` = 5× Platinum). Featured credits are indexed. |
 | **PROMUSICAE (Spain)** | **swept ✓** | **1** — soso Oro, 2025 wk 9. "OMAH LAY" is a value in the register's own artist dropdown. |
 | **BVMI (Germany)** | **swept ✓** | **1** — Another Vibe (Luciano feat. Omah Lay) 1× Gold, 2025. Form `POST` to the Gold/Platin Datenbank page; the documented AJAX path `db-gold-platin-ajax.php` is 404 even from inside the page. |
