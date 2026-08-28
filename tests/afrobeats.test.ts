@@ -659,12 +659,44 @@ describe("cover art", () => {
     expect(reason).not.toBe(mmwtv);
   });
 
-  it("leaves a cover off rather than showing the wrong one", () => {
-    // Seyi Vibez's "Ama" wore the MY HEALER single's sleeve, and that release is
-    // a one-track single — so it cannot be right. No correct art was findable,
-    // so the field is absent and the monogram fallback renders.
+  it("carries no cover that resolves to Deezer's blank placeholder", () => {
+    // Wizkid's "System" — Dave's record, on which he features — pointed at
+    // Dave's album art, which Deezer has since blanked: the URL still returns
+    // 200 but 302-redirects to d41d8cd98f00b204e9800998ecf8427e, the MD5 of the
+    // empty string, and renders a grey square. A status check passes it; only
+    // the redirect target gives it away. No replacement art exists on Deezer or
+    // Apple (Apple has only a DJ-mix compilation sleeve), so the field was
+    // removed and the monogram fallback renders instead.
+    const DEAD = "fbf2218aa7d8262098c19097bd10cb21";
+    const offenders: string[] = [];
+    for (const a of afrobeatsArtists) {
+      for (const r of [...a.releases, ...a.charts]) {
+        const c = (r as { cover?: string }).cover;
+        if (c?.includes(DEAD)) offenders.push(`${a.slug}: ${r.title}`);
+      }
+    }
+    expect(offenders, "these covers render as a blank square").toEqual([]);
+  });
+
+  it("gives Ama the FUJI MOTO sleeve, and never MY HEALER's", () => {
+    // "Ama" wore the MY HEALER single's sleeve, which cannot be right — that
+    // release is a one-track single. The cover was removed rather than left
+    // wrong, and stayed absent until 28 Aug 2026, when the correct art was
+    // found in the official Nigerian chart's own metadata: TurnTable carries
+    // "AMA" with one identical image across 21 chart weeks, the same image it
+    // gives FUJI HOUSE, FUJI MOTO and TORTOISE MAMBO — and a visibly different
+    // one for MY HEALER and MARIO KART. So Ama is a FUJI MOTO track and wears
+    // that sleeve. What must never come back is the MY HEALER sleeve.
     const seyi = afrobeatsArtists.find((a) => a.slug === "seyi-vibez")!;
-    expect(seyi.releases.find((r) => r.title === "Ama")?.cover).toBeUndefined();
+    const ama = seyi.releases.find((r) => r.title === "Ama")?.cover;
+    const healer = seyi.releases.find((r) => r.title === "My Healer")?.cover;
+    expect(ama, "Ama should now carry the FUJI MOTO sleeve").toBeTruthy();
+    expect(ama).toContain("199316326895");
+    if (healer) expect(ama, "Ama must never wear MY HEALER's sleeve").not.toBe(healer);
+    for (const t of ["Fuji House", "Tortoise Mambo"]) {
+      const sib = seyi.releases.find((r) => r.title === t)?.cover;
+      if (sib) expect(sib, `${t} shares the FUJI MOTO sleeve`).toBe(ama);
+    }
   });
 });
 
