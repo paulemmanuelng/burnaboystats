@@ -36,6 +36,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-28",
+    category: "Streaming",
+    text: "Seventy days inside the global Top 10, from a start nobody would have predicted: “Dai Dai” entered Spotify's Global Daily Top Songs chart at No. 114 on 15 May, the day after release, and has not left it since — 98 days on the chart, 37 of them at No. 1, and still there at No. 8 with 3,228,190 streams. No African song has spent longer in the global Top 10 since the chart launched.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-28",
     category: "Certifications",
     text: "A 232nd plaque, from the one Portuguese route nobody had read: “Wgft” with Gunna is certified Ouro by AFP/Audiogest, announced on the body's own award card in its March 2026 batch. Portugal badges a record on its weekly chart only while that record is charting — “Wgft” spent four weeks there in February with the column blank and had already dropped off when the plaque landed, so the award exists in the monthly announcement and nowhere else. It is his seventh Portuguese plaque.",
     href: "/certifications",
