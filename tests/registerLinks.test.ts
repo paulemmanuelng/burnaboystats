@@ -2,6 +2,15 @@ import { describe, it, expect } from "vitest";
 import { COUNTRIES, allItems } from "../app/data/certifications";
 import { afrobeatsArtists, countryMeta } from "../app/data/afrobeats";
 
+// STANDING RULE (28 Aug 2026): a new certification must arrive with a link to the
+// certifying body's own register. The URL lives on the COUNTRY — COUNTRIES in
+// app/data/certifications.ts, or EXTRA_COUNTRIES in app/data/afrobeats.ts for a
+// board-only country like Mexico — so adding a plaque in a country nobody has
+// sourced yet fails here with "no register link for: XX (Body)".
+//
+// Linking each cert badge on the page itself was considered and rejected: it
+// complicates the board, and /methodology is where a reader checks a body.
+//
 // Twelve of the site's 1,065 certifications sat on a body with no register link
 // — Greece (7), Mexico (3), Slovakia and Czechia (1 each). Worse than unlinked:
 // /methodology built its register list with `if (!c.url) continue`, so those
