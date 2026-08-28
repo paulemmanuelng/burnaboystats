@@ -61,8 +61,11 @@ export const COUNTRIES: Record<string, Country> = {
   CH: { name: "Switzerland", flag: "🇨🇭", body: "IFPI", url: "https://www.ifpi.ch/edelmetallpruefung" },
   AT: { name: "Austria", flag: "🇦🇹", body: "IFPI Austria", url: "https://ifpi.at/auszeichnungen/" },
   HU: { name: "Hungary", flag: "🇭🇺", body: "MAHASZ", url: "https://slagerlistak.hu/arany-es-platinalemezek/adatbazis" },
-  SK: { name: "Slovakia", flag: "🇸🇰", body: "ČNS IFPI" },
-  CZ: { name: "Czech Republic", flag: "🇨🇿", body: "ČNS IFPI" },
+  // ČNS IFPI publishes no standalone award list: the tier is printed inside the
+  // weekly chart row ("Zlatý singl" / "Platinový singl"), so it is visible only
+  // while a title is in that week's Top 100. Chart 43 is Slovakia, 30 Czechia.
+  SK: { name: "Slovakia", flag: "🇸🇰", body: "ČNS IFPI (Slovakia)", url: "https://ifpicr.cz/hitparada/43" },
+  CZ: { name: "Czech Republic", flag: "🇨🇿", body: "ČNS IFPI (Czechia)", url: "https://ifpicr.cz/hitparada/30" },
   PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV", url: "https://www.olis.pl/charts/oficjalna-lista-wyroznien/platynowe-plyty" },
   // The register is the weekly TOP's "Gal." (Galardão) column — OU = Ouro,
   // PL…9PL = Platina — published as one PDF per week under this index. AFP's own
@@ -71,7 +74,10 @@ export const COUNTRIES: Record<string, Country> = {
   // Awards to titles NOT charting that week never appear here; those are
   // announced monthly on facebook.com/audiogest. See docs/sourcing/RESUME.md.
   PT: { name: "Portugal", flag: "🇵🇹", body: "AFP", url: "https://www.audiogest.pt/tabelas-oficiais-de-vendas-?lang=pt" },
-  GR: { name: "Greece", flag: "🇬🇷", body: "IFPI Greece" },
+  // Greece publishes certifications only as an unlabelled "Award" column (G / P /
+  // 2P / 3P / D) inside the weekly international digital singles chart, and the
+  // file is overwritten each week — so a title is checkable only while it charts.
+  GR: { name: "Greece", flag: "🇬🇷", body: "IFPI Greece", url: "https://ifpi.gr/digital_ien.html" },
   ZA: { name: "South Africa", flag: "🇿🇦", body: "RiSA", url: "https://risa.org.za/" },
   // TCSN's public register (turntablecharts.com/certification) is REQUEST-based
   // and paid — "certification is not automatic" — so it will never mirror every

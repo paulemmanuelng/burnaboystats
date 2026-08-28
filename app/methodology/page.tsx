@@ -6,7 +6,8 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileMethodology from "../components/MobileMethodology";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { updates } from "../data/updates";
-import { totalAwards, countryCount, COUNTRIES } from "../data/certifications";
+import { totalAwards, countryCount, COUNTRIES, allItems } from "../data/certifications";
+import { afrobeatsArtists, countryMeta } from "../data/afrobeats";
 import { chartEntryCount, numberOnes, chartSourceSplit, chartCountryCount } from "../data/charts";
 import { ceremonyCount } from "../data/awards";
 import { tours } from "../data/tours";
@@ -84,14 +85,29 @@ const counts = [
 // Certifying bodies the site actually cites AND whose register has a confirmed
 // link. Derived from COUNTRIES so it cannot list a body no plaque here came
 // from, and cannot miss one that gains a URL later.
+// Every body behind a certification ANYWHERE on the site — Burna Boy's ledger
+// and the Afrobeats Board both. Mexico is board-only (AMPROFON certifies three
+// board plaques and none of Burna's, so it is not in COUNTRIES), and building
+// this list from COUNTRIES alone left AMPROFON off the page altogether.
+//
+// A body with no register URL used to be skipped outright by `if (!c.url)
+// continue`. That is how Greece, Czechia and Slovakia came to be invisible here
+// rather than listed without a link: the section looked complete while three
+// registers were missing from it. Nothing is dropped now — a body with no
+// register renders as plain text and says so.
 const certBodies = (() => {
-  const byBody = new Map<string, { body: string; url: string; flags: string; where: string }>();
-  for (const [, c] of Object.entries(COUNTRIES)) {
-    if (!c.url) continue;
+  const codes = new Set<string>();
+  for (const item of allItems) for (const c of item.certs) codes.add(c.c);
+  for (const a of afrobeatsArtists) for (const r of a.releases) for (const c of r.certs) codes.add(c.c);
+
+  const byBody = new Map<string, { body: string; url?: string; flags: string; where: string }>();
+  for (const code of [...codes].sort()) {
+    const c: { name: string; flag: string; body: string; url?: string } = COUNTRIES[code] ?? countryMeta(code);
     const e = byBody.get(c.body);
     if (e) {
       e.flags += ` ${c.flag}`;
       e.where += `, ${c.name}`;
+      e.url ??= c.url;
     } else {
       byBody.set(c.body, { body: c.body, url: c.url, flags: c.flag, where: c.name });
     }
@@ -339,9 +355,13 @@ export default function MethodologyPage() {
             {certBodies.map((b) => (
               <li key={b.body} className={styles.registerRow}>
                 <span className={styles.registerFlag} aria-hidden="true">{b.flags}</span>
-                <a href={b.url} target="_blank" rel="noopener noreferrer" className={styles.registerLink}>
-                  {b.body}
-                </a>
+                {b.url ? (
+                  <a href={b.url} target="_blank" rel="noopener noreferrer" className={styles.registerLink}>
+                    {b.body}
+                  </a>
+                ) : (
+                  <span className={styles.registerLink}>{b.body} <span className={styles.registerWhere}>(publishes no publicly readable register)</span></span>
+                )}
                 <span className={styles.registerWhere}>{b.where}</span>
               </li>
             ))}

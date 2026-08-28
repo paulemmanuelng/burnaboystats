@@ -1482,8 +1482,11 @@ export const afrobeatsArtists: AfroArtist[] = [
  *  absent from certifications.ts's COUNTRIES map. Kept here rather than added
  *  there: that map is his ledger, and a country he holds no plaque in does not
  *  belong in it. */
-const EXTRA_COUNTRIES: Record<string, { name: string; flag: string; body: string }> = {
-  MX: { name: "Mexico", flag: "🇲🇽", body: "AMPROFON" },
+const EXTRA_COUNTRIES: Record<string, { name: string; flag: string; body: string; url?: string }> = {
+  // AMPROFON's register is the deepest on the board: 8,589 rows, 1999 to date,
+  // server-rendered in one page. Mexico is board-only — Burna Boy holds no
+  // Mexican plaque — so it is not in the certifications COUNTRIES map.
+  MX: { name: "Mexico", flag: "🇲🇽", body: "AMPROFON", url: "https://amprofon.com.mx/es/pages/certificaciones.php" },
   GLB: { name: "Global", flag: "🌐", body: "Billboard Global 200" },
   GLBX: { name: "Global (excl. US)", flag: "🌍", body: "Billboard Global 200 Excl. US" },
   MT: { name: "Malta", flag: "🇲🇹", body: "Official Malta Chart" },
@@ -1502,7 +1505,7 @@ const EXTRA_COUNTRIES: Record<string, { name: string; flag: string; body: string
  *  certification ledger first (it names the certifying body), then the chart
  *  map (which covers 71 chart territories Burna has entered), then this
  *  module's own extension for places none of his data reaches. */
-export const countryMeta = (code: string): { name: string; flag: string; body: string } =>
+export const countryMeta = (code: string): { name: string; flag: string; body: string; url?: string } =>
   BURNA_COUNTRIES[code] ??
   CHART_COUNTRIES[code] ??
   EXTRA_COUNTRIES[code] ?? { name: code, flag: "🏳️", body: code };

@@ -9,11 +9,11 @@
       "extractor": "kworbListeners",
       "kind": "drift",
       "threshold": 0.03,
-      "baseline": 59537366,
-      "note": "Current monthly listeners (kworb). NOTE: Spotify’s own artist page is fresher, but it only serves the full page to curl/browsers — node fetch (which the workflow uses) gets a stub, so kworb is the reliable CI source.",
+      "baseline": 55701680,
+      "note": "Current monthly listeners. Verified 28 Aug 2026 on Spotify's own artist page (55,701,680, #49 in the world), which agreed with kworb exactly. Monitor-only — no siteTargets — because the site publishes the all-time PEAK (spotify-peak-listeners), not the current figure. Do not conflate the two: the peak is 60.13M and cannot fall.",
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "monthlyListeners",
-      "lastChanged": "2026-08-03"
+      "lastChanged": "2026-08-28"
     },
     {
       "id": "spotify-peak-listeners",
@@ -68,8 +68,8 @@
       "field": "rank",
       "kind": "rank",
       "threshold": 1,
-      "baseline": 46,
-      "note": "Global rank by Spotify monthly listeners (lower is better). Auto-published hourly; displayed on /records/by-the-numbers.",
+      "baseline": 49,
+      "note": "Global rank by Spotify monthly listeners (lower is better) — the CURRENT rank, not his best. Auto-published hourly; displayed on /records/by-the-numbers, whose label used to read \"his highest position among all artists worldwide\" while this metric fed it a current figure. His best in the log is No. 36, so that label was wrong at any rank above it; it now describes where he currently sits.",
       "live": true,
       "sanity": {
         "min": 1,
@@ -86,9 +86,9 @@
           "describes": "global listeners rank"
         }
       ],
-      "lastChanged": "2026-08-25",
+      "lastChanged": "2026-08-28",
       "lastSeenValue": 46,
-      "lastSeenAt": "2026-08-25",
+      "lastSeenAt": "2026-08-28",
       "$comment": "sanity.maxJump was 10, but withinSanity reads maxJump as a FRACTION of the baseline — |live-46|/46 > 10 needs live > 506, and max:500 already rejected that, so the jump guard was unreachable and the rank published unguarded. It is now maxDelta: 10, an absolute bound of ten chart places, which is what the 10 meant."
     },
     {

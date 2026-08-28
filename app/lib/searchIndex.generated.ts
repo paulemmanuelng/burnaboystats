@@ -819,12 +819,12 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Czech Republic",
     "path": "/certifications",
     "section": "Country",
-    "description": "Certifications awarded in Czech Republic by ČNS IFPI.",
+    "description": "Certifications awarded in Czech Republic by ČNS IFPI (Czechia).",
     "keywords": [
       "cz",
       "country",
       "certified",
-      "čns ifpi"
+      "čns ifpi (czechia)"
     ],
     "generated": true
   },
@@ -1408,12 +1408,12 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Slovakia",
     "path": "/certifications",
     "section": "Country",
-    "description": "Certifications awarded in Slovakia by ČNS IFPI.",
+    "description": "Certifications awarded in Slovakia by ČNS IFPI (Slovakia).",
     "keywords": [
       "sk",
       "country",
       "certified",
-      "čns ifpi"
+      "čns ifpi (slovakia)"
     ],
     "generated": true
   },

@@ -71,7 +71,7 @@ export const stats: {
   { num: youtubeTotalViews, label: "YouTube views, all-time", sub: "every video, across his channel and others'", href: "/music" },
   // YouTube figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.
   { num: BURNA_YT_AUDIENCE, label: "YouTube Music monthly audience", sub: "first African artist ever past 900 million", href: "/records/africas-biggest" },
-  { num: `No. ${spotifyGlobalRank}`, label: "Global rank by Spotify listeners", sub: "his highest position among all artists worldwide", href: "/records/africas-biggest" },
+  { num: `No. ${spotifyGlobalRank}`, label: "Global rank by Spotify listeners", sub: "where he currently sits among every artist worldwide", href: "/records/africas-biggest" },
   { num: "2B+", label: "UK streams", sub: "the first African artist to pass two billion", href: "/records/firsts" },
   { num: `${performedCountryCount}`, label: "Countries performed in", sub: `live shows across ${regionCount} regions, on every continent but Antarctica`, href: "/records/tours/map" },
   { num: `${albums.length}`, label: "Studio albums", sub: "from L.I.F.E (2013) to No Sign of Weakness (2025)", href: "/music" },
