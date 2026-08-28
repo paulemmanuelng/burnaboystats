@@ -80,6 +80,56 @@ Re-verify both before publishing either.
   ultratop.be both sit behind a Cloudflare bot check. Not bypassed. GAP.
 - Egypt and other African societies — network-blocked from this environment.
 
+
+## CERTIFICATION SWEEP — COMPLETE (28 Aug 2026, after the limit reset)
+
+Full results committed as `certs-olamide-blacksherif.json`. 7/7 agents.
+
+**Olamide holds exactly TWO international certifications, both BPI (UK) Silver
+singles, both certified 07.08.2026 on YBNL Nation:**
+- **"Infinity"** — credit `OLAMIDE FT OMAH LAY` — Silver, released 09.10.2020
+- **"Amapiano"** — credit `ASAKE FT OLAMIDE` — Silver, released 23.05.2023
+
+Both survived adversarial verification at high confidence, read off BPI's own
+register with permalink detail. **The collision risk here was real:** BPI title
+id 10277 "INFINITY" is shared by four different singles — Jaymes Young (Gold),
+One Direction (Silver), Guru Josh Project (**Platinum**) and Olamide ft Omah Lay
+(Silver). The register disambiguates only by artist id, so a title-only match
+would have imported Guru Josh's Platinum. The row is pinned to artist id 6924.
+
+**Note for the totals:** `omah-lay-certifications-v1.md` already carries this same
+Infinity Silver on Omah Lay's side. Counting it for both artists is correct —
+the board counts per artist — but it must never be double-counted in a
+cross-artist total.
+
+**Black Sherif holds ZERO international certifications** in every register read.
+
+### Proven zeros — 19 registers, each read in full, nil for both artists
+RIAA · Music Canada · RMNZ · SNEP · BVMI · IFPI Switzerland · IFPI Austria ·
+NVPI · IFPI Danmark · IFPI Norge · ZPAV · MAHASZ · FIMI · PROMUSICAE ·
+AMPROFON · Pro-Música Brasil · RiSA · Ghana · RIKE (Kenya)
+
+### Gaps closed locally from corpora already on disk
+- **AFP/Audiogest (Portugal) — PROVEN ZERO for all three,** including BNXN.
+  Checked against this project's own 218,649-row corpus (8 annual reports + 295
+  weekly PDFs): Olamide 2 chart rows, **0 badged**; BNXN 2 rows, **0 badged**;
+  Black Sherif **0 rows at all**.
+- **IFPI Greece — not found, but only PARTIAL coverage.** 34 archived captures of
+  `digital_ien.html` spanning Jan 2025 → Mar 2026 hold zero rows for any of the
+  three. Greece's Award column only exists from 2021 and these captures do not
+  cover 2021–2024, so this is "absent from what was read", NOT a proven zero.
+- **ČNS IFPI (CZ/SK) — not found, single current week only.** Neither artist
+  appears in the current chart page for either country. The tier is printed
+  inside a chart row, so only currently-charting titles are ever visible; this is
+  a very weak negative and must not be written up as a proven zero.
+
+### Running totals
+| artist | Nigeria (TCSN) | international | total |
+|---|---|---|---|
+| Olamide | 52 | 2 (BPI Silver ×2) | **54** |
+| Black Sherif | 24 | 0 | **24** |
+| BNXN | 55 | sweep still running | ≥55 |
+
 ## STILL TO RUN
 
 Resume with `Workflow({scriptPath, resumeFromRunId})` — completed agents replay
