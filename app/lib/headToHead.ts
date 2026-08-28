@@ -28,6 +28,18 @@ export const HEAD_TO_HEAD: Record<string, string> = {
   // The two biggest careers here, and the only pairing that leaves the board.
   wizkid: "burna-boy",
 
+  // 99 charted records against 89, and 54 plaques against 65 — the deepest home
+  // catalogue on the board against the artist who turned fewer records into more
+  // No. 1s and five countries' worth of plaques. The veteran and the crossover.
+  olamide: "bnxn",
+  bnxn: "olamide",
+
+  // The only Ghanaian here, and the comparison that makes the point: he took
+  // "Kwaku the Traveller" to No. 1 on NIGERIA's chart, a foreign act topping
+  // someone else's national chart — which is the same trick, in reverse, that
+  // the artist this site is about pulled everywhere else.
+  "black-sherif": "burna-boy",
+
   // 103 plaques held in 1 country against 79 in 3 — the two careers on this
   // board built almost entirely at home. Paul's pairing.
   "seyi-vibez": "asake",

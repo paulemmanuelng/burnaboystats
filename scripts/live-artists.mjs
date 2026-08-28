@@ -209,6 +209,72 @@ export const LIVE_ARTISTS = {
     // not a failure — see the guard in build-live-charts.mjs.
     mayChartNowhere: true,
   },
+  olamide: {
+    slug: "olamide",
+    name: "Olamide",
+    source: "https://kworb.net/itunes/artist/olamide.html",
+    // Anchored: an unanchored /olamide/i also matches the several other acts
+    // whose names contain it — "Olamide Badoo", "Tijani Olamide", "Yusuf
+    // Olamide Olotu" all exist as separate Spotify artists.
+    credit: /\bolamide\b/i,
+    // Records where he is FEATURED, so a country chart prints the lead credit
+    // and the matcher never sees him. Read off his own sweep (28 Aug 2026).
+    aliases: [
+      { artist: "Asake", title: "Amapiano", release: "Amapiano" },
+      { artist: "Asake", title: "Omo Ope", release: "Omo Ope" },
+      { artist: "CKay", title: "Trumpet", release: "Trumpet (Olamide & CKay)" },
+      { artist: "Wizkid", title: "Kai!", release: "Kai!" },
+    ],
+    out: "liveCharts.olamide.ts",
+    runOut: "runHistory.olamide.ts",
+    covers: true,
+    // A catalogue that runs back to 2011: most of it is long off the live
+    // platform charts, so a sweep returning nothing is the truth, not a fault.
+    mayChartNowhere: true,
+  },
+  "black-sherif": {
+    slug: "black-sherif",
+    name: "Black Sherif",
+    source: "https://kworb.net/itunes/artist/blacksherif.html",
+    // "Sherif" alone would catch "I Shot The Sheriff" and the 1980s Canadian
+    // band SHERIFF, both of which appear in these registers. Full name only.
+    credit: /\bblack sherif\b/i,
+    aliases: [
+      { artist: "Fireboy DML", title: "So It Goes", release: "So It Goes" },
+      { artist: "Burna Boy", title: "Second Sermon", release: "Second Sermon (Remix)" },
+    ],
+    out: "liveCharts.black-sherif.ts",
+    runOut: "runHistory.black-sherif.ts",
+    covers: true,
+    mayChartNowhere: true,
+  },
+  bnxn: {
+    slug: "bnxn",
+    name: "BNXN",
+    source: "https://kworb.net/itunes/artist/bnxn.html",
+    // He was BUJU until 2022, and his older records are still filed that way at
+    // three separate certification registers. But /\bbuju\b/ cannot go here:
+    // BUJU BANTON is a different artist who charts in his own right, and this
+    // matcher runs against country charts where a bare "Buju" would take his
+    // rows. A negative lookahead would exclude Banton but breaks the
+    // word-anchor guard every matcher in this file is held to. So the matcher
+    // is BNXN only, and any Buju-era credit that appears on a country chart is
+    // caught through `aliases` instead, where the (artist, title) pair is
+    // exact and cannot collide.
+    credit: /\bbnxn\b/i,
+    aliases: [
+      { artist: "Pheelz", title: "Finesse", release: "Finesse" },
+      { artist: "Wizkid", title: "Mood", release: "Mood (Wizkid ft. BNXN)" },
+      { artist: "Ruger", title: "POE", release: "POE" },
+      { artist: "Rema", title: "Fi Kan We Kan", release: "Fi Kan We Kan" },
+      { artist: "Timaya", title: "Cold Outside", release: "Cold Outside" },
+      { artist: "JAE5", title: "Propeller", release: "Propeller" },
+    ],
+    out: "liveCharts.bnxn.ts",
+    runOut: "runHistory.bnxn.ts",
+    covers: true,
+    mayChartNowhere: true,
+  },
   victony: {
     slug: "victony",
     name: "Victony",
