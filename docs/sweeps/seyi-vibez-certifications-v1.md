@@ -37,6 +37,53 @@
 | Albums | **0** |
 | **total** | **103** ✓ |
 
+## The credit test, run in full — 28 Aug 2026
+
+*Road Runners* was removed on the credit test, which raised the obvious question:
+how many others are like it. All **102** rows were re-tested, in two halves,
+because the two halves catch different failures.
+
+**Half one — is the transcription faithful?** Every board row was matched against
+TCSN's own archived register (the 21 Feb 2026 capture, 39 MB, **2,477 rows**,
+including the 817 Silvers the live page will not serve). **102 of 102 confirmed**:
+each row corresponds to a register row whose `artiste` field names Seyi Vibez, at
+the tier recorded here. No title-only match, nothing absent, no tier error.
+
+Five rows looked wrong on the first pass and all five were the *matcher's* fault,
+not the data's — plain-title matching merged records the register deliberately
+separates. This is the trap this file already documents, walked into anyway:
+
+| Board row | What plain-title matching hit | The register row that applies |
+|---|---|---|
+| Trumpet | `Trumpet — Olamide & CKay` | `Trumpet (Seyi Vibez)` — Gold |
+| Loml | `Loml — Cheque ft. Olamide` | `Loml (Seyi Vibez)` — Silver |
+| Bounce | `Bounce — Rema` | `Bounce (Bella Shmurda)` — Bella Shmurda & Seyi Vibez — Gold |
+| Malaika | `Malaika — Teni` | `Malaika (Vibez Inc)` — …Seyi Vibez & Stonebwoy — Silver |
+| On God (Kashy) | merged with two other *On God*s | `On God (Kashy)` — Kashy ft. Seyi Vibez — Silver |
+
+TCSN carries **three** records called *On God* — `(Kashy)`, `(Vibez Inc)` and
+`(Shatta Wale)`, the last with no Seyi credit at all. Only the parenthetical
+separates them.
+
+**Half two — is the register's credit TRUE?** Faithful transcription is not
+enough: *Road Runners* passed half one. TCSN really did credit it to Seyi Vibez,
+and the credit itself was wrong. So all **37** rows where he is not the sole
+credit were checked against each recording's actual billed artist string on
+Apple Music, Spotify, Audiomack or the official upload. **37 of 37 confirmed, all
+high confidence, none withdrawn.**
+
+The three `Tml Vibez ft. Seyi Vibez` rows were the ones to watch, since Tml Vibez
+is a different artist in the same camp and 19 other Vibez-camp rows are excluded
+from this file for exactly that reason. All three carry the feature in the billed
+title itself — *Where I'm from (feat. Seyi Vibez)*, *4ck Up (feat. Seyi Vibez)*,
+*Goated (feat. Seyi Vibez)*.
+
+Two registers' billing differs from the recording's without affecting the credit:
+*Gwagwalada* is really billed BNXN, Kizz Daniel & Seyi Vibez (TCSN puts Seyi
+second), and *Gangsta* is the Remix. Both keep their plaques.
+
+**Net result: no change. 102 plaques stand, every one credit-tested.**
+
 **Every plaque is Nigerian, and every plaque is a single.** Nigeria (TCSN / TurnTable) is the only body on earth that has certified him. South Africa (RiSA) was read in full and holds nothing — a proven zero, not a silence.
 
 > **The headline is the archive.** The live register at turntablecharts.com shows only **51 of the 103**. It carries all 44 Platinums and 7 Golds; the other **32 Golds and all 20 Silvers exist solely in the register's own archived captures**. Anyone reading TurnTable's site today would under-report Seyi Vibez by **52 plaques — a 50.5% undercount**, the largest live-versus-archive gap in this sweep series (Wizkid's was 41 of 71). Silver is a real TCSN tier and the live page serves none of it.
