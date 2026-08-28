@@ -130,6 +130,48 @@ AMPROFON · Pro-Música Brasil · RiSA · Ghana · RIKE (Kenya)
 | Black Sherif | 24 | 0 | **24** |
 | BNXN | 55 | sweep still running | ≥55 |
 
+
+## SECOND LIMIT HIT — 290 rows harvested, NONE verified (28 Aug 2026)
+
+Both remaining sweeps harvested well and then died in the verify phase. Raw data
+is committed as `peaks-olamide-blacksherif.json` and `bnxn-certs-and-peaks.json`.
+
+**Every row in those files sits under `rejected` with `verdict: null`. NONE was
+refuted — the verifier agents died on the limit and a null verdict reads as
+falsy in the post-processing filter.** Treat them as unverified candidates.
+
+| harvest | rows | notes |
+|---|---|---|
+| Olamide chart peaks | **103** | all Nigeria; 8 No. 1s across the two artists |
+| Black Sherif chart peaks | **24** | all Nigeria |
+| BNXN certifications | **10** | US, UK, CA, NZ, FR — see below |
+| BNXN chart peaks | **153** | 94 Nigeria, 51 US, plus UK 3, IE 2, ZA 1, FR 1, NL 1 |
+
+**BNXN's international certifications are the real find** — he is far more
+certified abroad than the other two:
+- *Finesse* (Pheelz & BNXN) — **RIAA Gold · BPI Gold · Music Canada Platinum ·
+  RMNZ Gold · SNEP Platine**
+- *Mood* (Wizkid ft. BNXN/Buju) — **RIAA Gold · BPI Silver · Music Canada Gold ·
+  RMNZ Gold**
+- *Propeller* (JAE5 ft Dave & BNXN) — **BPI Silver**
+
+Note Music Canada credits *Finesse* to the LEAD act only ("Pheelz"), so that row
+needs a credit decision, not just a tier check.
+
+## THE ARCHITECTURE PROBLEM, AND THE FIX
+
+The sweeps fanned out **one verifier agent per row** — 132 and 169 agents. That
+is what exhausted the limit twice, and it is disproportionate: verifying a
+TurnTable chart peak does not need a whole agent.
+
+**Do NOT re-run those workflows as written.** Instead:
+1. **Verify the Nigerian peaks deterministically.** They all come from one
+   source (TurnTable). Pull its chart data once and check the 221 Nigerian rows
+   in code, the way TCSN certifications were handled — no agents at all.
+2. **Batch the rest.** Group 15–20 rows per verifier agent instead of one each.
+   The 10 BNXN certifications and the ~59 non-Nigerian peaks are the only rows
+   that genuinely need judgement — roughly 4 agents, not 300.
+
 ## STILL TO RUN
 
 Resume with `Workflow({scriptPath, resumeFromRunId})` — completed agents replay
