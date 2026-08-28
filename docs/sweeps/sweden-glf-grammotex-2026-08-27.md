@@ -141,9 +141,23 @@ not an award date**, which is why Nigeria has no row in the dated log.
 - Incidental rows surfaced while reading other registers should be reconciled
   against what the site already holds. **BPI's Gbona Gold (31 Jul 2026) is
   already reconciled** — the site carries it both on the release row and as a
-  dated 2026 event in the log. **SNEP's "five further Diamant singles" is still
-  open**: the site holds six French Diamants (Be Honest, Gbona, Jerusalema
-  (Remix), Last Last, Location, On the Low), and the claim implies more.
+  dated 2026 event in the log. ~~SNEP's "five further Diamant singles"~~ **CLOSED 28 Aug 2026 — the note was
+  wrong, there are no further Diamants.** SNEP's register was read in full for
+  Burna Boy (`snepmusique.com/les-certifications/?interprete=burna+boy`, 20 award
+  rows over 19 distinct titles) and it reconciles **exactly** with the 19 French
+  rows here — six Diamant, six Platine, seven Or, formats included. Filtering
+  `certification=Diamant` returns precisely the six already recorded; Double,
+  Triple and Quadruple Diamant each return zero, against a positive control where
+  Double Diamant alone returns 18 rows for other artists. Coverage was checked
+  three further ways: by lead act (Jorja Smith, Master KG, Coldplay, Shakira,
+  Dadju, Joé Dwèt Filé, Dave, Ed Sheeran, Nomcebo, Little Simz), by title, and by
+  spelling variants — no row surfaced that is not already here.
+
+  Two traps recorded for the next reader: SNEP paginates as `page/N/` **with the
+  trailing slash**, and without it a bare curl gets a 301 and an empty body that
+  looks like "one page of results" (Dadju: 30 rows broken vs 96 correct). And a
+  regex anchored on the `certif icon-` div pairs each tier with the NEXT card's
+  title — anchor on the `certification` container.
 - ~~The 19 New Zealand rows rest on chart-row markers…~~ **CLOSED 28 Aug 2026.
   All 19 read at RMNZ's own register and all 19 match.** The premise was wrong:
   RMNZ does not publish tiers as chart-row markers, it publishes a full dated

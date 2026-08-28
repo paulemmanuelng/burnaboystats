@@ -39,7 +39,13 @@ describe("rejected claims are still rejected", () => {
     expect(winsFor("Metro FM")).toBe(3);
     expect(winsFor("BMI")).toBe(1);
     expect(winsFor("Galaxy")).toBe(1);
-    expect(disputedCounts.length).toBe(4);
+    // Four award-wins disputes above, plus one chart-position dispute added
+    // 28 Aug 2026: "Dai Dai — No. 2 on US Rhythmic radio". Mediabase's own
+    // chart has it at No. 4, and Mediabase is a different chart from
+    // Billboard's Rhythmic Airplay (No. 3), which is the peak this site
+    // publishes. It carries no win count, so winsFor() does not apply to it.
+    expect(disputedCounts.length).toBe(5);
+    expect(disputedCounts.filter((c) => /rhythmic/i.test(c.reason)).length).toBe(1);
   });
 
   it("does not reject the Headies count the site now carries", () => {

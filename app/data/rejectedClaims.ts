@@ -57,6 +57,11 @@ export const disputedCounts: RejectedClaim[] = [
   { claim: "Metro FM Music Awards — 4 wins", reason: "Three, all from 2016." },
   { claim: "BMI Awards — 2 wins", reason: "One, for “Last Last” in 2023." },
   { claim: "Galaxy Music Awards — 5 wins", reason: "One. No breakdown of the other four exists anywhere." },
+  {
+    claim: "“Dai Dai” — No. 2 on US Rhythmic radio",
+    reason:
+      "No. 4 on Mediabase's Rhythmic chart, read on its syndicated listing. Mediabase and Billboard are different charts that share a monitoring feed: Billboard's Rhythmic Airplay ranks 40 positions on its own reporter panel and a Mon–Sun week, Mediabase's ranks 50 on its own panel and a Sun–Sat week. The gap shows in this record — Billboard No. 3, Mediabase No. 4, the same week. This site publishes the Billboard peak.",
+  },
 ];
 
 /** Checks that changed the site's own figures — the list cuts both ways. */
