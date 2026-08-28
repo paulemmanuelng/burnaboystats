@@ -138,9 +138,21 @@ not an award date**, which is why Nigeria has no row in the dated log.
 
 - Sweden's certificate numbers **10449** and **10451** fall inside Burna Boy's
   2023-08-16 run and are unaccounted for.
-- Incidental rows surfaced while reading other registers (SNEP lists five further
-  Diamant singles; BPI shows Gbona Gold dated 31 Jul 2026) should be reconciled
-  against what the site already holds.
-- The 19 New Zealand rows on the site rest on chart-row markers that can only be
-  read for titles that charted there. Worth establishing which of the 19 have a
-  readable row and which do not.
+- Incidental rows surfaced while reading other registers should be reconciled
+  against what the site already holds. **BPI's Gbona Gold (31 Jul 2026) is
+  already reconciled** — the site carries it both on the release row and as a
+  dated 2026 event in the log. **SNEP's "five further Diamant singles" is still
+  open**: the site holds six French Diamants (Be Honest, Gbona, Jerusalema
+  (Remix), Last Last, Location, On the Low), and the claim implies more.
+- ~~The 19 New Zealand rows rest on chart-row markers…~~ **CLOSED 28 Aug 2026.
+  All 19 read at RMNZ's own register and all 19 match.** The premise was wrong:
+  RMNZ does not publish tiers as chart-row markers, it publishes a full dated
+  register through RadioScope — TablePress table **2052** for singles (24,260
+  rows) and **2051** for albums (4,040). Burna Boy has **29** single rows there,
+  which are ladder steps collapsing to 17 titles, plus **3** album rows
+  collapsing to 2. That is exactly the 19 plaques the site holds, at exactly the
+  tiers it records — including "Last Last" and "Location" at `Plat x3`,
+  "I Told Them…" Gold (20.11.2025) and "Love, Damini" `Plat x1` (22.05.2025).
+  Note the register writes plain Platinum as `Plat x1`, which is easy to misread
+  as unmultiplied. Recipe in `reference-rmnz-radioscope` — the SSP endpoint needs
+  a per-pageload token scraped from the page plus the full DataTables contract.
