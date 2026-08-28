@@ -184,7 +184,7 @@ export default function DaiDaiPage() {
       label: "The streaming streaks",
       intro: "The daily and weekly runs — every one still counting.",
       items: [
-        { v: "37 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, now five clear of Djo's “End of Beginning” (32) and six of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31); past 67 days inside the global Top 10 and 95 days on the chart, both still counting" },
+        { v: "37 days", l: "in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, now five clear of Djo's “End of Beginning” (32) and six of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31); past 67 days inside the global Top 10 and 98 days on the chart, both still counting" },
         { v: "6 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, in its 13th week on it — peaking at 40.28M streams in a single week" },
         { v: "58 days", l: "at No. 1 on Apple Music's European songs chart — plus 11 days atop the worldwide Apple Music chart" },
         { v: "40 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
