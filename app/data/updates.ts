@@ -132,6 +132,12 @@ export const updates: Update[] = [
   },
   {
     date: "2026-08-21",
+    category: "Streaming",
+    text: "Forty days atop iTunes worldwide: “Dai Dai” reached a 40th on the worldwide iTunes songs chart on 21 August, with a 15th day at the top of the European iTunes chart — alongside the 73 territories where it has led the local iTunes ranking outright.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-21",
     category: "Certifications",
     text: "Two artists join the Afrobeats Board: Victony (22 certifications across 4 countries, 40 chart entries) and Fireboy DML (36 across 6, 67 entries — including a French Diamond and a UK 3× Platinum for “Peru”). Both swept the same way as the other nine: every plaque read in an issuing body's own register, every chart peak in the chart body's own run. The board is now 11 artists and 801 plaques.",
     href: "/afrobeats",
