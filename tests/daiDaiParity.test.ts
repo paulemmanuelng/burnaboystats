@@ -62,6 +62,8 @@ const DERIVED: Record<string, number | string | null> = {
   weeksNO: weeksAtPeak("Dai Dai", "NO"),
   weeksUK: weeksAtPeak("Dai Dai", "UK"),
   runUK: weeksOnChart("Dai Dai", "UK"),
+  runAT: weeksOnChart("Dai Dai", "AT"),
+  runSE: weeksOnChart("Dai Dai", "SE"),
   // These three pre-date the longevity work. The old pattern excluded braces,
   // so it had been silently skipping the three hero cards for as long as they
   // have been template literals — the parity check was covering 20 cards and

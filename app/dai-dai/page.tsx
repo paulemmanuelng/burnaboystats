@@ -50,6 +50,8 @@ const weeksSE = weeksAtPeak("Dai Dai", "SE");
 const weeksNO = weeksAtPeak("Dai Dai", "NO");
 const weeksUK = weeksAtPeak("Dai Dai", "UK");
 const runUK = weeksOnChart("Dai Dai", "UK");
+const runAT = weeksOnChart("Dai Dai", "AT");
+const runSE = weeksOnChart("Dai Dai", "SE");
 
 const conquestIntro = `“Dai Dai” has charted in ${conquestTotal} countries — and reached No. 1 in ${conquestNo1} of them. The No. 1 countries are gold; the rest charted without topping.`;
 
@@ -198,10 +200,10 @@ export default function DaiDaiPage() {
         { v: `${weeksDE} weeks`, l: "at No. 1 on Germany's official singles chart — and named the country's official Sommerhit 2026 by GfK Entertainment, which compiles the charts, after nearly 60 million German streams" },
         { v: `${weeksCH} weeks`, l: "at No. 1 on Switzerland's official chart — the longest run at No. 1 by any song there so far this year" },
         { v: `${weeksFR} weeks`, l: "at No. 1 on France's Official Singles Chart (SNEP)" },
-        { v: `${weeksAT} weeks`, l: "at No. 1 on Austria's Ö3 Top 40 — an unbroken run since late June, and 13 weeks on the chart" },
+        { v: `${weeksAT} weeks`, l: `at No. 1 on Austria's Ö3 Top 40 — an unbroken run since late June, and ${runAT} weeks on the chart` },
         { v: `${weeksBE} weeks`, l: "at No. 1 on the Ultratop 50 in Wallonia — nine straight, and No. 1 in Flanders too" },
         { v: `${weeksNL} weeks`, l: "at No. 1 on the Dutch Single Top 100 — two in June, then five more from late July, in a 13-week run" },
-        { v: `${weeksSE} weeks`, l: "at No. 1 on Sweden's Sverigetopplistan, retaken in week 34 — 14 weeks on the list" },
+        { v: `${weeksSE} weeks`, l: `at No. 1 on Sweden's Sverigetopplistan, retaken in week 34 after a week at No. 2 — ${runSE} weeks on the list` },
         { v: `${weeksNO} weeks`, l: "at No. 1 on Norway's VG-lista Topp 40 — four consecutive weeks, from week 31" },
         { v: "No. 1", l: "India's IMI International Top 20 Singles Chart — the first Burna Boy song to top a chart in India" },
         { v: "No. 1", l: "Official MENA Chart Top 20 — still on top in the latest week — and Billboard's US World Digital Song Sales chart" },
