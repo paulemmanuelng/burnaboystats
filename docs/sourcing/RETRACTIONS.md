@@ -93,3 +93,37 @@ against the underlying fact, and the refutation should never have rested on it.
 **Standing correction to how I argue:** "not found in the body's publication" is
 only a refutation when the publication was read in full AND is capable of
 carrying the award. Otherwise it is "not found", which is not a finding.
+
+## 5. "98 days on the chart" — a stale number, over a run that had a hole in it (29 Aug 2026)
+
+Shipped 28 Aug 2026 to `/dai-dai`, `/dai-dai/es` and the updates feed, paired
+with "and has not left it since". Both halves were wrong, and they were wrong in
+two different ways at once:
+
+1. **It was an elapsed-days count, not a chart-days count.** Counting 15 May
+   2026 as day 1, day 98 falls on **20 Aug** — so the figure was already eight
+   days old on the day it was committed.
+2. **Elapsed days was the wrong quantity anyway.** The song has spent one day
+   **off** the chart, so days-on-chart has always been elapsed minus one.
+
+Neither error was reachable by any test, because both lived inside a sentence.
+The identical failure is documented three feet up this repo in the `weeksAtPeak`
+doc comment — "a number in a sentence cannot be checked against anything" — and
+it happened again in the next figure that was typed rather than derived.
+
+**What I could not do:** confirm any of it at the source. charts.spotify.com is
+login-gated; its API answers `401 missing_token` to an anonymous caller, the
+`/public/v0/` path 404s, the legacy spotifycharts.com CSV route is dead, and the
+single Wayback capture of the daily chart is a 3 KB shell. The one-day gap came
+from Paul, who tracks the chart live.
+
+**The fix:** `app/data/daiDai.ts` now derives the figure from a debut date, a
+`CONFIRMED_THROUGH` date and a days-off count. It deliberately counts to the
+last chart someone has actually read rather than to `new Date()` — counting to
+today would keep the number climbing straight through a drop-off nobody had
+checked for, which is the same bug in a new costume. `tests/daiDaiParity.test.ts`
+fails if either edition types the number again.
+
+Corrected figures: **104 days on the chart** as of the 27 Aug chart (the same
+chart that gives 71 days in the Top 10), and **103** in the 28 Aug feed entry,
+which describes the 26 Aug chart.

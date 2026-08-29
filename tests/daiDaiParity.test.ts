@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { cardinalWord, ordinalWord } from "../app/lib/plural";
 import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
 import { daiDaiCertCount } from "../app/data/certifications";
+import { daiDaiSpotifyDaysOnChart, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH } from "../app/data/daiDai";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -68,6 +69,7 @@ const DERIVED: Record<string, number | string | null> = {
   daiDaiChartEntryCount,
   daiDaiNumberOnes,
   daiDaiCertCount,
+  daiDaiSpotifyDaysOnChart,
 };
 // Two interpolation shapes appear in the cards: a bare `${weeksDE}`, and a
 // `${ordinalWord(weeksGLB, "es")}` where the Spanish edition needs the word
@@ -197,5 +199,49 @@ describe("Dai Dai certification prose stays consistent across all copies", () =>
 
   it("lists Italy among the Golds in every English copy", () => {
     for (const list of goldLists) expect(list).toMatch(/Italy/);
+  });
+});
+
+// The Spotify run is the figure that has gone stale twice while sitting inside
+// a sentence, so neither edition may type it again. "98 days on the chart"
+// shipped on 28 Aug 2026 as an elapsed-days count taken on 20 Aug, over a run
+// that had a day missing from it — two errors no test could see, because a
+// number in prose is not a number anything can read. Both editions now render
+// daiDaiSpotifyDaysOnChart; this fails if either goes back to a literal.
+describe("the Spotify chart run stays derived", () => {
+  // Only the two cards that carry the run — "en la lista" also appears in the
+  // Hot 100 card ("del 42 al 17 en la lista del 1 de agosto"), which is a
+  // different sentence about a different chart.
+  const spotifyCards = (src: string) =>
+    src.split("\n").filter((l) => /Global Daily Top Songs|top 10 mundial|global Top 10/.test(l));
+
+  it("is interpolated in both editions, never typed", () => {
+    expect(EN).toMatch(/\$\{daiDaiSpotifyDaysOnChart\}\s+days on the chart/);
+    expect(ES).toMatch(/\$\{daiDaiSpotifyDaysOnChart\}\s+en la lista/);
+
+    const en = spotifyCards(EN);
+    const es = spotifyCards(ES);
+    expect(en.length, "no English Spotify cards matched").toBeGreaterThan(0);
+    expect(es.length, "no Spanish Spotify cards matched").toBeGreaterThan(0);
+
+    for (const l of en) {
+      expect(l, "a typed day count is back in the English run").not.toMatch(
+        /\b\d+\s+days (?:on the chart|and counting)\b/
+      );
+    }
+    for (const l of es) {
+      expect(l, "a typed day count is back in the Spanish run").not.toMatch(
+        /\b\d+\s+(?:días\s+)?(?:en la lista\b|días y sumando\b)/
+      );
+    }
+  });
+
+  // Counting to today rather than to a chart someone has actually opened is
+  // the same bug wearing a different hat: it would keep counting straight
+  // through a drop-off nobody had checked for.
+  it("counts only as far as a chart that has been read", () => {
+    const today = new Date().toISOString().slice(0, 10);
+    expect(DAI_DAI_SPOTIFY_CONFIRMED_THROUGH <= today).toBe(true);
+    expect(daiDaiSpotifyDaysOnChart).toBeGreaterThan(0);
   });
 });

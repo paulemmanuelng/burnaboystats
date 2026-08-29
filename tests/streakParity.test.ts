@@ -50,7 +50,7 @@ interface Streak {
 const STREAKS: Streak[] = [
   {
     id: "Spotify Global Daily — days at No. 1",
-    page: `v: "(\\d+) days", l: "in total at No\\. 1 on Spotify${A}s Global Daily`,
+    page: `v: "(\\d+) days", l: ["\`]in total at No\\. 1 on Spotify${A}s Global Daily`,
     feed: [
       `${ORD} day as the most-streamed song on Earth`,
       `${ORD} day atop Spotify${A}s Global Daily`,

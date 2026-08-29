@@ -30,13 +30,13 @@ const HOMES: Home[] = [
   { file: "app/faq/page.tsx", label: "FAQ answer", re: /spent (\d+) days at No\. 1/ },
   { file: "app/dai-dai/page.tsx", label: "EN page description", re: /anthem: (\d+) days as Earth/ },
   { file: "app/dai-dai/page.tsx", label: "EN hero card", re: /after (\d+) days as the most-streamed/ },
-  { file: "app/dai-dai/page.tsx", label: "EN streak card", re: /\{ v: "(\d+) days", l: "in total at No\. 1 on Spotify/ },
+  { file: "app/dai-dai/page.tsx", label: "EN streak card", re: /\{ v: "(\d+) days", l: ["`]in total at No\. 1 on Spotify/ },
   { file: "app/dai-dai/opengraph-image.tsx", label: "EN share card", re: /const DAYS_AT_NO1 = (\d+);/ },
   { file: "app/dai-dai/es/opengraph-image.tsx", label: "ES share card", re: /— (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES page description", re: /Burna Boy: (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES story body", re: /la semanal: (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES hero card", re: /tras (\d+) días como/ },
-  { file: "app/dai-dai/es/page.tsx", label: "ES streak card", re: /\{ v: "(\d+) días", l: "en total en el número 1/ },
+  { file: "app/dai-dai/es/page.tsx", label: "ES streak card", re: /\{ v: "(\d+) días", l: ["`]en total en el número 1/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES story rail note", re: /semanal · (\d+) días como/ },
 ];
 
