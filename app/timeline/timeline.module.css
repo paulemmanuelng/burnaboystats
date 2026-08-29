@@ -162,11 +162,21 @@
   gap: 12px;
   flex-wrap: wrap;
 }
+/* Sentence case in the body face: these are headlines, not display type.
+   The global h1,h2,h3 rule puts Anton on every h3, and Anton ships weight 400
+   only — so `font-weight: 700` here was asking the browser to SYNTHESISE a
+   bold, which closes the counters of an already ultra-condensed face and turns
+   a 17px sentence into a smear. The weight was the tell: everywhere else on
+   the site 600/700 goes with the body face and Anton goes with 400. Matches
+   .momentTitle, .name and .title in tours/, festivals/ and firsts/ exactly. */
 .entryTitle {
   margin: 0;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: 17px;
   font-weight: 700;
-  letter-spacing: 0.01em;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
 }
 .entryText {
   margin: 6px 0 0;
