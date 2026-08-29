@@ -185,8 +185,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 25,
-            "movement": -5
+            "position": 28,
+            "movement": -7
           }
         ]
       },
@@ -312,8 +312,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
-            "movement": -162
+            "position": 199,
+            "movement": -150
           }
         ]
       },
@@ -424,6 +424,19 @@
             "name": "Nigeria",
             "position": 49,
             "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 9,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1032,7 +1045,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 67,
-            "movement": -5
+            "movement": -4
           }
         ]
       }
@@ -1203,8 +1216,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 122,
-            "movement": -2
+            "position": 120,
+            "movement": 1
           }
         ]
       }

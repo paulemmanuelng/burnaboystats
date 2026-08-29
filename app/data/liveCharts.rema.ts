@@ -202,19 +202,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -711,8 +698,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 27,
-            "movement": -10
+            "position": 29,
+            "movement": -11
           }
         ]
       }
@@ -769,8 +756,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 106,
-            "movement": -10
+            "position": 109,
+            "movement": -12
           }
         ]
       },
@@ -847,6 +834,69 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Secondhand",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BH",
+            "name": "Bahrain",
+            "position": 43,
+            "movement": 20
+          },
+          {
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 77,
+            "movement": 35
+          },
+          {
+            "country": "LB",
+            "name": "Lebanon",
+            "position": 81,
+            "movement": 43
+          },
+          {
+            "country": "KW",
+            "name": "Kuwait",
+            "position": 105,
+            "movement": -7
+          },
+          {
+            "country": "QA",
+            "name": "Qatar",
+            "position": 153,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 163,
+            "movement": -102
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "VN",
+            "name": "Vietnam",
+            "position": 39,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "HEIS",
     "platforms": [
       {
@@ -915,25 +965,18 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 25,
-            "movement": 1
-          },
-          {
-            "country": "MX",
-            "name": "Mexico",
-            "position": 55,
-            "movement": null,
-            "status": "new"
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 58,
-            "movement": -5
+            "position": 57,
+            "movement": -4
           },
           {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 199,
+            "country": "MX",
+            "name": "Mexico",
+            "position": 85,
             "movement": null,
             "status": "new"
           }
@@ -967,56 +1010,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Secondhand",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BH",
-            "name": "Bahrain",
-            "position": 43,
-            "movement": 20
-          },
-          {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 77,
-            "movement": 35
-          },
-          {
-            "country": "LB",
-            "name": "Lebanon",
-            "position": 81,
-            "movement": 43
-          },
-          {
-            "country": "KW",
-            "name": "Kuwait",
-            "position": 105,
-            "movement": -7
-          },
-          {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 153,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 163,
-            "movement": -102
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Beamer",
@@ -1160,19 +1153,26 @@
     "platforms": [
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 96,
-            "movement": -10
+            "country": "KE",
+            "name": "Kenya",
+            "position": 1,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 179,
-            "movement": -163
+            "position": 7,
+            "movement": 39
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 99,
+            "movement": -12
           }
         ]
       },
@@ -1278,24 +1278,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d4f61945703f34bba42311d1ec703f94/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "For Her",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 90,
-            "movement": -9
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "DND",
     "platforms": [
       {
@@ -1313,24 +1295,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Favourite Girl",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 116,
-            "movement": -11
-          }
-        ]
-      }
-    ],
-    "kind": "song"
   },
   {
     "title": "Fi Kan We Kan",
@@ -1351,6 +1315,24 @@
     "kind": "song"
   },
   {
+    "title": "Favourite Girl",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 118,
+            "movement": -12
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "AZAMAN",
     "platforms": [
       {
@@ -1360,8 +1342,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 117,
-            "movement": -11
+            "position": 120,
+            "movement": -13
           }
         ]
       }

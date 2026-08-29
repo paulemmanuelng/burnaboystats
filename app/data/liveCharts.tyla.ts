@@ -231,8 +231,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 119,
-            "movement": -15
+            "position": 124,
+            "movement": -22
           },
           {
             "country": "RO",
@@ -273,10 +273,10 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 156,
-            "movement": -28
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 157,
+            "movement": 1
           },
           {
             "country": "MV",
@@ -285,11 +285,10 @@
             "movement": -87
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 174,
-            "movement": null,
-            "status": "new"
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 170,
+            "movement": -25
           },
           {
             "country": "SG",
@@ -332,8 +331,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 161,
-            "movement": -35
+            "position": 169,
+            "movement": -30
           }
         ]
       }
@@ -363,8 +362,8 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 92,
-            "movement": 0
+            "position": 98,
+            "movement": -6
           },
           {
             "country": "SE",
@@ -429,16 +428,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IN",
-            "name": "India",
-            "position": 44,
-            "movement": -21
-          },
-          {
             "country": "UG",
             "name": "Uganda",
-            "position": 45,
-            "movement": -5
+            "position": 48,
+            "movement": -7
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 77,
+            "movement": -40
           }
         ]
       }
@@ -512,6 +511,19 @@
             "name": "South Africa",
             "position": 79,
             "movement": -10
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 42,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -626,13 +638,20 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 29,
-            "movement": -9
+            "position": 31,
+            "movement": -11
           },
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 43,
+            "position": 81,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 132,
             "movement": null,
             "status": "new"
           }
@@ -678,14 +697,14 @@
           {
             "country": "PE",
             "name": "Peru",
-            "position": 34,
+            "position": 54,
             "movement": null,
             "status": "new"
           },
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 63,
+            "position": 97,
             "movement": null,
             "status": "new"
           }
@@ -825,7 +844,7 @@
           {
             "country": "MT",
             "name": "Malta",
-            "position": 21,
+            "position": 26,
             "movement": null,
             "status": "new"
           }
@@ -845,7 +864,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 57,
+            "position": 120,
             "movement": null,
             "status": "new"
           }
@@ -865,7 +884,7 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 11,
+            "position": 14,
             "movement": null,
             "status": "new"
           }
@@ -905,8 +924,8 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 42,
-            "movement": -9
+            "position": 44,
+            "movement": -11
           }
         ]
       }
@@ -953,25 +972,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Everything Goes With Blue",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GT",
-            "name": "Guatemala",
-            "position": 92,
-            "movement": -42
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/806d1d13514af239e89368a274d9a0e0/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "On My Body",
     "platforms": [
       {
@@ -981,8 +981,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 143,
-            "movement": -10
+            "position": 146,
+            "movement": -12
           }
         ]
       }

@@ -96,13 +96,13 @@
             "country": "RU",
             "name": "Russia",
             "position": 8,
-            "movement": -1
+            "movement": -2
           },
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 18,
-            "movement": -9
+            "position": 21,
+            "movement": -12
           },
           {
             "country": "BF",
@@ -166,6 +166,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "forever",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 23,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "SHEGE",
     "platforms": [
       {
@@ -195,7 +215,7 @@
           {
             "country": "SI",
             "name": "Slovenia",
-            "position": 30,
+            "position": 38,
             "movement": null,
             "status": "new"
           }

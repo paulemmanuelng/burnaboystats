@@ -282,12 +282,6 @@
             "status": "new"
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 173,
-            "movement": -11
-          },
-          {
             "country": "KZ",
             "name": "Kazakhstan",
             "position": 179,
@@ -323,8 +317,8 @@
           {
             "country": "BS",
             "name": "The Bahamas",
-            "position": 14,
-            "movement": -12
+            "position": 19,
+            "movement": -17
           }
         ]
       },
@@ -669,7 +663,7 @@
           {
             "country": "BS",
             "name": "The Bahamas",
-            "position": 17,
+            "position": 22,
             "movement": null,
             "status": "new"
           }
@@ -1049,7 +1043,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
+            "position": 6,
             "movement": null,
             "status": "new"
           }
@@ -1161,8 +1155,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 32,
-            "movement": -30
+            "position": 3,
+            "movement": 2
           }
         ]
       }
@@ -1339,16 +1333,16 @@
             "movement": 0
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 79,
-            "movement": 6
-          },
-          {
             "country": "KE",
             "name": "Kenya",
-            "position": 81,
-            "movement": 0
+            "position": 79,
+            "movement": 2
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 82,
+            "movement": 4
           }
         ]
       }
@@ -1432,7 +1426,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
+            "position": 7,
             "movement": null,
             "status": "new"
           }
@@ -1461,16 +1455,16 @@
             "movement": 4
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 35,
+            "movement": 66
+          },
+          {
             "country": "BJ",
             "name": "Benin",
             "position": 38,
             "movement": -8
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 49,
-            "movement": 57
           },
           {
             "country": "GH",
@@ -1588,8 +1582,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 6,
-            "movement": -5
+            "position": 8,
+            "movement": -7
           },
           {
             "country": "SL",
@@ -1631,8 +1625,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 54,
-            "movement": -47
+            "position": 72,
+            "movement": -57
           }
         ]
       },
@@ -1824,8 +1818,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 7,
-            "movement": -5
+            "position": 10,
+            "movement": -7
           },
           {
             "country": "DM",
@@ -2030,8 +2024,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 95,
-            "movement": 1
+            "position": 94,
+            "movement": 3
           }
         ]
       }
@@ -2208,8 +2202,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 139,
-            "movement": 8
+            "position": 141,
+            "movement": 7
           }
         ]
       }
@@ -2227,7 +2221,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
+            "position": 13,
             "movement": null,
             "status": "new"
           }
@@ -2296,26 +2290,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Joy",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 66,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Bella",
     "platforms": [
       {
@@ -2325,14 +2299,34 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 86,
-            "movement": -1
+            "position": 88,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/72cef83ff7a8c740f94ccf2ea5e0fdb7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Joy",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 83,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Gidi Girl",
@@ -2344,7 +2338,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 75,
+            "position": 92,
             "movement": null,
             "status": "new"
           }
@@ -2353,24 +2347,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/61b3e4dac6e1209ed7df39f69366b57f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Wine to the Top",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 97,
-            "movement": -34
-          }
-        ]
-      }
-    ],
-    "kind": "song"
   },
   {
     "title": "The Matter",
@@ -2421,7 +2397,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 88,
+            "position": 105,
             "movement": null,
             "status": "new"
           }

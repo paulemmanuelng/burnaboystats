@@ -439,7 +439,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 52,
-            "movement": -1
+            "movement": -3
           },
           {
             "country": "MZ",
@@ -462,8 +462,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 92,
-            "movement": 0
+            "position": 91,
+            "movement": 1
           }
         ]
       },
@@ -487,8 +487,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 6,
-            "movement": -5
+            "position": 9,
+            "movement": -7
           },
           {
             "country": "BF",
@@ -499,44 +499,45 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 31,
+            "position": 33,
             "movement": -7
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 35,
-            "movement": -10
+            "position": 38,
+            "movement": -12
           },
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 48,
-            "movement": -4
+            "position": 49,
+            "movement": -5
           },
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 68,
-            "movement": -34
+            "country": "PL",
+            "name": "Poland",
+            "position": 74,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NA",
             "name": "Namibia",
             "position": 77,
-            "movement": -22
+            "movement": -18
           },
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 79,
-            "movement": -12
+            "position": 80,
+            "movement": -9
           },
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 157,
-            "movement": -150
+            "country": "KE",
+            "name": "Kenya",
+            "position": 94,
+            "movement": -56
           }
         ]
       },
@@ -917,7 +918,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 45,
-            "movement": -11
+            "movement": -9
           },
           {
             "country": "CY",
@@ -958,14 +959,14 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 68,
-            "movement": -11
+            "position": 67,
+            "movement": -9
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 69,
-            "movement": -18
+            "position": 68,
+            "movement": -13
           },
           {
             "country": "QA",
@@ -999,16 +1000,16 @@
             "movement": -14
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 86,
-            "movement": -15
-          },
-          {
             "country": "TD",
             "name": "Chad",
             "position": 91,
             "movement": -36
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 96,
+            "movement": -21
           },
           {
             "country": "TC",
@@ -1049,8 +1050,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": -1
+            "position": 4,
+            "movement": -3
           },
           {
             "country": "BB",
@@ -1061,7 +1062,7 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 18,
+            "position": 80,
             "movement": null,
             "status": "new"
           }
@@ -1245,7 +1246,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 29,
+            "position": 55,
             "movement": null,
             "status": "new"
           }
@@ -1291,8 +1292,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 74,
-            "movement": -1
+            "position": 76,
+            "movement": -3
           },
           {
             "country": "MR",
@@ -1329,14 +1330,14 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 17,
-            "movement": 2
+            "position": 18,
+            "movement": 1
           },
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 19,
-            "movement": 1
+            "position": 22,
+            "movement": -2
           },
           {
             "country": "BF",
@@ -1353,14 +1354,14 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 84,
+            "position": 85,
             "movement": -9
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 87,
-            "movement": -2
+            "position": 91,
+            "movement": -5
           }
         ]
       },
@@ -1703,8 +1704,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 99,
-            "movement": -3
+            "position": 100,
+            "movement": -6
           },
           {
             "country": "CI",
@@ -1963,7 +1964,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 46,
+            "position": 64,
             "movement": null,
             "status": "new"
           }
@@ -2063,8 +2064,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 27,
-            "movement": -10
+            "position": 29,
+            "movement": -11
           }
         ]
       },
@@ -2503,6 +2504,62 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Wo, man",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 8,
+            "movement": 0
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 9,
+            "movement": 0
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 40,
+            "movement": 21
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 45,
+            "movement": 5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 24,
+            "movement": -11
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 114,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Gimme Dat",
     "platforms": [
       {
@@ -2564,55 +2621,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Wo, man",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 8,
-            "movement": 1
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 9,
-            "movement": 0
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 40,
-            "movement": 21
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 45,
-            "movement": 5
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 13,
-            "movement": 8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Midnight in New York",
@@ -2733,18 +2741,6 @@
             "name": "Liberia",
             "position": 154,
             "movement": -45
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 194,
-            "movement": -158
           }
         ]
       },
@@ -3069,25 +3065,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Love Don't Cost A Dime",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 92,
-            "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1421f8aa54dc60efbd0ab4034f7ba7f8/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Escaladizzy II",
     "platforms": [
       {
@@ -3106,6 +3083,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d47d959a99da468afdd69a8f855be482/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Don't Cost A Dime",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 95,
+            "movement": -12
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1421f8aa54dc60efbd0ab4034f7ba7f8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "People",
