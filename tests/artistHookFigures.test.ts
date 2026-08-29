@@ -101,3 +101,61 @@ describe("hooks agree with the data when the figure is spelled out", () => {
     expect(wrong).toEqual([]);
   });
 });
+
+// Numbers were guarded; SUPERLATIVES were not, and that is the half that broke.
+// Olamide's hook claimed "the deepest home catalogue on this board, and more
+// than anyone else has put on the chart" while Seyi Vibez sat above him with
+// 114 Nigerian records to Olamide's 99. Every figure in that sentence was
+// right — the ranking around them was the lie, and no digit-matching check can
+// see a ranking. Paul spotted it by eye, which is the failure mode a test
+// exists to prevent.
+const ngRecords = (a: (typeof afrobeatsArtists)[number]) =>
+  (a.charts ?? []).filter((c) => c.entries.some((e) => e.c === "NG")).length;
+const ngNo1s = (a: (typeof afrobeatsArtists)[number]) =>
+  (a.charts ?? []).filter((c) => c.entries.some((e) => e.c === "NG" && e.peak === 1)).length;
+const leaderBy = (f: (a: (typeof afrobeatsArtists)[number]) => number) =>
+  [...afrobeatsArtists].sort((x, y) => f(y) - f(x))[0];
+
+describe("hooks do not claim a rank the data denies", () => {
+  it("only the artist with the most Nigerian records claims the deepest home catalogue", () => {
+    const leader = leaderBy(ngRecords);
+    const claimants = afrobeatsArtists.filter((a) => /deepest home (?:catalogue|chart)/i.test(a.hook ?? ""));
+    expect(
+      claimants.map((a) => `${a.slug} (${ngRecords(a)} NG records)`),
+      `the deepest home catalogue belongs to ${leader.slug} with ${ngRecords(leader)} Nigerian records`,
+    ).toEqual(claimants.length ? [`${leader.slug} (${ngRecords(leader)} NG records)`] : []);
+  });
+
+  it("only the artist with the most Nigerian No. 1s claims the most chart-toppers at home", () => {
+    const leader = leaderBy(ngNo1s);
+    const claimants = afrobeatsArtists.filter((a) =>
+      /more chart-toppers at home than anyone/i.test(a.hook ?? ""),
+    );
+    for (const c of claimants) {
+      expect(ngNo1s(c), `${c.slug} claims the most Nigerian No. 1s but ${leader.slug} has ${ngNo1s(leader)}`).toBe(
+        ngNo1s(leader),
+      );
+    }
+  });
+
+  // "second only to <Name>" names the artist above. If the board reorders, the
+  // name has to move with it — that is exactly what went stale on Olamide.
+  it("every 'second only to X' names an artist who really is above them", () => {
+    const wrong: string[] = [];
+    for (const a of afrobeatsArtists) {
+      const m = /second only to ([^,—.]+?)\s+(?:at home|on this board)/i.exec(a.hook ?? "");
+      if (!m) continue;
+      const named = m[1].trim();
+      const metric = /No\. ?1s/i.test(a.hook ?? "") ? ngNo1s : ngRecords;
+      const above = afrobeatsArtists.filter((x) => metric(x) > metric(a));
+      if (above.length !== 1 || above[0].name.toLowerCase() !== named.toLowerCase()) {
+        wrong.push(
+          `${a.slug} says "second only to ${named}", but the artists above them are: ${
+            above.map((x) => `${x.name} (${metric(x)})`).join(", ") || "nobody"
+          }`,
+        );
+      }
+    }
+    expect(wrong).toEqual([]);
+  });
+});
