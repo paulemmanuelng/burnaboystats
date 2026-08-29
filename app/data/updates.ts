@@ -35,6 +35,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-29",
+    category: "Charts",
+    text: "“Dai Dai” tops the official singles chart in Poland for the first time — ZPAV's own week-34 list (14–20 August) has it at No. 1 after twelve weeks, up from No. 9, having stalled at No. 4 in late July. Poland is the 28th country to put the song at No. 1, and it takes his career tally of chart-topping placements to 49.",
+    href: "/records/charts",
+  },
+  {
     date: "2026-08-28",
     category: "Streaming",
     text: "Seventy days inside the global Top 10, from a start nobody would have predicted: “Dai Dai” entered Spotify's Global Daily Top Songs chart at No. 114 on 15 May, the day after release, and has not left it since — 98 days on the chart, 37 of them at No. 1, and still there at No. 8 with 3,228,190 streams. No African song has spent longer in the global Top 10 since the chart launched.",
