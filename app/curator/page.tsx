@@ -33,6 +33,9 @@ const X_PERSONAL = "https://x.com/paulemmanuelng";
 // sameAs wants profiles that corroborate the person, not just reach him. The
 // contact route stays X — see "Reach me" below.
 const LINKEDIN = "https://www.linkedin.com/in/paulemmanuelng";
+// Same handle as X, and already linked from the site footer — it belongs in
+// sameAs on the same grounds as the other two: it corroborates the person.
+const TIKTOK = "https://www.tiktok.com/@paulemmanuelng";
 // The site is built in the open and never said so. Every figure here has a
 // commit behind it saying what changed and why, which is a stronger claim to
 // rigour than any sentence on this page — and it was invisible.
@@ -86,7 +89,7 @@ export default function CuratorPage() {
       name: "Ukpaka Emmanuel",
       alternateName: "Paul Emmanuel",
       url: `${CANONICAL_ORIGIN}/curator`,
-      sameAs: [X_PERSONAL, LINKEDIN],
+      sameAs: [X_PERSONAL, LINKEDIN, TIKTOK],
       nationality: { "@type": "Country", name: "Nigeria" },
       description:
         "Nigerian music follower based in the UK, and the researcher behind Burna Boy Stats — a verified record of Burna Boy's certifications, chart runs, awards and streaming milestones, built and maintained single-handedly since June 2026.",
@@ -134,7 +137,11 @@ export default function CuratorPage() {
           <a href={X_PERSONAL} rel="noopener" target="_blank" className={styles.link}>
             @paulemmanuelng
           </a>{" "}
-          on X — the fastest way to reach me. Corrections with a primary source are always
+          on X — the fastest way to reach me — and{" "}
+          <a href={TIKTOK} rel="noopener" target="_blank" className={styles.link}>
+            the same handle
+          </a>{" "}
+          on TikTok. Corrections with a primary source are always
           welcome — the{" "}
           <Link href="/contact" className={styles.link}>contact page</Link> explains what to
           send. Writers and fan pages: the{" "}
