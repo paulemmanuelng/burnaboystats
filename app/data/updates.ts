@@ -133,7 +133,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-21",
     category: "Streaming",
-    text: "Forty days atop iTunes worldwide: “Dai Dai” reached a 40th on the worldwide iTunes songs chart on 21 August, with a 15th day at the top of the European iTunes chart — alongside the 73 territories where it has led the local iTunes ranking outright.",
+    text: "No. 1 on iTunes in 73 countries, and forty days atop the worldwide list: “Dai Dai” has led the iTunes songs chart outright in 73 territories — from Anguilla and Argentina to the UK and the USA, Belarus the newest — and by 21 August had reached a 40th on the worldwide iTunes songs chart, with a 15th day at the top of the European one.",
     href: "/dai-dai",
   },
   {
