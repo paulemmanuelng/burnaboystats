@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-08-29";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Spotify","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -196,6 +196,19 @@
             "status": "new"
           }
         ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 74,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -300,7 +313,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 120,
-            "movement": 23
+            "movement": 7
           }
         ]
       }
@@ -452,7 +465,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 114,
-            "movement": 22
+            "movement": 7
           }
         ]
       }
@@ -471,7 +484,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 155,
-            "movement": 30
+            "movement": 13
           }
         ]
       }

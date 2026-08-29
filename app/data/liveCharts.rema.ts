@@ -130,50 +130,44 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": 0
+            "position": 17,
+            "movement": -5
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 40,
-            "movement": 2
+            "position": 39,
+            "movement": 1
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 65,
-            "movement": -5
+            "position": 66,
+            "movement": -1
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 83,
-            "movement": -5
+            "position": 86,
+            "movement": -3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 92,
-            "movement": -7
+            "position": 93,
+            "movement": -1
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 95,
-            "movement": -3
+            "position": 99,
+            "movement": -4
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 113,
-            "movement": 8
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 171,
-            "movement": -21
+            "position": 112,
+            "movement": 1
           }
         ]
       },
@@ -208,14 +202,27 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
-            "movement": -5
+            "position": 98,
+            "movement": -76
           }
         ]
       }
@@ -394,20 +401,14 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 72,
+            "position": 79,
             "movement": -7
           },
           {
             "country": "DZ",
             "name": "Algeria",
-            "position": 171,
-            "movement": -13
-          },
-          {
-            "country": "TN",
-            "name": "Tunisia",
-            "position": 187,
-            "movement": -20
+            "position": 198,
+            "movement": -27
           }
         ]
       },
@@ -710,8 +711,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 24,
-            "movement": -11
+            "position": 27,
+            "movement": -10
           }
         ]
       }
@@ -768,8 +769,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 104,
-            "movement": -14
+            "position": 106,
+            "movement": -10
           }
         ]
       },
@@ -780,8 +781,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 66,
-            "movement": 7
+            "position": 67,
+            "movement": -1
           }
         ]
       }
@@ -902,6 +903,70 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Calm Down",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 25,
+            "movement": 1
+          },
+          {
+            "country": "MX",
+            "name": "Mexico",
+            "position": 55,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 58,
+            "movement": -5
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 199,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 20,
+            "movement": 92
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 39,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Secondhand",
@@ -1091,43 +1156,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 23,
-            "movement": 2
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 49,
-            "movement": 4
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 20,
-            "movement": 92
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Baby",
     "platforms": [
       {
@@ -1137,14 +1165,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 94,
-            "movement": -14
+            "position": 96,
+            "movement": -10
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": -110
+            "position": 179,
+            "movement": -163
           }
         ]
       },
@@ -1191,23 +1219,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1b515afac4090505a9f4531e553f82a8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BENIN BOYS",
+    "title": "Dumebi",
     "platforms": [
       {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 81,
-            "movement": -41
+            "country": "VE",
+            "name": "Venezuela",
+            "position": 60,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Trouble Maker",
@@ -1258,8 +1287,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 81,
-            "movement": 0
+            "position": 90,
+            "movement": -9
           }
         ]
       }
@@ -1295,32 +1324,13 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 113,
-            "movement": -14
+            "position": 116,
+            "movement": -11
           }
         ]
       }
     ],
     "kind": "song"
-  },
-  {
-    "title": "AZAMAN",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 114,
-            "movement": -14
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fi Kan We Kan",
@@ -1339,6 +1349,25 @@
       }
     ],
     "kind": "song"
+  },
+  {
+    "title": "AZAMAN",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 117,
+            "movement": -11
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Commando - EP",
