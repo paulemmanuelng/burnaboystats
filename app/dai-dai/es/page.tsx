@@ -86,8 +86,7 @@ const liveOnesLabel = `ahora mismo en las listas diarias de ${platformOnes
 
 export const metadata = pageMetadata({
   title: "Dai Dai — el himno del Mundial 2026 de Shakira y Burna Boy",
-  description:
-    "“Dai Dai”, de Shakira y Burna Boy: 37 días como la canción más escuchada del mundo, número 1 en 27 países y el show de medio tiempo de la Final del Mundial.",
+  description: `“Dai Dai”, de Shakira y Burna Boy: 37 días como la canción más escuchada del mundo, número 1 en ${daiDaiNumberOnes} países y el show de medio tiempo de la Final del Mundial.`,
   path: ES_PATH,
   shareTitle: "La historia de Dai Dai — Shakira y Burna Boy",
   shareDescription:
@@ -185,7 +184,7 @@ export default function DaiDaiPageES() {
       label: "Las rachas en streaming",
       intro: "Las rachas diarias y semanales, todas todavía en marcha.",
       items: [
-        { v: "37 días", l: "en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y recuperado en agosto como la racha más larga de cualquier lanzamiento de 2026—; la canción con más días en el número 1 de todo 2026, ahora cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31); 70 días dentro del top 10 mundial y 98 en la lista" },
+        { v: "37 días", l: "en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y recuperado en agosto como la racha más larga de cualquier lanzamiento de 2026—; la canción con más días en el número 1 de todo 2026, ahora cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31); 71 días dentro del top 10 mundial y 98 en la lista" },
         { v: "6 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify, en su 13.ª semana en ella — con un pico de 40,28 millones de reproducciones en una sola semana" },
         { v: "N.º 114", l: "puesto por el que entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, un día después de su lanzamiento — desde ahí llegó al número 1 y no ha salido de la lista, 98 días y sumando (Spotify Charts)" },
         { v: "58 días", l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music" },

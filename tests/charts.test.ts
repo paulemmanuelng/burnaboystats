@@ -109,7 +109,7 @@ describe("chart data integrity", () => {
     // Monitor Latino belt, TR/KZ/MD/UA/RU), Ecuador's IFPI LatAm chart turned
     // its Billboard #4 into a #1, and UY/MY/HR peaks improved (2/5/13).
     expect(chartEntryCount).toBe(280); // 9 Aug 2026: +9 Nigerian (TurnTable) entries from the NG sweep, Giza included
-    expect(numberOnes).toBe(48); // + I Told Them... and No Sign of Weakness, both No. 1 on TurnTable albums
+    expect(numberOnes).toBe(49); // 29 Aug 2026: "Dai Dai" reached No. 1 in Poland (ZPAV/OLiS week 34), his 49th chart-topping placement
     expect(chartCountryCount).toBe(71); // NG was already counted
   });
 });
@@ -135,7 +135,7 @@ describe("Dai Dai", () => {
     // 4 Aug 2026 sweep: +11 territories; Ecuador (IFPI LatAm) and Estonia
     // (TopHit) are the two new country No. 1s.
     expect(daiDaiChartEntryCount).toBe(70);
-    expect(daiDaiNumberOnes).toBe(27);
+    expect(daiDaiNumberOnes).toBe(28); // + Poland, 29 Aug 2026
   });
 
   it("tops both Billboard global charts", () => {
