@@ -49,13 +49,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 5,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "GH",
             "name": "Ghana",
             "position": 6,
@@ -68,10 +61,16 @@
             "movement": -1
           },
           {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 15,
+            "movement": -10
+          },
+          {
             "country": "ML",
             "name": "Mali",
-            "position": 36,
-            "movement": 26
+            "position": 62,
+            "movement": -26
           },
           {
             "country": "NG",
@@ -85,12 +84,6 @@
             "position": 124,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 134,
-            "movement": -38
           },
           {
             "country": "OM",
@@ -108,7 +101,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 170,
+            "position": 172,
             "movement": -77
           }
         ]
@@ -125,6 +118,12 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 12,
+            "movement": 43
+          },
+          {
             "country": "GH",
             "name": "Ghana",
             "position": 21,
@@ -134,13 +133,6 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 54,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 55,
             "movement": null,
             "status": "new"
           },
@@ -155,6 +147,13 @@
             "name": "Nigeria",
             "position": 151,
             "movement": 13
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 184,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -165,65 +164,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 123,
-            "movement": -5
+            "position": 118,
+            "movement": 0
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Sacrifice",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 17,
-            "movement": 4
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 66,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 102,
-            "movement": -53
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 148,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 15,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Amazing Grace",
@@ -259,8 +207,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 78,
-            "movement": -13
+            "position": 86,
+            "movement": -20
           }
         ]
       },
@@ -278,6 +226,50 @@
       }
     ],
     "kind": "song"
+  },
+  {
+    "title": "Sacrifice",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 17,
+            "movement": 4
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 102,
+            "movement": -53
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 148,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 15,
+            "movement": -1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "So it Goes",
@@ -315,32 +307,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Soma Obi",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 36,
-            "movement": 5
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 94,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SWAGGA",
@@ -381,17 +347,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 50,
+            "movement": 73
+          },
+          {
             "country": "GH",
             "name": "Ghana",
             "position": 117,
             "movement": 4
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 123,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -479,6 +444,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Soma Obi",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 36,
+            "movement": 5
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "PopStar",
     "platforms": [
       {
@@ -496,6 +480,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b1f8e6b73886f3f5e0cad7ced249281d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Oh Paradise",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 46,
+            "movement": 51
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rebel Music",
@@ -610,26 +613,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Oh Paradise",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 97,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Toxic Love City",
@@ -755,8 +738,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 18,
-            "movement": 0
+            "position": 19,
+            "movement": -1
           }
         ]
       }

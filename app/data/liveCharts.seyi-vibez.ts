@@ -67,12 +67,6 @@
             "movement": 10
           },
           {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 24,
-            "movement": 1
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 34,
@@ -87,8 +81,14 @@
           {
             "country": "NE",
             "name": "Niger",
+            "position": 77,
+            "movement": 21
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
             "position": 98,
-            "movement": 35
+            "movement": -74
           },
           {
             "country": "GH",
@@ -135,8 +135,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
-            "movement": -84
+            "position": 122,
+            "movement": -109
           }
         ]
       },
@@ -189,6 +189,12 @@
             "movement": 2
           },
           {
+            "country": "NE",
+            "name": "Niger",
+            "position": 35,
+            "movement": 154
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 70,
@@ -201,11 +207,17 @@
             "position": 178,
             "movement": null,
             "status": "new"
-          },
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 1,
+        "entries": [
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 189,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 1,
             "movement": null,
             "status": "new"
           }
@@ -249,16 +261,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 61,
-            "movement": -11
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
             "position": 66,
             "movement": 3
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 85,
+            "movement": -24
           },
           {
             "country": "BJ",
@@ -328,16 +340,16 @@
             "movement": -8
           },
           {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 77,
+            "movement": 15
+          },
+          {
             "country": "GH",
             "name": "Ghana",
             "position": 87,
             "movement": 42
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 92,
-            "movement": -54
           },
           {
             "country": "LR",
@@ -361,8 +373,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 34,
-            "movement": 1
+            "position": 48,
+            "movement": -14
           },
           {
             "country": "NG",
@@ -405,6 +417,51 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Thy Kingdom Come",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 26,
+            "movement": -1
+          },
+          {
+            "country": "BN",
+            "name": "Brunei Darussalam",
+            "position": 38,
+            "movement": 0
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 73,
+            "movement": -16
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 194,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 200,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SWAGUU",
@@ -540,83 +597,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Big Big Things",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 109,
-            "movement": -29
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 117,
-            "movement": 3
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 138,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 181,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Thy Kingdom Come",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 26,
-            "movement": -1
-          },
-          {
-            "country": "BN",
-            "name": "Brunei Darussalam",
-            "position": 38,
-            "movement": 0
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 73,
-            "movement": -16
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 194,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Karma",
     "platforms": [
       {
@@ -723,7 +703,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/aa8d9ee07662959c9f52b4e9282a0f54/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Hushpuppi",
+    "title": "Big Big Things",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 109,
+            "movement": -29
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 117,
+            "movement": 3
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 181,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "GWAGWALADA",
     "platforms": [
       {
         "platform": "Spotify",
@@ -732,9 +744,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 143,
-            "movement": null,
-            "status": "new"
+            "position": 141,
+            "movement": -35
           }
         ]
       },
@@ -745,7 +756,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
+            "position": 43,
             "movement": null,
             "status": "new"
           }
@@ -753,7 +764,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Pressure",
@@ -779,6 +790,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee26d796ad7fe0cc761309d449f775ae/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Hushpuppi",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 143,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 191,
+            "movement": -136
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "HOW ARE YOU",
@@ -1075,25 +1118,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "GWAGWALADA",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 141,
-            "movement": -35
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sin City",

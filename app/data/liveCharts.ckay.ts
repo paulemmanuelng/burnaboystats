@@ -51,8 +51,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 7,
-            "movement": -1
+            "position": 6,
+            "movement": 3
           },
           {
             "country": "SZ",
@@ -100,8 +100,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 190,
-            "movement": -41
+            "position": 152,
+            "movement": 38
           }
         ]
       },
@@ -136,13 +136,6 @@
             "status": "new"
           },
           {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 128,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
             "position": 182,
@@ -153,26 +146,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "forever",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 24,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SHEGE",
@@ -195,6 +168,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "forever",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 29,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "nwayi",
     "platforms": [
       {
@@ -204,9 +197,8 @@
           {
             "country": "SI",
             "name": "Slovenia",
-            "position": 45,
-            "movement": null,
-            "status": "new"
+            "position": 49,
+            "movement": -34
           }
         ]
       }
