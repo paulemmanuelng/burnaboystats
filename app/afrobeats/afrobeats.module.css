@@ -95,11 +95,12 @@
    artist.module.css already carry. gap:1px over a --line background means the
    container's own colour shows through any cell the last row does not fill, so
    a partial row renders as a grey slab rather than as empty space.
-   The board currently has 15 children — the Burna anchor tile, 12 swept artists
-   and two rule tiles — and 15 % 4 = 3, so a wide desktop was painting a
-   ~330x370px slab. Stretching the last child to fill the remainder is the house
-   fix. Written for every live column count, so the board can gain or lose an
-   artist without the slab coming back. */
+   Stretching the last child to fill the remainder is the house fix, written for
+   every live column count so the board can gain or lose an artist without the
+   slab coming back. Deliberately states no child count: an earlier version of
+   this comment did, the board grew past it, and the stale arithmetic is part of
+   why nobody noticed the stretched tile had become 840px tall. Count it in the
+   DOM if you need it. */
 .grid > :last-child:nth-child(4n + 1) { grid-column: span 4; }
 .grid > :last-child:nth-child(4n + 2) { grid-column: span 3; }
 .grid > :last-child:nth-child(4n + 3) { grid-column: span 2; }
@@ -264,11 +265,19 @@
   color: var(--muted);
 }
 
-/* The methodology tile — the grid's eighth cell. No photo, so it reads as a
-   note pinned to the board rather than an eighth artist. */
+/* The methodology tiles — the grid's leftover cells, however many that is. No
+   photo, so they read as notes pinned to the board rather than as artists. */
 .tileRule {
   background: var(--bg-soft);
   border: none;
+  /* No photo, so no portrait crop. .tile's aspect-ratio: 1/1.12 exists to frame
+     a press shot, and the orphan-mitigation rule above can stretch the last
+     child to span 3 columns — at which point that ratio made a ~750px-wide
+     text note ~840px tall, and its row-mate stretched to match. That was the
+     void. These two size to their content, with a floor so a short note still
+     reads as a tile rather than a strip. */
+  aspect-ratio: auto;
+  min-height: 240px;
 }
 .tileRule .tileBody { justify-content: flex-start; }
 .ruleMark {

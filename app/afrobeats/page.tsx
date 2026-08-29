@@ -236,8 +236,9 @@ export default function AfrobeatsPage() {
               </span>
             </Link>
           ))}
-          {/* Seven artists in a four-column grid leaves one cell empty. The
-              rule they are all counted by is the honest thing to put in it.
+          {/* The board rarely divides evenly into the column count, so the
+              grid ends with cells to spare. The rule they are all counted by is
+              the honest thing to put in one.
               This tile and the provenance one beside it used to point at the
               same bare /methodology, so two tiles with different labels led to
               the same place. They ask different questions, and the methodology
@@ -257,10 +258,10 @@ export default function AfrobeatsPage() {
             </span>
           </Link>
 
-          {/* The twelfth cell. Ten artists and the rule leave one hole in a
-              four-column grid, and the design fills it with where the figures
-              came from — which is the board's whole claim. The date range is
-              the two sweep dates, not a typed string. */}
+          {/* The second leftover cell, filled with where the figures came
+              from — which is the board's whole claim. The date range is the two
+              sweep dates, not a typed string. Neither comment names a cell
+              number any more: the board has outgrown three such counts already. */}
           <Link href="/methodology#sources" className={`${styles.tile} ${styles.tileRule}`}>
             <span className={styles.tileBody}>
               <span className={styles.ruleKicker}>Provenance</span>
