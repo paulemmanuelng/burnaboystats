@@ -571,15 +571,17 @@ describe("cover art", () => {
   // different titles — so any cover used by more than one distinct record was
   // dropped rather than shipped. A missing cover beats a wrong one.
   const VERIFIED_SHARES = [
-    "asake+ayra-starr", "asake+davido", "asake+fireboy-dml", "asake+fireboy-dml",
-    "asake+olamide", "asake+olamide", "asake+rema", "asake+seyi-vibez+wizkid",
-    "asake+tems", "asake+victony", "asake+wizkid", "asake+wizkid", "asake+wizkid",
-    "ayra-starr+ckay", "ayra-starr+omah-lay", "ayra-starr+rema", "ayra-starr+rema",
-    "ayra-starr+seyi-vibez", "ayra-starr+wizkid", "black-sherif+fireboy-dml",
-    "bnxn+rema", "bnxn+seyi-vibez", "bnxn+wizkid", "ckay+davido", "ckay+davido",
-    "davido+omah-lay+victony", "fireboy-dml+rema", "fireboy-dml+rema",
-    "olamide+seyi-vibez", "olamide+wizkid", "omah-lay+seyi-vibez", "omah-lay+tems",
-    "omah-lay+wizkid", "rema+victony", "seyi-vibez+victony", "tems+wizkid",
+    "asake+ayra-starr", "asake+davido", "asake+fireboy-dml", "asake+fireboy-dml+olamide",
+    "asake+olamide", "asake+olamide", "asake+olamide", "asake+olamide+seyi-vibez+wizkid",
+    "asake+rema", "asake+tems", "asake+victony", "asake+wizkid", "asake+wizkid",
+    "asake+wizkid", "ayra-starr+ckay", "ayra-starr+omah-lay", "ayra-starr+rema",
+    "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
+    "black-sherif+fireboy-dml", "bnxn+fireboy-dml+olamide+rema", "bnxn+rema",
+    "bnxn+seyi-vibez", "bnxn+seyi-vibez+victony", "bnxn+wizkid", "bnxn+wizkid",
+    "ckay+davido", "ckay+davido", "davido+omah-lay+victony", "fireboy-dml+rema",
+    "olamide+omah-lay", "olamide+seyi-vibez", "olamide+seyi-vibez", "olamide+wizkid",
+    "omah-lay+seyi-vibez", "omah-lay+tems", "omah-lay+wizkid", "rema+victony",
+    "tems+wizkid",
   ];
 
   const sharedPairs = () => {
@@ -608,16 +610,17 @@ describe("cover art", () => {
   // could not see it, so this walks both lists.
   const VERIFIED_SHARES_WITH_CHARTS = [
     "asake+ayra-starr", "asake+bnxn", "asake+davido", "asake+fireboy-dml",
-    "asake+fireboy-dml", "asake+olamide", "asake+olamide", "asake+rema",
-    "asake+seyi-vibez+wizkid", "asake+tems", "asake+victony", "asake+wizkid",
-    "asake+wizkid", "asake+wizkid", "ayra-starr+ckay", "ayra-starr+omah-lay",
-    "ayra-starr+rema", "ayra-starr+rema", "ayra-starr+seyi-vibez", "ayra-starr+wizkid",
-    "black-sherif+fireboy-dml", "black-sherif+fireboy-dml", "bnxn+rema", "bnxn+rema",
-    "bnxn+seyi-vibez", "bnxn+wizkid", "ckay+davido", "ckay+davido",
-    "davido+omah-lay+victony", "fireboy-dml+rema", "fireboy-dml+rema",
-    "olamide+seyi-vibez", "olamide+victony", "olamide+wizkid", "omah-lay+seyi-vibez",
-    "omah-lay+tems", "omah-lay+tyla", "omah-lay+wizkid", "rema+victony",
-    "seyi-vibez+victony", "tems+wizkid", "tyla+victony",
+    "asake+fireboy-dml+olamide", "asake+olamide", "asake+olamide", "asake+olamide",
+    "asake+olamide+seyi-vibez+wizkid", "asake+rema", "asake+tems", "asake+victony",
+    "asake+wizkid", "asake+wizkid", "asake+wizkid", "ayra-starr+ckay",
+    "ayra-starr+omah-lay", "ayra-starr+rema", "ayra-starr+rema", "ayra-starr+seyi-vibez",
+    "ayra-starr+wizkid", "black-sherif+davido", "black-sherif+fireboy-dml",
+    "black-sherif+fireboy-dml", "bnxn+fireboy-dml+olamide+rema", "bnxn+rema",
+    "bnxn+rema", "bnxn+seyi-vibez", "bnxn+seyi-vibez+victony", "bnxn+wizkid",
+    "bnxn+wizkid", "ckay+davido", "ckay+davido", "davido+omah-lay+victony",
+    "fireboy-dml+rema", "olamide+omah-lay", "olamide+seyi-vibez", "olamide+seyi-vibez",
+    "olamide+victony", "olamide+wizkid", "omah-lay+seyi-vibez", "omah-lay+tems",
+    "omah-lay+tyla", "omah-lay+wizkid", "rema+victony", "tems+wizkid", "tyla+victony",
   ];
 
   it("shares a cover across artists only where the recording is shared, charts included", () => {
