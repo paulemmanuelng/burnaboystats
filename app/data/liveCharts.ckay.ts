@@ -42,50 +42,6 @@
   
   export const liveCharts: LiveRelease[] = [
   {
-    "title": "BANGER BOY",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 98,
-            "movement": 40
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 128,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 158,
-            "movement": -122
-          },
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 162,
-            "movement": -117
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 173,
-            "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Love Nwantiti",
     "platforms": [
       {
@@ -95,8 +51,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 8,
-            "movement": -2
+            "position": 7,
+            "movement": -1
           },
           {
             "country": "SZ",
@@ -107,8 +63,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 45,
-            "movement": -8
+            "position": 47,
+            "movement": -10
           }
         ]
       },
@@ -119,8 +75,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 126,
-            "movement": -11
+            "position": 133,
+            "movement": -7
           }
         ]
       }
@@ -138,8 +94,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 124,
-            "movement": -46
+            "position": 125,
+            "movement": -1
           },
           {
             "country": "GM",
@@ -156,14 +112,47 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": 7
+            "position": 117,
+            "movement": -6
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BANGER BOY",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 110,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 128,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 182,
+            "movement": -9
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "forever",
@@ -175,7 +164,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 23,
+            "position": 24,
             "movement": null,
             "status": "new"
           }
@@ -215,7 +204,7 @@
           {
             "country": "SI",
             "name": "Slovenia",
-            "position": 38,
+            "position": 45,
             "movement": null,
             "status": "new"
           }
@@ -224,25 +213,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b606366687e3c46d407569aa03ae26bf/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Felony",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 200,
-            "movement": -14
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "La La",
@@ -254,8 +224,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 181,
-            "movement": 1
+            "position": 178,
+            "movement": 3
           }
         ]
       }
@@ -273,8 +243,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 55,
-            "movement": 1
+            "position": 58,
+            "movement": -2
           }
         ]
       }

@@ -51,14 +51,14 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 19,
-            "movement": 1
+            "position": 21,
+            "movement": -2
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 27,
-            "movement": 0
+            "position": 29,
+            "movement": -2
           },
           {
             "country": "NE",
@@ -69,20 +69,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 32,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 36,
+            "position": 33,
             "movement": -1
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 39,
-            "movement": -5
           },
           {
             "country": "UG",
@@ -91,34 +79,46 @@
             "movement": 0
           },
           {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 45,
+            "movement": 3
+          },
+          {
             "country": "GM",
             "name": "Gambia",
             "position": 46,
             "movement": 14
           },
           {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 48,
-            "movement": -7
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 59,
-            "movement": -5
+            "position": 56,
+            "movement": 3
           },
           {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 63,
-            "movement": 31
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 60,
+            "movement": -21
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 64,
+            "movement": -28
           },
           {
             "country": "ML",
             "name": "Mali",
             "position": 72,
             "movement": 4
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 102,
+            "movement": -39
           },
           {
             "country": "SN",
@@ -146,34 +146,28 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 86,
-            "movement": -2
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 104,
-            "movement": -30
+            "position": 56,
+            "movement": 48
           },
           {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 105,
-            "movement": 11
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 132,
-            "movement": 24
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 84,
+            "movement": 2
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 145,
-            "movement": -20
+            "position": 106,
+            "movement": 39
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 134,
+            "movement": -29
           },
           {
             "country": "UG",
@@ -189,11 +183,10 @@
             "status": "new"
           },
           {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 195,
-            "movement": null,
-            "status": "new"
+            "country": "KE",
+            "name": "Kenya",
+            "position": 160,
+            "movement": -28
           }
         ]
       },
@@ -224,21 +217,20 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 102,
-            "movement": -3
+            "position": 127,
+            "movement": -25
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": -23
+            "position": 139,
+            "movement": 8
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 186,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -249,8 +241,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
-            "movement": 16
+            "position": 70,
+            "movement": -2
           }
         ]
       }
@@ -268,114 +260,19 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 56,
-            "movement": -10
+            "position": 55,
+            "movement": 1
           },
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 87,
-            "movement": 43
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 192,
-            "movement": null,
-            "status": "new"
+            "position": 170,
+            "movement": -83
           }
         ]
       }
     ],
     "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Eyan Mayweather",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 182,
-            "movement": -37
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 123,
-            "movement": 5
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Triumphant",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 140,
-            "movement": -18
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Rock",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 169,
-            "movement": -8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Luvaluvah",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 198,
-            "movement": -17
-          }
-        ]
-      }
-    ],
-    "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
@@ -388,8 +285,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
-            "movement": 0
+            "position": 74,
+            "movement": -2
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 159,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -407,14 +311,109 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 137,
-            "movement": 7
+            "position": 146,
+            "movement": -9
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 193,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Eyan Mayweather",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 179,
+            "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 125,
+            "movement": 4
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Triumphant",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 143,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Rock",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 165,
+            "movement": 4
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Luvaluvah",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 192,
+            "movement": 6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ikigai / 生き甲斐, Vol. 1",
@@ -426,33 +425,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 133,
-            "movement": 3
+            "position": 129,
+            "movement": 4
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "UY Scuti",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 177,
-            "movement": -23
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Street OT",
@@ -464,8 +444,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": 5
+            "position": 119,
+            "movement": 4
           }
         ]
       }
@@ -483,8 +463,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
-            "movement": 11
+            "position": 160,
+            "movement": 10
           }
         ]
       }

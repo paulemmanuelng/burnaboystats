@@ -58,14 +58,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 7,
-            "movement": 0
+            "position": 6,
+            "movement": 1
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 8,
-            "movement": -3
+            "position": 9,
+            "movement": -1
           },
           {
             "country": "ML",
@@ -76,8 +76,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": -10
+            "position": 102,
+            "movement": 3
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 124,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GM",
@@ -86,21 +93,9 @@
             "movement": -38
           },
           {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 139,
-            "movement": -61
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 185,
-            "movement": -5
-          },
-          {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 196,
+            "country": "OM",
+            "name": "Oman",
+            "position": 142,
             "movement": null,
             "status": "new"
           }
@@ -113,7 +108,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 168,
+            "position": 170,
             "movement": -77
           }
         ]
@@ -132,8 +127,15 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 24,
-            "movement": -4
+            "position": 21,
+            "movement": 3
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 54,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GW",
@@ -145,22 +147,14 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 76,
-            "movement": null,
-            "status": "new"
+            "position": 133,
+            "movement": -57
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
-            "movement": -21
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 180,
-            "movement": null,
-            "status": "new"
+            "position": 151,
+            "movement": 13
           }
         ]
       },
@@ -181,6 +175,57 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Sacrifice",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 17,
+            "movement": 4
+          },
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 66,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 102,
+            "movement": -53
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 148,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 15,
+            "movement": -1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Amazing Grace",
     "platforms": [
       {
@@ -191,19 +236,19 @@
             "country": "GH",
             "name": "Ghana",
             "position": 26,
-            "movement": -1
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 51,
-            "movement": 28
+            "movement": 0
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 59,
-            "movement": 6
+            "position": 64,
+            "movement": -5
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 68,
+            "movement": -17
           }
         ]
       },
@@ -214,7 +259,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 74,
+            "position": 78,
             "movement": -13
           }
         ]
@@ -235,50 +280,6 @@
     "kind": "song"
   },
   {
-    "title": "Sacrifice",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 21,
-            "movement": -3
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 49,
-            "movement": -15
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 66,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 15,
-            "movement": 4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "So it Goes",
     "platforms": [
       {
@@ -288,13 +289,13 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 43,
-            "movement": -3
+            "position": 37,
+            "movement": 6
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 81,
+            "position": 95,
             "movement": -14
           }
         ]
@@ -307,13 +308,39 @@
             "country": "GH",
             "name": "Ghana",
             "position": 17,
-            "movement": 0
+            "movement": 1
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Soma Obi",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 36,
+            "movement": 5
+          },
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 94,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SWAGGA",
@@ -325,8 +352,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 16,
-            "movement": -2
+            "position": 15,
+            "movement": 1
           }
         ]
       },
@@ -347,32 +374,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8652533854fa49e3c364a77c4e2ae9b5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Soma Obi",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 41,
-            "movement": -2
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 94,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "The Victory Song",
     "platforms": [
       {
@@ -382,8 +383,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 121,
-            "movement": -2
+            "position": 117,
+            "movement": 4
           },
           {
             "country": "GW",
@@ -408,8 +409,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
-            "movement": -1
+            "position": 27,
+            "movement": 3
           }
         ]
       },
@@ -438,8 +439,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 168,
-            "movement": -18
+            "position": 162,
+            "movement": 6
           }
         ]
       },
@@ -468,8 +469,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 24,
-            "movement": -1
+            "position": 20,
+            "movement": 4
           }
         ]
       }
@@ -487,8 +488,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 42,
-            "movement": 3
+            "position": 41,
+            "movement": 1
           }
         ]
       }
@@ -506,33 +507,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 56,
-            "movement": -1
+            "position": 51,
+            "movement": 5
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Find A Way",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 70,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9e217d2c845c86a0395cedfcd893d0b2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soja",
@@ -544,8 +526,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 72,
-            "movement": 3
+            "position": 67,
+            "movement": 5
           }
         ]
       }
@@ -554,7 +536,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Kwaku the Traveller",
+    "title": "Find A Way",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -563,14 +545,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 76,
-            "movement": 3
+            "position": 71,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9e217d2c845c86a0395cedfcd893d0b2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dreamer",
@@ -582,14 +564,33 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 77,
-            "movement": 3
+            "position": 78,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Kwaku the Traveller",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 79,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Body",
@@ -601,8 +602,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 88,
-            "movement": 6
+            "position": 86,
+            "movement": 2
           }
         ]
       }
@@ -631,6 +632,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Toxic Love City",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 101,
+            "movement": 45
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Eye Open",
     "platforms": [
       {
@@ -640,7 +660,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 103,
+            "position": 102,
             "movement": 1
           }
         ]
@@ -659,8 +679,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 126,
-            "movement": -2
+            "position": 121,
+            "movement": 5
           }
         ]
       }
@@ -678,8 +698,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 128,
-            "movement": -8
+            "position": 126,
+            "movement": 2
           }
         ]
       }
@@ -697,14 +717,33 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 136,
-            "movement": 6
+            "position": 133,
+            "movement": 3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Lord I'm Amazed",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 139,
+            "movement": 12
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Letter From Overseas",
@@ -725,44 +764,6 @@
     "kind": "song"
   },
   {
-    "title": "Toxic Love City",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 146,
-            "movement": -37
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Lord I'm Amazed",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 151,
-            "movement": -11
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Iron Boy",
     "platforms": [
       {
@@ -772,32 +773,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 155,
-            "movement": 9
+            "position": 159,
+            "movement": -4
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "WOTOWOTO SEASONING",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 144,
-            "movement": 36
-          }
-        ]
-      }
-    ],
-    "kind": "song"
   },
   {
     "title": "Changes",
@@ -809,27 +792,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 167,
-            "movement": -8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Sin City",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 174,
-            "movement": -11
+            "position": 160,
+            "movement": 7
           }
         ]
       }
@@ -847,8 +811,45 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 179,
+            "position": 164,
             "movement": 15
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Sin City",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 172,
+            "movement": 2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "WOTOWOTO SEASONING",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 166,
+            "movement": -22
           }
         ]
       }
