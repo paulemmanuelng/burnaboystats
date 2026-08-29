@@ -74,7 +74,7 @@ describe("handoff checklist — data integrity", () => {
     // 4 Aug 2026 Dai Dai sweep — see tests/charts.test.ts for the breakdown.
     expect(entries).toBe(280); // 9 Aug 2026 TurnTable NG sweep (+9, Giza included)
     expect(territories).toBe(71);
-    expect(ones).toBe(48); // + 2 Nigerian No. 1 albums
+    expect(ones).toBe(49); // + 2 Nigerian No. 1 albums, + Poland (Dai Dai, 29 Aug 2026)
 
     expect(chartEntryCount).toBe(entries);
     expect(chartCountryCount).toBe(territories);
