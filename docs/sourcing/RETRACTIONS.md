@@ -94,39 +94,54 @@ against the underlying fact, and the refutation should never have rested on it.
 only a refutation when the publication was read in full AND is capable of
 carrying the award. Otherwise it is "not found", which is not a finding.
 
-## 5. "98 days on the chart" — a stale number, over a run that had a hole in it (29 Aug 2026)
+## 5. RETRACTED — my own "correction" to the Spotify run was the error (29 Aug 2026)
 
-Shipped 28 Aug 2026 to `/dai-dai`, `/dai-dai/es` and the updates feed, paired
-with "and has not left it since". Both halves were wrong, and they were wrong in
-two different ways at once:
+**This entry originally claimed the site's "98 days on the chart" was wrong.
+It was not. I was.** Both halves of what I wrote here have been withdrawn, and
+the change it justified has been reverted.
 
-1. **It was an elapsed-days count, not a chart-days count.** Counting 15 May
-   2026 as day 1, day 98 falls on **20 Aug** — so the figure was already eight
-   days old on the day it was committed.
-2. **Elapsed days was the wrong quantity anyway.** The song has spent one day
-   **off** the chart, so days-on-chart has always been elapsed minus one.
+**What I claimed.** That 98 was an elapsed-days count taken on 20 Aug, over a
+run with a day missing from it, and that the true figure was 104. I rewrote the
+28 Aug feed entry from 98 to 103 and published 104 on both editions.
 
-Neither error was reachable by any test, because both lived inside a sentence.
-The identical failure is documented three feet up this repo in the `weeksAtPeak`
-doc comment — "a number in a sentence cannot be checked against anything" — and
-it happened again in the next figure that was typed rather than derived.
+**What is actually true.** The updates feed carries a day-by-day series of
+Spotify Global Daily readings, each naming its own chart date: **82 on the 10
+Aug chart, 83 on 11 Aug, 86 on 14 Aug, 87 on 15 Aug, 90 on 18 Aug, 93 on 21
+Aug**. Clean +1 per chart day. That series puts **98 on the 26 Aug chart** —
+exactly the chart the 28 Aug entry describes (No. 8, 3,228,190 streams). **The
+entry was correct as written**, and I rewrote a right number into a wrong one.
 
-**What I could not do:** confirm any of it at the source. charts.spotify.com is
-login-gated; its API answers `401 missing_token` to an anonymous caller, the
-`/public/v0/` path 404s, the legacy spotifycharts.com CSV route is dead, and the
-single Wayback capture of the daily chart is a 3 KB shell. The one-day gap came
-from Paul, who tracks the chart live.
+**The actual mistake, which is worse than the arithmetic.** The site publishes
+the **streak**, and its own earlier entries say so outright — "69 straight days
+on the chart", "66 straight days". I substituted the **total number of days it
+has appeared**, which is a different quantity, and then treated the disagreement
+between my quantity and the published one as evidence the published one was
+stale. **A wrong number is recoverable; a wrong definition rewrites history.**
+This is the "don't conflate metrics" rule, broken by the person who keeps
+writing it down.
 
-**The fix:** `app/data/daiDai.ts` now derives the figure from a debut date, a
-`CONFIRMED_THROUGH` date and a days-off count. It deliberately counts to the
-last chart someone has actually read rather than to `new Date()` — counting to
-today would keep the number climbing straight through a drop-off nobody had
-checked for, which is the same bug in a new costume. `tests/daiDaiParity.test.ts`
-fails if either edition types the number again.
+**Why the arithmetic looked so convincing.** 98 genuinely is elapsed-day-98 for
+20 Aug. That coincidence is what sold it. An arithmetic check that happens to
+land on a real figure is not corroboration.
 
-Corrected figures: **104 days on the chart** as of the 27 Aug chart (the same
-chart that gives 71 days in the Top 10), and **103** in the 28 Aug feed entry,
-which describes the 26 Aug chart.
+**What was right in the original entry.** The debut date, the login gate
+(charts.spotify.com's API answers `401 missing_token`; the only Wayback capture
+is a 3 KB shell), and the one-day absence Paul supplied from live tracking.
+Those three reconcile everything: the streak starts **21 May**, the debut was
+15 May, and one day in 15–20 May was missed — so 5 days before the break plus
+the streak equals the total, and the total equals elapsed minus one.
+
+**Both figures now exist, separately named**, in `app/data/daiDai.ts`:
+`daiDaiSpotifyStraightDays` (**99** through the 27 Aug chart — the published
+one) and `daiDaiSpotifyDaysOnChart` (**104**). `tests/spotifyRun.test.ts` parses
+the feed's dated readings, checks they all imply one start date, and fails if
+the constant disagrees with the site's own log — mutation-checked by moving the
+date a day.
+
+**Standing correction to how I argue.** When my figure disagrees with a figure
+the site already publishes, **the site's own dated log is evidence and my
+recomputation is a hypothesis** — read the log first. I audited an external
+source and never opened the file I was editing.
 
 ## 6. "48 days as YouTube's most-viewed" — a month stale, and re-published as fresh (29 Aug 2026)
 

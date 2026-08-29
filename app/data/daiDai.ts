@@ -20,25 +20,29 @@ export const DAI_DAI_SPOTIFY_STREAMS = "389M";
 // ---------------------------------------------------------------------------
 // The Spotify Global Daily Top Songs run.
 //
-// Days on chart is DERIVED here rather than typed into prose, because a typed
-// one goes stale the day after it is written — and did. "98 days on the chart"
-// shipped on 28 Aug 2026 carrying two errors at once: it was an elapsed-days
-// count taken on 20 Aug, and elapsed days is the wrong quantity anyway, since
-// the song spent one day off the chart. Neither error was visible to any test,
-// because both lived inside a sentence.
+// TWO figures, and they are NOT interchangeable — conflating them is what went
+// wrong here on 29 Aug 2026. The site has always published the STREAK, and the
+// earlier feed entries say so in as many words ("69 straight days on the
+// chart"). A "correction" that quietly swapped in the TOTAL then rewrote a
+// dated log entry that had been right. See RETRACTIONS.md #5.
 //
-// The count runs from the debut through CONFIRMED_THROUGH — the last daily
-// chart actually seen — and NOT through today. That is the whole point: a
-// figure derived from `new Date()` keeps counting through a drop-off nobody
-// has checked for, which is the same failure in a new costume. Bump the date
-// when you read a newer chart, and the number moves with it.
+// The streak's start is not a guess. The updates feed carries six readings that
+// each name their own chart date — 10 Aug 82, 11 Aug 83, 14 Aug 86, 15 Aug 87,
+// 18 Aug 90, 21 Aug 93 — and all six imply the same day one, 21 May 2026.
 //
-// charts.spotify.com is login-gated (its API answers 401 missing_token to an
-// anonymous caller), so these three constants are the record of what has been
+// The debut was 15 May, at No. 114. The song was therefore on the chart for
+// part of 15–20 May, off it for exactly one day (Paul, from live tracking), and
+// unbroken from 21 May. That reconciles every figure: 5 days before the streak
+// plus the streak equals the total, and the total equals elapsed minus one.
+//
+// Both count to CONFIRMED_THROUGH — the last chart actually seen — not to
+// today. charts.spotify.com is login-gated (its API answers 401 missing_token
+// to an anonymous caller), so these constants are the record of what has been
 // established off-site, not something a scraper can refresh.
 export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114, the day after release
+export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-21"; // implied by the feed's own dated series
 export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-08-27";
-/** Days it has dropped off the chart and returned. One, as of the date above. */
+/** Days it has dropped off the chart, ever. One, on a day in 15–20 May. */
 export const DAI_DAI_SPOTIFY_DAYS_OFF = 1;
 
 const daysInclusive = (from: string, to: string) =>
@@ -46,7 +50,14 @@ const daysInclusive = (from: string, to: string) =>
     (Date.parse(`${to}T00:00:00Z`) - Date.parse(`${from}T00:00:00Z`)) / 86_400_000
   ) + 1;
 
-/** Days "Dai Dai" has appeared on Spotify's Global Daily Top Songs chart. */
+/** CONSECUTIVE days on the chart — the figure the site publishes. */
+export const daiDaiSpotifyStraightDays = daysInclusive(
+  DAI_DAI_SPOTIFY_STREAK_SINCE,
+  DAI_DAI_SPOTIFY_CONFIRMED_THROUGH
+);
+
+/** TOTAL days on the chart, streak plus the days before it. A different
+ *  number from the one above; never substitute one for the other. */
 export const daiDaiSpotifyDaysOnChart =
   daysInclusive(DAI_DAI_SPOTIFY_DEBUT, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH) -
   DAI_DAI_SPOTIFY_DAYS_OFF;

@@ -15,7 +15,7 @@ import {
 } from "../../data/charts";
 import { liveCharts } from "../../data/liveCharts";
 import { daiDaiCertCount } from "../../data/certifications";
-import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, daiDaiSpotifyDaysOnChart, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
+import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../../lib/artistImages";
 
@@ -187,9 +187,9 @@ export default function DaiDaiPageES() {
       label: "Las rachas en streaming",
       intro: "Las rachas diarias y semanales, todas todavía en marcha.",
       items: [
-        { v: "37 días", l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y recuperado en agosto como la racha más larga de cualquier lanzamiento de 2026—; la canción con más días en el número 1 de todo 2026, ahora cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31); 71 días dentro del top 10 mundial y ${daiDaiSpotifyDaysOnChart} en la lista` },
+        { v: "37 días", l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y recuperado en agosto como la racha más larga de cualquier lanzamiento de 2026—; la canción con más días en el número 1 de todo 2026, ahora cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31); 71 días dentro del top 10 mundial y ${daiDaiSpotifyStraightDays} seguidos en la lista` },
         { v: "6 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify, en su 13.ª semana en ella — con un pico de 40,28 millones de reproducciones en una sola semana" },
-        { v: "N.º 114", l: `puesto por el que entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, un día después de su lanzamiento — desde ahí llegó al número 1 y ha estado en ella todos los días salvo uno, ${daiDaiSpotifyDaysOnChart} días en total (Spotify Charts)` },
+        { v: "N.º 114", l: `puesto por el que entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, un día después de su lanzamiento — desde ahí llegó al número 1 y ha estado en ella todos los días salvo uno — ${daiDaiSpotifyStraightDays} días seguidos y ${daiDaiSpotifyDaysOnChart} en total (Spotify Charts)` },
         { v: "58 días", l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music" },
         { v: "40 días", l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes" },
         { v: "N.º 1", l: liveOnesLabel },

@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { cardinalWord, ordinalWord } from "../app/lib/plural";
 import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
 import { daiDaiCertCount } from "../app/data/certifications";
-import { daiDaiSpotifyDaysOnChart, daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH } from "../app/data/daiDai";
+import { daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH } from "../app/data/daiDai";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -73,6 +73,7 @@ const DERIVED: Record<string, number | string | null> = {
   daiDaiNumberOnes,
   daiDaiCertCount,
   daiDaiSpotifyDaysOnChart,
+  daiDaiSpotifyStraightDays,
   daiDaiYouTubeDaysAtNo1,
 };
 // Two interpolation shapes appear in the cards: a bare `${weeksDE}`, and a
@@ -220,8 +221,8 @@ describe("the Spotify chart run stays derived", () => {
     src.split("\n").filter((l) => /Global Daily Top Songs|top 10 mundial|global Top 10/.test(l));
 
   it("is interpolated in both editions, never typed", () => {
-    expect(EN).toMatch(/\$\{daiDaiSpotifyDaysOnChart\}\s+days on the chart/);
-    expect(ES).toMatch(/\$\{daiDaiSpotifyDaysOnChart\}\s+en la lista/);
+    expect(EN).toMatch(/\$\{daiDaiSpotifyStraightDays\}\s+straight days on the chart/);
+    expect(ES).toMatch(/\$\{daiDaiSpotifyStraightDays\}\s+seguidos en la lista/);
 
     const en = spotifyCards(EN);
     const es = spotifyCards(ES);
