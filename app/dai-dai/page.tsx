@@ -9,7 +9,7 @@ import { lastUpdated } from "../lib/api";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES, weeksAtPeak, weeksOnChart } from "../data/charts";
 import { liveCharts } from "../data/liveCharts";
 import { daiDaiCertCount } from "../data/certifications";
-import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, daiDaiSpotifyDaysOnChart } from "../data/daiDai";
+import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, daiDaiSpotifyDaysOnChart, daiDaiYouTubeDaysAtNo1 } from "../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 
@@ -230,7 +230,7 @@ export default function DaiDaiPage() {
       intro: "The “Dai Dai” video, on a tear of its own.",
       items: [
         { v: DAI_DAI_VIDEO_VIEWS, l: "YouTube views for the “Dai Dai” video — 600 million in 67 days, the fastest music video of either artist's career to the mark and the first and only 2026 video to reach it. It passed 500 million in 59.4 days (12th fastest ever) and 700 million in 74.8 days — the 8th fastest music video in YouTube history" },
-        { v: "48 days", l: "as the most-viewed music video on YouTube worldwide — now past 6.1 million likes" },
+        { v: `${daiDaiYouTubeDaysAtNo1} days`, l: "as the most-viewed music video on YouTube worldwide, unbroken since 9 June — now past 6.1 million likes" },
       ],
     },
   ];

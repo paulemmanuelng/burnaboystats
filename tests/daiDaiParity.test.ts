@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { cardinalWord, ordinalWord } from "../app/lib/plural";
 import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
 import { daiDaiCertCount } from "../app/data/certifications";
-import { daiDaiSpotifyDaysOnChart, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH } from "../app/data/daiDai";
+import { daiDaiSpotifyDaysOnChart, daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH } from "../app/data/daiDai";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -72,6 +72,7 @@ const DERIVED: Record<string, number | string | null> = {
   daiDaiNumberOnes,
   daiDaiCertCount,
   daiDaiSpotifyDaysOnChart,
+  daiDaiYouTubeDaysAtNo1,
 };
 // Two interpolation shapes appear in the cards: a bare `${weeksDE}`, and a
 // `${ordinalWord(weeksGLB, "es")}` where the Spanish edition needs the word

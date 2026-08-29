@@ -127,3 +127,50 @@ fails if either edition types the number again.
 Corrected figures: **104 days on the chart** as of the 27 Aug chart (the same
 chart that gives 71 days in the Top 10), and **103** in the 28 Aug feed entry,
 which describes the 26 Aug chart.
+
+## 6. "48 days as YouTube's most-viewed" — a month stale, and re-published as fresh (29 Aug 2026)
+
+`48` was last true on **26 July 2026**. It then sat on `/dai-dai` and
+`/dai-dai/es` unchanged — and on **13 August** the updates feed *restated* it
+("logs a 48th day as YouTube's most-viewed") on a day when the run was on
+**day 66**. So this is not a figure that went quietly unmaintained; it is one
+that was copied forward as though freshly counted.
+
+**Why nothing caught it.** `tests/streakParity.test.ts` guards this streak by
+tying the page card to the matching prose in `updates.ts`. That test enforces
+only that the two agree with *each other*, never that either agrees with
+YouTube — so the card and the feed froze together and the suite stayed green
+for a month. **A test comparing two copies of a number cannot tell you both are
+wrong.** That is the general lesson, and it is the second time in this file that
+a self-consistency check has been mistaken for a correctness check.
+
+**What was actually established.** charts.youtube.com's Global Daily Top Music
+Videos chart was walked day by day — all **97** days from the 23 May debut to
+the 27 Aug chart, twice, from both directions, plus ten independent spot-checks.
+The chart's own "days on chart" counter (18 on 9 Jun, 97 on 27 Aug) proves no
+chart day is missing from the middle, and the "yesterday" column pins both ends
+of the run.
+
+- **80 consecutive days at No. 1**, 9 June → 27 August 2026 — the published figure
+- 93 days at No. 1 in total; the only misses ever are 28 and 29 May, 2 June and
+  8 June, each a No. 2 behind Sơn Tùng M-TP & Tyga, iShowSpeed and BABYMONSTER
+- **Not published: the 93.** It is a different metric from the run the card
+  describes, and swapping it into a sentence reading "as the most-viewed music
+  video on YouTube worldwide" is the conflation trap again.
+
+**Matching note.** Rows were matched on video id `fcnDmrtj6Sk`, never on title —
+from 8 August a second row, **"Dai dai (Live)" by Shakira & Beéle**
+(`mapfegnAXOg`), sits on the same chart in the 30s–90s. A title match would have
+picked it up.
+
+**Recipe, for the next walk.** Dated URLs work but only in the compact form
+`charts.youtube.com/charts/TopVideos/global/daily/YYYYMMDD`; the hyphenated form
+returns HTTP 400. The SPA can serve a date other than the one requested, so
+check the page's displayed date on every read. A viewport around 1600px exposes
+the "Yesterday" and "Days on chart" columns, which are the cheapest continuity
+proof available.
+
+**Still open:** the figure now lives in `app/data/daiDai.ts` with an explicit
+`CONFIRMED_THROUGH`, so staleness is at least visible in the data rather than
+buried in a sentence. There is still no check against YouTube itself — the
+number is hand-maintained because the stats bot cannot fetch it.

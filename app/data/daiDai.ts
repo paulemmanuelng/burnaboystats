@@ -50,3 +50,35 @@ const daysInclusive = (from: string, to: string) =>
 export const daiDaiSpotifyDaysOnChart =
   daysInclusive(DAI_DAI_SPOTIFY_DEBUT, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH) -
   DAI_DAI_SPOTIFY_DAYS_OFF;
+
+// ---------------------------------------------------------------------------
+// The YouTube Global Daily Top Music Videos run, on the same footing and for
+// the same reason.
+//
+// "48 days" sat on both editions for a month. It was last true on 26 July
+// 2026, and the updates feed then RE-STATED it on 13 August, when the run was
+// on day 66 — so this was not a figure that quietly went unmaintained, it was
+// a figure that got copied forward as if freshly counted. streakParity.test.ts
+// stayed green throughout, because it holds the card and the feed to EACH
+// OTHER; two copies of a wrong number agree perfectly.
+//
+// The run was then walked day by day at charts.youtube.com — all 97 days from
+// the 23 May debut to the 27 Aug chart, twice and from both directions, with
+// the chart's own "days on chart" counter (18 on 9 Jun, 97 on 27 Aug) proving
+// no chart day is missing from the middle. Rows were matched on video id
+// fcnDmrtj6Sk, not on title: from 8 Aug a second row, "Dai dai (Live)" by
+// Shakira & Beéle (mapfegnAXOg), sits on the same chart.
+export const DAI_DAI_YT_NO1_SINCE = "2026-06-09"; // first day of the current unbroken run
+export const DAI_DAI_YT_CONFIRMED_THROUGH = "2026-08-27"; // latest published daily chart
+
+/** Consecutive days at No. 1 on YouTube's global daily music-video chart. */
+export const daiDaiYouTubeDaysAtNo1 = daysInclusive(
+  DAI_DAI_YT_NO1_SINCE,
+  DAI_DAI_YT_CONFIRMED_THROUGH
+);
+
+// Deliberately NOT published: the video has also spent 93 days at No. 1 in
+// total (only 28-29 May, 2 June and 8 June were ever missed). That is a
+// different metric from the run the card describes, and swapping one number
+// for the other inside a sentence that says "as the most-viewed music video
+// on YouTube worldwide" is exactly the conflation this repo keeps paying for.

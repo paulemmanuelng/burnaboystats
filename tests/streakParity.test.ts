@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { updates } from "../app/data/updates";
+import { daiDaiYouTubeDaysAtNo1 } from "../app/data/daiDai";
 
 // Platform streaks — Spotify's daily and weekly charts, Apple Music, iTunes,
 // Mediatraffic, YouTube — are the one class of figure on /dai-dai with nowhere
@@ -36,6 +37,13 @@ interface Streak {
   id: string;
   /** Pulls the figure off its card in app/dai-dai/page.tsx. */
   page: string;
+  /** For a card whose figure is DERIVED rather than typed, the value itself.
+   *  The YouTube run moved into app/data/daiDai.ts after "48 days" sat on both
+   *  editions for a month while this file stayed green — it holds the card and
+   *  the feed to each other, and two copies of a wrong number agree perfectly.
+   *  `page` still has to match, so the card cannot quietly lose its figure; it
+   *  just no longer supplies the number. */
+  derived?: number;
   /** Precise readings of the same figure in updates.ts prose. Group 1 is the
    *  number — NEVER rely on "first digits in the match": "at No. 1 for 57 days"
    *  would yield the 1. That mistake made this check silently compare the wrong
@@ -95,10 +103,15 @@ const STREAKS: Streak[] = [
   },
   {
     id: "YouTube most-viewed — days at No. 1",
-    page: `v: "(\\d+) days", l: "as the most-viewed music video on YouTube`,
+    page: `v: \`\\$\\{daiDaiYouTubeDaysAtNo1\\} days\`, l: "as the most-viewed music video on YouTube`,
+    derived: daiDaiYouTubeDaysAtNo1,
     feed: [
       `${ORD} day as YouTube${A}s most-viewed`,
       `${ORD} day as the world${A}s most-viewed`,
+      // "an 80th STRAIGHT day as the world's most-viewed" — a run reads better
+      // with the word in, and the pattern set is meant to grow with the prose
+      // rather than the prose being bent to fit it.
+      `${ORD} straight day as (?:YouTube${A}s|the world${A}s) most-viewed`,
       `(\\d+) straight days as the most-viewed`,
     ],
     topic: `most-viewed`,
@@ -139,9 +152,10 @@ describe("platform streaks on /dai-dai never fall behind the updates feed", () =
     ).toEqual([]);
 
     const best = hits.reduce((a, b) => (b.n > a.n ? b : a));
+    const shown = s.derived ?? Number(card![1]);
     expect(
-      Number(card![1]),
-      `the card says ${card![1]} but updates.ts already published ${best.n} on ${best.date}. The page is contradicting the site's own log — running ahead of the feed is fine, behind it is not.`,
+      shown,
+      `the card says ${s.derived ?? card![1]} but updates.ts already published ${best.n} on ${best.date}. The page is contradicting the site's own log — running ahead of the feed is fine, behind it is not.`,
     ).toBeGreaterThanOrEqual(best.n);
   });
 });

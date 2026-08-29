@@ -36,6 +36,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-08-29",
+    category: "Streaming",
+    text: "An 80th straight day as the world’s most-viewed music video: the “Dai Dai” video has led YouTube’s Global Daily Top Music Videos every day since 9 June, on the chart dated 27 August — the last one published. It has been No. 1 on 93 of its 97 days on that chart, missing only 28 and 29 May, 2 June and 8 June.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-08-29",
     category: "Charts",
     text: "“Dai Dai” tops the official singles chart in Poland for the first time — ZPAV's own week-34 list (14–20 August) has it at No. 1 after twelve weeks, up from No. 9, having stalled at No. 4 in late July. Poland is the 28th country to put the song at No. 1, and it takes his career tally of chart-topping placements to 49.",
     href: "/records/charts",
@@ -289,7 +295,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-13",
     category: "Charts",
-    text: "A 50th day atop Apple Music's European songs chart and a 34th on the worldwide iTunes chart — while the “Dai Dai” video logs a 48th day as YouTube's most-viewed and stands as the 8th-fastest music video in YouTube history to 700 million, reached in 74.8 days.",
+    text: "A 50th day atop Apple Music's European songs chart and a 34th on the worldwide iTunes chart — while the “Dai Dai” video logs a 66th day as YouTube's most-viewed and stands as the 8th-fastest music video in YouTube history to 700 million, reached in 74.8 days.",
     href: "/dai-dai",
   },
   {

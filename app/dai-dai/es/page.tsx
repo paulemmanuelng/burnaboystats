@@ -15,7 +15,7 @@ import {
 } from "../../data/charts";
 import { liveCharts } from "../../data/liveCharts";
 import { daiDaiCertCount } from "../../data/certifications";
-import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, daiDaiSpotifyDaysOnChart } from "../../data/daiDai";
+import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, daiDaiSpotifyDaysOnChart, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../../lib/artistImages";
 
@@ -231,7 +231,7 @@ export default function DaiDaiPageES() {
       intro: "El video de “Dai Dai”, con carrera propia.",
       items: [
         { v: DAI_DAI_VIDEO_VIEWS, l: "visualizaciones en YouTube — 600 millones en 67 días, el video musical más rápido de la carrera de ambos artistas hasta esa cifra y el único de 2026 en alcanzarla. Superó los 500 millones en 59,4 días (el 12.º más rápido de la historia) y los 700 millones en 74,8 días — el 8.º video musical más rápido en la historia de YouTube" },
-        { v: "48 días", l: "como el video musical más visto del mundo en YouTube — ya supera los 6,1 millones de “me gusta”" },
+        { v: `${daiDaiYouTubeDaysAtNo1} días`, l: "como el video musical más visto del mundo en YouTube, sin interrupción desde el 9 de junio — ya supera los 6,1 millones de “me gusta”" },
       ],
     },
   ];
