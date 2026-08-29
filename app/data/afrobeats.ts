@@ -403,7 +403,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Daniel Benson",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Six Nigerian No. 1s, and half his plaques abroad were filed under a name he no longer uses — he was Buju until 2022.",
+    hook: "Six Nigerian No. 1s — and Britain, Canada and New Zealand still file Wizkid's “Mood” under Buju, the name on his records until early 2022.",
     spotifyId: "3zaDigUwjHvjOkSn0NDf9x",
     wikipedia: "https://en.wikipedia.org/wiki/Bnxn",
     image: "https://i.scdn.co/image/ab6761610000e5eb54047830689ea245d14a390f",
@@ -879,7 +879,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Divine Ikubor",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "“Calm Down” is the most widely certified Afrobeats record ever made.",
+    hook: "“Calm Down” is certified in twenty countries — a French Diamond, 9× Platinum in Portugal.",
     spotifyId: "46pWGuE3dSwY3bMMXGBvVS",
     wikipedia: "https://en.wikipedia.org/wiki/Rema_(musician)",
     image: "https://i.scdn.co/image/ab6761610000e5ebe3b85a0f16eaab80965c6ef3",
@@ -1066,7 +1066,13 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Oyinkansola Sarah Aderibigbe",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "The youngest of the field, and the fastest-rising — “Rush” went Diamond in France.",
+    // "Youngest artist on this board" is bounded to the board on purpose — the
+    // margin is only 135 days over Tyla (30 Jan 2002 vs Ayra's 14 June 2002),
+    // so RE-CHECK IT whenever an artist is added. Nothing in this file records
+    // a date of birth, so no test can hold this claim; the board expansion
+    // checklist has to. The earlier hook also called her "the fastest-rising",
+    // which is not a measurable claim and is gone.
+    hook: "The youngest artist on this board, and “Rush” went Diamond in France — one of 41 plaques across twelve countries.",
     spotifyId: "3ZpEKRjHaHANcpk10u6Ntq",
     wikipedia: "https://en.wikipedia.org/wiki/Ayra_Starr",
     image: "https://i.scdn.co/image/ab6761610000e5ebc2074e9ac0e35662936cde67",
