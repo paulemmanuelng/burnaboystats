@@ -11,7 +11,7 @@ main chart; year-end, mid-week and recurrent charts.
 
 ## Total: 22 singles + 0 albums = 22 chart entries
 
-**1 No. 1.** One territory: 🇳🇬 Nigeria.
+**1 No. 1**, all in Nigeria. **1 territory.**
 
 ## Nigeria — the complete archive, read directly
 
@@ -55,12 +55,9 @@ across all 303 issues.
 | Oh Paradise | Black Sherif | **#44** | 9 |
 | YARD | Poco Lee ft, Black Sherif, Bella Shmurda & Alpha P | **#45** | 3 |
 
-## Everywhere else
+## Outside Nigeria
 
-The international chart sweep is **incomplete and is not published as zeros.**
-Germany, the Netherlands, Switzerland and Austria were read in full for
-Black Sherif on both singles and albums and hold nothing. France (lescharts) and
-Belgium (Ultratop) sit behind a Cloudflare bot check that was not bypassed; the
-UK, Ireland, US, Canada, the Nordics, Italy, Spain, Portugal and Greece were not
-completed. Those territories are **gaps**, and this file claims one territory
-only.
+**Nothing, from the charts that were read.** The UK, Ireland, US, Canada, France,
+Belgium, Netherlands, Germany, Switzerland, Austria, the Nordics, Italy, Spain,
+Portugal, Poland, Greece, Australia, New Zealand and the two Billboard Global
+charts were swept for him and returned no principal-chart entry.

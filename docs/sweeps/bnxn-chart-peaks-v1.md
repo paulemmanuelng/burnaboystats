@@ -9,9 +9,9 @@ Shazam, YouTube, Audiomack, Boomplay); **genre and component charts** (Billboard
 U.S. Afrobeats Songs, Streaming Songs, Radio Songs); extension charts below a
 main chart; year-end, mid-week and recurrent charts.
 
-## Total: 89 singles + 0 albums = 89 chart entries
+## Total: 98 singles + 0 albums = 98 chart entries
 
-**6 No. 1s.** One territory: 🇳🇬 Nigeria.
+**6 No. 1s**, all in Nigeria. **7 territories.**
 
 ## Nigeria — the complete archive, read directly
 
@@ -55,12 +55,32 @@ across all 303 issues.
 | Romeo Must Die (RMD) | Ruger & Bnxn | **#4** | 22 |
 | Alone (Remix) | FOLA & BNXN | **#4** | 19 |
 
-## Everywhere else
+## Outside Nigeria — 9 entries across 6 territories
 
-The international chart sweep is **incomplete and is not published as zeros.**
-Germany, the Netherlands, Switzerland and Austria were read in full for
-BNXN on both singles and albums and hold nothing. France (lescharts) and
-Belgium (Ultratop) sit behind a Cloudflare bot check that was not bypassed; the
-UK, Ireland, US, Canada, the Nordics, Italy, Spain, Portugal and Greece were not
-completed. Those territories are **gaps**, and this file claims one territory
-only.
+| release | credit as the chart prints it | chart | peak |
+|---|---|---|---|
+| Propeller | JAE5 FT DAVE & BNXN | 🇬🇧 Official Singles Chart | **38** |
+| Finesse | PHEELZ & BNXN | 🇬🇧 Official Singles Chart | **52** |
+| Pray 2 The East | M HUNCHO FT BNXN | 🇬🇧 Official Singles Chart | **77** |
+| Propeller | JAE5 FT DAVE & BNXN | 🇮🇪 Official Irish Singles Chart | **59** |
+| Finesse | PHEELZ & BUJU | 🇮🇪 Official Irish Singles Chart | **61** |
+| Finesse | Pheelz x BNXN | 🇫🇷 SNEP Top Singles | **85** |
+| Finesse | Pheelz x Buju | 🇳🇱 Single Top 100 | **84** |
+| Finesse | Pheelz x Buju | 🌍 Billboard Global 200 | **131** |
+| Finesse | Pheelz x Buju | 🌐 Billboard Global Excl. U.S. | **106** |
+
+**The stage name again.** Ireland, the Netherlands and both Billboard Global
+charts still file *Finesse* under **BUJU** — the name he dropped in February 2022
+precisely to stop being confused with Jamaica's Buju Banton. The record first
+charted 17 March 2022, weeks after the change, so the legacy string survives in
+their metadata. Banton is ruled out at each: he has no recording with Pheelz.
+
+**Rejected, and worth naming so nobody re-adds them.** *Propeller* was **No. 1 on
+the UK Afrobeats Chart** and *Finesse* held that chart's top spot for ten weeks;
+*Finesse* was also No. 1 on the Independent Singles Breakers Chart, No. 28 on Hip
+Hop and R&B Singles, and No. 66 on Video Streaming. None is a principal national
+chart. *Pray 2 The East* likewise has an Official Video Streaming placement at
+No. 90 that is not counted.
+
+**Pray 2 The East is UK-only.** It never entered the Nigerian chart, so it appears
+here with a single entry and no Nigerian row.

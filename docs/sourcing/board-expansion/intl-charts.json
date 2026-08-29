@@ -1,0 +1,250 @@
+{
+ "confirmed": [
+  {
+   "artist": "Olamide",
+   "title": "Amapiano",
+   "credit": "ASAKE FT OLAMIDE",
+   "country": "GB",
+   "chartName": "Official Singles Chart",
+   "peak": 86,
+   "format": "Single",
+   "verbatim": "ASAKE FT OLAMIDE | AMAPIANO | Official Singles Chart | peak 86 | wks 1 | 29 Jun 2023 (officialcharts.com/artist/60238/olamide/ and /artist/61920/asake-ft-olamide/; song page /songs/asake-ft-olamide-amapiano/ chartLabel 'Official Singles Chart', peak 86, first charted 29/06/2023)",
+   "verdict": {
+    "standsUp": true,
+    "isPrincipalNationalChart": true,
+    "creditNamesArtist": true,
+    "confidence": "high",
+    "reasoning": "Could not refute. Confirmed at the chart-week level, not just the summary row: the OCC archive page titled 'Official Singles Chart Top 100 on 23/6/2023' (chart week 23-29 Jun 2023) lists at Number 86 'AMAPIANO / ASAKE FT OLAMIDE' marked NEW with the inline annotation 'Peak: 86, Weeks: 1'. The Official Singles Chart Top 100 is the UK's principal national singles chart, not a genre, component or extension chart, and 86 is inside the Top 100 so this is not a 101-200 extension placement. The printed credit names Olamide explicitly ('ASAKE FT OLAMIDE'), so no same-title collision. Peak equals the debut position because it charted for exactly one week, and OCC labels the figure 'Peak' itself. Corroborated by the song page /songs/asake-ft-olamide-amapiano/ and the Olamide artist page /artist/60238/olamide/, both giving Official Singles Chart peak 86, 1 week, first charted 29/06/2023 (the week-ending date of the 23/6/2023 chart week). Worth noting as a trap the repo avoided: the same song's 'Official Singles Chart Update' peak is a better-looking 72, and its Afrobeats Chart peak is 3 — both would have been wrong to use. 86 is the correct principal-chart figure."
+   }
+  },
+  {
+   "artist": "BNXN",
+   "title": "Propeller",
+   "credit": "JAE5 FT DAVE & BNXN",
+   "country": "GB",
+   "chartName": "Official Singles Chart",
+   "peak": 38,
+   "format": "Single",
+   "verbatim": "JAE5 FT DAVE & BNXN | PROPELLER | Official Singles Chart | peak 38 | wks 9 | 11 Aug 2022 (officialcharts.com/artist/63091/jae5-ft-dave-and-bnxn/ and /artist/62711/bnxn/; song page /songs/jae5-ft-dave-bnxn-propeller/ chartLabel 'Official Singles Chart', peak 38, first charted 11/08/2022)",
+   "verdict": {
+    "standsUp": true,
+    "isPrincipalNationalChart": true,
+    "creditNamesArtist": true,
+    "confidence": "high",
+    "reasoning": "Could not refute. Confirmed at the chart-week level: the OCC archive 'Official Singles Chart on 5/8/2022' lists at Number 38 'PROPELLER / JAE5 FT DAVE & BNXN' marked NEW with 'Peak: 38, Weeks: 1' — it debuted at its peak and ran 9 weeks total. The Official Singles Chart Top 100 is the UK principal national chart; this is not the Afrobeats Chart (where it hit No. 1), not the Hip Hop and R&B Singles Chart (No. 14), not the Official Streaming Chart component (No. 70), and not the Singles Chart Update (No. 43). The printed credit names BNXN explicitly. Identity check passes: this is BNXN the Nigerian singer (Daniel Benson), not Buju Banton — OCC files the entry on the BNXN artist page /artist/62711/bnxn/ alongside his solo releases, and the collaborators (JAE5, the Ghanaian-British producer, and Dave) place it squarely in the UK/Afrobeats scene, with no connection to the Jamaican reggae artist. Song page /songs/jae5-ft-dave-bnxn-propeller/ and artist page both give Official Singles Chart peak 38, 9 weeks, first charted 11/08/2022 (week-ending date of the 5/8/2022 chart week)."
+   }
+  },
+  {
+   "artist": "BNXN",
+   "title": "Finesse",
+   "credit": "PHEELZ & BNXN (song page credits PHEELZ & BUJU)",
+   "country": "GB",
+   "chartName": "Official Singles Chart",
+   "peak": 52,
+   "format": "Single",
+   "verbatim": "PHEELZ & BNXN | FINESSE | Official Singles Chart | peak 52 | wks 20 | 17 Mar 2022 (officialcharts.com/artist/62318/pheelz-and-bnxn/, rendered page heading 'Official Singles Chart — FINESSE - Peak: 52, Weeks: 20'; song page /songs/pheelz-bnxn-finesse/ carries artist string 'PHEELZ & BUJU', chartLabel 'Official Singles Chart', peak 52)",
+   "verdict": {
+    "standsUp": true,
+    "isPrincipalNationalChart": true,
+    "creditNamesArtist": true,
+    "confidence": "high",
+    "reasoning": "Could not refute. Confirmed at the chart-week level: the OCC archive 'Official Singles Chart on 27/5/2022' lists at Number 73 'FINESSE / PHEELZ & BNXN' with the inline annotation 'Peak: 52, Weeks: 12' — so 52 is a genuine prior peak on the principal chart, not the current position that week, and the run reached 20 weeks in total. The Official Singles Chart Top 100 is the UK principal national chart; this is not the Afrobeats Chart (No. 1, 10 weeks at the top), the Hip Hop and R&B Singles Chart (No. 28), the Independent Singles Breakers Chart (No. 1), the Video Streaming component (No. 66), or the Singles Chart Update (No. 55). The credit discrepancy is benign and explained: BNXN is Daniel Etiese Benson, who released under the stage name 'Buju' until 18 February 2022 and changed it to BNXN specifically to end confusion with Jamaica's Buju Banton. 'Finesse' first charted 17/03/2022, right after the changeover, so some OCC metadata retains the legacy 'PHEELZ & BUJU' string while the live chart row and artist page both print 'PHEELZ & BNXN'. OCC itself files it under /artist/62711/bnxn/ and /artist/62318/pheelz-and-bnxn/. Buju Banton is ruled out: he has no recording with Pheelz, and OCC does not attribute this entry to him."
+   }
+  },
+  {
+   "artist": "BNXN",
+   "title": "Pray 2 The East",
+   "credit": "M HUNCHO FT BNXN",
+   "country": "GB",
+   "chartName": "Official Singles Chart",
+   "peak": 77,
+   "format": "Single",
+   "verbatim": "M HUNCHO FT BNXN | PRAY 2 THE EAST | Official Singles Chart | peak 77 | wks 1 | 02 Jun 2022 (officialcharts.com/artist/62739/m-huncho-ft-bnxn/; song page /songs/m-huncho-ft-bnxn-pray-2-the-east/ chartLabel 'Official Singles Chart', peak 77, first charted 02/06/2022)",
+   "verdict": {
+    "standsUp": true,
+    "isPrincipalNationalChart": true,
+    "creditNamesArtist": true,
+    "confidence": "high",
+    "reasoning": "Could not refute. Confirmed at the chart-week level: the same OCC archive page 'Official Singles Chart on 27/5/2022' lists at Number 77 'PRAY 2 THE EAST / M HUNCHO FT BNXN' marked NEW with 'Peak: 77, Weeks: 1'. That is the UK's principal national singles chart (Top 100), and 77 sits well inside it, so no extension or component-chart problem; the song's only other placement is the Official Video Streaming Chart at No. 90, which the claim correctly does not use. Peak equals the debut because the run was a single week, and OCC labels it 'Peak'. The printed credit names BNXN explicitly. Identity check passes: M Huncho is a UK rapper on Island, catalogue GBUM72201504, and the collaborator is the Nigerian BNXN, not Buju Banton — the chart row prints the post-February-2022 'BNXN' name and OCC gives it a dedicated credit page at /artist/62739/m-huncho-ft-bnxn/. One cosmetic inconsistency in OCC's own data, which does not affect the verdict: this title does not appear on the aggregate BNXN artist page /artist/62711/bnxn/ even though 'Finesse' and 'Propeller' do, so the credit page and the chart archive are the load-bearing evidence here."
+   }
+  },
+  {
+   "artist": "BNXN",
+   "title": "Propeller",
+   "credit": "JAE5 FT DAVE & BNXN",
+   "country": "IE",
+   "chartName": "Official Irish Singles Chart",
+   "peak": 59,
+   "format": "Single",
+   "verbatim": "irma.ie/song/jae5-ft-dave-bnxn-propeller/: 'PROPELLER | JAE5 FT DAVE & BNXN | Singles | Peak #59 | Label BLACK BUTTER'. Weekly archive: week 2022-08-05 This Week 59, Peak 59, Weeks on Chart 1; week 2022-08-12 This Week 80, Peak 59, Weeks on Chart 2.",
+   "verdict": {
+    "standsUp": true,
+    "isPrincipalNationalChart": true,
+    "creditNamesArtist": true,
+    "confidence": "high",
+    "reasoning": "Confirmed at primary source. IRMA weekly archive (irma.ie/irish-charts/singles/?week=2022-08-05), chart titled 'Top 100 Singles', week 30 Jul - 5 Aug 2022, position 59: 'PROPELLER' by 'JAE5 FT DAVE & BNXN', Peak 59, Weeks on Chart 01. Following week (?week=2022-08-12) it sits at position 80 with the Peak column still reading 59, and the run ends there, so 59 is the true peak rather than a debut or current position. The IRMA song page (irma.ie/song/jae5-ft-dave-bnxn-propeller/) independently reports Singles, Peak #59, label BLACK BUTTER. CHART: this is the Official Irish Singles Chart, issued by IRMA and compiled on its behalf by the Official Charts Company - Ireland's principal national singles chart. Not a genre chart, not a component (sales/streaming/airplay) chart, and not an extension: IRMA publishes its Irish singles chart as one Top 100, so position 59 is the tail of the principal chart, not a separate 51-100 publication analogous to the UK's 101-200 chart. CREDIT: the printed credit names BNXN explicitly, verbatim, on both the weekly chart row and the song page - no same-title collision. BUJU BANTON CHECK: not applicable and no ambiguity - the credit reads 'BNXN', and the collaborators (JAE5, the British-Ghanaian producer, and Dave, the UK rapper, on Black Butter) place this squarely with the Nigerian artist. Minor noted caveat that does not refute the row: some references describe Ireland's 'official' chart as a Top 50, which would put #59 below the historically headline-published depth, but that is a chart-depth convention rather than a wrong-chart error, since IRMA itself publishes and archives all 100 positions as the Irish Singles Chart."
+   }
+  },
+  {
+   "artist": "BNXN",
+   "title": "Finesse",
+   "credit": "PHEELZ & BUJU (re-credited PHEELZ & BNXN mid-run)",
+   "country": "IE",
+   "chartName": "Official Irish Singles Chart",
+   "peak": 61,
+   "format": "Single",
+   "verbatim": "irma.ie/song/pheelz-buju-finesse/: 'FINESSE | PHEELZ & BUJU | Singles | Peak #61 | Label RIIDIIMACOOL'. Weekly archive: week 2022-03-11 This Week 61, Peak 61, Weeks on Chart 1 (credited PHEELZ & BUJU); week 2022-04-15 This Week 99, Peak 61, Weeks on Chart 2 (credited PHEELZ & BNXN).",
+   "verdict": {
+    "standsUp": true,
+    "isPrincipalNationalChart": true,
+    "creditNamesArtist": true,
+    "confidence": "high",
+    "reasoning": "Confirmed at primary source. IRMA weekly archive (irma.ie/irish-charts/singles/?week=2022-03-11), 'Top 100 Singles', week 5 - 11 Mar 2022, position 61: 'FINESSE' by 'PHEELZ & BUJU', Peak 61, Weeks on Chart 01. The 15 Apr 2022 chart shows the same entry at position 99 credited 'PHEELZ & BNXN', Peak 61, Weeks on Chart 02 - a continuous run with the weeks counter incrementing, simply re-credited mid-run. PEAK IS NOT SPLIT BY THE RE-CREDIT: I specifically checked whether the re-credit forked the run across two IRMA song pages with two lower peaks. Both pages exist and both report the same peak - irma.ie/song/pheelz-buju-finesse/ (Singles, Peak #61, label RIIDIIMACOOL) and irma.ie/song/pheelz-bnxn-finesse/ (Singles, Peak #61, label WARNER RECORDS). So #61 is the peak of the whole run, and IRMA states that peak on the BNXN-credited page itself. CHART: Official Irish Singles Chart, issued by IRMA, compiled by the Official Charts Company - the principal national singles chart; not a genre, component or extension chart (IRMA publishes a single Top 100). BUJU BANTON CHECK - the key risk here, and it is decisively resolved rather than assumed: IRMA re-credited the identical chart entry (same title, same peak, continuous weeks-on-chart counter) from 'PHEELZ & BUJU' to 'PHEELZ & BNXN', which is the chart body itself identifying this Buju as BNXN - the documented 2022 stage-name change of Nigerian singer Daniel Benson. Supporting: the BNXN-credited page carries Warner Records, and the collaborator is Pheelz, the Nigerian producer; a Pheelz / Buju Banton record is not what charted. Note the credit printed in the actual peak week read 'PHEELZ & BUJU', with 'BNXN' appearing on the later row and on the parallel song page - but it is one entry and IRMA names BNXN for it. Same Top 50 vs Top 100 depth caveat as the Propeller row applies and likewise does not refute the placement."
+   }
+  },
+  {
+   "artist": "BNXN",
+   "title": "Finesse",
+   "credit": "Pheelz x BNXN",
+   "country": "FR",
+   "chartName": "SNEP Top Singles (Top 200)",
+   "peak": 85,
+   "format": "Single",
+   "verbatim": "85 FINESSE PHEELZ/BNXN WEA / WARNER RECORDS 91 e La Semaine Dernière  [SNEP Top Singles, semaine 19 / 2022 — peak week of an 11-week run: w15 #144, w16 #124, w17 #96, w18 #91, w19 #85, w20 #115, w21 #117, w22 #109, w23 #116, w24 #123, w25 #184. Corroborated on hitparade.ch item page 'Pheelz x BNXN – Finesse': 'Weltweit FR Peak: 85 / Wochen : 11']",
+   "verdict": {
+    "standsUp": true,
+    "isPrincipalNationalChart": true,
+    "creditNamesArtist": true,
+    "confidence": "high",
+    "reasoning": "Could not refute — confirmed at the compiler's own site. I pulled SNEP's weekly Top Singles (snepmusique.com, categorie=Top Singles) for every week of 2022 (w8-w52) and all of 2023 and parsed the ranked items. The row appears in exactly 11 weeks, all 2022, matching the reported run precisely: w15 #144, w16 #124, w17 #96, w18 #91, w19 #85, w20 #115, w21 #117, w22 #109, w23 #116, w24 #123, w25 #184. No re-entry in 2023. Minimum position across the run = 85 (week 19), so 85 is the peak, not a debut or a current position; the w19 row itself shows 'rang 85' with 'La Semaine Dernière 91' and an up-arrow, and the w20 row shows 115 with LW 85, bracketing the peak. (1) Principal national chart: SNEP's 'Top Singles' is France's official all-format national singles chart. SNEP's weekly nav lists Top Albums, Top Rock & Metal, Top Albums Classique, Top Albums Jazz, Top Albums Physiques and Top Singles — Top Singles is the flagship singles ranking, not a genre, component or platform chart (SNEP publishes Top Radio separately). It is a single 200-position chart — depth was exactly 200 in every one of the 97 weeks I fetched, with no top-100 chart plus separate extension — and 85 is inside the top 100 regardless. Week 19 2022 #1 was 'Suavemente' by Soolking, confirming the page rendered is the singles chart. (2) Credit: the printed SNEP row reads FINESSE / PHEELZ/BNXN / WEA / WARNER RECORDS — BNXN is named in the credit, no same-title collision (no other Finesse charted in that window under a different credit). (3) BNXN identity: this is the Nigerian artist BNXN (formerly Buju), Pheelz's featured vocalist on the March 2022 Warner single, not Buju Banton — the Jamaican artist has no connection to this record. One caveat that does not affect the verdict: English Wikipedia's France row (85) cites a source titled 'Top Singles (Week 18, 2022)', but the primary data shows week 18 was #91 and the 85 came in week 19 — Wikipedia's citation label is off by a week while its peak figure is right. The claim's own week attribution (week 19) matches the primary source."
+   }
+  },
+  {
+   "artist": "BNXN",
+   "title": "Finesse",
+   "credit": "Pheelz x Buju",
+   "country": "NL",
+   "chartName": "Single Top 100",
+   "peak": 84,
+   "format": "Single",
+   "verbatim": "Single Top 100 Eerste notering 16/04/2022 (Positie 69→ shown as 85) Laatste notering 04/06/2022 (Positie 94) Peak 84 (1 week) Aantal weken 8  [dutchcharts.nl item page, h1: 'Pheelz x Buju – Finesse'. Exact string read: 'Single Top 100Eerste notering16/04/2022 (Positie 85)Laatste notering04/06/2022 (Positie 94)Peak84 (1 week)Aantal weken8']",
+   "verdict": {
+    "standsUp": true,
+    "isPrincipalNationalChart": true,
+    "creditNamesArtist": true,
+    "confidence": "high",
+    "reasoning": "Confirmed at the body: loaded the dutchcharts.nl item page in-browser (WebFetch returns 403; Hung Medien blocks bots). Page h1 reads 'Pheelz x Buju / Finesse', Jaar 2022, and the chart box reads verbatim: 'Single Top 100 | Eerste notering 16/04/2022 (Positie 85) | Laatste notering 04/06/2022 (Positie 94) | Peak 84 (1 week) | Aantal weken 8', with the Wereldwijd summary line 'NL Peak: 84 / weken: 8'. (1) Chart: the Single Top 100 is the Netherlands' official national singles chart (GfK / Stichting Nederlandse Top 40) — not a genre, component or extension chart. (2) Credit: printed credit is 'Pheelz x Buju'; release details on the same page (Digital 03/03/2022, Riidiimacool/Warner, EAN 0610012522003) match the Nigerian single, so no same-title collision. (3) Peak vs debut: 84 is the stated Peak and is distinct from the debut position of 85 and the final position of 94, so it is not a debut or current position. (4) Not Buju Banton: 'Buju' here is BNXN fka Buju, the Nigerian artist credited on Pheelz's 2022 record; Buju Banton has no association with this release. Wikipedia's chart table independently lists 'Netherlands (Single Top 100) — 84', consistent with the register. One note: the row as handed to me carried a stray annotation 'Eerste notering 16/04/2022 (Positie 69 -> shown as 85)'; the live page shows 85 and no 69 appears anywhere in the chart run, but that artifact does not bear on the peak claim. Could not refute — the claim stands."
+   }
+  },
+  {
+   "artist": "BNXN",
+   "title": "Finesse",
+   "credit": "Pheelz x Buju",
+   "country": "WW",
+   "chartName": "Billboard Global 200",
+   "peak": 131,
+   "format": "Single",
+   "verbatim": "131 | Finesse | Pheelz x Buju — Billboard Global 200, chart dated 2022-03-19 (one week on chart; absent from the issues either side, 2022-03-12 and 2022-03-26, both read in full at 200 rows)",
+   "verdict": {
+    "standsUp": true,
+    "isPrincipalNationalChart": true,
+    "creditNamesArtist": true,
+    "confidence": "high",
+    "reasoning": "Confirmed at the body. Billboard's own Global 200 page for the issue dated 19 March 2022 (read in full, 200/200 ranks) prints the row: rank 131, NEW, 'Finesse', credit 'Pheelz x Buju', last week '-', peak 131, 1 week on chart. The Billboard Global 200 is Billboard's flagship supranational worldwide chart — not a genre, component or extension chart — and the repo's own standard (app/data/charts.ts GLB, and every sweep doc) counts it as its own entry. Peak, not debut: Billboard's row itself gives weeks-on-chart = 1, which excludes any earlier week; I then read every subsequent weekly issue at full 200 rows from 2022-03-26 through 2022-10-01 (28 issues) and 'Finesse' appears in none, so 131 is the all-time peak (the 2022-03-14 and 2022-06-20 URLs are Mondays that alias to the adjacent Saturday issue, not separate weeks). Wikipedia's chart table independently lists Global 200 peak 131. Not Buju Banton: 'Buju' was BNXN's stage name until mid-2022, the row's chart artwork slug is 'pheelz-000-finesse', and RIAA/BPI/SNEP credit the same record 'PHEELZ & BNXN'."
+   }
+  },
+  {
+   "artist": "BNXN",
+   "title": "Finesse",
+   "credit": "Pheelz x Buju",
+   "country": "WW",
+   "chartName": "Billboard Global Excl. U.S.",
+   "peak": 106,
+   "format": "Single",
+   "verbatim": "106 | Finesse | Pheelz x Buju — Billboard Global Excl. U.S., chart dated 2022-03-19 (one week on chart; absent from 2022-03-12 and 2022-03-26, both read in full at 200 rows)",
+   "verdict": {
+    "standsUp": true,
+    "isPrincipalNationalChart": true,
+    "creditNamesArtist": true,
+    "confidence": "high",
+    "reasoning": "Confirmed at the body. Billboard's own Global Excl. US page for the issue dated 19 March 2022 (read in full, 200/200 ranks) prints the row: rank 106, NEW, 'Finesse', credit 'Pheelz x Buju', last week '-', peak 106, 1 week on chart. Billboard Global Excl. U.S. is a full 200-position supranational chart published in its own right, not a genre chart, not a component (streaming/radio/sales) chart, and not an extension sitting below the Global 200; the site's established convention (charts.ts GLBX, afrobeats.ts, and the Rema/Tems/Tyla/Victony/Fireboy sweeps) records it as its own entry alongside the Global 200. Peak, not debut: the row's weeks-on-chart = 1 excludes any earlier week, and every subsequent weekly issue from 2022-03-26 to 2022-10-01 was read at full 200 rows with no 'Finesse' row on either global chart; 2022-03-12 was also read clean. Not Buju Banton — same evidence as the Global 200 row: 'Buju' is BNXN's pre-2022 stage name, the artwork slug is 'pheelz-000-finesse', and the certification registers for this record read 'PHEELZ & BNXN'."
+   }
+  }
+ ],
+ "rejected": [],
+ "notPrincipalChart": [],
+ "provenZeros": [
+  "UK Official Singles Chart — Black Sherif: ZERO. All 9 OCC artist-credit pages naming him (black-sherif, black-sherif-and-burna-boy, darkoo-ft-black-sherif, smallgod-and-black-sherif-and-tory, black-sherif-fireboy-dml, black-sherif-mabel, kidi-black-sherif, odumodublvckblack-sherif, pa-salieu-ft-black-sherif) and all 14 of his song pages read in full. His entire OCC record is Official Afrobeats Chart plus Official Independent Singles Chart (Kwaku The Traveller #40) and Official Independent Singles Breakers Chart (#9) — no main-chart line ever.",
+  "UK Official Albums Chart — Olamide: ZERO. Full OCC album sitemap (92,987 pages) enumerated; the only Olamide album page is /albums/olamide-olamide/ ('OLAMIDE'), whose OCC record returns chartTrackInfos: [] — no entry on any OCC chart.",
+  "UK Official Albums Chart — Black Sherif: ZERO. Only album page is /albums/black-sherif-the-villain-i-never-was/ ('THE VILLAIN I NEVER WAS'), OCC record returns chartTrackInfos: [] — no entry on any OCC chart.",
+  "UK Official Albums Chart — BNXN/BUJU: ZERO. No album page exists for BNXN or BUJU (pre-2022 alias) anywhere in the complete OCC album sitemap.",
+  "UK Official Albums Chart — all three artists: ZERO confirmed a second way. Across all 85 sitemap-enumerated song/album pages the only chart labels OCC ever returned were: Official Singles Chart, Official Singles Chart Update, Official Afrobeats Chart, Official Hip Hop and R&B Singles Chart, Official Independent Singles Chart, Official Independent Singles Breakers Chart, Official Singles Downloads Chart, Official Singles Sales Chart, Official Streaming Chart, Official Video Streaming Chart. No Official Albums Chart line appears anywhere.",
+  "Official Irish Singles Chart — Olamide: ZERO across all 617 weekly charts, 07 Nov 2014 to 28 Aug 2026, read at full Top 100 depth from irma.ie. IRMA's own site search states verbatim: 'No results for olamide.'",
+  "Official Irish Singles Chart — Black Sherif: ZERO across the same complete 617-week Top 100 sweep. IRMA site search states verbatim: 'No results for black sherif.'",
+  "Official Irish Albums Chart — all three artists: ZERO across all 617 weekly Irish Albums Charts, 07 Nov 2014 to 28 Aug 2026, read at full Top 100 depth. Cross-checked by IRMA site search, which reports BNXN 'matches 2 chart entries' and BUJU 'matches 1 chart entry', all filed under Singles only; Olamide and Black Sherif return no results at all.",
+  "Official Irish Singles Chart — BNXN: exactly 2 entries and no more (Propeller, Finesse) across the complete 617-week Top 100 sweep. Notably 'Pray 2 The East' (M HUNCHO FT BNXN), a UK #77, never entered the Irish chart — M Huncho's only Irish appearances are 'Huncholini The 1st' (albums #68) and GRM Daily 'Burning'.",
+  "Cross-check: OCC's own Irish chart archive (504 weekly Irish Singles Charts and 502 weekly Irish Albums Charts, Jan 2017 – Aug 2026) read in full at its published Top 50 depth — zero hits for any of the three, consistent with the IRMA read, since both BNXN entries (#59, #61) sit below position 50.",
+  "Olamide — US Billboard Hot 100: ZERO entries. All 922 weekly issues from 2009-01-03 to 2026-08-29 read in full at full depth (ranks 1-100), each validated against its own 'Week of' date; no row's title or credit names Olamide.",
+  "Olamide — US Billboard 200: ZERO entries. All 922 weekly issues 2009-01-03 to 2026-08-29 read in full at full depth (ranks 1-200), each validated against its own 'Week of' date; no row's title or credit names Olamide.",
+  "Olamide — Billboard Canadian Hot 100: ZERO entries. All 922 weekly issues 2009-01-03 to 2026-08-29 read in full (ranks 1-100), each validated against its own 'Week of' date; no row's title or credit names Olamide.",
+  "Olamide — Billboard Canadian Albums: ZERO entries. All 922 weekly issues 2009-01-03 to 2026-08-29 read in full at each era's published depth (25 rows in the earlier era, 100 later), each validated against its own 'Week of' date; no row's title or credit names Olamide.",
+  "Black Sherif — US Billboard Hot 100: ZERO entries. All 922 weekly issues 2009-01-03 to 2026-08-29 read in full (ranks 1-100). 'Kwaku the Traveller', 'Soja', 'Second Sermon (Remix)' (w/ Burna Boy), 'So It Goes' (w/ Fireboy DML), Arrdee's 'Come & Go' and Darkoo's 'Always' appear nowhere in the archive.",
+  "Black Sherif — US Billboard 200: ZERO entries. All 922 weekly issues 2009-01-03 to 2026-08-29 read in full (ranks 1-200); the album 'The Villain I Never Was' never appears.",
+  "Black Sherif — Billboard Canadian Hot 100: ZERO entries. All 922 weekly issues 2009-01-03 to 2026-08-29 read in full (ranks 1-100); no row's title or credit names Black Sherif.",
+  "Black Sherif — Billboard Canadian Albums: ZERO entries. All 922 weekly issues 2009-01-03 to 2026-08-29 read in full at each era's published depth; no row's title or credit names Black Sherif.",
+  "BNXN (and as BUJU) — US Billboard Hot 100: ZERO entries. All 922 weekly issues 2009-01-03 to 2026-08-29 read in full (ranks 1-100), scanning for both 'BNXN' and 'Buju'. 'Finesse' (Pheelz & BNXN), 'Mood' (Wizkid ft. Buju), 'Propeller' (JAE5 ft. Dave & BNXN), 'Gwagwalada', 'Kilometre', 'For Days' appear nowhere.",
+  "BNXN (and as BUJU) — US Billboard 200: ZERO entries. All 922 weekly issues 2009-01-03 to 2026-08-29 read in full (ranks 1-200), scanning both names.",
+  "BNXN (and as BUJU) — Billboard Canadian Hot 100: ZERO entries. All 922 weekly issues 2009-01-03 to 2026-08-29 read in full (ranks 1-100), scanning both names. The only 'Buju' row in the entire archive is Buju BANTON (a different artist, excluded).",
+  "BNXN (and as BUJU) — Billboard Canadian Albums: ZERO entries. All 922 weekly issues 2009-01-03 to 2026-08-29 read in full at each era's published depth, scanning both names.",
+  "Germany (Offizielle Deutsche Charts, offiziellecharts.de) — read in full via the site's own artist search. Zero results for 'Black Sherif', 'Olamide', 'BNXN', 'Buju', 'Sherif', 'Kwaku', 'Propeller', 'Second Sermon', 'Amapiano', and for every lead-act collaborator: 'Pheelz', 'JAE5', 'Arrdee', 'Darkoo', 'Asake', 'Fireboy', 'Zinoleesky'. Search demonstrably indexes featured credits (control: 'Tems' → '1 Dave feat. Tems Raindance 19.12.2025 Wochen: 35 Peak: 7'; 'Wizkid' → '2 Drake feat. Wizkid & Kyla One Dance 15.04.2016 Wochen: 52 Peak: 1'). Dave's complete 47-single German list contains no 'Propeller'; Omah Lay's single German entry is 'Luciano feat. Omah Lay Another Vibe', not 'Infinity'. Singles and albums both covered.",
+  "Austria (Ö3 Austria Top 40, austriancharts.at) — read in full. Charting artists carry an 'in der österreichischen Hitparade / Titel Eintritt Peak Wochen' table; none of 'Black Sherif', 'Olamide', 'BNXN', 'Buju', 'BNXN fka Buju' has one. Black Sherif's page shows only an uncharted discography row: 'Discographie Alben - Studio | Titel Label Release | The Villain I Never Was Empire 23.08.2024'. All lead-act collaborators also read: Pheelz, JAE5, Arrdee, Darkoo, Asake, Fireboy DML, Zinoleesky, M Huncho have no Austrian table at all; Wizkid's table holds only 'One Dance (Drake feat. Wizkid & Kyla) 22.04.2016 Peak 3 Wochen 39' and 'Boom (Major Lazer feat. MOTi, TY Dolla $ign, Wizkid & Kranium) 22.07.2016 Peak 57 Wochen 6' (no 'Mood'); Omah Lay's holds only 'Another Vibe (Luciano feat. Omah Lay) 20.02.2024 Peak 25 Wochen 15' (no 'Infinity'). Singles and albums both covered.",
+  "Switzerland (Schweizer Hitparade, hitparade.ch content served via swisscharts.com) — read in full at item level. No Swiss chart run on any item page for: The Villain I Never Was (album), January 9th, Zero (Black Sherif, Mabel), Come & Go (ArrDee), Finesse (Pheelz x Buju), Finesse (Pheelz x BNXN), Propeller (JAE5 feat. Dave & BNXN fka Buju), Pray 2 The East (M Huncho feat. BNXN fka Buju), Captain (album), Infinity (Olamide feat. Omah Lay), Naami, Owo Blow, Problem, Shaku Shaku Dance, Carpe Diem, Unruly, Olamidé!. The two Finesse pages carry cross-country blocks listing only 'NL Peak: 84 / Wochen : 8' and 'FR Peak: 85 / Wochen : 11' respectively — no CH. Artist-level Swiss tables surfaced on these pages confirm it: Dave's lists Starlight 35, Sprinter 1, Meridian 10, Cheat On Me 56, CRG 37, Raindance 2 — no 'Propeller'; ArrDee's lists only 'Body (Remix) … Peak: 97'; Omah Lay's lists Attention 49, Namek 42, Soso 52, Another Vibe 13 — no 'Infinity'. Singles and albums both covered.",
+  "France (SNEP Top Singles + Top Albums, snepmusique.com) — full weekly archive swept 2011–2026, every week 1–53 of both charts (1,590 weekly Top 200 pages, 0 fetch failures). Only one entry for the three artists: 'FINESSE PHEELZ/BNXN'. All other regex hits were different acts: 'Finesse' by Drake (2018 w27), 'Finesse' by S.Pri Noir feat. Haute (2018 w20), 'DMVP SHERIFFLAZONE' (2025 w4 albums), 'BADMAN GANGSTA ASAKE & TIAKOLA' (2025, Asake without Olamide), 'Ameno Amapiano Remix (You Wanna Bamba) GOYA MENOR & NEKTUNEZ', 'PERU FIREBOY DML & ED SHEERAN'. No Olamide and no Black Sherif entry anywhere in the French archive; no BNXN album entry.",
+  "Belgium (Ultratop Flanders and Wallonia) — zero via Hung Medien's own Ultratop-derived cross-country data, NOT via ultratop.be itself (see gaps). The 'Weltweit' block on hitparade.ch item pages reports Ultratop placements split by region — validated on a control, 'Tion Wayne x Russ Millions feat. ArrDee … Body (Remix)' → 'CH Peak: 97 / Wochen : 1 SE Peak: 4 …', and on 'Drake feat. Wizkid & Kyla – One Dance' → 'CH Peak: 1 … FR Peak: 1 … NL Peak: 1 … BE Peak: 1 / Wochen : 33 (V) Peak: 2 / Wochen : 31 (W) …'. For all 17 Olamide / Black Sherif / BNXN items checked, no BE (V) or BE (W) figure appears; the two Finesse entries list only NL and FR respectively.",
+  "SWEDEN — Sverigetopplistan Veckolista Singlar (chart id 41): 815 weekly issues read in full, 2011–2026 wk35. Zero for all three artists. Backstopped by Sverigetopplistan's own register search, which is proven to index FEATURED credits (query 'kyla' returns 'ONE DANCE | DRAKE FEAT. WIZKID & KYLA'; 'tems' returns 'RAINDANCE (FEAT. TEMS) | DAVE'): 'olamide', 'black sherif', 'bnxn', 'pheelz', 'arrdee' all return 'Inga träffar hittades' (no hits). Control 'avicii' returns 119 hits.",
+  "SWEDEN — Sverigetopplistan Veckolista Album (chart id 54): 805 weekly issues read in full, 2011–2026. Zero for all three artists.",
+  "NORWAY — VG-lista / Topplista (IFPI Norge, topplista.no): the register's COMPLETE artist database read in full — 6,707 artists with their charting titles (topplista.no/index.json). Contains no Olamide, no Black Sherif, no BNXN, no Buju, no Pheelz, no Darkoo, no JAE5. The database indexes featured credits (Tems appears via 'RAINDANCE (FEAT. TEMS)') and covers modern Afrobeats (Rema 'CALM DOWN', CKay 'LOVE NWANTITI', Tyla, Burna Boy, Wizkid all present) as well as the 1970s. ArrDee IS present but his only Norwegian charting title is 'OLIVER TWIST' — not 'Come & Go'. Wizkid is present with only 'BOOM' — so 'Mood (feat. Buju)' never charted.",
+  "DENMARK — Hitlisten Track Top-40: 1,026 weekly issues read in full, week 1 2007 → week 33 2026 (every issue the register publishes; the archive begins at week 1, 2007). All 40 rows every week. Zero. Danish rows print full featured credits (e.g. 'TOBIAS RAHIM FEAT. ANDREAS ODBJERG', 'INFERNAL FEAT. BRANCO & JIMILIAN'), so a feature could not have been missed.",
+  "DENMARK — Hitlisten Album Top-40: 1,027 weekly issues read in full, 2007 → 2026 wk33. Zero.",
+  "ITALY — FIMI weekly archive: 834 weekly issues read in full, 2011–2026. Each issue carries the Album Top 100 AND the Singoli Top 100 (220–250 rows per week). Zero. FIMI prints full featured credits (e.g. 'S!R! | THASUP FEAT. LAZZA & SFERA EBBASTA'), so a feature could not have been missed.",
+  "SPAIN — PROMUSICAE Top 100 Canciones (elportaldemusica.es): 816 weekly issues read in full, 2011 → 2026 wk34. Zero.",
+  "SPAIN — PROMUSICAE Top 100 Álbumes: 803 weekly issues read in full, 2011 → 2026 wk34. Zero. (Weeks 14–26 of 2020 are not a reading gap: PROMUSICAE published no albums chart at all in those 13 COVID weeks — verified directly, the pages return 0 album rows while wk13 and wk27 return 100.)",
+  "PORTUGAL — AFP / Audiogest official weekly TOP: all 451 weekly PDFs the register publishes, 2018 → 2026 wk34, downloaded and text-extracted in full (451 of 451 readable, 0 unreadable). Each PDF carries Top 200 Singles and Top 200 Álbuns with a 'Pos. Máx.' peak column and full credits. Zero. The only pattern hit across all 451 was 'Ameno Amapiano Remix | Goya Menór & Nektunez' — an unrelated record, not Asake & Olamide's 'Amapiano'.",
+  "GREECE — IFPI Greece Digital Singles Chart (International), the chart where non-Greek repertoire appears: 326 of 328 archived weekly issues read in full, Jan 2020 → Aug 2026. Zero. The only pattern hits were 'Come & Go | Marshmello, Juice WRLD' (unrelated), 'Oliver Twist | ArrDee' and 'Body (Remix) | Tion Wayne, Russ Millions, ArrDee…feat…Darkoo' — the latter is a Darkoo feature on a Tion Wayne record, NOT Darkoo's 'Always' with Black Sherif.",
+  "GREECE — IFPI Greece Top-100 Albums Sales Chart (Combined): 307 of 308 archived weekly issues read in full, Jan 2020 → Aug 2026. Zero hits of any kind.",
+  "GREECE — current week (30/2026) of all three official IFPI Greece charts (Top-100 Albums Sales, Digital Singles Local, Digital Singles International) read live on ifpi.gr in full: zero.",
+  "AUSTRALIA — ARIA Top 50 Singles: 373 weekly issues read in full (all 50 rows each), from ARIA's dated archive through 2026-08-24. Zero. The only pattern hit was 'Flowers (Say My Name) | ArrDee' (2021-12-06) — not a Black Sherif record.",
+  "AUSTRALIA — ARIA Top 50 Albums: 346 weekly issues read in full (all 50 rows each), 2020-01 → 2026-08-24. Zero credited entries. The only pattern hit was ArrDee's album 'Pier Pressure' (5 weeks, Mar–Apr 2022), credited by ARIA to 'ArrDee' alone; Black Sherif is a guest on one track and is not a credited artist on the chart row, so this is NOT counted as a Black Sherif entry.",
+  "NEW ZEALAND — Official Aotearoa Music Charts (RMNZ) Top 40 Singles and Top 40 Albums: ZERO for all three artists. Read via the register's own 50-year artist database (aotearoamusiccharts.co.nz/api/search). Olamide, Black Sherif and Darkoo return no records at all; title searches for 'Kwaku/Kweku The Traveller', 'Second Sermon', 'Soja', 'So It Goes', 'Amapiano', 'Gwagwalada' return nothing. BNXN DOES exist in the database but every one of his entries is on the HOT 40 SINGLES — the excluded extension chart — never the Official Top 40. See notes for the verbatim rows.",
+  "POLAND — OLiS 'single w streamie' (ZPAV's official singles list): zero for olamide, sherif, bnxn, buju, pheelz, arrdee, darkoo, jae5, asake, omah lay, fireboy. Verified against a live positive control in the same session and parameters ('burna' returns 'Shakira, Burna Boy — Dai Dai', 12 weeks, peak 1). The API's keyword search matches the full credit string including features.",
+  "POLAND — OLiS 'albumy' (ZPAV's official albums list): zero for all eight names, across two independent control-verified passes (controls 'taylor' → Taylor Swift and 'villain' → 'Avi, Louis Villain' both returned data in the same passes). Note the API's date parameters do not actually filter — a successful query returns an artist's entire history — so a single control-verified pass is a complete read of the database.",
+  "BILLBOARD GLOBAL 200 — the complete archive read row by row: 310 weekly issues, launch (2020-09-19) through 2026-08-29, all 200 rows every week, 62,000 rows captured to disk and grepped. OLAMIDE: proven zero. BLACK SHERIF: proven zero. BNXN: one entry only (Finesse).",
+  "BILLBOARD GLOBAL EXCL. U.S. — the complete archive read row by row: 310 weekly issues, launch (2020-09-19) through 2026-08-29, all 200 rows every week, 62,000 rows captured to disk and grepped. OLAMIDE: proven zero. BLACK SHERIF: proven zero. BNXN: one entry only (Finesse). Every candidate title was also checked by name against the 124,000-row corpus: 'Infinity' belongs only to Jaymes Young, 'Mood' only to 24kGoldn Featuring iann dior, 'Come & Go' only to Juice WRLD x Marshmello, 'Sacrifice' only to The Weeknd, 'Pray' only to Jessie Murph, 'New Religion' only to Bebe Rexha & Faithless."
+ ],
+ "gaps": [
+  "Official Irish charts before 7 Nov 2014 are unread — IRMA's week-by-week online archive begins 6 Nov 2014 and there is no earlier weekly archive on the site. This is a real gap only for Olamide, who has been releasing since 2011; Black Sherif (2021) and BNXN/BUJU (2021) both debuted well inside the readable window. No evidence of any Olamide Irish placement in the readable era.",
+  "Records whose official chart credit omits the featured artist entirely cannot be surfaced by name-matching either register. I hand-checked the known candidate: ArrDee's 'Come & Go' is filed by OCC as 'ARRDEE' alone at Official Singles Chart #16, but its chart run (11 Mar – 12 May 2022) is the solo original — the Black Sherif remix was released ~3 June 2022, after the run ended, and never charted. It is therefore correctly excluded, not counted. Any further uncredited feature of this kind would be invisible to both registers.",
+  "Only the two requested territories were worked. The UK and Ireland reads are complete; no other territory in the 'what counts' list (US, CA, FR, BE, SE, NO, DK, IT, ES, PL, GR, AU, NZ, Billboard Global 200) was attempted, so all of those remain open rather than zero.",
+  "Belgium — ultratop.be could not be read directly. Both www.ultratop.be and ultratop.be sit behind a persistent Cloudflare 'Performing security verification' interstitial that did not clear after 50+ seconds in a real browser and returns HTTP 403 to plain requests. No CAPTCHA was attempted. Wayback holds no captures of Ultratop artist/song pages for any of the three (a CDX domain scan returned only 'Buju Banton' — a different, Jamaican artist that must not be counted — and unrelated matches like 'arctic_monkeys-my_propeller'). The Belgian zero above therefore rests on Hung Medien's cross-country block rather than on the Ultratop chart pages themselves.",
+  "France — lescharts.com (the usual SNEP archive mirror) is Cloudflare-blocked (HTTP 403 / 'Just a moment...' persisting past 40s) and has no Wayback captures for these artists. This was worked around by sweeping SNEP's own official weekly archive at snepmusique.com instead, so France is still covered — but the SNEP sweep window is 2011–2026. SNEP's archive also offers 2001–2010, which was not swept (Olamide's recording career begins 2011; Black Sherif and BNXN both 2021, so no coverage is believed lost).",
+  "Switzerland — hitparade.ch itself is Cloudflare-blocked (403). The Swiss data was read from swisscharts.com, which serves the identical hitparade.ch pages (page titles literally read '… - hitparade.ch') with no bot check. Same operator and same database, but worth flagging that the canonical hostname was not the one read.",
+  "Netherlands and Switzerland artist pages no longer render a chart table in Hung Medien's current template, so peaks had to be read item-by-item from song/album pages. Coverage there is therefore bounded by which titles have item pages on those sites — a title that charted would have one, but a title with no page anywhere (e.g. 'Kwaku the Traveller', 'Soja', 'Second Sermon (Remix)', 'Gwagwalada', 'Kilometre', 'Mood', 'Always', 'So It Goes', 'Science Student', 'Wo!!', 'Amapiano') was confirmed absent rather than positively read as a non-charting row.",
+  "POLAND — pre-2023 OLiS is NOT readable and is a genuine gap. ZPAV's online OLiS database (olis.pl) begins at week 2023-W1; the earliest week seen anywhere in its data is 2023-W1. The OLiS albums chart has run since 2000, so 2011–2022 Polish album weeks were not read. ZPAV's older hosts (bestsellery.zpav.pl, zpav.pl, olis.wielcy.pl) would not connect at all. This matters for Olamide's, Black Sherif's and BNXN's 2020–2022 releases.",
+  "POLAND — the olis.pl API silently returns success:true with zero results when rate-limited, which initially produced false zeros. Every Polish zero reported above is control-verified, but this failure mode means Polish results should be re-checked with controls if revisited.",
+  "AUSTRALIA — ARIA's dated online archive does not reach back before roughly mid-2019 (aria.com.au/charts/singles-chart/2019-06-03 and /2018-06-04 both return an empty 1,210-byte page; 2019-12-30 returns a full 50). 26 of the 399 Mondays requested from 2019-01-07 are therefore unread. Olamide's 2011–2019 catalogue is consequently unchecked against ARIA. Black Sherif and BNXN had no releases before 2019, so they are unaffected.",
+  "AUSTRALIA — ARIA itself serves no chart for the week of 2020-08-24 (both the singles and albums pages return an empty 1,210-byte response). One week of 347 unread on the albums chart; this is ARIA's own gap, not a reading failure.",
+  "SWEDEN — 12 weeks of the Veckolista Album archive (2011/43, 2013/45, 2015/8, 2016/28, 2020/28, 2021/12, 2021/34, 2022/6, 2022/43, 2022/46, 2024/13, 2025/49) and 2 weeks of the Veckolista Singlar archive (2011/27, 2013/20) persistently return zero rows from sverigetopplistan.se across five retries each. Those weeks were not read. The register's own credit-indexing search covers them and returns nothing for all three artists, but the weeks themselves are unread.",
+  "GREECE — ifpi.gr publishes ONLY the current week; it has no archive of any kind (no week selector, no dated URLs). All historical Greek weeks were read through the Internet Archive, which limits coverage to Jan 2020 onward. Greek charts before 2020 were not read at all — relevant only to Olamide's earlier catalogue. Additionally 2 weeks of the International singles archive and 1 week of the albums archive remain unread after retries, and archive.org intermittently refused connections during this work.",
+  "GREECE — the IFPI Greece 'Digital Singles Chart (Local)' was not swept. It carries Greek domestic repertoire only; the International chart is where these artists would appear and it was swept in full. Its current week was read and holds nothing.",
+  "PORTUGAL — AFP's weekly index links PDFs from 2018 onward only; the 2017 page lists none. Portuguese weeks before 2018 were not read.",
+  "DENMARK / ITALY / SPAIN — archives were read from the earliest year each register serves that is relevant (Denmark from 2007, Italy and Spain from 2011). Earlier years exist for Italy (from 2008) and Spain (from 2009) but were not swept; no artist here had released anything before 2011, so this is not thought to hide entries.",
+  "HUNG MEDIEN mirrors (swedishcharts.com, norwegiancharts.com, danishcharts.dk, italiancharts.com, spanishcharts.com, portuguesecharts.com, australian-charts.com, charts.nz) are ALL behind a Cloudflare 'Just a moment...' bot check. That check was not bypassed, so none of these commonly-cited mirrors was used. Every figure above comes from an official register instead.",
+  "BILLBOARD — billboard.com redirects automated browser traffic to a TollBit paywall ('You are not authorized to access this content without a valid TollBit Token'). The Global 200 archives were reachable by plain HTTP request instead, so this did not block the work.",
+  "BILLBOARD — the artist 'chart history' module on billboard.com returns EMPTY for Olamide, Black Sherif, BNXN, Pheelz and Asake while returning 60–90 charts for control artists (Wizkid 65, Burna Boy 90, Rema 71, Tems 64). This is a defect in Billboard's artist database, not evidence of zero — Billboard demonstrably tracks these acts (its U.S. Afrobeats Songs chart for 2022-05-07 prints 'Kweku The Traveller | Black Sherif' at 5 and 'Finesse | Pheelz x Buju' at 7). Treating that empty module as a zero would have been a false negative; the Global 200 archives were read directly instead."
+ ],
+ "byArtist": {
+  "Olamide": 1,
+  "Black Sherif": 0,
+  "BNXN": 9
+ }
+}

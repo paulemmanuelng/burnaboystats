@@ -176,7 +176,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     image: "https://i.scdn.co/image/ab6761610000e5eb690d9ec39523c7159ada0426",
     verifiedOn: AFROBEATS_VERIFIED_ON_6,
     swept: true,
-    chartPublished: { entries: 99, territories: 1, no1s: 4 },
+    chartPublished: { entries: 100, territories: 2, no1s: 4 },
     releases: [
       { title: "Amapiano", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ca53dc32e25c8249389aa28d80ad8fe7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }, { c: "UK", level: "Silver" }] },
       { title: "99", kind: "Lead singles", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
@@ -233,7 +233,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     ],
     charts: [
       { title: "99", kind: "Singles", entries: [{ c: "NG", peak: 1 }] },
-      { title: "Amapiano", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ca53dc32e25c8249389aa28d80ad8fe7/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
+      { title: "Amapiano", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/ca53dc32e25c8249389aa28d80ad8fe7/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 86 }] },
       { title: "Omo Ope", kind: "Singles", entries: [{ c: "NG", peak: 1 }] },
       { title: "Rock", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Billionaires Club", kind: "Singles", entries: [{ c: "NG", peak: 2 }] },
@@ -409,7 +409,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     image: "https://i.scdn.co/image/ab6761610000e5eb54047830689ea245d14a390f",
     verifiedOn: AFROBEATS_VERIFIED_ON_6,
     swept: true,
-    chartPublished: { entries: 89, territories: 1, no1s: 6 },
+    chartPublished: { entries: 98, territories: 7, no1s: 6 },
     releases: [
       { title: "Gwagwalada", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 5 }] },
       { title: "Alone", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/1fe91c5c64c50b4f4a901d248114d99d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }] },
@@ -468,10 +468,11 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Yes Sir", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/19/5f/70/195f709f-ada5-2cfd-14a0-925b548c1a84/199316032659_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
     ],
     charts: [
+      { title: "Pray 2 The East", kind: "Singles", entries: [{ c: "UK", peak: 77 }] },
       { title: "Back Outside", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Feeling", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/d91495fa367186de1d1e217b5b1bdaaf/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Fi Kan We Kan", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
-      { title: "Finesse", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/3cd08785ca6d2a471c70f774fc3e9b8c/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
+      { title: "Finesse", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/3cd08785ca6d2a471c70f774fc3e9b8c/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 52 }, { c: "IE", peak: 61 }, { c: "FR", peak: 85 }, { c: "NL", peak: 84 }, { c: "GLB", peak: 131 }, { c: "GLBX", peak: 106 }] },
       { title: "Gwagwalada", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "POE", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/45/ab/00/45ab0092-4f5b-af75-68a2-7892edbb775d/197342544658_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 1 }] },
       { title: "Pray", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/0ce9ce5b82ac7a394e54078a804577ac/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
@@ -503,7 +504,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Confident", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/198288ca213776de9e6fb90ee7bd2f1b/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 17 }] },
       { title: "Many Ways", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/7d/df/a8/7ddfa8d5-74b2-1457-e415-f040d6468adf/cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 18 }] },
       { title: "Phenomena", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/46e288e8e53f80f89164b0a15d57f9c1/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 18 }] },
-      { title: "Propeller", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a43316e87ca17a887777733d890061ae/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 18 }] },
+      { title: "Propeller", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a43316e87ca17a887777733d890061ae/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 18 }, { c: "UK", peak: 38 }, { c: "IE", peak: 59 }] },
       { title: "I Alone", kind: "Singles", entries: [{ c: "NG", peak: 20 }] },
       { title: "For Days", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/99ab461acf3040d231c824f66893a811/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 21 }] },
       { title: "Come Alive", kind: "Singles", entries: [{ c: "NG", peak: 23 }] },

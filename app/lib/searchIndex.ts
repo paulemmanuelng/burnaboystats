@@ -629,14 +629,14 @@ export const searchIndex: SearchDoc[] = [
     title: "Olamide — Certifications",
     path: "/afrobeats/olamide",
     section: "Afrobeats",
-    description: "54 certifications across 2 countries and 99 official chart entries, verified at source.",
+    description: "54 certifications across 2 countries and 100 official chart entries, verified at source.",
     keywords: ["olamide", "olamide gbenga adedeji", "baddo", "ybnl", "olamide certifications"],
   },
   {
     title: "Olamide — Official Chart Peaks",
     path: "/afrobeats/olamide/charts",
     section: "Afrobeats",
-    description: "Every official chart peak for Olamide — 99 entries, 4 of them No. 1 in Nigeria.",
+    description: "Every official chart peak for Olamide — 100 entries across 2 territories, 4 of them No. 1 in Nigeria.",
     keywords: ["olamide charts", "olamide number one", "rock olamide", "olamide peak"],
   },
   {
@@ -671,14 +671,14 @@ export const searchIndex: SearchDoc[] = [
     title: "BNXN — Certifications",
     path: "/afrobeats/bnxn",
     section: "Afrobeats",
-    description: "65 certifications across 6 countries and 89 official chart entries, verified at source.",
+    description: "65 certifications across 6 countries and 98 official chart entries, verified at source.",
     keywords: ["bnxn", "buju", "daniel benson", "finesse", "gwagwalada", "bnxn certifications"],
   },
   {
     title: "BNXN — Official Chart Peaks",
     path: "/afrobeats/bnxn/charts",
     section: "Afrobeats",
-    description: "Every official chart peak for BNXN — 89 entries, 6 of them No. 1 in Nigeria.",
+    description: "Every official chart peak for BNXN — 98 entries across 7 territories, 6 of them No. 1 in Nigeria.",
     keywords: ["bnxn charts", "bnxn number one", "finesse chart", "buju charts"],
   },
   {

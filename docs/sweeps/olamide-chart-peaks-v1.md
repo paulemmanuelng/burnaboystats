@@ -9,9 +9,9 @@ Shazam, YouTube, Audiomack, Boomplay); **genre and component charts** (Billboard
 U.S. Afrobeats Songs, Streaming Songs, Radio Songs); extension charts below a
 main chart; year-end, mid-week and recurrent charts.
 
-## Total: 99 singles + 0 albums = 99 chart entries
+## Total: 100 singles + 0 albums = 100 chart entries
 
-**4 No. 1s.** One territory: 🇳🇬 Nigeria.
+**4 No. 1s**, all in Nigeria. **2 territories.**
 
 ## Nigeria — the complete archive, read directly
 
@@ -55,12 +55,13 @@ across all 303 issues.
 | Hate Me | Olamide ft. Wande Coal  | **#4** | 7 |
 | Jinja | Olamide | **#5** | 26 |
 
-## Everywhere else
+## Outside Nigeria
 
-The international chart sweep is **incomplete and is not published as zeros.**
-Germany, the Netherlands, Switzerland and Austria were read in full for
-Olamide on both singles and albums and hold nothing. France (lescharts) and
-Belgium (Ultratop) sit behind a Cloudflare bot check that was not bypassed; the
-UK, Ireland, US, Canada, the Nordics, Italy, Spain, Portugal and Greece were not
-completed. Those territories are **gaps**, and this file claims one territory
-only.
+**One entry, read at the body.** *Amapiano*, credited `ASAKE FT OLAMIDE`, reached
+**No. 86 on the UK Official Singles Chart** — confirmed at the chart week itself,
+not the summary row: the OCC archive for the week of 23/6/2023 lists it at 86,
+marked NEW, annotated "Peak: 86, Weeks: 1".
+
+**Two better-looking numbers for the same record were rejected.** Its *Official
+Singles Chart Update* peak is 72 and its *UK Afrobeats Chart* peak is 3. Neither
+is a principal national chart, so neither is published here.
