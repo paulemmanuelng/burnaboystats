@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-28";
+  export const liveChartsUpdated = "2026-08-29";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","YouTube","iTunes"];
@@ -57,44 +57,44 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 11,
-            "movement": -1
+            "position": 9,
+            "movement": 2
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 25,
-            "movement": 10
+            "position": 24,
+            "movement": 1
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 37,
-            "movement": -5
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 47,
-            "movement": 1
+            "position": 33,
+            "movement": 4
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 59,
-            "movement": -14
+            "position": 35,
+            "movement": 24
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 64,
+            "movement": -17
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 98,
+            "movement": 35
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 104,
             "movement": -9
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 133,
-            "movement": -57
           }
         ]
       },
@@ -123,8 +123,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
-            "movement": 0
+            "position": 6,
+            "movement": -2
           }
         ]
       },
@@ -135,7 +135,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
+            "position": 14,
             "movement": null,
             "status": "new"
           }
@@ -230,26 +230,26 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 50,
-            "movement": -3
+            "position": 61,
+            "movement": -11
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": 4
+            "position": 69,
+            "movement": -2
           },
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 88,
-            "movement": -6
+            "position": 78,
+            "movement": 10
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 163,
-            "movement": -40
+            "position": 158,
+            "movement": 5
           }
         ]
       },
@@ -260,8 +260,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": 7
+            "position": 103,
+            "movement": 19
           }
         ]
       },
@@ -291,20 +291,33 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 35,
-            "movement": 14
+            "position": 34,
+            "movement": 1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
-            "movement": 3
+            "position": 67,
+            "movement": -2
           },
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 75,
-            "movement": 14
+            "position": 84,
+            "movement": -9
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 181,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -325,42 +338,48 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Bad Vibes",
+    "title": "99",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 127,
-            "movement": -2
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 102,
+            "movement": -3
           },
           {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 128,
-            "movement": 5
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 147,
+            "movement": -23
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 144,
+            "position": 186,
             "movement": null,
             "status": "new"
-          },
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 196,
-            "movement": -11
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 68,
+            "movement": 16
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Thy Kingdom Come",
@@ -441,6 +460,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "BACK 2 U",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Karma",
     "platforms": [
       {
@@ -450,14 +502,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 71,
-            "movement": 15
+            "position": 77,
+            "movement": -6
           },
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 82,
-            "movement": 27
+            "position": 113,
+            "movement": -31
           }
         ]
       },
@@ -468,8 +520,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 66,
-            "movement": -20
+            "position": 55,
+            "movement": 11
           }
         ]
       }
@@ -487,20 +539,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
-            "movement": 2
+            "position": 53,
+            "movement": -2
           },
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 100,
-            "movement": -14
+            "position": 70,
+            "movement": 30
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 152,
-            "movement": 5
+            "position": 95,
+            "movement": 57
           }
         ]
       }
@@ -509,23 +561,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ff869559b2b6b876cc2b7811bb7e4436/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "99",
+    "title": "Pressure",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 99,
-            "movement": 42
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 124,
-            "movement": 6
+            "position": 139,
+            "movement": -14
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 162,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -536,14 +589,79 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": 5
+            "position": 171,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee26d796ad7fe0cc761309d449f775ae/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Bad Vibes",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 134,
+            "movement": -7
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 138,
+            "movement": -10
+          },
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 174,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Big Big Things",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 80,
+            "movement": 26
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 120,
+            "movement": -15
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 138,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "MARIO KART",
@@ -555,8 +673,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
-            "movement": -17
+            "position": 141,
+            "movement": 18
           }
         ]
       },
@@ -567,8 +685,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": 0
+            "position": 136,
+            "movement": -2
           }
         ]
       }
@@ -577,7 +695,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/aa8d9ee07662959c9f52b4e9282a0f54/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Big Big Things",
+    "title": "HOW ARE YOU",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -586,20 +704,21 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": 3
+            "position": 168,
+            "movement": -5
           },
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 106,
-            "movement": 7
+            "position": 178,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65338596d2138717cab1e115fd412599/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Where I'm from",
@@ -611,8 +730,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 163,
-            "movement": 19
+            "position": 164,
+            "movement": -1
           }
         ]
       },
@@ -623,8 +742,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 153,
-            "movement": 7
+            "position": 148,
+            "movement": 5
           }
         ]
       }
@@ -742,8 +861,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": -2
+            "position": 54,
+            "movement": 13
           }
         ]
       }
@@ -761,8 +880,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
-            "movement": 52
+            "position": 80,
+            "movement": 16
           }
         ]
       }
@@ -780,33 +899,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 119,
-            "movement": 15
+            "position": 90,
+            "movement": 29
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Set Up",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 96,
-            "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dejavu",
@@ -818,9 +918,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 156,
-            "movement": null,
-            "status": "new"
+            "position": 131,
+            "movement": 25
           }
         ]
       }
@@ -829,7 +928,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Pressure",
+    "title": "Set Up",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -838,33 +937,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 125,
-            "movement": -5
+            "position": 99,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee26d796ad7fe0cc761309d449f775ae/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Cana",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 176,
-            "movement": 4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "GWAGWALADA",
@@ -876,8 +956,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": 16
+            "position": 106,
+            "movement": 11
           }
         ]
       }
@@ -886,42 +966,63 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "HOW ARE YOU",
+    "title": "Different Pattern",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 163,
-            "movement": -10
+            "position": 170,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65338596d2138717cab1e115fd412599/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Lagos",
+    "title": "Cana",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 167,
-            "movement": 33
+            "position": 189,
+            "movement": -13
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Hushpuppi",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 75,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sin City",
@@ -943,6 +1044,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Lagos",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 191,
+            "movement": -24
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Santorini",
     "platforms": [
       {
@@ -952,15 +1072,33 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 176,
-            "movement": null,
-            "status": "new"
+            "position": 196,
+            "movement": -20
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Instagram",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 196,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "Nahamciaga - EP",

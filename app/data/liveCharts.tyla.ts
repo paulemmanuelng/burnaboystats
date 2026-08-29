@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-28";
+  export const liveChartsUpdated = "2026-08-29";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -231,8 +231,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 119,
-            "movement": -19
+            "position": 109,
+            "movement": -11
           },
           {
             "country": "RO",
@@ -268,15 +268,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 144,
-            "movement": -39
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 147,
-            "movement": null,
-            "status": "new"
+            "position": 153,
+            "movement": -38
           },
           {
             "country": "MK",
@@ -322,6 +315,13 @@
             "position": 189,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 190,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -332,15 +332,15 @@
           {
             "country": "TW",
             "name": "Taiwan",
-            "position": 69,
+            "position": 89,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 142,
-            "movement": -31
+            "position": 156,
+            "movement": -37
           }
         ]
       }
@@ -364,8 +364,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 116,
-            "movement": -37
+            "position": 112,
+            "movement": 4
           },
           {
             "country": "ZA",
@@ -431,14 +431,14 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 36,
-            "movement": -21
+            "position": 26,
+            "movement": -3
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 41,
-            "movement": -19
+            "position": 42,
+            "movement": -3
           }
         ]
       }
@@ -454,16 +454,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 14,
+            "movement": 22
+          },
+          {
             "country": "ZA",
             "name": "South Africa",
             "position": 20,
             "movement": -4
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 36,
-            "movement": 27
           },
           {
             "country": "NA",
@@ -511,8 +511,20 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 69,
-            "movement": 1
+            "position": 79,
+            "movement": -10
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 108,
+            "movement": 10
           }
         ]
       },
@@ -650,9 +662,29 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 24,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "PH",
             "name": "Philippines",
-            "position": 134,
+            "position": 188,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LY",
+            "name": "Libya",
+            "position": 111,
             "movement": null,
             "status": "new"
           }
@@ -670,16 +702,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 43,
+            "movement": 41
+          },
+          {
             "country": "BW",
             "name": "Botswana",
             "position": 80,
             "movement": -5
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 84,
-            "movement": 32
           },
           {
             "country": "ZA",
@@ -700,6 +732,45 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 25,
+            "movement": -7
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NP",
+            "name": "Nepal",
+            "position": 152,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "IS IT LOVE",
     "platforms": [
       {
@@ -709,8 +780,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 64,
-            "movement": 58
+            "position": 35,
+            "movement": 29
           },
           {
             "country": "ZA",
@@ -723,37 +794,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 103,
-            "movement": -54
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 21,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "HOT TUBS",
@@ -776,6 +816,46 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "IS IT",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MD",
+            "name": "Moldova",
+            "position": 11,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "MR. NONCHALANT",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 96,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "ART",
     "platforms": [
       {
@@ -785,34 +865,14 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 34,
-            "movement": -5
+            "position": 38,
+            "movement": -7
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Everything Goes With Blue",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GT",
-            "name": "Guatemala",
-            "position": 59,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/806d1d13514af239e89368a274d9a0e0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Truth or Dare",
@@ -853,6 +913,46 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 151,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Everything Goes With Blue",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GT",
+            "name": "Guatemala",
+            "position": 89,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/806d1d13514af239e89368a274d9a0e0/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "On My Body",
     "platforms": [
       {
@@ -862,8 +962,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 135,
-            "movement": -15
+            "position": 141,
+            "movement": -12
           }
         ]
       }

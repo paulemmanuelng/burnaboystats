@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-28";
+  export const liveChartsUpdated = "2026-08-29";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","iTunes"];
@@ -131,18 +131,6 @@
             "name": "Tanzania",
             "position": 185,
             "movement": -34
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 100,
-            "movement": -18
           }
         ]
       }
@@ -311,8 +299,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
-            "movement": 14
+            "position": 120,
+            "movement": 23
           }
         ]
       }
@@ -376,26 +364,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "The Money",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 137,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/38c206cc47b635c0a182575844264157/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Carpe Diem",
@@ -483,8 +451,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 123,
-            "movement": 13
+            "position": 114,
+            "movement": 22
           }
         ]
       }
@@ -502,8 +470,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 170,
-            "movement": 15
+            "position": 155,
+            "movement": 30
           }
         ]
       }

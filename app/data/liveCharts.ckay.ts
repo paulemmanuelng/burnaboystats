@@ -35,121 +35,12 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-28";
+  export const liveChartsUpdated = "2026-08-29";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
-  {
-    "title": "BANGER BOY",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 36,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 45,
-            "movement": 88
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 87,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 138,
-            "movement": -50
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 148,
-            "movement": -22
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 174,
-            "movement": -22
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 189,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BODY",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 78,
-            "movement": -1
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 87,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 107,
-            "movement": 9
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 149,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 118,
-            "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
-  },
   {
     "title": "Love Nwantiti",
     "platforms": [
@@ -160,8 +51,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 6,
-            "movement": 3
+            "position": 9,
+            "movement": -2
           },
           {
             "country": "SZ",
@@ -184,8 +75,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 115,
-            "movement": 17
+            "position": 126,
+            "movement": -11
           }
         ]
       },
@@ -204,6 +95,87 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BANGER BOY",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 98,
+            "movement": 40
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 128,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 158,
+            "movement": -122
+          },
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 162,
+            "movement": -117
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 173,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BODY",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 124,
+            "movement": -46
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 190,
+            "movement": -41
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 111,
+            "movement": 7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BODY (danz)",
@@ -238,6 +210,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "nwayi",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SI",
+            "name": "Slovenia",
+            "position": 23,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b606366687e3c46d407569aa03ae26bf/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Felony",
     "platforms": [
       {
@@ -247,9 +239,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 186,
-            "movement": null,
-            "status": "new"
+            "position": 200,
+            "movement": -14
           }
         ]
       }
@@ -267,9 +258,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
-            "movement": null,
-            "status": "new"
+            "position": 181,
+            "movement": 1
           }
         ]
       }
@@ -287,8 +277,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 56,
-            "movement": 0
+            "position": 55,
+            "movement": 1
           }
         ]
       }
