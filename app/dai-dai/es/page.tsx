@@ -69,6 +69,7 @@ const weeksUK = weeksAtPeak("Dai Dai", "UK");
 const runUK = weeksOnChart("Dai Dai", "UK");
 const runAT = weeksOnChart("Dai Dai", "AT");
 const runSE = weeksOnChart("Dai Dai", "SE");
+const runNL = weeksOnChart("Dai Dai", "NL");
 
 const conquestIntro = `“Dai Dai” ha entrado en las listas de ${conquestTotal} países — y ha llegado al número 1 en ${conquestNo1} de ellos. Los países en dorado son los número 1; el resto entró sin llegar a la cima.`;
 
@@ -203,7 +204,7 @@ export default function DaiDaiPageES() {
         { v: `${weeksFR} semanas`, l: "en el número 1 de la lista oficial de sencillos de Francia (SNEP)" },
         { v: `${weeksAT} semanas`, l: `en el número 1 del Ö3 Austria Top 40 — una racha ininterrumpida desde finales de junio, con ${runAT} semanas en lista` },
         { v: `${weeksBE} semanas`, l: "en el número 1 del Ultratop 50 de Valonia — nueve seguidas, y número 1 también en Flandes" },
-        { v: `${weeksNL} semanas`, l: "en el número 1 del Single Top 100 neerlandés — dos en junio y cinco más desde finales de julio, en una permanencia de 13 semanas" },
+        { v: `${weeksNL} semanas`, l: `en el número 1 del Single Top 100 neerlandés — dos en junio y cinco más desde finales de julio, en una permanencia de ${runNL} semanas` },
         { v: `${weeksSE} semanas`, l: `en el número 1 de la Sverigetopplistan sueca, recuperado en la semana 34 tras una semana en el N.º 2 — ${runSE} semanas en lista` },
         { v: `${weeksNO} semanas`, l: "en el número 1 de la VG-lista Topp 40 de Noruega — cuatro semanas consecutivas, desde la semana 31" },
         { v: "N.º 1", l: "en la lista IMI International Top 20 Singles de la India — la primera canción de Burna Boy que encabeza una lista en ese país" },

@@ -93,3 +93,84 @@ as 9. Peaks are what this dataset publishes, so nothing downstream moves.
   3029 = week 34 of 2026) which timed out on every attempt. **Slovakia's weeks at
   No. 1 stay absent rather than guessed.**
 - **austriancharts.at is a Hung Medien mirror, not the body.** It was avoided.
+
+## The four that could not be closed, and what is known about each
+
+### Netherlands — closed, and the one clean read of the four
+
+dutchcharts.nl **publishes the figure itself**: "Peak 1 (7 weken)", and its own
+week-by-week table matches this repo's note row for row — 20.06 #1, 27.06 #1,
+then 04.07–18.07 at #2, then 25.07 through 22.08 at #1. Seven weeks, in two
+stints, exactly as written. **Weeks on chart moves 13 → 14** ("Aantal weken 14"),
+and the song is no longer No. 1: it sits at **No. 3 on the 29/08/2026 chart**.
+
+*Provenance caveat worth a ruling:* dutchcharts.nl carries a Hung Medien
+copyright. It is the standard published home of the Single Top 100 and hosts the
+chart's own week-by-week data rather than reproducing someone else's table — but
+it is not an NVPI/GfK-branded property. Elsewhere this repo treats Hung Medien
+sites as mirrors to avoid (austriancharts.at). Paul may want to decide whether
+the Dutch case is different.
+
+### The conflation trap sitting right next to it
+
+**top40.nl's Nederlandse Top 40 is a different chart** and has "Dai Dai" at
+**No. 1 in week 35 with a tenth week at No. 1 and 14 weeks on chart**. This repo
+tracks the Single Top 100 for NL, where the song is at No. 3.
+
+Note what those numbers are: a **10** and a **14**. The 10 equals the figure this
+repo stores for *Switzerland's* weeks at No. 1, and the 14 equals the Belgian
+weeks-on-chart claim. If a figure here ever came off a round-up rather than a
+body, this is the most plausible place it got crossed. top40.nl does not publish
+the Single Top 100 at all.
+
+### Switzerland — left at 10, with the reasoning recorded
+
+hitparade.ch is Cloudflare-gated ("Performing security verification"; 403 to
+curl) and Wayback holds nothing on the song page after **09.08.2026**. That
+capture is useful, because **hitparade.ch publishes weeks-at-peak itself**:
+"Peak 1 (9 weeks)", 12 weeks on chart, with a run table of 24.05 #33 → 09.08 #1
+showing No. 1 in the nine weeks from 14.06.
+
+The stored **10** is consistent with that: nine weeks through 09.08 plus the
+16.08 chart, which is what the 21 Aug commit that set it would have been reading.
+So **10 is left alone.** It is probably now one or two weeks low — Swiss charts
+are Sunday-dated, so 23.08 has published — but a figure that understates a run
+is not the same as a wrong one, and nothing readable supports raising it.
+
+(One hypothesis considered and rejected: that the 10 was misread from the
+26.07.2026 chart row "VW 1 | W 10 | P 1", where W is weeks **on chart**. That
+would be a real trap — but the arithmetic above explains the 10 without it.)
+
+### Belgium — unverified, left at 9 / 14
+
+ultratop.be is Cloudflare-gated on **both** language sides, and Wayback has no
+capture of either Ultratop 50 during the run. The stored figures were read at
+the body on 22 Aug (`d5eff08`) and are left as they are.
+
+Explicitly **not** used as corroboration: the Hung Medien cross-country panel on
+the dutchcharts song page shows "BE Peak 1 / weken 14" for both regions. Those
+are weeks **on chart**, not weeks at No. 1, and it is an aggregator summary
+rather than Ultratop's own data.
+
+### Norway — unverified, left at 4, and the readable record is consistent
+
+VG-lista no longer serves weekly lists: vglista.no 301s to vg.no/vglista/ and
+every chart path 404s. It publishes no weeks-at-No.1 figure in any case. Wayback
+holds 2026 weeks 01–03, 05–09, 13, 14, 18–20, 26, 27, 29 and 30 only.
+
+All four readable in-run weeks show the song **not** at No. 1 — wk26 #4, wk27 #2,
+wk29 #3, wk30 #2 (behind "Vikingblod", then the Kygo remix). That is not a
+contradiction: this repo says the Norwegian run starts at **week 31**, and weeks
+31–35 have no captures at all. The readable record is consistent with the claim
+without supporting it.
+
+## Gated or gone, for the next sweep
+
+| Body | State |
+|---|---|
+| hitparade.ch | Cloudflare interstitial; 403 to curl. No song-page capture after 09.08.2026 |
+| ultratop.be | Cloudflare interstitial on both language sides; no in-run captures |
+| vglista.no | Weekly lists no longer served at all; every chart path 404s |
+| ifpicr.cz | Host refused connections during the sweep; nine Wayback captures of `/hitparada/43` ever |
+
+No bot check was bypassed anywhere.
