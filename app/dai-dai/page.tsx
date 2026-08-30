@@ -84,6 +84,11 @@ export const metadata = pageMetadata({
 });
 
 export default function DaiDaiPage() {
+  // No `image` on these nodes on purpose. The bare /dai-dai/opengraph-image
+  // path 404s — the route uses generateImageMetadata, so the real URL carries
+  // an id segment hashed from the card's own stats — and a recommended field
+  // pointing at a dead URL is worse than its absence. og:image is emitted
+  // correctly by the metadata export and is what consumers actually read.
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -92,7 +97,6 @@ export default function DaiDaiPage() {
       "The story of “Dai Dai”, the 2026 FIFA World Cup anthem by Shakira and Burna Boy — its record-breaking chart, streaming and certification run, and its live performance at the World Cup Final halftime show.",
     datePublished: "2026-07-16",
     dateModified: asDateTime(lastUpdated),
-    image: [`${CANONICAL_ORIGIN}/dai-dai/opengraph-image`],
     inLanguage: "en",
     author: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     publisher: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
@@ -149,7 +153,6 @@ export default function DaiDaiPage() {
     // rich result, but each one it has is a feature the listing can show.
     description:
       "The first-ever halftime show at a FIFA World Cup Final — Shakira and Burna Boy performed “Dai Dai”, the official 2026 tournament anthem, alongside Madonna, BTS, Justin Bieber and Coldplay.",
-    image: [`${CANONICAL_ORIGIN}/dai-dai/opengraph-image`],
     // A one-evening show: schema.org wants an endDate even when it equals the
     // start date, or the event reads as open-ended.
     endDate: "2026-07-19",

@@ -346,9 +346,9 @@ export default function MethodologyPage() {
             statement about one market, not a common unit — so the totals on this
             site count <strong>plaques</strong>, and a plaque count is never a sales
             figure. The clearest example is on this site already: &ldquo;Dai Dai&rdquo; holds
-            2× Platinum from the RIAA&apos;s <em>Latin</em> programme, which certifies at
-            120,000 units, while a standard RIAA Platinum is 1,000,000 — the same two
-            words meaning roughly a sixteenth as much. Never add tiers across
+            2× Platinum from the RIAA&apos;s <em>Latin</em> programme, which certifies
+            Platinum at 60,000 units and 2× at 120,000, while a standard RIAA Platinum
+            is 1,000,000 — the same two words meaning roughly a sixteenth as much. Never add tiers across
             programmes and read the result as scale.
           </p>
           <ul className={styles.registerList}>

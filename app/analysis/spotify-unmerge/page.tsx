@@ -35,6 +35,13 @@ import { spotifyTotalStreams, spotifyTotalStreamsExact } from "../../data/stream
  */
 
 const VERIFIED_ON = "21 August 2026";
+// The day this correction was published, and the day the two remixes were read
+// at source. A publication date does not move, so it is deliberately NOT taken
+// from the updates feed: datePublished was reading `lastUpdated`, the newest
+// date anywhere on the site, so the ClaimReview re-dated itself every time an
+// unrelated fact was logged. dateModified still uses lastUpdated, which is
+// what that field is for.
+const PUBLISHED = "2026-08-21";
 
 // The one live input on this page, and everything after it is derived.
 //
@@ -134,7 +141,7 @@ export default function SpotifyUnmergePage() {
   const claimReviewJsonLd = {
     "@context": "https://schema.org",
     "@type": "ClaimReview",
-    datePublished: lastUpdated,
+    datePublished: PUBLISHED,
     url: `${CANONICAL_ORIGIN}/analysis/spotify-unmerge`,
     claimReviewed:
       "Burna Boy had Spotify streams removed in February 2026 because they were artificial or bot-generated.",
@@ -158,7 +165,7 @@ export default function SpotifyUnmergePage() {
     headline: "Did Burna Boy lose Spotify streams to bots? What really happened",
     description:
       "The February 2026 Spotify correction explained: two remixes were un-merged and about 309 million streams moved to the original recordings. Nothing was deleted.",
-    datePublished: "2026-08-21",
+    datePublished: PUBLISHED,
     dateModified: asDateTime(lastUpdated),
     inLanguage: "en",
     author: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },

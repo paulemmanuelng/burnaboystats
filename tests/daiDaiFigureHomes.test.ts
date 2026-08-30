@@ -3,9 +3,10 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 // "Dai Dai"'s days-at-No.1 figure is the most-quoted number on this site and
-// has by far the widest spread: fifteen statements across eight files, in two
+// has by far the widest spread: every statement of it listed below, across nine
+// files, in two
 // languages, including both share cards. On 22 Aug 2026 it moved from 35 to 36
-// and every one of those fifteen had to be hunted down by grep — which is a
+// and every one of them had to be hunted down by grep — which is a
 // procedure, not a guarantee. Miss one and the site contradicts itself, which
 // reads far worse than simply being a day behind everywhere at once.
 //
@@ -38,6 +39,9 @@ const HOMES: Home[] = [
   { file: "app/dai-dai/es/page.tsx", label: "ES hero card", re: /tras (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES streak card", re: /\{ v: "(\d+) días", l: ["`]en total en el número 1/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES story rail note", re: /semanal · (\d+) días como/ },
+  // The sixteenth home, and the one that was missing: Africa's Biggest carries
+  // the same figure in a board note, in a file this list did not cover at all.
+  { file: "app/data/africasBiggest.ts", label: "Africa's Biggest board note", re: /held that No\. 1 for (\d+) days/ },
 ];
 
 describe("the days-at-No.1 figure agrees with itself everywhere", () => {
@@ -52,7 +56,7 @@ describe("the days-at-No.1 figure agrees with itself everywhere", () => {
     ).toEqual([]);
   });
 
-  it("says the same number in all fifteen", () => {
+  it(`says the same number in all ${HOMES.length}`, () => {
     const seen = HOMES.map((h) => ({
       where: `${h.file} — ${h.label}`,
       n: Number(read(h.file).match(h.re)![1]),

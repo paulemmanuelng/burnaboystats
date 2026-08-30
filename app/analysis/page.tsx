@@ -37,7 +37,6 @@ export default function AnalysisPage() {
     // The page first shipped 25 Jul 2026 (git history); modified tracks the feed.
     datePublished: "2026-07-25",
     dateModified: asDateTime(lastReviewed),
-    image: [`${CANONICAL_ORIGIN}/analysis/opengraph-image`],
     inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
     about: { "@type": "MusicGroup", name: "Burna Boy" },

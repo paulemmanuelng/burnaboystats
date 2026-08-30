@@ -14,9 +14,14 @@
 //
 //  The airplay rule has one carve-out, and it is narrow: where a country
 //  publishes NO non-airplay national chart, its airplay chart is the only
-//  national chart it has, and is used (Israel, Bulgaria, Uruguay). Where a
-//  country runs both, the non-airplay chart wins every time — Poland, Spain
-//  and Nigeria each have a higher airplay peak that this file does not use.
+//  national chart it has, and is used. The countries this applies to are named
+//  and justified one by one in CHART_COUNTRIES below, and pinned by
+//  AIRPLAY_EXCEPTIONS in tests/charts.test.ts — add one there deliberately,
+//  never here. This sentence used to list three of them by name, which read as
+//  the complete set long after it had stopped being one, and a count would rot
+//  the same way. Where a country runs both, the non-airplay chart wins every
+//  time — Poland, Spain and Nigeria each have a higher airplay peak that this
+//  file does not use.
 //
 //  Cross-checked against each chart body's data via the songs' cited
 //  tables, June 2026. peak = highest position reached so far.

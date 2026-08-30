@@ -7,11 +7,17 @@ import { datasetJsonLd, breadcrumbList } from "../app/lib/seo";
 // type we emit, so a missing field fails here instead of surfacing weeks later as
 // a Search Console "structured data issue" email.
 //
-// Note: we intentionally do NOT emit MusicEvent markup. Every documented show is
-// in the past, and Google only surfaces upcoming events in rich results — so the
-// markup earned zero placements while repeatedly failing GSC's Events report on
-// the recommended `offers` field (which we can't honestly fill for sold-out past
-// shows with no ticket price). See app/records/tours/page.tsx.
+// Note on MusicEvent: the TOURS page deliberately emits none. Every documented
+// show there is in the past, Google only surfaces upcoming events in rich
+// results, and the markup earned zero placements while repeatedly failing GSC's
+// Events report on the recommended `offers` field — which cannot be filled
+// honestly for sold-out past shows with no ticket price. See
+// app/records/tours/page.tsx.
+//
+// /dai-dai is the one exception and it is deliberate: a single MusicEvent for
+// the World Cup Final halftime show, added while it was still upcoming, with a
+// complete offers block. This comment used to say the site emitted none at all,
+// which had been untrue since that node landed.
 
 describe("Dataset structured data", () => {
   const d = datasetJsonLd({
