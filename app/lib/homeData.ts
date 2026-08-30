@@ -198,7 +198,6 @@ export const liveNumberOneCountries = (() => {
 /** Countries where a release topped that country's own official chart. */
 export const boardCountryTotal = officialOnes.length;
 export const careerNumberOnes = numberOnes;
-export const careerNumberOneCountries = numberOneCountryCount;
 
 // Countries the feed just reported topping lead the board — they are the reason
 // to look at it — and only they carry the NEW mark.

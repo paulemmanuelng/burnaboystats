@@ -95,10 +95,10 @@ export const updates: Update[] = [
     href: "/certifications",
   },
   {
-    date: "2026-08-25",
-    category: "Charts",
-    text: "A radio format that had never played him: “Dai Dai” debuts at No. 14 on Billboard's Adult Contemporary chart — Burna Boy's first entry there in his career, and Shakira's second after “Hips Don't Lie” peaked at No. 24 in 2007. Adult Contemporary is a format chart rather than a national one, so it does not appear among the official chart peaks.",
-    href: "/records/firsts",
+    date: "2026-08-27",
+    category: "Certifications",
+    text: "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023. It surfaced with three others read the same day from Grammotex, the Swedish record industry's own trade database, which lists a certificate number and award date against each article: “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453). Sweden stopped publishing an awarded-certification register after 2004, so those last three had sat here for months carrying the right tier and no source. They now carry a certificate number — strong corroboration, though Grammotex is badged to GLF rather than to Ifpi Sverige itself, which are separate bodies sharing an office.",
+    href: "/certifications",
   },
   {
     date: "2026-08-26",
@@ -107,10 +107,10 @@ export const updates: Update[] = [
     href: "/records/africas-biggest",
   },
   {
-    date: "2026-08-27",
-    category: "Certifications",
-    text: "A Swedish plaque that was never on the site: “On The Low” is Platinum in Sweden, certificate no. 10448, awarded 16 August 2023. It surfaced with three others read the same day from Grammotex, the Swedish record industry's own trade database, which lists a certificate number and award date against each article: “Ye” Platinum (no. 10450), “African Giant” Gold (no. 10452) and “Gbona” Gold (no. 10453). Sweden stopped publishing an awarded-certification register after 2004, so those last three had sat here for months carrying the right tier and no source. They now carry a certificate number — strong corroboration, though Grammotex is badged to GLF rather than to Ifpi Sverige itself, which are separate bodies sharing an office.",
-    href: "/certifications",
+    date: "2026-08-25",
+    category: "Charts",
+    text: "A radio format that had never played him: “Dai Dai” debuts at No. 14 on Billboard's Adult Contemporary chart — Burna Boy's first entry there in his career, and Shakira's second after “Hips Don't Lie” peaked at No. 24 in 2007. Adult Contemporary is a format chart rather than a national one, so it does not appear among the official chart peaks.",
+    href: "/records/firsts",
   },
   {
     date: "2026-08-22",
@@ -447,7 +447,6 @@ export const updates: Update[] = [
     text: "343 days on the global artist chart: Burna Boy climbs five places to No. 81 on Spotify's worldwide artist ranking — more days on that chart than any African artist has managed — with monthly listeners at 60,089,089 and followers at 17.33 million.",
     href: "/records/africas-biggest",
   },
-
   {
     date: "2026-08-09",
     category: "Charts",
@@ -1482,6 +1481,3 @@ export const updates: Update[] = [
   },
 ];
 
-export function latestUpdates(n: number): Update[] {
-  return updates.slice(0, n);
-}

@@ -36,13 +36,4 @@ export const monthlyListenersSeries: TrendPoint[] = [
   { date: "2026-08-10", value: 60.13 },
 ];
 
-// Latest change: the most recent point vs the one before it. `abs` is in the
-// series' own units; `pct` is the percentage move.
-export function latestDelta(series: TrendPoint[]): { abs: number; pct: number } {
-  if (series.length < 2) return { abs: 0, pct: 0 };
-  const prev = series[series.length - 2].value;
-  const curr = series[series.length - 1].value;
-  return { abs: curr - prev, pct: prev ? ((curr - prev) / prev) * 100 : 0 };
-}
 
-export const monthlyListenersValues = monthlyListenersSeries.map((p) => p.value);
