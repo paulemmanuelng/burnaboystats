@@ -85,7 +85,7 @@ export default function CertLedger({
 
         <div className={styles.grid}>
           <div>
-            <table className={`tableBase ${styles.table}`}>
+            <table className="tableBase">
               <thead>
                 <tr>
                   <th className={styles.colRank}>#</th>

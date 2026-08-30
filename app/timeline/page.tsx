@@ -100,7 +100,7 @@ export default function TimelinePage() {
                 <>
                   <span className={styles.dot} aria-hidden="true" />
                   <div className={styles.entryDate}>{e.date}</div>
-                  <div className={styles.entryMain}>
+                  <div>
                     <div className={styles.entryTop}>
                       <h3 className={styles.entryTitle}>{e.title}</h3>
                       <span className={`${styles.kind} ${styles[`kind_${e.kind}`]}`}>{KIND_LABELS[e.kind]}</span>

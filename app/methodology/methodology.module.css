@@ -34,6 +34,17 @@
 }
 .lede { font-size: 19px; line-height: 1.55; color: #cfc7bb; max-width: 60ch; margin: 20px 0 0; text-wrap: pretty; }
 .intro { font-size: 15.5px; line-height: 1.7; color: var(--text-muted); max-width: 76ch; margin: 20px 0 0; }
+/* Section body prose, and the inline link inside it. Both were referenced by
+   page.tsx (styles.p, styles.link) and neither existed, so React dropped the
+   className entirely: four paragraphs rendered at the global 16px white with no
+   measure, and the /contact link in the accessibility section rendered white
+   with no underline — indistinguishable from the text around it. An invisible
+   link, in the paragraph inviting people to report accessibility problems.
+   .p matches .intro, the page's own section-prose convention; .link matches
+   curator.module.css, the site's inline prose link. */
+.p { font-size: 15.5px; line-height: 1.7; color: var(--text-muted); max-width: 76ch; margin: 20px 0 0; }
+.link { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(255, 182, 39, 0.35); }
+.link:hover { color: var(--gold-bright); border-bottom-color: var(--gold-bright); }
 .reviewed {
   display: flex;
   align-items: center;
