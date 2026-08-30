@@ -58,7 +58,7 @@ const endpoints = [
   },
   {
     path: "/afrobeats",
-    what: "The Afrobeats Board — ten artists' certifications and chart records, counted by one stated rule so the totals compare.",
+    what: `The Afrobeats Board — ${afrobeatsArtists.length + 1} artists' certifications and chart records, counted by one stated rule so the totals compare.`,
     size: `${afrobeatsArtists.length + 1} artists`,
   },
   {

@@ -44,7 +44,7 @@ export function GET() {
   return apiJson({
     endpoint: "/afrobeats",
     description:
-      "The Afrobeats Board: ten artists counted by one rule — a plaque is one title in one country at its CURRENT tier, and an upgrade replaces the earlier award rather than adding to it. Chart figures are official national charts plus Billboard's two worldwide charts; platform charts (Spotify, Apple Music, iTunes) are never counted here. Reviewed weekly, where Burna Boy's own pages update daily.",
+      `The Afrobeats Board: ${artists.length + 1} artists counted by one rule — a plaque is one title in one country at its CURRENT tier, and an upgrade replaces the earlier award rather than adding to it. Chart figures are official national charts plus Billboard's two worldwide charts; platform charts (Spotify, Apple Music, iTunes) are never counted here. Reviewed weekly, where Burna Boy's own pages update daily.`,
     count: artists.length + 1,
     data: {
       countingRule:

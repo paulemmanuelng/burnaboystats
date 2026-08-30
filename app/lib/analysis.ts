@@ -38,6 +38,43 @@ export const daiDaiNumberOneShare = countryNumberOnes
  * Billboard Global charts, which the site's headline `chartCountryCount`
  * includes — this page compares markets, so a worldwide chart isn't one.
  */
+/**
+ * Countries where at least one release has reached No. 1 — country charts only,
+ * so the two Billboard global charts are excluded.
+ */
+export const numberOneCountries = [
+  ...new Set(
+    allChartItems.flatMap((r) =>
+      r.entries.filter((e) => e.peak === 1 && !isGlobalChart(e.c)).map((e) => e.c)
+    )
+  ),
+].sort();
+
+/**
+ * Continental split, for the geography finding on /analysis.
+ *
+ * CHART_COUNTRIES carries no region field, so the European set is spelled out.
+ * It is exhaustive over every code in CHART_COUNTRIES rather than only over the
+ * No. 1 countries, and analysis.test.ts fails if a code is missing from both
+ * sets — which is the point. The finding used to read "of the 31 countries
+ * where a release has topped the chart, 18 are in Europe and 13 are not",
+ * typed. Poland's No. 1 on 29 Aug 2026 made it 32 and 19, and the sentence sat
+ * there unchanged, because a hand-typed split has nothing to disagree with.
+ */
+export const EUROPE = new Set([
+  "AT", "BE", "BG", "CH", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR",
+  "HU", "IE", "IS", "IT", "LT", "LU", "LV", "MD", "NL", "NO", "PL", "PT", "RO",
+  "RU", "SE", "SK", "UA", "UK",
+]);
+export const NON_EUROPE = new Set([
+  "AE", "AR", "AU", "BO", "BR", "CA", "CL", "CO", "CR", "DO", "EC", "EG", "GT",
+  "HK", "HN", "IL", "IN", "JP", "KZ", "LB", "MY", "NG", "NI", "NZ", "PA", "PE",
+  "PR", "PY", "SA", "SG", "SR", "SV", "TR", "US", "UY", "VE", "VN", "ZA",
+]);
+
+export const numberOneCountriesInEurope = numberOneCountries.filter((c) => EUROPE.has(c));
+export const numberOneCountriesOutsideEurope = numberOneCountries.filter((c) => !EUROPE.has(c));
+
 export const chartedCountryCount = new Set(
   allChartItems.flatMap((r) => r.entries.map((e) => e.c)).filter((c) => !isGlobalChart(c))
 ).size;

@@ -39,7 +39,7 @@ export function GET() {
   const body = `# Burna Boy Stats
 
 > An independent, unofficial statistics site about the Nigerian artist Burna Boy
-> (Damini Ebunoluwa Ogulu), plus a comparison board covering nine other Afrobeats
+> (Damini Ebunoluwa Ogulu), plus a comparison board covering ${afrobeatsArtists.length} other Afrobeats
 > artists. Every figure is traced to the body that owns it — a certifying
 > register, a national chart, an awarding ceremony — and never to press coverage
 > or fan tallies. Not affiliated with or endorsed by Burna Boy.
@@ -84,7 +84,7 @@ how most published figures about this artist go wrong.
 
 ## The Afrobeats Board
 
-Nine artists counted by the same rules as above, so the records read side by
+${afrobeatsArtists.length} artists counted by the same rules as above, so the records read side by
 side. Reviewed weekly; Burna Boy's own pages update daily.
 
 ${board.map((b) => `- [${b.name}](${CANONICAL_ORIGIN}/afrobeats/${b.slug}): ${b.certs} certifications. Charts at /afrobeats/${b.slug}/charts, live positions at /afrobeats/${b.slug}/live.`).join("\n")}

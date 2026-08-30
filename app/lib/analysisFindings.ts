@@ -12,6 +12,9 @@ import {
   countryNumberOneReleases,
   daiDaiCountryNumberOnes,
   daiDaiNumberOneShare,
+  numberOneCountries,
+  numberOneCountriesInEurope,
+  numberOneCountriesOutsideEurope,
 } from "./analysis";
 import { daiDaiChartEntryCount, chartEntryCount } from "../data/charts";
 import { totalAwards } from "../data/certifications";
@@ -105,7 +108,7 @@ export const findings: Finding[] = [
       `The pattern holds beyond those two. ${marketsByVolume
         .slice(0, 5)
         .map((m) => m.country)
-        .join(", ")} lead the table. His No. 1s are not only European, though: of the 31 countries where a release has topped the chart, 18 are in Europe and 13 are not — Nigeria and South Africa, and a run through Latin America and the Gulf.`,
+        .join(", ")} lead the table. His No. 1s are not only European, though: of the ${numberOneCountries.length} countries where a release has topped the chart, ${numberOneCountriesInEurope.length} are in Europe and ${numberOneCountriesOutsideEurope.length} are not — Nigeria and South Africa, and a run through Latin America and the Gulf.`,
       `This matters because the standard narrative treats American success as the measure of an Afrobeats crossover. By that yardstick Burna Boy looks like a near-miss. By the actual record, he is an established European chart fixture who happens to be a cult concern in the US — a materially different, and more interesting, career shape.`,
     ],
     links: [

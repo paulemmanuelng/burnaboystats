@@ -11,7 +11,14 @@ import {
   diamondCerts,
   diamondCountries,
   isGlobalChart,
+  EUROPE,
+  NON_EUROPE,
+  numberOneCountries,
+  numberOneCountriesInEurope,
+  numberOneCountriesOutsideEurope,
+  numberOneCountryCount,
 } from "../app/lib/analysis";
+import { CHART_COUNTRIES } from "../app/data/charts";
 
 // /analysis makes ARGUMENTS about the data, not just restatements of it. New
 // data can falsify an argument — a first US top 10 would make "not one top 10"
@@ -87,5 +94,37 @@ describe("finding 3 — one country awards every Diamond", () => {
 describe("finding 4 — wide reach, narrow dominance", () => {
   it("far more countries charted than releases that ever topped one", () => {
     expect(chartedCountryCount).toBeGreaterThan(countryNumberOneReleases * 2);
+  });
+});
+
+// The geography finding on /analysis used to type its own split: "of the 31
+// countries where a release has topped the chart, 18 are in Europe and 13 are
+// not". Poland's No. 1 on 29 Aug 2026 made that 32 and 19, and the sentence did
+// not move, because a hand-typed split has nothing to disagree with. It is
+// derived now — and these tests make sure the derivation cannot go quietly
+// wrong the other way, by letting a new country fall outside both sets.
+describe("the continental split covers every chart country", () => {
+  const codes = Object.keys(CHART_COUNTRIES).filter((c) => !isGlobalChart(c));
+
+  it("classifies every code exactly once", () => {
+    const unclassified = codes.filter((c) => !EUROPE.has(c) && !NON_EUROPE.has(c));
+    const both = codes.filter((c) => EUROPE.has(c) && NON_EUROPE.has(c));
+    expect(
+      unclassified,
+      "a new chart country has to be put in EUROPE or NON_EUROPE in app/lib/analysis.ts, or the /analysis split silently undercounts",
+    ).toEqual([]);
+    expect(both, "a code cannot be in both sets").toEqual([]);
+  });
+
+  it("splits the No. 1 countries without losing any", () => {
+    expect(numberOneCountriesInEurope.length + numberOneCountriesOutsideEurope.length).toBe(
+      numberOneCountries.length,
+    );
+    expect(numberOneCountries.length).toBe(numberOneCountryCount);
+  });
+
+  it("puts Poland in Europe, which is the one that started this", () => {
+    expect(numberOneCountries).toContain("PL");
+    expect(numberOneCountriesInEurope).toContain("PL");
   });
 });
