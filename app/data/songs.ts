@@ -122,7 +122,7 @@ export const songs: Song[] = [
     ytViews: "480M",
     tagline: "The smooth love song that went Diamond in France",
     blurb:
-      "A silky Afro-fusion love song from African Giant (2019), “On the Low” became one of Burna Boy's biggest records in Europe. It was certified Diamond in France — among the highest honours any African song has earned there — and picked up nine certifications worldwide.",
+      "A silky Afro-fusion love song from African Giant (2019), “On the Low” became one of Burna Boy's biggest records in Europe. It was certified Diamond in France — among the highest honours any African song has earned there — and picked up ten certifications worldwide.",
     extraFacts: [
       { v: "Diamond", l: "certified Diamond in France (SNEP)" },
       { v: "2× Platinum", l: "in Canada, plus Platinum in the UK, NZ & Switzerland" },
@@ -131,7 +131,7 @@ export const songs: Song[] = [
     faqs: [
       {
         q: "Is “On the Low” certified Diamond?",
-        a: "Yes — “On the Low” is certified Diamond in France by SNEP, one of the highest certifications any African song has achieved there, and holds nine certifications in total.",
+        a: "Yes — “On the Low” is certified Diamond in France by SNEP, one of the highest certifications any African song has achieved there, and holds ten certifications in total.",
       },
       {
         q: "What album is “On the Low” on?",
@@ -140,7 +140,7 @@ export const songs: Song[] = [
     ],
     metaTitle: "Burna Boy “On the Low” — Diamond in France & Every Stat",
     metaDescription:
-      "Burna Boy's “On the Low” from African Giant (2019): Diamond in France, 2× Platinum in Canada and nine certifications in all — the story and full stats.",
+      "Burna Boy's “On the Low” from African Giant (2019): Diamond in France, 2× Platinum in Canada and ten certifications in all — the story and full stats.",
   },
   {
     slug: "wgft",

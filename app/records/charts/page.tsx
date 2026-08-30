@@ -37,7 +37,12 @@ export default function ChartsPage() {
   const stats = [
     { num: chartEntryCount, label: "Chart entries", note: "official charts only" },
     { num: numberOnes, label: "No. 1 peaks", note: "placements, not releases" },
-    { num: chartCountryCount, label: "Countries", note: "+ 2 global charts" },
+    // 71 is territories, not countries: chartCountryCount counts every distinct
+    // code in the data and two of those are the Billboard global charts. The
+    // label said "Countries" and the note said "+ 2 global charts", which reads
+    // as 71 countries and two more on top. The prose two tiles down has always
+    // said "territories"; the tile now agrees with it.
+    { num: chartCountryCount, label: "Territories", note: `${chartCountryCount - 2} countries + 2 global charts` },
     { num: allReleases, label: "Charting releases", note: "albums, singles, features" },
   ];
   const split = [
@@ -63,6 +68,7 @@ export default function ChartsPage() {
         countries={CHART_COUNTRIES}
         entryCount={chartEntryCount}
         territoryCount={chartCountryCount}
+        territoryNote={`${chartCountryCount - 2} countries + 2 global charts`}
         numberOnes={numberOnes}
         releaseCount={allReleases}
         sourceSplit={chartSourceSplit}

@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { totalAwards, countryCount } from "../data/certifications";
-import { chartEntryCount, numberOnes, numberOneCountryCount } from "../data/charts";
+import { chartEntryCount, numberOnes } from "../data/charts";
+// The COUNTRY-only No. 1 set. charts.ts exports a same-named count that
+// includes the two Billboard global charts, which is 34 where every rendered
+// surface on the site says 32 — llms.txt was importing the wrong one.
+import { numberOneCountryCount } from "../lib/analysis";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { afrobeatsArtists, certCount } from "../data/afrobeats";
 import { lastUpdated } from "../lib/api";

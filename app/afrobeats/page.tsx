@@ -16,8 +16,6 @@ import {
   topAward,
   chartEntries,
   BURNA,
-  AFROBEATS_VERIFIED_ON,
-  AFROBEATS_VERIFIED_ON_2,
 } from "../data/afrobeats";
 import { totalAwards, countryCount as burnaCountries } from "../data/certifications";
 import { chartEntryCount as burnaChartEntries } from "../data/charts";
@@ -45,10 +43,15 @@ const ranked = [...sweptArtists].sort((a, b) => certCount(b) - certCount(a));
 
 // The two sweep dates as one range — "17–19 August 2026" — so the provenance
 // tile moves when the sweeps do instead of carrying a typed string.
+// Read from the artists' OWN verifiedOn dates rather than from named constants.
+// It was built from AFROBEATS_VERIFIED_ON and _2 alone, so it went on claiming
+// "17-19 August" while _3 through _6 (21, 26 and 28 August) had been added and
+// four more sweeps had happened. Derived, it cannot fall behind an expansion.
 const sweptRange = (() => {
   const d = (iso: string) => new Date(`${iso}T12:00:00Z`);
-  const a = d(AFROBEATS_VERIFIED_ON);
-  const b = d(AFROBEATS_VERIFIED_ON_2);
+  const iso = sweptArtists.map((x) => x.verifiedOn).sort();
+  const a = d(iso[0]);
+  const b = d(iso[iso.length - 1]);
   const month = (x: Date) => x.toLocaleDateString("en-GB", { month: "long", timeZone: "UTC" });
   const year = b.getUTCFullYear();
   if (a.getTime() === b.getTime()) return `${a.getUTCDate()} ${month(a)} ${year}`;

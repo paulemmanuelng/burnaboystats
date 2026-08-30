@@ -108,7 +108,7 @@ export const statBoxes: LeaderboardBox[] = [
           { name: "Tyla", value: "1.138B" },
         ],
         inProgress: true,
-        note: "Five African artists have passed a billion Spotify streams in 2026 so far — and three are past a billion and a half, with Burna Boy third behind Tems and Wizkid, the three of them separated by about 53 million. All five totals are read together so the gaps stay comparable; the top three move most days.",
+        note: "Five African artists have passed a billion Spotify streams in 2026 so far — and three are past a billion and a half, with Burna Boy third behind Tems and Wizkid, the three of them separated by about {{spread2026}} million. All five totals are read together so the gaps stay comparable; the top three move most days.",
       },
       {
         label: "2025",
@@ -352,3 +352,23 @@ export const statBoxes: LeaderboardBox[] = [
       "Best all-time peak on Spotify's Global Weekly Top Artists chart, per chart-tracking accounts. Nigerian artists only — the underlying list does not cover the rest of Africa. As of July 2026.",
   },
 ];
+
+/**
+ * The 2026 streaming row quotes the spread between its top three, and the stats
+ * bot rewrites those three values most days — so a typed spread is wrong within
+ * a day of being written. It said "about 53 million" against an actual 38.
+ *
+ * Resolved here rather than in the literal above because the bot finds each row
+ * by the `/* live:… *\/` marker that must sit immediately before it; hoisting
+ * the entries into consts to make them readable would move those markers and
+ * silently redirect the daily write into the 2025 historical row. The note
+ * carries a token instead, and nothing about the array shape changes.
+ */
+for (const box of statBoxes) {
+  for (const row of box.rows ?? []) {
+    if (!row.note || !row.note.includes("{{spread2026}}")) continue;
+    const m = row.entries.map((e) => parseFloat(e.value ?? "")).filter((n) => !Number.isNaN(n));
+    const spread = Math.round((Math.max(...m.slice(0, 3)) - Math.min(...m.slice(0, 3))) * 1000);
+    row.note = row.note.replace("{{spread2026}}", String(spread));
+  }
+}
