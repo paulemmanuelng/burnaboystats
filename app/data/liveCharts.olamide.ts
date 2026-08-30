@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-29";
+  export const liveChartsUpdated = "2026-08-30";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","iTunes"];
@@ -343,7 +343,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 127,
-            "movement": 4
+            "movement": 7
           }
         ]
       }
@@ -438,7 +438,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 121,
-            "movement": 4
+            "movement": 7
           }
         ]
       }
@@ -457,7 +457,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 162,
-            "movement": 10
+            "movement": 13
           }
         ]
       }

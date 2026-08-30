@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-29";
+  export const liveChartsUpdated = "2026-08-30";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -241,16 +241,16 @@
             "movement": -6
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 48,
+            "movement": -3
+          },
+          {
             "country": "JO",
             "name": "Jordan",
             "position": 50,
             "movement": 6
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 50,
-            "movement": -4
           },
           {
             "country": "KE",
@@ -351,8 +351,8 @@
           {
             "country": "AU",
             "name": "Australia",
-            "position": 89,
-            "movement": -4
+            "position": 91,
+            "movement": -5
           },
           {
             "country": "GH",
@@ -381,8 +381,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 101,
-            "movement": -4
+            "position": 102,
+            "movement": -2
           },
           {
             "country": "BW",
@@ -1147,20 +1147,20 @@
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 7,
-            "movement": 17
+            "position": 8,
+            "movement": 22
           },
           {
             "country": "LU",
             "name": "Luxembourg",
-            "position": 8,
+            "position": 11,
             "movement": null,
             "status": "new"
           },
           {
             "country": "EE",
             "name": "Estonia",
-            "position": 10,
+            "position": 13,
             "movement": null,
             "status": "new"
           },
@@ -1173,46 +1173,46 @@
           {
             "country": "GR",
             "name": "Greece",
-            "position": 14,
+            "position": 15,
             "movement": -12
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 14,
-            "movement": 148
           },
           {
             "country": "TJ",
             "name": "Tajikistan",
-            "position": 16,
-            "movement": -7
+            "position": 17,
+            "movement": -8
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 19,
+            "movement": 78
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 20,
+            "position": 25,
             "movement": null,
             "status": "new"
           },
           {
             "country": "UA",
             "name": "Ukraine",
-            "position": 23,
+            "position": 31,
             "movement": null,
             "status": "new"
           },
           {
             "country": "KG",
             "name": "Kyrgyzstan",
-            "position": 29,
-            "movement": -25
+            "position": 33,
+            "movement": -29
           },
           {
             "country": "AR",
             "name": "Argentina",
-            "position": 111,
-            "movement": -59
+            "position": 140,
+            "movement": -83
           }
         ]
       },
@@ -1248,7 +1248,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 41,
+            "position": 40,
             "movement": 1
           },
           {
@@ -1536,14 +1536,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 4,
+            "position": 6,
             "movement": null,
             "status": "new"
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 13,
+            "position": 14,
             "movement": -8
           },
           {
@@ -1556,7 +1556,7 @@
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 63,
+            "position": 76,
             "movement": null,
             "status": "new"
           },
@@ -1564,7 +1564,7 @@
             "country": "MU",
             "name": "Mauritius",
             "position": 87,
-            "movement": -5
+            "movement": -2
           }
         ]
       }
@@ -1600,8 +1600,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 129,
-            "movement": 8
+            "position": 130,
+            "movement": 11
           },
           {
             "country": "CV",
@@ -1626,13 +1626,13 @@
           {
             "country": "BS",
             "name": "The Bahamas",
-            "position": 88,
-            "movement": -57
+            "position": 94,
+            "movement": -63
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
+            "position": 194,
             "movement": null,
             "status": "new"
           }
@@ -1665,6 +1665,70 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Free Mind",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KN",
+            "name": "Saint Kitts and Nevis",
+            "position": 131,
+            "movement": 52
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 147,
+            "movement": 3
+          },
+          {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 160,
+            "movement": -65
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 172,
+            "movement": -23
+          },
+          {
+            "country": "BB",
+            "name": "Barbados",
+            "position": 173,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 174,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DO",
+            "name": "Dominican Republic",
+            "position": 11,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Born in the Wild",
@@ -1723,57 +1787,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Free Mind",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KN",
-            "name": "Saint Kitts and Nevis",
-            "position": 131,
-            "movement": 52
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 147,
-            "movement": 3
-          },
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 160,
-            "movement": -65
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 172,
-            "movement": -23
-          },
-          {
-            "country": "BB",
-            "name": "Barbados",
-            "position": 173,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 174,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Love Is A Kingdom",
@@ -1875,7 +1888,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 11,
+            "position": 12,
             "movement": -8
           },
           {

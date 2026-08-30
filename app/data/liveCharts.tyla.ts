@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-29";
+  export const liveChartsUpdated = "2026-08-30";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -216,8 +216,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 134,
-            "movement": -9
+            "position": 133,
+            "movement": -19
           },
           {
             "country": "SC",
@@ -241,8 +241,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 148,
-            "movement": 11
+            "position": 138,
+            "movement": 27
           },
           {
             "country": "SR",
@@ -253,8 +253,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 163,
-            "movement": -13
+            "position": 170,
+            "movement": -8
           },
           {
             "country": "MV",
@@ -291,7 +291,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 12,
+            "position": 13,
             "movement": null,
             "status": "new"
           },
@@ -299,7 +299,7 @@
             "country": "MY",
             "name": "Malaysia",
             "position": 185,
-            "movement": -33
+            "movement": -29
           }
         ]
       }
@@ -403,14 +403,21 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 49,
+            "position": 50,
             "movement": -8
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 79,
-            "movement": -47
+            "position": 99,
+            "movement": -73
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 139,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -508,8 +515,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 79,
-            "movement": -9
+            "position": 86,
+            "movement": 3
           }
         ]
       },
@@ -589,6 +596,57 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "IS IT LOVE",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 105,
+            "movement": -23
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 113,
+            "movement": -78
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 105,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "FAIRYTALE",
     "platforms": [
       {
@@ -635,14 +693,14 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 11,
+            "position": 12,
             "movement": null,
             "status": "new"
           },
           {
             "country": "OM",
             "name": "Oman",
-            "position": 31,
+            "position": 33,
             "movement": -10
           }
         ]
@@ -678,44 +736,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "IS IT LOVE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 105,
-            "movement": -23
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 113,
-            "movement": -78
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "CHANEL",
     "platforms": [
       {
@@ -744,7 +764,7 @@
           {
             "country": "PE",
             "name": "Peru",
-            "position": 100,
+            "position": 107,
             "movement": null,
             "status": "new"
           }
@@ -784,7 +804,7 @@
           {
             "country": "MT",
             "name": "Malta",
-            "position": 35,
+            "position": 39,
             "movement": null,
             "status": "new"
           }
@@ -804,7 +824,7 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 44,
+            "position": 46,
             "movement": -10
           }
         ]
@@ -861,8 +881,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 158,
-            "movement": -20
+            "position": 161,
+            "movement": -23
           }
         ]
       }

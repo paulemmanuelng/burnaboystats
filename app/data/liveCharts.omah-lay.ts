@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-29";
+  export const liveChartsUpdated = "2026-08-30";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -693,8 +693,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 54,
-            "movement": -7
+            "position": 57,
+            "movement": -9
           }
         ]
       },
@@ -926,7 +926,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 93,
+            "position": 94,
             "movement": -6
           }
         ]
@@ -1199,8 +1199,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 76,
-            "movement": -2
+            "position": 77,
+            "movement": 0
           },
           {
             "country": "BE",
