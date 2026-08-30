@@ -88,10 +88,21 @@ export default async function AfroArtistChartsPage({
     about: { name: a.name, sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`] },
   });
 
+  // "Territories" counts every distinct code in the artist's chart data, and for
+  // most of them that includes Billboard's two global lines — so the note
+  // "national charts" was describing a figure that is not purely national.
+  // Derived per artist: Victony has one global line, four artists have none.
+  const globalLines = new Set(
+    a.charts.flatMap((r) => r.entries.map((e) => e.c)).filter((c) => c === "GLB" || c === "GLBX")
+  ).size;
+  const territoryNote = globalLines
+    ? `incl. ${count(globalLines, "global chart", "global charts")}`
+    : "national charts";
+
   const stats = [
     { num: entries, label: "Chart entries", note: "official charts only" },
     { num: no1s, label: "No. 1 peaks", note: "placements, not releases" },
-    { num: territories, label: "Territories", note: "national charts" },
+    { num: territories, label: "Territories", note: territoryNote },
     { num: releases, label: "Charting releases", note: "albums and singles" },
   ];
 
@@ -121,7 +132,7 @@ export default async function AfroArtistChartsPage({
         lede={`${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}, ${no1s} of them at No. 1 — every peak read from the country's own chart.`}
         sourceNote={sourceNote}
         showActionBar={false}
-        territoryNote="national charts"
+        territoryNote={territoryNote}
       />
 
       <div className={styles.desktopOnly}>

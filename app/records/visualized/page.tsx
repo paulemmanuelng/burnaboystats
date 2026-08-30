@@ -85,6 +85,20 @@ const listenerDays = Math.round(
   (new Date(listenerLast.date).getTime() - new Date(listenerFirst.date).getTime()) / 86_400_000
 );
 const formatListeners = (v: number) => `${v.toFixed(1)}M`;
+// The series is a PEAK metric (watched-metrics.json → spotify-peak-listeners,
+// kind: "peak"), so it only extends when a new high is set — it does not run to
+// today, and both labels claimed it did. Derived from the series' own ends, so
+// the label can never outrun the data it describes.
+const listenerDate = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+const listenerAria = `Burna Boy's Spotify monthly listeners, daily, from ${listenerDate(
+  listenerFirst.date
+)} to ${listenerDate(listenerLast.date)}`;
 
 // ── Certification pace ───────────────────────────────────────────────────
 // Chronological, not ranked: the story is that the newest year is already the
@@ -357,8 +371,7 @@ export default function VisualizedPage() {
             annotations: listenerMilestones,
             format: "listeners",
             unitLabel: "Spotify · monthly listeners",
-            ariaLabel:
-              "Burna Boy's Spotify monthly listeners, daily, from the start of July 2026 to today",
+            ariaLabel: listenerAria,
           },
           {
             title: `${winSpanWord} years of winning`,
@@ -463,7 +476,7 @@ export default function VisualizedPage() {
               format={formatListeners}
               valueLabel="Monthly listeners (millions)"
               unitLabel="Spotify · monthly listeners"
-              ariaLabel="Burna Boy's Spotify monthly listeners, daily, from the start of July 2026 to today"
+              ariaLabel={listenerAria}
             />
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>

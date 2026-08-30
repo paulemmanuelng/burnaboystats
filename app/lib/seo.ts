@@ -105,6 +105,31 @@ export function datasetJsonLd(opts: {
 }
 
 // Human-readable labels for each URL segment, used for breadcrumbs.
+/**
+ * Routes that hand-write their own BreadcrumbList, because they know a leaf
+ * title the URL cannot spell — "L.I.F.E", "Last Last", "The Dai Dai Story".
+ *
+ * The site-wide <Breadcrumbs> in the root layout stands down on these, so no
+ * page ships two competing trails. Seven routes were emitting both: the
+ * hand-written one with the real title, and a generated one built from the
+ * slug, leaving a search engine to pick between them. The album pages were the
+ * worst of it — their generated trail advertised /music/albums, which has no
+ * page at all.
+ */
+const OWN_BREADCRUMB = [
+  /^\/music$/,
+  /^\/music\/[^/]+$/,
+  /^\/music\/albums\/[^/]+$/,
+  /^\/certifications$/,
+  /^\/timeline$/,
+  /^\/dai-dai$/,
+  /^\/records\/awards$/,
+];
+
+/** True where the page emits its own trail and the site-wide one must not. */
+export const hasOwnBreadcrumb = (path: string) =>
+  OWN_BREADCRUMB.some((re) => re.test(path.replace(/\/$/, "") || "/"));
+
 export const SEGMENT_LABELS: Record<string, string> = {
   music: "Music",
   certifications: "Certifications",

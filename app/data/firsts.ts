@@ -3,7 +3,7 @@
 // Tours, Charts and Awards pages (June 2026). Only firsts/records that could be
 // confirmed are listed — nothing is included on a single unverified claim.
 
-import { totalAwards, countryCount, certsInYear } from "./certifications";
+import { totalAwards, countryCount, certsInYear, bestIntlYearBefore } from "./certifications";
 import { BURNA_YT_AUDIENCE_WORDS } from "./africasBiggest";
 
 export interface First {
@@ -16,6 +16,8 @@ export interface FirstGroup {
   label: string;
   items: First[];
 }
+
+const bestPriorCertYear = bestIntlYearBefore(2026);
 
 export const firstGroups: FirstGroup[] = [
   {
@@ -50,7 +52,12 @@ export const firstGroups: FirstGroup[] = [
       { year: "2023", title: "First African artist to win a Billboard Music Award as lead artist", text: "Recognised at the Billboard Music Awards as a headline act — the first African to win one in his own right." },
       { year: "2024", title: "First African lead artist nominated for a Grammy outside the global categories", text: "His Best Melodic Rap Performance nod broke African artists into the Grammys' mainstream genre fields." },
       { year: "2026", title: "Most certified African artist worldwide", text: `${totalAwards()} certifications across ${countryCount} countries — Gold, Silver, Platinum and Diamond combined — more than any other African artist.` },
-      { year: "2026", title: "First African artist with 40 certifications in a single year", text: `Passed 40 international song and album certifications in 2026 — ${certsInYear(2026)} and counting, the most any African artist has earned in one calendar year, led by the “Dai Dai” World Cup run.` },
+      // Was "First African artist with 40 certifications in a single year". The 40
+      // was a threshold he passed months ago and had grown to 53, so the headline
+      // named a milestone the sentence beneath it had already outrun — and "first"
+      // is not the claim being made. It is a standing record now, like the row
+      // above it, with both figures read from the log so neither can go stale.
+      { year: "2026", title: "Most certifications by an African artist in a single year", text: `${certsInYear(2026)} international song and album certifications in 2026${bestPriorCertYear ? ` — past his own previous best of ${bestPriorCertYear[1]} in ${bestPriorCertYear[0]}` : ""}, led by the “Dai Dai” World Cup run.` },
     ],
   },
   {
