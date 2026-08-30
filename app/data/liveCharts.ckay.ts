@@ -108,7 +108,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 48,
-            "movement": -1
+            "movement": 0
           }
         ]
       },
@@ -203,8 +203,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 51,
-            "movement": -27
+            "position": 57,
+            "movement": -23
           }
         ]
       }

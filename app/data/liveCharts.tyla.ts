@@ -207,20 +207,14 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 139,
-            "movement": -5
+            "position": 132,
+            "movement": 2
           },
           {
             "country": "SR",
             "name": "Suriname",
             "position": 146,
             "movement": 16
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 152,
-            "movement": -4
           },
           {
             "country": "BG",
@@ -233,6 +227,12 @@
             "name": "Malawi",
             "position": 156,
             "movement": -108
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 157,
+            "movement": -9
           },
           {
             "country": "SA",
@@ -269,8 +269,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 82,
-            "movement": -70
+            "position": 100,
+            "movement": -87
           }
         ]
       }
@@ -465,21 +465,21 @@
           {
             "country": "SK",
             "name": "Slovakia",
-            "position": 36,
+            "position": 42,
             "movement": null,
             "status": "new"
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 40,
-            "movement": 39
+            "position": 46,
+            "movement": 33
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 52,
-            "movement": -3
+            "position": 55,
+            "movement": -5
           }
         ]
       },
@@ -582,8 +582,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 39,
-            "movement": 40
+            "position": 49,
+            "movement": 30
           }
         ]
       },
@@ -736,13 +736,13 @@
             "country": "GD",
             "name": "Grenada",
             "position": 20,
-            "movement": -9
+            "movement": -8
           },
           {
             "country": "OM",
             "name": "Oman",
             "position": 36,
-            "movement": -5
+            "movement": -1
           }
         ]
       },
@@ -797,8 +797,8 @@
           {
             "country": "MT",
             "name": "Malta",
-            "position": 53,
-            "movement": -18
+            "position": 60,
+            "movement": -19
           }
         ]
       },
@@ -887,7 +887,7 @@
             "country": "OM",
             "name": "Oman",
             "position": 49,
-            "movement": -5
+            "movement": -1
           }
         ]
       }
@@ -944,8 +944,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 181,
-            "movement": -23
+            "position": 183,
+            "movement": -25
           }
         ]
       }

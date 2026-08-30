@@ -239,7 +239,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 144,
-            "movement": -5
+            "movement": -13
           },
           {
             "country": "BW",
@@ -446,8 +446,14 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 1,
+            "movement": 52
+          },
           {
             "country": "MU",
             "name": "Mauritius",
@@ -464,20 +470,14 @@
           {
             "country": "MT",
             "name": "Malta",
-            "position": 45,
-            "movement": -18
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 55,
-            "movement": -3
+            "position": 52,
+            "movement": -19
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 82,
-            "movement": -23
+            "position": 84,
+            "movement": -25
           }
         ]
       },
@@ -692,12 +692,6 @@
             "movement": -9
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 53,
-            "movement": -2
-          },
-          {
             "country": "UK",
             "name": "United Kingdom",
             "position": 57,
@@ -708,6 +702,12 @@
             "name": "Oman",
             "position": 58,
             "movement": -51
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 59,
+            "movement": -8
           },
           {
             "country": "MZ",
@@ -764,16 +764,16 @@
             "movement": -41
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 139,
-            "movement": -23
-          },
-          {
             "country": "ML",
             "name": "Mali",
             "position": 141,
             "movement": -70
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 142,
+            "movement": -26
           },
           {
             "country": "BE",
@@ -1137,7 +1137,7 @@
             "country": "OM",
             "name": "Oman",
             "position": 46,
-            "movement": -5
+            "movement": -1
           }
         ]
       }

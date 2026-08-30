@@ -167,6 +167,25 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 11,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 35,
+            "movement": -5
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -175,18 +194,6 @@
             "name": "Nigeria",
             "position": 13,
             "movement": 2
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 32,
-            "movement": -3
           }
         ]
       },
@@ -947,7 +954,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 10,
+            "position": 11,
             "movement": null,
             "status": "new"
           },
@@ -1092,8 +1099,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 70,
-            "movement": 0
+            "position": 71,
+            "movement": -1
           }
         ]
       }
@@ -1247,7 +1254,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 121,
-            "movement": 0
+            "movement": -1
           }
         ]
       }

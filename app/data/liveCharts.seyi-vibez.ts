@@ -514,8 +514,7 @@
             "country": "NE",
             "name": "Niger",
             "position": 56,
-            "movement": null,
-            "status": "new"
+            "movement": 144
           }
         ]
       }
@@ -644,7 +643,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 10,
+            "position": 11,
             "movement": null,
             "status": "new"
           },

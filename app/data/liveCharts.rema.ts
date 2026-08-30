@@ -183,8 +183,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 37,
-            "movement": -19
+            "position": 39,
+            "movement": -21
           }
         ]
       },
@@ -691,14 +691,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 20,
-            "movement": -18
+            "position": 26,
+            "movement": -22
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 134,
-            "movement": -23
+            "position": 136,
+            "movement": -25
           }
         ]
       },
@@ -1032,8 +1032,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 63,
-            "movement": -22
+            "position": 65,
+            "movement": -24
           }
         ]
       }
@@ -1071,12 +1071,12 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 23,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 59,
+            "position": 60,
             "movement": 0
           }
         ]
@@ -1150,8 +1150,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 144,
-            "movement": -23
+            "position": 146,
+            "movement": -25
           }
         ]
       },
@@ -1251,7 +1251,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 105,
+            "position": 120,
             "movement": null,
             "status": "new"
           }
@@ -1349,8 +1349,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 154,
-            "movement": -23
+            "position": 155,
+            "movement": -24
           }
         ]
       }
@@ -1367,8 +1367,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 155,
-            "movement": -23
+            "position": 156,
+            "movement": -24
           }
         ]
       }

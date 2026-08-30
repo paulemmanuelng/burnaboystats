@@ -285,7 +285,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 174,
-            "movement": 7
+            "movement": -1
           },
           {
             "country": "UZ",
@@ -1606,8 +1606,8 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 188,
-            "movement": -90
+            "position": 194,
+            "movement": -96
           }
         ]
       }
@@ -1625,8 +1625,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 23,
-            "movement": -11
+            "position": 25,
+            "movement": -13
           },
           {
             "country": "TD",
@@ -1738,7 +1738,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 3,
+            "position": 5,
             "movement": null,
             "status": "new"
           },
@@ -1875,8 +1875,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 14,
-            "movement": -3
+            "position": 17,
+            "movement": -5
           },
           {
             "country": "DM",
@@ -2143,6 +2143,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/332d8393d5c9e2d7c5345b8e5fd2a049/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Bad Girl",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 13,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Slow",
     "platforms": [
       {
@@ -2201,25 +2221,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Kese",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 42,
-            "movement": -20
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Sweet One",
     "platforms": [
       {
@@ -2251,6 +2252,25 @@
             "name": "Nigeria",
             "position": 116,
             "movement": 13
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Kese",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 48,
+            "movement": -21
           }
         ]
       }
