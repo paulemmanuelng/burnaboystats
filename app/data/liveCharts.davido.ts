@@ -142,7 +142,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 190,
+            "position": 165,
             "movement": null,
             "status": "new"
           },
@@ -282,8 +282,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": -7
+            "position": 162,
+            "movement": -127
           }
         ]
       },
@@ -415,8 +415,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 44,
-            "movement": 14
+            "position": 41,
+            "movement": 10
           },
           {
             "country": "NG",
@@ -470,8 +470,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 149,
-            "movement": -4
+            "position": 136,
+            "movement": 14
           },
           {
             "country": "CY",
@@ -506,8 +506,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
-            "movement": 49
+            "position": 39,
+            "movement": 46
           }
         ]
       }
@@ -1083,14 +1083,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
-            "movement": -2
+            "position": 18,
+            "movement": 8
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 57,
-            "movement": -9
+            "position": 60,
+            "movement": -12
           }
         ]
       },
@@ -1488,8 +1488,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 55,
-            "movement": -41
+            "position": 62,
+            "movement": -47
           }
         ]
       }
@@ -1588,8 +1588,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
-            "movement": -9
+            "position": 82,
+            "movement": -16
           }
         ]
       }
@@ -1813,26 +1813,26 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 16,
+            "position": 15,
             "movement": -2
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 38,
-            "movement": 5
+            "position": 39,
+            "movement": 0
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 45,
-            "movement": -40
+            "position": 52,
+            "movement": -47
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 53,
-            "movement": -7
+            "movement": -3
           }
         ]
       }
@@ -1979,9 +1979,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 200,
-            "movement": null,
-            "status": "new"
+            "position": 189,
+            "movement": 4
           }
         ]
       }
@@ -2188,7 +2187,7 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 14,
+            "position": 13,
             "movement": -2
           },
           {
@@ -2200,26 +2199,26 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 41,
-            "movement": 6
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 44,
-            "movement": -40
+            "position": 42,
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 45,
-            "movement": -11
+            "movement": -3
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 51,
+            "movement": -47
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 93,
-            "movement": -12
+            "position": 95,
+            "movement": -9
           }
         ]
       }
@@ -2324,8 +2323,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 90,
-            "movement": -24
+            "position": 93,
+            "movement": -23
           }
         ]
       },
@@ -2559,13 +2558,13 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 56,
-            "movement": -7
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 146,
-            "movement": -118
+            "position": 177,
+            "movement": -117
           }
         ]
       }
@@ -2621,7 +2620,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 15,
+            "position": 18,
             "movement": null,
             "status": "new"
           }
@@ -2768,7 +2767,7 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 10,
+            "position": 11,
             "movement": null,
             "status": "new"
           }
@@ -2873,25 +2872,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Odo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 42,
-            "movement": -24
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "La La",
     "platforms": [
       {
@@ -2903,6 +2883,25 @@
             "name": "Nigeria",
             "position": 178,
             "movement": 3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Odo",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 44,
+            "movement": -22
           }
         ]
       }
@@ -2928,25 +2927,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/da0c3e984d1fa2b9c54158ee1a02fbd1/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Nwa Baby",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 148,
-            "movement": -118
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/74fb63756975ed8644a5519be4ad39fc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Activate",
@@ -2986,25 +2966,6 @@
     "kind": "song"
   },
   {
-    "title": "10 Kilo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 166,
-            "movement": -122
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Dun Rich",
     "platforms": [
       {
@@ -3024,7 +2985,7 @@
     "kind": "song"
   },
   {
-    "title": "Titanium",
+    "title": "Nwa Baby",
     "platforms": [
       {
         "platform": "iTunes",
@@ -3033,33 +2994,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 186,
-            "movement": -127
+            "position": 180,
+            "movement": -118
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Don't Know",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 187,
-            "movement": -127
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/74fb63756975ed8644a5519be4ad39fc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Son of Mercy - EP",

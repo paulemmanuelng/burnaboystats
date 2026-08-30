@@ -446,59 +446,59 @@
             "movement": 0
           },
           {
+            "country": "KN",
+            "name": "Saint Kitts and Nevis",
+            "position": 5,
+            "movement": -3
+          },
+          {
             "country": "UG",
             "name": "Uganda",
             "position": 11,
-            "movement": -8
+            "movement": -6
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 25,
-            "movement": -11
-          },
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 35,
-            "movement": null,
-            "status": "new"
+            "movement": -3
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 40,
-            "movement": -9
+            "position": 43,
+            "movement": -12
+          },
+          {
+            "country": "PL",
+            "name": "Poland",
+            "position": 56,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 54,
-            "movement": -24
+            "position": 57,
+            "movement": -23
           },
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 57,
-            "movement": -9
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 81,
-            "movement": -46
+            "position": 58,
+            "movement": -10
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 85,
-            "movement": -20
+            "position": 88,
+            "movement": -12
           },
           {
-            "country": "BB",
-            "name": "Barbados",
-            "position": 90,
-            "movement": -16
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 109,
+            "movement": -35
           }
         ]
       },
@@ -882,16 +882,16 @@
             "movement": -8
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 49,
+            "movement": -3
+          },
+          {
             "country": "GD",
             "name": "Grenada",
             "position": 50,
             "movement": -19
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 52,
-            "movement": -4
           },
           {
             "country": "SE",
@@ -902,20 +902,20 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 72,
-            "movement": -6
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 73,
-            "movement": -7
+            "position": 71,
+            "movement": -3
           },
           {
             "country": "TC",
             "name": "Turks and Caicos",
             "position": 73,
             "movement": 23
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 77,
+            "movement": -11
           },
           {
             "country": "PT",
@@ -943,6 +943,12 @@
             "status": "new"
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 109,
+            "movement": -11
+          },
+          {
             "country": "BS",
             "name": "The Bahamas",
             "position": 113,
@@ -953,12 +959,6 @@
             "name": "Chad",
             "position": 118,
             "movement": -27
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 118,
-            "movement": -16
           },
           {
             "country": "SR",
@@ -1013,14 +1013,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": -7
+            "position": 13,
+            "movement": -12
           },
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 9,
-            "movement": -1
+            "position": 32,
+            "movement": -23
           }
         ]
       }
@@ -1207,8 +1207,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 68,
-            "movement": -44
+            "position": 76,
+            "movement": -48
           }
         ]
       },
@@ -1243,16 +1243,16 @@
             "movement": -39
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 80,
-            "movement": -7
-          },
-          {
             "country": "FJ",
             "name": "Fiji",
             "position": 83,
             "movement": 42
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 90,
+            "movement": -16
           },
           {
             "country": "PG",
@@ -1283,38 +1283,38 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 18,
-            "movement": 1
+            "position": 17,
+            "movement": 0
           },
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 22,
-            "movement": -2
+            "position": 20,
+            "movement": -1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 26,
-            "movement": -11
+            "movement": -3
           },
           {
             "country": "AG",
             "name": "Antigua and Barbuda",
-            "position": 56,
-            "movement": 0
+            "position": 54,
+            "movement": 1
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 88,
-            "movement": -11
+            "position": 90,
+            "movement": -9
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 93,
-            "movement": -6
+            "position": 90,
+            "movement": -4
           }
         ]
       },
@@ -1828,8 +1828,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 45,
-            "movement": -24
+            "position": 48,
+            "movement": -23
           }
         ]
       },
@@ -1986,82 +1986,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Wo, man",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 8,
-            "movement": 0
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 9,
-            "movement": 0
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 40,
-            "movement": 21
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 45,
-            "movement": 5
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 25,
-            "movement": -13
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 79,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 185,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 175,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Dangerous",
     "platforms": [
       {
@@ -2193,8 +2117,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": -118
+            "position": 170,
+            "movement": -127
           }
         ]
       },
@@ -2309,6 +2233,75 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Wo, man",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 8,
+            "movement": 0
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 9,
+            "movement": 0
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 40,
+            "movement": 21
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 45,
+            "movement": 5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 28,
+            "movement": -15
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 128,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 175,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "19 & Dangerous",
     "platforms": [
       {
@@ -2324,8 +2317,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 35,
-            "movement": -1
+            "position": 37,
+            "movement": -5
           },
           {
             "country": "TZ",
@@ -2986,7 +2979,7 @@
             "country": "DM",
             "name": "Dominica",
             "position": 33,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -3004,7 +2997,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 110,
+            "position": 114,
             "movement": -23
           }
         ]
@@ -3042,8 +3035,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 74,
-            "movement": -3
+            "position": 76,
+            "movement": -5
           }
         ]
       }

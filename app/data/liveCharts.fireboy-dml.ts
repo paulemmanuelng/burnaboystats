@@ -587,7 +587,7 @@
           {
             "country": "MT",
             "name": "Malta",
-            "position": 11,
+            "position": 20,
             "movement": null,
             "status": "new"
           }

@@ -214,12 +214,6 @@
             "movement": -45
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 133,
-            "movement": -19
-          },
-          {
             "country": "SC",
             "name": "Seychelles",
             "position": 135,
@@ -239,10 +233,16 @@
             "movement": -49
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 140,
+            "movement": -26
+          },
+          {
             "country": "NL",
             "name": "Netherlands",
-            "position": 138,
-            "movement": 27
+            "position": 157,
+            "movement": -11
           },
           {
             "country": "SR",
@@ -253,8 +253,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 170,
-            "movement": -8
+            "position": 181,
+            "movement": -4
           },
           {
             "country": "MV",
@@ -291,15 +291,15 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 13,
+            "position": 15,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 185,
-            "movement": -29
+            "position": 194,
+            "movement": -38
           }
         ]
       }
@@ -404,18 +404,18 @@
             "country": "UG",
             "name": "Uganda",
             "position": 50,
-            "movement": -8
+            "movement": -6
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 99,
-            "movement": -73
+            "position": 145,
+            "movement": -116
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 139,
+            "position": 176,
             "movement": null,
             "status": "new"
           }
@@ -515,8 +515,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 86,
-            "movement": 3
+            "position": 114,
+            "movement": 22
           }
         ]
       },
@@ -581,13 +581,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 1,
-            "movement": 0
+            "position": 5,
+            "movement": -4
           }
         ]
       }
@@ -596,34 +596,40 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "IS IT LOVE",
+    "title": "Water",
     "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 105,
-            "movement": -23
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 113,
-            "movement": -78
-          }
-        ]
-      },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 105,
+            "country": "GD",
+            "name": "Grenada",
+            "position": 12,
+            "movement": -4
+          },
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 24,
+            "movement": 5
+          },
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 35,
+            "movement": -7
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 28,
             "movement": null,
             "status": "new"
           }
@@ -634,9 +640,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 98,
+            "country": "MA",
+            "name": "Morocco",
+            "position": 42,
             "movement": null,
             "status": "new"
           }
@@ -644,7 +650,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FAIRYTALE",
@@ -684,35 +690,34 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Water",
+    "title": "IS IT LOVE",
     "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 12,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 33,
-            "movement": -10
-          }
-        ]
-      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 28,
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 105,
+            "movement": -23
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 113,
+            "movement": -78
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 134,
             "movement": null,
             "status": "new"
           }
@@ -723,9 +728,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 42,
+            "country": "AU",
+            "name": "Australia",
+            "position": 98,
             "movement": null,
             "status": "new"
           }
@@ -733,7 +738,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "CHANEL",
@@ -764,9 +769,8 @@
           {
             "country": "PE",
             "name": "Peru",
-            "position": 107,
-            "movement": null,
-            "status": "new"
+            "position": 141,
+            "movement": -107
           }
         ]
       }
@@ -784,9 +788,8 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 24,
-            "movement": null,
-            "status": "new"
+            "position": 25,
+            "movement": -14
           }
         ]
       }
@@ -804,9 +807,8 @@
           {
             "country": "MT",
             "name": "Malta",
-            "position": 39,
-            "movement": null,
-            "status": "new"
+            "position": 47,
+            "movement": -26
           }
         ]
       }
@@ -824,8 +826,8 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 46,
-            "movement": -10
+            "position": 48,
+            "movement": -7
           }
         ]
       }
@@ -872,6 +874,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "DYNAMITE",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 75,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "On My Body",
     "platforms": [
       {
@@ -881,8 +903,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 161,
-            "movement": -23
+            "position": 164,
+            "movement": -22
           }
         ]
       }
