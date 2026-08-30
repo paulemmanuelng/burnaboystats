@@ -1,3 +1,4 @@
+import { count } from "../../lib/plural";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./artist.module.css";
@@ -49,12 +50,12 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
         }`
       : `${a.name} — The Afrobeats Board`,
     description: a.swept
-      ? `${a.name}: ${certCount(a)} certifications across ${countryCount(a)} countries, topped by ${topAward(a) ? plaqueLabel(topAward(a)!) : "a plaque"}, plus ${chartEntries(a)} official chart entries and ${chartNo1s(a)} No. 1s — every figure read at source.`
+      ? `${a.name}: ${count(certCount(a), "certification", "certifications")} across ${count(countryCount(a), "country", "countries")}, topped by ${topAward(a) ? plaqueLabel(topAward(a)!) : "a plaque"}, plus ${count(chartEntries(a), "official chart entry", "official chart entries")} and ${count(chartNo1s(a), "No. 1", "No. 1s")} — every figure read at source.`
       : `${a.name} on The Afrobeats Board. The certification and chart registers are scheduled to be read at source — no figures are published here until they are.`,
     path: `/afrobeats/${a.slug}`,
     shareTitle: `${a.name} — The Afrobeats Board`,
     shareDescription: a.swept
-      ? `${certCount(a)} certifications, ${countryCount(a)} countries, verified at source.`
+      ? `${count(certCount(a), "certification", "certifications")}, ${count(countryCount(a), "country", "countries")}, verified at source.`
       : "Register sweep scheduled — no figures until they are read at source.",
     // Indexable the moment the sweep lands; until then the page has no figures
     // a search engine could rank it for, and three of them read alike.
@@ -103,7 +104,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const dataset = a.swept
     ? datasetJsonLd({
         name: `${a.name} music certifications by country`,
-        description: `Every certification held by ${a.name} — ${total} plaques across ${countries} countries, each read in the issuing body's own register and counted one plaque per title per country at its current tier.`,
+        description: `Every certification held by ${a.name} — ${count(total, "plaque", "plaques")} across ${count(countries, "country", "countries")}, each read in the issuing body's own register and counted one plaque per title per country at its current tier.`,
         path: `/afrobeats/${a.slug}`,
         keywords: [a.name, "certifications", "RIAA", "BPI", "gold", "platinum", "diamond", "Afrobeats"],
         variableMeasured: ["Certification tier", "Country / territory", "Release", "Certifying body"],

@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   description:
     "Internal scratch page: every shared button, tag, table and token variant in one place, for checking against the design.",
   robots: { index: false, follow: false },
+  // Without this it inherits the root layout's alternates.canonical of "/",
+  // so a noindex scratch page was declaring itself the homepage.
+  alternates: { canonical: "/primitives" },
 };
 
 const TOKENS = [

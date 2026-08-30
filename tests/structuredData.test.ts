@@ -1,4 +1,6 @@
 import { describe, it, expect } from "vitest";
+import { afrobeatsArtists } from "../app/data/afrobeats";
+import { SEGMENT_LABELS } from "../app/lib/seo";
 import { datasetJsonLd, breadcrumbList } from "../app/lib/seo";
 
 // These tests encode Google's required + recommended fields for each rich-result
@@ -47,5 +49,31 @@ describe("BreadcrumbList structured data", () => {
 
   it("returns null for the home page", () => {
     expect(breadcrumbList("/")).toBeNull();
+  });
+});
+
+// Six artists were added to the board without a SEGMENT_LABELS entry, so their
+// breadcrumb trails read "Home > The Afrobeats Board > bnxn" — the raw slug, in
+// the JSON-LD a search engine reads. The labels are listed statically on
+// purpose: seo.ts is imported by the client-side <Breadcrumbs>, so importing
+// afrobeatsArtists there to derive them would pull the whole board into the
+// client bundle. This test buys the durability instead.
+describe("every board artist has a breadcrumb label", () => {
+  it("names each slug in words, matching the board", () => {
+    const missing = afrobeatsArtists
+      .filter((a) => !SEGMENT_LABELS[a.slug])
+      .map((a) => `${a.slug} → should read "${a.name}"`);
+    expect(
+      missing,
+      "add these to SEGMENT_LABELS in app/lib/seo.ts, or their breadcrumbs publish the raw slug",
+    ).toEqual([]);
+  });
+
+  it("uses the board's own spelling, casing included", () => {
+    const wrong = afrobeatsArtists
+      .filter((a) => SEGMENT_LABELS[a.slug] && SEGMENT_LABELS[a.slug] !== a.name)
+      .map((a) => `${a.slug}: label "${SEGMENT_LABELS[a.slug]}" vs name "${a.name}"`);
+    // BNXN and CKay are why this is not a capitalize() helper.
+    expect(wrong).toEqual([]);
   });
 });
