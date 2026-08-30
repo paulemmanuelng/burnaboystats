@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-08-30";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -73,6 +73,19 @@
             "movement": -6
           }
         ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 43,
+            "movement": null,
+            "status": "re"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -88,8 +101,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 5,
-            "movement": 2
+            "position": 7,
+            "movement": -1
           },
           {
             "country": "BF",
@@ -151,33 +164,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 37,
-            "movement": -15
+            "position": 42,
+            "movement": -19
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "nwayi",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SI",
-            "name": "Slovenia",
-            "position": 96,
-            "movement": -59
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b606366687e3c46d407569aa03ae26bf/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "La La",
@@ -209,7 +203,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 60,
-            "movement": -5
+            "movement": -4
           }
         ]
       }

@@ -183,7 +183,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 28,
+            "position": 31,
             "movement": null,
             "status": "new"
           }
@@ -351,20 +351,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
-            "movement": 5
+            "position": 44,
+            "movement": -1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 55,
-            "movement": -5
+            "movement": -4
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 58,
-            "movement": -6
+            "position": 59,
+            "movement": -1
           },
           {
             "country": "UG",
@@ -563,20 +563,20 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 6,
-            "movement": -5
+            "position": 11,
+            "movement": -10
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
-            "movement": -54
+            "position": 89,
+            "movement": -80
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 125,
-            "movement": -26
+            "position": 128,
+            "movement": -25
           }
         ]
       },
@@ -632,6 +632,77 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "HEIS",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 50,
+            "movement": 22
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 66,
+            "movement": 2
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 106,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 134,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 139,
+            "movement": 12
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 160,
+            "movement": -3
+          },
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 162,
+            "movement": -10
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 194,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Rema Compilation",
     "platforms": [
       {
@@ -642,7 +713,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 61,
-            "movement": -5
+            "movement": -4
           },
           {
             "country": "UG",
@@ -653,14 +724,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 81,
-            "movement": -1
+            "position": 84,
+            "movement": -3
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 105,
-            "movement": 3
+            "position": 107,
+            "movement": -2
           },
           {
             "country": "GH",
@@ -828,8 +899,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 54,
-            "movement": -25
+            "position": 57,
+            "movement": -23
           }
         ]
       }
@@ -890,8 +961,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 135,
-            "movement": -26
+            "position": 138,
+            "movement": -25
           }
         ]
       },
@@ -910,70 +981,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "HEIS",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 50,
-            "movement": 22
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 68,
-            "movement": 0
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 106,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 134,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 139,
-            "movement": 12
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 160,
-            "movement": -3
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 162,
-            "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bounce",
@@ -1085,14 +1092,14 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 25,
-            "movement": -3
+            "position": 23,
+            "movement": 2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 61,
-            "movement": -4
+            "position": 60,
+            "movement": 0
           }
         ]
       },
@@ -1296,6 +1303,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Goals",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 94,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Trouble Maker",
     "platforms": [
       {
@@ -1342,7 +1368,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 144,
+            "position": 148,
             "movement": -26
           }
         ]
@@ -1360,8 +1386,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 146,
-            "movement": -26
+            "position": 149,
+            "movement": -25
           }
         ]
       }
@@ -1380,13 +1406,33 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 62,
-            "movement": -5
+            "movement": -4
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d386058066ab6b2b140515ed5c591a1f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Rema - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SR",
+            "name": "Suriname",
+            "position": 120,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/79ce1468fc48a88c1cdea30ec0790943/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "RAVAGE - EP",
@@ -1398,8 +1444,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 163,
-            "movement": 34
+            "position": 179,
+            "movement": -16
           }
         ]
       }

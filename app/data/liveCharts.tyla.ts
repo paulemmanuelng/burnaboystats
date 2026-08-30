@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-08-30";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -49,16 +49,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 3,
-            "movement": 1
-          },
-          {
             "country": "BW",
             "name": "Botswana",
             "position": 4,
             "movement": 1
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 4,
+            "movement": 0
           },
           {
             "country": "NA",
@@ -91,10 +91,10 @@
             "movement": -8
           },
           {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 35,
-            "movement": -12
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 33,
+            "movement": 11
           },
           {
             "country": "ZW",
@@ -103,22 +103,16 @@
             "movement": 7
           },
           {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 44,
-            "movement": 8
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 48,
-            "movement": -12
-          },
-          {
             "country": "FJ",
             "name": "Fiji",
             "position": 53,
             "movement": -21
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 53,
+            "movement": -18
           },
           {
             "country": "KY",
@@ -139,12 +133,6 @@
             "movement": -21
           },
           {
-            "country": "BB",
-            "name": "Barbados",
-            "position": 75,
-            "movement": -53
-          },
-          {
             "country": "MU",
             "name": "Mauritius",
             "position": 76,
@@ -162,6 +150,12 @@
             "name": "Portugal",
             "position": 83,
             "movement": -19
+          },
+          {
+            "country": "BB",
+            "name": "Barbados",
+            "position": 85,
+            "movement": -10
           },
           {
             "country": "QA",
@@ -208,10 +202,10 @@
             "movement": -96
           },
           {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 124,
-            "movement": -45
+            "country": "PY",
+            "name": "Paraguay",
+            "position": 126,
+            "movement": 10
           },
           {
             "country": "SC",
@@ -220,41 +214,40 @@
             "movement": -83
           },
           {
-            "country": "PY",
-            "name": "Paraguay",
-            "position": 136,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "BS",
             "name": "The Bahamas",
             "position": 136,
             "movement": -49
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 143,
-            "movement": -19
-          },
-          {
             "country": "SR",
             "name": "Suriname",
-            "position": 162,
-            "movement": -22
+            "position": 146,
+            "movement": 16
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 150,
+            "movement": -27
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 165,
-            "movement": 5
+            "position": 153,
+            "movement": 28
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 179,
-            "movement": -22
+            "country": "MW",
+            "name": "Malawi",
+            "position": 156,
+            "movement": -108
+          },
+          {
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 166,
+            "movement": -42
           },
           {
             "country": "MV",
@@ -291,7 +284,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 25,
+            "position": 52,
             "movement": null,
             "status": "new"
           }
@@ -299,6 +292,117 @@
       }
     ],
     "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "SHE DID IT AGAIN",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SR",
+            "name": "Suriname",
+            "position": 41,
+            "movement": -17
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 121,
+            "movement": 0
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 146,
+            "movement": -13
+          },
+          {
+            "country": "IS",
+            "name": "Iceland",
+            "position": 168,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 185,
+            "movement": -73
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 190,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 45,
+            "movement": -2
+          },
+          {
+            "country": "HR",
+            "name": "Croatia",
+            "position": 105,
+            "movement": -41
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 113,
+            "movement": -15
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 142,
+            "movement": 43
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 168,
+            "movement": -23
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 18,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 52,
+            "movement": -4
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 127,
+            "movement": -71
+          }
+        ]
+      }
+    ],
+    "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
@@ -399,104 +503,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "SHE DID IT AGAIN",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 41,
-            "movement": -17
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 121,
-            "movement": -1
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 146,
-            "movement": -13
-          },
-          {
-            "country": "IS",
-            "name": "Iceland",
-            "position": 168,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 185,
-            "movement": -73
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 190,
-            "movement": 8
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 45,
-            "movement": -2
-          },
-          {
-            "country": "HR",
-            "name": "Croatia",
-            "position": 105,
-            "movement": -41
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 113,
-            "movement": -15
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 142,
-            "movement": 43
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 168,
-            "movement": -23
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 51,
-            "movement": -4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "THAT GIRL",
     "platforms": [
       {
@@ -507,7 +513,7 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 25,
-            "movement": -5
+            "movement": 0
           },
           {
             "country": "NA",
@@ -578,6 +584,19 @@
             "movement": -42
           }
         ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 87,
+            "movement": null,
+            "status": "re"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -608,13 +627,6 @@
             "name": "Nepal",
             "position": 161,
             "movement": -7
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 181,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "KE",
@@ -658,7 +670,7 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 96,
-            "movement": 7
+            "movement": 0
           },
           {
             "country": "SZ",
@@ -688,20 +700,14 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 12,
-            "movement": -2
+            "position": 20,
+            "movement": -10
           },
           {
             "country": "OM",
             "name": "Oman",
             "position": 36,
             "movement": -5
-          },
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 78,
-            "movement": -29
           }
         ]
       },
@@ -733,7 +739,7 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 105,
-            "movement": -23
+            "movement": 0
           },
           {
             "country": "SZ",
@@ -757,8 +763,8 @@
           {
             "country": "MT",
             "name": "Malta",
-            "position": 46,
-            "movement": -20
+            "position": 52,
+            "movement": -23
           }
         ]
       },
@@ -789,8 +795,8 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 31,
-            "movement": -17
+            "position": 36,
+            "movement": -19
           }
         ]
       }
@@ -865,7 +871,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
+            "position": 134,
             "movement": null,
             "status": "new"
           }
@@ -885,8 +891,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 173,
-            "movement": -27
+            "position": 176,
+            "movement": -26
           }
         ]
       }

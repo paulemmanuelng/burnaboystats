@@ -421,7 +421,7 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 65,
+            "position": 66,
             "movement": null,
             "status": "new"
           }
@@ -579,8 +579,8 @@
           {
             "country": "MT",
             "name": "Malta",
-            "position": 19,
-            "movement": -16
+            "position": 25,
+            "movement": -20
           }
         ]
       }
