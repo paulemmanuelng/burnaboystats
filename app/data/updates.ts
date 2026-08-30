@@ -35,6 +35,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-30",
+    category: "Streaming",
+    text: "Back inside the global top three: “Dai Dai” climbs to No. 3 on Spotify’s Daily Top Songs Global for 28 August with 3,350,583 filtered streams, its 72nd day inside the Top 10 and, by the chart’s own streak column, a 99th consecutive day on it — 37 of them at No. 1, still the longest run at the top by any African artist.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-08-29",
     category: "Streaming",
     text: "An 80th straight day as the world’s most-viewed music video: the “Dai Dai” video has led YouTube’s Global Daily Top Music Videos every day since 9 June, on the chart dated 27 August — the last one published. It has been No. 1 on 93 of its 97 days on that chart, missing only 28 and 29 May, 2 June and 8 June.",

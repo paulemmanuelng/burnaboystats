@@ -40,8 +40,20 @@ export const DAI_DAI_SPOTIFY_STREAMS = "396M";
 // to an anonymous caller), so these constants are the record of what has been
 // established off-site, not something a scraper can refresh.
 export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114, the day after release
-export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-21"; // implied by the feed's own dated series
-export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-08-27";
+/**
+ * Spotify's OWN "Streak" column, read off the Daily Top Songs Global chart for
+ * 28 Aug 2026: Dai Dai — Peak 1, Prev 6, **Streak 99**, 3,350,583 streams.
+ *
+ * This is the anchor now, and it replaces one derived from the updates feed's
+ * prose. Those six dated readings are internally consistent but sit exactly one
+ * day AHEAD of Spotify's column at every point (they say 82 for 10 Aug where
+ * the column reads 81), so they implied a 21 May start where the body says
+ * 22 May. Same published figure, sounder basis: the body governs over our own
+ * transcription of it.
+ */
+export const DAI_DAI_SPOTIFY_BODY_READ = { date: "2026-08-28", streak: 99 } as const;
+export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // from the body read above
+export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-08-28";
 /** Days it has dropped off the chart, ever. One, on a day in 15–20 May. */
 export const DAI_DAI_SPOTIFY_DAYS_OFF = 1;
 
