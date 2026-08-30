@@ -1,4 +1,7 @@
 import { describe, it, expect } from "vitest";
+import { generatedDocs } from "../app/lib/searchIndex.generated";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { searchDocs, searchIndex } from "../app/lib/searchIndex";
 
 describe("searchDocs", () => {
@@ -90,5 +93,50 @@ describe("The Afrobeats Board in search", () => {
       expect(paths.has(`/afrobeats/${slug}`), slug).toBe(true);
     for (const slug of ["wizkid", "davido", "rema", "tems", "tyla", "ayra-starr"])
       expect(paths.has(`/afrobeats/${slug}/charts`), slug).toBe(true);
+  });
+});
+
+// The /search page and the palette both keyed their lists on `d.path`, which is
+// deliberately NOT unique — 91 docs point at /certifications alone. React could
+// not match old rows to new ones across a re-render, so it kept stale rows alive
+// beside fresh ones: typing one query over another grew the list to 270 visible
+// rows against a LIMIT of 60. In dev that came with a duplicate-key warning; in
+// a production build React strips the warning and only the corruption ships.
+//
+// Deduping by path is NOT the fix and must not be introduced — it would collapse
+// 47 distinct award-body docs into a single row and destroy the record-level
+// search the generated index exists to provide.
+describe("search rows carry a key that identifies the doc, not the destination", () => {
+  const keyOf = (d: { section: string; title: string; path: string }) =>
+    `${d.section}|${d.title}|${d.path}`;
+
+  it("is unique across every doc in the merged index", () => {
+    const all = [...searchIndex, ...generatedDocs];
+    const keys = all.map(keyOf);
+    const dupes = keys.filter((k, i) => keys.indexOf(k) !== i);
+    expect([...new Set(dupes)], "these docs would collide as React keys").toEqual([]);
+  });
+
+  it("stays unique on the broad queries that collide worst", () => {
+    for (const q of ["award", "certification", "chart", "gold", "grammy", "last last"]) {
+      const rows = searchDocs(q, 60);
+      const keys = rows.map(keyOf);
+      expect(new Set(keys).size, `duplicate React keys for "${q}"`).toBe(rows.length);
+    }
+  });
+
+  it("still returns many rows per destination — dedupe would gut this", () => {
+    // Guards the fix from being "simplified" into a path dedupe later.
+    const rows = searchDocs("award", 60);
+    expect(rows.length).toBeGreaterThan(20);
+    expect(new Set(rows.map((d) => d.path)).size).toBeLessThan(rows.length);
+  });
+
+  it("keys the rendered lists on the composite, not on path", () => {
+    for (const f of ["app/components/SearchResults.tsx", "app/components/SearchPalette.tsx"]) {
+      const src = readFileSync(join(process.cwd(), f), "utf8");
+      expect(src, `${f} must not key a list on d.path alone`).not.toMatch(/key=\{d\.path\}/);
+      expect(src).toMatch(/key=\{`\$\{d\.section\}\|\$\{d\.title\}\|\$\{d\.path\}`\}/);
+    }
   });
 });

@@ -802,6 +802,15 @@ function raw(doc: SearchDoc, q: string): number {
 }
 
 // Rank the index for a query. Empty query returns [] (callers show a default).
+// `path` is NOT a unique identifier for a SearchDoc, by design: 91 country and
+// certification docs point at /certifications, 55 at /records/charts and 47 at
+// /records/awards, each with its own title, and that is what makes record-level
+// search work. Keying on it gave React duplicate sibling keys, so it could not
+// match old rows to new ones and kept stale rows alive alongside fresh ones —
+// 270 visible rows against a LIMIT of 60 in a production build, where the
+// warning that exposes it is stripped out. section|title|path is unique across
+// all 302 docs; path|title is not (the hand-written /music docs each have a
+// generated twin with the same title).
 export function searchDocs(query: string, limit = 8): SearchDoc[] {
   const q = fold(query);
   if (!q) return [];

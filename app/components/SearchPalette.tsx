@@ -183,7 +183,7 @@ export default function SearchPalette() {
                   <li role="presentation" className={styles.groupLabel}>Popular pages</li>
                 )}
                 {results.map((d, i) => (
-                  <li key={d.path} role="presentation">
+                  <li key={`${d.section}|${d.title}|${d.path}`} role="presentation">
                     <button
                       type="button"
                       id={`search-opt-${i}`}

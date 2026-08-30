@@ -190,7 +190,7 @@ export default function SearchResults({
             const [color, borderColor] = inkFor(d.section);
             return (
               <Link
-                key={d.path}
+                key={`${d.section}|${d.title}|${d.path}`}
                 href={d.path}
                 className={styles.row}
                 onClick={() =>
