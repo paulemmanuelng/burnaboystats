@@ -51,14 +51,14 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 125,
-            "movement": -1
+            "position": 151,
+            "movement": -26
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 152,
-            "movement": 38
+            "position": 193,
+            "movement": -41
           }
         ]
       },
@@ -69,8 +69,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": -6
+            "position": 98,
+            "movement": 19
           }
         ]
       },
@@ -101,14 +101,14 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 7,
-            "movement": -1
+            "position": 6,
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 48,
-            "movement": -3
+            "movement": -1
           }
         ]
       },
@@ -120,13 +120,52 @@
             "country": "MA",
             "name": "Morocco",
             "position": 133,
-            "movement": -7
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 123,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Boyfriend",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 60,
+            "movement": -2
+          },
+          {
+            "country": "KY",
+            "name": "Cayman Islands",
+            "position": 142,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BANGER BOY",
@@ -136,17 +175,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 110,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
-            "movement": -9
+            "position": 192,
+            "movement": -10
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 194,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -164,8 +203,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 42,
-            "movement": -19
+            "position": 51,
+            "movement": -27
           }
         ]
       }
@@ -183,33 +222,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 178,
-            "movement": 3
+            "position": 176,
+            "movement": 2
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Boyfriend",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 60,
-            "movement": -4
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BODY (danz)",
