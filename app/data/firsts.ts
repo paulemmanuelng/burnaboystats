@@ -81,7 +81,13 @@ export const firstGroups: FirstGroup[] = [
       { year: "2026", title: "First African artist to appear on the Billboard Vietnam Hot 100", text: "“Dai Dai” with Shakira debuted at No. 93 — afrobeats breaking onto Vietnam's chart." },
       { year: "2026", title: "One of only two African artists to top the Billboard Global 200 (Excl. US)", text: "“Dai Dai” (with Shakira) reached No. 1 — Burna Boy joins Rema (“Calm Down”) as the only African acts ever to lead the chart." },
       { year: "2026", title: "First African artist to reach No. 1 on Spotify's Global Songs chart", text: "“Dai Dai” (with Shakira) topped both Spotify's Daily and Weekly Top Songs Global charts — no African artist had done it before. Also the highest-peaking FIFA World Cup anthem in the chart's history." },
-      { year: "2026", title: "First African artist with 20 songs over 100M Spotify streams", text: "Twenty of his songs have each passed 100 million streams on Spotify — eight of them solo, a record for an African artist." },
+      // Deliberately "more than 20" and not the exact 22. "Sungba" crosses 100M
+      // within a day or two and this figure has no watched-metrics.json entry
+      // behind it, so an exact count would be wrong by Monday and nothing would
+      // catch it. The "First African artist" claim is gone: Akon passed twenty
+      // songs over 100M years earlier, and "a record for an African artist"
+      // rested on a one-song margin over GIMS across a population nobody swept.
+      { year: "2026", title: "More than 20 songs over 100 million Spotify streams", text: "Over twenty of his songs have each passed 100 million streams on Spotify — nine of them solo, three as lead with a guest, and the rest as a featured artist. “Tested, Approved & Trusted” crossed on 28 August 2026, the second from “I Told Them…” to do it." },
     ],
   },
   {

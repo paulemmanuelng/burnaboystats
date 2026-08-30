@@ -37,6 +37,24 @@ export const updates: Update[] = [
   {
     date: "2026-08-30",
     category: "Streaming",
+    text: "Past 15 million: ChartMasters' all-time board now has Burna Boy on 15,011,000 equivalent album sales to Wizkid's 14,758,000, a gap of 253,000, widened from about 238,000 on 26 August. Worth reading the scope alongside the number — the two of them are the only artists from any African country on that 688-name board, and their totals are streaming equivalents rather than full sales studies.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-08-30",
+    category: "Streaming",
+    text: "A 22nd song past 100 million Spotify streams: “Tested, Approved & Trusted” crossed on 28 August with 100,025,917, the second track from “I Told Them…” to get there after “City Boys”. Nine of the twenty-two are solo recordings.",
+    href: "/records/firsts",
+  },
+  {
+    date: "2026-08-30",
+    category: "Certifications",
+    text: "Nineteen New Zealand plaques, read row by row in Recorded Music NZ's own register: seventeen singles and two albums, from Gold up to 3× Platinum for “Last Last” and for Dave's “Location”. It is the largest New Zealand tally among the artists tracked on the Afrobeats board here — Tems has eleven, Wizkid and Tyla seven each.",
+    href: "/certifications",
+  },
+  {
+    date: "2026-08-30",
+    category: "Streaming",
     text: "Back inside the global top three: “Dai Dai” climbs to No. 3 on Spotify’s Daily Top Songs Global for 28 August with 3,350,583 filtered streams, its 72nd day inside the Top 10 and, by the chart’s own streak column, a 99th consecutive day on it — 37 of them at No. 1, still the longest run at the top by any African artist.",
     href: "/dai-dai",
   },

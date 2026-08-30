@@ -329,11 +329,11 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "Equivalent album sales · global · ChartMasters",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "14.96M" },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "14.73M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "15.01M" },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "14.76M" },
     ],
-    note: "Burna Boy is the No. 1 best-selling African artist of all time by equivalent album sales — and his lead over Wizkid has stretched from about 30,000 to some 238,000 across the “Dai Dai” run. Counts albums, physical and digital singles and streaming album-track equivalents.",
-    source: "Total equivalent album sales (EAS), per ChartMasters (CSPC methodology): Burna Boy 14,964,000 to Wizkid's 14,726,000, as tracked on 26 August 2026. The previous reading, taken from ChartMasters' own Afrobeats board on 10 August 2026, was 14,750,000 to 14,586,000 — so both men gained and the gap widened from 164,000 to 238,000. The two have traded this lead before, so it is worth re-reading rather than assuming.",
+    note: "Burna Boy passes 15 million equivalent album sales, and his lead over Wizkid has stretched from about 30,000 to some 253,000 across the “Dai Dai” run. Read the scope with the figure: these two are the only artists from any African country on ChartMasters' 688-name board, and the only Afrobeats artists it has published an EAS total for at all.",
+    source: "Total equivalent album sales (EAS), per ChartMasters' daily Best-Selling Artists of All-Time board: Burna Boy 15,011,000 (rank 536) to Wizkid's 14,758,000 (rank 539), read 30 August 2026 with the board's streams stamped 28 August. The 26 August reading was 14,964,000 to 14,726,000, so both men gained and the gap widened from about 238,000 to some 253,000. IMPORTANT ON METHOD: ChartMasters has not completed a CSPC study for either man — on both rows the studio-album, other-LP, physical-single and digital-single columns all read 0, and Total EAS equals the streaming figure to the digit. These are streaming equivalents, updated automatically, not full sales tallies. ChartMasters itself makes no claim about African artists anywhere on that page. The two have traded this lead before, so it is worth re-reading rather than assuming.",
   },
   {
     id: "spotify-top-artists-peak",
