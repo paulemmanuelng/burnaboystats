@@ -86,7 +86,7 @@
     "date": "2026-08-30",
     "release": "B4 B4",
     "platform": "Shazam",
-    "position": 70
+    "position": 74
   }
 ];
   

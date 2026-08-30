@@ -152,7 +152,7 @@
     "date": "2026-08-30",
     "release": "Raindance",
     "platform": "Shazam",
-    "position": 23
+    "position": 22
   },
   {
     "date": "2026-08-30",

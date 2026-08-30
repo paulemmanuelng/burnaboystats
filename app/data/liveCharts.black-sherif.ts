@@ -195,8 +195,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 93,
-            "movement": -23
+            "position": 101,
+            "movement": -27
           }
         ]
       },
@@ -207,8 +207,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 67,
-            "movement": -9
+            "position": 80,
+            "movement": -13
           }
         ]
       }
@@ -250,8 +250,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 15,
-            "movement": -1
+            "position": 14,
+            "movement": 1
           }
         ]
       }
@@ -281,14 +281,27 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 65,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 17,
-            "movement": 1
+            "position": 15,
+            "movement": 2
           }
         ]
       }
@@ -297,7 +310,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "SWAGGA",
+    "title": "Kwaku the Traveller",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -306,26 +319,59 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 15,
-            "movement": 1
+            "position": 79,
+            "movement": -3
           }
         ]
       },
       {
-        "platform": "Shazam",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 199,
-            "movement": -1
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 82,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8652533854fa49e3c364a77c4e2ae9b5/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Soja",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 67,
+            "movement": 5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 141,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Victory Song",
@@ -375,7 +421,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 164,
-            "movement": -4
+            "movement": 0
           }
         ]
       }
@@ -404,13 +450,32 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 168,
-            "movement": -19
+            "position": 171,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song"
+  },
+  {
+    "title": "SWAGGA",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 15,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8652533854fa49e3c364a77c4e2ae9b5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Top of the Morning",
@@ -508,25 +573,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Soja",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 67,
-            "movement": 5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Find A Way",
     "platforms": [
       {
@@ -563,25 +609,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Kwaku the Traveller",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 79,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Body",

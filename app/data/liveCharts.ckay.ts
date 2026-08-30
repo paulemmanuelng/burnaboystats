@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-08-30";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -88,7 +88,7 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 6,
+            "position": 5,
             "movement": 2
           },
           {
@@ -142,26 +142,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "SHEGE",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 64,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "forever",
     "platforms": [
       {
@@ -171,9 +151,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 35,
-            "movement": null,
-            "status": "new"
+            "position": 37,
+            "movement": -15
           }
         ]
       }
@@ -191,7 +170,7 @@
           {
             "country": "SI",
             "name": "Slovenia",
-            "position": 89,
+            "position": 96,
             "movement": -59
           }
         ]
@@ -243,14 +222,15 @@
     "kind": "song",
     "platforms": [
       {
-        "platform": "YouTube",
+        "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 43,
-            "movement": 1
+            "movement": null,
+            "status": "new"
           }
         ]
       }

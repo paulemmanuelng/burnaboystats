@@ -123,32 +123,32 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 38,
-            "movement": 4
+            "position": 39,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
-            "movement": -3
+            "position": 67,
+            "movement": 2
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 79,
-            "movement": -8
+            "position": 73,
+            "movement": 6
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 131,
-            "movement": -12
+            "position": 130,
+            "movement": 1
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 135,
-            "movement": -10
+            "position": 143,
+            "movement": -8
           }
         ]
       },
@@ -171,8 +171,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 30,
-            "movement": -6
+            "position": 31,
+            "movement": -4
           }
         ]
       },
@@ -183,20 +183,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": 21
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 18,
-            "movement": -1
+            "position": 4,
+            "movement": 3
           }
         ]
       }
@@ -298,8 +286,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": -4
+            "position": 68,
+            "movement": -1
           }
         ]
       },
@@ -310,8 +298,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": -3
+            "position": 13,
+            "movement": 1
           }
         ]
       }
@@ -407,7 +395,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
+            "position": 73,
             "movement": null,
             "status": "new"
           }
@@ -636,6 +624,19 @@
             "movement": -13
           }
         ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 41,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -771,21 +772,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 82,
-            "movement": 13
+            "position": 33,
+            "movement": 60
           }
         ]
       }
@@ -907,6 +895,45 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/99ab461acf3040d231c824f66893a811/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "GWAGWALADA",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 7,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 94,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 141,
+            "movement": -35
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Outside",
     "platforms": [
       {
@@ -1006,7 +1033,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "GWAGWALADA",
+    "title": "Fi Kan We Kan",
     "platforms": [
       {
         "platform": "Spotify",
@@ -1015,19 +1042,19 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
-            "movement": -35
+            "position": 187,
+            "movement": -4
           }
         ]
       },
       {
-        "platform": "iTunes",
+        "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 64,
+            "position": 80,
             "movement": null,
             "status": "new"
           }
@@ -1035,7 +1062,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jies",
@@ -1114,25 +1141,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Fi Kan We Kan",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 187,
-            "movement": -4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Finesse",
     "platforms": [
       {
@@ -1143,7 +1151,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 71,
-            "movement": -5
+            "movement": -4
           }
         ]
       }
@@ -1181,40 +1189,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 120,
-            "movement": 1
+            "position": 121,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/01e3a69fce9ce6cb0acf2e44f1be8280/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Lenu (Remix)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 37,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aef7ccf16f0481793eea256ab167aa88/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Lenu",
-    "platforms": [],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aef7ccf16f0481793eea256ab167aa88/500x500-000000-80-0-0.jpg"
   }
 ];
   

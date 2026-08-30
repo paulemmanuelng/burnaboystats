@@ -398,13 +398,13 @@
     "date": "2026-08-30",
     "release": "Dai Dai",
     "platform": "Deezer",
-    "position": 19
+    "position": 17
   },
   {
     "date": "2026-08-30",
     "release": "Dai Dai",
     "platform": "Shazam",
-    "position": 11
+    "position": 12
   },
   {
     "date": "2026-08-30",

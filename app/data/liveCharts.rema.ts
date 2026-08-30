@@ -123,62 +123,44 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
-            "movement": -5
+            "position": 21,
+            "movement": -4
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 39,
-            "movement": 1
+            "position": 37,
+            "movement": 2
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 66,
-            "movement": -1
+            "position": 74,
+            "movement": -8
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 86,
-            "movement": -3
+            "position": 87,
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 93,
-            "movement": -1
+            "position": 98,
+            "movement": -5
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 99,
-            "movement": -4
+            "position": 107,
+            "movement": -8
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 112,
-            "movement": 1
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 3,
-            "movement": -1
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 77,
-            "movement": -9
+            "position": 120,
+            "movement": -8
           }
         ]
       },
@@ -201,7 +183,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 24,
+            "position": 28,
             "movement": null,
             "status": "new"
           }
@@ -214,8 +196,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
-            "movement": -76
+            "position": 38,
+            "movement": 60
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 5,
+            "movement": -2
           }
         ]
       }
@@ -522,13 +516,27 @@
         ]
       },
       {
-        "platform": "iTunes",
+        "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
             "country": "VN",
             "name": "Vietnam",
-            "position": 108,
+            "position": 143,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 152,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 181,
             "movement": null,
             "status": "new"
           }
@@ -537,6 +545,91 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Baby",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 1,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 6,
+            "movement": -5
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 60,
+            "movement": -54
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 125,
+            "movement": -26
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 108,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 161,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 197,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LB",
+            "name": "Lebanon",
+            "position": 43,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 59,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rema Compilation",
@@ -605,90 +698,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 60,
-            "movement": -40
-          },
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 78,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 158,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 23,
-            "movement": 2
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 60,
-            "movement": -3
-          },
-          {
-            "country": "IL",
-            "name": "Israel",
-            "position": 89,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 198,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 39,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soweto",
@@ -819,8 +828,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 48,
-            "movement": -23
+            "position": 54,
+            "movement": -25
           }
         ]
       }
@@ -881,8 +890,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 127,
-            "movement": -22
+            "position": 135,
+            "movement": -26
           }
         ]
       },
@@ -893,8 +902,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 67,
-            "movement": -1
+            "position": 74,
+            "movement": -7
           }
         ]
       }
@@ -1000,24 +1009,6 @@
         ]
       },
       {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 79,
-            "movement": -7
-          },
-          {
-            "country": "DZ",
-            "name": "Algeria",
-            "position": 198,
-            "movement": -27
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -1028,68 +1019,104 @@
             "movement": 13
           }
         ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MA",
+            "name": "Morocco",
+            "position": 80,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 91,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e26def467fccdcadca010b8c0f00fd0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Baby",
+    "title": "Calm Down",
     "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 1,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 1,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 4,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 30,
-            "movement": 146
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 117,
-            "movement": -22
-          }
-        ]
-      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 108,
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 60,
+            "movement": -40
+          },
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 78,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 161,
+            "country": "TD",
+            "name": "Chad",
+            "position": 158,
             "movement": null,
             "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 25,
+            "movement": -3
           },
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 197,
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 61,
+            "movement": -4
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 198,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 80,
             "movement": null,
             "status": "new"
           }
@@ -1097,7 +1124,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soundgasm",
@@ -1263,42 +1290,10 @@
             "movement": -4
           }
         ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 44,
-            "movement": -7
-          }
-        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Dumebi",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "VE",
-            "name": "Venezuela",
-            "position": 60,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Trouble Maker",
@@ -1347,8 +1342,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 137,
-            "movement": -23
+            "position": 144,
+            "movement": -26
           }
         ]
       }
@@ -1365,8 +1360,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 138,
-            "movement": -23
+            "position": 146,
+            "movement": -26
           }
         ]
       }
