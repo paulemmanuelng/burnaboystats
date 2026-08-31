@@ -1,5 +1,5 @@
 import Link from "next/link";
-import GlobeCanvas from "./GlobeCanvas";
+import GlobeCanvas from "./GlobeCanvasLazy";
 import styles from "./GlobeTeaser.module.css";
 import { numberWord } from "../lib/homeData";
 import {
