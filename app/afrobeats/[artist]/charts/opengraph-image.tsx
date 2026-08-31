@@ -1,13 +1,6 @@
 import { ImageResponse } from "next/og";
 import { ogId } from "../../../lib/og-image";
-import {
-  artistBySlug,
-  afrobeatsArtists,
-  chartEntries,
-  chartTerritories,
-  chartNo1s,
-  countryMeta,
-} from "../../../data/afrobeats";
+import { artistBySlug, afrobeatsArtists, chartEntries, chartTerritories, chartNo1s, countryMeta, bestPeaks } from "../../../data/afrobeats";
 
 export function generateStaticParams() {
   return afrobeatsArtists.filter((a) => a.charts.length > 0).map((a) => ({ artist: a.slug }));
@@ -36,16 +29,8 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
 
   // The card's proof is the peaks themselves: best positions first, flags and
   // all, so a share preview shows the record rather than describing it.
-  const best = a
-    ? [...new Map(
-        a.charts
-          .flatMap((r) => r.entries)
-          .sort((x, y) => x.peak - y.peak)
-          .map((e) => [e.c, e])
-      ).values()]
-        .sort((x, y) => x.peak - y.peak)
-        .slice(0, 8)
-    : [];
+  // bestPeaks carries the non-obvious dedupe (and its history) in one tested place.
+  const best = a ? bestPeaks(a, 8) : [];
 
   const stats = a
     ? [

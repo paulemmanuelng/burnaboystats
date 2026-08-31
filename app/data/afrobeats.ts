@@ -1937,6 +1937,25 @@ export const tierCount = (a: AfroArtist, tier: Tier) =>
 export const chartEntries = (a: AfroArtist) => a.charts.reduce((n, r) => n + r.entries.length, 0);
 export const chartTerritories = (a: AfroArtist) =>
   new Set(a.charts.flatMap((r) => r.entries.map((e) => e.c))).size;
+/**
+ * Each country's BEST peak, best countries first — the OG share card's chips.
+ *
+ * The dedupe sorts worst-first on purpose: new Map keeps the LAST entry per
+ * key, so the best peak per country survives. Sorted the intuitive way round,
+ * the map keeps each country's WORST peak — which is what the card shipped:
+ * Wizkid's showed Norway at 10 and New Zealand at 15 where "One Dance" was
+ * No. 1 in both. tests/afrobeats.test.ts holds this to a straight fold.
+ */
+export const bestPeaks = (a: AfroArtist, n: number) =>
+  [...new Map(
+    a.charts
+      .flatMap((r) => r.entries)
+      .sort((x, y) => y.peak - x.peak)
+      .map((e) => [e.c, e] as const)
+  ).values()]
+    .sort((x, y) => x.peak - y.peak)
+    .slice(0, n);
+
 export const chartNo1s = (a: AfroArtist) =>
   a.charts.reduce((n, r) => n + r.entries.filter((e) => e.peak === 1).length, 0);
 

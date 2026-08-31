@@ -16,6 +16,7 @@ import {
   topAward,
   artistBySlug,
   plaqueLabel,
+  bestPeaks,
 } from "../app/data/afrobeats";
 import { countryMeta } from "../app/data/afrobeats";
 
@@ -747,6 +748,41 @@ describe("board FAQ comparisons", () => {
       // about which record is bigger.
       const coherent = level === 2 || (yes === 1 && no === 1);
       expect(coherent, `${a.slug} vs ${rival.name}: ${yes} yes / ${no} no / ${level} level`).toBe(true);
+    }
+  });
+});
+
+// The OG share card's peak chips come from bestPeaks(). Its dedupe leans on
+// new Map keeping the LAST duplicate, which is exactly the kind of expression
+// that gets "tidied" back into the bug it fixes: sorted the intuitive way, the
+// card showed each country's WORST peak — Wizkid's had Norway 10 and New
+// Zealand 15 where "One Dance" was No. 1 in both. Held here to a straight fold.
+describe("bestPeaks shows each country's best peak", () => {
+  it("matches a plain minimum per country, for every artist", () => {
+    for (const a of afrobeatsArtists) {
+      const truth = new Map<string, number>();
+      for (const e of a.charts.flatMap((r) => r.entries)) {
+        if (!truth.has(e.c) || e.peak < truth.get(e.c)!) truth.set(e.c, e.peak);
+      }
+      for (const e of bestPeaks(a, 8)) {
+        expect(e.peak, `${a.slug} ${e.c}: card ${e.peak} vs best ${truth.get(e.c)}`).toBe(truth.get(e.c));
+      }
+    }
+  });
+
+  it("selects the top chips on true values, not corrupted ones", () => {
+    // Wizkid is the artist the bug was proven on: he has more No. 1 countries
+    // than the card has chips, so under the old sort his card showed Norway at
+    // 10 and New Zealand at 15 among the eight. With selection on true values,
+    // every one of his eight chips must be a No. 1 — which country fills each
+    // slot is a tie-break and deliberately not pinned.
+    const wiz = afrobeatsArtists.find((a) => a.slug === "wizkid")!;
+    const no1Countries = new Set(
+      wiz.charts.flatMap((r) => r.entries.filter((e) => e.peak === 1).map((e) => e.c))
+    );
+    expect(no1Countries.size).toBeGreaterThanOrEqual(8); // the premise
+    for (const e of bestPeaks(wiz, 8)) {
+      expect(e.peak, `${e.c} chip should be a No. 1`).toBe(1);
     }
   });
 });
