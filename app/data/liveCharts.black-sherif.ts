@@ -151,7 +151,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 117,
-            "movement": 1
+            "movement": 6
           }
         ]
       }
@@ -193,8 +193,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 115,
-            "movement": -23
+            "position": 122,
+            "movement": -21
           }
         ]
       },
@@ -205,8 +205,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 80,
-            "movement": -13
+            "position": 89,
+            "movement": -9
           }
         ]
       }
@@ -285,9 +285,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 79,
-            "movement": null,
-            "status": "new"
+            "position": 87,
+            "movement": -22
           }
         ]
       },
@@ -381,8 +380,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 164,
-            "movement": 0
+            "position": 167,
+            "movement": -3
           }
         ]
       }
@@ -411,8 +410,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 171,
-            "movement": -3
+            "position": 187,
+            "movement": -16
           }
         ]
       }
