@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-30";
+  export const liveChartsUpdated = "2026-08-31";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -389,7 +389,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 46,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "TZ",
@@ -571,16 +571,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 70,
-            "movement": -16
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": -106
+            "position": 14,
+            "movement": 4
+          },
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 75,
+            "movement": -16
           }
         ]
       },
@@ -1087,15 +1087,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
+            "position": 39,
             "movement": null,
             "status": "new"
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 95,
-            "movement": -4
+            "position": 91,
+            "movement": 0
           }
         ]
       }
@@ -1354,7 +1354,7 @@
             "country": "FR",
             "name": "France",
             "position": 78,
-            "movement": -1
+            "movement": -6
           },
           {
             "country": "BE",
@@ -1544,7 +1544,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 63,
-            "movement": -2
+            "movement": -1
           }
         ]
       }

@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-30";
+  export const liveChartsUpdated = "2026-08-31";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -183,8 +183,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 39,
-            "movement": -21
+            "position": 43,
+            "movement": -20
           }
         ]
       },
@@ -544,7 +544,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 55,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "TZ",
@@ -611,7 +611,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 61,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "NG",
@@ -685,20 +685,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": 5
+            "position": 17,
+            "movement": 13
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 26,
-            "movement": -22
+            "position": 54,
+            "movement": -50
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 136,
-            "movement": -25
+            "position": 139,
+            "movement": -23
           }
         ]
       },
@@ -1032,8 +1032,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 65,
-            "movement": -24
+            "position": 70,
+            "movement": -23
           }
         ]
       }
@@ -1076,7 +1076,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 60,
+            "position": 61,
             "movement": 0
           }
         ]
@@ -1150,8 +1150,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 146,
-            "movement": -25
+            "position": 149,
+            "movement": -23
           }
         ]
       },
@@ -1251,7 +1251,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 120,
+            "position": 131,
             "movement": null,
             "status": "new"
           }
@@ -1340,24 +1340,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Favourite Girl",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 155,
-            "movement": -24
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "AZAMAN",
     "platforms": [
       {
@@ -1367,14 +1349,32 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 156,
-            "movement": -24
+            "position": 158,
+            "movement": -23
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Favourite Girl",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 159,
+            "movement": -22
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "Bad Commando - EP",
@@ -1387,7 +1387,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 62,
-            "movement": -2
+            "movement": -1
           }
         ]
       }

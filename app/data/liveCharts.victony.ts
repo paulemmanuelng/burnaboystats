@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-30";
+  export const liveChartsUpdated = "2026-08-31";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -217,6 +217,12 @@
             "movement": -12
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 125,
+            "movement": -3
+          },
+          {
             "country": "BM",
             "name": "Bermuda",
             "position": 135,
@@ -234,12 +240,6 @@
             "name": "St. Lucia",
             "position": 144,
             "movement": -81
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 144,
-            "movement": -13
           },
           {
             "country": "BW",
@@ -457,27 +457,27 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 5,
-            "movement": -4
+            "position": 2,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
+            "position": 9,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MT",
             "name": "Malta",
-            "position": 52,
-            "movement": -19
+            "position": 56,
+            "movement": -18
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 84,
-            "movement": -25
+            "position": 88,
+            "movement": -23
           }
         ]
       },
@@ -694,20 +694,14 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 57,
-            "movement": -8
+            "position": 55,
+            "movement": -13
           },
           {
             "country": "OM",
             "name": "Oman",
             "position": 58,
             "movement": -51
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 59,
-            "movement": -8
           },
           {
             "country": "MZ",
@@ -726,6 +720,12 @@
             "name": "Côte d'Ivoire",
             "position": 66,
             "movement": -4
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 68,
+            "movement": -13
           },
           {
             "country": "TT",
@@ -772,8 +772,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 142,
-            "movement": -26
+            "position": 144,
+            "movement": -21
           },
           {
             "country": "BE",
@@ -802,14 +802,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 4,
-            "movement": 0
+            "position": 5,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
-            "movement": -14
+            "position": 36,
+            "movement": -11
           }
         ]
       }
@@ -1000,7 +1000,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
+            "position": 57,
             "movement": null,
             "status": "new"
           }
@@ -1062,8 +1062,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 18,
-            "movement": -6
+            "position": 22,
+            "movement": -8
           }
         ]
       },
@@ -1136,8 +1136,8 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 46,
-            "movement": -1
+            "position": 49,
+            "movement": -4
           }
         ]
       }
