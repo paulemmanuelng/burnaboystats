@@ -180,7 +180,7 @@ export default function DaiDaiPage() {
     { v: `${daiDaiNumberOnes}`, l: "countries at No. 1 on their official singles chart — from France and Germany to the UAE" },
     { v: "No. 1", l: `on both Billboard global charts — a ${weeksGLB}th week atop the Global 200 (a first for an African artist, and Shakira's 2nd), the top retaken on the chart dated 22 August after a week at No. 3 and held since, and a ${weeksGLBX}th consecutive week atop the Global 200 Excl. US` },
     { v: DAI_DAI_SPOTIFY_STREAMS, l: "Spotify streams — his 8th song past 300 million, the most of any African act, after 37 days as the most-streamed song on Earth" },
-    { v: `${daiDaiCertCount}`, l: "certifications — 2× Platinum (Latin) in the US, Platinum in Spain, France, Slovakia, Portugal & Hungary, Gold in Colombia, Greece, the Czech Republic & Italy, and Silver in the UK" },
+    { v: `${daiDaiCertCount}`, l: "certifications — Diamond in France, 2× Platinum (Latin) in the US, Platinum in Spain, Slovakia, Portugal & Hungary, Gold in Colombia, Greece, the Czech Republic, Italy & Poland, and Silver in the UK" },
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
 
@@ -271,7 +271,7 @@ export default function DaiDaiPage() {
     },
     {
       q: "How many certifications does “Dai Dai” have?",
-      a: "“Dai Dai” has 11 certifications: 2× Platinum (Latin) in the US from the RIAA, Platinum in Spain, France, Slovakia, Portugal and Hungary, Gold in Colombia, Greece, the Czech Republic and Italy, and Silver in the UK from the BPI.",
+      a: `“Dai Dai” has ${daiDaiCertCount} certifications: Diamond in France from SNEP, 2× Platinum (Latin) in the US from the RIAA, Platinum in Spain, Slovakia, Portugal and Hungary, Gold in Colombia, Greece, the Czech Republic, Italy and Poland, and Silver in the UK from the BPI.`,
     },
   ];
 

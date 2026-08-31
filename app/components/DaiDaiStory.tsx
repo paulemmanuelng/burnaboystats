@@ -121,7 +121,7 @@ function buildSteps(p: Props): Step[] {
       scene: "certs",
       kicker: "Certified worldwide",
       title: "The plaques rolled in",
-      body: `The song earned its own plaques — 2× Platinum (Latin) in the US, Platinum in Spain, France, Slovakia, Portugal and Hungary, Gold in Colombia, Greece, the Czech Republic and Italy, and Silver in the UK. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
+      body: `The song earned its own plaques — Diamond in France, 2× Platinum (Latin) in the US, Platinum in Spain, Slovakia, Portugal and Hungary, Gold in Colombia, Greece, the Czech Republic, Italy and Poland, and Silver in the UK. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
     },
     {
       scene: "worldsong",

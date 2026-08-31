@@ -33,32 +33,35 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 232 certifications across 26 countries", () => {
+  it("counts 233 certifications across 26 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
-    expect(certs).toBe(232); // + "Wgft" in Portugal (AFP/Audiogest March 2026 award card)
+    expect(certs).toBe(233); // + "Dai Dai" Gold in Poland (ZPAV zlote plyty register, 31 Aug 2026)
     expect(countries).toBe(26); // Czechia joins
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 6 Diamond / 101 Platinum / 95 Gold / 30 Silver", () => {
+  it("splits into 7 Diamond / 100 Platinum / 96 Gold / 30 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
 
-    // Diamond is 6, not 7. A 7 means the African Giant FR entry has been
-    // changed to Diamond — the repo says Platinum, and the design file that
-    // showed 7 was the one carrying the typo.
-    expect(byLevel("Diamond")).toBe(6);
-    expect(byLevel("Platinum")).toBe(101); // the 101st: On the Low in Sweden (GLF)
-    expect(byLevel("Gold")).toBe(95); // + "Wgft" in Portugal, off-chart award read off AFP's own card
+    // Diamond went 6 -> 7 on 31 Aug 2026 when SNEP upgraded "Dai Dai" from
+    // Platinum to Diamond. The old guard here warned that a 7 meant the African
+    // Giant FR entry had been corrupted to Diamond; that entry is still
+    // Platinum and the 7th Diamond is Dai Dai's, so the warning stands for
+    // anything BEYOND 7 — the design file that once showed 7 carried a typo,
+    // and this is a different route to the same number.
+    expect(byLevel("Diamond")).toBe(7);
+    expect(byLevel("Platinum")).toBe(100); // Dai Dai FR left this tier for Diamond
+    expect(byLevel("Gold")).toBe(96); // + "Dai Dai" in Poland (ZPAV)
     expect(byLevel("Silver")).toBe(30); // On the Low NG left this tier for Gold
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(232);
+    expect(sum).toBe(233);
   });
 
   it("counts 280 chart entries across 71 territories, 48 of them at No. 1", () => {

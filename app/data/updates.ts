@@ -35,6 +35,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-08-31",
+    category: "Certifications",
+    text: "A French Diamond and a Polish Gold on the same day: SNEP upgrades “Dai Dai” from Platinum to Diamant at 50 million equivalent streams, three months after release, and ZPAV enters it on Poland’s złote płyty list. The song now holds twelve plaques, and France is its first Diamond — Burna Boy’s seventh record to reach that tier there, alongside “Last Last”, “On the Low”, “Gbona”, “Location”, “Be Honest” and the “Jerusalema” remix.",
+    href: "/certifications",
+  },
+  {
     date: "2026-08-30",
     category: "Streaming",
     text: "Past 15 million: ChartMasters' all-time board now has Burna Boy on 15,011,000 equivalent album sales to Wizkid's 14,758,000, a gap of 253,000, widened from about 238,000 on 26 August. Worth reading the scope alongside the number — the two of them are the only artists from any African country on that 688-name board, and their totals are streaming equivalents rather than full sales studies.",

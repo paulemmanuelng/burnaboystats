@@ -66,7 +66,7 @@ export const COUNTRIES: Record<string, Country> = {
   // while a title is in that week's Top 100. Chart 43 is Slovakia, 30 Czechia.
   SK: { name: "Slovakia", flag: "🇸🇰", body: "ČNS IFPI (Slovakia)", url: "https://ifpicr.cz/hitparada/43" },
   CZ: { name: "Czech Republic", flag: "🇨🇿", body: "ČNS IFPI (Czechia)", url: "https://ifpicr.cz/hitparada/30" },
-  PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV", url: "https://www.olis.pl/charts/oficjalna-lista-wyroznien/platynowe-plyty" },
+  PL: { name: "Poland", flag: "🇵🇱", body: "ZPAV", url: "https://www.olis.pl/charts/oficjalna-lista-wyroznien" },
   // The register is the weekly TOP's "Gal." (Galardão) column — OU = Ouro,
   // PL…9PL = Platina — published as one PDF per week under this index. AFP's own
   // site afp.org.pt is dead (Wayback stops in Jan 2016), and audiogest.pt's home
@@ -167,7 +167,19 @@ export const singles: Release[] = [
     // so Colombian "disco de oro" announcements were label-issued, and this one is.
     // Pro Musica Colombia (the IFPI national group) DOES publish a register, but its
     // roster runs only to Aug 2024 and so cannot speak to a 2026 award either way.
-    { c: "CO", level: "Gold", body: "Sony Music Colombia" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
+    // FR upgraded Platinum -> Diamond, read in SNEP's own register
+    // (snepmusique.com/les-certifications/?interprete=Shakira): "Singles | DAI DAI |
+    // SHAKIRA & BURNA BOY | SONY MUSIC LATIN / SONY MUSIC ENTERTAINMENT | Diamant",
+    // date de constat 27/08/2026, three months from release. One plaque per title
+    // per country at its CURRENT tier, so the Diamond replaces the Platinum.
+    { c: "CO", level: "Gold", body: "Sony Music Colombia" }, { c: "ES", level: "Platinum" }, { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "PT", level: "Platinum" }, { c: "GR", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
+    // PL read in ZPAV's own award register via olis.pl's API (category 3 =
+    // "oficjalna lista wyróżnień", subcategory 6 = "złote płyty"): title "Dai Dai",
+    // artist "Shakira, Burna Boy", contractor Sony Music Entertainment, format
+    // "singiel". Gold is the current tier — the platinum and diamond registers
+    // carry no Dai Dai row, and both are ordered newest-first, so a later Polish
+    // upgrade would sit at the top of one of them rather than beyond the read.
+    { c: "PL", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },

@@ -52,7 +52,7 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(232); // + "Wgft" in Portugal (AFP/Audiogest March 2026 award card)
+    expect(totalAwards()).toBe(233); // + "Dai Dai" Gold in Poland (ZPAV), alongside its French upgrade to Diamond
     expect(countryCount).toBe(26);
     expect(certifiedReleaseCount).toBe(85); // TaTaTa, Update, Love, Dem Dey join via TCSN
   });
