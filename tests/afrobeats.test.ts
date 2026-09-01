@@ -31,7 +31,7 @@ const EXPECTED = {
   "omah-lay": { total: 62, diamond: 2 }, // + "understand" 🇵🇹 Ouro, AFP March 2026 card
   "seyi-vibez": { total: 102, diamond: 0 },
   wizkid: { total: 156, diamond: 6 },
-  victony: { total: 23, diamond: 0 }, // + "Soweto" 🇵🇹 1ª Platina, AFP March 2026 card
+  victony: { total: 24, diamond: 0 }, // + "Soweto" 🇫🇷 Or, SNEP constat 27 Aug 2026
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
   rema: { total: 82, diamond: 5 }, // + "Secondhand" 🇵🇹 Ouro, AFP's own July 2026 award card

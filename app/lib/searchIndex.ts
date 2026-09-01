@@ -419,7 +419,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Wizkid",
     path: "/afrobeats/wizkid",
     section: "Afrobeats",
-    description: "Wizkid's 155 certifications across 21 countries and his official chart peaks, verified at source.",
+    description: "Wizkid's 156 certifications across 21 countries and his official chart peaks, verified at source.",
     keywords: ["wizkid", "wizzy", "star boy", "starboy", "ayodeji balogun", "big wiz", "made in lagos", "wizkid certifications", "wizkid plaques", "wizkid awards"],
   },
   {
@@ -447,7 +447,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Rema",
     path: "/afrobeats/rema",
     section: "Afrobeats",
-    description: "Rema's 80 certifications across 20 countries and his official chart peaks, verified at source.",
+    description: "Rema's 82 certifications across 21 countries and his official chart peaks, verified at source.",
     keywords: ["rema", "calm down", "divine ikubor", "heis", "ravage", "rema certifications", "rema plaques", "rema awards"],
   },
   {
@@ -461,7 +461,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Tems",
     path: "/afrobeats/tems",
     section: "Afrobeats",
-    description: "Tems's 70 certifications across 19 countries and her official chart peaks, verified at source.",
+    description: "Tems's 71 certifications across 19 countries and her official chart peaks, verified at source.",
     keywords: ["tems", "temilade openiyi", "born in the wild", "free mind", "tems certifications", "tems plaques", "tems awards"],
   },
   {
@@ -503,21 +503,21 @@ export const searchIndex: SearchDoc[] = [
     title: "Asake",
     path: "/afrobeats/asake",
     section: "Afrobeats",
-    description: "Asake's 79 certifications across 3 countries and 123 official chart entries, verified at source.",
+    description: "Asake's 80 certifications across 4 countries and 127 official chart entries, verified at source.",
     keywords: ["asake", "ahmed ololade", "mr money", "lonely at the top", "asake certifications"],
   },
   {
     title: "Omah Lay",
     path: "/afrobeats/omah-lay",
     section: "Afrobeats",
-    description: "Omah Lay's 61 certifications across 9 countries and 70 official chart entries, verified at source.",
+    description: "Omah Lay's 62 certifications across 9 countries and 70 official chart entries, verified at source.",
     keywords: ["omah lay", "understand", "soso", "boy alone", "omah lay certifications"],
   },
   {
     title: "Seyi Vibez",
     path: "/afrobeats/seyi-vibez",
     section: "Afrobeats",
-    description: "Seyi Vibez's 103 certifications across 1 country and 114 official chart entries, verified at source.",
+    description: "Seyi Vibez's 102 certifications across 1 country and 114 official chart entries, verified at source.",
     keywords: ["seyi vibez", "loseyi professor", "memory card", "seyi vibez certifications"],
   },
   {
@@ -608,7 +608,7 @@ export const searchIndex: SearchDoc[] = [
     title: "CKay — Certifications & Chart Records",
     path: "/afrobeats/ckay",
     section: "Afrobeats",
-    description: "CKay's 27 certifications across 14 countries and 22 official chart entries, verified at source.",
+    description: "CKay's 28 certifications across 15 countries and 29 official chart entries, verified at source.",
     keywords: ["ckay", "chukwuka ekweani", "love nwantiti", "emiliana", "sad romance", "ckay certifications"],
   },
   {
@@ -692,7 +692,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Victony — Certifications & Chart Records",
     path: "/afrobeats/victony",
     section: "Afrobeats",
-    description: "Victony's 22 certifications across 4 countries and 40 official chart entries, verified at source.",
+    description: "Victony's 24 certifications across 6 countries and 40 official chart entries, verified at source.",
     keywords: ["victony", "anthony victor", "outlaw", "stubborn", "soweto", "victony certifications"],
   },
   {

@@ -1,18 +1,18 @@
 # Victony — every certification (body-side sweep)
 
-**Method:** identical to the rest of this series — a certification counts when it appears in the **issuing body's own register**, never in a press release, a fan tally or a wiki. One plaque per title per country at its **current** tier (a 3× Platinum is one plaque, not three; an upgrade replaces, it does not add). **Lead, co-billed and featured credits all count**; writer and producer credits do not. A register read in full and holding nothing is a **proven zero**; a register that could not be read is a **gap**, never a zero. Swept **21 Aug 2026**.
+**Method:** identical to the rest of this series — a certification counts when it appears in the **issuing body's own register**, never in a press release, a fan tally or a wiki. One plaque per title per country at its **current** tier (a 3× Platinum is one plaque, not three; an upgrade replaces, it does not add). **Lead, co-billed and featured credits all count**; writer and producer credits do not. A register read in full and holding nothing is a **proven zero**; a register that could not be read is a **gap**, never a zero. Swept **21 Aug 2026**; France added **2 Sep 2026** (SNEP certified “Soweto” Or, date de constat 27 Aug 2026 — after this sweep ran, so it is a new award rather than a missed row).
 
-## Total: **23 certifications** across **5 countries**
+## Total: **24 certifications** across **6 countries**
 
 | tier | count |
 |---|---|
 | Diamond | 0 |
 | Platinum | 10 |
-| Gold | 6 |
+| Gold | 7 |
 | Silver | 7 |
-| **total** | **23** |
+| **total** | **24** |
 
-**Country split:** 🇳🇬 NG 19 · 🇵🇹 PT 1 · 🇺🇸 US 1 · 🇬🇧 UK 1 · 🇪🇸 ES 1
+**Country split:** 🇳🇬 NG 19 · 🇵🇹 PT 1 · 🇺🇸 US 1 · 🇬🇧 UK 1 · 🇪🇸 ES 1 · 🇫🇷 FR 1
 
 ## Every certification
 
@@ -34,6 +34,7 @@
 | Soweto | 🇺🇸 US | RIAA | Gold |
 | Soweto | 🇬🇧 UK | BPI | Gold |
 | Soweto | 🇪🇸 ES | Promusicae | Gold |
+| Soweto | 🇫🇷 FR | SNEP | Gold |
 | All Power | 🇳🇬 NG | TurnTable (TCSN) | Silver |
 | Ave Maria | 🇳🇬 NG | TurnTable (TCSN) | Silver |
 | Cough Syrup | 🇳🇬 NG | TurnTable (TCSN) | Silver |

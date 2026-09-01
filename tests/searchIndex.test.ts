@@ -1,5 +1,7 @@
 import { describe, it, expect } from "vitest";
+import { afrobeatsArtists, certCount, countryCount, chartEntries } from "../app/data/afrobeats";
 import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { searchDocs } from "../app/lib/searchIndex";
 import { generatedDocs } from "../app/lib/searchIndex.generated";
 import { buildSearchDocs } from "../app/lib/buildSearchDocs";
@@ -70,5 +72,46 @@ describe("search finds the site's own records", () => {
     // The records must not crowd out the pages that were already working.
     expect(searchDocs("Certifications")[0].path).toBe("/certifications");
     expect(searchDocs("Methodology")[0].path).toBe("/methodology");
+  });
+});
+
+// The curated half of the index deliberately imports no datasets — a documented
+// bundle-size rule — so its artist descriptions carry TYPED counts. Four of the
+// fourteen had gone stale unnoticed (Asake 79/3/123 against 80/4/127, CKay
+// 27/14/22 against 28/15/29, Omah Lay's plaque count, and Victony's, which was
+// already a country behind before a new French Gold made it two).
+//
+// The file cannot derive them, so this test does the deriving instead: it
+// imports the data the shipped file must not.
+describe("the curated index's typed artist counts match the data", () => {
+  // Built fresh inside the test: a /g regex declared at describe scope keeps its
+  // lastIndex between runs. The window is generous because the entries differ in
+  // how much sits between the path and the description.
+  const makeRe = () =>
+    /path: "\/afrobeats\/([a-z-]+)",[\s\S]{0,600}?description: "[^"]*?(\d+) certifications across (\d+) countr(?:y|ies)(?: and (\d+) official chart entries)?/g;
+
+  it("has no stale certification, country or chart-entry count", () => {
+    const src = readFileSync(join(process.cwd(), "app/lib/searchIndex.ts"), "utf8");
+    const stale: string[] = [];
+    let m: RegExpExecArray | null;
+    let seen = 0;
+    const RE = makeRe();
+    while ((m = RE.exec(src))) {
+      seen++;
+      const a = afrobeatsArtists.find((x) => x.slug === m![1]);
+      if (!a) { stale.push(`${m[1]}: no such artist on the board`); continue; }
+      // Two phrasings ship: some entries end "and N official chart entries",
+      // the rest "and his/her official chart peaks" with no number. The entry
+      // count is only checked where one is actually stated — and it was the
+      // SECOND shape, skipped by an earlier version of this regex, that was
+      // hiding four stale plaque counts including Seyi Vibez's.
+      const issues: string[] = [];
+      if (certCount(a) !== Number(m[2])) issues.push(`certs says ${m[2]}, data ${certCount(a)}`);
+      if (countryCount(a) !== Number(m[3])) issues.push(`countries says ${m[3]}, data ${countryCount(a)}`);
+      if (m[4] && chartEntries(a) !== Number(m[4])) issues.push(`entries says ${m[4]}, data ${chartEntries(a)}`);
+      if (issues.length) stale.push(`${m[1]}: ${issues.join("; ")}`);
+    }
+    expect(seen, "the description phrasing changed and this test now checks nothing").toBeGreaterThanOrEqual(14);
+    expect(stale).toEqual([]);
   });
 });

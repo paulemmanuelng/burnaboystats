@@ -1685,7 +1685,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Anthony Ebuka Victor",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Outside Nigeria, four countries have certified him — and all four did it for the same record, “Soweto”.",
+    hook: "Outside Nigeria, five countries have certified him — and all five did it for the same record, “Soweto”.",
     spotifyId: "1E5hfn5BduN2nnoZCJmUVG",
     wikipedia: "https://en.wikipedia.org/wiki/Victony",
     image: "https://i.scdn.co/image/ab6761610000e5eb2edf000427bb95912c77163c",
@@ -1694,7 +1694,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     chartPublished: { entries: 40, territories: 6, no1s: 1 },
     releases: [
       { title: "Pity This Boy", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
-      { title: "Soweto", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "PT", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ES", level: "Gold" }] },
+      { title: "Soweto", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "PT", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "FR", level: "Gold" }] },
       { title: "Stubborn (Victony)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Different Size", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Everything (Victony)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/04f0aa35363a5f1d380cf0d898738084/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
