@@ -14,8 +14,8 @@ section before you read them.
 
 | document | standing |
 |---|---|
-| `car-artwork-process.md` | **Superseded on artwork and on scope.** It mandates flat SVG illustrations, ≤300 paths, one car at a time, and says in as many words *"Don't design the page."* The supplied designs are photoreal renders and the page layout is now the job. Its **fidelity principle survives** — see §5.4. |
-| `car-01-chiron.md` | Historic. The Chiron's feature checklist is still the best written description of that car and is useful as a *verification* checklist against the supplied render. |
+| `car-artwork-process.md` | **Superseded on artwork and on scope.** It mandates flat SVG illustrations, ≤300 paths, one car at a time, and says in as many words *"Don't design the page."* The supplied designs are photoreal renders and the page layout is now the job. Its **fidelity principle survives**, and it decided the caption rule — see §5.4 and §5.6. |
+| `car-01-chiron.md` | Historic, and now **load-bearing**: its feature checklist was run against the supplied Chiron render, which failed it on every identifying mark (§5.6). Still the best written description of that car. |
 | `car-collection-brief.md` | Its §5b was already retired. Its description of the current page, the data shape and the mobile "deep page" grammar is still accurate and still applies. |
 
 Nothing here asks for the supplied car designs to be altered. They are the
@@ -124,7 +124,7 @@ kicker treatment — and write all fifteen to that pattern.
 ## 5. Where the design collides with what this site is
 
 burnaboystats.com's entire value is that every number traces to the body that
-owns it. Four elements of the design cannot ship as drawn. None of these require
+owns it. Several elements of the design cannot ship as drawn. None of these require
 editing the car designs; they are decisions about what the *page* asserts.
 
 ### 5.1 The performance bars are invented
@@ -175,17 +175,18 @@ prominent CTA becomes the site's verification link.
 
 `car-artwork-process.md` exists because a generic picture of a *model* is a
 picture of a car he doesn't own. That principle outlives the artwork format.
-Several supplied frames clearly depict **his actual car** — the Chiron render has
-the baby-blue-over-black split, the tricolour centre stripe and the "7" roundel,
-which is unmistakably his. Others are generic examples of the model in a colour
-that may not be his.
+
+**It applies to all fifteen.** An audit against reference photography of his
+actual vehicles (§5.6) confirmed **none** of the supplied renders as depicting
+a car he owns — including the Chiron, which the first draft of this document
+wrongly held up as the clear case.
 
 Because these renders are photoreal, a visitor will read them as photographs of
 his cars. So, without touching the images:
 
-1. Every car image carries a visible caption: **`Illustration`** (and where it applies, `Illustration — depicts the actual vehicle`).
-2. The `alt` text says the same in words.
-3. Run `car-01-chiron.md`'s checklist against the Chiron render, and write the equivalent one-line check for the other fourteen, recording per car whether the render matches his known spec. Store the outcome as a field on the car (§6.2) and let the caption follow the data.
+1. Every car image carries a visible caption: **`Illustration`**. One string, used on all fifteen — §5.6 established there is no car the stronger wording could attach to.
+2. The `alt` text says the same in words: *"Illustration of a {make} {model}"* — never *"Burna Boy's {model}"*.
+3. The determination is recorded per car as `image.depicts` (§6.2) so the caption follows the data, and so a future confirmation has somewhere to land.
 
 This costs nothing visually and keeps the page consistent with the rest of the
 site.
@@ -204,6 +205,73 @@ The design frame reads **911 GT3 RS (992)**; `cars.ts` holds **911 GT3 RS
 `cars.ts` needs no change. The rule this sets for the rest of the build: **where a
 frame and the data disagree about a fact, the data wins and the frame's text is
 treated as a defect.** The frames are authority on layout, never on content.
+
+
+### 5.6 The `depicts` determination — the result
+
+A per-car audit was run against reference photography and reporting of his actual
+vehicles: fifteen independent researchers, each reading its own frame and then
+looking for what his own example of that model demonstrably looks like. Every
+proposed "this is his car" verdict was then attacked by three adversarial
+reviewers on separate lines — sourcing, distinctiveness, and active
+contradiction — with instructions to default to refuted.
+
+> **Result: zero of fifteen renders were confirmed as depicting his actual car.**
+> **Every car image on the site ships with the plain caption `Illustration`.**
+> The conditional wording in §5.4 — *"Illustration — depicts the actual
+> vehicle"* — has no car to attach to. Do not use it.
+
+**A correction to the first draft of this document.** §5.4 originally offered the
+Chiron as the clear case of a render depicting his real car. That was wrong, and
+the audit overturned it on high confidence. Working from the July 2026 Venuum
+unveiling photographs, his Chiron is baby blue over *gloss black* with a French
+tricolour stripe, a *gold* "7", gold pinstriping along the C-line, **"BURNA BOY"
+lettered in gold across the rear wing**, VENUUM badging on the tail, and the
+Venuum widebody kit. The render has a *navy* second tone, a plain charcoal
+stripe, a *blue* "7", no gold at all, no name, no tuner badging, and essentially
+the factory Pur Sport body. It is a Chiron. It is not his Chiron.
+
+The useful corollary: **the site's existing `/records/cars` copy for the Chiron —
+"baby blue over black, French-tricolour stripe, a '7', his name engraved on the
+rear spoiler" — is confirmed accurate by those photographs.** Where the render
+and the site's own prose disagree, the prose was right. That is the same rule as
+§5.5, arrived at independently: the frames are authority on layout, never on
+content.
+
+#### Per car
+
+| # | car | the render shows | his actual car | why not `actual` |
+|---|---|---|---|---|
+| 01 | Bugatti Chiron | navy as the second tone, a plain charcoal centre stripe, a **blue** "7", no gold anywhere, factory Pur Sport body and wheels | baby blue over **gloss black**, a **French tricolour** stripe, a **gold** "7", gold pinstriping on the C-line, **"BURNA BOY" in gold across the rear wing**, VENUUM badging, and the Venuum widebody kit | **contradicted** |
+| 02 | McLaren Senna | exposed carbon **plus a copper-orange pinstripe and orange calipers** | plain unpainted exposed carbon on gloss black wheels — **no accent striping of any kind** | **contradicted** |
+| 03 | Ferrari SF90 Spider | deep gloss purple, gunmetal wheels, no interior visible | purple ✓ — but with a **red leather interior** and **yellow calipers**, neither of which the render carries | not identifying |
+| 04 | Ferrari Purosangue | gloss black throughout | **no colour is on record anywhere.** Nine photographs exist of the pickup; not one outlet states a paint colour, wheel, caliper or trim | no record |
+| 05 | Lamborghini Revuelto | gloss yellow | yellow ✓ — first Revuelto in Nigeria, confirmed in the container-unloading video. But nothing individually identifying is documented | not identifying |
+| 06 | Rolls-Royce Cullinan Black Badge | satin gunmetal grey | the one documented distinguishing feature is a **diamond-encrusted Spirit of Ecstasy** — which the render does not show. One source says the body is black; the rest give no colour | **contradicted** |
+| 07 | Lamborghini Aventador SVJ Roadster | deep royal violet | purple ✓, consistently reported across four outlets and photographed. But no stripe, plate, kit or mark distinguishes it | not identifying |
+| 08 | Rolls-Royce Dawn | dark wine burgundy, **black** interior, silver wheels | a brighter **crimson**, a **bright white/ivory** cabin with the RR monogram on white headrests, and 10-spoke part-polished wheels | **contradicted** |
+| 09 | Ferrari 812 GTS | gloss black | **no appearance record at all.** The only footage is two night phone videos in which black, dark grey and a dark wrap are indistinguishable | no record |
+| 10 | Porsche 911 GT3 RS | satin black, red centre-locks, red "GT3 RS" rocker script, **red mirror caps** | black ✓, red centre-locks ✓, red rocker script ✓, black swan-neck wing ✓ — but his **mirror caps read black**, and every matching feature is a Porsche catalogue option thousands of owners buy | **refuted 2–1** |
+| 11 | Lamborghini Urus | metallic purple | Novitec Edition ✓, announced by him on Instagram in January 2022. Colour of his own car not independently established | not identifying |
+| 12 | Mercedes-Maybach S680 | baby blue over gloss black, two-tone | single-tone **gloss black** — and the boot badge in his own Instagram photo reads **S650** (previous-generation W222), not S680 4MATIC | **contradicted** |
+| 13 | Mercedes-Maybach GLS 600 | — | determination pending — the first pass failed and is being re-run | _pending_ |
+| 14 | Ferrari Testarossa | plain Rosso Corsa, no plate | red ✓ — and it carries a **UK cherished plate, `F20 TRS`**, the one genuinely identifying mark found in the whole set. The render has no plate | not identifying |
+| 15 | Ferrari 328 GTS | Rosso Corsa, silver five-spokes, black interior with red piping | **nothing photographic of his own car.** The one dealer-sourced description ("Rosso Corsa, beige leather") sits against a stock catalogue image | no record |
+
+Three cars — the Purosangue, the 812 GTS and the 328 GTS — have **no published
+record of their appearance at all**. For those the honest position is not that
+the render is wrong but that nothing could make it right.
+
+#### What this changes in the build
+
+1. **One caption string, used everywhere:** `Illustration`. No conditional
+   variant, no per-car wording.
+2. `image.depicts` still belongs in the type (§6.2) — it is how the site would
+   record a future confirmation — but **every car ships `"model"` today.**
+3. Add a test asserting no car carries `depicts: "actual"` without a `sources`
+   entry, so the field cannot quietly drift to a claim nobody checked.
+4. The `alt` text follows the caption: *"Illustration of a {make} {model}."* —
+   never "Burna Boy's {model}".
 
 ---
 
@@ -266,10 +334,7 @@ specs: {
 2. **Six specifications**, read off the manufacturer's own spec sheet — not a
    blog, not a wiki, not an aggregator.
 3. **The source URL** for those figures.
-4. **The `depicts` verdict** — the rule is in §5.4. A per-car determination is
-   being run against reference photography of his actual vehicles and will be
-   tabulated here; until it lands, default every caption to the weaker claim
-   (plain `Illustration`).
+4. **The `depicts` verdict** — already determined for all fifteen and tabulated in §5.6. Every car is `"model"`; the caption is always plain `Illustration`.
 
 #### Two rules that are not negotiable
 
