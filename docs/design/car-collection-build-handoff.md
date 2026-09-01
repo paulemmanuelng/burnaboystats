@@ -30,15 +30,21 @@ reference; the site is built to fit them.
 3. The per-car pages **match the supplied designs exactly** — the designs are not to be edited.
 4. The **Gemini watermark** on a few of the car images is removed or covered.
 5. A **full professional build-out**, not a mockup.
+6. The **image and specification data layer is built out as part of this work** —
+   `cars.ts` carries neither today (§6.2).
+7. The frames are **fully accessible to whoever builds this**: committed to
+   `docs/design/cars/`, originals untouched, with a manifest.
 
 ---
 
 ## 2. Asset manifest — the 15 designs
 
-**Where they live:** the 15 frames ship alongside this brief and belong in the
-handoff repo at `design/cars/`, beside the existing `designs/desktop/*.dc.html`
-files. Filenames below are the originals as supplied — keep them, so this table
-stays checkable, and derive the slugged asset names only at export (§8.2).
+**Where they live:** all fifteen frames are committed to this repo at
+**`docs/design/cars/`**, originals untouched, with their own
+[`MANIFEST.md`](cars/MANIFEST.md). Nothing needs to be requested or re-sent —
+clone the repo and they are there. Filenames are the originals as supplied and
+**must stay that way**: this table and the manifest both cite them, and renaming
+breaks the audit trail. Slugged asset names are derived only at export (§8.2).
 
 All frames are ~1374×768. Widths vary by 1–2px between the two batches; normalise
 on ingest.
@@ -54,7 +60,7 @@ on ingest.
 | 7 | `IMG_1534.jpeg` | Lamborghini Aventador SVJ Roadster | Lamborghini Aventador SVJ Roadster |
 | 8 | `IMG_1533.jpeg` | Rolls-Royce Dawn | Rolls-Royce Dawn |
 | 9 | `IMG_1538.jpeg` ⚠︎ | Ferrari 812 GTS | Ferrari 812 GTS |
-| 10 | `IMG_1535.jpeg` | Porsche 911 GT3 RS (992) | Porsche 911 GT3 RS **(Weissach)** ← conflict, §5.5 |
+| 10 | `IMG_1535.jpeg` | Porsche 911 GT3 RS | Porsche 911 GT3 RS (Weissach) — the frame's "(992)" is not shipped, §5.5 |
 | 11 | `IMG_1539.jpeg` | Lamborghini Urus | Lamborghini Urus (Novitec Edition) |
 | 12 | `IMG_0110.jpeg` | Mercedes-Maybach S680 4MATIC | Mercedes-Maybach S680 4MATIC |
 | 13 | `IMG_0111.jpeg` ⚠ | Mercedes-Maybach GLS 600 | Mercedes-Maybach GLS 600 |
@@ -184,14 +190,20 @@ his cars. So, without touching the images:
 This costs nothing visually and keeps the page consistent with the rest of the
 site.
 
-### 5.5 One data conflict to resolve
+### 5.5 The Porsche designation — resolved
 
-The design says **Porsche 911 GT3 RS (992)**; `cars.ts` says **911 GT3 RS
-(Weissach)**. These describe different things — 992 is the generation, Weissach
-is the option package — so both can be true, but the site must state one. The
-render should be checked against which car he actually has, and `cars.ts`
-updated to the full designation (`911 GT3 RS (992, Weissach Package)`) if both
-are confirmed. **Do not let the page and the data disagree.**
+The design frame reads **911 GT3 RS (992)**; `cars.ts` holds **911 GT3 RS
+(Weissach)**.
+
+> **Decided: the site's designation ships.** The car is
+> **Porsche 911 GT3 RS (Weissach)** on the index, on the detail page, in the
+> `<title>`, and in the OG image. The frame's "(992)" is a generated string like
+> every other string in these mockups (§4) — it is not evidence, and it is not
+> reproduced.
+
+`cars.ts` needs no change. The rule this sets for the rest of the build: **where a
+frame and the data disagree about a fact, the data wins and the frame's text is
+treated as a defect.** The frames are authority on layout, never on content.
 
 ---
 
@@ -217,36 +229,70 @@ app/records/cars/
 - `generateMetadata` per car via `pageMetadata` from `app/lib/seo.ts`.
 - Sold and unconfirmed cars **get no detail route**.
 
-### 6.2 Data
+### 6.2 Data — a designer deliverable, not a leftover
 
-`cars.ts` currently holds only `make, model, valueUsd, valueNaira, desc, link,
-linkLabel, status` — **no image field and no specifications at all.** Both are
-new work.
+`cars.ts` today holds only `make, model, valueUsd, valueNaira, desc, link,
+linkLabel, status`. There is **no image field and no specifications at all** —
+the SPECIFICATIONS panel and the preview tiles have nothing behind them.
 
-Extend the car type:
+**Building that data layer is part of this handoff.** Do not treat it as
+engineering cleanup to be picked up afterwards; the design cannot be implemented
+without it, and the person who decides what a spec panel says is the person
+designing the spec panel. Ship it with the design.
+
+#### The shape to add
 
 ```ts
-image?: {
-  hero: string;        // /cars/<slug>.avif      — extracted car, transparent
-  preview: string;     // /cars/<slug>-tile.avif — index thumbnail
-  depicts: "actual" | "model";   // drives the caption, §5.4
+image: {
+  hero: string;      // /cars/<slug>.avif      — extracted car, ~1600px
+  preview: string;   // /cars/<slug>-tile.avif — index thumbnail, ~640px
+  depicts: "actual" | "model";   // drives the caption — §5.4
 };
-specs?: {
-  engine: string; power: string; zeroToHundred: string;
-  topSpeed: string; drivetrain: string; weight: string;
-  source: string;    // manufacturer spec page — required, not optional
+specs: {
+  engine: string;        // "6.5L naturally aspirated V12"
+  power: string;         // "759 hp"
+  zeroToHundred: string; // "2.5 s"
+  topSpeed: string;      // "350 km/h"
+  drivetrain: string;    // "AWD"
+  weight: string;        // "1,772 kg (dry)"
+  basis: "as built" | "base model";  // §6.3
+  source: string;        // manufacturer spec page — REQUIRED
 };
 ```
 
-`specs.source` being **required** is deliberate: it makes it impossible to add a
-specification without saying where it came from. Add a test in `tests/` asserting
-every car with `specs` has a resolvable `source`, in the style of the existing
-data tests.
+#### What to produce, per car
 
-Manufacturer press/spec pages are the only acceptable source. Where a car is a
-one-off conversion (Chiron widebody, Novitec Urus, MSO Senna) the base model's
-figures are the honest ones — label the panel `BASE MODEL` for those three
-rather than implying the converted car was measured.
+1. **Two images**, cut per §8.2 and exported to `public/cars/`.
+2. **Six specifications**, read off the manufacturer's own spec sheet — not a
+   blog, not a wiki, not an aggregator.
+3. **The source URL** for those figures.
+4. **The `depicts` verdict** — §5.4. A per-car determination has already been
+   run and is tabulated in §5.6; use it, and re-check any car you have better
+   evidence on.
+
+#### Two rules that are not negotiable
+
+**`specs.source` is required, not optional.** It makes it impossible to add a
+specification without saying where it came from. Add a test asserting every car
+with `specs` has a resolvable source, in the style of the existing data tests —
+that way the rule survives the next person who edits this file.
+
+**Units are written once and never mixed.** Pick metric-first with no imperial
+second value; the site's audience is global and the manufacturers publish metric.
+Power in `hp`, speed in `km/h`, weight in `kg`, acceleration in seconds to one
+decimal. `font-variant-numeric: tabular-nums` on the panel so the digits align.
+
+### 6.3 Where a car is a one-off
+
+The Chiron widebody, the Novitec Urus and the MSO Senna are conversions. Nobody
+has published measured figures for the converted cars, so the base model's
+numbers are the only honest ones available.
+
+Set `basis: "base model"` on those three and let the panel render a
+`BASE MODEL` label in its header. The alternative — printing base-model figures
+under a heading that implies the actual car was measured — is precisely the kind
+of quiet elision this site exists not to do. The label costs one line and makes
+the panel true.
 
 ---
 
@@ -406,9 +452,12 @@ when it ships — describing the new car pages, not the engineering.
 1. **Performance bars** — derive from real figures (recommended), or drop the panel?
 2. **Dimension callouts** — source real manufacturer dimensions, or render the ring without numerals (recommended)?
 3. **`BUILD YOURS` → `SOURCE`** — confirmed? It must not stay as drawn.
-4. **Porsche** — 992, Weissach, or both? `cars.ts` and the design currently disagree.
-5. **Gallery tiles** — are there more angles per car, or are the four `+` tiles removed?
-6. **Caption wording** — `Illustration` on every car image: confirm the phrasing.
+4. **Gallery tiles** — are there more angles per car, or are the four `+` tiles removed?
+5. **Caption wording** — `Illustration` on every car image: confirm the phrasing.
 
-Items 1–4 block the build. 5 and 6 can be defaulted to the recommendation above
+Items 1–3 block the build. 4 and 5 can be defaulted to the recommendation above
 and revisited.
+
+**Resolved since the first draft:** the Porsche designation (§5.5 — the site's
+`(Weissach)` ships, the frame's `(992)` does not) and ownership of the image and
+specification data (§6.2 — the designer builds it out with the design).
