@@ -179,8 +179,20 @@ const carryForward = (platform, previous) => {
 // on demand — it is the half that only runs 5 hours in 6 and would otherwise
 // go untested until it broke in production.
 const hour = Number(process.env.SWEEP_HOUR ?? new Date().getUTCHours());
+// The job moved to twice an hour (:17 and :47) on 2 Sep 2026 so the live
+// Spotify figures refresh faster. The COUNTRY SWEEPS must not follow it there:
+// they read ~204 charts a pass, and at twice an hour that is ~10,000 requests a
+// day against a free service — double the load the comment above already calls
+// the reason to throttle. Deezer's chart is DAILY, so a second pass within the
+// hour re-reads numbers that cannot have moved, which is the same argument that
+// throttles YouTube. So the sweeps stay hourly: they run on the first firing of
+// each hour and carry forward on the second.
+// SWEEP_MINUTE exists for the same reason as SWEEP_HOUR — the second-firing
+// path would otherwise never be exercised outside production.
+const minute = Number(process.env.SWEEP_MINUTE ?? new Date().getUTCMinutes());
+const firstRunOfHour = minute < 30;
 for (const spec of CHART_SWEEPS) {
-  const due = spec.everyHours ? hour % spec.everyHours === 0 : true;
+  const due = (spec.everyHours ? hour % spec.everyHours === 0 : true) && firstRunOfHour;
   if (!due) {
     let any = false;
     for (const w of work.values()) {
