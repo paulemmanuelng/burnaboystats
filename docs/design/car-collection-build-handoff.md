@@ -217,6 +217,7 @@ reviewers on separate lines — sourcing, distinctiveness, and active
 contradiction — with instructions to default to refuted.
 
 > **Result: zero of fifteen renders were confirmed as depicting his actual car.**
+> All fifteen resolved; none survived.
 > **Every car image on the site ships with the plain caption `Illustration`.**
 > The conditional wording in §5.4 — *"Illustration — depicts the actual
 > vehicle"* — has no car to attach to. Do not use it.
@@ -254,13 +255,16 @@ content.
 | 10 | Porsche 911 GT3 RS | satin black, red centre-locks, red "GT3 RS" rocker script, **red mirror caps** | black ✓, red centre-locks ✓, red rocker script ✓, black swan-neck wing ✓ — but his **mirror caps read black**, and every matching feature is a Porsche catalogue option thousands of owners buy | **refuted 2–1** |
 | 11 | Lamborghini Urus | metallic purple | Novitec Edition ✓, announced by him on Instagram in January 2022. Colour of his own car not independently established | not identifying |
 | 12 | Mercedes-Maybach S680 | baby blue over gloss black, two-tone | single-tone **gloss black** — and the boot badge in his own Instagram photo reads **S650** (previous-generation W222), not S680 4MATIC | **contradicted** |
-| 13 | Mercedes-Maybach GLS 600 | — | determination pending — the first pass failed and is being re-run | _pending_ |
+| 13 | Mercedes-Maybach GLS 600 | uniform gloss black, chrome multi-spokes, bone stock | **no colour or spec on record.** Ownership is well attested — he bought two in May 2024 and gifted the identical second to his mother — but every outlet describes it only as "a Mercedes-Benz Maybach truck" | no record |
 | 14 | Ferrari Testarossa | plain Rosso Corsa, no plate | red ✓ — and it carries a **UK cherished plate, `F20 TRS`**, the one genuinely identifying mark found in the whole set. The render has no plate | not identifying |
 | 15 | Ferrari 328 GTS | Rosso Corsa, silver five-spokes, black interior with red piping | **nothing photographic of his own car.** The one dealer-sourced description ("Rosso Corsa, beige leather") sits against a stock catalogue image | no record |
 
-Three cars — the Purosangue, the 812 GTS and the 328 GTS — have **no published
-record of their appearance at all**. For those the honest position is not that
-the render is wrong but that nothing could make it right.
+**Four cars — the Purosangue, the 812 GTS, the 328 GTS and the GLS 600 — have no
+published record of their appearance at all.** For those the honest position is
+not that the render is wrong but that nothing could make it right. Note too that
+several renders are bone-stock factory configurations carrying no individually
+identifying mark of any kind, so even a colour match could not have raised them
+to `actual`.
 
 #### What this changes in the build
 
