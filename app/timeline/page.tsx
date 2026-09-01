@@ -5,7 +5,7 @@ import KeepExploring from "../components/KeepExploring";
 import MobileMenuButton from "../components/MobileMenuButton";
 import BackLink from "../components/BackLink";
 import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
-import { timelineEras, timelineEntryCount } from "../data/timeline";
+import { timelineEras, timelineEntryCount, type TimelineKind } from "../data/timeline";
 import { totalAwards, countryCount } from "../data/certifications";
 import { numberOnes, chartCountryCount } from "../data/charts";
 
@@ -19,12 +19,25 @@ export const metadata = pageMetadata({
 });
 
 // The badge colours group entries by what kind of milestone they are.
-const KIND_LABELS: Record<string, string> = {
+const KIND_LABELS: Record<TimelineKind, string> = {
   album: "Album",
   milestone: "First",
   award: "Award",
   tour: "Live",
   chart: "Charts",
+};
+
+// Keyed by TimelineKind rather than looked up as styles[`kind_${e.kind}`], so a
+// kind added to the union without a matching rule fails tsc instead of shipping
+// a badge whose class attribute literally reads "undefined". That is what had
+// happened to "chart" and "tour": both were in the data from the start, neither
+// ever had a rule, and twelve badges rendered in the base grey.
+const KIND_CLASS: Record<TimelineKind, string> = {
+  album: styles.kind_album,
+  milestone: styles.kind_milestone,
+  award: styles.kind_award,
+  tour: styles.kind_tour,
+  chart: styles.kind_chart,
 };
 
 const breadcrumbJsonLd = {
@@ -103,7 +116,7 @@ export default function TimelinePage() {
                   <div>
                     <div className={styles.entryTop}>
                       <h3 className={styles.entryTitle}>{e.title}</h3>
-                      <span className={`${styles.kind} ${styles[`kind_${e.kind}`]}`}>{KIND_LABELS[e.kind]}</span>
+                      <span className={`${styles.kind} ${KIND_CLASS[e.kind]}`}>{KIND_LABELS[e.kind]}</span>
                     </div>
                     <p className={styles.entryText}>{e.text}</p>
                     {e.href && <span className={styles.entryMore}>See the record →</span>}

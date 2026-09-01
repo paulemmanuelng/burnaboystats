@@ -1,8 +1,6 @@
 import Link from "next/link";
 import styles from "./awards.module.css";
 import KeepExploring from "../../components/KeepExploring";
-import CountUp from "../../components/CountUp";
-import StatGrid from "../../components/StatGrid";
 import AwardExplorer from "../../components/AwardExplorer";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileAwards from "../../components/MobileAwards";
@@ -229,6 +227,8 @@ export default function AwardsPage() {
             </Link>
           </div>
         </section>
+
+        <KeepExploring current="/records/awards" />
       </div>
     </main>
   );

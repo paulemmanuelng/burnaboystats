@@ -81,7 +81,11 @@ export default function StatCardMaker({
     track("stat_card_download", { stat: id, ratio });
     // Shared with the mobile screen: the same synchronous revoke truncated
     // downloads here too. See app/lib/saveCard.ts.
-    await saveCard(src, `burna-boy-${id}-${ratio}.png`);
+    // shareText is already built above for the X and WhatsApp links; passing it
+    // here too is what puts a caption on the native share sheet. Without it a
+    // share-capable desktop (the desktop layout renders above 900px, and
+    // navigator.share exists there) got the image with no words at all.
+    await saveCard(src, `burna-boy-${id}-${ratio}.png`, shareText);
     setDownloading(false);
   }
 

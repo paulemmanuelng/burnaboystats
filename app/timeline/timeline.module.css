@@ -212,6 +212,14 @@
 .kind_album { color: var(--gold); border-color: var(--tier-gold-edge, var(--line)); }
 .kind_award { color: var(--tier-platinum, #efede6); }
 .kind_milestone { color: var(--tier-diamond, #31a1c0); }
+/* "chart" and "tour" existed in the data from the start and never got a rule
+   here, so twelve badges rendered in the base muted grey — and because the
+   lookup is interpolated into a template literal, the string "undefined"
+   landed in their class attribute too. Both reuse existing tier tokens rather
+   than introducing new colours: silver for the chart badges, gold-edge for the
+   live ones, which is the same family the album badge already borrows. */
+.kind_chart { color: var(--tier-silver, #c9c6bd); border-color: var(--tier-silver-edge, var(--line)); }
+.kind_tour { color: var(--tier-gold-edge, var(--gold)); }
 
 /* ── Today ─────────────────────────────────────────────────── */
 .today {
