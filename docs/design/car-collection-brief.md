@@ -1,5 +1,11 @@
 # Design brief — Burna Boy Stats, Car Collection page
 
+> **⚠ Layout superseded (September 2026).** The page-layout and spec-panel ideas
+> kept alive by the note below are now specified in
+> [car-collection-build-handoff.md](car-collection-build-handoff.md), which adds
+> per-car detail routes. The description of the *current* page, the data shape
+> and the mobile deep-page grammar in this file are still accurate.
+
 > **⚠ Partially superseded (August 2026).** The artwork approach in §5b of this
 > document — batch silhouettes, site-palette fills — did not survive contact
 > with reality: briefs named car *models*, but several of these cars are

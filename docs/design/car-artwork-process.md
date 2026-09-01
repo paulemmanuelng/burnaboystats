@@ -1,5 +1,14 @@
 # Car artwork — the standing process
 
+> **⚠ Superseded on artwork and scope (September 2026).** The collection now
+> builds from 15 supplied photoreal page designs, and the page layout *is* the
+> deliverable — see
+> [car-collection-build-handoff.md](car-collection-build-handoff.md). The flat-SVG
+> format, the ≤300-path budget and the "don't design the page" instruction below
+> no longer apply. **The fidelity principle does survive**: a picture of the model
+> is not a picture of his car, and the handoff carries that forward as a caption
+> and verification rule.
+
 **For:** Claude design (fresh chat — this document is self-contained)
 **Site:** burnaboystats.com — a verified statistics reference for Burna Boy
 **Supersedes:** the artwork section of `car-collection-brief.md`. The layout/spec-panel ideas in that document remain future work; **how the cars get drawn is now governed by this file.**
