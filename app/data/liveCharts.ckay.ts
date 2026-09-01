@@ -35,10 +35,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-08-31";
+  export const liveChartsUpdated = "2026-09-01";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -52,18 +52,25 @@
             "country": "RU",
             "name": "Russia",
             "position": 8,
-            "movement": -3
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 49,
+            "position": 54,
             "movement": -1
           },
           {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 96,
+            "country": "GH",
+            "name": "Ghana",
+            "position": 93,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 103,
             "movement": null,
             "status": "new"
           }
@@ -76,8 +83,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 133,
-            "movement": 0
+            "position": 135,
+            "movement": -2
           }
         ]
       },
@@ -86,9 +93,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 123,
+            "country": "MR",
+            "name": "Mauritania",
+            "position": 167,
             "movement": null,
             "status": "new"
           }
@@ -108,14 +115,15 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 151,
-            "movement": -26
+            "position": 118,
+            "movement": -50
           },
           {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 193,
-            "movement": -41
+            "country": "LR",
+            "name": "Liberia",
+            "position": 140,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -126,8 +134,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
-            "movement": 19
+            "position": 105,
+            "movement": -7
           }
         ]
       },
@@ -149,32 +157,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Boyfriend",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 60,
-            "movement": 0
-          },
-          {
-            "country": "KY",
-            "name": "Cayman Islands",
-            "position": 142,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BANGER BOY",
     "platforms": [
       {
@@ -182,43 +164,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
-            "movement": -10
+            "country": "LR",
+            "name": "Liberia",
+            "position": 80,
+            "movement": 64
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 194,
-            "movement": null,
-            "status": "new"
+            "country": "ML",
+            "name": "Mali",
+            "position": 111,
+            "movement": -37
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "WAHALA",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 60,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/505d283890dd9d15b39cacf3ec8d5d4d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "forever",
@@ -230,8 +191,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 81,
-            "movement": -44
+            "position": 99,
+            "movement": -11
           }
         ]
       }
@@ -250,13 +211,32 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 176,
-            "movement": 2
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Boyfriend",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 60,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   }
 ];
   

@@ -68,7 +68,7 @@
       "field": "rank",
       "kind": "rank",
       "threshold": 1,
-      "baseline": 52,
+      "baseline": 55,
       "note": "Global rank by Spotify monthly listeners (lower is better) — the CURRENT rank, not his best. Auto-published hourly; displayed on /records/by-the-numbers, whose label used to read \"his highest position among all artists worldwide\" while this metric fed it a current figure. His best in the log is No. 36, so that label was wrong at any rank above it; it now describes where he currently sits.",
       "live": true,
       "sanity": {
@@ -86,9 +86,9 @@
           "describes": "global listeners rank"
         }
       ],
-      "lastChanged": "2026-08-31",
-      "lastSeenValue": 52,
-      "lastSeenAt": "2026-08-31",
+      "lastChanged": "2026-09-01",
+      "lastSeenValue": 55,
+      "lastSeenAt": "2026-09-01",
       "$comment": "sanity.maxJump was 10, but withinSanity reads maxJump as a FRACTION of the baseline — |live-46|/46 > 10 needs live > 506, and max:500 already rejected that, so the jump guard was unreachable and the rank published unguarded. It is now maxDelta: 10, an absolute bound of ten chart places, which is what the 10 meant."
     },
     {
@@ -99,7 +99,7 @@
       "extractor": "kworbTotalStreams",
       "kind": "peak",
       "threshold": 0.03,
-      "baseline": 10895124161,
+      "baseline": 10910738742,
       "note": "Auto-published daily. kworb's artist page undercounts featured credits, so a pipeline offset is added before the display string is written. RE-MEASURE THE OFFSET when the gap moves — it grows as featured songs accrue streams: +107,613,681 on 31 Jul 2026, +129,703,877 on 11 Aug 2026 (22,090,196 of drift in 11 days), +146,757,255 on 25 Aug 2026, each measured as tracked_total minus kworb's raw sum on the same day. Do NOT hand-edit the display instead; the offset is what keeps it tracking.",
       "live": true,
       "siteTargets": [
@@ -125,13 +125,13 @@
         "min": 5000000000,
         "max": 100000000000
       },
-      "lastChanged": "2026-08-30",
+      "lastChanged": "2026-09-01",
       "offset": 146757255,
-      "lastSeenValue": 10895124161,
-      "lastSeenAt": "2026-08-30",
+      "lastSeenValue": 10910738742,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B.",
-      "lastRawValue": 10748366906,
+      "lastRawValue": 10763981487,
       "rawJumpAlert": 12000000
     },
     {
@@ -142,7 +142,7 @@
       "extractor": "youtubeViews",
       "kind": "peak",
       "threshold": 0.001,
-      "baseline": 953781467,
+      "baseline": 965512373,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -159,9 +159,9 @@
           "describes": "displayed view count (whole millions) on /dai-dai"
         }
       ],
-      "lastChanged": "2026-08-31",
-      "lastSeenValue": 953781467,
-      "lastSeenAt": "2026-08-31",
+      "lastChanged": "2026-09-01",
+      "lastSeenValue": 965512373,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -192,8 +192,8 @@
         }
       ],
       "lastChanged": "2026-08-28",
-      "lastSeenValue": 361840557,
-      "lastSeenAt": "2026-08-31",
+      "lastSeenValue": 361972424,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
@@ -224,8 +224,8 @@
         }
       ],
       "lastChanged": "2026-08-23",
-      "lastSeenValue": 309169418,
-      "lastSeenAt": "2026-08-31",
+      "lastSeenValue": 309256902,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
@@ -256,8 +256,8 @@
         }
       ],
       "lastChanged": "2026-08-30",
-      "lastSeenValue": 479644243,
-      "lastSeenAt": "2026-08-31",
+      "lastSeenValue": 479865687,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
@@ -288,8 +288,8 @@
         }
       ],
       "lastChanged": "2026-08-25",
-      "lastSeenValue": 117778625,
-      "lastSeenAt": "2026-08-31",
+      "lastSeenValue": 117839752,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
@@ -322,7 +322,7 @@
       "match": "Last Last",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 606561652,
+      "baseline": 607706358,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -340,9 +340,9 @@
           "describes": "Spotify streams on /music/last-last"
         }
       ],
-      "lastChanged": "2026-08-28",
-      "lastSeenValue": 607277041,
-      "lastSeenAt": "2026-08-30",
+      "lastChanged": "2026-09-01",
+      "lastSeenValue": 607706358,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -355,7 +355,7 @@
       "match": "On the Low",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 423553494,
+      "baseline": 424507278,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -373,9 +373,9 @@
           "describes": "Spotify streams on /music/on-the-low"
         }
       ],
-      "lastChanged": "2026-08-29",
-      "lastSeenValue": 424054348,
-      "lastSeenAt": "2026-08-30",
+      "lastChanged": "2026-09-01",
+      "lastSeenValue": 424507278,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -407,8 +407,8 @@
         }
       ],
       "lastChanged": "2026-08-29",
-      "lastSeenValue": 333863549,
-      "lastSeenAt": "2026-08-30",
+      "lastSeenValue": 334130503,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -440,8 +440,8 @@
         }
       ],
       "lastChanged": "2026-08-29",
-      "lastSeenValue": 286679396,
-      "lastSeenAt": "2026-08-30",
+      "lastSeenValue": 286937040,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -454,7 +454,7 @@
       "match": "wgft (feat. Burna Boy)",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 298724594,
+      "baseline": 300255936,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -472,9 +472,9 @@
           "describes": "Spotify streams on /music/wgft"
         }
       ],
-      "lastChanged": "2026-08-29",
-      "lastSeenValue": 299256169,
-      "lastSeenAt": "2026-08-30",
+      "lastChanged": "2026-09-01",
+      "lastSeenValue": 300255936,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -506,8 +506,8 @@
         }
       ],
       "lastChanged": "2026-08-28",
-      "lastSeenValue": 213734128,
-      "lastSeenAt": "2026-08-30",
+      "lastSeenValue": 213862914,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -520,7 +520,7 @@
       "match": "23",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 70541450,
+      "baseline": 71520000,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -538,9 +538,9 @@
           "describes": "Spotify streams on /music/23"
         }
       ],
-      "lastChanged": "2026-08-21",
-      "lastSeenValue": 71362427,
-      "lastSeenAt": "2026-08-30",
+      "lastChanged": "2026-09-01",
+      "lastSeenValue": 71520000,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -572,8 +572,8 @@
         }
       ],
       "lastChanged": "2026-07-29",
-      "lastSeenValue": 10480972,
-      "lastSeenAt": "2026-08-30",
+      "lastSeenValue": 10495540,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -605,8 +605,8 @@
         }
       ],
       "lastChanged": "2026-08-03",
-      "lastSeenValue": 3796327,
-      "lastSeenAt": "2026-08-30",
+      "lastSeenValue": 3798993,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -638,8 +638,8 @@
         }
       ],
       "lastChanged": "2026-08-16",
-      "lastSeenValue": 3686054,
-      "lastSeenAt": "2026-08-30",
+      "lastSeenValue": 3689812,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -671,8 +671,8 @@
         }
       ],
       "lastChanged": "2026-08-29",
-      "lastSeenValue": 987582,
-      "lastSeenAt": "2026-08-30",
+      "lastSeenValue": 987689,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -684,7 +684,7 @@
       "extractor": "kworbSongStreams",
       "match": "Dai Dai",
       "kind": "peak",
-      "baseline": 399406555,
+      "baseline": 405643780,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -702,9 +702,9 @@
           "describes": "Spotify streams for Dai Dai"
         }
       ],
-      "lastChanged": "2026-08-30",
-      "lastSeenValue": 399406555,
-      "lastSeenAt": "2026-08-30",
+      "lastChanged": "2026-09-01",
+      "lastSeenValue": 405643780,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -717,7 +717,7 @@
       "match": "TaTaTa (feat. Travis Scott)",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 66519812,
+      "baseline": 67513892,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -735,9 +735,9 @@
           "describes": "Spotify streams for TaTaTa"
         }
       ],
-      "lastChanged": "2026-08-08",
-      "lastSeenValue": 67439606,
-      "lastSeenAt": "2026-08-30",
+      "lastChanged": "2026-09-01",
+      "lastSeenValue": 67513892,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -750,7 +750,7 @@
       "match": "Smoke (feat. Onosz)",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 3551832,
+      "baseline": 3654076,
       "live": true,
       "sanity": {
         "maxJump": 0.25,
@@ -768,9 +768,9 @@
           "describes": "Spotify streams for Smoke"
         }
       ],
-      "lastChanged": "2026-08-07",
-      "lastSeenValue": 3646181,
-      "lastSeenAt": "2026-08-30",
+      "lastChanged": "2026-09-01",
+      "lastSeenValue": 3654076,
+      "lastSeenAt": "2026-09-01",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -782,7 +782,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Tems",
       "kind": "accumulate",
-      "baseline": 1728665000,
+      "baseline": 1733665000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -800,10 +800,10 @@
           "describes": "Tems 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1728665000,
-      "lastSeenAt": "2026-08-31",
-      "lastChanged": "2026-08-31",
-      "lastAccumulatedAt": "2026-08-31"
+      "lastSeenValue": 1733665000,
+      "lastSeenAt": "2026-09-01",
+      "lastChanged": "2026-09-01",
+      "lastAccumulatedAt": "2026-09-01"
     },
     {
       "id": "streams-2026-wizkid",
@@ -813,7 +813,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Wizkid",
       "kind": "accumulate",
-      "baseline": 1710166000,
+      "baseline": 1715883000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -831,10 +831,10 @@
           "describes": "Wizkid 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1710166000,
-      "lastSeenAt": "2026-08-31",
-      "lastChanged": "2026-08-31",
-      "lastAccumulatedAt": "2026-08-31"
+      "lastSeenValue": 1715883000,
+      "lastSeenAt": "2026-09-01",
+      "lastChanged": "2026-09-01",
+      "lastAccumulatedAt": "2026-09-01"
     },
     {
       "id": "streams-2026-burna",
@@ -844,7 +844,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Burna Boy",
       "kind": "accumulate",
-      "baseline": 1693389000,
+      "baseline": 1701214000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -862,10 +862,10 @@
           "describes": "Burna Boy 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1693389000,
-      "lastSeenAt": "2026-08-31",
-      "lastChanged": "2026-08-31",
-      "lastAccumulatedAt": "2026-08-31"
+      "lastSeenValue": 1701214000,
+      "lastSeenAt": "2026-09-01",
+      "lastChanged": "2026-09-01",
+      "lastAccumulatedAt": "2026-09-01"
     }
   ],
   "certWatches": [
