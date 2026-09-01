@@ -222,7 +222,7 @@ export default function DaiDaiPage() {
       label: "The world rankings",
       intro: "The charts that rank the whole planet at once.",
       items: [
-        { v: "8 weeks", l: "at No. 1 on Mediatraffic's United World Chart — 326,000 points in the week to 22 August, and the first Burna Boy song ever to top it" },
+        { v: "10 weeks", l: "at No. 1 on Mediatraffic's United World Chart — 283,000 points in the chart week dated 5 September, and the first Burna Boy song ever to top it" },
         { v: "No. 1", l: "iTunes song chart in 73 countries — the US, UK, Canada, France, Italy, New Zealand, India, Spain, Portugal, Hungary & dozens more, Belarus the newest" },
         { v: "No. 13", l: "Deezer Worldwide Top 100 — a new peak, charting in 57 countries and No. 1 in 23 of them" },
         { v: "29 days", l: "at No. 1 on Spotify's Global Music Video chart — more than any other song has managed there, and not narrowly: the next-longest run on it is 3 days" },

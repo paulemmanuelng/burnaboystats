@@ -35,6 +35,18 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-02",
+    category: "Charts",
+    text: "A 10th week atop Mediatraffic's United World Chart: “Dai Dai” leads the global ranking again in the issue dated 5 September, on 283,000 points. It remains the first Burna Boy record ever to top it.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-02",
+    category: "Certifications",
+    text: "France certifies “Soweto”: SNEP lists Victony & Tempoe’s 2023 single at Or, date de constat 27 August. It is the fifth country outside Nigeria to certify Victony, and every one of the five did it for the same record.",
+    href: "/afrobeats/victony",
+  },
+  {
     date: "2026-08-31",
     category: "Certifications",
     text: "A French Diamond and a Polish Gold on the same day: SNEP upgrades “Dai Dai” from Platinum to Diamant at 50 million equivalent streams, three months after release, and ZPAV enters it on Poland’s złote płyty list. The song now holds twelve plaques, and France is its first Diamond — Burna Boy’s seventh record to reach that tier there, alongside “Last Last”, “On the Low”, “Gbona”, “Location”, “Be Honest” and the “Jerusalema” remix.",
@@ -1212,7 +1224,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-13",
     category: "Certifications",
-    text: "Gold in France: “Dai Dai” is certified Single Or by SNEP, France's official body — 15 million equivalent streams for the Shakira collaboration.",
+    text: "Gold in France: “Dai Dai” is certified Single Or by SNEP, France's official body — the tier SNEP awards at 15 million equivalent streams.",
     href: "/certifications",
   },
   {

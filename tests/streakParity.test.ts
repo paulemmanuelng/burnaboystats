@@ -89,7 +89,14 @@ const STREAKS: Streak[] = [
   {
     id: "United World Chart — weeks at No. 1",
     page: `v: "(\\d+) weeks", l: "at No\\. 1 on Mediatraffic${A}s United World`,
-    feed: [`${ORD} atop Mediatraffic`, `${ORD} straight week as the world${A}s biggest song`],
+    feed: [
+      `${ORD} atop Mediatraffic`,
+      // "a 10th WEEK atop Mediatraffic's..." — the natural way to write it,
+      // and the pattern set is meant to grow with the prose rather than the
+      // prose being bent to fit it.
+      `${ORD} week atop Mediatraffic`,
+      `${ORD} straight week as the world${A}s biggest song`,
+    ],
     topic: `United World Chart`,
   },
   {

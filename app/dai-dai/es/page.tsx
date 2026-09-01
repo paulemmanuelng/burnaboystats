@@ -220,7 +220,7 @@ export default function DaiDaiPageES() {
       label: "Los rankings mundiales",
       intro: "Las listas que miden el planeta entero a la vez.",
       items: [
-        { v: "8 semanas", l: "en el número 1 del United World Chart de Mediatraffic — 326.000 puntos en la semana del 22 de agosto, y la primera canción de Burna Boy que lo lidera" },
+        { v: "10 semanas", l: "en el número 1 del United World Chart de Mediatraffic — 283.000 puntos en la semana del 5 de septiembre, y la primera canción de Burna Boy que lo lidera" },
         { v: "N.º 1", l: "en la lista de canciones de iTunes en 73 países — Estados Unidos, Reino Unido, Canadá, Francia, Italia, Nueva Zelanda, India, España, Portugal, Hungría y decenas más, Bielorrusia la más reciente" },
         { v: "N.º 13", l: "en el Deezer Worldwide Top 100 — un nuevo pico, con presencia en 57 países y el número 1 en 23 de ellos" },
         { v: "29 días", l: "en el número 1 de la lista Global Music Video de Spotify — más que cualquier otra canción en esa lista, y no por poco: la siguiente racha más larga es de 3 días" },
