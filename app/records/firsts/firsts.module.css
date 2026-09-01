@@ -1,6 +1,8 @@
 /* Firsts & records page */
 
-/* Page-summary stat band now lives in the shared StatGrid component. */
+/* Page-summary stat band. Local to this page on purpose: the shared StatGrid
+   component this comment used to point at had no importers and is gone. The
+   copies have drifted from each other and unifying them is a design call. */
 
 .group { margin: 48px 0 18px; }
 .count { color: var(--text-muted); font-weight: 400; font-size: 0.95rem; }

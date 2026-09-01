@@ -152,11 +152,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="preconnect" href="https://i.scdn.co" />
         <link rel="dns-prefetch" href="https://i.scdn.co" />
         <a href="#content" className="skipLink">Skip to content</a>
-        {/* No-JS fallback: reveal animations are JS-driven, so without JS we must
-            show the content (otherwise it stays at opacity:0). */}
-        <noscript>
-          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
-        </noscript>
         {/* Subtle film-grain texture overlay (sits behind content) */}
         <div className="grain" aria-hidden="true" />
 

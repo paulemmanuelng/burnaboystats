@@ -1115,18 +1115,6 @@ a.fact:hover {
   to { opacity: 1; transform: none; }
 }
 
-/* ===========================================================
-   SCROLL-REVEAL  (toggled by the <Reveal> component)
-   =========================================================== */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
 
 /* ===========================================================
    ANIMATED MUSIC GRAPHICS  (reusable decorative components)
@@ -1167,46 +1155,7 @@ a.fact:hover {
 }
 
 /* Spinning vinyl record */
-.vinyl {
-  animation: spin 9s linear infinite;
-}
 
-/* Marquee — infinite horizontal scroller */
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: var(--bg-soft);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-}
-.marqueeTrack {
-  display: flex;
-  align-items: center;
-  width: max-content;
-  padding: 16px 0;
-  animation: marquee 42s linear infinite;
-}
-.marquee:hover .marqueeTrack {
-  animation-play-state: paused;
-}
-.marqueeItem {
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  padding-right: 28px;
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 1.35rem;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--text);
-}
-.marqueeStar {
-  color: var(--gold);
-  margin-left: 28px;
-}
 
 /* ===========================================================
    KEYFRAMES
@@ -1221,9 +1170,6 @@ a.fact:hover {
 }
 @keyframes spin {
   to { transform: rotate(360deg); }
-}
-@keyframes marquee {
-  to { transform: translateX(-50%); }
 }
 @keyframes meshDrift {
   0% { transform: translate(0, 0) scale(1); }
@@ -1244,12 +1190,6 @@ a.fact:hover {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
-  }
-  /* Scroll reveals resolve to their final state rather than getting stuck
-     mid-fade — the handoff's rule. */
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
   }
 }
 

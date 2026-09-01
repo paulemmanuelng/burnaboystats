@@ -1,7 +1,9 @@
 /* Global certifications page */
 
 /* Live summary */
-/* Page-summary stat band now lives in the shared StatGrid component. */
+/* Page-summary stat band. Local to this page on purpose: the shared StatGrid
+   component this comment used to point at had no importers and is gone. The
+   copies have drifted from each other and unifying them is a design call. */
 
 /* Country legend */
 .legend {
