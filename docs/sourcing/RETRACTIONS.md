@@ -189,3 +189,48 @@ proof available.
 `CONFIRMED_THROUGH`, so staleness is at least visible in the data rather than
 buried in a sentence. There is still no check against YouTube itself — the
 number is hand-maintained because the stats bot cannot fetch it.
+
+## 7. The Dominican Republic No. 1 — published from a round-up, never read at the body (2 Sep 2026)
+
+`{ c: "DO", peak: 1 }` sat in "Dai Dai"'s chart entries from 30 July 2026 and has
+been **removed**. It was never true on the chart this dataset names for the
+Dominican Republic.
+
+**How it got in.** Commit `ff676f1` added Venezuela, El Salvador and the DR
+together, and its message is careful and reads well — but about the wrong
+question. It argues at length that Monitor Latino's DR chart is *eligible*
+(the country publishes no non-airplay national chart, so the airplay carve-out
+applies). It never establishes the **position**. That came from "the World Music
+Awards round-up", an aggregator. Eligibility was reasoned about; the No. 1 was
+taken on trust.
+
+**What the body actually says.** Monitor Latino publishes a free weekly post
+naming the No. 1 on each country's Top 20 General. Across all sixteen weekly
+posts covering the song's life:
+
+> 18 May Amenazzy *Una Vibra* · 25 May *Una Vibra* · 1 Jun – 3 Aug Yiyo Sarante
+> *Me Dio Pa Llamarte* (eleven weeks) · 10 Aug Yenddi *Soldado Engañado* ·
+> 17, 24, 31 Aug DaniLeigh, Lennox & La Insuperable *Island*
+
+"Dai Dai" never appears. **And this is not the round-ups ignoring it:** the 6 July
+post is headlined *"El fenómeno de Dai Dai"*, and the 20 July post names it the
+No. 1 in "Argentina, España, Bolivia, Puerto Rico y Centroamérica" **while giving
+the Dominican Republic to Yiyo Sarante in the same breath.** That is positive
+absence, not silence.
+
+**The likely origin of the 1** is either a Monitor Latino DR *genre* chart (their
+Urbano and Anglo/Pop lists are separate, and this file's rules exclude genre
+charts everywhere) or the regional Central America & Caribbean airplay chart —
+which the song genuinely does top, and which the release note already records as
+a regional, not national, achievement.
+
+**Resynced:** 280 → 279 chart entries, 49 → 48 No. 1 placements, 71 → 70
+territories, Dai Dai 28 → 27 country No. 1s and 70 → 69 entries. The
+30 July feed entry announcing "three more No. 1s" now says two, with its
+same-day tallies corrected. `DO` is out of `CHART_COUNTRIES` as well — a test
+requires every country code to be used by at least one release.
+
+**The lesson, which is the same one as #5 and #6:** a careful argument about
+whether a source *counts* is not evidence of what the source *says*. The commit
+that added this did the hard part — the eligibility reasoning — and skipped the
+easy one.

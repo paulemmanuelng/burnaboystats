@@ -842,20 +842,6 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "Dominican Republic",
-    "path": "/records/charts",
-    "section": "Country",
-    "description": "Chart peaks in Dominican Republic on Monitor Latino (airplay — no other national chart).",
-    "keywords": [
-      "do",
-      "country",
-      "chart",
-      "peak",
-      "monitor latino (airplay — no other national chart)"
-    ],
-    "generated": true
-  },
-  {
     "title": "Ecuador",
     "path": "/records/charts",
     "section": "Country",
@@ -1808,7 +1794,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Dai Dai",
     "path": "/records/charts",
     "section": "Release",
-    "description": "Shakira & Burna Boy — 12 certifications · 70 chart entries.",
+    "description": "Shakira & Burna Boy — 12 certifications · 69 chart entries.",
     "keywords": [
       "shakira",
       "burna",

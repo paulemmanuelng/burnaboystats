@@ -36,6 +36,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-02",
+    category: "Charts",
+    text: "A correction: “Dai Dai” was never No. 1 in the Dominican Republic. Monitor Latino publishes the No. 1 on each country’s Top 20 General every week, and across all sixteen weeks of the song’s life the Dominican top spot belongs to Amenazzy, then Yiyo Sarante for eleven weeks, then Yenddi, then DaniLeigh — while the same posts name “Dai Dai” the No. 1 elsewhere in those very weeks. The entry came from a round-up rather than the chart, and it has been removed: 27 country No. 1s for the song, 48 chart-topping placements for the career.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-09-02",
     category: "Streaming",
     text: "A ninth song past 300 million: “wgft”, Gunna’s single featuring Burna Boy, crossed the mark on 1 September at 300,255,936 — read on Spotify’s own track page, which the usual trackers had not caught up to. Five of the nine are past 400 million: “Location”, “Last Last”, “On the Low”, “Own It” and “Dai Dai”.",
     href: "/records/africas-biggest",
@@ -666,7 +672,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-30",
     category: "Charts",
-    text: "Three more No. 1s: “Dai Dai” tops the national charts of Venezuela (Record Report), El Salvador (ASAP EGC) and the Dominican Republic (Monitor Latino) — taking the song to 24 country No. 1s and Burna Boy's career to 43 chart-topping placements across 60 countries.",
+    text: "Two more No. 1s: “Dai Dai” tops the national charts of Venezuela (Record Report) and El Salvador (ASAP EGC) — taking the song to 23 country No. 1s and Burna Boy's career to 42 chart-topping placements across 59 countries.",
     href: "/records/charts",
   },
   {

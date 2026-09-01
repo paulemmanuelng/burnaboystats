@@ -108,9 +108,9 @@ describe("chart data integrity", () => {
     // 4 Aug 2026 Dai Dai sweep: +11 territories (EE at No.1 on TopHit, the
     // Monitor Latino belt, TR/KZ/MD/UA/RU), Ecuador's IFPI LatAm chart turned
     // its Billboard #4 into a #1, and UY/MY/HR peaks improved (2/5/13).
-    expect(chartEntryCount).toBe(280); // 9 Aug 2026: +9 Nigerian (TurnTable) entries from the NG sweep, Giza included
-    expect(numberOnes).toBe(49); // 29 Aug 2026: "Dai Dai" reached No. 1 in Poland (ZPAV/OLiS week 34), his 49th chart-topping placement
-    expect(chartCountryCount).toBe(71); // NG was already counted
+    expect(chartEntryCount).toBe(279); // 2 Sep 2026: -1, the unsupported Dominican Republic No. 1 removed (RETRACTIONS #7)
+    expect(numberOnes).toBe(48); // 2 Sep 2026: Poland took this to 49, then the unsupported Dominican No. 1 came out (RETRACTIONS #7)
+    expect(chartCountryCount).toBe(70); // -1: the Dominican Republic left with its only entry
   });
 });
 
@@ -134,8 +134,8 @@ describe("Dai Dai", () => {
   it("matches the published headline figures", () => {
     // 4 Aug 2026 sweep: +11 territories; Ecuador (IFPI LatAm) and Estonia
     // (TopHit) are the two new country No. 1s.
-    expect(daiDaiChartEntryCount).toBe(70);
-    expect(daiDaiNumberOnes).toBe(28); // + Poland, 29 Aug 2026
+    expect(daiDaiChartEntryCount).toBe(69);
+    expect(daiDaiNumberOnes).toBe(27); // + Poland 29 Aug, - Dominican Republic 2 Sep (RETRACTIONS #7)
   });
 
   it("tops both Billboard global charts", () => {
