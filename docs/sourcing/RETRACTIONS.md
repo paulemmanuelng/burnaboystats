@@ -234,3 +234,45 @@ requires every country code to be used by at least one release.
 whether a source *counts* is not evidence of what the source *says*. The commit
 that added this did the hard part — the eligibility reasoning — and skipped the
 easy one.
+
+## 8. The El Salvador No. 1 — same commit, same round-up, different proof (2 Sep 2026)
+
+`{ c: "SV", peak: 1 }` came in on `ff676f1` alongside the Dominican entry in #7,
+from the same fan round-up, and has been **removed** with it.
+
+**The evidence is a different shape, and that matters.** For the Dominican
+Republic there was a chart that positively contradicted the claim. Here there is
+**no El Salvador chart at all**:
+
+- **ASAP EGC publishes none.** Its site carries no chart, current or archived —
+  the blog holds fifteen "Hello World" placeholders from mid-2025 and nothing
+  else. Yet `SV`'s body field named it as the source.
+- **Monitor Latino does not cover El Salvador.** Its weekly round-ups name the
+  No. 1 for México, República Dominicana, Colombia, Guatemala, Nicaragua,
+  Ecuador, Uruguay, Venezuela, Chile, Argentina, España, Paraguay, Perú, Bolivia
+  and Puerto Rico. **El Salvador appears in none of the fourteen** covering this
+  song.
+
+So this is not "a register that could not be read", which the house rule says is
+a gap and never a zero. It is a claim naming a chart **that does not publish** —
+and no other El Salvador national chart exists to carry it.
+
+**Where the figure almost certainly came from.** The same Monitor Latino posts
+carry a REGIONAL line, and on **15 June 2026** it reads: *Top Centroamérica
+monitorLATINO — «Dai Dai», Shakira ft.* A regional No. 1, read as a national
+one. The release note on the entry already records the regional Central America
+& Caribbean No. 1, which is where this belongs and where it remains.
+
+**Resynced with #7:** 280 → 278 chart entries, 49 → 47 No. 1 placements, 71 → 69
+territories, Dai Dai 28 → 26 country No. 1s and 70 → 68 entries; the Europe split
+follows to 30 = 19 + 11. The 30 July feed entry has now lost two of the three
+No. 1s it announced and reads as one.
+
+**Venezuela, added on the same commit, SURVIVES** — and was checked rather than
+assumed: Record Report has it at No. 1 for one week, read at the body during the
+same sweep. Three countries were added together on trust; two were wrong.
+
+**The lesson, sharpened from #7:** when several entries arrive in one commit on
+one source, they share that source's reliability. Verifying one of them is not
+evidence for the others — and here it was the two that nobody re-checked that
+turned out to be wrong.

@@ -37,7 +37,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-02",
     category: "Charts",
-    text: "A correction: “Dai Dai” was never No. 1 in the Dominican Republic. Monitor Latino publishes the No. 1 on each country’s Top 20 General every week, and across all sixteen weeks of the song’s life the Dominican top spot belongs to Amenazzy, then Yiyo Sarante for eleven weeks, then Yenddi, then DaniLeigh — while the same posts name “Dai Dai” the No. 1 elsewhere in those very weeks. The entry came from a round-up rather than the chart, and it has been removed: 27 country No. 1s for the song, 48 chart-topping placements for the career.",
+    text: "A correction, twice over: “Dai Dai” was never No. 1 in the Dominican Republic or El Salvador. Monitor Latino names the No. 1 on each country’s Top 20 General weekly, and across all sixteen weeks of the song’s life the Dominican top spot belongs to Amenazzy, then Yiyo Sarante for eleven weeks, then Yenddi, then DaniLeigh — while the same posts name “Dai Dai” the No. 1 elsewhere in those very weeks. El Salvador is not a chart Monitor Latino publishes at all, and ASAP EGC publishes none either; what the same posts do show is “Dai Dai” topping the regional Top Centroamérica on 15 June, which is where that figure belongs. Both entries came from a round-up rather than a chart and have been removed: 26 country No. 1s for the song, 47 chart-topping placements for the career.",
     href: "/records/charts",
   },
   {
@@ -672,7 +672,7 @@ export const updates: Update[] = [
   {
     date: "2026-07-30",
     category: "Charts",
-    text: "Two more No. 1s: “Dai Dai” tops the national charts of Venezuela (Record Report) and El Salvador (ASAP EGC) — taking the song to 23 country No. 1s and Burna Boy's career to 42 chart-topping placements across 59 countries.",
+    text: "Another No. 1: “Dai Dai” tops Venezuela's national chart, Record Report — taking the song to 22 country No. 1s and Burna Boy's career to 41 chart-topping placements across 58 countries.",
     href: "/records/charts",
   },
   {

@@ -870,20 +870,6 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
-    "title": "El Salvador",
-    "path": "/records/charts",
-    "section": "Country",
-    "description": "Chart peaks in El Salvador on ASAP EGC (airplay — no other national chart).",
-    "keywords": [
-      "sv",
-      "country",
-      "chart",
-      "peak",
-      "asap egc (airplay — no other national chart)"
-    ],
-    "generated": true
-  },
-  {
     "title": "Estonia",
     "path": "/records/charts",
     "section": "Country",
@@ -1794,7 +1780,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Dai Dai",
     "path": "/records/charts",
     "section": "Release",
-    "description": "Shakira & Burna Boy — 12 certifications · 69 chart entries.",
+    "description": "Shakira & Burna Boy — 12 certifications · 68 chart entries.",
     "keywords": [
       "shakira",
       "burna",
