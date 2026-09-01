@@ -50,15 +50,6 @@
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
-.badge {
-  margin-left: auto;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--gold);
-  flex: none;
-}
-
 /* ── Hero ─────────────────────────────────────────────────────────────── */
 .hero { padding: 22px 18px 18px; }
 .kicker {

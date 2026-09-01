@@ -34,20 +34,7 @@ a.card:hover {
   font-size: 0.9rem;
   margin-top: 6px;
 }
-.arrow { color: var(--gold); font-weight: 700; font-size: 1.25rem; }
-.soon { opacity: 0.55; }
-.soonTag {
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.6875rem;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 5px 10px;
-  white-space: nowrap;
-}
-@media (max-width: 640px) {
+.arrow { color: var(--gold); font-weight: 700; font-size: 1.25rem; }@media (max-width: 640px) {
   .grid { grid-template-columns: 1fr; }
 }
 

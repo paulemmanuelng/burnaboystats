@@ -128,6 +128,4 @@
   .grid { display: none; }
   .gridOpen { display: grid; }
   .legend { display: none; }
-  .legendOpen { display: flex; }
-    .headOpen { display: flex; }
-}
+  .legendOpen { display: flex; }}

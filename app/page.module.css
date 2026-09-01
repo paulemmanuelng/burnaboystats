@@ -7,13 +7,6 @@
 .hero {
   border-bottom: 1px solid var(--line);
 }
-
-.heroInner {
-  position: relative;
-  z-index: 2;
-  text-align: left;
-}
-
 .kicker {
   display: inline-flex;
   align-items: center;
@@ -24,10 +17,6 @@
   color: var(--text-muted);
   margin-bottom: 22px;
 }
-.kickerEq {
-  height: 16px;
-}
-
 .title {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -56,131 +45,12 @@
   justify-content: flex-start;
   margin-top: 34px;
   flex-wrap: wrap;
-}
-
-/* Waveform pinned along the bottom of the hero. */
-.heroWave {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100px;
-  padding: 0 24px;
-  opacity: 0.55;
-  z-index: 1;
-}
-
-.scrollCue {
-  position: absolute;
-  left: 50%;
-  bottom: 28px;
-  transform: translateX(-50%);
-  writing-mode: vertical-rl;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.6875rem;
-  color: var(--text-muted);
-  z-index: 3;
-  animation: bob 2s ease-in-out infinite;
-}
-
-/* ---- Festival-poster hero pieces ---- */
-.heroTop {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 14px;
-}
-.metaGroup {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-}
-.metaLabel {
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-}
-.updated {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-}
-/* Steady, not pulsing. The live hook above the scoreboard pulses, and two
-   blinking green dots in one viewport compete rather than compound — this one
-   marks when the site was last updated, which is a different and quieter
-   claim than "charting right now". */
-.liveDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #46d17f;
-  box-shadow: 0 0 0 3px rgba(70, 209, 127, 0.12);
-}
-@keyframes livePulse {
+}@keyframes livePulse {
   0% { box-shadow: 0 0 0 0 rgba(70, 209, 127, 0.5); }
   70% { box-shadow: 0 0 0 6px rgba(70, 209, 127, 0); }
   100% { box-shadow: 0 0 0 0 rgba(70, 209, 127, 0); }
 }
-@media (prefers-reduced-motion: reduce) {
-  .liveDot { animation: none; }
-}
-.heroRule {
-  height: 1px;
-  background: var(--border);
-  margin: 26px 0;
-}
-.heroFoot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-}
-.heroStats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 28px;
-  margin-top: 36px;
-}
-.heroStat {
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-}
-.heroStat b {
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 1.5rem;
-  color: var(--gold);
-  margin-right: 8px;
-}
-.heroWatermark {
-  position: absolute;
-  right: -2%;
-  bottom: -6%;
-  z-index: 0;
-  font-family: var(--font-anton), sans-serif;
-  font-size: 26vw;
-  line-height: 1;
-  text-transform: uppercase;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 182, 39, 0.07);
-  pointer-events: none;
-  letter-spacing: 0.02em;
-}
-
+@media (prefers-reduced-motion: reduce) {}
 /* ================= GENERIC SECTION ================= */
 .section {
   /* ~124px between sections on desktop, ~88px on mobile — breathing room
@@ -195,373 +65,25 @@
   font-size: 0.72rem;
   color: var(--gold);
   margin-bottom: 14px;
-}
-
-.sectionTitle {
-  font-family: var(--font-anton), sans-serif;
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  max-width: 22ch;
-}
-
-/* ================= STAT SCOREBOARD ================= */
-.scoreboard {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  margin-top: 64px;
-}
-/* When the live hook precedes it, the two are one group — close the gap. */
-.liveHook + .scoreboard {
-  margin-top: 22px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.stat {
-  padding: 30px 28px;
-  border-right: 1px solid var(--line);
-  text-decoration: none;
-  transition: background 0.15s ease;
-}
-a.stat:hover { background: rgba(255, 182, 39, 0.05); }
-a.stat:hover .statNum { color: var(--gold-bright); }
-.scoreboard .stat:first-child { padding-left: 0; }
-.scoreboard .stat:last-child { border-right: none; padding-right: 0; }
-.statNum {
-  display: block;
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: clamp(3.2rem, 6.5vw, 5.4rem);
-  line-height: 0.86;
-  letter-spacing: -0.01em;
-  color: var(--gold);
-}
-.statLabel {
-  display: block;
-  margin-top: 14px;
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.7rem;
-}
-
-aa
-/* ================= SECTION HEAD + RANKED LIST ================= */
-.sectionHead {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.headLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.74rem;
-  color: var(--text);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 9px 16px;
-  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
-}
-.headLink:hover {
-  color: var(--gold);
-  border-color: var(--gold);
-  background: rgba(255, 182, 39, 0.08);
-}
-
-.rankList {
-  list-style: none;
-  margin-top: 30px;
-}
-
-/* Tier-breakdown donut under the ranked certifications — reads as an extension
-   of the section, not a new one. */
-.tierStrip {
-  margin-top: 44px;
-  padding-top: 40px;
-  border-top: 1px solid var(--line);
-}
-.tierHead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-.tierHead .eyebrow {
+}.tierHead .eyebrow {
   margin-bottom: 0;
-}
-.rankRow {
-  display: grid;
-  grid-template-columns: 56px 1fr auto;
-  align-items: center;
-  gap: 24px;
-  padding: 22px 8px;
-  border-bottom: 1px solid var(--line);
-  transition: background 0.2s ease, padding-left 0.2s ease;
-}
-.rankRow:not(.rankFeatured):hover {
-  background: rgba(255, 182, 39, 0.07);
-  border-bottom-color: rgba(255, 182, 39, 0.42);
-  padding-left: 16px;
-}
-.rankRow:hover .rankTitle,
-.rankRow:hover .rank {
-  color: var(--gold);
-}
-.rankFeatured {
-  background: linear-gradient(100deg, rgba(255, 182, 39, 0.14), rgba(226, 52, 43, 0.08));
-  border: 1px solid rgba(255, 182, 39, 0.42);
-  border-radius: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-.rank {
-  font-family: var(--font-anton), sans-serif;
-  font-size: 1.85rem;
-  color: var(--text-muted);
-}
-.rankFeatured .rank { color: var(--gold); }
-.rankTitle {
-  display: block;
-  font-family: var(--font-anton), sans-serif;
-  font-size: 1.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 1;
-}
-.rankCredit {
-  display: block;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  margin-top: 7px;
-}
-.rankCert {
-  text-align: right;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text);
-  white-space: nowrap;
-  line-height: 1.5;
-}
-
-/* Career records — headline feats as an African artist */
-.recordGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 8px;
-}
-.recordCard {
-  display: flex;
-  flex-direction: column;
-  padding: 30px 28px;
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text);
-  text-decoration: none;
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-.recordCard:hover {
-  border-color: var(--gold);
-  transform: translateY(-4px);
-}
-.recordNum {
-  font-family: var(--font-anton), sans-serif;
-  font-size: clamp(2.6rem, 4.5vw, 3.4rem);
-  line-height: 0.88;
-  letter-spacing: -0.01em;
-  color: var(--gold);
-}
-.recordTitle {
-  margin-top: 16px;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  font-size: 0.9rem;
-  line-height: 1.2;
-}
-.recordDesc {
-  margin-top: 10px;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.55;
-}
-@media (max-width: 760px) {
-  .recordGrid { grid-template-columns: 1fr; }
-}
-
-/* ================= CTA ================= */
-.cta {
-  padding: 30px 0 clamp(52px, 7vw, 76px);
-}
-.ctaInner {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, rgba(255, 182, 39, 0.12), rgba(226, 52, 43, 0.09));
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 72px 40px;
-  text-align: center;
-}
-.ctaContent {
-  position: relative;
-  z-index: 1;
-}
-.ctaTitle {
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 700;
-}
-.ctaText {
-  max-width: 520px;
-  margin: 16px auto 30px;
-  color: var(--text-muted);
-  font-size: 1.1rem;
-}
-
-/* ================= FEATURED STORY (Dai Dai) ================= */
-.featured {
-  position: relative;
-  display: block;
-  overflow: hidden; /* contains the floated cover */
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: clamp(28px, 4vw, 46px);
-  background:
-    radial-gradient(120% 150% at 100% 0%, rgba(255, 182, 39, 0.16), transparent 55%),
-    linear-gradient(135deg, rgba(255, 182, 39, 0.10), rgba(226, 52, 43, 0.08));
-  transition: border-color var(--dur, 0.2s) var(--ease-out, ease),
-    transform var(--dur, 0.2s) var(--ease-out, ease);
-}
-.featured:hover {
-  border-color: var(--gold-dim);
-  transform: translateY(-2px);
-}
-/* Cover floats to the right and the copy wraps around it — an aligned editorial
-   block that fills the card cleanly on both desktop and mobile. */
-.featuredCover {
-  float: right;
-  width: clamp(128px, 16vw, 190px);
-  height: auto;
-  aspect-ratio: 1;
-  margin: 4px 0 14px 28px;
-  border-radius: 10px;
-  border: 1px solid rgba(245, 244, 240, 0.14);
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.5);
-}
-.featuredBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.7rem;
-  color: var(--gold);
-  margin-bottom: 16px;
-}
-.featuredDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--gold);
-  animation: featuredPulse 2s ease-out infinite;
-}
-@keyframes featuredPulse {
+}@media (max-width: 760px) {}@keyframes featuredPulse {
   0% { box-shadow: 0 0 0 0 rgba(255, 182, 39, 0.5); }
   70% { box-shadow: 0 0 0 8px rgba(255, 182, 39, 0); }
   100% { box-shadow: 0 0 0 0 rgba(255, 182, 39, 0); }
-}
-.featuredTitle {
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-}
-.featuredText {
-  max-width: 60ch;
-  margin: 14px 0 22px;
-  color: var(--text-muted);
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-.featuredCta {
-  display: inline-flex;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.8rem;
-  color: var(--text);
-  border-bottom: 1px solid var(--gold);
-  padding-bottom: 3px;
-}
-.featured:hover .featuredCta {
-  color: var(--gold-bright);
-}
-@media (prefers-reduced-motion: reduce) {
-  .featuredDot { animation: none; }
-  .featured:hover { transform: none; }
-}
+}@media (prefers-reduced-motion: reduce) {}
 /* Phones: same float layout, just tighter with a smaller cover. */
-@media (max-width: 620px) {
-  .featured { padding: 20px; }
-  .featuredCover {
-    width: clamp(104px, 32vw, 132px);
-    margin: 2px 0 10px 16px;
-  }
-  .featuredBadge { margin-bottom: 10px; }
-  .featuredText { margin: 10px 0 14px; font-size: 0.95rem; }
-}
+@media (max-width: 620px) {}
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 760px) {
   /* Tighter vertical rhythm on phones — desktop paddings leave big gaps on a
      narrow screen, and the cards themselves run tall, so shrink both here. */
-  .section { padding: 34px 0; }
-  .recordGrid { gap: 12px; }
-  .recordCard { padding: 20px; }
-  .rankList { margin-top: 16px; }
-  .tierStrip { margin-top: 28px; padding-top: 26px; }
-  .tierHead { margin-bottom: 16px; }
-  /* This used to clear the transparent nav the hero slid under. The live band
+  .section { padding: 34px 0; }  /* This used to clear the transparent nav the hero slid under. The live band
      now fills that role, so the clamp was re-introducing 104px of dead air
      below the band on phones after the base padding was already zeroed. */
-  .hero { padding-top: 0; }
-  .cta { padding: 8px 0 44px; }
-  .ctaInner { padding: 44px 22px; }
-  .scoreboard {
-    grid-template-columns: repeat(2, 1fr);
-    margin-top: 40px;
-  }
-  .stat { border-right: none; padding: 22px 0; }
-  .scoreboard .stat:nth-child(odd) { padding-right: 24px; }
-        }
-@media (max-width: 760px) {
-  .rankRow { grid-template-columns: 44px 1fr; gap: 14px; padding: 13px 6px; }
-  .rankCert {
-    grid-column: 1 / -1;
-    text-align: left;
-    white-space: normal;
-    margin-top: 6px;
-  }
-  .rank, .rankTitle { font-size: 1.6rem; }
-}
+  .hero { padding-top: 0; }        }
+@media (max-width: 760px) {}
 
 /* ── Redesign: hero ──────────────────────────────────────────────────────
    Two columns. Copy carries the left at 1.5fr; "Today's number" holds the
@@ -630,18 +152,6 @@ aa
   display: inline-block;
   flex: none;
 }
-
-/* Five columns now, each carrying a source line under the label. */
-.statSource {
-  display: block;
-  margin-top: 6px;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--dim);
-}
-
 @media (max-width: 1239px) {
   /* Archetype 6: the hero drops one display step (150 → 104 in the table's
      terms; 108 → 75 here). Nothing else about the band reflows. */
@@ -673,17 +183,7 @@ aa
     width: 100%;
     justify-content: center;
     min-height: 48px;
-  }
-  .heroSources {
-    margin-top: 22px;
-    gap: 6px;
-  }
-  .sourceChip,
-  .sourceChipLink {
-    font-size: 11px;
-    padding: 5px 10px;
-  }
-}
+  }}
 
 /* The desktop hero block. Hidden on phones, where MobileHome renders the
    screen the design actually specifies for that width. */

@@ -55,31 +55,7 @@
   .lede { font-size: 15px; }
   .h2 { font-size: 26px; }
   .section { padding: 36px 0 0; }
-}
-
-.shareRow {
-  display: flex;
-  justify-content: center;
-  margin-top: 22px;
-}
-
-.sectionTitle {
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  text-align: center;
-  margin: 0 0 26px;
-}
-
-/* Halftime show lineup — artist photos from Spotify's CDN. */
-.lineup {
-  max-width: 900px;
-  margin: 8px auto 60px;
-  text-align: center;
-}
-/* One rule for every section intro, in both languages.
+}/* One rule for every section intro, in both languages.
    Replaces .lineupIntro and .conquestIntro, which each gave the paragraph its
    OWN centring instead of letting it inherit the heading's column — so at
    desktop widths the intro began far to the right of the heading it belongs
@@ -147,14 +123,7 @@
 }
 @media (max-width: 380px) {
   .lineupGrid { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* "By the numbers" — every headline Dai Dai stat, scannable and crawlable. */
-.byNumbers {
-  max-width: 980px;
-  margin: 8px auto 60px;
-}
-/* Seams are drawn per card, not by showing a --line bed through the gaps.
+}/* Seams are drawn per card, not by showing a --line bed through the gaps.
    The bed trick leaves a pale phantom block wherever the last row is short,
    and the fix for that (spanning the final card) can't follow a column count
    that changes at the breakpoint — a `span 3` inside a 2-column grid invents a
@@ -228,14 +197,7 @@
   .numValue { font-size: 30px; }
   .numValueLead { font-size: 36px; }
   .numGroup { margin-top: 32px; }
-}
-
-/* FAQ — answer-first Q&A for halftime-weekend search + AI answers. */
-.faq {
-  max-width: 760px;
-  margin: 0 auto 60px;
-}
-.faqList {
+}.faqList {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -280,65 +242,7 @@
   gap: 12px;
   justify-content: center;
 }
-
-/* The animated "world takeover" map section. */
-.conquest {
-  max-width: 860px;
-  margin: 44px auto 56px;
-}
-/* ── Screen 25's action bar ──────────────────────────────────────────────
-   Mobile only. The five-tab bar steps aside for it (see lib/mobileScreens.ts),
-   so the two fixed bars can never stack. */
-.mobileActionBar { display: none; }
-
-@media (max-width: 900px) {
-  .mobileActionBar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 40;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 22px));
-  padding-left: calc(18px + env(safe-area-inset-left, 0px));
-  padding-right: calc(18px + env(safe-area-inset-right, 0px));
-    background: rgba(12, 10, 9, 0.94);
-    backdrop-filter: blur(14px);
-    border-top: 1px solid var(--line);
-  }
-  .mobilePrimary {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 50px;
-    border-radius: 999px;
-    background-color: var(--gold);
-    /* The gold ramp — the site's one treatment for a gold fill. */
-    background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
-    color: var(--bg);
-    font-family: var(--font-mono), monospace;
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
-  }
-  .mobileShare {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    background: var(--bg-soft);
-    border: 1px solid var(--line);
-    color: var(--text);
-    flex: none;
-  }
-}
+@media (max-width: 900px) {}
 
 /* Not on mobile screen 25 — the FAQ and the Keep-exploring rail are desktop
    only. Hidden rather than unrendered, so the FAQ markup (and the FAQPage

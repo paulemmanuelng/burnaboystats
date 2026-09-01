@@ -157,33 +157,6 @@
   max-width: 46ch;
   color: #cfc7bb;
 }
-
-.foot {
-  position: relative;
-  margin-top: auto;
-  padding-top: 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 12px;
-  border-top: 1px solid rgba(90, 42, 6, 0.22);
-}
-.footDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #1c6b3f;
-  flex: none;
-  display: block;
-}
-.footLink {
-  margin-left: auto;
-  color: inherit;
-  text-decoration: none;
-  font-weight: 600;
-}
-.footLink:hover { text-decoration: underline; }
-
 @media (max-width: 900px) {
   .panel { padding: 24px 20px; }
   .figure { font-size: 104px; }

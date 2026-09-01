@@ -4,37 +4,6 @@
 
 .desktopOnly { display: block; }
 .desktopCrumbs { display: block; }
-
-.mobileBackBar {
-  display: none;
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 18px;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
-}
-.mobileBackBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  color: var(--text);
-}
-.mobileBackLabel {
-  flex: 1;
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-
 /* ── Hero ──────────────────────────────────────────────────── */
 .hero {
   max-width: 1360px;
@@ -226,9 +195,7 @@
    this page rendered BOTH layouts at once from 761px to 900px — the whole iPad
    portrait range, 768px included. Verified in-browser: at 820px the desktop
    board and the mobile hub were both visible; at 1000px and 700px only one was. */
-@media (max-width: 900px) {
-  .mobileBackBar { display: flex; }
-  .desktopCrumbs { display: none; }
+@media (max-width: 900px) {  .desktopCrumbs { display: none; }
   .desktopOnly { display: none; }
 }
 @media (max-width: 760px) {

@@ -31,36 +31,6 @@
 }
 .notice strong { color: var(--text); }
 .notice em { color: var(--text); font-style: italic; }
-
-.summary_ {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  margin: 0 0 44px;
-  background: var(--rule);
-  border: 1px solid var(--rule-soft);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-}
-.stat {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  padding: 20px 18px;
-  background: var(--bg-soft);
-}
-.statV {
-  font-family: var(--font-anton), sans-serif;
-  font-size: clamp(1.7rem, 5vw, 2.5rem);
-  line-height: 1;
-  color: var(--gold);
-}
-.statL {
-  font-size: 0.8rem;
-  line-height: 1.35;
-  color: var(--text-muted);
-}
-
 /* scroll-margin-top comes from the global [id] rule. */
 .section { margin: 0 0 48px; }
 .h2 {
@@ -75,25 +45,11 @@
 /* The rows are collapsed by default, so this instruction is doing real work —
    at 0.88rem muted grey it read as a footnote and got skipped. Now it carries
    the gold accent and matches the notice block above it, without shouting. */
-.hint strong { color: var(--gold-bright); font-weight: 700; }
-.hintIcon {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--gold);
-  color: #14100a;
-  animation: nudge 2.6s ease-in-out infinite;
-}
-@keyframes nudge {
+.hint strong { color: var(--gold-bright); font-weight: 700; }@keyframes nudge {
   0%, 82%, 100% { transform: translateY(0); }
   88% { transform: translateY(2.5px); }
 }
-@media (prefers-reduced-motion: reduce) {
-  .hintIcon { animation: none; }
-}
+@media (prefers-reduced-motion: reduce) {}
 
 /* Per-row affordance. The hint explains it once; this shows it on every row,
    which is what actually makes the pattern discoverable mid-page. */
@@ -313,13 +269,6 @@
   font-size: 0.88rem;
   line-height: 1.7;
 }
-.inlineLink {
-  color: var(--gold);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.inlineLink:hover { color: var(--gold-bright); }
-
 /* A row of footer actions. This used to be `styles.actions`, which was never
    declared — so the container rendered with className={undefined} and the two
    pills sat as inline boxes on a text baseline with no gap. That, plus .back
@@ -346,8 +295,6 @@
 .back:hover { text-decoration: underline; }
 
 @media (max-width: 620px) {
-  .summary_ { grid-template-columns: repeat(2, 1fr); }
-
   /* The desktop rule places .title in column 2 and .total in column 3. Only
      collapsing the template left those explicit columns pointing at tracks that
      no longer exist, so the grid created implicit ones and the title ended up

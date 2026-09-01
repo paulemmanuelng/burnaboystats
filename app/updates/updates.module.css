@@ -195,14 +195,6 @@
 .tagDot { width: 6px; height: 6px; border-radius: 50%; display: block; }
 .rowText { font-size: 15.5px; line-height: 1.5; }
 .rowArrow { color: var(--gold); font-size: 16px; }
-
-.empty {
-  font-family: var(--font-mono), monospace;
-  font-size: 12.5px;
-  color: var(--dim);
-  padding: 26px 8px;
-}
-
 /* ── Follow panel + source ──────────────────────────────────────────────── */
 .followPad { padding: 10px 40px 44px; }
 .sourcePad { padding: 32px 40px 36px; }
