@@ -36,6 +36,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-02",
+    category: "Streaming",
+    text: "A ninth song past 300 million: “wgft”, Gunna’s single featuring Burna Boy, crossed the mark on 1 September at 300,255,936 — read on Spotify’s own track page, which the usual trackers had not caught up to. Five of the nine are past 400 million: “Location”, “Last Last”, “On the Low”, “Own It” and “Dai Dai”.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-09-02",
     category: "Charts",
     text: "A 10th week atop Mediatraffic's United World Chart: “Dai Dai” leads the global ranking again in the issue dated 5 September, on 283,000 points. It remains the first Burna Boy record ever to top it.",
     href: "/dai-dai",
