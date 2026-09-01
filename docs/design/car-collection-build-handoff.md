@@ -266,9 +266,10 @@ specs: {
 2. **Six specifications**, read off the manufacturer's own spec sheet — not a
    blog, not a wiki, not an aggregator.
 3. **The source URL** for those figures.
-4. **The `depicts` verdict** — §5.4. A per-car determination has already been
-   run and is tabulated in §5.6; use it, and re-check any car you have better
-   evidence on.
+4. **The `depicts` verdict** — the rule is in §5.4. A per-car determination is
+   being run against reference photography of his actual vehicles and will be
+   tabulated here; until it lands, default every caption to the weaker claim
+   (plain `Illustration`).
 
 #### Two rules that are not negotiable
 
