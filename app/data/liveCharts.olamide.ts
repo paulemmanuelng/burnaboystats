@@ -259,8 +259,8 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 130,
-            "movement": -52
+            "position": 151,
+            "movement": -21
           }
         ]
       }
@@ -342,7 +342,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 105,
-            "movement": 3
+            "movement": 4
           }
         ]
       }
@@ -374,7 +374,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 145,
-            "movement": 0
+            "movement": 1
           }
         ]
       }
@@ -441,26 +441,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Billionaires Club",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 87,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Luvaluvah",
     "platforms": [
       {
@@ -472,6 +452,26 @@
             "name": "Nigeria",
             "position": 181,
             "movement": 12
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Billionaires Club",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 110,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -518,26 +518,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Ybnl",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 153,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/38c206cc47b635c0a182575844264157/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "UY Scuti",
     "platforms": [
       {
@@ -567,7 +547,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 99,
-            "movement": 3
+            "movement": 4
           }
         ]
       }

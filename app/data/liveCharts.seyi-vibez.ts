@@ -73,12 +73,6 @@
             "movement": -2
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 45,
-            "movement": 98
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 51,
@@ -91,10 +85,16 @@
             "movement": 7
           },
           {
+            "country": "NE",
+            "name": "Niger",
+            "position": 110,
+            "movement": -65
+          },
+          {
             "country": "GH",
             "name": "Ghana",
-            "position": 109,
-            "movement": -7
+            "position": 114,
+            "movement": -5
           }
         ]
       },
@@ -135,8 +135,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 54,
-            "movement": 108
+            "position": 78,
+            "movement": -66
           }
         ]
       },
@@ -166,8 +166,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
-            "movement": 0
+            "position": 6,
+            "movement": -1
           },
           {
             "country": "BJ",
@@ -178,8 +178,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 22,
-            "movement": 4
+            "position": 36,
+            "movement": -14
           },
           {
             "country": "LR",
@@ -246,7 +246,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 144,
+            "position": 167,
             "movement": null,
             "status": "new"
           }
@@ -272,8 +272,8 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 22,
-            "movement": -4
+            "position": 23,
+            "movement": -1
           },
           {
             "country": "NE",
@@ -284,26 +284,26 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 83,
-            "movement": 26
+            "position": 122,
+            "movement": -39
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 90,
-            "movement": 31
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 106,
-            "movement": 5
+            "position": 132,
+            "movement": -42
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 137,
-            "movement": 30
+            "position": 167,
+            "movement": -30
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 183,
+            "movement": -77
           }
         ]
       }
@@ -321,8 +321,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
-            "movement": 1
+            "position": 64,
+            "movement": -4
           },
           {
             "country": "SL",
@@ -337,17 +337,17 @@
             "movement": -1
           },
           {
+            "country": "NE",
+            "name": "Niger",
+            "position": 107,
+            "movement": 25
+          },
+          {
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 125,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 132,
-            "movement": -45
           }
         ]
       },
@@ -383,8 +383,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 116,
-            "movement": 7
+            "position": 114,
+            "movement": 2
           },
           {
             "country": "LR",
@@ -397,6 +397,13 @@
             "name": "Benin",
             "position": 143,
             "movement": 0
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 186,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -417,6 +424,57 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "SWAGUU",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 15,
+            "movement": -3
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 43,
+            "movement": -5
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 62,
+            "movement": -33
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 158,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 199,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 200,
+            "movement": -57
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Thy Kingdom Come",
     "platforms": [
       {
@@ -430,23 +488,22 @@
             "movement": 1
           },
           {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 36,
-            "movement": 4
-          },
-          {
             "country": "BN",
             "name": "Brunei Darussalam",
             "position": 37,
             "movement": 0
           },
           {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 39,
+            "movement": -3
+          },
+          {
             "country": "GH",
             "name": "Ghana",
-            "position": 171,
-            "movement": null,
-            "status": "new"
+            "position": 193,
+            "movement": -22
           },
           {
             "country": "NE",
@@ -470,14 +527,14 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 44,
-            "movement": 102
+            "position": 59,
+            "movement": -15
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
-            "movement": 1
+            "position": 66,
+            "movement": -1
           },
           {
             "country": "BJ",
@@ -511,16 +568,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 122,
+            "movement": 9
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 127,
             "movement": 71
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 131,
-            "movement": -5
           },
           {
             "country": "LR",
@@ -547,44 +604,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "SWAGUU",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 15,
-            "movement": -3
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 38,
-            "movement": -8
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 62,
-            "movement": -33
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 143,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Karma",
     "platforms": [
       {
@@ -594,8 +613,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 71,
-            "movement": 3
+            "position": 73,
+            "movement": -2
           },
           {
             "country": "BJ",
@@ -631,8 +650,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
-            "movement": 2
+            "position": 50,
+            "movement": -1
           },
           {
             "country": "BJ",
@@ -663,8 +682,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": 10
+            "position": 106,
+            "movement": 5
           },
           {
             "country": "BJ",
@@ -701,15 +720,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 55,
-            "movement": -20
+            "position": 77,
+            "movement": -39
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
-            "movement": null,
-            "status": "new"
+            "position": 84,
+            "movement": -71
           }
         ]
       },
@@ -739,8 +757,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": 1
+            "position": 124,
+            "movement": -7
           },
           {
             "country": "BJ",
@@ -769,11 +787,10 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TC",
-            "name": "Turks and Caicos",
-            "position": 49,
-            "movement": null,
-            "status": "new"
+            "country": "BJ",
+            "name": "Benin",
+            "position": 46,
+            "movement": 12
           },
           {
             "country": "NG",
@@ -782,10 +799,11 @@
             "movement": 1
           },
           {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 58,
-            "movement": 70
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 55,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -803,8 +821,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 120,
-            "movement": 8
+            "position": 127,
+            "movement": -7
           },
           {
             "country": "BJ",
@@ -828,8 +846,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 149,
-            "movement": 8
+            "position": 153,
+            "movement": -4
           },
           {
             "country": "BJ",
@@ -865,39 +883,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 121,
-            "movement": 12
+            "position": 118,
+            "movement": 3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b4fe00e347d44e64c014306d1f5f778b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Vibe Till Thy Kingdom Come",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 50,
-            "movement": 6
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 67,
-            "movement": 6
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Loseyi Professor",
@@ -915,14 +908,39 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 95,
-            "movement": -28
+            "position": 78,
+            "movement": 17
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Vibe Till Thy Kingdom Come",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 67,
+            "movement": 6
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 68,
+            "movement": -18
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Doha",
@@ -991,8 +1009,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 86,
-            "movement": -3
+            "position": 84,
+            "movement": 2
           }
         ]
       }
@@ -1048,8 +1066,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 151,
-            "movement": 2
+            "position": 144,
+            "movement": 7
           }
         ]
       }
@@ -1067,8 +1085,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 174,
-            "movement": 22
+            "position": 184,
+            "movement": -10
           }
         ]
       }
@@ -1086,9 +1104,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 200,
-            "movement": null,
-            "status": "new"
+            "position": 198,
+            "movement": 2
           }
         ]
       }
