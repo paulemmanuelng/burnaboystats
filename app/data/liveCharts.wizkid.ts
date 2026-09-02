@@ -318,18 +318,6 @@
             "status": "new"
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 191,
-            "movement": -6
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 194,
-            "movement": 0
-          },
-          {
             "country": "KZ",
             "name": "Kazakhstan",
             "position": 200,
@@ -692,7 +680,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
+            "position": 67,
             "movement": null,
             "status": "new"
           }
@@ -821,8 +809,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 36,
-            "movement": 142
+            "position": 55,
+            "movement": 132
           }
         ]
       },
@@ -954,18 +942,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 200,
-            "movement": -152
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -1070,7 +1046,7 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 5,
+            "position": 6,
             "movement": null,
             "status": "new"
           },
@@ -1279,7 +1255,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 1,
-            "movement": 2
+            "movement": 3
           }
         ]
       }
@@ -1309,8 +1285,8 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 38,
-            "movement": 39
+            "position": 39,
+            "movement": 31
           },
           {
             "country": "BJ",
@@ -1605,7 +1581,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 8,
-            "movement": 39
+            "movement": 40
           },
           {
             "country": "NG",
@@ -1871,7 +1847,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 29,
+            "position": 30,
             "movement": -6
           }
         ]
@@ -2222,25 +2198,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Billionaires Club",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 68,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Stay For The Night",
     "platforms": [
       {
@@ -2338,6 +2295,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Billionaires Club",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 87,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Anxious",
     "platforms": [
       {
@@ -2347,8 +2323,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 40,
-            "movement": -9
+            "position": 42,
+            "movement": -11
           }
         ]
       }
@@ -2373,25 +2349,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Smile",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
-            "movement": -147
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "S2 - EP",

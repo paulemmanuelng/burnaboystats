@@ -196,8 +196,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
-            "movement": -71
+            "position": 102,
+            "movement": -81
           }
         ]
       }
@@ -597,8 +597,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 5,
-            "movement": -3
+            "position": 9,
+            "movement": -7
           }
         ]
       }
@@ -923,7 +923,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 90,
+            "position": 91,
             "movement": -5
           }
         ]
@@ -1177,6 +1177,45 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "As We Get High",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 109,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 120,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 139,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Namek",
     "platforms": [
       {
@@ -1186,8 +1225,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 67,
-            "movement": 3
+            "position": 70,
+            "movement": 0
           },
           {
             "country": "BE",
@@ -1290,32 +1329,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5b4fd7e67b985be9489dbf58dc74497b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "As We Get High",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 109,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 120,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
   },
   {
     "title": "reason",

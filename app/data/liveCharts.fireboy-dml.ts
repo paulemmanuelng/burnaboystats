@@ -581,7 +581,7 @@
             "country": "MT",
             "name": "Malta",
             "position": 74,
-            "movement": -20
+            "movement": -15
           }
         ]
       }

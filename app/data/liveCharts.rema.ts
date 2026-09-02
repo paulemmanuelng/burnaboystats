@@ -79,22 +79,22 @@
             "movement": 9
           },
           {
-            "country": "EG",
-            "name": "Egypt",
-            "position": 96,
-            "movement": 14
+            "country": "DE",
+            "name": "Germany",
+            "position": 92,
+            "movement": 25
           },
           {
             "country": "AT",
             "name": "Austria",
-            "position": 115,
-            "movement": 0
+            "position": 95,
+            "movement": 20
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 117,
-            "movement": 0
+            "country": "EG",
+            "name": "Egypt",
+            "position": 96,
+            "movement": 14
           },
           {
             "country": "GR",
@@ -121,11 +121,16 @@
             "movement": 24
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 159,
+            "movement": 36
+          },
+          {
             "country": "PT",
             "name": "Portugal",
             "position": 171,
-            "movement": null,
-            "status": "new"
+            "movement": 20
           },
           {
             "country": "MA",
@@ -133,12 +138,6 @@
             "position": 191,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 195,
-            "movement": 0
           },
           {
             "country": "TH",
@@ -437,15 +436,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 26,
+            "position": 45,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 83,
-            "movement": -18
+            "position": 87,
+            "movement": -20
           }
         ]
       },
@@ -997,8 +996,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 189,
-            "movement": -16
+            "position": 193,
+            "movement": -18
           }
         ]
       },
@@ -1231,8 +1230,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 108,
-            "movement": -15
+            "position": 112,
+            "movement": -18
           }
         ]
       }
@@ -1274,8 +1273,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
-            "movement": -18
+            "position": 34,
+            "movement": -20
           }
         ]
       },
@@ -1369,7 +1368,7 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 22,
+            "position": 25,
             "movement": 0
           }
         ]
@@ -1477,34 +1476,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 41,
-            "movement": -18
+            "position": 45,
+            "movement": -20
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "4AM",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 77,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DND",
@@ -1527,41 +1506,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Favourite Girl",
+    "title": "4AM",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 198,
-            "movement": -14
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "AZAMAN",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 199,
-            "movement": -17
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 96,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Commando - EP",

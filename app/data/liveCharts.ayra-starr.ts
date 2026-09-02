@@ -421,8 +421,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 63,
-            "movement": 0
+            "position": 75,
+            "movement": -12
           },
           {
             "country": "ZA",
@@ -508,7 +508,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 2,
+            "position": 3,
             "movement": 20
           },
           {
@@ -520,13 +520,13 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
-            "movement": -23
+            "position": 43,
+            "movement": -42
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 78,
+            "position": 79,
             "movement": -7
           },
           {
@@ -538,8 +538,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
-            "movement": -16
+            "position": 123,
+            "movement": -18
           }
         ]
       },
@@ -880,8 +880,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 61,
-            "movement": 0
+            "position": 62,
+            "movement": -3
           },
           {
             "country": "MU",
@@ -916,8 +916,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 74,
-            "movement": 3
+            "position": 78,
+            "movement": -2
           },
           {
             "country": "BS",
@@ -952,14 +952,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 92,
-            "movement": -5
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 109,
-            "movement": 45
+            "position": 94,
+            "movement": -2
           },
           {
             "country": "FI",
@@ -986,6 +980,12 @@
             "position": 130,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 143,
+            "movement": -40
           },
           {
             "country": "HU",
@@ -1178,18 +1178,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 183,
-            "movement": -151
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -1240,7 +1228,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 89,
+            "position": 90,
             "movement": -5
           }
         ]
@@ -1253,7 +1241,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 99,
-            "movement": -6
+            "movement": -5
           },
           {
             "country": "FM",
@@ -1407,8 +1395,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
-            "movement": 161
+            "position": 2,
+            "movement": 173
           }
         ]
       },
@@ -1591,8 +1579,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 103,
-            "movement": 0
+            "position": 104,
+            "movement": 2
           },
           {
             "country": "CI",
@@ -1783,8 +1771,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 170,
-            "movement": -150
+            "position": 189,
+            "movement": -159
           }
         ]
       },
@@ -1815,6 +1803,89 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Wo, man",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 7,
+            "movement": 2
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 7,
+            "movement": -1
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 31,
+            "movement": 0
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 48,
+            "movement": -5
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 195,
+            "movement": 5
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 28,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 37,
+            "movement": 5
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 74,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 102,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Last Heartbreak Song",
@@ -1958,75 +2029,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/24407cf49fdf864463cb5ca5ad974630/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Wo, man",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 7,
-            "movement": 0
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 9,
-            "movement": 0
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 31,
-            "movement": 0
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 48,
-            "movement": -7
-          },
-          {
-            "country": "GR",
-            "name": "Greece",
-            "position": 195,
-            "movement": 5
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 40,
-            "movement": -11
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 68,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "19 & Dangerous",
@@ -2214,8 +2216,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 108,
-            "movement": -15
+            "position": 112,
+            "movement": -18
           }
         ]
       },
@@ -2304,41 +2306,35 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Treasure",
+    "title": "Commas",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 143,
+            "country": "SC",
+            "name": "Seychelles",
+            "position": 100,
+            "movement": 36
+          },
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 136,
+            "movement": -85
+          },
+          {
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 151,
             "movement": 31
           },
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 159,
-            "movement": -81
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 170,
-            "movement": -113
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 200,
-            "movement": -24
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 165,
+            "movement": 21
           }
         ]
       },
@@ -2347,9 +2343,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 95,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 18,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SG",
+            "name": "Singapore",
+            "position": 57,
             "movement": null,
             "status": "new"
           }
@@ -2357,7 +2366,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Vibes",
@@ -2407,56 +2416,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Commas",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SC",
-            "name": "Seychelles",
-            "position": 100,
-            "movement": 36
-          },
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 136,
-            "movement": -85
-          },
-          {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 151,
-            "movement": 31
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 165,
-            "movement": 21
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SG",
-            "name": "Singapore",
-            "position": 57,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Amazing",
@@ -2586,6 +2545,49 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6811d7a880826af2be69b81686f629f2/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Treasure",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 143,
+            "movement": 31
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 159,
+            "movement": -81
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 170,
+            "movement": -113
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 200,
+            "movement": -24
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Comforter",
     "platforms": [
       {
@@ -2645,7 +2647,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 11,
+            "position": 15,
             "movement": null,
             "status": "new"
           }
@@ -2844,8 +2846,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 178,
-            "movement": -17
+            "position": 182,
+            "movement": -19
           }
         ]
       }

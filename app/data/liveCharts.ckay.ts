@@ -52,14 +52,7 @@
             "country": "RU",
             "name": "Russia",
             "position": 11,
-            "movement": -3
-          },
-          {
-            "country": "CL",
-            "name": "Chile",
-            "position": 84,
-            "movement": null,
-            "status": "new"
+            "movement": -2
           },
           {
             "country": "BF",
@@ -70,8 +63,15 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 102,
-            "movement": -16
+            "position": 106,
+            "movement": -18
+          },
+          {
+            "country": "CL",
+            "name": "Chile",
+            "position": 148,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -177,7 +177,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 50,
+            "position": 69,
             "movement": null,
             "status": "new"
           }

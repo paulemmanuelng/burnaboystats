@@ -184,6 +184,12 @@
             "movement": -71
           },
           {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 113,
+            "movement": -18
+          },
+          {
             "country": "SG",
             "name": "Singapore",
             "position": 114,
@@ -194,12 +200,6 @@
             "name": "The Bahamas",
             "position": 118,
             "movement": 26
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 122,
-            "movement": -18
           },
           {
             "country": "SL",
@@ -227,12 +227,6 @@
             "status": "new"
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 127,
-            "movement": 25
-          },
-          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 131,
@@ -243,6 +237,12 @@
             "name": "Barbados",
             "position": 133,
             "movement": -67
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 133,
+            "movement": 18
           },
           {
             "country": "SC",
@@ -284,8 +284,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 165,
-            "movement": 5
+            "position": 166,
+            "movement": 24
           },
           {
             "country": "SN",
@@ -316,7 +316,7 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 56,
+            "position": 75,
             "movement": null,
             "status": "new"
           }
@@ -421,7 +421,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 54,
+            "position": 66,
             "movement": null,
             "status": "new"
           }
@@ -634,8 +634,8 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 136,
-            "movement": -15
+            "position": 141,
+            "movement": -5
           }
         ]
       },
@@ -646,7 +646,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 67,
+            "position": 68,
             "movement": -6
           }
         ]
@@ -658,6 +658,31 @@
   {
     "title": "Water",
     "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 26,
+            "movement": -2
+          },
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 51,
+            "movement": -8
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 60,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
@@ -674,24 +699,6 @@
             "position": 157,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 26,
-            "movement": -2
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 49,
-            "movement": -5
           }
         ]
       }
@@ -827,25 +834,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "ART",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 62,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "IS IT",
     "platforms": [
       {
@@ -856,13 +844,32 @@
             "country": "MD",
             "name": "Moldova",
             "position": 64,
-            "movement": -9
+            "movement": -8
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "ART",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 64,
+            "movement": -8
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Truth or Dare",
