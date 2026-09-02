@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-01";
+  export const liveChartsUpdated = "2026-09-02";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -159,16 +159,16 @@
             "movement": -63
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 88,
-            "movement": -2
-          },
-          {
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 90,
             "movement": -38
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 94,
+            "movement": -4
           },
           {
             "country": "BH",
@@ -258,6 +258,12 @@
             "movement": -11
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 154,
+            "movement": -17
+          },
+          {
             "country": "PH",
             "name": "Philippines",
             "position": 155,
@@ -268,12 +274,6 @@
             "name": "Suriname",
             "position": 156,
             "movement": -25
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 161,
-            "movement": -27
           },
           {
             "country": "BG",
@@ -305,7 +305,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 197,
-            "movement": -20
+            "movement": -13
           }
         ]
       }
@@ -457,8 +457,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 145,
-            "movement": 9
+            "position": 94,
+            "movement": 51
           }
         ]
       },
@@ -481,9 +481,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 87,
-            "movement": null,
-            "status": "re"
+            "position": 82,
+            "movement": 5
           }
         ]
       }
@@ -555,8 +554,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 66,
-            "movement": -6
+            "position": 67,
+            "movement": -7
           }
         ]
       }
@@ -759,40 +758,14 @@
           {
             "country": "MT",
             "name": "Malta",
-            "position": 87,
-            "movement": -20
+            "position": 89,
+            "movement": -16
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "IS IT",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MD",
-            "name": "Moldova",
-            "position": 57,
-            "movement": -8
-          },
-          {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 89,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DOUBLE BLIND",
@@ -851,6 +824,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "IS IT",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MD",
+            "name": "Moldova",
+            "position": 58,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Truth or Dare",

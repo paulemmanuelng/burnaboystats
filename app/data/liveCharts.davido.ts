@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-01";
+  export const liveChartsUpdated = "2026-09-02";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -240,13 +240,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 1,
-            "movement": 0
+            "position": 2,
+            "movement": 1
           }
         ]
       },
@@ -390,8 +390,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 61,
-            "movement": -6
+            "position": 60,
+            "movement": -5
           },
           {
             "country": "SN",
@@ -439,8 +439,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 168,
-            "movement": -4
+            "position": 181,
+            "movement": -5
           }
         ]
       },
@@ -451,8 +451,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
-            "movement": -12
+            "position": 65,
+            "movement": -9
           }
         ]
       }
@@ -640,8 +640,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": -1
+            "position": 38,
+            "movement": 3
           }
         ]
       }
@@ -781,7 +781,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
+            "position": 17,
             "movement": -1
           }
         ]
@@ -805,8 +805,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": -3
+            "position": 12,
+            "movement": -1
           }
         ]
       }
@@ -953,7 +953,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 69,
-            "movement": -53
+            "movement": 0
           }
         ]
       }
@@ -1047,7 +1047,7 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 94,
-            "movement": -11
+            "movement": -7
           }
         ]
       },
@@ -1070,18 +1070,6 @@
         ]
       },
       {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 120,
-            "movement": -7
-          }
-        ]
-      },
-      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -1090,6 +1078,25 @@
             "name": "Cameroon",
             "position": 14,
             "movement": -1
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 63,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 133,
+            "movement": -13
           }
         ]
       }
@@ -1191,7 +1198,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 27,
+            "position": 29,
             "movement": -2
           }
         ]
@@ -1203,8 +1210,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
-            "movement": -7
+            "position": 12,
+            "movement": -8
           }
         ]
       },
@@ -1217,6 +1224,18 @@
             "name": "Nigeria",
             "position": 10,
             "movement": 9
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 41,
+            "movement": -16
           }
         ]
       }
@@ -1428,8 +1447,21 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
-            "movement": 0
+            "position": 69,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 82,
+            "movement": null,
+            "status": "re"
           }
         ]
       }
@@ -1726,8 +1758,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 186,
-            "movement": 3
+            "position": 187,
+            "movement": 2
           }
         ]
       }
@@ -1999,14 +2031,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": -83
+            "position": 122,
+            "movement": -107
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 147,
-            "movement": -20
+            "position": 151,
+            "movement": -23
           }
         ]
       },
@@ -2019,6 +2051,55 @@
             "name": "Ghana",
             "position": 91,
             "movement": -2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Gimme Dat Ting",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 28,
+            "movement": 32
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 52,
+            "movement": -15
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 88,
+            "movement": -10
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 94,
+            "movement": -38
           }
         ]
       }
@@ -2063,6 +2144,50 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/594be4990d2be6af325a4a0825960a9a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Tell Everybody",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 82,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 141,
+            "movement": -10
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 178,
+            "movement": -76
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 63,
+            "movement": -9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "If",
@@ -2137,75 +2262,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Gimme Dat Ting",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 28,
-            "movement": 32
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 52,
-            "movement": -15
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 78,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Tell Everybody",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 82,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 141,
-            "movement": -10
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 178,
-            "movement": -76
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Yaya",
@@ -2331,8 +2387,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 34,
-            "movement": -13
+            "position": 35,
+            "movement": -10
           }
         ]
       },
@@ -2367,8 +2423,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 63,
-            "movement": 0
+            "position": 64,
+            "movement": -4
           }
         ]
       }
@@ -2424,7 +2480,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
+            "position": 132,
             "movement": null,
             "status": "new"
           }
@@ -2715,8 +2771,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 94,
-            "movement": -20
+            "position": 98,
+            "movement": -23
           }
         ]
       }

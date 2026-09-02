@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-01";
+  export const liveChartsUpdated = "2026-09-02";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","iTunes"];
@@ -234,8 +234,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 71,
-            "movement": 1
+            "position": 74,
+            "movement": -3
           }
         ]
       }
@@ -341,8 +341,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 109,
-            "movement": 12
+            "position": 110,
+            "movement": 11
           }
         ]
       }
@@ -373,8 +373,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 146,
-            "movement": 12
+            "position": 147,
+            "movement": 11
           }
         ]
       }
@@ -392,9 +392,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 107,
-            "movement": null,
-            "status": "new"
+            "position": 131,
+            "movement": -109
           }
         ]
       },
@@ -414,6 +413,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Kana",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 23,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Way Back",
@@ -444,7 +463,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 36,
+            "position": 45,
             "movement": null,
             "status": "new"
           }
@@ -579,8 +598,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 103,
-            "movement": 12
+            "position": 104,
+            "movement": 11
           }
         ]
       }

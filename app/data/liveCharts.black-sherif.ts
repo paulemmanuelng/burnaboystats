@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-01";
+  export const liveChartsUpdated = "2026-09-02";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","YouTube","iTunes"];
@@ -138,14 +138,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": -83
+            "position": 122,
+            "movement": -107
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 147,
-            "movement": -20
+            "position": 151,
+            "movement": -23
           }
         ]
       },
@@ -204,8 +204,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 123,
-            "movement": -5
+            "position": 118,
+            "movement": 5
           }
         ]
       }
@@ -249,7 +249,7 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 98,
-            "movement": -11
+            "movement": -7
           }
         ]
       },
@@ -305,6 +305,37 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Fallen Angel",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 172,
+            "movement": 5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 6,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
   },
   {
     "title": "Jesus Christ 2",
@@ -680,6 +711,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "WOTOWOTO SEASONING",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 117,
+            "movement": 22
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
     "title": "Letter From Overseas",
     "platforms": [
       {
@@ -755,24 +804,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "WOTOWOTO SEASONING",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 139,
-            "movement": -17
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Lomo Lomo",
     "platforms": [
       {
@@ -784,24 +815,6 @@
             "name": "Ghana",
             "position": 166,
             "movement": -4
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
-    "title": "Fallen Angel",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 172,
-            "movement": 5
           }
         ]
       }

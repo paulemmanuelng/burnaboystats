@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-01";
+  export const liveChartsUpdated = "2026-09-02";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","YouTube","iTunes"];
@@ -51,8 +51,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 8,
-            "movement": 0
+            "position": 6,
+            "movement": 2
           },
           {
             "country": "BF",
@@ -63,14 +63,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 93,
+            "position": 97,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 103,
+            "position": 108,
             "movement": null,
             "status": "new"
           }
@@ -83,8 +83,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 135,
-            "movement": -2
+            "position": 130,
+            "movement": 5
           }
         ]
       },
@@ -134,21 +134,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": -7
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 43,
-            "movement": null,
-            "status": "re"
+            "position": 122,
+            "movement": -17
           }
         ]
       }
@@ -189,10 +176,11 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 99,
-            "movement": -11
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 26,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -237,6 +225,25 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BODY (danz)",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 42,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   }
 ];
   
