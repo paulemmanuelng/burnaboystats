@@ -124,6 +124,8 @@ const OWN_BREADCRUMB = [
   /^\/timeline$/,
   /^\/dai-dai$/,
   /^\/records\/awards$/,
+  // A car page's leaf is "Bugatti Chiron", which the slug cannot spell.
+  /^\/records\/cars\/[^/]+$/,
 ];
 
 /** True where the page emits its own trail and the site-wide one must not. */

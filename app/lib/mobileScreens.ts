@@ -52,16 +52,20 @@ export const BACK_BAR_ROUTES = new Set<string>([
  * NUMBERS-AND-STATES.md, "Tab bar vs action bar": the five-tab bar belongs to
  * screens 01–09, the top-level routes. Screens 10–27 are reached by a back
  * button, not lateral nav, so they get "an action bar or nothing" — and six of
- * them (awards, festivals, firsts, africa's biggest, cars, visualized) get
- * nothing, because the screen is already the full list and the bar had nowhere
- * to go. They still belong in this set: the tab bar hides either way.
+ * them (awards, festivals, firsts, africa's biggest, visualized) get nothing,
+ * because the screen is already the full list and the bar had nowhere to go.
+ * They still belong in this set: the tab bar hides either way. Cars left this
+ * set in September 2026 — see the note beside its old line.
  */
 export const ACTION_BAR_ROUTES = new Set<string>([
   "/certifications",
   "/records/charts",
   "/records/awards",
   "/records/firsts",
-  "/records/cars",
+  // NOT /records/cars: the September 2026 car-collection design (CARS-HANDOFF
+  // §5.1–5.2) draws the five-tab bar under both the tiled index and every car
+  // page, Records lit — a reader deep in the garage can still thumb straight to
+  // home, music or certifications. The car pages are matched by isCarPage.
   "/records/tours",
   "/records/tours/revenue",
   "/records/tours/festivals",
@@ -96,6 +100,12 @@ const isSongPage = (pathname: string) => pathname.startsWith("/music/");
 const isBoardPage = (pathname: string) => pathname.startsWith("/afrobeats/");
 
 /**
+ * A car page — /records/cars/<slug>. Its own back bar (back to the garage),
+ * and the five-tab bar at its foot like the index above it.
+ */
+const isCarPage = (pathname: string) => pathname.startsWith("/records/cars/");
+
+/**
  * Language editions inherit their parent screen's chrome.
  *
  * The sets above are exact-match, so /dai-dai/es did not count as /dai-dai and
@@ -110,6 +120,6 @@ const withoutLocale = (pathname: string) => {
 };
 
 export const hasOwnMobileChrome = (pathname: string) =>
-  BACK_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname) || isBoardPage(pathname);
+  BACK_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname) || isBoardPage(pathname) || isCarPage(pathname);
 export const hasOwnActionBar = (pathname: string) =>
   ACTION_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname);

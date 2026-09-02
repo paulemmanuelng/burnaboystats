@@ -654,6 +654,230 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Bugatti Chiron (Venuum Widebody)",
+    "path": "/records/cars/bugatti-chiron",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "bugatti",
+      "bugatti",
+      "chiron",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ferrari 328 GTS",
+    "path": "/records/cars/ferrari-328-gts",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "ferrari",
+      "ferrari",
+      "328",
+      "gts",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ferrari 812 GTS",
+    "path": "/records/cars/ferrari-812-gts",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "ferrari",
+      "ferrari",
+      "812",
+      "gts",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ferrari Purosangue",
+    "path": "/records/cars/ferrari-purosangue",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "ferrari",
+      "ferrari",
+      "purosangue",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ferrari SF90 Spider",
+    "path": "/records/cars/ferrari-sf90-spider",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "ferrari",
+      "ferrari",
+      "sf90",
+      "spider",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Ferrari Testarossa",
+    "path": "/records/cars/ferrari-testarossa",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "ferrari",
+      "ferrari",
+      "testarossa",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Lamborghini Aventador SVJ Roadster",
+    "path": "/records/cars/lamborghini-aventador-svj-roadster",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "lamborghini",
+      "lamborghini",
+      "aventador",
+      "svj",
+      "roadster",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Lamborghini Revuelto",
+    "path": "/records/cars/lamborghini-revuelto",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "lamborghini",
+      "lamborghini",
+      "revuelto",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Lamborghini Urus (Novitec Edition)",
+    "path": "/records/cars/lamborghini-urus",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "lamborghini",
+      "lamborghini",
+      "urus",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "McLaren Senna (MSO Carbon Edition)",
+    "path": "/records/cars/mclaren-senna",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "mclaren",
+      "mclaren",
+      "senna",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Mercedes-Maybach GLS 600",
+    "path": "/records/cars/mercedes-maybach-gls-600",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "mercedes-maybach",
+      "mercedes",
+      "maybach",
+      "gls",
+      "600",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Mercedes-Maybach S680 4MATIC",
+    "path": "/records/cars/mercedes-maybach-s680",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "mercedes-maybach",
+      "mercedes",
+      "maybach",
+      "s680",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Porsche 911 GT3 RS (Weissach)",
+    "path": "/records/cars/porsche-911-gt3-rs",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "porsche",
+      "porsche",
+      "911",
+      "gt3",
+      "rs",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rolls-Royce Cullinan Black Badge",
+    "path": "/records/cars/rolls-royce-cullinan-black-badge",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "rolls-royce",
+      "rolls",
+      "royce",
+      "cullinan",
+      "black",
+      "badge",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rolls-Royce Dawn",
+    "path": "/records/cars/rolls-royce-dawn",
+    "section": "Car",
+    "description": "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+    "keywords": [
+      "rolls-royce",
+      "rolls",
+      "royce",
+      "dawn",
+      "car",
+      "garage"
+    ],
+    "generated": true
+  },
+  {
     "title": "Argentina",
     "path": "/records/charts",
     "section": "Country",

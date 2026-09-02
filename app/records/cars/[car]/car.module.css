@@ -1,0 +1,600 @@
+/* Car page — designs/desktop/Records - Car Page.dc.html (≥1200) and
+   designs/mobile/Cars - Mobile.dc.html (phone). CARS-HANDOFF.md §4.2, §4.3,
+   §5.2; values verbatim.
+
+   One DOM, three layouts. The stage is a grid with named areas at desktop and
+   tablet, and a flex column on the phone where each block takes the §5.2
+   order. The below-stage wrapper goes display:contents under 1200px so its
+   two children can be placed independently.
+
+   The site's mobile chrome switches at 900px, not the design's 768: the nav
+   hides for this route's back bar at 900, so the page has to change with it
+   or an 800px viewport would have neither. Tablet is therefore 901–1199. */
+
+.crumbs {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 40px 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.crumbs a { color: var(--text-muted); display: inline-flex; align-items: center; min-height: 24px; }
+.crumbs a:hover { color: var(--gold); }
+.crumbCurrent { color: var(--text); }
+
+/* Phone-only chrome, declared before the mobile block so its display wins. */
+.mobileBackBar,
+.statCells,
+.ring { display: none; }
+.desktopOnly { display: block; }
+
+/* ── The stage ──────────────────────────────────────────────────────────── */
+.stage {
+  position: relative;
+  isolation: isolate;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 22px 40px 0;
+  display: grid;
+  grid-template-columns: 318px 1fr 318px;
+  grid-template-rows: auto 1fr auto auto auto;
+  grid-template-areas:
+    "headline hero specs"
+    ". hero ."
+    "livery hero performance"
+    "below below below"
+    "nav nav nav";
+  column-gap: 22px;
+}
+/* Absolutely placed into rows 1–3 across all three columns: the grid area is
+   its containing block, so it sits exactly under the composition. */
+.floor {
+  grid-area: 1 / 1 / 4 / 4;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Headline — top-left */
+.headline { grid-area: headline; padding-top: 26px; }
+.h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 54px;
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.make, .model { display: block; }
+.make { color: var(--text); }
+.subtitle {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 14px 0 0;
+  max-width: 300px;
+}
+.valueBox {
+  margin-top: 22px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  background: rgba(12, 10, 9, 0.72);
+}
+.valueUsd {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.valueNaira {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Hero — centre, all three rows. Its min-height is what gives the stage its
+   632px: the figure spans rows 1–3, so those rows sum to at least that. */
+.hero {
+  grid-area: hero;
+  position: relative;
+  isolation: isolate;
+  min-height: 632px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 8px 0 10px;
+}
+.heroImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.55));
+  /* The hero is an opaque JPEG on a near-black ground, and the floor's amber
+     glow sits behind it — so its rectangle showed as a darker slab over the
+     ring. Fading the outer edges to transparent lets the glow through at the
+     border; the car itself is well inside it. Page-side only: the file is
+     untouched. */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent),
+    linear-gradient(to bottom, transparent, #000 12%, #000 86%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent),
+    linear-gradient(to bottom, transparent, #000 12%, #000 86%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  /* And the ground itself: screened, near-black becomes the backdrop and the
+     lit car stays the car, so the glow reads through the whole slab, not just
+     its faded edges. */
+  mix-blend-mode: screen;
+}
+.caption {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.captionRule { width: 18px; height: 1px; background: var(--rule); display: block; }
+
+/* Cards — specifications (top-right) and performance (bottom-right) */
+.specs { grid-area: specs; padding-top: 26px; }
+.performance { grid-area: performance; padding-bottom: 8px; align-self: end; }
+.card {
+  border: 1px solid var(--border);
+  background: rgba(21, 18, 16, 0.86);
+  backdrop-filter: blur(6px);
+}
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.cardTitle {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--text);
+}
+.baseTag {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid rgba(255, 182, 39, 0.45);
+  color: var(--gold);
+  white-space: nowrap;
+}
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+}
+.specKey {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: none;
+}
+.specVal { text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
+/* The six rows, until a person has read them off the manufacturer's sheet. */
+.pendingRow {
+  margin: 0;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+}
+.specSource {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.specSource:hover { color: var(--gold-bright); }
+
+.perfCard { padding: 14px 16px 12px; }
+.perfHead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.perfBasis {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.bars { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+.bar {
+  display: grid;
+  grid-template-columns: 96px 1fr 62px;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+}
+.barKey { letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.barTrack { height: 6px; background: rgba(245, 240, 232, 0.08); overflow: hidden; display: block; }
+/* The site's gold ramp, laid along the bar. */
+.barFill { display: block; height: 6px; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); }
+.barVal { text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
+.barPending { color: var(--dim); }
+.perfNote {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  color: var(--dim);
+  margin: 12px 0 0;
+}
+
+/* Livery — bottom-left. Decorative: the swatches are aria-hidden. */
+.livery { grid-area: livery; padding-bottom: 8px; align-self: end; }
+.liveryHead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.liveryMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+}
+.swatches { display: flex; gap: 10px; margin-top: 12px; }
+.swatch {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 240, 232, 0.22);
+  box-shadow: inset 0 0 0 3px var(--bg);
+  display: block;
+}
+
+/* ── Below the stage: provenance + source ───────────────────────────────── */
+.below {
+  grid-area: below;
+  display: grid;
+  grid-template-columns: 1fr 318px;
+  gap: 22px;
+  align-items: stretch;
+  border-top: 1px solid var(--rule);
+  padding-top: 22px;
+  margin-top: 18px;
+}
+.provKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.provText {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #cfc7bb;
+  margin: 10px 0 0;
+  max-width: 78ch;
+  text-wrap: pretty;
+}
+.provMeta {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.provRank { color: var(--text); font-weight: 500; }
+
+.source {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid var(--gold);
+  background: rgba(255, 182, 39, 0.06);
+  color: var(--text);
+  transition: background var(--dur-fast) var(--ease);
+}
+a.source:hover { background: rgba(255, 182, 39, 0.14); }
+.sourceNone { border-color: var(--border); background: transparent; }
+.sourceText { display: flex; flex-direction: column; gap: 5px; }
+.sourceKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.sourceKickerNone { color: var(--text-muted); }
+.sourceLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.sourceArrow {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 16px;
+  flex: none;
+}
+.sourceArrowNone { border-color: var(--border); color: var(--text-muted); }
+
+/* ── Previous / next ────────────────────────────────────────────────────── */
+.garageNav {
+  grid-area: nav;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin: 30px 0 44px;
+}
+.navCell {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 64px;
+  padding: 10px 14px;
+  background: var(--bg);
+  color: var(--text);
+  min-width: 0;
+}
+.navCell:hover .navName { color: var(--gold); }
+.navNext { justify-content: flex-end; text-align: right; }
+.navNext .navText { align-items: flex-end; }
+.navNext .navThumb { order: 2; }
+.navThumb {
+  width: 84px;
+  height: 52px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  flex: none;
+}
+.navText { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.navRank {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.navName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: uppercase;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* ── Tablet, 901–1199 (§4.3) ────────────────────────────────────────────── */
+@media (max-width: 1199px) {
+  .crumbs { padding-inline: 32px; }
+  .stage {
+    padding: 22px 32px 0;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "headline headline"
+      "hero hero"
+      "specs performance"
+      "livery livery"
+      "provenance provenance"
+      "source source"
+      "nav nav";
+  }
+  .floor { display: none; }
+  .ring {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .hero { min-height: 0; padding: 18px 0 10px; }
+  .specs { padding-top: 22px; }
+  .performance, .livery { align-self: start; padding-bottom: 0; }
+  .livery { padding-top: 22px; }
+  .below { display: contents; }
+  .provenance { grid-area: provenance; padding-top: 22px; }
+  .source { grid-area: source; margin-top: 18px; }
+  .garageNav { margin-top: 26px; }
+}
+
+/* ── Phone, ≤900 (§5.2, in order) ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .crumbs { display: none; }
+  .desktopOnly { display: none; }
+
+  .mobileBackBar {
+    position: sticky;
+    top: 0;
+    z-index: 45;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+    padding-left: calc(18px + env(safe-area-inset-left, 0px));
+    padding-right: calc(18px + env(safe-area-inset-right, 0px));
+    background: rgba(12, 10, 9, 0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .mobileBackBtn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    color: var(--text);
+    flex: none;
+  }
+  .mobileBackLabel {
+    flex: 1;
+    min-width: 0;
+    font-family: var(--font-mono), monospace;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .mobileBackRank {
+    font-family: var(--font-mono), monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    flex: none;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  .floor { display: none; }
+
+  .headline { order: 1; padding: 22px 18px 0; }
+  .h1 { font-size: 36px; }
+  .subtitle { font-size: 10.5px; margin-top: 12px; max-width: none; }
+  .valueBox { display: none; }
+
+  .hero { order: 2; margin-top: 14px; padding: 6px 0 0; min-height: 0; gap: 4px; }
+  .ring {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .heroImg { max-width: none; filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.55)); }
+  .caption { justify-content: center; }
+  .captionRule { display: none; }
+  .caption::before, .caption::after { content: "— "; }
+  .caption::after { content: " —"; }
+
+  .statCells {
+    order: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin: 18px 18px 0;
+  }
+  .statCell { background: var(--bg); padding: 14px; }
+  .statValue {
+    font-family: var(--font-anton), sans-serif;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .statGold { color: var(--gold); }
+  .statOf { font-size: 15px; color: var(--text-muted); }
+  .statLabel {
+    margin-top: 6px;
+    font-family: var(--font-mono), monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .below { display: contents; }
+  .provenance { order: 4; padding: 20px 18px 0; }
+  .provText { font-size: 14px; line-height: 1.65; margin-top: 8px; }
+  .provMeta { margin-top: 10px; gap: 12px; }
+
+  .specs { order: 5; margin: 22px 18px 0; padding-top: 0; }
+  .card { background: var(--bg-soft); backdrop-filter: none; }
+  .cardHead { padding: 12px 14px; }
+  .specRow { padding: 10px 14px; }
+  .pendingRow { padding: 14px; }
+  .specSource { padding: 0 14px; }
+
+  .performance { order: 6; margin: 14px 18px 0; padding-bottom: 0; }
+  .perfCard { padding: 14px 14px 12px; }
+  .bar { grid-template-columns: 92px 1fr 64px; }
+  .barKey { letter-spacing: 0.08em; }
+
+  .livery { order: 7; padding: 20px 18px 0; }
+  .swatches { margin-top: 10px; }
+
+  .source { order: 8; margin: 20px 18px 0; min-height: 64px; padding: 14px 16px; }
+
+  .garageNav { order: 9; margin: 24px 0 0; }
+  .navCell { gap: 10px; }
+  .navThumb { width: 56px; height: 36px; }
+  .navRank { font-size: 10px; letter-spacing: 0.1em; }
+  .navName { font-size: 13px; line-height: 1.05; }
+}

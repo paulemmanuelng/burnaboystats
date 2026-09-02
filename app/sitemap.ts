@@ -5,6 +5,7 @@ import { songs } from "./data/songs";
 import { albumPages } from "./data/albumPages";
 import { afrobeatsArtists } from "./data/afrobeats";
 import { LIVE_BOARDS } from "./data/liveBoards";
+import { carSlugs } from "./data/cars";
 
 // lastmod is derived from the real content log (updates.ts), NOT the build time.
 // A sitemap where every URL always reads "modified now" on each deploy trains
@@ -74,6 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/records/tours/festivals", priority: 0.6, changeFrequency: "monthly" },
     { path: "/records/tours/revenue", priority: 0.6, changeFrequency: "monthly" },
     { path: "/records/cars", priority: 0.6, changeFrequency: "monthly" },
+    ...carSlugs.map((slug) => ({ path: `/records/cars/${slug}`, priority: 0.5, changeFrequency: "monthly" as const })),
     { path: "/records/tours/map", priority: 0.6, changeFrequency: "monthly" },
     { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
     { path: "/api", priority: 0.7, changeFrequency: "monthly" },

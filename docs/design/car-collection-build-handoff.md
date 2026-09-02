@@ -510,10 +510,13 @@ Never letterbox the design to preserve its proportions on a phone.
 - Budget: the index's images ≤ 400 KB total on first paint; a detail hero ≤ 120 KB.
 - Note the known trap recorded for this repo: **a hidden eager `<img>` is still fetched** even when CSS hides it. If any two-layout treatment is used, gate the eager image behind `<source media>`.
 
-**Content log**
-
-This is a real content change, so it needs an entry in `app/data/updates.ts`
-when it ships — describing the new car pages, not the engineering.
+**Content log — no entry.** An earlier draft of this section asked for an
+`app/data/updates.ts` entry. That file's own header rules it out: the log is
+Burna Boy news only, and *"never log site/dev changes here (new filters, new
+pages, SEO tweaks)"*. Fifteen car pages add no new fact about him — the values,
+descriptions and sources are the ones already published. If a specification is
+verified or an identity question (§5.6) is resolved, *that* is a fact and gets
+an entry; the pages themselves do not.
 
 ---
 

@@ -245,3 +245,120 @@
   .formerRow { grid-template-columns: 1fr; }
   .formerRow .priceCol { text-align: left; }
 }
+
+/* ══ The garage as tiles — designs/desktop/Records - Cars v2.dc.html ══
+   CARS-HANDOFF.md §4.1, values verbatim. Only the list changed: hero, count
+   strip, tally and the note are the shipped page. */
+.garageWrap { max-width: 1240px; margin: 0 auto; padding: 40px 40px 0; }
+.garageHead {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  padding-bottom: 14px; border-bottom: 1px solid var(--rule);
+}
+.garageMeta {
+  font-family: var(--font-mono), monospace; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+}
+/* Three columns inside the 1240 measure; two from ~900px, by auto-fill. */
+.tiles {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px; margin-top: 22px;
+}
+/* One <a> per tile. */
+.tile {
+  display: flex; flex-direction: column;
+  border: 1px solid var(--line); background: var(--bg-soft); color: var(--text);
+  outline-offset: 3px;
+  transition: border-color 0.2s var(--ease);
+}
+.tile:hover, .tile:focus-visible { border-color: var(--gold); }
+/* The most expensive car leads — a gold-tinted border, gold rank and value. */
+.tileLead { border-color: rgba(255, 182, 39, 0.55); }
+.tileImg {
+  position: relative; display: block;
+  aspect-ratio: 16 / 10; overflow: hidden; background: #0a0908;
+}
+.tilePic { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (prefers-reduced-motion: no-preference) {
+  .tilePic { transition: transform 0.35s ease; }
+  .tile:hover .tilePic, .tile:focus-visible .tilePic { transform: scale(1.03); }
+}
+.tileBadge {
+  position: absolute; left: 12px; bottom: 10px;
+  font-family: var(--font-mono), monospace; font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.55); background: rgba(12, 10, 9, 0.6);
+  padding: 3px 7px;
+}
+.tileMeta {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 14px 16px 16px; border-top: 1px solid var(--line);
+}
+.tileRow { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.tileRank {
+  font-family: var(--font-mono), monospace; font-weight: 700;
+  font-size: 11px; letter-spacing: 0.14em; color: var(--dim);
+}
+.tileLead .tileRank { color: var(--gold); }
+.tileMake {
+  font-family: var(--font-mono), monospace; font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
+}
+.tileModel {
+  font-family: var(--font-anton), sans-serif; font-weight: 400; /* Anton has no bold cut */
+  font-size: 21px; line-height: 1.05; text-transform: uppercase; color: var(--text);
+}
+/* A model string past 22 characters steps down a size rather than wrapping. */
+.tileModelLong { font-size: 19px; }
+.tileValue {
+  font-family: var(--font-mono), monospace; font-size: 11.5px;
+  color: var(--gold); font-variant-numeric: tabular-nums; margin-top: 2px;
+}
+.tileLead .tileValue { color: var(--gold-bright); }
+.tileNaira { color: var(--dim); }
+
+/* The not-counted intro now opens with the sentence that explains the missing
+   pictures; the section otherwise keeps the shipped treatment. */
+.formerWrap { padding-top: 52px; }
+.formerLead { color: var(--text); font-weight: 600; }
+/* Sold reads amber per the v2 design — the status is a fact, not a warning. */
+.tagSold { border: 1px solid rgba(245, 137, 11, 0.5); background: rgba(245, 137, 11, 0.1); color: #f5890b; }
+
+@media (max-width: 1239px) {
+  .garageWrap { padding-inline: 32px; }
+}
+
+/* ── Screen 18's own section after the list (mobile only — the deep-page
+   shell that holds it is display:none above 900px) ──────────────────── */
+.mFormer { padding: 26px 18px 0; }
+.mFormerTitle {
+  font-family: var(--font-anton), sans-serif; font-weight: 400;
+  font-size: 22px; line-height: 1; letter-spacing: 0.01em;
+  text-transform: uppercase; color: var(--gold); margin: 0;
+}
+.mFormerNote { font-size: 12.5px; line-height: 1.55; color: var(--text-muted); margin: 8px 0 0; }
+.mFormerLead { color: var(--text); font-weight: 600; }
+.mFormerList { border-top: 1px solid var(--line); margin-top: 12px; }
+.mFormerRow {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid var(--line); opacity: 0.75;
+}
+.mFormerMain { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.mFormerTag {
+  font-family: var(--font-mono), monospace; font-size: 10.5px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+}
+.mFormerSold { color: #f5890b; }
+.mFormerName {
+  font-family: var(--font-anton), sans-serif; font-weight: 400;
+  font-size: 16px; line-height: 1.05; text-transform: uppercase;
+}
+.mFormerValue {
+  font-family: var(--font-mono), monospace; font-size: 11.5px;
+  color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.mNote {
+  margin: 20px 18px 0; padding: 14px 16px;
+  border: 1px solid rgba(255, 182, 39, 0.35); background: rgba(255, 182, 39, 0.05);
+}
+.mNoteText { font-size: 12px; color: var(--text-muted); line-height: 1.55; margin: 0; }
