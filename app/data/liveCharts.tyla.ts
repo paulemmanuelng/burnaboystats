@@ -165,12 +165,6 @@
             "movement": -38
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 92,
-            "movement": 18
-          },
-          {
             "country": "BH",
             "name": "Bahrain",
             "position": 95,
@@ -202,6 +196,12 @@
             "movement": 26
           },
           {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 122,
+            "movement": -18
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 122,
@@ -227,6 +227,12 @@
             "status": "new"
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 127,
+            "movement": 25
+          },
+          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 131,
@@ -243,12 +249,6 @@
             "name": "Seychelles",
             "position": 139,
             "movement": -5
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 144,
-            "movement": -10
           },
           {
             "country": "KW",
@@ -276,16 +276,16 @@
             "movement": -25
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 158,
-            "movement": 4
-          },
-          {
             "country": "BG",
             "name": "Bulgaria",
             "position": 163,
             "movement": -26
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 165,
+            "movement": 5
           },
           {
             "country": "SN",
@@ -306,6 +306,19 @@
             "name": "Mauritius",
             "position": 180,
             "movement": -44
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 56,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -400,6 +413,19 @@
             "movement": -9
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 54,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -469,8 +495,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 118,
-            "movement": 4
+            "position": 112,
+            "movement": 6
           }
         ]
       },
@@ -483,79 +509,6 @@
             "name": "South Africa",
             "position": 82,
             "movement": 5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "SHE DID IT AGAIN",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 48,
-            "movement": -2
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 136,
-            "movement": -15
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 148,
-            "movement": -3
-          },
-          {
-            "country": "HR",
-            "name": "Croatia",
-            "position": 191,
-            "movement": -67
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 129,
-            "movement": 29
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 137,
-            "movement": -2
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 177,
-            "movement": -28
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 67,
-            "movement": -6
           }
         ]
       }
@@ -636,6 +589,73 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "SHE DID IT AGAIN",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 129,
+            "movement": 29
+          },
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 137,
+            "movement": -2
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 177,
+            "movement": -28
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 48,
+            "movement": 0
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 124,
+            "movement": 24
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 136,
+            "movement": -15
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 67,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Water",
     "platforms": [
       {
@@ -670,7 +690,7 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 48,
+            "position": 49,
             "movement": -5
           }
         ]
@@ -678,6 +698,44 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "IS IT LOVE",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 103,
+            "movement": 25
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 148,
+            "movement": -81
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FAIRYTALE",
@@ -711,31 +769,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "IS IT LOVE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 103,
-            "movement": 25
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 148,
-            "movement": -81
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "PUSH 2 START",
     "platforms": [
       {
@@ -750,42 +783,29 @@
             "status": "new"
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MT",
-            "name": "Malta",
-            "position": 97,
-            "movement": -19
-          }
-        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "DOUBLE BLIND",
+    "title": "Game Time",
     "platforms": [
       {
-        "platform": "Deezer",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 62,
+            "country": "TT",
+            "name": "Trinidad and Tobago",
+            "position": 7,
             "movement": null,
             "status": "new"
           }
         ]
       }
     ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+    "kind": "song"
   },
   {
     "title": "Talk to Me",
@@ -797,8 +817,8 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 89,
-            "movement": 7
+            "position": 86,
+            "movement": 3
           }
         ]
       }
@@ -816,7 +836,7 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 61,
+            "position": 62,
             "movement": -5
           }
         ]
@@ -835,8 +855,8 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 62,
-            "movement": -7
+            "position": 64,
+            "movement": -9
           }
         ]
       }
@@ -863,6 +883,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "DOUBLE BLIND",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 62,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   }
 ];
   

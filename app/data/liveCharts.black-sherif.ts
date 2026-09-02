@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-09-02";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -138,14 +138,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 154,
-            "movement": -21
+            "position": 155,
+            "movement": -15
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 162,
-            "movement": -144
+            "position": 176,
+            "movement": -146
           }
         ]
       },
@@ -156,8 +156,20 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 91,
-            "movement": -2
+            "position": 99,
+            "movement": -8
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 94,
+            "movement": -22
           }
         ]
       }
@@ -204,8 +216,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 118,
-            "movement": 5
+            "position": 113,
+            "movement": 10
           }
         ]
       }
@@ -316,7 +328,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 7,
+            "position": 9,
             "movement": null,
             "status": "new"
           }
@@ -347,8 +359,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 146,
-            "movement": 21
+            "position": 112,
+            "movement": 34
           }
         ]
       }
