@@ -267,14 +267,21 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 175,
-            "movement": -23
+            "position": 170,
+            "movement": -22
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 188,
             "movement": -27
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 195,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -534,42 +541,35 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "CO",
+            "name": "Colombia",
+            "position": 9,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "MU",
             "name": "Mauritius",
             "position": 12,
-            "movement": -10
+            "movement": -9
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 13,
-            "movement": -8
+            "movement": -7
           },
           {
             "country": "MT",
             "name": "Malta",
-            "position": 85,
-            "movement": -16
+            "position": 93,
+            "movement": -19
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 123,
-            "movement": -23
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 176,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 197,
-            "movement": null,
-            "status": "new"
+            "position": 126,
+            "movement": -21
           }
         ]
       },
@@ -750,8 +750,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 66,
-            "movement": -5
+            "position": 65,
+            "movement": -4
           },
           {
             "country": "MZ",
@@ -779,16 +779,16 @@
             "movement": -71
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 85,
+            "movement": -5
+          },
+          {
             "country": "ML",
             "name": "Mali",
             "position": 86,
             "movement": 17
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 88,
-            "movement": -11
           },
           {
             "country": "JM",
@@ -809,22 +809,22 @@
             "movement": -55
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 122,
+            "movement": -1
+          },
+          {
             "country": "MG",
             "name": "Madagascar",
             "position": 123,
             "movement": 77
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 131,
-            "movement": 4
-          },
-          {
             "country": "FR",
             "name": "France",
-            "position": 153,
-            "movement": -3
+            "position": 147,
+            "movement": 8
           },
           {
             "country": "BW",
@@ -853,14 +853,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 9,
-            "movement": -2
+            "position": 10,
+            "movement": -3
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 52,
-            "movement": -10
+            "position": 54,
+            "movement": -6
           }
         ]
       }
@@ -1043,8 +1043,8 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 54,
-            "movement": -2
+            "position": 58,
+            "movement": -5
           }
         ]
       }
@@ -1127,81 +1127,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9929af7c4e10861ff55d4cb54ef96c28/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "2FRESH",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 73,
-            "movement": -8
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 79,
-            "movement": -21
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 132,
-            "movement": 41
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 195,
-            "movement": 3
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 147,
-            "movement": -3
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 163,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 91,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/720a729019b9a6c8873652d993302775/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "STARLIFE",
     "platforms": [
       {
@@ -1247,8 +1172,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 36,
-            "movement": -9
+            "position": 47,
+            "movement": -20
           }
         ]
       },
@@ -1268,6 +1193,68 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "2FRESH",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 73,
+            "movement": -8
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 79,
+            "movement": -21
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 132,
+            "movement": 41
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 195,
+            "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 147,
+            "movement": -3
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 91,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/720a729019b9a6c8873652d993302775/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TWIN",
@@ -1344,19 +1331,6 @@
             "name": "Nigeria",
             "position": 157,
             "movement": -15
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 151,
-            "movement": null,
-            "status": "new"
           }
         ]
       },

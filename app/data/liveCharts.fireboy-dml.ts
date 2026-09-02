@@ -380,18 +380,6 @@
             "status": "new"
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 98,
-            "movement": -7
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -598,8 +586,8 @@
           {
             "country": "MT",
             "name": "Malta",
-            "position": 66,
-            "movement": -16
+            "position": 74,
+            "movement": -19
           }
         ]
       }

@@ -51,26 +51,26 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 6,
-            "movement": 2
+            "position": 8,
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 54,
-            "movement": -1
+            "position": 85,
+            "movement": -32
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 97,
+            "position": 100,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 108,
+            "position": 114,
             "movement": null,
             "status": "new"
           }
@@ -178,7 +178,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 26,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -217,8 +217,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 60,
-            "movement": 0
+            "position": 56,
+            "movement": 4
           }
         ]
       }

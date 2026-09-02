@@ -167,8 +167,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 94,
-            "movement": -4
+            "position": 92,
+            "movement": 18
           },
           {
             "country": "BH",
@@ -245,6 +245,12 @@
             "movement": -5
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 144,
+            "movement": -10
+          },
+          {
             "country": "KW",
             "name": "Kuwait",
             "position": 148,
@@ -258,12 +264,6 @@
             "movement": -11
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 154,
-            "movement": -17
-          },
-          {
             "country": "PH",
             "name": "Philippines",
             "position": 155,
@@ -274,6 +274,12 @@
             "name": "Suriname",
             "position": 156,
             "movement": -25
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 158,
+            "movement": 4
           },
           {
             "country": "BG",
@@ -300,12 +306,6 @@
             "name": "Mauritius",
             "position": 180,
             "movement": -44
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 197,
-            "movement": -13
           }
         ]
       }
@@ -555,7 +555,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 67,
-            "movement": -7
+            "movement": -6
           }
         ]
       }
@@ -626,8 +626,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 18,
-            "movement": -10
+            "position": 96,
+            "movement": -80
           }
         ]
       }
@@ -670,8 +670,8 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 44,
-            "movement": -2
+            "position": 48,
+            "movement": -5
           }
         ]
       }
@@ -758,8 +758,8 @@
           {
             "country": "MT",
             "name": "Malta",
-            "position": 89,
-            "movement": -16
+            "position": 97,
+            "movement": -19
           }
         ]
       }
@@ -816,8 +816,8 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 57,
-            "movement": -2
+            "position": 61,
+            "movement": -5
           }
         ]
       }
@@ -835,8 +835,8 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 58,
-            "movement": -6
+            "position": 62,
+            "movement": -7
           }
         ]
       }
