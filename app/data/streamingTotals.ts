@@ -19,7 +19,7 @@
 // tracked total, re-measure the offset in scripts/watched-metrics.json rather
 // than editing this string. A 22M drift on 10.6B is only 0.2%, well under the
 // metric's 3% threshold, so the bot will never self-correct it.
-export const spotifyTotalStreams = "10.92B";
+export const spotifyTotalStreams = "10.94B";
 
 // The same daily figure, unrounded.
 //
@@ -29,7 +29,7 @@ export const spotifyTotalStreams = "10.92B";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "10,919,098,419";
+export const spotifyTotalStreamsExact = "10,937,566,331";
 
 // Every Burna Boy video on YouTube, across his channel and others'. He leads
 // all Nigerian artists on this measure — 344 videos to 4.03 billion views,

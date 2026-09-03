@@ -309,8 +309,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 52,
-            "movement": -4
+            "position": 46,
+            "movement": 6
           }
         ]
       }
@@ -523,8 +523,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
-            "movement": -94
+            "position": 109,
+            "movement": -104
           }
         ]
       },
@@ -572,8 +572,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 124,
-            "movement": 9
+            "position": 97,
+            "movement": 27
           }
         ]
       }
@@ -763,8 +763,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 148,
-            "movement": 2
+            "position": 145,
+            "movement": 3
           }
         ]
       }
@@ -937,8 +937,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 106,
-            "movement": 1
+            "position": 134,
+            "movement": -28
           }
         ]
       }
@@ -1036,8 +1036,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 57,
-            "movement": -2
+            "position": 55,
+            "movement": 2
           }
         ]
       },
@@ -1124,9 +1124,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 73,
-            "movement": null,
-            "status": "new"
+            "position": 121,
+            "movement": -48
           }
         ]
       }
@@ -1176,7 +1175,7 @@
             "country": "FR",
             "name": "France",
             "position": 67,
-            "movement": 4
+            "movement": 3
           },
           {
             "country": "BE",
@@ -1200,8 +1199,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": -7
+            "position": 103,
+            "movement": 7
           }
         ]
       },
@@ -1279,37 +1278,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "reason",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 160,
-            "movement": 25
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 169,
-            "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "HOLY GHOST",
@@ -1412,7 +1380,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
+            "position": 35,
             "movement": null,
             "status": "new"
           }
@@ -1432,8 +1400,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 180,
-            "movement": 19
+            "position": 181,
+            "movement": -1
           }
         ]
       }
@@ -1451,8 +1419,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 185,
-            "movement": -11
+            "position": 186,
+            "movement": -1
           }
         ]
       }
@@ -1518,6 +1486,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f31fc975fcb1a6ea4130d536558ecd96/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "reason",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 169,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
   }
 ];
   

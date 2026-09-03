@@ -269,7 +269,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 28,
+            "position": 36,
             "movement": null,
             "status": "new"
           }
@@ -362,7 +362,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 2,
+            "position": 3,
             "movement": null,
             "status": "new"
           }
@@ -406,13 +406,13 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 11,
-            "movement": -10
+            "position": 12,
+            "movement": -11
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 33,
+            "position": 48,
             "movement": null,
             "status": "new"
           },
@@ -498,8 +498,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 85,
-            "movement": 9
+            "position": 83,
+            "movement": 2
           }
         ]
       },
@@ -652,13 +652,13 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 73,
-            "movement": -17
+            "position": 74,
+            "movement": -15
           },
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 129,
+            "position": 140,
             "movement": null,
             "status": "new"
           }
@@ -759,8 +759,8 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 74,
-            "movement": -6
+            "position": 77,
+            "movement": -9
           }
         ]
       }
@@ -778,8 +778,8 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 86,
-            "movement": -17
+            "position": 87,
+            "movement": -15
           }
         ]
       }
@@ -797,8 +797,8 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 189,
-            "movement": -144
+            "position": 190,
+            "movement": -145
           }
         ]
       }
@@ -816,8 +816,8 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 140,
-            "movement": -84
+            "position": 162,
+            "movement": -86
           }
         ]
       }

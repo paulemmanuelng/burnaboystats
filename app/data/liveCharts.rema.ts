@@ -283,14 +283,14 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 80,
-            "movement": 8
+            "position": 76,
+            "movement": 4
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 175,
-            "movement": 9
+            "position": 138,
+            "movement": 37
           }
         ]
       },
@@ -479,8 +479,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": 3
+            "position": 6,
+            "movement": 1
           }
         ]
       },
@@ -1016,8 +1016,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 200,
-            "movement": -12
+            "position": 190,
+            "movement": 10
           }
         ]
       },
@@ -1228,8 +1228,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 2,
-            "movement": 0
+            "position": 3,
+            "movement": -1
           },
           {
             "country": "GH",
@@ -1246,8 +1246,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 170,
-            "movement": 18
+            "position": 155,
+            "movement": 15
           }
         ]
       }
@@ -1296,8 +1296,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
-            "movement": -21
+            "position": 130,
+            "movement": 11
           }
         ]
       },
@@ -1308,8 +1308,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 155,
-            "movement": -11
+            "position": 157,
+            "movement": -13
           }
         ]
       }
@@ -1390,8 +1390,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 47,
-            "movement": 0
+            "position": 44,
+            "movement": 3
           }
         ]
       },
@@ -1475,6 +1475,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Goals",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "HN",
+            "name": "Honduras",
+            "position": 108,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Mara",
     "platforms": [
       {
@@ -1551,6 +1571,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Fi Kan We Kan",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 179,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Commando - EP",

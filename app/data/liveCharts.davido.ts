@@ -247,8 +247,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 93,
-            "movement": -25
+            "position": 97,
+            "movement": -20
           }
         ]
       }
@@ -436,8 +436,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
-            "movement": -3
+            "position": 12,
+            "movement": -4
           }
         ]
       },
@@ -674,8 +674,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
-            "movement": 7
+            "position": 32,
+            "movement": -1
           }
         ]
       }
@@ -816,7 +816,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 16,
-            "movement": 1
+            "movement": 0
           }
         ]
       },
@@ -1053,8 +1053,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
-            "movement": -94
+            "position": 109,
+            "movement": -104
           }
         ]
       },
@@ -1102,8 +1102,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 124,
-            "movement": 9
+            "position": 97,
+            "movement": 27
           }
         ]
       }
@@ -1205,8 +1205,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
-            "movement": 0
+            "position": 30,
+            "movement": -1
           }
         ]
       },
@@ -1445,8 +1445,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
-            "movement": -1
+            "position": 66,
+            "movement": 4
           }
         ]
       },
@@ -1619,8 +1619,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 183,
-            "movement": -9
+            "position": 186,
+            "movement": -17
           }
         ]
       }
@@ -1944,8 +1944,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
-            "movement": 5
+            "position": 71,
+            "movement": 12
           }
         ]
       },
@@ -2075,8 +2075,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 55,
-            "movement": -10
+            "position": 56,
+            "movement": -11
           },
           {
             "country": "BF",
@@ -2112,13 +2112,13 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 58,
-            "movement": -10
+            "position": 59,
+            "movement": -11
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 66,
+            "position": 68,
             "movement": null,
             "status": "new"
           },
@@ -2197,7 +2197,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 23,
+            "position": 25,
             "movement": null,
             "status": "new"
           }
@@ -2364,6 +2364,57 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/594be4990d2be6af325a4a0825960a9a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "On The Road",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 197,
+            "movement": -30
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 198,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 191,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 52,
+            "movement": -21
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "The Best",
     "platforms": [
       {
@@ -2393,44 +2444,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "On The Road",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 197,
-            "movement": -30
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 198,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 52,
-            "movement": -21
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Spend Dat",
@@ -2497,8 +2510,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 42,
-            "movement": -1
+            "position": 44,
+            "movement": -3
           }
         ]
       }
@@ -2553,8 +2566,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 66,
-            "movement": 0
+            "position": 67,
+            "movement": -1
           }
         ]
       }
@@ -2611,8 +2624,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 25,
-            "movement": 0
+            "position": 26,
+            "movement": -1
           }
         ]
       }
@@ -2804,8 +2817,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 116,
-            "movement": -99
+            "position": 126,
+            "movement": -109
           }
         ]
       }

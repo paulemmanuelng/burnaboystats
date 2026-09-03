@@ -258,7 +258,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 188,
-            "movement": 11
+            "movement": 2
           },
           {
             "country": "DO",
@@ -488,12 +488,12 @@
             "country": "MU",
             "name": "Mauritius",
             "position": 22,
-            "movement": -9
+            "movement": -5
           },
           {
             "country": "NO",
             "name": "Norway",
-            "position": 129,
+            "position": 156,
             "movement": null,
             "status": "new"
           },
@@ -536,14 +536,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": -3
+            "position": 11,
+            "movement": 3
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 185,
-            "movement": 0
+            "position": 194,
+            "movement": -9
           }
         ]
       }
@@ -846,8 +846,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 76,
-            "movement": -19
+            "position": 79,
+            "movement": -17
           }
         ]
       }
@@ -926,8 +926,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
-            "movement": -2
+            "position": 35,
+            "movement": -1
           }
         ]
       },
@@ -1040,8 +1040,8 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 83,
-            "movement": -17
+            "position": 84,
+            "movement": -15
           }
         ]
       }
@@ -1090,7 +1090,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 38,
-            "movement": -2
+            "movement": 0
           }
         ]
       },
@@ -1151,8 +1151,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
-            "movement": 3
+            "position": 28,
+            "movement": 9
           }
         ]
       },
@@ -1228,7 +1228,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 61,
-            "movement": -1
+            "movement": 0
           }
         ]
       },
@@ -1295,8 +1295,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 162,
-            "movement": -15
+            "position": 139,
+            "movement": 23
           }
         ]
       },
@@ -1327,8 +1327,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 59,
-            "movement": -6
+            "position": 74,
+            "movement": -15
           }
         ]
       },
@@ -1401,8 +1401,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
-            "movement": -15
+            "position": 93,
+            "movement": 36
           }
         ]
       },
@@ -1433,8 +1433,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
-            "movement": -9
+            "position": 59,
+            "movement": 40
           }
         ]
       },
@@ -1477,8 +1477,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 163,
-            "movement": -45
+            "position": 98,
+            "movement": 65
           }
         ]
       },
@@ -1502,6 +1502,51 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 85,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "MISSIN PIECE",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 175,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 176,
+            "movement": -14
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 97,
             "movement": null,
             "status": "new"
           }
@@ -1580,38 +1625,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/720a729019b9a6c8873652d993302775/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "MISSIN PIECE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 176,
-            "movement": -14
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 97,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Holy Father",
@@ -1705,6 +1718,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Hello",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 69,
+            "movement": 25
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/56bbf7807715d0374f6b8084268052e2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Jailer",
     "platforms": [
       {
@@ -1724,7 +1756,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/06fec5c27867700f0bdd8938b5ac4abd/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Hello",
+    "title": "PITY THIS BOY",
     "platforms": [
       {
         "platform": "Spotify",
@@ -1733,14 +1765,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
-            "movement": -15
+            "position": 99,
+            "movement": 66
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/56bbf7807715d0374f6b8084268052e2/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OHEMA",
@@ -1760,25 +1792,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PITY THIS BOY",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 165,
-            "movement": -42
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg"
   }
 ];
   
