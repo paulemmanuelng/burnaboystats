@@ -132,22 +132,33 @@
   height: auto;
   max-width: 600px;
   object-fit: contain;
-  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.55));
-  /* The hero is an opaque JPEG on a near-black ground, and the floor's amber
-     glow sits behind it — so its rectangle showed as a darker slab over the
-     ring. Fading the outer edges to transparent lets the glow through at the
-     border; the car itself is well inside it. Page-side only: the file is
-     untouched. */
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent),
-    linear-gradient(to bottom, transparent, #000 12%, #000 86%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent),
-    linear-gradient(to bottom, transparent, #000 12%, #000 86%, transparent);
+  /* No drop-shadow. The design file asks for one, but these assets are opaque
+     to their edges (the car is cut onto the ground, not onto transparency), so
+     a drop-shadow renders the shadow of the RECTANGLE — a dark blurred box
+     around the frame, plainest where the floor's amber glow sits behind it.
+     The render already carries the car's own shadow and floor reflection. */
+  /* The car SITS ON the ring and OCCLUDES it — the image stays fully opaque
+     through the middle, so the gold ellipse passes behind the bodywork and is
+     hidden, exactly as the design draws it.
+
+     What is faded is only the outer edge. Each hero keeps a rectangle of the
+     original frame's stage — its grid lines and lit floor are inside the crop,
+     a little lighter than this page — so an unfaded edge reads as a box around
+     the car. The ramp starts at the frame border and is fully opaque by 14%
+     across and 18% down, which is outside every car in the set: the car is
+     untouched, the baked stage dissolves, and the CSS floor and ring become the
+     only ground under it.
+
+     Not to be confused with two earlier attempts that both broke the
+     occlusion: `mix-blend-mode: screen` turned the near-black bodywork
+     translucent and the ring came straight THROUGH the car, and a radial mask
+     carved a soft oval vignette out of the frame. */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent),
+    linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent),
+    linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
-  /* And the ground itself: screened, near-black becomes the backdrop and the
-     lit car stays the car, so the glow reads through the whole slab, not just
-     its faded edges. */
-  mix-blend-mode: screen;
 }
 .caption {
   font-family: var(--font-mono), monospace;
@@ -399,8 +410,8 @@ a.source:hover { background: rgba(255, 182, 39, 0.14); }
 .navNext .navText { align-items: flex-end; }
 .navNext .navThumb { order: 2; }
 .navThumb {
-  width: 84px;
-  height: 52px;
+  width: 56px;
+  height: 36px;
   object-fit: cover;
   border: 1px solid var(--line);
   flex: none;
@@ -408,7 +419,7 @@ a.source:hover { background: rgba(255, 182, 39, 0.14); }
 .navText { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .navRank {
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--dim);
@@ -416,7 +427,7 @@ a.source:hover { background: rgba(255, 182, 39, 0.14); }
 .navName {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 13px;
   text-transform: uppercase;
   line-height: 1;
   overflow: hidden;
@@ -536,7 +547,7 @@ a.source:hover { background: rgba(255, 182, 39, 0.14); }
     z-index: -1;
     pointer-events: none;
   }
-  .heroImg { max-width: none; filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.55)); }
+  .heroImg { max-width: none; }
   .caption { justify-content: center; }
   .captionRule { display: none; }
   .caption::before, .caption::after { content: "— "; }

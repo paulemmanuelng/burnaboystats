@@ -12,10 +12,14 @@ export const usdFull = (n: number) => `$${n.toLocaleString("en-US")}`;
 export const usdShort = (n: number) => `$${(n / 1e6).toFixed(2)}M`;
 export const rankLabel = (rank: number) => String(rank).padStart(2, "0");
 
-/** The page <title>. The SEO gate caps titles at 60 characters and the longest
- *  full model string does not fit with the collection named after it, so the
- *  qualifier is dropped and the suffix kept short. */
-export const carTitle = (car: GarageCar) => `${car.make} ${modelShort(car.model)} — Burna Boy's Cars`;
+/** The page <title>.
+ *
+ *  §4.2 asks for `{make} {model} — Burna Boy's car collection`, which runs to
+ *  63 characters on the Aventador and 61 on the Chiron — past the 60 the SEO
+ *  gate enforces. The suffix shortens rather than the name: "Venuum Widebody"
+ *  and "Novitec Edition" are which car this is, and the longest title that
+ *  keeps them lands at 52. */
+export const carTitle = (car: GarageCar) => `${car.make} ${car.model} — Burna Boy's Cars`;
 
 /** The meta description — the gate caps it at 160 characters. */
 export const carDescription = (car: GarageCar) =>
