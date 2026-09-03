@@ -62,7 +62,10 @@ const former = [...soldCars, ...unconfirmedCars];
 
 // Sizes the browser can pick a rung from: three columns inside the 1240px
 // measure at desktop, two from 900px, one below.
-const TILE_SIZES = "(min-width: 1240px) 385px, (min-width: 901px) 50vw, 100vw";
+// 370px, not 385: a tile is ~370px wide inside the 1240 measure, and declaring
+// 385 pushed every request one rung up the srcset — 640w for an image that
+// never renders wider than 384.
+const TILE_SIZES = "(min-width: 1240px) 370px, (min-width: 901px) 50vw, 100vw";
 
 export default function CarsPage() {
   return (

@@ -143,6 +143,24 @@ describe("the garage — the fifteen current cars as pages", () => {
     }
   });
 
+  it("the OG card labels the hero with the format it actually is", () => {
+    // Satori picks its image parser from the data-URI's MIME rather than
+    // sniffing the bytes. When the heroes went from JPEG to cut-out PNG, a
+    // hardcoded `image/jpeg` sent it down the JPEG segment walker on a PNG
+    // header and ALL FIFTEEN share cards 500'd — while every other OG route on
+    // the site stayed green, and every test here passed, because nothing
+    // exercised the route. This is the cheap guard: the label must be derived
+    // from the file, never written down beside it.
+    const raw = readFileSync(join(process.cwd(), "app/records/cars/[car]/opengraph-image.tsx"), "utf8");
+    // Comments describe the trap; only real code can fall into it.
+    const og = raw.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/[^\n]*/g, "");
+    const hardcoded = [...og.matchAll(/data:image\/(png|jpeg|jpg|webp);base64/g)].map((m) => m[0]);
+    expect(hardcoded, "the hero's MIME is hardcoded — derive it from the file instead").toEqual([]);
+    expect(og, "the MIME should be derived from the hero's extension").toMatch(/endsWith\(["']\.png["']\)/);
+    // And satori cannot resolve height:"auto" — the image silently collapses.
+    expect(og, 'satori does not honour height: "auto" on an OG image').not.toMatch(/height:\s*["']auto["']/);
+  });
+
   it("every specification has been read off its source", () => {
     // The panel renders "pending verification" until this is true, so flipping
     // it without doing the reading is the one thing that must not happen

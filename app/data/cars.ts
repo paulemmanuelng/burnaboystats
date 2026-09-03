@@ -9,10 +9,15 @@
 //     against reference photography confirmed zero of fifteen renders as his
 //     actual vehicle (handoff §5.6). `image.depicts` is "model" on all fifteen
 //     and may only become "actual" alongside a `sources` entry proving it.
-//   • Specifications ship `verified: false`. They are pre-filled from
-//     manufacturer figures and are a strong draft, not fact: the page renders
-//     "pending verification" until a person has read each row off the linked
-//     manufacturer sheet and flipped the flag. Do not flip it from memory.
+//   • Specifications are VERIFIED. All fifteen were read off the manufacturer's
+//     own page in September 2026 and independently re-checked against a second
+//     source, which caught four real errors — the Black Badge's 0-100 (5.2s was
+//     the STANDARD Cullinan's), the 328 GTS's 0-100, the Senna's top speed and
+//     the S680's weight — and established that weight bases were being mixed.
+//     `verified: true` means someone did that reading: the panel shows
+//     "pending verification" while it is false, and it must never be flipped
+//     from memory. A figure the maker does not publish for that exact car is
+//     `null`, shown as an em dash with the reason, never a borrowed number.
 //
 // Two identity questions are OPEN, flagged not decided (handoff §5.6): the
 // Maybach saloon may be an S650 (previous generation — his own photo shows the
@@ -46,7 +51,7 @@
 // Tori.ng). The Ferrari SF90 Spider and the vintage Ferrari Testarossa are
 // the two exceptions: ownership of each is well-documented (many independent
 // posts/videos — the Testarossa specifically confirmed as a genuinely distinct
-// car from the 328 GTB below, via convergent independent labelling across two
+// car from the 328 GTS below, via convergent independent labelling across two
 // separate sightings, London and later brought to his Lagos garage, August
 // 2025), but their values float free of any single dedicated report — they're
 // social/blog estimates, marked "(est.)" below rather than presented with the
