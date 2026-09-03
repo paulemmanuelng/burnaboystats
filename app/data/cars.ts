@@ -100,26 +100,48 @@
 // and no free-to-reuse image exists) — the images on the pages are
 // illustrations of each model, and say so.
 
-/** Six manufacturer figures, as display strings in the site's units. */
+/**
+ * Six manufacturer figures, as display strings in the site's units.
+ *
+ * A field is `null` when the manufacturer does not publish that figure for
+ * this exact car — the panel then shows an em dash and says why, because an
+ * absent figure is itself a fact and a guess would be worse. Two cars use it:
+ * Rolls-Royce publishes no separate weight for the Black Badge Cullinan (the
+ * 2,660 kg that circulates is the STANDARD Cullinan's), and Lamborghini's own
+ * brochures give three different Urus weights, all labelled "curb".
+ *
+ * POWER IS IMPERIAL (bhp/SAE) throughout. That is the convention the dataset
+ * already used on all fifteen cars and what the design was drawn against: the
+ * Chiron's 1,479 is 1,103 kW in SAE horsepower, where the metric figure would
+ * be 1,500 PS. Do not mix the two.
+ *
+ * Weight always carries its basis. Dry, DIN and EU differ by 100kg+ — EU mass
+ * in running order includes a statutory 75 kg driver, DIN does not, and a dry
+ * weight excludes fluids — so an unlabelled figure is not comparable.
+ */
 export interface CarSpecs {
   engine: string;
-  power: string; // hp
+  power: string; // imperial hp (bhp/SAE)
   zeroToHundred: string; // s, one decimal
   topSpeed: string; // km/h
   drivetrain: string;
-  weight: string; // kg
+  weight: string | null;
   /** "base model" on the one-off conversions — nobody has measured those. */
   basis: "as built" | "base model";
   /** The manufacturer page each row must be read off. Required. */
   source: string;
-  /** Flipped by a person after reading each row off `source`. Never inferred. */
+  /** Why a figure is absent or qualified, when it is. Shown under the panel. */
+  note?: string;
+  /** Set only after a person read each row off `source`. Never inferred. */
   verified: boolean;
 }
 
-/** Numeric twins of the specs, for the performance bars. Kept in step. */
+/** Numeric twins of the specs, for the performance bars. Kept in step — and
+ *  null wherever the spec itself is null, so a bar reads as unavailable rather
+ *  than being computed from a figure nobody published. */
 export interface CarNum {
   hp: number;
-  kg: number;
+  kg: number | null;
   acc: number; // 0–100 km/h, seconds
   vmax: number; // km/h
 }
@@ -187,7 +209,7 @@ export const cars: Car[] = [
     linkLabel: "Watch the reveal",
     slug: "bugatti-chiron",
     subtitle: "ONE-OF-ONE WIDEBODY BY VENUUM — UNVEILED JULY 2026",
-    specs: { engine: "8.0L quad-turbo W16", power: "1,479 hp", zeroToHundred: "2.4 s", topSpeed: "420 km/h", drivetrain: "AWD", weight: "1,995 kg", basis: "base model", source: "https://www.bugatti.com/models/chiron-models/chiron/", verified: false },
+    specs: { engine: "8.0L quad-turbo W16", power: "1,479 hp", zeroToHundred: "2.4 s", topSpeed: "420 km/h", drivetrain: "AWD", weight: "1,995 kg (DIN)", basis: "base model", source: "https://www.bugatti.com/en/models/chiron", note: "Top speed is a limiter, not a measured maximum — 380 km/h in normal use, 420 km/h only with the Speed Key. Bugatti publishes no absolute weight: 1,995 kg is the DIN figure, which excludes the 75 kg driver the EU figure of 2,070 kg includes.", verified: true },
     num: { hp: 1479, kg: 1995, acc: 2.4, vmax: 420 },
     palette: ["#1968a9", "#5799ca", "#0a3c78", "#565757", "#262727"],
     heroSize: [898, 660],
@@ -199,8 +221,8 @@ export const cars: Car[] = [
     link: "https://autojosh.com/burna-boy-splashes-n3-2-billion-on-a-mclaren-senna-hypercar/",
     slug: "mclaren-senna",
     subtitle: "TRACK-BRED HYPERCAR IN EXPOSED MSO CARBON",
-    specs: { engine: "4.0L twin-turbo V8", power: "789 hp", zeroToHundred: "2.8 s", topSpeed: "340 km/h", drivetrain: "RWD", weight: "1,198 kg (dry)", basis: "base model", source: "https://cars.mclaren.com/en/ultimate/senna", verified: false },
-    num: { hp: 789, kg: 1198, acc: 2.8, vmax: 340 },
+    specs: { engine: "4.0L twin-turbo V8", power: "789 hp", zeroToHundred: "2.8 s", topSpeed: "335 km/h", drivetrain: "RWD", weight: "1,198 kg (dry)", basis: "base model", source: "https://cars.mclaren.press/assets/documents/original/9263-McLarenSennatheultimateroadlegalMcLarentrackcarmediainformationGERJune2018.pdf", verified: true },
+    num: { hp: 789, kg: 1198, acc: 2.8, vmax: 335 },
     palette: ["#e6e8eb", "#a5a6a7", "#868686", "#686868", "#373737"],
     heroSize: [898, 660],
   },
@@ -210,7 +232,7 @@ export const cars: Car[] = [
     desc: "The open-top version of Ferrari's plug-in-hybrid V8 hypercar, with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa.",
     slug: "ferrari-sf90-spider",
     subtitle: "OPEN-TOP PLUG-IN HYBRID V8 — REPORTEDLY AFRICA'S ONLY ONE",
-    specs: { engine: "4.0L twin-turbo V8 plug-in hybrid", power: "986 hp", zeroToHundred: "2.5 s", topSpeed: "340 km/h", drivetrain: "AWD", weight: "1,670 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/sf90-spider", verified: false },
+    specs: { engine: "4.0L twin-turbo V8 plug-in hybrid", power: "986 hp", zeroToHundred: "2.5 s", topSpeed: "340 km/h", drivetrain: "AWD", weight: "1,670 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/sf90-spider", verified: true },
     num: { hp: 986, kg: 1670, acc: 2.5, vmax: 340 },
     palette: ["#484749", "#686669", "#868587", "#f5f6f5", "#262629"],
     heroSize: [898, 660],
@@ -222,7 +244,7 @@ export const cars: Car[] = [
     link: "https://autojosh.com/moment-burna-boy-picked-up-his-brand-new-ferrari-purosangue-suv-worth-n2-billion-at-lagos-dealership/",
     slug: "ferrari-purosangue",
     subtitle: "FERRARI'S FIRST FOUR-DOOR — A NATURALLY ASPIRATED V12",
-    specs: { engine: "6.5L naturally aspirated V12", power: "715 hp", zeroToHundred: "3.3 s", topSpeed: "310 km/h", drivetrain: "AWD", weight: "2,033 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/ferrari-purosangue", verified: false },
+    specs: { engine: "6.5L naturally aspirated V12", power: "715 hp", zeroToHundred: "3.3 s", topSpeed: ">310 km/h", drivetrain: "AWD", weight: "2,033 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/ferrari-purosangue", note: "Ferrari publishes dry weight only, and marks 2,033 kg as achieved with optional lightweight content. It is not a kerb weight.", verified: true },
     num: { hp: 715, kg: 2033, acc: 3.3, vmax: 310 },
     palette: ["#e6e6e8", "#949496", "#777677", "#575758", "#262627"],
     heroSize: [898, 660],
@@ -234,7 +256,7 @@ export const cars: Car[] = [
     link: "https://autojosh.com/burna-boy-acquires-the-first-ever-lamborghini-revuelto-in-nigeria-worth-n1-billion/",
     slug: "lamborghini-revuelto",
     subtitle: "LAMBORGHINI'S FIRST PLUG-IN V12 FLAGSHIP — FIRST IN NIGERIA",
-    specs: { engine: "6.5L naturally aspirated V12 plug-in hybrid", power: "1,001 hp", zeroToHundred: "2.5 s", topSpeed: "350 km/h", drivetrain: "AWD", weight: "1,772 kg (dry)", basis: "as built", source: "https://www.lamborghini.com/en-en/models/revuelto", verified: false },
+    specs: { engine: "6.5L naturally aspirated V12 plug-in hybrid", power: "1,001 hp", zeroToHundred: "2.5 s", topSpeed: ">350 km/h", drivetrain: "AWD", weight: "1,772 kg (dry)", basis: "as built", source: "https://www.lamborghini.com/en-en/models/revuelto", verified: true },
     num: { hp: 1001, kg: 1772, acc: 2.5, vmax: 350 },
     palette: ["#e5c806", "#f4e266", "#866a16", "#48433a", "#272625"],
     heroSize: [898, 660],
@@ -246,8 +268,8 @@ export const cars: Car[] = [
     link: "https://autojosh.com/burna-boy-buys-customized-rolls-royce-cullinan-with-diamond-encrusted-bonnet-ornament/",
     slug: "rolls-royce-cullinan-black-badge",
     subtitle: "THE FLAGSHIP SUV IN BLACK BADGE TRIM — DIAMOND SPIRIT OF ECSTASY",
-    specs: { engine: "6.75L twin-turbo V12", power: "592 hp", zeroToHundred: "5.2 s", topSpeed: "250 km/h", drivetrain: "AWD", weight: "2,753 kg", basis: "as built", source: "https://www.rolls-roycemotorcars.com/en_GB/showroom/black-badge-cullinan.html", verified: false },
-    num: { hp: 592, kg: 2753, acc: 5.2, vmax: 250 },
+    specs: { engine: "6.75L twin-turbo V12", power: "592 hp", zeroToHundred: "4.9 s", topSpeed: "250 km/h", drivetrain: "AWD", weight: null, basis: "as built", source: "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0441739EN/rolls-royce-black-badge-cullinan-series-ii:-the-alter-ego-evolved?language=en", note: "Rolls-Royce publishes no separate weight for the Black Badge. The 2,660 kg that circulates is the standard Cullinan’s DIN figure, so it is not shown here.", verified: true },
+    num: { hp: 592, kg: null, acc: 4.9, vmax: 250 },
     palette: ["#84888c", "#c4c8cb", "#646668", "#45484a", "#25272a"],
     heroSize: [898, 660],
   },
@@ -259,7 +281,7 @@ export const cars: Car[] = [
     linkLabel: "Watch the delivery",
     slug: "lamborghini-aventador-svj-roadster",
     subtitle: "THE MOST EXTREME AVENTADOR — 759-HP V12, OPEN TOP",
-    specs: { engine: "6.5L naturally aspirated V12", power: "759 hp", zeroToHundred: "2.9 s", topSpeed: "350 km/h", drivetrain: "AWD", weight: "1,575 kg (dry)", basis: "as built", source: "https://www.lamborghini.com/en-en/history/aventador-svj-roadster", verified: false },
+    specs: { engine: "6.5L naturally aspirated V12", power: "759 hp", zeroToHundred: "2.9 s", topSpeed: ">350 km/h", drivetrain: "AWD", weight: "1,575 kg (dry)", basis: "as built", source: "https://www.lamborghini.com/en-en/history/aventador-svj-roadster", verified: true },
     num: { hp: 759, kg: 1575, acc: 2.9, vmax: 350 },
     palette: ["#391a57", "#583a75", "#767676", "#474748", "#262728"],
     heroSize: [898, 660],
@@ -271,7 +293,7 @@ export const cars: Car[] = [
     link: "https://autojosh.com/burna-boy-flaunts-rolls-royce-dawn/",
     slug: "rolls-royce-dawn",
     subtitle: "FOUR-SEAT DROP-TOP — DIAMOND SPIRIT OF ECSTASY",
-    specs: { engine: "6.6L twin-turbo V12", power: "563 hp", zeroToHundred: "5.0 s", topSpeed: "250 km/h", drivetrain: "RWD", weight: "2,560 kg", basis: "as built", source: "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/", verified: false },
+    specs: { engine: "6.6L twin-turbo V12", power: "563 hp", zeroToHundred: "5.0 s", topSpeed: "250 km/h (governed)", drivetrain: "RWD", weight: "2,560 kg (unladen, DIN)", basis: "as built", source: "https://www.rolls-roycemotorcars.com/en_GB/showroom/dawn.html", verified: true },
     num: { hp: 563, kg: 2560, acc: 5.0, vmax: 250 },
     palette: ["#691c23", "#9b7778", "#6a6968", "#474746", "#272727"],
     heroSize: [898, 660],
@@ -283,7 +305,7 @@ export const cars: Car[] = [
     link: "https://www.legit.ng/entertainment/celebrities/1570054-christmas-burna-boy-spurges-n700m-a-brand-ferrari-812-gts-video-frenzy/",
     slug: "ferrari-812-gts",
     subtitle: "FRONT-ENGINED 6.5-LITRE V12 CONVERTIBLE",
-    specs: { engine: "6.5L naturally aspirated V12", power: "789 hp", zeroToHundred: "3.0 s", topSpeed: "340 km/h", drivetrain: "RWD", weight: "1,600 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/812-gts", verified: false },
+    specs: { engine: "6.5L naturally aspirated V12", power: "789 hp", zeroToHundred: "<3.0 s", topSpeed: "340 km/h", drivetrain: "RWD", weight: "1,600 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/812-gts", verified: true },
     num: { hp: 789, kg: 1600, acc: 3.0, vmax: 340 },
     palette: ["#585958", "#767776", "#989896", "#f7f7f6", "#252729"],
     heroSize: [898, 660],
@@ -296,7 +318,7 @@ export const cars: Car[] = [
     linkLabel: "Watch on X",
     slug: "porsche-911-gt3-rs",
     subtitle: "TRACK-FOCUSED FLAT-SIX WITH THE WEISSACH PACK — DELIVERED FEBRUARY 2026",
-    specs: { engine: "4.0L naturally aspirated flat-six", power: "518 hp", zeroToHundred: "3.2 s", topSpeed: "296 km/h", drivetrain: "RWD", weight: "1,450 kg", basis: "as built", source: "https://www.porsche.com/international/models/911/911-gt3-models/911-gt3-rs/", verified: false },
+    specs: { engine: "4.0L naturally aspirated flat-six", power: "518 hp", zeroToHundred: "3.2 s", topSpeed: "296 km/h", drivetrain: "RWD", weight: "1,450 kg (DIN)", basis: "as built", source: "https://newsroom.porsche.com/dam/jcr:1d390f77-93c3-49c0-89c7-634f5f02b26a/S22_3515_en.pdf", note: "1,450 kg is the DIN weight without the Weissach package; Porsche publishes no separate figure for the car with it.", verified: true },
     num: { hp: 518, kg: 1450, acc: 3.2, vmax: 296 },
     palette: ["#ba4849", "#571923", "#787877", "#585858", "#252627"],
     heroSize: [898, 660],
@@ -308,8 +330,8 @@ export const cars: Car[] = [
     link: "https://autojosh.com/burna-boy-takes-his-lamborghini-urus-for-a-spin-moments-after-the-n200m-suv-arrived-in-nigeria/",
     slug: "lamborghini-urus",
     subtitle: "THE SUPER-SUV IN NOVITEC WIDEBODY SPEC",
-    specs: { engine: "4.0L twin-turbo V8", power: "641 hp", zeroToHundred: "3.6 s", topSpeed: "305 km/h", drivetrain: "AWD", weight: "2,200 kg (dry)", basis: "base model", source: "https://www.lamborghini.com/en-en/history/urus", verified: false },
-    num: { hp: 641, kg: 2200, acc: 3.6, vmax: 305 },
+    specs: { engine: "4.0L twin-turbo V8", power: "641 hp", zeroToHundred: "3.6 s", topSpeed: "305 km/h", drivetrain: "AWD", weight: null, basis: "base model", source: "https://www.lamborghini.com/en-en/history/urus", note: "Lamborghini’s own brochures give three different weights for the Urus, all labelled “curb”, so no single figure can be cited here.", verified: true },
+    num: { hp: 641, kg: null, acc: 3.6, vmax: 305 },
     palette: ["#3d2352", "#836a94", "#99959b", "#696969", "#262627"],
     heroSize: [898, 660],
   },
@@ -322,8 +344,8 @@ export const cars: Car[] = [
     desc: "The chauffeur-focused, range-topping S-Class — confirmed via his own Instagram caption (\"Got this too because everyone needs a Maybach\").",
     slug: "mercedes-maybach-s680",
     subtitle: "THE CHAUFFEUR-FOCUSED, RANGE-TOPPING S-CLASS",
-    specs: { engine: "6.0L twin-turbo V12", power: "603 hp", zeroToHundred: "4.5 s", topSpeed: "250 km/h", drivetrain: "AWD", weight: "2,315 kg", basis: "as built", source: "https://www.mercedes-benz.com/en/vehicles/mercedes-maybach/", verified: false },
-    num: { hp: 603, kg: 2315, acc: 4.5, vmax: 250 },
+    specs: { engine: "6.0L biturbo V12", power: "603 hp", zeroToHundred: "4.5 s", topSpeed: "250 km/h (limited)", drivetrain: "AWD", weight: "2,365 kg (EU, incl. driver)", basis: "as built", source: "https://media.mercedes-benz.com/models/mercedes-maybach-s-class", verified: true },
+    num: { hp: 603, kg: 2365, acc: 4.5, vmax: 250 },
     palette: ["#6a8aa4", "#88a8c2", "#767879", "#55575a", "#262629"],
     heroSize: [898, 660],
   },
@@ -333,7 +355,7 @@ export const cars: Car[] = [
     desc: "The flagship Maybach SUV — the \"Maybach Truck\" (a 2024 GLS 600, not the 2026 model some blogs list). He bought two of them, shown together in his own TikTok video: one he kept for himself (this one) and an identical unit gifted to his mother/manager Bose Ogulu. Only his own is counted here; hers is kept out of the fleet totals. Value is an estimate in line with the Maybach tier.",
     slug: "mercedes-maybach-gls-600",
     subtitle: "THE FLAGSHIP MAYBACH SUV — THE “MAYBACH TRUCK”",
-    specs: { engine: "4.0L twin-turbo V8 · 48V mild hybrid", power: "550 hp", zeroToHundred: "4.9 s", topSpeed: "250 km/h", drivetrain: "AWD", weight: "2,785 kg", basis: "as built", source: "https://www.mercedes-benz.com/en/vehicles/mercedes-maybach/", verified: false },
+    specs: { engine: "4.0L biturbo V8 · 48V mild hybrid", power: "550 hp", zeroToHundred: "4.9 s", topSpeed: "250 km/h (limited)", drivetrain: "AWD", weight: "2,785 kg (EU, incl. driver)", basis: "as built", source: "https://media.mercedes-benz.com/article/1e4be408-e56e-4b4e-a7ff-1fcdcfc19bf5", note: "2,785 kg is the pre-facelift figure, which is the car recorded here; the facelift is about 30 kg heavier.", verified: true },
     num: { hp: 550, kg: 2785, acc: 4.9, vmax: 250 },
     palette: ["#878687", "#d6d6d8", "#676767", "#474748", "#262628"],
     heroSize: [898, 660],
@@ -347,7 +369,7 @@ export const cars: Car[] = [
     desc: "A wide-body, flat-12 icon of the 1980s, instantly recognisable by its side strakes — spotted in London and later brought to his Lagos garage (August 2025). A genuinely distinct car from his red 328 below. Some blogs valued it near ₦1.5bn; a 1988 Testarossa realistically sits far lower, around ₦175 million.",
     slug: "ferrari-testarossa",
     subtitle: "WIDE-BODY FLAT-12 ICON OF THE 1980s",
-    specs: { engine: "4.9L flat-12", power: "385 hp", zeroToHundred: "5.8 s", topSpeed: "290 km/h", drivetrain: "RWD", weight: "1,506 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/testarossa", verified: false },
+    specs: { engine: "4.9L flat-12", power: "385 hp", zeroToHundred: "5.8 s", topSpeed: "290 km/h", drivetrain: "RWD", weight: "1,506 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/testarossa", note: "Ferrari publishes one sheet for the whole 1984–1991 run; these are the European non-catalyst figures. Catalyst-market cars made less power.", verified: true },
     num: { hp: 385, kg: 1506, acc: 5.8, vmax: 290 },
     palette: ["#a72c2a", "#c57a76", "#89868a", "#3a444b", "#282528"],
     heroSize: [898, 660],
@@ -358,8 +380,8 @@ export const cars: Car[] = [
     desc: "A 1980s classic — the final evolution of Ferrari's celebrated 308/328 line, in open-top GTS form. This is the Ferrari kept in his Lagos penthouse.",
     slug: "ferrari-328-gts",
     subtitle: "THE FINAL 308/328 — KEPT IN HIS LAGOS PENTHOUSE",
-    specs: { engine: "3.2L V8", power: "266 hp", zeroToHundred: "5.5 s", topSpeed: "263 km/h", drivetrain: "RWD", weight: "1,273 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/328-gts", verified: false },
-    num: { hp: 266, kg: 1273, acc: 5.5, vmax: 263 },
+    specs: { engine: "3.2L V8", power: "266 hp", zeroToHundred: "6.4 s", topSpeed: "263 km/h", drivetrain: "RWD", weight: "1,273 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/328-gts", verified: true },
+    num: { hp: 266, kg: 1273, acc: 6.4, vmax: 263 },
     palette: ["#981717", "#571619", "#d59998", "#494745", "#282627"],
     heroSize: [898, 660],
   },

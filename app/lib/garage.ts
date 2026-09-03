@@ -42,7 +42,9 @@ export const carDescription = (car: GarageCar) =>
 
 /** The strongest figure in the collection on each axis — the bars' 100%. */
 export const garageBest = {
-  powerToWeight: Math.max(...garage.map((c) => c.num.hp / c.num.kg)),
+  // Two cars have no citable weight, so they are out of the power-to-weight
+  // comparison entirely rather than being given an invented denominator.
+  powerToWeight: Math.max(...garage.filter((c) => c.num.kg).map((c) => c.num.hp / c.num.kg!)),
   acc: Math.min(...garage.map((c) => c.num.acc)),
   vmax: Math.max(...garage.map((c) => c.num.vmax)),
   usd: Math.max(...garage.map((c) => c.valueUsd)),
@@ -75,8 +77,10 @@ const pct = (share: number) => Math.round(share * 100);
  */
 export function performanceBars(car: GarageCar): PerformanceBar[] {
   const pending = !car.specs.verified;
-  const pw = car.num.hp / car.num.kg;
-  const pwShare = pw / garageBest.powerToWeight;
+  // Null where the manufacturer publishes no weight for this exact car — the
+  // bar then reads "not published" instead of being computed from a guess.
+  const pw = car.num.kg ? car.num.hp / car.num.kg : null;
+  const pwShare = pw ? pw / garageBest.powerToWeight : 0;
   const accShare = garageBest.acc / car.num.acc;
   const vmaxShare = car.num.vmax / garageBest.vmax;
   const usdShare = car.valueUsd / garageBest.usd;
@@ -84,9 +88,13 @@ export function performanceBars(car: GarageCar): PerformanceBar[] {
   return [
     {
       key: "Power / weight",
-      value: pending ? "—" : `${Math.round(pw * 1000)} hp/t`,
-      share: pending ? 0 : width(pwShare),
-      aria: pending ? `Power to weight: ${wait}` : `Power to weight ${Math.round(pw * 1000)} hp per tonne, ${pct(pwShare)}% of the strongest in the collection`,
+      value: pending || !pw ? "—" : `${Math.round(pw * 1000)} hp/t`,
+      share: pending || !pw ? 0 : width(pwShare),
+      aria: pending
+        ? `Power to weight: ${wait}`
+        : !pw
+          ? "Power to weight: the manufacturer publishes no weight for this car"
+          : `Power to weight ${Math.round(pw * 1000)} hp per tonne, ${pct(pwShare)}% of the strongest in the collection`,
       pending,
     },
     {
@@ -113,8 +121,10 @@ export function performanceBars(car: GarageCar): PerformanceBar[] {
   ];
 }
 
-/** The six specification rows, in the design's order. */
-export const specRows = (car: GarageCar) => [
+/** The six specification rows, in the design's order. A null value is a figure
+ *  the manufacturer does not publish for this exact car; the row stays on the
+ *  page as an em dash, because the absence is itself a fact. */
+export const specRows = (car: GarageCar): { k: string; v: string | null }[] => [
   { k: "Engine", v: car.specs.engine },
   { k: "Power", v: car.specs.power },
   { k: "0–100 km/h", v: car.specs.zeroToHundred },

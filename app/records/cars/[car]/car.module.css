@@ -655,3 +655,17 @@ a.source:hover { background: rgba(255, 182, 39, 0.14); }
   .navRank { font-size: 10px; letter-spacing: 0.1em; }
   .navName { font-size: 13px; line-height: 1.05; }
 }
+
+/* A figure the manufacturer does not publish for this exact car. An em dash,
+   dimmed — never a zero, which would be a claim, and never a guess. */
+.specMissing { color: var(--dim); }
+/* Why a figure is absent or qualified: a limiter rather than a measured Vmax,
+   a dry weight that is not a kerb weight, a pre-facelift figure. */
+.specNote {
+  margin: 0;
+  padding: 11px 16px 13px;
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--dim);
+  border-top: 1px solid var(--line);
+}

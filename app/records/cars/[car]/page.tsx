@@ -242,9 +242,17 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
               rows.map((r) => (
                 <div key={r.k} className={styles.specRow}>
                   <span className={styles.specKey}>{r.k}</span>
-                  <span className={styles.specVal}>{r.v}</span>
+                  {/* An em dash, never a zero and never a guess: the row stays
+                      so the reader can see the figure is absent rather than
+                      wondering whether the page forgot it. */}
+                  <span className={`${styles.specVal} ${r.v === null ? styles.specMissing : ""}`}>
+                    {r.v ?? "—"}
+                  </span>
                 </div>
               ))
+            )}
+            {!pending && car.specs.note && (
+              <p className={styles.specNote}>{car.specs.note}</p>
             )}
             <a
               className={styles.specSource}

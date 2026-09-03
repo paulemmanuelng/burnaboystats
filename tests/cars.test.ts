@@ -113,13 +113,41 @@ describe("the garage — the fifteen current cars as pages", () => {
   });
 
   it("the numeric twins agree with the specification strings", () => {
-    const num = (s: string) => Number(s.replace(/[^0-9.]/g, ""));
+    // The strings carry qualifiers the bars cannot use — ">350 km/h", "<3.0 s",
+    // "1,995 kg (DIN)" — so the twins are the same figure with the prose off.
+    const num = (s: string) => Number(s.replace(/\(.*\)/, "").replace(/[^0-9.]/g, ""));
     for (const c of garage) {
       expect(num(c.specs.power), `${c.slug} power`).toBe(c.num.hp);
-      expect(num(c.specs.weight), `${c.slug} weight`).toBe(c.num.kg);
       expect(num(c.specs.zeroToHundred), `${c.slug} 0–100`).toBe(c.num.acc);
       expect(num(c.specs.topSpeed), `${c.slug} top speed`).toBe(c.num.vmax);
+      // Weight is null on the two cars whose maker publishes none; the twin
+      // must be null too, or a bar would be computed from a figure nobody gave.
+      if (c.specs.weight === null) expect(c.num.kg, `${c.slug} weight`).toBeNull();
+      else expect(num(c.specs.weight), `${c.slug} weight`).toBe(c.num.kg);
     }
+  });
+
+  it("a published figure carries its basis, and an absent one says so", () => {
+    for (const c of garage) {
+      // Weight without a basis is not comparable: dry, DIN and EU differ by
+      // 100kg+. Every weight on the page names which it is.
+      if (c.specs.weight !== null) {
+        expect(c.specs.weight, `${c.slug} weight has no basis`).toMatch(/\((dry|DIN|unladen[^)]*|EU[^)]*)\)/);
+      } else {
+        // An absent figure has to explain itself, or it reads as a bug.
+        expect(c.specs.note, `${c.slug} drops a figure with no explanation`).toBeTruthy();
+      }
+      // Power is imperial across the whole set — the convention the design was
+      // drawn against. A stray metric value would read as a different car.
+      expect(c.specs.power, `${c.slug} power`).toMatch(/^[\d,]+ hp$/);
+    }
+  });
+
+  it("every specification has been read off its source", () => {
+    // The panel renders "pending verification" until this is true, so flipping
+    // it without doing the reading is the one thing that must not happen
+    // silently. All fifteen were checked against the manufacturer in Sep 2026.
+    for (const c of garage) expect(c.specs.verified, `${c.slug}`).toBe(true);
   });
 
   it("carries a five-colour livery and a subtitle for every car", () => {
@@ -146,6 +174,12 @@ describe("computed figures (CARS-HANDOFF §7)", () => {
           expect(b.value).toBe("—");
           expect(b.share).toBe(0);
           expect(b.aria).toMatch(/pending verification/);
+        } else if (b.key === "Power / weight" && c.num.kg === null) {
+          // The two cars whose maker publishes no weight: the bar reads as
+          // unavailable rather than being drawn from an invented denominator.
+          expect(b.value).toBe("—");
+          expect(b.share).toBe(0);
+          expect(b.aria).toMatch(/publishes no weight/);
         } else {
           expect(b.share).toBeGreaterThanOrEqual(0.03);
           expect(b.share).toBeLessThanOrEqual(1);
