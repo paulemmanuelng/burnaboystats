@@ -51,7 +51,7 @@ export const BACK_BAR_ROUTES = new Set<string>([
  *
  * NUMBERS-AND-STATES.md, "Tab bar vs action bar": the five-tab bar belongs to
  * screens 01–09, the top-level routes. Screens 10–27 are reached by a back
- * button, not lateral nav, so they get "an action bar or nothing" — and six of
+ * button, not lateral nav, so they get "an action bar or nothing" — and five of
  * them (awards, festivals, firsts, africa's biggest, visualized) get nothing,
  * because the screen is already the full list and the bar had nowhere to go.
  * They still belong in this set: the tab bar hides either way. Cars left this

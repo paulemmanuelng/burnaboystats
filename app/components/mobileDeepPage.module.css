@@ -343,7 +343,18 @@
    designs/mobile/Cars - Mobile.dc.html. The list is still one list inside the
    grammar; each row just carries a 16:10 illustration above its meta. The
    whole tile is one link. Values are the design's, verbatim. */
-.tiles { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; padding: 0 18px; }
+/* The hairline under the list header. On the row variant it comes from
+   `.list`'s own border-top; the tile variant replaces that container, so it
+   carries the rule itself (§5.1) — otherwise the header floats over the first
+   tile with nothing between them. */
+.tiles {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 12px 18px 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
 .tile {
   display: block;
   border: 1px solid var(--line);

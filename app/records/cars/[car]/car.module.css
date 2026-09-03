@@ -464,12 +464,22 @@ a.source:hover { background: rgba(255, 182, 39, 0.14); }
   }
   .hero { min-height: 0; padding: 18px 0 10px; }
   .specs { padding-top: 22px; }
-  .performance, .livery { align-self: start; padding-bottom: 0; }
+  .performance, .livery { padding-bottom: 0; }
   .livery { padding-top: 22px; }
   .below { display: contents; }
   .provenance { grid-area: provenance; padding-top: 22px; }
   .source { grid-area: source; margin-top: 18px; }
   .garageNav { margin-top: 26px; }
+}
+
+/* Scoped to the tablet range, not to `max-width: 1199px`. `align-self` here is
+   a grid ROW alignment — "sit at the top of the row" — and the stage is only a
+   grid down to 901px. Below that it becomes a flex column, where the same
+   declaration means "do not stretch to the container's width" and sizes the
+   item to fit-content: Livery, whose content is ~230px, rendered short of the
+   18px measure while every block around it spanned the column. */
+@media (min-width: 901px) and (max-width: 1199px) {
+  .performance, .livery { align-self: start; }
 }
 
 /* ── Phone, ≤900 (§5.2, in order) ────────────────────────────────────────── */
@@ -593,6 +603,12 @@ a.source:hover { background: rgba(255, 182, 39, 0.14); }
   .pendingRow { padding: 14px; }
   .specSource { padding: 0 14px; }
 
+  /* `align-self` is set on both of these in the desktop block, where the stage
+     is a grid and it means "sit at the bottom of the row". Here the stage is a
+     flex column, where the cross axis is horizontal and any value but stretch
+     sizes the item to fit-content — which left Livery ~291px wide and pushed
+     right, the one block on the page not on the 18px measure. */
+  .livery, .performance { align-self: stretch; }
   .performance { order: 6; margin: 14px 18px 0; padding-bottom: 0; }
   .perfCard { padding: 14px 14px 12px; }
   .bar { grid-template-columns: 92px 1fr 64px; }
