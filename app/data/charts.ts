@@ -508,10 +508,13 @@ export const numberOnes = allChartItems.reduce(
 );
 // The two country figures are NOT the same and must not be paired with the
 // wrong one. `chartCountryCount` is every territory he has CHARTED in; this is
-// the subset where a release actually reached No. 1 — 33 against 71. A stat
-// tile reading "48 No. 1s / 71 countries" says he topped the chart in 71
-// places, which is not what the data says. Use this wherever the figure beside
-// a No. 1s count is meant to describe those No. 1s.
+// the subset where a release actually reached No. 1, and it is far smaller. A
+// stat tile pairing a No. 1s count with chartCountryCount says he topped the
+// chart in every territory he has ever appeared in, which is not what the data
+// says. Use this wherever the figure beside a No. 1s count is meant to
+// describe those No. 1s. (Both figures move with the data, so this comment
+// no longer quotes them — a stale numeral in a comment is the same defect it
+// is warning about.)
 export const numberOneCountryCount = new Set(
   allChartItems.flatMap((r) => r.entries.filter((e) => e.peak === 1).map((e) => e.c))
 ).size;

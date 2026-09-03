@@ -4,7 +4,7 @@
 // confirmed are listed — nothing is included on a single unverified claim.
 
 import { totalAwards, countryCount, certsInYear, bestIntlYearBefore } from "./certifications";
-import { BURNA_YT_AUDIENCE_WORDS } from "./africasBiggest";
+import { BURNA_YT_AUDIENCE_WORDS, BURNA_HOT_100_ENTRIES_WORD } from "./africasBiggest";
 
 export interface First {
   year: string;
@@ -74,7 +74,7 @@ export const firstGroups: FirstGroup[] = [
       { year: "2026", title: "Longest run by an African song on Apple Music's Global Top 100", text: "“Last Last” has spent 200 consecutive days on the Apple Music Global Top 100, peaking at No. 12 — no other African song has spent even 120 days on the chart." },
       { year: "2026", title: "First entry on Billboard's Adult Contemporary chart", text: "“Dai Dai” with Shakira debuted at No. 14 on the Adult Contemporary chart dated 29 August 2026 — a radio format that had never played him before. It is Shakira's second entry on the chart, after “Hips Don't Lie” reached No. 24 in 2007." },
       { year: "2026", title: "First African artist to chart the Billboard Hot 100 six years running", text: "An unbroken run from 2021 through 2026." },
-      { year: "2026", title: "Most Billboard Hot 100 entries by an African artist", text: "Nine career entries — the record for any African artist, extended by “Dai Dai”." },
+      { year: "2026", title: "Most Billboard Hot 100 entries by an African artist", text: `${BURNA_HOT_100_ENTRIES_WORD} career entries — the record for any African artist, extended by “Dai Dai”.` },
       { year: "2024", title: "First African artist to surpass 2 billion UK streams", text: "Recognised with a BRIT Billion award — the first African to reach it." },
       { year: "2024", title: "First African artist to surpass 1 billion UK streams", text: "Awarded his first BRIT Billion plaque." },
       { year: "2022", title: "Highest-charting Nigerian album in Billboard 200 history", text: "Love, Damini debuted at No. 14 — passing the previous Nigerian best, Wizkid's Made in Lagos (No. 28)." },

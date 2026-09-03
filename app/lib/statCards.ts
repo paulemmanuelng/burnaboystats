@@ -2,7 +2,8 @@ import { totalAwards, countryCount, allItems, tierOf, daiDaiCertCount, COUNTRIES
 import { firstGroups } from "../data/firsts";
 import { titleKey } from "./titleKey";
 import { badgeWeight } from "./certs";
-import { numberOnes, chartEntryCount, chartCountryCount, daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
+import { numberOnes, chartEntryCount, daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
+import { chartedCountryCount, numberOneCountryCount } from "./analysis";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { spotifyFollowersDisplay } from "../data/spotify";
 import { BURNA_YT_AUDIENCE, BURNA_PEAK_LISTENERS } from "../data/africasBiggest";
@@ -81,13 +82,22 @@ export function getStatCards(): StatCard[] {
       source: "National chart bodies",
       watermark: "ONE",
       href: "/records/charts",
-      detail: `Counted as placements: a song topping five countries adds five. Includes both Billboard Global charts alongside ${chartCountryCount} charting territories.`,
+      // "alongside ${chartCountryCount}" double-counted the globals: that
+      // figure already includes them, so the sentence added them a second time
+      // and read two territories high. The countries figure is the one that
+      // sits "alongside" the two global charts.
+      detail: `Counted as placements: a song topping five countries adds five. Includes both Billboard Global charts alongside ${chartedCountryCount} charting countries.`,
       value: `${numberOnes}`,
       label: "No. 1 chart placements worldwide",
       kicker: "Nigeria, the UK, the Netherlands, Colombia & more",
       chip: "No. 1s",
       stats: [
-        { value: `${chartCountryCount}`, label: "Countries" },
+        // A figure beside a No. 1s headline has to describe those No. 1s:
+        // "Countries: 69" over a 47-No.-1s card asserts he topped the chart in
+        // 69 places, and 69 counts the two global charts as countries besides.
+        // Same regression tests/homeScoreboardParity.test.ts pins for the
+        // homepage tile.
+        { value: `${numberOneCountryCount}`, label: "Countries at No. 1" },
         { value: `${chartEntryCount}`, label: "Chart entries" },
         { value: "No.1", label: "Global 200" },
       ],

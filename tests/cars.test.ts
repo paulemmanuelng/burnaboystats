@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import { cars, garage, carSlugs, carBySlug, currentCars } from "../app/data/cars";
+import { cars, garage, carSlugs, carBySlug, currentCars, carCount, totalValueFormatted } from "../app/data/cars";
+import { updates } from "../app/data/updates";
 import { carTitle, carDescription, performanceBars, neighbours, garageBest, modelShort } from "../app/lib/garage";
 
 // The car pages render from data, and three of that data's fields are the
@@ -247,5 +248,47 @@ describe("computed figures (CARS-HANDOFF §7)", () => {
       expect(carTitle(c).length, carTitle(c)).toBeLessThanOrEqual(60);
       expect(carDescription(c).length, carDescription(c)).toBeLessThanOrEqual(160);
     }
+  });
+});
+
+// Three garage entries in the updates log all carried the same catch-up date
+// and each closed with a running collection total — 19 cars/$18M, 15 cars/
+// $16.46M and 18 cars/$17M. One garage, one day, three sizes and three
+// valuations, in a log a reader scrolls top to bottom. The two higher pairs
+// were the aggregator-era counts that this file has since re-priced: five of
+// those vehicles are now carried as sold or unconfirmed and are out of the
+// live totals by rule. Every other surface (the /records/cars page, the FAQ,
+// the nav, search) already derives from carCount and totalValueFormatted; the
+// log was the one place still typing them.
+describe("the updates log's garage totals", () => {
+  const garageEntries = updates.filter((u) => u.href === "/records/cars");
+
+  it("states a collection size only where it matches the data", () => {
+    const sizes = garageEntries.flatMap((u) => [
+      ...u.text.matchAll(/(\d+)[- ](?:cars?|vehicles?)\b/g),
+    ].map((m) => ({ n: Number(m[1]), text: u.text })));
+    const wrong = sizes.filter((s) => s.n !== carCount);
+    expect(
+      wrong.map((s) => `${s.n} cars — "${s.text.slice(0, 70)}…"`),
+      `an update states a collection size other than the ${carCount} data/cars.ts counts. Interpolate carCount instead of typing a figure the re-pricing pass has moved on from.`
+    ).toEqual([]);
+  });
+
+  it("states a collection value only where it matches the data", () => {
+    const values = garageEntries.flatMap((u) => [
+      ...u.text.matchAll(/\$[\d.]+ ?(?:M\b|million)/g),
+    ].map((m) => ({ v: m[0], text: u.text })));
+    const wrong = values.filter((v) => v.v !== totalValueFormatted);
+    expect(
+      wrong.map((v) => `${v.v} — "${v.text.slice(0, 70)}…"`),
+      `an update values the collection at something other than ${totalValueFormatted}. Interpolate totalValueFormatted.`
+    ).toEqual([]);
+  });
+
+  it("still states the total somewhere, so the log is not silently emptied", () => {
+    expect(
+      garageEntries.some((u) => u.text.includes(String(carCount)) && u.text.includes(totalValueFormatted)),
+      "no garage update states the collection total any more — removing the contradiction should not remove the fact"
+    ).toBe(true);
   });
 });

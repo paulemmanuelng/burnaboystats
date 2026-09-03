@@ -7,7 +7,8 @@ import BackLink from "../components/BackLink";
 import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
 import { timelineEras, timelineEntryCount, type TimelineKind } from "../data/timeline";
 import { totalAwards, countryCount } from "../data/certifications";
-import { numberOnes, chartCountryCount } from "../data/charts";
+import { numberOnes } from "../data/charts";
+import { chartedCountryCount } from "../lib/analysis";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Career Timeline — 2010 to Today",
@@ -53,7 +54,9 @@ const breadcrumbJsonLd = {
 // timeline's "today" can never drift from the rest of the site.
 const today = [
   { v: String(totalAwards()), l: `certifications · ${countryCount} countries`, href: "/certifications" },
-  { v: String(numberOnes), l: `No. 1s · ${chartCountryCount} countries charted`, href: "/records/charts" },
+  // chartedCountryCount, not chartCountryCount: the label says "countries",
+  // and the headline territory figure counts Billboard's two global charts.
+  { v: String(numberOnes), l: `No. 1s · ${chartedCountryCount} countries charted`, href: "/records/charts" },
   { v: "$30.46M", l: "the record tour", href: "/records/tours" },
 ];
 

@@ -12,10 +12,12 @@ import { numberOneCountryCount } from "../app/lib/analysis";
 // "48 No. 1s worldwide / in 33 countries". Same page, same session, two answers.
 //
 // 71 was chartCountryCount — every territory he has CHARTED in. Pairing it with
-// a No. 1s count asserts he topped the chart in 71 places. charts.ts carries a
-// comment forbidding precisely that, and quotes the exact string the desktop
+// a No. 1s count asserts he topped the chart in all of them. charts.ts carries
+// a comment forbidding precisely that, and quotes the exact string the desktop
 // tile was rendering. 33 was closer but counts Billboard's two Global charts as
-// countries. The true country-only figure is 31.
+// countries. The true country-only figure is analysis.numberOneCountryCount,
+// which is what both layouts now read; the figures above are left as the
+// contemporary record of the bug, not as current values.
 
 const read = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
 
@@ -31,8 +33,8 @@ describe("the homepage No. 1s tile", () => {
   });
 
   it("never pairs the No. 1s count with the charted-territory count", () => {
-    // The specific regression: chartCountryCount (71) standing in for the
-    // No. 1 country count (31). Guard the value, not just the identifier.
+    // The specific regression: chartCountryCount standing in for the No. 1
+    // country count. Guard the value, not just the identifier.
     const tile = homeScoreboard.find((s) => s.label === "No. 1s worldwide")!;
     expect(chartCountryCount).not.toBe(numberOneCountryCount); // else this test proves nothing
     expect(tile.source).not.toContain(String(chartCountryCount));

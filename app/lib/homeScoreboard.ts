@@ -42,11 +42,11 @@ export const homeScoreboard: ScoreboardStat[] = [
     value: String(numberOnes),
     label: "No. 1s worldwide",
     glyph: "no1s",
-    // NOT chartCountryCount. That is every territory he has CHARTED in (71),
-    // and pairing it with a No. 1s count claims he topped the chart in 71
-    // places. charts.ts carries a comment forbidding exactly this, quoting the
+    // NOT chartCountryCount. That is every territory he has CHARTED in, and
+    // pairing it with a No. 1s count claims he topped the chart in every one of
+    // them. charts.ts carries a comment forbidding exactly this, quoting the
     // exact string this line used to render. analysis.numberOneCountryCount is
-    // the country-only No. 1 set (31); charts.numberOneCountryCount is 33
+    // the country-only No. 1 set; charts.numberOneCountryCount runs two higher
     // because it counts Billboard's two Global charts, which are not countries.
     source: `${numberOneCountryCount} countries`,
     href: "/records/charts",
