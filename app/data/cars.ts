@@ -180,14 +180,25 @@ export interface Car {
   num?: CarNum;
   /** Five hexes sampled from the illustration, dark → light. Decorative. */
   palette?: string[];
-  /**
-   * The hero canvas. One size for all fifteen — the car is pasted at native
-   * scale, centred on its own silhouette, with its GROUND LINE (the lowest
-   * pixel of the car, where a tyre meets the floor) at 72% of the height.
-   * That shared geometry is what lets one CSS rule sit every car on the floor
-   * ring: see GROUND_LINE in app/lib/garage.ts.
-   */
+  /** The hero canvas. One size for all fifteen; the car is pasted at native
+   *  scale, centred on its own silhouette. */
   heroSize?: [width: number, height: number];
+  /**
+   * Where this car MEETS THE FLOOR, as a fraction of the hero's height — the
+   * point the page sits on the ring.
+   *
+   * Per car, and it has to be. Every render is a three-quarter view, so the
+   * near wheel is 80-100px lower in frame than the far one, and how far apart
+   * they sit depends on the car and the camera. Aligning on the LOWEST pixel
+   * put the near wheel on the ring's centre line and left the whole car in the
+   * ellipse's upper half, leaning out of the ring — which is what read as "not
+   * sitting properly". This is the MIDPOINT of the two wheel contact lines, so
+   * the ring passes behind the far wheels and in front of the near ones, the
+   * way a circle drawn on the floor actually would.
+   *
+   * Measured from the asset, not typed: scripts/measure-ground-line.mjs.
+   */
+  groundLine?: number;
   /** Evidence a render depicts HIS car. Empty everywhere; see the header. */
   sources?: string[];
 }
@@ -200,6 +211,7 @@ export interface GarageCar extends Car {
   num: CarNum;
   palette: string[];
   heroSize: [width: number, height: number];
+  groundLine: number;
   image: CarImage;
   rank: number;
 }
@@ -218,6 +230,7 @@ export const cars: Car[] = [
     num: { hp: 1479, kg: 1995, acc: 2.4, vmax: 420 },
     palette: ["#1968a9", "#5799ca", "#0a3c78", "#565757", "#262727"],
     heroSize: [898, 660],
+    groundLine: 0.6659,
   },
   {
     make: "McLaren", model: "Senna (MSO Carbon Edition)",
@@ -230,6 +243,7 @@ export const cars: Car[] = [
     num: { hp: 789, kg: 1198, acc: 2.8, vmax: 335 },
     palette: ["#e6e8eb", "#a5a6a7", "#868686", "#686868", "#373737"],
     heroSize: [898, 660],
+    groundLine: 0.6568,
   },
   {
     make: "Ferrari", model: "SF90 Spider", year: 2025,
@@ -241,6 +255,7 @@ export const cars: Car[] = [
     num: { hp: 986, kg: 1670, acc: 2.5, vmax: 340 },
     palette: ["#484749", "#686669", "#868587", "#f5f6f5", "#262629"],
     heroSize: [898, 660],
+    groundLine: 0.6561,
   },
   {
     make: "Ferrari", model: "Purosangue", year: 2024,
@@ -253,6 +268,7 @@ export const cars: Car[] = [
     num: { hp: 715, kg: 2033, acc: 3.3, vmax: 310 },
     palette: ["#e6e6e8", "#949496", "#777677", "#575758", "#262627"],
     heroSize: [898, 660],
+    groundLine: 0.6462,
   },
   {
     make: "Lamborghini", model: "Revuelto", year: 2025,
@@ -265,6 +281,7 @@ export const cars: Car[] = [
     num: { hp: 1001, kg: 1772, acc: 2.5, vmax: 350 },
     palette: ["#e5c806", "#f4e266", "#866a16", "#48433a", "#272625"],
     heroSize: [898, 660],
+    groundLine: 0.6561,
   },
   {
     make: "Rolls-Royce", model: "Cullinan Black Badge", year: 2024,
@@ -277,6 +294,7 @@ export const cars: Car[] = [
     num: { hp: 592, kg: null, acc: 4.9, vmax: 250 },
     palette: ["#84888c", "#c4c8cb", "#646668", "#45484a", "#25272a"],
     heroSize: [898, 660],
+    groundLine: 0.6371,
   },
   {
     make: "Lamborghini", model: "Aventador SVJ Roadster", year: 2022,
@@ -290,6 +308,7 @@ export const cars: Car[] = [
     num: { hp: 759, kg: 1575, acc: 2.9, vmax: 350 },
     palette: ["#391a57", "#583a75", "#767676", "#474748", "#262728"],
     heroSize: [898, 660],
+    groundLine: 0.653,
   },
   {
     make: "Rolls-Royce", model: "Dawn", year: 2019,
@@ -302,6 +321,7 @@ export const cars: Car[] = [
     num: { hp: 563, kg: 2560, acc: 5.0, vmax: 250 },
     palette: ["#691c23", "#9b7778", "#6a6968", "#474746", "#272727"],
     heroSize: [898, 660],
+    groundLine: 0.6371,
   },
   {
     make: "Ferrari", model: "812 GTS", year: 2023,
@@ -314,6 +334,7 @@ export const cars: Car[] = [
     num: { hp: 789, kg: 1600, acc: 3.0, vmax: 340 },
     palette: ["#585958", "#767776", "#989896", "#f7f7f6", "#252729"],
     heroSize: [898, 660],
+    groundLine: 0.6568,
   },
   {
     make: "Porsche", model: "911 GT3 RS (Weissach)", year: 2025,
@@ -327,6 +348,7 @@ export const cars: Car[] = [
     num: { hp: 518, kg: 1450, acc: 3.2, vmax: 296 },
     palette: ["#ba4849", "#571923", "#787877", "#585858", "#252627"],
     heroSize: [898, 660],
+    groundLine: 0.647,
   },
   {
     make: "Lamborghini", model: "Urus (Novitec Edition)", year: 2022,
@@ -339,6 +361,7 @@ export const cars: Car[] = [
     num: { hp: 641, kg: null, acc: 3.6, vmax: 305 },
     palette: ["#3d2352", "#836a94", "#99959b", "#696969", "#262627"],
     heroSize: [898, 660],
+    groundLine: 0.6447,
   },
   {
     // OPEN: may be the previous-generation S650 — his own Instagram photo shows
@@ -353,6 +376,7 @@ export const cars: Car[] = [
     num: { hp: 603, kg: 2365, acc: 4.5, vmax: 250 },
     palette: ["#6a8aa4", "#88a8c2", "#767879", "#55575a", "#262629"],
     heroSize: [898, 660],
+    groundLine: 0.6379,
   },
   {
     make: "Mercedes-Maybach", model: "GLS 600", year: 2024,
@@ -364,6 +388,7 @@ export const cars: Car[] = [
     num: { hp: 550, kg: 2785, acc: 4.9, vmax: 250 },
     palette: ["#878687", "#d6d6d8", "#676767", "#474748", "#262628"],
     heroSize: [898, 660],
+    groundLine: 0.6477,
   },
   {
     // OPEN: the August 2026 crane-lift photographs show a narrow-body targa
@@ -378,6 +403,7 @@ export const cars: Car[] = [
     num: { hp: 385, kg: 1506, acc: 5.8, vmax: 290 },
     palette: ["#a72c2a", "#c57a76", "#89868a", "#3a444b", "#282528"],
     heroSize: [898, 660],
+    groundLine: 0.6508,
   },
   {
     make: "Ferrari", model: "328 GTS", year: 1985,
@@ -389,6 +415,7 @@ export const cars: Car[] = [
     num: { hp: 266, kg: 1273, acc: 6.4, vmax: 263 },
     palette: ["#981717", "#571619", "#d59998", "#494745", "#282627"],
     heroSize: [898, 660],
+    groundLine: 0.6515,
   },
 
   // ===== No longer counted in the live collection — no slug, no image, no route =====
@@ -444,8 +471,8 @@ export const totalValueFormatted = formatUsd(totalValueUsd);
 // Rank is the position in the value-sorted list, so it can never disagree with
 // the index. The image block is derived from the slug: one hero and one 16:10
 // tile per car in public/cars/, both captioned as an illustration of the model.
-const hasPageFields = (c: Car): c is Car & Required<Pick<Car, "slug" | "subtitle" | "specs" | "num" | "palette" | "heroSize">> =>
-  Boolean(c.slug && c.subtitle && c.specs && c.num && c.palette && c.heroSize);
+const hasPageFields = (c: Car): c is Car & Required<Pick<Car, "slug" | "subtitle" | "specs" | "num" | "palette" | "heroSize" | "groundLine">> =>
+  Boolean(c.slug && c.subtitle && c.specs && c.num && c.palette && c.heroSize && c.groundLine);
 
 export const garage: GarageCar[] = currentCars.filter(hasPageFields).map((c, i) => ({
   ...c,

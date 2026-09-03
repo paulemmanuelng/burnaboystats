@@ -2,26 +2,35 @@
 // a fresh reduce over app/data/cars.ts, so the pages can never disagree with
 // the data (CARS-HANDOFF.md §7).
 
+import type { CSSProperties } from "react";
 import { garage, type GarageCar } from "../data/cars";
 
 /** "Chiron (Venuum Widebody)" → "Chiron". The parenthetical is a qualifier,
  *  not part of the name, and it breaks a 54px headline. */
 export const modelShort = (model: string) => model.replace(/\s*\(.*\)\s*$/, "");
 
-/**
- * Where the car's tyres are, as a fraction of its hero canvas.
- *
- * Every hero is baked so the lowest pixel of the car sits here (see
- * `heroSize` in app/data/cars.ts). The car page translates the image up by
- * this much from the floor ring's own centre line, which is what puts all
- * fifteen cars ON the ring rather than near it — and keeps them there as the
- * column resizes, because both numbers are fractions.
- */
-export const GROUND_LINE = 0.72;
-
 /** The floor ring's centre line, as a fraction of the stage: cy 452 of 632 in
- *  the floor SVG's own viewBox. */
+ *  the desktop floor SVG's own viewBox. */
 export const RING_LINE = 452 / 632;
+
+/** The hero ring's own centre line, as a fraction of the hero canvas: cy 475
+ *  of 660. Used below 1200px, where the ring shares the image's box. */
+export const HERO_RING_LINE = 475 / 660;
+
+/**
+ * The two numbers that sit a car on the ring, as CSS custom properties.
+ *
+ * `--ground` is where THIS car meets the floor (app/data/cars.ts → groundLine)
+ * and `--ring-offset` is how far the hero's own ring must move to meet it.
+ * Both are fractions, so the alignment holds at every width rather than only
+ * at the one it was eyeballed on — and both layouts read the same number, so
+ * desktop and phone cannot drift apart.
+ */
+export const heroVars = (car: GarageCar) =>
+  ({
+    "--ground": String(car.groundLine),
+    "--ring-offset": `${((car.groundLine - HERO_RING_LINE) * 100).toFixed(3)}%`,
+  }) as CSSProperties;
 
 export const usdFull = (n: number) => `$${n.toLocaleString("en-US")}`;
 export const usdShort = (n: number) => `$${(n / 1e6).toFixed(2)}M`;
