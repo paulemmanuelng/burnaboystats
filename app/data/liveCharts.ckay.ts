@@ -52,7 +52,7 @@
             "country": "RU",
             "name": "Russia",
             "position": 7,
-            "movement": 6
+            "movement": 3
           },
           {
             "country": "BF",
@@ -63,8 +63,27 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 146,
-            "movement": -18
+            "position": 149,
+            "movement": -12
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TM",
+            "name": "Turkmenistan",
+            "position": 140,
+            "movement": 38
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 167,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -77,19 +96,6 @@
             "name": "Morocco",
             "position": 129,
             "movement": 1
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TM",
-            "name": "Turkmenistan",
-            "position": 178,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -113,9 +119,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 141,
-            "movement": null,
-            "status": "new"
+            "position": 119,
+            "movement": 22
           },
           {
             "country": "SL",

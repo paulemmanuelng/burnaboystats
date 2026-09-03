@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-09-03";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Spotify","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -55,12 +55,6 @@
             "movement": 0
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 27,
-            "movement": 21
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
             "position": 30,
@@ -73,10 +67,16 @@
             "movement": -1
           },
           {
+            "country": "NE",
+            "name": "Niger",
+            "position": 32,
+            "movement": -5
+          },
+          {
             "country": "UG",
             "name": "Uganda",
-            "position": 35,
-            "movement": 2
+            "position": 38,
+            "movement": -3
           },
           {
             "country": "CM",
@@ -91,10 +91,10 @@
             "movement": -19
           },
           {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 60,
-            "movement": 55
+            "country": "ML",
+            "name": "Mali",
+            "position": 55,
+            "movement": 57
           },
           {
             "country": "GH",
@@ -109,10 +109,10 @@
             "movement": -39
           },
           {
-            "country": "ML",
-            "name": "Mali",
-            "position": 112,
-            "movement": -59
+            "country": "GM",
+            "name": "Gambia",
+            "position": 87,
+            "movement": -27
           },
           {
             "country": "MW",
@@ -121,22 +121,16 @@
             "movement": 39
           },
           {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 134,
-            "movement": -9
-          },
-          {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 134,
-            "movement": 26
+            "position": 148,
+            "movement": -14
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 173,
-            "movement": -27
+            "position": 156,
+            "movement": 17
           }
         ]
       }
@@ -158,22 +152,28 @@
             "movement": 100
           },
           {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 77,
+            "movement": 71
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
             "position": 82,
             "movement": -2
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 110,
-            "movement": 8
-          },
-          {
             "country": "KE",
             "name": "Kenya",
             "position": 112,
             "movement": 1
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 114,
+            "movement": -4
           },
           {
             "country": "LR",
@@ -188,20 +188,6 @@
             "movement": 5
           },
           {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 148,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 175,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "MW",
             "name": "Malawi",
             "position": 191,
@@ -213,6 +199,45 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Olamidé",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 51,
+            "movement": -3
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 54,
+            "movement": 97
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 67,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LC",
+            "name": "St. Lucia",
+            "position": 70,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "99",
@@ -246,80 +271,10 @@
             "movement": -7
           }
         ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 85,
-            "movement": 0
-          }
-        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Olamidé",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 51,
-            "movement": -3
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 54,
-            "movement": 97
-          },
-          {
-            "country": "LC",
-            "name": "St. Lucia",
-            "position": 70,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Triumphant",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 128,
-            "movement": 0
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 144,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Unruly",
@@ -465,7 +420,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
+            "position": 46,
             "movement": null,
             "status": "new"
           }
@@ -474,6 +429,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7e7f840d0099df8c44eddda6841cc52d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Triumphant",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 128,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rock",
@@ -550,44 +524,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/dc21daa177258ea29c084c4415c4db03/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Yemi My Lover",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 5,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Baddo Love",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 79,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
   }
 ];
   

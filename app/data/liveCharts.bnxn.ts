@@ -55,12 +55,6 @@
             "movement": 0
           },
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 13,
-            "movement": 22
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 21,
@@ -85,6 +79,12 @@
             "movement": 13
           },
           {
+            "country": "TD",
+            "name": "Chad",
+            "position": 71,
+            "movement": -58
+          },
+          {
             "country": "CM",
             "name": "Cameroon",
             "position": 74,
@@ -93,8 +93,8 @@
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 84,
-            "movement": 1
+            "position": 87,
+            "movement": -3
           },
           {
             "country": "BJ",
@@ -111,8 +111,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 130,
-            "movement": -30
+            "position": 145,
+            "movement": -15
           }
         ]
       },
@@ -160,19 +160,38 @@
             "country": "UG",
             "name": "Uganda",
             "position": 55,
-            "movement": -7
+            "movement": -5
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 89,
-            "movement": -25
+            "position": 91,
+            "movement": -24
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": -89
+            "position": 106,
+            "movement": -95
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 12,
+            "movement": 35
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 54,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -184,18 +203,6 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 13,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 47,
             "movement": 0
           }
         ]
@@ -230,12 +237,6 @@
             "movement": 1
           },
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 15,
-            "movement": 133
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 22,
@@ -256,8 +257,14 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 66,
-            "movement": 45
+            "position": 48,
+            "movement": 18
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 83,
+            "movement": -68
           },
           {
             "country": "CM",
@@ -276,12 +283,6 @@
             "name": "Ghana",
             "position": 140,
             "movement": -9
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 158,
-            "movement": -62
           }
         ]
       },
@@ -351,22 +352,28 @@
             "movement": -12
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 82,
-            "movement": -12
-          },
-          {
             "country": "CM",
             "name": "Cameroon",
             "position": 87,
             "movement": 5
           },
           {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 90,
+            "movement": -8
+          },
+          {
             "country": "BJ",
             "name": "Benin",
             "position": 93,
             "movement": 54
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 113,
+            "movement": 85
           },
           {
             "country": "GH",
@@ -379,12 +386,6 @@
             "name": "Kenya",
             "position": 187,
             "movement": -67
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 198,
-            "movement": -73
           }
         ]
       },
@@ -506,8 +507,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
-            "movement": -17
+            "position": 31,
+            "movement": -16
           }
         ]
       }
@@ -644,8 +645,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 109,
-            "movement": -31
+            "position": 101,
+            "movement": 8
           }
         ]
       },
@@ -711,6 +712,50 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "POE",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 55,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 60,
+            "movement": 33
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 89,
+            "movement": -10
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 97,
+            "movement": 2
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 121,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/12b39d25fb640779483f443dcbedf748/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "For Days",
     "platforms": [
       {
@@ -754,43 +799,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/99ab461acf3040d231c824f66893a811/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "POE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 60,
-            "movement": 33
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 79,
-            "movement": 12
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 97,
-            "movement": 2
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 121,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/12b39d25fb640779483f443dcbedf748/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Outside",
@@ -970,71 +978,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 94,
-            "movement": -17
+            "position": 97,
+            "movement": -11
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Rum & Soda",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 136,
-            "movement": 9
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 167,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Emotional High",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 111,
-            "movement": 5
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 159,
-            "movement": 27
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Since '97",
@@ -1090,8 +1041,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 116,
-            "movement": 3
+            "position": 117,
+            "movement": 1
           }
         ]
       }
@@ -1119,24 +1070,42 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Romeo Must Die",
+    "title": "Rum & Soda",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 136,
+            "movement": 9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Emotional High",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 110,
-            "movement": null,
-            "status": "new"
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 111,
+            "movement": 5
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/10b6b03e8cd85b81b9038c881e91f77f/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "I Alone",
@@ -1157,26 +1126,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Feeling",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 172,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d91495fa367186de1d1e217b5b1bdaaf/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bae Bae",

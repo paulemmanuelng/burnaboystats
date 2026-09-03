@@ -51,14 +51,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 39,
-            "movement": 7
+            "position": 43,
+            "movement": -4
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 43,
-            "movement": 9
+            "position": 44,
+            "movement": -1
           },
           {
             "country": "KE",
@@ -67,35 +67,28 @@
             "movement": 3
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 56,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 74,
             "movement": 34
           },
           {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 83,
-            "movement": -11
-          },
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 85,
-            "movement": -9
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 93,
             "movement": 29
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 94,
+            "movement": -11
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 132,
+            "movement": -76
           },
           {
             "country": "NG",
@@ -120,6 +113,13 @@
             "name": "Benin",
             "position": 151,
             "movement": 9
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 171,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "CM",
@@ -260,35 +260,33 @@
             "movement": 95
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 115,
-            "movement": -12
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 125,
             "movement": -33
           },
           {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 126,
+            "movement": -11
+          },
+          {
             "country": "GM",
             "name": "Gambia",
-            "position": 154,
-            "movement": null,
-            "status": "new"
+            "position": 164,
+            "movement": -10
+          },
+          {
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 165,
+            "movement": 32
           },
           {
             "country": "MW",
             "name": "Malawi",
             "position": 194,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 197,
             "movement": null,
             "status": "new"
           }
@@ -451,6 +449,37 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Peru",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 21,
+            "movement": 161
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 63,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4ab733790d692331a550d79a27e254ae/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "So it Goes",
     "platforms": [
       {
@@ -474,37 +503,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Peru",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 182,
-            "movement": -38
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 63,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4ab733790d692331a550d79a27e254ae/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Need You",
@@ -565,16 +563,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a0db260ae940d4870a73c5a735408d67/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Dopamine",
+    "title": "Love Like This",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 190,
+            "country": "TD",
+            "name": "Chad",
+            "position": 102,
             "movement": null,
             "status": "new"
           }
@@ -582,7 +580,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2454c47103560319b1992920e1a866e9/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/20cb27797a97980288a3fa4986b3c17a/500x500-000000-80-0-0.jpg"
   }
 ];
   
