@@ -226,7 +226,7 @@ export default function MobileAfrobeatsHub({
 
       <div className={styles.foot}>
         <p>
-          Counted under the rules on the <Link href="/methodology#principles">methodology page</Link>.
+          Counted under the rules on the <Link href="/methodology">methodology page</Link>.
           Last read at source {sweptRange}.
         </p>
       </div>
