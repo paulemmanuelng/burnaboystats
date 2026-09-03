@@ -178,4 +178,18 @@
 .tText { color: var(--text-muted); font-size: 13px; margin: 4px 0 0; line-height: 1.5; }
 
 /* Clears the five-tab bar this screen keeps. */
+/* The way out to /timeline, in .wikiLink's voice — but wrapping, because the
+   label is a sentence and the Wikipedia one is three words. */
+.timelineLink {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
 .spacer { height: 96px; }

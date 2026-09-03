@@ -165,6 +165,11 @@
 /* Clears the fixed action bar. The bar is two rows plus its padding and the
    home-indicator inset, so this tracks that rather than a guessed number —
    at 112px the source note's last line sat behind the bar. */
+/* The "as of" date, in the note's own voice. A second .note would double the
+   14px top padding, so this only trims that — the type is unchanged. */
+.verified { padding-top: 3px; }
+.verifiedDate { color: var(--text); }
+
 .spacer { height: calc(150px + env(safe-area-inset-bottom, 0px)); }
 .actionBar {
   position: fixed;

@@ -244,6 +244,42 @@
 }
 .chipDot { width: 7px; height: 7px; border-radius: 50%; flex: none; display: block; }
 
+/* ── Deep-linked single-release focus (#release=…) ────────────────────── */
+/* The desktop explorer's focus bar, in this screen's tokens — same sentence,
+   same escape hatch, so /certifications#release=Dai%20Dai reads identically on
+   either layout. Before this the fragment was read only by CertExplorer, which
+   lives inside the .desktopOnly wrapper. */
+.focusBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 18px 14px;
+  padding: 11px 14px;
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 182, 39, 0.08);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text);
+}
+.focusBar b { color: var(--gold); }
+.focusClear {
+  flex: none;
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--dim);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
 /* ── List ─────────────────────────────────────────────────────────────── */
 .listLabel {
   padding: 0 18px 6px;

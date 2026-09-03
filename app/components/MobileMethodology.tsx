@@ -26,7 +26,11 @@ export default function MobileMethodology({
   lede: string;
   reviewedLabel: string;
   principles: { h: string; p: string }[];
-  sources: { area: string; detail: string }[];
+  /** `tag` is the composition of what each area is read from — for Charts it is
+   *  computed from the data ("14 national · 6 Billboard country · 2 global").
+   *  It was missing from this type, so the value never reached the mobile
+   *  screen, and that split appears nowhere else on a phone. */
+  sources: { area: string; tag: string; detail: string }[];
   /** `href`/`linkLabel` are optional: only the Nigeria block needs to send the
    *  reader somewhere, and a "here is how to check it yourself" section with no
    *  tappable link is half a section on the layout most readers are on. */
@@ -76,6 +80,7 @@ export default function MobileMethodology({
         {sources.map((s) => (
           <div key={s.area} className={styles.item}>
             <div className={styles.area}>{s.area}</div>
+            <div className={styles.areaTag}>{s.tag}</div>
             <p className={styles.itemBody}>{s.detail}</p>
           </div>
         ))}

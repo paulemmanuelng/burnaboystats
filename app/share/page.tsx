@@ -43,7 +43,7 @@ export default function SharePage() {
       {/* Mobile is screen 24 — its own screen, because the design's own lede
           states the rule the desktop maker breaks: story ratio is the default
           on a phone. Separate state, not one shared toggle. */}
-      <MobileStatCards cards={choices} pageUrl={`${CANONICAL_ORIGIN}/share`} />
+      <MobileStatCards cards={choices} verified={verified} pageUrl={`${CANONICAL_ORIGIN}/share`} />
 
       <div className={styles.desktopOnly}>
       <BreadcrumbBar path="/share" />

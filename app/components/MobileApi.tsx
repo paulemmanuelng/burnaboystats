@@ -76,8 +76,17 @@ export default function MobileApi({
           <span className={styles.code}>Access-Control-Allow-Origin: *</span> so you can call
           them straight from the browser.
         </p>
+        {/* target/rel match the desktop list. Without them a tap replaced this
+            page with raw JSON and left the reader with nothing but Back — on a
+            phone that is the whole documentation gone. */}
         {endpoints.map((e) => (
-          <a key={e.path} href={`${base}${e.path}`} className={styles.endpoint}>
+          <a
+            key={e.path}
+            href={`${base}${e.path}`}
+            target="_blank"
+            rel="noreferrer"
+            className={styles.endpoint}
+          >
             <span className={styles.endpointTop}>
               <span className={styles.verb}>GET</span>
               <span className={styles.path}>
@@ -117,13 +126,37 @@ export default function MobileApi({
 
       <div className={styles.licence}>
         <h2 className={styles.licenceTitle}>Licence &amp; attribution</h2>
+        {/* CC BY 4.0 is the condition of use, and it was plain text here — the
+            terms a reader has to agree to were unreadable on a phone. Desktop
+            has linked the licence all along. */}
         <p className={styles.licenceBody}>
-          Released under CC BY 4.0. Use it commercially, remix it, redistribute it — just
-          credit the source:
+          Released under{" "}
+          <a
+            className={styles.licenceLink}
+            href="https://creativecommons.org/licenses/by/4.0/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            CC BY 4.0
+          </a>
+          . Use it commercially, remix it, redistribute it — just credit the source:
         </p>
         <div className={styles.codeBox}>
           <code className={styles.codeAttr}>{attribution}</code>
         </div>
+        {/* The other two routes the desktop licence block carries: how each
+            figure is verified, and what has changed since. */}
+        <p className={styles.licenceBody}>
+          How each figure is verified is set out on the{" "}
+          <Link href="/methodology" className={styles.licenceLink}>
+            methodology page
+          </Link>
+          , and every change is logged on the{" "}
+          <Link href="/updates" className={styles.licenceLink}>
+            updates feed
+          </Link>
+          .
+        </p>
       </div>
 
       <div className={styles.spacer} />

@@ -93,6 +93,12 @@ export default function MobileAbout({
             </div>
           ))}
         </div>
+        {/* Both layouts show the same abridged nine rows; only the desktop one
+            said where the rest of them live. Without this the full dated
+            timeline was unreachable from /about on a phone. */}
+        <Link href="/timeline" className={styles.timelineLink}>
+          The full career timeline — every milestone, dated →
+        </Link>
       </div>
 
       <div className={styles.spacer} />
