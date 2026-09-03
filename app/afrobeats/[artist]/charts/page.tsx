@@ -30,11 +30,11 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
   const a = artistBySlug(slug);
   if (!a) return {};
   return pageMetadata({
-    title: `${a.name} Chart History — ${chartNo1s(a)} No.1s & Chart Peaks`,
+    title: `${a.name} Chart History — ${count(chartNo1s(a), "No.1", "No.1s")} & Chart Peaks`,
     description: `Every ${a.name} official chart entry and peak position worldwide — ${count(chartEntries(a), "entry", "entries")} across ${count(chartTerritories(a), "territory", "territories")}, read from each country's principal national chart.`,
     path: `/afrobeats/${a.slug}/charts`,
     shareTitle: `${a.name} — Official Chart Peaks`,
-    shareDescription: `${count(chartEntries(a), "entry", "entries")}, ${count(chartTerritories(a), "territory", "territories")}, ${chartNo1s(a)} No. 1s.`,
+    shareDescription: `${count(chartEntries(a), "entry", "entries")}, ${count(chartTerritories(a), "territory", "territories")}, ${count(chartNo1s(a), "No. 1", "No. 1s")}.`,
   });
 }
 

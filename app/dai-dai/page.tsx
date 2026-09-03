@@ -158,13 +158,20 @@ export default function DaiDaiPage() {
     endDate: "2026-07-19",
     // The show itself was not ticketed separately from the match, and it
     // streamed free — which is a real answer to "offers", not a missing one.
+    //
+    // No `availability`, deliberately. The performance ended on 19 July 2026
+    // and this used to carry `InStock`, which tells a crawler a viewer can
+    // still get in. Every schema.org availability value misdescribes a free
+    // broadcast that has already happened — SoldOut and OutOfStock both imply
+    // stock that ran out — so the offer is bounded by its dates instead and
+    // says nothing it cannot support.
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
       url: `${CANONICAL_ORIGIN}/dai-dai`,
       validFrom: "2026-05-15",
+      validThrough: "2026-07-19",
     },
   };
 
