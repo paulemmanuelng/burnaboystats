@@ -22,6 +22,7 @@ import { allChartItems, CHART_COUNTRIES } from "../data/charts";
 import { ceremonies } from "../data/awards";
 import { songs } from "../data/songs";
 import { albumPages } from "../data/albumPages";
+import { garage } from "../data/cars";
 import { titleKey } from "./titleKey";
 import type { SearchDoc } from "./searchIndex";
 
@@ -100,6 +101,19 @@ export function buildSearchDocs(): SearchDoc[] {
       section: "Awards",
       description: `${wins} win${wins === 1 ? "" : "s"} from ${c.noms.length} nomination${c.noms.length === 1 ? "" : "s"}.`,
       keywords: ["award", "awards", "ceremony", "won", "nomination"],
+    });
+  }
+
+  // ── Cars ────────────────────────────────────────────────────────────────
+  // Each current car has a page. Names and paths only — the value lives on
+  // the page. The make and the slug's words are what a query is likely to be.
+  for (const c of garage) {
+    add({
+      title: `${c.make} ${c.model}`,
+      path: `/records/cars/${c.slug}`,
+      section: "Car",
+      description: "In Burna Boy's garage — its page: illustration, reported value and specifications.",
+      keywords: [c.make.toLowerCase(), ...c.slug.split("-"), "car", "garage"],
     });
   }
 

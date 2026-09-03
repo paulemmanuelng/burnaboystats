@@ -1,3 +1,29 @@
+// ── SEPTEMBER 2026 — the garage gets pages ──────────────────────────────────
+// Each current car now carries a route (`slug`), an editorial `subtitle`, a
+// pre-filled `specs` panel, its numeric twin `num` for the performance bars,
+// a `palette` sampled from its illustration, and an `image`. Design handoff:
+// docs/design/car-collection-build-handoff.md and CARS-HANDOFF.md §6.
+//
+// Two rules the pages enforce, and a test guards:
+//   • Every image is an ILLUSTRATION OF THE MODEL, not his car — an audit
+//     against reference photography confirmed zero of fifteen renders as his
+//     actual vehicle (handoff §5.6). `image.depicts` is "model" on all fifteen
+//     and may only become "actual" alongside a `sources` entry proving it.
+//   • Specifications are VERIFIED. All fifteen were read off the manufacturer's
+//     own page in September 2026 and independently re-checked against a second
+//     source, which caught four real errors — the Black Badge's 0-100 (5.2s was
+//     the STANDARD Cullinan's), the 328 GTS's 0-100, the Senna's top speed and
+//     the S680's weight — and established that weight bases were being mixed.
+//     `verified: true` means someone did that reading: the panel shows
+//     "pending verification" while it is false, and it must never be flipped
+//     from memory. A figure the maker does not publish for that exact car is
+//     `null`, shown as an em dash with the reason, never a borrowed number.
+//
+// Two identity questions are OPEN, flagged not decided (handoff §5.6): the
+// Maybach saloon may be an S650 (previous generation — his own photo shows the
+// boot badge), and the craned Ferrari may be the 328 GTS rather than the
+// Testarossa. Either fix is one row here.
+
 // ── JULY 2026 UPDATE — top-fan re-pricing pass ──────────────────────────────
 // Re-priced against a researched breakdown from a top Burna Boy fan/collector
 // (@turntupnaza), who tracked each car's buy price + Nigerian import duties.
@@ -25,7 +51,7 @@
 // Tori.ng). The Ferrari SF90 Spider and the vintage Ferrari Testarossa are
 // the two exceptions: ownership of each is well-documented (many independent
 // posts/videos — the Testarossa specifically confirmed as a genuinely distinct
-// car from the 328 GTB below, via convergent independent labelling across two
+// car from the 328 GTS below, via convergent independent labelling across two
 // separate sightings, London and later brought to his Lagos garage, August
 // 2025), but their values float free of any single dedicated report — they're
 // social/blog estimates, marked "(est.)" below rather than presented with the
@@ -74,9 +100,65 @@
 // clickbait content, not picked up by any real outlet).
 //
 // `link` is optional — a URL to a photo or video of Burna Boy actually in/with
-// the car (added over time). When present, the row shows a "See it" link. We do
-// NOT host our own photos of the cars (his are one-of-a-kind/customised and no
-// free-to-reuse image exists), so this points out to the real thing instead.
+// the car (added over time). When present, the page shows it as the SOURCE
+// panel. We do NOT host photos of his cars (they are one-of-a-kind/customised
+// and no free-to-reuse image exists) — the images on the pages are
+// illustrations of each model, and say so.
+
+/**
+ * Six manufacturer figures, as display strings in the site's units.
+ *
+ * A field is `null` when the manufacturer does not publish that figure for
+ * this exact car — the panel then shows an em dash and says why, because an
+ * absent figure is itself a fact and a guess would be worse. Two cars use it:
+ * Rolls-Royce publishes no separate weight for the Black Badge Cullinan (the
+ * 2,660 kg that circulates is the STANDARD Cullinan's), and Lamborghini's own
+ * brochures give three different Urus weights, all labelled "curb".
+ *
+ * POWER IS IMPERIAL (bhp/SAE) throughout. That is the convention the dataset
+ * already used on all fifteen cars and what the design was drawn against: the
+ * Chiron's 1,479 is 1,103 kW in SAE horsepower, where the metric figure would
+ * be 1,500 PS. Do not mix the two.
+ *
+ * Weight always carries its basis. Dry, DIN and EU differ by 100kg+ — EU mass
+ * in running order includes a statutory 75 kg driver, DIN does not, and a dry
+ * weight excludes fluids — so an unlabelled figure is not comparable.
+ */
+export interface CarSpecs {
+  engine: string;
+  power: string; // imperial hp (bhp/SAE)
+  zeroToHundred: string; // s, one decimal
+  topSpeed: string; // km/h
+  drivetrain: string;
+  weight: string | null;
+  /** "base model" on the one-off conversions — nobody has measured those. */
+  basis: "as built" | "base model";
+  /** The manufacturer page each row must be read off. Required. */
+  source: string;
+  /** Why a figure is absent or qualified, when it is. Shown under the panel. */
+  note?: string;
+  /** Set only after a person read each row off `source`. Never inferred. */
+  verified: boolean;
+}
+
+/** Numeric twins of the specs, for the performance bars. Kept in step — and
+ *  null wherever the spec itself is null, so a bar reads as unavailable rather
+ *  than being computed from a figure nobody published. */
+export interface CarNum {
+  hp: number;
+  kg: number | null;
+  acc: number; // 0–100 km/h, seconds
+  vmax: number; // km/h
+}
+
+export interface CarImage {
+  hero: { src: string; width: number; height: number };
+  preview: { src: string; width: number; height: number };
+  /** "actual" only alongside a `sources` entry proving it. None exists. */
+  depicts: "model" | "actual";
+  caption: string;
+  alt: string;
+}
 
 export interface Car {
   make: string;
@@ -88,6 +170,38 @@ export interface Car {
   status?: "sold" | "unconfirmed"; // absent = currently in the collection
   link?: string; // optional: photo/video of Burna Boy in/with the car
   linkLabel?: string; // optional override for the link text (defaults to "See Burna in it")
+
+  // ── Present on every current car; absent on the five no longer counted ──
+  /** Route segment under /records/cars/. Fixed — it is the page's URL. */
+  slug?: string;
+  /** One upper-case mono line under the headline. Editorial, copied as written. */
+  subtitle?: string;
+  specs?: CarSpecs;
+  num?: CarNum;
+  /** Five hexes sampled from the illustration, dark → light. Decorative. */
+  palette?: string[];
+  /**
+   * The hero canvas. One size for all fifteen — the car is pasted at native
+   * scale, centred on its own silhouette, with its GROUND LINE (the lowest
+   * pixel of the car, where a tyre meets the floor) at 72% of the height.
+   * That shared geometry is what lets one CSS rule sit every car on the floor
+   * ring: see GROUND_LINE in app/lib/garage.ts.
+   */
+  heroSize?: [width: number, height: number];
+  /** Evidence a render depicts HIS car. Empty everywhere; see the header. */
+  sources?: string[];
+}
+
+/** A current car with its page fields present — what the routes render. */
+export interface GarageCar extends Car {
+  slug: string;
+  subtitle: string;
+  specs: CarSpecs;
+  num: CarNum;
+  palette: string[];
+  heroSize: [width: number, height: number];
+  image: CarImage;
+  rank: number;
 }
 
 export const cars: Car[] = [
@@ -98,35 +212,71 @@ export const cars: Car[] = [
     // He hasn't driven it yet — this is the official reveal video of the finished build.
     link: "https://www.youtube.com/watch?v=YNP3X59Yv6Y",
     linkLabel: "Watch the reveal",
+    slug: "bugatti-chiron",
+    subtitle: "ONE-OF-ONE WIDEBODY BY VENUUM — UNVEILED JULY 2026",
+    specs: { engine: "8.0L quad-turbo W16", power: "1,479 hp", zeroToHundred: "2.4 s", topSpeed: "420 km/h", drivetrain: "AWD", weight: "1,995 kg (DIN)", basis: "base model", source: "https://www.bugatti.com/en/models/chiron", note: "Top speed is a limiter, not a measured maximum — 380 km/h in normal use, 420 km/h only with the Speed Key. Bugatti publishes no absolute weight: 1,995 kg is the DIN figure, which excludes the 75 kg driver the EU figure of 2,070 kg includes.", verified: true },
+    num: { hp: 1479, kg: 1995, acc: 2.4, vmax: 420 },
+    palette: ["#1968a9", "#5799ca", "#0a3c78", "#565757", "#262727"],
+    heroSize: [898, 660],
   },
   {
     make: "McLaren", model: "Senna (MSO Carbon Edition)",
     valueUsd: 2_000_000, valueNaira: "₦2.9 billion",
     desc: "A track-bred hypercar named after Ayrton Senna, finished in exposed carbon fibre (MSO). The one price in the whole collection that's confirmed rather than estimated — $2M is the figure Burna Boy himself posted when he bought it.",
     link: "https://autojosh.com/burna-boy-splashes-n3-2-billion-on-a-mclaren-senna-hypercar/",
+    slug: "mclaren-senna",
+    subtitle: "TRACK-BRED HYPERCAR IN EXPOSED MSO CARBON",
+    specs: { engine: "4.0L twin-turbo V8", power: "789 hp", zeroToHundred: "2.8 s", topSpeed: "335 km/h", drivetrain: "RWD", weight: "1,198 kg (dry)", basis: "base model", source: "https://cars.mclaren.press/assets/documents/original/9263-McLarenSennatheultimateroadlegalMcLarentrackcarmediainformationGERJune2018.pdf", verified: true },
+    num: { hp: 789, kg: 1198, acc: 2.8, vmax: 335 },
+    palette: ["#e6e8eb", "#a5a6a7", "#868686", "#686868", "#373737"],
+    heroSize: [898, 660],
   },
   {
     make: "Ferrari", model: "SF90 Spider", year: 2025,
     valueUsd: 1_000_000, valueNaira: "₦1.46 billion",
     desc: "The open-top version of Ferrari's plug-in-hybrid V8 hypercar, with nearly 1,000 combined horsepower — reported as the only one of its kind in Africa.",
+    slug: "ferrari-sf90-spider",
+    subtitle: "OPEN-TOP PLUG-IN HYBRID V8 — REPORTEDLY AFRICA'S ONLY ONE",
+    specs: { engine: "4.0L twin-turbo V8 plug-in hybrid", power: "986 hp", zeroToHundred: "2.5 s", topSpeed: "340 km/h", drivetrain: "AWD", weight: "1,670 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/sf90-spider", verified: true },
+    num: { hp: 986, kg: 1670, acc: 2.5, vmax: 340 },
+    palette: ["#484749", "#686669", "#868587", "#f5f6f5", "#262629"],
+    heroSize: [898, 660],
   },
   {
     make: "Ferrari", model: "Purosangue", year: 2024,
     valueUsd: 1_000_000, valueNaira: "₦1.46 billion",
     desc: "Ferrari's first-ever four-door, four-seat model — the marque's debut in the luxury-SUV space, powered by a naturally-aspirated V12.",
     link: "https://autojosh.com/moment-burna-boy-picked-up-his-brand-new-ferrari-purosangue-suv-worth-n2-billion-at-lagos-dealership/",
+    slug: "ferrari-purosangue",
+    subtitle: "FERRARI'S FIRST FOUR-DOOR — A NATURALLY ASPIRATED V12",
+    specs: { engine: "6.5L naturally aspirated V12", power: "715 hp", zeroToHundred: "3.3 s", topSpeed: ">310 km/h", drivetrain: "AWD", weight: "2,033 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/ferrari-purosangue", note: "Ferrari publishes dry weight only, and marks 2,033 kg as achieved with optional lightweight content. It is not a kerb weight.", verified: true },
+    num: { hp: 715, kg: 2033, acc: 3.3, vmax: 310 },
+    palette: ["#e6e6e8", "#949496", "#777677", "#575758", "#262627"],
+    heroSize: [898, 660],
   },
   {
     make: "Lamborghini", model: "Revuelto", year: 2025,
     valueUsd: 1_000_000, valueNaira: "₦1.46 billion",
     desc: "Lamborghini's first plug-in-hybrid V12 flagship — the successor to the Aventador, and reported as the first in Nigeria.",
     link: "https://autojosh.com/burna-boy-acquires-the-first-ever-lamborghini-revuelto-in-nigeria-worth-n1-billion/",
+    slug: "lamborghini-revuelto",
+    subtitle: "LAMBORGHINI'S FIRST PLUG-IN V12 FLAGSHIP — FIRST IN NIGERIA",
+    specs: { engine: "6.5L naturally aspirated V12 plug-in hybrid", power: "1,001 hp", zeroToHundred: "2.5 s", topSpeed: ">350 km/h", drivetrain: "AWD", weight: "1,772 kg (dry)", basis: "as built", source: "https://www.lamborghini.com/en-en/models/revuelto", verified: true },
+    num: { hp: 1001, kg: 1772, acc: 2.5, vmax: 350 },
+    palette: ["#e5c806", "#f4e266", "#866a16", "#48433a", "#272625"],
+    heroSize: [898, 660],
   },
   {
     make: "Rolls-Royce", model: "Cullinan Black Badge", year: 2024,
     valueUsd: 1_000_000, valueNaira: "₦1.46 billion",
     desc: "Rolls-Royce's flagship ultra-luxury SUV in Black Badge trim — custom-ordered with a diamond-encrusted Spirit of Ecstasy bonnet ornament.",
     link: "https://autojosh.com/burna-boy-buys-customized-rolls-royce-cullinan-with-diamond-encrusted-bonnet-ornament/",
+    slug: "rolls-royce-cullinan-black-badge",
+    subtitle: "THE FLAGSHIP SUV IN BLACK BADGE TRIM — DIAMOND SPIRIT OF ECSTASY",
+    specs: { engine: "6.75L twin-turbo V12", power: "592 hp", zeroToHundred: "4.9 s", topSpeed: "250 km/h", drivetrain: "AWD", weight: null, basis: "as built", source: "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0441739EN/rolls-royce-black-badge-cullinan-series-ii:-the-alter-ego-evolved?language=en", note: "Rolls-Royce publishes no separate weight for the Black Badge. The 2,660 kg that circulates is the standard Cullinan’s DIN figure, so it is not shown here.", verified: true },
+    num: { hp: 592, kg: null, acc: 4.9, vmax: 250 },
+    palette: ["#84888c", "#c4c8cb", "#646668", "#45484a", "#25272a"],
+    heroSize: [898, 660],
   },
   {
     make: "Lamborghini", model: "Aventador SVJ Roadster", year: 2022,
@@ -134,18 +284,36 @@ export const cars: Car[] = [
     desc: "The most extreme Aventador — a 759-hp naturally-aspirated V12 in open-top Roadster form, built in limited numbers.",
     link: "https://www.youtube.com/watch?v=VUrDi8jbKkg",
     linkLabel: "Watch the delivery",
+    slug: "lamborghini-aventador-svj-roadster",
+    subtitle: "THE MOST EXTREME AVENTADOR — 759-HP V12, OPEN TOP",
+    specs: { engine: "6.5L naturally aspirated V12", power: "759 hp", zeroToHundred: "2.9 s", topSpeed: ">350 km/h", drivetrain: "AWD", weight: "1,575 kg (dry)", basis: "as built", source: "https://www.lamborghini.com/en-en/history/aventador-svj-roadster", verified: true },
+    num: { hp: 759, kg: 1575, acc: 2.9, vmax: 350 },
+    palette: ["#391a57", "#583a75", "#767676", "#474748", "#262728"],
+    heroSize: [898, 660],
   },
   {
     make: "Rolls-Royce", model: "Dawn", year: 2019,
     valueUsd: 700_000, valueNaira: "₦1 billion",
     desc: "A four-seat luxury drop-top convertible, also fitted with a diamond Spirit of Ecstasy.",
     link: "https://autojosh.com/burna-boy-flaunts-rolls-royce-dawn/",
+    slug: "rolls-royce-dawn",
+    subtitle: "FOUR-SEAT DROP-TOP — DIAMOND SPIRIT OF ECSTASY",
+    specs: { engine: "6.6L twin-turbo V12", power: "563 hp", zeroToHundred: "5.0 s", topSpeed: "250 km/h (governed)", drivetrain: "RWD", weight: "2,560 kg (unladen, DIN)", basis: "as built", source: "https://www.rolls-roycemotorcars.com/en_GB/showroom/dawn.html", verified: true },
+    num: { hp: 563, kg: 2560, acc: 5.0, vmax: 250 },
+    palette: ["#691c23", "#9b7778", "#6a6968", "#474746", "#272727"],
+    heroSize: [898, 660],
   },
   {
     make: "Ferrari", model: "812 GTS", year: 2023,
     valueUsd: 700_000, valueNaira: "₦1 billion",
     desc: "A front-mounted 6.5-litre V12 convertible — among the most powerful series-production Ferraris ever built.",
     link: "https://www.legit.ng/entertainment/celebrities/1570054-christmas-burna-boy-spurges-n700m-a-brand-ferrari-812-gts-video-frenzy/",
+    slug: "ferrari-812-gts",
+    subtitle: "FRONT-ENGINED 6.5-LITRE V12 CONVERTIBLE",
+    specs: { engine: "6.5L naturally aspirated V12", power: "789 hp", zeroToHundred: "<3.0 s", topSpeed: "340 km/h", drivetrain: "RWD", weight: "1,600 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/812-gts", verified: true },
+    num: { hp: 789, kg: 1600, acc: 3.0, vmax: 340 },
+    palette: ["#585958", "#767776", "#989896", "#f7f7f6", "#252729"],
+    heroSize: [898, 660],
   },
   {
     make: "Porsche", model: "911 GT3 RS (Weissach)", year: 2025,
@@ -153,35 +321,77 @@ export const cars: Car[] = [
     desc: "A track-focused, road-legal flat-six with the Weissach pack — 518 hp, 0–100 km/h in 3.2 seconds. Delivered on Valentine's Day 2026; a Polanco dealership staffer put the price at ₦900 million.",
     link: "https://x.com/TheNationNews/status/2022971489272631326",
     linkLabel: "Watch on X",
+    slug: "porsche-911-gt3-rs",
+    subtitle: "TRACK-FOCUSED FLAT-SIX WITH THE WEISSACH PACK — DELIVERED FEBRUARY 2026",
+    specs: { engine: "4.0L naturally aspirated flat-six", power: "518 hp", zeroToHundred: "3.2 s", topSpeed: "296 km/h", drivetrain: "RWD", weight: "1,450 kg (DIN)", basis: "as built", source: "https://newsroom.porsche.com/dam/jcr:1d390f77-93c3-49c0-89c7-634f5f02b26a/S22_3515_en.pdf", note: "1,450 kg is the DIN weight without the Weissach package; Porsche publishes no separate figure for the car with it.", verified: true },
+    num: { hp: 518, kg: 1450, acc: 3.2, vmax: 296 },
+    palette: ["#ba4849", "#571923", "#787877", "#585858", "#252627"],
+    heroSize: [898, 660],
   },
   {
     make: "Lamborghini", model: "Urus (Novitec Edition)", year: 2022,
     valueUsd: 500_000, valueNaira: "₦730 million",
     desc: "Lamborghini's super-SUV, customised here to an aggressive Novitec widebody spec.",
     link: "https://autojosh.com/burna-boy-takes-his-lamborghini-urus-for-a-spin-moments-after-the-n200m-suv-arrived-in-nigeria/",
+    slug: "lamborghini-urus",
+    subtitle: "THE SUPER-SUV IN NOVITEC WIDEBODY SPEC",
+    specs: { engine: "4.0L twin-turbo V8", power: "641 hp", zeroToHundred: "3.6 s", topSpeed: "305 km/h", drivetrain: "AWD", weight: null, basis: "base model", source: "https://www.lamborghini.com/en-en/history/urus", note: "Lamborghini’s own brochures give three different weights for the Urus, all labelled “curb”, so no single figure can be cited here.", verified: true },
+    num: { hp: 641, kg: null, acc: 3.6, vmax: 305 },
+    palette: ["#3d2352", "#836a94", "#99959b", "#696969", "#262627"],
+    heroSize: [898, 660],
   },
   {
+    // OPEN: may be the previous-generation S650 — his own Instagram photo shows
+    // an "S650" boot badge and a single-tone black car (handoff §5.6). Flagged,
+    // not decided; the fix is this one row.
     make: "Mercedes-Maybach", model: "S680 4MATIC", year: 2022,
     valueUsd: 300_000, valueNaira: "₦440 million",
     desc: "The chauffeur-focused, range-topping S-Class — confirmed via his own Instagram caption (\"Got this too because everyone needs a Maybach\").",
+    slug: "mercedes-maybach-s680",
+    subtitle: "THE CHAUFFEUR-FOCUSED, RANGE-TOPPING S-CLASS",
+    specs: { engine: "6.0L biturbo V12", power: "603 hp", zeroToHundred: "4.5 s", topSpeed: "250 km/h (limited)", drivetrain: "AWD", weight: "2,365 kg (EU, incl. driver)", basis: "as built", source: "https://media.mercedes-benz.com/models/mercedes-maybach-s-class", verified: true },
+    num: { hp: 603, kg: 2365, acc: 4.5, vmax: 250 },
+    palette: ["#6a8aa4", "#88a8c2", "#767879", "#55575a", "#262629"],
+    heroSize: [898, 660],
   },
   {
     make: "Mercedes-Maybach", model: "GLS 600", year: 2024,
     valueUsd: 250_000, valueNaira: "₦360 million",
     desc: "The flagship Maybach SUV — the \"Maybach Truck\" (a 2024 GLS 600, not the 2026 model some blogs list). He bought two of them, shown together in his own TikTok video: one he kept for himself (this one) and an identical unit gifted to his mother/manager Bose Ogulu. Only his own is counted here; hers is kept out of the fleet totals. Value is an estimate in line with the Maybach tier.",
+    slug: "mercedes-maybach-gls-600",
+    subtitle: "THE FLAGSHIP MAYBACH SUV — THE “MAYBACH TRUCK”",
+    specs: { engine: "4.0L biturbo V8 · 48V mild hybrid", power: "550 hp", zeroToHundred: "4.9 s", topSpeed: "250 km/h (limited)", drivetrain: "AWD", weight: "2,785 kg (EU, incl. driver)", basis: "as built", source: "https://media.mercedes-benz.com/article/1e4be408-e56e-4b4e-a7ff-1fcdcfc19bf5", note: "2,785 kg is the pre-facelift figure, which is the car recorded here; the facelift is about 30 kg heavier.", verified: true },
+    num: { hp: 550, kg: 2785, acc: 4.9, vmax: 250 },
+    palette: ["#878687", "#d6d6d8", "#676767", "#474748", "#262628"],
+    heroSize: [898, 660],
   },
   {
+    // OPEN: the August 2026 crane-lift photographs show a narrow-body targa
+    // with no side strakes — a 328, not a Testarossa — while a Testarossa does
+    // appear separately on a UK plate (handoff §5.6). Flagged, not decided.
     make: "Ferrari", model: "Testarossa", year: 1988,
     valueUsd: 120_000, valueNaira: "₦175 million",
     desc: "A wide-body, flat-12 icon of the 1980s, instantly recognisable by its side strakes — spotted in London and later brought to his Lagos garage (August 2025). A genuinely distinct car from his red 328 below. Some blogs valued it near ₦1.5bn; a 1988 Testarossa realistically sits far lower, around ₦175 million.",
+    slug: "ferrari-testarossa",
+    subtitle: "WIDE-BODY FLAT-12 ICON OF THE 1980s",
+    specs: { engine: "4.9L flat-12", power: "385 hp", zeroToHundred: "5.8 s", topSpeed: "290 km/h", drivetrain: "RWD", weight: "1,506 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/testarossa", note: "Ferrari publishes one sheet for the whole 1984–1991 run; these are the European non-catalyst figures. Catalyst-market cars made less power.", verified: true },
+    num: { hp: 385, kg: 1506, acc: 5.8, vmax: 290 },
+    palette: ["#a72c2a", "#c57a76", "#89868a", "#3a444b", "#282528"],
+    heroSize: [898, 660],
   },
   {
     make: "Ferrari", model: "328 GTS", year: 1985,
     valueUsd: 100_000, valueNaira: "₦146 million",
     desc: "A 1980s classic — the final evolution of Ferrari's celebrated 308/328 line, in open-top GTS form. This is the Ferrari kept in his Lagos penthouse.",
+    slug: "ferrari-328-gts",
+    subtitle: "THE FINAL 308/328 — KEPT IN HIS LAGOS PENTHOUSE",
+    specs: { engine: "3.2L V8", power: "266 hp", zeroToHundred: "6.4 s", topSpeed: "263 km/h", drivetrain: "RWD", weight: "1,273 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/328-gts", verified: true },
+    num: { hp: 266, kg: 1273, acc: 6.4, vmax: 263 },
+    palette: ["#981717", "#571619", "#d59998", "#494745", "#282627"],
+    heroSize: [898, 660],
   },
 
-  // ===== No longer counted in the live collection =====
+  // ===== No longer counted in the live collection — no slug, no image, no route =====
   {
     make: "Ferrari", model: "458 Italia", year: 2013,
     valueUsd: 230_000, valueNaira: "₦333.5 million",
@@ -229,3 +439,30 @@ function formatUsd(n: number): string {
   return `$${(n / 1_000_000).toFixed(2)}M`;
 }
 export const totalValueFormatted = formatUsd(totalValueUsd);
+
+// ── The garage: the current cars as pages ───────────────────────────────────
+// Rank is the position in the value-sorted list, so it can never disagree with
+// the index. The image block is derived from the slug: one hero and one 16:10
+// tile per car in public/cars/, both captioned as an illustration of the model.
+const hasPageFields = (c: Car): c is Car & Required<Pick<Car, "slug" | "subtitle" | "specs" | "num" | "palette" | "heroSize">> =>
+  Boolean(c.slug && c.subtitle && c.specs && c.num && c.palette && c.heroSize);
+
+export const garage: GarageCar[] = currentCars.filter(hasPageFields).map((c, i) => ({
+  ...c,
+  rank: i + 1,
+  image: {
+    // The hero is the car CUT OUT of its frame, on transparency, so it sits on
+    // the page's own floor ring rather than on a rectangle of the render's
+    // stage. Same canvas as the JPEG it came from — only the ground is gone —
+    // so nothing about the page's scale or centring changes. The tile keeps
+    // the framed JPEG: it is a card, and its ground never shows.
+    hero: { src: `/cars/${c.slug}.png`, width: c.heroSize[0], height: c.heroSize[1] },
+    preview: { src: `/cars/${c.slug}-tile.jpg`, width: 640, height: 400 },
+    depicts: "model",
+    caption: "Illustration",
+    alt: `Illustration of a ${c.make} ${c.model}.`,
+  },
+}));
+
+export const carSlugs = garage.map((c) => c.slug);
+export const carBySlug = (slug: string) => garage.find((c) => c.slug === slug);
