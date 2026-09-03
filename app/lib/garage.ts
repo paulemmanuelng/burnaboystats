@@ -8,6 +8,21 @@ import { garage, type GarageCar } from "../data/cars";
  *  not part of the name, and it breaks a 54px headline. */
 export const modelShort = (model: string) => model.replace(/\s*\(.*\)\s*$/, "");
 
+/**
+ * Where the car's tyres are, as a fraction of its hero canvas.
+ *
+ * Every hero is baked so the lowest pixel of the car sits here (see
+ * `heroSize` in app/data/cars.ts). The car page translates the image up by
+ * this much from the floor ring's own centre line, which is what puts all
+ * fifteen cars ON the ring rather than near it — and keeps them there as the
+ * column resizes, because both numbers are fractions.
+ */
+export const GROUND_LINE = 0.72;
+
+/** The floor ring's centre line, as a fraction of the stage: cy 452 of 632 in
+ *  the floor SVG's own viewBox. */
+export const RING_LINE = 452 / 632;
+
 export const usdFull = (n: number) => `$${n.toLocaleString("en-US")}`;
 export const usdShort = (n: number) => `$${(n / 1e6).toFixed(2)}M`;
 export const rankLabel = (rank: number) => String(rank).padStart(2, "0");

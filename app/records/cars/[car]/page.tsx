@@ -74,14 +74,16 @@ function Floor() {
   );
 }
 
-/* The same ring at phone and tablet widths, inside the hero figure. */
+/* The ring at phone and tablet widths, drawn in the hero image's own box.
+   Its viewBox is the hero canvas and cy is the canvas's ground line — 468 of
+   650 — so the car's tyres land on the ellipse by construction, at any size. */
 function Ring() {
   return (
-    <svg className={styles.ring} viewBox="0 0 390 250" preserveAspectRatio="none" aria-hidden="true">
-      <ellipse cx="195" cy="178" rx="176" ry="46" fill="none" stroke="rgba(224,138,46,0.5)" strokeWidth="1" />
-      <ellipse cx="195" cy="178" rx="176" ry="46" fill="none" stroke="rgba(224,138,46,0.16)" strokeWidth="5" />
-      <ellipse cx="195" cy="178" rx="146" ry="37" fill="none" stroke="rgba(224,138,46,0.2)" strokeWidth="1" strokeDasharray="3 8" />
-      <line x1="0" y1="178" x2="390" y2="178" stroke="rgba(245,240,232,0.06)" />
+    <svg className={styles.ring} viewBox="0 0 897 650" preserveAspectRatio="none" aria-hidden="true">
+      <ellipse cx="448" cy="468" rx="405" ry="106" fill="none" stroke="rgba(224,138,46,0.5)" strokeWidth="2" />
+      <ellipse cx="448" cy="468" rx="405" ry="106" fill="none" stroke="rgba(224,138,46,0.16)" strokeWidth="11" />
+      <ellipse cx="448" cy="468" rx="336" ry="88" fill="none" stroke="rgba(224,138,46,0.2)" strokeWidth="2" strokeDasharray="7 18" />
+      <line x1="0" y1="468" x2="897" y2="468" stroke="rgba(245,240,232,0.06)" strokeWidth="2" />
     </svg>
   );
 }
@@ -182,18 +184,24 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
         </div>
 
         <figure className={styles.hero}>
-          <Ring />
-          {/* The page's LCP element. One copy at every width, so it can be a
-              plain eager image with a preload. */}
-          <Image
-            className={styles.heroImg}
-            src={car.image.hero.src}
-            width={car.image.hero.width}
-            height={car.image.hero.height}
-            sizes="(min-width: 901px) 600px, 100vw"
-            alt={car.image.alt}
-            priority
-          />
+          {/* The ring and the car share one box, so the tyres sit on the
+              ellipse rather than near it. On desktop the ring comes from the
+              stage's own floor SVG instead, and this box is positioned onto
+              it — see .heroStage. */}
+          <span className={styles.heroStage}>
+            <Ring />
+            {/* The page's LCP element. One copy at every width, so it can be a
+                plain eager image with a preload. */}
+            <Image
+              className={styles.heroImg}
+              src={car.image.hero.src}
+              width={car.image.hero.width}
+              height={car.image.hero.height}
+              sizes="(min-width: 901px) 600px, 100vw"
+              alt={car.image.alt}
+              priority
+            />
+          </span>
           <figcaption className={styles.caption}>
             <span className={styles.captionRule} aria-hidden="true" />
             {car.image.caption}

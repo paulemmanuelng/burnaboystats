@@ -112,55 +112,54 @@
 }
 
 /* Hero — centre, all three rows. Its min-height is what gives the stage its
-   632px: the figure spans rows 1–3, so those rows sum to at least that. */
+   632px, and it is the same box the floor SVG spans, so a percentage down this
+   element is the same percentage down the floor. */
 .hero {
   grid-area: hero;
   position: relative;
   isolation: isolate;
   min-height: 632px;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 8px 0 10px;
+  padding: 0;
+}
+
+/* The car, sat on the ring.
+
+   Two fractions do it, and both are fractions on purpose so the alignment
+   survives the column resizing between 1200 and 1280px:
+
+     top        71.52%  — the floor ring's own centre line, cy 452 of the
+                          SVG's 632-tall viewBox
+     translateY  -72%   — the hero canvas's ground line, where every car's
+                          tyres were baked (GROUND_LINE in app/lib/garage.ts)
+
+   Translating the box up by its own ground line puts the tyres exactly on the
+   ring's centre — which is where a car standing in the middle of a circle
+   drawn on the floor would meet it. */
+.heroStage {
+  position: absolute;
+  left: 50%;
+  top: 71.52%;
+  width: 100%;
+  max-width: 600px;
+  transform: translate(-50%, -72%);
 }
 .heroImg {
   display: block;
   width: 100%;
   height: auto;
-  max-width: 600px;
-  object-fit: contain;
-  /* No drop-shadow. The design file asks for one, but these assets are opaque
-     to their edges (the car is cut onto the ground, not onto transparency), so
-     a drop-shadow renders the shadow of the RECTANGLE — a dark blurred box
-     around the frame, plainest where the floor's amber glow sits behind it.
-     The render already carries the car's own shadow and floor reflection. */
-  /* The car SITS ON the ring and OCCLUDES it — the image stays fully opaque
-     through the middle, so the gold ellipse passes behind the bodywork and is
-     hidden, exactly as the design draws it.
-
-     What is faded is only the outer edge. Each hero keeps a rectangle of the
-     original frame's stage — its grid lines and lit floor are inside the crop,
-     a little lighter than this page — so an unfaded edge reads as a box around
-     the car. The ramp starts at the frame border and is fully opaque by 14%
-     across and 18% down, which is outside every car in the set: the car is
-     untouched, the baked stage dissolves, and the CSS floor and ring become the
-     only ground under it.
-
-     Not to be confused with two earlier attempts that both broke the
-     occlusion: `mix-blend-mode: screen` turned the near-black bodywork
-     translucent and the ring came straight THROUGH the car, and a radial mask
-     carved a soft oval vignette out of the frame. */
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent),
-    linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent),
-    linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
+  /* The car is cut out of its frame onto transparency and carries its own
+     reflection and contact shadow, baked from its silhouette. No mask and no
+     drop-shadow: both existed to manage a rectangle of the render's lit stage
+     that no longer ships. */
 }
 .caption {
+  /* Below the ring, not below the image: the image box is positioned onto the
+     ring and its own height varies with the column. */
+  position: absolute;
+  left: 50%;
+  top: 88%;
+  transform: translateX(-50%);
   font-family: var(--font-mono), monospace;
   font-size: 10.5px;
   letter-spacing: 0.14em;
@@ -169,6 +168,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
 }
 .captionRule { width: 18px; height: 1px; background: var(--rule); display: block; }
 
@@ -453,6 +453,26 @@ a.source:hover { background: rgba(255, 182, 39, 0.14); }
       "nav nav";
   }
   .floor { display: none; }
+  /* Below the desktop stage the floor SVG goes, and the hero's own ring takes
+     over. It shares the image's box and its viewBox IS the hero canvas, so the
+     ellipse and the car's ground line are the same line — no positioning to
+     get wrong. */
+  .hero {
+    min-height: 0;
+    padding: 18px 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .heroStage {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    max-width: 600px;
+    width: 100%;
+  }
   .ring {
     display: block;
     position: absolute;
@@ -462,7 +482,7 @@ a.source:hover { background: rgba(255, 182, 39, 0.14); }
     z-index: -1;
     pointer-events: none;
   }
-  .hero { min-height: 0; padding: 18px 0 10px; }
+  .caption { position: static; transform: none; }
   .specs { padding-top: 22px; }
   .performance, .livery { padding-bottom: 0; }
   .livery { padding-top: 22px; }
@@ -547,7 +567,17 @@ a.source:hover { background: rgba(255, 182, 39, 0.14); }
   .subtitle { font-size: 10.5px; margin-top: 12px; max-width: none; }
   .valueBox { display: none; }
 
-  .hero { order: 2; margin-top: 14px; padding: 6px 0 0; min-height: 0; gap: 4px; }
+  .hero {
+    order: 2;
+    margin-top: 14px;
+    padding: 6px 0 0;
+    min-height: 0;
+    gap: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .heroStage { position: relative; left: auto; top: auto; transform: none; max-width: none; width: 100%; }
   .ring {
     display: block;
     position: absolute;
@@ -558,7 +588,7 @@ a.source:hover { background: rgba(255, 182, 39, 0.14); }
     pointer-events: none;
   }
   .heroImg { max-width: none; }
-  .caption { justify-content: center; }
+  .caption { position: static; transform: none; justify-content: center; }
   .captionRule { display: none; }
   .caption::before, .caption::after { content: "— "; }
   .caption::after { content: " —"; }
