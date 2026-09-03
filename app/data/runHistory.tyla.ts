@@ -5,7 +5,7 @@
   // snapshot beside it knows only today; this knows every day it has watched, so
   // a run — "Dai Dai" at No. 1 on Spotify's global daily chart for 26 days — can
   // be plotted rather than only counted. One row per release, platform and day
-  // (the day's latest reading). Collection began 2026-09-02;
+  // (the day's latest reading). Collection began 2026-09-03;
   // entries older than 430 days are dropped.
   
   export interface RunPoint {
@@ -15,7 +15,14 @@
     position: number;
   }
   
-  export const runHistory: RunPoint[] = [];
+  export const runHistory: RunPoint[] = [
+  {
+    "date": "2026-09-03",
+    "release": "CHANEL",
+    "platform": "Deezer",
+    "position": 50
+  }
+];
   
   /** The dated series for one release on one platform, oldest first. */
   export const runSeries = (release: string, platform: string) =>

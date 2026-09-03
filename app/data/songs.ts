@@ -150,7 +150,7 @@ export const songs: Song[] = [
     album: "The Last Wun",
     cover: "https://i.scdn.co/image/ab67616d0000b27303a253cffd6d9e556ef4eec5",
     spotify: "https://open.spotify.com/track/0WsC4ETIXyiHDMXRaPMvKe",
-    spotifyStreams: "300M",
+    spotifyStreams: "301M",
     tagline: "Burna Boy's highest-ever Billboard Hot 100 peak",
     blurb:
       "A feature on Gunna's 2025 album The Last Wun, “WGFT” gave Burna Boy his highest position ever on the US Billboard Hot 100 — No. 16 — blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 12 countries and put him back in the US Top 20.",
@@ -427,7 +427,7 @@ export const songs: Song[] = [
     slug: "like-to-party",
     title: "Like to Party",
     year: 2012,
-    spotifyStreams: "10M",
+    spotifyStreams: "11M",
     album: "L.I.F.E",
     // The L.I.F.E album art — the track link's own art is a best-of
     // compilation cover, which is not the release this page is about.

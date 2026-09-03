@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-02";
+  export const liveChartsUpdated = "2026-09-03";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","YouTube","iTunes"];
@@ -51,27 +51,20 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 11,
-            "movement": -2
+            "position": 6,
+            "movement": 5
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 86,
-            "movement": -33
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 124,
-            "movement": -34
-          },
-          {
-            "country": "CL",
-            "name": "Chile",
-            "position": 160,
-            "movement": null,
-            "status": "new"
+            "position": 142,
+            "movement": -40
           }
         ]
       },
@@ -82,8 +75,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 130,
-            "movement": 5
+            "position": 129,
+            "movement": 1
           }
         ]
       },
@@ -92,9 +85,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "MR",
-            "name": "Mauritania",
-            "position": 167,
+            "country": "TM",
+            "name": "Turkmenistan",
+            "position": 178,
             "movement": null,
             "status": "new"
           }
@@ -103,44 +96,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BODY",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 118,
-            "movement": -50
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 140,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 122,
-            "movement": -17
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BANGER BOY",
@@ -152,14 +107,28 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 80,
-            "movement": 64
+            "position": 25,
+            "movement": 55
+          },
+          {
+            "country": "MG",
+            "name": "Madagascar",
+            "position": 135,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "ML",
             "name": "Mali",
-            "position": 111,
+            "position": 148,
             "movement": -37
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 188,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -168,24 +137,42 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "forever",
+    "title": "BODY",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 139,
+            "movement": 1
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 141,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
-            "movement": null,
-            "status": "new"
+            "position": 150,
+            "movement": -28
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "La La",
@@ -197,8 +184,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 176,
-            "movement": -3
+            "position": 170,
+            "movement": 6
           }
         ]
       }
@@ -217,13 +204,33 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 56,
-            "movement": 4
+            "movement": 0
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "CKay the First",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MG",
+            "name": "Madagascar",
+            "position": 145,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BODY (danz)",

@@ -12,10 +12,10 @@
 // Views of the official "Dai Dai" video (youtube.com/watch?v=fcnDmrtj6Sk),
 // shown in whole millions — rewritten only when the figure ticks over another
 // million, so the page changes exactly when the number does.
-export const DAI_DAI_VIDEO_VIEWS = "971M";
+export const DAI_DAI_VIDEO_VIEWS = "976M";
 
 // Total Spotify streams for "Dai Dai" — same live pipeline as the video count.
-export const DAI_DAI_SPOTIFY_STREAMS = "406M";
+export const DAI_DAI_SPOTIFY_STREAMS = "409M";
 
 // ---------------------------------------------------------------------------
 // The Spotify Global Daily Top Songs run.
