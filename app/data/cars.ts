@@ -190,7 +190,7 @@ export const cars: Car[] = [
     specs: { engine: "8.0L quad-turbo W16", power: "1,479 hp", zeroToHundred: "2.4 s", topSpeed: "420 km/h", drivetrain: "AWD", weight: "1,995 kg", basis: "base model", source: "https://www.bugatti.com/models/chiron-models/chiron/", verified: false },
     num: { hp: 1479, kg: 1995, acc: 2.4, vmax: 420 },
     palette: ["#1968a9", "#5799ca", "#0a3c78", "#565757", "#262727"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     make: "McLaren", model: "Senna (MSO Carbon Edition)",
@@ -202,7 +202,7 @@ export const cars: Car[] = [
     specs: { engine: "4.0L twin-turbo V8", power: "789 hp", zeroToHundred: "2.8 s", topSpeed: "340 km/h", drivetrain: "RWD", weight: "1,198 kg (dry)", basis: "base model", source: "https://cars.mclaren.com/en/ultimate/senna", verified: false },
     num: { hp: 789, kg: 1198, acc: 2.8, vmax: 340 },
     palette: ["#e6e8eb", "#a5a6a7", "#868686", "#686868", "#373737"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     make: "Ferrari", model: "SF90 Spider", year: 2025,
@@ -213,7 +213,7 @@ export const cars: Car[] = [
     specs: { engine: "4.0L twin-turbo V8 plug-in hybrid", power: "986 hp", zeroToHundred: "2.5 s", topSpeed: "340 km/h", drivetrain: "AWD", weight: "1,670 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/sf90-spider", verified: false },
     num: { hp: 986, kg: 1670, acc: 2.5, vmax: 340 },
     palette: ["#484749", "#686669", "#868587", "#f5f6f5", "#262629"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     make: "Ferrari", model: "Purosangue", year: 2024,
@@ -225,7 +225,7 @@ export const cars: Car[] = [
     specs: { engine: "6.5L naturally aspirated V12", power: "715 hp", zeroToHundred: "3.3 s", topSpeed: "310 km/h", drivetrain: "AWD", weight: "2,033 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/ferrari-purosangue", verified: false },
     num: { hp: 715, kg: 2033, acc: 3.3, vmax: 310 },
     palette: ["#e6e6e8", "#949496", "#777677", "#575758", "#262627"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     make: "Lamborghini", model: "Revuelto", year: 2025,
@@ -237,7 +237,7 @@ export const cars: Car[] = [
     specs: { engine: "6.5L naturally aspirated V12 plug-in hybrid", power: "1,001 hp", zeroToHundred: "2.5 s", topSpeed: "350 km/h", drivetrain: "AWD", weight: "1,772 kg (dry)", basis: "as built", source: "https://www.lamborghini.com/en-en/models/revuelto", verified: false },
     num: { hp: 1001, kg: 1772, acc: 2.5, vmax: 350 },
     palette: ["#e5c806", "#f4e266", "#866a16", "#48433a", "#272625"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     make: "Rolls-Royce", model: "Cullinan Black Badge", year: 2024,
@@ -249,7 +249,7 @@ export const cars: Car[] = [
     specs: { engine: "6.75L twin-turbo V12", power: "592 hp", zeroToHundred: "5.2 s", topSpeed: "250 km/h", drivetrain: "AWD", weight: "2,753 kg", basis: "as built", source: "https://www.rolls-roycemotorcars.com/en_GB/showroom/black-badge-cullinan.html", verified: false },
     num: { hp: 592, kg: 2753, acc: 5.2, vmax: 250 },
     palette: ["#84888c", "#c4c8cb", "#646668", "#45484a", "#25272a"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     make: "Lamborghini", model: "Aventador SVJ Roadster", year: 2022,
@@ -262,7 +262,7 @@ export const cars: Car[] = [
     specs: { engine: "6.5L naturally aspirated V12", power: "759 hp", zeroToHundred: "2.9 s", topSpeed: "350 km/h", drivetrain: "AWD", weight: "1,575 kg (dry)", basis: "as built", source: "https://www.lamborghini.com/en-en/history/aventador-svj-roadster", verified: false },
     num: { hp: 759, kg: 1575, acc: 2.9, vmax: 350 },
     palette: ["#391a57", "#583a75", "#767676", "#474748", "#262728"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     make: "Rolls-Royce", model: "Dawn", year: 2019,
@@ -274,7 +274,7 @@ export const cars: Car[] = [
     specs: { engine: "6.6L twin-turbo V12", power: "563 hp", zeroToHundred: "5.0 s", topSpeed: "250 km/h", drivetrain: "RWD", weight: "2,560 kg", basis: "as built", source: "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/", verified: false },
     num: { hp: 563, kg: 2560, acc: 5.0, vmax: 250 },
     palette: ["#691c23", "#9b7778", "#6a6968", "#474746", "#272727"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     make: "Ferrari", model: "812 GTS", year: 2023,
@@ -286,7 +286,7 @@ export const cars: Car[] = [
     specs: { engine: "6.5L naturally aspirated V12", power: "789 hp", zeroToHundred: "3.0 s", topSpeed: "340 km/h", drivetrain: "RWD", weight: "1,600 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/812-gts", verified: false },
     num: { hp: 789, kg: 1600, acc: 3.0, vmax: 340 },
     palette: ["#585958", "#767776", "#989896", "#f7f7f6", "#252729"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     make: "Porsche", model: "911 GT3 RS (Weissach)", year: 2025,
@@ -299,7 +299,7 @@ export const cars: Car[] = [
     specs: { engine: "4.0L naturally aspirated flat-six", power: "518 hp", zeroToHundred: "3.2 s", topSpeed: "296 km/h", drivetrain: "RWD", weight: "1,450 kg", basis: "as built", source: "https://www.porsche.com/international/models/911/911-gt3-models/911-gt3-rs/", verified: false },
     num: { hp: 518, kg: 1450, acc: 3.2, vmax: 296 },
     palette: ["#ba4849", "#571923", "#787877", "#585858", "#252627"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     make: "Lamborghini", model: "Urus (Novitec Edition)", year: 2022,
@@ -311,7 +311,7 @@ export const cars: Car[] = [
     specs: { engine: "4.0L twin-turbo V8", power: "641 hp", zeroToHundred: "3.6 s", topSpeed: "305 km/h", drivetrain: "AWD", weight: "2,200 kg (dry)", basis: "base model", source: "https://www.lamborghini.com/en-en/history/urus", verified: false },
     num: { hp: 641, kg: 2200, acc: 3.6, vmax: 305 },
     palette: ["#3d2352", "#836a94", "#99959b", "#696969", "#262627"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     // OPEN: may be the previous-generation S650 — his own Instagram photo shows
@@ -325,7 +325,7 @@ export const cars: Car[] = [
     specs: { engine: "6.0L twin-turbo V12", power: "603 hp", zeroToHundred: "4.5 s", topSpeed: "250 km/h", drivetrain: "AWD", weight: "2,315 kg", basis: "as built", source: "https://www.mercedes-benz.com/en/vehicles/mercedes-maybach/", verified: false },
     num: { hp: 603, kg: 2315, acc: 4.5, vmax: 250 },
     palette: ["#6a8aa4", "#88a8c2", "#767879", "#55575a", "#262629"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     make: "Mercedes-Maybach", model: "GLS 600", year: 2024,
@@ -336,7 +336,7 @@ export const cars: Car[] = [
     specs: { engine: "4.0L twin-turbo V8 · 48V mild hybrid", power: "550 hp", zeroToHundred: "4.9 s", topSpeed: "250 km/h", drivetrain: "AWD", weight: "2,785 kg", basis: "as built", source: "https://www.mercedes-benz.com/en/vehicles/mercedes-maybach/", verified: false },
     num: { hp: 550, kg: 2785, acc: 4.9, vmax: 250 },
     palette: ["#878687", "#d6d6d8", "#676767", "#474748", "#262628"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     // OPEN: the August 2026 crane-lift photographs show a narrow-body targa
@@ -350,7 +350,7 @@ export const cars: Car[] = [
     specs: { engine: "4.9L flat-12", power: "385 hp", zeroToHundred: "5.8 s", topSpeed: "290 km/h", drivetrain: "RWD", weight: "1,506 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/testarossa", verified: false },
     num: { hp: 385, kg: 1506, acc: 5.8, vmax: 290 },
     palette: ["#a72c2a", "#c57a76", "#89868a", "#3a444b", "#282528"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
   {
     make: "Ferrari", model: "328 GTS", year: 1985,
@@ -361,7 +361,7 @@ export const cars: Car[] = [
     specs: { engine: "3.2L V8", power: "266 hp", zeroToHundred: "5.5 s", topSpeed: "263 km/h", drivetrain: "RWD", weight: "1,273 kg (dry)", basis: "as built", source: "https://www.ferrari.com/en-EN/auto/328-gts", verified: false },
     num: { hp: 266, kg: 1273, acc: 5.5, vmax: 263 },
     palette: ["#981717", "#571619", "#d59998", "#494745", "#282627"],
-    heroSize: [897, 650],
+    heroSize: [898, 660],
   },
 
   // ===== No longer counted in the live collection — no slug, no image, no route =====

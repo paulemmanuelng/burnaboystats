@@ -75,15 +75,15 @@ function Floor() {
 }
 
 /* The ring at phone and tablet widths, drawn in the hero image's own box.
-   Its viewBox is the hero canvas and cy is the canvas's ground line — 468 of
-   650 — so the car's tyres land on the ellipse by construction, at any size. */
+   Its viewBox is the hero canvas and cy is the canvas's ground line — 475 of
+   660 — so the car's tyres land on the ellipse by construction, at any size. */
 function Ring() {
   return (
-    <svg className={styles.ring} viewBox="0 0 897 650" preserveAspectRatio="none" aria-hidden="true">
-      <ellipse cx="448" cy="468" rx="405" ry="106" fill="none" stroke="rgba(224,138,46,0.5)" strokeWidth="2" />
-      <ellipse cx="448" cy="468" rx="405" ry="106" fill="none" stroke="rgba(224,138,46,0.16)" strokeWidth="11" />
-      <ellipse cx="448" cy="468" rx="336" ry="88" fill="none" stroke="rgba(224,138,46,0.2)" strokeWidth="2" strokeDasharray="7 18" />
-      <line x1="0" y1="468" x2="897" y2="468" stroke="rgba(245,240,232,0.06)" strokeWidth="2" />
+    <svg className={styles.ring} viewBox="0 0 898 660" preserveAspectRatio="none" aria-hidden="true">
+      <ellipse cx="449" cy="475" rx="406" ry="106" fill="none" stroke="rgba(224,138,46,0.5)" strokeWidth="2" />
+      <ellipse cx="449" cy="475" rx="406" ry="106" fill="none" stroke="rgba(224,138,46,0.16)" strokeWidth="11" />
+      <ellipse cx="449" cy="475" rx="337" ry="88" fill="none" stroke="rgba(224,138,46,0.2)" strokeWidth="2" strokeDasharray="7 18" />
+      <line x1="0" y1="475" x2="898" y2="475" stroke="rgba(245,240,232,0.06)" strokeWidth="2" />
     </svg>
   );
 }
