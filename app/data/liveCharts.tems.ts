@@ -1147,28 +1147,28 @@
             "movement": 57
           },
           {
-            "country": "RO",
-            "name": "Romania",
-            "position": 15,
-            "movement": 7
-          },
-          {
             "country": "AM",
             "name": "Armenia",
             "position": 17,
             "movement": -14
           },
           {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 19,
-            "movement": 7
+            "country": "RO",
+            "name": "Romania",
+            "position": 17,
+            "movement": 5
           },
           {
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 25,
             "movement": -19
+          },
+          {
+            "country": "HU",
+            "name": "Hungary",
+            "position": 27,
+            "movement": -1
           },
           {
             "country": "CZ",
@@ -1216,7 +1216,7 @@
           {
             "country": "PL",
             "name": "Poland",
-            "position": 135,
+            "position": 160,
             "movement": null,
             "status": "new"
           }
@@ -1763,8 +1763,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 26,
-            "movement": -20
+            "position": 30,
+            "movement": -24
           },
           {
             "country": "UG",

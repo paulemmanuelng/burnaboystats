@@ -220,7 +220,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 4,
-            "movement": 109
+            "movement": 114
           }
         ]
       }

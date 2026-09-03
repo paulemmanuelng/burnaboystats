@@ -938,16 +938,16 @@
             "movement": -3
           },
           {
-            "country": "ES",
-            "name": "Spain",
-            "position": 17,
-            "movement": 0
-          },
-          {
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 17,
             "movement": -8
+          },
+          {
+            "country": "ES",
+            "name": "Spain",
+            "position": 18,
+            "movement": -1
           },
           {
             "country": "UA",
@@ -2101,16 +2101,16 @@
             "movement": -2
           },
           {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 5,
-            "movement": 3
-          },
-          {
             "country": "BE",
             "name": "Belgium",
             "position": 7,
             "movement": 0
+          },
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 7,
+            "movement": 1
           },
           {
             "country": "DE",
@@ -2145,16 +2145,16 @@
             "movement": -2
           },
           {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 17,
-            "movement": -12
-          },
-          {
             "country": "IT",
             "name": "Italy",
             "position": 21,
             "movement": -3
+          },
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 21,
+            "movement": -16
           },
           {
             "country": "FI",
@@ -2182,12 +2182,6 @@
             "movement": -17
           },
           {
-            "country": "PL",
-            "name": "Poland",
-            "position": 30,
-            "movement": -23
-          },
-          {
             "country": "ID",
             "name": "Indonesia",
             "position": 31,
@@ -2201,23 +2195,23 @@
             "movement": 11
           },
           {
-            "country": "TW",
-            "name": "Taiwan",
-            "position": 36,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "UZ",
             "name": "Uzbekistan",
             "position": 44,
             "movement": -19
           },
           {
-            "country": "CR",
-            "name": "Costa Rica",
-            "position": 63,
-            "movement": -41
+            "country": "TW",
+            "name": "Taiwan",
+            "position": 48,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "PL",
+            "name": "Poland",
+            "position": 56,
+            "movement": -49
           },
           {
             "country": "BR",
@@ -2232,6 +2226,12 @@
             "position": 67,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "CR",
+            "name": "Costa Rica",
+            "position": 72,
+            "movement": -50
           },
           {
             "country": "CZ",
@@ -4450,7 +4450,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 71,
+            "position": 75,
             "movement": null,
             "status": "new"
           }
@@ -4478,24 +4478,6 @@
     "kind": "song"
   },
   {
-    "title": "On Form",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 86,
-            "movement": -72
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Jagele",
     "platforms": [
       {
@@ -4508,6 +4490,24 @@
             "position": 166,
             "movement": null,
             "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "On Form",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 90,
+            "movement": -76
           }
         ]
       }
@@ -4533,25 +4533,6 @@
     "kind": "song"
   },
   {
-    "title": "Sittin' On Top Of The World",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 104,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song"
-  },
-  {
     "title": "Love",
     "platforms": [
       {
@@ -4562,6 +4543,25 @@
             "country": "SC",
             "name": "Seychelles",
             "position": 193,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song"
+  },
+  {
+    "title": "Sittin' On Top Of The World",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 108,
             "movement": null,
             "status": "new"
           }
