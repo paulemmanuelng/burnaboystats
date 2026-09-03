@@ -374,11 +374,40 @@ for (const w of work.values()) {
             !!n &&
             (artist.credit.test(n) ||
               (alias && n.toLowerCase().includes(alias.artist.toLowerCase())));
-          const hit = (await res.json()).data?.find(
-            (d) => (d.album?.cover_big || d.album?.cover_medium) && rightArtist(d.artist?.name)
-          );
+          const candidates = (await res.json()).data ?? [];
+          const art = (d) => d.album?.cover_big ?? d.album?.cover_medium;
+          let hit = candidates.find((d) => art(d) && rightArtist(d.artist?.name));
+
+          // A FEATURED record is billed to its lead everywhere on Deezer — the
+          // top-level `artist` is Davido, ODUMODUBLVCK, KiDi — so the check
+          // above can never match one, and six of Black Sherif's records were
+          // rendering as monograms because of it. The track endpoint carries
+          // the full credit list, so ask that instead of guessing from the
+          // title: it is stricter than a string match, not looser, because
+          // Deezer is telling us who is on the record.
+          //
+          // Only on the fallback path, and only a few candidates deep: this is
+          // one extra request per unresolved title, not per release.
+          if (!hit) {
+            for (const d of candidates.slice(0, 3)) {
+              if (!art(d)) continue;
+              try {
+                const full = await fetch(`https://api.deezer.com/track/${d.id}`, { headers: UA });
+                if (!full.ok) continue;
+                const contributors = (await full.json()).contributors ?? [];
+                if (contributors.some((c) => rightArtist(c?.name))) {
+                  hit = d;
+                  break;
+                }
+              } catch {
+                /* artwork is optional — never fail a build over a cover */
+              }
+              await new Promise((ok) => setTimeout(ok, 200));
+            }
+          }
+
           if (hit) {
-            r.cover = hit.album.cover_big ?? hit.album.cover_medium;
+            r.cover = art(hit);
             found++;
             break;
           }
@@ -388,7 +417,11 @@ for (const w of work.values()) {
         await new Promise((ok) => setTimeout(ok, 250));
       }
     }
-    console.error(`artwork: ${found}/${releases.length} releases`);
+    const missing = releases.filter((r) => !r.cover).map((r) => r.title);
+    console.error(
+      `artwork: ${found}/${releases.length} releases` +
+        (missing.length ? ` — unresolved: ${missing.join(", ")}` : "")
+    );
   }
   
   const placements = releases.reduce((n, r) => n + reach(r), 0);
