@@ -7,6 +7,8 @@
 // Album covers and artist photos use different prefix families and different
 // widths, so we detect which family a URL belongs to rather than guessing.
 
+import { BLANK_PIXEL } from "./blankPixel";
+
 const ALBUM_VARIANTS: Record<number, string> = {
   64: "ab67616d00004851",
   300: "ab67616d00001e02",
@@ -59,6 +61,15 @@ export function spotifySrcSet(url: string, maxWidth?: number): string | undefine
  * isn't a Spotify one. Use for the `src` so no-srcset clients get a sane size.
  */
 export function spotifyImage(url: string, width: number): string {
+  // Cover art is optional on every release type — `cover?: string` on
+  // AlbumEntry, AfroRelease and the live feed — and nine call sites pass
+  // `cover ?? ""` into here. Returning that empty string put `src=""` on the
+  // /music "Latest album" hero (both layouts) and `url()` on eight cover
+  // tiles: an empty URL resolves against the DOCUMENT, so a browser re-fetches
+  // the whole page as an image and paints a broken-image icon. The 1x1 costs
+  // nothing over the wire and leaves the sized box empty, which is what a
+  // release whose art has not landed yet should look like.
+  if (!url) return BLANK_PIXEL;
   const parsed = parse(url);
   if (!parsed) return url;
   const available = Object.keys(parsed.variants)

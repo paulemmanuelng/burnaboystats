@@ -21,6 +21,18 @@ describe("certification data integrity", () => {
     }
   });
 
+  // A correction that removes a release's LAST plaque — the Portugal passes
+  // turned one recorded cert back into a proven zero — is a two-part edit, and
+  // dropping the cert without dropping the release leaves a row behind that
+  // still publishes an award. homeData's topAward() folds the empty cert list
+  // with Math.max(), which is -Infinity, so the ledger row reads "Silver · 0
+  // certs · 0 countries": a plaque this site does not hold, on the page whose
+  // whole claim is that every figure was read at source.
+  it("every certified release holds at least one certification", () => {
+    const bare = allItems.filter((i) => i.certs.length === 0).map((i) => i.title);
+    expect(bare, `certified releases with no certs: ${bare.join(", ")}`).toEqual([]);
+  });
+
   it("no release lists the same country twice", () => {
     for (const item of allItems) {
       const codes = item.certs.map((c) => c.c);

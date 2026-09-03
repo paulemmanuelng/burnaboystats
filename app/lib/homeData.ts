@@ -312,8 +312,12 @@ export const topTour = [...tours].sort((a, b) => grossOf(b.gross) - grossOf(a.gr
  * showing it. Taking the lead item per category gives the spread the design
  * shows, across stadiums, world stages, awards, charts and box office.
  */
+// flatMap + slice, not `map(g => g.items[0])`: FirstGroup.items is a plain
+// array, so a group left empty mid-edit put `undefined` into this list and the
+// comparator below read `.year` off it — a TypeError at module scope, which is
+// the whole homepage.
 export const homeFirsts = firstGroups
-  .map((g) => g.items[0])
+  .flatMap((g) => g.items.slice(0, 1))
   .sort((a, b) => Number(b.year) - Number(a.year));
 
 export { CERT_COUNTRIES };
