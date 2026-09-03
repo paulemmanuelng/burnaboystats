@@ -373,7 +373,7 @@ export const ceremonies: Ceremony[] = [
   {
     name: "Premios Juventud",
     noms: [
-      { year: 2026, category: "OMG Collaboration", work: "Dai Dai", won: false },
+      { year: 2026, category: "OMG Collaboration", work: "Dai Dai", won: true },
     ],
   },
   {

@@ -503,7 +503,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Premios Juventud",
     "path": "/records/awards",
     "section": "Awards",
-    "description": "0 wins from 1 nomination.",
+    "description": "1 win from 1 nomination.",
     "keywords": [
       "award",
       "awards",

@@ -84,7 +84,7 @@ describe("handoff checklist — data integrity", () => {
     expect(numberOnes).toBe(ones);
   });
 
-  it("counts 82 award wins from 240 nominations across 46 bodies", () => {
+  it("counts 83 award wins from 240 nominations across 46 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -102,7 +102,10 @@ describe("handoff checklist — data integrity", () => {
     // "Producer of the Year" for "Bundle by Bundle" under his name — that one
     // belongs to the producer, DK, and is deliberately NOT counted, which is
     // why this is +4 and not +5.
-    expect(wins).toBe(82);
+    // 83rd: Premios Juventud 2026, OMG Collaboration for "Dai Dai" — announced
+    // by the ceremony's own account on 3 Sep 2026. It was carried as a pending
+    // nomination (won: false) until the body itself named the winner.
+    expect(wins).toBe(83);
     expect(allNoms.length).toBe(236 + 4);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
