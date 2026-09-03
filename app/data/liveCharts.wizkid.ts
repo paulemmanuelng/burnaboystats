@@ -259,13 +259,14 @@
             "country": "DE",
             "name": "Germany",
             "position": 199,
-            "movement": -8
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "CA",
             "name": "Canada",
             "position": 200,
-            "movement": -6
+            "movement": -5
           }
         ]
       },
@@ -885,8 +886,8 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 9,
-            "movement": -4
+            "position": 10,
+            "movement": -5
           },
           {
             "country": "NG",
@@ -1392,8 +1393,8 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 25,
-            "movement": 13
+            "position": 31,
+            "movement": 8
           },
           {
             "country": "LR",
@@ -1860,38 +1861,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/332d8393d5c9e2d7c5345b8e5fd2a049/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Made In Lagos",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 48,
-            "movement": -5
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 86,
-            "movement": 0
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 100,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Superstar",
     "platforms": [
       {
@@ -2024,6 +1993,31 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cc269116fe4da8b1054a18ef7f1e39a8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Made In Lagos",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 48,
+            "movement": -5
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 86,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Gimme Dat",
@@ -2221,7 +2215,7 @@
             "country": "BB",
             "name": "Barbados",
             "position": 47,
-            "movement": -7
+            "movement": -5
           }
         ]
       }

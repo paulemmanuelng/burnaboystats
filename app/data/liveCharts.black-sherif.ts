@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-09-03";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -159,7 +159,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 195,
-            "movement": -40
+            "movement": -36
           }
         ]
       },
@@ -172,6 +172,18 @@
             "name": "Ghana",
             "position": 99,
             "movement": -8
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 94,
+            "movement": 0
           }
         ]
       }
@@ -460,7 +472,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 47,
-            "movement": -38
+            "movement": -34
           }
         ]
       }

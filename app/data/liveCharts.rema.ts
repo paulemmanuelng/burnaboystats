@@ -508,7 +508,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 122,
-            "movement": -39
+            "movement": -35
           }
         ]
       },
@@ -729,8 +729,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 27,
-            "movement": -5
+            "position": 24,
+            "movement": -2
           }
         ]
       }
@@ -1098,7 +1098,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 69,
-            "movement": -39
+            "movement": -35
           }
         ]
       },
@@ -1349,7 +1349,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 148,
-            "movement": -40
+            "movement": -36
           }
         ]
       }
@@ -1532,7 +1532,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 80,
-            "movement": -39
+            "movement": -35
           }
         ]
       }

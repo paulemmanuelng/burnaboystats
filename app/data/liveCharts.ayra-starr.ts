@@ -507,18 +507,18 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 1,
+            "position": 2,
             "movement": 77
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 4,
+            "position": 7,
             "movement": null,
             "status": "new"
           },
@@ -544,7 +544,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 159,
-            "movement": -40
+            "movement": -36
           }
         ]
       },
@@ -844,7 +844,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 59,
+            "position": 60,
             "movement": 2
           },
           {
@@ -888,8 +888,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 84,
-            "movement": -10
+            "position": 86,
+            "movement": -8
           },
           {
             "country": "SZ",
@@ -912,7 +912,7 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 99,
+            "position": 101,
             "movement": -7
           },
           {
@@ -937,8 +937,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 120,
-            "movement": -11
+            "position": 123,
+            "movement": 20
           },
           {
             "country": "BS",
@@ -1676,7 +1676,7 @@
             "country": "FR",
             "name": "France",
             "position": 103,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "CI",
@@ -1934,27 +1934,26 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
+          {
+            "country": "LU",
+            "name": "Luxembourg",
+            "position": 1,
+            "movement": null,
+            "status": "new"
+          },
           {
             "country": "IT",
             "name": "Italy",
-            "position": 63,
-            "movement": -23
+            "position": 87,
+            "movement": -39
           },
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 131,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 161,
-            "movement": null,
-            "status": "new"
+            "position": 149,
+            "movement": -131
           }
         ]
       }
@@ -2256,7 +2255,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 148,
-            "movement": -40
+            "movement": -36
           }
         ]
       }
@@ -2529,7 +2528,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 49,
-            "movement": -38
+            "movement": -34
           }
         ]
       }

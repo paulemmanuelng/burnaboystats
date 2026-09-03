@@ -560,7 +560,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 44,
-            "movement": -39
+            "movement": -35
           }
         ]
       },
@@ -1233,7 +1233,7 @@
             "country": "FR",
             "name": "France",
             "position": 64,
-            "movement": 3
+            "movement": 6
           },
           {
             "country": "BE",

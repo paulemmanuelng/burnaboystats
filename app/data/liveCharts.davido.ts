@@ -402,7 +402,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 62,
-            "movement": -4
+            "movement": -3
           },
           {
             "country": "SN",
@@ -452,7 +452,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 194,
-            "movement": -13
+            "movement": -5
           }
         ]
       },
@@ -463,8 +463,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 78,
-            "movement": -10
+            "position": 85,
+            "movement": -17
           }
         ]
       }
@@ -896,7 +896,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 44,
-            "movement": -39
+            "movement": -35
           }
         ]
       },
@@ -2050,7 +2050,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 195,
-            "movement": -40
+            "movement": -36
           }
         ]
       },
@@ -2801,7 +2801,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 143,
-            "movement": -40
+            "movement": -36
           }
         ]
       }

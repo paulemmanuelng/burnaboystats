@@ -199,14 +199,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 109,
-            "movement": 13
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 128,
-            "movement": 37
+            "position": 116,
+            "movement": -3
           },
           {
             "country": "SG",
@@ -229,8 +223,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 131,
-            "movement": -4
+            "position": 138,
+            "movement": -5
           },
           {
             "country": "CY",
@@ -238,6 +232,12 @@
             "position": 140,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 151,
+            "movement": 15
           },
           {
             "country": "SA",
@@ -402,19 +402,6 @@
             "name": "Jordan",
             "position": 88,
             "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 195,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -628,6 +615,50 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 30,
+            "movement": -4
+          },
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 64,
+            "movement": -15
+          },
+          {
+            "country": "PH",
+            "name": "Philippines",
+            "position": 64,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 151,
+            "movement": -40
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "TYLA +",
     "platforms": [
       {
@@ -699,43 +730,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 30,
-            "movement": -4
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 64,
-            "movement": -15
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 151,
-            "movement": -40
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Game Time",
     "platforms": [
       {
@@ -803,8 +797,8 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 68,
-            "movement": -4
+            "position": 69,
+            "movement": -5
           }
         ]
       }
@@ -881,7 +875,7 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 92,
+            "position": 101,
             "movement": null,
             "status": "new"
           }
