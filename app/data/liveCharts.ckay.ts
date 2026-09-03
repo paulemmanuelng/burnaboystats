@@ -51,8 +51,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 6,
-            "movement": 5
+            "position": 7,
+            "movement": 6
           },
           {
             "country": "BF",
@@ -63,8 +63,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 145,
-            "movement": -21
+            "position": 146,
+            "movement": -18
           }
         ]
       },
@@ -98,45 +98,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BANGER BOY",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 25,
-            "movement": 55
-          },
-          {
-            "country": "MG",
-            "name": "Madagascar",
-            "position": 135,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 148,
-            "movement": -37
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 188,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BODY",
     "platforms": [
       {
@@ -146,13 +107,20 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 139,
-            "movement": 1
+            "position": 67,
+            "movement": 72
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 141,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 165,
             "movement": null,
             "status": "new"
           }
@@ -175,6 +143,45 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "BANGER BOY",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 25,
+            "movement": 0
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 29,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 34,
+            "movement": 114
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 108,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "La La",
     "platforms": [
       {
@@ -184,8 +191,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 170,
-            "movement": 6
+            "position": 175,
+            "movement": -5
           }
         ]
       }
@@ -211,26 +218,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "CKay the First",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MG",
-            "name": "Madagascar",
-            "position": 145,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BODY (danz)",
