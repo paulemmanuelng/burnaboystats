@@ -1330,13 +1330,13 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Lebanon",
     "path": "/records/charts",
     "section": "Country",
-    "description": "Chart peaks in Lebanon on The Official Lebanese Top 20.",
+    "description": "Chart peaks in Lebanon on The Official Lebanese Top 20 (Ipsos airplay — no other national chart).",
     "keywords": [
       "lb",
       "country",
       "chart",
       "peak",
-      "the official lebanese top 20"
+      "the official lebanese top 20 (ipsos airplay — no other national chart)"
     ],
     "generated": true
   },
@@ -1466,13 +1466,13 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Panama",
     "path": "/records/charts",
     "section": "Country",
-    "description": "Chart peaks in Panama on PRODUCE International Chart.",
+    "description": "Chart peaks in Panama on PRODUCE Top 50 Internacional (BMAT airplay — no other national chart).",
     "keywords": [
       "pa",
       "country",
       "chart",
       "peak",
-      "produce international chart"
+      "produce top 50 internacional (bmat airplay — no other national chart)"
     ],
     "generated": true
   },

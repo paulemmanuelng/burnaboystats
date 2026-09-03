@@ -61,9 +61,82 @@ describe("chart data integrity", () => {
   // publish no non-airplay national chart. Russia is NOT here: its TopHit
   // chart is streaming.
   const AIRPLAY_EXCEPTIONS = new Set([
-    "IL", "BG", "UY", "VE", "SV", "DO",
+    "IL", "BG", "UY", "VE",
+    // LB and PA were carried here as ordinary national charts until 3 Sep 2026.
+    // Both are airplay and neither body string said so, so the check below —
+    // which reads the body string — never saw them. Verified at source before
+    // declaring: Lebanon's Official Lebanese Top 20 is Ipsos radio monitoring,
+    // and Panama's PRODUCE Top 50 Internacional is BMAT monitoring of 60 radio
+    // and TV channels. Each qualifies because the country publishes no
+    // non-airplay national chart: IFPI's MENA chart is regional with no Lebanon
+    // edition, and Panama's alternative (Monitor Latino) is airplay too.
+    "LB", "PA",
     "EE", "GT", "HN", "NI", "PY", "PR", "TR", "KZ", "MD", "UA",
   ]);
+  // SV and DO used to sit in this set. Both countries were retracted on 2 Sep
+  // 2026 — the entries came from a fan round-up rather than a chart — so the
+  // declarations are gone with them. The set is filtered against the live data
+  // below, which means a stale code fails nothing and simply lingers; these two
+  // lingered for a day.
+
+  /**
+   * Countries whose national chart is KNOWN to be airplay, by research.
+   *
+   * This is the part that actually closes the hole. The sibling check decides
+   * what is airplay by looking for the word "airplay" in the body string,
+   * which only works while every airplay chart admits to it. Lebanon and
+   * Panama did not — their bodies read "The Official Lebanese Top 20" and
+   * "PRODUCE International Chart", which sound like national industry charts —
+   * so they carried three career No. 1s past the rule unnoticed.
+   *
+   * Keying on the COUNTRY rather than on the string is what makes this bite:
+   * the knowledge lives here, where it cannot be edited away by rewording a
+   * body. Sources checked 3 Sep 2026 — Lebanon: Ipsos automated song
+   * recognition across Lebanese FM. Panama: BMAT across 60 radio and TV
+   * channels, 50 seconds to count a play.
+   */
+  const KNOWN_AIRPLAY: Record<string, string> = {
+    LB: "Ipsos radio monitoring (Official Lebanese Top 20)",
+    PA: "BMAT radio/TV monitoring (PRODUCE Top 50 Internacional)",
+  };
+
+  /** Monitors whose presence in a body string also implies airplay. */
+  const AIRPLAY_MONITORS = [
+    "Ipsos", "BMAT", "Radiomonitor", "TopHit", "Monitor Latino", "Mediabase",
+    "Record Report", "PROPHON",
+  ];
+
+  it("a chart compiled by a broadcast monitor is declared as airplay", () => {
+    // The sibling test trusts the body string to say "airplay". This one does
+    // not: it asks who compiled the chart. Lebanon (Ipsos) and Panama (BMAT)
+    // are the reason it exists — both read as national industry charts and sat
+    // undeclared, carrying three career No. 1s past the rule.
+    const undeclared: string[] = [];
+    // Known-airplay countries first: checked by code, so rewording the body
+    // cannot hide one. This is what would have caught LB and PA originally.
+    for (const [code, why] of Object.entries(KNOWN_AIRPLAY)) {
+      const c = (CHART_COUNTRIES as Record<string, { body: string }>)[code];
+      if (!c) continue; // country retracted — nothing to declare
+      if (!/airplay/i.test(c.body))
+        undeclared.push(`${code}: ${why} — the body must say airplay, reads "${c.body}"`);
+      if (!AIRPLAY_EXCEPTIONS.has(code))
+        undeclared.push(`${code}: ${why} — not a declared exception`);
+    }
+    for (const [code, c] of Object.entries(CHART_COUNTRIES)) {
+      const monitor = AIRPLAY_MONITORS.find((m) => c.body.includes(m));
+      if (!monitor) continue;
+      // A body that names its basis has already answered the question. TopHit
+      // is on the monitor list because it monitors radio, but it also
+      // publishes a streaming chart, and Russia's row says "TopHit streaming"
+      // — a declared non-airplay product, not a chart hiding what it is.
+      if (/streaming|sales|downloads|consumption/i.test(c.body)) continue;
+      if (!/airplay/i.test(c.body))
+        undeclared.push(`${code}: compiled by ${monitor} but the body never says airplay — "${c.body}"`);
+      if (!AIRPLAY_EXCEPTIONS.has(code))
+        undeclared.push(`${code}: compiled by ${monitor} but not a declared exception`);
+    }
+    expect(undeclared).toEqual([]);
+  });
 
   it("only the declared exceptions are tracked on an airplay chart", () => {
     const onAirplay = Object.entries(CHART_COUNTRIES)
