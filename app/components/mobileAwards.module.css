@@ -289,6 +289,14 @@
   color: var(--text-muted);
   margin-top: 3px;
 }
+/* Wraps rather than truncating: it is the only thing separating the two BRIT
+   Billion Awards, so an ellipsis here would put the bug straight back. */
+.honourNote {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--dim);
+  margin-top: 5px;
+}
 .honourYear {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
