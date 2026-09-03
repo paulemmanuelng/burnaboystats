@@ -786,3 +786,56 @@ describe("bestPeaks shows each country's best peak", () => {
     }
   });
 });
+
+describe("board chart provenance", () => {
+  /**
+   * A board country must name the source the sweep actually read.
+   *
+   * The airplay rule was enforced only over CHART_COUNTRIES — Burna Boy's own
+   * chart map. The board resolves its countries through countryMeta(), which
+   * falls through to its own EXTRA_COUNTRIES table, and that table was never
+   * checked by anything. Four of its five airplay entries named a different
+   * organisation altogether: Malta as "Official Malta Chart", North Macedonia
+   * and Serbia as "Billboard ... Songs", Slovenia as "SloTop50" — a domain that
+   * no longer resolves, so it cannot have supplied the peak. Belarus said
+   * "TopHit" without disclosing airplay.
+   *
+   * Six live rows carried those attributions, on pages written to be cited.
+   * Keyed on country code, not on the body string, for the same reason as
+   * tests/charts.test.ts: rewording a body must not be able to hide one.
+   */
+  const BOARD_AIRPLAY: Record<string, string> = {
+    MT: "Radiomonitor Malta airplay",
+    MK: "Radiomonitor North Macedonia radio airplay",
+    RS: "Radiomonitor Serbia Radio Airplay Chart",
+    SI: "Radiomonitor Slovenia airplay (SloTop50's domain no longer resolves)",
+    BY: "TopHit Top Radio Hits Belarus",
+  };
+
+  /** Never an official national chart, wherever it appears. */
+  const PLATFORMS = ["Spotify", "Apple Music", "iTunes", "Deezer", "Shazam", "Audiomack", "Boomplay"];
+
+  it("every airplay board country declares itself as airplay", () => {
+    const bad: string[] = [];
+    for (const [code, read] of Object.entries(BOARD_AIRPLAY)) {
+      const body = countryMeta(code).body;
+      if (!/airplay/i.test(body))
+        bad.push(`${code}: swept from ${read}, but the body reads "${body}"`);
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it("no board chart entry is attributed to a platform chart", () => {
+    const bad: string[] = [];
+    for (const a of sweptArtists) {
+      for (const r of a.charts) {
+        for (const e of r.entries) {
+          const body = countryMeta(e.c).body;
+          const p = PLATFORMS.find((x) => body.includes(x));
+          if (p) bad.push(`${a.slug} · ${r.title} · ${e.c} is credited to ${p}`);
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+});
