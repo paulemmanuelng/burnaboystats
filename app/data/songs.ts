@@ -125,7 +125,7 @@ export const songs: Song[] = [
       "A silky Afro-fusion love song from African Giant (2019), “On the Low” became one of Burna Boy's biggest records in Europe. It was certified Diamond in France — among the highest honours any African song has earned there — and picked up ten certifications worldwide.",
     extraFacts: [
       { v: "Diamond", l: "certified Diamond in France (SNEP)" },
-      { v: "2× Platinum", l: "in Canada, plus Platinum in the UK, NZ & Switzerland" },
+      { v: "2× Platinum", l: "in Canada, plus Platinum in the UK, NZ, Switzerland & Sweden" },
       { v: "African Giant", l: "a standout from the 2019 album" },
     ],
     faqs: [
