@@ -77,10 +77,26 @@ function Floor() {
 
 /* The ring at phone and tablet widths, drawn in the hero image's own box.
    Its viewBox is the hero canvas and cy is the canvas's ground line — 475 of
-   660 — so the car's tyres land on the ellipse by construction, at any size. */
+   660 — so the car's tyres land on the ellipse by construction, at any size.
+
+   It carries the floor's glow, and that is not decoration. The heroes are cut
+   out onto transparency, so a car has only the page behind it — and four of
+   them are near-black (the Purosangue and 812 GTS are gloss black, the Senna
+   is bare carbon, the GT3 RS satin). On #0a0a0b those disappeared entirely on
+   a phone. The desktop stage never showed it because its floor SVG already
+   paints this glow; this ring was built without one. Same gradient, so the two
+   layouts light the car the same way. */
 function Ring() {
   return (
     <svg className={styles.ring} viewBox="0 0 898 660" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <radialGradient id="heroFloorGlow" cx="50%" cy="66%" r="58%">
+          <stop offset="0" stopColor="rgba(224,138,46,0.16)" />
+          <stop offset="0.55" stopColor="rgba(224,138,46,0.04)" />
+          <stop offset="1" stopColor="rgba(224,138,46,0)" />
+        </radialGradient>
+      </defs>
+      <rect x="0" y="0" width="898" height="660" fill="url(#heroFloorGlow)" />
       <ellipse cx="449" cy="475" rx="406" ry="106" fill="none" stroke="rgba(224,138,46,0.5)" strokeWidth="2" />
       <ellipse cx="449" cy="475" rx="406" ry="106" fill="none" stroke="rgba(224,138,46,0.16)" strokeWidth="11" />
       <ellipse cx="449" cy="475" rx="337" ry="88" fill="none" stroke="rgba(224,138,46,0.2)" strokeWidth="2" strokeDasharray="7 18" />

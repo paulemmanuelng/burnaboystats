@@ -161,6 +161,25 @@ describe("the garage — the fifteen current cars as pages", () => {
     expect(og, 'satori does not honour height: "auto" on an OG image').not.toMatch(/height:\s*["']auto["']/);
   });
 
+  it("both layouts light the floor, so the black cars are not lost on it", () => {
+    // The heroes are cut out onto transparency, so the only thing behind a car
+    // is the page: #0a0a0b. Four of the fifteen are near-black — the Purosangue
+    // and 812 GTS in gloss black, the Senna in bare carbon, the GT3 RS satin —
+    // and on a phone those vanished completely. Nothing failed; the image was
+    // painting, at a mean luminance of 52 on a ground of 10.
+    //
+    // The cause was that only ONE of the two floors carried the amber glow that
+    // lifts the ground behind the car. Desktop had it and looked right, which
+    // is exactly why it went unnoticed. Both need it.
+    const raw = readFileSync(join(process.cwd(), "app/records/cars/[car]/page.tsx"), "utf8");
+    const src = raw.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/[^\n]*/g, "");
+    const glows = [...src.matchAll(/<radialGradient id="([a-zA-Z]+)"/g)].map((m) => m[1]);
+    expect(glows.length, "each floor needs its own glow — desktop and phone").toBe(2);
+    for (const id of glows) {
+      expect(src, `#${id} is defined but never painted`).toContain(`fill="url(#${id})"`);
+    }
+  });
+
   it("every specification has been read off its source", () => {
     // The panel renders "pending verification" until this is true, so flipping
     // it without doing the reading is the one thing that must not happen
