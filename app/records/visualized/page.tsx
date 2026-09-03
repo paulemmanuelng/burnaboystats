@@ -17,6 +17,18 @@ import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../..
 import { statBoxes, HIGHLIGHT } from "../../data/africasBiggest";
 import { monthlyListenersSeries } from "../../data/trends";
 import { intlCertHistory } from "../../data/certifications";
+import { diamondCerts } from "../../lib/analysis";
+
+/* The Diamond roll-call used to be typed out beside a derived count. The count
+   moved when Dai Dai was certified and the sentence did not, so the page read
+   "7 Diamond awards" over a list of six. Both halves come off the data now. */
+const diamondTitles = [...new Set(diamondCerts.map((d) => d.title))];
+const diamondList =
+  diamondTitles.length > 1
+    ? `${diamondTitles.slice(0, -1).join(", ")} and ${diamondTitles[diamondTitles.length - 1]}`
+    : (diamondTitles[0] ?? "");
+const diamondHomes = [...new Set(diamondCerts.map((d) => d.country))];
+const diamondHome = diamondHomes.length === 1 ? diamondHomes[0] : diamondHomes.join(" and ");
 import { allNoms } from "../../data/awards";
 import { songs } from "../../data/songs";
 import { livePlatformTotals, liveChartsUpdated } from "../../data/liveCharts";
@@ -663,8 +675,8 @@ export default function VisualizedPage() {
           </div>
           <p className={styles.caption}>
             How the {totalAwards()} certifications break down — mostly Platinum and Gold
-            singles, crowned by {tiers.Diamond} Diamond awards (Last Last, Location, On the
-            Low, Gbona, Jerusalema and Be Honest, all in France).
+            singles, crowned by {tiers.Diamond} Diamond awards ({diamondList}, all in{" "}
+            {diamondHome}).
           </p>
         </section>
 

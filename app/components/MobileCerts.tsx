@@ -260,7 +260,7 @@ export default function MobileCerts({
       </div>
 
       {/* Tier rail */}
-      <ScrollRail className={styles.rail} label="Filter by certification tier">
+      <ScrollRail id="cert-rail" className={styles.rail} label="Filter by certification tier">
         <button
           type="button"
           className={`${styles.chip} ${!tier ? styles.chipOn : ""}`}

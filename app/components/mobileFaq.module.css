@@ -130,7 +130,9 @@
 
 /* ── Questions ────────────────────────────────────────────────────────── */
 .list { border-top: 1px solid var(--line); }
-.item { padding: 18px; border-bottom: 1px solid var(--line); }
+.item {
+  /* Clears the sticky back bar when a chip jumps to this group. */
+  scroll-margin-top: 84px; padding: 18px; border-bottom: 1px solid var(--line); }
 /* The group label repeats per item rather than being a section heading —
    a phone scrolls past headings, so each answer says where it belongs. */
 .itemGroup {

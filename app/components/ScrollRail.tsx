@@ -18,10 +18,13 @@ export default function ScrollRail({
   className,
   children,
   label,
+  id,
 }: {
   className: string;
   children: React.ReactNode;
   label?: string;
+  /** Anchor target — for the action-bar buttons that scroll back to a rail. */
+  id?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ start: false, end: false });
@@ -45,6 +48,7 @@ export default function ScrollRail({
   return (
     <div
       ref={ref}
+      id={id}
       className={`${className} ${styles.rail} ${edges.start ? styles.fadeStart : ""} ${
         edges.end ? styles.fadeEnd : ""
       }`}

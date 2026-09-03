@@ -11,7 +11,13 @@ import BackLink from "./BackLink";
  * The desktop page groups the questions under a sticky category column. A phone
  * has no room for that, so the list runs flat and each question carries its own
  * category label — a reader who lands mid-scroll still knows what they're in.
- * The chip rail jumps to the desktop group anchors, which exist at every width.
+ *
+ * The chip rail used to jump to the DESKTOP group anchors. Those ids sit inside
+ * a `.desktopOnly` wrapper that is `display: none` below 900px, so on a phone
+ * every chip pointed at an unrendered element and all six were dead taps. The
+ * rail now targets anchors this screen renders itself, in an `m-` namespace —
+ * reusing the desktop ids would put two of each in one document, and the
+ * anchor would then resolve to whichever layout is hidden.
  *
  * This screen keeps the five-tab bar, so there is no action bar here.
  */
@@ -23,7 +29,8 @@ export default function MobileFaq({
 }: {
   total: number;
   chips: { id: string; label: string; count: number }[];
-  items: { group: string; q: string; a: string }[];
+  /** `groupId` is set on the FIRST question of each group — the jump target. */
+  items: { group: string; groupId?: string; q: string; a: string }[];
   source: string;
 }) {
   return (
@@ -57,7 +64,7 @@ export default function MobileFaq({
       {/* Category rail */}
       <nav className={styles.rail} aria-label="Jump to a category">
         {chips.map((c) => (
-          <a key={c.id} href={`#${c.id}`} className={styles.chip}>
+          <a key={c.id} href={`#m-${c.id}`} className={styles.chip}>
             {c.label}
             <span className={styles.chipCount}>{c.count}</span>
           </a>
@@ -67,7 +74,11 @@ export default function MobileFaq({
       {/* Questions */}
       <div className={styles.list}>
         {items.map((f) => (
-          <div key={f.q} className={styles.item}>
+          <div
+            key={f.q}
+            id={f.groupId ? `m-${f.groupId}` : undefined}
+            className={styles.item}
+          >
             <div className={styles.itemGroup}>{f.group}</div>
             {/* h3, not h2: the desktop group headings are this page's h2s. */}
             <h3 className={styles.q}>{f.q}</h3>

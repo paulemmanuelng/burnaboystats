@@ -1,4 +1,5 @@
 import { apiJson, API_VERSION } from "../../lib/api";
+import { sweptArtists } from "../../data/afrobeats";
 
 // Prerendered at build time — these are static datasets, not live queries.
 export const dynamic = "force-static";
@@ -34,7 +35,7 @@ const endpoints = [
   {
     path: `/api/${API_VERSION}/afrobeats`,
     description:
-      "The Afrobeats Board — ten artists' certifications and chart records counted by one stated rule, so the totals are comparable.",
+      `The Afrobeats Board — ${sweptArtists.length} artists' certifications and chart records counted by one stated rule, so the totals are comparable.`,
   },
   {
     path: `/api/${API_VERSION}/live-charts`,

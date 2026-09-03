@@ -190,7 +190,9 @@ export default function FaqPage() {
       <MobileFaq
         total={faqs.length}
         chips={groups.map((g) => ({ id: g.id, label: g.title, count: g.items.length }))}
-        items={groups.flatMap((g) => g.items.map((f) => ({ group: g.title, q: f.q, a: f.a })))}
+        items={groups.flatMap((g) =>
+          g.items.map((f, i) => ({ group: g.title, groupId: i === 0 ? g.id : undefined, q: f.q, a: f.a }))
+        )}
         source={SOURCE_NOTE}
       />
 
