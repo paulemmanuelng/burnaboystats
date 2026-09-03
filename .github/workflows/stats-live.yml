@@ -46,7 +46,17 @@ jobs:
       # figure, so it can't go through the anchored find/replace path above.
       # It refuses to write a suspiciously small result, so a reshaped source
       # page fails loudly instead of blanking the page.
+      # A MANUAL run always sweeps. The country sweeps are gated to the first
+      # firing of each hour so the twice-hourly schedule cannot double their
+      # ~204 requests a pass — but that gate also caught workflow_dispatch,
+      # which exists precisely to force a refresh NOW. Dispatching at, say,
+      # 09:30 silently carried the last sweep forward instead, so a manual
+      # "sync now" did nothing for half of every hour. Pinning the minute to 0
+      # on dispatch only tells the gate this is a first firing; the schedule is
+      # untouched and still sweeps once an hour.
       - name: Rebuild live platform charts
+        env:
+          SWEEP_MINUTE: ${{ github.event_name == 'workflow_dispatch' && '0' || '' }}
         run: node scripts/build-live-charts.mjs
 
       # The Afrobeats Board's live boards, same pipeline and same sanity gate.
@@ -57,6 +67,8 @@ jobs:
       - name: Rebuild the board's live charts
         id: board
         continue-on-error: true
+        env:
+          SWEEP_MINUTE: ${{ github.event_name == 'workflow_dispatch' && '0' || '' }}
         run: node scripts/build-live-charts.mjs --artist=board
 
       # Gate on the working tree, not on one step's output: either generator

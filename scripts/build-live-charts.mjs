@@ -189,7 +189,13 @@ const hour = Number(process.env.SWEEP_HOUR ?? new Date().getUTCHours());
 // each hour and carry forward on the second.
 // SWEEP_MINUTE exists for the same reason as SWEEP_HOUR — the second-firing
 // path would otherwise never be exercised outside production.
-const minute = Number(process.env.SWEEP_MINUTE ?? new Date().getUTCMinutes());
+// An empty string counts as unset. GitHub Actions cannot conditionally OMIT an
+// env var — a `${{ ... && 'x' || '' }}` expression still defines it as "" — and
+// Number("") is 0, which would make every run look like the first of its hour.
+const minuteEnv = process.env.SWEEP_MINUTE;
+const minute = Number(
+  minuteEnv === undefined || minuteEnv === "" ? new Date().getUTCMinutes() : minuteEnv
+);
 const firstRunOfHour = minute < 30;
 for (const spec of CHART_SWEEPS) {
   const due = (spec.everyHours ? hour % spec.everyHours === 0 : true) && firstRunOfHour;
