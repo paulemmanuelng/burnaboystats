@@ -36,6 +36,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-03",
+    category: "Awards",
+    text: "“Dai Dai” wins OMG Collaboration at Premios Juventud 2026 — Burna Boy's first win at the ceremony, shared with Shakira. Announced by Premios Juventud itself; the nomination had been carried as pending until the body named the winner.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-09-03",
     category: "Charts",
     text: "“Dai Dai” goes to No. 1 on Billboard's Rhythmic Airplay chart dated 6 September 2026, climbing 3–1. It is Shakira's first-ever No. 1 on the format, twenty years after “Hips Don't Lie” peaked at No. 5 in 2006, and the song's fourth week in the format's top three. It holds at No. 26 on Pop Airplay. This is Billboard's own Rhythmic Airplay panel, not Mediabase's — the two share a monitoring feed but rank different panels over different weeks, and this site publishes the Billboard peak.",
     href: "/dai-dai",
