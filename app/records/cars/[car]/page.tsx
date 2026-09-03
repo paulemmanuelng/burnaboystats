@@ -16,6 +16,7 @@ import {
   performanceBars,
   specRows,
   neighbours,
+  heroVars,
 } from "../../../lib/garage";
 
 // Only the fifteen current cars are routes — anything else 404s. The five no
@@ -188,7 +189,7 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
               ellipse rather than near it. On desktop the ring comes from the
               stage's own floor SVG instead, and this box is positioned onto
               it — see .heroStage. */}
-          <span className={styles.heroStage}>
+          <span className={styles.heroStage} style={heroVars(car)}>
             <Ring />
             {/* The page's LCP element. One copy at every width, so it can be a
                 plain eager image with a preload. */}
