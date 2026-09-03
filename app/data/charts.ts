@@ -60,7 +60,14 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   IS: { name: "Iceland", flag: "🇮🇸", body: "Tónlistinn" },
   AE: { name: "United Arab Emirates", flag: "🇦🇪", body: "The Official UAE Chart" },
   SA: { name: "Saudi Arabia", flag: "🇸🇦", body: "The Official Saudi Arabia Chart" },
-  LB: { name: "Lebanon", flag: "🇱🇧", body: "The Official Lebanese Top 20" },
+  // Lebanon is an airplay carve-out and was not labelled as one until 3 Sep
+  // 2026. The Official Lebanese Top 20 is compiled by Ipsos from automated
+  // song recognition across the Lebanese FM stations carrying 80%+ of the
+  // radio audience — airplay frequency, not consumption. It qualifies on the
+  // same basis as Bulgaria and Uruguay: IFPI's Official MENA Chart is
+  // streaming-based but REGIONAL across 13 markets, and publishes no Lebanon
+  // country chart, so OLT20 is the only national chart there is.
+  LB: { name: "Lebanon", flag: "🇱🇧", body: "The Official Lebanese Top 20 (Ipsos airplay — no other national chart)" },
   EG: { name: "Egypt", flag: "🇪🇬", body: "Official Egypt Top 20 (MENA Chart)" },
   RO: { name: "Romania", flag: "🇷🇴", body: "Billboard Romania Songs" },
   SK: { name: "Slovakia", flag: "🇸🇰", body: "Singles Digitál Top 100" },
@@ -103,7 +110,12 @@ export const CHART_COUNTRIES: Record<string, ChartCountry> = {
   ZA: { name: "South Africa", flag: "🇿🇦", body: "The Official SA Charts" },
   SR: { name: "Suriname", flag: "🇸🇷", body: "Nationale Top 40" },
   AR: { name: "Argentina", flag: "🇦🇷", body: "Billboard Argentina Hot 100" },
-  PA: { name: "Panama", flag: "🇵🇦", body: "PRODUCE International Chart" },
+  // Panama, same case, same date. PRODUCE's Top 50 Internacional is monitored
+  // by BMAT across 60 Panamanian radio and TV channels, a play counted once a
+  // song has aired 50 seconds — airplay. The alternative on offer is Monitor
+  // Latino, which is also airplay, so there is no non-airplay national chart
+  // to prefer.
+  PA: { name: "Panama", flag: "🇵🇦", body: "PRODUCE Top 50 Internacional (BMAT airplay — no other national chart)" },
   CO: { name: "Colombia", flag: "🇨🇴", body: "Billboard Colombia Hot 100" },
   // Switched from Billboard Ecuador Hot 100 in Aug 2026: IFPI Latin America
   // now publishes an Ecuador chart, and an industry-body chart outranks a
