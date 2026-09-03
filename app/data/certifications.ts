@@ -274,7 +274,13 @@ export const singles: Release[] = [
   { title: "Dem Dey", year: 2025, certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Giza", year: 2025, certs: [
+  // Year and credit were copied from the neighbours this row arrived with: the
+  // Feb 2026 TCSN batch is four No Sign of Weakness tracks (2025, uncredited)
+  // plus Giza, which is neither. "Giza (feat. Seyi Vibez)" is an I Told Them…
+  // track — albums.ts dates that album 2023 — and the credit was already on the
+  // chart row and on this file's own certHistory entry below. 2026 is the AWARD
+  // year and belongs there, not here; this field is the release year.
+  { title: "Giza", credit: "feat. Seyi Vibez", year: 2023, certs: [
     { c: "NG", level: "Platinum", x: 3 },
   ] },
   { title: "Do I", year: 2023, certs: [

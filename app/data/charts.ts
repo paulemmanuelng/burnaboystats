@@ -296,6 +296,19 @@ export const singleCharts: ChartRelease[] = [
   //   Remix/instrumental rows (Greece, Poland, Lithuania) are versions, not
   //   the song, and genre/format charts (Latin Airplay, Pop Songs, Rhythmic,
   //   ARIA Hip Hop, Canada AC/CHR) stay out of country entries as always.
+  // The July 2026 A–Z sweep, which is where four of the entries below come
+  // from. Airplay-only peaks were dropped even where they were higher (Croatia,
+  // Uruguay), and several entries that had been taken from a country's AIRPLAY
+  // chart were corrected to that country's official sales/streaming chart:
+  // Costa Rica (FONÓTICA airplay #1 → streaming #5), Nigeria (TurnTable airplay
+  // #3 → Top 100 #7), South Africa (TOSAC airplay #12 → streaming #20) and
+  // Lithuania (TopHit airplay #2 → AGATA #5).
+  // This block spent a month above "My Oasis": it was written directly above
+  // Dai Dai while Dai Dai was still in featureCharts, and the move here — it is
+  // a lead credit, not a feature — left it behind, annotating a song with no
+  // Costa Rica, Nigeria, South Africa or Lithuania entry at all. Its South
+  // Africa figure said #30, which was the sweep's own under-read of TOSAC
+  // streaming; corrected to #20 on 29 Jul 2026. The airplay #12 is unchanged.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", year: 2026, entries: [
     { c: "CH", peak: 1, weeksAtPeak: 10 }, { c: "NL", peak: 1, weeksAtPeak: 7, weeks: 14, note: "seven weeks at No.1, not consecutive - two from 20 June, then five from 25 July" }, { c: "SR", peak: 1, weeksAtPeak: 7, weeks: 10 }, { c: "CO", peak: 1, weeksAtPeak: 4, weeks: 10, note: "four weeks at No.1, consecutive - 27 June to 18 July 2026; the weeks figure is a floor, the row's counter read 10 on the 1 August issue before it left the free top 25 and Billboard gates ranks 26-100" }, { c: "AE", peak: 1, weeksAtPeak: 9, weeks: 13 }, { c: "AT", peak: 1, weeksAtPeak: 10, weeks: 14 }, { c: "BE", peak: 1, weeksAtPeak: 9, weeks: 14, note: "Wallonia #1 · Flanders #1 — the run figures are Wallonia's Ultratop 50" }, { c: "SK", peak: 1, weeksAtPeak: 8, weeks: 13, note: "eight weeks at No.1, not consecutive - weeks 26 and 27, then 30 to 35" }, { c: "DE", peak: 1, weeksAtPeak: 9, weeks: 14 }, { c: "LB", peak: 1 }, { c: "GR", peak: 1, weeksAtPeak: 4, weeks: 10, note: "four weeks at No.1, not consecutive - weeks 26, 27, 29 and 30, with a week at No.2 between; IFPI Greece then paused the chart for the summer" }, { c: "AR", peak: 1, weeksAtPeak: 1, weeks: 11 }, { c: "FR", peak: 1, weeksAtPeak: 6 }, { c: "LU", peak: 1, weeksAtPeak: 8, weeks: 13 }, { c: "PT", peak: 1, weeksAtPeak: 8, weeks: 14 }, { c: "PA", peak: 1, weeksAtPeak: 5, note: "five weeks at No.1, not consecutive - 11 and 18 June, then 2, 9 and 23 July, with a week at No.2 on 25 June; PRODUCE published no Top 50 Internacional for the 16 July week" }, { c: "SE", peak: 1, weeksAtPeak: 7, weeks: 15, note: "seven weeks at No.1, not consecutive - weeks 28-32, then 34 and 35" }, { c: "IT", peak: 1, weeksAtPeak: 4, weeks: 11 }, { c: "IN", peak: 1, weeksAtPeak: 1, weeks: 11 }, { c: "CZ", peak: 1, weeksAtPeak: 3, weeks: 12 }, { c: "IS", peak: 1, note: "Billboard Iceland Songs" }, { c: "VE", peak: 1, weeksAtPeak: 1, weeks: 11 }, { c: "NO", peak: 1, weeksAtPeak: 4 }, { c: "EC", peak: 1 }, { c: "EE", peak: 1 }, { c: "PL", peak: 1, weeksAtPeak: 1, weeks: 12 }, { c: "GLB", peak: 1, weeksAtPeak: 6, weeks: 13, note: "six weeks at No.1, not consecutive - it fell to No.3 in the 15 August issue and retook the top the following week" }, { c: "GLBX", peak: 1, weeksAtPeak: 9, weeks: 14 },
     { c: "UK", peak: 2, weeksAtPeak: 5, weeks: 12 }, { c: "ES", peak: 2 }, { c: "UY", peak: 2 }, { c: "PR", peak: 2 },
@@ -371,13 +384,6 @@ export const featureCharts: ChartRelease[] = [
     { c: "IT", peak: 2 }, { c: "DE", peak: 3 }, { c: "SE", peak: 3 }, { c: "IE", peak: 4 },
     { c: "ES", peak: 10 }, { c: "PT", peak: 15 }, { c: "GLB", peak: 38 }, { c: "SK", peak: 46 }, { c: "UK", peak: 55 },
   ] },
-  // Swept A–Z against the song's cited chart table, July 2026. Airplay-only
-  // peaks were dropped even where they were higher (Croatia, Uruguay), and
-  // several entries that had been taken from a country's AIRPLAY chart were
-  // corrected to that country's official sales/streaming chart: Costa Rica
-  // (FONÓTICA airplay #1 → streaming #5), Nigeria (TurnTable airplay #3 →
-  // Top 100 #7), South Africa (TOSAC airplay #12 → streaming #30) and
-  // Lithuania (TopHit airplay #2 → AGATA #5).
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, entries: [
     { c: "BE", peak: 2 }, { c: "SR", peak: 2 }, { c: "HU", peak: 39 }, { c: "IE", peak: 43 },
     { c: "UK", peak: 43 }, { c: "CH", peak: 52 }, { c: "CA", peak: 70 },
@@ -407,7 +413,12 @@ export const featureCharts: ChartRelease[] = [
     { c: "DE", peak: 92 }, { c: "AU", peak: 96 }, { c: "NL", peak: 97 }, { c: "PT", peak: 111 },
   ] },
   { title: "Simmer", credit: "Mahalia ft. Burna Boy", year: 2019, entries: [{ c: "UK", peak: 46 }] },
-  { title: "Rollin'", credit: "Mist ft. Burna Boy", year: 2019, entries: [{ c: "UK", peak: 46 }] },
+  // 2019 here made the UK #46 impossible: BPI's own register (artist 5863 /
+  // title 5511) dates MIST FT BURNA BOY — ROLLIN' to 23 June 2021, and the OCC
+  // run that produced the #46 entered on 8 July 2021 for 11 weeks. The year
+  // arrived in a bulk chart-expansion commit with no per-row sourcing;
+  // certifications.ts, which was written off the BPI row, had 2021 all along.
+  { title: "Rollin'", credit: "Mist ft. Burna Boy", year: 2021, entries: [{ c: "UK", peak: 46 }] },
   { title: "Talibans II", credit: "Byron Messia ft. Burna Boy", year: 2023, entries: [
     { c: "CA", peak: 53 }, { c: "US", peak: 99 },
   ] },
