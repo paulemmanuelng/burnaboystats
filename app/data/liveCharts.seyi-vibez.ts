@@ -786,8 +786,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 90,
-            "movement": -35
+            "position": 93,
+            "movement": -20
           }
         ]
       }

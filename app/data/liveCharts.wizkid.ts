@@ -254,19 +254,6 @@
             "position": 198,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 200,
-            "movement": -5
           }
         ]
       },
@@ -488,8 +475,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 4,
-            "movement": 54
+            "position": 6,
+            "movement": 59
           }
         ]
       }
@@ -886,7 +873,7 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 10,
+            "position": 11,
             "movement": -5
           },
           {
@@ -1187,13 +1174,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 65,
-            "movement": -4
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 73,
-            "movement": 0
+            "movement": -1
           },
           {
             "country": "KE",
@@ -1391,12 +1378,6 @@
             "movement": 2
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 31,
-            "movement": 8
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 35,
@@ -1407,6 +1388,12 @@
             "name": "Benin",
             "position": 45,
             "movement": -4
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 48,
+            "movement": -13
           },
           {
             "country": "CM",
@@ -1763,7 +1750,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 34,
-            "movement": -5
+            "movement": -4
           }
         ]
       },
@@ -1859,6 +1846,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/332d8393d5c9e2d7c5345b8e5fd2a049/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Made In Lagos",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 48,
+            "movement": -1
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 86,
+            "movement": 0
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 100,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Superstar",
@@ -1984,7 +2003,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 66,
+            "position": 82,
             "movement": null,
             "status": "new"
           }
@@ -1993,31 +2012,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cc269116fe4da8b1054a18ef7f1e39a8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Made In Lagos",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 48,
-            "movement": -5
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 86,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Gimme Dat",
@@ -2079,7 +2073,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
+            "position": 12,
             "movement": null,
             "status": "new"
           }
@@ -2088,6 +2082,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love My Baby",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 13,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee5775a4038904759fa2911ca20e4913/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Slow",
@@ -2118,7 +2132,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 21,
+            "position": 24,
             "movement": null,
             "status": "new"
           }
@@ -2195,8 +2209,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 87,
-            "movement": -27
+            "position": 89,
+            "movement": -22
           }
         ]
       }

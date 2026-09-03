@@ -262,7 +262,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 6,
-            "movement": 16
+            "movement": 45
           }
         ]
       }
@@ -401,8 +401,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 62,
-            "movement": -3
+            "position": 65,
+            "movement": -6
           },
           {
             "country": "SN",
@@ -451,7 +451,7 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 194,
+            "position": 195,
             "movement": -5
           }
         ]
@@ -463,8 +463,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 85,
-            "movement": -17
+            "position": 82,
+            "movement": -7
           }
         ]
       }
@@ -646,6 +646,19 @@
             "name": "Nigeria",
             "position": 31,
             "movement": 7
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 148,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -886,17 +899,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 33,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 44,
-            "movement": -35
+            "position": 47,
+            "movement": -20
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 49,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1994,8 +2007,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 16,
-            "movement": -2
+            "position": 17,
+            "movement": -3
           },
           {
             "country": "MZ",
@@ -2007,7 +2020,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 91,
-            "movement": 0
+            "movement": 1
           }
         ]
       }
@@ -2049,8 +2062,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 195,
-            "movement": -36
+            "position": 198,
+            "movement": -21
           }
         ]
       },
@@ -2092,8 +2105,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 14,
-            "movement": -2
+            "position": 15,
+            "movement": -3
           },
           {
             "country": "NE",
@@ -2118,7 +2131,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 83,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "UG",
@@ -2165,9 +2178,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 4,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
+            "position": 10,
             "movement": null,
             "status": "new"
           }
@@ -2339,7 +2359,7 @@
             "country": "BM",
             "name": "Bermuda",
             "position": 71,
-            "movement": -21
+            "movement": -20
           }
         ]
       },
@@ -2536,26 +2556,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Nwa Baby",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 51,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/74fb63756975ed8644a5519be4ad39fc/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Like",
     "platforms": [
       {
@@ -2613,6 +2613,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/05ba3ed47b0af042f38e49cb3789ec7c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Nwa Baby",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 67,
+            "movement": -55
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/74fb63756975ed8644a5519be4ad39fc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Assurance",
@@ -2800,8 +2819,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 143,
-            "movement": -36
+            "position": 146,
+            "movement": -21
           }
         ]
       }

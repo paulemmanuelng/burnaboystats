@@ -157,22 +157,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 40,
-            "movement": -37
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 52,
-            "movement": -5
+            "movement": -4
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 56,
+            "movement": -50
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 84,
-            "movement": -28
+            "position": 86,
+            "movement": -23
           }
         ]
       },
@@ -1022,8 +1022,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 90,
-            "movement": -35
+            "position": 93,
+            "movement": -20
           }
         ]
       }
@@ -1203,7 +1203,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 116,
-            "movement": 0
+            "movement": 1
           }
         ]
       }

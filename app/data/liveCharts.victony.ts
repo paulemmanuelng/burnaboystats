@@ -488,19 +488,26 @@
             "country": "UG",
             "name": "Uganda",
             "position": 18,
-            "movement": -5
+            "movement": -4
           },
           {
             "country": "MU",
             "name": "Mauritius",
             "position": 21,
-            "movement": -9
+            "movement": -8
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 67,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 168,
-            "movement": -36
+            "position": 171,
+            "movement": -21
           }
         ]
       },
@@ -730,8 +737,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 70,
-            "movement": -2
+            "position": 72,
+            "movement": -3
           },
           {
             "country": "IE",
@@ -753,16 +760,16 @@
             "status": "new"
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 93,
-            "movement": -13
-          },
-          {
             "country": "MU",
             "name": "Mauritius",
             "position": 93,
             "movement": 10
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 97,
+            "movement": -18
           },
           {
             "country": "BW",
@@ -771,22 +778,22 @@
             "movement": 19
           },
           {
+            "country": "FR",
+            "name": "France",
+            "position": 153,
+            "movement": 11
+          },
+          {
             "country": "ML",
             "name": "Mali",
             "position": 157,
             "movement": -71
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 169,
-            "movement": -12
-          },
-          {
             "country": "NL",
             "name": "Netherlands",
-            "position": 175,
-            "movement": -50
+            "position": 197,
+            "movement": -53
           }
         ]
       },
@@ -891,8 +898,8 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 74,
-            "movement": -15
+            "position": 78,
+            "movement": -14
           }
         ]
       },
@@ -1267,7 +1274,7 @@
             "country": "BM",
             "name": "Bermuda",
             "position": 72,
-            "movement": -21
+            "movement": -20
           }
         ]
       },

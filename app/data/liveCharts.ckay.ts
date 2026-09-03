@@ -58,13 +58,13 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 86,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 142,
-            "movement": -36
+            "position": 145,
+            "movement": -21
           }
         ]
       },

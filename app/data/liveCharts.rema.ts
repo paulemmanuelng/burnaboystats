@@ -175,16 +175,16 @@
             "movement": -33
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 190,
+            "country": "PT",
+            "name": "Portugal",
+            "position": 192,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 192,
+            "country": "DE",
+            "name": "Germany",
+            "position": 196,
             "movement": null,
             "status": "new"
           }
@@ -507,8 +507,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 122,
-            "movement": -35
+            "position": 125,
+            "movement": -20
           }
         ]
       },
@@ -729,8 +729,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 24,
-            "movement": -2
+            "position": 25,
+            "movement": -3
           }
         ]
       }
@@ -1097,8 +1097,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 69,
-            "movement": -35
+            "position": 72,
+            "movement": -20
           }
         ]
       },
@@ -1348,8 +1348,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 148,
-            "movement": -36
+            "position": 151,
+            "movement": -19
           }
         ]
       }
@@ -1531,8 +1531,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 80,
-            "movement": -35
+            "position": 83,
+            "movement": -20
           }
         ]
       }

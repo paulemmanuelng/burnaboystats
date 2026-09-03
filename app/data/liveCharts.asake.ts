@@ -208,7 +208,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 35,
-            "movement": 3
+            "movement": 6
           },
           {
             "country": "IE",
@@ -240,7 +240,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 66,
-            "movement": -5
+            "movement": -6
           },
           {
             "country": "SC",
@@ -260,6 +260,12 @@
             "name": "Jamaica",
             "position": 73,
             "movement": 31
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 93,
+            "movement": 71
           },
           {
             "country": "TR",
@@ -294,22 +300,16 @@
             "status": "new"
           },
           {
+            "country": "FR",
+            "name": "France",
+            "position": 134,
+            "movement": 11
+          },
+          {
             "country": "QA",
             "name": "Qatar",
             "position": 134,
             "movement": -19
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 140,
-            "movement": 32
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 146,
-            "movement": -2
           },
           {
             "country": "BM",
@@ -553,7 +553,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 2,
-            "movement": 0
+            "movement": 1
           }
         ]
       },
@@ -745,8 +745,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 170,
-            "movement": 19
+            "position": 178,
+            "movement": 5
           },
           {
             "country": "KY",
@@ -923,7 +923,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
+            "position": 33,
             "movement": null,
             "status": "new"
           },
@@ -936,8 +936,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 86,
-            "movement": -27
+            "position": 88,
+            "movement": -22
           }
         ]
       },
@@ -1344,7 +1344,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 12,
-            "movement": -5
+            "movement": -4
           }
         ]
       },
@@ -2118,7 +2118,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
+            "position": 65,
             "movement": null,
             "status": "new"
           }
@@ -2252,8 +2252,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 62,
-            "movement": -35
+            "position": 65,
+            "movement": -20
           }
         ]
       }
@@ -2355,8 +2355,9 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
-            "movement": 135
+            "position": 59,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -3271,9 +3272,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
-            "movement": null,
-            "status": "new"
+            "position": 110,
+            "movement": -83
           }
         ]
       },
@@ -3805,7 +3805,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 128,
+            "position": 144,
             "movement": null,
             "status": "new"
           }
@@ -3944,7 +3944,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 50,
+            "position": 66,
             "movement": null,
             "status": "new"
           }
@@ -4532,25 +4532,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d3d1d769407f8180412a67a4f9ef7c85/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Start",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 39,
-            "movement": -7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9b36905d4dcb4eb744bb219d311a52e5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Bad Boy - Live in London",
     "platforms": [
       {
@@ -4587,6 +4568,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Start",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 55,
+            "movement": 6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9b36905d4dcb4eb744bb219d311a52e5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Boy",
@@ -4716,7 +4716,7 @@
             "country": "BM",
             "name": "Bermuda",
             "position": 77,
-            "movement": -21
+            "movement": -20
           }
         ]
       }
@@ -4833,8 +4833,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 87,
-            "movement": -27
+            "position": 89,
+            "movement": -22
           }
         ]
       }
