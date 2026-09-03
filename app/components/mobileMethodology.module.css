@@ -139,6 +139,17 @@
   color: var(--text);
 }
 .area + .itemBody { margin-top: 7px; }
+/* The source's composition, under its label — the desktop page's .sourceTag in
+   this screen's tokens. Dimmer than .area so the label still leads. */
+.areaTag {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 5px;
+}
+.areaTag + .itemBody { margin-top: 7px; }
 
 /* ── Closing sections ─────────────────────────────────────────────────── */
 .section { border-top: 1px solid var(--line); padding: 18px; }

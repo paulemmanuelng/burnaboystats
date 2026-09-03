@@ -33,9 +33,15 @@ const RATIOS: { key: CardRatio; label: string }[] = [
 
 export default function MobileStatCards({
   cards,
+  verified,
   pageUrl,
 }: {
   cards: CardChoice[];
+  /** The date the figures were last checked, already formatted by /share.
+   *  Desktop shows it in the aside as "Verified / {date}"; this screen had no
+   *  prop for it at all, so a phone reader got no "as of" date for a number
+   *  they were about to post publicly. */
+  verified: string;
   pageUrl: string;
 }) {
   const [id, setId] = useState(cards[0]?.id ?? "");
@@ -170,6 +176,12 @@ export default function MobileStatCards({
 
       <p className={styles.note}>
         Renders at {size.width} × {size.height} px. Every card carries its source line.
+      </p>
+      {/* The provenance the desktop aside carries as "Verified / {date}". The
+          aside itself is deliberately desktop-only, but the date is a fact, not
+          a panel — it belongs wherever the card is about to be posted. */}
+      <p className={`${styles.note} ${styles.verified}`}>
+        Verified <span className={styles.verifiedDate}>{verified}</span>
       </p>
 
       <div className={styles.spacer} />

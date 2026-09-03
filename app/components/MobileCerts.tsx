@@ -1,6 +1,6 @@
 "use client"; // the tier rail filters the list
 
-import { useState, type CSSProperties } from "react";
+import { useState, useEffect, type CSSProperties } from "react";
 import Link from "next/link";
 import styles from "./mobileCerts.module.css";
 import { badgeWeight } from "../lib/certs";
@@ -119,6 +119,27 @@ export default function MobileCerts({
   const [openBadges, setOpenBadges] = useState<Set<string>>(new Set());
   const [expanded, setExpanded] = useState(false);
   const [year, setYear] = useState(YEARS[0]);
+  // A single-release focus, deep-linked via #release=… — the fragment the Dai
+  // Dai story's "every certification" link carries. CertExplorer has read it
+  // since that link shipped, but it sits inside /certifications' .desktopOnly
+  // wrapper, so this screen never saw it: on a phone the tap landed on the
+  // whole unfiltered ledger with nothing to say a filter was ever meant.
+  const [focus, setFocus] = useState<string | null>(null);
+
+  // Read the deep link once on mount — client-only, exactly as CertExplorer
+  // does it, so /certifications stays statically rendered. The FRAGMENT is the
+  // live form; the query string is still read so older links keep working (see
+  // CertExplorer for why the crawlable ?release= variant was retired). The
+  // focused release is un-folded at the same time: the bar promises "every
+  // certification", and Dai Dai's would otherwise stay behind the "+N" chip.
+  useEffect(() => {
+    const fromHash = new URLSearchParams(window.location.hash.replace(/^#/, "")).get("release");
+    const r = fromHash ?? new URLSearchParams(window.location.search).get("release");
+    if (!r) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount read of a browser-only URL param
+    setFocus(r);
+    setOpenBadges(new Set([r]));
+  }, []);
 
   const tierCount = TIER_ORDER.reduce<Record<Tier, number>>(
     (acc, name) => {
@@ -133,7 +154,7 @@ export default function MobileCerts({
   const maxTier = Math.max(...TIER_ORDER.map((t) => tierCount[t]));
 
   const matching = releases
-    .filter((r) => !tier || r.certs.some((c) => c.level === tier))
+    .filter((r) => (!focus || r.title === focus) && (!tier || r.certs.some((c) => c.level === tier)))
     .slice()
     // Albums lead, then the songs — each block running most-certified to
     // least. The blocks aren't labelled; the ALBUM tag on each album row is
@@ -270,6 +291,20 @@ export default function MobileCerts({
           ))}
         </div>
       </div>
+
+      {/* The deep-linked focus, announced the way the desktop explorer announces
+          it. Sits above the tier rail and above the list, so a #release= that
+          matches nothing still leaves a way back to the full ledger. */}
+      {focus && (
+        <div className={styles.focusBar}>
+          <span>
+            Showing every certification for <b>{focus}</b>
+          </span>
+          <button type="button" className={styles.focusClear} onClick={() => setFocus(null)}>
+            Show all releases ✕
+          </button>
+        </div>
+      )}
 
       {/* Tier rail */}
       <ScrollRail id="cert-rail" className={styles.rail} label="Filter by certification tier">

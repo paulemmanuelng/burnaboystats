@@ -179,6 +179,10 @@
   margin: 0;
 }
 .licenceBody { font-size: 12.5px; line-height: 1.6; color: var(--text-muted); margin: 8px 0 10px; }
+/* Inline links in the licence block. Gold + underline, because the licence and
+   the methodology are the two things a reader most needs to be able to reach —
+   an unmarked link in body prose is not a link on a touch screen. */
+.licenceLink { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
 
 /* ── Action bar ───────────────────────────────────────────────────────── */
 .spacer { height: 104px; }

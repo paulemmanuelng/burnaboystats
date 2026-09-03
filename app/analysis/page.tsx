@@ -62,13 +62,17 @@ export default function AnalysisPage() {
         findings={findings}
         lede={`The rest of this site reports the record. This page argues with it — ${numberWord(findings.length).toLowerCase()} findings drawn from the full chart and certification data.`}
         reviewedLabel={reviewedLabel}
+        /* The /methodology link is load-bearing, not decoration: the whole page
+           argues from definitions documented there, and this screen carried no
+           route to it anywhere — only the desktop "How to check this" did. */
         checkNote={
           <>
             Nothing here is an opinion about the music — each claim is a statement about the
             dataset, and every one can be reproduced. The figures are published as open JSON
-            on the <Link href="/api">data API</Link>. Two definitions matter: No. 1s are
-            counted as <em>placements</em>, and country tallies exclude the two Billboard
-            Global charts, since a worldwide chart isn&apos;t a market.
+            on the <Link href="/api">data API</Link>, and how each number is verified is set
+            out in the <Link href="/methodology">methodology</Link>. Two definitions matter:
+            No. 1s are counted as <em>placements</em>, and country tallies exclude the two
+            Billboard Global charts, since a worldwide chart isn&apos;t a market.
           </>
         }
       />
