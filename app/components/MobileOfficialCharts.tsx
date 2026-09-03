@@ -373,6 +373,13 @@ export default function MobileOfficialCharts({
                         opacity: p.off ? 0.24 : 1,
                       }}
                     >
+                      {/* The country is in the pill's text, not just its
+                          `title`: a phone never shows a tooltip, so on the
+                          layout this screen IS, the pill announced as bare
+                          "#1" with the flag emoji for a name. Clipped rather
+                          than display:none — the same treatment the song
+                          page's .peakName gets at this width. */}
+                      <span className="visuallyHidden">{p.name}, peak </span>
                       <span className={styles.pillFlag} aria-hidden="true">{p.flag}</span>#{p.peak}
                     </span>
                   );

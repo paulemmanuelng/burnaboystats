@@ -203,16 +203,22 @@ export default function CertExplorer({
           onClick={() => setFiltersOpen((o) => !o)}
         >
           <span>Filters{active ? ` · ${totalShown} shown` : ""}</span>
-          {/* Filtering is a mouse-and-eyes affordance without this: the list
-              changes and nothing announces it. The count beside "Filters" is
-              the same fact, but it is inside a collapsed control and only
-              appears once a filter is active. Polite, so it waits for a pause
-              rather than interrupting. */}
-          <span aria-live="polite" className="visuallyHidden">
-            {totalShown} {totalShown === 1 ? "release" : "releases"} shown, {shownCerts} {shownCerts === 1 ? "certification" : "certifications"}
-          </span>
           <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
         </button>
+
+        {/* Filtering is a mouse-and-eyes affordance without this: the list
+            changes and nothing announces it. The count beside "Filters" is the
+            same fact, but it only appears once a filter is active.
+
+            A sibling of the toggle, not a child of it: the redesign left
+            `.filterToggle` at `display: none` at every width (the panel is
+            always open now, and the later rule beats the 640px one that opens
+            it), and a live region inside a `display: none` element is never
+            announced at all. Polite, so it waits for a pause rather than
+            interrupting. */}
+        <span aria-live="polite" className="visuallyHidden">
+          {totalShown} {totalShown === 1 ? "release" : "releases"} shown, {shownCerts} {shownCerts === 1 ? "certification" : "certifications"}
+        </span>
 
         <div id="cert-filters" className={`${styles.filterBody} ${filtersOpen ? styles.filterOpen : ""}`}>
           <div className={styles.filterRow}>
