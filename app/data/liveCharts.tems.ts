@@ -1356,8 +1356,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 20,
-            "movement": 1
+            "position": 19,
+            "movement": 2
           },
           {
             "country": "KE",
@@ -1969,8 +1969,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 131,
-            "movement": -1
+            "position": 129,
+            "movement": 1
           },
           {
             "country": "KY",

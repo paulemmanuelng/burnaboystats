@@ -311,6 +311,24 @@
             "movement": 9
           }
         ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SI",
+            "name": "Slovenia",
+            "position": 2,
+            "movement": 0
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 46,
+            "movement": 0
+          }
+        ]
       }
     ],
     "kind": "song",

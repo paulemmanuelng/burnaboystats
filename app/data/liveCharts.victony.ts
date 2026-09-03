@@ -273,12 +273,6 @@
             "status": "new"
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 186,
-            "movement": 2
-          },
-          {
             "country": "BM",
             "name": "Bermuda",
             "position": 191,
