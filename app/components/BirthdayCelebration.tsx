@@ -18,6 +18,31 @@ function ordinal(n: number): string {
   return `${n}th`;
 }
 
+// Touching sessionStorage THROWS, rather than returning null, in a browser
+// that blocks site data — Safari's "block all cookies", a partitioned webview,
+// Chrome with site data denied. Both calls sit on live paths: the read is in a
+// mount effect, so an uncaught throw takes the whole page to the error
+// boundary, and the write is the dismiss handler, so a throw there leaves the
+// confetti on screen with a button that does nothing. The banner is a
+// once-a-year flourish; it must never be the reason a page fails to render.
+const readDismissed = (year: number): boolean => {
+  try {
+    return !!sessionStorage.getItem(`birthday-dismissed-${year}`);
+  } catch {
+    // No storage means no memory of a dismissal — the banner shows again on the
+    // next page, which is the harmless direction to fail in.
+    return false;
+  }
+};
+
+const rememberDismissed = (year: number): void => {
+  try {
+    sessionStorage.setItem(`birthday-dismissed-${year}`, "1");
+  } catch {
+    // Dismissing still works for this page; it just won't be remembered.
+  }
+};
+
 type BirthdayState = { age: number; year: number; dismissed: boolean };
 
 export default function BirthdayCelebration() {
@@ -31,7 +56,7 @@ export default function BirthdayCelebration() {
     const now = new Date();
     if (now.getMonth() !== 6 || now.getDate() !== 2) return; // July = month 6
     const year = now.getFullYear();
-    const dismissed = !!sessionStorage.getItem(`birthday-dismissed-${year}`);
+    const dismissed = readDismissed(year);
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount read of browser-only APIs
     setBday({ age: year - BIRTH_YEAR, year, dismissed });
     const timer = setTimeout(() => setConfettiOn(false), CONFETTI_MS);
@@ -58,7 +83,7 @@ export default function BirthdayCelebration() {
   if (!bday) return null;
 
   const dismiss = () => {
-    sessionStorage.setItem(`birthday-dismissed-${bday.year}`, "1");
+    rememberDismissed(bday.year);
     setBday({ ...bday, dismissed: true });
   };
 
