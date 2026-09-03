@@ -2,7 +2,13 @@ import Link from "next/link";
 import styles from "./todaysNumber.module.css";
 import { liveHeadline } from "../lib/liveHeadline";
 import { changedSentence } from "../lib/recentNumberOnes";
-import { numberOnes, chartCountryCount } from "../data/charts";
+// countryNumberOnes / numberOneCountryCount, not the headline numberOnes and
+// chartCountryCount from data/charts: the note below says "on the official
+// national charts", and both of those figures count Billboard's Global 200 and
+// Global 200 Excl. US. It read "47 No. 1s across 69 countries", which asserts
+// he has topped the chart in 69 countries — the same regression
+// tests/homeScoreboardParity.test.ts pins for the homepage tile, in prose.
+import { countryNumberOnes, numberOneCountryCount } from "../lib/analysis";
 import { recentArrivalSentence } from "../lib/recentNumberOnes";
 import { spotifyImage } from "../lib/spotifyImage";
 
@@ -63,8 +69,8 @@ export default function TodaysNumber() {
 
       <p className={styles.note}>
         {recentArrivalSentence(live.title ?? "Dai Dai")}{" "}
-        On the official national charts, his career total is now {numberOnes}{" "}
-        No.&nbsp;1s across {chartCountryCount} countries.
+        On the official national charts, his career total is now{" "}
+        {countryNumberOnes} No.&nbsp;1s across {numberOneCountryCount} countries.
       </p>
     </div>
 

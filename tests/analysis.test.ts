@@ -18,7 +18,7 @@ import {
   numberOneCountriesOutsideEurope,
   numberOneCountryCount,
 } from "../app/lib/analysis";
-import { CHART_COUNTRIES } from "../app/data/charts";
+import { CHART_COUNTRIES, chartCountryCount } from "../app/data/charts";
 
 // /analysis makes ARGUMENTS about the data, not just restatements of it. New
 // data can falsify an argument — a first US top 10 would make "not one top 10"
@@ -31,9 +31,10 @@ describe("analysis derivations", () => {
     expect(isGlobalChart("GLBX")).toBe(true);
     expect(isGlobalChart("UK")).toBe(false);
     // The site's headline chartCountryCount counts the globals; this one must
-    // not — so it always sits below the headline figure (71 after the Aug 2026
-    // Dai Dai sweep added 11 territories).
-    expect(chartedCountryCount).toBeLessThan(71);
+    // not — so it always sits below the headline figure. Compared against that
+    // figure rather than a numeral: the literal was 71, went stale when two
+    // territories were withdrawn, and a stale bound stops testing anything.
+    expect(chartedCountryCount).toBeLessThan(chartCountryCount);
   });
 
   it("computes a coherent Dai Dai share", () => {

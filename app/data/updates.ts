@@ -24,6 +24,10 @@
 // career award tally) — reserve present/"just happened" phrasing for things
 // that are genuinely new this week (a debut chart peak, a fresh streaming high).
 
+// Figures a log entry shares with a page are imported, never retyped: the
+// garage entries below stated three different collection sizes for one garage.
+import { carCount, totalValueFormatted } from "./cars";
+
 export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards" | "Tours" | "Lifestyle";
 
 export interface Update {
@@ -1392,19 +1396,31 @@ export const updates: Update[] = [
   {
     date: "2026-07-05",
     category: "Lifestyle",
-    text: "A vintage Ferrari Testarossa joins the fleet — spotted in London before being moved into his Lagos penthouse, taking the reported car collection to 19 vehicles worth over $18 million.",
+    // These three garage entries all carry the same catch-up date, and each
+    // used to close with a running collection total: 19 cars/$18M here, 15
+    // cars/$16.46M below, 18 cars/$17M below that. Three sizes and three
+    // valuations for one garage, all dated the same day. The two higher pairs
+    // were the aggregator-era counts that data/cars.ts has since re-priced and
+    // re-classified — five of those vehicles are now carried as sold or
+    // unconfirmed and are out of the live totals by rule ("Live totals (count
+    // + value) count CURRENT cars only"). So the total is stated once, on the
+    // entry that reports the site's own verified position, and it reads from
+    // cars.ts rather than being typed — the same figure /records/cars, /faq
+    // and the nav already render. The acquisitions themselves are the news and
+    // are untouched.
+    text: "A vintage Ferrari Testarossa joins the fleet — spotted in London before being moved into his Lagos penthouse.",
     href: "/records/cars",
   },
   {
     date: "2026-07-05",
     category: "Lifestyle",
-    text: "Two Mercedes-Maybach GLS 600s: Burna Boy bought a pair — gifting one to his mother and keeping the other for his own garage — with his confirmed collection now at 15 cars worth a reported $16.46M.",
+    text: `Two Mercedes-Maybach GLS 600s: Burna Boy bought a pair — gifting one to his mother and keeping the other for his own garage — with his confirmed collection now at ${carCount} cars worth a reported ${totalValueFormatted}.`,
     href: "/records/cars",
   },
   {
     date: "2026-07-05",
     category: "Lifestyle",
-    text: "A ₦9 billion one-of-one Bugatti Chiron — billed as the world's first widebody Chiron — now leads a reported 18-car collection worth over $17 million, alongside a new Ferrari SF90 Spider.",
+    text: "A ₦9 billion one-of-one Bugatti Chiron — billed as the world's first widebody Chiron — now leads the garage, alongside a new Ferrari SF90 Spider.",
     href: "/records/cars",
   },
   {

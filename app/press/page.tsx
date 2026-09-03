@@ -6,8 +6,13 @@ import CopyButton from "../components/CopyButton";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
 import { chartEntryCount, numberOnes } from "../data/charts";
-// 69, not the headline 71: two of those are Billboard's worldwide charts,
-// which are not territories, and this strip is quoted by journalists.
+// The country figure, not the headline territory figure: the site's
+// "territories" count adds Billboard's Global 200 and Global 200 Excl. US to
+// the countries, and neither is a country. This strip is quoted by
+// journalists, so the number and the word under it have to match — it used to
+// print this country figure under the word "territories", which is what
+// /records/charts and /records/by-the-numbers call the two-higher figure. Same
+// word, two numbers, on pages a writer reads together.
 import { chartedCountryCount } from "../lib/analysis";
 import { totalWins, totalNominations } from "../data/awards";
 import { countryCount as performedCountryCount } from "../data/performedCountries";
@@ -40,7 +45,7 @@ const CITATION_LINKED = 'Data: <a href="https://burnaboystats.com">Burna Boy Sta
 // the same data the pages render — this strip can never go stale on its own.
 const figures = [
   { value: String(totalAwards()), label: "Certifications", sub: `${countryCount} countries`, href: "/certifications" },
-  { value: String(chartEntryCount), label: "Chart entries", sub: `${chartedCountryCount} territories`, href: "/records/charts" },
+  { value: String(chartEntryCount), label: "Chart entries", sub: `${chartedCountryCount} countries`, href: "/records/charts" },
   { value: String(numberOnes), label: "No. 1 placements", sub: "worldwide", href: "/records/charts" },
   { value: String(totalWins), label: "Award wins", sub: `${totalNominations} nominations`, href: "/records/awards" },
   { value: spotifyTotalStreams, label: "Career streams", sub: "Spotify, all credits", href: "/records/by-the-numbers" },

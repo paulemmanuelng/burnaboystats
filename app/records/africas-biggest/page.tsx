@@ -4,7 +4,7 @@ import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import StatBox from "../../components/StatBox";
 import TrendDelta from "../../components/TrendDelta";
-import { statBoxes, HIGHLIGHT } from "../../data/africasBiggest";
+import { statBoxes, HIGHLIGHT, BURNA_HOT_100_ENTRIES_WORD } from "../../data/africasBiggest";
 import { monthlyListenersSeries } from "../../data/trends";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import MobileAfricasBiggest from "../../components/MobileAfricasBiggest";
@@ -52,7 +52,7 @@ export const metadata = pageMetadata({
 // Answer-first Q&A targeting the multi-artist searches this page serves, so it
 // can win featured snippets / AI answers for "which / highest African artist on
 // Billboard / Spotify" queries. Rendered visibly and as FAQPage structured data.
-const pageFaqs = [
+export const pageFaqs = [
   {
     q: "What is the highest-charting African song on the Billboard Global 200?",
     a: "Shakira and Burna Boy's “Dai Dai” — the first and only African song to reach No. 1 on Billboard's US-inclusive Global 200. The next-highest are CKay's “Love Nwantiti” (No. 2), Rema and Selena Gomez's “Calm Down” (No. 3), Tyla's “Water” (No. 9) and Libianca's “People” (No. 20).",
@@ -63,7 +63,7 @@ const pageFaqs = [
   },
   {
     q: "Which African artist has the most Billboard Hot 100 entries?",
-    a: "Burna Boy, with nine career entries — the record for any African act, ahead of Tems (eight) and the South African rock band Seether (seven). Wizkid is next on five, then Tyla and Hugh Masekela tied on four.",
+    a: `Burna Boy, with ${BURNA_HOT_100_ENTRIES_WORD.toLowerCase()} career entries — the record for any African act, ahead of Tems (eight) and the South African rock band Seether (seven). Wizkid is next on five, then Tyla and Hugh Masekela tied on four.`,
   },
   {
     q: "Who is the most-streamed African artist on Spotify?",

@@ -6,6 +6,7 @@ import {
   chartCountryCount,
   numberOnes,
 } from "../../../data/charts";
+import { chartedCountryCount } from "../../../lib/analysis";
 
 export const dynamic = "force-static";
 
@@ -40,7 +41,14 @@ export function GET() {
       totals: {
         chartEntries: chartEntryCount,
         numberOnes,
-        countries: chartCountryCount,
+        // `countries` used to carry chartCountryCount here while /stats
+        // carried chartedCountryCount under the identical key — one field
+        // name, two values, in a dataset people join. Billboard's Global 200
+        // and Global 200 Excl. US are chart territories, not countries, so
+        // they get their own key and `countries` means countries on both
+        // endpoints.
+        countries: chartedCountryCount,
+        territories: chartCountryCount,
         chartedReleases: allChartItems.length,
       },
       releases,

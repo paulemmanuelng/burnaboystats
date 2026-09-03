@@ -9,6 +9,7 @@ import { numberOnes, numberOneReleases, daiDaiNumberOnes } from "../data/charts"
 import { countryCount as performedCountryCount, regionCount } from "../data/performedCountries";
 import { festivals } from "../data/tours";
 import { carCount, totalValueFormatted } from "../data/cars";
+import { BURNA_HOT_100_ENTRIES } from "../data/africasBiggest";
 
 export const metadata = pageMetadata({
   title: "Burna Boy FAQ — Grammys, Certifications, Records & Stats",
@@ -99,7 +100,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "music",
     q: "How many Billboard Hot 100 entries does Burna Boy have?",
-    a: `Burna Boy has 9 Billboard Hot 100 entries — the most by any African artist. He is also the first African artist to chart on the Hot 100 for six consecutive years (2021–2026).`,
+    a: `Burna Boy has ${BURNA_HOT_100_ENTRIES} Billboard Hot 100 entries — the most by any African artist. He is also the first African artist to chart on the Hot 100 for six consecutive years (2021–2026).`,
   },
   {
     g: "music",

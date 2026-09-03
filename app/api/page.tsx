@@ -91,7 +91,12 @@ const sample = JSON.stringify(
     count: chartEntryCount,
     license: { name: "CC BY 4.0", attribution: `Data from ${SITE_NAME} (${CANONICAL_ORIGIN})` },
     data: {
-      totals: { chartEntries: chartEntryCount, numberOnes, countries: chartCountryCount },
+      totals: {
+        chartEntries: chartEntryCount,
+        numberOnes,
+        countries: chartedCountryCount,
+        territories: chartCountryCount,
+      },
       releases: [
         {
           title: sampleRelease.title,
@@ -153,7 +158,12 @@ export default function ApiPage() {
         pills={[
           `${chartEntryCount} chart entries`,
           `${totalAwards()} certifications`,
-          `${chartCountryCount} countries`,
+          // chartedCountryCount, not chartCountryCount: this pill said
+          // "countries" over the territory figure, which counts Billboard's
+          // Global 200 and Global 200 Excl. US. Neither is a country, so the
+          // pill read two higher than the desktop badge beside it on the same
+          // page. Both layouts now take the same country figure.
+          `${chartedCountryCount} countries`,
           "CC BY 4.0",
         ]}
         endpoints={endpoints}

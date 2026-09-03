@@ -18,6 +18,25 @@ export const BURNA_PEAK_LISTENERS = "60.13M";
 export const BURNA_YT_AUDIENCE = "929M";
 export const BURNA_YT_AUDIENCE_WORDS = "929 million";
 
+/** His career Billboard Hot 100 entries — the record for any African artist.
+ *
+ *  Exported for the same reason as the YouTube figure above: this one number
+ *  was published in eight places across five files, in three spellings ("9",
+ *  "nine", "Nine"), with nothing holding them together. The next entry would
+ *  have had to be found and changed eight times by hand, and the miss would
+ *  have shown as two answers to one question on pages that link to each other.
+ *
+ *  It is a hand-maintained figure, NOT derived from data/charts.ts, and must
+ *  stay that way: that file is a per-release table of peak positions for the
+ *  releases this site tracks, and it carries three US singles entries. The 9
+ *  is Billboard's career total for him, features and older entries included.
+ *  Deriving it from the peak table would publish 3. Update it here when
+ *  Billboard adds an entry; tests/hotHundredEntries.test.ts holds every
+ *  published mention to this constant. */
+export const BURNA_HOT_100_ENTRIES = 9;
+/** Capitalised, like `numberWord` — call `.toLowerCase()` mid-sentence. */
+export const BURNA_HOT_100_ENTRIES_WORD = "Nine";
+
 // "Africa's Biggest" — leaderboard-style stat boxes comparing African artists.
 // Two box layouts:
 //   • "year" — a ranked Top-5 per year (e.g. most-streamed artist by year).
@@ -81,7 +100,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Tyla", sub: "🇿🇦 “Water”", value: "No. 7" },
       { name: "Burna Boy", sub: "🇳🇬 “WGFT” (with Gunna)", value: "No. 16" },
     ],
-    note: "The highest any African artist has charted on the Billboard Hot 100, counting lead and featured credits — Wizkid and Tems both hit No. 1 via global smashes with Drake and Future. Burna Boy's best is “WGFT” at No. 16 (his real Hot 100 record is entries, where he leads all African acts with nine).",
+    note: `The highest any African artist has charted on the Billboard Hot 100, counting lead and featured credits — Wizkid and Tems both hit No. 1 via global smashes with Drake and Future. Burna Boy's best is “WGFT” at No. 16 (his real Hot 100 record is entries, where he leads all African acts with ${BURNA_HOT_100_ENTRIES_WORD.toLowerCase()}).`,
     source: "Best Billboard Hot 100 peak (lead or featured credit), per Billboard and Wikipedia-cited chart histories. As of July 2026.",
   },
   {
@@ -201,15 +220,15 @@ export const statBoxes: LeaderboardBox[] = [
     meta: "African artists · career · US Billboard Hot 100",
     layout: "list",
     entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "9" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: `${BURNA_HOT_100_ENTRIES}` },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "8" },
       { name: "Seether", sub: "🇿🇦 South Africa", value: "7" },
       { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "5" },
       { name: "Tyla & Hugh Masekela", sub: "🇿🇦 South Africa · tied", value: "4" },
     ],
-    note: "Burna Boy has the most Billboard Hot 100 entries of any African artist in history — 9, extended by “Dai Dai” with Shakira. Tems is next with 8 — the most ever by an African woman. Hugh Masekela and Tyla are tied on 4; Masekela was the first African act to top the chart (“Grazing in the Grass,” No. 1, 1968).",
+    note: `Burna Boy has the most Billboard Hot 100 entries of any African artist in history — ${BURNA_HOT_100_ENTRIES}, extended by “Dai Dai” with Shakira. Tems is next with 8 — the most ever by an African woman. Hugh Masekela and Tyla are tied on 4; Masekela was the first African act to top the chart (“Grazing in the Grass,” No. 1, 1968).`,
     source:
-      "Career Billboard Hot 100 entries by African artists, from Billboard chart histories. Burna Boy (9), Tems (8) and Tyla (4) confirmed via Billboard; Seether (7), Wizkid (5) and Hugh Masekela (4) cross-checked against Billboard and chart-stat trackers. As of July 2026.",
+      `Career Billboard Hot 100 entries by African artists, from Billboard chart histories. Burna Boy (${BURNA_HOT_100_ENTRIES}), Tems (8) and Tyla (4) confirmed via Billboard; Seether (7), Wizkid (5) and Hugh Masekela (4) cross-checked against Billboard and chart-stat trackers. As of July 2026.`,
   },
   {
     id: "most-200m-stream-songs",
