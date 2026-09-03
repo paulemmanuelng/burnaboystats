@@ -176,6 +176,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         liveNote={liveNote}
         backHref="/afrobeats"
         backLabel={a.name}
+        subject={a.name}
         lede={`Every ${a.name} plaque, read in the issuing body's own register — ${total} across ${countries} ${countries === 1 ? "country" : "countries"}, from ${a.releases.length} certified releases.`}
         showActionBar={false}
       />

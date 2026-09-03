@@ -153,13 +153,17 @@ export default function MobileAwards({
         <h2 className={styles.honoursTitle}>Honours &amp; recognitions</h2>
         <p className={styles.honoursNote}>Not counted in the {wins} wins</p>
         <div className={styles.honoursList}>
-          {/* Two BRIT Billion Awards share a title and a year — one for 1bn UK
-              streams, one for 2bn — so position is what disambiguates. */}
+          {/* The note stays, exactly as it does on desktop. Two BRIT Billion
+              Awards share a title, an org AND a year — one for 1bn UK streams,
+              one for 2bn — so without the note this list published them as two
+              identical rows a reader could not tell apart, and position was the
+              only thing disambiguating them. */}
           {honours.map((h, i) => (
             <div key={`${i}-${h.title}`} className={styles.honour}>
               <div className={styles.honourMain}>
                 <div className={styles.honourTitle}>{h.title}</div>
                 <div className={styles.honourOrg}>{h.org}</div>
+                {h.note && <div className={styles.honourNote}>{h.note}</div>}
               </div>
               <span className={styles.honourYear}>{h.year}</span>
             </div>

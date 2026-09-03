@@ -66,6 +66,7 @@ export default function MobileCerts({
   liveNote,
   backHref = "/",
   backLabel = "Certifications",
+  subject = "Burna Boy",
   lede,
   showActionBar = true,
 }: {
@@ -83,6 +84,9 @@ export default function MobileCerts({
   covers?: Record<string, string | undefined>;
   backHref?: string;
   backLabel?: string;
+  /** Who the total belongs to. Names the <h1>, which is otherwise a bare number
+   *  pair — see the heading itself. Every caller should pass its artist. */
+  subject?: string;
   /** Art-direction token — see AfroArtist.brand. Undefined for everyone but
    *  the artist whose campaign has its own palette, which is what keeps this
    *  component's other caller (Burna Boy's own screen) untouched. */
@@ -226,6 +230,14 @@ export default function MobileCerts({
             countries". Both layouts sit in the DOM at once, so the document
             carries two h1s, one per layout, and only ever one is visible. */}
         <h1 className={styles.totalRow}>
+          {/* Whose numbers these are. The desktop <h1> on this screen's other
+              caller names the artist outright, but the desktop layout is
+              display:none on a phone and so is out of the accessibility tree
+              entirely — which left every one of the board's artist pages with
+              a single <h1> reading "103 awards / 21 countries" and no name in
+              it. Nothing to look at changes; the heading just stops being
+              anonymous to anyone navigating by heading. */}
+          <span className="visuallyHidden">{subject}: </span>
           <span className={styles.total}>{total}</span>
           <span className={styles.totalUnit}>
             awards
