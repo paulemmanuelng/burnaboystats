@@ -109,12 +109,13 @@ describe("handoff checklist — data integrity", () => {
     expect(ceremonyCount).toBe(46);
   });
 
-  it("counts 57 countries performed in and 51 firsts", () => {
+  it("counts 57 countries performed in and 52 firsts", () => {
     expect(performedCountryCount).toBe(57);
-    // 51st: first entry on Billboard's Adult Contemporary chart ("Dai Dai"
-    // debuts at No. 14, chart dated 29 Aug 2026). 50th was four albums past
-    // 500M Spotify streams.
-    expect(firstsCount).toBe(51);
+    // 52nd: first Nigerian artist past 4 billion YouTube views (4,029,086,804
+    // across 344 videos, read at the channel on 3 Sep 2026 — Wizkid is next at
+    // 2.66B). 51st was the first entry on Billboard's Adult Contemporary chart
+    // ("Dai Dai" debuts at No. 14, chart dated 29 Aug 2026).
+    expect(firstsCount).toBe(52);
   });
 
   it("values the current car collection at $16.46M — current only", () => {

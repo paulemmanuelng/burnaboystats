@@ -213,7 +213,7 @@ export default function DaiDaiPageES() {
         { v: "N.º 3", l: "en el Billboard Canadian Hot 100 — un nuevo pico y el primer top 10 de Burna Boy en Canadá, donde su mejor posición había sido el N.º 14. Es también el primer top 10 canadiense de Shakira desde “She Wolf” en 2009" },
         { v: "N.º 17", l: "en el Billboard Hot 100 de Estados Unidos — un salto del 42 al 17 en la lista del 1 de agosto, el pico más alto de una canción mundialista en la historia del Hot 100. Luminate registró 8,6 millones de reproducciones en Estados Unidos (+69 %), 13,9 millones de audiencia radial (+11 %) y 7.000 copias vendidas (+322 %) en la semana de seguimiento del 17 al 23 de julio" },
         { v: "N.º 1", l: "en el Big Top 40 del Reino Unido por tercera semana — la cuenta atrás nacional de las cadenas Capital y Heart, con Burna Boy recibiendo la placa de número 1" },
-        { v: "N.º 3", l: "en la lista Rhythmic Airplay de Billboard — un nuevo pico, el cuarto top 10 de Burna Boy en ese formato y el primero de Shakira en 20 años, desde “Hips Don't Lie” (2006). También es N.º 26 en Pop Airplay" },
+        { v: "N.º 1", l: "en la lista Rhythmic Airplay de Billboard con fecha del 6 de septiembre de 2026 — el primer N.º 1 de Shakira en ese formato, veinte años después de que “Hips Don't Lie” llegara al N.º 5. La canción subió del 3 al 1; también es N.º 26 en Pop Airplay" },
       ],
     },
     {

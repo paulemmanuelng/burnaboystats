@@ -35,6 +35,18 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-03",
+    category: "Charts",
+    text: "“Dai Dai” goes to No. 1 on Billboard's Rhythmic Airplay chart dated 6 September 2026, climbing 3–1. It is Shakira's first-ever No. 1 on the format, twenty years after “Hips Don't Lie” peaked at No. 5 in 2006, and the song's fourth week in the format's top three. It holds at No. 26 on Pop Airplay. This is Billboard's own Rhythmic Airplay panel, not Mediabase's — the two share a monitoring feed but rank different panels over different weeks, and this site publishes the Billboard peak.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-03",
+    category: "Streaming",
+    text: "Four billion views on YouTube: his channel reads 4,029,086,804 across 344 videos, the first Nigerian artist past the mark. The next-highest Nigerian tally is Wizkid's 2.66 billion, so the milestone is his by more than a billion views.",
+    href: "/records/by-the-numbers",
+  },
+  {
     date: "2026-09-02",
     category: "Charts",
     text: "A correction, twice over: “Dai Dai” was never No. 1 in the Dominican Republic or El Salvador. Monitor Latino names the No. 1 on each country’s Top 20 General weekly, and across all sixteen weeks of the song’s life the Dominican top spot belongs to Amenazzy, then Yiyo Sarante for eleven weeks, then Yenddi, then DaniLeigh — while the same posts name “Dai Dai” the No. 1 elsewhere in those very weeks. El Salvador is not a chart Monitor Latino publishes at all, and ASAP EGC publishes none either; what the same posts do show is “Dai Dai” topping the regional Top Centroamérica on 15 June, which is where that figure belongs. Both entries came from a round-up rather than a chart and have been removed: 26 country No. 1s for the song, 47 chart-topping placements for the career.",
