@@ -210,6 +210,40 @@ describe("extractCountryChart", () => {
     expect(yt[1]).toMatchObject({ release: "Ye", position: 66, status: "re" });
   });
 
+  it("matches an alias when the chart prints the feature in the title", () => {
+    // The country charts bill a featured record to its LEAD and print the
+    // feature in the title; an alias names the record as the artist page does.
+    // The matcher compared those raw, so "Secondhand (feat. Rema)" never met
+    // the alias "Secondhand" — and every featured placement on a swept
+    // platform was dropped, for every artist on the board. Rema's Secondhand
+    // was at Deezer #2 in Slovenia with his page showing no Deezer for it.
+    const page = `<title>Deezer Top Songs - Senegal</title><table><tbody>
+<tr><td>46</td><td>=</td><td>Don Toliver - Secondhand (feat. Rema)</td></tr>
+</tbody></table>`;
+    const who = {
+      credit: /\brema\b/i,
+      aliases: [{ artist: "Don Toliver", title: "Secondhand", release: "Secondhand" }],
+    };
+    const got = extractCountryChart(page, "sn", DEEZER, who);
+    expect(got).toHaveLength(1);
+    // It folds onto the artist page's own name for the record, not the
+    // chart's — otherwise it would appear as a second, separate release.
+    expect(got[0]).toMatchObject({ release: "Secondhand", country: "SN", position: 46 });
+  });
+
+  it("still refuses an alias whose lead artist does not match", () => {
+    // Normalising the title must not loosen the artist check: the pair is what
+    // stops an unrelated song of the same name being swept in.
+    const page = `<title>Deezer Top Songs - Senegal</title><table><tbody>
+<tr><td>46</td><td>=</td><td>Someone Else - Secondhand (feat. Rema)</td></tr>
+</tbody></table>`;
+    const who = {
+      credit: /\bnobody\b/i,
+      aliases: [{ artist: "Don Toliver", title: "Secondhand", release: "Secondhand" }],
+    };
+    expect(extractCountryChart(page, "sn", DEEZER, who)).toEqual([]);
+  });
+
   it("returns nothing when the page is not the chart it expected", () => {
     expect(extractCountryChart(DEEZER_FR, "fr", YOUTUBE)).toEqual([]);
     expect(extractCountryChart("<title>Something else</title>", "fr", DEEZER)).toEqual([]);

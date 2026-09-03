@@ -564,10 +564,22 @@ export function extractCountryChart(html, code, spec, who = DEFAULT_WHO) {
     let release = null;
     if (who.credit.test(artist)) release = title;
     else {
+      // titleKey, not a raw lowercase compare. The country charts bill a
+      // featured record to its lead AND print the feature in the title —
+      // "Don Toliver - Secondhand (feat. Rema)" — while an alias names the
+      // record as the artist page does, "Secondhand". An exact match therefore
+      // never fired, and every featured placement on a SWEPT platform (Deezer,
+      // YouTube) was silently dropped for every artist on the board: Rema's
+      // Secondhand was sitting at Deezer #2 in Slovenia and #46 in Senegal
+      // while his page showed no Deezer for it at all.
+      //
+      // titleKey is the same normaliser mergeChartPlacements already uses for
+      // exactly this mismatch, and it folds away only casing, punctuation and
+      // featured credits — a remix or instrumental still charts separately.
       const alias = (who.aliases ?? []).find(
         (a) =>
           a.artist.toLowerCase() === artist.toLowerCase() &&
-          a.title.toLowerCase() === title.toLowerCase()
+          titleKey(a.title) === titleKey(title)
       );
       if (alias) release = alias.release;
     }
