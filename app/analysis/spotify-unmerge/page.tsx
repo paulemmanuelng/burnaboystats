@@ -299,7 +299,10 @@ export default function SpotifyUnmergePage() {
         </div>
       </section>
 
-      <KeepExploring current="/analysis" />
+      {/* Its own route, not "/analysis": passing the parent's path handed this
+          page the parent's explore list, and left the list authored for this one
+          in links.ts unreachable. */}
+      <KeepExploring current="/analysis/spotify-unmerge" />
     </main>
   );
 }

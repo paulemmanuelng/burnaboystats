@@ -8,7 +8,7 @@ type SectionLink = { href: string; title: string; desc: string };
 
 // Server component, so importing the (large) certifications data here stays on
 // the server and is never shipped to the browser — the numbers below auto-update.
-const sectionLinks: Record<string, SectionLink> = {
+export const sectionLinks: Record<string, SectionLink> = {
   home: { href: "/", title: "Home", desc: "Start here" },
   music: { href: "/music", title: "The Music", desc: "8 albums, EPs & every hit" },
   certifications: {
@@ -40,12 +40,27 @@ const sectionLinks: Record<string, SectionLink> = {
     desc: "Four findings the totals hide",
   },
   api: { href: "/api", title: "Open Data API", desc: "Every figure as free JSON" },
+  "by-the-numbers": {
+    href: "/records/by-the-numbers",
+    title: "By the Numbers",
+    desc: "The whole career, quotable",
+  },
+  methodology: {
+    href: "/methodology",
+    title: "Methodology",
+    desc: "Where every figure comes from",
+  },
 };
+
+/** Where a page with no `exploreFor` list of its own is sent. Named and exported
+ *  so the link-integrity test can hold the fallback to the same rules as the
+ *  authored lists — a page falling through to it must not be one of these three. */
+export const DEFAULT_EXPLORE = ["music", "certifications", "records"];
 
 // A "what to look at next" block — shown at the bottom of each page so
 // visitors click deeper into the site instead of leaving after one page.
 export default function KeepExploring({ current }: { current: string }) {
-  const keys = exploreFor[current] || ["music", "certifications", "records"];
+  const keys = exploreFor[current] || DEFAULT_EXPLORE;
   const links = keys.map((k) => sectionLinks[k]).filter(Boolean);
 
   return (

@@ -81,8 +81,10 @@ export const footerColumns: { label: string; links: { href: string; label: strin
   },
 ];
 // Which 3 sections each page points to in its "Keep exploring" block.
+// The home page is absent on purpose: its own gateway sections do this job, and
+// it stopped rendering the block in 09e8e3e. The list it left behind sat here
+// unreachable until the orphan test found it.
 export const exploreFor: Record<string, string[]> = {
-  "/": ["certifications", "live-charts", "records"],
   "/music": ["live-charts", "certifications", "share"],
   "/certifications": ["music", "share", "records"],
   "/about": ["music", "certifications", "records"],
@@ -95,6 +97,9 @@ export const exploreFor: Record<string, string[]> = {
   // Cars is the site's #1 landing page (search traffic). Funnel that
   // wealth/lifestyle-curious audience toward the flashiest career stats.
   "/records/cars": ["records", "tours", "certifications"],
+  // The records hub had no entry at all, so it fell through to the default list
+  // — whose third card is "Career Records", pointing /records back at /records.
+  "/records": ["charts", "tours", "certifications"],
   // The other record pages were dead-ends too — point each onward to sibling
   // flagship stats (never to itself).
   "/records/awards": ["certifications", "charts", "share"],

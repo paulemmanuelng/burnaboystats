@@ -1,6 +1,6 @@
 "use client"; // the peak and country filters are live
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
@@ -115,6 +115,11 @@ export default function MobileOfficialCharts({
   const cover = (title: string) => (covers ? covers[title] : coverFor(title));
   const [peakMax, setPeakMax] = useState<number | null>(null);
   const [only, setOnly] = useState<string | null>(null);
+  // A single-release focus, deep-linked via ?song=… — the same param the Dai Dai
+  // story's "every chart position" link carries. ChartExplorer has read it since
+  // that link shipped, but this screen never did, so tapping it on a phone landed
+  // on the whole unfiltered list with nothing to say a filter was ever meant.
+  const [focus, setFocus] = useState<string | null>(null);
   // Releases whose full chart list is unfolded. Dai Dai runs to 59 entries,
   // so each row starts at PILLS_SHOWN and the "+47" opens the rest in place.
   const [unfolded, setUnfolded] = useState<Set<string>>(new Set());
@@ -125,6 +130,18 @@ export default function MobileOfficialCharts({
       else next.add(title);
       return next;
     });
+
+  // Read the ?song= deep-link once on mount — client-only, exactly as
+  // ChartExplorer does it, so the page stays statically rendered. The focused
+  // release is unfolded at the same time: the bar promises "every chart entry",
+  // and Dai Dai's 59 would otherwise still be folded away behind the "+47".
+  useEffect(() => {
+    const s = new URLSearchParams(window.location.search).get("song");
+    if (!s) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount read of a browser-only URL param
+    setFocus(s);
+    setUnfolded(new Set([s]));
+  }, []);
 
   const all = [...albums, ...singles, ...features];
 
@@ -138,8 +155,10 @@ export default function MobileOfficialCharts({
   ]
     .map((g) => {
       const rows = g.list
-        .filter((r) =>
-          r.entries.some((e) => (!peakMax || e.peak <= peakMax) && (!only || e.c === only))
+        .filter(
+          (r) =>
+            (!focus || r.title === focus) &&
+            r.entries.some((e) => (!peakMax || e.peak <= peakMax) && (!only || e.c === only))
         )
         .map((r) => {
           const best = Math.min(...r.entries.map((e) => e.peak));
@@ -214,6 +233,20 @@ export default function MobileOfficialCharts({
           </div>
         ))}
       </div>
+
+      {/* The deep-linked focus, announced the way the desktop explorer announces
+          it. Sits above the rails and above the empty state, so a ?song= that
+          matches nothing still leaves a way back to the full list. */}
+      {focus && (
+        <div className={styles.focusBar}>
+          <span>
+            Showing every chart entry for <b>{focus}</b>
+          </span>
+          <button type="button" className={styles.focusClear} onClick={() => setFocus(null)}>
+            Show all releases ✕
+          </button>
+        </div>
+      )}
 
       {/* Filters — two labelled rails */}
       <div className={styles.filters}>
