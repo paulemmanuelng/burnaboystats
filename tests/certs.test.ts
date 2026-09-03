@@ -72,19 +72,26 @@ describe("certHistory (certifications by year)", () => {
   // for its siblings, it should record one here too.
   it("keeps both rows for every Dai Dai Gold→Platinum upgrade", () => {
     const dd = certHistory.filter((e) => e.title === "Dai Dai" && e.year === 2026);
-    for (const country of ["ES", "FR", "SK", "PT", "HU"]) {
+    for (const country of ["ES", "SK", "PT", "HU"]) {
       const levels = dd.filter((e) => e.country === country).map((e) => e.level);
       expect(levels, `${country} should log Gold then Platinum`).toEqual(["Gold", "Platinum"]);
     }
+    // France went further: SNEP upgraded it again to Diamant on 31 Aug 2026 at
+    // 50 million equivalent streams. Three rows, one plaque, same append rule.
+    expect(dd.filter((e) => e.country === "FR").map((e) => e.level)).toEqual([
+      "Gold", "Platinum", "Diamond",
+    ]);
   });
 
-  it("2026 logs 53 international certifications (61 events with Nigeria)", () => {
+  it("2026 logs 55 international certifications (63 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 8 events would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(53);
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(61); // 60th: the Italy Gold
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(55);
+    // 54th and 55th: the French Diamant upgrade and Poland's Gold, both
+    // awarded 31 Aug 2026 and both missing from this log until 3 Sep.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(63);
   });
 
   it("2025 has the published count of 29 certifications", () => {
@@ -202,5 +209,42 @@ describe("certification ordering", () => {
     const before = totalAwards();
     [...allItems].sort(byMostCertified);
     expect(totalAwards()).toBe(before);
+  });
+});
+
+describe("the dated log keeps up with the releases", () => {
+  /**
+   * "Dai Dai"'s plaques have to reach certHistory as well as the release.
+   *
+   * The release list and the dated log are maintained by hand in separate
+   * places, and the published by-year figures ("2026 logs N certifications")
+   * are counted off the LOG. So a plaque added to a release and not to the log
+   * is invisible — the badge row shows it, the year count does not, and nothing
+   * disagrees loudly enough to notice. "Dai Dai" carried a French Diamond and a
+   * Polish Gold that way from 31 Aug to 3 Sep 2026, and the 2026 count ran two
+   * short the whole time.
+   *
+   * This checks "Dai Dai" only, and that is deliberate rather than lazy. The
+   * log is a DATED record that begins where the site began reading registers:
+   * Last Last's French Diamond, the pre-TCSN Nigerian plaques and several older
+   * Scandinavian ones are on their releases and legitimately absent here. A
+   * release cert carries no award year, so nothing in the data distinguishes
+   * "awarded before the log started" from "never logged" — a repo-wide version
+   * of this check reports 26 rows and every one of them is expected.
+   *
+   * "Dai Dai" is exempt from that ambiguity: it was released in 2026, so every
+   * plaque it holds falls inside the log's own window.
+   */
+  it("every Dai Dai plaque appears in the dated log at its current tier", () => {
+    const release = allItems.find((r) => r.title === "Dai Dai");
+    expect(release, "Dai Dai should be in the release list").toBeTruthy();
+    const missing: string[] = [];
+    for (const c of release!.certs) {
+      const rows = certHistory.filter((e) => e.title === "Dai Dai" && e.country === c.c);
+      if (!rows.length) missing.push(`${c.c} ${c.level} is on the release, absent from the log`);
+      else if (!rows.some((e) => e.level === c.level))
+        missing.push(`${c.c} is ${c.level} on the release, log stops at ${rows.map((e) => e.level).join("/")}`);
+    }
+    expect(missing).toEqual([]);
   });
 });
