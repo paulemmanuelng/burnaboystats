@@ -715,6 +715,18 @@ export const certHistory: CertEvent[] = [
   // charted, so neither the weekly TOP nor an annual could ever have shown it.
   // AFP prints the title "Wgft", not "WGFT".
   { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "PT", level: "Gold", year: 2026 },
+
+  // 31 Aug 2026 — both of these were on the RELEASE and missing from this log,
+  // so the by-year figures ran two short. The site's own updates feed recorded
+  // them the day they happened ("A French Diamond and a Polish Gold on the same
+  // day"): SNEP upgraded "Dai Dai" from Platinum to Diamant at 50 million
+  // equivalent streams, and ZPAV entered it on Poland's złote płyty list.
+  //
+  // France APPENDS, per the append-never-rewrite rule — the Gold and Platinum
+  // rows above stay, so this country now logs three events for one plaque.
+  // Poland had no row here at all.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "FR", level: "Diamond", year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PL", level: "Gold", year: 2026 },
 ];
 
 // Helpers
