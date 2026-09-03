@@ -75,16 +75,22 @@ export default function AwardExplorer() {
           onClick={() => setFiltersOpen((o) => !o)}
         >
           <span>Filters{active ? ` · ${totalShown} shown` : ""}</span>
-          {/* Filtering is a mouse-and-eyes affordance without this: the list
-              changes and nothing announces it. The count beside "Filters" is
-              the same fact, but it is inside a collapsed control and only
-              appears once a filter is active. Polite, so it waits for a pause
-              rather than interrupting. */}
-          <span aria-live="polite" className="visuallyHidden">
-            {totalShown} {totalShown === 1 ? "nomination" : "nominations"} shown
-          </span>
           <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
         </button>
+
+        {/* Filtering is a mouse-and-eyes affordance without this: the list
+            changes and nothing announces it. The count beside "Filters" is the
+            same fact, but it only appears once a filter is active.
+
+            A sibling of the toggle, not a child of it: `.filterToggle` only
+            leaves `display: none` under 640px, and this whole explorer sits
+            inside the page's `.desktopOnly` wrapper, which is itself hidden
+            under 900px — so the button is never displayed anywhere, and a live
+            region inside a `display: none` element is never announced. Polite,
+            so it waits for a pause rather than interrupting. */}
+        <span aria-live="polite" className="visuallyHidden">
+          {totalShown} {totalShown === 1 ? "nomination" : "nominations"} shown
+        </span>
         <div id="award-filters" className={`${styles.filterBody} ${filtersOpen ? styles.filterOpen : ""}`}>
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Result</span>

@@ -18,13 +18,21 @@
   line-height: 1;
   cursor: pointer;
   opacity: 0;
+  /* `opacity: 0` alone leaves the button focusable: tabbing through a long
+     page from the top stopped on a control nobody could see, and Enter then
+     jumped the reader to the top for no visible reason. `visibility: hidden`
+     takes it out of the tab order and the accessibility tree, and unlike
+     `display: none` it still transitions — visibility holds `visible` for the
+     whole fade-out and flips only at the end, so the fade is unchanged. */
+  visibility: hidden;
   transform: translateY(10px);
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease,
-    border-color 0.2s ease, color 0.2s ease;
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease,
+    background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .show {
   opacity: 1;
+  visibility: visible;
   transform: none;
   pointer-events: auto;
 }
@@ -36,7 +44,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .btn {
-    transition: opacity 0.2s ease;
+    /* visibility stays in the transition, or the button vanishes before the
+       fade-out finishes. */
+    transition: opacity 0.2s ease, visibility 0.2s ease;
     transform: none;
   }
 }

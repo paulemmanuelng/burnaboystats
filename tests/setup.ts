@@ -1,8 +1,9 @@
 import "@testing-library/jest-dom/vitest";
 import { vi } from "vitest";
 
-// jsdom doesn't implement these browser APIs — stub them for components
-// that rely on IntersectionObserver / matchMedia (Reveal, CountUp).
+// jsdom doesn't implement these browser APIs — stub them for components that
+// rely on IntersectionObserver / matchMedia (Reveal, CountUp) or on
+// ResizeObserver (ScrollRail, which measures its rail to place the edge fades).
 if (typeof window !== "undefined") {
   if (!window.matchMedia) {
     window.matchMedia = vi.fn().mockImplementation((query: string) => ({
@@ -28,4 +29,13 @@ if (typeof window !== "undefined") {
   window.IntersectionObserver = IO;
   // @ts-expect-error minimal test stub
   globalThis.IntersectionObserver = IO;
+  class RO {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  }
+  // @ts-expect-error minimal test stub
+  window.ResizeObserver ??= RO;
+  // @ts-expect-error minimal test stub
+  globalThis.ResizeObserver ??= RO;
 }

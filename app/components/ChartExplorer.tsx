@@ -324,6 +324,22 @@ export default function ChartExplorer({
           <span>Filters{active ? ` · ${view === "table" ? flatRows.length : totalShown} shown` : ""}</span>
           <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
         </button>
+
+        {/* Filtering is a mouse-and-eyes affordance without this: the list
+            changes and nothing announces it. The count beside "Filters" is the
+            same fact, but it only appears once a filter is active.
+
+            A sibling of the toggle, not a child of it: `.filterToggle` only
+            leaves `display: none` under 640px, and this explorer sits inside
+            the page's `.desktopOnly` wrapper, which is itself hidden under
+            900px — so the button is never displayed anywhere, and a live region
+            inside a `display: none` element is never announced. Polite, so it
+            waits for a pause rather than interrupting. */}
+        <span aria-live="polite" className="visuallyHidden">
+          {view === "table"
+            ? `${flatRows.length} ${flatRows.length === 1 ? "chart entry" : "chart entries"} shown`
+            : `${totalShown} ${totalShown === 1 ? "release" : "releases"} shown`}
+        </span>
         <div id="chart-filters" className={`${styles.filterBody} ${filtersOpen ? styles.filterOpen : ""}`}>
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Peak</span>
