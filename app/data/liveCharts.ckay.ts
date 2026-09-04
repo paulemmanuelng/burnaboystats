@@ -42,68 +42,6 @@
   
   export const liveCharts: LiveRelease[] = [
   {
-    "title": "Love Nwantiti",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RU",
-            "name": "Russia",
-            "position": 6,
-            "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 86,
-            "movement": 0
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 167,
-            "movement": -25
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TM",
-            "name": "Turkmenistan",
-            "position": 140,
-            "movement": 38
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 167,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 136,
-            "movement": -7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BODY",
     "platforms": [
       {
@@ -111,23 +49,23 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 67,
-            "movement": 72
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 90,
+            "movement": 75
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 110,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 119,
-            "movement": 22
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 165,
-            "movement": null,
-            "status": "new"
+            "position": 199,
+            "movement": -80
           }
         ]
       },
@@ -148,6 +86,49 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Love Nwantiti",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RU",
+            "name": "Russia",
+            "position": 8,
+            "movement": -1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 86,
+            "movement": 0
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 170,
+            "movement": -24
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MA",
+            "name": "Morocco",
+            "position": 136,
+            "movement": -7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "BANGER BOY",
     "platforms": [
       {
@@ -163,28 +144,46 @@
           {
             "country": "TD",
             "name": "Chad",
-            "position": 29,
-            "movement": null,
-            "status": "new"
+            "position": 61,
+            "movement": -32
           },
           {
             "country": "ML",
             "name": "Mali",
-            "position": 34,
-            "movement": 114
+            "position": 99,
+            "movement": -65
           },
           {
             "country": "NE",
             "name": "Niger",
-            "position": 108,
-            "movement": null,
-            "status": "new"
+            "position": 160,
+            "movement": -52
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Emiliana",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "E CLEAR",
@@ -205,6 +204,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Show My Side",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 127,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "La La",

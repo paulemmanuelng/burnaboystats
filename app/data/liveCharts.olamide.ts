@@ -51,8 +51,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 22,
-            "movement": 0
+            "position": 24,
+            "movement": -2
           },
           {
             "country": "NG",
@@ -79,22 +79,16 @@
             "movement": -3
           },
           {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 45,
+            "movement": 7
+          },
+          {
             "country": "CM",
             "name": "Cameroon",
             "position": 52,
             "movement": 0
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 52,
-            "movement": -19
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 55,
-            "movement": 57
           },
           {
             "country": "GH",
@@ -105,14 +99,8 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 76,
-            "movement": -39
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 87,
-            "movement": -27
+            "position": 78,
+            "movement": -2
           },
           {
             "country": "MW",
@@ -121,16 +109,22 @@
             "movement": 39
           },
           {
+            "country": "ML",
+            "name": "Mali",
+            "position": 139,
+            "movement": -84
+          },
+          {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 148,
-            "movement": -14
+            "position": 152,
+            "movement": -4
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 156,
-            "movement": 17
+            "position": 172,
+            "movement": -16
           }
         ]
       },
@@ -161,14 +155,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 68,
-            "movement": 100
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 77,
-            "movement": 71
+            "position": 78,
+            "movement": -10
           },
           {
             "country": "NG",
@@ -177,22 +165,22 @@
             "movement": -2
           },
           {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 105,
+            "movement": 15
+          },
+          {
             "country": "KE",
             "name": "Kenya",
-            "position": 112,
-            "movement": 1
+            "position": 107,
+            "movement": 5
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 114,
             "movement": -4
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 120,
-            "movement": 30
           },
           {
             "country": "BJ",
@@ -223,8 +211,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 77,
-            "movement": 30
+            "position": 105,
+            "movement": -28
           },
           {
             "country": "NG",
@@ -254,7 +242,8 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 43,
-            "movement": 42
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -272,14 +261,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
-            "movement": -3
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 54,
-            "movement": 97
+            "position": 52,
+            "movement": -1
           },
           {
             "country": "GM",
@@ -289,11 +272,10 @@
             "status": "new"
           },
           {
-            "country": "LC",
-            "name": "St. Lucia",
-            "position": 70,
-            "movement": null,
-            "status": "new"
+            "country": "BJ",
+            "name": "Benin",
+            "position": 96,
+            "movement": -42
           }
         ]
       }
@@ -302,146 +284,19 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Unruly",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 80,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 119,
-            "movement": 2
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Eyan Mayweather",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 170,
-            "movement": -14
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 113,
-            "movement": 3
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ikigai / 生き甲斐, Vol. 1",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 125,
-            "movement": -3
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 177,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Baddest Guy Ever Liveth",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 198,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 149,
-            "movement": 4
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Kana",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 25,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Triumphant",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 86,
+            "movement": null,
+            "status": "new"
+          },
           {
             "country": "NG",
             "name": "Nigeria",
@@ -462,6 +317,13 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 79,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
             "position": 164,
@@ -472,6 +334,56 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Eyan Mayweather",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 176,
+            "movement": -6
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 120,
+            "movement": -4
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Kana",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 31,
+            "movement": -8
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Luvaluvah",
@@ -502,9 +414,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 119,
-            "movement": null,
-            "status": "new"
+            "position": 152,
+            "movement": -112
           }
         ]
       }
@@ -522,7 +433,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 139,
+            "position": 173,
             "movement": null,
             "status": "new"
           }
@@ -542,14 +453,52 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 73,
-            "movement": 2
+            "position": 74,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Unruly",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 119,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ikigai / 生き甲斐, Vol. 1",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 130,
+            "movement": -5
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Street OT",
@@ -561,14 +510,33 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 107,
-            "movement": 3
+            "position": 114,
+            "movement": -4
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/dc21daa177258ea29c084c4415c4db03/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Baddest Guy Ever Liveth",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 156,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
   }
 ];
   

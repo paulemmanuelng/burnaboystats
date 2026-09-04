@@ -61,22 +61,22 @@
             "movement": -1
           },
           {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 21,
-            "movement": -5
-          },
-          {
             "country": "LR",
             "name": "Liberia",
-            "position": 25,
-            "movement": 13
+            "position": 34,
+            "movement": -9
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 36,
+            "movement": -15
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 38,
-            "movement": -15
+            "position": 37,
+            "movement": 1
           },
           {
             "country": "CM",
@@ -130,8 +130,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 79,
-            "movement": null,
-            "status": "new"
+            "movement": 15
           }
         ]
       },
@@ -173,20 +172,14 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 44,
-            "movement": 66
+            "position": 60,
+            "movement": -16
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 50,
-            "movement": -9
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 82,
-            "movement": 25
+            "position": 74,
+            "movement": -24
           },
           {
             "country": "CM",
@@ -252,13 +245,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 60,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
             "position": 62,
@@ -271,6 +257,12 @@
             "movement": 6
           },
           {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 127,
+            "movement": -67
+          },
+          {
             "country": "NE",
             "name": "Niger",
             "position": 137,
@@ -279,8 +271,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 169,
-            "movement": -67
+            "position": 192,
+            "movement": -23
           }
         ]
       },
@@ -310,37 +302,76 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": 0
+            "position": 22,
+            "movement": -1
           },
           {
             "country": "BJ",
             "name": "Benin",
             "position": 34,
-            "movement": -11
+            "movement": 0
           },
           {
             "country": "NE",
             "name": "Niger",
-            "position": 36,
-            "movement": 27
+            "position": 39,
+            "movement": -3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 99,
-            "movement": 23
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 188,
-            "movement": -56
+            "position": 133,
+            "movement": -34
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 199,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "SWAGUU",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 21,
+            "movement": -2
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 43,
+            "movement": 3
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 184,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 185,
+            "movement": 9
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 187,
             "movement": null,
             "status": "new"
           }
@@ -358,29 +389,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 74,
-            "movement": 15
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 99,
-            "movement": null,
-            "status": "new"
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 110,
+            "movement": 41
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 115,
             "movement": -1
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 151,
-            "movement": -13
           },
           {
             "country": "BJ",
@@ -405,82 +423,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Billion Dollar Baby 2.0",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 47,
-            "movement": 3
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 50,
-            "movement": -4
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 162,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 175,
-            "movement": -120
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "SWAGUU",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 19,
-            "movement": -3
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 46,
-            "movement": -3
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 187,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 194,
-            "movement": 6
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Karma",
@@ -560,8 +502,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 77,
-            "movement": 30
+            "position": 105,
+            "movement": -28
           },
           {
             "country": "NG",
@@ -597,8 +539,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 23,
-            "movement": 0
+            "position": 26,
+            "movement": -3
           },
           {
             "country": "BN",
@@ -609,14 +551,45 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 55,
-            "movement": -16
+            "position": 60,
+            "movement": -5
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Billion Dollar Baby 2.0",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 46,
+            "movement": 1
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 104,
+            "movement": -54
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 175,
+            "movement": -120
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Doha",
@@ -640,7 +613,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
+            "position": 41,
             "movement": null,
             "status": "new"
           }
@@ -779,7 +752,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 120,
+            "position": 121,
             "movement": -27
           }
         ]
@@ -845,31 +818,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Loseyi Professor",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 52,
-            "movement": 0
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 112,
-            "movement": -34
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Vibe Till Thy Kingdom Come",
     "platforms": [
       {
@@ -879,20 +827,70 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
-            "movement": 4
+            "position": 65,
+            "movement": -4
           },
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 111,
-            "movement": -43
+            "position": 107,
+            "movement": 4
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Loseyi Professor",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 57,
+            "movement": -5
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 130,
+            "movement": -18
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Nahamciaga - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 122,
+            "movement": -11
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album"
   },
   {
     "title": "Today",
@@ -1155,32 +1153,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 81,
-            "movement": -9
+            "position": 94,
+            "movement": -13
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Nahamciaga - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 111,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "album"
   },
   {
     "title": "Vibez Incorporation Mixtape, Vol. 1",
@@ -1192,8 +1172,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
-            "movement": 11
+            "position": 131,
+            "movement": -2
           }
         ]
       }
@@ -1210,8 +1190,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 185,
-            "movement": -3
+            "position": 194,
+            "movement": -9
           }
         ]
       }
