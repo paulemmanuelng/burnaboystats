@@ -14,16 +14,30 @@ export const navItems = [
   { href: "/contact", label: "Contact" },
 ];
 
-// Footer sitemap. Carries only the DEEP pages — the ones with no route through
-// the top nav. Certifications, Discography, Stat Cards, FAQ and About all live
-// in navItems above, so repeating them here made the list twice as long while
-// adding no new path into the site.
+// This block used to open "Carries only the DEEP pages — the ones with no route
+// through the top nav. Certifications, Discography, Stat Cards, FAQ and About
+// all live in navItems above, so repeating them here made the list twice as
+// long while adding no new path into the site." Read the columns below: every
+// one of those names is back. The rule was reversed when the footer became the
+// home page's full sitemap and stopped being every page's, and the comment was
+// left standing over a list that disproves it line by line.
 /**
- * The footer sitemap, as four titled columns.
+ * The footer sitemap, as four titled columns — rendered on the HOME PAGE ONLY.
  *
- * This is the site's main internal-linking surface: every page links straight
- * to the deep stat pages from here, so link equity reaches the routes that earn
- * search traffic.
+ * This used to claim it was "the site's main internal-linking surface: every
+ * page links straight to the deep stat pages from here". It is not, and has not
+ * been since FooterNav split the footer in two: `pathname !== "/"` takes the
+ * compact bar, which is four or five links from `footerFor` / DEFAULT_FOOTER
+ * below. So the columns here are the home page's outbound links and nothing
+ * else, and this list is not where a deep page's inbound links come from.
+ *
+ * That matters when reading the list, because the wrong description invites the
+ * wrong edit: adding a route here to "give it inbound links" buys it exactly one
+ * link, from /, and none from the pages it actually sits beside. The compact
+ * footers, `exploreFor`, and each page's own body links are what carry the rest.
+ *
+ * The split is the design's, not an accident — see FooterNav — so this comment
+ * is the fix, not the layout.
  */
 export const footerColumns: { label: string; links: { href: string; label: string }[] }[] = [
   {
