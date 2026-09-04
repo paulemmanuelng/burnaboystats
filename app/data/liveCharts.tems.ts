@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-03";
+  export const liveChartsUpdated = "2026-09-04";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -231,8 +231,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 36,
-            "movement": 3
+            "position": 35,
+            "movement": 4
           },
           {
             "country": "NA",
@@ -417,8 +417,8 @@
           {
             "country": "AU",
             "name": "Australia",
-            "position": 79,
-            "movement": 5
+            "position": 80,
+            "movement": 4
           },
           {
             "country": "TC",
@@ -588,26 +588,26 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 164,
-            "movement": 9
+            "position": 165,
+            "movement": 8
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 169,
+            "movement": 8
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 169,
+            "movement": 5
           },
           {
             "country": "MT",
             "name": "Malta",
             "position": 169,
             "movement": 4
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 170,
-            "movement": 7
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 171,
-            "movement": 3
           },
           {
             "country": "CZ",
@@ -627,6 +627,12 @@
             "position": 188,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 194,
+            "movement": -21
           }
         ]
       },
@@ -1247,13 +1253,13 @@
           {
             "country": "AM",
             "name": "Armenia",
-            "position": 32,
-            "movement": -24
+            "position": 38,
+            "movement": -26
           },
           {
             "country": "PL",
             "name": "Poland",
-            "position": 33,
+            "position": 44,
             "movement": null,
             "status": "new"
           },
@@ -1261,7 +1267,7 @@
             "country": "TJ",
             "name": "Tajikistan",
             "position": 58,
-            "movement": -6
+            "movement": -5
           },
           {
             "country": "BG",
@@ -1273,14 +1279,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 92,
-            "movement": -11
+            "position": 94,
+            "movement": -13
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 118,
-            "movement": -108
+            "position": 137,
+            "movement": -125
           }
         ]
       },
@@ -1574,6 +1580,150 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Me & U",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 45,
+            "movement": 34
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 86,
+            "movement": 37
+          },
+          {
+            "country": "LY",
+            "name": "Libya",
+            "position": 101,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "VC",
+            "name": "St. Vincent and The Grenadines",
+            "position": 137,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 143,
+            "movement": -59
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 154,
+            "movement": 33
+          },
+          {
+            "country": "AO",
+            "name": "Angola",
+            "position": 158,
+            "movement": -26
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 160,
+            "movement": 22
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 167,
+            "movement": 3
+          },
+          {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 183,
+            "movement": -20
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 17,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 39,
+            "movement": -5
+          },
+          {
+            "country": "MD",
+            "name": "Moldova",
+            "position": 51,
+            "movement": -9
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 75,
+            "movement": -13
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 127,
+            "movement": -124
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DZ",
+            "name": "Algeria",
+            "position": 11,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 87,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 121,
+            "movement": 35
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/21ffdcad2bde4b25ba9a5a3a53193b05/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "For Broken Ears",
     "platforms": [
       {
@@ -1693,143 +1843,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Me & U",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 45,
-            "movement": 34
-          },
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 86,
-            "movement": 37
-          },
-          {
-            "country": "LY",
-            "name": "Libya",
-            "position": 101,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "VC",
-            "name": "St. Vincent and The Grenadines",
-            "position": 137,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 143,
-            "movement": -59
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 154,
-            "movement": 33
-          },
-          {
-            "country": "AO",
-            "name": "Angola",
-            "position": 158,
-            "movement": -26
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 160,
-            "movement": 22
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 167,
-            "movement": 3
-          },
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 183,
-            "movement": -20
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 39,
-            "movement": -5
-          },
-          {
-            "country": "MD",
-            "name": "Moldova",
-            "position": 51,
-            "movement": -9
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 73,
-            "movement": -11
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 107,
-            "movement": -104
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "DZ",
-            "name": "Algeria",
-            "position": 11,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 87,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 121,
-            "movement": 35
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/21ffdcad2bde4b25ba9a5a3a53193b05/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "What You Need",
     "platforms": [
       {
@@ -1858,8 +1871,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 128,
-            "movement": 2
+            "position": 129,
+            "movement": 1
           },
           {
             "country": "VG",
@@ -1877,7 +1890,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 196,
+            "position": 200,
             "movement": null,
             "status": "new"
           }

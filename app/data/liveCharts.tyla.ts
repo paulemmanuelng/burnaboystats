@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-03";
+  export const liveChartsUpdated = "2026-09-04";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -207,8 +207,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 126,
-            "movement": -10
+            "position": 128,
+            "movement": -8
           },
           {
             "country": "LR",
@@ -219,8 +219,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 136,
-            "movement": 15
+            "position": 134,
+            "movement": 21
           },
           {
             "country": "MM",
@@ -236,16 +236,16 @@
             "movement": -8
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 150,
+            "movement": -6
+          },
+          {
             "country": "SG",
             "name": "Singapore",
             "position": 150,
             "movement": -21
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 157,
-            "movement": -11
           },
           {
             "country": "MU",
@@ -362,7 +362,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 3,
+            "position": 4,
             "movement": null,
             "status": "new"
           }
@@ -406,13 +406,13 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 12,
-            "movement": -11
+            "position": 13,
+            "movement": -12
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 48,
+            "position": 66,
             "movement": null,
             "status": "new"
           },
@@ -658,7 +658,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 140,
+            "position": 143,
             "movement": null,
             "status": "new"
           }
@@ -786,43 +786,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Show Me Love",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 190,
-            "movement": -145
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "WWP - Single",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 162,
-            "movement": -86
-          }
-        ]
-      }
-    ],
-    "kind": "album"
   }
 ];
   

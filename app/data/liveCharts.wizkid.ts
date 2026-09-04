@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-03";
+  export const liveChartsUpdated = "2026-09-04";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -915,14 +915,14 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 16,
-            "movement": -9
+            "position": 18,
+            "movement": -11
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 62,
-            "movement": -17
+            "position": 63,
+            "movement": -18
           }
         ]
       }
@@ -1125,20 +1125,20 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 65,
-            "movement": 0
+            "position": 63,
+            "movement": 2
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 74,
+            "movement": -6
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 82,
             "movement": -3
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 85,
-            "movement": -17
           }
         ]
       }
@@ -1235,13 +1235,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 1,
-            "movement": 0
+            "position": 2,
+            "movement": -1
           }
         ]
       }
@@ -1333,13 +1333,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
-            "movement": -17
+            "position": 1,
+            "movement": 10
           }
         ]
       }
@@ -1483,16 +1483,16 @@
             "status": "new"
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 118,
-            "movement": -73
-          },
-          {
             "country": "GH",
             "name": "Ghana",
             "position": 133,
             "movement": -17
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 139,
+            "movement": -81
           },
           {
             "country": "MT",
@@ -1581,8 +1581,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 8,
-            "movement": 1
+            "position": 2,
+            "movement": 3
           },
           {
             "country": "NG",
@@ -1698,8 +1698,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 12,
-            "movement": -6
+            "position": 13,
+            "movement": -2
           },
           {
             "country": "KE",
@@ -1959,38 +1959,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/332d8393d5c9e2d7c5345b8e5fd2a049/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Made In Lagos",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 48,
-            "movement": 0
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 89,
-            "movement": -3
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 100,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Superstar",
     "platforms": [
       {
@@ -2018,8 +1986,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": -17
+            "position": 131,
+            "movement": -10
           }
         ]
       }
@@ -2117,6 +2085,31 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Made In Lagos",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 46,
+            "movement": 2
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 89,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "S2 - EP",
     "platforms": [
       {
@@ -2139,8 +2132,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 54,
-            "movement": -17
+            "position": 55,
+            "movement": -18
           }
         ]
       }
@@ -2196,7 +2189,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
+            "position": 6,
             "movement": null,
             "status": "new"
           }
@@ -2216,7 +2209,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 28,
+            "position": 30,
             "movement": null,
             "status": "new"
           }
@@ -2236,7 +2229,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
+            "position": 30,
             "movement": null,
             "status": "new"
           }
@@ -2391,7 +2384,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
+            "position": 54,
             "movement": null,
             "status": "new"
           }
@@ -2469,7 +2462,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
+            "position": 161,
             "movement": null,
             "status": "new"
           }
