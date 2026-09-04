@@ -20,6 +20,8 @@ vi.mock("next/link", () => ({
 import SongPage from "../app/music/[song]/page";
 import FaqPage from "../app/faq/page";
 import UnmergePage from "../app/analysis/spotify-unmerge/page";
+import DaiDaiPage from "../app/dai-dai/page";
+import DaiDaiPageES from "../app/dai-dai/es/page";
 import { songSlugs } from "../app/data/songs";
 import songStyles from "../app/music/[song]/song.module.css";
 import mobileFaqStyles from "../app/components/mobileFaq.module.css";
@@ -71,23 +73,30 @@ const emitters = ALL.filter((f) => f.endsWith("page.tsx"))
   .sort();
 
 /** Renders its answers at phone width. Asserted below, one route at a time. */
-const CHECKED = ["analysis/spotify-unmerge/page.tsx", "faq/page.tsx", "music/[song]/page.tsx"];
+const CHECKED = [
+  "analysis/spotify-unmerge/page.tsx",
+  "dai-dai/es/page.tsx",
+  "dai-dai/page.tsx",
+  "faq/page.tsx",
+  "music/[song]/page.tsx",
+];
 
 /**
  * Still desktop-only. QUEUED, not accepted: each of these has the same bug the
  * song pages had, and each needs its own pass because each has a different
- * mobile screen to fit the questions into — /dai-dai and its Spanish twin share
- * one and must move together, /records/awards and /records/africas-biggest hand
- * their content to a bespoke mobile component, and the album and board artist
- * pages are CSS-driven single DOMs like the song page was.
+ * mobile screen to fit the questions into — /records/awards and
+ * /records/africas-biggest hand their content to a bespoke mobile component,
+ * and the album and board artist pages are CSS-driven single DOMs like the song
+ * page was.
+ *
+ * /dai-dai and its Spanish twin have moved to CHECKED. They shared one
+ * stylesheet and one .desktopOnly wrapper, so they moved together.
  *
  * Listing them here rather than deleting the check keeps the remaining work
  * visible and stops a tenth route joining them unnoticed.
  */
 const QUEUED = [
   "afrobeats/[artist]/page.tsx",
-  "dai-dai/es/page.tsx",
-  "dai-dai/page.tsx",
   "music/albums/[album]/page.tsx",
   "records/africas-biggest/page.tsx",
   "records/awards/page.tsx",
@@ -200,6 +209,23 @@ const hiddenAncestor = (el: Element): string | null => {
 
 /* ── The check ──────────────────────────────────────────────────────────── */
 
+/**
+ * Straightens the quotes a page may normalise on its way into the JSON-LD.
+ *
+ * The comparison below is full-string equality, and it has to stay that way — a
+ * substring match would pass on a page that rendered the first clause of an
+ * answer and dropped the rest. But /dai-dai and /dai-dai/es run their questions
+ * through a local `straight()` before serialising, so the schema says
+ * `"Dai Dai"` where the DOM says `“Dai Dai”`. Comparing raw, both editions fail
+ * with "the answer is in the schema but nowhere in the DOM" — a true statement
+ * about the bytes and a false one about the reader.
+ *
+ * So normalise BOTH sides identically and keep the equality. This forgives the
+ * quote style and nothing else: a missing sentence, a truncated answer or a
+ * different figure all still fail.
+ */
+const normalise = (s: string) => s.replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
+
 /** Every answer the page's own FAQPage node promises. */
 function promisedAnswers(container: HTMLElement): string[] {
   const scripts = [...container.querySelectorAll('script[type="application/ld+json"]')];
@@ -217,7 +243,8 @@ function expectAnswersVisibleOnAPhone(container: HTMLElement, route: string) {
 
   const els = [...container.querySelectorAll("*")];
   for (const answer of answers) {
-    const painted = els.filter((e) => e.textContent === answer);
+    const want = normalise(answer);
+    const painted = els.filter((e) => normalise(e.textContent ?? "") === want);
     expect(painted.length, `${route}: answer is in the schema but nowhere in the DOM — "${answer}"`)
       .toBeGreaterThan(0);
     const visible = painted.filter((e) => hiddenAncestor(e) === null);
@@ -274,5 +301,25 @@ describe("every route emitting FAQPage answers a phone reader", () => {
     // Already correct: one CSS-driven layout, no .desktopOnly around the FAQ.
     const { container } = render(await UnmergePage());
     expectAnswersVisibleOnAPhone(container, "/analysis/spotify-unmerge");
+  });
+
+  // The site's most-trafficked page, and the one where the withheld answers
+  // were live searches: "When was the 2026 World Cup Final halftime show?" and
+  // "Who are the Ghetto Kids who performed with Shakira and Burna Boy?". Its
+  // mobile-visible lineup note NAMES the Ghetto Kids without answering who they
+  // are, so the phone reader who searched that question got the page and not
+  // the answer.
+  it("/dai-dai shows its answers at 390px", () => {
+    const { container } = render(<DaiDaiPage />);
+    expectAnswersVisibleOnAPhone(container, "/dai-dai");
+  });
+
+  // Asserted separately rather than folded into the English case. These two
+  // editions are hand-written translations that have drifted before — the
+  // Spanish page once shipped with three of the six halftime acts missing while
+  // its markup matched — so "the English one renders" proves nothing about it.
+  it("/dai-dai/es shows its answers at 390px", () => {
+    const { container } = render(<DaiDaiPageES />);
+    expectAnswersVisibleOnAPhone(container, "/dai-dai/es");
   });
 });
