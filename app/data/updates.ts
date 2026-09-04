@@ -40,6 +40,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-03",
+    category: "Certifications",
+    text: "Austria certifies “Dai Dai” Platinum. IFPI Austria's own Gold & Platin database returns a single row — “Shakira & Burna Boy · Dai Dai · Single · PLATIN · Sony · 03.09.2026” — for 30,000 units, the Austrian Platinum threshold for a single. It is the song's 13th plaque and Burna Boy's 234th certification overall, in a market where the record has already spent nine weeks at No. 1.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-03",
     category: "Awards",
     text: "“Dai Dai” wins OMG Collaboration at Premios Juventud 2026 — Burna Boy's first win at the ceremony, shared with Shakira. Announced by Premios Juventud itself; the nomination had been carried as pending until the body named the winner.",
     href: "/records/awards",

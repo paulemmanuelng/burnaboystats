@@ -33,18 +33,18 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 233 certifications across 26 countries", () => {
+  it("counts 234 certifications across 26 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
-    expect(certs).toBe(233); // + "Dai Dai" Gold in Poland (ZPAV zlote plyty register, 31 Aug 2026)
+    expect(certs).toBe(234); // + "Dai Dai" Platinum in Austria (IFPI Austria register, 3 Sep 2026)
     expect(countries).toBe(26); // Czechia joins
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 7 Diamond / 100 Platinum / 96 Gold / 30 Silver", () => {
+  it("splits into 7 Diamond / 101 Platinum / 96 Gold / 30 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -56,12 +56,12 @@ describe("handoff checklist — data integrity", () => {
     // anything BEYOND 7 — the design file that once showed 7 carried a typo,
     // and this is a different route to the same number.
     expect(byLevel("Diamond")).toBe(7);
-    expect(byLevel("Platinum")).toBe(100); // Dai Dai FR left this tier for Diamond
+    expect(byLevel("Platinum")).toBe(101); // + Dai Dai AT
     expect(byLevel("Gold")).toBe(96); // + "Dai Dai" in Poland (ZPAV)
     expect(byLevel("Silver")).toBe(30); // On the Low NG left this tier for Gold
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(233);
+    expect(sum).toBe(234);
   });
 
   it("counts 280 chart entries across 71 territories, 48 of them at No. 1", () => {

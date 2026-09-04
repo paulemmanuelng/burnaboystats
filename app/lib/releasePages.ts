@@ -1,7 +1,7 @@
 // Which releases have a page of their own, as a title → path map.
 //
 // The ledger and the chart tables are terminal: a reader looking at "Last Last"
-// with its twelve plaques has no way from that row to the page about it, even
+// with its thirteen plaques has no way from that row to the page about it, even
 // though 15 song pages and 11 album pages exist and are the best writing on the
 // site. The rows knew nothing about them.
 //
