@@ -285,7 +285,14 @@ export const festivals: Festival[] = [
   { year: "2023", name: "Afro Nation", location: "Detroit, US", note: "Closed day one with an hour-long set, alongside fellow headliner Davido, who closed day two." },
   { year: "2025", name: "Afro Nation", location: "Portimão, Portugal", note: "A main-stage headliner of the world's biggest Afrobeats festival (5th edition, July 2025), topping the bill alongside Davido and Mary J. Blige." },
   { year: "2026", name: "Afro Nation", location: "Portimão, Portugal", note: "Headliner of the main “Lit Stage,” topping the opening night (3 July) alongside Tyla — with Asake and Wizkid headlining the nights after." },
-  { year: "2026", name: "Reggae Land", location: "Milton Keynes, UK", note: "Headlining the festival's first-ever Friday at the 65,000-capacity National Bowl, topping a bill with Masicka, Christopher Martin and Julian Marley." },
+  // Written as a future commitment ("Headlining…", no date) and left that way
+  // for five weeks after the set happened — the only entry on this list a
+  // reader could not place in time, because every other 2026 festival names its
+  // day. It played on Friday 31 July 2026: a date the festival ADDED after the
+  // original Saturday–Sunday weekend sold out, which is what "first-ever
+  // Friday" means, and which is also why it needs saying — an unheld
+  // headline slot and a played one read identically without the date.
+  { year: "2026", name: "Reggae Land", location: "Milton Keynes, UK", note: "Headlined the festival's first-ever Friday (31 July 2026) — a date added after the original Saturday–Sunday weekend sold out — before 35,000 at the 65,000-capacity National Bowl, topping a bill with Masicka, Christopher Martin and Julian Marley. The three days drew more than 135,000." },
   { year: "2025", name: "GTCO Music Concert", location: "Accra, Ghana", note: "A headline act at the free second edition (19 Dec 2025) before 30,000+ at the Accra Sports Stadium — on a stacked pan-African bill with Shatta Wale, Sarkodie, Ayra Starr, Patoranking, Fireboy DML, Joeboy, King Promise and R2Bees." },
   { year: "2025", name: "MadfunXperience", location: "Nairobi, Kenya", note: "Headlined the Uhuru Gardens show (1 Mar 2025) with his full band, The Outsiders — joined on stage by Sauti Sol, with Bensoul, Charisma and Vigro Deep supporting." },
   { year: "2022", name: "DStv Delicious Festival", location: "Johannesburg, South Africa", note: "Headlined the main stage at the food-and-music festival (Kyalami, Sept 2022), on a bill that also featured Babyface, Digable Planets and Stereo MCs." },

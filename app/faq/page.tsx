@@ -10,6 +10,7 @@ import { countryCount as performedCountryCount, regionCount } from "../data/perf
 import { festivals } from "../data/tours";
 import { carCount, totalValueFormatted } from "../data/cars";
 import { BURNA_HOT_100_ENTRIES } from "../data/africasBiggest";
+import { lastUpdated } from "../lib/api";
 
 export const metadata = pageMetadata({
   title: "Burna Boy FAQ — Grammys, Certifications, Records & Stats",
@@ -159,8 +160,19 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   },
 ];
 
-const SOURCE_NOTE =
-  "Figures stay in sync with the site's certifications, charts, awards and tours data, verified against official sources as of August 2026.";
+// This page types no figures of its own — every number above is imported from
+// certifications, awards, charts, tours and cars. So its "as of" is not a fact
+// about this page at all: it is the date of the newest verified fact in the
+// data behind it, and `lastUpdated` (the newest entry in the updates log) is
+// exactly that date, already computed. It read "August 2026" while the newest
+// facts underneath were a Premios Juventud win read at the ceremony's own
+// account and an Austrian Platinum read in IFPI Austria's Gold & Platin
+// database, both in September. Derived here so it can never fall behind the
+// figures it is stamping — and, unlike a build-clock date, it cannot run ahead
+// of them either.
+const SOURCE_NOTE = `Figures stay in sync with the site's certifications, charts, awards and tours data, verified against official sources as of ${new Date(
+  `${lastUpdated}T12:00:00Z`
+).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" })}.`;
 
 const groups = GROUPS.map((g) => ({
   ...g,

@@ -16,6 +16,7 @@ import { albums } from "../../data/albums";
 import { spotifyGlobalRank } from "../../data/spotify";
 import { spotifyTotalStreams, youtubeTotalViews } from "../../data/streamingTotals";
 import { BURNA_YT_AUDIENCE, BURNA_PEAK_LISTENERS, BURNA_HOT_100_ENTRIES } from "../../data/africasBiggest";
+import { lastUpdated } from "../../lib/api";
 
 
 // The two worldwide charts sit in the same table as the national ones, so the
@@ -27,8 +28,22 @@ const globalOnes = allChartItems.reduce(
 );
 const nationalOnes = numberOnes - globalOnes;
 
-const editionYear = new Date().getFullYear();
-const asOf = new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" });
+// This page prints "verified {asOf}" and "Last updated {asOf}" over figures it
+// imports from elsewhere. Both used to come from `new Date()`, which is the
+// build clock and knows nothing about the data: it would have gone on saying
+// "verified February 2027" over stats last touched in September. A stamp that
+// advances on its own is the one kind that can never be caught being stale, and
+// this page's was the September the audit measured every other page's August
+// against. `lastUpdated` is the newest entry in the updates log — the date of
+// the newest verified fact behind these numbers — so the stamp now moves only
+// when the data does.
+const asOfDate = new Date(`${lastUpdated}T12:00:00Z`);
+const editionYear = asOfDate.getUTCFullYear();
+const asOf = asOfDate.toLocaleDateString("en-US", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
 
 export const metadata = pageMetadata({
   title: `Burna Boy by the Numbers (${editionYear}) — Every Career Stat`,

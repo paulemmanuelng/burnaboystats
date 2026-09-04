@@ -1,4 +1,5 @@
 import { spotifyFollowersDisplay } from "./spotify";
+import { monthlyListenersSeries } from "./trends";
 
 // His peak Spotify monthly listeners, in one place. The note under the
 // leaderboard used to spell the milestone out ("past 56 million") while the
@@ -11,6 +12,36 @@ import { spotifyFollowersDisplay } from "./spotify";
 // literal after the board's id, and because this cell holds a constant rather
 // than a literal, that was the next artist's value instead of his.
 export const BURNA_PEAK_LISTENERS = "60.13M";
+
+/**
+ * The day that peak was set — DERIVED, never typed.
+ *
+ * The board used to call the figure "still climbing" and its source line said
+ * it was "his current peak and still rising". Neither was true: the peak is
+ * monotonic by construction (`kind: "peak"` in watched-metrics.json, so it can
+ * only ever move up), it had not moved for 25 days when this was found, and
+ * Spotify's own artist page read 52,813,789 on 4 Sep 2026 — 7.3 million BELOW
+ * the published peak. A peak that has stopped moving is still a peak; calling
+ * it a climb turns an all-time high into a claim about right now.
+ *
+ * The bot appends a dated point to `monthlyListenersSeries` on every new high
+ * (the `trendSeries` block of the same metric), so the newest point in that
+ * series IS the day the peak was set. Reading it from there means the date
+ * moves itself the next time the peak does, and cannot drift from the figure
+ * beside it the way a hand-typed date would.
+ */
+const peakPoint = monthlyListenersSeries.reduce((best, p) =>
+  p.value > best.value || (p.value === best.value && p.date > best.date) ? p : best
+);
+export const BURNA_PEAK_LISTENERS_SET_ON = peakPoint.date;
+
+const monthYear = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 
 /** His YouTube Music monthly audience, at its peak. Exported because four
  *  files quoted this figure by hand — it sat at 840M in eight places while
@@ -195,9 +226,8 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "40.01M" },
       { name: "CKay", sub: "🇳🇬 Nigeria", value: "34.78M" },
     ],
-    note: `Burna Boy is the first African artist ever to reach 50 million Spotify monthly listeners — and now the first past ${Math.floor(parseFloat(BURNA_PEAK_LISTENERS))} million, a milestone no African act had crossed before, with his peak still climbing.`,
-    source:
-      "Peak Spotify monthly listeners, as of August 2026. Burna Boy, Tyla, Tems and Rema are kworb's recorded peaks; CKay's is his Spotify peak from the “Love Nwantiti” run, which predates kworb's coverage of him. Burna Boy's figure is his current peak and still rising, so it updates as Spotify's numbers change.",
+    note: `Burna Boy is the first African artist ever to reach 50 million Spotify monthly listeners — and the first past ${Math.floor(parseFloat(BURNA_PEAK_LISTENERS))} million, a milestone no African act had crossed before. That ${BURNA_PEAK_LISTENERS} is an all-time high set on ${monthYear(BURNA_PEAK_LISTENERS_SET_ON)}, not a reading of today: monthly listeners rise and fall with a release cycle, and this board records each artist at their highest.`,
+    source: `Peak Spotify monthly listeners, as of August 2026. Burna Boy, Tyla, Tems and Rema are kworb's recorded peaks; CKay's is his Spotify peak from the “Love Nwantiti” run, which predates kworb's coverage of him. Burna Boy's peak was last raised on ${monthYear(BURNA_PEAK_LISTENERS_SET_ON)} and moves only when he sets a new high.`,
   },
   {
     id: "biggest-spotify-debut",

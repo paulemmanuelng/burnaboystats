@@ -19,6 +19,44 @@ export interface FirstGroup {
 
 const bestPriorCertYear = bestIntlYearBefore(2026);
 
+// ---------------------------------------------------------------------------
+// “Last Last” on Apple Music's Global Top 100 — a FINISHED run, published for
+// six weeks as a live one.
+//
+// The 200 has exactly one home: the updates entry of 22 July 2026, which reads
+// "Two hundred days AND COUNTING". That was true when written; nothing re-read
+// it afterwards, and the milestone below went on saying "has spent 200
+// consecutive days" as though the count were current. It is the “48 days as
+// YouTube's most-viewed” failure again (RETRACTIONS.md #6): a figure copied
+// forward as fresh because nothing tied it to the date it was read.
+//
+// Read at the body on 4 Sep 2026 — Apple Music's own "Top 100: Global"
+// playlist, the chart this milestone names — “Dai Dai” sits at No. 18 and
+// “Last Last” is not on it at all. So the run is over. What its final length
+// was is NOT established: it may have run past 200 after 22 July, which is why
+// the prose says "at least" and names the day the 200 was counted.
+//
+// Do NOT date the end from kworb. Its Worldwide Apple Music Song Chart is a
+// points aggregate over country charts, not Apple's Global Top 100, and the
+// two demonstrably disagree: on 22 July 2026 — the very day of the 200-day
+// reading — “Last Last” was absent from kworb's 200-row table as well. kworb
+// cannot see this chart, so it can neither confirm the run nor time its end.
+export const APPLE_TOP_100 = {
+  /** The last count actually taken, and the day it was taken. */
+  days: 200,
+  countedOn: "2026-07-22",
+  /** The day the chart was read again and the song was no longer on it. */
+  absentOn: "2026-09-04",
+} as const;
+
+const dayMonthYear = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
 export const firstGroups: FirstGroup[] = [
   {
     label: "Stadiums & arenas",
@@ -71,7 +109,7 @@ export const firstGroups: FirstGroup[] = [
       { year: "2026", title: "First African artist to reach 50 million Spotify monthly listeners", text: "Crossed 50 million in July 2026 — the first African artist ever to reach the mark, powered by the “Dai Dai” World Cup run — then kept climbing." },
       { year: "2026", title: "First Nigerian artist to surpass 4 billion YouTube views", text: "His channel passed 4 billion views across 344 videos — 4,029,086,804 read at youtube.com/@BurnaBoy on 3 September 2026. The next-highest Nigerian tally is Wizkid's 2.66 billion, then Rema (2.60B) and Davido (2.47B), so the mark is his alone by more than a billion views." },
       { year: "2026", title: "First African artist to surpass 700 million YouTube Music monthly audience", text: `Burna Boy's monthly audience on YouTube Music passed 700 million in July 2026 — now ${BURNA_YT_AUDIENCE_WORDS}, a first for any African artist, and the sixth-biggest audience ever recorded worldwide, above Lady Gaga (862M) and Michael Jackson (741M).` },
-      { year: "2026", title: "Longest run by an African song on Apple Music's Global Top 100", text: "“Last Last” has spent 200 consecutive days on the Apple Music Global Top 100, peaking at No. 12 — no other African song has spent even 120 days on the chart." },
+      { year: "2026", title: "Longest run by an African song on Apple Music's Global Top 100", text: `“Last Last” spent at least ${APPLE_TOP_100.days} consecutive days on the Apple Music Global Top 100, peaking at No. 12 — no other African song has spent even 120 days on the chart. A completed run, not a running one: ${APPLE_TOP_100.days} is the last count taken, on ${dayMonthYear(APPLE_TOP_100.countedOn)}, and the song was off the chart when it was read again on ${dayMonthYear(APPLE_TOP_100.absentOn)}.` },
       { year: "2026", title: "First entry on Billboard's Adult Contemporary chart", text: "“Dai Dai” with Shakira debuted at No. 14 on the Adult Contemporary chart dated 29 August 2026 — a radio format that had never played him before. It is Shakira's second entry on the chart, after “Hips Don't Lie” reached No. 24 in 2007." },
       { year: "2026", title: "First African artist to chart the Billboard Hot 100 six years running", text: "An unbroken run from 2021 through 2026." },
       { year: "2026", title: "Most Billboard Hot 100 entries by an African artist", text: `${BURNA_HOT_100_ENTRIES_WORD} career entries — the record for any African artist, extended by “Dai Dai”.` },
