@@ -1,7 +1,23 @@
 import Link from "next/link";
 import AppState from "./components/AppState";
 
-export const metadata = { title: "Page Not Found — Burna Boy Stats" };
+// Title alone inherits the root layout's openGraph AND its canonical of "/",
+// so a dead burnaboystats.com link pasted into a chat unfurled as a healthy
+// home page — the reader got no signal the URL was broken — and every 404
+// self-canonicalised to the home page. Same inheritance trap /search documents
+// one route over. `robots: noindex` is applied automatically and limits the SEO
+// side, but robots never reaches an unfurler.
+export const metadata = {
+  title: "Page Not Found — Burna Boy Stats",
+  description: "That page doesn't exist. Every certification, chart peak, award and tour record is still here.",
+  alternates: { canonical: "/404" },
+  openGraph: {
+    title: "Page Not Found — Burna Boy Stats",
+    description: "That page doesn't exist. Every certification, chart peak, award and tour record is still here.",
+    url: "/404",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+  },
+};
 
 // The five routes worth offering instead. The handoff is explicit: a 404 with
 // only a "go home" button wastes the visit, and not to invent a "did you mean".
