@@ -162,7 +162,14 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
       {/* Mobile is its own screen, not this page narrowed — the same rule the
           rest of the site follows. Burna Boy's certifications screen already
           carries 231 plaques on a phone; a board artist's 103 fit the same
-          design. */}
+          design.
+          `faqs` is not decoration. The FAQPage node above goes out at every
+          width, but the visible questions were in the `.desktopOnly` half
+          below, which is display:none on a phone — so across these fifteen
+          pages the schema promised Googlebot (which renders at phone width)
+          and every phone reader answers the page did not show them. Un-hiding
+          that half is not the fix here: it would paint the whole desktop tree
+          on a phone. The answers come to the screen instead. */}
       <MobileCerts
         releases={mobileReleases}
         albums={mobileAlbums}
@@ -182,6 +189,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         backLabel={a.name}
         subject={a.name}
         lede={`Every ${a.name} plaque, read in the issuing body's own register — ${total} across ${countries} ${countries === 1 ? "country" : "countries"}, from ${a.releases.length} certified releases.`}
+        faqs={faqs}
         showActionBar={false}
       />
 
@@ -481,16 +489,17 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
           are the questions readers and answer engines actually ask about a
           board artist, and a well-formed FAQ is the most liftable shape there
           is for an AI answer.
-          This used to claim the questions were "rendered visibly AND as
-          FAQPage structured data, the same way /dai-dai and
-          /records/africas-biggest already do it". That was only ever true on a
-          laptop: the schema goes out at every width, but this section is
-          inside the .desktopOnly wrapper opened above, so below 900px — phone
-          readers, and Googlebot, which renders at phone width — the answers
-          are display:none. /dai-dai and /records/africas-biggest have the same
-          gap, which is why the comparison read as reassuring.
-          /music/[song] has been un-hidden; these three are queued behind it and
-          are named as exemptions in tests/faqMobileVisibility.test.ts. */}
+          This copy stays .desktopOnly, and that is now safe rather than a bug.
+          It used to be the only copy: the schema went out at every width while
+          this section sat inside the .desktopOnly wrapper opened above, so
+          below 900px — phone readers, and Googlebot, which renders at phone
+          width — the answers were display:none. The fix for /music/[song] was
+          to un-hide its section, which cannot work here: this wrapper holds the
+          entire desktop page, not just the FAQ. So the same `faqs` array is
+          also handed to MobileCerts at the top of this file, which renders it
+          into the phone screen. Two copies of the questions, one per layout,
+          exactly as both layouts' <h1>s already work.
+          tests/faqMobileVisibility.test.tsx asserts it for all fifteen. */}
       <section id="faq" className={styles.faqPad}>
         <h2 className={styles.h2}>Common questions</h2>
         <div className={styles.faqList}>

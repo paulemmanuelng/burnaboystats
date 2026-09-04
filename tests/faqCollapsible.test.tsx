@@ -2,7 +2,28 @@ import { act, render } from "@testing-library/react";
 import { renderToStaticMarkup } from "react-dom/server";
 import userEvent from "@testing-library/user-event";
 
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
+  usePathname: () => "/",
+  notFound: () => {
+    throw new Error("notFound() — the fixture slug no longer exists");
+  },
+}));
+vi.mock("next/link", () => ({
+  default: ({ href, children, ...rest }: { href: string; children: React.ReactNode }) => (
+    <a href={href} {...rest}>
+      {children}
+    </a>
+  ),
+}));
+
 import FaqList from "../app/components/FaqList";
+import AlbumPage from "../app/music/albums/[album]/page";
+import ArtistPage from "../app/afrobeats/[artist]/page";
+import AwardsPage from "../app/records/awards/page";
+import AfricasBiggestPage from "../app/records/africas-biggest/page";
+import songStyles from "../app/music/[song]/song.module.css";
+import faqSectionStyles from "../app/components/mobileFaqSection.module.css";
 
 /**
  * FaqList — the phone fold on /music/[song], /dai-dai and /dai-dai/es.
@@ -185,4 +206,59 @@ it("gives the answers back when the window grows past 900px", () => {
 
   resize(390);
   expect(container.querySelectorAll("button")).toHaveLength(ITEMS.length);
+});
+
+/* ── The same promise, on the real pages ─────────────────────────────────── */
+
+/**
+ * "Desktop is byte-identical" is the promise every one of these passes made,
+ * and the fixture above proves it only for the component in isolation.
+ *
+ * Twenty-five more pages now mount FaqList — eight albums, fifteen board
+ * artists, /records/awards and /records/africas-biggest — and on all of them a
+ * laptop reader is supposed to get exactly the flat `<h3>` + `<p>` list the
+ * page had before. So the FAQ subtree of each is compared, at 1280px and after
+ * mount, against the subtree the server wrote. Byte equality, so a stray id,
+ * a button in the tab order or an aria-expanded on a laptop shows up here as a
+ * diff rather than in somebody's screen reader.
+ *
+ * The subtree rather than the whole document, deliberately: these pages carry
+ * chart explorers, award filters and a certifications screen, all of which
+ * legitimately settle into a different DOM after mount. Comparing whole pages
+ * would fail for reasons that have nothing to do with the FAQ, and a test that
+ * fails for the wrong reason gets deleted.
+ */
+async function faqSubtrees(el: React.ReactElement, cls: string) {
+  const host = document.createElement("div");
+  host.innerHTML = renderToStaticMarkup(el);
+  const served = [...host.querySelectorAll(`.${cls}`)].map((n) => n.outerHTML);
+
+  const { container } = render(el);
+  const mounted = [...container.querySelectorAll(`.${cls}`)].map((n) => n.outerHTML);
+  return { served, mounted };
+}
+
+describe("at 1280px the routes it was added to render the markup they always did", () => {
+  beforeEach(() => viewport(1280));
+
+  it.each([
+    ["/music/albums/twice-as-tall", () => AlbumPage({ params: Promise.resolve({ album: "twice-as-tall" }) }), songStyles.faqList],
+    // The three bespoke-screen routes keep their desktop FAQ where it was and
+    // render a SECOND copy inside the mobile screen. That second copy is the
+    // one FaqList drives, and at desktop width it has to be as inert as the
+    // first — the mobile screen is display:none up here, but its markup is in
+    // the document either way, and a button in it would still be tabbable.
+    ["/afrobeats/wizkid", () => ArtistPage({ params: Promise.resolve({ artist: "wizkid" }) }), faqSectionStyles.list],
+    ["/records/awards", async () => <AwardsPage />, faqSectionStyles.list],
+    ["/records/africas-biggest", async () => <AfricasBiggestPage />, faqSectionStyles.list],
+  ])("%s", async (_route, page, cls) => {
+    const { served, mounted } = await faqSubtrees(await page(), cls);
+    // The premise: if the selector stops matching, the comparison below passes
+    // by comparing nothing at all.
+    expect(served.length, "no FAQ list found — this assertion is checking nothing").toBe(1);
+    expect(mounted).toEqual(served);
+    expect(served[0]).not.toContain("<button");
+    expect(served[0]).not.toContain("aria-expanded");
+    expect(served[0]).not.toContain("hidden");
+  });
 });

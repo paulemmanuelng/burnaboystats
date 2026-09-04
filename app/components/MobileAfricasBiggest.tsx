@@ -7,6 +7,8 @@ import ScrollRail from "./ScrollRail";
 import type { Board } from "../lib/africaBoards";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import MobileFaqSection from "./MobileFaqSection";
+import type { Faq } from "./FaqList";
 
 /**
  * Mobile screen 16 — Africa's biggest.
@@ -27,6 +29,7 @@ export default function MobileAfricasBiggest({
   leads,
   others,
   stats,
+  faqs,
 }: {
   boards: Board[];
   leads: number;
@@ -34,6 +37,11 @@ export default function MobileAfricasBiggest({
   others: number;
   /** Four cells, so the grid never has a short last row. */
   stats: { value: string; label: string; note: string }[];
+  /** The page's own `pageFaqs`. The desktop copy of these is inside
+   *  `.desktopOnly`, so without them here the FAQPage schema this route emits
+   *  at every width promises a phone reader five answers the phone never
+   *  shows — see MobileFaqSection. */
+  faqs: Faq[];
 }) {
   const [filter, setFilter] = useState<Filter>(null);
 
@@ -150,6 +158,16 @@ export default function MobileAfricasBiggest({
         artist leads {others}, and the by-year board is a different shape. That honesty is the
         point of the page.
       </p>
+
+      {/* Last, exactly where the desktop layout puts it — boards, then the note
+          that explains the gold rows in them, then the questions. The note
+          stays welded to the list it describes; dropping the FAQ between the
+          two would strand it under fourteen boards it no longer looks like it
+          belongs to.
+          Outside the `shown` filter on purpose: the chips narrow the boards,
+          and a question about African music is not a board — filtering to "he
+          leads" must not take five answers off the page. */}
+      <MobileFaqSection title="Common questions" items={faqs} />
     </div>
   );
 }

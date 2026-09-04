@@ -23,7 +23,13 @@ import FaqPage from "../app/faq/page";
 import UnmergePage from "../app/analysis/spotify-unmerge/page";
 import DaiDaiPage from "../app/dai-dai/page";
 import DaiDaiPageES from "../app/dai-dai/es/page";
+import AlbumPage from "../app/music/albums/[album]/page";
+import ArtistPage from "../app/afrobeats/[artist]/page";
+import AwardsPage from "../app/records/awards/page";
+import AfricasBiggestPage from "../app/records/africas-biggest/page";
 import { songSlugs } from "../app/data/songs";
+import { albumPageSlugs } from "../app/data/albumPages";
+import { afrobeatsArtists } from "../app/data/afrobeats";
 import songStyles from "../app/music/[song]/song.module.css";
 import mobileFaqStyles from "../app/components/mobileFaq.module.css";
 
@@ -96,33 +102,38 @@ const emitters = ALL.filter((f) => f.endsWith("page.tsx"))
 
 /** Renders its answers at phone width. Asserted below, one route at a time. */
 const CHECKED = [
+  "afrobeats/[artist]/page.tsx",
   "analysis/spotify-unmerge/page.tsx",
   "dai-dai/es/page.tsx",
   "dai-dai/page.tsx",
   "faq/page.tsx",
   "music/[song]/page.tsx",
-];
-
-/**
- * Still desktop-only. QUEUED, not accepted: each of these has the same bug the
- * song pages had, and each needs its own pass because each has a different
- * mobile screen to fit the questions into — /records/awards and
- * /records/africas-biggest hand their content to a bespoke mobile component,
- * and the album and board artist pages are CSS-driven single DOMs like the song
- * page was.
- *
- * /dai-dai and its Spanish twin have moved to CHECKED. They shared one
- * stylesheet and one .desktopOnly wrapper, so they moved together.
- *
- * Listing them here rather than deleting the check keeps the remaining work
- * visible and stops a tenth route joining them unnoticed.
- */
-const QUEUED = [
-  "afrobeats/[artist]/page.tsx",
   "music/albums/[album]/page.tsx",
   "records/africas-biggest/page.tsx",
   "records/awards/page.tsx",
 ];
+
+/**
+ * Empty, and worth keeping empty.
+ *
+ * This list held the four routes that still hid their answers on a phone, and
+ * they took three different fixes:
+ *
+ *   - /music/albums/[album] is a CSS-driven single DOM sharing the song page's
+ *     stylesheet, so it was the song-page fix again — drop .desktopOnly, wrap
+ *     the questions in FaqList;
+ *   - /afrobeats/[artist], /records/awards and /records/africas-biggest hand
+ *     their whole phone layout to a bespoke mobile screen, and their FAQ sat
+ *     inside a wrapper holding the ENTIRE desktop page. Un-hiding that would
+ *     have painted the desktop tree on a phone, so those three pass their FAQ
+ *     into the mobile component instead and render it there.
+ *
+ * The list stays because the assertion below is `emitters === CHECKED ∪
+ * QUEUED`: a tenth route that emits FAQPage has to be classified by somebody
+ * rather than inheriting an exemption, and an empty QUEUED makes the only
+ * honest place to put it CHECKED.
+ */
+const QUEUED: string[] = [];
 
 /* ── Which class names disappear at phone width ─────────────────────────── */
 
@@ -435,6 +446,40 @@ describe("every route emitting FAQPage answers a phone reader", () => {
   it("/dai-dai/es serves its answers, open", () => {
     expectAnswersVisibleOnAPhone(servedMarkup(<DaiDaiPageES />), "/dai-dai/es");
   });
+
+  // All eight, for the reason the song pages are all fourteen: the FAQ is in
+  // the shared template and one album proves nothing about the other seven.
+  it.each(albumPageSlugs)("/music/albums/%s serves its answers, open", async (slug) => {
+    const el = await AlbumPage({ params: Promise.resolve({ album: slug }) });
+    expectAnswersVisibleOnAPhone(servedMarkup(el), `/music/albums/${slug}`);
+  });
+
+  // All fifteen. These answers are COMPUTED per artist (lib/boardFaqs.ts), so
+  // the fifteen pages do not even carry the same sentences — an artist whose
+  // register is empty takes a different branch, and a rendering that works for
+  // Wizkid says nothing about them.
+  it.each(afrobeatsArtists.map((a) => a.slug))(
+    "/afrobeats/%s serves its answers, open",
+    async (slug) => {
+      const el = await ArtistPage({ params: Promise.resolve({ artist: slug }) });
+      expectAnswersVisibleOnAPhone(servedMarkup(el), `/afrobeats/${slug}`);
+    }
+  );
+
+  // The two bespoke-screen pages. Their desktop copy is still .desktopOnly and
+  // still correct there; what is asserted is that a SECOND copy exists outside
+  // it — inside the mobile screen — because on these two the desktop wrapper
+  // holds the whole page and could never be un-hidden.
+  it("/records/awards serves its answers, open", () => {
+    expectAnswersVisibleOnAPhone(servedMarkup(<AwardsPage />), "/records/awards");
+  });
+
+  it("/records/africas-biggest serves its answers, open", () => {
+    expectAnswersVisibleOnAPhone(
+      servedMarkup(<AfricasBiggestPage />),
+      "/records/africas-biggest"
+    );
+  });
 });
 
 /**
@@ -472,6 +517,52 @@ describe("and the phone accordion folds those answers without losing them", () =
     const { container } = render(<DaiDaiPageES />);
     const answers = promisedAnswers(container).length;
     expect(expectAnswersReachableOnAPhone(container, "/dai-dai/es")).toBe(answers - 1);
+  });
+
+  it.each(albumPageSlugs)("/music/albums/%s keeps every answer one tap away", async (slug) => {
+    const el = await AlbumPage({ params: Promise.resolve({ album: slug }) });
+    const { container } = render(el);
+    const answers = promisedAnswers(container).length;
+    expect(
+      expectAnswersReachableOnAPhone(container, `/music/albums/${slug}`),
+      `/music/albums/${slug}: expected all but the first answer to start folded`
+    ).toBe(answers - 1);
+  });
+
+  /**
+   * The three bespoke-screen routes, where the count is the assertion.
+   *
+   * Each of these renders its questions TWICE — once in the desktop half, once
+   * in the mobile screen — and the walk finds the mobile copy first because it
+   * comes first in the document. So `answers - 1` here says something the flat
+   * check cannot: the copy a phone reader actually reaches is the folded one,
+   * with its first answer open, and not the desktop copy leaking into view.
+   */
+  it.each(afrobeatsArtists.map((a) => a.slug))(
+    "/afrobeats/%s keeps every answer one tap away",
+    async (slug) => {
+      const el = await ArtistPage({ params: Promise.resolve({ artist: slug }) });
+      const { container } = render(el);
+      const answers = promisedAnswers(container).length;
+      expect(
+        expectAnswersReachableOnAPhone(container, `/afrobeats/${slug}`),
+        `/afrobeats/${slug}: expected all but the first answer to start folded`
+      ).toBe(answers - 1);
+    }
+  );
+
+  it("/records/awards keeps every answer one tap away", () => {
+    const { container } = render(<AwardsPage />);
+    const answers = promisedAnswers(container).length;
+    expect(expectAnswersReachableOnAPhone(container, "/records/awards")).toBe(answers - 1);
+  });
+
+  it("/records/africas-biggest keeps every answer one tap away", () => {
+    const { container } = render(<AfricasBiggestPage />);
+    const answers = promisedAnswers(container).length;
+    expect(expectAnswersReachableOnAPhone(container, "/records/africas-biggest")).toBe(
+      answers - 1
+    );
   });
 
   // The two routes that were already right and are NOT in the accordion's

@@ -15,6 +15,8 @@ import { certHistoryYears } from "../data/certifications";
 import type { CertEvent, Country, Release } from "../data/certifications";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import MobileFaqSection from "./MobileFaqSection";
+import type { Faq } from "./FaqList";
 
 /**
  * The mobile certifications screen.
@@ -68,6 +70,7 @@ export default function MobileCerts({
   backLabel = "Certifications",
   subject = "Burna Boy",
   lede,
+  faqs,
   showActionBar = true,
 }: {
   releases: Release[];
@@ -105,6 +108,16 @@ export default function MobileCerts({
   chartsNote?: string;
   /** Which platform carries most of their live placements. */
   liveNote?: string;
+  /**
+   * The screen's own FAQ, when its route emits FAQPage.
+   *
+   * Only /afrobeats/[artist] passes any: those fifteen pages emit the node at
+   * every width while their visible copy sat in the page's `.desktopOnly`
+   * half, which is display:none on a phone. Burna Boy's /certifications, this
+   * component's other caller, emits no FAQPage and passes nothing — which is
+   * what keeps that screen untouched.
+   */
+  faqs?: Faq[];
   /** The board's screens end in the five-tab bar instead of an action bar. */
   showActionBar?: boolean;
 }) {
@@ -516,6 +529,14 @@ export default function MobileCerts({
           })}
         </div>
       </section>
+      )}
+
+      {/* The last content section, which is where the artist page's desktop
+          layout puts it too: plaques, then the boards, then the questions a
+          reader arrives with. A board artist passes history={[]}, so on those
+          fifteen screens this follows the two board links directly. */}
+      {faqs && faqs.length > 0 && (
+        <MobileFaqSection title="Common questions" items={faqs} />
       )}
 
       <div className={styles.spacer} />
