@@ -1,5 +1,13 @@
 import { describe, it, expect } from "vitest";
-import { afrobeatsArtists, certCount, countryCount, chartEntries } from "../app/data/afrobeats";
+import {
+  afrobeatsArtists,
+  certCount,
+  countryCount,
+  chartEntries,
+  chartTerritories,
+  chartNo1s,
+  type AfroArtist,
+} from "../app/data/afrobeats";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { searchDocs } from "../app/lib/searchIndex";
@@ -140,6 +148,63 @@ describe("the curated index's typed artist counts match the data", () => {
       if (certCount(a) !== Number(m[2])) issues.push(`certs says ${m[2]}, data ${certCount(a)}`);
       if (m[3] && countryCount(a) !== Number(m[3])) issues.push(`countries says ${m[3]}, data ${countryCount(a)}`);
       if (m[4] && chartEntries(a) !== Number(m[4])) issues.push(`entries says ${m[4]}, data ${chartEntries(a)}`);
+      if (issues.length) stale.push(`${m[1]}: ${issues.join("; ")}`);
+    }
+    expect(stale).toEqual([]);
+  });
+});
+
+// The same file's CHART-BOARD docs were unguarded entirely. The test above
+// reads `path: "/afrobeats/<slug>"` and stops at the closing quote, so the
+// `/charts` doc sitting a few lines under each hub was never looked at — and
+// five of the fifteen had drifted: Wizkid still said 154 entries after
+// data/afrobeats.ts settled the "Dynamite" duplicate at 153, Davido said 66
+// against 93, Ayra Starr 78 against 79, Asake 123 against 127, and CKay's said
+// "22 entries across 16 territories, 5 of them No. 1" against 29, 20 and 6.
+//
+// These are figures a reader sees in the search palette, next to the page that
+// prints the right ones. Same fix as above: the shipped file cannot import the
+// data, so the test imports it and does the arithmetic.
+describe("the curated index's chart-board counts match the data", () => {
+  const CHART_DOC = () =>
+    /path: "\/afrobeats\/([a-z-]+)\/charts",[\s\S]{0,600}?description: "([^"]*)"/g;
+
+  /** Each clause the descriptions actually use, and what it must equal. */
+  const CLAUSES: { re: RegExp; label: string; of: (a: AfroArtist) => number }[] = [
+    { re: /(\d+) entr(?:y|ies)/, label: "entries", of: chartEntries },
+    { re: /(\d+) territor(?:y|ies)/, label: "territories", of: chartTerritories },
+    { re: /(\d+)(?: of them| No\. 1 placements)/, label: "No. 1s", of: chartNo1s },
+  ];
+
+  it("checks every board that has a chart page", () => {
+    const src = readFileSync(join(process.cwd(), "app/lib/searchIndex.ts"), "utf8");
+    const seen = [...new Set([...src.matchAll(CHART_DOC())].map((m) => m[1]))];
+    expect(
+      afrobeatsArtists
+        .filter((a) => a.charts.length > 0)
+        .map((a) => a.slug)
+        .filter((s) => !seen.includes(s))
+        .sort(),
+      "these boards have a /charts page with no curated search doc this test can read",
+    ).toEqual([]);
+  });
+
+  it("has no stale entry, territory or No. 1 count", () => {
+    const src = readFileSync(join(process.cwd(), "app/lib/searchIndex.ts"), "utf8");
+    const stale: string[] = [];
+    let m: RegExpExecArray | null;
+    const RE = CHART_DOC();
+    while ((m = RE.exec(src))) {
+      const a = afrobeatsArtists.find((x) => x.slug === m![1]);
+      if (!a) { stale.push(`${m[1]}: no such artist on the board`); continue; }
+      // Only the clauses a description actually states. Two of them quote no
+      // figures at all ("every official chart peak Victony has reached"), and
+      // that is a legitimate way to write one — it just cannot go stale.
+      const issues = CLAUSES.flatMap((c) => {
+        const hit = m![2].match(c.re);
+        if (!hit) return [];
+        return Number(hit[1]) === c.of(a) ? [] : [`${c.label} says ${hit[1]}, data ${c.of(a)}`];
+      });
       if (issues.length) stale.push(`${m[1]}: ${issues.join("; ")}`);
     }
     expect(stale).toEqual([]);

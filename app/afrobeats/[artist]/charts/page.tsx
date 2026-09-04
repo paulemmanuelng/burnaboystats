@@ -15,9 +15,30 @@ import {
   countryMeta,
   chartEntries,
   chartTerritories,
+  chartGlobalLines,
   chartNo1s,
   type AfroArtist,
 } from "../../../data/afrobeats";
+
+/** "read from each country's national chart, plus 2 Billboard global charts".
+ *
+ *  The territory count includes Billboard's Global 200 and Global 200 Excl. US
+ *  wherever the artist has charted on them, so a flat "each country's principal
+ *  national chart" over that figure is false for two of them — the same
+ *  countries-vs-territories confusion PR #160 fixed across the Burna Boy pages,
+ *  inherited here by the board. One derivation, used by the meta description,
+ *  the Dataset node and both layouts' ledes, so they cannot drift apart.
+ *
+ *  `principal` is dropped in the meta description only: it is worth 10 of the
+ *  160 characters check-seo allows, and the page body still spells the full
+ *  standard out under "Where the charts come from". */
+const sourceClause = (a: AfroArtist, short = false) => {
+  const globals = chartGlobalLines(a);
+  const national = short ? "each country's national chart" : "each country's principal national chart";
+  return globals
+    ? `${national}, plus ${count(globals, "Billboard global chart", "Billboard global charts")}`
+    : national;
+};
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -31,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
   if (!a) return {};
   return pageMetadata({
     title: `${a.name} Chart History — ${count(chartNo1s(a), "No.1", "No.1s")} & Chart Peaks`,
-    description: `Every ${a.name} official chart entry and peak position worldwide — ${count(chartEntries(a), "entry", "entries")} across ${count(chartTerritories(a), "territory", "territories")}, read from each country's principal national chart.`,
+    description: `Every ${a.name} official chart peak worldwide — ${count(chartEntries(a), "entry", "entries")} across ${count(chartTerritories(a), "territory", "territories")}, read from ${sourceClause(a, true)}.`,
     path: `/afrobeats/${a.slug}/charts`,
     shareTitle: `${a.name} — Official Chart Peaks`,
     shareDescription: `${count(chartEntries(a), "entry", "entries")}, ${count(chartTerritories(a), "territory", "territories")}, ${count(chartNo1s(a), "No. 1", "No. 1s")}.`,
@@ -80,7 +101,7 @@ export default async function AfroArtistChartsPage({
 
   const dataset = datasetJsonLd({
     name: `${a.name} official chart peaks by country`,
-    description: `${a.name}'s peak positions on official singles and album charts across ${territories} territories — every charting release and its highest position, country by country, including ${no1s} No. 1 peaks.`,
+    description: `${a.name}'s peak positions on official singles and album charts across ${territories} territories — every charting release and its highest position, chart by chart, read from ${sourceClause(a)}, including ${no1s} No. 1 peaks.`,
     path: `/afrobeats/${a.slug}/charts`,
     keywords: [a.name, "chart positions", "official charts", "peak chart position", "Afrobeats charts"],
     variableMeasured: ["Peak chart position", "Country / territory", "Release", "Chart"],
@@ -92,9 +113,7 @@ export default async function AfroArtistChartsPage({
   // most of them that includes Billboard's two global lines — so the note
   // "national charts" was describing a figure that is not purely national.
   // Derived per artist: Victony has one global line, four artists have none.
-  const globalLines = new Set(
-    a.charts.flatMap((r) => r.entries.map((e) => e.c)).filter((c) => c === "GLB" || c === "GLBX")
-  ).size;
+  const globalLines = chartGlobalLines(a);
   const territoryNote = globalLines
     ? `incl. ${count(globalLines, "global chart", "global charts")}`
     : "national charts";
@@ -106,7 +125,7 @@ export default async function AfroArtistChartsPage({
     { num: releases, label: "Charting releases", note: "albums and singles" },
   ];
 
-  const sourceNote = `Peaks on each country's principal national chart, the same standard used for Burna Boy. Airplay, genre and platform charts excluded. Board reviewed weekly.`;
+  const sourceNote = `Peaks on ${sourceClause(a)} — the same standard used for Burna Boy. Airplay, genre and platform charts excluded. Board reviewed weekly.`;
 
   return (
     <main id="content">
@@ -129,7 +148,7 @@ export default async function AfroArtistChartsPage({
         backHref={`/afrobeats/${a.slug}`}
         backLabel={`${a.name} · charts`}
         heading={{ lead: a.name, gold: "charts" }}
-        lede={`${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}, ${no1s} of them at No. 1 — every peak read from the country's own chart.`}
+        lede={`${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}, ${no1s} of them at No. 1 — every peak read from ${sourceClause(a)}.`}
         sourceNote={sourceNote}
         showActionBar={false}
         territoryNote={territoryNote}
@@ -153,7 +172,7 @@ export default async function AfroArtistChartsPage({
           <p className={styles.lede}>
             {/* A single expression: JSX drops the space after an expression when
                 the sentence wraps to the next line, which published "24of them". */}
-            {`${a.name}’s peak positions on the world’s official charts — ${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}, ${no1s} of them at No. 1, each read from the country’s own principal chart rather than a platform or genre listing.`}
+            {`${a.name}’s peak positions on the world’s official charts — ${count(entries, "entry", "entries")} across ${count(territories, "territory", "territories")}, ${no1s} of them at No. 1, read from ${sourceClause(a)} rather than a platform or genre listing.`}
           </p>
 
           <div className={styles.statGrid}>

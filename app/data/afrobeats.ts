@@ -1949,6 +1949,23 @@ export const tierCount = (a: AfroArtist, tier: Tier) =>
 export const chartEntries = (a: AfroArtist) => a.charts.reduce((n, r) => n + r.entries.length, 0);
 export const chartTerritories = (a: AfroArtist) =>
   new Set(a.charts.flatMap((r) => r.entries.map((e) => e.c))).size;
+
+/** Billboard's worldwide lines — GLB (Global 200), GLBX (Global 200 Excl. US).
+ *
+ *  A territory on this site is a country OR one of these two, the same
+ *  definition /records/charts publishes for Burna Boy's own 69. They are not
+ *  countries and they are not national charts, so any sentence that pairs
+ *  `chartTerritories` with the words "country" or "national chart" has to
+ *  subtract them or name them: eleven of the fifteen boards told a reader — and
+ *  a Dataset consumer — that every one of their territories was a country's own
+ *  principal national chart, two of which were Billboard's global charts.
+ *
+ *  Derived rather than assumed to be 2. Victony's sweep found one global line,
+ *  not two, and four artists have none at all. */
+export const chartGlobalLines = (a: AfroArtist) =>
+  new Set(
+    a.charts.flatMap((r) => r.entries.map((e) => e.c)).filter((c) => c === "GLB" || c === "GLBX")
+  ).size;
 /**
  * Each country's BEST peak, best countries first — the OG share card's chips.
  *

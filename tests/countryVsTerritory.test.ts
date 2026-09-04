@@ -3,6 +3,8 @@ import { readFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { chartCountryCount } from "../app/data/charts";
 import { chartedCountryCount } from "../app/lib/analysis";
+import { afrobeatsArtists, chartTerritories, chartGlobalLines } from "../app/data/afrobeats";
+import { generateMetadata as chartsMetadata } from "../app/afrobeats/[artist]/charts/page";
 import { GET as statsGET } from "../app/api/v1/stats/route";
 import { GET as chartsGET } from "../app/api/v1/charts/route";
 
@@ -98,5 +100,78 @@ describe("countries and territories", () => {
         `${f} imports chartCountryCount and states a No. 1s figure — use numberOneCountryCount from lib/analysis, which is the count those No. 1s are actually spread across`
       ).toBe(false);
     }
+  });
+});
+
+// ── The Afrobeats Board inherited the same confusion ────────────────────────
+//
+// The board keeps its own pair of figures, artist by artist, with exactly the
+// relationship above: chartTerritories counts every distinct chart code an
+// artist has entered, and for eleven of the fifteen boards two of those codes
+// are GLB and GLBX — Billboard's Global 200 and Global 200 Excl. US.
+//
+// /afrobeats/[artist]/charts printed that figure under "read from each
+// country's principal national chart", in the meta description, in the Dataset
+// node search engines are invited to cite, and in both layouts' ledes. Wizkid's
+// said 32 territories were 32 countries' own national charts. Thirty of them
+// are. The page's own stat cell already knew better — it has read "incl. 2
+// global charts" since the sweep landed — so the markup was contradicting the
+// visible page beside it.
+describe("the board's chart pages", () => {
+  const boards = afrobeatsArtists.filter((a) => a.charts.length > 0);
+
+  it("has boards to check", () => {
+    // Cheap anchor: every assertion below loops, so an empty list passes them
+    // all without testing anything.
+    expect(boards.length).toBeGreaterThanOrEqual(15);
+    expect(boards.filter((a) => chartGlobalLines(a) > 0).length).toBeGreaterThan(0);
+  });
+
+  it("counts a global line as a territory and never as a country", () => {
+    for (const a of boards) {
+      const codes = new Set(a.charts.flatMap((r) => r.entries.map((e) => e.c)));
+      const countries = [...codes].filter((c) => c !== "GLB" && c !== "GLBX");
+      expect(chartTerritories(a) - chartGlobalLines(a), a.slug).toBe(countries.length);
+    }
+  });
+
+  it("names Billboard's global charts in the meta description that counts them", async () => {
+    for (const a of boards) {
+      const meta = await chartsMetadata({ params: Promise.resolve({ artist: a.slug }) });
+      const description = String(meta.description);
+      expect(description, a.slug).toContain(`${chartTerritories(a)} territor`);
+      if (chartGlobalLines(a) > 0) {
+        expect(
+          description,
+          `${a.slug}: ${chartTerritories(a)} territories includes ${chartGlobalLines(a)} Billboard global chart(s), so "read from each country's national chart" is false for those — name them or drop the claim`
+        ).toMatch(/Billboard global chart/);
+      } else {
+        // Four artists have never charted on either global line. Their pages
+        // must not invent a disclosure that does not apply to them.
+        expect(description, a.slug).not.toMatch(/Billboard global chart/);
+      }
+      // The disclosure is worth ~24 characters and the budget is Google's, not
+      // ours. scripts/check-seo.mjs only sees this after a full build.
+      expect(description.length, `${a.slug}: ${description.length} chars`).toBeLessThanOrEqual(160);
+    }
+  });
+
+  it("routes every territory sentence on the page through one derivation", () => {
+    // Four strings state this — meta description, Dataset description, the
+    // desktop lede and the mobile screen's — and they were four independent
+    // copies of the same sentence. Any line that puts the territory figure and
+    // the word "country" or "national" in one template has to build its source
+    // clause from the artist's own data.
+    const src = readFileSync("app/afrobeats/[artist]/charts/page.tsx", "utf8");
+    const offenders = src
+      .split("\n")
+      .filter((l) => l.includes("`") && /territor/.test(l))
+      .filter((l) => /\bcountry\b|\bcountries\b|national/.test(l))
+      .filter((l) => !l.includes("sourceClause("))
+      .map((l) => l.trim());
+    expect(
+      offenders,
+      "these pair the territory count with a country claim without deriving the global-chart disclosure"
+    ).toEqual([]);
   });
 });

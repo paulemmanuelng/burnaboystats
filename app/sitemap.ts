@@ -5,6 +5,7 @@ import { songs } from "./data/songs";
 import { albumPages } from "./data/albumPages";
 import { afrobeatsArtists } from "./data/afrobeats";
 import { LIVE_BOARDS } from "./data/liveBoards";
+import { liveChartsUpdated } from "./data/liveCharts";
 import { carSlugs } from "./data/cars";
 
 // lastmod is derived from the real content log (updates.ts), NOT the build time.
@@ -14,11 +15,37 @@ import { carSlugs } from "./data/cars";
 const toDate = (iso: string) => new Date(`${iso}T12:00:00Z`);
 const newestUpdate = toDate([...updates.map((u) => u.date)].sort().at(-1)!);
 
+/**
+ * Routes the live-charts pipeline rewrites on its own clock, and the stamp it
+ * writes. The feed cannot describe these pages: nobody logs an updates.ts entry
+ * when the hourly sweep moves a position, so their content date lives in the
+ * generated data file instead — which is also the date the page itself declares
+ * as `dateModified` in its Dataset node.
+ *
+ * Without this, a feed entry that merely LINKS to such a page freezes its
+ * lastmod at the date of that entry: /live-charts advertised 2026-07-30, the
+ * day of the last hand-written entry pointing there, while the page's own
+ * Dataset node said 2026-09-04 and the board underneath it had been rebuilt
+ * every hour in between. That is the site's most frequently changed page
+ * understating itself by five weeks on the one signal crawlers use to decide
+ * what to re-fetch — and it got that way BECAUSE it had feed entries, where the
+ * boards with none at least fell back to the site's newest date.
+ *
+ * The later of the two dates wins, so a genuine feed entry about a live board
+ * still counts.
+ */
+const pipelineStamp: Record<string, string> = {
+  "/live-charts": liveChartsUpdated,
+  ...Object.fromEntries(LIVE_BOARDS.map((b) => [`/afrobeats/${b.slug}/live`, b.updated])),
+};
+
 function lastModFor(path: string): Date {
   const p = path || "/";
   const dates = updates
     .filter((u) => p === "/" || u.href === p || u.href.startsWith(`${p}/`))
     .map((u) => u.date);
+  const own = pipelineStamp[p];
+  if (own) dates.push(own);
   return dates.length ? toDate(dates.sort().at(-1)!) : newestUpdate;
 }
 
