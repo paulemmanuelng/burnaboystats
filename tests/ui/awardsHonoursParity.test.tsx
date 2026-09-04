@@ -48,6 +48,11 @@ const props = {
   stats: [{ value: String(totalWins), label: "wins", note: `from ${totalNominations} nominations` }],
   wins: totalWins,
   footNote: `${totalWins} wins across ${ceremonyCount} bodies, plus ${honourCount} honours.`,
+  // Required, and nothing to do with the honours block: the screen renders the
+  // page's FAQ because /records/awards emits FAQPage at every width and the
+  // desktop copy of those answers is display:none on a phone. A fixture, not
+  // the page's real questions — this file asserts nothing about them.
+  faqs: [{ q: "How many awards has Burna Boy won?", a: `${totalWins} competitive wins.` }],
 };
 
 describe("the honours block on /records/awards", () => {

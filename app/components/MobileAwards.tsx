@@ -7,6 +7,8 @@ import ScrollRail from "./ScrollRail";
 import type { Ceremony, Honour } from "../data/awards";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import MobileFaqSection from "./MobileFaqSection";
+import type { Faq } from "./FaqList";
 
 /**
  * Mobile screen 11 — Awards & nominations.
@@ -28,12 +30,17 @@ export default function MobileAwards({
   stats,
   wins,
   footNote,
+  faqs,
 }: {
   ceremonies: Ceremony[];
   honours: Honour[];
   stats: { value: string; label: string; note: string }[];
   wins: number;
   footNote: string;
+  /** The page's own FAQ. Its desktop copy is inside `.desktopOnly`, so without
+   *  these the FAQPage node this route emits at every width promises a phone
+   *  reader answers the phone never shows — see MobileFaqSection. */
+  faqs: Faq[];
 }) {
   const [filter, setFilter] = useState<Filter>("all");
 
@@ -170,6 +177,12 @@ export default function MobileAwards({
           ))}
         </div>
       </div>
+
+      {/* Between the honours block and the source note — the desktop layout's
+          order exactly (explorer → honours → FAQ → source band), so the two
+          layouts read in the same sequence and the note that sources the whole
+          page still closes it. */}
+      <MobileFaqSection title="How many awards has Burna Boy won?" items={faqs} />
 
       <p className={styles.foot}>
         Wins and nominations come from each body&apos;s own winners list. Honours like the

@@ -95,10 +95,18 @@ export default function AwardsPage() {
           every year, every category, won or not, plus the honours block; the
           shared deep-page grammar has one row per item and could not carry it.
           The design's mock shows six bodies because that is what fits a mockup;
-          the real screen renders all of them. */}
+          the real screen renders all of them.
+          `faqs` is not decoration. The FAQPage node above goes out at every
+          width but its answers were rendered only in the `.desktopOnly` half
+          below, which is display:none on a phone — so the schema promised
+          Googlebot (which renders at phone width) and every phone reader an
+          answer this page did not show them, "How many awards has Burna Boy
+          won?" included. The desktop half cannot simply be un-hidden here; the
+          answers had to come to the screen. */}
       <MobileAwards
         ceremonies={mobileCeremonies}
         honours={honours}
+        faqs={faqs}
         wins={totalWins}
         footNote={`${totalWins} wins from ${totalNominations} nominations across ${ceremonyCount} award bodies, plus ${honourCount} honours & special recognitions — including the 2021 Grammy for Twice as Tall.`}
         stats={[
@@ -196,6 +204,12 @@ export default function AwardsPage() {
         </section>
 
         {/* ── FAQ ──────────────────────────────────────────────── */}
+        {/* The laptop copy. It stays inside .desktopOnly — this wrapper holds
+            the whole desktop page, so un-hiding it the way /music/[song] was
+            un-hidden would paint the entire desktop tree on a phone. The phone
+            copy is the same `faqs` array, rendered by MobileAwards at the top
+            of this file, which is what stops the FAQPage node above promising
+            a phone reader an answer the page withholds. */}
         <section className={styles.faqBand}>
           <div className={styles.wide}>
             <h2 className={styles.h2}>

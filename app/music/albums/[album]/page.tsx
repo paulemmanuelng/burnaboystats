@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import styles from "../../[song]/song.module.css";
 import albumStyles from "./album.module.css";
 import KeepExploring from "../../../components/KeepExploring";
+import FaqList from "../../../components/FaqList";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../../lib/seo";
 import { spotifyImage, spotifySrcSet } from "../../../lib/spotifyImage";
 import { albumPageBySlug, albumPageSlugs, albumPages } from "../../../data/albumPages";
@@ -313,16 +314,34 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
       </section>
 
       {/* ── FAQ ──────────────────────────────────────────────── */}
-      <section className={`${styles.sectionPad} ${styles.desktopOnly}`} aria-labelledby="album-faq">
+      {/* Deliberately NOT .desktopOnly — the same bug as #170, on eight more
+          pages. This section used to sit inside that wrapper, which is
+          display:none below 900px, while the FAQPage structured data above it
+          went out at every width. So the questions on these eight album pages
+          ("How many copies has Twice as Tall sold?", "Did it win a Grammy?")
+          were answered for a laptop reader and withheld from the phone reader
+          who searched that exact question and landed here — and from Googlebot,
+          which renders at phone width, leaving the schema describing content
+          the crawler could not see.
+          No mobile spacing to add: this page shares the song page's stylesheet,
+          whose 900px block already gives .faqList/.faqItem screen 08's row
+          rhythm.
+          The phone fold is FaqList, and the reason it does not reinstate the
+          bug is the ORDER: it renders this same flat open list on the server
+          and collapses only after mount, so every answer is in the HTML at
+          both widths and a reader with no JavaScript keeps all of them. First
+          one open. */}
+      <section className={styles.sectionPad} aria-labelledby="album-faq">
         <h2 id="album-faq" className={styles.h2}>Frequently asked</h2>
-        <div className={styles.faqList}>
-          {page.faqs.map((f) => (
-            <div key={f.q} className={styles.faqItem}>
-              <h3 className={styles.faqQ}>{f.q}</h3>
-              <p className={styles.faqA}>{f.a}</p>
-            </div>
-          ))}
-        </div>
+        <FaqList
+          items={page.faqs}
+          classes={{
+            list: styles.faqList,
+            item: styles.faqItem,
+            q: styles.faqQ,
+            a: styles.faqA,
+          }}
+        />
       </section>
 
       {/* ── Onward ───────────────────────────────────────────── */}

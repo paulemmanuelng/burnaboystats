@@ -1,0 +1,62 @@
+/* The FAQ section on a bespoke mobile screen — see MobileFaqSection.tsx.
+
+   Every rule here paints only below 900px, because the only things that render
+   this component are the three mobile screens, and each of those is
+   `display: none` at base and a real display inside their own 900px block. So
+   there is no media query in this file and nothing in it can reach a desktop
+   layout: /afrobeats/[artist], /records/awards and /records/africas-biggest
+   have to be byte-identical above 900px, and the cheapest way to keep a promise
+   like that is for these selectors to have nowhere to match. */
+
+/* A trailing section, marked off by a rule rather than a band. Screen 11 gives
+   its honours block a --bg-soft panel and screen 16 rules its boards off; a
+   plain rule reads correctly on both and on screen 02, which is the point of
+   sharing one treatment across the three. */
+.faq {
+  border-top: 1px solid var(--line);
+  margin-top: 22px;
+  padding-top: 22px;
+}
+
+/* Anton uppercase, 20px — the size screen 11's "Honours & recognitions" uses,
+   between screen 02's 26px log title and screen 16's 18px board titles.
+   White, not gold: gold on this site means "his", and a section label is not
+   one of his records (the reason screen 16 gives for its own white titles). */
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 20px;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0 18px 14px;
+}
+
+/* Screen 08's rhythm, verbatim: an 18px band per question, ruled top and
+   bottom, the answer 6px under the question. /music/[song] and /dai-dai took
+   the same values for their phone FAQs, so a reader who has met one of those
+   has met this. */
+.list {
+  border-top: 1px solid var(--line);
+}
+.item {
+  padding: 18px;
+  border-bottom: 1px solid var(--line);
+}
+/* Sentence case in the body face — a question is prose, not display type. */
+.q {
+  margin: 0 0 6px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.a {
+  margin: 0;
+  color: #d3d3da;
+  font-size: 14px;
+  line-height: 1.6;
+}

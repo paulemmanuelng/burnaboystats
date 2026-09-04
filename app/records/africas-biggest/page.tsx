@@ -140,11 +140,18 @@ export default function AfricasBiggestPage() {
           grammar: each board carries a badge and a note the shared rows have
           nowhere to put. Every figure below is derived, including "he leads":
           the design's mock said 8 of 14, which was true only while the stats
-          bot had corrupted the monthly-listeners board. */}
+          bot had corrupted the monthly-listeners board.
+          `faqs` is not decoration. The FAQPage node above goes out at every
+          width but its five answers were rendered only in the `.desktopOnly`
+          half below, which is display:none on a phone — so the schema promised
+          Googlebot (which renders at phone width) and every phone reader an
+          answer this page did not show them. The desktop half cannot simply be
+          un-hidden here; the answers had to come to the screen. */}
       <MobileAfricasBiggest
         boards={africaBoards}
         leads={boardsHeLeads}
         others={boardsOthersLead}
+        faqs={pageFaqs}
         stats={[
           { value: String(statBoxes.length), label: "Leaderboards", note: "African music" },
           { value: String(boardsHeLeads), label: "He leads", note: `of ${statBoxes.length} boards` },
@@ -235,6 +242,13 @@ export default function AfricasBiggestPage() {
         ))}
 
         {/* ── FAQ ────────────────────────────────────────────── */}
+        {/* The laptop copy. It stays inside .desktopOnly — this wrapper holds
+            the whole desktop page, so un-hiding it the way /music/[song] was
+            un-hidden would paint the entire desktop tree on a phone. The phone
+            copy is the same `pageFaqs` array, rendered by
+            MobileAfricasBiggest at the top of this file, which is what stops
+            the FAQPage node above promising a phone reader an answer the page
+            withholds. */}
         <section id="faq" className={`${styles.wrap} ${styles.faqPad}`}>
           <h2 className={styles.groupHead}>Common questions</h2>
           <div className={styles.faqList}>
