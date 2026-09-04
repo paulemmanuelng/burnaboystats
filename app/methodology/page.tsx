@@ -47,9 +47,13 @@ const sources = [
   {
     area: "Charts",
     count: String(chartCountryCount),
-    tag: `${chartSourceSplit.nationalBody} national · ${chartSourceSplit.billboardCountry} Billboard country · ${chartSourceSplit.global} global`,
+    // The airplay/monitor figure is stated because it used to be hidden inside
+    // the "national" one: every carve-out chart — Monitor Latino, TopHit,
+    // Radiomonitor, Ipsos, BMAT — was published here as a national industry
+    // body's own. See chartSourceSplit in data/charts.ts.
+    tag: `${chartSourceSplit.nationalBody} national · ${chartSourceSplit.airplayMonitor} airplay/monitor · ${chartSourceSplit.billboardCountry} Billboard country · ${chartSourceSplit.global} global`,
     detail:
-      `The chart body that owns each chart, read from its official run and never from a third-party summary. ${chartSourceSplit.nationalBody} of the tracked charts are the national industry body's own — the Official Charts Company (UK), SNEP (France), GfK (Germany), FIMI (Italy), PROMUSICAE (Spain), ZPAV (Poland), TurnTable (Nigeria) and their equivalents. ${chartSourceSplit.billboardCountry} are Billboard country charts, used only where a territory has no national body chart of its own — including the US and Canada, where Billboard's is the chart of record. The remaining ${chartSourceSplit.global} are Billboard's two worldwide charts. Where a country does publish an official chart, that chart wins.`,
+      `The chart body that owns each chart, read from its official run and never from a third-party summary. ${chartSourceSplit.nationalBody} of the tracked charts are the national industry body's own — the Official Charts Company (UK), SNEP (France), GfK (Germany), FIMI (Italy), PROMUSICAE (Spain), ZPAV (Poland), TurnTable (Nigeria) and their equivalents. ${chartSourceSplit.airplayMonitor} are airplay or broadcast-monitor charts — Monitor Latino, TopHit, Radiomonitor, Ipsos, BMAT, PROPHON — and count only where the country publishes no other national chart at all. ${chartSourceSplit.billboardCountry} are Billboard country charts, used only where a territory has no national body chart of its own — including the US and Canada, where Billboard's is the chart of record. The remaining ${chartSourceSplit.global} are Billboard's two worldwide charts. Where a country does publish an official non-airplay chart, that chart wins.`,
   },
   {
     area: "Streaming",

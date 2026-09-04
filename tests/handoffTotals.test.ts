@@ -64,7 +64,16 @@ describe("handoff checklist — data integrity", () => {
     expect(sum).toBe(234);
   });
 
-  it("counts 280 chart entries across 71 territories, 48 of them at No. 1", () => {
+  // A test NAME is not an assertion, which is how this one came to read "280
+  // chart entries across 71 territories, 48 of them at No. 1" over a body
+  // asserting 278 / 69 / 47. Three published figures stated wrongly in the
+  // suite's own output, green the whole time — the Dominican and Salvadoran
+  // retractions (RETRACTIONS #7, #8) moved the assertions and left the title
+  // where it was. The title is a const now, and the last check in this block
+  // recomposes it from the data, so it cannot drift again on its own.
+  const chartTitle = "counts 278 chart entries across 69 territories, 47 of them at No. 1";
+
+  it(chartTitle, () => {
     const entries = allChartItems.reduce((n, r) => n + r.entries.length, 0);
     const territories = new Set(allChartItems.flatMap((r) => r.entries.map((e) => e.c))).size;
     // Placements, not releases: a release charting at No. 1 in six countries
@@ -82,6 +91,12 @@ describe("handoff checklist — data integrity", () => {
     expect(chartEntryCount).toBe(entries);
     expect(chartCountryCount).toBe(territories);
     expect(numberOnes).toBe(ones);
+
+    // The name above, rebuilt from the same data it names.
+    expect(
+      `counts ${entries} chart entries across ${territories} territories, ${ones} of them at No. 1`,
+      "this test's own name states figures its assertions contradict"
+    ).toBe(chartTitle);
   });
 
   it("counts 83 award wins from 240 nominations across 46 bodies", () => {

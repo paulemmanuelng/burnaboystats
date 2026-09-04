@@ -1924,11 +1924,54 @@ const EXTRA_COUNTRIES: Record<string, { name: string; flag: string; body: string
 /** Resolves a country in the order the site already defines them: the
  *  certification ledger first (it names the certifying body), then the chart
  *  map (which covers 71 chart territories Burna has entered), then this
- *  module's own extension for places none of his data reaches. */
+ *  module's own extension for places none of his data reaches.
+ *
+ *  This answers "who awarded the plaque?" and ONLY that. A chart row must go
+ *  through chartCountryMeta below — see the note there. */
 export const countryMeta = (code: string): { name: string; flag: string; body: string; url?: string } =>
   BURNA_COUNTRIES[code] ??
   CHART_COUNTRIES[code] ??
   EXTRA_COUNTRIES[code] ?? { name: code, flag: "🏳️", body: code };
+
+/** Board countries whose CHART body is not the body EXTRA_COUNTRIES names.
+ *
+ *  Mexico is the only one, and it needs both answers: its plaques come from
+ *  AMPROFON, which is why it is in EXTRA_COUNTRIES with AMPROFON's register
+ *  link — but AMPROFON's Top 100 was discontinued in July 2020, so the two
+ *  chart rows the board carries (Rema's "Calm Down" at 16, Ayra Starr's "Santa"
+ *  at 15) were read from Billboard Mexico Songs, which is what the sweeps
+ *  recorded. Attributing them to AMPROFON names a chart that did not exist when
+ *  the songs were released — the same fault PR #154 fixed for Malta, North
+ *  Macedonia, Serbia, Slovenia and Belarus. */
+const CHART_BODY_OVERRIDES: Record<string, string> = {
+  MX: "Billboard Mexico Songs",
+};
+
+/** Resolves the body that published the CHART a peak was read from.
+ *
+ *  countryMeta reads the certification ledger FIRST, so every chart row on the
+ *  board resolved through it was credited to a CERTIFYING body: 1,063 rendered
+ *  rows across 20 countries said a US peak came from "RIAA", a UK peak from
+ *  "BPI", Germany's from "BVMI" (its chart is GfK), Denmark's from "IFPI
+ *  Denmark" (Hitlisten), Sweden's from "GLF" (Sverigetopplistan), Canada's from
+ *  "Music Canada" (Billboard Canada) — on the one page type built to be cited.
+ *  A certifier is not a chart compiler, and on this site the two maps disagree
+ *  about the name in 20 of the 71 territories the board charts in.
+ *
+ *  Chart rows resolve here; certification rows resolve through countryMeta. */
+export const chartCountryMeta = (
+  code: string
+): { name: string; flag: string; body: string } => {
+  const base =
+    CHART_COUNTRIES[code] ?? EXTRA_COUNTRIES[code] ?? { name: code, flag: "🏳️", body: code };
+  return {
+    name: base.name,
+    flag: base.flag,
+    // No `url`: what EXTRA_COUNTRIES carries is a certification register, and a
+    // chart row is not evidence of a plaque.
+    body: CHART_BODY_OVERRIDES[code] ?? base.body,
+  };
+};
 
 // ── Derived ────────────────────────────────────────────────────────────────
 export const certCount = (a: AfroArtist) => a.releases.reduce((n, r) => n + r.certs.length, 0);

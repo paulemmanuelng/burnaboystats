@@ -10,6 +10,7 @@ import {
   daiDaiNumberOnes,
   daiDaiChartEntryCount,
   numberOneCountryCount,
+  chartSourceSplit,
 } from "../app/data/charts";
 
 // The chart dataset drives the headline numbers on the homepage, /records/charts,
@@ -184,6 +185,77 @@ describe("chart data integrity", () => {
     expect(chartEntryCount).toBe(278); // 2 Sep 2026: -2, the unsupported Dominican and Salvadoran No. 1s removed (RETRACTIONS #7, #8)
     expect(numberOnes).toBe(47); // 2 Sep 2026: Poland took this to 49, then the Dominican and Salvadoran No. 1s came out (RETRACTIONS #7, #8)
     expect(chartCountryCount).toBe(69); // -2: the Dominican Republic and El Salvador each left with their only entry
+  });
+});
+
+/**
+ * `chartSourceSplit` is published on /methodology and /records/charts — in a
+ * stat panel, in a paragraph, and in the source tag on the methodology page —
+ * and it had no test at all.
+ *
+ * It shipped wrong. The classifier had three buckets and no notion of the
+ * airplay carve-out: anything whose body did not begin "Billboard" was counted
+ * as a national industry body's chart, so all fifteen airplay charts plus
+ * Russia's TopHit streaming row were published as "national industry-body
+ * charts" — 53 of them, where the honest figure is 37. Monitor Latino is not
+ * Guatemala's industry body and TopHit is not Ukraine's, and the same two pages
+ * state the airplay rule a paragraph away from the number that broke it.
+ */
+describe("where the tracked charts come from", () => {
+  // The territories whose principal chart is NOT a national industry body's
+  // own, named one by one so a reclassification has to be a deliberate edit
+  // here — the same standard AIRPLAY_EXCEPTIONS above is held to.
+  const NOT_NATIONAL_BODIES = new Set([
+    // Airplay carve-outs: the country publishes no non-airplay national chart.
+    "LB", "PA", "BG", "UY", "VE", "EE", "GT", "HN", "NI", "PY", "PR", "TR", "KZ", "MD", "UA",
+    // Russia is the odd one: TopHit's Russian chart is streaming, not airplay,
+    // so no "airplay" in its body — but TopHit is a commercial monitor and no
+    // industry body has published a Russian chart since IFPI left in 2022.
+    "RU",
+  ]);
+
+  it("counts each tracked chart once, into the bucket it belongs in", () => {
+    const used = [...new Set(allChartItems.flatMap((r) => r.entries.map((e) => e.c)))];
+    const expected = { nationalBody: 0, airplayMonitor: 0, billboardCountry: 0, global: 0 };
+    for (const code of used) {
+      const body = CHART_COUNTRIES[code].body;
+      // Monitors are tested before Billboard here and after it in the
+      // classifier, so pin the fact that makes the two orders equivalent.
+      expect(
+        NOT_NATIONAL_BODIES.has(code) && /^Billboard/i.test(body),
+        `${code} is both a monitor chart and a Billboard chart — the two orders no longer agree`
+      ).toBe(false);
+
+      if (code === "GLB" || code === "GLBX") expected.global += 1;
+      else if (NOT_NATIONAL_BODIES.has(code)) expected.airplayMonitor += 1;
+      else if (/^Billboard/i.test(body)) expected.billboardCountry += 1;
+      else expected.nationalBody += 1;
+    }
+    expect(chartSourceSplit).toEqual(expected);
+    const total =
+      expected.nationalBody + expected.airplayMonitor + expected.billboardCountry + expected.global;
+    expect(total, "every tracked territory lands in exactly one bucket").toBe(chartCountryCount);
+  });
+
+  it("never files an airplay chart under the national industry bodies", () => {
+    for (const [code, c] of Object.entries(CHART_COUNTRIES)) {
+      if (!/airplay/i.test(c.body)) continue;
+      expect(
+        NOT_NATIONAL_BODIES.has(code),
+        `${code} is tracked on an airplay chart ("${c.body}") but the published split counts it as a national industry body`
+      ).toBe(true);
+    }
+  });
+
+  it("matches the published split", () => {
+    // Was { nationalBody: 53, billboardCountry: 14, global: 2 } — the 53 folded
+    // in the 16 below. 37 + 16 + 14 + 2 = 69 tracked territories.
+    expect(chartSourceSplit).toEqual({
+      nationalBody: 37,
+      airplayMonitor: 16,
+      billboardCountry: 14,
+      global: 2,
+    });
   });
 });
 

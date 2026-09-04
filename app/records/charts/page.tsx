@@ -45,8 +45,16 @@ export default function ChartsPage() {
     { num: chartCountryCount, label: "Territories", note: `${chartCountryCount - 2} countries + 2 global charts` },
     { num: allReleases, label: "Charting releases", note: "albums, singles, features" },
   ];
+  // The airplay/monitor row is new because the panel used to have three rows
+  // and the first of them absorbed every airplay carve-out: Monitor Latino,
+  // TopHit, Radiomonitor, Ipsos and BMAT were all published here as "national
+  // industry-body charts". See chartSourceSplit in data/charts.ts.
   const split = [
     { n: chartSourceSplit.nationalBody, label: "national industry-body charts" },
+    {
+      n: chartSourceSplit.airplayMonitor,
+      label: "airplay or monitor charts, where a country has no other",
+    },
     {
       n: chartSourceSplit.billboardCountry,
       label: "Billboard country charts, where no national chart exists",
@@ -126,6 +134,9 @@ export default function ChartsPage() {
             {chartSourceSplit.nationalBody} come from the national industry body itself — the
             Official Charts Company, SNEP, GfK, FIMI, PROMUSICAE, ZPAV, ARIA, Recorded Music
             NZ, IRMA, Ultratop, AFP, TurnTable, The Official SA Charts and their equivalents.{" "}
+            {chartSourceSplit.airplayMonitor} are airplay or broadcast-monitor charts —
+            Monitor Latino, TopHit, Radiomonitor, Ipsos, BMAT, PROPHON — counted only where the
+            country publishes no other national chart.{" "}
             {chartSourceSplit.billboardCountry}{" "}
             are Billboard country charts, used only where a territory publishes no chart of its own — including the US and Canada, where
             Billboard&apos;s is the chart of record. The other {chartSourceSplit.global}{" "}

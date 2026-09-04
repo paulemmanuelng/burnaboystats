@@ -519,14 +519,34 @@ export const numberOneCountryCount = new Set(
   allChartItems.flatMap((r) => r.entries.filter((e) => e.peak === 1).map((e) => e.c))
 ).size;
 
+/** A chart NOT published by a national industry body: an airplay chart, or one
+ *  compiled by a broadcast/streaming monitor on its own account.
+ *
+ *  Named monitors rather than a country list on purpose — a list would have to
+ *  be remembered every time a territory is added, and the split below shipped
+ *  wrong precisely because nothing was remembering. Any new Monitor Latino or
+ *  TopHit row is classified the moment it lands. `airplay` catches PROPHON,
+ *  which IS Bulgaria's national body but publishes only an airplay chart; the
+ *  monitor names catch Russia, whose TopHit row is streaming and so says
+ *  nothing about airplay. */
+const NOT_A_NATIONAL_BODY =
+  /airplay|Ipsos|BMAT|Radiomonitor|TopHit|Monitor Latino|Mediabase|Record Report/i;
+
 // Where the tracked charts actually come from, counted from the data rather
 // than asserted. Published on /methodology and /records/charts so the mix of
-// sources is visible instead of implied: most territories use their national
-// industry body's chart, but some countries have no such chart and Billboard's
-// country chart is the principal one there.
+// sources is visible instead of implied.
+//
+// The classifier used to have three buckets and no idea what an airplay
+// carve-out was: anything whose body did not begin "Billboard" was counted as
+// "national industry-body charts", so all fifteen airplay charts and Russia's
+// TopHit streaming row were published as national bodies — 53 where the honest
+// figure is 37, on the two pages that argue for this site's rigour, and in
+// direct contradiction of the airplay rule stated three paragraphs above.
+// Monitor Latino is not Guatemala's industry body; TopHit is not Ukraine's.
 export const chartSourceSplit = (() => {
   const used = new Set(allChartItems.flatMap((r) => r.entries.map((e) => e.c)));
   let nationalBody = 0;
+  let airplayMonitor = 0;
   let billboardCountry = 0;
   let global = 0;
   for (const code of used) {
@@ -534,9 +554,10 @@ export const chartSourceSplit = (() => {
     if (!meta) continue;
     if (code === "GLB" || code === "GLBX") global += 1;
     else if (/^Billboard/i.test(meta.body)) billboardCountry += 1;
+    else if (NOT_A_NATIONAL_BODY.test(meta.body)) airplayMonitor += 1;
     else nationalBody += 1;
   }
-  return { nationalBody, billboardCountry, global };
+  return { nationalBody, airplayMonitor, billboardCountry, global };
 })();
 
 export const chartCountryCount = new Set(

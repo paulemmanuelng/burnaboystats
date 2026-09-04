@@ -94,7 +94,16 @@ export default function MobileOfficialCharts({
   territoryCount: number;
   numberOnes: number;
   releaseCount: number;
-  sourceSplit?: { nationalBody: number; billboardCountry: number; global: number };
+  sourceSplit?: {
+    nationalBody: number;
+    /** Airplay and broadcast-monitor charts. Printed separately because the
+     *  footnote used to fold them into `nationalBody` and then say "airplay
+     *  charts excluded" in the same breath — the desktop panel had the same
+     *  fault. See chartSourceSplit in data/charts.ts. */
+    airplayMonitor: number;
+    billboardCountry: number;
+    global: number;
+  };
   /** Artwork by release title — Burna's catalogue lookup by default. */
   covers?: CoverMap;
   /** Replaces the source footnote where the split is not ours to publish. */
@@ -436,7 +445,7 @@ export default function MobileOfficialCharts({
       <p className={styles.footNote}>
         {sourceNote ??
           (sourceSplit
-            ? `Peaks on each country's principal national chart — ${sourceSplit.nationalBody} national bodies, ${sourceSplit.billboardCountry} Billboard country charts and ${sourceSplit.global} worldwide. Airplay and genre charts excluded.`
+            ? `Peaks on each country's principal national chart — ${sourceSplit.nationalBody} national bodies, ${sourceSplit.airplayMonitor} airplay or monitor charts where a country has no other, ${sourceSplit.billboardCountry} Billboard country charts and ${sourceSplit.global} worldwide. Genre charts excluded.`
             : "Peaks on each country's principal national chart. Airplay and genre charts excluded.")}
       </p>
 

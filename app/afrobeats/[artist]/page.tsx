@@ -22,6 +22,7 @@ import {
   tierCount,
   type AfroArtist,
   countryMeta,
+  chartCountryMeta,
   plaqueLabel,
   chartEntries,
   chartTerritories,
@@ -80,7 +81,10 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   const rival = opponentOf(a);
   // Which register and which platform a reader is about to open. Both derived:
   // "and more" only appears when there genuinely is more than one.
-  const bodies = topBody(a.charts.flatMap((r) => r.entries), (c) => countryMeta(c).body);
+  // chartCountryMeta, not countryMeta: this note names the chart bodies a
+  // reader is about to open, and countryMeta answers with the CERTIFYING body —
+  // so it named RIAA, BPI and BVMI as the sources of chart peaks.
+  const bodies = topBody(a.charts.flatMap((r) => r.entries), (c) => chartCountryMeta(c).body);
   const chartsNote = andMore(bodies.top, bodies.total);
   const plats = live ? topPlatform(live.platformTotals) : { total: 0 };
   const liveNote = andMore(plats.top, plats.total);

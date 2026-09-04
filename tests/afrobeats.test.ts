@@ -18,7 +18,9 @@ import {
   plaqueLabel,
   bestPeaks,
 } from "../app/data/afrobeats";
-import { countryMeta } from "../app/data/afrobeats";
+import { countryMeta, chartCountryMeta } from "../app/data/afrobeats";
+import { COUNTRIES as CERT_COUNTRIES } from "../app/data/certifications";
+import { readFileSync } from "node:fs";
 
 // These totals are the published output of the 15–17 Aug 2026 register sweeps.
 // They are pinned because the data file is GENERATED from those documents, and
@@ -815,10 +817,12 @@ describe("board chart provenance", () => {
   /** Never an official national chart, wherever it appears. */
   const PLATFORMS = ["Spotify", "Apple Music", "iTunes", "Deezer", "Shazam", "Audiomack", "Boomplay"];
 
+  // chartCountryMeta throughout this block, not countryMeta: these are chart
+  // rows, and the guard has to read the body the pages actually print.
   it("every airplay board country declares itself as airplay", () => {
     const bad: string[] = [];
     for (const [code, read] of Object.entries(BOARD_AIRPLAY)) {
-      const body = countryMeta(code).body;
+      const body = chartCountryMeta(code).body;
       if (!/airplay/i.test(body))
         bad.push(`${code}: swept from ${read}, but the body reads "${body}"`);
     }
@@ -830,12 +834,70 @@ describe("board chart provenance", () => {
     for (const a of sweptArtists) {
       for (const r of a.charts) {
         for (const e of r.entries) {
-          const body = countryMeta(e.c).body;
+          const body = chartCountryMeta(e.c).body;
           const p = PLATFORMS.find((x) => body.includes(x));
           if (p) bad.push(`${a.slug} · ${r.title} · ${e.c} is credited to ${p}`);
         }
       }
     }
     expect(bad).toEqual([]);
+  });
+
+  /**
+   * The second, wider way the board named the wrong source — and the one no
+   * test covered.
+   *
+   * PR #154 fixed five countries whose STORED body was wrong. This is about the
+   * LOOKUP: countryMeta reads the certification ledger first, so every chart row
+   * resolved through it was attributed to a CERTIFYING body. 1,063 rendered rows
+   * across 20 countries: a US peak sourced to "RIAA", a UK peak to "BPI",
+   * Germany's to "BVMI" when its chart is GfK, Denmark's to "IFPI Denmark" when
+   * its chart is Hitlisten, Sweden's to "GLF" (Sverigetopplistan), Canada's to
+   * "Music Canada" (Billboard Canada), South Africa's to "RiSA". A certifier is
+   * not a chart compiler.
+   */
+  // Bodies that genuinely run both their country's chart and its certification
+  // programme, so seeing one over a chart row proves nothing. Everything else
+  // in the certification ledger is a certifier and must never appear.
+  const RUNS_BOTH = new Set(["ARIA", "Ultratop", "SNEP", "IFPI Greece", "FIMI", "AFP"]);
+
+  it("attributes a chart peak to a chart body, never to a certifying one", () => {
+    const certifying = new Set<string>();
+    for (const c of Object.values(CERT_COUNTRIES)) certifying.add(c.body);
+    // The board's own certifiers too — Mexico's AMPROFON is board-only, and it
+    // was being printed over two chart rows (Rema's "Calm Down", Ayra Starr's
+    // "Santa") whose peaks came from Billboard Mexico Songs; AMPROFON's own
+    // Top 100 was discontinued in July 2020.
+    for (const a of afrobeatsArtists)
+      for (const r of a.releases) for (const c of r.certs) certifying.add(countryMeta(c.c).body);
+
+    const bad: string[] = [];
+    for (const a of afrobeatsArtists) {
+      for (const r of a.charts) {
+        for (const e of r.entries) {
+          const body = chartCountryMeta(e.c).body;
+          if (body === e.c) bad.push(`${a.slug} · ${e.c} resolves to no chart body at all`);
+          else if (certifying.has(body) && !RUNS_BOTH.has(body))
+            bad.push(`${a.slug} · ${r.title} · ${e.c} credits its chart peak to ${body}, a certifying body`);
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it("the board's chart route never resolves a row through countryMeta", () => {
+    // The helper is only half the fix: the pages have to call it. Everything
+    // under the charts route renders chart rows and nothing else, so the
+    // certification resolver has no business being in there.
+    for (const f of [
+      "app/afrobeats/[artist]/charts/page.tsx",
+      "app/afrobeats/[artist]/charts/opengraph-image.tsx",
+    ]) {
+      const src = readFileSync(f, "utf8").replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/[^\n]*/g, "$1");
+      expect(
+        /(?<![A-Za-z])countryMeta\(/.test(src),
+        `${f} resolves a chart row through countryMeta, which answers with the certifying body`
+      ).toBe(false);
+    }
   });
 });
