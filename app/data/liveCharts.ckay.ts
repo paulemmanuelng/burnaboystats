@@ -63,8 +63,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 165,
-            "movement": -23
+            "position": 167,
+            "movement": -25
           }
         ]
       },
@@ -96,19 +96,6 @@
             "name": "Morocco",
             "position": 136,
             "movement": -7
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 85,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -256,6 +243,26 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "love nwantiti (feat. ElGrande Toto) (North African Remix)",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MA",
+            "name": "Morocco",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/75ae57364aac308391c0e7e5116facd1/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BODY (danz)",

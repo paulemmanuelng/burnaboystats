@@ -224,22 +224,10 @@
             "movement": -8
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 150,
-            "movement": -34
-          },
-          {
             "country": "SG",
             "name": "Singapore",
             "position": 150,
             "movement": -21
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 157,
-            "movement": -19
           },
           {
             "country": "MU",
@@ -249,10 +237,16 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 178,
-            "movement": -27
+            "country": "BR",
+            "name": "Brazil",
+            "position": 165,
+            "movement": -20
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 183,
+            "movement": -75
           },
           {
             "country": "SC",
@@ -269,9 +263,8 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 81,
-            "movement": null,
-            "status": "new"
+            "position": 90,
+            "movement": -74
           }
         ]
       }
@@ -287,58 +280,53 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 60,
-            "movement": -28
+            "country": "AT",
+            "name": "Austria",
+            "position": 77,
+            "movement": -16
           },
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 62,
-            "movement": 6
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 62,
-            "movement": -31
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 64,
-            "movement": -18
+            "position": 80,
+            "movement": -12
           },
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 73,
-            "movement": -17
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 79,
-            "movement": -7
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 81,
-            "movement": -20
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 88,
-            "movement": -45
+            "position": 82,
+            "movement": -26
           },
           {
             "country": "DE",
             "name": "Germany",
+            "position": 92,
+            "movement": -6
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 92,
+            "movement": -20
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
             "position": 93,
-            "movement": -7
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 99,
+            "movement": -18
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 99,
+            "movement": -67
           }
         ]
       },
@@ -349,16 +337,15 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 35,
+            "position": 110,
             "movement": null,
             "status": "new"
           },
           {
             "country": "FI",
             "name": "Finland",
-            "position": 55,
-            "movement": null,
-            "status": "new"
+            "position": 133,
+            "movement": -55
           }
         ]
       },
@@ -372,86 +359,6 @@
             "position": 189,
             "movement": null,
             "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "SHE DID IT AGAIN",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 133,
-            "movement": -12
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 142,
-            "movement": 53
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 155,
-            "movement": -10
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 13,
-            "movement": -12
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 82,
-            "movement": -10
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 48,
-            "movement": 0
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 124,
-            "movement": 24
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 141,
-            "movement": -5
           }
         ]
       }
@@ -539,6 +446,144 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "SHE DID IT AGAIN",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 133,
+            "movement": -12
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 142,
+            "movement": 53
+          },
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 155,
+            "movement": -10
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 48,
+            "movement": 0
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 124,
+            "movement": 24
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 141,
+            "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 13,
+            "movement": -12
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 85,
+            "movement": -13
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "IS IT LOVE",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 97,
+            "movement": -5
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 101,
+            "movement": 44
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 193,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 107,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "TYLA +",
     "platforms": [
       {
@@ -592,96 +637,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "IS IT LOVE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 97,
-            "movement": -5
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 101,
-            "movement": 44
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 189,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 193,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 189,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 36,
-            "movement": -6
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 15,
-            "movement": 136
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "FAIRYTALE",
     "platforms": [
       {
@@ -711,6 +666,37 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 15,
+            "movement": 136
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 36,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Talk to Me",
@@ -760,8 +746,8 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 82,
-            "movement": -13
+            "position": 85,
+            "movement": -14
           }
         ]
       }
