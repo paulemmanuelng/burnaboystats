@@ -20,6 +20,33 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = "Official chart peaks by country, read from each country's own chart";
 
+
+/**
+ * Render to BYTES rather than returning the stream.
+ *
+ * next/og has no emoji glyphs, so satori resolves every flag through
+ * `loadAdditionalAsset`, which fetches twemoji from jsDelivr AT RENDER TIME.
+ * A failed <img> is swallowed by satori and the card just loses the picture —
+ * but a failed EMOJI fetch rejects the whole render, and these fifteen cards
+ * are not prerendered (zero paths in the prerender manifest, one per artist,
+ * re-rendered after every deploy the stats bot triggers). Returning the
+ * ImageResponse directly meant that rejection landed mid-stream, after the
+ * headers had gone out: an empty reply on the wire, a 500 at the edge. This is
+ * the same shape as the hardcoded-MIME bug that 500'd all fifteen car cards.
+ *
+ * Awaiting arrayBuffer() forces the render to complete here, where it can be
+ * caught. The id in the URL is a content hash, so the bytes are immutable.
+ */
+async function png(node: React.ReactElement) {
+  const buf = await new ImageResponse(node, { ...size }).arrayBuffer();
+  return new Response(buf, {
+    headers: {
+      "Content-Type": contentType,
+      "Cache-Control": "public, immutable, no-transform, max-age=31536000",
+    },
+  });
+}
+
 const GOLD = "#ffb627";
 const CYAN = "#8fe3f0";
 
@@ -40,7 +67,7 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
       ]
     : [];
 
-  return new ImageResponse(
+  const node = (showFlags: boolean) => (
     (
       <div
         style={{
@@ -98,7 +125,7 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
                   fontWeight: 700,
                 }}
               >
-                {meta.flag} #{e.peak} <span style={{ color: "#9b9ba3", fontWeight: 400 }}>{meta.name}</span>
+                {showFlags ? `${meta.flag} ` : ""}#{e.peak} <span style={{ color: "#9b9ba3", fontWeight: 400 }}>{meta.name}</span>
               </div>
             );
           })}
@@ -130,7 +157,16 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
           BURNABOYSTATS.COM/AFROBEATS/{(a?.slug ?? "").toUpperCase()}/CHARTS
         </div>
       </div>
-    ),
-    { ...size }
+    )
   );
+
+  try {
+    return await png(node(true));
+  } catch (err) {
+    // The flags are the only thing on this card that needs the network, and
+    // losing them costs nothing a reader can see: every chip already prints the
+    // country's NAME beside the peak. A card without flags beats a 500.
+    console.error(`OG flags unavailable for ${slug}, rendering without them:`, err);
+    return await png(node(false));
+  }
 }
