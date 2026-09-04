@@ -426,7 +426,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Wizkid — Chart History",
     path: "/afrobeats/wizkid/charts",
     section: "Afrobeats",
-    description: "Every Wizkid official chart entry and peak — 154 entries and 24 No. 1 placements, country by country.",
+    description: "Every Wizkid official chart entry and peak — 153 entries and 24 No. 1 placements, country by country.",
     keywords: ["wizkid", "wizzy", "star boy", "wizkid charts", "wizkid chart history", "wizkid chart peaks", "wizkid number ones"],
   },
   {
@@ -440,7 +440,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Davido — Chart History",
     path: "/afrobeats/davido/charts",
     section: "Afrobeats",
-    description: "Every Davido official chart entry and peak — 66 entries and 17 No. 1 placements, country by country.",
+    description: "Every Davido official chart entry and peak — 93 entries and 17 No. 1 placements, country by country.",
     keywords: ["davido", "obo", "david adeleke", "davido charts", "davido chart history", "davido chart peaks", "davido number ones"],
   },
   {
@@ -496,7 +496,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Ayra Starr — Chart History",
     path: "/afrobeats/ayra-starr/charts",
     section: "Afrobeats",
-    description: "Every Ayra Starr official chart entry and peak — 78 entries and 10 No. 1 placements, country by country.",
+    description: "Every Ayra Starr official chart entry and peak — 79 entries and 10 No. 1 placements, country by country.",
     keywords: ["ayra starr", "rush", "sability", "ayra starr charts", "ayra starr chart history", "ayra starr chart peaks", "ayra starr number ones"],
   },
   {
@@ -566,7 +566,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Asake — Chart History",
     path: "/afrobeats/asake/charts",
     section: "Afrobeats",
-    description: "Every Asake official chart entry and peak — 123 entries and 24 No. 1 placements, country by country.",
+    description: "Every Asake official chart entry and peak — 127 entries and 24 No. 1 placements, country by country.",
     keywords: ["asake", "ahmed ololade", "mr money", "asake charts", "asake chart history", "asake number ones"],
   },
   {
@@ -615,7 +615,7 @@ export const searchIndex: SearchDoc[] = [
     title: "CKay — Official Chart Peaks",
     path: "/afrobeats/ckay/charts",
     section: "Afrobeats",
-    description: "Every official national chart peak for CKay — 22 entries across 16 territories, 5 of them No. 1.",
+    description: "Every official chart peak for CKay — 29 entries across 20 territories, 6 of them No. 1.",
     keywords: ["ckay charts", "love nwantiti chart", "ckay peak", "ckay number one"],
   },
   {
