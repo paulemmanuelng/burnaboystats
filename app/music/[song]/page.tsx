@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./song.module.css";
 import KeepExploring from "../../components/KeepExploring";
+import FaqList from "../../components/FaqList";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { songBySlug, songSlugs, songs, type Song } from "../../data/songs";
@@ -357,18 +358,24 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
           phone width too, so the schema was describing content the crawler
           could not see, and markup that does not match the page is a spam
           signal rather than a ranking one.
-          Flat list, both widths, every answer open: nobody arrives at a song
-          page wanting to tap a question they already asked. */}
+          Flat list on a laptop, every answer open: nobody arrives at a song
+          page wanting to tap a question they already asked.
+          On a phone the questions fold — asked for by the owner, and the reason
+          it does not reinstate the bug above is in FaqList: it renders this
+          same open list on the server and collapses only after mount, so the
+          answers are in the HTML either way and a reader with no JavaScript
+          still gets all of them. The first one stays open. */}
       <section className={styles.sectionPad} aria-labelledby="song-faq">
         <h2 id="song-faq" className={styles.h2}>Frequently asked</h2>
-        <div className={styles.faqList}>
-          {song.faqs.map((f) => (
-            <div key={f.q} className={styles.faqItem}>
-              <h3 className={styles.faqQ}>{f.q}</h3>
-              <p className={styles.faqA}>{f.a}</p>
-            </div>
-          ))}
-        </div>
+        <FaqList
+          items={song.faqs}
+          classes={{
+            list: styles.faqList,
+            item: styles.faqItem,
+            q: styles.faqQ,
+            a: styles.faqA,
+          }}
+        />
       </section>
 
       {/* ── Onward ───────────────────────────────────────────── */}

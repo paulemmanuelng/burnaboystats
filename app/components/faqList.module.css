@@ -1,0 +1,68 @@
+/* The phone-only question row for FaqList.
+
+   Everything here is rendered ONLY below 900px — FaqList swaps the plain
+   heading text for this button after mount, and never on a laptop — so nothing
+   in this file needs a media query, and nothing in it can reach the desktop
+   layout even by accident. That is deliberate: the desktop FAQ is meant to be
+   byte-identical to what #170 and #171 shipped, and the safest way to keep it
+   that way is for these rules to have no selector that can match there. */
+
+.toggle {
+  /* Inherit rather than restate. The parent is the page's own .faqQ — 16px in
+     song.module.css, 1.12rem in dai-dai.module.css — so a button that inherits
+     its font and colour looks exactly like the heading text it stands in for on
+     both pages, and keeps looking like it if either changes. A button resets
+     font, colour and text-align in the UA stylesheet; the inherited properties
+     it does NOT reset (letter-spacing, text-transform) are left alone. */
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  position: relative;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 44px of thumb without 44px of row.
+   The site's touch minimum is 44px (see /methodology and /primitives), but a
+   question is one ~21px line and growing every row to 44px would re-space two
+   lists whose rhythm both screens already ship — 18px bands on the song page,
+   18px card insets on /dai-dai. So the hit area is extended into the padding
+   the item already carries, which is the trick .badgeMore uses on the
+   certifications screen. Both lists leave at least 36px between one question's
+   text and the next, so no two targets overlap. */
+.toggle::after {
+  content: "";
+  position: absolute;
+  inset: -11px 0;
+}
+
+/* +/− rather than a chevron. This site has no chevron disclosure anywhere — the
+   only chevrons are back arrows — and both of these pages already carry a +/−
+   fold: "Show the full breakdown (18 more) +" sits one section above this list
+   on /dai-dai, and the certifications screen opens its badge rows with +N / −.
+   Gold and mono, like every other affordance on the mobile screens.
+   No transition, for the same reason: not one of those disclosures animates its
+   reveal, and a state glyph that flips instantly is what a reader here already
+   knows. (The global prefers-reduced-motion switch would kill it anyway.) */
+.glyph {
+  flex: none;
+  width: 16px;
+  text-align: center;
+  font-family: var(--font-mono), monospace;
+  font-size: 15px;
+  font-weight: 700;
+  /* Sits on the question's own first line rather than the glyph's, so it stays
+     put when a long question wraps to three. */
+  line-height: inherit;
+  color: var(--gold);
+}

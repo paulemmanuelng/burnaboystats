@@ -1,4 +1,5 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 
@@ -49,6 +50,27 @@ import mobileFaqStyles from "../app/components/mobileFaq.module.css";
  * by reading the source, because the hiding is two files away from the markup —
  * a class name in the JSX, a `display:none` in a media query — and a source
  * grep for "desktopOnly" would miss any other wrapper that hides the same way.
+ *
+ * ── The phone accordion, and why this file grew a second half ──────────────
+ *
+ * /music/[song], /dai-dai and /dai-dai/es now FOLD their questions on a phone
+ * (FaqList). That is allowed — Google indexes accordion content — but it is one
+ * refactor away from being #170 again, so both states are asserted, and the
+ * distinction between them is the whole point:
+ *
+ *   1. As rendered. This is the server HTML, the no-JS reader and the first
+ *      paint, and it must be the FLAT, OPEN list: every answer painted. jsdom
+ *      reports no media query as matching, which is the same branch, but the
+ *      stub below states it rather than relying on that.
+ *   2. At 390px, after mount, with the accordion actually collapsed. Every
+ *      answer must still be in the DOM and one activation of a real button
+ *      away — the test presses them and re-runs the same assertion.
+ *
+ * Both halves share one walk, which now also treats the `hidden` ATTRIBUTE as
+ * hiding. Without that addition the second half would pass on a page that
+ * shipped no answers at all: `hidden` is how FaqList collapses a panel, and a
+ * guard that only knows about class names would call a collapsed answer
+ * "painted" and wave the whole thing through.
  */
 
 const APP = resolve(__dirname, "..", "app");
@@ -200,12 +222,50 @@ const PHONE_HIDDEN = (() => {
   return scoped;
 })();
 
+/**
+ * Why an element is not painted at 390px, or null if it is.
+ *
+ * The `hidden` attribute is checked alongside the class names because it hides
+ * exactly as hard — it is `display: none` from the UA stylesheet plus removal
+ * from the accessibility tree — and it is how FaqList folds an answer away on a
+ * phone. A walk that only knew about stylesheets would report every collapsed
+ * answer as visible and this file would stop being able to fail.
+ */
 const hiddenAncestor = (el: Element): string | null => {
   for (let n: Element | null = el; n; n = n.parentElement) {
+    if (n.hasAttribute("hidden")) return "[hidden]";
     for (const c of n.classList) if (PHONE_HIDDEN.has(c)) return c;
   }
   return null;
 };
+
+/**
+ * Puts the render in a 390px screen's shoes.
+ *
+ * FaqList only becomes an accordion when `matchMedia("(max-width: 900px)")`
+ * matches, and jsdom answers every query with `matches: false` — so without
+ * this the phone half of the file would render the desktop markup and assert
+ * nothing about the fold at all.
+ */
+function useViewportWidth(px: number) {
+  beforeEach(() => {
+    vi.stubGlobal(
+      "matchMedia",
+      (query: string): MediaQueryList =>
+        ({
+          matches: Number(query.match(/max-width:\s*(\d+)px/)?.[1] ?? 0) >= px,
+          media: query,
+          onchange: null,
+          addListener: vi.fn(),
+          removeListener: vi.fn(),
+          addEventListener: vi.fn(),
+          removeEventListener: vi.fn(),
+          dispatchEvent: vi.fn(),
+        }) as unknown as MediaQueryList
+    );
+  });
+  afterEach(() => vi.unstubAllGlobals());
+}
 
 /* ── The check ──────────────────────────────────────────────────────────── */
 
@@ -225,6 +285,22 @@ const hiddenAncestor = (el: Element): string | null => {
  * different figure all still fail.
  */
 const normalise = (s: string) => s.replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
+
+/**
+ * The page as the server serialises it: no effects, no hydration, no widths.
+ *
+ * This is what Googlebot fetches, what a reader sees before the JavaScript
+ * lands, and all a reader whose JavaScript fails will ever get — so it is the
+ * copy that has to carry every answer, and it is rendered here rather than
+ * inferred from a client render. `render()` runs effects, and it is an effect
+ * that folds the accordion; running one here would test the phone state while
+ * claiming to describe the served bytes.
+ */
+function servedMarkup(el: React.ReactElement): HTMLElement {
+  const host = document.createElement("div");
+  host.innerHTML = renderToStaticMarkup(el);
+  return host;
+}
 
 /** Every answer the page's own FAQPage node promises. */
 function promisedAnswers(container: HTMLElement): string[] {
@@ -260,6 +336,48 @@ function expectAnswersVisibleOnAPhone(container: HTMLElement, route: string) {
   }
 }
 
+/**
+ * The same assertion, run against a phone that has already folded the answers.
+ *
+ * Returns how many were folded, so a caller can tell "the accordion rendered
+ * and hid things" from "nothing collapsed and this was the flat list again" —
+ * the difference between a check and a formality.
+ *
+ * A folded answer passes only if a REAL button, naming it in aria-controls and
+ * reporting aria-expanded="false", opens it: an answer reachable only by a div
+ * with an onClick fails here, and so does one that is simply gone. Then every
+ * button is pressed and the flat-list assertion above has to hold.
+ */
+function expectAnswersReachableOnAPhone(container: HTMLElement, route: string): number {
+  const answers = promisedAnswers(container);
+  let folded = 0;
+
+  for (const answer of answers) {
+    const want = normalise(answer);
+    const el = [...container.querySelectorAll("*")].find(
+      (e) => normalise(e.textContent ?? "") === want
+    );
+    expect(el, `${route}: answer is in the schema but nowhere in the DOM — "${answer}"`).toBeTruthy();
+    if (!el || hiddenAncestor(el) === null) continue;
+
+    folded++;
+    const control = el.id ? container.querySelector(`[aria-controls="${el.id}"]`) : null;
+    expect(
+      control?.tagName,
+      `${route}: this answer is folded away with nothing that can open it — a phone reader, and ` +
+        `Googlebot with it, is back where #170 left them: "${answer}"`
+    ).toBe("BUTTON");
+    expect(
+      control?.getAttribute("aria-expanded"),
+      `${route}: the control for a folded answer does not say it is collapsed`
+    ).toBe("false");
+    fireEvent.click(control as Element);
+  }
+
+  expectAnswersVisibleOnAPhone(container, route);
+  return folded;
+}
+
 describe("every route emitting FAQPage answers a phone reader", () => {
   it("has every FAQPage route either checked here or named as queued", () => {
     // A tenth emitter must be classified rather than inheriting the exemption
@@ -284,23 +402,20 @@ describe("every route emitting FAQPage answers a phone reader", () => {
 
   // The route this file was written for. All 14, because the FAQ lives in the
   // shared template and one page proves nothing about the other thirteen.
-  it.each(songSlugs)("/music/%s shows its answers at 390px", async (slug) => {
+  it.each(songSlugs)("/music/%s serves its answers, open", async (slug) => {
     const el = await SongPage({ params: Promise.resolve({ song: slug }) });
-    const { container } = render(el);
-    expectAnswersVisibleOnAPhone(container, `/music/${slug}`);
+    expectAnswersVisibleOnAPhone(servedMarkup(el), `/music/${slug}`);
   });
 
-  it("/faq shows its answers at 390px", async () => {
+  it("/faq serves its answers, open", async () => {
     // Already correct, and pinned: the desktop column is inside .desktopOnly,
     // so the whole page rests on MobileFaq rendering the same questions.
-    const { container } = render(await FaqPage());
-    expectAnswersVisibleOnAPhone(container, "/faq");
+    expectAnswersVisibleOnAPhone(servedMarkup(await FaqPage()), "/faq");
   });
 
-  it("/analysis/spotify-unmerge shows its answers at 390px", async () => {
+  it("/analysis/spotify-unmerge serves its answers, open", async () => {
     // Already correct: one CSS-driven layout, no .desktopOnly around the FAQ.
-    const { container } = render(await UnmergePage());
-    expectAnswersVisibleOnAPhone(container, "/analysis/spotify-unmerge");
+    expectAnswersVisibleOnAPhone(servedMarkup(await UnmergePage()), "/analysis/spotify-unmerge");
   });
 
   // The site's most-trafficked page, and the one where the withheld answers
@@ -309,17 +424,66 @@ describe("every route emitting FAQPage answers a phone reader", () => {
   // mobile-visible lineup note NAMES the Ghetto Kids without answering who they
   // are, so the phone reader who searched that question got the page and not
   // the answer.
-  it("/dai-dai shows its answers at 390px", () => {
-    const { container } = render(<DaiDaiPage />);
-    expectAnswersVisibleOnAPhone(container, "/dai-dai");
+  it("/dai-dai serves its answers, open", () => {
+    expectAnswersVisibleOnAPhone(servedMarkup(<DaiDaiPage />), "/dai-dai");
   });
 
   // Asserted separately rather than folded into the English case. These two
   // editions are hand-written translations that have drifted before — the
   // Spanish page once shipped with three of the six halftime acts missing while
   // its markup matched — so "the English one renders" proves nothing about it.
-  it("/dai-dai/es shows its answers at 390px", () => {
+  it("/dai-dai/es serves its answers, open", () => {
+    expectAnswersVisibleOnAPhone(servedMarkup(<DaiDaiPageES />), "/dai-dai/es");
+  });
+});
+
+/**
+ * The other half: a real 390px render, with the accordion actually folded.
+ *
+ * Everything above is about the bytes that leave the server. This is about the
+ * page a person is holding a second later, and the two can now differ — which
+ * is exactly why the second one needs its own assertions rather than an
+ * assumption that the first implies it.
+ */
+describe("and the phone accordion folds those answers without losing them", () => {
+  useViewportWidth(390);
+
+  it.each(songSlugs)("/music/%s keeps every answer one tap away", async (slug) => {
+    const el = await SongPage({ params: Promise.resolve({ song: slug }) });
+    const { container } = render(el);
+    const answers = promisedAnswers(container).length;
+    // Exactly one stays open — the first. A section of nothing but headings
+    // reads as an empty list, and the opening answer shows what tapping does.
+    // Pinned so that changing the choice is a decision somebody makes here,
+    // and so this test cannot quietly become the flat-list one again.
+    expect(
+      expectAnswersReachableOnAPhone(container, `/music/${slug}`),
+      `/music/${slug}: expected all but the first answer to start folded`
+    ).toBe(answers - 1);
+  });
+
+  it("/dai-dai keeps every answer one tap away", () => {
+    const { container } = render(<DaiDaiPage />);
+    const answers = promisedAnswers(container).length;
+    expect(expectAnswersReachableOnAPhone(container, "/dai-dai")).toBe(answers - 1);
+  });
+
+  it("/dai-dai/es keeps every answer one tap away", () => {
     const { container } = render(<DaiDaiPageES />);
-    expectAnswersVisibleOnAPhone(container, "/dai-dai/es");
+    const answers = promisedAnswers(container).length;
+    expect(expectAnswersReachableOnAPhone(container, "/dai-dai/es")).toBe(answers - 1);
+  });
+
+  // The two routes that were already right and are NOT in the accordion's
+  // scope. Nothing folds here, so "0 folded" is the assertion — it is what
+  // catches FaqList being wired into a screen it was never designed for.
+  it("/faq still shows every answer without a tap", async () => {
+    const { container } = render(await FaqPage());
+    expect(expectAnswersReachableOnAPhone(container, "/faq")).toBe(0);
+  });
+
+  it("/analysis/spotify-unmerge still shows every answer without a tap", async () => {
+    const { container } = render(await UnmergePage());
+    expect(expectAnswersReachableOnAPhone(container, "/analysis/spotify-unmerge")).toBe(0);
   });
 });
