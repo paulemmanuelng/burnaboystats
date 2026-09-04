@@ -35,7 +35,11 @@ const endpoints = [
   {
     path: `/api/${API_VERSION}/afrobeats`,
     description:
-      `The Afrobeats Board — ${sweptArtists.length} artists' certifications and chart records counted by one stated rule, so the totals are comparable.`,
+      // + 1 for the subject, who is a row on that board like everyone else.
+      // This said ${sweptArtists.length} — fifteen — while the endpoint it
+      // describes, the /afrobeats page and the docs page all said sixteen: the
+      // directory contradicted the thing it was pointing at.
+      `The Afrobeats Board — ${sweptArtists.length + 1} artists' certifications and chart records counted by one stated rule, so the totals are comparable.`,
   },
   {
     path: `/api/${API_VERSION}/live-charts`,

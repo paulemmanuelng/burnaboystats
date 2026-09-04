@@ -22,9 +22,18 @@ export function GET() {
     endpoint: "/certifications",
     description:
       "Certifications by release, each verified against the awarding body's own database. `multiplier` is the multi-platinum/gold factor (2 = 2× Platinum).",
+    // 234 awards across 85 releases. `countOf` names the unit, because `count`
+    // alone read as "85 releases" to anyone who assumed it was the length of
+    // `data.releases` — that length is now published as `certifiedReleases`,
+    // the same way /charts publishes `chartedReleases`.
     count: totalAwards(),
+    countOf: "certifications",
     data: {
-      totals: { certifications: totalAwards(), countries: countryCount },
+      totals: {
+        certifications: totalAwards(),
+        countries: countryCount,
+        certifiedReleases: releases.length,
+      },
       releases,
     },
   });

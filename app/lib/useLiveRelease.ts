@@ -39,6 +39,15 @@ function load(source: string): Promise<Map<string, LiveRelease>> {
 export function useLiveRelease(title: string, active: boolean, source = "/api/v1/live-charts") {
   const [state, setState] = useState<{
     release?: LiveRelease;
+    /**
+     * The fetch came back. Tracked separately from `release`, which is
+     * `undefined` in TWO different situations that used to be indistinguishable:
+     * before the snapshot settles, and after a snapshot that settled fine but
+     * carries no row for this title. `loading` was derived from `!release`, so
+     * the second case left it true forever — the panel spun for the whole life
+     * of the page and the caller's error branch was never reached.
+     */
+    loaded?: boolean;
     error?: boolean;
   }>({});
   // Bumped by retry so the effect re-runs after a cleared failure.
@@ -48,7 +57,7 @@ export function useLiveRelease(title: string, active: boolean, source = "/api/v1
     if (!active) return;
     let on = true;
     load(source)
-      .then((m) => on && setState({ release: m.get(title) }))
+      .then((m) => on && setState({ release: m.get(title), loaded: true }))
       .catch(() => on && setState({ error: true }));
     return () => {
       on = false;
@@ -57,9 +66,24 @@ export function useLiveRelease(title: string, active: boolean, source = "/api/v1
 
   return {
     release: state.release,
+    /** The snapshot could not be fetched at all. */
     error: !!state.error,
-    loading: active && !state.release && !state.error,
+    /**
+     * The snapshot arrived and has no row for this title. NOT an error, and
+     * worth telling apart: the pages are statically generated while
+     * /api/v1/live-charts is served `stale-while-revalidate=86400`, so a
+     * release that entered a chart since the reader's cached snapshot was taken
+     * is on the page and absent from the JSON. Reporting that as "couldn't
+     * load" asserts a network failure that did not happen.
+     */
+    missing: !!state.loaded && !state.release,
+    loading: active && !state.loaded && !state.error,
     retry: () => {
+      // Drop the cached snapshot as well. `load` only clears it on failure, so
+      // a retry after a fetch that SUCCEEDED-but-empty re-awaited the very same
+      // resolved promise and could only ever produce the same empty answer —
+      // a button that could not do anything.
+      snapshots.delete(source);
       setState({});
       setAttempt((n) => n + 1);
     },

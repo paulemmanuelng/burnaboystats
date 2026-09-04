@@ -79,6 +79,11 @@ describe("sitemap lastmod", () => {
     const pipeline = new Set(pipelineRoutes.map((r) => `${siteUrl}${r.path}`));
     const ahead = rows
       .filter((r) => !pipeline.has(r.url))
+      // A row may now carry no lastmod at all: the site-wide fallback is gone,
+      // so a route with no evidence says nothing rather than borrowing the
+      // newest date in the feed. Nothing is never "ahead" of anything, and
+      // tests/sitemapEvidence.test.ts is what holds the omissions themselves.
+      .filter((r) => r.lastModified)
       .filter((r) => (r.lastModified as Date).toISOString().slice(0, 10) > newestFact)
       .map((r) => r.url);
     expect(ahead).toEqual([]);

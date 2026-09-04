@@ -57,7 +57,7 @@ export default function LiveReleaseBlock({
   source?: string;
 }) {
   const [opened, setOpened] = useState(false);
-  const { release, error, loading, retry } = useLiveRelease(r.title, opened, source);
+  const { release, error, missing, loading, retry } = useLiveRelease(r.title, opened, source);
   const art = r.cover ?? coverFor(r.title);
 
   return (
@@ -114,6 +114,21 @@ export default function LiveReleaseBlock({
       </summary>
 
       {loading && <p className={styles.panelLoading}>Loading the country list…</p>}
+      {/* The snapshot came back without this release. Its mobile twin already
+          says so; without this branch the desktop panel opened, stopped
+          spinning and then showed nothing at all — the fix for the infinite
+          spinner turned one wrong state into a silently empty one. Not an
+          error: the pages are static and the snapshot is served
+          stale-while-revalidate, so a release that started charting since the
+          reader's copy was cached is on the page and absent from the JSON. */}
+      {missing && (
+        <p className={styles.panelLoading}>
+          Not in the snapshot your browser has yet.{" "}
+          <button type="button" className={styles.panelRetry} onClick={retry}>
+            Fetch the latest
+          </button>
+        </p>
+      )}
       {error && (
         <p className={styles.panelLoading}>
           Couldn&apos;t load the country list.{" "}

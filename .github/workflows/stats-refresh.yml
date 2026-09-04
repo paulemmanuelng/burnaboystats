@@ -8,6 +8,42 @@ name: Stats refresh
 #
 # The separate weekly "Stats monitor" workflow stays as the plain tripwire (an
 # issue) for drift that can't be auto-drafted.
+#
+# ── WHAT THIS JOB CAN AND CANNOT DO TODAY ──────────────────────────────────
+#
+# It drafts for the metrics WITHOUT `live: true`, and as of 4 Sep 2026 there are
+# exactly two of them — `spotify-monthly-listeners` and `youtube-total-views` —
+# and BOTH are deliberately monitor-only, with no `siteTargets`:
+#
+#   • spotify-monthly-listeners tracks the CURRENT figure, which the site does
+#     not publish (it publishes the all-time peak, a different metric).
+#   • youtube-total-views watches kworb, which sees 187 of his 344 videos. It is
+#     pinned watch-only by tests/watchedMetrics.test.ts precisely so nothing can
+#     wire it to the site's all-channel 4.0B.
+#
+# `applyTargets` returns `ok:false` for a metric with no targets, so every result
+# lands in `manual`, `applied` stays empty, `has_changes` is false — and the PR
+# step below has therefore been UNREACHABLE on every run since this workflow was
+# added. It went green daily for a month having drafted nothing, and a green tick
+# on a job whose purpose is "open a PR when a figure drifts" reads as "no figure
+# drifted". That is the opposite of what was happening: it detected a 5.2% drift
+# on the monthly-listeners baseline every single morning and threw the report
+# away, along with the edits it had made to the working tree.
+#
+# Both metrics are RIGHT to have no targets, so the fix is not to wire them up —
+# that would publish a current figure over a peak, and a partial view count over
+# a whole one. The fix is that the run now says what it did. The report always
+# reaches the job summary, and the two states below are annotated:
+#
+#   • nothing was draftable at all → a notice, with the count, so the structural
+#     dead end is visible on the run rather than inferred from a silent green;
+#   • something drifted but could not be drafted → a warning, because that is
+#     real news the job used to compute and discard.
+#
+# The PR step stays exactly as it is. It is not dead code — it is armed, and it
+# fires the day a review-gated metric with a site target is added. The
+# annotations below are derived from the config on every run, so they go quiet by
+# themselves on that same day.
 
 on:
   schedule:
@@ -37,6 +73,72 @@ jobs:
       - name: Draft stat updates from live sources
         id: refresh
         run: node scripts/apply-stat-updates.mjs
+
+      # Runs even when the step above fails, so a crashed refresh still shows
+      # whatever it managed to write rather than only a red X.
+      - name: Publish the run report
+        if: always() && steps.refresh.outcome != 'skipped'
+        run: |
+          set -euo pipefail
+          if [ -f refresh-pr-body.md ]; then
+            cat refresh-pr-body.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "The refresh script produced no report — it failed before writing one." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # Say out loud what this run could and could not do. Derived from the
+      # config every time, so it corrects itself the day the shape changes.
+      - name: Say whether anything could be drafted
+        if: always() && steps.refresh.outcome == 'success'
+        env:
+          HAS_CHANGES: ${{ steps.refresh.outputs.has_changes }}
+          HAS_MANUAL: ${{ steps.refresh.outputs.has_manual }}
+          HAS_REJECTED: ${{ steps.refresh.outputs.has_rejected }}
+        run: |
+          set -euo pipefail
+          node - <<'JS'
+          const { readFileSync, appendFileSync } = require("node:fs");
+
+          // Guarded for the same reason scripts/check-stats.mjs is: this file is
+          // hand-edited every time a figure is confirmed, and a bare parse would
+          // fail here with a SyntaxError that names neither the file nor the job.
+          let config;
+          try {
+            config = JSON.parse(readFileSync("scripts/watched-metrics.json", "utf8"));
+          } catch (err) {
+            console.log(`::error::scripts/watched-metrics.json is unreadable (${err.message}) — the refresh step above cannot have checked anything against it.`);
+            process.exit(1);
+          }
+
+          // The exact filter apply-stat-updates.mjs uses in default mode.
+          const reviewGated = config.metrics.filter((m) => !m.live);
+          const draftable = reviewGated.filter((m) => (m.siteTargets ?? []).length > 0);
+          const say = (line) => appendFileSync(process.env.GITHUB_STEP_SUMMARY, `\n${line}\n`);
+
+          if (draftable.length === 0) {
+            const names = reviewGated.map((m) => m.id).join(", ") || "none";
+            const msg =
+              `This run could not have opened a PR: 0 of ${reviewGated.length} review-gated metric(s) ` +
+              `have a site target, so nothing is wired for it to draft (${names}). ` +
+              `Both are monitor-only by design — see the header of this workflow. The PR step is armed ` +
+              `for the first review-gated metric that gets a siteTargets entry.`;
+            console.log(`::notice::${msg}`);
+            say(`> **No-op by construction.** ${msg}`);
+          }
+
+          if (process.env.HAS_MANUAL === "true") {
+            const msg =
+              "A watched figure drifted and could NOT be auto-drafted — see 'Needs your attention' in the " +
+              "summary. Verify it at the source, then update the site and bump its baseline in " +
+              "scripts/watched-metrics.json by hand.";
+            console.log(`::warning::${msg}`);
+            say(`> ⚠️ ${msg}`);
+          }
+
+          if (process.env.HAS_REJECTED === "true") {
+            console.log("::warning::A live value was rejected by the sanity gate and not published — see the summary.");
+          }
+          JS
 
       - name: Open or update the refresh PR
         if: steps.refresh.outputs.has_changes == 'true'

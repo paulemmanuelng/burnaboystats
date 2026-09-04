@@ -36,7 +36,12 @@ export function GET() {
     endpoint: "/charts",
     description:
       "Official chart entries by release. Peaks are read from each chart body's own run. Genre, component and airplay-only charts are excluded by design.",
+    // 278 chart entries across 38 releases — `countOf` names the unit, because
+    // `count` alone read as "38 releases" to anyone who assumed it was the
+    // length of `data.releases`. The release count is published below as
+    // `chartedReleases`, so both figures are available without guessing.
     count: chartEntryCount,
+    countOf: "chart entries",
     data: {
       totals: {
         chartEntries: chartEntryCount,

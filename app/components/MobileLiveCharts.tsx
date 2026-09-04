@@ -254,8 +254,23 @@ export default function MobileLiveCharts({
  * page the heaviest thing the site sent, for panels most readers never open.
  */
 function LivePanel({ title, panelId, source }: { title: string; panelId: string; source?: string }) {
-  const { release, error, loading, retry } = useLiveRelease(title, true, source);
+  const { release, error, missing, loading, retry } = useLiveRelease(title, true, source);
   if (loading) return <div id={panelId} className={styles.panelNote}>Loading the country list…</div>;
+  // Two outcomes that were one. `missing` is a snapshot that came back WITHOUT
+  // this release, which happens because the page is static and the snapshot is
+  // served stale-while-revalidate — a release that started charting since the
+  // reader's copy was cached is on the page and not in the JSON. That is not a
+  // failed fetch, and the panel shouldn't claim it was. (It also used to be
+  // unreachable: `loading` never went false, so this row spun forever.)
+  if (missing)
+    return (
+      <div id={panelId} className={styles.panelNote}>
+        Not in the snapshot your browser has yet.{" "}
+        <button type="button" className={styles.panelRetry} onClick={retry}>
+          Fetch the latest
+        </button>
+      </div>
+    );
   if (error || !release)
     return (
       <div id={panelId} className={styles.panelNote}>

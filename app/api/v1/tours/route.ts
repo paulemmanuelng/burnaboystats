@@ -36,6 +36,7 @@ export function GET() {
     description:
       "Tours, festival sets and one-off shows, with box-office figures where a source publishes them. `gross` and `tickets` are kept as the strings the box-office source published — they arrive rounded and qualified, and parsing them to numbers would invent precision the source never claimed. `partial: true` marks a run still in progress, whose totals are a floor.",
     count: runs.length,
+    countOf: "tours",
     data: {
       totals: {
         tours: runs.length,

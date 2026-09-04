@@ -4,7 +4,14 @@ import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import StatBox from "../../components/StatBox";
 import TrendDelta from "../../components/TrendDelta";
-import { statBoxes, HIGHLIGHT, BURNA_HOT_100_ENTRIES_WORD } from "../../data/africasBiggest";
+import {
+  statBoxes,
+  HIGHLIGHT,
+  BURNA_HOT_100_ENTRIES_WORD,
+  BURNA_PEAK_LISTENERS,
+  BURNA_PEAK_LISTENERS_RISE,
+  BURNA_PEAK_LISTENERS_SET_ON_LONG,
+} from "../../data/africasBiggest";
 import { monthlyListenersSeries } from "../../data/trends";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import MobileAfricasBiggest from "../../components/MobileAfricasBiggest";
@@ -14,10 +21,6 @@ import {
   boardsOthersLead,
   youtubeWorldRank,
 } from "../../lib/africaBoards";
-
-const firstListeners = monthlyListenersSeries[0].value;
-const latestListeners = monthlyListenersSeries[monthlyListenersSeries.length - 1].value;
-const listenersMonthPct = ((latestListeners - firstListeners) / firstListeners) * 100;
 
 // The design draws eight bars showing the climb. The series is logged daily
 // rather than monthly, so the last eight readings sit within half a million of
@@ -39,6 +42,14 @@ const barDate = (iso: string) =>
     month: "short",
     timeZone: "UTC",
   });
+
+// The window the hero's percentage is ACTUALLY measured across, formatted from
+// the two readings it is measured between — see BURNA_PEAK_LISTENERS_RISE. The
+// label used to be the hardcoded string "this month" on a 40-day window that
+// had closed 25 days earlier, which is a label no data could ever contradict.
+const riseWindow = `${barDate(BURNA_PEAK_LISTENERS_RISE.from.date)} to ${barDate(
+  BURNA_PEAK_LISTENERS_RISE.to.date
+)}`;
 
 export const metadata = pageMetadata({
   title: "Africa's Biggest Artists — Charts & Streaming Records",
@@ -183,12 +194,18 @@ export default function AfricasBiggestPage() {
             <div className={styles.trendMain}>
               <div className={styles.trendKicker}>Spotify monthly listeners · peak</div>
               <div className={styles.trendValueRow}>
-                <span className={`${styles.trendValue} inkText`}>{latestListeners}M</span>
-                <TrendDelta value={listenersMonthPct} format="pct" label="this month" />
+                {/* The figure is read from the board that ranks it further down
+                    this page, not from the tail of the series, so the hero and
+                    the leaderboard cannot print two numbers for one peak. */}
+                <span className={`${styles.trendValue} inkText`}>{BURNA_PEAK_LISTENERS}</span>
+                <TrendDelta value={BURNA_PEAK_LISTENERS_RISE.pct} format="pct" label={riseWindow} />
               </div>
               <p className={styles.trendNote}>
-                Climbing fast on the “Dai Dai” World Cup run — up from {firstListeners}M at
-                the start of July, and the highest of any African artist.
+                An all-time high set on {BURNA_PEAK_LISTENERS_SET_ON_LONG}, not a reading of
+                today — up from {BURNA_PEAK_LISTENERS_RISE.from.value}M at the start of that
+                window, and still the highest peak of any African artist. Monthly listeners
+                rise and fall with a release cycle, so this records the high rather than
+                where he sits now.
               </p>
             </div>
             <div className={styles.trendChart}>

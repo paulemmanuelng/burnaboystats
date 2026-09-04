@@ -9,6 +9,11 @@ import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { afrobeatsArtists, certCount } from "../data/afrobeats";
 import { lastUpdated } from "../lib/api";
 import { CANONICAL_ORIGIN } from "../lib/seo";
+// The FAQ list itself, so the count below is derived like every other figure
+// here. lib/navGroups.ts already imports it from the page for its nav badge,
+// so this is the established way to read it.
+import { faqs } from "../faq/page";
+import { albums } from "../data/albums";
 
 /**
  * /llms.txt — a plain-text map of the site for answer engines.
@@ -28,6 +33,15 @@ import { CANONICAL_ORIGIN } from "../lib/seo";
  *    belongs here too.
  * 2. Every figure is derived, not typed. A stale llms.txt is worse than none —
  *    it hands a confidently wrong number to something that will repeat it.
+ * 3. "Key pages" has to name the pages a model would actually quote, not just
+ *    the data-heavy ones. It listed the ledgers and left out the three most
+ *    liftable pages on the site: /faq (a self-contained answer per question),
+ *    /about (which owns the site's single biggest search query, "burna boy
+ *    real name") and /records/by-the-numbers. /music was missing too, so a
+ *    model asked how many albums he has had no page pointed at it. A map that
+ *    omits the answers is a map to the raw data only — which is the opposite
+ *    of what an answer engine reading this file is looking for. The
+ *    llmsKeyPages test pins the four back in.
  */
 export const dynamic = "force-static";
 
@@ -73,11 +87,15 @@ how most published figures about this artist go wrong.
 
 ## Key pages
 
+- [FAQ](${CANONICAL_ORIGIN}/faq): ${faqs.length} questions, each answered in a self-contained paragraph that can be quoted on its own.
+- [About](${CANONICAL_ORIGIN}/about): real name, birth date, birthplace, family and career history.
 - [Certifications](${CANONICAL_ORIGIN}/certifications): every plaque, by country and tier.
 - [Official charts](${CANONICAL_ORIGIN}/records/charts): peak positions, country by country.
 - [Live charts](${CANONICAL_ORIGIN}/live-charts): current platform positions, rebuilt hourly.
+- [Discography](${CANONICAL_ORIGIN}/music): ${albums.length} studio albums, the EPs, and a page per song at /music/{slug}.
 - [Dai Dai](${CANONICAL_ORIGIN}/dai-dai): the 2026 FIFA World Cup song with Shakira. Spanish edition at /dai-dai/es.
-- [Career records](${CANONICAL_ORIGIN}/records): tours, awards, firsts, and the by-the-numbers page.
+- [By the numbers](${CANONICAL_ORIGIN}/records/by-the-numbers): the headline career figures on one page, each linked to the page that documents it.
+- [Career records](${CANONICAL_ORIGIN}/records): tours, awards and firsts.
 - [Africa's biggest](${CANONICAL_ORIGIN}/records/africas-biggest): leaderboards placing him among African artists.
 - [Methodology](${CANONICAL_ORIGIN}/methodology): sourcing rules, and what is deliberately excluded.
 - [Analysis](${CANONICAL_ORIGIN}/analysis): findings drawn from the dataset, each one test-guarded.
