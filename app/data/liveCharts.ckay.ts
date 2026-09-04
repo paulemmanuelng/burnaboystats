@@ -51,7 +51,7 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 7,
+            "position": 6,
             "movement": 2
           },
           {
@@ -63,8 +63,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 150,
-            "movement": -13
+            "position": 160,
+            "movement": -19
           }
         ]
       },

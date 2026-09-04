@@ -205,22 +205,10 @@
             "movement": -77
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 128,
-            "movement": -8
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 130,
             "movement": -67
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 134,
-            "movement": 21
           },
           {
             "country": "MM",
@@ -230,16 +218,16 @@
             "status": "new"
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 148,
+            "movement": -20
+          },
+          {
             "country": "CY",
             "name": "Cyprus",
             "position": 148,
             "movement": -8
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 150,
-            "movement": -6
           },
           {
             "country": "SG",
@@ -248,11 +236,23 @@
             "movement": -21
           },
           {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 152,
+            "movement": -37
+          },
+          {
             "country": "MU",
             "name": "Mauritius",
             "position": 160,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 160,
+            "movement": -31
           },
           {
             "country": "SC",
@@ -269,7 +269,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 36,
+            "position": 54,
             "movement": null,
             "status": "new"
           }
@@ -362,7 +362,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 4,
+            "position": 6,
             "movement": null,
             "status": "new"
           }
@@ -406,21 +406,20 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 13,
-            "movement": -12
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 66,
-            "movement": null,
-            "status": "new"
+            "position": 14,
+            "movement": -13
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 75,
-            "movement": -5
+            "position": 79,
+            "movement": -7
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 93,
+            "movement": 95
           }
         ]
       },
@@ -646,19 +645,19 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 34,
-            "movement": -7
+            "position": 36,
+            "movement": -6
           },
           {
             "country": "OM",
             "name": "Oman",
-            "position": 74,
-            "movement": -15
+            "position": 87,
+            "movement": -23
           },
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 143,
+            "position": 192,
             "movement": null,
             "status": "new"
           }
@@ -721,8 +720,8 @@
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 42,
-            "movement": -33
+            "position": 47,
+            "movement": -7
           }
         ]
       }
@@ -759,33 +758,14 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 77,
-            "movement": -9
+            "position": 81,
+            "movement": -13
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "ART",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 87,
-            "movement": -15
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
   }
 ];
   

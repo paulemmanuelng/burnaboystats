@@ -306,7 +306,7 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 193,
+            "position": 190,
             "movement": null,
             "status": "new"
           },
@@ -514,6 +514,25 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 15,
+            "movement": -14
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 28,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -522,18 +541,6 @@
             "name": "Nigeria",
             "position": 36,
             "movement": -4
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 13,
-            "movement": -12
           }
         ]
       }
@@ -669,6 +676,19 @@
             "name": "Seychelles",
             "position": 190,
             "movement": -6
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BS",
+            "name": "The Bahamas",
+            "position": 4,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -915,14 +935,14 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 18,
-            "movement": -11
+            "position": 17,
+            "movement": -10
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 63,
-            "movement": -18
+            "movement": -13
           }
         ]
       }
@@ -1049,8 +1069,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 2,
-            "movement": 0
+            "position": 3,
+            "movement": -1
           },
           {
             "country": "GM",
@@ -1125,20 +1145,20 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 63,
-            "movement": 2
+            "position": 64,
+            "movement": 1
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 74,
-            "movement": -6
+            "movement": -1
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 82,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
@@ -1235,13 +1255,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": -1
+            "position": 1,
+            "movement": 3
           }
         ]
       }
@@ -1339,7 +1359,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 1,
-            "movement": 10
+            "movement": 15
           }
         ]
       }
@@ -1464,6 +1484,12 @@
             "movement": 5
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 53,
+            "movement": -15
+          },
+          {
             "country": "UG",
             "name": "Uganda",
             "position": 79,
@@ -1487,12 +1513,6 @@
             "name": "Ghana",
             "position": 133,
             "movement": -17
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 139,
-            "movement": -81
           },
           {
             "country": "MT",
@@ -1581,8 +1601,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 2,
-            "movement": 3
+            "position": 3,
+            "movement": 2
           },
           {
             "country": "NG",
@@ -1698,8 +1718,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 13,
-            "movement": -2
+            "position": 5,
+            "movement": 6
           },
           {
             "country": "KE",
@@ -1836,13 +1856,13 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 22,
-            "movement": 1
+            "position": 20,
+            "movement": 2
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 37,
+            "position": 39,
             "movement": -5
           }
         ]
@@ -1959,6 +1979,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/332d8393d5c9e2d7c5345b8e5fd2a049/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Made In Lagos",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 47,
+            "movement": 1
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 89,
+            "movement": -3
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 100,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Superstar",
     "platforms": [
       {
@@ -1987,7 +2039,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 131,
-            "movement": -10
+            "movement": -5
           }
         ]
       }
@@ -2085,31 +2137,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Made In Lagos",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 46,
-            "movement": 2
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 89,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "S2 - EP",
     "platforms": [
       {
@@ -2133,7 +2160,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 55,
-            "movement": -18
+            "movement": -13
           }
         ]
       }
@@ -2189,55 +2216,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
-            "movement": null,
-            "status": "new"
+            "position": 13,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "No Stress",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 30,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/31566a105920b61a40e268a4b8997791/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love My Baby",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 30,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee5775a4038904759fa2911ca20e4913/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Time",
@@ -2257,6 +2243,45 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "No Stress",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 41,
+            "movement": -19
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/31566a105920b61a40e268a4b8997791/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love My Baby",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 41,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee5775a4038904759fa2911ca20e4913/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "All For Love",
@@ -2346,8 +2371,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 96,
-            "movement": -17
+            "position": 97,
+            "movement": -13
           }
         ]
       }
@@ -2365,34 +2390,14 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 48,
-            "movement": -5
+            "position": 52,
+            "movement": -7
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/bc2fb454695d80d8c78f43478549c26f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Omo to Shan",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7e7f840d0099df8c44eddda6841cc52d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "EASY WITH ME",
@@ -2434,6 +2439,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/77fc9f281aabc0cfb5c17649afe08c8c/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Omo to Shan",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 73,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7e7f840d0099df8c44eddda6841cc52d/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Tonight",
     "platforms": [
       {
@@ -2462,9 +2487,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
-            "movement": null,
-            "status": "new"
+            "position": 194,
+            "movement": -132
           }
         ]
       }
