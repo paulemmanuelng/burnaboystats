@@ -64,7 +64,7 @@ describe("certification data integrity", () => {
   });
 
   it("matches the published headline figures", () => {
-    expect(totalAwards()).toBe(233); // + "Dai Dai" Gold in Poland (ZPAV), alongside its French upgrade to Diamond
+    expect(totalAwards()).toBe(234); // + "Dai Dai" Platinum in Austria (IFPI Austria, 3 Sep 2026)
     expect(countryCount).toBe(26);
     expect(certifiedReleaseCount).toBe(85); // TaTaTa, Update, Love, Dem Dey join via TCSN
   });
@@ -95,15 +95,17 @@ describe("certHistory (certifications by year)", () => {
     ]);
   });
 
-  it("2026 logs 55 international certifications (63 events with Nigeria)", () => {
+  it("2026 logs 56 international certifications (64 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 8 events would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(55);
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(56);
     // 54th and 55th: the French Diamant upgrade and Poland's Gold, both
     // awarded 31 Aug 2026 and both missing from this log until 3 Sep.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(63);
+    // 56th: Austria's Platinum for "Dai Dai", read in IFPI Austria's own
+    // Gold & Platin database the day it was awarded, 3 Sep 2026.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(64);
   });
 
   it("2025 has the published count of 29 certifications", () => {

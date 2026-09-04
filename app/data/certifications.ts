@@ -180,6 +180,10 @@ export const singles: Release[] = [
     // carry no Dai Dai row, and both are ordered newest-first, so a later Polish
     // upgrade would sit at the top of one of them rather than beyond the read.
     { c: "PL", level: "Gold" },
+    // IFPI Austria's own Gold & Platin database, searched by title on 3 Sep 2026:
+    // "Shakira & Burna Boy | Dai Dai | Single | PLATIN | Sony | 03.09.2026",
+    // one row and the credit matches. Austrian Platinum for a single is 30,000.
+    { c: "AT", level: "Platinum" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -733,6 +737,9 @@ export const certHistory: CertEvent[] = [
   // Poland had no row here at all.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "FR", level: "Diamond", year: 2026 },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PL", level: "Gold", year: 2026 },
+  // Same day, read at the body: IFPI Austria's Gold & Platin database returns
+  // "Shakira & Burna Boy | Dai Dai | Single | PLATIN | Sony | 03.09.2026".
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "AT", level: "Platinum", year: 2026 },
 ];
 
 // Helpers

@@ -2004,7 +2004,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Dai Dai",
     "path": "/records/charts",
     "section": "Release",
-    "description": "Shakira & Burna Boy — 12 certifications · 68 chart entries.",
+    "description": "Shakira & Burna Boy — 13 certifications · 68 chart entries.",
     "keywords": [
       "shakira",
       "burna",
