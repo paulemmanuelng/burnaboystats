@@ -225,6 +225,27 @@
   color: var(--text-muted);
 }
 
+/* The FAQ is newly visible on screen 25 (it was inside .desktopOnly until the
+   phone-reader bug below), so these are the only values it has ever needed at
+   this width. Vertical only, and deliberately few:
+
+   - The 18px band per question is ALREADY the base rule's — .faqItem is
+     `padding: 18px 20px`, so screen 08's row rhythm falls out of the card as
+     shipped. Re-declaring it here would be a no-op that reads like a decision.
+   - The horizontal 20px is the CARD's inset, not this screen's gutter; .wrap
+     already supplies the 18px page gutter at this width. Touching either would
+     inset the answers from every other section on the page.
+   - Only the question-to-answer gap moves, 8px → 6px, to sit on screen 08's
+     spacing rather than the desktop card's.
+   - .faqList gets the 16px it has no need of on desktop: .h2 carries no bottom
+     margin, so the first card butts straight onto the heading (measured: 0px at
+     1280px, which is the shipped desktop look and stays that way). At 26px the
+     mobile .h2 needs the heading and the card told apart. */
+@media (max-width: 900px) {
+  .faqList { margin-top: 16px; }
+  .faqQ { margin-bottom: 6px; }
+}
+
 .outro {
   max-width: 720px;
   margin: 8px auto 60px;
@@ -244,9 +265,17 @@
 }
 @media (max-width: 900px) {}
 
-/* Not on mobile screen 25 — the FAQ and the Keep-exploring rail are desktop
-   only. Hidden rather than unrendered, so the FAQ markup (and the FAQPage
-   JSON-LD that mirrors it) stays crawlable. */
+/* What is left in .desktopOnly is the Keep-exploring rail — screen 25 uses the
+   five-tab bar to move around the site instead. Both /dai-dai and /dai-dai/es
+   import this file, so whatever this class hides, it hides in both editions.
+
+   This used to read "the FAQ and the Keep-exploring rail are desktop only.
+   Hidden rather than unrendered, so the FAQ markup (and the FAQPage JSON-LD
+   that mirrors it) stays crawlable." Crawlable was the wrong test and that
+   sentence is why this survived review: Googlebot renders at phone width, where
+   display:none is display:none, so the schema promised eight answers the phone
+   reader — and the crawler — never saw. The FAQ renders at both widths now; see
+   the note on the section in page.tsx. */
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
 /* ── "By the numbers" fold ───────────────────────────────────────────────

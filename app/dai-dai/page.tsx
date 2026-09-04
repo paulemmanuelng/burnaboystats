@@ -398,7 +398,24 @@ export default function DaiDaiPage() {
           <DaiDaiNumbers hero={heroNumbers} groups={numberGroups} />
         </section>
 
-        <section className={`${styles.section} ${styles.desktopOnly}`} aria-labelledby="dd-faq">
+        {/* Deliberately NOT .desktopOnly. The FAQPage JSON-LD emitted at the top
+            of this page goes out at every width, but this section used to sit
+            inside that wrapper — display: none below 900px — so all eight
+            answers were rendered for a laptop reader and withheld from a phone
+            one. This is the site's most-trafficked page and these are live
+            searches right now ("When was the 2026 World Cup Final halftime
+            show?", "Who are the Ghetto Kids who performed with Shakira and
+            Burna Boy?"): somebody who searched that exact question landed on
+            the page that answers it and got only the lineup note above, which
+            NAMES the Ghetto Kids without answering who they are.
+            Googlebot renders at phone width too, so the schema was describing
+            content the crawler could not see, and markup that does not match
+            the page is a spam signal rather than a ranking one.
+            Flat list, both widths, every answer open — the same shape
+            /music/[song] was un-hidden into in #170. The Keep-exploring rail at
+            the foot of this file stays .desktopOnly on purpose: the five-tab
+            bar is how a phone moves around this site. */}
+        <section className={styles.section} aria-labelledby="dd-faq">
           <div className={styles.kicker}>Answered plainly</div>
           <h2 id="dd-faq" className={styles.h2}>
             Frequently asked <span className={styles.gold}>questions</span>

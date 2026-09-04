@@ -411,7 +411,19 @@ export default function DaiDaiPageES() {
           />
         </section>
 
-        <section className={`${styles.section} ${styles.desktopOnly}`} aria-labelledby="dd-faq">
+        {/* Deliberately NOT .desktopOnly — see the note on the English page,
+            which had the identical defect and is fixed in the same pass. Both
+            editions share ONE stylesheet (../dai-dai.module.css), so the class
+            hid the Spanish answers below 900px exactly as it hid the English
+            ones, while this page's own FAQPage JSON-LD (inLanguage: "es") went
+            out at every width.
+            It matters at least as much here: half this song's audience searches
+            in Spanish, which is the reason this edition exists at all, and a
+            Spanish-language search for "¿quiénes son los Ghetto Kids?" arrives
+            on a phone. Flat list, both widths, every answer open.
+            This page has no Keep-exploring rail to leave behind — see the EN/ES
+            drift note; the English edition renders one and this one does not. */}
+        <section className={styles.section} aria-labelledby="dd-faq">
           <div className={styles.kicker}>Respuestas claras</div>
           <h2 id="dd-faq" className={styles.h2}>
             Preguntas <span className={styles.gold}>frecuentes</span>
