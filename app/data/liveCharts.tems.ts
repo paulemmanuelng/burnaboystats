@@ -357,8 +357,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 58,
-            "movement": 3
+            "position": 61,
+            "movement": -4
           },
           {
             "country": "TM",
@@ -411,20 +411,14 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 76,
-            "movement": -1
+            "position": 77,
+            "movement": 0
           },
           {
             "country": "TC",
             "name": "Turks and Caicos",
             "position": 80,
             "movement": -4
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 81,
-            "movement": 4
           },
           {
             "country": "MD",
@@ -443,6 +437,12 @@
             "name": "Denmark",
             "position": 90,
             "movement": -4
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 91,
+            "movement": -7
           },
           {
             "country": "LV",
@@ -567,6 +567,12 @@
             "movement": -4
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 148,
+            "movement": 13
+          },
+          {
             "country": "TD",
             "name": "Chad",
             "position": 152,
@@ -580,12 +586,6 @@
             "status": "new"
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 161,
-            "movement": 10
-          },
-          {
             "country": "GR",
             "name": "Greece",
             "position": 163,
@@ -594,14 +594,8 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 163,
-            "movement": 6
-          },
-          {
-            "country": "FR",
-            "name": "France",
             "position": 166,
-            "movement": -3
+            "movement": 3
           },
           {
             "country": "MT",
@@ -616,16 +610,22 @@
             "movement": -11
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 179,
+            "movement": 8
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 182,
+            "movement": -20
+          },
+          {
             "country": "ID",
             "name": "Indonesia",
             "position": 185,
             "movement": 5
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 188,
-            "movement": -14
           },
           {
             "country": "SB",
@@ -1131,94 +1131,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 1,
-        "entries": [
-          {
-            "country": "UZ",
-            "name": "Uzbekistan",
-            "position": 1,
-            "movement": 23
-          },
-          {
-            "country": "TT",
-            "name": "Trinidad and Tobago",
-            "position": 3,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 6,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 9,
-            "movement": 7
-          },
-          {
-            "country": "GR",
-            "name": "Greece",
-            "position": 19,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 28,
-            "movement": -9
-          },
-          {
-            "country": "AM",
-            "name": "Armenia",
-            "position": 45,
-            "movement": -28
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 48,
-            "movement": 5
-          },
-          {
-            "country": "TJ",
-            "name": "Tajikistan",
-            "position": 60,
-            "movement": -5
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 84,
-            "movement": -76
-          },
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 84,
-            "movement": 45
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 105,
-            "movement": -20
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 154,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -1303,6 +1215,87 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "UZ",
+            "name": "Uzbekistan",
+            "position": 1,
+            "movement": 25
+          },
+          {
+            "country": "TT",
+            "name": "Trinidad and Tobago",
+            "position": 6,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 11,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 39,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AM",
+            "name": "Armenia",
+            "position": 45,
+            "movement": -27
+          },
+          {
+            "country": "TJ",
+            "name": "Tajikistan",
+            "position": 61,
+            "movement": -5
+          },
+          {
+            "country": "HU",
+            "name": "Hungary",
+            "position": 67,
+            "movement": -15
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 77,
+            "movement": -47
+          },
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 81,
+            "movement": -18
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 96,
+            "movement": -80
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 110,
+            "movement": -25
+          },
+          {
+            "country": "PL",
+            "name": "Poland",
+            "position": 163,
+            "movement": 23
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -1362,7 +1355,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 16,
+            "position": 14,
             "movement": 4
           },
           {
@@ -1667,35 +1660,35 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 22,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "UG",
             "name": "Uganda",
-            "position": 41,
-            "movement": -5
+            "position": 44,
+            "movement": -8
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 55,
+            "position": 56,
             "movement": -13
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 83,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 87,
-            "movement": -21
+            "position": 92,
+            "movement": -26
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
-            "movement": -135
+            "position": 193,
+            "movement": -154
           }
         ]
       },
@@ -1927,88 +1920,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "What You Need",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 5,
-            "movement": 12
-          },
-          {
-            "country": "TC",
-            "name": "Turks and Caicos",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BS",
-            "name": "The Bahamas",
-            "position": 89,
-            "movement": 8
-          },
-          {
-            "country": "VG",
-            "name": "British Virgin Islands",
-            "position": 132,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 132,
-            "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 38,
-            "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 67,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 10,
-            "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Love Is A Kingdom",
     "platforms": [
       {
@@ -2076,6 +1987,88 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "What You Need",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 5,
+            "movement": 12
+          },
+          {
+            "country": "TC",
+            "name": "Turks and Caicos",
+            "position": 54,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BS",
+            "name": "The Bahamas",
+            "position": 89,
+            "movement": 8
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 123,
+            "movement": 8
+          },
+          {
+            "country": "VG",
+            "name": "British Virgin Islands",
+            "position": 132,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 38,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 67,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 10,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Free Mind",
     "platforms": [
       {
@@ -2122,8 +2115,8 @@
           {
             "country": "DO",
             "name": "Dominican Republic",
-            "position": 142,
-            "movement": -14
+            "position": 152,
+            "movement": -24
           }
         ]
       }
@@ -2153,8 +2146,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 39,
-            "movement": -5
+            "position": 42,
+            "movement": -8
           }
         ]
       },
@@ -2186,39 +2179,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love Me JeJe",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 92,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Isaka II",
@@ -2344,8 +2304,7 @@
             "country": "SB",
             "name": "Solomon Islands",
             "position": 6,
-            "movement": null,
-            "status": "new"
+            "movement": 194
           }
         ]
       }
@@ -2449,6 +2408,32 @@
       }
     ],
     "kind": "album"
+  },
+  {
+    "title": "Love Me JeJe",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 92,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "MOVE",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c3e2a951678a28a3f541a69c866583d4/500x500-000000-80-0-0.jpg"
   }
 ];
   

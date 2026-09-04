@@ -218,16 +218,16 @@
             "status": "new"
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 148,
-            "movement": -20
-          },
-          {
             "country": "CY",
             "name": "Cyprus",
             "position": 148,
             "movement": -8
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 150,
+            "movement": -34
           },
           {
             "country": "SG",
@@ -236,10 +236,10 @@
             "movement": -21
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 152,
-            "movement": -37
+            "country": "BR",
+            "name": "Brazil",
+            "position": 157,
+            "movement": -19
           },
           {
             "country": "MU",
@@ -251,8 +251,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 160,
-            "movement": -31
+            "position": 178,
+            "movement": -27
           },
           {
             "country": "SC",
@@ -269,7 +269,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 54,
+            "position": 81,
             "movement": null,
             "status": "new"
           }
@@ -343,6 +343,26 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 35,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 55,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -350,19 +370,6 @@
             "country": "MV",
             "name": "Maldives",
             "position": 189,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 6,
             "movement": null,
             "status": "new"
           }
@@ -406,20 +413,21 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 14,
-            "movement": -13
+            "position": 13,
+            "movement": -12
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 79,
-            "movement": -7
+            "position": 82,
+            "movement": -10
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 93,
-            "movement": 95
+            "position": 195,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -649,15 +657,9 @@
             "movement": -6
           },
           {
-            "country": "OM",
-            "name": "Oman",
-            "position": 87,
-            "movement": -23
-          },
-          {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 192,
+            "country": "AU",
+            "name": "Australia",
+            "position": 199,
             "movement": null,
             "status": "new"
           }
@@ -711,25 +713,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Game Time",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TT",
-            "name": "Trinidad and Tobago",
-            "position": 47,
-            "movement": -7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cd9051638bd5d70e43eff9dc09faa344/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Talk to Me",
     "platforms": [
       {
@@ -749,6 +732,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Game Time",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TT",
+            "name": "Trinidad and Tobago",
+            "position": 49,
+            "movement": -9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cd9051638bd5d70e43eff9dc09faa344/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "IS IT",
     "platforms": [
       {
@@ -758,7 +760,7 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 81,
+            "position": 82,
             "movement": -13
           }
         ]

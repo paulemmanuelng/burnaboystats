@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-09-04";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Spotify","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -52,7 +52,7 @@
             "country": "RU",
             "name": "Russia",
             "position": 6,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "BF",
@@ -63,8 +63,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 160,
-            "movement": -19
+            "position": 165,
+            "movement": -23
           }
         ]
       },
@@ -96,6 +96,19 @@
             "name": "Morocco",
             "position": 136,
             "movement": -7
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MA",
+            "name": "Morocco",
+            "position": 85,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -184,6 +197,26 @@
       }
     ],
     "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "E CLEAR",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 80,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {

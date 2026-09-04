@@ -159,20 +159,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 57,
-            "movement": -5
+            "position": 60,
+            "movement": -8
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 94,
-            "movement": -13
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 169,
-            "movement": -133
+            "position": 98,
+            "movement": -14
           }
         ]
       },
@@ -966,8 +960,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 110,
-            "movement": -20
+            "position": 115,
+            "movement": -25
           }
         ]
       }

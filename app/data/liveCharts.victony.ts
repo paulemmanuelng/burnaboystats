@@ -255,12 +255,6 @@
             "status": "new"
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 186,
-            "movement": 0
-          },
-          {
             "country": "DO",
             "name": "Dominican Republic",
             "position": 190,
@@ -481,27 +475,27 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 23,
-            "movement": -5
+            "position": 24,
+            "movement": -3
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 23,
-            "movement": -5
+            "position": 26,
+            "movement": -8
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 55,
+            "position": 97,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 192,
-            "movement": -25
+            "position": 196,
+            "movement": -28
           }
         ]
       },
@@ -716,16 +710,16 @@
             "movement": -2
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 74,
-            "movement": -9
-          },
-          {
             "country": "MZ",
             "name": "Mozambique",
             "position": 76,
             "movement": -34
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 79,
+            "movement": -9
           },
           {
             "country": "CV",
@@ -737,8 +731,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 101,
-            "movement": -9
+            "position": 103,
+            "movement": -10
           },
           {
             "country": "BM",
@@ -800,16 +794,16 @@
             "movement": -3
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 149,
-            "movement": 5
-          },
-          {
             "country": "MR",
             "name": "Mauritania",
             "position": 152,
             "movement": -64
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 158,
+            "movement": 11
           },
           {
             "country": "BB",
@@ -846,8 +840,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 85,
-            "movement": -18
+            "position": 84,
+            "movement": -17
           }
         ]
       }
@@ -1412,50 +1406,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "TOO LIT",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 59,
-            "movement": 40
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 116,
-            "movement": -13
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "ARMED & DANGEROUS",
     "platforms": [
       {
@@ -1490,6 +1440,50 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 85,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "TOO LIT",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 59,
+            "movement": 40
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 116,
+            "movement": -13
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 54,
             "movement": null,
             "status": "new"
           }
@@ -1780,6 +1774,18 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ba$Tard, Don't Be Silly",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "CAN JUICE",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg"
   }
 ];
   
