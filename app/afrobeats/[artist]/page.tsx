@@ -480,8 +480,17 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
       {/* Answer-first, and every figure computed — see lib/boardFaqs.ts. These
           are the questions readers and answer engines actually ask about a
           board artist, and a well-formed FAQ is the most liftable shape there
-          is for an AI answer. Rendered visibly AND as FAQPage structured data,
-          the same way /dai-dai and /records/africas-biggest already do it. */}
+          is for an AI answer.
+          This used to claim the questions were "rendered visibly AND as
+          FAQPage structured data, the same way /dai-dai and
+          /records/africas-biggest already do it". That was only ever true on a
+          laptop: the schema goes out at every width, but this section is
+          inside the .desktopOnly wrapper opened above, so below 900px — phone
+          readers, and Googlebot, which renders at phone width — the answers
+          are display:none. /dai-dai and /records/africas-biggest have the same
+          gap, which is why the comparison read as reassuring.
+          /music/[song] has been un-hidden; these three are queued behind it and
+          are named as exemptions in tests/faqMobileVisibility.test.ts. */}
       <section id="faq" className={styles.faqPad}>
         <h2 className={styles.h2}>Common questions</h2>
         <div className={styles.faqList}>

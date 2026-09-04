@@ -318,7 +318,13 @@
 .mobileActionBar { display: none; }
 
 @media (max-width: 900px) {
-  /* Screen 26 has no FAQ. */
+  /* What is left in .desktopOnly is the "keep exploring" rail — screen 26 uses
+     the five-tab bar to move around the site instead.
+     The FAQ used to be in here too, and that was the bug: the page emits
+     FAQPage schema for those questions at every width, so below 900px a phone
+     reader (and Googlebot, which renders at phone width) got the markup and
+     never the answers. It renders at both widths now — see the section's note
+     in page.tsx. */
   .desktopOnly { display: none; }
   .wrap { padding: 0 18px; }
   .crumbs { padding: 12px 18px 0; }
@@ -354,6 +360,15 @@
   .numValueLong { font-size: 22px; }
   .legend { margin-left: 0; width: 100%; }
   .onward { padding: 28px 18px 76px; }
+
+  /* The FAQ takes screen 08's row rhythm rather than the desktop section's:
+     an 18px band per question with the answer 6px under it, ruled off by the
+     .faqList border. Only the vertical values move — .sectionPad already
+     supplies this screen's 18px gutter, and doubling it would inset the
+     answers from every other section on the page. The single-column stack
+     comes from the 1239px block above; it is not re-declared here. */
+  .faqList { margin-top: 16px; }
+  .faqItem { padding: 18px 0; gap: 6px; }
 
   /* Screen 26's pills are flag + figure only, so they sit on a regular grid
      instead of ragging by name length. Clipped rather than display:none — a
