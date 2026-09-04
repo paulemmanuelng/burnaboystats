@@ -88,6 +88,25 @@ const nextConfig = {
         source: "/:path*/opengraph-image/:id*",
         headers: [{ key: "X-Robots-Tag", value: "noindex" }],
       },
+      // The one non-English URL on the site says so at the transport layer too.
+      //
+      // /dai-dai/es is a real indexed Spanish page: it cross-declares hreflang
+      // with /dai-dai, sets og:locale es_ES and marks its Article node
+      // inLanguage "es". The one declaration it could NOT make was the document
+      // one — <html lang> comes from the root layout, which hard-codes "en" for
+      // the whole app, and no nested route can reopen <html> to correct it (the
+      // route's own layout patches the DOM instead; see
+      // app/dai-dai/es/DocumentLangEs.tsx).
+      //
+      // This is the part of that correction that survives without JavaScript.
+      // Content-Language states the language of the intended audience for the
+      // representation (RFC 9110 §8.5); it does not override a present lang
+      // attribute for a browser, so it contradicts nothing — it just means a
+      // consumer reading headers is told Spanish rather than nothing at all.
+      {
+        source: "/dai-dai/es",
+        headers: [{ key: "Content-Language", value: "es" }],
+      },
     ];
   },
 

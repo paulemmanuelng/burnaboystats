@@ -30,6 +30,7 @@ export function GET() {
     description:
       "Every competitive award nomination, one row each, with the ceremony, year, category and the work it was for. `won` is false for both a loss and a nomination whose ceremony has not happened yet — the dataset does not distinguish them. Honours and special recognitions are listed separately from the competitive total, by design.",
     count: nominations.length,
+    countOf: "nominations",
     data: {
       totals: {
         wins: totalWins,

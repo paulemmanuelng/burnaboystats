@@ -43,6 +43,47 @@ const monthYear = (iso: string) =>
     timeZone: "UTC",
   });
 
+/**
+ * "10 August 2026" — one spelling of that day, for every mention of it.
+ *
+ * The leaderboard note lower down /records/africas-biggest already dated the
+ * peak; the hero at the top of the SAME page did not, and said the opposite.
+ * Both read this now, so the page cannot print two different accounts of one
+ * figure again.
+ */
+export const BURNA_PEAK_LISTENERS_SET_ON_LONG = monthYear(BURNA_PEAK_LISTENERS_SET_ON);
+
+/**
+ * The rise the hero on /records/africas-biggest draws, WITH the two readings it
+ * is measured between.
+ *
+ * That hero printed "▲ +26.9% this month". The percentage was real; the label
+ * was not. It is measured 1 Jul → 10 Aug — a 40-day window that had closed 25
+ * days before the page was being read — and "this month" was a hardcoded string
+ * that knew nothing about either endpoint, so it would have gone on saying
+ * "this month" however old the window got. Beside it the prose read "Climbing
+ * fast on the “Dai Dai” World Cup run" while the peak had not moved since 10
+ * August and Spotify's own artist page read 52,813,789 on 4 Sep 2026 — 7.3
+ * million BELOW the figure the hero was calling a climb.
+ *
+ * So the window travels with the number: both endpoints are real logged points
+ * and the label is formatted from them, which means the next time the bot
+ * appends a new high the label moves with it. There is no sentence left that can
+ * go stale on its own.
+ *
+ * `to` is the PEAK point, not simply the newest one. The figure beside it is the
+ * peak, so a percentage measured to some later, lower reading would not be the
+ * change the displayed number represents. They are the same point today; they
+ * stop being the same point the moment monthly listeners fall and the series
+ * keeps logging.
+ */
+export const BURNA_PEAK_LISTENERS_RISE = {
+  from: monthlyListenersSeries[0],
+  to: peakPoint,
+  pct:
+    ((peakPoint.value - monthlyListenersSeries[0].value) / monthlyListenersSeries[0].value) * 100,
+};
+
 /** His YouTube Music monthly audience, at its peak. Exported because four
  *  files quoted this figure by hand — it sat at 840M in eight places while
  *  YouTube Music itself showed 844M. One home, imported everywhere. */
@@ -226,8 +267,8 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Rema", sub: "🇳🇬 Nigeria", value: "40.01M" },
       { name: "CKay", sub: "🇳🇬 Nigeria", value: "34.78M" },
     ],
-    note: `Burna Boy is the first African artist ever to reach 50 million Spotify monthly listeners — and the first past ${Math.floor(parseFloat(BURNA_PEAK_LISTENERS))} million, a milestone no African act had crossed before. That ${BURNA_PEAK_LISTENERS} is an all-time high set on ${monthYear(BURNA_PEAK_LISTENERS_SET_ON)}, not a reading of today: monthly listeners rise and fall with a release cycle, and this board records each artist at their highest.`,
-    source: `Peak Spotify monthly listeners, as of August 2026. Burna Boy, Tyla, Tems and Rema are kworb's recorded peaks; CKay's is his Spotify peak from the “Love Nwantiti” run, which predates kworb's coverage of him. Burna Boy's peak was last raised on ${monthYear(BURNA_PEAK_LISTENERS_SET_ON)} and moves only when he sets a new high.`,
+    note: `Burna Boy is the first African artist ever to reach 50 million Spotify monthly listeners — and the first past ${Math.floor(parseFloat(BURNA_PEAK_LISTENERS))} million, a milestone no African act had crossed before. That ${BURNA_PEAK_LISTENERS} is an all-time high set on ${BURNA_PEAK_LISTENERS_SET_ON_LONG}, not a reading of today: monthly listeners rise and fall with a release cycle, and this board records each artist at their highest.`,
+    source: `Peak Spotify monthly listeners, as of August 2026. Burna Boy, Tyla, Tems and Rema are kworb's recorded peaks; CKay's is his Spotify peak from the “Love Nwantiti” run, which predates kworb's coverage of him. Burna Boy's peak was last raised on ${BURNA_PEAK_LISTENERS_SET_ON_LONG} and moves only when he sets a new high.`,
   },
   {
     id: "biggest-spotify-debut",

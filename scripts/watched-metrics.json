@@ -10,7 +10,7 @@
       "kind": "drift",
       "threshold": 0.03,
       "baseline": 55701680,
-      "note": "Current monthly listeners. Verified 28 Aug 2026 on Spotify's own artist page (55,701,680, #49 in the world), which agreed with kworb exactly. Monitor-only — no siteTargets — because the site publishes the all-time PEAK (spotify-peak-listeners), not the current figure. Do not conflate the two: the peak is 60.13M and cannot fall.",
+      "note": "Current monthly listeners. Verified 28 Aug 2026 on Spotify's own artist page (55,701,680, #49 in the world), which agreed with kworb exactly. Monitor-only — no siteTargets — because the site publishes the all-time PEAK (spotify-peak-listeners), not the current figure. Do not conflate the two: the peak is 60.13M and cannot fall. CROSS-CHECKED 4 Sep 2026: kworb read 52,813,789, a 5.2% FALL, and the same figure Spotify's own page showed that day (recorded in app/data/africasBiggest.ts). That correctly trips this metric — relativeDrift is absolute, so a fall alerts exactly like a rise — and the weekly issue for it is the alarm working, not a stale config. The baseline is deliberately NOT bumped to the kworb reading: it records the last value read at the PRIMARY source by a human, and overwriting that with an automated pull would both downgrade its provenance and silence the alert someone is meant to act on. Bump it when you next read Spotify's own page. Worth a thought while you are here: a current-listeners figure swings far more than 3% across a release cycle, so this threshold will keep firing on ordinary decline — raise it if the weekly issue stops being read.",
       "artistId": "3wcj11K77LjEY1PkEazffa",
       "field": "monthlyListeners",
       "lastChanged": "2026-08-28"

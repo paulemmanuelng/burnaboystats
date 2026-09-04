@@ -12,7 +12,7 @@ import { chartedCountryCount } from "../lib/analysis";
 import { songs } from "../data/songs";
 import { totalNominations } from "../data/awards";
 import { tours } from "../data/tours";
-import { afrobeatsArtists } from "../data/afrobeats";
+import { sweptArtists } from "../data/afrobeats";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Open Data API — Free Chart & Certification Dataset",
@@ -43,7 +43,7 @@ const endpoints = [
   },
   {
     path: "/songs",
-    what: "The song catalogue, with verified Spotify track IDs and streaming totals.",
+    what: "The song catalogue, with verified Spotify track IDs, track links and streaming totals.",
     size: `${songs.length} songs`,
   },
   {
@@ -58,8 +58,12 @@ const endpoints = [
   },
   {
     path: "/afrobeats",
-    what: `The Afrobeats Board — ${afrobeatsArtists.length + 1} artists' certifications and chart records, counted by one stated rule so the totals compare.`,
-    size: `${afrobeatsArtists.length + 1} artists`,
+    // sweptArtists, not afrobeatsArtists: the endpoint publishes only artists
+    // whose register sweep is done, because that is what "counted by one rule"
+    // means. The two lists match today, which is why the wrong one was easy to
+    // write here and in the JSON index.
+    what: `The Afrobeats Board — ${sweptArtists.length + 1} artists' certifications and chart records, counted by one stated rule so the totals compare.`,
+    size: `${sweptArtists.length + 1} artists`,
   },
   {
     path: "/live-charts",
@@ -89,6 +93,7 @@ const sample = JSON.stringify(
     endpoint: `/api/${API_VERSION}/charts`,
     updated: lastUpdated,
     count: chartEntryCount,
+    countOf: "chart entries",
     license: { name: "CC BY 4.0", attribution: `Data from ${SITE_NAME} (${CANONICAL_ORIGIN})` },
     data: {
       totals: {
@@ -254,7 +259,15 @@ export default function ApiPage() {
           </pre>
           <p className={styles.note}>
             <code>updated</code> is the date of the most recent real change to the data, not
-            the last deploy — so you can safely use it to decide whether to re-fetch.
+            the last deploy — so you can safely use it to decide whether to re-fetch.{" "}
+            {/* `count` used to arrive with no unit: on this endpoint it is 278
+                chart entries, not the 38 releases in the array beside it, and
+                on /certifications it is 234 awards over 85 releases. countOf
+                names the unit rather than leaving a consumer to assume. */}
+            <code>count</code> is the endpoint&apos;s headline size and{" "}
+            <code>countOf</code> names its unit — it is not always the length of the array
+            in <code>data</code>, and where the two differ the array&apos;s own length is
+            published under <code>data.totals</code>.
           </p>
         </section>
 

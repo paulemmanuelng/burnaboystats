@@ -14,7 +14,7 @@ import {
 } from "../../data/performedCountries";
 import { albums } from "../../data/albums";
 import { spotifyGlobalRank } from "../../data/spotify";
-import { spotifyTotalStreams, youtubeTotalViews } from "../../data/streamingTotals";
+import { spotifyTotalStreams, youtubeTotalViews, youtubeTotalViewsAsOf } from "../../data/streamingTotals";
 import { BURNA_YT_AUDIENCE, BURNA_PEAK_LISTENERS, BURNA_HOT_100_ENTRIES } from "../../data/africasBiggest";
 import { lastUpdated } from "../../lib/api";
 
@@ -40,6 +40,23 @@ const nationalOnes = numberOnes - globalOnes;
 const asOfDate = new Date(`${lastUpdated}T12:00:00Z`);
 const editionYear = asOfDate.getUTCFullYear();
 const asOf = asOfDate.toLocaleDateString("en-US", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+// Every other figure on this page is either bot-refreshed or derived from a
+// dated dataset, and the page's own "Updated {asOf}" stamp covers them. The
+// all-time YouTube total is neither: it is counted by hand at
+// youtube.com/@BurnaBoy/about because no automated source measures its scope
+// (kworb sees 187 of his 344 videos — see data/streamingTotals.ts), and the
+// stamp built to date it, `youtubeTotalViewsAsOf`, was referenced by NOTHING.
+// So the one headline figure on the site that cannot refresh itself was the one
+// published with no date on it, while its date sat in the repo as dead code.
+// Printed here, a hand-maintained number carries the day it was counted, and the
+// constant is no longer something a later edit can quietly leave behind.
+const ytCountedOn = new Date(`${youtubeTotalViewsAsOf}T12:00:00Z`).toLocaleDateString("en-GB", {
+  day: "numeric",
   month: "long",
   year: "numeric",
   timeZone: "UTC",
@@ -72,7 +89,16 @@ export const stats: {
   label: string;
   sub: string;
   href: string;
-  delta?: number;
+  /**
+   * An optional movement indicator. It carries its own WINDOW, and it has to:
+   * the shape here used to be a bare `delta?: number` rendered with a hardcoded
+   * `label="this month"`, which is a label no measurement can contradict. That
+   * is exactly how the hero on /records/africas-biggest came to print
+   * "+26.9% this month" over a 40-day window that had closed 25 days earlier.
+   * No stat sets this today, so nothing on the page moves — but the next one
+   * that does now cannot publish a percentage without saying what it measured.
+   */
+  delta?: { pct: number; window: string };
   big?: boolean;
 }[] = [
   { num: `${totalAwards()}`, label: "Certifications", sub: `across ${countryCount} countries — most of any African artist`, href: "/certifications", big: true },
@@ -83,7 +109,7 @@ export const stats: {
   { num: `${BURNA_HOT_100_ENTRIES}`, label: "Billboard Hot 100 entries", sub: "the most by any African artist, six years running", href: "/records/charts" },
   { num: BURNA_PEAK_LISTENERS, label: "Spotify monthly listeners, at peak", sub: "the first African artist ever to reach 60 million", href: "/records/africas-biggest", big: true },
   { num: spotifyTotalStreams, label: "Spotify streams, all-time", sub: "every song, lead and featured credits combined", href: "/music" },
-  { num: youtubeTotalViews, label: "YouTube views, all-time", sub: "every video, across his channel and others'", href: "/music" },
+  { num: youtubeTotalViews, label: "YouTube views, all-time", sub: `every video, across his channel and others' — counted by hand on ${ytCountedOn}`, href: "/music" },
   // YouTube figure is kept in sync with the YouTube Music leaderboard on data/africasBiggest.ts.
   { num: BURNA_YT_AUDIENCE, label: "YouTube Music monthly audience", sub: "first African artist ever past 900 million", href: "/records/africas-biggest" },
   { num: `No. ${spotifyGlobalRank}`, label: "Global rank by Spotify listeners", sub: "where he currently sits among every artist worldwide", href: "/records/africas-biggest" },
@@ -189,7 +215,7 @@ export default function ByTheNumbersPage() {
                     {s.num}
                   </span>
                   {s.delta != null && (
-                    <TrendDelta value={s.delta} format="pct" label="this month" />
+                    <TrendDelta value={s.delta.pct} format="pct" label={s.delta.window} />
                   )}
                 </span>
                 <span className={styles.label}>{s.label}</span>

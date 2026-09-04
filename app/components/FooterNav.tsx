@@ -23,6 +23,27 @@ function Wordmark() {
 
 const DISCLAIMER = "An unofficial fan site — not affiliated with or endorsed by Burna Boy.";
 
+/**
+ * The copyright year, read once when this module loads rather than on every
+ * render.
+ *
+ * This is a client component mounted in the root layout, so the module is
+ * evaluated twice — once on the server (at BUILD time; every page here is
+ * statically generated) and once in the browser (at READ time). `new Date()`
+ * inside the render therefore produced two different answers for the same
+ * markup, and every reader who loaded a page built the previous year got a
+ * hydration mismatch on the home page. React does not patch a mismatch in
+ * place; it throws the server's subtree away and re-renders it on the client.
+ *
+ * Hoisting it does not make the two processes agree — nothing in a client
+ * bundle can know the build's clock — so the element below is marked
+ * suppressHydrationWarning, which is React's way of saying the server's value
+ * is the authoritative one. That is also the correct fact: a copyright year
+ * states when the page was last published, and for a static page that is the
+ * build, not the moment someone happens to open it.
+ */
+const YEAR = new Date().getFullYear();
+
 export default function FooterNav() {
   const pathname = usePathname();
 
@@ -57,8 +78,11 @@ export default function FooterNav() {
         <p className="footerDisclaimer">
           {DISCLAIMER} Artwork provided by Spotify and remains the property of its owners.
         </p>
-        <p className="footerCopy">
-          © {new Date().getFullYear()} · Built by{" "}
+        {/* suppressHydrationWarning: see YEAR above — the server's build year
+            is the authoritative one, and without this a page built in one year
+            and read in the next tears the whole footer down and rebuilds it. */}
+        <p className="footerCopy" suppressHydrationWarning>
+          © {YEAR} · Built by{" "}
           <a
             href="https://www.tiktok.com/@paulemmanuelng"
             target="_blank"

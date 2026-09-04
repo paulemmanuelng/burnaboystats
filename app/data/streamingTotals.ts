@@ -54,5 +54,21 @@ export const spotifyTotalStreamsExact = "10,937,566,331";
 // its own sake (watched-metrics.json → youtube-total-views, watch-only), so its
 // movement still gets reported; it just no longer writes here.
 export const youtubeTotalViews = "4.0B";
-/** When the figure above was last measured — it is not bot-refreshed. */
+/**
+ * When the figure above was last measured — it is not bot-refreshed.
+ *
+ * Published, not merely recorded. This constant existed for weeks with NOTHING
+ * importing it while `youtubeTotalViews` rendered undated on
+ * /records/by-the-numbers: the one headline figure on the site that cannot
+ * refresh itself was the one a reader had no way to date, and the stamp built to
+ * date it was dead code. /records/by-the-numbers prints it in that stat's
+ * subtitle ("counted by hand on 3 September 2026"), and
+ * tests/publishedFigureStamps.test.ts fails if that stops being true — because a
+ * stamp nothing renders is indistinguishable from no stamp at all.
+ *
+ * Bump it whenever you re-count the figure above, EVEN IF the rounded string
+ * does not move. 4.0B covers 3.95B–4.05B, roughly a hundred million views and
+ * about two months of his growth, so the display staying still is the normal
+ * case and says nothing about freshness. The date is the only part that can.
+ */
 export const youtubeTotalViewsAsOf = "2026-09-03";

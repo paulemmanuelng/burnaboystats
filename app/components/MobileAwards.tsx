@@ -182,7 +182,23 @@ export default function MobileAwards({
           order exactly (explorer → honours → FAQ → source band), so the two
           layouts read in the same sequence and the note that sources the whole
           page still closes it. */}
-      <MobileFaqSection title="How many awards has Burna Boy won?" items={faqs} />
+      {/* "Common questions", like every other mobile screen — NOT the page's
+          own first question. The heading was a verbatim copy of `faqs[0].q`, so
+          the phone rendered "How many awards has Burna Boy won?" as the section
+          title and then again as the first item directly beneath it. A heading
+          that repeats the item under it is not a heading, and it also told a
+          reader scanning the screen that the whole section answered one
+          question when it answers five. MobileCerts and MobileAfricasBiggest
+          both say "Common questions"; this screen was the odd one out.
+
+          KNOWN DIVERGENCE, deliberately left: the desktop copy of this FAQ
+          (app/records/awards/page.tsx, the `.faqBand` h2) still prints the
+          question, so the two layouts state it differently until that one is
+          changed to match. `title` is documented as the desktop heading
+          verbatim, and it should be again — but the fix belongs on the side
+          that is wrong, and a phone reader should not keep seeing a duplicated
+          heading while it waits. */}
+      <MobileFaqSection title="Common questions" items={faqs} />
 
       <p className={styles.foot}>
         Wins and nominations come from each body&apos;s own winners list. Honours like the

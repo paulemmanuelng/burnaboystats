@@ -137,13 +137,24 @@ export default function ChartExplorer({
   const [view, setView] = useState<"cards" | "table">("cards");
   const [sortKey, setSortKey] = useState<SortKey>("peak");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
-  // A single-release focus, deep-linked via ?song=… (e.g. from the Dai Dai story).
+  // A single-release focus, deep-linked via #song=… or ?song=… (e.g. from the
+  // Dai Dai story). It is a FILTER — see emptyProps and emptyBody, which for a
+  // long time did not treat it as one.
   const [focus, setFocus] = useState<string | null>(null);
 
-  // Read the ?song= deep-link once on mount (client-only, so the page stays
-  // static). When present, focus that release and open the per-entry table view.
+  // Read the deep-link once on mount (client-only, so the page stays static).
+  // When present, focus that release and open the per-entry table view.
+  //
+  // The FRAGMENT is read first and the query string second, matching
+  // CertExplorer — see the long note there for why. Short version: "?song=" is
+  // a separate URL, it gets crawled, and Search Console then lists it forever
+  // under "Alternate page with proper canonical tag", a status no validation
+  // run can clear while the URL exists. A fragment is never sent to the server,
+  // so it is not a URL at all to a crawler. Both are read because every
+  // ?song= link already in the wild has to keep working.
   useEffect(() => {
-    const s = new URLSearchParams(window.location.search).get("song");
+    const fromHash = new URLSearchParams(window.location.hash.replace(/^#/, "")).get("song");
+    const s = fromHash ?? new URLSearchParams(window.location.search).get("song");
     if (!s) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount read of a browser-only URL param
     setFocus(s);
@@ -177,27 +188,58 @@ export default function ChartExplorer({
   const totalAll = albums.length + singles.length + features.length;
   const totalShown = groups.reduce((n, g) => n + g.items.length, 0);
 
-  // The country is the narrower of the two filters, so it is what the second
-  // button drops — a peak band alone almost always still has matches.
+  // Whether the deep-linked focus names a release this page actually carries.
+  // It usually does; when it doesn't, the empty state has to say something
+  // completely different — see emptyBody.
+  const knownTitles = useMemo(
+    () => new Set([...albums, ...singles, ...features].map((r) => r.title)),
+    [albums, singles, features]
+  );
+  const unknownFocus = !!focus && !knownTitles.has(focus);
+
+  // The focus is the narrowest filter of the three, so it leads: it is a single
+  // release out of sixty, and on a deep link it is the filter the reader never
+  // set and is least likely to suspect.
   const emptyProps = {
     onClear: () => {
       setCountry(null);
       setPeak(null);
+      // The deep-link focus IS a filter, and "Clear filters" left it standing.
+      // On a ?song= link that matched nothing the button was a no-op — the
+      // reader pressed the one control offered and the page did not move.
+      setFocus(null);
     },
-    narrowest: country
-      ? { label: countries[country]?.name ?? country, drop: () => setCountry(null) }
-      : peak
-        ? { label: PEAKS.find((p) => p.key === peak)!.label, drop: () => setPeak(null) }
-        : undefined,
+    narrowest: focus
+      ? { label: focus, drop: () => setFocus(null) }
+      : country
+        ? { label: countries[country]?.name ?? country, drop: () => setCountry(null) }
+        : peak
+          ? { label: PEAKS.find((p) => p.key === peak)!.label, drop: () => setPeak(null) }
+          : undefined,
   };
+  /**
+   * The empty state's sentence, which is a factual claim about the record and
+   * has to be true.
+   *
+   * "That's a real gap in the record" is the site asserting it looked and found
+   * nothing — fine for a filter combination over releases it holds. It was also
+   * being printed for a ?song= naming a release this page does not carry, where
+   * the honest answer is that the LINK is wrong, not that the release charted
+   * nowhere. And the focus was left out of the sentence entirely, so a reader
+   * who arrived on ?song=Dai%20Dai with a country chip set was told "There's no
+   * chart entry in France" about the whole catalogue.
+   */
   const emptyBody = (noun: string) =>
-    `There's no ${[
-      peak && PEAKS.find((p) => p.key === peak)!.label,
-      noun,
-      country && `in ${countries[country]?.name ?? country}`,
-    ]
-      .filter(Boolean)
-      .join(" ")}. That's a real gap in the record, not a missing page.`;
+    unknownFocus
+      ? `No release on this page is called “${focus}”. That's a broken link, not a gap in the record.`
+      : `There's no ${[
+          peak && PEAKS.find((p) => p.key === peak)!.label,
+          noun,
+          focus && `for ${focus}`,
+          country && `in ${countries[country]?.name ?? country}`,
+        ]
+          .filter(Boolean)
+          .join(" ")}. That's a real gap in the record, not a missing page.`;
 
   const active = country || peak;
 
