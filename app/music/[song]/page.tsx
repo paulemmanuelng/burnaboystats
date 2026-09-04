@@ -348,7 +348,18 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
       )}
 
       {/* ── FAQ ──────────────────────────────────────────────── */}
-      <section className={`${styles.sectionPad} ${styles.desktopOnly}`} aria-labelledby="song-faq">
+      {/* Deliberately NOT .desktopOnly. The FAQPage structured data above is
+          emitted at every width, but this section used to sit inside that
+          wrapper — display: none below 900px. So the 32 questions across these
+          14 pages ("Is 'Last Last' certified?", "How high did it chart?") were
+          answered for a laptop reader and withheld from a phone reader who had
+          searched that exact question and landed here. Googlebot renders at
+          phone width too, so the schema was describing content the crawler
+          could not see, and markup that does not match the page is a spam
+          signal rather than a ranking one.
+          Flat list, both widths, every answer open: nobody arrives at a song
+          page wanting to tap a question they already asked. */}
+      <section className={styles.sectionPad} aria-labelledby="song-faq">
         <h2 id="song-faq" className={styles.h2}>Frequently asked</h2>
         <div className={styles.faqList}>
           {song.faqs.map((f) => (
