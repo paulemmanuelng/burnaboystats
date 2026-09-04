@@ -2,12 +2,29 @@ import { ImageResponse } from "next/og";
 import { timelineEntryCount, timelineEras } from "../data/timeline";
 import { totalAwards } from "../data/certifications";
 import { numberOnes } from "../data/charts";
+import { ogId } from "../lib/og-image";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = "Burna Boy career timeline — 2010 to today";
 
 const GOLD = "#ffb627";
+
+// Versioned by the figures the card prints, like the other 18 data-driven
+// cards. Without this the og:image URL carries the [contenthash] of this FILE,
+// which Next bakes in at build time — so certs, No. 1s and milestones could all
+// move and the URL stayed byte-identical, leaving every scraper serving the
+// card it cached first. See the ogId docstring in app/lib/og-image.tsx.
+export const generateImageMetadata = () => [
+  {
+    id: ogId(
+      [timelineEras.length, timelineEntryCount, totalAwards(), numberOnes].join("|")
+    ),
+    alt,
+    size,
+    contentType,
+  },
+];
 
 export default function Image() {
   const stats = [

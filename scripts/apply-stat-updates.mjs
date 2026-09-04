@@ -160,6 +160,13 @@ async function applyTargets(metric, files) {
     if (res.applied) {
       files.set(abs, res.text);
       edits.push({ file: ts.file, from: "(new point)", to: `${date} → ${value}`, noop: false });
+    } else if (res.reason !== "already current") {
+      // Site targets push their reason to `failures` a few lines up; this arm
+      // used to drop it, so `ok` stayed true and the baseline still bumped.
+      // The damage is quiet and specific: the peak figure advances while the
+      // date derived from the newest trend point does not, so the two disagree
+      // and anything reading that date starts reporting a stale peak as fresh.
+      failures.push({ file: ts.file, reason: res.reason });
     }
   }
 
@@ -373,5 +380,17 @@ async function main() {
 
 main().catch((err) => {
   console.error("Stat refresh error:", err);
-  process.exit(0);
+  // Exit 1, not 0. An UNREACHABLE SOURCE is already handled per-metric above
+  // (status: "unavailable"), and that path is the one scripts/README documents
+  // as never failing the build. Reaching here instead means the script itself
+  // broke — a malformed watched-metrics.json, a bad anchor, a code fault.
+  //
+  // Exiting 0 on that made every failure indistinguishable from success: the
+  // workflow went green, `git status --porcelain` came back empty because
+  // nothing had been written, and the run reported "nothing changed". A crash
+  // could have frozen all 25 live figures every 30 minutes, indefinitely,
+  // without a single red tick. build-live-charts.mjs exits 1 in seven places
+  // for the same reason; this is the script that writes to main UNREVIEWED,
+  // so it is the last one that should fail quietly.
+  process.exit(1);
 });

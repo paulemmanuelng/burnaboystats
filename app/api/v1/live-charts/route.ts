@@ -1,5 +1,11 @@
 import { liveCharts, liveChartsUpdated } from "../../../data/liveCharts";
 
+// force-static like its siblings. This route was the only static-able one
+// served on demand, burning a function invocation per request — including the
+// live-charts page's own per-release panel fetches — while its own comment
+// above says caching hard is safe. The data is rebuilt by a deploy.
+export const dynamic = "force-static";
+
 // GET /api/v1/live-charts → the full live-platform snapshot as JSON.
 //
 // This exists for two callers: the open-data API (same standing as the other
