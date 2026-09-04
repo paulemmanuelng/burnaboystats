@@ -110,7 +110,15 @@ export default function ChartsPage() {
         />
       </div>
 
-      {/* ── Where the charts come from ───────────────────────────── */}
+      {/* ── Where the charts come from ─────────────────────────────
+          The "as of" below read August while data/charts.ts was rewritten at
+          the bodies in September: ten more "Dai Dai" runs walked chart by
+          chart, the Dominican Republic and El Salvador entries pulled as
+          regional listings misread as national ones, and Lebanon and Panama
+          disclosed as airplay carve-outs — all on 1-3 Sep 2026. An "as of
+          August" stamp over rows that did not exist in August is false about
+          those rows, which is the only reason this one moved. Do NOT bump it
+          because the calendar did: it dates the checking, not the visit. */}
       <section className={styles.sourceWrap}>
         <div className={styles.sourceGrid}>
           <p className={styles.source}>
@@ -127,7 +135,7 @@ export default function ChartsPage() {
             countries that publish no non-airplay national chart at all, the airplay chart is
             the only national chart there is, and is used. Where a country runs both, the
             non-airplay chart wins. Figures are peak-so-far, cross-checked against the chart
-            bodies&apos; cited data as of August 2026.
+            bodies&apos; cited data as of September 2026.
           </p>
           <div className={styles.splitPanel}>
             <div className={styles.splitKicker}>Where the charts come from</div>

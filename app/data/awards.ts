@@ -96,6 +96,53 @@ export interface Ceremony {
   noms: AwardNom[];
 }
 
+/**
+ * Ceremonies that have NOT happened yet, and the day each is held.
+ *
+ * `won: false` means two different things in the data above — a nomination that
+ * lost, and a nomination whose result does not exist yet — and nothing could
+ * tell them apart. That is fine while a ceremony is in the future and rots the
+ * moment it isn't: a lost-looking row is indistinguishable from a result nobody
+ * went back for, so an unresolved ceremony can sit here indefinitely with the
+ * suite green. The dates below are the only thing that makes the difference
+ * checkable, and tests/awardsPending.test.ts fails once one of them is in the
+ * past — the failure IS the reminder to go and read the winners.
+ *
+ * Resolving one: verify at the awarding body's own winners list, never a press
+ * summary of it (awards.ts's header records the AEA USA 2025 case, where press
+ * read nominee #1 as the winner). Then delete the row from here, and expect
+ * handoffTotals.test.ts's win/nomination pins to need bumping with any flip.
+ *
+ * Worth knowing how badly a search engine can mislead here: asked about AFRIMMA
+ * 2026 on 4 Sep 2026, one returned a confident summary saying the ceremony
+ * "took place on September 12, 2026" and naming winners — eight days into the
+ * future, with results lifted from AFRIMA, a different body whose 2025 edition
+ * is already recorded below. The one-letter difference between the two names is
+ * exactly the kind of thing a summary flattens and a winners list does not.
+ */
+export interface PendingCeremony {
+  /** Must match a `name` in `ceremonies` below. */
+  ceremony: string;
+  /** The edition, matching the `year` on its noms. */
+  year: number;
+  /** ISO date the ceremony is held. */
+  date: string;
+  where: string;
+}
+
+export const pendingResults: PendingCeremony[] = [
+  // 12 Sep 2026, Dallas — four noms: Artist of the Year, Album of the Year,
+  // Crossing Boundaries, Best Male West Africa.
+  { ceremony: "African Muzik Magazine Awards (AFRIMMA)", year: 2026, date: "2026-09-12", where: "Annette Strauss Square, Dallas" },
+  // 19 Sep 2026 — the fourth edition, and the first held in the Caribbean after
+  // three years at Brooklyn's Kings Theatre. Voting closed 10 Aug 2026.
+  { ceremony: "Caribbean Music Awards", year: 2026, date: "2026-09-19", where: "NAPA, Port of Spain" },
+  // Nominations announced 18 Aug 2026; ceremony 27 Sep 2026.
+  { ceremony: "MTV Video Music Awards", year: 2026, date: "2026-09-27", where: "United States" },
+  // 18th Headies, nominations announced 26 Aug 2026.
+  { ceremony: "The Headies", year: 2026, date: "2026-10-25", where: "Toronto" },
+];
+
 export const ceremonies: Ceremony[] = [
   {
     name: "Grammy Awards",
@@ -345,6 +392,7 @@ export const ceremonies: Ceremony[] = [
   {
     name: "African Muzik Magazine Awards (AFRIMMA)",
     noms: [
+      // PENDING — the 2026 ceremony is 12 Sep; see `pendingResults` above.
       { year: 2026, category: "Artist of the Year", won: false },
       { year: 2026, category: "Album of the Year", work: "No Sign of Weakness", won: false },
       { year: 2026, category: "Crossing Boundaries With Music Award", won: false },
@@ -505,6 +553,7 @@ export const ceremonies: Ceremony[] = [
     name: "Caribbean Music Awards",
     noms: [
       { year: 2024, category: "Collaboration of the Year (Dancehall)", work: "Talibans II (with Byron Messia)", won: true },
+      // PENDING — the 2026 ceremony is 19 Sep; see `pendingResults` above.
       { year: 2026, category: "Konpa — Song of the Year", work: "4 Kampé II (Remix)", won: false },
     ],
   },

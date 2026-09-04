@@ -120,12 +120,18 @@ export default function FirstsPage() {
           ))}
         </div>
 
-        {/* ── Source ───────────────────────────────────────────── */}
+        {/* ── Source ─────────────────────────────────────────────
+            September, not August, because data/firsts.ts gained milestones in
+            September that were cross-checked then: "Dai Dai" at No. 1 on
+            Billboard's Rhythmic Airplay chart, and the 4-billion YouTube mark
+            read at youtube.com/@BurnaBoy on 3 Sep 2026 (the entry names the
+            day). The stamp dates the checking behind the list, not the day the
+            page is served — it does not move on its own. */}
         <section className={styles.sourceBand}>
           <div className={styles.wide}>
             <p className={styles.source}>
               Every milestone here was cross-checked against multiple sources (Billboard,
-              Pollstar/Boxscore, the BPI and press reporting), as of August 2026. “African” /
+              Pollstar/Boxscore, the BPI and press reporting), as of September 2026. “African” /
               “Nigerian” firsts reflect the wording of those sources. More milestones are
               added as they are confirmed.
             </p>
