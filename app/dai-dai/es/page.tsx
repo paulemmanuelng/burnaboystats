@@ -3,6 +3,7 @@ import styles from "../dai-dai.module.css";
 import DaiDaiStory, { type Step } from "../../components/DaiDaiStory";
 import DaiDaiConquest, { type ConquestCountry } from "../../components/DaiDaiConquest";
 import DaiDaiNumbers from "../../components/DaiDaiNumbers";
+import FaqList from "../../components/FaqList";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../lib/seo";
 import { lastUpdated } from "../../lib/api";
 import {
@@ -420,22 +421,28 @@ export default function DaiDaiPageES() {
             It matters at least as much here: half this song's audience searches
             in Spanish, which is the reason this edition exists at all, and a
             Spanish-language search for "¿quiénes son los Ghetto Kids?" arrives
-            on a phone. Flat list, both widths, every answer open.
+            on a phone. Flat list on a laptop, every answer open.
             This page has no Keep-exploring rail to leave behind — see the EN/ES
-            drift note; the English edition renders one and this one does not. */}
+            drift note; the English edition renders one and this one does not.
+            The phone fold is FaqList, exactly as on the English edition —
+            rendered open on the server and collapsed after mount, so a Spanish
+            reader whose JavaScript never arrives still gets all eight answers.
+            The control needs no translating: its accessible name is the
+            question itself and its affordance is a +/−. */}
         <section className={styles.section} aria-labelledby="dd-faq">
           <div className={styles.kicker}>Respuestas claras</div>
           <h2 id="dd-faq" className={styles.h2}>
             Preguntas <span className={styles.gold}>frecuentes</span>
           </h2>
-          <div className={styles.faqList}>
-            {faqs.map((f) => (
-              <div key={f.q} className={styles.faqItem}>
-                <h3 className={styles.faqQ}>{f.q}</h3>
-                <p className={styles.faqA}>{f.a}</p>
-              </div>
-            ))}
-          </div>
+          <FaqList
+            items={faqs}
+            classes={{
+              list: styles.faqList,
+              item: styles.faqItem,
+              q: styles.faqQ,
+              a: styles.faqA,
+            }}
+          />
         </section>
 
         <section className={styles.outro}>

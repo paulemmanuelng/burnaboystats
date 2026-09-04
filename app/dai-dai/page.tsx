@@ -4,6 +4,7 @@ import DaiDaiStory from "../components/DaiDaiStory";
 import DaiDaiConquest, { type ConquestCountry } from "../components/DaiDaiConquest";
 import KeepExploring from "../components/KeepExploring";
 import DaiDaiNumbers from "../components/DaiDaiNumbers";
+import FaqList from "../components/FaqList";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { lastUpdated } from "../lib/api";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES, weeksAtPeak, weeksOnChart } from "../data/charts";
@@ -411,23 +412,30 @@ export default function DaiDaiPage() {
             Googlebot renders at phone width too, so the schema was describing
             content the crawler could not see, and markup that does not match
             the page is a spam signal rather than a ranking one.
-            Flat list, both widths, every answer open — the same shape
+            Flat list on a laptop, every answer open — the same shape
             /music/[song] was un-hidden into in #170. The Keep-exploring rail at
             the foot of this file stays .desktopOnly on purpose: the five-tab
-            bar is how a phone moves around this site. */}
+            bar is how a phone moves around this site.
+            On a phone these eight fold, first one open, because the owner asked
+            for it. What keeps that from being the same bug in a nicer coat is
+            the order FaqList does it in: the server renders this open list and
+            an effect collapses it after mount, so the eight answers are in the
+            HTML at every width and a phone with no JavaScript still shows all
+            of them. */}
         <section className={styles.section} aria-labelledby="dd-faq">
           <div className={styles.kicker}>Answered plainly</div>
           <h2 id="dd-faq" className={styles.h2}>
             Frequently asked <span className={styles.gold}>questions</span>
           </h2>
-          <div className={styles.faqList}>
-            {faqs.map((f) => (
-              <div key={f.q} className={styles.faqItem}>
-                <h3 className={styles.faqQ}>{f.q}</h3>
-                <p className={styles.faqA}>{f.a}</p>
-              </div>
-            ))}
-          </div>
+          <FaqList
+            items={faqs}
+            classes={{
+              list: styles.faqList,
+              item: styles.faqItem,
+              q: styles.faqQ,
+              a: styles.faqA,
+            }}
+          />
         </section>
 
         <section className={styles.outro}>
