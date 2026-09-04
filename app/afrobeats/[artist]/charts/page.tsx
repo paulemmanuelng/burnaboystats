@@ -12,7 +12,7 @@ import { numberOnes as burnaNo1s, chartEntryCount as burnaEntries } from "../../
 import {
   artistBySlug,
   afrobeatsArtists,
-  countryMeta,
+  chartCountryMeta,
   chartEntries,
   chartTerritories,
   chartGlobalLines,
@@ -83,10 +83,13 @@ export default async function AfroArtistChartsPage({
 
   // Only the territories this artist has actually charted in, so the filter
   // rail is their record rather than a list of places to find nothing in.
+  // chartCountryMeta, never countryMeta: the latter answers with the CERTIFYING
+  // body, so these pills used to read "United States — RIAA" and "Germany —
+  // BVMI" over a chart peak. See data/afrobeats.ts.
   const codes = [...new Set(a.charts.flatMap((r) => r.entries.map((e) => e.c)))].sort((x, y) =>
-    countryMeta(x).name.localeCompare(countryMeta(y).name)
+    chartCountryMeta(x).name.localeCompare(chartCountryMeta(y).name)
   );
-  const countries = Object.fromEntries(codes.map((c) => [c, countryMeta(c)]));
+  const countries = Object.fromEntries(codes.map((c) => [c, chartCountryMeta(c)]));
 
   // Artwork comes from the release itself — the site's own cover lookup only
   // knows Burna's catalogue. A map, not a function: this is a server component.

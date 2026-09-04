@@ -140,35 +140,115 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
   // rewrite the most-streamed board every run, and the three totals sit within
   // ~53M of each other and move most days. On the ordinary day one passes
   // another, the board would render a ranked list contradicting its own numbers.
-  const parse = (v: string): number | null => {
+  //
+  // The test written to close that hole did not, and read green for it. Two
+  // faults, both silent:
+  //
+  //   1. `value: "([^"]+)"` ran across newlines, and the most-streamed block
+  //      opens with a comment quoting `{ name: "Burna Boy", value: "` verbatim.
+  //      The first match started inside that comment and swallowed seven lines
+  //      up to the next quote. One unparseable value made `nums.some(n => n ===
+  //      null)` true, and the whole board was skipped — the ONE board this file
+  //      exists for. Comments are stripped before scanning now, and the skip is
+  //      no longer a silent one: a list that prints some readable values and
+  //      some unreadable ones is a fault, not a pass.
+  //   2. A "year" board is one ranked list PER ROW. Concatenating them compares
+  //      2026's smallest total against 2025's largest and reports a false
+  //      offender, so even a fixed regex could not have judged that board.
+  //      Rows are segmented on `label:` now.
+  //
+  // Rank boards ("No. 1", "#5") are judged too, ascending — the earlier version
+  // skipped them for printing values it could not read as magnitudes, which
+  // left four more boards unchecked.
+  const magnitude = (v: string): number | null => {
     const m = /^([\d.,]+)\s*([KMB])?$/.exec(v.trim());
     if (!m) return null;
     const n = Number(m[1].replace(/,/g, ""));
     if (Number.isNaN(n)) return null;
     return n * ({ K: 1e3, M: 1e6, B: 1e9 }[m[2] ?? ""] ?? 1);
   };
+  const rank = (v: string): number | null => {
+    const m = /^(?:No\.\s*|#)(\d+)$/.exec(v.trim());
+    return m ? Number(m[1]) : null;
+  };
+
+  // The one list whose values are deliberately not all literals: Burna Boy's
+  // cell holds BURNA_PEAK_LISTENERS, so four of its five values are readable
+  // here. Its full ordering, constant included, is the describe below.
+  const PARTIAL_BY_DESIGN = new Set(["monthly-listeners-peak"]);
 
   it("lists descending values, on every board that prints comparable numbers", () => {
-    const src = readFileSync("app/data/africasBiggest.ts", "utf8");
-    // Each board's id, then every value: "…" literal up to the next id.
+    const raw = readFileSync("app/data/africasBiggest.ts", "utf8");
+    // Comments out first — one of them quotes an entry literal, which is how
+    // the most-streamed board escaped this check entirely. `[^:]` spares the
+    // `//` in an https:// URL.
+    const src = raw.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/[^\n]*/g, "$1");
+
+    // Each board's id, then its values — split per row where the board has
+    // rows, because a "year" board ranks each year separately.
+    const VALUE = /value: "([^"\n]+)"/g;
     const ids = [...src.matchAll(/id: "([a-z0-9-]+)"/g)];
-    const offenders: string[] = [];
+    const lists: { id: string; name: string; values: string[] }[] = [];
     ids.forEach((idm, i) => {
-      const start = idm.index!;
-      const end = i + 1 < ids.length ? ids[i + 1].index! : src.length;
-      const block = src.slice(start, end);
-      const values = [...block.matchAll(/value: "([^"]+)"/g)].map((m) => m[1]);
-      const nums = values.map(parse);
-      // Only judge boards where every printed value is a comparable magnitude.
-      if (nums.length < 2 || nums.some((n) => n === null)) return;
+      const block = src.slice(idm.index!, i + 1 < ids.length ? ids[i + 1].index! : src.length);
+      const rows = [...block.matchAll(/label: "([^"\n]+)"/g)];
+      const slice = (s: string, name: string) =>
+        lists.push({ id: idm[1], name, values: [...s.matchAll(VALUE)].map((m) => m[1]) });
+      if (rows.length === 0) slice(block, idm[1]);
+      else
+        rows.forEach((r, k) =>
+          slice(
+            block.slice(r.index!, k + 1 < rows.length ? rows[k + 1].index! : block.length),
+            `${idm[1]} ${r[1]}`
+          )
+        );
+    });
+
+    const offenders: string[] = [];
+    let judged = 0;
+    for (const list of lists) {
+      const { values, name } = list;
+      // A row that prints no values at all ranks by order alone (the pre-2025
+      // years name artists and no totals) — there is nothing here to contradict.
+      if (values.length === 0) continue;
+
+      const asMagnitude = values.map(magnitude);
+      const asRank = values.map(rank);
+      const readable = values.filter((_, k) => asMagnitude[k] !== null || asRank[k] !== null);
+      if (readable.length === 0) continue;
+      if (readable.length !== values.length && !PARTIAL_BY_DESIGN.has(list.id)) {
+        // The failure mode this test shipped with: an unreadable value used to
+        // buy the whole board a silent exemption.
+        offenders.push(
+          `${name}: ${values.length - readable.length} of ${values.length} values are unreadable — ${values
+            .filter((_, k) => asMagnitude[k] === null && asRank[k] === null)
+            .map((v) => JSON.stringify(v.slice(0, 40)))
+            .join(", ")}`
+        );
+        continue;
+      }
+
+      const asc = asRank.every((n) => n !== null);
+      const nums = (asc ? asRank : asMagnitude).filter((n) => n !== null) as number[];
+      if (nums.length !== readable.length) {
+        offenders.push(`${name}: mixes rank values with magnitudes — ${values.join(", ")}`);
+        continue;
+      }
+      if (nums.length < 2) continue;
+      judged += 1;
       for (let k = 1; k < nums.length; k++) {
-        if ((nums[k] as number) > (nums[k - 1] as number)) {
-          offenders.push(`${idm[1]}: ${values[k - 1]} is listed above ${values[k]}`);
+        if (asc ? nums[k] < nums[k - 1] : nums[k] > nums[k - 1]) {
+          offenders.push(`${name}: ${values[k - 1]} is listed above ${values[k]}`);
           break;
         }
       }
-    });
+    }
     expect(offenders, "a ranked board contradicts its own numbers").toEqual([]);
+    // The count is the point: this read 1 before the repair. A drop means a
+    // list has gone quiet again rather than gone right. 16, not 15 boards:
+    // most-streamed contributes its 2026 and 2025 rows separately, and the
+    // three earlier years print no totals.
+    expect(judged, "ranked lists actually judged").toBe(16);
   });
 });
 

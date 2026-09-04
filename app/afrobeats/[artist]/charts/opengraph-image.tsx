@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { ogId } from "../../../lib/og-image";
-import { artistBySlug, afrobeatsArtists, chartEntries, chartTerritories, chartNo1s, countryMeta, bestPeaks } from "../../../data/afrobeats";
+import { artistBySlug, afrobeatsArtists, chartEntries, chartTerritories, chartNo1s, chartCountryMeta, bestPeaks } from "../../../data/afrobeats";
 
 export function generateStaticParams() {
   return afrobeatsArtists.filter((a) => a.charts.length > 0).map((a) => ({ artist: a.slug }));
@@ -79,7 +79,8 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: 12, maxWidth: 1060 }}>
           {best.map((e) => {
-            const meta = countryMeta(e.c);
+            // The chart resolver, like the page: these chips are chart rows.
+            const meta = chartCountryMeta(e.c);
             const one = e.peak === 1;
             return (
               <div
