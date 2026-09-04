@@ -87,31 +87,61 @@ describe("the curated index's typed artist counts match the data", () => {
   // Built fresh inside the test: a /g regex declared at describe scope keeps its
   // lastIndex between runs. The window is generous because the entries differ in
   // how much sits between the path and the description.
+  // THREE phrasings ship, not two. The country clause is optional as well as
+  // the entry clause: Black Sherif is the board's only single-country artist,
+  // so his entry reads "24 certifications and 22 official chart entries" with
+  // no "across N countries" at all — and "across" being mandatory here meant
+  // the regex skipped him outright.
   const makeRe = () =>
-    /path: "\/afrobeats\/([a-z-]+)",[\s\S]{0,600}?description: "[^"]*?(\d+) certifications across (\d+) countr(?:y|ies)(?: and (\d+) official chart entries)?/g;
+    /path: "\/afrobeats\/([a-z-]+)",[\s\S]{0,600}?description: "[^"]*?(\d+) certifications(?: across (\d+) countr(?:y|ies))?(?: and (\d+) official chart entries)?/g;
+
+  /** Every artist HUB doc in the curated file — the set the regex must cover.
+   *  `[a-z-]+"` stops at the closing quote, so the /charts and /live docs
+   *  underneath each artist are not counted. */
+  const hubSlugs = (src: string) =>
+    [...src.matchAll(/path: "\/afrobeats\/([a-z-]+)",/g)].map((m) => m[1]);
+
+  it("checks every artist on the board, not a floor of them", () => {
+    // The coverage assertion used to be `seen >= 14`, a number typed when the
+    // board had fourteen artists. Black Sherif made fifteen; the regex matched
+    // fourteen because it could not read his phrasing; fourteen still cleared a
+    // floor of fourteen, so the guard went green while guarding one artist less
+    // than the board holds. A hand-typed threshold cannot notice that — the
+    // file's own artist docs are the only honest expectation, so compare
+    // against those and let the count take care of itself.
+    const src = readFileSync(join(process.cwd(), "app/lib/searchIndex.ts"), "utf8");
+    const matched = [...new Set([...src.matchAll(makeRe())].map((m) => m[1]))];
+    const hubs = hubSlugs(src);
+    expect(
+      hubs.filter((s) => !matched.includes(s)).sort(),
+      "these artists have a search doc whose description this test cannot read, so their counts are unchecked",
+    ).toEqual([]);
+    // And the docs themselves must still cover the board.
+    expect(
+      afrobeatsArtists.map((a) => a.slug).filter((s) => !hubs.includes(s)).sort(),
+      "these board artists have no curated search doc at all",
+    ).toEqual([]);
+  });
 
   it("has no stale certification, country or chart-entry count", () => {
     const src = readFileSync(join(process.cwd(), "app/lib/searchIndex.ts"), "utf8");
     const stale: string[] = [];
     let m: RegExpExecArray | null;
-    let seen = 0;
     const RE = makeRe();
     while ((m = RE.exec(src))) {
-      seen++;
       const a = afrobeatsArtists.find((x) => x.slug === m![1]);
       if (!a) { stale.push(`${m[1]}: no such artist on the board`); continue; }
-      // Two phrasings ship: some entries end "and N official chart entries",
-      // the rest "and his/her official chart peaks" with no number. The entry
-      // count is only checked where one is actually stated — and it was the
-      // SECOND shape, skipped by an earlier version of this regex, that was
-      // hiding four stale plaque counts including Seyi Vibez's.
+      // Each clause is only checked where the entry actually states one — some
+      // end "and his/her official chart peaks" with no number, and Black
+      // Sherif's names no country count. It was the second shape, skipped by an
+      // earlier version of this regex, that was hiding four stale plaque counts
+      // including Seyi Vibez's.
       const issues: string[] = [];
       if (certCount(a) !== Number(m[2])) issues.push(`certs says ${m[2]}, data ${certCount(a)}`);
-      if (countryCount(a) !== Number(m[3])) issues.push(`countries says ${m[3]}, data ${countryCount(a)}`);
+      if (m[3] && countryCount(a) !== Number(m[3])) issues.push(`countries says ${m[3]}, data ${countryCount(a)}`);
       if (m[4] && chartEntries(a) !== Number(m[4])) issues.push(`entries says ${m[4]}, data ${chartEntries(a)}`);
       if (issues.length) stale.push(`${m[1]}: ${issues.join("; ")}`);
     }
-    expect(seen, "the description phrasing changed and this test now checks nothing").toBeGreaterThanOrEqual(14);
     expect(stale).toEqual([]);
   });
 });

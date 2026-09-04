@@ -169,6 +169,12 @@ export const SEGMENT_LABELS: Record<string, string> = {
   "black-sherif": "Black Sherif",
   bnxn: "BNXN",
   "dai-dai": "The Dai Dai Story",
+  // The leaf of /dai-dai/es. /dai-dai hand-writes its own trail, but the
+  // Spanish edition is not in OWN_BREADCRUMB, so it takes the generated one —
+  // and with no entry here it published `"name":"es"` as the leaf of its
+  // BreadcrumbList, which is what Google was actually shown for an INDEXED
+  // page. Spanish, because it names the Spanish edition to a Spanish reader.
+  es: "Español",
   share: "Stat Cards",
   faq: "FAQ",
   curator: "About the Curator",
@@ -179,6 +185,13 @@ export const SEGMENT_LABELS: Record<string, string> = {
   methodology: "Methodology",
   about: "About",
   contact: "Contact",
+  // The two noindex routes. <Breadcrumbs> is in the root layout and has no way
+  // to know a page is noindex, so it renders its trail there like anywhere
+  // else — these were publishing "search" and "primitives" as raw slugs. Being
+  // noindex excuses them from the sitemap and from owning an OG image; it does
+  // not make the markup they DO emit correct, and a label is one line.
+  search: "Search",
+  primitives: "Primitives",
 };
 
 // BreadcrumbList JSON-LD for a given path (e.g. "/records/tours/festivals").

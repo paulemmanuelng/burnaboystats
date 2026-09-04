@@ -19,6 +19,26 @@ export const metadata: Metadata = {
   // Without this it inherits the root layout's alternates.canonical of "/",
   // so a noindex scratch page was declaring itself the homepage.
   alternates: { canonical: "/primitives" },
+  // ...and `openGraph` inherits exactly the same way, which that fix missed:
+  // the built HTML still carried `og:url` = https://burnaboystats.com plus the
+  // home page's og:title and og:description. Same bug, one field over. The
+  // scratch page keeps no opengraph-image of its own — it is not shared, and
+  // the inherited root image is fine — but it should not claim to BE the home
+  // page in markup any more than it should in a canonical.
+  // `images` is spelled out because the root opengraph-image.tsx hangs off the
+  // root's openGraph OBJECT: a page keeps the inherited picture only while it
+  // inherits the whole block, so declaring a url here dropped the image and the
+  // post-build og:image gate went red. Still no opengraph-image.tsx of its own —
+  // a scratch page does not need a drawn card, just the site's.
+  openGraph: {
+    title: "Primitives — Burna Boy Stats",
+    description: "Internal scratch page: shared buttons, tags, tables and tokens.",
+    url: "/primitives",
+    siteName: "Burna Boy Stats",
+    type: "website",
+    locale: "en_US",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Burna Boy Stats" }],
+  },
 };
 
 const TOKENS = [
