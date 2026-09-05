@@ -334,7 +334,7 @@
             "country": "BM",
             "name": "Bermuda",
             "position": 34,
-            "movement": -27
+            "movement": -26
           }
         ]
       },
@@ -345,9 +345,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 46,
-            "movement": null,
-            "status": "new"
+            "position": 64,
+            "movement": -18
           }
         ]
       }
@@ -597,7 +596,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 95,
+            "position": 97,
             "movement": -20
           }
         ]
@@ -879,17 +878,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 19,
-            "movement": -16
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 26,
+            "position": 28,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 32,
+            "movement": -24
           }
         ]
       },
@@ -988,8 +987,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 91,
-            "movement": -3
+            "position": 92,
+            "movement": -2
           }
         ]
       }
@@ -1143,7 +1142,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 81,
+            "position": 134,
             "movement": null,
             "status": "new"
           }
@@ -1222,6 +1221,19 @@
             "movement": -4
           }
         ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -1269,7 +1281,7 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 72,
+            "position": 75,
             "movement": -1
           },
           {
@@ -1374,26 +1386,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/f4f5c145b06c62888141b2a7eabad4b3/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "People",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 138,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0dda3f7dc6c530814d51c9cb6eca57be/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "ARTIFICIAL HAPPINESS",
     "platforms": [
       {
@@ -1411,6 +1403,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "People",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 183,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0dda3f7dc6c530814d51c9cb6eca57be/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "10 Toes",
@@ -1460,7 +1472,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 168,
+            "position": 199,
             "movement": null,
             "status": "new"
           }
