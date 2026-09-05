@@ -287,6 +287,12 @@
             "status": "new"
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 180,
+            "movement": 16
+          },
+          {
             "country": "JO",
             "name": "Jordan",
             "position": 183,
@@ -297,12 +303,6 @@
             "name": "Qatar",
             "position": 183,
             "movement": -67
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 187,
-            "movement": 11
           },
           {
             "country": "SZ",
@@ -547,7 +547,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 47,
-            "movement": -28
+            "movement": -27
           }
         ]
       }
@@ -686,8 +686,8 @@
           {
             "country": "BS",
             "name": "The Bahamas",
-            "position": 41,
-            "movement": -22
+            "position": 42,
+            "movement": -21
           }
         ]
       },
@@ -816,14 +816,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 57,
+            "position": 97,
             "movement": null,
             "status": "new"
           },
           {
             "country": "ES",
             "name": "Spain",
-            "position": 93,
+            "position": 200,
             "movement": null,
             "status": "new"
           }
@@ -1076,8 +1076,8 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 31,
-            "movement": -14
+            "position": 33,
+            "movement": -15
           },
           {
             "country": "NG",
@@ -1163,8 +1163,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 17,
-            "movement": 0
+            "position": 18,
+            "movement": -1
           },
           {
             "country": "NE",
@@ -1193,8 +1193,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 78,
-            "movement": 4
+            "position": 79,
+            "movement": 3
           }
         ]
       }
@@ -1494,13 +1494,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 1,
-            "movement": 0
+            "position": 2,
+            "movement": -1
           }
         ]
       }
@@ -1534,17 +1534,17 @@
             "movement": -6
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 33,
+            "movement": 36
+          },
+          {
             "country": "VC",
             "name": "St. Vincent and The Grenadines",
             "position": 37,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 39,
-            "movement": 10
           },
           {
             "country": "CM",
@@ -1677,7 +1677,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 47,
-            "movement": -42
+            "movement": -43
           },
           {
             "country": "NG",
@@ -1963,8 +1963,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 50,
-            "movement": -8
+            "position": 55,
+            "movement": -13
           }
         ]
       },
@@ -2072,6 +2072,76 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6ddb34c26029baeb2bd73c71bb8d839f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Alive",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 9,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 52,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 165,
+            "movement": -21
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Made In Lagos",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 47,
+            "movement": 0
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 89,
+            "movement": 0
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 100,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Slow",
     "platforms": [
       {
@@ -2129,63 +2199,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Alive",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 41,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 165,
-            "movement": -21
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Made In Lagos",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 47,
-            "movement": 0
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 89,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "S2 - EP",
     "platforms": [
       {
@@ -2226,8 +2239,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 68,
-            "movement": -25
+            "position": 70,
+            "movement": -20
           }
         ]
       },
@@ -2440,26 +2453,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/77fc9f281aabc0cfb5c17649afe08c8c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Surulere",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f204ea5bc059318869bb1890f9377d4f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Tonight",
     "platforms": [
       {
@@ -2479,7 +2472,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BROWN SKIN GIRL",
+    "title": "Surulere",
     "platforms": [
       {
         "platform": "iTunes",
@@ -2488,14 +2481,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 197,
-            "movement": -158
+            "position": 109,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/38dc027b0eae49a8e7fd7af3312a00a6/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f204ea5bc059318869bb1890f9377d4f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SoundMan, Vol. 1",

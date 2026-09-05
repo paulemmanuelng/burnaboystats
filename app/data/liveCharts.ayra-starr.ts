@@ -493,8 +493,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 8,
-            "movement": 182
+            "position": 10,
+            "movement": 183
           },
           {
             "country": "KN",
@@ -503,22 +503,29 @@
             "movement": -2
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 19,
-            "movement": -7
-          },
-          {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 23,
             "movement": -3
           },
           {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 24,
+            "movement": -12
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": 1
+            "position": 81,
+            "movement": -30
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 139,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -856,8 +863,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 80,
-            "movement": -16
+            "position": 81,
+            "movement": -9
           },
           {
             "country": "IE",
@@ -887,7 +894,7 @@
             "country": "FR",
             "name": "France",
             "position": 105,
-            "movement": -7
+            "movement": -11
           },
           {
             "country": "BZ",
@@ -896,28 +903,28 @@
             "movement": 39
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 115,
-            "movement": -9
-          },
-          {
             "country": "BH",
             "name": "Bahrain",
             "position": 116,
             "movement": -80
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 130,
-            "movement": 12
+            "country": "CA",
+            "name": "Canada",
+            "position": 122,
+            "movement": -15
           },
           {
             "country": "TC",
             "name": "Turks and Caicos",
             "position": 136,
             "movement": -47
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 146,
+            "movement": 3
           },
           {
             "country": "BE",
@@ -1136,8 +1143,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 18,
-            "movement": 3
+            "position": 19,
+            "movement": 2
           },
           {
             "country": "AG",
@@ -1148,19 +1155,19 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 69,
-            "movement": -8
+            "position": 71,
+            "movement": -10
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 85,
-            "movement": 2
+            "position": 90,
+            "movement": -3
           },
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 123,
+            "position": 145,
             "movement": null,
             "status": "new"
           }
@@ -1342,8 +1349,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 54,
-            "movement": -46
+            "position": 94,
+            "movement": -84
           }
         ]
       },
@@ -1470,7 +1477,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
+            "position": 13,
             "movement": null,
             "status": "new"
           }
@@ -1656,14 +1663,14 @@
             "movement": -14
           },
           {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 113,
-            "movement": -12
-          },
-          {
             "country": "FR",
             "name": "France",
+            "position": 111,
+            "movement": -3
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
             "position": 113,
             "movement": -12
           },
@@ -1905,8 +1912,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 191,
-            "movement": -20
+            "position": 193,
+            "movement": -17
           }
         ]
       }
@@ -1967,13 +1974,13 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 32,
-            "movement": 10
+            "position": 37,
+            "movement": -3
           },
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 94,
+            "position": 118,
             "movement": null,
             "status": "new"
           }
@@ -2476,8 +2483,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 98,
-            "movement": -25
+            "position": 100,
+            "movement": -20
           }
         ]
       }
@@ -2642,6 +2649,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "People",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 138,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0dda3f7dc6c530814d51c9cb6eca57be/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Comforter",

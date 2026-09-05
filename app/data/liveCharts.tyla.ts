@@ -201,8 +201,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 165,
-            "movement": -15
+            "position": 164,
+            "movement": 7
           },
           {
             "country": "RO",
@@ -239,8 +239,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 188,
-            "movement": -31
+            "position": 191,
+            "movement": -26
           },
           {
             "country": "PH",
@@ -258,15 +258,15 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 26,
+            "position": 32,
             "movement": null,
             "status": "new"
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 178,
-            "movement": -114
+            "position": 184,
+            "movement": -103
           }
         ]
       }
@@ -353,7 +353,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 84,
+            "position": 92,
             "movement": null,
             "status": "new"
           }
@@ -500,7 +500,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 119,
+            "position": 127,
             "movement": null,
             "status": "new"
           }
@@ -582,7 +582,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 98,
+            "position": 151,
             "movement": null,
             "status": "new"
           }
@@ -727,25 +727,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd9051638bd5d70e43eff9dc09faa344/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "IS IT",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MD",
-            "name": "Moldova",
-            "position": 100,
-            "movement": -18
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "When I'm With You",
     "platforms": [
       {
@@ -775,7 +756,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 130,
+            "position": 138,
             "movement": null,
             "status": "new"
           }

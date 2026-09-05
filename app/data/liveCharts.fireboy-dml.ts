@@ -380,7 +380,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
+            "position": 17,
             "movement": null,
             "status": "new"
           }

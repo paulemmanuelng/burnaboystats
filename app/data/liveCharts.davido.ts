@@ -212,23 +212,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 35,
-            "movement": 2
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 41,
-            "movement": -26
+            "position": 43,
+            "movement": -21
           },
           {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 175,
-            "movement": null,
-            "status": "new"
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 75,
+            "movement": -29
           }
         ]
       },
@@ -397,8 +390,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 71,
-            "movement": -4
+            "position": 67,
+            "movement": 6
           },
           {
             "country": "CY",
@@ -465,8 +458,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 193,
-            "movement": 3
+            "position": 196,
+            "movement": 1
           },
           {
             "country": "KW",
@@ -491,7 +484,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 100,
-            "movement": -5
+            "movement": -2
           }
         ]
       }
@@ -1242,8 +1235,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 93,
-            "movement": -25
+            "position": 95,
+            "movement": -20
           }
         ]
       }
@@ -1554,9 +1547,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
-            "movement": null,
-            "status": "new"
+            "position": 112,
+            "movement": -99
           }
         ]
       }
@@ -1909,8 +1901,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 13,
-            "movement": 3
+            "position": 14,
+            "movement": 2
           },
           {
             "country": "MZ",
@@ -1921,8 +1913,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 89,
-            "movement": -4
+            "position": 91,
+            "movement": -6
           },
           {
             "country": "BF",
@@ -2094,8 +2086,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 11,
-            "movement": 3
+            "position": 12,
+            "movement": 2
           },
           {
             "country": "NE",
@@ -2112,21 +2104,14 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 74,
-            "movement": -9
+            "position": 76,
+            "movement": -11
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 81,
             "movement": 2
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 95,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -2162,7 +2147,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 140,
+            "position": 180,
             "movement": null,
             "status": "new"
           }
@@ -2251,8 +2236,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 47,
-            "movement": -26
+            "position": 49,
+            "movement": -21
           }
         ]
       }
@@ -2381,7 +2366,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 55,
+            "position": 57,
             "movement": null,
             "status": "new"
           }
@@ -2442,26 +2427,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Gobe",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 5,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d7997ace25abd1a5cf1a8ae8d541a52a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Funds",
     "platforms": [
       {
@@ -2479,6 +2444,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Gobe",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d7997ace25abd1a5cf1a8ae8d541a52a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FOR YOU",
@@ -2692,26 +2677,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "PICASSO",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 132,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Father",
     "platforms": [
       {
@@ -2751,6 +2716,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d5dfc880396e953e316456a394d7353/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "PICASSO",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 172,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Odo",
     "platforms": [
       {
@@ -2760,8 +2745,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 185,
-            "movement": -21
+            "position": 187,
+            "movement": -19
           }
         ]
       }

@@ -294,18 +294,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "VN",
-            "name": "Vietnam",
-            "position": 155,
-            "movement": -68
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -482,15 +470,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
+            "position": 4,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 165,
-            "movement": -21
+            "position": 167,
+            "movement": -19
           }
         ]
       },
@@ -1135,8 +1123,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 191,
-            "movement": -20
+            "position": 193,
+            "movement": -17
           }
         ]
       }
@@ -1348,8 +1336,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 115,
-            "movement": -23
+            "position": 117,
+            "movement": -20
           }
         ]
       },
@@ -1417,6 +1405,25 @@
     "title": "Calm Down",
     "platforms": [
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 25,
+            "movement": 2
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 26,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -1425,18 +1432,6 @@
             "name": "Micronesia",
             "position": 27,
             "movement": 18
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 21,
-            "movement": 3
           }
         ]
       },
@@ -1537,8 +1532,8 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 17,
-            "movement": 152
+            "position": 20,
+            "movement": 30
           }
         ]
       }
@@ -1673,8 +1668,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 126,
-            "movement": -23
+            "position": 128,
+            "movement": -20
           }
         ]
       }

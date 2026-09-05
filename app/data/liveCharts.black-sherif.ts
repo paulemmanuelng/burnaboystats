@@ -114,8 +114,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 24,
-            "movement": 39
+            "position": 23,
+            "movement": 8
           },
           {
             "country": "BJ",
@@ -146,18 +146,17 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "ML",
             "name": "Mali",
             "position": 58,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 58,
+            "movement": -1
           },
           {
             "country": "BE",
@@ -169,8 +168,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 65,
-            "movement": 86
+            "position": 63,
+            "movement": 48
           },
           {
             "country": "MW",
@@ -217,9 +216,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 91,
-            "movement": null,
-            "status": "new"
+            "position": 95,
+            "movement": 26
           },
           {
             "country": "SA",
@@ -278,9 +276,9 @@
             "status": "new"
           },
           {
-            "country": "IT",
-            "name": "Italy",
-            "position": 181,
+            "country": "ES",
+            "name": "Spain",
+            "position": 179,
             "movement": null,
             "status": "new"
           },
@@ -292,11 +290,10 @@
             "status": "new"
           },
           {
-            "country": "ES",
-            "name": "Spain",
-            "position": 185,
-            "movement": null,
-            "status": "new"
+            "country": "IT",
+            "name": "Italy",
+            "position": 194,
+            "movement": -16
           }
         ]
       },
@@ -307,7 +304,7 @@
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 144,
+            "position": 195,
             "movement": null,
             "status": "new"
           }
@@ -491,14 +488,14 @@
           {
             "country": "LV",
             "name": "Latvia",
-            "position": 37,
-            "movement": null,
-            "status": "new"
+            "position": 41,
+            "movement": -34
           }
         ]
       }
     ],
-    "kind": "song"
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Run Around",
@@ -532,6 +529,53 @@
             "country": "GM",
             "name": "Gambia",
             "position": 137,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Jolie",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 22,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 187,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 5,
             "movement": null,
             "status": "new"
           }
@@ -654,40 +698,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Jolie",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 5,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 22,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 187,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Amazing Grace",
@@ -953,8 +963,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 96,
-            "movement": -25
+            "position": 98,
+            "movement": -20
           }
         ]
       }
