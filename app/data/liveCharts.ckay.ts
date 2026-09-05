@@ -51,15 +51,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 90,
-            "movement": 75
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 108,
-            "movement": null,
-            "status": "new"
+            "position": 95,
+            "movement": -5
           },
           {
             "country": "TD",
@@ -71,8 +64,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 199,
-            "movement": -80
+            "position": 160,
+            "movement": 39
           }
         ]
       },
@@ -83,8 +76,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 101,
-            "movement": 5
+            "position": 88,
+            "movement": 13
           }
         ]
       }
@@ -103,7 +96,7 @@
             "country": "RU",
             "name": "Russia",
             "position": 6,
-            "movement": 0
+            "movement": 2
           },
           {
             "country": "BF",
@@ -114,7 +107,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 187,
+            "position": 188,
             "movement": -18
           }
         ]
@@ -126,8 +119,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 139,
-            "movement": -3
+            "position": 126,
+            "movement": 13
           }
         ]
       }
@@ -149,54 +142,28 @@
             "movement": -16
           },
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 61,
-            "movement": -32
-          },
-          {
             "country": "ML",
             "name": "Mali",
-            "position": 99,
-            "movement": -65
+            "position": 90,
+            "movement": 9
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 114,
+            "movement": -53
           },
           {
             "country": "NE",
             "name": "Niger",
-            "position": 160,
-            "movement": -52
+            "position": 177,
+            "movement": -17
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Boyfriend",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 65,
-            "movement": -9
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BODY (danz)",
@@ -251,26 +218,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Show My Side",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 127,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "La La",
     "platforms": [
       {
@@ -280,14 +227,33 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 176,
-            "movement": -1
+            "position": 169,
+            "movement": 7
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Boyfriend",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 65,
+            "movement": -9
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   }
 ];
   

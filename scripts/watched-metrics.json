@@ -142,7 +142,7 @@
       "extractor": "youtubeViews",
       "kind": "peak",
       "threshold": 0.001,
-      "baseline": 995342817,
+      "baseline": 998796691,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -160,7 +160,7 @@
         }
       ],
       "lastChanged": "2026-09-05",
-      "lastSeenValue": 995342817,
+      "lastSeenValue": 998796691,
       "lastSeenAt": "2026-09-05",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
@@ -192,7 +192,7 @@
         }
       ],
       "lastChanged": "2026-08-28",
-      "lastSeenValue": 362341972,
+      "lastSeenValue": 362377528,
       "lastSeenAt": "2026-09-05",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -205,7 +205,7 @@
       "extractor": "youtubeViews",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 308936026,
+      "baseline": 309503589,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
@@ -223,8 +223,8 @@
           "describes": "displayed YouTube views on /music/ye"
         }
       ],
-      "lastChanged": "2026-08-23",
-      "lastSeenValue": 309483225,
+      "lastChanged": "2026-09-05",
+      "lastSeenValue": 309503589,
       "lastSeenAt": "2026-09-05",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -237,7 +237,7 @@
       "extractor": "youtubeViews",
       "kind": "peak",
       "threshold": 0.005,
-      "baseline": 479521225,
+      "baseline": 480500604,
       "live": true,
       "sanity": {
         "maxJump": 0.2,
@@ -255,8 +255,8 @@
           "describes": "displayed YouTube views on /music/on-the-low"
         }
       ],
-      "lastChanged": "2026-08-30",
-      "lastSeenValue": 480442720,
+      "lastChanged": "2026-09-05",
+      "lastSeenValue": 480500604,
       "lastSeenAt": "2026-09-05",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -288,7 +288,7 @@
         }
       ],
       "lastChanged": "2026-08-25",
-      "lastSeenValue": 118004730,
+      "lastSeenValue": 118019298,
       "lastSeenAt": "2026-09-05",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."

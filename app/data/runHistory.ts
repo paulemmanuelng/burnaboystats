@@ -518,7 +518,7 @@
     "date": "2026-09-05",
     "release": "Dai Dai",
     "platform": "Spotify",
-    "position": 9
+    "position": 6
   }
 ];
   
