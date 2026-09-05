@@ -57,8 +57,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 24,
-            "movement": -2
+            "position": 21,
+            "movement": 3
           },
           {
             "country": "NG",
@@ -75,7 +75,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 39,
+            "position": 40,
             "movement": -1
           },
           {
@@ -104,10 +104,16 @@
             "movement": 3
           },
           {
+            "country": "ML",
+            "name": "Mali",
+            "position": 64,
+            "movement": 75
+          },
+          {
             "country": "GH",
             "name": "Ghana",
-            "position": 100,
-            "movement": -40
+            "position": 96,
+            "movement": 4
           },
           {
             "country": "MW",
@@ -123,21 +129,22 @@
             "status": "new"
           },
           {
-            "country": "ML",
-            "name": "Mali",
-            "position": 139,
-            "movement": -84
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
+            "country": "AO",
+            "name": "Angola",
             "position": 152,
-            "movement": -4
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 172,
+            "position": 167,
+            "movement": 5
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 168,
             "movement": -16
           },
           {
@@ -206,20 +213,20 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 107,
-            "movement": 5
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 143,
-            "movement": -29
+            "position": 120,
+            "movement": -13
           },
           {
             "country": "BJ",
             "name": "Benin",
             "position": 147,
             "movement": 11
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 176,
+            "movement": -33
           },
           {
             "country": "GM",
@@ -435,13 +442,33 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 62,
-            "movement": -37
+            "movement": -31
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Assignment",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a4643fa21c1aa5c851069bb486f24d72/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Triumphant",
@@ -530,34 +557,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 137,
-            "movement": 36
+            "position": 156,
+            "movement": -140
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3ee06d9cf953f4249eb86f403754372d/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Morowore",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ikigai / 生き甲斐, Vol. 1",

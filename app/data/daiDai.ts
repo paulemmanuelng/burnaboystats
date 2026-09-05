@@ -15,7 +15,7 @@
 export const DAI_DAI_VIDEO_VIEWS = "999M";
 
 // Total Spotify streams for "Dai Dai" — same live pipeline as the video count.
-export const DAI_DAI_SPOTIFY_STREAMS = "415M";
+export const DAI_DAI_SPOTIFY_STREAMS = "418M";
 
 // ---------------------------------------------------------------------------
 // The Spotify Global Daily Top Songs run.

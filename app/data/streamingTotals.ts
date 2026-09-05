@@ -29,7 +29,7 @@ export const spotifyTotalStreams = "10.95B";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "10,945,847,105";
+export const spotifyTotalStreamsExact = "10,954,013,758";
 
 // Every Burna Boy video on YouTube, across his channel and others'. He leads
 // all Nigerian artists on this measure — 344 videos to 4.03 billion views,

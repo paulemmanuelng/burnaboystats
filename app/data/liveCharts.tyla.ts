@@ -189,17 +189,17 @@
             "movement": -15
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 151,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "MM",
             "name": "Myanmar",
             "position": 154,
             "movement": -126
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 159,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "SG",
@@ -208,16 +208,16 @@
             "movement": 3
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 174,
-            "movement": 12
-          },
-          {
             "country": "MK",
             "name": "North Macedonia",
             "position": 174,
             "movement": 4
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 177,
+            "movement": 16
           },
           {
             "country": "BT",
@@ -245,12 +245,6 @@
             "position": 196,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 199,
-            "movement": -34
           }
         ]
       },
@@ -261,7 +255,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 67,
+            "position": 82,
             "movement": null,
             "status": "new"
           }
@@ -293,20 +287,20 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 88,
-            "movement": -29
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 145,
-            "movement": 14
+            "position": 89,
+            "movement": -1
           },
           {
             "country": "SZ",
             "name": "Swaziland",
             "position": 178,
             "movement": -31
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 189,
+            "movement": -44
           }
         ]
       },
@@ -448,7 +442,7 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 38,
+            "position": 41,
             "movement": null,
             "status": "new"
           },
@@ -464,13 +458,6 @@
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
-          {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 70,
-            "movement": null,
-            "status": "new"
-          },
           {
             "country": "FM",
             "name": "Micronesia",
@@ -523,18 +510,6 @@
             "movement": 5
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 196,
-            "movement": -164
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -548,16 +523,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 151,
+            "movement": 24
+          },
+          {
             "country": "ZA",
             "name": "South Africa",
             "position": 172,
             "movement": -2
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 175,
-            "movement": -7
           },
           {
             "country": "SZ",
@@ -582,9 +557,8 @@
           {
             "country": "LA",
             "name": "Laos",
-            "position": 147,
-            "movement": null,
-            "status": "new"
+            "position": 91,
+            "movement": 56
           },
           {
             "country": "TH",
@@ -602,7 +576,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 167,
+            "position": 182,
             "movement": null,
             "status": "new"
           }
@@ -667,6 +641,26 @@
             "country": "US",
             "name": "United States",
             "position": 189,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "RIGHT NOW",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 48,
             "movement": null,
             "status": "new"
           }

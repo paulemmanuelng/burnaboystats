@@ -44,7 +44,7 @@ export const songs: Song[] = [
     slug: "last-last",
     title: "Last Last",
     year: 2022,
-    spotifyStreams: "608M",
+    spotifyStreams: "609M",
     album: "Love, Damini",
     cover: "https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2",
     spotify: "https://open.spotify.com/track/4LPNkxES0zCGn6S2Y1vmJN",
