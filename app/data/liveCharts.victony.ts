@@ -258,7 +258,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 184,
+            "position": 178,
             "movement": null,
             "status": "new"
           },
@@ -496,27 +496,27 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 40,
-            "movement": -12
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 57,
-            "movement": 1
+            "position": 44,
+            "movement": -16
           },
           {
             "country": "FR",
             "name": "France",
-            "position": 61,
+            "position": 53,
             "movement": null,
             "status": "new"
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 72,
+            "movement": -14
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
-            "movement": -140
+            "position": 186,
+            "movement": -162
           }
         ]
       },
@@ -998,6 +998,19 @@
             "movement": -104
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 59,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -1119,7 +1132,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
+            "position": 19,
             "movement": null,
             "status": "new"
           }
@@ -1183,7 +1196,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
+            "position": 111,
             "movement": null,
             "status": "new"
           }
@@ -1394,7 +1407,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
+            "position": 112,
             "movement": null,
             "status": "new"
           }
@@ -1527,7 +1540,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
+            "position": 109,
             "movement": null,
             "status": "new"
           }
@@ -1704,26 +1717,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/42248d8b06dd650f1f1f6eafcca490e0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "CAN JUICE",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "OHEMA",
     "platforms": [
       {
@@ -1741,6 +1734,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "CAN JUICE",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 110,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Stubborn",

@@ -331,8 +331,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 34,
-            "movement": -25
+            "position": 35,
+            "movement": -9
           }
         ]
       },
@@ -596,8 +596,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 98,
-            "movement": -20
+            "position": 101,
+            "movement": -19
           }
         ]
       }
@@ -900,15 +900,15 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 29,
+            "position": 32,
             "movement": null,
             "status": "new"
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 34,
-            "movement": -26
+            "position": 39,
+            "movement": -31
           }
         ]
       },
@@ -1074,8 +1074,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 93,
-            "movement": -3
+            "position": 97,
+            "movement": -7
           }
         ]
       }
@@ -1273,8 +1273,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 77,
-            "movement": 0
+            "position": 76,
+            "movement": 1
           },
           {
             "country": "BE",

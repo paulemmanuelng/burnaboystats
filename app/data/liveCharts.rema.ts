@@ -270,7 +270,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
+            "position": 63,
             "movement": null,
             "status": "new"
           }
@@ -474,7 +474,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 170,
+            "position": 173,
             "movement": -19
           }
         ]
@@ -799,8 +799,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 196,
-            "movement": -17
+            "position": 200,
+            "movement": -18
           }
         ]
       },
@@ -908,90 +908,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "HEIS",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 53,
-            "movement": -36
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 75,
-            "movement": -5
-          },
-          {
-            "country": "AI",
-            "name": "Anguilla",
-            "position": 114,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 114,
-            "movement": -75
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 126,
-            "movement": -33
-          },
-          {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 137,
-            "movement": -79
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 158,
-            "movement": -100
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 162,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 183,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 185,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 193,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Calm Down",
     "platforms": [
       {
@@ -1001,27 +917,34 @@
           {
             "country": "KH",
             "name": "Cambodia",
-            "position": 6,
+            "position": 7,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 22,
             "movement": null,
             "status": "new"
           },
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 28,
-            "movement": -4
+            "position": 26,
+            "movement": -2
           },
           {
             "country": "GR",
             "name": "Greece",
-            "position": 61,
+            "position": 74,
             "movement": null,
             "status": "new"
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 126,
+            "position": 164,
             "movement": null,
             "status": "new"
           }
@@ -1154,10 +1077,107 @@
             "movement": -104
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 59,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "HEIS",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 53,
+            "movement": -36
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 75,
+            "movement": -5
+          },
+          {
+            "country": "AI",
+            "name": "Anguilla",
+            "position": 114,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 114,
+            "movement": -75
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 126,
+            "movement": -33
+          },
+          {
+            "country": "SR",
+            "name": "Suriname",
+            "position": 137,
+            "movement": -79
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 158,
+            "movement": -100
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 162,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 183,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 185,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 193,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bounce",
@@ -1416,13 +1436,13 @@
             "country": "GM",
             "name": "Gambia",
             "position": 4,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 120,
-            "movement": -20
+            "position": 123,
+            "movement": -19
           }
         ]
       },
@@ -1623,8 +1643,8 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 24,
-            "movement": 7
+            "position": 22,
+            "movement": -1
           }
         ]
       }
@@ -1720,8 +1740,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 131,
-            "movement": -20
+            "position": 134,
+            "movement": -19
           }
         ]
       }

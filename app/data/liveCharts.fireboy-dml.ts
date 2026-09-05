@@ -455,7 +455,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 65,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -497,7 +497,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
+            "position": 41,
             "movement": null,
             "status": "new"
           }

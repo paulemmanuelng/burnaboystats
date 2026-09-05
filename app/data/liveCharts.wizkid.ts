@@ -287,13 +287,6 @@
             "status": "new"
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 192,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "MG",
             "name": "Madagascar",
             "position": 192,
@@ -313,6 +306,13 @@
             "position": 199,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 200,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -324,6 +324,13 @@
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 5,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CO",
+            "name": "Colombia",
+            "position": 52,
             "movement": null,
             "status": "new"
           }
@@ -523,15 +530,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
+            "position": 30,
             "movement": null,
             "status": "new"
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 62,
-            "movement": -35
+            "position": 67,
+            "movement": -40
           }
         ]
       },
@@ -688,8 +695,8 @@
           {
             "country": "BS",
             "name": "The Bahamas",
-            "position": 52,
-            "movement": -26
+            "position": 57,
+            "movement": -31
           }
         ]
       },
@@ -830,7 +837,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 163,
+            "position": 185,
             "movement": null,
             "status": "new"
           }
@@ -954,8 +961,8 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 35,
-            "movement": -14
+            "position": 36,
+            "movement": -15
           },
           {
             "country": "NG",
@@ -1162,8 +1169,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 53,
-            "movement": 0
+            "position": 54,
+            "movement": -1
           },
           {
             "country": "GH",
@@ -1579,7 +1586,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 47,
-            "movement": -31
+            "movement": -30
           },
           {
             "country": "NG",
@@ -1628,7 +1635,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
+            "position": 23,
             "movement": null,
             "status": "new"
           }
@@ -1838,7 +1845,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 2,
-            "movement": 15
+            "movement": 18
           },
           {
             "country": "KE",
@@ -1925,7 +1932,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 11,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "DM",
@@ -1936,8 +1943,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 57,
-            "movement": -13
+            "position": 61,
+            "movement": -17
           }
         ]
       },
@@ -2068,7 +2075,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
+            "position": 39,
             "movement": null,
             "status": "new"
           }
@@ -2155,37 +2162,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/332d8393d5c9e2d7c5345b8e5fd2a049/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Made In Lagos",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 47,
-            "movement": 0
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 89,
-            "movement": 0
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 100,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Stay For The Night",
     "platforms": [
       {
@@ -2270,7 +2246,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 56,
+            "position": 64,
             "movement": null,
             "status": "new"
           }
@@ -2317,7 +2293,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 22,
+            "position": 36,
             "movement": null,
             "status": "new"
           }
@@ -2338,6 +2314,31 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/76f42907d9ab6c5cd7a89b4c86806f1c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Made In Lagos",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 47,
+            "movement": 0
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 89,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Superstar",
@@ -2381,7 +2382,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 62,
-            "movement": -31
+            "movement": -28
           }
         ]
       }
@@ -2458,8 +2459,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 73,
-            "movement": -20
+            "position": 76,
+            "movement": -19
           }
         ]
       }
@@ -2555,8 +2556,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 175,
-            "movement": -144
+            "position": 197,
+            "movement": -166
           }
         ]
       }

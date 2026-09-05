@@ -383,8 +383,8 @@
           {
             "country": "LV",
             "name": "Latvia",
-            "position": 46,
-            "movement": -27
+            "position": 58,
+            "movement": -39
           }
         ]
       }
@@ -551,7 +551,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 8,
+            "position": 10,
             "movement": null,
             "status": "new"
           }
@@ -821,8 +821,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 101,
-            "movement": -20
+            "position": 104,
+            "movement": -19
           }
         ]
       }
@@ -1198,7 +1198,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 22,
-            "movement": -1
+            "movement": 0
           }
         ]
       }

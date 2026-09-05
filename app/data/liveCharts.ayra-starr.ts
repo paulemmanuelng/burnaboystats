@@ -507,20 +507,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
-            "movement": 5
+            "position": 3,
+            "movement": 6
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 11,
-            "movement": 50
+            "position": 16,
+            "movement": 45
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 14,
-            "movement": 182
+            "position": 17,
+            "movement": -8
           },
           {
             "country": "KN",
@@ -531,7 +531,7 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 23,
+            "position": 24,
             "movement": -2
           }
         ]
@@ -1121,6 +1121,62 @@
     "title": "Rush",
     "platforms": [
       {
+        "platform": "iTunes",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 1,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 9,
+            "movement": 1
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 16,
+            "movement": 0
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 23,
+            "movement": -2
+          },
+          {
+            "country": "AG",
+            "name": "Antigua and Barbuda",
+            "position": 50,
+            "movement": 1
+          },
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 72,
+            "movement": -9
+          },
+          {
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 96,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 96,
+            "movement": -7
+          }
+        ]
+      },
+      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -1170,55 +1226,6 @@
             "name": "Namibia",
             "position": 190,
             "movement": -66
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 1,
-        "entries": [
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 1,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 9,
-            "movement": 1
-          },
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 16,
-            "movement": 0
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 22,
-            "movement": -1
-          },
-          {
-            "country": "AG",
-            "name": "Antigua and Barbuda",
-            "position": 50,
-            "movement": 1
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 72,
-            "movement": -9
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 92,
-            "movement": -3
           }
         ]
       },
@@ -1368,7 +1375,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 26,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -1510,8 +1517,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
-            "movement": -139
+            "position": 182,
+            "movement": -161
           }
         ]
       },
@@ -1648,8 +1655,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 196,
-            "movement": -17
+            "position": 200,
+            "movement": -18
           }
         ]
       },
@@ -1799,8 +1806,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 120,
-            "movement": -7
+            "position": 122,
+            "movement": -9
           },
           {
             "country": "CG",
@@ -2038,15 +2045,15 @@
           {
             "country": "GR",
             "name": "Greece",
-            "position": 17,
+            "position": 23,
             "movement": null,
             "status": "new"
           },
           {
             "country": "IT",
             "name": "Italy",
-            "position": 35,
-            "movement": -9
+            "position": 38,
+            "movement": -12
           }
         ]
       },
@@ -2649,8 +2656,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 103,
-            "movement": -20
+            "position": 106,
+            "movement": -19
           }
         ]
       }
@@ -2737,6 +2744,72 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/965eeb50245f3178580ac5bda885e56b/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Where Do We Go",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 149,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 127,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Escaladizzy II",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 187,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 14,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d47d959a99da468afdd69a8f855be482/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Amazing",
     "platforms": [
       {
@@ -2808,26 +2881,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ec4546dc58720d21131151a1fc6fa33e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Where Do We Go",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 149,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Overloading",
     "platforms": [
       {
@@ -2845,26 +2898,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7861d849c8157fbffc37ccebf0ee75c5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Escaladizzy II",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 187,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d47d959a99da468afdd69a8f855be482/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Beggie Beggie",
