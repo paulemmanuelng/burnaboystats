@@ -250,8 +250,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 58,
-            "movement": -17
+            "position": 67,
+            "movement": -26
           }
         ]
       },
@@ -263,7 +263,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 4,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -475,7 +475,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 63,
+            "position": 71,
             "movement": null,
             "status": "new"
           }
@@ -591,8 +591,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 67,
-            "movement": 4
+            "position": 64,
+            "movement": 3
           },
           {
             "country": "GW",
@@ -640,8 +640,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 174,
-            "movement": 19
+            "position": 183,
+            "movement": 13
           },
           {
             "country": "DM",
@@ -962,7 +962,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 38,
-            "movement": 10
+            "movement": 0
           }
         ]
       },
@@ -1234,8 +1234,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 111,
-            "movement": -18
+            "position": 3,
+            "movement": 90
           }
         ]
       }
@@ -1480,7 +1480,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 44,
-            "movement": -28
+            "movement": 0
           }
         ]
       },
@@ -1732,8 +1732,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 199,
-            "movement": 0
+            "position": 200,
+            "movement": -1
           }
         ]
       }
@@ -1797,7 +1797,7 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 17,
-            "movement": -4
+            "movement": -3
           },
           {
             "country": "MZ",
@@ -2048,8 +2048,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 43,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -2130,7 +2129,7 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 15,
-            "movement": -4
+            "movement": -3
           },
           {
             "country": "NE",
@@ -2147,7 +2146,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 68,
+            "position": 69,
             "movement": 6
           },
           {
@@ -2354,8 +2353,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 64,
-            "movement": -17
+            "position": 73,
+            "movement": -26
           }
         ]
       }
@@ -2393,8 +2392,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 89,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -2474,6 +2472,32 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "FIA",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 27,
+            "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 92,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "OVER DEM",
     "platforms": [
       {
@@ -2495,7 +2519,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 60,
+            "position": 61,
             "movement": -5
           }
         ]
@@ -2614,25 +2638,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "FIA",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 27,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "High",
     "platforms": [
       {
@@ -2651,25 +2656,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/05ba3ed47b0af042f38e49cb3789ec7c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Gobe",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 43,
-            "movement": -38
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d7997ace25abd1a5cf1a8ae8d541a52a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FOR THE ROAD",
@@ -2710,6 +2696,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Gobe",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 51,
+            "movement": -41
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d7997ace25abd1a5cf1a8ae8d541a52a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Like",

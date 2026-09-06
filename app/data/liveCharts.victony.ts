@@ -251,8 +251,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 165,
-            "movement": 23
+            "position": 166,
+            "movement": 14
           },
           {
             "country": "KN",
@@ -483,44 +483,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 2,
-            "movement": 26
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 48,
-            "movement": -15
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 113,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 168,
-            "movement": -16
-          },
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 185,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -528,26 +490,50 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 6,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "SN",
             "name": "Senegal",
             "position": 16,
-            "movement": -9
+            "movement": 0
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 22,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 77,
-            "movement": -65
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 2,
+            "movement": 27
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 48,
+            "movement": -10
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 163,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -709,8 +695,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 93,
-            "movement": -5
+            "position": 92,
+            "movement": -10
           },
           {
             "country": "AO",
@@ -719,16 +705,16 @@
             "movement": -51
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 103,
-            "movement": 7
-          },
-          {
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 104,
             "movement": -17
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 105,
+            "movement": 3
           },
           {
             "country": "CG",
@@ -743,16 +729,16 @@
             "movement": -73
           },
           {
+            "country": "FR",
+            "name": "France",
+            "position": 149,
+            "movement": 9
+          },
+          {
             "country": "QA",
             "name": "Qatar",
             "position": 149,
             "movement": 32
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 151,
-            "movement": 2
           },
           {
             "country": "BW",
@@ -782,9 +768,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 172,
-            "movement": null,
-            "status": "new"
+            "position": 180,
+            "movement": 11
           },
           {
             "country": "NE",
@@ -802,7 +787,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 53,
-            "movement": -38
+            "movement": -37
           }
         ]
       }
@@ -882,15 +867,13 @@
             "country": "KE",
             "name": "Kenya",
             "position": 2,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 53,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -1000,7 +983,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 88,
+            "position": 96,
             "movement": null,
             "status": "new"
           }
@@ -1126,7 +1109,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
+            "position": 39,
             "movement": null,
             "status": "new"
           }
@@ -1190,7 +1173,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
+            "position": 167,
             "movement": null,
             "status": "new"
           }
@@ -1401,7 +1384,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
+            "position": 168,
             "movement": null,
             "status": "new"
           }
@@ -1534,7 +1517,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
+            "position": 165,
             "movement": null,
             "status": "new"
           }
@@ -1739,7 +1722,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
+            "position": 166,
             "movement": null,
             "status": "new"
           }

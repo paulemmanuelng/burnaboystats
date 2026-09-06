@@ -268,9 +268,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "IN",
+            "name": "India",
+            "position": 80,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 93,
+            "position": 99,
             "movement": null,
             "status": "new"
           }
@@ -284,8 +291,7 @@
             "country": "SN",
             "name": "Senegal",
             "position": 90,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -468,14 +474,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": -11
+            "position": 22,
+            "movement": -18
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 182,
-            "movement": -17
+            "position": 190,
+            "movement": -25
           }
         ]
       },
@@ -886,8 +892,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 82,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -973,7 +978,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 88,
+            "position": 96,
             "movement": null,
             "status": "new"
           }
@@ -1185,20 +1190,20 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 25,
-            "movement": -4
+            "position": 28,
+            "movement": -3
           },
           {
             "country": "KH",
             "name": "Cambodia",
-            "position": 33,
+            "position": 36,
             "movement": null,
             "status": "new"
           },
           {
             "country": "SK",
             "name": "Slovakia",
-            "position": 40,
+            "position": 67,
             "movement": null,
             "status": "new"
           }
@@ -1212,22 +1217,19 @@
             "country": "CH",
             "name": "Switzerland",
             "position": 69,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "AT",
             "name": "Austria",
             "position": 74,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "SK",
             "name": "Slovakia",
             "position": 78,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -1352,8 +1354,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 7,
-            "movement": 108
+            "position": 16,
+            "movement": 99
           }
         ]
       },
@@ -1617,8 +1619,8 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 27,
-            "movement": -10
+            "position": 38,
+            "movement": -20
           }
         ]
       }
@@ -1656,8 +1658,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 42,
-            "movement": -27
+            "position": 46,
+            "movement": -31
           }
         ]
       }
@@ -1733,8 +1735,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 143,
-            "movement": -17
+            "position": 151,
+            "movement": -25
           }
         ]
       }

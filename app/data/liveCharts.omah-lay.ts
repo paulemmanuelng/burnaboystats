@@ -332,7 +332,7 @@
             "country": "BM",
             "name": "Bermuda",
             "position": 40,
-            "movement": -9
+            "movement": -6
           }
         ]
       },
@@ -344,7 +344,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 64,
-            "movement": -18
+            "movement": 0
           }
         ]
       }
@@ -596,8 +596,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 111,
-            "movement": -18
+            "position": 3,
+            "movement": 90
           }
         ]
       }
@@ -900,14 +900,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 41,
-            "movement": -17
+            "position": 50,
+            "movement": -26
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 54,
-            "movement": -35
+            "position": 55,
+            "movement": -36
           }
         ]
       },
@@ -1054,25 +1054,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 94,
-            "movement": -8
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -1082,6 +1063,18 @@
             "position": 166,
             "movement": null,
             "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 94,
+            "movement": -3
           }
         ]
       }
@@ -1260,8 +1253,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 85,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -1279,8 +1271,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 72,
-            "movement": -2
+            "position": 70,
+            "movement": 2
           },
           {
             "country": "BE",
@@ -1514,26 +1506,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Do Not Disturb",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 68,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1b2bca57a7cfd3a6b2435783d6e810f1/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "10 Toes",
     "platforms": [
       {
@@ -1571,6 +1543,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Do Not Disturb",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 76,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1b2bca57a7cfd3a6b2435783d6e810f1/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad",
