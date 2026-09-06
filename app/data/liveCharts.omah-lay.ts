@@ -331,8 +331,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 37,
-            "movement": -11
+            "position": 40,
+            "movement": -9
           }
         ]
       },
@@ -382,7 +382,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 53,
-            "movement": -7
+            "movement": -2
           },
           {
             "country": "GH",
@@ -541,6 +541,24 @@
         ]
       },
       {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 90,
+            "movement": 2
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 166,
+            "movement": 20
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -556,24 +574,6 @@
             "position": 63,
             "movement": null,
             "status": "re"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 90,
-            "movement": 2
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 166,
-            "movement": 20
           }
         ]
       },
@@ -596,7 +596,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 107,
+            "position": 111,
             "movement": -18
           }
         ]
@@ -900,14 +900,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 38,
-            "movement": -16
+            "position": 41,
+            "movement": -17
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 50,
-            "movement": -32
+            "position": 54,
+            "movement": -35
           }
         ]
       },
@@ -1061,12 +1061,12 @@
             "country": "UG",
             "name": "Uganda",
             "position": 94,
-            "movement": -10
+            "movement": -8
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 195,
+            "position": 199,
             "movement": null,
             "status": "new"
           }
@@ -1279,8 +1279,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 81,
-            "movement": -3
+            "position": 72,
+            "movement": -2
           },
           {
             "country": "BE",
@@ -1298,6 +1298,18 @@
     "title": "Gut Genug",
     "platforms": [
       {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 136,
+            "movement": -16
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -1307,18 +1319,6 @@
             "position": 62,
             "movement": null,
             "status": "re"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 136,
-            "movement": -16
           }
         ]
       }
@@ -1400,7 +1400,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 69,
-            "movement": -5
+            "movement": -1
           },
           {
             "country": "TD",
@@ -1494,26 +1494,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Do Not Disturb",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 61,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1b2bca57a7cfd3a6b2435783d6e810f1/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "COPING MECHANISM",
     "platforms": [
       {
@@ -1532,6 +1512,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Do Not Disturb",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 68,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1b2bca57a7cfd3a6b2435783d6e810f1/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "10 Toes",

@@ -273,6 +273,12 @@
             "movement": -16
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 175,
+            "movement": 12
+          },
+          {
             "country": "LB",
             "name": "Lebanon",
             "position": 182,
@@ -316,21 +322,35 @@
           {
             "country": "EE",
             "name": "Estonia",
-            "position": 3,
+            "position": 8,
             "movement": null,
             "status": "new"
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 8,
+            "position": 34,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 53,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TR",
+            "name": "Turkey",
+            "position": 92,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 61,
+            "position": 108,
             "movement": null,
             "status": "new"
           }
@@ -530,15 +550,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 49,
             "movement": null,
             "status": "new"
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 78,
-            "movement": -34
+            "position": 82,
+            "movement": -35
           }
         ]
       },
@@ -738,8 +758,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 41,
-            "movement": -18
+            "position": 52,
+            "movement": -28
           },
           {
             "country": "NG",
@@ -814,6 +834,18 @@
             "name": "Nigeria",
             "position": 31,
             "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 15,
+            "movement": 42
           }
         ]
       },
@@ -1045,7 +1077,7 @@
             "country": "BG",
             "name": "Bulgaria",
             "position": 38,
-            "movement": -8
+            "movement": -7
           }
         ]
       }
@@ -1063,8 +1095,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 5,
-            "movement": 1
+            "position": 7,
+            "movement": -2
           },
           {
             "country": "NG",
@@ -1155,8 +1187,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 78,
-            "movement": 0
+            "position": 79,
+            "movement": -1
           }
         ]
       }
@@ -1175,8 +1207,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 13,
-            "movement": null,
-            "status": "new"
+            "movement": -2
           },
           {
             "country": "NG",
@@ -1364,7 +1395,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 2,
-            "movement": 0
+            "movement": -1
           }
         ]
       }
@@ -1478,6 +1509,12 @@
             "movement": 1
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 50,
+            "movement": -11
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 70,
@@ -1494,12 +1531,6 @@
             "name": "Kenya",
             "position": 84,
             "movement": 54
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 85,
-            "movement": 0
           },
           {
             "country": "UG",
@@ -1553,8 +1584,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 65,
-            "movement": -21
+            "position": 76,
+            "movement": -29
           },
           {
             "country": "NG",
@@ -1603,7 +1634,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
+            "position": 45,
             "movement": null,
             "status": "new"
           }
@@ -1812,8 +1843,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 20,
-            "movement": -19
+            "position": 31,
+            "movement": -30
           },
           {
             "country": "KE",
@@ -1912,7 +1943,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 66,
-            "movement": -18
+            "movement": -16
           }
         ]
       },
@@ -2043,7 +2074,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
+            "position": 55,
             "movement": null,
             "status": "new"
           }
@@ -2162,6 +2193,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Drogba",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 65,
+            "movement": -29
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 48,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b5c2e2be723408f28befdd7a53e1c64a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Energy",
     "platforms": [
       {
@@ -2184,7 +2247,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 8,
+            "position": 9,
             "movement": null,
             "status": "new"
           }
@@ -2306,7 +2369,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 88,
+            "position": 95,
             "movement": null,
             "status": "new"
           }
@@ -2326,7 +2389,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 54,
+            "position": 75,
             "movement": null,
             "status": "new"
           }
@@ -2409,34 +2472,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 77,
-            "movement": -18
+            "position": 87,
+            "movement": -25
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Drogba",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b5c2e2be723408f28befdd7a53e1c64a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Time",
@@ -2467,7 +2510,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 82,
+            "position": 86,
             "movement": -18
           }
         ]
@@ -2487,7 +2530,7 @@
             "country": "BB",
             "name": "Barbados",
             "position": 67,
-            "movement": -11
+            "movement": -5
           }
         ]
       }
