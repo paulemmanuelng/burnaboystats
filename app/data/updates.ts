@@ -59,7 +59,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-03",
     category: "Charts",
-    text: "“Dai Dai” goes to No. 1 on Billboard's Rhythmic Airplay chart dated 6 September 2026, climbing 3–1. It is Shakira's first-ever No. 1 on the format, twenty years after “Hips Don't Lie” peaked at No. 5 in 2006, and the song's fourth week in the format's top three. It holds at No. 26 on Pop Airplay. This is Billboard's own Rhythmic Airplay panel, not Mediabase's — the two share a monitoring feed but rank different panels over different weeks, and this site publishes the Billboard peak.",
+    text: "“Dai Dai” goes to No. 1 on Billboard's Rhythmic Airplay chart dated 5 September 2026, climbing 3–1. It is Shakira's first-ever No. 1 on the format, twenty years after “Hips Don't Lie” peaked at No. 5 in 2006, and the song's fourth week in the format's top three. It holds at No. 26 on Pop Airplay. This is Billboard's own Rhythmic Airplay panel, not Mediabase's — the two share a monitoring feed but rank different panels over different weeks, and this site publishes the Billboard peak. (The date read 6 September here until 6 Sep 2026: Billboard issues fall on Saturdays, 5 September 2026 is the Saturday, and the German chart frame of 04.09–10.09 pins the same week independently.)",
     href: "/dai-dai",
   },
   {
