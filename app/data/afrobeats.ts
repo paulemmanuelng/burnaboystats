@@ -176,7 +176,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     image: "https://i.scdn.co/image/ab6761610000e5eb690d9ec39523c7159ada0426",
     verifiedOn: AFROBEATS_VERIFIED_ON_6,
     swept: true,
-    chartPublished: { entries: 100, territories: 2, no1s: 4 },
+    chartPublished: { entries: 105, territories: 2, no1s: 7 },
     releases: [
       { title: "Amapiano", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ca53dc32e25c8249389aa28d80ad8fe7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }, { c: "UK", level: "Silver" }] },
       { title: "99", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
@@ -331,6 +331,16 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Prelude", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ba/6d/fb/ba6dfb0f-3eb5-d02a-79f6-6a4483231e13/199316074352_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 80 }] },
       { title: "Come On", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/5fc094517f4efadde4ade406baac48ba/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 87 }] },
       { title: "Stronger", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ba/6d/fb/ba6dfb0f-3eb5-d02a-79f6-6a4483231e13/199316074352_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 94 }] },
+      // NIGERIAN ALBUMS, added 7 Sep 2026. The 28 Aug board-expansion sweep read
+      // TurnTable's SINGLES category only and published zero albums for this
+      // artist, so a chart he has topped three times was missing entirely. Read
+      // across all 200 published issues of the Official Top 100 Albums, from its
+      // 2 Nov 2022 launch to 2026-08-27, and each peak re-verified at the body.
+      { title: "Olamide", kind: "Albums", entries: [{ c: "NG", peak: 1 }] },
+      { title: "Unruly", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
+      { title: "Ikigai, Vol. 1", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
+      { title: "Carpe Diem", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 33 }] },
+      { title: "UY Scuti", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 84 }] },
     ],
   },
   {
@@ -409,7 +419,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     image: "https://i.scdn.co/image/ab6761610000e5eb54047830689ea245d14a390f",
     verifiedOn: AFROBEATS_VERIFIED_ON_6,
     swept: true,
-    chartPublished: { entries: 98, territories: 7, no1s: 6 },
+    chartPublished: { entries: 103, territories: 7, no1s: 7 },
     releases: [
       { title: "Gwagwalada", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 5 }] },
       { title: "Alone", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/1fe91c5c64c50b4f4a901d248114d99d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }] },
@@ -558,6 +568,23 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Toxic", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/1732de52d38b7e0d8cd01c52c1057ccd/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 95 }] },
       { title: "Say My Name", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/29/55/b7/2955b7f3-0b1a-2909-b062-24282b2611b6/197342321792_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 97 }] },
       { title: "African Soldier", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/0e19e55780193713ad5c57666d753a49/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 98 }] },
+      // NIGERIAN ALBUMS, added 7 Sep 2026 — same gap as Olamide's, from the same
+      // 28 Aug batch, which swept singles and not albums. Read across all 200
+      // issues of the Official Top 100 Albums and verified at the body. "RnB" is
+      // co-billed to Ruger & BNXN, which counts under this file's own credit rule.
+      //
+      // HELD BACK: the "Bad Since '97" EP reads 14 on this chart, but the EP
+      // predates the chart's launch by about ten weeks, so 14 is its peak on the
+      // chart's own history rather than necessarily its commercial peak — and a
+      // single of that name is ALREADY on this artist at NG 37. Adding it would
+      // make the board's first same-title-different-kind pair, and cover lookups
+      // here key on title alone (Object.fromEntries(releases.map(r => [r.title,
+      // r.cover]))), so the two rows would collide. Needs a decision, not a guess.
+      { title: "WHO THIS", kind: "Singles", entries: [{ c: "NG", peak: 42 }] },
+      { title: "CAPTAIN", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
+      { title: "Sincerely, Benson", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
+      { title: "RnB", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
+      { title: "The Game Needs Us - EP", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
     ],
   },
   {
