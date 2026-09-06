@@ -51,21 +51,14 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 6,
-            "movement": 0
+            "position": 5,
+            "movement": 1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 83,
-            "movement": 1
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 166,
-            "movement": null,
-            "status": "new"
+            "position": 87,
+            "movement": -3
           }
         ]
       },
@@ -88,9 +81,8 @@
           {
             "country": "YE",
             "name": "Yemen",
-            "position": 16,
-            "movement": null,
-            "status": "new"
+            "position": 31,
+            "movement": -15
           }
         ]
       }
@@ -112,19 +104,6 @@
             "movement": 9
           },
           {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 114,
-            "movement": -53
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 153,
@@ -135,6 +114,13 @@
             "name": "Niger",
             "position": 177,
             "movement": -17
+          },
+          {
+            "country": "LA",
+            "name": "Laos",
+            "position": 194,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -156,16 +142,10 @@
             "movement": -5
           },
           {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 160,
-            "movement": 39
-          },
-          {
             "country": "TD",
             "name": "Chad",
-            "position": 196,
-            "movement": -86
+            "position": 177,
+            "movement": 19
           }
         ]
       },
@@ -186,37 +166,31 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Beggie Beggie",
+    "title": "Sad Romance",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 192,
+            "country": "SR",
+            "name": "Suriname",
+            "position": 90,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
+          },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 21,
+            "country": "MV",
+            "name": "Maldives",
+            "position": 196,
             "movement": null,
             "status": "new"
           }
         ]
       }
     ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b606366687e3c46d407569aa03ae26bf/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BODY (danz)",
@@ -250,6 +224,46 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Beggie Beggie",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 24,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Emiliana",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 147,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "HALLELUJAH",
     "platforms": [
       {
@@ -259,7 +273,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
+            "position": 146,
             "movement": null,
             "status": "new"
           }
