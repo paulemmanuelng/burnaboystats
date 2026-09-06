@@ -63,7 +63,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 122,
+            "position": 166,
             "movement": null,
             "status": "new"
           }
@@ -208,7 +208,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
+            "position": 21,
             "movement": null,
             "status": "new"
           }
@@ -259,7 +259,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 103,
+            "position": 138,
             "movement": null,
             "status": "new"
           }

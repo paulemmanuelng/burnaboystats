@@ -124,8 +124,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 37,
-            "movement": -14
+            "position": 45,
+            "movement": -16
           },
           {
             "country": "CI",
@@ -190,14 +190,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 100,
-            "movement": -37
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 113,
-            "movement": -55
+            "position": 105,
+            "movement": -44
           },
           {
             "country": "SA",
@@ -212,6 +206,12 @@
             "movement": 8
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 117,
+            "movement": -56
+          },
+          {
             "country": "CG",
             "name": "Republic of the Congo",
             "position": 124,
@@ -223,12 +223,6 @@
             "name": "Ireland",
             "position": 133,
             "movement": -17
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 142,
-            "movement": -47
           },
           {
             "country": "SE",
@@ -249,6 +243,18 @@
             "position": 172,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 172,
+            "movement": -61
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 198,
+            "movement": -32
           }
         ]
       }
@@ -320,8 +326,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 6,
-            "movement": 0
+            "position": 7,
+            "movement": -1
           }
         ]
       }
@@ -383,58 +389,8 @@
           {
             "country": "LV",
             "name": "Latvia",
-            "position": 83,
-            "movement": -45
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Expresso",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 1,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 1,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 10,
-            "movement": 3
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 76,
-            "movement": 22
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 109,
-            "movement": 29
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 52,
-            "movement": null,
-            "status": "new"
+            "position": 86,
+            "movement": -44
           }
         ]
       }
@@ -483,14 +439,51 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 5,
-            "movement": 0
+            "position": 6,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Expresso",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 1,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 10,
+            "movement": 3
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 76,
+            "movement": 22
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 109,
+            "movement": 29
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Forever",
@@ -564,9 +557,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 27,
-            "movement": null,
-            "status": "new"
+            "position": 31,
+            "movement": -24
           }
         ]
       }
@@ -865,7 +857,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 122,
+            "position": 126,
             "movement": -26
           }
         ]

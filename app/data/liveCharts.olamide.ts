@@ -163,8 +163,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 38,
-            "movement": -20
+            "position": 48,
+            "movement": -26
           }
         ]
       },
@@ -389,7 +389,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
+            "position": 112,
             "movement": 2
           }
         ]
@@ -421,7 +421,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
+            "position": 149,
             "movement": 4
           }
         ]
@@ -507,26 +507,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Assignment",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 84,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a4643fa21c1aa5c851069bb486f24d72/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Luvaluvah",
     "platforms": [
       {
@@ -544,6 +524,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Assignment",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 119,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a4643fa21c1aa5c851069bb486f24d72/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ikigai / 生き甲斐, Vol. 1",
@@ -594,7 +594,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
+            "position": 106,
             "movement": 2
           }
         ]

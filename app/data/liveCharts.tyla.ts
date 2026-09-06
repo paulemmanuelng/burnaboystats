@@ -207,13 +207,6 @@
             "movement": 4
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 177,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "BT",
             "name": "Bhutan",
             "position": 180,
@@ -228,22 +221,10 @@
             "status": "new"
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 183,
-            "movement": -19
-          },
-          {
             "country": "SC",
             "name": "Seychelles",
             "position": 183,
             "movement": -119
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 190,
-            "movement": 1
           },
           {
             "country": "OM",
@@ -471,8 +452,7 @@
             "country": "NA",
             "name": "Namibia",
             "position": 11,
-            "movement": null,
-            "status": "new"
+            "movement": -8
           },
           {
             "country": "GD",
@@ -483,9 +463,8 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 114,
-            "movement": null,
-            "status": "new"
+            "position": 183,
+            "movement": -154
           }
         ]
       },
@@ -504,6 +483,51 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "IS IT LOVE",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 146,
+            "movement": -17
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 69,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FAIRYTALE",
@@ -570,38 +594,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "IS IT LOVE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 146,
-            "movement": -17
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 189,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "When I'm With You",
     "platforms": [
       {
@@ -657,7 +649,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 7,
+            "position": 8,
             "movement": null,
             "status": "new"
           }
@@ -696,8 +688,8 @@
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 74,
-            "movement": -7
+            "position": 80,
+            "movement": -13
           }
         ]
       }

@@ -275,8 +275,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 169,
-            "movement": 11
+            "position": 170,
+            "movement": 13
           },
           {
             "country": "LB",
@@ -322,35 +322,28 @@
           {
             "country": "EE",
             "name": "Estonia",
-            "position": 14,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 49,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TR",
-            "name": "Turkey",
-            "position": 112,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 116,
+            "position": 25,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 140,
+            "position": 144,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TR",
+            "name": "Turkey",
+            "position": 168,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 178,
             "movement": null,
             "status": "new"
           }
@@ -548,17 +541,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 57,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "KE",
             "name": "Kenya",
-            "position": 83,
-            "movement": -36
+            "position": 85,
+            "movement": -25
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 92,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -764,8 +757,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 56,
-            "movement": -32
+            "position": 58,
+            "movement": -34
           },
           {
             "country": "BJ",
@@ -844,8 +837,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 23,
-            "movement": 74
+            "position": 59,
+            "movement": 69
           }
         ]
       },
@@ -1076,8 +1069,8 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 38,
-            "movement": -5
+            "position": 41,
+            "movement": -7
           }
         ]
       }
@@ -1175,20 +1168,20 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 64,
-            "movement": 0
+            "position": 65,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
+            "position": 74,
             "movement": 5
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 79,
-            "movement": 0
+            "movement": 1
           }
         ]
       }
@@ -1291,7 +1284,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
+            "position": 26,
             "movement": -8
           }
         ]
@@ -1509,12 +1502,6 @@
             "movement": 1
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 58,
-            "movement": -25
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 70,
@@ -1531,6 +1518,12 @@
             "name": "Kenya",
             "position": 84,
             "movement": 54
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 84,
+            "movement": -39
           },
           {
             "country": "UG",
@@ -1582,16 +1575,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 80,
-            "movement": -33
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
             "position": 80,
             "movement": 1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 82,
+            "movement": -35
           },
           {
             "country": "SR",
@@ -1634,9 +1627,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
-            "movement": null,
-            "status": "new"
+            "position": 88,
+            "movement": -73
           }
         ]
       },
@@ -1843,8 +1835,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 35,
-            "movement": -34
+            "position": 37,
+            "movement": -35
           },
           {
             "country": "KE",
@@ -1942,7 +1934,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 66,
+            "position": 67,
             "movement": -11
           }
         ]
@@ -2046,45 +2038,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Slow",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 88,
-            "movement": -2
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 187,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 63,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Alaye",
     "platforms": [
       {
@@ -2129,6 +2082,45 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Slow",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 88,
+            "movement": -2
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 187,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "forever be mine",
     "platforms": [
       {
@@ -2169,13 +2161,13 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 47,
-            "movement": 0
+            "position": 48,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
+            "position": 76,
             "movement": null,
             "status": "new"
           },
@@ -2214,7 +2206,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 18,
+            "position": 22,
             "movement": null,
             "status": "new"
           }
@@ -2223,38 +2215,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Drogba",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 69,
-            "movement": -33
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 150,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b5c2e2be723408f28befdd7a53e1c64a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Stay For The Night",
@@ -2368,7 +2328,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
+            "position": 137,
             "movement": null,
             "status": "new"
           }
@@ -2386,9 +2346,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "FI",
-            "name": "Finland",
-            "position": 105,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 39,
             "movement": null,
             "status": "new"
           }
@@ -2432,7 +2392,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
+            "position": 131,
             "movement": 2
           }
         ]
@@ -2500,6 +2460,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Drogba",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 71,
+            "movement": -35
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b5c2e2be723408f28befdd7a53e1c64a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "No Stress",
     "platforms": [
       {
@@ -2509,7 +2488,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 95,
+            "position": 99,
             "movement": -27
           }
         ]
@@ -2528,7 +2507,7 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 67,
+            "position": 68,
             "movement": -5
           }
         ]
@@ -2605,7 +2584,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 79,
+            "position": 81,
             "movement": -11
           }
         ]

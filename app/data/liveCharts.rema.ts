@@ -270,14 +270,14 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 80,
+            "position": 100,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
+            "position": 134,
             "movement": null,
             "status": "new"
           }
@@ -474,14 +474,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
-            "movement": -18
+            "position": 4,
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 190,
-            "movement": -25
+            "position": 193,
+            "movement": -24
           }
         ]
       },
@@ -901,6 +901,103 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Calm Down",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 25,
+            "movement": -3
+          },
+          {
+            "country": "KH",
+            "name": "Cambodia",
+            "position": 36,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 92,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 120,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 154,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 56,
+            "movement": -29
+          },
+          {
+            "country": "MR",
+            "name": "Mauritania",
+            "position": 191,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 194,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 69,
+            "movement": 0
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 74,
+            "movement": 0
+          },
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 78,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Soweto",
     "platforms": [
       {
@@ -978,7 +1075,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
+            "position": 131,
             "movement": null,
             "status": "new"
           }
@@ -1155,89 +1252,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e26def467fccdcadca010b8c0f00fd0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 56,
-            "movement": -29
-          },
-          {
-            "country": "MR",
-            "name": "Mauritania",
-            "position": 191,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 194,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 28,
-            "movement": -3
-          },
-          {
-            "country": "KH",
-            "name": "Cambodia",
-            "position": 36,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 67,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 69,
-            "movement": 0
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 74,
-            "movement": 0
-          },
-          {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 78,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Soundgasm",
     "platforms": [
       {
@@ -1354,7 +1368,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 16,
+            "position": 20,
             "movement": 99
           }
         ]
@@ -1619,8 +1633,8 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 38,
-            "movement": -20
+            "position": 33,
+            "movement": -13
           }
         ]
       }
@@ -1658,8 +1672,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 46,
-            "movement": -31
+            "position": 48,
+            "movement": -33
           }
         ]
       }
@@ -1735,8 +1749,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 151,
-            "movement": -25
+            "position": 154,
+            "movement": -24
           }
         ]
       }

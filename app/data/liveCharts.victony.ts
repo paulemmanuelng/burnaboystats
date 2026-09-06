@@ -249,12 +249,6 @@
             "movement": 34
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 166,
-            "movement": 14
-          },
-          {
             "country": "KN",
             "name": "Saint Kitts and Nevis",
             "position": 178,
@@ -274,6 +268,12 @@
             "position": 185,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 191,
+            "movement": -5
           },
           {
             "country": "DO",
@@ -519,19 +519,19 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 2,
-            "movement": 27
+            "position": 4,
+            "movement": -3
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 48,
+            "position": 49,
             "movement": -10
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 163,
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 103,
             "movement": null,
             "status": "new"
           }
@@ -693,16 +693,16 @@
             "movement": -27
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 92,
-            "movement": -10
-          },
-          {
             "country": "AO",
             "name": "Angola",
             "position": 94,
             "movement": -51
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 98,
+            "movement": 12
           },
           {
             "country": "TT",
@@ -711,10 +711,10 @@
             "movement": -17
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 105,
-            "movement": 3
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 106,
+            "movement": -6
           },
           {
             "country": "CG",
@@ -729,16 +729,16 @@
             "movement": -73
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 149,
-            "movement": 9
-          },
-          {
             "country": "QA",
             "name": "Qatar",
             "position": 149,
             "movement": 32
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 155,
+            "movement": 2
           },
           {
             "country": "BW",
@@ -766,12 +766,6 @@
             "movement": -59
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 180,
-            "movement": 11
-          },
-          {
             "country": "NE",
             "name": "Niger",
             "position": 192,
@@ -787,7 +781,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 53,
-            "movement": -37
+            "movement": -36
           }
         ]
       }
@@ -983,7 +977,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
+            "position": 131,
             "movement": null,
             "status": "new"
           }
@@ -1109,9 +1103,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 39,
-            "movement": null,
-            "status": "new"
+            "position": 75,
+            "movement": -63
           }
         ]
       },
@@ -1131,70 +1124,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/720a729019b9a6c8873652d993302775/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "ARMED & DANGEROUS",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 154,
-            "movement": -12
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 181,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 125,
-            "movement": -16
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 167,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 85,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Holy Father",
@@ -1351,6 +1280,57 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "ARMED & DANGEROUS",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 154,
+            "movement": -12
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 181,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 125,
+            "movement": -16
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "TOO LIT",
     "platforms": [
       {
@@ -1374,19 +1354,6 @@
             "name": "Nigeria",
             "position": 140,
             "movement": -7
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 168,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -1517,9 +1484,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": null,
-            "status": "new"
+            "position": 200,
+            "movement": -131
           }
         ]
       },
@@ -1711,26 +1677,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "CAN JUICE",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 166,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Stubborn",

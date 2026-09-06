@@ -597,7 +597,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 3,
-            "movement": 90
+            "movement": 94
           }
         ]
       }
@@ -900,14 +900,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 50,
+            "position": 54,
             "movement": -26
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 55,
-            "movement": -36
+            "position": 57,
+            "movement": -25
           }
         ]
       },
@@ -1073,7 +1073,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 94,
+            "position": 95,
             "movement": -3
           }
         ]
@@ -1271,7 +1271,7 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 70,
+            "position": 73,
             "movement": 2
           },
           {
@@ -1545,26 +1545,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Do Not Disturb",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 76,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1b2bca57a7cfd3a6b2435783d6e810f1/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Bad",
     "platforms": [
       {
@@ -1583,6 +1563,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f31fc975fcb1a6ea4130d536558ecd96/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Do Not Disturb",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 111,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1b2bca57a7cfd3a6b2435783d6e810f1/500x500-000000-80-0-0.jpg"
   }
 ];
   
