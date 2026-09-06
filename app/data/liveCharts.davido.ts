@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-05";
+  export const liveChartsUpdated = "2026-09-06";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -220,14 +220,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 49,
-            "movement": -20
+            "position": 53,
+            "movement": -21
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 167,
-            "movement": -159
+            "position": 176,
+            "movement": -172
           }
         ]
       },
@@ -481,7 +481,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
+            "position": 43,
             "movement": null,
             "status": "new"
           }
@@ -601,16 +601,16 @@
             "movement": 64
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 72,
+            "movement": 2
+          },
+          {
             "country": "BW",
             "name": "Botswana",
             "position": 74,
             "movement": 37
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 75,
-            "movement": 6
           },
           {
             "country": "IE",
@@ -652,7 +652,7 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 195,
+            "position": 193,
             "movement": null,
             "status": "new"
           }
@@ -1241,8 +1241,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 101,
-            "movement": -19
+            "position": 105,
+            "movement": -20
           }
         ]
       }
@@ -1581,18 +1581,6 @@
             "movement": -16
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 200,
-            "movement": -168
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -1746,14 +1734,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 186,
-            "movement": 1
+            "movement": -3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 200,
-            "movement": null,
-            "status": "new"
+            "position": 199,
+            "movement": 1
           }
         ]
       }
@@ -2168,13 +2155,13 @@
             "country": "BW",
             "name": "Botswana",
             "position": 77,
-            "movement": -10
+            "movement": -9
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 81,
-            "movement": 2
+            "movement": 0
           }
         ]
       }
@@ -2374,8 +2361,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 55,
-            "movement": -20
+            "position": 59,
+            "movement": -21
           }
         ]
       }
@@ -2663,7 +2650,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 27,
+            "position": 33,
             "movement": null,
             "status": "new"
           }
@@ -2897,7 +2884,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 193,
+            "position": 196,
             "movement": -19
           }
         ]

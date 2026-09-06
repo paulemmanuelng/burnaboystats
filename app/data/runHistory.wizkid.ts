@@ -123,6 +123,12 @@
     "release": "One Dance",
     "platform": "Spotify",
     "position": 51
+  },
+  {
+    "date": "2026-09-06",
+    "release": "One Dance",
+    "platform": "Spotify",
+    "position": 51
   }
 ];
   

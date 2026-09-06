@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-05";
+  export const liveChartsUpdated = "2026-09-06";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","iTunes"];
@@ -163,8 +163,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 26,
-            "movement": -13
+            "position": 30,
+            "movement": -17
           }
         ]
       },
@@ -391,7 +391,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 115,
-            "movement": 5
+            "movement": -3
           }
         ]
       }
@@ -423,7 +423,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 154,
-            "movement": 2
+            "movement": -3
           }
         ]
       }
@@ -441,34 +441,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 62,
-            "movement": -28
+            "position": 76,
+            "movement": -42
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Assignment",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 51,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a4643fa21c1aa5c851069bb486f24d72/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Triumphant",
@@ -488,6 +468,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Assignment",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 59,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a4643fa21c1aa5c851069bb486f24d72/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Loading",
@@ -557,8 +557,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 178,
-            "movement": -162
+            "position": 187,
+            "movement": -170
           }
         ]
       }
@@ -616,7 +616,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 109,
-            "movement": 5
+            "movement": -3
           }
         ]
       }

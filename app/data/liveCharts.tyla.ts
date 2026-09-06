@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-05";
+  export const liveChartsUpdated = "2026-09-06";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -189,17 +189,17 @@
             "movement": -15
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 151,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "MM",
             "name": "Myanmar",
             "position": 154,
             "movement": -126
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 164,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "SG",
@@ -212,12 +212,6 @@
             "name": "North Macedonia",
             "position": 174,
             "movement": 4
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 177,
-            "movement": 16
           },
           {
             "country": "BT",
@@ -240,6 +234,13 @@
             "movement": -119
           },
           {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 188,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "OM",
             "name": "Oman",
             "position": 196,
@@ -255,9 +256,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 116,
-            "movement": null,
-            "status": "new"
+            "position": 137,
+            "movement": -121
           }
         ]
       }
@@ -422,7 +422,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 134,
+            "position": 139,
             "movement": null,
             "status": "new"
           }
@@ -431,51 +431,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 5,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 68,
-            "movement": -29
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 111,
-            "movement": -27
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "CHANEL",
@@ -517,10 +472,68 @@
             "movement": 5
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 174,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 58,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 68,
+            "movement": -29
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 111,
+            "movement": -27
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FAIRYTALE",
@@ -694,7 +707,7 @@
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 70,
-            "movement": -14
+            "movement": -10
           }
         ]
       }
