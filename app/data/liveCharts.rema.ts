@@ -265,15 +265,15 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 131,
+            "position": 159,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
-            "movement": -88
+            "position": 168,
+            "movement": -105
           }
         ]
       },
@@ -467,8 +467,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 193,
-            "movement": -20
+            "position": 195,
+            "movement": -22
           }
         ]
       },
@@ -854,8 +854,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 149,
-            "movement": -90
+            "position": 166,
+            "movement": -107
           }
         ]
       }
@@ -1121,14 +1121,14 @@
           {
             "country": "KH",
             "name": "Cambodia",
-            "position": 40,
-            "movement": -33
+            "position": 42,
+            "movement": -35
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 168,
-            "movement": -31
+            "position": 199,
+            "movement": -62
           }
         ]
       },
@@ -1225,8 +1225,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 21,
-            "movement": 102
+            "position": 23,
+            "movement": 100
           }
         ]
       },
@@ -1492,8 +1492,8 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 48,
-            "movement": -26
+            "position": 52,
+            "movement": -30
           }
         ]
       }
@@ -1647,8 +1647,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 154,
-            "movement": -20
+            "position": 156,
+            "movement": -22
           }
         ]
       }

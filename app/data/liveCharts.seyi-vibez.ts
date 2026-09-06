@@ -227,7 +227,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -689,8 +689,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 164,
-            "movement": -20
+            "position": 166,
+            "movement": -22
           }
         ]
       }
@@ -1002,6 +1002,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Giza",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Instagram",

@@ -51,8 +51,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 5,
-            "movement": 1
+            "position": 4,
+            "movement": 2
           },
           {
             "country": "BF",
@@ -221,7 +221,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -280,7 +280,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 155,
+            "position": 172,
             "movement": null,
             "status": "new"
           }

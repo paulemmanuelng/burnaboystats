@@ -1224,38 +1224,45 @@
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 37,
-            "movement": -10
+            "position": 54,
+            "movement": -27
+          },
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 58,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 77,
-            "movement": 44
+            "position": 67,
+            "movement": 54
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 79,
-            "movement": -22
+            "position": 82,
+            "movement": -25
           },
           {
             "country": "UZ",
             "name": "Uzbekistan",
-            "position": 80,
-            "movement": -51
-          },
-          {
-            "country": "AM",
-            "name": "Armenia",
-            "position": 100,
-            "movement": -19
+            "position": 86,
+            "movement": -57
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 159,
-            "movement": -20
+            "position": 161,
+            "movement": -22
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 169,
+            "movement": -13
           }
         ]
       },
@@ -1731,7 +1738,7 @@
           {
             "country": "ES",
             "name": "Spain",
-            "position": 115,
+            "position": 146,
             "movement": null,
             "status": "new"
           }
@@ -2000,8 +2007,8 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 20,
-            "movement": 1
+            "position": 22,
+            "movement": -1
           },
           {
             "country": "UG",

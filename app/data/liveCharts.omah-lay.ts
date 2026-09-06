@@ -184,8 +184,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 43,
-            "movement": -8
+            "position": 45,
+            "movement": -10
           }
         ]
       },
@@ -553,6 +553,25 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 4,
+            "movement": 97
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 16,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -598,18 +617,6 @@
             "name": "Nigeria",
             "position": 95,
             "movement": 10
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 4,
-            "movement": 97
           }
         ]
       }
@@ -890,14 +897,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 55,
-            "movement": -23
+            "position": 57,
+            "movement": -25
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 61,
-            "movement": -22
+            "position": 64,
+            "movement": -25
           }
         ]
       },
@@ -1210,7 +1217,7 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 37,
+            "position": 72,
             "movement": null,
             "status": "new"
           }
@@ -1528,7 +1535,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
+            "position": 146,
             "movement": null,
             "status": "new"
           }

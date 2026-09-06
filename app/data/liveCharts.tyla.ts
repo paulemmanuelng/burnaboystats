@@ -412,8 +412,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 16,
-            "movement": -1
+            "position": 18,
+            "movement": -3
           }
         ]
       }
@@ -467,7 +467,7 @@
           {
             "country": "SK",
             "name": "Slovakia",
-            "position": 49,
+            "position": 59,
             "movement": null,
             "status": "new"
           }
@@ -499,7 +499,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 100,
+            "position": 136,
             "movement": null,
             "status": "new"
           }
@@ -532,14 +532,14 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 34,
-            "movement": -30
+            "position": 40,
+            "movement": -35
           },
           {
             "country": "GD",
             "name": "Grenada",
             "position": 87,
-            "movement": -45
+            "movement": -19
           }
         ]
       },
@@ -639,7 +639,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 14,
+            "position": 13,
             "movement": null,
             "status": "new"
           }
@@ -678,8 +678,8 @@
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 80,
-            "movement": -12
+            "position": 96,
+            "movement": -26
           }
         ]
       }

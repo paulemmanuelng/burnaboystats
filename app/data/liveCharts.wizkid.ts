@@ -321,15 +321,15 @@
           {
             "country": "EE",
             "name": "Estonia",
-            "position": 32,
+            "position": 45,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 170,
-            "movement": -118
+            "position": 189,
+            "movement": -137
           }
         ]
       }
@@ -527,14 +527,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 89,
-            "movement": -22
+            "position": 92,
+            "movement": -25
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": -81
+            "position": 128,
+            "movement": -98
           }
         ]
       },
@@ -924,8 +924,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 78,
-            "movement": 96
+            "position": 95,
+            "movement": 79
           }
         ]
       },
@@ -1529,8 +1529,8 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 127,
-            "movement": -65
+            "position": 162,
+            "movement": -100
           },
           {
             "country": "NE",
@@ -1666,8 +1666,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 107,
-            "movement": -84
+            "position": 124,
+            "movement": -101
           }
         ]
       },
@@ -1911,8 +1911,8 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 20,
-            "movement": 1
+            "position": 22,
+            "movement": -1
           },
           {
             "country": "UG",
@@ -2078,7 +2078,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 50,
+            "position": 60,
             "movement": null,
             "status": "new"
           }
@@ -2224,8 +2224,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": -78
+            "position": 134,
+            "movement": -95
           }
         ]
       }
@@ -2343,8 +2343,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 154,
-            "movement": -90
+            "position": 171,
+            "movement": -107
           }
         ]
       }
@@ -2379,26 +2379,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b6c9342dc0ab40a9e837ebb16a8b24dd/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Energy",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 23,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Kana",
     "platforms": [
       {
@@ -2416,6 +2396,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Energy",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 25,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Time",
@@ -2465,8 +2465,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 99,
-            "movement": -23
+            "position": 101,
+            "movement": -25
           }
         ]
       }

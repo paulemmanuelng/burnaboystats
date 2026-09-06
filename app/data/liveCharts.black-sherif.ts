@@ -103,16 +103,16 @@
             "movement": -28
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 52,
-            "movement": -16
-          },
-          {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 53,
             "movement": 3
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 54,
+            "movement": -18
           },
           {
             "country": "ML",
@@ -157,18 +157,6 @@
             "movement": -40
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 103,
-            "movement": -37
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 104,
-            "movement": -35
-          },
-          {
             "country": "SN",
             "name": "Senegal",
             "position": 105,
@@ -199,6 +187,18 @@
             "movement": -55
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 116,
+            "movement": -50
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 125,
+            "movement": -56
+          },
+          {
             "country": "SE",
             "name": "Sweden",
             "position": 159,
@@ -216,12 +216,6 @@
             "name": "Ireland",
             "position": 168,
             "movement": -35
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 187,
-            "movement": -48
           },
           {
             "country": "BE",
@@ -405,57 +399,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 32,
-            "movement": -22
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love Again",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 14,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 23,
-            "movement": -11
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 57,
-            "movement": 23
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 193,
-            "movement": -95
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LV",
-            "name": "Latvia",
-            "position": 90,
-            "movement": -32
+            "position": 34,
+            "movement": -24
           }
         ]
       }
@@ -567,6 +512,43 @@
             "name": "Sierra Leone",
             "position": 170,
             "movement": -4
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Again",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 14,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 23,
+            "movement": -11
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 57,
+            "movement": 23
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 193,
+            "movement": -95
           }
         ]
       }
@@ -745,8 +727,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 126,
-            "movement": -22
+            "position": 128,
+            "movement": -24
           }
         ]
       }
