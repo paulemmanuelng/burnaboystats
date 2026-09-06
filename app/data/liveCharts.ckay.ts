@@ -57,8 +57,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 87,
-            "movement": -3
+            "position": 89,
+            "movement": -5
           }
         ]
       },
@@ -69,8 +69,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 126,
-            "movement": 13
+            "position": 133,
+            "movement": -7
           }
         ]
       },
@@ -91,44 +91,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BANGER BOY",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 90,
-            "movement": 9
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 153,
-            "movement": -112
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 177,
-            "movement": -17
-          },
-          {
-            "country": "LA",
-            "name": "Laos",
-            "position": 194,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BODY",
     "platforms": [
       {
@@ -138,8 +100,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 95,
-            "movement": -5
+            "position": 166,
+            "movement": -71
           },
           {
             "country": "TD",
@@ -156,14 +118,40 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 88,
-            "movement": 13
+            "position": 112,
+            "movement": -24
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BANGER BOY",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 143,
+            "movement": 34
+          },
+          {
+            "country": "LA",
+            "name": "Laos",
+            "position": 194,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sad Romance",
@@ -233,7 +221,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
+            "position": 28,
             "movement": null,
             "status": "new"
           }
@@ -264,26 +252,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "HALLELUJAH",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 146,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b606366687e3c46d407569aa03ae26bf/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "La La",
     "platforms": [
       {
@@ -293,14 +261,34 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
-            "movement": 7
+            "position": 159,
+            "movement": 10
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "HALLELUJAH",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 155,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b606366687e3c46d407569aa03ae26bf/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Boyfriend",
