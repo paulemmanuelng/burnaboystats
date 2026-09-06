@@ -9,7 +9,10 @@ Shazam, YouTube, Audiomack, Boomplay); **genre and component charts** (Billboard
 U.S. Afrobeats Songs, Streaming Songs, Radio Songs); extension charts below a
 main chart; year-end, mid-week and recurrent charts.
 
-## Total: 100 singles + 0 albums = 100 chart entries
+## Total: 100 singles + 5 albums = 105 chart entries
+
+> **Corrected 7 Sep 2026.** This document previously read "100 singles + 0 albums". That zero was never a finding — the Nigeria method in this sweep read only TurnTable's SINGLES category (`GET /api/chart/1/{week}/{year}`) while the standard line above says "singles **or albums** chart", so the albums chart was never queried. Re-read across all 200 published issues of the Official Top 100 Albums, 2 Nov 2022 launch to 2026-08-27. The same omission affected the whole 28 Aug board-expansion batch.
+
 
 **4 No. 1s**, all in Nigeria. **2 territories.**
 
