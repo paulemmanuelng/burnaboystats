@@ -149,14 +149,15 @@
         "min": 500000000,
         "max": 2000000000
       },
-      "note": "Paul asked to always keep the Dai Dai video count current — now auto-published hourly behind the sanity gate. The DAI_DAI_VIDEO_VIEWS display string drives the figure on /dai-dai; it re-commits only when it crosses a whole million. The min bound rejects a mis-read of a smaller related-video count; the jump bound rejects a wildly-off read.",
+      "note": "FORMAT: compact, not M0, and the pattern is QUOTE-ANCHORED. M0 can only render millions, so the day the video passed a billion it published \"1008M\". The pattern was the dangerous half: \\d+M could not match \"1.01B\", and applyAnchoredReplace rewrites the FIRST match after the anchor — which was DAI_DAI_SPOTIFY_STREAMS = \"418M\" on the next line. The bot would have written the video's view count into the Spotify streams field and reported success. tests/statTargetScoping.test.ts now holds every target to matching the value at its own anchor. Paul asked to always keep the Dai Dai video count current — auto-published hourly behind the sanity gate.",
       "siteTargets": [
         {
           "file": "app/data/daiDai.ts",
           "anchor": "export const DAI_DAI_VIDEO_VIEWS =",
-          "pattern": "\\d+M",
-          "format": "M0",
-          "describes": "displayed view count (whole millions) on /dai-dai"
+          "pattern": "\"[\\d.]+[KMB]\"",
+          "format": "compact",
+          "describes": "displayed view count on /dai-dai — compact, so it reads 1.01B past a billion",
+          "template": "\"%s\""
         }
       ],
       "lastChanged": "2026-09-06",
