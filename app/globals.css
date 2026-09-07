@@ -3,18 +3,18 @@
    "Design tokens" (the variables below) keep the whole site
    consistent: change a value once, it updates everywhere.
    =========================================================== */
-:root,
-/* The masthead is a dark island in light mode (§4.3). Rather than restating
-   seven values, it re-declares the SAME token list and pins its own
-   color-scheme, so every light-dark() below resolves dark inside it — and a
-   token added later is themed correctly here for free. Custom properties
-   resolve light-dark() where they are DECLARED, not where they are used, which
-   is why the island needs its own declaration and not just a color-scheme. */
-.navbar {
+:root {
   /* Tell the browser this is a dark UI. Without it iOS Safari treats the page
      as light-scheme and applies its own colour adjustments to controls in Dark
      Mode — which was re-tinting the gold button's label toward its background
-     and making it unreadable on a phone. */
+     and making it unreadable on a phone.
+
+     The masthead used to be a second selector here — a dark island that
+     re-resolved this whole list against its own color-scheme, so the bar
+     stayed dark on paper (design §4.3). Paul's call: the bar themes with the
+     page. The cost the design named is real and accepted — the wordmark's gold
+     word deepens to ochre on paper, and the top of a light page no longer
+     matches the permanently-dark OG card a shared link previews with. */
   color-scheme: dark;
 
   /* Surfaces */
@@ -303,8 +303,7 @@
    minted rather than the literal being rounded onto a near neighbour — three
    separate reviewers caught roundings that would have shifted dark by a few
    units each across dozens of sites. */
-:root,
-.navbar {
+:root {
   /* Reading text. The design table retires #cfc7bb, #d8d8de and #d3d3da into
      ONE role, and on paper that is exactly right — all three become #4a443b.
      In dark they stay distinct, because folding them would recolour 46 sites
@@ -654,17 +653,12 @@ a {
 /* -----------------------------------------------------------
    NAVIGATION BAR
    ----------------------------------------------------------- */
-/* ── The masthead stays dark in both themes (design §4.3) ─────────────────
-   A masthead, not an inversion. The wordmark lockup keeps its gold word at
-   11.28:1, the LIVE band keeps its green, and a link shared from the site
-   opens on a page whose top matches the dark OG card — which is permanently
-   dark and cannot theme.
-
-   The cost, stated: in dark the bar is a transparent scrim that turns solid on
-   scroll. Over a LIGHT page that same transition reads as a dark band
-   appearing and disappearing, so on paper the bar is solid from the top and
-   the scrim is dark-mode only. The nav's own contents keep the dark theme's
-   ink regardless of the page behind them. */
+/* ── The masthead in light mode ───────────────────────────────────────────
+   In dark the bar is a transparent scrim that fades to nothing at its bottom
+   edge and turns solid on scroll. That gradient is a dark-room device: over a
+   light page it reads as a grey wash sitting on the paper, so on paper the bar
+   is simply solid from the top and the scroll transition has nothing to do.
+   --scrim itself themes, so the colour needs no override here. */
 :root[data-theme="light"] .navbar {
   background-color: var(--scrim);
   background-image: none;

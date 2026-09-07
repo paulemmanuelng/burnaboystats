@@ -65,9 +65,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  // One value for both themes. The masthead stays dark on paper too (design
-  // §4.3), so the strip behind the iOS status bar is dark either way — and a
-  // link shared from the site opens on a page whose top matches its OG card.
+  // The dark value, and the one a browser sees before any script runs. The bar
+  // themes now, so the strip behind the iOS status bar has to follow it — the
+  // inline script below and ThemeToggle both rewrite this tag, because the
+  // theme comes from a stored choice rather than from prefers-color-scheme and
+  // a media-matched theme-color would be wrong for anyone who picked light on
+  // a dark device.
   themeColor: "#0a0a0b",
   // Emits <meta name="color-scheme" content="dark light">. Dark is named
   // first because it is the default and the one an unset visitor gets; light
@@ -164,9 +167,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{
             __html:
               'try{var c=localStorage.getItem("theme");' +
-              'document.documentElement.dataset.theme=' +
-              'c==="light"||c==="dark"?c:' +
-              'c==="system"&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}' +
+              'var t=c==="light"||c==="dark"?c:' +
+              'c==="system"&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";' +
+              'document.documentElement.dataset.theme=t;' +
+              'var m=document.querySelector(\'meta[name="theme-color"]\');' +
+              'if(m)m.setAttribute("content",t==="light"?"#f7f4ee":"#0a0a0b")}' +
               'catch(e){document.documentElement.dataset.theme="dark"}',
           }}
         />

@@ -112,8 +112,13 @@ export default function ThemeToggle({
   useEffect(() => {
     const mq = window.matchMedia(QUERY);
     const apply = () => {
-      document.documentElement.dataset.theme =
-        choice === "system" ? (mq.matches ? "light" : "dark") : choice;
+      const t = choice === "system" ? (mq.matches ? "light" : "dark") : choice;
+      document.documentElement.dataset.theme = t;
+      // The strip behind the iOS status bar sits above the masthead, which now
+      // themes — so it has to follow, or a light page keeps a black band.
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute("content", t === "light" ? "#f7f4ee" : "#0a0a0b");
     };
     apply();
     if (choice !== "system") return;
