@@ -335,6 +335,11 @@
      ink's light one. */
   --gold-bright-ink: light-dark(#8a5a00, #ffd24a);
   --glow-base: light-dark(transparent, #e8b04b);
+  /* The halo behind masthead text. It exists to lift the wordmark and the nav
+     links off a dark, busy scrim -- pure dark-room work. On paper it is a grey
+     smudge sitting behind the logo, so it goes to nothing, the same way the
+     glows and the page vignette do. */
+  --halo-base: light-dark(transparent, #000000);
   --red-glow-base: light-dark(transparent, #c0392b);
   /* The page-edge vignette and the film grain are dark-room devices: they read
      as depth on black and as dirt on paper. Both fade out rather than invert. */
@@ -742,7 +747,7 @@ a {
   font-size: 1.5rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 1px 12px color-mix(in srgb, var(--halo-base) 60%, transparent);
 }
 .brandText > span {
   color: var(--gold-display);
@@ -769,7 +774,7 @@ a {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.88);
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 1px 10px color-mix(in srgb, var(--halo-base) 70%, transparent);
   transition: color var(--dur-fast) var(--ease);
 }
 .navLinks a::after {
@@ -1206,6 +1211,8 @@ a.fact:hover {
   opacity: 0.85;
   letter-spacing: 0.05em;
 }
+/* NOT themed: this sits on album artwork, not on the page, so a dark halo is
+   what keeps it readable in both themes. */
 .albumCoverTitle {
   position: relative;
   z-index: 1;
