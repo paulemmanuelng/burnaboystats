@@ -1,7 +1,7 @@
 "use client"; // the cards open the shared tracklist dialog
 
 import styles from "../music/music.module.css";
-import { spotifyImage } from "../lib/spotifyImage";
+import { spotifyBgVars } from "../lib/spotifyImage";
 import type { AlbumEntry } from "../data/albums";
 
 /**
@@ -19,8 +19,8 @@ export default function Discography({
   albums: AlbumEntry[];
   layout?: "grid" | "pair" | "wide";
 }) {
-  const cover = (a: AlbumEntry) =>
-    a.cover ? { backgroundImage: `url(${spotifyImage(a.cover, 600)})` } : undefined;
+  // 283px in the four-across wall, so 300 on a 1x screen and 640 on a 2x one.
+  const cover = (a: AlbumEntry) => (a.cover ? spotifyBgVars(a.cover, 300) : undefined);
 
   const open = (title: string) =>
     window.dispatchEvent(new CustomEvent("open-tracklist", { detail: title }));

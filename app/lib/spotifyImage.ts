@@ -78,3 +78,24 @@ export function spotifyImage(url: string, width: number): string {
   const best = available.find((w) => w >= width) ?? available[available.length - 1];
   return `${CDN}${parsed.variants[best]}${parsed.suffix}`;
 }
+
+/**
+ * The 1x/2x pair for an image painted as a CSS `background-image`.
+ *
+ * A background cannot carry a srcset, so every one of them was pinned to a
+ * single width — and the width picked was the retina one. On a 1x display
+ * /music was fetching eleven 640px covers to paint them at 283px and
+ * /afrobeats sixteen 640px artist photos at 325px: 1.3MB per page, on both,
+ * of pixels that screen cannot show.
+ *
+ * Returned as two custom properties rather than an `image-set()`, because a
+ * stylesheet can switch on them with a plain `min-resolution` query that every
+ * browser has had for years, and a browser that somehow understood neither
+ * still gets the 1x image instead of no image at all.
+ */
+export function spotifyBgVars(url: string, cssWidth: number): Record<string, string> {
+  return {
+    "--art-1x": `url(${spotifyImage(url, cssWidth)})`,
+    "--art-2x": `url(${spotifyImage(url, cssWidth * 2)})`,
+  };
+}

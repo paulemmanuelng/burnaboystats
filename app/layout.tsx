@@ -148,6 +148,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       lang="en"
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${anton.variable} ${spaceMono.variable}`}
+      /* The pre-paint script below writes data-theme onto this element before
+         React hydrates, so the server's markup and the client's DOM disagree by
+         exactly that attribute — on every page, every load. React logged a
+         hydration error for it, which is noise that hides the mismatches that
+         DO matter. This is the documented answer for a theme script; it
+         suppresses the warning one level deep, not the whole tree. */
+      suppressHydrationWarning
     >
       {/* suppressHydrationWarning: some browser extensions (e.g. Grammarly)
           add attributes to <body> before React loads, which is harmless. */}

@@ -7,6 +7,7 @@ import BackLink from "../components/BackLink";
 import MobileAfrobeatsHub from "../components/MobileAfrobeatsHub";
 import HubScatter, { type ScatterDot } from "../components/HubScatter";
 import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
+import { spotifyBgVars } from "../lib/spotifyImage";
 import { LIVE_BOARDS } from "../data/liveBoards";
 import {
   sweptArtists,
@@ -201,7 +202,7 @@ export default function AfrobeatsPage() {
               is the site's subject, so there is no /afrobeats page for him, and
               this tile states a plaque count — so the count is what it opens. */}
           <Link href={BURNA.href} className={`${styles.tile} ${styles.tileAnchor} photoTile`}>
-            <span className={styles.art} style={{ backgroundImage: `url(${BURNA.image})` }} aria-hidden="true" />
+            <span className={styles.art} style={spotifyBgVars(BURNA.image, 320)} aria-hidden="true" />
             <span className={styles.scrim} aria-hidden="true" />
             <span className={styles.tileBody}>
               <span className={styles.tileTop}>
@@ -223,7 +224,7 @@ export default function AfrobeatsPage() {
               className={`${styles.tile} photoTile`}
               prefetch={false}
             >
-              <span className={styles.art} style={{ backgroundImage: `url(${a.image})` }} aria-hidden="true" />
+              <span className={styles.art} style={spotifyBgVars(a.image, 320)} aria-hidden="true" />
               <span className={styles.scrim} aria-hidden="true" />
               <span className={styles.tileBody}>
                 <span className={styles.tileTop}>
@@ -324,7 +325,7 @@ export default function AfrobeatsPage() {
             <div className={styles.grid}>
               {pendingArtists.map((a) => (
                 <Link key={a.slug} href={`/afrobeats/${a.slug}`} className={`${styles.tile} ${styles.tilePending} photoTile`}>
-                  <span className={styles.art} style={{ backgroundImage: `url(${a.image})` }} aria-hidden="true" />
+                  <span className={styles.art} style={spotifyBgVars(a.image, 320)} aria-hidden="true" />
                   <span className={styles.scrim} aria-hidden="true" />
                   <span className={styles.tileBody}>
                     <span className={styles.tileTop}>

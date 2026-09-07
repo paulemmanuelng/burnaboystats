@@ -247,6 +247,7 @@
   background-position: center;
   border-radius: var(--radius-md);
   border: 1px solid var(--line);
+  background-image: var(--art-1x);
 }
 .albumRow { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; }
 .albumTitle {
@@ -307,7 +308,17 @@
   background-position: center;
   border-radius: var(--radius-md);
   border: 1px solid var(--line);
+  background-image: var(--art-1x);
 }
+/* Album art is a background, so it cannot carry a srcset. These paint at 283px
+   and 132px; the 640px variant they used to be pinned to is the right file for
+   a 2x screen and roughly 2.3x too much data for a 1x one. Both prefixes are
+   here because Safari only answered to the WebKit one until 16. */
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+  .albumCover,
+  .wideCover { background-image: var(--art-2x); }
+}
+
 .wideTitle {
   display: block;
   font-family: var(--font-anton), sans-serif;
