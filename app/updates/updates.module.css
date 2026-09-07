@@ -31,7 +31,7 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; }
+.eyebrowRule { width: 22px; height: 2px; background: var(--green); display: block; }
 .h1 {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
@@ -167,7 +167,7 @@
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-.row:hover { background: color-mix(in srgb, var(--ink-wash-base) 5%, transparent); color: var(--text); }
+.row:hover { background: var(--bg-raised); color: var(--text); }
 .rowDate {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-variant-numeric: tabular-nums;

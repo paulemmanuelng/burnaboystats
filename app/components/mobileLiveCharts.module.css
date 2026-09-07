@@ -119,7 +119,7 @@
   border-top: 1px solid var(--rule-soft);
   border-bottom: 1px solid var(--rule-soft);
 }
-.summaryCell { background: var(--bg); padding: 16px; }
+.summaryCell { background: color-mix(in srgb, var(--green) 4%, var(--bg)); padding: 16px; }
 .summaryValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

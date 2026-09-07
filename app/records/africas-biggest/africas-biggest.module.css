@@ -18,7 +18,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--ember);
 }
 .h1 {
   font-family: var(--font-anton), sans-serif;

@@ -163,7 +163,7 @@
   line-height: 1.1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   margin: 0;
 }
 .sourceTag {
@@ -186,7 +186,7 @@
 }
 .block { background: var(--bg); padding: 28px 30px; }
 /* The independence note spans the row — it applies to everything above it. */
-.blockWide { grid-column: 1 / -1; background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 5%, transparent), color-mix(in srgb, var(--gold-wash-base) 5%, transparent)), var(--bg); }
+.blockWide { grid-column: 1 / -1; background: var(--bg-soft); }
 .blockH {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

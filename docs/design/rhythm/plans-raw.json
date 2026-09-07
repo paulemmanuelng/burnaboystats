@@ -1,0 +1,1476 @@
+{
+ "plans": [
+  {
+   "scope": "sig-reading \u2014 About, FAQ, Contact, Methodology (desktop + mobile twins): remove the gold signature so the reading family is ink only. 13 declarations across 8 files. Nothing edited; plan only.",
+   "changes": [
+    {
+     "file": "app/about/about.module.css",
+     "line": 25,
+     "selector": ".eyebrowRule",
+     "property": "background",
+     "from": "var(--gold)",
+     "to": "var(--text-muted)",
+     "kind": "kicker",
+     "why": "The rule is rendered inside the .eyebrow kicker (about/page.tsx:83-84) and is the only gold in it \u2014 the kicker's accent mark. \u00a73.3 gives the reading family no signature, so the mark matches the kicker text it sits beside.",
+     "risky": false
+    },
+    {
+     "file": "app/faq/faq.module.css",
+     "line": 25,
+     "selector": ".eyebrowRule",
+     "property": "background",
+     "from": "var(--gold)",
+     "to": "var(--text-muted)",
+     "kind": "kicker",
+     "why": "Same mark inside the hero kicker (faq/page.tsx:218-219). The kicker text is already --text-muted; the rule is the last gold in it.",
+     "risky": false
+    },
+    {
+     "file": "app/contact/contact.module.css",
+     "line": 24,
+     "selector": ".eyebrowRule",
+     "property": "background",
+     "from": "var(--gold)",
+     "to": "var(--text-muted)",
+     "kind": "kicker",
+     "why": "Same mark inside the hero kicker (contact/page.tsx:35-36). Kicker text already muted; rule follows it.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileAbout.module.css",
+     "line": 66,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--text-muted)",
+     "kind": "kicker",
+     "why": "The page kicker (MobileAbout.tsx:41). Use 1 of the signature, removed for this family; matches its desktop twin about.module.css .eyebrow, already --text-muted.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileAbout.module.css",
+     "line": 139,
+     "selector": ".timelineKicker",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--text-muted)",
+     "kind": "kicker",
+     "why": "The section kicker above the timeline (MobileAbout.tsx:84) \u2014 same role, same treatment as the desktop .eyebrow that labels that section (about.module.css:23).",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileFaq.module.css",
+     "line": 75,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--text-muted)",
+     "kind": "kicker",
+     "why": "The page kicker (MobileFaq.tsx:52); its desktop twin faq.module.css .eyebrow is already --text-muted.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileFaq.module.css",
+     "line": 143,
+     "selector": ".itemGroup",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--text-muted)",
+     "kind": "kicker",
+     "why": "The per-question group label (MobileFaq.tsx:82) is the mobile stand-in for the desktop .groupKicker (faq.module.css:96), which is already --text-muted \u2014 a kicker, repeated per item.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileContact.module.css",
+     "line": 67,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--text-muted)",
+     "kind": "kicker",
+     "why": "The page kicker (MobileContact.tsx:39); desktop twin contact.module.css .eyebrow is already --text-muted.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileContact.module.css",
+     "line": 103,
+     "selector": ".sectionKicker",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--text-muted)",
+     "kind": "kicker",
+     "why": "The two section kickers, 'Drop a line' and 'Official channels' (MobileContact.tsx:51,59) \u2014 the same two labels the desktop page renders with .eyebrow at --text-muted.",
+     "risky": false
+    },
+    {
+     "file": "app/methodology/methodology.module.css",
+     "line": 189,
+     "selector": ".blockWide",
+     "property": "background",
+     "from": "linear-gradient(color-mix(in srgb, var(--gold-wash-base) 5%, transparent), color-mix(in srgb, var(--gold-wash-base) 5%, transparent)), var(--bg)",
+     "to": "var(--bg-soft)",
+     "kind": "stage-tint",
+     "why": "The only tint on the reading pages \u2014 use 3 of the signature, which this family does not get. --bg-soft keeps the independence note distinct from the .block cells (var(--bg)) with ink alone, exactly as the mobile twin already does it (mobileMethodology .blockSoft, line 109).",
+     "risky": true
+    },
+    {
+     "file": "app/methodology/methodology.module.css",
+     "line": 166,
+     "selector": ".sourceArea",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--text)",
+     "kind": "signature-removed",
+     "why": "A gold heading on an ink-only page, and the layouts disagree: the mobile twin for the same source label (mobileMethodology .area, line 139) is already var(--text). Not one of the three uses, so on this family it should not be the signature at all.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileMethodology.module.css",
+     "line": 117,
+     "selector": ".blockTitle",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--text)",
+     "kind": "signature-removed",
+     "why": "Section headings 'How a figure gets verified' / 'Where the numbers come from' (MobileMethodology.tsx:67,79). The desktop page renders the same headings with .h2, which declares no colour and so is ink.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileMethodology.module.css",
+     "line": 163,
+     "selector": ".sectionTitle",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--text)",
+     "kind": "signature-removed",
+     "why": "Closing-section headings (MobileMethodology.tsx:91); the desktop counterpart .blockH declares no colour and renders ink. Same element, two layouts, one of them gold.",
+     "risky": true
+    }
+   ],
+   "notes": [
+    "Already correct, no change needed: every DESKTOP kicker on these four pages is --text-muted today \u2014 about .eyebrow:23, faq .eyebrow:23 and .groupKicker:96, contact .eyebrow:22, methodology .kicker:23 and .eyebrow:100. The gold on desktop was in the 22x2px .eyebrowRule beside three of them. mobileMethodology .kicker:61 is also already --text-muted.",
+    "None of these four pages has an active tab or filter underline: FAQ's jump chips (faq.module.css .jumpChip, mobileFaq .chip) are anchors with no active state. So this family ends at zero uses \u2014 I did not invent a third, or a second.",
+    "Comments that will read false once applied, and should be reworded in the same commit (a mechanical value swap will not touch them): mobileFaq.module.css:68 'Gold, not muted: on this screen the kicker states the page's promise.'; mobileContact.module.css:60 'Gold, not muted \u2014 on this screen the kicker is the invitation.'; MobileContact.tsx:13-14 '...the section kickers turn gold so each block announces itself while scrolling.'",
+    "Left alone \u2014 links and link hovers. Gold here is an affordance, and \u00a73.3 bars the signature from body text rather than repainting inline links: about .wikiLink:52 / :hover:56 and .tMoreLink a:125; faq .jumpChip:hover:68; contact .channel:hover:68 and .note a:78; methodology .link:46-47, .registerLink:253, .blockLink:hover:217; mobileAbout .wikiLink:128 and .timelineLink:192; mobileContact .note a:140; mobileMethodology .sectionLink:180. Repainting these is a link-colour decision, not a signature one.",
+    "Left alone \u2014 mobileMethodology .actionPrimary:213-225, the gold primary-action ramp in the action bar. \u00a73.3 says the signature is never a button; it does not say the site's primary button changes colour per section, and this ramp is shared with .btnPrimary and the home screen.",
+    "Left alone \u2014 the about timeline's gold: .tDot (about:102, mobileAbout:157) and .tYear (about:110, mobileAbout:165). Consistent across both layouts, and the year is the row's datum rather than chrome. Flagged as a question instead.",
+    "Left alone \u2014 methodology .principleNum:134, a 1px gold text-stroke on an outlined numeral. Ornament, not one of the three uses, and no ink counterpart exists in either layout to copy.",
+    "Left alone \u2014 the .gold gradient title word on all four mobile screens (mobileAbout:78, mobileFaq:87, mobileContact:79, mobileMethodology:73). It is the site-wide h1 treatment; see questions.",
+    "Verified no test pins these values: no test file mentions 'kicker', and tests/goldMarksHisRows.test.ts only covers the revenue boards. tests/cssColourTokens.test.ts bans colour literals in modules \u2014 every 'to' value above is a :root token (--text-muted:36, --text:35, --bg-soft:22), so it stays clean.",
+    "No new hue enters the reading pages: --text-muted, --text and --bg-soft are all existing :root tokens, and no --ember, --green or --floor-ring is introduced here."
+   ],
+   "questions": [
+    {
+     "file": "app/components/mobileAbout.module.css",
+     "question": "The h1's gold gradient word (.gold, mobileAbout:78, mobileFaq:87, mobileContact:79, mobileMethodology:73) is gold on a family the table marks ink only. It is the site-wide title treatment rather than one of the three uses, so I left it. Does 'ink only' reach the headline word on these four screens, and if so what replaces the gradient \u2014 flat var(--text)?"
+    },
+    {
+     "file": "app/faq/faq.module.css",
+     "question": "Line 68: .jumpChip:hover turns border and text gold. Chips are the closest thing on a reading page to use 2 (the filter), even though there is no active state. Keep gold as hover feedback, or take it to --text-muted / --border like the resting chip?"
+    },
+    {
+     "file": "app/about/about.module.css",
+     "question": "The career timeline is gold in both layouts \u2014 .tDot (about:102 / mobileAbout:157) and .tYear (about:110 / mobileAbout:165). Is that ornament you want kept on /about, or should it go ink with the rest of the family?"
+    },
+    {
+     "file": "app/methodology/methodology.module.css",
+     "question": "Line 189: I proposed replacing .blockWide's gold wash with var(--bg-soft), matching mobileMethodology .blockSoft. The alternative is var(--bg), which makes the independence note identical to the other cells and drops the emphasis entirely. Which do you want?"
+    }
+   ]
+  },
+  {
+   "scope": "sig-records",
+   "changes": [
+    {
+     "file": "app/records/records.module.css",
+     "line": 65,
+     "selector": ".eyebrowRule",
+     "property": "background",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Records index hero kicker (page.tsx:105-106 .eyebrow + .eyebrowRule above the h1). The 22px rule is the only colour the kicker spends today; swap gold -> ember = signature use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/records/tours/tours.module.css",
+     "line": 43,
+     "selector": ".eyebrowRule",
+     "property": "background",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Tours hero kicker (page.tsx:94-95). Same eyebrow+rule pattern; the rule carries the signature. Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/records/tours/revenue/revenue.module.css",
+     "line": 25,
+     "selector": ".eyebrowRule",
+     "property": "background",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Tour revenue hero kicker (page.tsx:94-95). Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/records/tours/festivals/festivals.module.css",
+     "line": 25,
+     "selector": ".eyebrowRule",
+     "property": "background",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Festivals hero kicker (page.tsx:94-95). Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/records/awards/awards.module.css",
+     "line": 219,
+     "selector": ".eyebrowRule",
+     "property": "background",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Awards hero kicker (page.tsx:134-135). Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/records/firsts/firsts.module.css",
+     "line": 59,
+     "selector": ".eyebrowRule",
+     "property": "background",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Firsts hero kicker (page.tsx:51-52). Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/records/tours/map/map.module.css",
+     "line": 21,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Tour map page kicker 'Live worldwide' (page.tsx:71). Text kicker, already gold \u2014 straight signature swap. Same class also labels the 'By region' section (page.tsx:102), which is already gold too, so this adds no new use.",
+     "risky": false
+    },
+    {
+     "file": "app/records/charts/charts.module.css",
+     "line": 417,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--text-muted)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Charts page kicker 'Peak positions worldwide' (page.tsx:90). Single use of the class; it is the label above the h1, so it takes the family signature. Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/records/africas-biggest/africas-biggest.module.css",
+     "line": 21,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--text-muted)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Africa's Biggest page kicker 'African music by the numbers' (page.tsx:179). Single use, above the h1. Use 1. (.trendKicker at line 50 is a section label \u2014 left muted.)",
+     "risky": false
+    },
+    {
+     "file": "app/records/visualized/visualized.module.css",
+     "line": 18,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--text-muted)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Visualized page kicker 'Every stat, charted' (page.tsx:465). Single use, above the h1. Use 1. (.eyebrow at line 60 labels each chart section \u2014 left muted.)",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileRecords.module.css",
+     "line": 71,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Mobile twin of the Records index hero kicker; already gold, straight signature swap. Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileOfficialCharts.module.css",
+     "line": 71,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--text-muted)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Mobile twin of the Charts hero kicker (MobileOfficialCharts.tsx hero). Matches the desktop change so both layouts get the signature. Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileTours.module.css",
+     "line": 71,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--text-muted)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Mobile twin of the Tours hero kicker. Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileTourMap.module.css",
+     "line": 71,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--text-muted)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Mobile twin of the tour-map hero kicker. Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileRevenue.module.css",
+     "line": 70,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--text-muted)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Mobile twin of the tour-revenue hero kicker. Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileFestivals.module.css",
+     "line": 70,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--text-muted)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Mobile twin of the festivals hero kicker. Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileAwards.module.css",
+     "line": 70,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--text-muted)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Mobile twin of the awards hero kicker. Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileFirsts.module.css",
+     "line": 70,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--text-muted)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Mobile twin of the firsts hero kicker. Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileAfricasBiggest.module.css",
+     "line": 70,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--text-muted)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Mobile twin of the Africa's Biggest hero kicker. Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileVisualized.module.css",
+     "line": 71,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--text-muted)",
+     "to": "var(--ember)",
+     "kind": "kicker",
+     "why": "Mobile twin of the Visualized hero kicker. Use 1.",
+     "risky": false
+    },
+    {
+     "file": "app/records/charts/charts.module.css",
+     "line": 135,
+     "selector": ".fChipOn",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+     "to": "color-mix(in srgb, var(--ember) 16%, transparent)",
+     "kind": "tab-underline",
+     "why": "Active state of the charts filter chips (the page's only tab/filter affordance). Signature use 2. Same hue at 16%, no new token needed.",
+     "risky": true
+    },
+    {
+     "file": "app/records/charts/charts.module.css",
+     "line": 135,
+     "selector": ".fChipOn",
+     "property": "border-color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block: the active filter chip's outline. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/records/charts/charts.module.css",
+     "line": 135,
+     "selector": ".fChipOn",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block: the active filter chip's label. Use 2. Chip label is chrome, not body text.",
+     "risky": true
+    },
+    {
+     "file": "app/records/awards/awards.module.css",
+     "line": 120,
+     "selector": ".fChipOn",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+     "to": "color-mix(in srgb, var(--ember) 16%, transparent)",
+     "kind": "tab-underline",
+     "why": "Active state of the awards filter chips. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/records/awards/awards.module.css",
+     "line": 120,
+     "selector": ".fChipOn",
+     "property": "border-color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/records/awards/awards.module.css",
+     "line": 120,
+     "selector": ".fChipOn",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/records/tours/revenue/revenue.module.css",
+     "line": 75,
+     "selector": ".chipOn",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+     "to": "color-mix(in srgb, var(--ember) 16%, transparent)",
+     "kind": "tab-underline",
+     "why": "Active state of the tour-revenue filter band chips. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/records/tours/revenue/revenue.module.css",
+     "line": 75,
+     "selector": ".chipOn",
+     "property": "border-color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/records/tours/revenue/revenue.module.css",
+     "line": 75,
+     "selector": ".chipOn",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileOfficialCharts.module.css",
+     "line": 167,
+     "selector": ".chipOn",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+     "to": "color-mix(in srgb, var(--ember) 16%, transparent)",
+     "kind": "tab-underline",
+     "why": "Mobile twin: active state of the peak and country filter rails (MobileOfficialCharts.tsx:269, 282, 293). Use 2 on the mobile layout.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileOfficialCharts.module.css",
+     "line": 167,
+     "selector": ".chipOn",
+     "property": "border-color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileOfficialCharts.module.css",
+     "line": 167,
+     "selector": ".chipOn",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileRevenue.module.css",
+     "line": 151,
+     "selector": ".chipOn",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+     "to": "color-mix(in srgb, var(--ember) 16%, transparent)",
+     "kind": "tab-underline",
+     "why": "Mobile twin: active state of the 'Filter the board' rail (MobileRevenue.tsx:106-112). Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileRevenue.module.css",
+     "line": 151,
+     "selector": ".chipOn",
+     "property": "border-color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileRevenue.module.css",
+     "line": 151,
+     "selector": ".chipOn",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileAwards.module.css",
+     "line": 156,
+     "selector": ".chipOn",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+     "to": "color-mix(in srgb, var(--ember) 16%, transparent)",
+     "kind": "tab-underline",
+     "why": "Mobile twin: active state of the 'Filter nominations' rail (MobileAwards.tsx:110-116). Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileAwards.module.css",
+     "line": 156,
+     "selector": ".chipOn",
+     "property": "border-color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileAwards.module.css",
+     "line": 156,
+     "selector": ".chipOn",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileAfricasBiggest.module.css",
+     "line": 156,
+     "selector": ".chipOn",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+     "to": "color-mix(in srgb, var(--ember) 16%, transparent)",
+     "kind": "tab-underline",
+     "why": "Mobile twin: active state of the 'Filter the boards' rail (MobileAfricasBiggest.tsx:95-103). Use 2. Distinct from .legendDot / .chipHim, which are data and stay gold.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileAfricasBiggest.module.css",
+     "line": 156,
+     "selector": ".chipOn",
+     "property": "border-color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block. Use 2.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileAfricasBiggest.module.css",
+     "line": 156,
+     "selector": ".chipOn",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--ember)",
+     "kind": "tab-underline",
+     "why": "Same declaration block. Use 2.",
+     "risky": true
+    }
+   ],
+   "notes": [
+    "--ember needs no new declaration: app/globals.css:174 already has `--ember: light-dark(#b34700, #ff7a1a);` under a comment reading 'Records signature'. Nothing in the repo consumes it yet (globals.css:1490 uses it only inside a gradient). The plan is purely a consumer-side swap.",
+    "Stage tint (signature use 3) is deliberately not in this plan -- the task asked for the kicker rule and the active tab/filter underline only.",
+    "Kickers deliberately NOT touched, because they label a section rather than a page title: records.module.css:131 .kicker ('The record books' / 'Box office'), tours.module.css:63 .kicker ('Upcoming dates & tickets'), charts.module.css:504 .splitKicker, africas-biggest.module.css:50 .trendKicker, visualized.module.css:60 .eyebrow (per-chart labels). All stay --text-muted.",
+    "map.module.css .kicker is used twice in page.tsx (line 71 page kicker, line 102 'By region' section label). Both are already var(--gold), so the swap recolours an existing gold rather than adding a use. Splitting the class would be a structural change and is out of scope.",
+    "On the six eyebrow+rule heroes (records, tours, revenue, festivals, awards, firsts) the .eyebrow TEXT stays --text-muted and only the 22px .eyebrowRule takes ember. That keeps the kicker to one spend of the signature. See questions[] if the intent was to colour the text too.",
+    "app/records/by-the-numbers/byTheNumbers.module.css is intentionally untouched. Its hero eyebrow spends no signature colour at all: .eyebrowRule (line 27) is a 1px `var(--line)` separator, and .freshDot (line 31) is `var(--green)` with a comment explaining it reports freshness, not one of his numbers. There is no gold to swap and adding ember would collide with that green.",
+    "app/components/mobileDeepPage.module.css:74 .kicker is NOT in the plan even though /records/by-the-numbers renders through MobileDeepPage. The same component is used by /records/cars (page.tsx), which the table assigns to --floor-ring, so recolouring it would leak ember into another family.",
+    "charts.module.css:185-190 .viewBtnOn (the cards<->table view toggle) is left gold. It is a filled pill button with --ink-on-gold text -- 'never a button'. It is also arguably the page's tab, so if the reviewer disagrees, .fChipOn and .viewBtnOn should not BOTH take ember; that would be two uses of slot 2.",
+    "Left gold on purpose, all outside the three slots: fChip:hover / clearBtn:hover (charts, awards), chip:hover (revenue), .jumpChip:hover (firsts:106), .jumpNav a:hover (visualized:56) -- hover is not an active state; .albumTag (charts:222), .focusBar b (charts:243), .filterMeta b (charts:137, awards:139), .tallyWon (mobileAwards:196).",
+    "Left gold because it is DATA, not chrome, per the hard limit: africas-biggest.module.css:270 .chipHim (marks Burna in a ranking), mobileAfricasBiggest.module.css:172 .legendDot (the key for that mark), map.module.css:226 .activePath (the highlighted country on the map), and every peak-band / tier colour.",
+    "Sections that end up with only TWO uses because they have no tabs or filters, and where no third was invented: records index, tours, tours/map, tours/festivals, firsts, visualized, by-the-numbers (desktop), plus mobileRecords, mobileTours, mobileTourMap, mobileFestivals, mobileFirsts, mobileVisualized.",
+    "Asymmetry worth knowing before/after: desktop africas-biggest has no filter UI at all, but its mobile twin does (MobileAfricasBiggest.tsx:95). So that route gets two uses on desktop and three on mobile. That is pre-existing structure, not something this plan introduces.",
+    "The chip wash uses `color-mix(in srgb, var(--ember) 16%, transparent)` -- the same 16% recipe already in every one of these rules, just against --ember instead of --gold-wash-base. If a --ember-wash-base token is wanted for parity with --gold-wash-base, that is a globals.css addition and should be a separate decision."
+   ],
+   "questions": [
+    {
+     "file": "app/records/charts/charts.module.css",
+     "question": "'NEVER a button' vs 'the active tab / filter underline': every filter affordance in the Records family is a <button> chip (.fChipOn / .chipOn), and there is no underline component anywhere. I read the prohibition as 'never a CTA / filled action button' and included the chips (21 entries, all flagged risky). If it forbids <button> elements outright, drop every tab-underline change and the family has only one use -- the kicker."
+    },
+    {
+     "file": "app/records/records.module.css",
+     "question": "On the six eyebrow+rule heroes I gave ember to the 22px rule only, leaving the label text --text-muted. Should the .eyebrow text also go --ember, so the kicker reads the same on both hero patterns? (It would make desktop match the mobile twins, where the whole kicker is coloured.)"
+    },
+    {
+     "file": "app/records/visualized/visualized.module.css",
+     "question": "The 3.3 table names 'Records: charts, tours, awards, firsts'. I treated the whole /records subtree as one family and included africas-biggest and visualized; I excluded by-the-numbers (no colour to swap) and cars (--floor-ring, its own row). Confirm africas-biggest and visualized are meant to be ember."
+    }
+   ]
+  },
+  {
+   "scope": "sig-cars \u2014 Cars (--floor-ring) + the Home/Music/Certifications gold family. Read in full: app/records/cars/cars.module.css, app/records/cars/[car]/car.module.css, app/records/cars/page.tsx, app/records/cars/[car]/page.tsx, app/page.module.css, app/music/music.module.css, app/certifications/certifications.module.css, app/components/mobileHome.module.css, app/components/mobileMusic.module.css, app/components/mobileCerts.module.css, app/components/mobileDeepPage.module.css, plus app/page.tsx / app/music/page.tsx / app/certifications/page.tsx / app/components/Mobile{Home,Music,Certs,DeepPage}.tsx and the token block in app/globals.css. Result: ZERO mechanical changes. Every \u00a73.3 slot in this scope is either already correct or cannot be filled with the token the table names without breaking legibility. Two open questions below.",
+   "changes": [],
+   "notes": [
+    "NO-OP SCOPE. changes is deliberately empty. Nothing in sig-cars can be swapped from->to and be defensible against \u00a73.3; the two live decisions are in `questions`. Confirmation ledger follows, one line per slot checked, so the count adds up.",
+    "CARS \u00b7 use 3, stage tint \u2014 CONFIRM, change:false. app/globals.css:88 `.stage { background: radial-gradient(60% 45% at 50% 72%, var(--floor-glow), transparent 70%) }` and app/globals.css:101 `.stage::after { border: 1px solid var(--floor-ring) }`. The Cars stage tint is already the signature token, verbatim. No edit.",
+    "CARS \u00b7 use 2, active tab / filter underline \u2014 CONFIRM, change:false, ABSENT BY DESIGN. Neither app/records/cars/page.tsx nor app/records/cars/[car]/page.tsx renders a tab, filter, chip rail or segmented control (the mobile deep page for Cars is passed no chip rail \u2014 see the comment at app/records/cars/page.tsx:70). Per the hard limit, a section with no tabs has two uses; I did not invent a third.",
+    "CARS \u00b7 use 1, kicker \u2014 change:false, BLOCKED ON CONTRAST. app/records/cars/cars.module.css:89, `.kicker { \u2026 color: var(--text-muted) }`. \u00a73.3 wants the signature here, but --floor-ring is light-dark(rgba(176,112,0,0.45), rgba(224,138,46,0.50)) \u2014 a hairline STROKE alpha, not an ink. Composited on the page it measures 1.72:1 on paper and 2.50:1 on black at 11px. The brief vouches for --ember being \"text-safe in both themes\" and makes no such claim for --floor-ring, because --floor-ring's job is a 1px ellipse. I will not put a 1.7:1 label into a plan a tool applies mechanically. See questions[0] for the legible alternative.",
+    "CARS \u00b7 mobile kicker \u2014 change:false, WRONG FILE TO EDIT. Cars' phone kicker (\"The garage, priced\") is rendered by the shared deep-page shell, app/components/MobileDeepPage.tsx:135 -> app/components/mobileDeepPage.module.css:74 `color: var(--text-muted)`. That one rule also serves /records/by-the-numbers, /records/africas-biggest, /records/tours/festivals, /records/tours/revenue, /methodology, /analysis and /api \u2014 four section families at once. A per-family signature cannot be set there; it needs a modifier class, which is a DOM change, not a from->to swap. Left alone.",
+    "HOME \u00b7 use 1, kicker \u2014 CONFIRM, change:false. app/page.tsx:92-93 renders `.eyebrow` + `.eyebrowRule`. app/page.module.css:128 `.eyebrow { color: var(--text-muted) }` (the live rule; :61's gold `.eyebrow` is an earlier duplicate selector, dead) and app/page.module.css:151 `.eyebrowRule { background: var(--gold-fill) }`. Muted label, gold 2px rule. Already the gold signature. No edit.",
+    "MUSIC \u00b7 use 1, kicker \u2014 CONFIRM, change:false. app/music/page.tsx:105-106; app/music/music.module.css:89 `.eyebrow { color: var(--text-muted) }` + :91 `.eyebrowRule { background: var(--gold) }`. Same grammar. No edit.",
+    "CERTIFICATIONS \u00b7 use 1, kicker \u2014 CONFIRM, change:false. app/certifications/page.tsx:148-149; app/certifications/certifications.module.css:443 `.eyebrow { color: var(--text-muted) }` + :448 `.eyebrowRule { background: var(--gold-fill) }`. No edit.",
+    "MUSIC/HOME \u00b7 use 2, active tab / filter underline \u2014 CONFIRM, change:false, ABSENT. Neither app/music/music.module.css nor app/page.module.css declares any active-state class (grep for `On {`, `.tab`, `.active`, `aria-selected` returns nothing). Two uses each, as the hard limit allows.",
+    "CERTIFICATIONS \u00b7 use 2, active filter \u2014 CONFIRM, change:false. app/certifications/certifications.module.css:602-605 `.fChipOn { background: color-mix(\u2026 var(--gold-wash-base) 16% \u2026); border-color: var(--gold); color: var(--gold) }` and :780-785 `.yearBtnOn` on the gold fill ramp. Already gold. No edit \u2014 though see questions[1], because these are buttons, not underlines.",
+    "GOLD FAMILY \u00b7 use 3, stage tint \u2014 CONFIRM, change:false. The table's phrasing is \"gold + artwork\", and all three carry it: app/certifications/certifications.module.css `.heroArt`/`.heroScrim` over the portrait, music's `.latestCover` album art, home's hero panel. Nothing to retint.",
+    "MOBILE TWINS \u00b7 CONFIRM, change:false, all three already gold. app/components/mobileHome.module.css:347 `.sectionKicker { color: var(--gold) }`; app/components/mobileMusic.module.css:75 `.kicker { color: var(--gold) }`; app/components/mobileCerts.module.css:147 `.kicker { color: var(--gold) }`, :461 `.logKicker { color: var(--gold) }` and :238-243 `.chipOn` on the gold ramp. The [data-brand=\"starrgirl\"] override at mobileCerts.module.css:634-637 is another artist's page-only accent and is out of this scope.",
+    "NOT A LEAK \u2014 --green inside the gold family. app/page.module.css:470/504/507/515/523 and app/components/mobileHome.module.css:50/56/156/157/398/400/411/419 and mobileCerts.module.css:576/581 all paint --green on LIVE/\"new\" status affordances (the live band dot, newly-certified board entries). That is a status meaning, not a Live-charts section signature bleeding into Home, and \u00a73.3's hard limit protects colours that mean something. Left alone deliberately.",
+    "NOT IN SCOPE, but flagged so nobody mistakes it for an omission: Cars spends flat --gold in ~10 non-signature places (cars.module.css:119 .highlightLabel, :141 .tallyNum, :160 .rankLead, :175 .carLink, :183 .usdLead, :193 .goldFlat, :302 .tileLead .tileRank, :315 .tileValue, :337 .mFormerTitle; car.module.css:208 .baseTag, :249 .specSource, :260 .perfBasis, :322 .provKicker, :365 .sourceKicker, :382 .sourceArrow). Cars' row in the table names --floor-ring, not gold, so a literal reading would strip all of these. That is a redesign of two pages, not a signature pass, and \u00a73.3 governs the signature \u2014 not every warm pixel. Explicitly out.",
+    "DEAD CODE spotted, not touched: app/page.module.css declares `.kicker` twice (:10 `color: var(--text-muted)`, :357 `color: var(--color-accent-700)`) and `.eyebrow` twice (:61 gold, :119 muted). The later rule wins in both pairs, so :10 and :61 never render. Tidying them is a separate cleanup with no visual delta; keeping them out of a \u00a73.3 patch."
+   ],
+   "questions": [
+    {
+     "file": "app/records/cars/cars.module.css",
+     "question": "Cars' kicker (line 87-90) currently has NO signature at all \u2014 muted text, no rule \u2014 so the section shows one use, not two. --floor-ring cannot be its ink (1.72:1 light / 2.50:1 dark at 11px). The site already has the right grammar for a signature that is a LINE colour: Home, Music and Certifications all pair a muted `.eyebrow` label with a 2px `.eyebrowRule` in the family colour. Do you want Cars to adopt that \u2014 add `<span className={styles.kickerRule} aria-hidden=\"true\" />` before the label in app/records/cars/page.tsx:143 and a `.kickerRule { width: 22px; height: 2px; background: var(--floor-ring); }` \u2014 which gives Cars its kicker use in the exact token the table names, with no contrast problem? It is a DOM edit plus a new rule, so it cannot go through the mechanical from->to applier and is not in `changes`."
+    },
+    {
+     "file": "app/certifications/certifications.module.css",
+     "question": "\u00a73.3 says the second use is the active tab / filter UNDERLINE and that the signature is 'never a button'. Certifications' active filters are buttons wearing the signature as a fill: `.yearBtnOn` (line 780-785) and mobileCerts `.chipOn` (line 238-243) are solid gold ramps with a #0a0a0b label, and `.fChipOn` (line 602-606) is a gold wash + gold border + gold ink. Is the existing pill treatment grandfathered as 'the active filter', or does the rule mean these should become an underline on an otherwise-neutral chip? I did not touch them: both carry shipped contrast comments (mobileCerts.module.css:639-646 explains the deepened ramp was chosen because white on the bright stops measured 2.71:1), so recolouring them is a redesign with an accessibility history, not a signature swap."
+    }
+   ]
+  },
+  {
+   "scope": "sig-live",
+   "changes": [
+    {
+     "file": "app/live-charts/liveCharts.module.css",
+     "line": 411,
+     "selector": ".eyebrowRule",
+     "property": "background",
+     "from": "var(--gold)",
+     "to": "var(--green)",
+     "kind": "kicker",
+     "why": "Use 1 of 2 for the LIVE family. The kicker on this page is the .eyebrow block (mono 11.5px, --text-muted) plus its 22x2px rule; sitewide the rule is where the signature colour lives (music/records/contact all do background: var(--gold) here) and the label text stays muted. Recolouring only the rule moves the signature off gold without turning any words green. The full line is `.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; flex: none; }` - only the background value changes. This module is also imported by app/afrobeats/[artist]/live/page.tsx, which is the same LIVE family, so the change lands correctly on both.",
+     "risky": false
+    },
+    {
+     "file": "app/updates/updates.module.css",
+     "line": 34,
+     "selector": ".eyebrowRule",
+     "property": "background",
+     "from": "var(--gold)",
+     "to": "var(--green)",
+     "kind": "kicker",
+     "why": "Same use, the Updates half of the family. Full line: `.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; }`. Only the hero eyebrow renders this rule; the second .eyebrow on the page (the heroAside label, updates/page.tsx:77) has no rule span and stays muted, so this stays a single kicker.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileUpdates.module.css",
+     "line": 80,
+     "selector": ".kicker",
+     "property": "color",
+     "from": "var(--gold)",
+     "to": "var(--green)",
+     "kind": "kicker",
+     "why": "The mobile layout has no eyebrow rule - the kicker IS the coloured text - so parity with the desktop change means recolouring .kicker itself. \"THE CHANGE LOG\" sits above the h1, carries no dot, and is separated from the green .liveDot in .lastEntry (line 117) by the title and lede; it does not read as a status. See notes on the Tours-ink coincidence.",
+     "risky": false
+    },
+    {
+     "file": "app/live-charts/liveCharts.module.css",
+     "line": 454,
+     "selector": ".summaryBand",
+     "property": "background",
+     "from": "var(--bg-soft)",
+     "to": "color-mix(in srgb, var(--green) 4%, var(--bg-soft))",
+     "kind": "stage-tint",
+     "why": "Use 2 of 2 (this section has no tabs, so there is no third). The summary strip directly under the hero is the page's stage - the band carrying the live totals. Today it is --bg-soft, byte-identical to .sourceBand (line 543), so the stage and the footnote sit on the same surface; a 4% signature wash separates them, which is the rhythm this task is about. color-mix over a light-dark() token is the established pattern in this repo (globals.css:304, and color-mix on --green already exists at mobileLiveCharts.module.css:289). Full line: `.summaryBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }`.",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileLiveCharts.module.css",
+     "line": 122,
+     "selector": ".summaryCell",
+     "property": "background",
+     "from": "var(--bg)",
+     "to": "color-mix(in srgb, var(--green) 4%, var(--bg))",
+     "kind": "stage-tint",
+     "why": "The mobile stage. The summary strip here is a 2-up grid whose cells paint --bg with --rule showing through 1px seams, so the cell is the surface to tint (tinting .summaryGrid would only recolour the seams). Same 4% wash as the desktop band, mixed over --bg rather than --bg-soft because that is this layout's base. Full line: `.summaryCell { background: var(--bg); padding: 16px; }`.",
+     "risky": true
+    }
+   ],
+   "notes": [
+    "Uses delivered: TWO, not three. Neither live page has tabs or a chrome filter underline, so per the hard limit the family gets kicker + stage tint. I did not invent a third.",
+    "No datum was recoloured. Left alone deliberately, all of them green-as-data: liveCharts .liveInk (473), .platformCardNo1 (529), .liveDot/--live-dot (7) and .moveUp (248); mobileLiveCharts .livePill/.liveDot (62,65), .liveInk (132), .platformNo1 (189), .rowNo1 (269), .chipTop (289), .posTop (292), .entryTop .entryPos (334); updates .liveDot (68). The tier and peak-band colours were not touched at all.",
+    "GREEN IS ALREADY A DATUM ON /updates, and not only as 'live': app/lib/updateInk.ts maps the Tours category to var(--green). So on the updates feed a green pill, dot or active filter chip means 'Tours'. That is why the updates signature is confined to the kicker, which sits above the h1 in a different band from any tag or chip. Worth knowing before anything else on that page goes green. (Symmetrically, gold is already the Certifications ink in the same chip row - pre-existing, out of scope here.)",
+    "The two stage tints are the only judgement calls in the plan: the 4% alpha is mine, not the spec's, since I could not find a canonical stage-tint value anywhere in docs/design. Both are marked risky and can be dropped without affecting the kicker changes. Note that the tinted surfaces do contain a green datum (the 'at No. 1 right now' numeral, .liveInk) - contrast holds fine at 4% in both themes, but a human should eyeball whether a green ground behind a green number blurs the chrome/data line. If it does, drop these two and the family runs on the kicker alone.",
+    "Desktop kicker vs live dot: on both desktop pages the green rule sits ~4 elements above a pulsing green dot (.liveDot / .updated on live-charts, .lastEntry on updates). I judged this safe because the mark is a 22x2px bar, not a dot, and the label text beside it stays --text-muted. It is a smaller version of the mobile collision below, and it is the reason I moved the signature onto the rule rather than onto the eyebrow text.",
+    "Rejected as out of scope, each of which would have been a third or fourth use: mobileLiveCharts .sectionLabel (152) and .platformBlockName (312), gold sub-section labels that are kicker-shaped but are not the page kicker; liveCharts .platformName (202); the gold .notice panels (444, mobileLiveCharts 107), which are chrome but would read as affirmation in green under the words 'these are NOT official charts'; .caret / .panelRetry / .back, which are controls; and .summaryValue / .platformValue, which are his numbers, not chrome.",
+    "updates.module.css .chip:hover (128) stays gold. Hover is not one of the three uses, and green there would preview a Tours-coloured chip on every chip in the row.",
+    "Nothing in this plan changes a .tsx file, so the whole patch is mechanically applicable as CSS value swaps. Three of the five targets are single-line rules with several declarations on the line - the value alone changes, the rest of the line is untouched."
+   ],
+   "questions": [
+    {
+     "file": "app/components/mobileLiveCharts.module.css",
+     "question": "I found the collision you asked about, and left the change out because of it. .kicker (line 75, color: var(--gold)) reads 'TRACKED AS IT HAPPENS' in mono 700 / 11px / 0.11em / uppercase. About 30px above it, inside the sticky back bar, .livePill (line 62) reads 'Live' in var(--green) at mono / 11px / 0.1em with a green dot beside it. Turning the kicker green would put two green mono uppercase labels in the same viewport, in near-identical type, one of which literally says Live - and the kicker's own words are a liveness claim. It would stop reading as a section signature and start reading as a status. Three ways out: (a) leave the mobile live-charts kicker gold and accept that this one layout carries the signature only through the stage tint (my recommendation, and what the plan does); (b) apply the green kicker anyway and accept the ambiguity; (c) apply it and drop the green from the .livePill label while keeping the dot green - which I did not propose because that is recolouring a live indicator, i.e. a datum. Which?"
+    },
+    {
+     "file": "app/updates/updates.module.css",
+     "question": "The Updates stage tint is blocked on structure, not on colour. .bandSurface (line 12) is used for two different bands on the page - the filter band (UpdatesFeed.tsx:55) and the source/footnote band (updates/page.tsx:106) - so tinting the class tints the footnote too, and the class is generic enough that splitting it is a .tsx edit rather than a value swap. Do you want a separate .stageBand class added to updates.module.css and applied to the filter band only, or does /updates simply run on the kicker alone?"
+    },
+    {
+     "file": "app/components/UpdatesFeed.tsx",
+     "question": "The updates filter band is the only 'active tab/filter' chrome in the family, and its active state is not in CSS at all - it is an inline style in the .tsx: the All chip is hardcoded gold (UpdatesFeed.tsx:63, MobileUpdates.tsx:89) and every category chip takes its own category ink. I left it gold, because green there is the Tours ink in the same row and a green active chip would read as a category rather than as chrome. Confirm you agree the filter band keeps gold - or, if the signature must appear there, the honest fix is a neutral active treatment (weight/border only) rather than any hue."
+    }
+   ]
+  },
+  {
+   "scope": "ramp-hover \u2014 site-wide sweep of app/globals.css + all 96 app/**/*.module.css for (a) hover/pressed surfaces hand-mixing the raised step and (b) cards resting on var(--bg). 21 changes across 17 files.",
+   "changes": [
+    {
+     "file": "app/globals.css",
+     "line": 708,
+     "selector": ".btnSecondary:hover",
+     "property": "background",
+     "from": "rgba(255, 255, 255, 0.06)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "A hardcoded white-alpha lift \u2014 the literal archetype \u00a73.1 names. It also does not theme: white 6% over paper is invisible, so on light the button has no hover surface at all. Note it is byte-identical to the rest state at line 702, so today the hover paints nothing; --bg-raised is what that rule was reaching for.",
+     "risky": true
+    },
+    {
+     "file": "app/globals.css",
+     "line": 1865,
+     "selector": ".segOpt:not(:has(input:checked)):hover",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--color-text) 7%, transparent)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "color-mix(in srgb, var(--text) N%, transparent) on an unchecked segment \u2014 the hand-mixed hover step, verbatim. --color-text is an alias of --text.",
+     "risky": false
+    },
+    {
+     "file": "app/analysis/analysis.module.css",
+     "line": 75,
+     "selector": ".tocItem:hover",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--ink-wash-base) 5.5%, transparent)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Neutral ink wash mixed per call site as the hover surface. --ink-wash-base is the text colour, so this is the --text N% archetype with a tokenised base; --bg-raised names it once.",
+     "risky": false
+    },
+    {
+     "file": "app/api/api.module.css",
+     "line": 96,
+     "selector": ".endpoint:hover",
+     "property": "background",
+     "from": "linear-gradient(color-mix(in srgb, var(--ink-wash-base) 5.5%, transparent), color-mix(in srgb, var(--ink-wash-base) 5.5%, transparent)), var(--bg)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "The most explicit hand-mix on the site: a neutral wash layered over var(--bg) purely to compute one opaque step above the cell. That computed colour is --bg-raised.",
+     "risky": false
+    },
+    {
+     "file": "app/certifications/certifications.module.css",
+     "line": 665,
+     "selector": ".certRow:hover",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Hand-mixed neutral hover surface on a row that rests transparent. (The gold .certRow:hover at line 57 is a different, accent-bearing rule and is left alone.)",
+     "risky": false
+    },
+    {
+     "file": "app/certifications/certifications.module.css",
+     "line": 808,
+     "selector": ".eventRow:hover",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--ink-wash-base) 4.5%, transparent)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Same hand-mixed neutral hover at a fourth alpha (4.5%) \u2014 the drift --bg-raised exists to end.",
+     "risky": false
+    },
+    {
+     "file": "app/records/cars/cars.module.css",
+     "line": 153,
+     "selector": ".carRow:hover",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--ink-wash-base) 4.5%, transparent)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Hand-mixed neutral hover surface on the garage list rows.",
+     "risky": false
+    },
+    {
+     "file": "app/records/firsts/firsts.module.css",
+     "line": 126,
+     "selector": ".row:hover",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Hand-mixed neutral hover surface. (The gold .row:hover at line 12 in the same file is the accent family and stays.)",
+     "risky": false
+    },
+    {
+     "file": "app/records/tours/festivals/festivals.module.css",
+     "line": 106,
+     "selector": ".row:hover",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Hand-mixed neutral hover surface on the festivals list rows.",
+     "risky": false
+    },
+    {
+     "file": "app/records/tours/revenue/revenue.module.css",
+     "line": 111,
+     "selector": ".row:hover",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Hand-mixed neutral hover surface. .rowHis (gold rest, line 110) already loses its tint under this hover today \u2014 same specificity story before and after, so this is not a new regression.",
+     "risky": false
+    },
+    {
+     "file": "app/records/tours/tours.module.css",
+     "line": 131,
+     "selector": ".tourRow:hover",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Hand-mixed neutral hover surface. The open row keeps its own gold pair (.tourRowOpen / .tourRowOpen:hover, lines 132-133), which is untouched.",
+     "risky": false
+    },
+    {
+     "file": "app/search/search.module.css",
+     "line": 154,
+     "selector": ".row:hover",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Hand-mixed neutral hover surface on the search result rows.",
+     "risky": false
+    },
+    {
+     "file": "app/updates/updates.module.css",
+     "line": 170,
+     "selector": ".row:hover",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Hand-mixed neutral hover surface on the updates feed rows.",
+     "risky": false
+    },
+    {
+     "file": "app/live-charts/liveCharts.module.css",
+     "line": 223,
+     "selector": ".entry:hover, .entryTop:hover",
+     "property": "background",
+     "from": "color-mix(in srgb, var(--white-wash-base) 4%, transparent)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Hand-mixed neutral hover (--white-wash-base is the ink/white wash pair's sibling; in dark it is literally rgba(255,255,255,.04)). Risk: the selector also covers .entryTop, the current-No.1 row whose rest is --gold-wash \u2014 an opaque --bg-raised removes that gold while hovered. It already does today (the translucent wash replaces the gold background outright), so this deepens an existing behaviour rather than inventing one.",
+     "risky": true
+    },
+    {
+     "file": "app/music/music.module.css",
+     "line": 236,
+     "selector": ".albumCard:hover",
+     "property": "background",
+     "from": "var(--bg-soft)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "The bare --bg-soft used only because it was one step up from a card wrongly resting on --bg. Paired with the rest change at line 225; the whole ramp shifts up one.",
+     "risky": false
+    },
+    {
+     "file": "app/records/tours/map/map.module.css",
+     "line": 201,
+     "selector": ".zoomBtn:hover:not(:disabled)",
+     "property": "background",
+     "from": "var(--bg-soft-2)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "The button rests on --bg-soft (line 192) and borrows the inset-track token for its hover only because it was the next step. --bg-raised is the hover step; --bg-soft-2 stays reserved for wells.",
+     "risky": false
+    },
+    {
+     "file": "app/components/mobileCerts.module.css",
+     "line": 558,
+     "selector": ".boardBtn:active",
+     "property": "background",
+     "from": "var(--bg-soft-2)",
+     "to": "var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Pressed state on a --bg-soft card (rest at line 549) painted with the well token for want of a pressed one. This is exactly the state --bg-raised names.",
+     "risky": false
+    },
+    {
+     "file": "app/music/music.module.css",
+     "line": 225,
+     "selector": ".albumCard",
+     "property": "background",
+     "from": "var(--bg)",
+     "to": "var(--bg-soft)",
+     "kind": "card-step",
+     "why": "The case named in \u00a73.1's corollary: a card resting on page ground with a --bg-soft hover. Cards are --bg-soft. It also carries .albumCover (a Spotify cover image), so on the studio-album grid \u2014 which sits in .section, i.e. bare --bg \u2014 it is a photograph on bare ground, which \u00a73.2 forbids. Risk: the same class is reused by .pairGrid inside .altSection (background: --bg-soft, line 178), where the cell will now match its band; the 2px --line seam bed still draws the grid there, and the hover at 236 now lifts in both contexts instead of vanishing into the band.",
+     "risky": true
+    },
+    {
+     "file": "app/page.module.css",
+     "line": 545,
+     "selector": ".albumCard",
+     "property": "background",
+     "from": "var(--bg)",
+     "to": "var(--bg-soft)",
+     "kind": "card-step",
+     "why": "The homepage catalogue is the same component one step low: cover art on a card painted page-ground, inside .section, which has no background of its own (page.module.css:55) \u2014 so the covers sit directly on --bg.",
+     "risky": false
+    },
+    {
+     "file": "app/page.module.css",
+     "line": 551,
+     "selector": ".albumCard:hover",
+     "property": "background",
+     "from": "var(--color-accent-100)",
+     "to": "linear-gradient(var(--color-accent-100), var(--color-accent-100)), var(--bg-raised)",
+     "kind": "hover-raised",
+     "why": "Paired with line 545. --color-accent-100 is a translucent gold wash that REPLACES the card's surface, so once the rest is opaque --bg-soft the hover would drop the card back to the grid bed. Layering the same gold over --bg-raised keeps the accent exactly as designed and makes the hover climb the ramp; the wash-over-a-base form is the site's own (api.module.css:96, byTheNumbers.module.css:78).",
+     "risky": true
+    },
+    {
+     "file": "app/components/mobileMusic.module.css",
+     "line": 242,
+     "selector": ".albumCard",
+     "property": "background",
+     "from": "var(--bg)",
+     "to": "var(--bg-soft)",
+     "kind": "card-step",
+     "why": "The mobile half of the same album card \u2014 cover art (.albumCover, line 249) on a cell painted page-ground on a --bg page. Desktop and mobile are separate components; fixing only one leaves the phone with the defect. No hover exists on touch, so this is the rest step alone; the 1px --rule seam bed still draws the grid.",
+     "risky": false
+    }
+   ],
+   "notes": [
+    "TOKEN DIRECTION \u2014 worth confirming before this is applied. The brief says 'raised is LIGHTER in light mode too', but globals.css:176 declares --bg-raised: light-dark(#e6e0d4, #24242a). On paper #e6e0d4 is DARKER than both --bg (#f7f4ee) and --bg-soft (#ffffff), and darker than --bg-soft-2 (#efeae1). Every change here is still correct as 'the named hover step', but in light mode hovers will darken, not lighten \u2014 and music.module.css .albumCard's hover direction flips (today rest #f7f4ee -> hover #ffffff lightens; after, #ffffff -> #e6e0d4 darkens). Dark mode is a lift in every case.",
+    "HOVER STRENGTH, light mode. The 12 ink/white-wash rows currently compute to roughly #ECE9E3 on paper (5% ink over --bg); --bg-raised is #e6e0d4 \u2014 a visibly stronger hover. In dark the two are within a few units (~#1a1a19 vs #24242a, slightly stronger). If the intent was to preserve the exact rendered pixel, that is the one place this sweep moves it.",
+    "EXCLUDED \u2014 the gold/accent hover family (~30 rules). Every color-mix(... var(--gold-wash-base) N% ...), var(--gold-wash), var(--color-accent-100/200), rgba(255,182,39,.0X) and the two #1ed760 Spotify buttons paint a HUE, not a ramp step: certifications 57/267, SearchPalette 19/137, mobileCerts 306/316, mobileHome 280/284, mobileDeepPage 278/364, mobileTabBar 43, mobileNavSheet 145, mobileSections 22, mobileTours 134, mobileLiveCharts 204, contact 68, globals 1678/1684/1765/1768/1834, music 31/295/403, page 239/505/722, awards 13/137, charts 21/290/292, firsts 12, festivals 55, records 101/171, tours 242, byTheNumbers 78, cars 356, liveCharts 71, map 122, timeline 136/265, statCardButton 12, BackToTop 40, StatCardMaker 151, themeToggle 31, artist 493. Converting these would delete the site's gold hover language \u2014 a redesign, not a ramp fix. globals.css:1834 (.tableBase tbody tr:hover) and 1678/1684 are hardcoded rgba(255,182,39,...) that do not theme, but that is a --gold-wash-base tokenisation job, not this one.",
+    "EXCLUDED \u2014 music.module.css:282 .wideCard (rest var(--bg)). It looks like the corollary's case, but it renders inside .altSection, which is background: var(--bg-soft) (music.module.css:178). Its --bg is the band-alternation trick, not a step error: moving it to --bg-soft would flatten the card into its own band. Its 132px cover does technically sit on --bg per \u00a73.2's letter, which is why this is a question below rather than a silent skip.",
+    "EXCLUDED \u2014 records/tours/tours.module.css:240 .jumpCardAlt (rest var(--bg)). Same alternation, and the CSS says so in place: 'The two cards sit on different beds, so each takes the other band's colour to stay legible as a raised surface.' Deliberate, documented, not on the wrong step.",
+    "EXCLUDED \u2014 the seam-grid cells (~50 rules): .statCell / .countCell / .headlineCell / .numCard / .box / .principle / .block / .cell / .tocItem / .endpoint / .platformCard / .honourCard / .compareCell and the mobile .wrap grounds, all background: var(--bg). They are cells in a 1-2px gap grid over a --line or --rule bed, they carry no photograph, and most have no hover. \u00a73.1's corollary is about CARDS (and \u00a73.2's photograph rule is what forces the album cards); sweeping these would repaint most surfaces on the site. Flagged as a question, not taken.",
+    "EXCLUDED \u2014 SearchPalette.module.css:6 .trigger, background rgba(245, 244, 240, 0.05). It is the exact literal \u00a73.1 names, but it is a REST state, not a hover, and it renders only inside .navbar (Nav.tsx:48), the dark island that re-declares the token list \u2014 so the off-white 5% is correct there today and never reaches a light page. Its own hover (line 19) is a gold wash, i.e. the accent family. Recommend leaving it to a rest-surface pass.",
+    "EXCLUDED \u2014 FollowPanel.module.css:68 .secondary, color-mix(in srgb, var(--text) 4%, transparent). Also the archetype form, also a rest state: the button's :hover (line 72) only moves border-color and color. Pointing a rest state at --bg-raised would make rest and hover indistinguishable. Same reasoning applies to globals.css:702, the .btnSecondary rest fill, which carries a written 3:1-contrast rationale and is left as-is.",
+    "EXCLUDED \u2014 mobileVisualized.module.css:140 .barTrack, color-mix(in srgb, var(--text) 7%, transparent). This is an inset track, which the brief puts out of bounds. Its correct token is --bg-soft-2, not --bg-raised; it belongs to a wells pass. (mobileRevenue.module.css:180 .rowOther, --text 2%, is a zebra stripe, not a state \u2014 same treatment.)",
+    "EXCLUDED \u2014 charts.module.css:263 (.th, background var(--bg)). A sticky table header, i.e. a scrim, not a card.",
+    "MECHANICAL NOTE. Every 'from' above is the exact value text as it appears on that line (no trailing semicolon). Nine of these lines are one-liners carrying other declarations too \u2014 analysis 75, api 96, search 154, updates 170, map 201 (border-color), page 551, music 236, mobileCerts 558, liveCharts 223 \u2014 so the tool must replace the background value in place, not the line.",
+    "Line numbers were read after a full parse of all 97 stylesheets including @media-nested rules; app/loading.module.css, app/records/charts/chartsLoading.module.css and the remaining 60 modules contain no interactive-state surface and no cover-bearing card on --bg."
+   ],
+   "questions": [
+    {
+     "file": "app/music/music.module.css",
+     "question": ".wideCard (line 282) and records/tours/tours.module.css .jumpCardAlt (line 240) rest on var(--bg) by deliberate band alternation \u2014 they sit inside a --bg-soft band so the ground-coloured card reads as the raised one. .wideCard carries a 132px album cover, which \u00a73.2 says must not sit on --bg. Does the alternation win (leave both), or does the photograph rule win for .wideCard (rest -> --bg-soft, and then its gold hover has to be layered over --bg-raised so it does not sink)?"
+    },
+    {
+     "file": "app/live-charts/liveCharts.module.css",
+     "question": "Line 223 bundles .entry:hover with .entryTop:hover, and .entryTop is the current-No.1 row whose rest is --gold-wash. Should the rule be split so the No.1 row keeps a gold hover, or is the flat --bg-raised acceptable (it is already what happens today, just translucent)?"
+    },
+    {
+     "file": "app/page.module.css",
+     "question": "For the homepage catalogue hover (line 551) I kept the gold by layering it over --bg-raised. Do you want the simpler \u00a73.1 reading instead \u2014 a plain var(--bg-raised) hover with no gold \u2014 on the album cards?"
+    },
+    {
+     "file": "app/globals.css",
+     "question": "--bg-raised (line 176) is #e6e0d4 in light: darker than --bg, --bg-soft and --bg-soft-2. Is a light-mode hover meant to darken (a press), while dark-mode lifts? If it is meant to lighten on paper, the token needs fixing before these 17 hover changes land."
+    },
+    {
+     "file": "app/globals.css",
+     "question": "About 50 seam-grid cells (.statCell, .countCell, .numCard, .principle, .block, .tocItem, .endpoint, .box, .cell...) rest on var(--bg) across desktop and mobile. Is the ramp meant to shift up one for those too \u2014 cells become --bg-soft site-wide \u2014 or is the corollary limited to cards that carry an image, as I have read it here?"
+    }
+   ]
+  }
+ ],
+ "problems": [
+  {
+   "file": "app/methodology/methodology.module.css",
+   "line": 189,
+   "problem": ".blockWide is not just the independence note. app/methodology/page.tsx applies it to TWO blocks: line 434 (\"When a source shows less than it awarded\", the TCSN register note) and line 461 (\"Independence\"). The change removes the gold wash from both, but the why names only one, so whoever applies it will not realise the TCSN provenance block loses its tint too.",
+   "correction": "Say so in the rationale and confirm both are meant to go soft. If only the independence note should change, the block at page.tsx:434 needs its own class -- .blockWide currently carries both the grid-span and the tint, so the tint cannot be dropped from one without splitting the two responsibilities.",
+   "severity": "wrong-step"
+  },
+  {
+   "file": "app/methodology/methodology.module.css",
+   "line": 189,
+   "problem": "The cited mobile precedent is the wrong block. mobileMethodology .blockSoft is applied to \"Where the numbers come from\" (MobileMethodology.tsx:78) -- the SOURCES block -- whose desktop counterpart is .sourceList/.sourceRow and has no tint at all. Desktop's two .blockWide cells are the closing blocks, which have no mobile tint. So \"exactly as the mobile twin already does it\" is false: after the change the two layouts still soften different content.",
+   "correction": "Drop the parity claim and justify the swap on its own terms (the family gets no stage tint, --bg-soft separates the cell with ink alone). If cross-layout parity is actually the goal, the desktop element to match is the sources section, not the closing blocks -- but that is a separate change and should not ride in on this rationale.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/methodology/methodology.module.css",
+   "line": 134,
+   "problem": "The plan applies two opposite rules to two identical cases in one file. .sourceArea (line 166) is removed with \"Not one of the three uses, so on this family it should not be the signature at all\", while .principleNum's `-webkit-text-stroke: 1px var(--gold)` is kept with \"Ornament, not one of the three uses\". Same reason, opposite conclusion, same stylesheet -- and .principleNum has no mobile counterpart at all (MobileMethodology renders .item/.itemTitle with no numeral), so it is desktop-only gold left standing on a page the plan is declaring ink-only.",
+   "correction": "Pick one rule and state it. Either the reading family loses non-signature gold too -- then swap line 134 to var(--rule) or var(--text-muted) alongside .sourceArea -- or non-signature gold is out of scope for this task, and .sourceArea, mobileMethodology .blockTitle and .sectionTitle come out of the plan with it.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/faq/faq.module.css",
+   "line": 68,
+   "problem": "Layout drift left in place on the one element that occupies the \u00a73.3 \"filter\" slot. Desktop .jumpChip:hover paints border and text var(--gold); the mobile twin (mobileFaq .chip, line 108-124) has no gold in any state -- it is var(--text-muted) with a --line border, hover included. The plan concludes the family \"ends at zero uses\" while one layout's filter row still lights up in the signature colour and the other never does.",
+   "correction": "Decide it explicitly rather than by omission. Either recolour .jumpChip:hover to var(--text)/var(--rule) in the same commit, so both layouts' chips are ink; or record in the note that chip hover is deliberately kept gold as a link affordance AND that mobile has no equivalent, so the asymmetry is known and not re-fixed one-sidedly later.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/components/mobileAbout.module.css",
+   "line": 128,
+   "problem": "The \"left alone -- links\" note conflates two different treatments and will invite a one-layout fix later. mobileAbout .wikiLink is gold TEXT (color: var(--gold)); its desktop namesake about .wikiLink:50-56 is default ink with a gold-ink 40% underline that only goes full gold on hover. Same name, same link, two treatments. (Desktop .tMoreLink a:125 is gold text, so the desktop page is itself mixed.) Minor companion inaccuracy: the mobileContact .sectionKicker why says the desktop renders \"the same two labels\" -- desktop's two .eyebrow labels are \"Message us\" and \"Official channels\" (contact/page.tsx:52,66), while mobile's section kickers are \"Drop a line\" and \"Official channels\" ( MobileContact.tsx:51,59); \"Message us\" is mobile's hero .kicker.",
+   "correction": "Reword the note to say the link colours differ BETWEEN layouts and are being left as-is on purpose, naming mobileAbout .wikiLink:128 / .timelineLink:192 as gold text versus about .wikiLink:50-56 as underline-only. And correct the mobileContact rationale to \"the section labels the desktop page renders with .eyebrow at --text-muted\" rather than claiming the two label sets match.",
+   "severity": "cosmetic"
+  },
+  {
+   "problem": "NOTES[1] \"CARS \u00b7 use 3, stage tint \u2014 CONFIRM ... The Cars stage tint is already the signature token, verbatim\" cites the wrong element. globals.css:73-113 `.stage` is a global utility class (its own comment: \"THE RULE: no photograph, cover or product image is placed directly on --bg. It goes on .stage\") and has NO consumer in the app \u2014 every `stage` in a .tsx is `styles.stage` from a CSS module (car.module.css:38, GlobeTeaser, StatCardMaker...), which compiles to a hashed name and can never match the global selector. Cars' actual floor is drawn by two inline SVGs, Floor() at app/records/cars/[car]/page.tsx:45 and Ring() at :89, with hardcoded literals \u2014 `rgba(224,138,46,0.55)`, `rgba(224,138,46,0.5)`, `rgba(224,138,46,0.16)` \u2014 not var(--floor-ring)/var(--floor-glow). Those literals are the DARK stop of --floor-ring only, so the Cars floor does not respond to light-dark() at all. Also the two cited lines are `.stage::before` (globals.css:88) and `.stage::after` (:101), not `.stage {` as quoted.",
+   "correction": "Rewrite the ledger line: the Cars stage tint is NOT wired to --floor-ring; it is hardcoded rgba(224,138,46,*) in app/records/cars/[car]/page.tsx:45 (Floor) and :89 (Ring), dark-only. That is still change:false for a \u00a73.3 signature pass (tokenising an SVG is not a from->to colour swap), but it must be recorded as \"signature not wired to its token\", not as \"already the signature token, verbatim\", and it belongs in `questions` alongside the kicker.",
+   "severity": "wrong-step",
+   "file": "app/globals.css",
+   "line": 88
+  },
+  {
+   "problem": "NOTES[1] and NOTES[2] together claim Cars has two live signature uses (stage tint present, tabs absent). But the stage/floor exists only on the car DETAIL pages (app/records/cars/[car]/page.tsx:187 `styles.stage` + `<Floor />`). The Cars section page \u2014 app/records/cars/page.tsx, which is where the kicker at cars.module.css:89 lives \u2014 renders no floor, no ring and no glow (grep for floor/glow/ring in that file and in cars.module.css returns nothing).",
+   "correction": "State the count per surface: on the Cars INDEX page the signature has ZERO live uses (kicker is --text-muted, no tabs, no stage); the floor appears only on the detail pages. The ledger currently implies the section is two-thirds compliant when the page carrying the kicker carries no signature at all.",
+   "severity": "inconsistent",
+   "file": "app/records/cars/page.tsx",
+   "line": 73
+  },
+  {
+   "problem": "NOTES[4] claims mobileDeepPage.module.css:74 \"also serves /records/by-the-numbers, /records/africas-biggest, /records/tours/festivals, /records/tours/revenue, /methodology, /analysis and /api \u2014 four section families at once.\" That is false. `grep -rln MobileDeepPage app --include=*.tsx` returns exactly three files: the component itself, app/records/by-the-numbers/page.tsx and app/records/cars/page.tsx. mobileDeepPage.module.css is imported only by MobileDeepPage.tsx. /analysis imports MobileAnalysis (app/analysis/page.tsx:5) and /methodology imports MobileMethodology (app/methodology/page.tsx:6) \u2014 separate components with their own kicker rules.",
+   "correction": "Correct the consumer list to the two real importers (records/cars, records/by-the-numbers). The conclusion survives \u2014 those two are Cars (--floor-ring) and a Records page, so one shared rule still cannot carry a per-family signature and still needs a modifier class \u2014 but the stated blast radius must match the grep, or the next reader will trust a route list that does not exist.",
+   "severity": "wrong-step",
+   "file": "app/components/mobileDeepPage.module.css",
+   "line": 74
+  },
+  {
+   "problem": "NOTES[14] asserts \"the later rule wins in both pairs, so :10 and :61 never render.\" Both halves are wrong. `.kicker` at app/page.module.css:10 declares display:inline-flex, align-items:center, gap:12px and margin-bottom:22px \u2014 NONE of which is redeclared by `.kicker` at :357 (which sets only font-family, font-weight, font-size, letter-spacing, text-transform, color). `.eyebrow` at :61 declares margin-bottom:14px, not redeclared at :119, and is the base for the `.tierHead .eyebrow` descendant override at :68. Only the `color` property is overridden in each pair.",
+   "correction": "Reword to: only `color` is overridden in each pair; the earlier rules still supply layout (display/gap/margin) and must not be deleted. As written this note invites a \"tidy-up\" that would strip inline-flex and the 22px/14px spacing off every Home kicker and eyebrow.",
+   "severity": "breaks-layout",
+   "file": "app/page.module.css",
+   "line": 10
+  },
+  {
+   "problem": "NOTES[5] audits Home's signature by looking only at the hero `.eyebrow`, and confirms the section as compliant. But app/page.tsx:207, :267 and :312 render `styles.kicker`, whose live colour is app/page.module.css:363 `color: var(--color-accent-700)` \u2014 and globals.css:306 declares `--color-accent-700: var(--gold)`. `.tierKicker` at page.module.css:404 is the same token, used at app/page.tsx:163. So Home paints the gold signature on at least five chrome labels, not the one the ledger counted, before the eyebrowRule and the artwork are added.",
+   "correction": "Either count these three-plus gold kickers in the Home tally and say explicitly why the section is still inside \u00a73.3's \"EXACTLY THREE USES\" (or that it is over budget and out of this slice), or apply the same exclusion NOTES[13] gives Cars. Confirming Home as compliant while excluding Cars' overspend as \"out of scope\" is the same fact treated two ways in one ledger.",
+   "severity": "inconsistent",
+   "file": "app/page.module.css",
+   "line": 363
+  },
+  {
+   "problem": "NOTES[9] cites certifications.module.css:602-605 (.fChipOn) and :780-785 (.yearBtnOn) as the active-filter state, but both selectors are declared TWICE in that file \u2014 .fChipOn at :201 and :602, .yearBtnOn at :270 and :780 \u2014 and the ledger does not say so, having just been burned by the same pattern on page.module.css. The earlier pair is not identical: .yearBtnOn:274 sets `color: var(--bg)` while :780-785 sets `color: #0a0a0b`, a hardcoded literal that does not follow the theme.",
+   "correction": "Note both declaration sites when citing these selectors. The colour confirm is correct as written (the later rule wins and is on the gold ramp), so this stays change:false \u2014 but a \u00a73.3 ledger that flags duplicate selectors on Home should flag them here too, and the raw #0a0a0b at :783 is worth a line in `questions` even though buttons are excluded from the signature.",
+   "severity": "cosmetic",
+   "file": "app/certifications/certifications.module.css",
+   "line": 780
+  },
+  {
+   "file": "app/records/charts/charts.module.css",
+   "line": 417,
+   "problem": "The plan calls this \"Charts page kicker ... Single use of the class\". It is not. app/afrobeats/[artist]/charts/page.tsx:4 imports this exact module (`import styles from \"../../../records/charts/charts.module.css\"`) and uses it at line 171: `<div className={styles.kicker}>Peak positions worldwide</div>`. Colouring it ember puts the Records signature on the hero of every /afrobeats/<artist>/charts route \u2014 a family the \u00a73.3 table never assigns ember, and one the repo deliberately keeps gold. This is the identical leak the plan used to justify excluding mobileDeepPage.module.css:74 (shared with /records/cars), applied inconsistently.",
+   "correction": "Do not swap this line as-is. Either (a) give the Records page its own class \u2014 add `.kicker { color: var(--ember); }` to a Records-scoped rule and leave the shared one at --text-muted, or (b) split charts.module.css's hero kicker from the board's, or (c) if ember on the board is acceptable, say so explicitly and check it against the board's gold identity first. Same reasoning applies to the .splitKicker at charts.module.css:504, which the board also uses (page.tsx:217) and which the plan correctly leaves muted.",
+   "severity": "over-reach"
+  },
+  {
+   "file": "app/records/charts/charts.module.css",
+   "line": 135,
+   "problem": "Same leak, three plan entries (background, border-color, color). .fChipOn lives in charts.module.css, and ChartExplorer.tsx:4 imports that module; ChartExplorer is rendered by app/records/charts/page.tsx AND by app/afrobeats/[artist]/charts/page.tsx:7. Every active peak/country/sort filter chip on every board artist's chart page turns ember. The plan's \"why\" only reasons about /records/charts.",
+   "correction": "Scope before swapping. ChartExplorer already receives per-page props, so pass a variant/class from the Records page and apply ember through that, or wrap the Records instance in a container class (`.recordsFamily .fChipOn`). Do not ship the bare .fChipOn swap.",
+   "severity": "over-reach"
+  },
+  {
+   "file": "app/components/mobileOfficialCharts.module.css",
+   "line": 71,
+   "problem": "Both mobileOfficialCharts entries (this .kicker and .chipOn at line 167, four plan entries in total) leak the same way: MobileOfficialCharts.tsx is rendered by app/records/charts/page.tsx and by app/afrobeats/[artist]/charts/page.tsx:6. So the mobile board chart pages get an ember kicker (MobileOfficialCharts.tsx:216) and ember filter rails (lines 269, 282, 293). The plan calls this file \"the mobile twin of the Charts hero kicker\" \u2014 it is the twin of two different families' hero kickers.",
+   "correction": "Gate on the component's own context rather than editing the shared class: MobileOfficialCharts already knows which artist it is rendering, so thread a boolean/variant class and apply --ember only on the Burna Boy Records instance. Leave lines 71 and 167 at their current values until that exists.",
+   "severity": "over-reach"
+  },
+  {
+   "file": "app/components/mobileRecords.module.css",
+   "line": 71,
+   "problem": "The \"why\" says \"Mobile twin of the Records index hero kicker\". The class is used twice in MobileRecords.tsx: line 45 (hero, \"Record-breaking\") and line 84 (\"Box office\", the label above the <h2> of the Biggest single shows section). The plan's own NOTES deliberately leave the desktop equivalent \u2014 records.module.css:131 .kicker, carrying \"The record books\" / \"Box office\" \u2014 at --text-muted precisely because it labels a section, not a page title. So the same label ends up ember on mobile and muted on desktop, and mobile spends the kicker signature twice. The notes flag map.module.css for exactly this double use and miss this one.",
+   "correction": "Either split the class (a `.sectionKicker` for MobileRecords.tsx:84 left at --text-muted, ember only on the hero one at line 45), or drop this entry and leave line 71 at --gold for now. Whichever you choose, make it match the desktop decision at records.module.css:131.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/records/tours/revenue/revenue.module.css",
+   "line": 75,
+   "problem": "The preceding line 74 is `.chip:hover { border-color: var(--gold); color: var(--gold); }`. `.chip:hover` has specificity (0,2,0); `.chipOn` on line 75 has (0,1,0), so the hover rule wins regardless of source order. Today that is invisible because both paint --gold. The moment .chipOn becomes ember, hovering the ACTIVE chip repaints its border and label back to gold while the 16% ember wash stays underneath \u2014 a gold-on-ember chip, and the one hue the Records family is supposed to have stopped using. The plan's blanket note that \"hover is not an active state\" assumes hover cannot override the active state; here it does.",
+   "correction": "Rewrite line 74 as `.chip:not(.chipOn):hover { border-color: var(--gold); color: var(--gold); }` (the pattern charts.module.css:182 already uses for `.viewBtn:not(.viewBtnOn):hover`), or give the hover ember too. Add this to the plan as an explicit edit rather than leaving it as untouched gold.",
+   "severity": "wrong-step"
+  },
+  {
+   "file": "app/records/tours/tours.module.css",
+   "line": 43,
+   "problem": "Cross-layout mismatch, affecting all six eyebrow heroes (records:65, tours:43, revenue:25, festivals:25, awards:219, firsts:59). On desktop the .eyebrow TEXT stays --text-muted and only the 22px rule takes ember. But the mobile twins have no rule element at all (grep for eyebrowRule across app/components returns only MobileAfrobeatsHub), so the plan puts ember on the mobile kicker TEXT instead. Result: /records/tours renders a muted kicker beside a small ember dash on desktop and a fully ember kicker on mobile \u2014 the same page, two different spends of the family signature, and the family reads as two different systems depending on viewport.",
+   "correction": "Pick one rendering and apply it to both layouts: either colour the desktop .eyebrow text ember as well (and accept that the kicker then spends the signature on text + rule as one unit), or add a rule element to the mobile heroes and keep both texts muted. Do not ship the split.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/records/awards/awards.module.css",
+   "line": 119,
+   "problem": "Line 119 is `.fChip:hover { border-color: var(--gold-dim); color: var(--text); }` and charts.module.css:134 is identical. Same specificity trap as revenue: (0,2,0) beats .fChipOn's (0,1,0). The colour flip to --text is pre-existing and already visible today, but the border is not: after the swap, hovering an active ember chip paints a gold-dim (#c98a2e) border around an ember wash. Lower severity than the revenue case because the rule already overrides the active state today, but the hue clash is new.",
+   "correction": "Same fix as revenue: `.fChip:not(.fChipOn):hover { ... }` in both awards.module.css:119 and charts.module.css:134, or move the hover border to a neutral (--border-strong / --text-muted) so it does not reintroduce gold on an ember control.",
+   "severity": "cosmetic"
+  },
+  {
+   "file": "app/about/about.module.css",
+   "line": 25,
+   "problem": "The ramp collapses onto the parent. `.eyebrowRule` is a 22x2px `background` inside `.eyebrow`, whose own `color` is already `var(--text-muted)` (about:23, faq:23, contact:22). Setting the rule's background to `var(--text-muted)` makes the mark the identical colour to the label it abuts \u2014 it stops being a mark and reads as a dash of the same ink. It also breaks the site's existing pattern for a rule that is NOT carrying a signature: every de-signatured rule mark on the site uses a structural token, never a text token \u2014 `todaysNumber.module.css:79 .kickerRule { background: var(--rule) }`, `byTheNumbers.module.css:27 .eyebrowRule { background: var(--line) }`, `car.module.css:174 .captionRule { background: var(--rule) }`, `map.module.css:61 .countRule { background: var(--line) }`, `appState.module.css:100 .referenceRule { background: var(--line) }`. `--text-muted` is a text token (globals.css:36); `--rule` is documented at globals.css:32 as \"structural, clears WCAG 3:1\", which is what a 2px mark is.",
+   "correction": "Use `background: var(--rule)` for all three (about:25, faq:25, contact:24), matching todaysNumber.module.css:79 \u2014 the site's existing 20x1px kicker rule that carries no signature. `var(--line)` is the alternative precedent but is documented as DECORATIVE at 1.31:1 and would nearly vanish at 2px.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/components/mobileAbout.module.css",
+   "line": 66,
+   "problem": "Items 4, 5, 6, 7, 8 and 9 are all marked `risky: false`, but each overturns a value taken verbatim from the signed-off mobile design, which specifies `var(--color-accent)` for exactly these kickers: \"Biography\" (Burna Boy Stats - Mobile.dc.html:646), \"Career timeline\" (:666), \"Answer first\" (:708), \"Message us\" (:757), \"Drop a line\" (:763), and the per-question `{{ f.group }}` label (:722). Two of the modules carry comments recording the divergence as deliberate \u2014 mobileFaq:68 \"Gold, not muted: on this screen the kicker states the page's promise\" and mobileContact:60 \"Gold, not muted \u2014 on this screen the kicker is the invitation\" \u2014 and MobileContact.tsx:13-14 states it in prose. Separately, the stated reason for items 4, 6, 8 (and 12, 13) is that the mobile value should match its desktop twin. That is cross-applying a desktop design to a mobile one, which the project's handoff rule forbids; the mobile design deliberately diverges here, so \"the twin is muted\" is not evidence.",
+   "correction": "Flip items 4-9 to `risky: true` \u2014 six kickers reverse an explicit, commented, design-file-backed decision. Rewrite the `why` for 4, 6, 8, 12 and 13 to cite \u00a73.3 (the reading family gets no signature) as the sole authority, and drop the desktop-twin argument. The comments at mobileFaq:68, mobileContact:60 and MobileContact.tsx:13-14 must be rewritten in the same commit, as the notes already say.",
+   "severity": "over-reach"
+  },
+  {
+   "file": "app/methodology/methodology.module.css",
+   "line": 189,
+   "problem": "The `why` is wrong on three counts. (a) `.blockWide` is applied to TWO blocks, not one \u2014 page.tsx:434 \"When a source shows less than it awarded\" and page.tsx:461 \"Independence\" \u2014 so this is not \"the independence note\" and the change repaints both. (b) The cited mobile twin is the wrong element: `mobileMethodology .blockSoft` (:109) is on the SOURCES block, \"Where the numbers come from\" (MobileMethodology.tsx:78), while the closing notes on mobile render through `.section` (:155), which has only a `border-top` and no background at all. So `--bg-soft` is not \"exactly as the mobile twin already does it\" \u2014 mobile gives these blocks no surface. (c) `--bg-soft` is `light-dark(#ffffff, #141416)` against `.block`'s `--bg` `light-dark(#f7f4ee, #0a0a0b)`, so in light mode the two wide cells go from a 5% gold wash to pure white \u2014 a louder step than they have today, not the quieting the `why` describes. The value itself is still defensible (dropping to `var(--bg)` would collapse `.blockWide` into its `.block` siblings, which is the failure the lens warns about), but the justification has to be the real one.",
+   "correction": "Keep `var(--bg-soft)` but rewrite the `why`: it applies to both wide blocks (page.tsx:434 and :461); `var(--bg)` is not available because it would make `.blockWide` identical to its `.block` siblings and lose the row-spanning distinction; `--bg-soft` is chosen because it is already this page's card surface (`.count`, methodology.module.css:72), not because the mobile layout does it \u2014 mobile gives the closing sections no surface at all.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/components/mobileContact.module.css",
+   "line": 103,
+   "problem": "The `why` claims the desktop page renders \"Drop a line\" and \"Official channels\" with `.eyebrow`. Desktop contact/page.tsx renders \"Message us\" at :52 and \"Official channels\" at :66 \u2014 there is no \"Drop a line\" on desktop, and \"Message us\" is the label the MOBILE hero kicker uses (MobileContact.tsx:39). The two labels are positional counterparts, not the same two labels.",
+   "correction": "Reword to: the two section kickers are \"Drop a line\" (MobileContact.tsx:51) and \"Official channels\" (:59); their desktop positional counterparts are `.eyebrow` \"Message us\" (contact/page.tsx:52) and \"Official channels\" (:66), both already --text-muted.",
+   "severity": "cosmetic"
+  },
+  {
+   "file": "app/records/charts/charts.module.css",
+   "line": 417,
+   "problem": "charts.module.css is not a Records-only stylesheet. app/afrobeats/[artist]/charts/page.tsx:4 imports it directly and renders `styles.kicker` at line 171 (\"Peak positions worldwide\"). Every board artist with chart data (generateStaticParams filters a.charts.length > 0 \u2014 15 slugs in app/data/afrobeats.ts) gets an ember kicker. The Afrobeats board is not a row in the \u00a73.3 table, so this introduces a hue to a family the table does not cover.",
+   "correction": "Do not recolour the shared `.kicker` in charts.module.css. Either scope the signature to the Burna route (add a Records-only wrapper class on app/records/charts/page.tsx and select `.recordsSig .kicker`), or leave the charts kicker --text-muted and accept two uses on that page. Same call must be made before touching the file at all.",
+   "severity": "over-reach"
+  },
+  {
+   "file": "app/components/ChartExplorer.tsx",
+   "line": 388,
+   "problem": "The `.fChipOn` swap (charts.module.css:135) rides the same leak. ChartExplorer.tsx:4 imports charts.module.css and is rendered by app/afrobeats/[artist]/charts/page.tsx:193 as well as app/records/charts/page.tsx. `.fChipOn` is applied to three rails there (lines 388/402/468), so every board artist's chart filters turn ember. Memory rule 'OG cards stay gold' exists precisely because the board is not allowed to inherit per-page colour from elsewhere.",
+   "correction": "Leave charts.module.css:135 `.fChipOn` on --gold, or give ChartExplorer a `signature` prop/class that the Records route sets and the afrobeats route does not, and select `.sigEmber .fChipOn`. Do not recolour the shared class in place.",
+   "severity": "over-reach"
+  },
+  {
+   "file": "app/components/mobileOfficialCharts.module.css",
+   "line": 71,
+   "problem": "Same leak on the mobile layout, and the plan's rationale ('Mobile twin of the Charts hero kicker') does not mention it. MobileOfficialCharts is rendered by app/afrobeats/[artist]/charts/page.tsx:140 as well as the Records charts page, and MobileOfficialCharts.tsx:216 renders `styles.kicker`. Both layouts sit in the same document, so the board's mobile chart pages get the ember kicker too.",
+   "correction": "Hold this change until the charts stylesheets are scoped. If the desktop charts kicker is not recoloured, this one must not be either \u2014 otherwise the two layouts of the same route disagree.",
+   "severity": "over-reach"
+  },
+  {
+   "file": "app/components/mobileOfficialCharts.module.css",
+   "line": 167,
+   "problem": "`.chipOn` here is the mobile filter rail inside MobileOfficialCharts, which the afrobeats charts route also renders. Same out-of-family leak as the desktop `.fChipOn`.",
+   "correction": "Same fix as the desktop chip: scope it to the Records route or leave it gold.",
+   "severity": "over-reach"
+  },
+  {
+   "file": "app/components/mobileRecords.module.css",
+   "line": 71,
+   "problem": "`.kicker` is used TWICE in MobileRecords.tsx \u2014 line 45 (the hero, \"Record-breaking\") and line 84 (the \"Box office\" section label). The plan's why-string claims it is only the hero twin, so the swap silently spends the signature a second time on a section label. Worse, it drifts from desktop: records.module.css:131 `.kicker` carries the same two labels (\"The record books\" at page.tsx:137, \"Box office\" at page.tsx:164) and the plan deliberately leaves it --text-muted. Both layouts render into one document, so the same section ships muted on desktop and ember on mobile.",
+   "correction": "Split the class: add a `.heroKicker` in mobileRecords.module.css, use it at MobileRecords.tsx:45, and give only that one --ember. Leave the section-label `.kicker` at line 71 as it is (or move it to --text-muted to match records.module.css:131).",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/records/tours/map/map.module.css",
+   "line": 21,
+   "problem": "The plan knowingly ships a second signature spend here: `.kicker` is used at page.tsx:71 (hero) and page.tsx:102 (\"By region\" section label). The note calls splitting the class 'a structural change and out of scope', but that is the same one-line split the plan should have made in mobileRecords, and it contradicts the plan's own stated rule that section labels stay muted (records:131, tours:63, charts:504, africas-biggest:50, visualized:60 are all left muted for exactly this reason). It also drifts from mobile: MobileTourMap has no equivalent kicker on its region stack (MobileTourMap.tsx:70-77 uses .regionName / .regionCount), so the ember section label exists on desktop only.",
+   "correction": "Add `.heroKicker` to map.module.css, apply it at app/records/tours/map/page.tsx:71, and leave page.tsx:102 on the muted `.kicker`. That is one added class and one attribute change, and it keeps the page to one kicker spend like every other Records route.",
+   "severity": "over-reach"
+  },
+  {
+   "file": "app/records/tours/revenue/revenue.module.css",
+   "line": 74,
+   "problem": "`.chip:hover { border-color: var(--gold); color: var(--gold); }` at line 74 out-specifies `.chipOn` at line 75 (0,2,0 vs 0,1,0), so it wins regardless of source order. Today both are gold so nothing shows. After the swap, hovering the ACTIVE chip repaints its border and label gold while its background stays the ember wash \u2014 the signature flips hue under the cursor. The plan's note dismisses hover as 'not an active state', which is true of the intent but not of the cascade.",
+   "correction": "Either bump the active rule to `.chip.chipOn` (0,2,0, declared after the hover rule) so the ember survives hover, or leave the revenue chips gold entirely. Do not ship the swap with the hover rule untouched.",
+   "severity": "breaks-layout"
+  },
+  {
+   "file": "app/records/charts/charts.module.css",
+   "line": 134,
+   "problem": "Same cascade problem, milder: `.fChip:hover { border-color: var(--gold-dim); color: var(--text); }` beats `.fChipOn`, so hovering an active chip paints a gold-dim border on an ember wash \u2014 two hues on one element. Identical rule at app/records/awards/awards.module.css:119.",
+   "correction": "If the chip slot is taken at all, raise the active rule to `.fChip.fChipOn` after the hover rule in both files, or move the hover border to --ember-adjacent so gold and ember never co-occur on one chip.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/records/records.module.css",
+   "line": 65,
+   "problem": "The family ends up expressing slot 1 two different ways in the same document. On the six eyebrow+rule heroes (records:65, tours:43, revenue:25, festivals:25, awards:219, firsts:59) the desktop signature is a 22px rule with the eyebrow TEXT left --text-muted, while every one of those pages' mobile twins puts ember on the kicker TEXT with no rule (mobileTours:71, mobileRevenue:70, mobileFestivals:70, mobileAwards:70, mobileFirsts:70). The plan raises this ambiguity for desktop ('see questions[] if the intent was to colour the text too') and then resolves it the opposite way on mobile without saying so. Desktop is also internally split: charts/africas-biggest/visualized/map get ember text, the other six get an ember tick.",
+   "correction": "Pick one expression per family and state it: either the eyebrow text takes --ember on desktop too (rule stays --gold or goes --line), or the mobile kickers keep --text-muted and gain a 22px ember rule. Decide before applying, because nine mobile kickers currently spend no colour at all and this is an addition, not a swap.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/records/charts/charts.module.css",
+   "line": 137,
+   "problem": "After the swap the charts filter bar ships two hues side by side: ember chips (.fChipOn:135) next to `.filterMeta b { color: var(--gold) }` (137) and directly under the gold-filled `.viewBtnOn` pill (183-188). Awards has the same pairing \u2014 `.fChipOn` (120) beside `.moreBodies` (121-136, a gold dashed pill) and `.filterMeta b` (139). Leaving these gold is correct under the three-use limit, but the plan should own that the result is a mixed-hue control row, not a clean signature.",
+   "correction": "No rule change needed \u2014 but check the rendered filter bar before merging and, if the mix reads badly, move .filterMeta b to --text rather than adding a fourth ember use.",
+   "severity": "cosmetic"
+  },
+  {
+   "problem": "The CARS use-3 CONFIRM cites globals.css:88/101 (`.stage::before` background and `.stage::after` border) and calls the Cars stage tint \"already the signature token, verbatim.\" No Cars page uses that global utility. app/records/cars/[car]/page.tsx:187 renders `styles.stage`, a CSS-module class from car.module.css:38 that is hashed at build and can never match the global `.stage` selector; car.module.css contains no --floor-ring and no --floor-glow anywhere. The actual floor is two inline SVGs in the same file \u2014 Floor() at page.tsx:44-77 and Ring() at page.tsx:89-107 \u2014 with the ring and glow written as literals: `stroke=\"rgba(224,138,46,0.55)\"`, `rgba(224,138,46,0.5)`, `rgba(224,138,46,0.18)`, `rgba(224,138,46,0.16)`. That value is the DARK stop of `--floor-ring: light-dark(rgba(176,112,0,0.45), rgba(224,138,46,0.50))`, frozen. So the tint is not the token, it is a copy of one branch of it, and on paper it never resolves to rgba(176,112,0,0.45).",
+   "correction": "Rewrite the line to say what is there: Cars' stage tint is hardcoded rgba(224,138,46,*) in the Floor() and Ring() SVGs at app/records/cars/[car]/page.tsx:44-107, not var(--floor-ring), and it does not theme. Keep change:false \u2014 swapping SVG stroke literals for var(--floor-ring) is a real edit with a light-mode visual delta, not a \u00a73.3 signature swap \u2014 but move it to `questions` as a third open decision rather than recording it as a confirmed no-op.",
+   "severity": "wrong-step",
+   "file": "app/records/cars/[car]/page.tsx",
+   "line": 187
+  },
+  {
+   "problem": "The ledger blocks the Cars mobile kicker on blast radius: \"That one rule also serves /records/by-the-numbers, /records/africas-biggest, /records/tours/festivals, /records/tours/revenue, /methodology, /analysis and /api \u2014 four section families at once.\" Only two files import MobileDeepPage: app/records/cars/page.tsx:70 and app/records/by-the-numbers/page.tsx:161. The other six render their own components \u2014 MobileAfricasBiggest, MobileFestivals, MobileRevenue, MobileMethodology, MobileAnalysis, MobileApi. The seven-route figure comes from stale comments in those pages' CSS (\"Hidden below 900px, where MobileDeepPage renders screen 21 instead\" at analysis.module.css:4, methodology.module.css:8, api.module.css:8, africas-biggest.module.css:7, revenue.module.css:4, festivals.module.css:4), which are now wrong. The rule serves two routes across two families, Cars and Records \u2014 not four.",
+   "correction": "Correct the count to Cars (/records/cars) and Records (/records/by-the-numbers), two families. The conclusion still stands \u2014 a per-family signature needs a modifier class, which is a DOM change and not a from->to swap \u2014 but state it on the real shared surface, and note that the six stale CSS comments are themselves misleading and worth a separate cleanup.",
+   "severity": "wrong-step",
+   "file": "app/components/mobileDeepPage.module.css",
+   "line": 74
+  },
+  {
+   "problem": "The \"NOT IN SCOPE, but flagged so nobody mistakes it for an omission\" enumeration of Cars' non-signature gold lists desktop files only \u2014 cars.module.css and car.module.css. Cars' phone layout also paints gold outside its --floor-ring signature, and does so in shared component chrome: mobileDeepPage.module.css:80-87 `.gold` fills the H1 word with the gold ramp (Cars passes titleGold=\"collection\" at app/records/cars/page.tsx:84) and mobileDeepPage.module.css:57-63 `.badge { color: var(--gold) }` paints the back-bar count (Cars passes badge={String(carCount)} at page.tsx:83). This is the drift the lens is for: one layout audited, the other not. It also matters more than the desktop list, because these two live in a component a literal future reading of Cars' row would hit in a file shared with a Records page.",
+   "correction": "Add the two mobile call sites to the same out-of-scope enumeration \u2014 mobileDeepPage.module.css:80 `.gold` and :57 `.badge`, reached via titleGold and badge at app/records/cars/page.tsx:83-84 \u2014 and mark them as shared chrome rather than Cars-local, so a later pass does not strip them for one family and break the other.",
+   "severity": "inconsistent",
+   "file": "app/records/cars/page.tsx",
+   "line": 83
+  },
+  {
+   "problem": "The CERTIFICATIONS use-2 CONFIRM cites `.yearBtnOn` at 780-785 as \"on the gold fill ramp\" and stops there. `.yearBtnOn` is declared twice at top level \u2014 line 270 and line 780, neither inside a media query \u2014 and the two cascade into each other rather than one simply replacing the other. :780 wins `color: #0a0a0b`, but :270's `-webkit-text-fill-color: var(--bg)` is never reset by :780 and survives, and -webkit-text-fill-color overrides color for glyph paint in Blink and WebKit. In light mode --bg is #f7f4ee, so the active year button renders near-white on the #ffb627 gold ramp at roughly 1.6:1. The confirmation happens to reach the right verdict (already gold, no edit) but it reached it by reading one of the two blocks. `.fChipOn` is likewise duplicated at :201 and :602 \u2014 identical there, so harmless, but the ledger cites only one of those too.",
+   "correction": "Note both declarations for each selector \u2014 `.yearBtnOn` at certifications.module.css:270 and :780, `.fChipOn` at :201 and :602 \u2014 and record that the merged `.yearBtnOn` carries `-webkit-text-fill-color: var(--bg)` from the earlier block. That is a light-mode contrast defect on an active filter, out of \u00a73.3's scope but not something a signature audit should walk past unrecorded.",
+   "severity": "breaks-layout",
+   "file": "app/certifications/certifications.module.css",
+   "line": 270
+  },
+  {
+   "problem": "Line citations drift by 2-9 lines in exactly the gold-family files, while the --green citations are exact. Actual lines: cars.module.css `.kicker` is 87 (cited 89); music.module.css `.eyebrow` is 80 (cited 89); certifications.module.css `.eyebrow` is 434 (cited 443) and `.eyebrowRule` 445 (cited 448); page.module.css `.eyebrow` is 119 (cited 128) and `.eyebrowRule` 148 (cited 151). By contrast page.module.css 470/504/507/515/523 for --green are all correct to the line. Separately, globals.css:88 is `.stage::before`'s background, not `.stage`'s \u2014 the ledger writes it as `.stage { background: radial-gradient(...) }`, which is the same collapsing of selectors that produced the Cars use-3 error. The content quoted at each site is right; the anchors are stale.",
+   "correction": "Re-anchor the six gold-family citations to 87 / 80 / 434 / 445 / 119 / 148, and attribute the globals.css rules to `.stage::before` and `.stage::after` rather than to `.stage`. A ledger whose only output is line-anchored confirmations has to be line-accurate, and the ::before collapse is what let the Cars finding through.",
+   "severity": "cosmetic",
+   "file": "app/records/cars/cars.module.css",
+   "line": 87
+  },
+  {
+   "file": "app/components/mobileLiveCharts.module.css",
+   "line": 75,
+   "problem": "PARITY BREAK \u2014 the mobile /live-charts kicker is missing from the plan. `.kicker` (rule opens line 69, `color: var(--gold)` on line 75) is rendered by MobileLiveCharts.tsx:117 as \"Tracked as it happens\", the mobile twin of the desktop .eyebrow the plan recolours at liveCharts.module.css:411. Both layouts render into the same document (mobileLiveCharts .screen is display:none above 900px, .desktopOnly hidden below), so after this patch every viewport under 900px on /live-charts AND /afrobeats/[artist]/live shows a GOLD kicker sitting immediately above the newly GREEN-tinted .summaryCell stage (change 5, line 122) \u2014 the family's use 1 and use 2 in two different colours, ~30px apart. The plan did exactly this parity work for the Updates half (change 3, mobileUpdates.module.css:80) and did not do it here; the omission is not explained anywhere in the notes.",
+   "correction": "Add a sixth change: app/components/mobileLiveCharts.module.css:75, `.kicker` `color: var(--gold)` \u2192 `var(--green)`. This is use 1 of the same two, not a third use, and it is the same edit already accepted for mobileUpdates .kicker. Contrast is fine \u2014 --green is light-dark(#177a45, #3ed17f) (globals.css:268), text-safe in both themes at 11px/700. If instead you drop the stage tints (see the .summaryBand finding), this change is still required, or desktop and mobile /live-charts disagree about the family's colour.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/updates/updates.module.css",
+   "line": 34,
+   "problem": "The plan's premise for delivering only two uses \u2014 \"Neither live page has tabs or a chrome filter underline\" \u2014 is false for /updates. Both layouts render a category filter chip row, and the ACTIVE state of the \"All\" chip is hardcoded gold in the TSX, not the CSS: app/components/UpdatesFeed.tsx:63 and app/components/MobileUpdates.tsx:88 both set `style={cat === null ? { borderColor: \"var(--gold)\", color: \"var(--gold)\" }}`. That is precisely \u00a73.3's use 2 (the active tab / filter). So after this patch /updates carries a green kicker above a gold active filter \u2014 the section displays two signature colours, which is the drift the section-signature rule is meant to end. (The category chips themselves are correctly data-inked via inkFor and must stay.)",
+   "correction": "Do not silently leave this. Either (a) record it explicitly as a deliberate exception in the plan notes \u2014 green is already the Tours ink in that same chip row per app/lib/updateInk.ts, so recolouring the All chip green would make the neutral filter look like a category filter, which is a real reason to leave it \u2014 or (b) neutralise it to --text/--border so the row carries no signature at all. Option (a) with the reason written down is fine; leaving the false \"no tabs\" justification in the plan is not, because the next person will re-derive the wrong use-count.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/live-charts/liveCharts.module.css",
+   "line": 454,
+   "problem": "The stage tint is delivered to one half of the family only. Live charts gets kicker + stage on both layouts (changes 1, 4, 5); Updates gets kicker only, on both layouts (changes 2, 3). /updates has the same architectural surface \u2014 `.bandSurface` (updates.module.css:12, `background: var(--bg-soft)`, the hero/tally band) and the mobile equivalent \u2014 so the family ships two uses on one page and one on the other. Since these two tints are also the only self-authored values in the patch (the notes admit the 4% alpha is not from the spec and could not be found in docs/design), they are carrying the whole asymmetry.",
+   "correction": "Drop changes 4 and 5. That leaves the LIVE family running on the kicker alone, identically on all four render paths (desktop live, mobile live, desktop updates, mobile updates), with zero invented values \u2014 and it also removes the green-ground-behind-green-numeral question the notes flag about .liveInk (liveCharts:473, mobileLiveCharts:132) sitting inside the tinted band. If Paul wants the stage tint, it has to land on Updates too, and the value has to be agreed once and written down, not chosen per-file.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/afrobeats/[artist]/live/page.tsx",
+   "line": 182,
+   "problem": "The desktop change reaches a section family that is not in the \u00a73.3 table. liveCharts.module.css is imported by app/live-charts/page.tsx, app/components/LiveReleaseBlock.tsx and app/afrobeats/[artist]/live/page.tsx, so changes 1 and 4 also repaint the kicker rule (line 182) and the summary band (line 220) on every artist's live page. \u00a73.3 lists Home/Music/Certifications, Live charts/Updates, Records, Cars and the reading pages \u2014 it never names the Afrobeats board, whose other ~27 routes stay gold. The plan asserts \"same LIVE family\" as a fact; it is a judgement, and it is the one place the patch changes a page nobody has scoped.",
+   "correction": "Keep the change (a live-charts page is a live-charts page), but surface it as an explicit decision in the plan rather than a footnote about module sharing: after this patch /afrobeats/<artist>/live is the only green-kicker route in an otherwise gold section, and the /afrobeats/<artist>/charts sibling next door stays gold. If Paul wants the board to read as one gold section, changes 1 and 4 need scoping to the /live-charts route (a wrapper class or a page-level override) instead of the shared module.",
+   "severity": "over-reach"
+  },
+  {
+   "file": "app/components/mobileLiveCharts.module.css",
+   "line": 122,
+   "problem": "The two stage tints are described as \"the same 4% wash\" but mix into different bases \u2014 `color-mix(in srgb, var(--green) 4%, var(--bg-soft))` on desktop (liveCharts:454) versus `var(--bg)` on mobile (mobileLiveCharts:122). --bg and --bg-soft are different surfaces, so 4% of green over each does not produce the same perceived shift, and on mobile the tinted cells sit on a --rule grid background with a plain --bg page behind them, which makes the delta read differently again. Two layouts of one page will not agree on how strong the stage is. (The color-mix-over-light-dark precedent itself checks out: --gold-wash-base at globals.css:164 is light-dark and is mixed at globals.css:304, and mobileLiveCharts:289 .chipTop already mixes var(--green) \u2014 that part of the rationale is sound.)",
+   "correction": "If changes 4 and 5 survive at all, do not copy the number across bases \u2014 pick the alpha per surface so the two read as the same wash, and say in the plan that the desktop and mobile values differ on purpose. Simplest resolution is still to drop both tints.",
+   "severity": "cosmetic"
+  },
+  {
+   "file": "app/components/mobileLiveCharts.module.css",
+   "line": 75,
+   "problem": "The LIVE family's other mobile kicker is left gold. `.kicker { color: var(--gold) }` at line 75 is rendered at MobileLiveCharts.tsx:117 as \"Tracked as it happens\" \u2014 the page kicker for the mobile layout of BOTH /live-charts and /afrobeats/[artist]/live. It is the exact structural twin of mobileUpdates.module.css:80, which change 3 does recolour. After this patch, /live-charts ships a green eyebrow rule on desktop and a gold kicker on mobile (both layouts are in the DOM at once), while /updates ships green on both. The plan's rejected list names mobileLiveCharts .sectionLabel (152) and .platformBlockName (312) but never mentions .kicker at 75, so this reads as an oversight, not a decision.",
+   "correction": "Resolve the two mobile kickers as a pair, not one of them. Either (a) drop change 3 so both mobile layouts keep their current kicker colour and the signature lives only on the desktop rule, or (b) change mobileLiveCharts.module.css:75 to var(--green) as well \u2014 but note that `.livePill` at line 62 is already `color: var(--green)` in mono 11px/0.1em in the back bar directly above the hero, so option (b) stacks two green mono-11px labels ~40px apart, the same chrome/data collapse described in the next finding. Option (a) is the clean one.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/components/mobileUpdates.module.css",
+   "line": 80,
+   "problem": "On mobile /updates the green kicker becomes indistinguishable from a data ink. `.kicker` is mono / 700 / 11px / 0.11em / uppercase; `.chip` (line 128) is mono / 700 / 11px / 0.1em / uppercase with `color: var(--text-muted)` overridden inline to the category ink when active (MobileUpdates.tsx:97-101), and Tours' ink is `var(--green)` per app/lib/updateInk.ts:18. So a green kicker is the same hue AND the same type treatment as an active \"TOURS\" chip label sitting in the very next band. Worse, `.chipDot` (MobileUpdates.tsx:94) is rendered unconditionally for every category, so the green Tours dot is visible in the rail at all times, not only when Tours is selected. Note 3 defends this by saying the kicker \"sits above the h1 in a different band from any tag or chip\", and note on the collision only weighs `.liveDot` in `.lastEntry` \u2014 but the filter rail is the band immediately after `.hero`, and it is the nearest green on the screen.",
+   "correction": "Leave mobileUpdates.module.css:80 as it is (or set it to var(--text-muted) if the goal is only to take gold off it). If mobile parity with the desktop rule is wanted, mirror the desktop carrier instead of the desktop hue: add a 22x2px green rule span to the mobile hero and keep the label muted \u2014 which is exactly why the desktop change was put on `.eyebrowRule` rather than `.eyebrow`. That does require a .tsx edit, which contradicts note 7's \"nothing in this plan changes a .tsx file\", so it is a scope decision, not a value swap.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/live-charts/liveCharts.module.css",
+   "line": 454,
+   "problem": "The premise for the desktop stage tint does not hold on the page. The why says the stage and the footnote \"sit on the same surface\", citing `.sourceBand` at line 543 \u2014 that is true (both are `--bg-soft`, byte-identical), but `.sourceBand` is the last band on the page and is never on screen with the summary strip. The surface actually adjacent to `.summaryBand` is `.hero`, and `.hero` at line 398 is `border-bottom: 1px solid var(--line)` with NO background \u2014 i.e. `--bg`. The summary band is therefore already the only lifted surface at the top of the page and is already distinguished from its neighbour; the 4% wash is solving a collision the reader cannot see. Change 5 does not have this problem: mobileLiveCharts `.hero` (line 68) is padding-only, so there the cells genuinely share `--bg` with the hero directly above them.",
+   "correction": "Drop change 4, or re-justify it on its own terms (giving the LIVE family its second signature use) rather than on a separation that already exists. If it is kept, it should be kept for the same reason change 5 is kept, and the why should not cite .sourceBand. Change 5 is unaffected and should ship regardless.",
+   "severity": "over-reach"
+  },
+  {
+   "file": "app/live-charts/liveCharts.module.css",
+   "line": 411,
+   "problem": "The consumer enumeration in the why is incomplete. It names app/afrobeats/[artist]/live/page.tsx as the only other importer of liveCharts.module.css; app/components/LiveReleaseBlock.tsx:4 imports it as well. This does not change the verdict \u2014 LiveReleaseBlock is rendered only from live-charts/page.tsx (208, 223) and afrobeats/[artist]/live/page.tsx (274, 289), both LIVE family, and it uses none of the four classes this patch touches \u2014 but the plan asserts a complete consumer list that is not complete, and the same assertion pattern is what would let a future swap leak into another family.",
+   "correction": "No code change needed. Amend the why to list all three importers of liveCharts.module.css (live-charts/page.tsx, afrobeats/[artist]/live/page.tsx, components/LiveReleaseBlock.tsx) and note that LiveReleaseBlock renders only inside those two pages, so the scope claim still holds.",
+   "severity": "cosmetic"
+  },
+  {
+   "file": "app/live-charts/liveCharts.module.css",
+   "line": 454,
+   "problem": "The cited color-mix precedent is not the same construction. The why says \"color-mix over a light-dark() token is the established pattern in this repo (globals.css:304, and color-mix on --green already exists at mobileLiveCharts.module.css:289)\". Both citations are real but both mix a light-dark() token into `transparent` \u2014 globals.css:304 is `color-mix(in srgb, var(--gold-wash-base) 7%, transparent)` and mobileLiveCharts:289 is `color-mix(in srgb, var(--green) 8%, transparent)`. Every other color-mix in the repo does the same. Changes 4 and 5 mix TWO light-dark() tokens together (`var(--green)` into `var(--bg-soft)` / `var(--bg)`), which has no precedent in this codebase. It is spec-valid and resolves correctly wherever light-dark() is supported, so this is a documentation defect rather than a rendering risk.",
+   "correction": "Either state accurately that this is the repo's first two-light-dark() mix and confirm it renders in both themes before merging, or use the repo's existing shape \u2014 `background: color-mix(in srgb, var(--green) 4%, transparent)` layered on a surface that is already --bg-soft \u2014 so the construction matches the cited precedent exactly.",
+   "severity": "cosmetic"
+  },
+  {
+   "file": "app/music/music.module.css",
+   "line": 225,
+   "problem": "The card-step change puts .albumCard at the SAME value as its own parent. Discography.tsx:46/50 renders `.pairGrid > .albumCard`, and music/page.tsx:183 puts that pair grid inside `<section className={styles.altSection}>`, which is `background: var(--bg-soft)` (music.module.css:178). Moving .albumCard's rest from var(--bg) to var(--bg-soft) makes the EP cards identical to the band they sit on \u2014 the card stops reading as a raised surface entirely, leaving only the 2px --line seams between the two cells and no outer edge at all. This is precisely the collapse the plan's own NOTES cite when excluding .wideCard (music.module.css:280), which is the sibling column in that very same .altSection. The plan applied the corollary to one of the two components in the band and the exclusion to the other.",
+   "correction": "Scope the rest change to the four-across wall only. Leave line 225 as `background: var(--bg)` and add `.albumGrid .albumCard { background: var(--bg-soft); }`, or keep the line-225 edit and pin the pair grid back by extending the existing rule at line 235 to `.pairGrid .albumCard { padding: 16px; background: var(--bg); }`. Either way the hover at 236 can still go to var(--bg-raised) in both contexts.",
+   "severity": "breaks-layout"
+  },
+  {
+   "file": "app/globals.css",
+   "line": 176,
+   "problem": "The brief's premise is false as the token is declared. `--bg-raised: light-dark(#e6e0d4, #24242a)` against --bg #f7f4ee (line 21), --bg-soft #ffffff (22) and --bg-soft-2 #efeae1 (23) means the light-mode order by luminance is bg-soft(#ffffff) > bg(#f7f4ee) > bg-soft-2(#efeae1) > bg-raised(#e6e0d4). So on paper the new hover/pressed step is DARKER than the inset-track/well token it is supposed to sit above \u2014 a raised surface reading deeper than a recess, which inverts the depth ordering \u00a73.1 asserts. Concretely: music.module.css .albumCard's hover flips direction (today #f7f4ee -> #ffffff lightens; after, #ffffff -> #e6e0d4 darkens), and page.module.css:551's homepage catalogue hover goes from a subtle warm lift to a ~7%-darker slab. The plan's own NOTES spot the value but file it as an observation and ship all 21 changes anyway.",
+   "correction": "Settle the token before applying the sweep. Either re-value light --bg-raised so it sits above --bg and above --bg-soft-2 in the ramp (a warm tint between #f7f4ee and #ffffff, e.g. ~#fbf8f3), or accept a darkening light-mode hover and rewrite the \u00a73.1 text \u2014 dropping the 'raised is LIGHTER in light mode too' claim and re-stating the ramp as ordered by depth-of-interaction rather than by luminance. Do not apply 19 hover changes on a premise the token contradicts.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/certifications/certifications.module.css",
+   "line": 665,
+   "problem": "The rationale is wrong and it hides live dead code. The plan says 'the gold .certRow:hover at line 57 is a different, accent-bearing rule and is left alone' \u2014 but both `.certRow:hover` blocks (56-60 and 665) are top-level in the SAME CSS module file, so they compile to the same hashed class and both match every .certRow. At equal specificity (0,2,0) the later rule wins, so line 57's gold background is ALREADY overridden and paints nothing today. The same is true of app/records/firsts/firsts.module.css: `.row:hover` at line 12 (gold) is already beaten by `.row:hover` at line 126 (ink), so the 'accent family stays' claim there is also false. Note the non-background declarations at certifications 58-59 DO still apply, so after this change a hovered .certRow gets an opaque --bg-raised fill plus a gold bottom border and a 16px indent \u2014 a mixed state nobody designed.",
+   "correction": "Drop the false rationale from both entries, and fix the collision while you are in the file: either delete the now-provably-dead `background:` declarations at certifications.module.css:57 and firsts.module.css:12, or scope the two definitions apart (`.certGrid .certRow:hover` vs `.groupList .certRow:hover`; `.list .row:hover` for each list) so the gold hover the plan claims to preserve actually renders.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/globals.css",
+   "line": 702,
+   "problem": "The NOTES defer this line on a misread of the comment. They say globals.css:702 'carries a written 3:1-contrast rationale and is left as-is', but the rationale at lines 696-699 attaches to `border-color: rgba(245, 244, 240, 0.42)` on line 700 \u2014 it argues a 0.42-alpha BORDER clears the 3:1 WCAG floor for a control boundary. Nothing in it justifies the 6% white fill on 702. So the stated reason for excluding the rest state does not exist, and shipping 708 alone leaves .btnSecondary with a rest fill that still does not theme (white 6% is invisible on paper) jumping straight to an opaque #e6e0d4 on hover.",
+   "correction": "Either restate the exclusion honestly ('rest surfaces are out of scope for this pass; 702 goes with the FollowPanel/SearchPalette rest-surface job'), or fold 702 into the sweep as a themed rest fill so the button's two states are designed together rather than one being fixed and the other left broken.",
+   "severity": "cosmetic"
+  },
+  {
+   "file": "app/components/mobileCerts.module.css",
+   "line": 549,
+   "problem": "Cited-context line numbers drift by one to two lines in four entries, which will send a reviewer checking the plan to the wrong declaration. .boardBtn's rest `background: var(--bg-soft)` is at line 548, not 549. Likewise: mobileMusic.module.css .albumCover starts at 247, not 249; globals.css's `.segOpt:not(:has(input:checked)):hover` selector is at 1864 with the background declaration at 1865 (the plan labels 1865 as the selector); and certifications.module.css's gold .certRow:hover selector is at 56 with its background at 57. The 21 EDIT targets are all correct \u2014 this is only the supporting context.",
+   "correction": "Correct the four context citations (mobileCerts 549->548, mobileMusic 249->247, globals segOpt selector 1865->1864, certifications gold hover 57->56). No change to any edit target.",
+   "severity": "cosmetic"
+  },
+  {
+   "file": "app/globals.css",
+   "line": 176,
+   "problem": "The ramp is out of order in light mode. --bg-raised: light-dark(#e6e0d4, #24242a) \u2014 on paper #e6e0d4 is darker than --bg (#f7f4ee), darker than --bg-soft (#ffffff) and darker than --bg-soft-2 (#efeae1), so the token the brief describes as 'raised is LIGHTER in light mode too' actually sits BELOW the inset-well step. Every one of the 21 changes inherits this: a hovered card in light is painted a colour reserved-by-position for wells, and music.module.css .albumCard's hover direction flips outright (today #f7f4ee -> #ffffff lightens; after, #ffffff -> #e6e0d4 darkens). The plan files this as a note to confirm and then proceeds anyway.",
+   "correction": "Block the sweep on the token. Either redefine the light value so it sits above --bg-soft-2 and above --bg-soft in the ramp order the brief states, or get an explicit decision that light-mode hovers darken \u2014 and then say so in the token comment, because the current comment ('The hover / pressed surface') does not carry it. Nothing else in this plan should land first.",
+   "severity": "wrong-step"
+  },
+  {
+   "file": "app/music/music.module.css",
+   "line": 225,
+   "problem": "The .albumCard rest step is moved unscoped, but the class renders in two different beds. Discography.tsx:46 picks .albumGrid or .pairGrid from the same component, and music/page.tsx:183-189 puts the pair layout inside <section className={styles.altSection}>, which is background: var(--bg-soft) (music.module.css:178). After the change the EP cells are painted exactly their own band colour, leaving only the 2px --line seams (rgba alpha .12, 1.31:1, marked DECORATIVE in globals.css:25) to draw the grid \u2014 the pair grid dissolves into the band. The plan's own EXCLUDED note refuses this move for .wideCard at line 282 on precisely this reasoning ('moving it to --bg-soft would flatten the card into its own band'), and .wideCard is rendered by the same Discography call block, in the same <section>, twelve lines below the pair grid.",
+   "correction": "Scope both halves to the ground bed: `.albumGrid .albumCard { background: var(--bg-soft); }` and `.albumGrid .albumCard:hover { background: var(--bg-raised); }`, leaving `.pairGrid .albumCard` on var(--bg) exactly as .wideCard is left \u2014 same band, same alternation trick, same answer. Change 15 (line 236) must be scoped with it or the hover starts lifting a card that never stepped up.",
+   "severity": "breaks-layout"
+  },
+  {
+   "file": "app/globals.css",
+   "line": 708,
+   "problem": ".btnSecondary is not a module's hand-mixed hover surface \u2014 it is the site's general secondary CTA, used on 25+ call sites across light pages (page.tsx:105 hero, 222/275/315 section heads, music, records, error.tsx:41, not-found.tsx:43). Its hover language is deliberate and accent-only: border-color: var(--gold), color: var(--gold), translateY(-3px), with the fill held identical to rest. Pointing only the hover at --bg-raised gives it an opaque grey-brown fill (#e6e0d4) that in light is DARKER than the ground it sits on and darker still against the white --bg-soft alt bands where several of these buttons live, reading as pressed/disabled inside a gold-outlined pill \u2014 while its rest (line 702) stays hardcoded rgba(255,255,255,0.06), unthemed. The result is a half-tokenised pair whose direction inverts between themes, on the one control in this sweep that is a CTA.",
+   "correction": "Drop this change from the ramp sweep. If the byte-identical rest/hover pair is a real defect, fix it as a button-primitive change that tokenises rest and hover together (and honours the 3:1 boundary rationale written at lines 691-700) \u2014 with a designer decision on whether a secondary CTA gets a surface at all, given its hover is currently expressed entirely in gold.",
+   "severity": "over-reach"
+  },
+  {
+   "file": "app/certifications/certifications.module.css",
+   "line": 665,
+   "problem": "The why says 'the gold .certRow:hover at line 57 is a different, accent-bearing rule and is left alone.' It is not a different rule. This is one CSS module, so .certRow at line 47 and .certRow at line 656 hash to the same class, both blocks are top-level (neither is inside @media), and the later one wins on layout and on hover. The gold hover at 56-60 and its paired .certRow:hover .certTitle gold-title rule at 61 have been dead since the second block landed. Tokenising the winner freezes the ledger's designed gold row hover out of existence, and the diff will read to any reviewer as 'gold preserved'.",
+   "correction": "Surface the duplicate-block collision before touching it \u2014 the two .certRow declarations look like a merge artefact, and which one was meant to survive is a design question, not a sweep question. Either delete the dead block (and lose the gold row hover deliberately, with Paul's sign-off) or restore it and leave line 665 alone. At minimum, correct the why so it does not assert a preservation that is not happening.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/records/firsts/firsts.module.css",
+   "line": 126,
+   "problem": "Same collision, same false rationale: 'The gold .row:hover at line 12 in the same file is the accent family and stays.' .row is declared twice at top level in one module (lines 4-11 and 120-125), so the gold hover at line 12 \u2014 including its padding-left: 14px slide \u2014 is already overridden by the ink-wash rule at 126. The plan hardens the winner into --bg-raised and states the gold survives.",
+   "correction": "Resolve the duplicated .row block first (same call as certifications). Do not tokenise the winner of an unnoticed collision inside a ramp sweep \u2014 it converts an accent-family list row into a permanent neutral without anyone deciding to.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/components/mobileHome.module.css",
+   "line": 447,
+   "problem": "The homepage catalogue gets its desktop half only. page.module.css:545 is moved to --bg-soft on the \u00a73.2 argument that cover art must not sit on bare ground, but the mobile homepage renders the same albumCards as the album rail (MobileHome.tsx:274-284): .railItem has no background at all and .railCover paints the Spotify art straight onto the page ground. Both layouts ship in the same document. The plan handled both halves for the music page (music.module.css:225 plus mobileMusic.module.css:242) and then missed the homepage's.",
+   "correction": "Either give the rail item the same step the desktop card gets (a --bg-soft cell behind .railCover, matching mobileMusic's treatment), or drop the \u00a73.2 photograph-on-ground justification from the page.module.css:545 why and rest it on the card-step rule alone \u2014 so the two layouts are decided by the same argument.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/live-charts/liveCharts.module.css",
+   "line": 223,
+   "problem": "The plan invents a remedy for exactly this problem at page.module.css:551 \u2014 layering the accent over --bg-raised so an opaque rest does not swallow the gold \u2014 then declines to use it here, where the accent carries data meaning. .entryTop is the current No. 1 (background: var(--gold-wash), line 227-229); .entryTop:hover out-specifies it, so hovering the one row people came to find strips its status colour. The plan is right that this already happens today, but it is applying two different answers to one problem inside one change set.",
+   "correction": "Split the selector: keep .entry:hover on var(--bg-raised), and give .entryTop:hover the same layered form used at page.module.css:551 \u2014 `linear-gradient(var(--gold-wash), var(--gold-wash)), var(--bg-raised)` \u2014 so the No. 1 row climbs the ramp without losing the colour that says it is No. 1.",
+   "severity": "inconsistent"
+  },
+  {
+   "file": "app/live-charts/liveCharts.module.css",
+   "line": 109,
+   "problem": "Completeness gap in the audit, not an error in it: .release[open] { background: color-mix(in srgb, var(--white-wash-base) 1.5%, transparent) } is a hand-mixed neutral state surface in the same file and same idiom as line 223, and it appears neither in the 21 changes nor in the EXCLUDED notes \u2014 so a later reader cannot tell whether it was judged and skipped or never seen. It was the only such rule my own parse found beyond the plan's list.",
+   "correction": "Add one line to the EXCLUDED notes stating that [open] is an expanded state rather than a hover/pressed one and belongs to a later pass (or fold it in if expanded counts as pressed). Either answer is fine; the silence is the problem, given the notes otherwise justify every skip.",
+   "severity": "cosmetic"
+  }
+ ]
+}

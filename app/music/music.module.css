@@ -233,7 +233,12 @@
   transition: background var(--dur) var(--ease);
 }
 .pairGrid .albumCard { padding: 16px; }
-.albumCard:hover { background: var(--bg-soft); }
+/* §3.2, scoped to the bed. .albumCard renders in TWO places: the four-across
+   wall on the page ground, and .pairGrid inside .altSection, which is already
+   --bg-soft. Lifting both would flatten the pair cards into the band they sit
+   on -- so only the wall moves up a step. */
+.albumGrid .albumCard { background: var(--bg-soft); }
+.albumCard:hover { background: var(--bg-raised); }
 .albumCover {
   display: block;
   aspect-ratio: 1;

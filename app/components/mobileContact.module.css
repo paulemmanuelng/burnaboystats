@@ -64,7 +64,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .title {
   font-family: var(--font-anton), sans-serif;
@@ -100,7 +100,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
   margin-top: 18px;
 }
 .formWrap { margin-top: 14px; }

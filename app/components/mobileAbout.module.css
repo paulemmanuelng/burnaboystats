@@ -63,7 +63,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .title {
   font-family: var(--font-anton), sans-serif;
@@ -136,7 +136,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .timelineWrap { padding: 12px 18px 0; }
 .timeline {

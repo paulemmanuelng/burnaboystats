@@ -542,13 +542,14 @@
   background: var(--line);
 }
 .albumCard {
-  background: var(--bg);
+  /* §3.2: the 342px cover does not sit on the page ground. */
+  background: var(--bg-soft);
   padding: 18px;
   color: var(--text);
   display: block;
   transition: background var(--dur) var(--ease);
 }
-.albumCard:hover { background: var(--color-accent-100); }
+.albumCard:hover { background: linear-gradient(var(--color-accent-100), var(--color-accent-100)), var(--bg-raised); }
 .albumCover {
   aspect-ratio: 1;
   background-color: var(--bg-soft-2);
