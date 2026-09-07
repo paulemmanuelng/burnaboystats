@@ -1,5 +1,6 @@
 "use client"; // the footer differs between the home page and every other page
 
+import BrandMark from "./BrandMark";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { footerColumns, footerFor, DEFAULT_FOOTER } from "../lib/links";
@@ -16,7 +17,10 @@ import { footerColumns, footerFor, DEFAULT_FOOTER } from "../lib/links";
 function Wordmark() {
   return (
     <div className="footerMark">
-      BURNABOY<span>STATS</span>
+      <BrandMark size={20} id="footer" />
+      <span className="footerMarkText">
+        BURNABOY<span>STATS</span>
+      </span>
     </div>
   );
 }
