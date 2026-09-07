@@ -80,11 +80,15 @@
   --ember: light-dark(#b34700, #ff7a1a);
   /* The hover / pressed surface, previously hand-mixed at each call site. */
   --bg-raised: light-dark(#e6e0d4, #24242a);
-  /* The chrome backdrop. The masthead and the bottom bars stay dark in BOTH
-     themes (design §4.3): the wordmark lockup keeps its gold word, and a link
-     shared from the site opens on a page whose top matches the dark OG card.
-     So this token deliberately does not theme. */
-  --scrim: rgba(12, 10, 9, 0.94);
+  /* The translucent bar backdrop, used by the masthead, the mobile tab bar and
+     every mobile back bar. It DOES theme -- design §4.3 keeps only the header
+     dark and says the tab bar, back bars and everything below the header theme
+     with the page. It reads as dark in the masthead anyway, and for free: the
+     masthead is in this selector and pins color-scheme: dark, so light-dark()
+     resolves to the dark value there and to paper everywhere else.
+     (I first froze this token, and the mobile tab bar ended up dark-on-dark --
+     its labels themed and its background did not.) */
+  --scrim: light-dark(rgba(247, 244, 238, 0.94), rgba(12, 10, 9, 0.94));
 
   --gold-dim: #c98a2e;
 
