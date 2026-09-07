@@ -43,6 +43,17 @@
   .compact .opt { width: 44px; height: 44px; }
 }
 
+/* ...and NOT on a phone. Three 44px segments is 132px, which on a 390px bar
+   already holding the wordmark, the search trigger and the hamburger pushed
+   the whole page sideways and left dead space beside it. The sheet carries the
+   labelled control two taps away, which is where it belongs — the same reason
+   .navStatCard is desktop-only (globals.css). Hidden rather than shrunk: a
+   control small enough to fit here would be under the 44px touch minimum this
+   site holds everywhere else. */
+@media (max-width: 900px) {
+  .compact { display: none; }
+}
+
 /* Mobile sheet: full width, 44px, labelled. */
 .full { display: flex; width: 100%; }
 .full .opt { flex: 1; min-height: 44px; padding: 0 10px; }
