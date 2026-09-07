@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-06";
+  export const liveChartsUpdated = "2026-09-07";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -263,17 +263,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IN",
-            "name": "India",
-            "position": 159,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 168,
-            "movement": -105
+            "position": 169,
+            "movement": -98
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 199,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -467,8 +467,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 195,
-            "movement": -22
+            "position": 197,
+            "movement": -21
           }
         ]
       },
@@ -615,7 +615,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 61,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "KE",
@@ -855,7 +855,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 166,
-            "movement": -107
+            "movement": -99
           }
         ]
       }
@@ -886,7 +886,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 67,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "TZ",
@@ -1106,80 +1106,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 25,
-            "movement": 1
-          },
-          {
-            "country": "KH",
-            "name": "Cambodia",
-            "position": 42,
-            "movement": -35
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 199,
-            "movement": -62
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 69,
-            "movement": 0
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 74,
-            "movement": 0
-          },
-          {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 78,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 62,
-            "movement": -6
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Baby",
     "platforms": [
       {
@@ -1225,8 +1151,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 23,
-            "movement": 100
+            "position": 26,
+            "movement": -20
           }
         ]
       },
@@ -1245,6 +1171,74 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Calm Down",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 69,
+            "movement": 0
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 74,
+            "movement": 0
+          },
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 78,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 62,
+            "movement": -6
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 182,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 29,
+            "movement": -4
+          },
+          {
+            "country": "KH",
+            "name": "Cambodia",
+            "position": 42,
+            "movement": -34
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ginger Me",
@@ -1492,8 +1486,8 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 52,
-            "movement": -30
+            "position": 54,
+            "movement": -32
           }
         ]
       }
@@ -1512,8 +1506,7 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 1,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -1532,7 +1525,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 50,
-            "movement": -35
+            "movement": -19
           }
         ]
       }
@@ -1647,8 +1640,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 156,
-            "movement": -22
+            "position": 158,
+            "movement": -21
           }
         ]
       }
@@ -1667,7 +1660,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 15,
-            "movement": -2
+            "movement": 0
           }
         ]
       }

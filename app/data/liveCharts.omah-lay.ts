@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-06";
+  export const liveChartsUpdated = "2026-09-07";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -184,8 +184,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 45,
-            "movement": -10
+            "position": 47,
+            "movement": -12
           }
         ]
       },
@@ -376,7 +376,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 53,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "UG",
@@ -559,8 +559,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 4,
-            "movement": 97
+            "position": 5,
+            "movement": 100
           },
           {
             "country": "NG",
@@ -897,14 +897,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 57,
-            "movement": -25
+            "position": 59,
+            "movement": -23
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 64,
-            "movement": -25
+            "position": 75,
+            "movement": -30
           }
         ]
       },
@@ -1217,7 +1217,7 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 72,
+            "position": 74,
             "movement": null,
             "status": "new"
           }
@@ -1299,7 +1299,7 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 74,
+            "position": 76,
             "movement": 2
           },
           {
@@ -1556,7 +1556,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 69,
-            "movement": -1
+            "movement": 0
           }
         ]
       }

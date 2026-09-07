@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-06";
+  export const liveChartsUpdated = "2026-09-07";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","YouTube","iTunes"];
@@ -111,7 +111,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 54,
+            "position": 56,
             "movement": -18
           },
           {
@@ -187,16 +187,16 @@
             "movement": -55
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 116,
-            "movement": -50
-          },
-          {
             "country": "NL",
             "name": "Netherlands",
-            "position": 125,
-            "movement": -56
+            "position": 123,
+            "movement": -42
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 137,
+            "movement": -64
           },
           {
             "country": "SE",
@@ -293,8 +293,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 7,
-            "movement": -1
+            "position": 8,
+            "movement": -2
           }
         ]
       }
@@ -349,8 +349,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 6,
-            "movement": -1
+            "position": 7,
+            "movement": -2
           }
         ]
       }
@@ -399,7 +399,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 34,
+            "position": 37,
             "movement": -24
           }
         ]
@@ -727,8 +727,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 128,
-            "movement": -24
+            "position": 130,
+            "movement": -22
           }
         ]
       }

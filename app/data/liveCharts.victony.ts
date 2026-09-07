@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-06";
+  export const liveChartsUpdated = "2026-09-07";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -487,37 +487,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 7,
-            "movement": -6
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 55,
-            "movement": -11
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 124,
-            "movement": -52
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 190,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -544,6 +513,30 @@
             "name": "Côte d'Ivoire",
             "position": 77,
             "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 7,
+            "movement": -6
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 55,
+            "movement": -8
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 142,
+            "movement": -54
           }
         ]
       },
@@ -767,12 +760,6 @@
             "status": "new"
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 111,
-            "movement": 0
-          },
-          {
             "country": "CG",
             "name": "Republic of the Congo",
             "position": 113,
@@ -781,8 +768,14 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 121,
-            "movement": -16
+            "position": 116,
+            "movement": -15
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 122,
+            "movement": -4
           },
           {
             "country": "MR",
@@ -792,17 +785,17 @@
             "status": "new"
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 169,
-            "movement": -10
-          },
-          {
             "country": "PT",
             "name": "Portugal",
             "position": 171,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 180,
+            "movement": -18
           },
           {
             "country": "BB",
@@ -827,7 +820,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 53,
-            "movement": -36
+            "movement": -1
           }
         ]
       }
@@ -1023,7 +1016,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 166,
-            "movement": -107
+            "movement": -99
           }
         ]
       }
@@ -1134,7 +1127,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 111,
-            "movement": -92
+            "movement": -88
           }
         ]
       },

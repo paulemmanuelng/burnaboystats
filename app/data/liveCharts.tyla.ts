@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-06";
+  export const liveChartsUpdated = "2026-09-07";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -412,8 +412,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 18,
-            "movement": -3
+            "position": 19,
+            "movement": -4
           }
         ]
       }
@@ -467,7 +467,7 @@
           {
             "country": "SK",
             "name": "Slovakia",
-            "position": 59,
+            "position": 79,
             "movement": null,
             "status": "new"
           }
@@ -499,7 +499,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 136,
+            "position": 171,
             "movement": null,
             "status": "new"
           }
@@ -639,9 +639,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 13,
-            "movement": null,
-            "status": "new"
+            "position": 14,
+            "movement": -8
           }
         ]
       }
@@ -667,25 +666,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Game Time",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TT",
-            "name": "Trinidad and Tobago",
-            "position": 96,
-            "movement": -26
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cd9051638bd5d70e43eff9dc09faa344/500x500-000000-80-0-0.jpg"
   }
 ];
   

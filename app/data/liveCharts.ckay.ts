@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-06";
+  export const liveChartsUpdated = "2026-09-07";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","YouTube","iTunes"];
@@ -301,7 +301,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 66,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
