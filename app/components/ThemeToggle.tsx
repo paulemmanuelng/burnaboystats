@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactElement } from "react";
+import { useEffect, useSyncExternalStore, type ReactElement } from "react";
 import styles from "./themeToggle.module.css";
 
 /**
@@ -8,24 +8,51 @@ import styles from "./themeToggle.module.css";
  *
  * The three states are NOT two booleans. "System" is a standing instruction
  * that has to keep being obeyed after the page loads: an OS that flips to
- * light at sunset must flip the page with it, which is why the choice and the
- * applied theme are separate things here. `localStorage.theme` holds the
- * CHOICE (dark | light | system); `data-theme` on <html> holds the RESOLVED
- * theme (dark | light), and it is always one of those two so that CSS never
- * has to ask a media query what "no attribute" meant.
+ * light at sunset must flip the page with it. So the CHOICE and the APPLIED
+ * theme are separate things here. `localStorage.theme` holds the choice
+ * (dark | light | system); `data-theme` on <html> holds the resolved theme,
+ * and it is always dark or light so that CSS never has to ask a media query
+ * what "no attribute" meant.
  *
  * The same resolution runs in an inline script in layout.tsx before first
- * paint. This component only takes over once React is running — which is why
- * it renders nothing selected until it has mounted: on the server there is no
- * localStorage to read, and guessing would light the wrong segment for a
- * frame.
+ * paint; this component only takes over once React is running.
+ *
+ * The choice is read through useSyncExternalStore rather than into state in an
+ * effect. localStorage IS an external store shared with that inline script and
+ * with any other tab, which is what this hook exists for — and it means the
+ * component never calls setState during an effect, and the only place the DOM
+ * is written is one effect keyed on the choice.
  */
 
 type Choice = "dark" | "light" | "system";
 
 const QUERY = "(prefers-color-scheme: light)";
-const resolve = (c: Choice): "dark" | "light" =>
-  c === "system" ? (window.matchMedia(QUERY).matches ? "light" : "dark") : c;
+/** Same-tab notification; `storage` only fires in OTHER tabs. */
+const CHANGED = "burnaboystats:themechange";
+
+function subscribe(onChange: () => void) {
+  window.addEventListener(CHANGED, onChange);
+  window.addEventListener("storage", onChange);
+  return () => {
+    window.removeEventListener(CHANGED, onChange);
+    window.removeEventListener("storage", onChange);
+  };
+}
+
+function getChoice(): Choice {
+  try {
+    const v = localStorage.getItem("theme");
+    if (v === "light" || v === "dark" || v === "system") return v;
+  } catch {
+    /* private mode, storage disabled — fall through to the default */
+  }
+  // Unset means dark: the site's default is today's design, not "whatever the
+  // device says". System is an opt-in, which is why it is stored explicitly.
+  return "dark";
+}
+
+/** On the server there is no storage, and dark is what the markup assumes. */
+const getServerChoice = (): Choice => "dark";
 
 const OPTIONS: { value: Choice; label: string; icon: ReactElement }[] = [
   {
@@ -60,42 +87,30 @@ const OPTIONS: { value: Choice; label: string; icon: ReactElement }[] = [
 ];
 
 export default function ThemeToggle({ variant = "compact" }: { variant?: "compact" | "full" }) {
-  const [choice, setChoice] = useState<Choice | null>(null);
+  const choice = useSyncExternalStore(subscribe, getChoice, getServerChoice);
 
-  // Read the stored choice once mounted. Unset means dark — the site's default
-  // is today's design, not "whatever the device says"; system is opt-in.
+  // The one place <html> is written. Re-runs when the choice changes, and while
+  // the choice is "system" it also follows the OS — the listener is removed the
+  // moment the choice is not "system", so an explicit pick is never overridden.
   useEffect(() => {
-    let stored: string | null = null;
-    try {
-      stored = localStorage.getItem("theme");
-    } catch {
-      /* private mode, storage disabled — fall through to the default */
-    }
-    setChoice(stored === "light" || stored === "system" ? stored : "dark");
-  }, []);
-
-  // While the choice is "system", the OS is the source of truth and can change
-  // under us. The listener is removed the moment the choice is not "system",
-  // so an explicit pick is never overridden at sunset.
-  useEffect(() => {
-    if (choice !== "system") return;
     const mq = window.matchMedia(QUERY);
-    const sync = () => {
-      document.documentElement.dataset.theme = mq.matches ? "light" : "dark";
+    const apply = () => {
+      document.documentElement.dataset.theme =
+        choice === "system" ? (mq.matches ? "light" : "dark") : choice;
     };
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
+    apply();
+    if (choice !== "system") return;
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
   }, [choice]);
 
   const pick = (next: Choice) => {
-    setChoice(next);
     try {
       localStorage.setItem("theme", next);
     } catch {
       /* the theme still applies for this page view */
     }
-    document.documentElement.dataset.theme = resolve(next);
+    window.dispatchEvent(new Event(CHANGED));
   };
 
   return (
