@@ -53,9 +53,18 @@
      the split exists because one #ffb627 cannot serve both a fill and text on
      paper. Light mode gives them different values (#ffb627 fill / #b07000
      display / #8a5a00 ink); until Task D lands they are deliberately equal. */
+  /* ONE gold on paper. The design split it three ways by contrast floor, which
+     is defensible on a spec sheet and looked wrong on the page -- headings came
+     out ochre and links brass, two golds a few units apart. Paul's call: one
+     gold everywhere in light. #945e00 rather than the #b07000 he pointed at
+     because that measures 3.70:1 on paper and 3.39 on an inset panel, under
+     the 4.5 small gold text needs; #945e00 is the lightest that clears it on
+     every light surface (4.96 / 5.44 / 4.54) and is two units off by eye.
+     --gold-fill stays #ffb627: that is a SURFACE with near-black ink on it,
+     not gold you read. */
   --gold-fill: #ffb627;     /* fills: buttons, bars */
-  --gold-display: light-dark(#b07000, #ffb627);  /* Anton >= 24px */
-  --gold-ink: light-dark(#8a5a00, #ffb627);      /* text, lines, icons */
+  --gold-display: light-dark(#945e00, #ffb627);  /* Anton >= 24px */
+  --gold-ink: light-dark(#945e00, #ffb627);      /* text, lines, icons */
   --ink-on-gold: #14100a;   /* the label ON any gold fill */
   /* One reading-text role. The table retires #cfc7bb (x64), #d8d8de (x38) and
      #d3d3da (x9) into it — three literals that were always the same job. */
@@ -122,20 +131,20 @@
      needs its own, because a fill ramp on paper is 1.5:1 — unreadable. Same
      shape (light gold -> deep -> ember), display-safe values on paper, and
      byte-identical in dark. */
-  --display-ramp-a: light-dark(#b07000, #ffd24a);
-  --display-ramp-b: light-dark(#8a5a00, #ffb627);
-  --display-ramp-c: light-dark(#7a2f00, #ff7a1a);
-  --gold-wash-base: light-dark(#b07000, #ffb627);
-  --gold-wash: light-dark(rgba(176, 112, 0, 0.10), rgba(255, 182, 39, 0.10));
+  --display-ramp-a: light-dark(#945e00, #ffd24a);
+  --display-ramp-b: light-dark(#945e00, #ffb627);
+  --display-ramp-c: light-dark(#945e00, #ff7a1a);
+  --gold-wash-base: light-dark(#945e00, #ffb627);
+  --gold-wash: light-dark(rgba(148, 94, 0, 0.10), rgba(255, 182, 39, 0.10));
   /* The car pages' stage light and floor ring. Paper needs MORE light, not
      less — the ring is what separates a dark car from the ground it sits on. */
   --floor-glow: light-dark(rgba(255, 182, 39, 0.30), rgba(255, 182, 39, 0.16));
-  --floor-ring: light-dark(rgba(176, 112, 0, 0.45), rgba(224, 138, 46, 0.50));
+  --floor-ring: light-dark(rgba(148, 94, 0, 0.45), rgba(224, 138, 46, 0.50));
   /* The car stage's gold, as a BASE for color-mix so every ring, dash and glow
      stop keeps its own alpha. It was hardcoded rgba(224,138,46,a) in the Floor
      and Ring SVGs, which meant the whole stage vanished on paper -- a mid-amber
      at 16-55% over white is nearly nothing. Dark is the exact old value. */
-  --floor-ink: light-dark(#b07000, #e08a2e);
+  --floor-ink: light-dark(#945e00, #e08a2e);
   /* Records signature. In dark it IS --grad-b; on paper it deepens, because it
      is read as text and --grad-b (a gradient stop) never has to be. */
   --ember: light-dark(#b34700, #ff7a1a);
@@ -225,7 +234,7 @@
      #f7f4ee), so the tier WORD in running text uses these inks instead, all
      >= 4.5:1 on paper. In dark each ink IS its fill, so this is a no-op. */
   --tier-platinum-ink: light-dark(#2f3a4e, #EFEDE6);  /* 10.42 on --bg */
-  --tier-gold-ink: light-dark(#8a5a00, #FBB417);      /*  5.40 */
+  --tier-gold-ink: light-dark(#945e00, #FBB417);      /*  5.40 */
   --tier-diamond-ink: light-dark(#0b6e7e, #31A1C0);   /*  5.39 */
   --tier-silver-ink: light-dark(#6b6b74, #848F9E);    /*  4.81 */
   --tier-platinum-edge: light-dark(rgba(47, 58, 78, 0.60), rgba(239, 237, 230, 0.29));
@@ -357,7 +366,7 @@
      that is invisible, but swapping it for --gold-ink would move it in DARK
      too (#ffd24a -> #ffb627). So it keeps its own dark value and takes the
      ink's light one. */
-  --gold-bright-ink: light-dark(#8a5a00, #ffd24a);
+  --gold-bright-ink: light-dark(#945e00, #ffd24a);
   --glow-base: light-dark(transparent, #e8b04b);
   /* The halo behind masthead text. It exists to lift the wordmark and the nav
      links off a dark, busy scrim -- pure dark-room work. On paper it is a grey

@@ -226,7 +226,15 @@
 }
 
 /* The sheet is mobile chrome; the desktop nav already reaches everything. */
-@media (min-width: 901px) {
+/* Matched to the HAMBURGER's own breakpoint, not the phone one.
+   .navToggle appears below 1240px (globals.css), but this sheet used to stop at
+   900 — so from 901 to 1239px the button was visible, clickable, fired its
+   event, and opened a sheet that was display:none. A tablet in portrait, a
+   small laptop and any split-screen window had no working menu at all: the
+   desktop .navLinks are an absolutely-positioned opacity:0 dropdown in that
+   band, left over from the pre-sheet mechanism that nothing sets `navOpen` on
+   any more. One control, one breakpoint. */
+@media (min-width: 1240px) {
   .root { display: none; }
 }
 
