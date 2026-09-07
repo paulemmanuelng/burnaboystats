@@ -129,8 +129,8 @@
   transition: background var(--dur-fast) var(--ease);
 }
 .tourRow:hover { background: var(--bg-raised); }
-.tourRowOpen { background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
-.tourRowOpen:hover { background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent); }
+.tourRowOpen { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.tourRowOpen:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent); }
 .caret {
   color: var(--gold);
   font-size: 13px;
@@ -239,7 +239,7 @@
 .jumpCard { background: var(--bg-soft); }
 .jumpCardAlt { background: var(--bg); }
 .jumpCard:hover,
-.jumpCardAlt:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
+.jumpCardAlt:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
 .jumpTitle {
   display: block;
   font-family: var(--font-anton), sans-serif;
@@ -367,7 +367,7 @@
    plan, and the page's whole promise is that everything else is a result. */
 .upcoming {
   border: 1px solid color-mix(in srgb, var(--gold-ink) 28%, transparent);
-  background: color-mix(in srgb, var(--gold-wash-base) 4%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(4% * var(--wash-strength)), transparent);
   border-radius: var(--radius);
   padding: 18px 20px;
   margin-bottom: 22px;

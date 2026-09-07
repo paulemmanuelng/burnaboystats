@@ -12,10 +12,12 @@ import type { UpdateCategory } from "../data/updates";
 export const UPDATE_INK: Record<UpdateCategory, string> = {
   Certifications: "var(--gold)",
   Charts: "var(--cyan)",
-  "Firsts & Records": "var(--grad-b)",
+  // --ember, not --grad-b: a gradient STOP is #ff7a1a in both themes, and
+  // globals.css names --ember as the Records signature for exactly this.
+  "Firsts & Records": "var(--ember)",
   Awards: "var(--silver)",
   Tours: "var(--green)",
-  Streaming: "#b8bcc4",
+  Streaming: "var(--tier-silver-ink)",
   // Not in the prototype. Deliberately the muted text colour rather than a new
   // hue: it's the one category that isn't a music statistic.
   Lifestyle: "var(--text-muted)",

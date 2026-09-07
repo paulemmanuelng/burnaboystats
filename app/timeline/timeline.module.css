@@ -221,8 +221,8 @@
    landed in their class attribute too. Both reuse existing tier tokens rather
    than introducing new colours: silver for the chart badges, gold-edge for the
    live ones, which is the same family the album badge already borrows. */
-.kind_chart { color: var(--tier-silver, #c9c6bd); border-color: var(--tier-silver-edge, var(--line)); }
-.kind_tour { color: var(--tier-gold-edge, var(--gold)); }
+.kind_chart { color: var(--tier-silver-ink); border-color: var(--tier-silver-edge, var(--line)); }
+.kind_tour { color: var(--gold); }
 
 /* ── Today ─────────────────────────────────────────────────── */
 .today {
@@ -283,10 +283,17 @@
 .todayNote a { color: var(--gold); }
 
 /* ── Mobile ────────────────────────────────────────────────── */
-@media (max-width: 720px) {
+/* The chrome swap happens at 900, not 720: /timeline is in BACK_BAR_ROUTES, so
+   globals.css hides the masthead below 900px. Held at 720 this page had NO
+   header at all through the whole tablet range. The LAYOUT below stays at 720,
+   which is a separate question from which header is on screen. */
+@media (max-width: 900px) {
   .mobileBackBar { display: flex; }
   .desktopCrumbs { display: none; }
   .desktopOnly { display: none; }
+}
+
+@media (max-width: 720px) {
   .hero { padding: 26px 18px 20px; }
   .era { padding: 26px 18px 4px; }
   .entry {

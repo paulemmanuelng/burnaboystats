@@ -103,7 +103,7 @@ export default function MobileNavSheet({
           the backdrop covers the whole viewport rather than stopping at 76px. */}
       <button
         type="button"
-        className={styles.backdrop}
+        className={`${styles.backdrop} photoTile`}
         onClick={() => setOpen(false)}
         tabIndex={-1}
         aria-hidden="true"

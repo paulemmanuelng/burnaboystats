@@ -259,7 +259,7 @@
   padding: 11px 14px;
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent);
   font-size: 13px;
   line-height: 1.45;
   color: var(--text);
@@ -303,7 +303,7 @@
    (hover: hover) so a touch device never gets a state it can't leave. */
 @media (hover: hover) {
   .row:hover {
-    background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
+    background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
     border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
     padding-left: 26px;
   }
@@ -313,7 +313,7 @@
 }
 /* Touch has no hover, so the press gives the same feedback. */
 .row:active {
-  background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
   border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
 }
 .rowTop { display: flex; align-items: baseline; gap: 10px; }

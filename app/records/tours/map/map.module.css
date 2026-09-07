@@ -119,7 +119,7 @@
   color: var(--text-muted);
 }
 .table td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.table tbody tr:hover td { background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
+.table tbody tr:hover td { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
 .regionCell {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -222,20 +222,20 @@
   outline: none;
 }
 .on:hover,
-.on:focus-visible { fill: var(--gold-bright); }
-.activePath { fill: var(--gold-bright); }
+.on:focus-visible { fill: var(--gold-hit); }
+.activePath { fill: var(--gold-hit); }
 
 /* dot markers for tiny island nations (no shape at this map resolution) */
 .dot {
   fill: color-mix(in srgb, var(--gold-wash-base) 75%, transparent);
-  stroke: var(--gold-bright);
+  stroke: var(--gold-hit);
   stroke-width: 1;
   cursor: pointer;
   transition: fill 0.15s ease;
   outline: none;
 }
 .dot:hover,
-.dot:focus-visible { fill: var(--gold-bright); }
+.dot:focus-visible { fill: var(--gold-hit); }
 
 /* floating detail card (follows the cursor / tap) */
 .card {

@@ -9,7 +9,7 @@
   border-bottom: 1px solid var(--line);
   transition: background 0.18s ease, padding-left 0.18s ease;
 }
-.row:hover { background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); padding-left: 14px; }
+.row:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); padding-left: 14px; }
 .year {
   font-family: var(--font-anton), sans-serif;
   font-size: 1.4rem;

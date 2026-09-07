@@ -1,398 +1,368 @@
 [
- {
-  "file": "app/afrobeats/[artist]/artist.module.css",
-  "line": 493,
-  "literal": "#0a0a0b",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/afrobeats/[artist]/artist.module.css",
-  "line": 505,
-  "literal": "rgba(62, 209, 127, 0)",
-  "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
- },
- {
-  "file": "app/afrobeats/[artist]/artist.module.css",
-  "line": 528,
-  "literal": "rgba(62, 209, 127, 0)",
-  "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
- },
- {
-  "file": "app/afrobeats/[artist]/artist.module.css",
-  "line": 529,
-  "literal": "rgba(62, 209, 127, 0)",
-  "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
- },
- {
-  "file": "app/afrobeats/[artist]/artist.module.css",
-  "line": 600,
-  "literal": "#ffffff",
-  "reason": "an artist's brand colour, scoped by [data-brand] \u2014 not the site palette"
- },
- {
-  "file": "app/afrobeats/[artist]/artist.module.css",
-  "line": 600,
-  "literal": "#7a2fb0",
-  "reason": "an artist's brand colour, scoped by [data-brand] \u2014 not the site palette"
- },
- {
-  "file": "app/afrobeats/afrobeats.module.css",
-  "line": 337,
-  "literal": "rgba(62, 209, 127, 0)",
-  "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
- },
- {
-  "file": "app/afrobeats/afrobeats.module.css",
-  "line": 338,
-  "literal": "rgba(62, 209, 127, 0)",
-  "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 368,
-  "literal": "rgba(0, 0, 0, 0.25)",
-  "reason": "deferred: no token is byte-identical in dark"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 368,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 368,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 368,
-  "literal": "rgba(0, 0, 0, 0.42)",
-  "reason": "deferred: no token is byte-identical in dark"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 369,
-  "literal": "rgba(0, 0, 0, 0.25)",
-  "reason": "deferred: no token is byte-identical in dark"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 369,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 369,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 369,
-  "literal": "rgba(0, 0, 0, 0.42)",
-  "reason": "deferred: no token is byte-identical in dark"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 385,
-  "literal": "rgba(0, 0, 0, 0.3)",
-  "reason": "deferred: no token is byte-identical in dark"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 385,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 385,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 385,
-  "literal": "rgba(0, 0, 0, 0.5)",
-  "reason": "deferred: no token is byte-identical in dark"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 386,
-  "literal": "rgba(0, 0, 0, 0.3)",
-  "reason": "deferred: no token is byte-identical in dark"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 386,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 386,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/certifications/certifications.module.css",
-  "line": 386,
-  "literal": "rgba(0, 0, 0, 0.5)",
-  "reason": "deferred: no token is byte-identical in dark"
- },
- {
-  "file": "app/components/BirthdayCelebration.module.css",
-  "line": 54,
-  "literal": "rgba(20, 16, 8, 0.96)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/BirthdayCelebration.module.css",
-  "line": 54,
-  "literal": "rgba(9, 9, 11, 0.96)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/BirthdayCelebration.module.css",
-  "line": 55,
-  "literal": "rgba(255, 182, 39, 0.12)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/BirthdayCelebration.module.css",
-  "line": 56,
-  "literal": "rgba(255, 182, 39, 0.22)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/GlobeTeaser.module.css",
-  "line": 66,
-  "literal": "rgba(0, 0, 0, 0.72)",
-  "reason": "deferred: no token is byte-identical in dark"
- },
- {
-  "file": "app/components/SearchPalette.module.css",
-  "line": 6,
-  "literal": "rgba(245, 244, 240, 0.05)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/SearchPalette.module.css",
-  "line": 39,
-  "literal": "rgba(6, 6, 8, 0.72)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/mobileCerts.module.css",
-  "line": 107,
-  "literal": "rgba(0, 0, 0, 0.3)",
-  "reason": "deferred: no token is byte-identical in dark"
- },
- {
-  "file": "app/components/mobileCerts.module.css",
-  "line": 107,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileCerts.module.css",
-  "line": 108,
-  "literal": "rgba(0, 0, 0, 0.3)",
-  "reason": "deferred: no token is byte-identical in dark"
- },
- {
-  "file": "app/components/mobileCerts.module.css",
-  "line": 108,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileCerts.module.css",
-  "line": 649,
-  "literal": "#ffffff",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/mobileCerts.module.css",
-  "line": 650,
-  "literal": "#ffffff",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/mobileDeepPage.module.css",
-  "line": 383,
-  "literal": "rgba(245, 240, 232, 0.55)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/mobileNavSheet.module.css",
-  "line": 57,
-  "literal": "#111113",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/mobileNavSheet.module.css",
-  "line": 58,
-  "literal": "rgba(0, 0, 0, 0.5)",
-  "reason": "deferred: no token is byte-identical in dark"
- },
- {
-  "file": "app/components/mobileNavSheet.module.css",
-  "line": 199,
-  "literal": "#3fb950",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/mobileTabBar.module.css",
-  "line": 43,
-  "literal": "rgba(255, 182, 39, 0.08)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/scrollRail.module.css",
-  "line": 8,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/scrollRail.module.css",
-  "line": 9,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/scrollRail.module.css",
-  "line": 12,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/scrollRail.module.css",
-  "line": 13,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/scrollRail.module.css",
-  "line": 16,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/scrollRail.module.css",
-  "line": 16,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/scrollRail.module.css",
-  "line": 17,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/scrollRail.module.css",
-  "line": 17,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/music/music.module.css",
-  "line": 397,
-  "literal": "#1db954",
-  "reason": "Spotify's brand green, and the ink on it \u2014 not ours to theme"
- },
- {
-  "file": "app/music/music.module.css",
-  "line": 398,
-  "literal": "#06241a",
-  "reason": "Spotify's brand green, and the ink on it \u2014 not ours to theme"
- },
- {
-  "file": "app/music/music.module.css",
-  "line": 399,
-  "literal": "#06241a",
-  "reason": "Spotify's brand green, and the ink on it \u2014 not ours to theme"
- },
- {
-  "file": "app/music/music.module.css",
-  "line": 403,
-  "literal": "#1ed760",
-  "reason": "Spotify's brand green, and the ink on it \u2014 not ours to theme"
- },
- {
-  "file": "app/page.module.css",
-  "line": 49,
-  "literal": "rgba(70, 209, 127, 0.5)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/page.module.css",
-  "line": 50,
-  "literal": "rgba(70, 209, 127, 0)",
-  "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
- },
- {
-  "file": "app/page.module.css",
-  "line": 51,
-  "literal": "rgba(70, 209, 127, 0)",
-  "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
- },
- {
-  "file": "app/page.module.css",
-  "line": 636,
-  "literal": "rgba(255, 246, 214, 0.5)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/page.module.css",
-  "line": 637,
-  "literal": "rgba(150, 42, 18, 0.4)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/page.module.css",
-  "line": 638,
-  "literal": "rgba(196, 70, 16, 0.26)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/page.module.css",
-  "line": 639,
-  "literal": "#f08a12",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/page.module.css",
-  "line": 639,
-  "literal": "#d96c0c",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/records/cars/cars.module.css",
-  "line": 66,
-  "literal": "#ff9c8a",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/records/cars/cars.module.css",
-  "line": 67,
-  "literal": "rgba(255, 120, 90, 0.45)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/records/cars/cars.module.css",
-  "line": 290,
-  "literal": "rgba(245, 240, 232, 0.55)",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/timeline/timeline.module.css",
-  "line": 224,
-  "literal": "#c9c6bd",
-  "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- }
+  {
+    "file": "app/afrobeats/[artist]/artist.module.css",
+    "line": 505,
+    "literal": "rgba(62, 209, 127, 0)",
+    "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
+  },
+  {
+    "file": "app/afrobeats/[artist]/artist.module.css",
+    "line": 528,
+    "literal": "rgba(62, 209, 127, 0)",
+    "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
+  },
+  {
+    "file": "app/afrobeats/[artist]/artist.module.css",
+    "line": 529,
+    "literal": "rgba(62, 209, 127, 0)",
+    "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
+  },
+  {
+    "file": "app/afrobeats/[artist]/artist.module.css",
+    "line": 600,
+    "literal": "#ffffff",
+    "reason": "an artist's brand colour, scoped by [data-brand] \u2014 not the site palette"
+  },
+  {
+    "file": "app/afrobeats/[artist]/artist.module.css",
+    "line": 600,
+    "literal": "#7a2fb0",
+    "reason": "an artist's brand colour, scoped by [data-brand] \u2014 not the site palette"
+  },
+  {
+    "file": "app/afrobeats/afrobeats.module.css",
+    "line": 337,
+    "literal": "rgba(62, 209, 127, 0)",
+    "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
+  },
+  {
+    "file": "app/afrobeats/afrobeats.module.css",
+    "line": 338,
+    "literal": "rgba(62, 209, 127, 0)",
+    "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 368,
+    "literal": "rgba(0, 0, 0, 0.25)",
+    "reason": "deferred: no token is byte-identical in dark"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 368,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 368,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 368,
+    "literal": "rgba(0, 0, 0, 0.42)",
+    "reason": "deferred: no token is byte-identical in dark"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 369,
+    "literal": "rgba(0, 0, 0, 0.25)",
+    "reason": "deferred: no token is byte-identical in dark"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 369,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 369,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 369,
+    "literal": "rgba(0, 0, 0, 0.42)",
+    "reason": "deferred: no token is byte-identical in dark"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 385,
+    "literal": "rgba(0, 0, 0, 0.3)",
+    "reason": "deferred: no token is byte-identical in dark"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 385,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 385,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 385,
+    "literal": "rgba(0, 0, 0, 0.5)",
+    "reason": "deferred: no token is byte-identical in dark"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 386,
+    "literal": "rgba(0, 0, 0, 0.3)",
+    "reason": "deferred: no token is byte-identical in dark"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 386,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 386,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/certifications/certifications.module.css",
+    "line": 386,
+    "literal": "rgba(0, 0, 0, 0.5)",
+    "reason": "deferred: no token is byte-identical in dark"
+  },
+  {
+    "file": "app/components/BirthdayCelebration.module.css",
+    "line": 54,
+    "literal": "rgba(20, 16, 8, 0.96)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/components/BirthdayCelebration.module.css",
+    "line": 54,
+    "literal": "rgba(9, 9, 11, 0.96)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/components/BirthdayCelebration.module.css",
+    "line": 55,
+    "literal": "rgba(255, 182, 39, 0.12)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/components/BirthdayCelebration.module.css",
+    "line": 56,
+    "literal": "rgba(255, 182, 39, 0.22)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/components/GlobeTeaser.module.css",
+    "line": 66,
+    "literal": "rgba(0, 0, 0, 0.72)",
+    "reason": "deferred: no token is byte-identical in dark"
+  },
+  {
+    "file": "app/components/SearchPalette.module.css",
+    "line": 6,
+    "literal": "rgba(245, 244, 240, 0.05)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 107,
+    "literal": "rgba(0, 0, 0, 0.3)",
+    "reason": "deferred: no token is byte-identical in dark"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 107,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 108,
+    "literal": "rgba(0, 0, 0, 0.3)",
+    "reason": "deferred: no token is byte-identical in dark"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 108,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 649,
+    "literal": "#ffffff",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/components/mobileCerts.module.css",
+    "line": 650,
+    "literal": "#ffffff",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/components/mobileDeepPage.module.css",
+    "line": 383,
+    "literal": "rgba(245, 240, 232, 0.55)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/components/mobileNavSheet.module.css",
+    "line": 199,
+    "literal": "#3fb950",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/components/mobileTabBar.module.css",
+    "line": 43,
+    "literal": "rgba(255, 182, 39, 0.08)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/components/scrollRail.module.css",
+    "line": 8,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/components/scrollRail.module.css",
+    "line": 9,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/components/scrollRail.module.css",
+    "line": 12,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/components/scrollRail.module.css",
+    "line": 13,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/components/scrollRail.module.css",
+    "line": 16,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/components/scrollRail.module.css",
+    "line": 16,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/components/scrollRail.module.css",
+    "line": 17,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/components/scrollRail.module.css",
+    "line": 17,
+    "literal": "#000",
+    "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
+  },
+  {
+    "file": "app/music/music.module.css",
+    "line": 397,
+    "literal": "#1db954",
+    "reason": "Spotify's brand green, and the ink on it \u2014 not ours to theme"
+  },
+  {
+    "file": "app/music/music.module.css",
+    "line": 398,
+    "literal": "#06241a",
+    "reason": "Spotify's brand green, and the ink on it \u2014 not ours to theme"
+  },
+  {
+    "file": "app/music/music.module.css",
+    "line": 399,
+    "literal": "#06241a",
+    "reason": "Spotify's brand green, and the ink on it \u2014 not ours to theme"
+  },
+  {
+    "file": "app/music/music.module.css",
+    "line": 403,
+    "literal": "#1ed760",
+    "reason": "Spotify's brand green, and the ink on it \u2014 not ours to theme"
+  },
+  {
+    "file": "app/page.module.css",
+    "line": 49,
+    "literal": "rgba(70, 209, 127, 0.5)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/page.module.css",
+    "line": 50,
+    "literal": "rgba(70, 209, 127, 0)",
+    "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
+  },
+  {
+    "file": "app/page.module.css",
+    "line": 51,
+    "literal": "rgba(70, 209, 127, 0)",
+    "reason": "gradient endpoint at zero alpha \u2014 nothing to theme"
+  },
+  {
+    "file": "app/page.module.css",
+    "line": 636,
+    "literal": "rgba(255, 246, 214, 0.5)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/page.module.css",
+    "line": 637,
+    "literal": "rgba(150, 42, 18, 0.4)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/page.module.css",
+    "line": 638,
+    "literal": "rgba(196, 70, 16, 0.26)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/page.module.css",
+    "line": 639,
+    "literal": "#f08a12",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/page.module.css",
+    "line": 639,
+    "literal": "#d96c0c",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/records/cars/cars.module.css",
+    "line": 66,
+    "literal": "#ff9c8a",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/records/cars/cars.module.css",
+    "line": 67,
+    "literal": "rgba(255, 120, 90, 0.45)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  },
+  {
+    "file": "app/records/cars/cars.module.css",
+    "line": 290,
+    "literal": "rgba(245, 240, 232, 0.55)",
+    "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
+  }
 ]

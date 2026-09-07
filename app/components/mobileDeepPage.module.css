@@ -149,7 +149,7 @@
   text-transform: uppercase;
   white-space: nowrap;
 }
-.chipOn { background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent); border-color: var(--gold); color: var(--gold); }
+.chipOn { background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); border-color: var(--gold); color: var(--gold); }
 
 /* ── List ─────────────────────────────────────────────────────────────── */
 .listHead {
@@ -184,7 +184,7 @@
   align-items: baseline;
 }
 /* The headline row reads in gold — it is the answer the page is built around. */
-.rowLead { background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent); }
+.rowLead { background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent); }
 .rank {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-small);
@@ -220,7 +220,7 @@
   display: block;
   height: 6px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--gold-wash-base) 30%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(30% * var(--wash-strength)), transparent);
 }
 /* His row is the one the page marks, so its bar carries a little more of it. */
 .rowLead .barFill { background: color-mix(in srgb, var(--gold-wash-base) 55%, transparent); }
@@ -275,7 +275,7 @@
 }
 
 .rowLink { color: var(--text); }
-.rowLink:active { background: color-mix(in srgb, var(--gold-wash-base) 9%, transparent); }
+.rowLink:active { background: color-mix(in srgb, var(--gold-wash-base) calc(9% * var(--wash-strength)), transparent); }
 
 .footNote {
   font-size: 11.5px;
@@ -361,7 +361,7 @@
   background: var(--bg-soft);
   color: var(--text);
 }
-.tile:active { background: color-mix(in srgb, var(--gold-wash-base) 9%, transparent); }
+.tile:active { background: color-mix(in srgb, var(--gold-wash-base) calc(9% * var(--wash-strength)), transparent); }
 /* The most expensive car leads — a gold-tinted border, gold rank and value. */
 .tileLead { border-color: color-mix(in srgb, var(--gold-ink) 55%, transparent); }
 .tileImg {

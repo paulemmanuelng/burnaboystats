@@ -20,7 +20,7 @@
 }
 .clear {
   border: 1px solid var(--gold);
-  background: color-mix(in srgb, var(--gold-wash-base) 14%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent);
   color: var(--gold);
 }
 .clear:hover { border-color: var(--gold-bright-ink); color: var(--gold-bright-ink); }

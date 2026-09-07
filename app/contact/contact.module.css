@@ -65,7 +65,7 @@
   min-height: 44px;
   transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
 }
-.channel:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent); color: var(--text); }
+.channel:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent); color: var(--text); }
 .channelLabel {
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;

@@ -131,7 +131,7 @@
 
 /* ── Tours ────────────────────────────────────────────────────────────── */
 .tour { border-top: 1px solid var(--line); }
-.tourOpen { background: color-mix(in srgb, var(--gold-wash-base) 4%, transparent); }
+.tourOpen { background: color-mix(in srgb, var(--gold-wash-base) calc(4% * var(--wash-strength)), transparent); }
 .tourBtn {
   width: 100%;
   min-height: 44px;
@@ -286,7 +286,7 @@
   margin: 0 18px 18px;
   padding: 16px;
   border: 1px solid color-mix(in srgb, var(--gold-ink) 28%, transparent);
-  background: color-mix(in srgb, var(--gold-wash-base) 4%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(4% * var(--wash-strength)), transparent);
   border-radius: var(--radius);
 }
 .upcomingHead { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }

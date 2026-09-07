@@ -349,11 +349,11 @@
   gap: 16px;
   padding: 18px 20px;
   border: 1px solid var(--gold);
-  background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-a.source:hover { background: color-mix(in srgb, var(--gold-wash-base) 14%, transparent); }
+a.source:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent); }
 .sourceNone { border-color: var(--border); background: transparent; }
 .sourceText { display: flex; flex-direction: column; gap: 5px; }
 .sourceKicker {

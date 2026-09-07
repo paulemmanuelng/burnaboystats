@@ -143,7 +143,7 @@
   flex-direction: column;
 }
 /* The song's headline figure takes the tint. */
-.numCardLead { background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
+.numCardLead { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
 .numValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

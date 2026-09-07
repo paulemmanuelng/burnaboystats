@@ -22,9 +22,9 @@ import { track } from "../lib/analytics";
 // Section colours, matching the meanings those hues carry site-wide.
 const SECTION_INK: Record<string, [string, string]> = {
   Site: ["var(--text-muted)", "var(--border)"],
-  Records: ["var(--gold-bright)", "rgba(255,210,74,0.45)"],
-  Music: ["var(--cyan)", "rgba(143,227,240,0.45)"],
-  Song: ["var(--cyan)", "rgba(143,227,240,0.45)"],
+  Records: ["var(--gold-bright-ink)", "color-mix(in srgb, var(--gold-bright-ink) 45%, transparent)"],
+  Music: ["var(--cyan)", "color-mix(in srgb, var(--cyan) 45%, transparent)"],
+  Song: ["var(--cyan)", "color-mix(in srgb, var(--cyan) 45%, transparent)"],
 };
 const inkFor = (s: string) => SECTION_INK[s] ?? ["var(--text-muted)", "var(--border)"];
 

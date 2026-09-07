@@ -27,11 +27,13 @@ const FILTERS: { key: Tier | "All"; label: string }[] = [
 ];
 
 // Tier colours carry data meaning and are never recoloured to gold.
+// The plate is DERIVED from the same ink rather than frozen as an rgba, so it
+// follows the tier into either theme instead of staying a dark-mode tint.
 const PILL: Record<Tier, { fill: string; ink: string }> = {
-  Diamond: { fill: "rgba(143, 227, 240, 0.14)", ink: "var(--cyan)" },
-  Platinum: { fill: "rgba(223, 226, 232, 0.14)", ink: "var(--silver)" },
-  Gold: { fill: "rgba(255, 182, 39, 0.13)", ink: "var(--gold)" },
-  Silver: { fill: "rgba(245, 244, 240, 0.08)", ink: "#b8bcc4" },
+  Diamond: { fill: "color-mix(in srgb, var(--tier-diamond-ink) 14%, transparent)", ink: "var(--tier-diamond-ink)" },
+  Platinum: { fill: "color-mix(in srgb, var(--tier-platinum-ink) 14%, transparent)", ink: "var(--tier-platinum-ink)" },
+  Gold: { fill: "color-mix(in srgb, var(--tier-gold-ink) 13%, transparent)", ink: "var(--tier-gold-ink)" },
+  Silver: { fill: "color-mix(in srgb, var(--tier-silver-ink) 10%, transparent)", ink: "var(--tier-silver-ink)" },
 };
 
 const ROWS_SHOWN = 15;

@@ -88,7 +88,7 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
                 textAnchor="middle"
                 fontFamily="var(--font-mono), monospace"
                 fontSize="10.5"
-                fill="#71717a"
+                fill="var(--text-muted)"
               >
                 {g}
               </text>
@@ -140,7 +140,7 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
                   textAnchor={p.anchor}
                   fontFamily="var(--font-mono), monospace"
                   fontSize="10"
-                  fill="#71717a"
+                  fill="var(--text-muted)"
                 >
                   {d.plaques} · {d.countries}
                 </text>

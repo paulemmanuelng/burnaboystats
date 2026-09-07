@@ -10,7 +10,7 @@
   transition: background 0.18s ease, padding-left 0.18s ease;
 }
 .row:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
   border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
   padding-left: 16px;
 }
@@ -117,7 +117,7 @@
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 .fChip:hover { border-color: var(--gold-dim); color: var(--text); }
-.fChipOn { background: color-mix(in srgb, var(--ember) 16%, transparent); border-color: var(--ember); color: var(--ember); }
+.fChipOn { background: color-mix(in srgb, var(--ember) calc(16% * var(--wash-strength)), transparent); border-color: var(--ember); color: var(--ember); }
 .moreBodies {
   display: inline-flex;
   align-items: center;
@@ -134,7 +134,7 @@
   cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
-.moreBodies:hover { border-color: var(--gold); color: var(--gold-bright-ink); background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent); }
+.moreBodies:hover { border-color: var(--gold); color: var(--gold-bright-ink); background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent); }
 .filterMeta { display: flex; align-items: center; gap: 14px; font-size: 0.85rem; color: var(--text-muted); }
 .filterMeta b { color: var(--gold); }
 .clearBtn {

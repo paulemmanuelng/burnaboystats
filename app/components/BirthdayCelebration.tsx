@@ -5,7 +5,16 @@ import Link from "next/link";
 import styles from "./BirthdayCelebration.module.css";
 
 const BIRTH_YEAR = 1991; // Damini Ebunoluwa Ogulu, born July 2, 1991
-const COLORS = ["#ffb627", "#ffd24a", "#c98a2e", "#e2342b", "#f5f4f0"];
+// light-dark() rather than a theme hook: these are inline styles, and the
+// function resolves against the color-scheme <html> already carries. Three
+// of the five stops were pale golds and paper-white — 1.0:1 on a cream page.
+const COLORS = [
+  "light-dark(#945e00, #ffb627)",
+  "light-dark(#7a4d00, #ffd24a)",
+  "light-dark(#b3822f, #c98a2e)",
+  "#e2342b",
+  "light-dark(#17140f, #f5f4f0)",
+];
 const PIECE_COUNT = 56;
 const CONFETTI_MS = 12_000; // one celebratory burst, then out of the way
 
@@ -113,7 +122,7 @@ export default function BirthdayCelebration() {
       )}
 
       {!bday.dismissed && (
-        <aside className={styles.banner} role="note" aria-label={`Burna Boy turns ${bday.age} today`}>
+        <aside className={`${styles.banner} photoTile`} role="note" aria-label={`Burna Boy turns ${bday.age} today`}>
           <span className={styles.cake} aria-hidden="true">🎂</span>
           <span className={styles.text}>
             <strong className={styles.title}>Happy {ordinal(bday.age)} Birthday, African Giant</strong>

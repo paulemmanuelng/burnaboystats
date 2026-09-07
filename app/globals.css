@@ -154,6 +154,18 @@
   --ember: light-dark(#b34700, #ff7a1a);
   /* The hover / pressed surface, previously hand-mixed at each call site. */
   --bg-raised: light-dark(#e6e0d4, #24242a);
+  /* The secondary button's own face and edge. --bg-raised was doing this job,
+     and in dark "raised" means LIGHTER than the page — so on paper it inverted
+     into a surface DARKER than the page, i.e. a sunken one, which also dropped
+     the gold back-links on it to 4.14:1. A raised face on paper is white. The
+     edge takes a heavier alpha there because 42% ink on white is 2.49:1
+     against the page, under the 3:1 a control's boundary needs; both dark arms
+     are the literals they replace, so dark does not move. */
+  --btn-face: light-dark(#ffffff, #24242a);
+  --btn-edge: light-dark(rgba(23, 20, 15, 0.55), rgba(245, 244, 240, 0.42));
+  /* The nav sheet's crown. It was a literal near-black that only ever read as
+     "the top of the sheet is darker" on a black page; on paper it was a band. */
+  --sheet-crown: light-dark(#efeae1, #111113);
   /* The translucent bar backdrop, used by the masthead, the mobile tab bar and
      every mobile back bar. It DOES theme -- design §4.3 keeps only the header
      dark and says the tab bar, back bars and everything below the header theme
@@ -194,7 +206,7 @@
   --radius: 6px;
   --radius-sm: 4px;
   --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-  --glow: 0 0 40px rgba(255, 182, 39, 0.22);
+  --glow: 0 0 40px color-mix(in srgb, var(--gold-glow-base) 22%, transparent);
 
   /* Motion — one shared rhythm for the whole UI. --ease for state changes,
      --ease-out for entrances; durations kept short and consistent. */
@@ -212,6 +224,21 @@
      certification tiers, chart peak bands, live deltas. */
   --cyan: light-dark(#0b6e7e, #8fe3f0);    /* Top 10 peak band ONLY — see tier tokens below */
   --silver: light-dark(#6b6b74, #dfe2e8);  /* Top 40 peak band ONLY — see tier tokens below */
+
+  /* The five-step peak ramp the /records/visualized donuts read from. A
+     SEQUENTIAL scale cannot keep one lightness direction across an inverting
+     ground: on black "best" is the brightest stop, on paper it is the darkest.
+     Each dark arm is byte-identical to the literal it replaces, and the light
+     arm re-derives the same ordering downward — 9.05 : 4.54 : 2.85 : 1.86 :
+     1.22 against the donut's own #efeae1 track, monotone, best first. */
+  --peak-band-1: light-dark(#57360a, #ffd24a);
+  --peak-band-5: light-dark(#945e00, #ffb627);
+  --peak-band-10: light-dark(#b3822f, #c98a2e);
+  --peak-band-40: light-dark(#b4ada0, #8a7a52);
+  --peak-band-rest: light-dark(#dad5cb, #5a5a62);
+  /* The "everything that is not the story" arc — the nominations a win rate is
+     measured against. Recessive in both themes, which is the whole point. */
+  --seg-rest: light-dark(#b8b2a6, #4a4a52);
 
   /* Certification tiers. These used to borrow --cyan and --silver, which also
      colour the Top 10 / Top 40 chart bands — two unrelated meanings sharing
@@ -248,7 +275,11 @@
   --tier-gold-edge: light-dark(rgba(138, 90, 0, 0.60), rgba(251, 180, 23, 0.37));
   --tier-diamond-edge: light-dark(rgba(11, 110, 126, 0.60), rgba(49, 161, 192, 0.50));
   --tier-silver-edge: light-dark(rgba(107, 107, 116, 0.60), rgba(132, 143, 158, 0.62));
-  --green: light-dark(#177a45, #3ed17f);   /* live / positive delta */
+  /* #177a45 measured 4.06:1 on the API page's own pale-green plate and 4.30
+     on the badge — both under AA at 11px. Deepened until the token clears
+     4.5 on every ground it lands on, page and plate alike (4.97 / 5.25 /
+     5.98 / 6.57). Dark is untouched. */
+  --green: light-dark(#146b3c, #3ed17f);   /* live / positive delta */
   /* The dot is not text, so it answers a 3:1 floor instead of 4.5 and stays
      greener on paper than the label beside it. */
   --green-dot: light-dark(#1f9a5a, #3ed17f);
@@ -374,7 +405,11 @@
      too (#ffd24a -> #ffb627). So it keeps its own dark value and takes the
      ink's light one. */
   --gold-bright-ink: light-dark(#945e00, #ffd24a);
+  /* A hover fill has to step AWAY from the resting state, and which way "away"
+     points depends on the ground: brighter on black, deeper on paper. */
+  --gold-hit: light-dark(#5f3c00, #ffd24a);
   --glow-base: light-dark(transparent, #e8b04b);
+  --spotify-glow-base: light-dark(transparent, #1db954);
   /* The halo behind masthead text. It exists to lift the wordmark and the nav
      links off a dark, busy scrim -- pure dark-room work. On paper it is a grey
      smudge sitting behind the logo, so it goes to nothing, the same way the
@@ -391,6 +426,13 @@
      paper. Not a colour, so not light-dark() — see the override block below. */
   --shadow-base: light-dark(#17140f, #000000);
   --shadow-strength: 1;
+  /* The gold wash's own dimmer, the same manoeuvre --shadow-strength makes for
+     shadows. An alpha picked on a black ground does not transfer: 16% of a
+     BRIGHT gold over near-black is a faint plate, while 16% of the DARK gold on
+     paper is a heavy tint — heavy enough that the one gold reading ON that
+     plate fell to 3.87:1. Scaled here rather than at 94 call sites, so a chip
+     keeps one alpha and the theme decides how much of it lands. */
+  --wash-strength: 1;
 
   /* Near-blacks, kept apart because they are four different inks doing three
      different jobs. --scrim (warm, chrome) is above; these are its relatives.
@@ -398,6 +440,11 @@
   --veil-base: light-dark(#f7f4ee, #0c0a09);
   --scrim-base: #0c0a09;   /* un-alpha'd warm scrim ink; map country borders */
   --scrim-cool: #0a0a0b;   /* the cool near-black used by four chrome bars */
+  /* The four chrome bars that used --scrim-cool for their own SURFACE. A bar is
+     not a dark-room device: it is the page's own top edge, and every piece of
+     ink on it themes. --scrim-cool stays for the things that ARE fixed (the
+     sheet's dimmer, map country borders). Dark is byte-identical. */
+  --veil-cool: light-dark(#f7f4ee, #0a0a0b);
   --scrim-deep: #080706;   /* the two modal dimmers */
   /* The matte behind a car photo. It was #0a0908 -- 1.01:1 against the page,
      so the tile had no edge and a gloss-black car ran straight into the page
@@ -463,6 +510,10 @@
   /* 0.31 is exactly .14/.45 — the ratio between the light and dark --shadow
      alphas, so every ad-hoc shadow thins by the same factor the named one does. */
   --shadow-strength: 0.31;
+  /* Same idea for the gold wash, measured rather than derived: 0.42 is the
+     most a chip's plate can take before the gold reading ON it drops under
+     4.5:1. */
+  --wash-strength: 0.42;
   --grain-opacity: 0.022;
 }
 
@@ -668,7 +719,7 @@ a {
   filter: none;
   mix-blend-mode: normal;
   opacity: 1;
-  box-shadow: 0 8px 30px rgba(255, 182, 39, 0.24);
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--gold-glow-base) 24%, transparent);
   /* The label rendered orange-on-gold until :hover — and the only thing hover
      changed was a transform, which promotes the button to its own compositing
      layer. So the colour was never wrong; the label was being composited
@@ -679,7 +730,7 @@ a {
 .btnPrimary:hover {
   /* Keeps the translateZ so the layer is never torn down and rebuilt on hover. */
   transform: translateY(-3px) translateZ(0);
-  box-shadow: 0 14px 44px rgba(255, 182, 39, 0.42);
+  box-shadow: 0 14px 44px color-mix(in srgb, var(--gold-glow-base) 42%, transparent);
 }
 .btnSecondary {
   /* var(--border) is only 1.29:1 against the page — below the 3:1 WCAG needs
@@ -690,15 +741,15 @@ a {
      over a 6% white fill. That clears the 3:1 WCAG floor for a control
      boundary, which the 0.12 hairline did not — so this resolves the contrast
      question rather than trading it off. */
-  border-color: rgba(245, 244, 240, 0.42);
+  border-color: var(--btn-edge);
   color: var(--text);
-  background: var(--bg-raised);
+  background: var(--btn-face);
 }
 .btnSecondary:hover {
   transform: translateY(-3px);
   border-color: var(--gold);
   color: var(--gold);
-  background: rgba(255, 255, 255, 0.06);
+  background: color-mix(in srgb, var(--white-wash-base) 6%, transparent);
 }
 
 /* -----------------------------------------------------------
@@ -710,6 +761,20 @@ a {
    light page it reads as a grey wash sitting on the paper, so on paper the bar
    is simply solid from the top and the scroll transition has nothing to do.
    --scrim itself themes, so the colour needs no override here. */
+/* The grain is an OVERLAY blend, which lightens wherever the noise is light.
+   Over dark mode's bright gold that reads as print texture; over the one gold
+   on paper — a dark ink — it lifts the whole word to a washed tan, so the
+   display heading stopped matching every other gold on the page. soft-light
+   applies the same texture without moving the base colour that far. */
+:root[data-theme="light"] .inkText {
+  background-blend-mode: soft-light, normal;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .inkText {
+    background-blend-mode: soft-light, normal;
+  }
+}
+
 :root[data-theme="light"] .navbar {
   background-color: var(--scrim);
   background-image: none;
@@ -888,16 +953,6 @@ a {
   border-radius: 2px;
   transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
 }
-.navToggle[aria-expanded="true"] .navToggleBar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-.navToggle[aria-expanded="true"] .navToggleBar:nth-child(2) {
-  opacity: 0;
-}
-.navToggle[aria-expanded="true"] .navToggleBar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
 /* -----------------------------------------------------------
    FOOTER — the design's five-column sitemap
    ----------------------------------------------------------- */
@@ -1034,7 +1089,7 @@ a {
   color: var(--gold-display);
   font-weight: 600;
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 182, 39, 0.4);
+  border-bottom: 1px solid color-mix(in srgb, var(--gold-wash-base) 40%, transparent);
   transition: border-color var(--dur) var(--ease);
 }
 .wikiLink:hover { border-bottom-color: var(--gold); }
@@ -1128,7 +1183,7 @@ a.fact:hover {
   height: 14px;
   border-radius: 50%;
   background: var(--gold-fill);
-  box-shadow: 0 0 0 4px rgba(232, 176, 75, 0.15);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--glow-base) 15%, transparent);
 }
 .tYear {
   font-family: var(--font-display), sans-serif;
@@ -1174,7 +1229,7 @@ a.fact:hover {
 
 /* Highlighted panel (e.g. current tour) */
 .panel {
-  background: linear-gradient(135deg, rgba(232, 176, 75, 0.1), rgba(192, 57, 43, 0.08));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--gold-wash-base) calc(10% * var(--wash-strength)), transparent), color-mix(in srgb, var(--red) 8%, transparent));
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 34px;
@@ -1210,7 +1265,7 @@ a.fact:hover {
 }
 .textarea { min-height: 140px; resize: vertical; }
 .success {
-  background: rgba(232, 176, 75, 0.1);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(10% * var(--wash-strength)), transparent);
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius);
   padding: 26px;
@@ -1334,7 +1389,7 @@ a.fact:hover {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: rgba(0, 0, 0, 0.78);
+  background: color-mix(in srgb, var(--scrim-deep) 78%, transparent);
   backdrop-filter: blur(6px);
   animation: fadeIn var(--dur) var(--ease);
 }
@@ -1404,7 +1459,7 @@ a.fact:hover {
 .spotifyBtn:hover {
   background: #1ed760;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(29, 185, 84, 0.3);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--spotify-glow-base) 30%, transparent);
 }
 .spotifyIcon {
   width: 18px;
@@ -1545,33 +1600,11 @@ a.fact:hover {
    1240 (below), hamburger under it. */
 @media (max-width: 1239px) {
   .navToggle { display: flex; }
-  .navLinks {
-    position: absolute;
-    top: 68px;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    gap: 0;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    padding: 6px 0 10px;
-    opacity: 0;
-    transform: translateY(-12px);
-    pointer-events: none;
-    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
-  }
-  .navLinks.navOpen {
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-  }
-  .navLinks li { width: 100%; }
-  .navLinks a {
-    display: block;
-    padding: 14px 24px;
-    font-size: 0.85rem;
-  }
-  .navLinks a::after { display: none; }
+  /* The links are GONE below this width, not hidden-but-openable. The inline
+     dropdown this block used to describe was superseded by the nav sheet; its
+     .navOpen class had no writer left, so the rules were an absolutely
+     positioned panel at opacity 0 that nothing could ever reveal. */
+  .navLinks { display: none; }
 }
 
 /* ===========================================================
@@ -1679,13 +1712,13 @@ summary:focus-visible,
    tinting a chip's dot or count span is not the state. */
 button[class*="hip"]:active,
 button[aria-pressed]:active {
-  background: rgba(255, 182, 39, 0.10);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(10% * var(--wash-strength)), transparent);
 }
 
 /* Accordion header. The two disclosure surfaces on the site are the live-charts
    release rows and the per-board source note. */
 summary:hover {
-  background: rgba(255, 182, 39, 0.05);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent);
 }
 
 /* A table row's focus ring goes INSIDE it. The global ring sits 2px outside,
@@ -1756,7 +1789,7 @@ a[class*="__certRow"]:focus-visible,
 .btn:disabled:hover,
 .btn[aria-disabled="true"]:hover {
   transform: none;
-  box-shadow: 0 8px 30px rgba(255, 182, 39, 0.24);
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--gold-glow-base) 24%, transparent);
 }
 
 .btnGhost {
@@ -1766,10 +1799,10 @@ a[class*="__certRow"]:focus-visible,
   padding: 0 8px;
 }
 .btnGhost:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) 10%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(10% * var(--wash-strength)), transparent);
 }
 .btnGhost:active {
-  background: color-mix(in srgb, var(--gold-wash-base) 18%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(18% * var(--wash-strength)), transparent);
 }
 
 /* Icon-only button. 36px on a mouse, which is the base sheet's size and what
@@ -1807,7 +1840,7 @@ a[class*="__certRow"]:focus-visible,
   border: 1px solid transparent;
   white-space: nowrap;
 }
-.tagAccent   { background: color-mix(in srgb, var(--gold-wash-base) 13%, transparent); color: var(--gold); }
+.tagAccent   { background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); color: var(--gold); }
 .tagNeutral  { background: rgba(245, 244, 240, 0.08); color: var(--text); }
 .tagOutline  { border-color: var(--gold); color: var(--gold); background: transparent; }
 .tagDiamond  { background: rgba(49, 161, 192, 0.16); color: var(--tier-diamond-ink); }
@@ -1835,7 +1868,7 @@ a[class*="__certRow"]:focus-visible,
   border-bottom: 1px solid var(--line);
 }
 .tableBase tbody tr:hover {
-  background: rgba(255, 182, 39, 0.06);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
 }
 
 /* Segmented control. The design drives it with radio inputs so it works
@@ -1864,7 +1897,7 @@ a[class*="__certRow"]:focus-visible,
   opacity: 0;
   pointer-events: none;
 }
-.segOpt:has(input:checked) { background: var(--color-accent); color: var(--color-bg); }
+.segOpt:has(input:checked) { background: var(--gold-fill); color: var(--ink-on-gold); }
 .segOpt:not(:has(input:checked)):hover {
   background: var(--bg-raised);
 }
@@ -1928,7 +1961,7 @@ a[class*="__certRow"]:focus-visible,
   background-image: none;
   color: var(--text);
   -webkit-text-fill-color: var(--text);
-  border-color: rgba(245, 244, 240, 0.42);
+  border-color: var(--btn-edge);
   box-shadow: none;
 }
 .navStatCard:hover {

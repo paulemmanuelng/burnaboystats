@@ -60,10 +60,10 @@ const PILLS_SHOWN = 12;
 type Band = "one" | "top10" | "top40" | "rest";
 const bandOf = (p: number): Band => (p === 1 ? "one" : p <= 10 ? "top10" : p <= 40 ? "top40" : "rest");
 const BAND: Record<Band, { color: string; border: string; bg: string }> = {
-  one: { color: "var(--gold)", border: "var(--gold)", bg: "rgba(255, 182, 39, 0.13)" },
-  top10: { color: "var(--cyan)", border: "rgba(143, 227, 240, 0.5)", bg: "transparent" },
-  top40: { color: "var(--silver)", border: "rgba(223, 226, 232, 0.4)", bg: "transparent" },
-  rest: { color: "var(--text-muted)", border: "rgba(155, 155, 163, 0.35)", bg: "transparent" },
+  one: { color: "var(--gold)", border: "var(--gold)", bg: "color-mix(in srgb, var(--gold-wash-base) calc(13% * var(--wash-strength)), transparent)" },
+  top10: { color: "var(--cyan)", border: "color-mix(in srgb, var(--cyan) 50%, transparent)", bg: "transparent" },
+  top40: { color: "var(--silver)", border: "color-mix(in srgb, var(--silver) 40%, transparent)", bg: "transparent" },
+  rest: { color: "var(--text-muted)", border: "color-mix(in srgb, var(--text-muted) 35%, transparent)", bg: "transparent" },
 };
 
 export default function MobileOfficialCharts({

@@ -26,7 +26,7 @@
 /* Charted — a warm neutral. No. 1 — gold. The two tiers are the whole point of
    the grid, so they carry the only colour on it. */
 .cellOn { background: linear-gradient(color-mix(in srgb, var(--ink-wash-base) 7%, transparent), color-mix(in srgb, var(--ink-wash-base) 7%, transparent)), var(--bg); }
-.cellOne { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 30%, transparent), color-mix(in srgb, var(--gold-wash-base) 30%, transparent)), var(--bg); }
+.cellOne { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(30% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 30%, transparent)), var(--bg); }
 
 .flag { font-size: 17px; line-height: 1; }
 
@@ -64,7 +64,7 @@
 }
 .legendItem { display: flex; align-items: center; gap: 7px; }
 .swatch { width: 11px; height: 11px; display: block; }
-.swatchOne { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 30%, transparent), color-mix(in srgb, var(--gold-wash-base) 30%, transparent)), var(--bg); border: 1px solid var(--gold); }
+.swatchOne { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(30% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 30%, transparent)), var(--bg); border: 1px solid var(--gold); }
 .swatchOn { background: linear-gradient(color-mix(in srgb, var(--ink-wash-base) 7%, transparent), color-mix(in srgb, var(--ink-wash-base) 7%, transparent)), var(--bg); border: 1px solid var(--line); }
 .status { margin-left: auto; }
 

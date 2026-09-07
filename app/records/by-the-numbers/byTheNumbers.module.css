@@ -74,8 +74,8 @@
   transition: background var(--dur-fast) var(--ease);
 }
 /* The four the page is built around get a wash and larger type. */
-.statBig { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 5%, transparent), color-mix(in srgb, var(--gold-wash-base) 5%, transparent)), var(--bg); }
-.stat:hover { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 9%, transparent), color-mix(in srgb, var(--gold-wash-base) 9%, transparent)), var(--bg); color: var(--text); }
+.statBig { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 5%, transparent)), var(--bg); }
+.stat:hover { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(9% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 9%, transparent)), var(--bg); color: var(--text); }
 .numRow { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .num {
   font-family: var(--font-anton), sans-serif;
