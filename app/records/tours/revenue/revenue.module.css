@@ -72,7 +72,7 @@
     background var(--dur-fast) var(--ease);
 }
 .chip:hover { border-color: var(--gold); color: var(--gold); }
-.chipOn { background: color-mix(in srgb, var(--ember) 16%, transparent); border-color: var(--ember); color: var(--ember); }
+.chipOn { background: color-mix(in srgb, var(--ember) calc(16% * var(--wash-strength)), transparent); border-color: var(--ember); color: var(--ember); }
 .chipCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: 0.7; }
 .shown {
   margin-left: auto;
@@ -107,7 +107,7 @@
 .row { transition: background var(--dur-fast) var(--ease); }
 /* A faint wash on his rows, so the shape of the board — how much of it is his —
    reads before any single number does. */
-.rowHis { background: color-mix(in srgb, var(--gold-wash-base) 4%, transparent); }
+.rowHis { background: color-mix(in srgb, var(--gold-wash-base) calc(4% * var(--wash-strength)), transparent); }
 .row:hover { background: var(--bg-raised); }
 .right { text-align: right; }
 

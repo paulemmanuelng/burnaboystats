@@ -479,7 +479,7 @@
 .railPeak {
   padding: 3px 8px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--gold-wash-base) 14%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent);
   color: var(--gold);
   white-space: nowrap;
 }

@@ -356,7 +356,7 @@
   letter-spacing: 0.06em;
   white-space: nowrap;
 }
-.one { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 22%, transparent); color: var(--gold); }
+.one { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(22% * var(--wash-strength)), transparent); color: var(--gold); }
 .top10 { border-color: color-mix(in srgb, var(--cyan) 55%, transparent); color: var(--cyan); }
 .top40 { border-color: color-mix(in srgb, var(--silver) 45%, transparent); color: var(--silver); }
 .rest { border-color: var(--line); color: var(--muted); }
@@ -374,7 +374,7 @@
   color: var(--muted);
 }
 .legendDot { width: 9px; height: 9px; border-radius: 50%; display: block; }
-.dotOne { background: color-mix(in srgb, var(--gold-wash-base) 22%, transparent); border: 1px solid var(--gold); }
+.dotOne { background: color-mix(in srgb, var(--gold-wash-base) calc(22% * var(--wash-strength)), transparent); border: 1px solid var(--gold); }
 .dotTen { border: 1px solid color-mix(in srgb, var(--cyan) 55%, transparent); }
 .dotForty { border: 1px solid color-mix(in srgb, var(--silver) 45%, transparent); }
 
@@ -431,7 +431,7 @@
 .chartCtaGlow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--gold-wash-base) 14%, transparent) 0%, rgb(from var(--gold-wash-base) r g b / 0) 58%);
+  background: radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent) 0%, rgb(from var(--gold-wash-base) r g b / 0) 58%);
   pointer-events: none;
 }
 .chartCtaBody { position: relative; display: block; }
@@ -490,7 +490,7 @@
   text-transform: uppercase;
   transition: background 240ms var(--ease), color 240ms var(--ease);
 }
-.chartCta:hover .chartCtaArrow { background: var(--gold); color: #0a0a0b; }
+.chartCta:hover .chartCtaArrow { background: var(--gold-fill); color: var(--ink-on-gold); }
 
 @media (max-width: 760px) {
   .chartPad { padding: 26px 18px 0; }

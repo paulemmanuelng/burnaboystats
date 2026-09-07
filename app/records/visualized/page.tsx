@@ -223,10 +223,10 @@ const scatter: ScatterPoint[] = revenueShows
 const tiers: Record<string, number> = { Diamond: 0, Platinum: 0, Gold: 0, Silver: 0 };
 for (const it of [...albums, ...singles, ...features]) for (const c of it.certs) tiers[c.level]++;
 const tierSegments: DonutSeg[] = [
-  { label: "Diamond", value: tiers.Diamond, color: "#8fe3f0" },
-  { label: "Platinum", value: tiers.Platinum, color: "#dfe2e8" },
-  { label: "Gold", value: tiers.Gold, color: "#ffb627" },
-  { label: "Silver", value: tiers.Silver, color: "#b8bcc4" },
+  { label: "Diamond", value: tiers.Diamond, color: "var(--tier-diamond-ink)" },
+  { label: "Platinum", value: tiers.Platinum, color: "var(--tier-platinum-ink)" },
+  { label: "Gold", value: tiers.Gold, color: "var(--tier-gold-ink)" },
+  { label: "Silver", value: tiers.Silver, color: "var(--tier-silver-ink)" },
 ];
 
 // ── Donut: chart entries by how high they peaked ──
@@ -244,11 +244,11 @@ for (const r of [...albumCharts, ...singleCharts, ...featureCharts])
 const totalEntries = Object.values(peakBands).reduce((a, b) => a + b, 0);
 const top5Count = peakBands["No. 1"] + peakBands["Top 5"];
 const peakSegments: DonutSeg[] = [
-  { label: "No. 1", value: peakBands["No. 1"], color: "#ffd24a" },
-  { label: "Top 5", value: peakBands["Top 5"], color: "#ffb627" },
-  { label: "Top 10", value: peakBands["Top 10"], color: "#c98a2e" },
-  { label: "Top 40", value: peakBands["Top 40"], color: "#8a7a52" },
-  { label: "41+", value: peakBands["41+"], color: "#5a5a62" },
+  { label: "No. 1", value: peakBands["No. 1"], color: "var(--peak-band-1)" },
+  { label: "Top 5", value: peakBands["Top 5"], color: "var(--peak-band-5)" },
+  { label: "Top 10", value: peakBands["Top 10"], color: "var(--peak-band-10)" },
+  { label: "Top 40", value: peakBands["Top 40"], color: "var(--peak-band-40)" },
+  { label: "41+", value: peakBands["41+"], color: "var(--peak-band-rest)" },
 ];
 
 // ── Comparison: most-streamed African artists in 2025 (Burna vs peers) ──
@@ -281,8 +281,8 @@ const africanStreams: BarItem[] = (streamRow2025?.entries ?? [])
 const totalNoms = ceremonies.reduce((n, c) => n + c.noms.length, 0);
 const winRate = Math.round((totalWins / totalNoms) * 100);
 const winRateSegments: DonutSeg[] = [
-  { label: "Won", value: totalWins, color: "#ffb627" },
-  { label: "Nominated", value: totalNoms - totalWins, color: "#4a4a52" },
+  { label: "Won", value: totalWins, color: "var(--gold-fill)" },
+  { label: "Nominated", value: totalNoms - totalWins, color: "var(--seg-rest)" },
 ];
 
 // ── Choropleth: best chart peak by country ──

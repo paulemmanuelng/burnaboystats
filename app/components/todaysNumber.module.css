@@ -15,7 +15,7 @@
      running the identical pair, which turned the whole top of the page into one
      warm field. Now the numeral is the only bright thing in it. */
   background-color: var(--bg-soft);
-  background-image: radial-gradient(110% 85% at 0% 0%, color-mix(in srgb, var(--gold-wash-base) 14%, transparent), transparent 58%);
+  background-image: radial-gradient(110% 85% at 0% 0%, color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent), transparent 58%);
   /* No border. Job 3 asks for "border 1px var(--line)", but that rule is written
      for the mobile card, which floats. Here the panel is a full-bleed cell of
      the hero grid — it is already enclosed by the column's border-left, the

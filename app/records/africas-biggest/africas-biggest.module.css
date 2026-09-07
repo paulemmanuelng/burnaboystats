@@ -79,7 +79,7 @@
 .barValue { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); }
 /* Only the newest month is lit — the rest are the shape it arrived at. */
 .barValueNow { color: var(--gold); }
-.barFill { width: 100%; background: color-mix(in srgb, var(--gold-wash-base) 28%, transparent); display: block; }
+.barFill { width: 100%; background: color-mix(in srgb, var(--gold-wash-base) calc(28% * var(--wash-strength)), transparent); display: block; }
 .barFillNow { background: linear-gradient(180deg, var(--gold), var(--grad-b)); }
 .barMonth {
   font-family: var(--font-mono), monospace;
@@ -130,7 +130,7 @@
   color: var(--gold);
   padding: 4px 10px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--gold-wash-base) 13%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(13% * var(--wash-strength)), transparent);
 }
 /* Hairline seams inside a bounding border, so the boards read as one table. */
 .boxGrid {
@@ -161,7 +161,7 @@
    and washed the whole board out. The gradient trick keeps the gold tint while
    compositing against the page colour, whatever the seam bed becomes. */
 .boxFeatured {
-  background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 6%, transparent), color-mix(in srgb, var(--gold-wash-base) 6%, transparent)), var(--bg);
+  background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 6%, transparent)), var(--bg);
   grid-column: 1 / -1;
 }
 .boxHead { display: flex; align-items: flex-start; gap: 12px; }
@@ -208,7 +208,7 @@
   padding: 11px 0;
   border-bottom: 1px solid var(--line);
 }
-.entryHim { background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent); }
+.entryHim { background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent); }
 .entryRank {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-small);
@@ -267,7 +267,7 @@
   font-size: 12.5px;
   font-weight: 600;
 }
-.chipHim { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 14%, transparent); color: var(--gold); }
+.chipHim { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent); color: var(--gold); }
 .chipRank { font-family: var(--font-mono), monospace; font-size: 11px; font-weight: 700; opacity: 0.7; }
 .chipValue { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--text-muted); }
 

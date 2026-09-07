@@ -52,7 +52,7 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .pick:hover { border-color: var(--gold); color: var(--text); }
-.pickOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 13%, transparent); color: var(--gold); }
+.pickOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(13% * var(--wash-strength)), transparent); color: var(--gold); }
 .pickCover { width: 30px; height: 30px; border-radius: 999px; object-fit: cover; flex: none; }
 .pickYear { font-family: var(--font-mono), monospace; font-size: 11px; opacity: 0.65; padding-right: 6px; }
 
@@ -165,7 +165,7 @@
 }
 .legendItem { display: flex; align-items: center; gap: 6px; }
 .legendDot { width: 10px; height: 10px; border-radius: 999px; display: block; }
-.dotOne { background: color-mix(in srgb, var(--gold-wash-base) 22%, transparent); border: 1px solid var(--gold); }
+.dotOne { background: color-mix(in srgb, var(--gold-wash-base) calc(22% * var(--wash-strength)), transparent); border: 1px solid var(--gold); }
 .dotTen { border: 1px solid color-mix(in srgb, var(--cyan) 55%, transparent); }
 .dotForty { border: 1px solid color-mix(in srgb, var(--silver) 45%, transparent); }
 
@@ -188,7 +188,7 @@
   flex-direction: column;
 }
 /* The first card is the song's headline figure, so it takes the tint. */
-.numCardLead { background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
+.numCardLead { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
 .numValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -247,7 +247,10 @@
 }
 /* Peak bands carry meaning and are never recoloured: No. 1 gold, Top 10 cyan,
    Top 40 silver, beyond muted. */
-.one { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 22%, transparent); color: var(--gold); }
+.one { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(22% * var(--wash-strength)), transparent); color: var(--gold); }
+/* 22% is the heaviest gold plate on the site and the only one carrying gold
+   ink, so it is the one --wash-strength alone does not rescue: 4.39:1. */
+:global(:root[data-theme="light"]) .one { background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent); }
 .top10 { border-color: color-mix(in srgb, var(--cyan) 55%, transparent); color: var(--cyan); }
 .top40 { border-color: color-mix(in srgb, var(--silver) 45%, transparent); color: var(--silver); }
 .rest { border-color: var(--border); color: var(--text-muted); }

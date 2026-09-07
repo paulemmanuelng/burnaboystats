@@ -61,10 +61,10 @@ const TIER_INK: Record<string, string> = {
 // The dark stop is DERIVED from the same token rather than typed, so the ramp
 // cannot drift from the ink again, and it follows the token into either theme.
 const TIER_GRAD: Record<string, string> = {
-  Diamond: "linear-gradient(90deg, color-mix(in srgb, var(--tier-diamond) 58%, var(--bg)), var(--tier-diamond))",
-  Platinum: "linear-gradient(90deg, color-mix(in srgb, var(--tier-platinum) 58%, var(--bg)), var(--tier-platinum))",
-  Gold: "linear-gradient(90deg, color-mix(in srgb, var(--tier-gold) 58%, var(--bg)), var(--tier-gold))",
-  Silver: "linear-gradient(90deg, color-mix(in srgb, var(--tier-silver) 58%, var(--bg)), var(--tier-silver))",
+  Diamond: "linear-gradient(90deg, color-mix(in srgb, var(--tier-diamond-ink) 58%, var(--bg)), var(--tier-diamond-ink))",
+  Platinum: "linear-gradient(90deg, color-mix(in srgb, var(--tier-platinum-ink) 58%, var(--bg)), var(--tier-platinum-ink))",
+  Gold: "linear-gradient(90deg, color-mix(in srgb, var(--tier-gold-ink) 58%, var(--bg)), var(--tier-gold-ink))",
+  Silver: "linear-gradient(90deg, color-mix(in srgb, var(--tier-silver-ink) 58%, var(--bg)), var(--tier-silver-ink))",
 };
 
 // 2013–2025 is thirteen years, not twelve — the span is inclusive of both ends.

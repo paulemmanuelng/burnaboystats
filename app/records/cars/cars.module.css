@@ -219,7 +219,7 @@
 
 /* ── A note on this list ──────────────────────────────────────────────── */
 .noteWrap { max-width: 1240px; margin: 0 auto; padding: 40px 40px 0; }
-.note { padding: 24px 28px; border: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
+.note { padding: 24px 28px; border: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
 .noteKicker {
   font-family: var(--font-mono), monospace; font-weight: 700;
   font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted);
@@ -361,6 +361,6 @@
 }
 .mNote {
   margin: 20px 18px 0; padding: 14px 16px;
-  border: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent);
 }
 .mNoteText { font-size: 12px; color: var(--text-muted); line-height: 1.55; margin: 0; }

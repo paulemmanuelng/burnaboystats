@@ -164,7 +164,7 @@
   white-space: nowrap;
 }
 .railTight .chip { padding: 0 14px; }
-.chipOn { background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent); border-color: var(--gold); color: var(--gold); }
+.chipOn { background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); border-color: var(--gold); color: var(--gold); }
 .chipFlag { font-size: 13px; }
 
 /* ── Deep-linked single-release focus (?song=…) ───────────────────────── */
@@ -180,7 +180,7 @@
   padding: 11px 14px;
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent);
   font-size: 13px;
   line-height: 1.45;
   color: var(--text);

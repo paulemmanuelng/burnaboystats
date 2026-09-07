@@ -16,7 +16,7 @@
 .trigger:hover {
   border-color: var(--gold-dim);
   color: var(--text);
-  background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
 }
 .triggerLabel {
   letter-spacing: 0.02em;
@@ -36,7 +36,7 @@
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: rgba(6, 6, 8, 0.72);
+  background: color-mix(in srgb, var(--scrim-deep) 72%, transparent);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -134,7 +134,7 @@
   transition: background 0.1s ease;
 }
 .resultActive {
-  background: color-mix(in srgb, var(--gold-wash-base) 12%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(12% * var(--wash-strength)), transparent);
 }
 .resultMain {
   min-width: 0;

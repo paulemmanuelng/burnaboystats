@@ -76,7 +76,7 @@
 .installed {
   color: var(--gold);
   border: 1px solid var(--gold-dim);
-  background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent);
 }
 .hint {
   color: var(--text-muted);

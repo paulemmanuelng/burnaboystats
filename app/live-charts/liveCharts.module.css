@@ -68,7 +68,7 @@
     border-color var(--dur) var(--ease);
 }
 .summary:hover .caret {
-  background: color-mix(in srgb, var(--gold-wash-base) 14%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent);
   border-color: var(--gold);
 }
 .release[open] .caret { transform: rotate(180deg); }
@@ -172,10 +172,16 @@
 .chipNo1 {
   padding: 2px 8px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent);
   color: var(--gold-bright-ink);
   font-size: 0.78rem;
   white-space: nowrap;
+}
+/* This plate sits on .chip, which is itself a 2% wash — on paper two washes
+   that both darken, so the gold on top landed at 4.37:1 where every other
+   16% chip on the site clears 4.5. Thinned only where the stacking bites. */
+:global(:root[data-theme="light"]) .chipNo1 {
+  background: color-mix(in srgb, var(--gold-wash-base) 3.5%, transparent);
 }
 .total {
   grid-column: 3;
@@ -375,7 +381,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(140deg, color-mix(in srgb, var(--gold-wash-base) 22%, transparent), color-mix(in srgb, var(--gold-wash-base) 6%, transparent));
+  background: linear-gradient(140deg, color-mix(in srgb, var(--gold-wash-base) calc(22% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 6%, transparent));
   border: 1px solid color-mix(in srgb, var(--gold-ink) 28%, transparent);
   color: var(--gold);
   font-family: var(--font-mono), monospace;
@@ -443,7 +449,7 @@
   padding: 16px 20px;
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent);
   font-size: 14px;
   line-height: 1.6;
   max-width: 96ch;

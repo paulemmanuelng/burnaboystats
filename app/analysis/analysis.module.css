@@ -213,7 +213,7 @@
 
 /* ── How to check this ──────────────────────────────────────────────────── */
 .methodPad { padding: 56px 40px 0; }
-.method { padding: 28px 32px; border: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
+.method { padding: 28px 32px; border: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
 .methodH {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

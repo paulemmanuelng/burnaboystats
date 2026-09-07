@@ -5,17 +5,18 @@
  *
  * app/error.tsx cannot catch this one. It renders INSIDE the root layout, so if
  * the layout is what failed there is nothing left to render it into — and
- * without this file Next falls back to its own unstyled white page, which on a
- * site that is otherwise entirely dark reads as a different site altogether, or
- * as a domain that has been taken over.
+ * without this file Next falls back to its own unstyled white page, which reads
+ * as a different site altogether, or as a domain that has been taken over.
  *
  * That is why this file replaces <html> and <body> rather than reusing any of
  * the site's chrome: at this point nothing above it can be trusted to exist.
  * For the same reason the styles are inline. Not a stylistic choice — a global
  * error may be a stylesheet that failed to load, and a page that depends on the
  * stylesheet to explain a stylesheet failure explains nothing. The colours are
- * the site's own tokens written out literally: #0a0a0b ground, #f5f4f0 text,
- * #ffb627 gold.
+ * the site's own tokens written out literally, both arms of each: a reader in
+ * light mode who hit this got a full-viewport black page. light-dark() needs no
+ * stylesheet and no theme script — only the color-scheme declared on <html>
+ * below — which is why it is the one theming mechanism that still works here.
  *
  * The copy follows app/error.tsx deliberately — on a statistics site the first
  * worry a reader has is that the numbers are wrong, so both boundaries say the
@@ -30,7 +31,7 @@ export default function GlobalError({
   reset: () => void;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ colorScheme: "light dark" }}>
       <body
         style={{
           margin: 0,
@@ -38,8 +39,8 @@ export default function GlobalError({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0a0a0b",
-          color: "#f5f4f0",
+          background: "light-dark(#f7f4ee, #0a0a0b)",
+          color: "light-dark(#17140f, #f5f4f0)",
           fontFamily:
             "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
           padding: "24px",
@@ -52,7 +53,7 @@ export default function GlobalError({
               fontSize: "11px",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
-              color: "#ffb627",
+              color: "light-dark(#945e00, #ffb627)",
             }}
           >
             Burna Boy Stats
@@ -60,7 +61,7 @@ export default function GlobalError({
           <h1 style={{ margin: "0 0 14px", fontSize: "28px", lineHeight: 1.15 }}>
             Something broke on our side
           </h1>
-          <p style={{ margin: "0 0 24px", fontSize: "16px", lineHeight: 1.6, color: "#a5a29b" }}>
+          <p style={{ margin: "0 0 24px", fontSize: "16px", lineHeight: 1.6, color: "light-dark(#5f584f, #a5a29b)" }}>
             The page didn&apos;t load. This is a fault here, not a problem with your
             connection — the figures themselves are fine.
           </p>
@@ -72,9 +73,9 @@ export default function GlobalError({
               onClick={() => reset()}
               style={{
                 appearance: "none",
-                border: "1px solid #ffb627",
-                background: "#ffb627",
-                color: "#0a0a0b",
+                border: "1px solid light-dark(#945e00, #ffb627)",
+                background: "light-dark(#945e00, #ffb627)",
+                color: "light-dark(#ffffff, #14100a)",
                 fontSize: "15px",
                 fontWeight: 600,
                 padding: "12px 20px",
@@ -94,8 +95,8 @@ export default function GlobalError({
             <a
               href="/"
               style={{
-                border: "1px solid #2a2a2e",
-                color: "#f5f4f0",
+                border: "1px solid light-dark(#d9d2c6, #2a2a2e)",
+                color: "light-dark(#17140f, #f5f4f0)",
                 fontSize: "15px",
                 fontWeight: 600,
                 padding: "12px 20px",

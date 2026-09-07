@@ -53,7 +53,7 @@
    something different from "here is a count". */
 .badgeLive { border-color: color-mix(in srgb, var(--green) 40%, transparent); background: color-mix(in srgb, var(--green) 10%, transparent); color: var(--green); }
 .badgeDot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: block; }
-.badgeLicence { border-color: var(--gold); background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 13%, transparent), color-mix(in srgb, var(--gold-wash-base) 13%, transparent)), var(--bg); color: var(--gold); }
+.badgeLicence { border-color: var(--gold); background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(13% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 13%, transparent)), var(--bg); color: var(--gold); }
 
 /* ── Sections ───────────────────────────────────────────────────────────── */
 .sectionPad { padding: 48px 40px 0; }
@@ -172,7 +172,7 @@
 .blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule-soft); }
 .block { background: var(--bg); padding: 28px 30px; }
 /* The licence block is the one with a condition attached, so it carries the tint. */
-.blockGold { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 5%, transparent), color-mix(in srgb, var(--gold-wash-base) 5%, transparent)), var(--bg); }
+.blockGold { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 5%, transparent)), var(--bg); }
 .blockH {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

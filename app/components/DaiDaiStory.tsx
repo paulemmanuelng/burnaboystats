@@ -181,7 +181,7 @@ function Scene({ scene, props }: { scene: SceneKey; props: Props }) {
           <span className={styles.sceneLabel}>{c.certsLabel}</span>
           <span className={styles.sceneNote}>{c.certsNote}</span>
           <span className={styles.tierDots}>
-            <i style={{ background: "#dfe2e8" }} /> <i style={{ background: "var(--gold)" }} />
+            <i style={{ background: "var(--tier-platinum-ink)" }} /> <i style={{ background: "var(--gold)" }} />
           </span>
           <Link href="/certifications#release=Dai%20Dai" className={styles.sceneLink}>
             {c.certsLink}

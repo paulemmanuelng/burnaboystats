@@ -21,7 +21,7 @@
   padding-top: calc(12px + env(safe-area-inset-top, 0px));
   padding-left: calc(18px + env(safe-area-inset-left, 0px));
   padding-right: calc(18px + env(safe-area-inset-right, 0px));
-  background: color-mix(in srgb, var(--scrim-cool) 94%, transparent);
+  background: color-mix(in srgb, var(--veil-cool) 94%, transparent);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }

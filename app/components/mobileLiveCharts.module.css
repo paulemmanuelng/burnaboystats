@@ -18,7 +18,7 @@
   position: sticky;
   top: 0;
   z-index: 5;
-  background: color-mix(in srgb, var(--scrim-cool) 95%, transparent);
+  background: color-mix(in srgb, var(--veil-cool) 95%, transparent);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   padding: 12px 18px;
@@ -104,7 +104,7 @@
   padding: 12px 14px;
   border: 1px solid var(--gold-dim);
   border-radius: 8px;
-  background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent);
   font-size: 12.5px;
   line-height: 1.5;
 }
@@ -201,7 +201,7 @@
 /* ── Charting now ─────────────────────────────────────────────────────── */
 .list { border-top: 1px solid var(--line); margin-top: 8px; }
 .row { border-bottom: 1px solid var(--line); }
-.rowOpen { background: color-mix(in srgb, var(--gold-wash-base) 4%, transparent); }
+.rowOpen { background: color-mix(in srgb, var(--gold-wash-base) calc(4% * var(--wash-strength)), transparent); }
 /* The whole row is the control — a 40px cover plus two lines of text clears
    the 44px tap-target floor on its own. */
 .rowBtn {

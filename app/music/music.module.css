@@ -28,7 +28,7 @@
 }
 .songCard:hover {
   border-color: var(--gold-dim);
-  background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent);
 }
 .songCover {
   width: 72px;
@@ -297,7 +297,7 @@
   font: inherit;
   transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.wideCard:hover { border-color: var(--gold-dim); background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
+.wideCard:hover { border-color: var(--gold-dim); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
 .wideCover {
   width: 132px;
   height: 132px;

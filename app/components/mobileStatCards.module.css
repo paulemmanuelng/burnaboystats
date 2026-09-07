@@ -114,7 +114,7 @@
   white-space: nowrap;
   cursor: pointer;
 }
-.chipOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent); color: var(--gold); }
+.chipOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); color: var(--gold); }
 
 /* ── The card preview ─────────────────────────────────────────────────── */
 .stage { padding: 0 18px;   position: relative; /* anchors the failed overlay */

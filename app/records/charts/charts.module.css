@@ -18,7 +18,7 @@
   transition: background 0.18s ease, padding-left 0.18s ease;
 }
 .row:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
   border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
   padding-left: 16px;
 }
@@ -68,7 +68,7 @@
   background: transparent;
 }
 .flag { font-size: 0.92rem; line-height: 1; }
-.one { color: var(--gold); border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 12%, transparent); }
+.one { color: var(--gold); border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(12% * var(--wash-strength)), transparent); }
 .top10 { color: var(--cyan); border-color: color-mix(in srgb, var(--cyan) 50%, transparent); }
 .top40 { color: var(--silver); border-color: color-mix(in srgb, var(--silver) 40%, transparent); }
 .rest { color: var(--peak-rest); border-color: color-mix(in srgb, var(--peak-rest) 40%, transparent); }
@@ -132,7 +132,7 @@
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 .fChip:hover { border-color: var(--gold-dim); color: var(--text); }
-.fChipOn { background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent); border-color: var(--gold); color: var(--gold); }
+.fChipOn { background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); border-color: var(--gold); color: var(--gold); }
 .filterMeta { display: flex; align-items: center; gap: 14px; font-size: 0.85rem; color: var(--text-muted); }
 .filterMeta b { color: var(--gold); }
 .clearBtn {
@@ -204,7 +204,7 @@
   margin-bottom: 14px;
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent);
   font-size: 0.9rem;
   color: var(--text);
 }
@@ -287,8 +287,8 @@
   border-bottom: 1px solid var(--line);
   vertical-align: middle;
 }
-.table tbody tr:hover { background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
-.rowOne { background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent); }
+.table tbody tr:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.rowOne { background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent); }
 .rowOne:hover { background: var(--gold-wash); }
 .tdSong { min-width: 170px; }
 .tSong { display: block; font-weight: 600; color: var(--text); }
@@ -483,7 +483,7 @@
 .legendItem { display: flex; align-items: center; gap: 6px; }
 .legendDot { width: 9px; height: 9px; border-radius: 999px; display: block; }
 /* The same three bands the peak chips use. */
-.legendOne { background: color-mix(in srgb, var(--gold-wash-base) 20%, transparent); border: 1px solid var(--gold); }
+.legendOne { background: color-mix(in srgb, var(--gold-wash-base) calc(20% * var(--wash-strength)), transparent); border: 1px solid var(--gold); }
 .legendTen { border: 1px solid color-mix(in srgb, var(--cyan) 50%, transparent); }
 .legendForty { border: 1px solid color-mix(in srgb, var(--silver) 40%, transparent); }
 

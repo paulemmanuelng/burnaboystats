@@ -54,7 +54,7 @@
   transition: background 0.18s ease, padding-left 0.18s ease;
 }
 .certRow:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
   border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
   padding-left: 16px;
 }
@@ -147,7 +147,7 @@
   margin: 26px 0 4px;
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent);
   font-size: 0.9rem;
   color: var(--text);
 }
@@ -199,7 +199,7 @@
   color: var(--text);
 }
 .fChipOn {
-  background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent);
   border-color: var(--gold);
   color: var(--gold);
 }
@@ -252,7 +252,7 @@
   padding: 14px 22px;
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent);
   color: var(--gold-bright-ink);
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -264,7 +264,7 @@
 }
 .yearBtn:hover {
   border-color: var(--gold);
-  background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent);
   transform: translateY(-2px);
 }
 .yearBtnOn {
@@ -600,7 +600,7 @@
 }
 .fChip:hover { border-color: var(--gold-dim); color: var(--text); }
 .fChipOn {
-  background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent);
   border-color: var(--gold);
   color: var(--gold);
 }
@@ -768,7 +768,7 @@
   padding: 0 22px;
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent);
   color: var(--gold-bright-ink);
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */

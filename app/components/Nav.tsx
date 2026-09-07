@@ -10,10 +10,8 @@ import SearchPalette from "./SearchPalette";
 import { hasOwnMobileChrome } from "../lib/mobileScreens";
 
 export default function Nav() {
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const close = () => setOpen(false);
 
   // Give the nav a solid, blurred backdrop once the user scrolls off the hero,
   // so links stay legible over album art and section titles below.
@@ -30,10 +28,10 @@ export default function Nav() {
 
   return (
     <header
-      className={`navbar${scrolled || open ? " navScrolled" : ""}${ownChrome ? " navDesktopOnly" : ""}`}
+      className={`navbar${scrolled ? " navScrolled" : ""}${ownChrome ? " navDesktopOnly" : ""}`}
     >
       <nav className="navInner container" aria-label="Primary">
-        <Link href="/" className="brand" onClick={close}>
+        <Link href="/" className="brand">
           {/* Mark before the wordmark, 22px in the 68px bar, per LOGO.md. The
               text stays live — it already matches the wordmark's own rendering,
               and it is what a screen reader announces. */}
@@ -87,14 +85,13 @@ export default function Nav() {
             <span className="navToggleBar" />
           </button>
 
-          <ul id="primary-menu" className={`navLinks ${open ? "navOpen" : ""}`}>
+          <ul id="primary-menu" className="navLinks">
             {navItems.map((item) => {
               const active = pathname === item.href;
               return (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    onClick={close}
                     aria-current={active ? "page" : undefined}
                     className={active ? "navActive" : undefined}
                   >

@@ -33,7 +33,7 @@
   transition: r 0.12s ease;
 }
 .dot:hover {
-  fill: var(--gold-bright);
+  fill: var(--gold-hit);
 }
 .dotMuted {
   fill: var(--dot-muted);

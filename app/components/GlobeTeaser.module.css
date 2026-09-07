@@ -11,7 +11,7 @@
   padding: 26px 18px 24px;
   border-top: 1px solid var(--line);
   color: var(--text);
-  background: radial-gradient(120% 80% at 50% 120%, color-mix(in srgb, var(--gold-wash-base) 13%, transparent), transparent 62%);
+  background: radial-gradient(120% 80% at 50% 120%, color-mix(in srgb, var(--gold-wash-base) calc(13% * var(--wash-strength)), transparent), transparent 62%);
   transition: background var(--dur-fast) var(--ease);
 }
 .globe:hover { color: var(--text); }

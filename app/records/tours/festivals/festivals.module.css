@@ -52,7 +52,7 @@
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-.countCell:hover { background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent); color: var(--text); }
+.countCell:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent); color: var(--text); }
 /* White, not gold: these are three slices of one total, none of them a record. */
 .countValue {
   font-family: var(--font-anton), sans-serif;

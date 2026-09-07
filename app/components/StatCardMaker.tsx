@@ -156,7 +156,7 @@ export default function StatCardMaker({
                 }}
               />
               {failed && (
-                <div className={styles.failed} role="alert">
+                <div className={`${styles.failed} photoTile`} role="alert">
                   <span>The preview didn&apos;t render.</span>
                   <button type="button" className={styles.retry} onClick={retry}>
                     Try again

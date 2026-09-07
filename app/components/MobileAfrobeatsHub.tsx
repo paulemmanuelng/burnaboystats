@@ -84,7 +84,7 @@ export default function MobileAfrobeatsHub({
 
       {/* The door. He is not a cell in the wall — he is the way into the site. */}
       <div className={styles.doorPad}>
-        <Link href={burna.href} className={styles.door}>
+        <Link href={burna.href} className={`${styles.door} photoTile`}>
           {/* A real <img>, not a CSS background. The preload scanner cannot see a
               background-image, so this one — the largest thing on the screen and
               this page's LCP element — did not begin downloading until CSS had
