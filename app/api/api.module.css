@@ -121,9 +121,8 @@
   font-size: var(--type-caption);
   line-height: var(--type-caption-lh);
   color: var(--text-muted);
-  max-width: var(--measure);
   margin: 14px 0 0;
-  max-width: 82ch;
+  max-width: var(--measure);
 }
 .note a,
 .note code { color: var(--gold); }

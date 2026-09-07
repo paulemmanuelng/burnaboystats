@@ -84,7 +84,7 @@ describe("colour literals live in globals.css", () => {
 
   it("the allowlist does not quietly grow", () => {
     // A number, so a change that adds twenty exemptions has to say so out loud.
-    expect(allow.length).toBeLessThanOrEqual(96);
+    expect(allow.length).toBeLessThanOrEqual(93);
   });
 
   it("no module declares a design token", () => {
