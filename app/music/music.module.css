@@ -440,6 +440,14 @@
      second-in-a-row spans the two that remain. */
   .albumGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
   .albumGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
+  /* The CARD spans to fill the row; its COVER must not. .albumCover is
+     aspect-ratio: 1 and fills its width, so a two-column card was giving it a
+     726px square next to 344px neighbours -- one album rendered at more than
+     twice the size of every other on the page, and only in the 3-column band
+     nobody looks at. Capped to one column's worth, derived from the card's own
+     padding (18) and the grid gap (2) rather than a magic number. */
+  .albumGrid > :last-child:nth-child(3n + 2) .albumCover { max-width: calc(50% - 19px); }
+  .albumGrid > :last-child:nth-child(3n + 1) .albumCover { max-width: calc(33.333% - 25.33px); }
 }
 
 /* The desktop page and the mobile screen both sit in the DOM; each shows at

@@ -47,7 +47,7 @@
      migration has not reclassified degrades to legible brass on paper rather
      than to gold at 1.60:1. Dark is unchanged: --gold-ink is #ffb627 there. */
   --gold: var(--gold-ink);
-  --gold-bright: #ffd24a;
+  --gold-bright: light-dark(#945e00, #ffd24a);
   /* Gold split by ROLE, from the design response's token table (§4.6). Every
      dark value below is the gold already in use, so this is a no-op today —
      the split exists because one #ffb627 cannot serve both a fill and text on
@@ -62,10 +62,13 @@
      every light surface (4.96 / 5.44 / 4.54) and is two units off by eye.
      --gold-fill stays #ffb627: that is a SURFACE with near-black ink on it,
      not gold you read. */
-  --gold-fill: #ffb627;     /* fills: buttons, bars */
+  --gold-fill: light-dark(#945e00, #ffb627);   /* fills: buttons, bars */
   --gold-display: light-dark(#945e00, #ffb627);  /* Anton >= 24px */
   --gold-ink: light-dark(#945e00, #ffb627);      /* text, lines, icons */
-  --ink-on-gold: #14100a;   /* the label ON any gold fill */
+  /* White on paper. Once the fill deepened to #945e00 a near-black label was
+     3.4:1 on it; white is 5.44. The gold pill keeps its shape, the label just
+     inverts with the ground -- which is what a dark-gold button wants anyway. */
+  --ink-on-gold: light-dark(#ffffff, #14100a);
   /* One reading-text role. The table retires #cfc7bb (x64), #d8d8de (x38) and
      #d3d3da (x9) into it — three literals that were always the same job. */
   --text-body: light-dark(#4a443b, #cfc7bb);
@@ -161,7 +164,10 @@
      its labels themed and its background did not.) */
   --scrim: light-dark(rgba(247, 244, 238, 0.94), rgba(12, 10, 9, 0.94));
 
-  --gold-dim: #c98a2e;
+  --gold-dim: light-dark(#945e00, #c98a2e);
+  /* The closer band's two warm stops. Flat on paper like every other gold. */
+  --gold-band-a: light-dark(#945e00, #f08a12);
+  --gold-band-b: light-dark(#945e00, #d96c0c);
 
   /* Warm "Afro-Fusion" flourish gradient — use once per screen */
   --grad-a: #ffd24a;
@@ -656,8 +662,8 @@ a {
      has ever set it to anything but near-black, so the tint is applied on the
      device. Black leaves the most headroom if something lightens it, and the
      resets below remove every other way it could be altered. */
-  color: #000;
-  -webkit-text-fill-color: #000;
+  color: var(--ink-on-gold);
+  -webkit-text-fill-color: var(--ink-on-gold);
   text-shadow: none;
   filter: none;
   mix-blend-mode: normal;
@@ -843,11 +849,22 @@ a {
    at equal specificity the base won and every declaration in here was dead.
    Tightened when Afrobeats became the tenth link (17 Aug 2026) — with the
    block live again at 1280 the bar fits with room to spare. */
-@media (max-width: 1360px) {
+/* The bar is full from the moment the links go inline (1240) to about 1500.
+   Measured across 1240/1280/1360/1440/1600: without this the Stat card is
+   pushed off the right edge, silently, because body is overflow-x: clip. The
+   band used to stop at 1360, which is why 1440 was the one width that failed
+   with everything else fitting. */
+@media (max-width: 1500px) {
   .navInner { padding-inline: 24px; }
   .navLinks { gap: 10px; margin-left: 18px; }
   .navLinks a { letter-spacing: 0.1em; font-size: 12px; }
   .navRight { gap: 10px; }
+}
+/* The tightest point of all: the links have just become inline and the bar has
+   not yet gained any width from the viewport. */
+@media (max-width: 1280px) and (min-width: 1240px) {
+  .navLinks { gap: 7px; margin-left: 12px; }
+  .navLinks a { letter-spacing: 0.07em; }
 }
 
 /* Hamburger toggle — hidden on desktop, shown on mobile */
@@ -1611,7 +1628,7 @@ a.fact:hover {
   z-index: 200;
   background-color: var(--gold-fill);
   background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
-  color: #1a1303;
+  color: var(--ink-on-gold);
   /* It measured 42px when focused — the first tab stop on every page, 2px under
      the floor. The padding stays; a min-height carries it the rest of the way. */
   display: inline-flex;
@@ -1989,3 +2006,24 @@ body.navSheetOpen { overflow: hidden; }
   -webkit-text-fill-color: #ffffff;
 }
 [data-brand="starrgirl"] .btnPrimary:hover { background-color: #9d36b6; border-color: #9d36b6; }
+
+/* Appearance in the footer. The bar has room for the one-tap flip only, so the
+   three-state control -- and with it "System" -- lives down here on desktop.
+   The compact footer carries it too, since that is every page but the home. */
+.footerAppearance {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+.footerAppearanceLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* The control itself is .compact, which the bar hides; the footer shows it. */
+.footerAppearance [role="radiogroup"] { display: inline-flex; }

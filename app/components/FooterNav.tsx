@@ -2,6 +2,7 @@
 
 import BrandMark from "./BrandMark";
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 import { usePathname } from "next/navigation";
 import { footerColumns, footerFor, DEFAULT_FOOTER } from "../lib/links";
 
@@ -71,6 +72,14 @@ export default function FooterNav() {
             )
           )}
         </nav>
+        {/* Appearance, all three states. The nav bar carries only the one-tap
+            flip -- the segmented control is 110px and the bar has no room for
+            it at any desktop width (it pushed the Stat card off the edge). So
+            "System" lives here on a laptop, and in the sheet on a phone. */}
+        <div className="footerAppearance">
+          <span className="footerAppearanceLabel">Appearance</span>
+          <ThemeToggle />
+        </div>
       </div>
     );
   }
@@ -96,6 +105,14 @@ export default function FooterNav() {
             Paul Emmanuel
           </a>
         </p>
+        {/* Appearance, all three states. The nav bar carries only the one-tap
+            flip -- the segmented control is 110px and the bar has no room for
+            it at any desktop width (it pushed the Stat card off the edge). So
+            "System" lives here on a laptop, and in the sheet on a phone. */}
+        <div className="footerAppearance">
+          <span className="footerAppearanceLabel">Appearance</span>
+          <ThemeToggle />
+        </div>
       </div>
 
       {footerColumns.map((col) => (

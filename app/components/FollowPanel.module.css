@@ -52,7 +52,7 @@
 }
 
 .primary {
-  color: #1a1204;
+  color: var(--ink-on-gold);
   background: linear-gradient(120deg, var(--gold-bright), var(--gold-fill));
   border: none;
   cursor: pointer;
