@@ -33,17 +33,31 @@ const TIER_ORDER = ["Diamond", "Platinum", "Gold", "Silver"] as const;
 type Tier = (typeof TIER_ORDER)[number];
 
 // Tier colours carry data meaning and are never recoloured to gold.
+//
+// These are the --tier-* tokens, and they were not always. This screen carried
+// its own four hex values, so a Diamond plaque rendered #8fe3f0 here and
+// #31A1C0 on the desktop ledger — the same award in two colours, on a palette
+// where the colour IS the tier. Worse, #8fe3f0 is --cyan, which globals.css
+// reserves in as many words: "Top 10 peak band ONLY — see tier tokens below".
+// The mobile certifications screen was painting its top tier in the chart
+// screen's peak-band colour.
+//
+// Taking them from the tokens is also what makes theming possible: a light
+// theme redefines --tier-* once, and a hardcoded copy here would keep painting
+// the dark values over it.
 const INK: Record<Tier, string> = {
-  Diamond: "#8fe3f0",
-  Platinum: "#dfe2e8",
-  Gold: "#ffb627",
-  Silver: "#b8bcc4",
+  Diamond: "var(--tier-diamond)",
+  Platinum: "var(--tier-platinum)",
+  Gold: "var(--tier-gold)",
+  Silver: "var(--tier-silver)",
 };
+// The dark stop is DERIVED from the same token rather than typed, so the ramp
+// cannot drift from the ink again, and it follows the token into any theme.
 const GRAD: Record<Tier, string> = {
-  Diamond: "linear-gradient(90deg,#4fb9cc,#8fe3f0)",
-  Platinum: "linear-gradient(90deg,#9aa1ad,#dfe2e8)",
-  Gold: "linear-gradient(90deg,#ff7a1a,#ffd24a)",
-  Silver: "linear-gradient(90deg,#7e828a,#b8bcc4)",
+  Diamond: "linear-gradient(90deg,color-mix(in srgb,var(--tier-diamond) 58%,var(--bg)),var(--tier-diamond))",
+  Platinum: "linear-gradient(90deg,color-mix(in srgb,var(--tier-platinum) 58%,var(--bg)),var(--tier-platinum))",
+  Gold: "linear-gradient(90deg,color-mix(in srgb,var(--tier-gold) 58%,var(--bg)),var(--tier-gold))",
+  Silver: "linear-gradient(90deg,color-mix(in srgb,var(--tier-silver) 58%,var(--bg)),var(--tier-silver))",
 };
 
 const ROWS_SHOWN = 10;

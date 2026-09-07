@@ -210,8 +210,11 @@
   color: var(--muted);
 }
 .kind_album { color: var(--gold); border-color: var(--tier-gold-edge, var(--line)); }
-.kind_award { color: var(--tier-platinum, #efede6); }
-.kind_milestone { color: var(--tier-diamond, #31a1c0); }
+/* No hex fallback: --tier-* live in :root and are always defined, so the
+   fallback was dead code that duplicated the token's value in a second place —
+   and under a light theme a stale copy would paint the dark value onto paper. */
+.kind_award { color: var(--tier-platinum); }
+.kind_milestone { color: var(--tier-diamond); }
 /* "chart" and "tour" existed in the data from the start and never got a rule
    here, so twelve badges rendered in the base muted grey — and because the
    lookup is interpolated into a template literal, the string "undefined"
