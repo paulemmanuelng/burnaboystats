@@ -38,7 +38,7 @@
   color: var(--dim);
 }
 .cellOn .code { color: var(--text); }
-.cellOne .code { color: var(--gold-bright); }
+.cellOne .code { color: var(--gold-bright-ink); }
 
 .peak {
   font-family: var(--font-mono), monospace;
@@ -48,7 +48,7 @@
   font-variant-numeric: tabular-nums;
 }
 .cellOn .peak { color: var(--text-muted); }
-.cellOne .peak { color: var(--gold-bright); }
+.cellOne .peak { color: var(--gold-bright-ink); }
 
 .legend {
   display: flex;

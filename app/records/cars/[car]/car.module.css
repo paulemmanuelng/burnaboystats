@@ -248,7 +248,7 @@
   text-transform: uppercase;
   color: var(--gold);
 }
-.specSource:hover { color: var(--gold-bright); }
+.specSource:hover { color: var(--gold-bright-ink); }
 
 .perfCard { padding: 14px 16px 12px; }
 .perfHead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }

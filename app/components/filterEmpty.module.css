@@ -23,7 +23,7 @@
   background: color-mix(in srgb, var(--gold-wash-base) 14%, transparent);
   color: var(--gold);
 }
-.clear:hover { border-color: var(--gold-bright); color: var(--gold-bright); }
+.clear:hover { border-color: var(--gold-bright-ink); color: var(--gold-bright-ink); }
 /* Drops the narrowest filter rather than clearing everything — the user
    usually wants to keep the broad one they started from. */
 .drop {

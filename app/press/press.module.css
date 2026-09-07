@@ -50,7 +50,7 @@
 .p { font-size: 15.5px; line-height: 1.75; color: var(--text-muted); max-width: 72ch; margin: 0 0 14px; }
 .small { font-size: 13px; line-height: 1.6; color: var(--text-muted); margin: 12px 0 0; }
 .link { color: var(--gold); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); }
-.link:hover { color: var(--gold-bright); border-bottom-color: var(--gold-bright); }
+.link:hover { color: var(--gold-bright-ink); border-bottom-color: var(--gold-bright-ink); }
 
 /* Derived headline figures. */
 .figures {
@@ -110,7 +110,7 @@
   cursor: pointer;
   min-height: 44px;
 }
-.copyBtn:hover { color: var(--gold-bright); border-color: var(--gold); }
+.copyBtn:hover { color: var(--gold-bright-ink); border-color: var(--gold); }
 
 @media (max-width: 720px) {
   .wrap { padding: 0 18px; }

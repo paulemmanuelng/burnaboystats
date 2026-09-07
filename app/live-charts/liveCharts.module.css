@@ -45,7 +45,7 @@
 /* The rows are collapsed by default, so this instruction is doing real work —
    at 0.88rem muted grey it read as a footnote and got skipped. Now it carries
    the gold accent and matches the notice block above it, without shouting. */
-.hint strong { color: var(--gold-bright); font-weight: 700; }@keyframes nudge {
+.hint strong { color: var(--gold-bright-ink); font-weight: 700; }@keyframes nudge {
   0%, 82%, 100% { transform: translateY(0); }
   88% { transform: translateY(2.5px); }
 }
@@ -92,7 +92,7 @@
   font-family: var(--font-anton), sans-serif;
   font-size: 1.9rem;
   line-height: 1;
-  color: var(--gold-bright);
+  color: var(--gold-bright-ink);
 }
 .platformCardName { font-size: 0.9rem; color: var(--text); }
 .platformCardNo1 {
@@ -173,7 +173,7 @@
   padding: 2px 8px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent);
-  color: var(--gold-bright);
+  color: var(--gold-bright-ink);
   font-size: 0.78rem;
   white-space: nowrap;
 }
@@ -225,7 +225,7 @@
 .entryTop {
   background: var(--gold-wash);
 }
-.entryTop .pos { color: var(--gold-bright); }
+.entryTop .pos { color: var(--gold-bright-ink); }
 .pos {
   flex: none;
   min-width: 3.6ch;

@@ -630,7 +630,7 @@
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
-  color: var(--bg);
+  color: var(--ink-on-gold);
   background-color: var(--gold-fill);
   background-image:
     radial-gradient(52% 78% at 8% -6%, rgba(255, 246, 214, 0.5), transparent 62%),
@@ -712,8 +712,11 @@
   align-items: flex-start;
 }
 .closerLink {
-  border: 1px solid var(--bg);
-  color: var(--bg);
+  /* On the gold panel, so its ink is --ink-on-gold, not --bg. --bg is the page
+     ground: near-black in dark, which looked right, and cream on paper, which
+     would have made this button the same colour as the gold behind it. */
+  border: 1px solid var(--ink-on-gold);
+  color: var(--ink-on-gold);
   background: transparent;
 }
 .closerLink:hover { background: color-mix(in srgb, var(--burnt) 12%, transparent); }

@@ -67,7 +67,7 @@
 .tipPeak {
   flex: none;
   font-family: var(--font-mono), monospace;
-  color: var(--gold-bright);
+  color: var(--gold-bright-ink);
 }
 .tipMore {
   display: block;

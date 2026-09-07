@@ -191,7 +191,7 @@
   background: var(--bg-soft);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
-  color: var(--gold-bright);
+  color: var(--gold-bright-ink);
   font-size: 1.35rem;
   line-height: 1;
   cursor: pointer;

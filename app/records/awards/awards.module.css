@@ -134,7 +134,7 @@
   cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
-.moreBodies:hover { border-color: var(--gold); color: var(--gold-bright); background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent); }
+.moreBodies:hover { border-color: var(--gold); color: var(--gold-bright-ink); background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent); }
 .filterMeta { display: flex; align-items: center; gap: 14px; font-size: 0.85rem; color: var(--text-muted); }
 .filterMeta b { color: var(--gold); }
 .clearBtn {

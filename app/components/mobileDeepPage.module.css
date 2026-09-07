@@ -428,4 +428,4 @@
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-.tileLead .tileValue { color: var(--gold-bright); }
+.tileLead .tileValue { color: var(--gold-bright-ink); }

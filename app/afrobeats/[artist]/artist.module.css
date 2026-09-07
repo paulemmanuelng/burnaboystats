@@ -194,10 +194,10 @@
 }
 .certCountry { color: var(--muted); font-weight: 400; letter-spacing: 0.04em; }
 .flag { font-size: 13px; }
-.diamond { color: var(--tier-diamond); border-color: var(--tier-diamond-edge, var(--line)); }
-.platinum { color: var(--tier-platinum); border-color: var(--tier-platinum-edge, var(--line)); }
-.gold { color: var(--tier-gold); border-color: var(--tier-gold-edge, var(--line)); }
-.silver { color: var(--tier-silver); border-color: var(--tier-silver-edge, var(--line)); }
+.diamond { color: var(--tier-diamond-ink); border-color: var(--tier-diamond-edge, var(--line)); }
+.platinum { color: var(--tier-platinum-ink); border-color: var(--tier-platinum-edge, var(--line)); }
+.gold { color: var(--tier-gold-ink); border-color: var(--tier-gold-edge, var(--line)); }
+.silver { color: var(--tier-silver-ink); border-color: var(--tier-silver-edge, var(--line)); }
 
 /* ── Release rows ──────────────────────────────────────────── */
 .rows { border-top: 1px solid var(--line); }

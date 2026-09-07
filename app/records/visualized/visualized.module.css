@@ -77,7 +77,7 @@
 .chartBody { margin-top: 26px; }
 .caption { font-size: 13px; line-height: 1.6; color: var(--text-muted); max-width: 72ch; margin: 20px 0 0; }
 .captionNarrow { max-width: 66ch; }
-.captionLead { color: var(--gold-bright); font-weight: 600; }
+.captionLead { color: var(--gold-bright-ink); font-weight: 600; }
 .cta { margin-top: 18px; }
 
 /* A donut sits on its own panel beside its legend. */

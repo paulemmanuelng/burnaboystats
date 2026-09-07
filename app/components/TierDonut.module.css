@@ -61,7 +61,7 @@
   transform: translateX(4px);
 }
 .active .legendLabel {
-  color: var(--gold-bright);
+  color: var(--gold-bright-ink);
 }
 .active .swatch {
   transform: scale(1.18);

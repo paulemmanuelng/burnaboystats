@@ -288,6 +288,12 @@
      var() would be invalid at computed-value time and drop the entire
      box-shadow: the halos would vanish in DARK, not just in light. */
   --gold-glow-base: light-dark(transparent, #ffb627);
+  /* --gold-bright is a FILL ramp stop, and 34 rules also used it as TEXT --
+     hover states, chips, the brightest label in a group. At 1.44:1 on paper
+     that is invisible, but swapping it for --gold-ink would move it in DARK
+     too (#ffd24a -> #ffb627). So it keeps its own dark value and takes the
+     ink's light one. */
+  --gold-bright-ink: light-dark(#8a5a00, #ffd24a);
   --glow-base: light-dark(transparent, #e8b04b);
   --red-glow-base: light-dark(transparent, #c0392b);
   /* The page-edge vignette and the film grain are dark-room devices: they read
@@ -1695,8 +1701,8 @@ a[class*="__certRow"]:focus-visible,
 .tagAccent   { background: color-mix(in srgb, var(--gold-wash-base) 13%, transparent); color: var(--gold); }
 .tagNeutral  { background: rgba(245, 244, 240, 0.08); color: var(--text); }
 .tagOutline  { border-color: var(--gold); color: var(--gold); background: transparent; }
-.tagDiamond  { background: rgba(49, 161, 192, 0.16); color: var(--tier-diamond); }
-.tagPlatinum { background: rgba(239, 237, 230, 0.12); color: var(--tier-platinum); }
+.tagDiamond  { background: rgba(49, 161, 192, 0.16); color: var(--tier-diamond-ink); }
+.tagPlatinum { background: rgba(239, 237, 230, 0.12); color: var(--tier-platinum-ink); }
 .tagLive     { background: rgba(62, 209, 127, 0.14); color: var(--green); }
 
 .tableBase {

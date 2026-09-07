@@ -112,19 +112,19 @@
 
 /* Tier colours — ranking by colour, no fills (cleaner on rows) */
 .silver {
-  color: var(--tier-silver);
+  color: var(--tier-silver-ink);
   border-color: var(--tier-silver-edge);
 }
 .gold {
-  color: var(--tier-gold);
+  color: var(--tier-gold-ink);
   border-color: var(--tier-gold-edge);
 }
 .platinum {
-  color: var(--tier-platinum);
+  color: var(--tier-platinum-ink);
   border-color: var(--tier-platinum-edge);
 }
 .diamond {
-  color: var(--tier-diamond);
+  color: var(--tier-diamond-ink);
   border-color: var(--tier-diamond-edge);
 }
 
@@ -253,7 +253,7 @@
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent);
-  color: var(--gold-bright);
+  color: var(--gold-bright-ink);
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 1.3rem;
@@ -769,7 +769,7 @@
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent);
-  color: var(--gold-bright);
+  color: var(--gold-bright-ink);
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
   font-size: 21px;

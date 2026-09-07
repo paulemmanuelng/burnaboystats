@@ -270,10 +270,10 @@
 }
 /* Certification tiers. Distinct from the peak bands above, which keep --cyan
    and --silver — the two used to share those tokens. */
-.diamond { border-color: var(--tier-diamond-edge); background: color-mix(in srgb, var(--tier-diamond) 13%, transparent); color: var(--tier-diamond); }
-.platinum { border-color: var(--tier-platinum-edge); color: var(--tier-platinum); }
-.gold { border-color: var(--tier-gold-edge); background: color-mix(in srgb, var(--tier-gold) 13%, transparent); color: var(--tier-gold); }
-.silver { border-color: var(--tier-silver-edge); color: var(--tier-silver); }
+.diamond { border-color: var(--tier-diamond-edge); background: color-mix(in srgb, var(--tier-diamond) 13%, transparent); color: var(--tier-diamond-ink); }
+.platinum { border-color: var(--tier-platinum-edge); color: var(--tier-platinum-ink); }
+.gold { border-color: var(--tier-gold-edge); background: color-mix(in srgb, var(--tier-gold) 13%, transparent); color: var(--tier-gold-ink); }
+.silver { border-color: var(--tier-silver-edge); color: var(--tier-silver-ink); }
 .certCountry { font-family: var(--font-geist-sans), system-ui, sans-serif; font-weight: 500; opacity: 0.75; }
 
 .source { font-size: 13px; line-height: 1.65; color: var(--text-muted); margin: 18px 0 0; max-width: 78ch; }

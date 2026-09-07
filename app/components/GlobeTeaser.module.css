@@ -129,7 +129,7 @@
     margin-top: 26px;
     background: none;
   }
-  .globe:hover .cta { color: var(--gold-bright); }
+  .globe:hover .cta { color: var(--gold-bright-ink); }
   .title { font-size: 30px; }
   .lede { font-size: 14px; }
   .stage {

@@ -84,7 +84,7 @@
   font-size: 1.02rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--gold-bright);
+  color: var(--gold-bright-ink);
   line-height: 1.1;
 }
 .sub {
@@ -102,7 +102,7 @@
   white-space: nowrap;
 }
 .link:hover {
-  color: var(--gold-bright);
+  color: var(--gold-bright-ink);
 }
 .close {
   flex: 0 0 auto;
@@ -122,7 +122,7 @@
 }
 .close:hover {
   border-color: var(--gold);
-  color: var(--gold-bright);
+  color: var(--gold-bright-ink);
 }
 
 @media (max-width: 520px) {

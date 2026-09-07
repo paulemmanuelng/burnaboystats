@@ -229,7 +229,7 @@
   white-space: nowrap;
 }
 .valueTop { color: var(--silver); }
-.valueHim { color: var(--gold-bright); }
+.valueHim { color: var(--gold-bright-ink); }
 
 .yearList { display: flex; flex-direction: column; margin-top: 18px; border-top: 1px solid var(--line); }
 .yearRow { padding: 14px 0; border-bottom: 1px solid var(--line); }

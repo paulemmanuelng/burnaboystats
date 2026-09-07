@@ -44,7 +44,7 @@
    curator.module.css, the site's inline prose link. */
 .p { font-size: 15.5px; line-height: 1.7; color: var(--text-muted); max-width: 76ch; margin: 20px 0 0; }
 .link { color: var(--gold); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); }
-.link:hover { color: var(--gold-bright); border-bottom-color: var(--gold-bright); }
+.link:hover { color: var(--gold-bright-ink); border-bottom-color: var(--gold-bright-ink); }
 .reviewed {
   display: flex;
   align-items: center;

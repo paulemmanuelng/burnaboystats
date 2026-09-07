@@ -314,7 +314,7 @@
   color: var(--text-muted);
   white-space: nowrap;
 }
-.pkOne { color: var(--gold-bright); }
+.pkOne { color: var(--gold-bright-ink); }
 .pkTop10 { color: var(--cyan); }
 .pkTop40 { color: var(--silver); }
 .pkRest { color: var(--text-muted); }
