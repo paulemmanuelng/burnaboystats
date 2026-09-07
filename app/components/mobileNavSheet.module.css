@@ -228,3 +228,22 @@
 @media (min-width: 901px) {
   .root { display: none; }
 }
+
+/* Appearance row — the sheet's last block, under the list and above the foot.
+   Divided from the navigation because it is not navigation: it changes how
+   the site looks rather than where you are in it. */
+.appearance {
+  border-top: 1px solid var(--rule-soft);
+  padding: 14px 18px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.appearanceLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}

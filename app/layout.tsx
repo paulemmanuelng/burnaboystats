@@ -65,11 +65,15 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#09090b",
-  // Emits <meta name="color-scheme" content="dark">. Pairs with the
-  // color-scheme property in globals.css so Safari knows this is a dark UI
-  // before the stylesheet lands, rather than adjusting colours itself.
-  colorScheme: "dark",
+  // One value for both themes. The masthead stays dark on paper too (design
+  // §4.3), so the strip behind the iOS status bar is dark either way — and a
+  // link shared from the site opens on a page whose top matches its OG card.
+  themeColor: "#0a0a0b",
+  // Emits <meta name="color-scheme" content="dark light">. Dark is named
+  // first because it is the default and the one an unset visitor gets; light
+  // is named at all so the browser knows the page can do both and does not
+  // apply its own adjustments to controls in the theme it did not expect.
+  colorScheme: "dark light",
   // The switch that makes every env(safe-area-inset-*) in the CSS real. The
   // bottom bars shipped with those insets from day one, but without
   // viewport-fit=cover iOS reports them all as 0 — so the iPhone home
@@ -145,6 +149,27 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       {/* suppressHydrationWarning: some browser extensions (e.g. Grammarly)
           add attributes to <body> before React loads, which is harmless. */}
       <body suppressHydrationWarning>
+        {/* Resolves the theme BEFORE first paint, so a light-mode reader
+            never sees a dark frame (and the reverse). It has to run inline and
+            synchronously: any deferred script, and any theme read during
+            hydration, is a repaint the eye catches.
+
+            Three stored choices, two possible themes. "system" is resolved
+            here and re-resolved by ThemeToggle's listener while the page is
+            open; anything unrecognised — including nothing stored at all —
+            is dark, which is the site as it has always looked. That is why
+            the attribute is always written: "no preference yet" and "follow
+            the device" must not collapse into the same CSS state. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              'try{var c=localStorage.getItem("theme");' +
+              'document.documentElement.dataset.theme=' +
+              'c==="light"||c==="dark"?c:' +
+              'c==="system"&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}' +
+              'catch(e){document.documentElement.dataset.theme="dark"}',
+          }}
+        />
         <FlagEmojiPolyfill />
         {/* Album art is served from Spotify's image CDN — open the connection
             early so covers (a likely LCP element on /music) load faster. React

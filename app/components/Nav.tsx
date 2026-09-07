@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navItems } from "../lib/links";
 import BrandMark from "./BrandMark";
+import ThemeToggle from "./ThemeToggle";
 import SearchPalette from "./SearchPalette";
 import { hasOwnMobileChrome } from "../lib/mobileScreens";
 
@@ -45,6 +46,10 @@ export default function Nav() {
         <div className="navRight">
           {/* Site search — opens a ⌘K command palette */}
           <SearchPalette />
+
+          {/* Appearance. Icon-only at every desktop width — see the note in
+              themeToggle.module.css; the labelled version is in the sheet. */}
+          <ThemeToggle />
 
           {/* Stat card — the design's one gold action in the bar. Desktop
               only: the mobile screens end at the tab bar and have no room

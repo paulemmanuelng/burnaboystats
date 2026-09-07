@@ -1,0 +1,49 @@
+/* Appearance control. The existing .seg segmented pattern, at the two sizes
+   the design gives it: icon-only in the desktop bar (there is no room for
+   labels — see below) and labelled in the mobile sheet, where there is. */
+.seg {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-soft);
+}
+.opt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  /* No transition. Switching theme repaints the whole page at once; easing one
+     button's colour while everything else jumps reads as a stutter — and iOS
+     animates a color-scheme change badly on its own. */
+}
+.opt:not(:last-child) { border-right: 1px solid var(--border); }
+.on {
+  background: var(--gold-fill);
+  color: var(--ink-on-gold);
+}
+.icon { display: block; line-height: 0; }
+.icon svg { display: block; width: 14px; height: 14px; }
+
+/* Desktop: icon-only at EVERY width. Measured — with nine nav links, the
+   search trigger and the Stat-card button placed, a labelled control (255px)
+   overflows the 1280px content box by 99px even at the 1360 max. The selected
+   segment's gold fill carries the state instead of a word. */
+.compact .opt { width: 36px; height: 34px; }
+@media (pointer: coarse) {
+  .compact .opt { width: 44px; height: 44px; }
+}
+
+/* Mobile sheet: full width, 44px, labelled. */
+.full { display: flex; width: 100%; }
+.full .opt { flex: 1; min-height: 44px; padding: 0 10px; }
+.label { line-height: 1; }

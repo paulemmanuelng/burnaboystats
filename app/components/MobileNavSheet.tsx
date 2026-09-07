@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./mobileNavSheet.module.css";
+import ThemeToggle from "./ThemeToggle";
 import { useFocusTrap } from "../lib/useFocusTrap";
 import type { NavGroup } from "../lib/navGroups";
 
@@ -164,6 +165,13 @@ export default function MobileNavSheet({
             </div>
           ))}
           <div className={styles.listEnd} />
+        </div>
+
+        {/* Appearance — two taps from anywhere on the site, which is why it
+            lives here rather than in a settings page the site does not have. */}
+        <div className={styles.appearance}>
+          <div className={styles.appearanceLabel}>Appearance</div>
+          <ThemeToggle variant="full" />
         </div>
 
         <div className={styles.foot}>

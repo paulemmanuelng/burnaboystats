@@ -11,22 +11,22 @@
   color-scheme: dark;
 
   /* Surfaces */
-  --bg: #0a0a0b;
-  --bg-soft: #141416;
-  --bg-soft-2: #1c1c21;
-  --border: #26262b;
-  --line: rgba(245, 244, 240, 0.12); /* hairline rules — 1.31:1, DECORATIVE */
+  --bg: light-dark(#f7f4ee, #0a0a0b);
+  --bg-soft: light-dark(#ffffff, #141416);
+  --bg-soft-2: light-dark(#efeae1, #1c1c21);
+  --border: light-dark(#dcd9d3, #26262b);
+  --line: light-dark(rgba(23, 20, 15, 0.12), rgba(245, 244, 240, 0.12)); /* hairline rules — 1.31:1, DECORATIVE */
   /* Two heavier weights for lines that carry meaning. --line stays exactly as
      it was, so all 518 of its call sites remain correct by definition: the
      decorative weight IS today's value. Promote upward, never reclassify.
      Rule of thumb: if the line is the only thing separating two pieces of
      data, it is structural. */
-  --rule-soft: rgba(245, 244, 240, 0.24); /* 1.97:1 — secondary structure */
-  --rule: rgba(245, 244, 240, 0.38);      /* 3.30:1 — structural, clears WCAG 3:1 */
+  --rule-soft: light-dark(rgba(23, 20, 15, 0.30), rgba(245, 244, 240, 0.24)); /* 1.97:1 — secondary structure */
+  --rule: light-dark(rgba(23, 20, 15, 0.48), rgba(245, 244, 240, 0.38));      /* 3.30:1 — structural, clears WCAG 3:1 */
 
   /* Text */
-  --text: #f5f4f0;
-  --text-muted: #9b9ba3;
+  --text: light-dark(#17140f, #f5f4f0);
+  --text-muted: light-dark(#5f584f, #9b9ba3);
 
   /* Brand accent — brighter "African Giant" gold (one loud accent) */
   /* THE gold — token truth, per the designer's own ask ("pick one gold: #FBB417
@@ -34,7 +34,10 @@
      (--gold-bright -> --gold -> --gold-dim) as the standard treatment for any
      gold FILL. Flat gold survives only where a gradient cannot read: hairline
      rules, dots, and data ink. */
-  --gold: #ffb627;
+  /* The legacy alias, 199 uses. It resolves to the INK role, so any use this
+     migration has not reclassified degrades to legible brass on paper rather
+     than to gold at 1.60:1. Dark is unchanged: --gold-ink is #ffb627 there. */
+  --gold: var(--gold-ink);
   --gold-bright: #ffd24a;
   /* Gold split by ROLE, from the design response's token table (§4.6). Every
      dark value below is the gold already in use, so this is a no-op today —
@@ -42,12 +45,39 @@
      paper. Light mode gives them different values (#ffb627 fill / #b07000
      display / #8a5a00 ink); until Task D lands they are deliberately equal. */
   --gold-fill: #ffb627;     /* fills: buttons, bars */
-  --gold-display: #ffb627;  /* Anton >= 24px */
-  --gold-ink: #ffb627;      /* text, lines, icons */
+  --gold-display: light-dark(#b07000, #ffb627);  /* Anton >= 24px */
+  --gold-ink: light-dark(#8a5a00, #ffb627);      /* text, lines, icons */
   --ink-on-gold: #14100a;   /* the label ON any gold fill */
   /* One reading-text role. The table retires #cfc7bb (x64), #d8d8de (x38) and
      #d3d3da (x9) into it — three literals that were always the same job. */
-  --text-body: #cfc7bb;
+  --text-body: light-dark(#4a443b, #cfc7bb);
+
+  /* Gold washes. The table names one at 10%; the modules use ~20 different
+     alphas, so the base is exposed for color-mix() rather than minting a token
+     per alpha:  color-mix(in srgb, var(--gold-wash-base) 5%, transparent) */
+  /* The ramp above is for FILLS. Gold text painted through background-clip
+     needs its own, because a fill ramp on paper is 1.5:1 — unreadable. Same
+     shape (light gold -> deep -> ember), display-safe values on paper, and
+     byte-identical in dark. */
+  --display-ramp-a: light-dark(#b07000, #ffd24a);
+  --display-ramp-b: light-dark(#8a5a00, #ffb627);
+  --display-ramp-c: light-dark(#7a2f00, #ff7a1a);
+  --gold-wash-base: light-dark(#b07000, #ffb627);
+  --gold-wash: light-dark(rgba(176, 112, 0, 0.10), rgba(255, 182, 39, 0.10));
+  /* The car pages' stage light and floor ring. Paper needs MORE light, not
+     less — the ring is what separates a dark car from the ground it sits on. */
+  --floor-glow: light-dark(rgba(255, 182, 39, 0.30), rgba(255, 182, 39, 0.16));
+  --floor-ring: light-dark(rgba(176, 112, 0, 0.45), rgba(224, 138, 46, 0.50));
+  /* Records signature. In dark it IS --grad-b; on paper it deepens, because it
+     is read as text and --grad-b (a gradient stop) never has to be. */
+  --ember: light-dark(#b34700, #ff7a1a);
+  /* The hover / pressed surface, previously hand-mixed at each call site. */
+  --bg-raised: light-dark(#e6e0d4, #24242a);
+  /* The chrome backdrop. The masthead and the bottom bars stay dark in BOTH
+     themes (design §4.3): the wordmark lockup keeps its gold word, and a link
+     shared from the site opens on a page whose top matches the dark OG card.
+     So this token deliberately does not theme. */
+  --scrim: rgba(12, 10, 9, 0.94);
 
   --gold-dim: #c98a2e;
 
@@ -92,8 +122,8 @@
      Data-meaning accents. Gold means "headline" or "his"; these carry
      meaning of their own and must never be recoloured to gold:
      certification tiers, chart peak bands, live deltas. */
-  --cyan: #8fe3f0;    /* Top 10 peak band ONLY — see tier tokens below */
-  --silver: #dfe2e8;  /* Top 40 peak band ONLY — see tier tokens below */
+  --cyan: light-dark(#0b6e7e, #8fe3f0);    /* Top 10 peak band ONLY — see tier tokens below */
+  --silver: light-dark(#6b6b74, #dfe2e8);  /* Top 40 peak band ONLY — see tier tokens below */
 
   /* Certification tiers. These used to borrow --cyan and --silver, which also
      colour the Top 10 / Top 40 chart bands — two unrelated meanings sharing
@@ -117,13 +147,25 @@
      auditing that, check BOTH units — the Aug 2026 pass found 274 px
      declarations under the floor and then another 27 in rem (down to 0.6rem
      = 9.6px) that a px-only sweep had missed entirely. 11px is 0.6875rem. */
-  --tier-platinum-edge: rgba(239, 237, 230, 0.29);
-  --tier-gold-edge: rgba(251, 180, 23, 0.37);
-  --tier-diamond-edge: rgba(49, 161, 192, 0.50);
-  --tier-silver-edge: rgba(132, 143, 158, 0.62);
-  --green: #3ed17f;   /* live / positive delta */
+  /* The tier FILLS above are unchanged in both themes — they carry the
+     lightness spread that makes four tiers separate at 8px and in greyscale.
+     On paper a fill cannot also be the text colour (platinum is 1.05:1 on
+     #f7f4ee), so the tier WORD in running text uses these inks instead, all
+     >= 4.5:1 on paper. In dark each ink IS its fill, so this is a no-op. */
+  --tier-platinum-ink: light-dark(#2f3a4e, #EFEDE6);  /* 10.42 on --bg */
+  --tier-gold-ink: light-dark(#8a5a00, #FBB417);      /*  5.40 */
+  --tier-diamond-ink: light-dark(#0b6e7e, #31A1C0);   /*  5.39 */
+  --tier-silver-ink: light-dark(#6b6b74, #848F9E);    /*  4.81 */
+  --tier-platinum-edge: light-dark(rgba(47, 58, 78, 0.60), rgba(239, 237, 230, 0.29));
+  --tier-gold-edge: light-dark(rgba(138, 90, 0, 0.60), rgba(251, 180, 23, 0.37));
+  --tier-diamond-edge: light-dark(rgba(11, 110, 126, 0.60), rgba(49, 161, 192, 0.50));
+  --tier-silver-edge: light-dark(rgba(107, 107, 116, 0.60), rgba(132, 143, 158, 0.62));
+  --green: light-dark(#177a45, #3ed17f);   /* live / positive delta */
+  /* The dot is not text, so it answers a 3:1 floor instead of 4.5 and stays
+     greener on paper than the label beside it. */
+  --green-dot: light-dark(#1f9a5a, #3ed17f);
   --red: #c0392b;     /* ambient background wash only — NEVER for text */
-  --red-ink: #e0796d; /* negative deltas and "sold" labels: the readable red.
+  --red-ink: light-dark(#b3261e, #e0796d); /* negative deltas and "sold" labels: the readable red.
                          The wash red measured 3.64:1 as 10px text on the
                          live-charts ▼ markers; this is the same red the cars
                          page already used for its sold tags, at 6.4:1. */
@@ -132,7 +174,7 @@
      failed; do not darken it. 4.7:1 on --bg — but these labels also sit on
      the lighter card backgrounds, where #7c7c85 slipped just under the 4.5
      floor, so it is one step brighter than the handoff's value. */
-  --dim: #85858e;
+  --dim: light-dark(#6f685f, #85858e);
 
   --radius-md: 6px;
   --radius-lg: 6px;
@@ -154,10 +196,10 @@
   /* Accent washes and the mid-grey the design uses for quiet icon controls.
      The design's dark theme resolves accent-700/800 back to the base gold —
      the numbered ramp comes from a light-theme base and is flattened here. */
-  --color-accent-100: rgba(255, 182, 39, 0.07);
-  --color-accent-200: rgba(255, 182, 39, 0.13);
+  --color-accent-100: color-mix(in srgb, var(--gold-wash-base) 7%, transparent);
+  --color-accent-200: color-mix(in srgb, var(--gold-wash-base) 13%, transparent);
   --color-accent-700: var(--gold);
-  --color-neutral-600: #9b9ba3;
+  --color-neutral-600: var(--text-muted);
   /* The rest of the spec's ramp, so CSS lifted from a design file resolves
      rather than silently rendering an empty value. The dark theme flattens
      400/600 to the bright gold and 700/800 to the base — that is what the
@@ -165,8 +207,8 @@
   --color-accent-400: var(--gold-bright);
   --color-accent-600: var(--gold-bright);
   --color-accent-800: var(--gold);
-  --color-neutral-100: rgba(245, 244, 240, 0.08);
-  --color-neutral-300: rgba(245, 244, 240, 0.1);
+  --color-neutral-100: color-mix(in srgb, var(--text) 8%, transparent);
+  --color-neutral-300: color-mix(in srgb, var(--text) 10%, transparent);
   --color-neutral-800: var(--text);
   --color-neutral-900: var(--bg-soft);
   --font-heading: var(--font-anton);
@@ -182,6 +224,35 @@
      the truth, so --live is now an alias, kept only so the name still says
      what the colour is FOR. */
   --live: var(--green);
+}
+
+/* ── The theme switch ──────────────────────────────────────────────────────
+   `color-scheme` is the ONLY thing a theme toggles. Every colour token above
+   is written `light-dark(<light>, <dark>)` and resolves from the used scheme,
+   so there is no second token block to drift out of sync — which is how the
+   "two layouts in the DOM" bug shipped four times.
+
+   Note the argument order: CSS is light-dark(LIGHT, DARK). The design
+   response's own snippet has it the other way round, which would render each
+   theme as the other one.
+
+   Why an explicit attribute rather than a bare `prefers-color-scheme` media
+   query: the default for a visitor who has never chosen is DARK — today's
+   site — not "whatever the OS says". A media query cannot express that,
+   because "no stored preference" and "system" would both be "no attribute".
+   So the inline script in layout.tsx resolves all three states to an explicit
+   `data-theme`, and keeps resolving it while the choice is "system" by
+   listening for OS changes. A browser with JS off gets dark, unchanged. */
+:root { color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: light; }
+
+/* light-dark() takes COLOURS, and these two tokens are whole shadow values
+   whose geometry also changes on paper — a 50px shadow that reads as depth on
+   black reads as dirt on white. So they are this file's one override block:
+   two declarations, not a duplicated palette. */
+:root[data-theme="light"] {
+  --shadow: 0 12px 32px rgba(23, 20, 15, 0.14);
+  --glow: none;
 }
 
 /* Figures line up in columns only if the numerals are tabular. The site is
@@ -300,7 +371,7 @@ a {
 .inkText {
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"),
-    linear-gradient(120deg, var(--gold-bright), var(--gold) 55%, var(--grad-b));
+    linear-gradient(120deg, var(--display-ramp-a), var(--display-ramp-b) 55%, var(--display-ramp-c));
   background-blend-mode: overlay, normal;
   -webkit-background-clip: text;
   background-clip: text;
@@ -318,7 +389,7 @@ a {
 
 /* A reusable text-gradient (used on accent words). */
 .goldText {
-  background: linear-gradient(120deg, var(--gold-bright), var(--gold), var(--grad-b));
+  background: linear-gradient(120deg, var(--display-ramp-a), var(--display-ramp-b), var(--display-ramp-c));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -422,6 +493,35 @@ a {
 /* -----------------------------------------------------------
    NAVIGATION BAR
    ----------------------------------------------------------- */
+/* ── The masthead stays dark in both themes (design §4.3) ─────────────────
+   A masthead, not an inversion. The wordmark lockup keeps its gold word at
+   11.28:1, the LIVE band keeps its green, and a link shared from the site
+   opens on a page whose top matches the dark OG card — which is permanently
+   dark and cannot theme.
+
+   The cost, stated: in dark the bar is a transparent scrim that turns solid on
+   scroll. Over a LIGHT page that same transition reads as a dark band
+   appearing and disappearing, so on paper the bar is solid from the top and
+   the scrim is dark-mode only. The nav's own contents keep the dark theme's
+   ink regardless of the page behind them. */
+:root[data-theme="light"] .navbar {
+  background-color: var(--scrim);
+  background-image: none;
+  border-bottom-color: var(--nav-line);
+}
+:root[data-theme="light"] .navbar,
+:root[data-theme="light"] .navbar * {
+  --text: #f5f4f0;
+  --text-muted: #9b9ba3;
+  --text-body: #cfc7bb;
+  --border: #26262b;
+  --bg-soft: #141416;
+  --line: rgba(245, 244, 240, 0.12);
+  --gold-ink: #ffb627;
+  --gold-display: #ffb627;
+}
+:root[data-theme="light"] { --nav-line: rgba(245, 244, 240, 0.12); }
+
 .navbar {
   position: sticky;
   top: 0;
@@ -498,7 +598,7 @@ a {
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
 }
 .brandText > span {
-  color: var(--gold);
+  color: var(--gold-display);
 }
 .navLinks {
   display: flex;
@@ -683,7 +783,7 @@ a {
   font-weight: 700;
 }
 .pageHeader h1 .accent {
-  color: var(--gold);
+  color: var(--gold-display);
 }
 .pageHeader p {
   margin-top: 14px;
@@ -719,7 +819,7 @@ a {
 
 /* Inline "read more" link (e.g. Wikipedia on the About page) */
 .wikiLink {
-  color: var(--gold);
+  color: var(--gold-display);
   font-weight: 600;
   text-decoration: none;
   border-bottom: 1px solid rgba(255, 182, 39, 0.4);
@@ -1159,7 +1259,7 @@ a.fact:hover {
   width: 4px;
   height: 100%;
   border-radius: 3px;
-  background: linear-gradient(var(--gold-bright), var(--gold));
+  background: linear-gradient(var(--gold-bright), var(--gold-display));
   transform-origin: bottom;
   animation: eqBounce 1s ease-in-out infinite;
 }
@@ -1175,7 +1275,7 @@ a.fact:hover {
 .waveform span {
   flex: 1;
   border-radius: 4px;
-  background: linear-gradient(var(--gold), var(--grad-b));
+  background: linear-gradient(var(--gold-display), var(--ember));
   transform-origin: center;
   animation: wavePulse 1.5s ease-in-out infinite;
   opacity: 0.85;
@@ -1310,8 +1410,8 @@ a.fact:hover {
   left: 12px;
   top: -64px;
   z-index: 200;
-  background-color: var(--gold);
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
   color: #1a1303;
   /* It measured 42px when focused — the first tab stop on every page, 2px under
      the floor. The padding stays; a min-height carries it the rest of the way. */
@@ -1450,10 +1550,10 @@ a[class*="__certRow"]:focus-visible,
   padding: 0 8px;
 }
 .btnGhost:hover {
-  background: color-mix(in srgb, var(--gold) 10%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) 10%, transparent);
 }
 .btnGhost:active {
-  background: color-mix(in srgb, var(--gold) 18%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) 18%, transparent);
 }
 
 /* Icon-only button. 36px on a mouse, which is the base sheet's size and what
@@ -1491,7 +1591,7 @@ a[class*="__certRow"]:focus-visible,
   border: 1px solid transparent;
   white-space: nowrap;
 }
-.tagAccent   { background: rgba(255, 182, 39, 0.13); color: var(--gold); }
+.tagAccent   { background: color-mix(in srgb, var(--gold-wash-base) 13%, transparent); color: var(--gold); }
 .tagNeutral  { background: rgba(245, 244, 240, 0.08); color: var(--text); }
 .tagOutline  { border-color: var(--gold); color: var(--gold); background: transparent; }
 .tagDiamond  { background: rgba(49, 161, 192, 0.16); color: var(--tier-diamond); }
@@ -1617,7 +1717,7 @@ a[class*="__certRow"]:focus-visible,
 }
 .navStatCard:hover {
   border-color: var(--gold);
-  color: var(--gold);
+  color: var(--gold-display);
   -webkit-text-fill-color: var(--gold);
   box-shadow: none;
 }
