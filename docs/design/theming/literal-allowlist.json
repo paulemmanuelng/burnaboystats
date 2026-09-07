@@ -366,12 +366,6 @@
   "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
  },
  {
-  "file": "app/components/mobileOfficialCharts.module.css",
-  "line": 380,
-  "literal": "#0a0a0b",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
   "file": "app/components/mobileRevenue.module.css",
   "line": 256,
   "literal": "#000",
@@ -402,12 +396,6 @@
   "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
  },
  {
-  "file": "app/components/mobileTourMap.module.css",
-  "line": 181,
-  "literal": "#0a0a0b",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
   "file": "app/components/mobileTours.module.css",
   "line": 163,
   "literal": "#0a0a0b",
@@ -423,12 +411,6 @@
   "file": "app/components/mobileTours.module.css",
   "line": 273,
   "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileTours.module.css",
-  "line": 276,
-  "literal": "#0a0a0b",
   "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
  },
  {

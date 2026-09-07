@@ -378,7 +378,6 @@
   -webkit-text-fill-color: #000;
   /* Promotes the layer at rest — see .btnPrimary for the iPhone reason. */
   transform: translateZ(0);
-  color: #0a0a0b;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
