@@ -89,7 +89,7 @@
   margin-top: 10px;
 }
 .gold {
-  background: linear-gradient(120deg, var(--gold-bright), var(--gold-fill) 55%, var(--grad-b));
+  background: linear-gradient(120deg, var(--display-ramp-a), var(--display-ramp-b) 55%, var(--display-ramp-c));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
