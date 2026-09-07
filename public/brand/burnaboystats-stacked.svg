@@ -1,11 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" role="img" aria-label="Burnaboystats stacked lockup: crown above the BURNABOYSTATS wordmark">
 <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb627"></stop><stop offset="1" stop-color="#ff7a1a"></stop></linearGradient></defs>
-<rect width="100" height="100" rx="22" fill="#0a0a0b"></rect>
-<g transform="translate(8,13)"><circle cx="42" cy="8" r="6" fill="#3ed17f"></circle>
+<g transform="translate(78,2)"><circle cx="42" cy="8" r="4" fill="#3ed17f"></circle>
   <rect x="7" y="25" width="11" height="33" rx="5.5" fill="url(#g)"></rect>
   <rect x="22" y="36" width="11" height="22" rx="5.5" fill="url(#g)"></rect>
   <rect x="37" y="15" width="11" height="43" rx="5.5" fill="url(#g)"></rect>
   <rect x="52" y="36" width="11" height="22" rx="5.5" fill="url(#g)"></rect>
   <rect x="67" y="25" width="11" height="33" rx="5.5" fill="url(#g)"></rect>
   <rect x="7" y="64" width="71" height="6.5" rx="3.25" fill="url(#g)"></rect></g>
+<text x="120" y="126" text-anchor="middle" font-family="Anton, 'Anton SC', Impact, sans-serif" font-size="31" letter-spacing="0.5" fill="#f5f4f0">BURNABOY<tspan fill="url(#g)">STATS</tspan></text>
+<text x="120" y="152" text-anchor="middle" font-family="'Space Mono', ui-monospace, monospace" font-size="9.5" letter-spacing="4.6" fill="#9b9ba3">THE NUMBERS, VERIFIED</text>
 </svg>

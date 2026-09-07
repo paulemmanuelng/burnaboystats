@@ -471,6 +471,12 @@ a {
   }
 }
 .brand {
+  /* The mark sits before the wordmark with a 10px gap (LOGO.md). Baseline
+     alignment would hang the crown off the cap-line, so these centre on the
+     optical middle of the type instead. */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 1.5rem;
@@ -478,7 +484,7 @@ a {
   text-transform: uppercase;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
 }
-.brand span {
+.brandText > span {
   color: var(--gold);
 }
 .navLinks {
@@ -590,10 +596,18 @@ a {
   font-size: 23px;
   letter-spacing: 0.04em;
   display: flex;
+  /* was `baseline` with a 2px gap, which was right for text alone. The mark is
+     a glyph-height object, so the row centres now and the wordmark keeps its
+     own 2px inner gap on .footerMarkText. */
+  align-items: center;
+  gap: 10px;
+}
+.footerMarkText {
+  display: flex;
   align-items: baseline;
   gap: 2px;
 }
-.footerMark span { color: var(--gold); }
+.footerMarkText > span { color: var(--gold); }
 .footerDisclaimer {
   color: var(--text-muted);
   font-size: 12.5px;

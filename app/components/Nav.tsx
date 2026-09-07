@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navItems } from "../lib/links";
+import BrandMark from "./BrandMark";
 import SearchPalette from "./SearchPalette";
 import { hasOwnMobileChrome } from "../lib/mobileScreens";
 
@@ -32,7 +33,13 @@ export default function Nav() {
     >
       <nav className="navInner container" aria-label="Primary">
         <Link href="/" className="brand" onClick={close}>
-          BurnaBoy<span>Stats</span>
+          {/* Mark before the wordmark, 22px in the 68px bar, per LOGO.md. The
+              text stays live — it already matches the wordmark's own rendering,
+              and it is what a screen reader announces. */}
+          <BrandMark size={22} id="nav" />
+          <span className="brandText">
+            BurnaBoy<span>Stats</span>
+          </span>
         </Link>
 
         <div className="navRight">
