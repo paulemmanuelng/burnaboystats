@@ -201,15 +201,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 19,
+            "position": 39,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 84,
-            "movement": -26
+            "position": 85,
+            "movement": -18
           }
         ]
       },
@@ -359,8 +359,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 80,
-            "movement": -13
+            "position": 81,
+            "movement": -17
           },
           {
             "country": "BW",
@@ -430,12 +430,6 @@
             "position": 169,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 195,
-            "movement": -13
           }
         ]
       }
@@ -609,8 +603,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 181,
-            "movement": -123
+            "position": 199,
+            "movement": -128
           }
         ]
       },
@@ -901,7 +895,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 63,
+            "position": 81,
             "movement": null,
             "status": "new"
           }
@@ -1018,13 +1012,13 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 7,
-            "movement": 103
+            "position": 9,
+            "movement": -6
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 26,
+            "position": 45,
             "movement": null,
             "status": "new"
           }
@@ -1670,8 +1664,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 177,
-            "movement": 2
+            "position": 179,
+            "movement": 0
           }
         ]
       }
@@ -1876,8 +1870,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 44,
-            "movement": 0
+            "position": 47,
+            "movement": -3
           },
           {
             "country": "BW",
@@ -2091,14 +2085,14 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 47,
-            "movement": 0
+            "position": 50,
+            "movement": -3
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 62,
-            "movement": 6
+            "movement": 7
           },
           {
             "country": "BF",
@@ -2109,7 +2103,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 91,
+            "position": 93,
             "movement": null,
             "status": "new"
           }
@@ -2290,8 +2284,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 90,
-            "movement": -26
+            "position": 91,
+            "movement": -18
           }
         ]
       }
@@ -2366,38 +2360,13 @@
             "country": "BW",
             "name": "Botswana",
             "position": 79,
-            "movement": -19
+            "movement": -18
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Tell Everybody",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 92,
-            "movement": 27
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 143,
-            "movement": -59
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Assurance",
@@ -2424,6 +2393,31 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a880bf2aaa27d39c446bd9b19effd22e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Tell Everybody",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 92,
+            "movement": 27
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 143,
+            "movement": -59
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Best",
@@ -2507,6 +2501,38 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Spend Dat",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 78,
+            "movement": 74
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/eeedaecd7be328ebce48a16701042891/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FIA",
@@ -2683,25 +2709,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed05b8ce0b7f23d98282ed515664c286/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Spend Dat",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 78,
-            "movement": 74
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/eeedaecd7be328ebce48a16701042891/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Aye",
     "platforms": [
       {
@@ -2800,25 +2807,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/329ae36eecf839ca2e82a46203a10cbc/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Gobe",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 163,
-            "movement": -125
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d7997ace25abd1a5cf1a8ae8d541a52a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Activate",
     "platforms": [
       {
@@ -2836,6 +2824,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d5dfc880396e953e316456a394d7353/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Gobe",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 182,
+            "movement": -131
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d7997ace25abd1a5cf1a8ae8d541a52a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Son of Mercy - EP",
@@ -2866,14 +2873,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
-            "movement": -50
+            "position": 152,
+            "movement": -52
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Baddest Boy",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0c0d1ba509c2a896097f11edcc957edf/500x500-000000-80-0-0.jpg"
   }
 ];
   

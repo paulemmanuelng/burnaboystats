@@ -259,6 +259,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 155,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -448,8 +461,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
-            "movement": 2
+            "position": 26,
+            "movement": -4
           }
         ]
       }
@@ -737,7 +750,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
+            "position": 54,
             "movement": null,
             "status": "new"
           }
@@ -1006,6 +1019,88 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Calm Down",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 27,
+            "movement": 1
+          },
+          {
+            "country": "KH",
+            "name": "Cambodia",
+            "position": 42,
+            "movement": -6
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 57,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "VN",
+            "name": "Vietnam",
+            "position": 113,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 69,
+            "movement": 0
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 74,
+            "movement": 0
+          },
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 78,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 62,
+            "movement": -6
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 182,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "HEIS",
     "platforms": [
       {
@@ -1115,14 +1210,14 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 4,
-            "movement": 0
+            "position": 5,
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 34,
-            "movement": -27
+            "position": 36,
+            "movement": -20
           }
         ]
       },
@@ -1141,74 +1236,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 69,
-            "movement": 0
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 74,
-            "movement": 0
-          },
-          {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 78,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 62,
-            "movement": -6
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 27,
-            "movement": -2
-          },
-          {
-            "country": "KH",
-            "name": "Cambodia",
-            "position": 42,
-            "movement": -34
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ginger Me",
@@ -1435,25 +1462,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Goals",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 70,
-            "movement": -46
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "KELEBU",
     "platforms": [
       {
@@ -1473,6 +1481,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9762353430bf3c5816735dca5d916a96/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Goals",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 127,
+            "movement": -89
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Bad Commando",
     "platforms": [
       {
@@ -1483,7 +1510,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 49,
-            "movement": -12
+            "movement": -3
           }
         ]
       }
@@ -1598,8 +1625,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 166,
-            "movement": -24
+            "position": 168,
+            "movement": -17
           }
         ]
       }

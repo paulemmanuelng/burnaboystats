@@ -227,7 +227,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
+            "position": 50,
             "movement": null,
             "status": "new"
           }
@@ -478,7 +478,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 61,
             "movement": null,
             "status": "new"
           }
@@ -715,8 +715,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 176,
-            "movement": -24
+            "position": 179,
+            "movement": -18
           }
         ]
       }
@@ -1078,7 +1078,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
+            "position": 88,
             "movement": null,
             "status": "new"
           }
@@ -1106,6 +1106,26 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Billion Dollar Baby",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 43,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Nahamciaga - EP",

@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-09-07";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -109,16 +109,16 @@
             "movement": 3
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 54,
-            "movement": -17
-          },
-          {
             "country": "ML",
             "name": "Mali",
             "position": 57,
             "movement": -43
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 58,
+            "movement": -21
           },
           {
             "country": "QA",
@@ -189,14 +189,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 136,
-            "movement": -46
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 158,
-            "movement": -63
+            "position": 156,
+            "movement": -43
           },
           {
             "country": "SE",
@@ -212,6 +206,12 @@
             "status": "new"
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 164,
+            "movement": -64
+          },
+          {
             "country": "IE",
             "name": "Ireland",
             "position": 168,
@@ -222,6 +222,25 @@
             "name": "Belgium",
             "position": 195,
             "movement": -97
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 195,
+            "movement": -53
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 1,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -293,14 +312,76 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 8,
-            "movement": -2
+            "position": 9,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Jolie",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 3,
+            "movement": 1
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 28,
+            "movement": -5
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 136,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 193,
+            "movement": -6
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 14,
+            "movement": -9
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 46,
+            "movement": -19
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Villain I Never Was",
@@ -349,64 +430,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 7,
-            "movement": -2
+            "position": 8,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Jolie",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 3,
-            "movement": 1
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 28,
-            "movement": -5
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 136,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 193,
-            "movement": -6
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 45,
-            "movement": -27
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Expresso",
@@ -438,6 +469,18 @@
             "name": "Gambia",
             "position": 92,
             "movement": 17
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 4,
+            "movement": 2
           }
         ]
       }
@@ -477,41 +520,16 @@
             "movement": -2
           }
         ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Run Around",
-    "platforms": [
+      },
       {
-        "platform": "Apple Music",
+        "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 10,
-            "movement": -5
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 30,
-            "movement": -14
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 143,
-            "movement": 11
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 170,
-            "movement": -4
+            "position": 11,
+            "movement": -7
           }
         ]
       }
@@ -549,6 +567,56 @@
             "name": "Gambia",
             "position": 193,
             "movement": -95
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 19,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Run Around",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 10,
+            "movement": -5
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 30,
+            "movement": -14
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 143,
+            "movement": 11
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 170,
+            "movement": -4
           }
         ]
       }
@@ -678,7 +746,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 11,
+            "position": 13,
             "movement": null,
             "status": "new"
           }
@@ -766,8 +834,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 138,
-            "movement": -25
+            "position": 140,
+            "movement": -18
           }
         ]
       }

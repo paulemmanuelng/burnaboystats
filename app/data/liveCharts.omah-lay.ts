@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-09-07";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -185,7 +185,7 @@
             "country": "BM",
             "name": "Bermuda",
             "position": 57,
-            "movement": -18
+            "movement": -17
           }
         ]
       },
@@ -348,6 +348,161 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "With You",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 21,
+            "movement": 8
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 47,
+            "movement": 2
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 53,
+            "movement": -9
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 75,
+            "movement": -2
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 122,
+            "movement": -22
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 129,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 140,
+            "movement": -11
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 152,
+            "movement": -60
+          },
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 172,
+            "movement": -15
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 185,
+            "movement": -38
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 189,
+            "movement": -21
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 10,
+            "movement": 1
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 68,
+            "movement": null,
+            "status": "re"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 89,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 9,
+            "movement": -6
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 90,
+            "movement": 2
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 166,
+            "movement": 20
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 95,
+            "movement": 10
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Boy Alone",
     "platforms": [
       {
@@ -475,135 +630,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "With You",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 21,
-            "movement": 8
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 47,
-            "movement": 2
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 53,
-            "movement": -9
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 75,
-            "movement": -2
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 122,
-            "movement": -22
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 129,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 140,
-            "movement": -11
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 152,
-            "movement": -60
-          },
-          {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 172,
-            "movement": -15
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 185,
-            "movement": -38
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 189,
-            "movement": -21
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 7,
-            "movement": 103
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 26,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 90,
-            "movement": 2
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 166,
-            "movement": 20
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 95,
-            "movement": 10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Influence",
@@ -878,14 +904,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 67,
-            "movement": -26
+            "position": 68,
+            "movement": -18
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 77,
-            "movement": -22
+            "position": 76,
+            "movement": -21
           }
         ]
       },
@@ -984,8 +1010,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 82,
-            "movement": 12
+            "position": 84,
+            "movement": 10
           }
         ]
       }
@@ -1238,18 +1264,43 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Gut Genug",
+    "title": "Namek",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 97,
+            "country": "FR",
+            "name": "France",
+            "position": 73,
+            "movement": -3
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 162,
+            "movement": -10
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Gut Genug",
+    "platforms": [
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 74,
             "movement": null,
-            "status": "new"
+            "status": "re"
           }
         ]
       },
@@ -1268,31 +1319,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f4f5c145b06c62888141b2a7eabad4b3/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Namek",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 71,
-            "movement": 8
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 162,
-            "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Isaka II",
@@ -1504,25 +1530,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Do Not Disturb",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 185,
-            "movement": -122
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1b2bca57a7cfd3a6b2435783d6e810f1/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "What Have We Done - EP",

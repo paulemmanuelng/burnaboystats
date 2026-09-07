@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-09-07";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -208,6 +208,19 @@
             "status": "new"
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 2,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "album",
@@ -256,6 +269,19 @@
             "name": "South Africa",
             "position": 149,
             "movement": -24
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 90,
+            "movement": null,
+            "status": "re"
           }
         ]
       },
@@ -400,8 +426,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 20,
-            "movement": -5
+            "position": 22,
+            "movement": -7
           }
         ]
       }
@@ -447,15 +473,40 @@
             "movement": -116
           }
         ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "When I'm With You",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LA",
+            "name": "Laos",
+            "position": 68,
+            "movement": 23
+          },
+          {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 176,
+            "movement": 6
+          }
+        ]
       },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 87,
+            "country": "TH",
+            "name": "Thailand",
+            "position": 120,
             "movement": null,
             "status": "new"
           }
@@ -463,7 +514,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Water",
@@ -475,13 +526,13 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 46,
-            "movement": -41
+            "position": 51,
+            "movement": -40
           },
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 87,
+            "position": 88,
             "movement": -1
           }
         ]
@@ -533,31 +584,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "When I'm With You",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LA",
-            "name": "Laos",
-            "position": 68,
-            "movement": 23
-          },
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 176,
-            "movement": 6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FAIRYTALE",
@@ -614,8 +640,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 17,
-            "movement": -10
+            "position": 19,
+            "movement": -12
           }
         ]
       }

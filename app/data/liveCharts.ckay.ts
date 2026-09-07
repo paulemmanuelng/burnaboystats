@@ -38,9 +38,59 @@
   export const liveChartsUpdated = "2026-09-07";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
+  {
+    "title": "BODY",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 166,
+            "movement": -71
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 177,
+            "movement": 19
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 112,
+            "movement": -24
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 42,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+  },
   {
     "title": "Love Nwantiti",
     "platforms": [
@@ -51,8 +101,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 4,
-            "movement": 2
+            "position": 7,
+            "movement": -1
           },
           {
             "country": "BF",
@@ -89,43 +139,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BODY",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 166,
-            "movement": -71
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 177,
-            "movement": 19
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 112,
-            "movement": -24
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BANGER BOY",
@@ -190,9 +203,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
-            "movement": null,
-            "status": "new"
+            "position": 68,
+            "movement": -58
           }
         ]
       }

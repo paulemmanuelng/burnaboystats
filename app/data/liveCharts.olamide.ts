@@ -153,8 +153,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 61,
-            "movement": -26
+            "position": 62,
+            "movement": -18
           }
         ]
       },
@@ -271,7 +271,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 61,
             "movement": null,
             "status": "new"
           }
@@ -405,8 +405,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 107,
-            "movement": 3
+            "position": 109,
+            "movement": 1
           }
         ]
       }
@@ -425,7 +425,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 92,
-            "movement": -10
+            "movement": -1
           }
         ]
       }
@@ -453,26 +453,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Zion",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 61,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4183e7168bf3cccfd336e9822624ce7c/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Triumphant",
     "platforms": [
       {
@@ -490,6 +470,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Zion",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 79,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4183e7168bf3cccfd336e9822624ce7c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rock",
@@ -528,25 +528,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Assignment",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 194,
-            "movement": -123
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a4643fa21c1aa5c851069bb486f24d72/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Unruly",
@@ -615,8 +596,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 101,
-            "movement": 3
+            "position": 103,
+            "movement": 1
           }
         ]
       }
@@ -634,8 +615,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": 0
+            "position": 149,
+            "movement": -2
           }
         ]
       }

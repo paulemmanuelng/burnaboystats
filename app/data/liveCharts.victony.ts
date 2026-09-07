@@ -284,12 +284,6 @@
             "position": 198,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 200,
-            "movement": -38
           }
         ]
       },
@@ -498,20 +492,21 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 7,
+            "position": 8,
             "movement": -6
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 60,
-            "movement": -12
+            "position": 63,
+            "movement": -15
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 184,
-            "movement": -44
+            "country": "FR",
+            "name": "France",
+            "position": 117,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -735,10 +730,10 @@
             "status": "new"
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 106,
-            "movement": -12
+            "country": "CA",
+            "name": "Canada",
+            "position": 107,
+            "movement": -2
           },
           {
             "country": "CG",
@@ -747,10 +742,10 @@
             "movement": -5
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 123,
-            "movement": -17
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 118,
+            "movement": -26
           },
           {
             "country": "MR",
@@ -767,12 +762,6 @@
             "status": "new"
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 173,
-            "movement": -17
-          },
-          {
             "country": "BB",
             "name": "Barbados",
             "position": 183,
@@ -784,6 +773,12 @@
             "name": "Cape Verde",
             "position": 183,
             "movement": -96
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 197,
+            "movement": -48
           }
         ]
       }
@@ -1052,8 +1047,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 153,
-            "movement": -127
+            "position": 172,
+            "movement": -133
           }
         ]
       }
@@ -1377,25 +1372,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b7f8a994a2879ad8100aab10404627a4/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "AMAZON",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 154,
-            "movement": -36
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Hello",
     "platforms": [
       {
@@ -1432,6 +1408,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/06fec5c27867700f0bdd8938b5ac4abd/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "AMAZON",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 154,
+            "movement": -36
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "PITY THIS BOY",
@@ -1481,7 +1476,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
+            "position": 87,
             "movement": null,
             "status": "new"
           }
@@ -1490,18 +1485,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2d663b939236f5b42b169e75ec16fc14/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "FYNE",
-    "platforms": [],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/720a729019b9a6c8873652d993302775/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "MISSIN PIECE",
-    "platforms": [],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4446cd79abcc87206d5e47417ba9bde7/500x500-000000-80-0-0.jpg"
   }
 ];
   
