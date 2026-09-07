@@ -166,8 +166,9 @@
 .tagDot { width: 5px; height: 5px; border-radius: 50%; display: block; }
 .rowDate {
   margin-left: auto;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--type-caption);
   color: var(--text-muted);
 }
 .rowText { font-size: 14.5px; line-height: 1.45; margin-top: 9px; }

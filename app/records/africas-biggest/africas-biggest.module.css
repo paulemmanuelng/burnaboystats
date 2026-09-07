@@ -210,8 +210,8 @@
 }
 .entryHim { background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent); }
 .entryRank {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   font-weight: 700;
   color: var(--dim);
   font-variant-numeric: tabular-nums;
@@ -221,8 +221,8 @@
 .nameHim { color: var(--gold); }
 .entrySub { display: block; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 .entryValue {
-  font-family: var(--font-mono), monospace;
-  font-size: 13px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   font-weight: 700;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;

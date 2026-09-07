@@ -186,8 +186,8 @@
 /* The headline row reads in gold — it is the answer the page is built around. */
 .rowLead { background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent); }
 .rank {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   font-weight: 700;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
@@ -225,8 +225,8 @@
 /* His row is the one the page marks, so its bar carries a little more of it. */
 .rowLead .barFill { background: color-mix(in srgb, var(--gold-wash-base) 55%, transparent); }
 .rowValue {
-  font-family: var(--font-mono), monospace;
-  font-size: 12.5px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   font-weight: 700;
   color: var(--text);
   font-variant-numeric: tabular-nums;
@@ -422,8 +422,8 @@
   white-space: nowrap;
 }
 .tileValue {
-  font-family: var(--font-mono), monospace;
-  font-size: 11.5px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   color: var(--gold);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;

@@ -192,8 +192,8 @@
   font-variant-numeric: tabular-nums;
 }
 .tierPct {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   margin-left: auto;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
@@ -318,8 +318,8 @@
 }
 .rowTop { display: flex; align-items: baseline; gap: 10px; }
 .rank {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   color: var(--text-muted);
   min-width: 20px;
   font-variant-numeric: tabular-nums;
@@ -341,8 +341,9 @@
   margin-top: 5px;
 }
 .rowCount {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--type-small);
   color: var(--gold);
   white-space: nowrap;
 }

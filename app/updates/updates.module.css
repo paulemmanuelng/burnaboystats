@@ -54,8 +54,8 @@
   align-items: center;
   gap: 11px;
   margin-top: 20px;
-  font-family: var(--font-mono), monospace;
-  font-size: 12.5px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   letter-spacing: 0.06em;
   color: var(--text-muted);
 }
@@ -169,8 +169,9 @@
 }
 .row:hover { background: color-mix(in srgb, var(--ink-wash-base) 5%, transparent); color: var(--text); }
 .rowDate {
-  font-family: var(--font-mono), monospace;
-  font-size: 12.5px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--type-small);
   letter-spacing: 0.04em;
   color: var(--text-muted);
   white-space: nowrap;

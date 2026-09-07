@@ -197,8 +197,8 @@
   color: var(--text);
 }
 .showRank {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   color: var(--text-muted);
   min-width: 20px;
   font-variant-numeric: tabular-nums;
@@ -207,8 +207,9 @@
 .showVenue { display: block; font-weight: 600; font-size: 14px; }
 .showMeta {
   display: block;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--type-caption);
   color: var(--text-muted);
   margin-top: 3px;
 }

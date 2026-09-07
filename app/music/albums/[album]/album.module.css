@@ -23,8 +23,9 @@
   flex: none;
   width: 22px;
   text-align: right;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--type-small);
   color: var(--muted);
 }
 

@@ -72,8 +72,9 @@
 .num { font-variant-numeric: tabular-nums; }
 .countries {
   color: var(--text-muted);
-  font-size: 12.5px;
-  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
   letter-spacing: 0.04em;
 }
 .certs {

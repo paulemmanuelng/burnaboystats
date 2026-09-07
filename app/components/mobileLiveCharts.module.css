@@ -260,8 +260,9 @@
 }
 .rowMeta {
   display: block;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--type-caption);
   color: var(--text-muted);
   margin-top: 3px;
 }
@@ -332,17 +333,18 @@
 /* A No. 1 reads green, matching the summary and the chips. */
 .entryTop .entryPos { color: var(--green); }
 .entryPos {
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 700;
-  font-size: 12px;
+  font-size: var(--type-small);
   color: var(--gold);
   font-variant-numeric: tabular-nums;
 }
 .entryFlag { font-size: 13px; line-height: 1; }
 .entryCountry { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .entryMove {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--type-caption);
   font-weight: 700;
   white-space: nowrap;
 }

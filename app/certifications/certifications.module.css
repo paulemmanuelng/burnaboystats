@@ -507,8 +507,8 @@
 .tierPct {
   margin-left: auto;
   padding-right: 40px;
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }

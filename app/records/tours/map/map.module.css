@@ -134,7 +134,8 @@
 }
 .numCol {
   text-align: right;
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;

@@ -275,8 +275,8 @@
   line-height: 1.15;
 }
 .rowCredit {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   color: var(--text-muted);
   margin-top: 3px;
   overflow: hidden;
@@ -285,14 +285,15 @@
 }
 .rowRight { text-align: right; flex: none; }
 .rowBest {
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 700;
-  font-size: 14px;
+  font-size: var(--type-small);
   font-variant-numeric: tabular-nums;
 }
 .rowCount {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--type-caption);
   color: var(--dim);
   margin-top: 3px;
 }
