@@ -13,23 +13,25 @@
   }
 }
 
-/* ── Live band ────────────────────────────────────────────────────────── */
-/* Same treatment as the Today's Number panel: not a gold fill — the page
-   surface lit from two corners, with the headline carrying the gold. */
-.band {
-  color: var(--text);
-  padding: 8px 18px;
+/* ── Hero ─────────────────────────────────────────────────────────────────
+   Design response §1.2, verbatim.
+
+   Two blocks left mobile in this change. The gold ticker band is gone — its
+   fact IS the hero now — and so is the Today's-number card: its figure,
+   caption, arrivals note, changed-sentence and Live-board link all moved up
+   here rather than sitting 452px down the screen. Gone with the card: its five
+   floating glyphs and its corner radial.
+
+   The screen is left with ONE gradient (the figure) and ONE glow (the 7px
+   status dot). Everything else is flat. */
+.hero { padding: 18px; }
+
+/* The live line — the band's job in 22px instead of a full-width strip. */
+.liveLine {
   display: flex;
   align-items: center;
   gap: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  border-bottom: 1px solid var(--line);
-  background-color: var(--bg-soft);
-  background-image:
-    radial-gradient(110% 85% at 0% 0%, rgba(255, 182, 39, 0.2), transparent 58%),
-    radial-gradient(85% 80% at 100% 100%, rgba(255, 122, 26, 0.13), transparent 62%);
-  box-shadow: inset 0 0 60px rgba(255, 182, 39, 0.05);
+  height: 22px;
 }
 .livePill {
   display: inline-flex;
@@ -53,197 +55,60 @@
   border-radius: 50%;
   background: var(--green);
   display: block;
+  flex: none;
 }
-.bandText {
-  color: var(--text);
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 13px;
-  letter-spacing: 0.02em;
+.liveLineText {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* ── Hero ─────────────────────────────────────────────────────────────── */
-.hero { padding: 24px 18px 20px; }
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0;
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  /* Muted, as the desktop hero's eyebrow already is — it is a label, not a
-     figure. The gold tick beside it still carries the accent. */
-  color: var(--text-muted);
-}
-.rule {
-  width: 16px;
-  height: 2px;
-  background: var(--gold);
-  display: block;
-  flex: none;
-}
-.title {
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400; /* Anton has no bold cut */
-  font-size: 62px;
-  line-height: 0.86;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  margin: 12px 0 0;
-}
-.titleGold {
-  background: linear-gradient(180deg, #ffd25a, var(--gold) 45%, var(--grad-b));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  /* Paints the glyph, not the line box. background-clip:text fills the PADDING
-     box and clips that to the glyphs, so any ink outside it renders invisible —
-     and Anton's ink overruns every sub-1 line-height on this site. The pad
-     grows the paint area only: on a block it is cancelled by the margin, and on
-     an inline span vertical margins do not apply in the first place. 0.2em, not
-     the 0.12em the spec suggests: measured on the real page, a descender at
-     line-height 0.86 needs 0.119em, which left 0.0px of headroom. */
-  padding: 0.2em 0;
-  margin: -0.2em 0;
-}
-.lede {
-  font-size: 15px;
-  line-height: 1.5;
-  color: #d8d8de;
-  margin: 14px 0 0;
-}
-.actions {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  margin-top: 20px;
-}
-/* Label left, arrow right — the design's actions are justified, not centred. */
-.primary,
-.secondary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 52px;
-  padding: 0 20px;
-  border-radius: 999px;
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 11.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.primary {
-  /* Same ramp as .btnPrimary — this screen has its own button rule, so the two
-     have to be changed together or the phone and the desktop show two golds. */
-  background-color: var(--gold);
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
-  color: #000;
-  -webkit-text-fill-color: #000;
-  border: 1px solid var(--gold);
-  box-shadow: 0 0 26px rgba(255, 182, 39, 0.24);
-  /* Promotes the layer at rest, for the same iPhone compositing reason as
-     .btnPrimary in globals.css. */
-  transform: translateZ(0);
-}
-.secondary {
-  background: var(--bg-soft);
-  color: var(--text);
-  border: 1px solid var(--line);
-}
-
-/* ── Today's number ───────────────────────────────────────────────────── */
-.today {
-  position: relative;
-  overflow: hidden;
-  margin: 0 18px;
-  padding: 20px;
-  border-radius: 16px;
-  color: var(--text);
-  /* Surface, hairline, ONE corner glow — the Job 3 rule, and this card is the
-     element it names by measurement: at 366x351 it covers a third of the phone
-     screen, and it was carrying a gold border, two warm radials AND an outer
-     gold glow. The numeral is the gold in it now. Unlike the desktop panel this
-     card floats, so it keeps a border — just not a gold one. */
-  border: 1px solid var(--line);
-  background-color: var(--bg-soft);
-  background-image: radial-gradient(120% 90% at 0% 0%, rgba(255, 182, 39, 0.14), transparent 58%);
-}
-.todayGlyphs {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  color: var(--gold);
-}
-.todayGlyphs span { position: absolute; display: block; line-height: 1; }
-.tg1 { top: 6%; right: 12%; font-size: 46px; opacity: 0.08; transform: rotate(-8deg); }
-.tg2 { top: 52%; right: 6%; font-size: 38px; opacity: 0.07; }
-.tg3 { bottom: 2px; right: 26%; font-size: 52px; opacity: 0.05; transform: rotate(10deg); }
-.tg4 { top: 8%; right: -6px; font-size: 30px; opacity: 0.06; }
-.tg5 { bottom: 30%; right: 2%; font-size: 26px; opacity: 0.05; }
-.todayInner { position: relative; }
-.todayKicker {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  /* Mono muted, matching the desktop panel — a label above the figure it names. */
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-.todayRow {
+/* The figure — first thing on the screen that is a fact, at y=121. */
+.figureRow {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  margin-top: 10px;
+  margin-top: 12px;
+  height: 112px;
 }
-.todayKickerRule { width: 16px; height: 1px; background: var(--rule); display: block; flex: none; }
-.todayFigure {
+.figure {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 104px;
+  font-size: 140px;
   line-height: 0.8;
   font-variant-numeric: tabular-nums;
   background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 52%, var(--grad-b) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  /* Paints the glyph, not the line box. background-clip:text fills the PADDING
-     box and clips that to the glyphs, so any ink outside it renders invisible —
-     and Anton's ink overruns every sub-1 line-height on this site. The pad
-     grows the paint area only: on a block it is cancelled by the margin, and on
-     an inline span vertical margins do not apply in the first place. 0.2em, not
-     the 0.12em the spec suggests: measured on the real page, a descender at
-     line-height 0.86 needs 0.119em, which left 0.0px of headroom. */
+  /* A line-height under 1 crops the painted box, and background-clip: text
+     paints only what the box covers — so the ramp would lose its ends. The
+     padding gives it room; the equal negative margin keeps the row at 112. */
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.todayCover {
+.cover {
   margin-left: auto;
-  color: var(--text);
-  display: block;
   flex: none;
+  display: block;
+  color: var(--text);
   text-decoration: none;
 }
-.todayCover img {
-  width: 112px;
-  height: 112px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+.cover img {
   display: block;
+  width: 88px;
+  height: 88px;
+  border-radius: 8px;
+  background: var(--bg-soft-2);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
 }
-.todayCoverLabel {
+.coverLabel {
   display: block;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -251,53 +116,133 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-top: 7px;
-  color: var(--gold);
+  color: var(--gold-ink);
 }
-.todayCaption {
+
+/* What the figure counts. Two lines at 390; three at 320. */
+.caption {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1.1;
   text-transform: uppercase;
+  color: var(--text);
   margin-top: 10px;
 }
-.todayNote {
+/* The live provenance, kept at reading size rather than quieted. */
+.arrivals {
   font-size: 13px;
-  line-height: 1.5;
-  margin: 8px 0 0;
-  color: #cfc7bb;
+  line-height: 1.4;
+  color: var(--text-body);
+  margin-top: 6px;
 }
-.todayFoot {
+.statusRow {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 10px;
-  padding-top: 4px;
-  border-top: 1px solid rgba(245, 244, 240, 0.12);
-  color: var(--text-muted);
+  min-height: 44px;
+  margin-top: 4px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: var(--text-muted);
 }
-.todayFootDot {
+.statusDot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: var(--green);
-  display: block;
-  flex: none;
   box-shadow: 0 0 8px rgba(62, 209, 127, 0.7);
+  flex: none;
 }
-.todayFootLink {
+.statusLink {
   margin-left: auto;
   min-height: 44px;
   display: flex;
   align-items: center;
-  color: var(--gold);
-  font-weight: 700;
+  color: var(--gold-ink);
   text-decoration: none;
+  white-space: nowrap;
+}
+.divider {
+  border-top: 1px solid var(--rule-soft);
+  margin-top: 6px;
+}
+
+/* The name, demoted. Still the page's <h1> — see the note in the component. */
+.nameRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.title {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+.rule {
+  width: 16px;
+  height: 2px;
+  background: var(--gold-ink);
+  display: block;
+  flex: none;
+}
+.lede {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--text-body);
+  margin-top: 12px;
+}
+.primary,
+.secondary {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+/* Flat gold. No gradient and no glow: the figure above owns both. */
+.primary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 999px;
+  margin-top: 16px;
+  background: var(--gold-fill);
+  color: var(--ink-on-gold);
+  border: 1px solid var(--gold-fill);
+}
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 6px;
+  color: var(--gold-ink);
 }
 
 /* ── Stat grid: two-up, hairline seams ────────────────────────────────── */
