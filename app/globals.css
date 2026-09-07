@@ -3,7 +3,9 @@
    "Design tokens" (the variables below) keep the whole site
    consistent: change a value once, it updates everywhere.
    =========================================================== */
-:root {
+:root,
+/* Photo tiles: see .photoTile below. */
+.photoTile {
   /* Tell the browser this is a dark UI. Without it iOS Safari treats the page
      as light-scheme and applies its own colour adjustments to controls in Dark
      Mode — which was re-tinting the gold button's label toward its background
@@ -59,6 +61,23 @@
      #d3d3da (x9) into it — three literals that were always the same job. */
   --text-body: light-dark(#4a443b, #cfc7bb);
 
+/* ── A photo tile is a dark island ────────────────────────────────────────
+   Anything laid over a PHOTOGRAPH keeps the dark palette in both themes: the
+   scrim that darkens the image so a name can sit on it, and the name itself.
+   Theming those turns the scrim into a white wash that covers the subject —
+   which is exactly what happened to the Afrobeats board on paper.
+
+   It works the way the masthead island used to: this selector is added to the
+   rule that DECLARES the token list (search ":root," above), so every
+   light-dark() in that list resolves against the color-scheme pinned here, and
+   a token added later is correct inside a photo tile for free.
+
+   Use it by adding the plain class `photoTile` alongside the module class. */
+.photoTile {
+  color-scheme: dark;
+  color: var(--text);
+}
+
 /* ── The reading scale (design response §2.1) ─────────────────────────────
    The site had one prose size, 15.5px, and used it for answers, notes, card
    descriptions and captions alike — so a FAQ answer was set at the same size
@@ -112,6 +131,11 @@
      less — the ring is what separates a dark car from the ground it sits on. */
   --floor-glow: light-dark(rgba(255, 182, 39, 0.30), rgba(255, 182, 39, 0.16));
   --floor-ring: light-dark(rgba(176, 112, 0, 0.45), rgba(224, 138, 46, 0.50));
+  /* The car stage's gold, as a BASE for color-mix so every ring, dash and glow
+     stop keeps its own alpha. It was hardcoded rgba(224,138,46,a) in the Floor
+     and Ring SVGs, which meant the whole stage vanished on paper -- a mid-amber
+     at 16-55% over white is nearly nothing. Dark is the exact old value. */
+  --floor-ink: light-dark(#b07000, #e08a2e);
   /* Records signature. In dark it IS --grad-b; on paper it deepens, because it
      is read as text and --grad-b (a gradient stop) never has to be. */
   --ember: light-dark(#b34700, #ff7a1a);
@@ -779,7 +803,10 @@ a {
   font-size: 12.5px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.88);
+  /* Was a flat rgba(255,255,255,.88), which was invisible the moment the
+     masthead started theming -- every link in the bar at 1.09:1. Dark keeps
+     the exact value it had. */
+  color: light-dark(rgba(23, 20, 15, 0.88), rgba(255, 255, 255, 0.88));
   text-shadow: 0 1px 10px color-mix(in srgb, var(--halo-base) 70%, transparent);
   transition: color var(--dur-fast) var(--ease);
 }

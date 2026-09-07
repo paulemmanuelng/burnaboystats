@@ -200,7 +200,7 @@ export default function AfrobeatsPage() {
           {/* Burna leads the board and goes to his ledger, not to a profile: he
               is the site's subject, so there is no /afrobeats page for him, and
               this tile states a plaque count — so the count is what it opens. */}
-          <Link href={BURNA.href} className={`${styles.tile} ${styles.tileAnchor}`}>
+          <Link href={BURNA.href} className={`${styles.tile} ${styles.tileAnchor} photoTile`}>
             <span className={styles.art} style={{ backgroundImage: `url(${BURNA.image})` }} aria-hidden="true" />
             <span className={styles.scrim} aria-hidden="true" />
             <span className={styles.tileBody}>
@@ -220,7 +220,7 @@ export default function AfrobeatsPage() {
             <Link
               key={a.slug}
               href={`/afrobeats/${a.slug}`}
-              className={styles.tile}
+              className={`${styles.tile} photoTile`}
               prefetch={false}
             >
               <span className={styles.art} style={{ backgroundImage: `url(${a.image})` }} aria-hidden="true" />
@@ -323,7 +323,7 @@ export default function AfrobeatsPage() {
             </p>
             <div className={styles.grid}>
               {pendingArtists.map((a) => (
-                <Link key={a.slug} href={`/afrobeats/${a.slug}`} className={`${styles.tile} ${styles.tilePending}`}>
+                <Link key={a.slug} href={`/afrobeats/${a.slug}`} className={`${styles.tile} ${styles.tilePending} photoTile`}>
                   <span className={styles.art} style={{ backgroundImage: `url(${a.image})` }} aria-hidden="true" />
                   <span className={styles.scrim} aria-hidden="true" />
                   <span className={styles.tileBody}>

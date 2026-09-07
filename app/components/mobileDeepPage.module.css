@@ -381,7 +381,9 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(245, 240, 232, 0.55);
-  background: color-mix(in srgb, var(--veil-base) 60%, transparent);
+  /* This badge sits ON a photograph, so its veil is dark in both themes --
+     --veil-base themes, which turned the veil to paper under light ink. */
+  background: color-mix(in srgb, var(--scrim-base) 60%, transparent);
   padding: 3px 7px;
 }
 .tileMeta {

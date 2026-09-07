@@ -287,7 +287,9 @@
   position: absolute; left: 12px; bottom: 10px;
   font-family: var(--font-mono), monospace; font-size: 10px;
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.55); background: color-mix(in srgb, var(--veil-base) 60%, transparent);
+  /* Sits ON a photograph, so the veil is dark in both themes. --veil-base
+     themes, which turned this to a paper veil under light ink: 1.03:1. */
+  color: rgba(245, 240, 232, 0.55); background: color-mix(in srgb, var(--scrim-base) 60%, transparent);
   padding: 3px 7px;
 }
 .tileMeta {
