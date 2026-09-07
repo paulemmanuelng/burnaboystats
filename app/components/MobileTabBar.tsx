@@ -1,6 +1,7 @@
 "use client"; // needs the current route to mark the active tab
 
 import Link from "next/link";
+import BrandMark from "./BrandMark";
 import { usePathname } from "next/navigation";
 import { hasOwnActionBar } from "../lib/mobileScreens";
 import styles from "./mobileTabBar.module.css";
@@ -16,9 +17,24 @@ import styles from "./mobileTabBar.module.css";
  * Glyphs are the design's, set in Anton at 15px — a typeface, not an icon font,
  * which is why they sit on a shared baseline with the labels rather than
  * needing optical alignment.
+ *
+ * HOME IS THE EXCEPTION. LOGO.md: "below 24px of height the wordmark drops and
+ * the crown stands alone — the tab bar's Home icon". So Home carries the mark
+ * rather than a glyph, which is why it is the one tab whose icon is an SVG.
+ *
+ * That created a conflict worth recording. Every other tab's glyph INHERITS
+ * `color`: --text-muted when inactive, --gold when active. The mark cannot do
+ * that — LOGO.md forbids recolouring it, and the dot is "the only green, always
+ * present". Tinting it to match the muted state would break the logo; leaving
+ * it full-strength would make Home the only tab that never looks inactive.
+ *
+ * Resolved with opacity instead of hue: the mark keeps its exact colours at
+ * every state and dims when the tab is not current, so it still reads as
+ * inactive beside its four neighbours without a single pixel being recoloured.
  */
 const TABS = [
-  { icon: "◆", label: "Home", href: "/" },
+  // `mark: true` renders the crown instead of a glyph — see the note above.
+  { icon: "◆", label: "Home", href: "/", mark: true },
   { icon: "♪", label: "Music", href: "/music" },
   { icon: "★", label: "Certs", href: "/certifications" },
   { icon: "▲", label: "Charts", href: "/live-charts" },
@@ -63,7 +79,13 @@ export default function MobileTabBar() {
             className={`${styles.tab} ${active ? styles.tabOn : ""}`}
             aria-current={active ? "page" : undefined}
           >
-            <span className={styles.icon} aria-hidden="true">{t.icon}</span>
+            {"mark" in t && t.mark ? (
+              <span className={styles.markIcon} aria-hidden="true">
+                <BrandMark size={16} id="tab" />
+              </span>
+            ) : (
+              <span className={styles.icon} aria-hidden="true">{t.icon}</span>
+            )}
             <span className={styles.label}>{t.label}</span>
           </Link>
         );
