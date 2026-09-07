@@ -144,12 +144,6 @@
   "reason": "deferred: no token is byte-identical in dark"
  },
  {
-  "file": "app/certifications/certifications.module.css",
-  "line": 785,
-  "literal": "#0a0a0b",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
   "file": "app/components/BirthdayCelebration.module.css",
   "line": 54,
   "literal": "rgba(20, 16, 8, 0.96)",
@@ -174,12 +168,6 @@
   "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
  },
  {
-  "file": "app/components/FollowPanel.module.css",
-  "line": 55,
-  "literal": "#1a1204",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
   "file": "app/components/GlobeTeaser.module.css",
   "line": 66,
   "literal": "rgba(0, 0, 0, 0.72)",
@@ -198,48 +186,6 @@
   "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
  },
  {
-  "file": "app/components/StatCardMaker.module.css",
-  "line": 76,
-  "literal": "#0a0a0b",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/StatCardMaker.module.css",
-  "line": 141,
-  "literal": "#0a0a0b",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileAfricasBiggest.module.css",
-  "line": 219,
-  "literal": "#0a0a0b",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileAnalysis.module.css",
-  "line": 232,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileAnalysis.module.css",
-  "line": 233,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileApi.module.css",
-  "line": 218,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileApi.module.css",
-  "line": 219,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
   "file": "app/components/mobileCerts.module.css",
   "line": 107,
   "literal": "rgba(0, 0, 0, 0.3)",
@@ -260,24 +206,6 @@
  {
   "file": "app/components/mobileCerts.module.css",
   "line": 108,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileCerts.module.css",
-  "line": 243,
-  "literal": "#0a0a0b",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileCerts.module.css",
-  "line": 418,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileCerts.module.css",
-  "line": 419,
   "literal": "#000",
   "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
  },
@@ -295,45 +223,9 @@
  },
  {
   "file": "app/components/mobileDeepPage.module.css",
-  "line": 317,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileDeepPage.module.css",
-  "line": 318,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileDeepPage.module.css",
   "line": 383,
   "literal": "rgba(245, 240, 232, 0.55)",
   "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/mobileMethodology.module.css",
-  "line": 215,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileMethodology.module.css",
-  "line": 216,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileMusic.module.css",
-  "line": 189,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileMusic.module.css",
-  "line": 190,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
  },
  {
   "file": "app/components/mobileNavSheet.module.css",
@@ -354,64 +246,10 @@
   "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
  },
  {
-  "file": "app/components/mobileOfficialCharts.module.css",
-  "line": 376,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileOfficialCharts.module.css",
-  "line": 377,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileRevenue.module.css",
-  "line": 256,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileRevenue.module.css",
-  "line": 257,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
   "file": "app/components/mobileTabBar.module.css",
   "line": 43,
   "literal": "rgba(255, 182, 39, 0.08)",
   "reason": "deferred: replacing it would move dark \u2014 see docs/design/theming/deferred.json"
- },
- {
-  "file": "app/components/mobileTourMap.module.css",
-  "line": 177,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileTourMap.module.css",
-  "line": 178,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileTours.module.css",
-  "line": 163,
-  "literal": "#0a0a0b",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileTours.module.css",
-  "line": 272,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
- },
- {
-  "file": "app/components/mobileTours.module.css",
-  "line": 273,
-  "literal": "#000",
-  "reason": "ink on a gold/brand fill; those fills do not theme, so the ink is correct in both modes"
  },
  {
   "file": "app/components/scrollRail.module.css",

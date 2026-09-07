@@ -43,16 +43,16 @@
   .compact .opt { width: 44px; height: 44px; }
 }
 
-/* ...and NOT on a phone. Three 44px segments is 132px, which on a 390px bar
-   already holding the wordmark, the search trigger and the hamburger pushed
-   the whole page sideways and left dead space beside it. The sheet carries the
-   labelled control two taps away, which is where it belongs — the same reason
-   .navStatCard is desktop-only (globals.css). Hidden rather than shrunk: a
-   control small enough to fit here would be under the 44px touch minimum this
-   site holds everywhere else. */
-@media (max-width: 900px) {
-  .compact { display: none; }
-}
+/* The segmented control is NOT in the bar at any width. Measured: it is 110px,
+   and adding it pushed .navStatCard 90px off the right edge at 1440 and 101px
+   at 1240 -- silently, because body has overflow-x: clip, so the Stat card was
+   simply gone rather than scrollable. The design response said this in advance
+   ("with nine links, search and Stat card placed, the bar has no room ... at
+   any desktop width"); it then concluded 108px icon-only would fit, and that
+   was the part that was wrong -- there are ten links now, and the bar was
+   already full. The bar gets the 34px flip; the three-state control lives in
+   the sheet and the footer, where there is room for it. */
+.compact { display: none; }
 
 /* Mobile sheet: full width, 44px, labelled. */
 .full { display: flex; width: 100%; }
@@ -94,8 +94,4 @@
 .mini:hover { color: var(--text); border-color: var(--rule-soft); }
 .mini svg { display: block; width: 15px; height: 15px; }
 
-/* Mobile only. The desktop bar has room for the full three-state control, and
-   showing both would be two controls for one setting. */
-@media (min-width: 901px) {
-  .mini { display: none; }
-}
+/* Every width: it is the only appearance control in the bar now. */

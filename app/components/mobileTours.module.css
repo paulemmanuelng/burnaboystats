@@ -160,7 +160,7 @@
   background-color: var(--gold-fill);
   /* The gold ramp — the site's one treatment for a gold fill. */
   background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
-  color: #0a0a0b;
+  color: var(--ink-on-gold);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
@@ -269,8 +269,8 @@
      gold action on the site runs one gradient, or the phone shows two golds. */
   background-color: var(--gold-fill);
   background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
-  color: #000;
-  -webkit-text-fill-color: #000;
+  color: var(--ink-on-gold);
+  -webkit-text-fill-color: var(--ink-on-gold);
   /* Promotes the layer at rest — see .btnPrimary for the iPhone reason. */
   transform: translateZ(0);
   font-family: var(--font-mono), monospace;
