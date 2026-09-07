@@ -150,7 +150,7 @@
   align-items: start;
   transition: background var(--dur-fast) var(--ease);
 }
-.carRow:hover { background: color-mix(in srgb, var(--ink-wash-base) 4.5%, transparent); }
+.carRow:hover { background: var(--bg-raised); }
 .rank {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
   font-size: 26px; line-height: 0.9; color: var(--text-muted);

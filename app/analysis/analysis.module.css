@@ -72,7 +72,7 @@
   gap: 10px;
   transition: background var(--dur-fast) var(--ease);
 }
-.tocItem:hover { background: color-mix(in srgb, var(--ink-wash-base) 5.5%, transparent); color: var(--text); }
+.tocItem:hover { background: var(--bg-raised); color: var(--text); }
 .tocNum {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

@@ -22,7 +22,7 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; }
+.eyebrowRule { width: 22px; height: 2px; background: var(--ember); display: block; }
 .h1 {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
@@ -72,7 +72,7 @@
     background var(--dur-fast) var(--ease);
 }
 .chip:hover { border-color: var(--gold); color: var(--gold); }
-.chipOn { background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent); border-color: var(--gold); color: var(--gold); }
+.chipOn { background: color-mix(in srgb, var(--ember) 16%, transparent); border-color: var(--ember); color: var(--ember); }
 .chipCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: 0.7; }
 .shown {
   margin-left: auto;
@@ -108,7 +108,7 @@
 /* A faint wash on his rows, so the shape of the board — how much of it is his —
    reads before any single number does. */
 .rowHis { background: color-mix(in srgb, var(--gold-wash-base) 4%, transparent); }
-.row:hover { background: color-mix(in srgb, var(--ink-wash-base) 5%, transparent); }
+.row:hover { background: var(--bg-raised); }
 .right { text-align: right; }
 
 .rank {

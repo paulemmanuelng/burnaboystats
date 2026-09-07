@@ -72,7 +72,7 @@
   font-size: var(--type-label);
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .title {
   font-family: var(--font-anton), sans-serif;
@@ -140,7 +140,7 @@
   font-size: var(--type-label);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .q {
   margin: 8px 0 6px;

@@ -77,7 +77,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--green);
 }
 .title {
   font-family: var(--font-anton), sans-serif;

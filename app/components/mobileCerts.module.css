@@ -555,7 +555,7 @@
   text-transform: uppercase;
   -webkit-tap-highlight-color: transparent;
 }
-.boardBtn:active { background: var(--bg-soft-2); }
+.boardBtn:active { background: var(--bg-raised); }
 .boardTop { display: flex; align-items: center; gap: 7px; }
 .boardLabel { flex: 1; }
 /* Italic, and set in the body face rather than the mono the button uses — it is

@@ -243,7 +243,10 @@
   border-top: 1px solid var(--rule-soft);
 }
 .albumCard {
-  background: var(--bg);
+  /* §3.2: the cover is a photograph, so the card under it is a surface rather
+     than the page. The GRID behind stays --bg, which is what keeps an empty
+     slot in an odd last row reading as page rather than as a card. */
+  background: var(--bg-soft);
   padding: 14px;
   color: var(--text);
   display: block;

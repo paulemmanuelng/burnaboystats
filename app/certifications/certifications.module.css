@@ -662,7 +662,7 @@
   border-bottom: 1px solid var(--line);
   transition: background var(--dur-fast) var(--ease);
 }
-.certRow:hover { background: color-mix(in srgb, var(--ink-wash-base) 5%, transparent); }
+.certRow:hover { background: var(--bg-raised); }
 .certRowHead { min-width: 0; }
 .certTitle {
   display: block;
@@ -805,7 +805,7 @@
   border-bottom: 1px solid var(--line);
   transition: background var(--dur-fast) var(--ease);
 }
-.eventRow:hover { background: color-mix(in srgb, var(--ink-wash-base) 4.5%, transparent); }
+.eventRow:hover { background: var(--bg-raised); }
 .eventMain {
   min-width: 0;
   display: flex;

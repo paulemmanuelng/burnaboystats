@@ -359,7 +359,13 @@
   --scrim-base: #0c0a09;   /* un-alpha'd warm scrim ink; map country borders */
   --scrim-cool: #0a0a0b;   /* the cool near-black used by four chrome bars */
   --scrim-deep: #080706;   /* the two modal dimmers */
-  --photo-well: light-dark(#e6e0d4, #0a0908);  /* matte behind a car photo */
+  /* The matte behind a car photo. It was #0a0908 -- 1.01:1 against the page,
+     so the tile had no edge and a gloss-black car ran straight into the page
+     ground. That is the 3 September failure §3.2 was written about, and it was
+     still there: the fix is not a floor behind a full-bleed photo, it is the
+     well being a well. These are the --bg-soft-2 values, kept as their own
+     token because the role is specific. */
+  --photo-well: light-dark(#efeae1, #1c1c21);
   --code-bg: light-dark(#efeae1, #0f0f11);
   --bg-float: light-dark(rgba(255, 255, 255, 0.90), rgba(20, 20, 23, 0.90));
   --card-glass: light-dark(rgba(255, 255, 255, 0.86), rgba(21, 18, 16, 0.86));
@@ -646,7 +652,7 @@ a {
      question rather than trading it off. */
   border-color: rgba(245, 244, 240, 0.42);
   color: var(--text);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--bg-raised);
 }
 .btnSecondary:hover {
   transform: translateY(-3px);
@@ -1806,7 +1812,7 @@ a[class*="__certRow"]:focus-visible,
 }
 .segOpt:has(input:checked) { background: var(--color-accent); color: var(--color-bg); }
 .segOpt:not(:has(input:checked)):hover {
-  background: color-mix(in srgb, var(--color-text) 7%, transparent);
+  background: var(--bg-raised);
 }
 .segOpt:has(input:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: -2px; }
 

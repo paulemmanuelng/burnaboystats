@@ -198,7 +198,7 @@
   cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
-.zoomBtn:hover:not(:disabled) { border-color: var(--gold); background: var(--bg-soft-2); }
+.zoomBtn:hover:not(:disabled) { border-color: var(--gold); background: var(--bg-raised); }
 .zoomBtn:disabled { opacity: 0.4; cursor: default; }
 
 /* 34px is right beside a mouse; a thumb gets the 44px floor, the same split the

@@ -62,7 +62,7 @@ a.card:hover {
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; flex: none; }
+.eyebrowRule { width: 22px; height: 2px; background: var(--ember); display: block; flex: none; }
 .h1 {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */

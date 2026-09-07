@@ -93,7 +93,7 @@
   display: block;
   transition: background var(--dur-fast) var(--ease);
 }
-.endpoint:hover { background: linear-gradient(color-mix(in srgb, var(--ink-wash-base) 5.5%, transparent), color-mix(in srgb, var(--ink-wash-base) 5.5%, transparent)), var(--bg); color: var(--text); }
+.endpoint:hover { background: var(--bg-raised); color: var(--text); }
 .endpointTop { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 /* Green, like every other "this is live" signal on the site. */
 .method {

@@ -114,7 +114,7 @@
   line-height: 1.1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   margin: 0;
 }
 .item { padding: 14px 0; border-bottom: 1px solid var(--line); }
@@ -160,7 +160,7 @@
   line-height: 1.1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   margin: 0;
 }
 .sectionTitle + .itemBody { margin-top: 8px; }

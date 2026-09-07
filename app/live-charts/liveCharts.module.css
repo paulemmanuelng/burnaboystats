@@ -220,7 +220,7 @@
   border-radius: 6px;
   font-size: 1rem;
 }
-.entry:hover, .entryTop:hover { background: color-mix(in srgb, var(--white-wash-base) 4%, transparent); }
+.entry:hover, .entryTop:hover { background: var(--bg-raised); }
 .flag { flex: none; font-size: 1.05rem; line-height: 1; }
 /* A current No. 1 is the thing people come to see — make it findable. */
 .entryTop {
@@ -408,7 +408,7 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; flex: none; }
+.eyebrowRule { width: 22px; height: 2px; background: var(--green); display: block; flex: none; }
 .h1 {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
@@ -451,7 +451,7 @@
 .notice a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ── Summary strip ────────────────────────────────────────────────────── */
-.summaryBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+.summaryBand { border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--green) 4%, var(--bg-soft)); }
 .summaryGrid {
   max-width: 1360px;
   margin: 0 auto;

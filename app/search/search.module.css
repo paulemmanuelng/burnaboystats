@@ -151,7 +151,7 @@
   align-items: baseline;
   transition: background var(--dur-fast) var(--ease);
 }
-.row:hover { background: color-mix(in srgb, var(--ink-wash-base) 5%, transparent); color: var(--text); }
+.row:hover { background: var(--bg-raised); color: var(--text); }
 .kind {
   font-family: var(--font-mono), monospace;
   font-weight: 700;

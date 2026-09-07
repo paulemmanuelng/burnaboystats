@@ -117,7 +117,7 @@
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 .fChip:hover { border-color: var(--gold-dim); color: var(--text); }
-.fChipOn { background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent); border-color: var(--gold); color: var(--gold); }
+.fChipOn { background: color-mix(in srgb, var(--ember) 16%, transparent); border-color: var(--ember); color: var(--ember); }
 .moreBodies {
   display: inline-flex;
   align-items: center;
@@ -216,7 +216,7 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.eyebrowRule { width: 22px; height: 2px; background: var(--gold); display: block; flex: none; }
+.eyebrowRule { width: 22px; height: 2px; background: var(--ember); display: block; flex: none; }
 .h1 {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
