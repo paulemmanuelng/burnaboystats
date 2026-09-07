@@ -87,8 +87,8 @@
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 23,
-            "movement": 16
+            "position": 28,
+            "movement": -5
           },
           {
             "country": "UG",
@@ -175,17 +175,17 @@
             "movement": 26
           },
           {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 133,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 139,
             "movement": -42
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 151,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "SA",
@@ -201,9 +201,9 @@
             "status": "new"
           },
           {
-            "country": "HR",
-            "name": "Croatia",
-            "position": 176,
+            "country": "PH",
+            "name": "Philippines",
+            "position": 195,
             "movement": null,
             "status": "new"
           }
@@ -216,7 +216,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 2,
+            "position": 3,
             "movement": null,
             "status": "new"
           }
@@ -267,21 +267,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 149,
-            "movement": -24
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 90,
-            "movement": null,
-            "status": "re"
+            "position": 174,
+            "movement": -25
           }
         ]
       },
@@ -308,70 +295,23 @@
             "movement": 0
           }
         ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "TYLA +",
-    "platforms": [
+      },
       {
-        "platform": "Apple Music",
+        "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 62,
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 90,
             "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SC",
-            "name": "Seychelles",
-            "position": 109,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 118,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 146,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "KY",
-            "name": "Cayman Islands",
-            "position": 153,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NP",
-            "name": "Nepal",
-            "position": 160,
-            "movement": -2
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 189,
-            "movement": -12
+            "status": "re"
           }
         ]
       }
     ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SHE DID IT AGAIN",
@@ -426,14 +366,124 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 22,
-            "movement": -7
+            "position": 24,
+            "movement": -9
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 169,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "TYLA +",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 62,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SC",
+            "name": "Seychelles",
+            "position": 109,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 145,
+            "movement": -27
+          },
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 146,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KY",
+            "name": "Cayman Islands",
+            "position": 153,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NP",
+            "name": "Nepal",
+            "position": 160,
+            "movement": -2
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 189,
+            "movement": -12
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 55,
+            "movement": -21
+          },
+          {
+            "country": "PH",
+            "name": "Philippines",
+            "position": 80,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 88,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 114,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "CHANEL",
@@ -495,7 +545,7 @@
             "country": "TH",
             "name": "Thailand",
             "position": 176,
-            "movement": 6
+            "movement": 0
           }
         ]
       },
@@ -506,7 +556,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 120,
+            "position": 160,
             "movement": null,
             "status": "new"
           }
@@ -515,43 +565,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 51,
-            "movement": -40
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 88,
-            "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 114,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT LOVE",
@@ -640,7 +653,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 19,
+            "position": 20,
             "movement": -12
           }
         ]
@@ -667,6 +680,12 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "SHAKE AH",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   }
 ];
   

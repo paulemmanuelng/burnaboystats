@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-09-07";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -63,25 +63,25 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 4,
-            "movement": 0
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 8,
-            "movement": 0
+            "position": 6,
+            "movement": -2
           },
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 8,
-            "movement": -2
+            "position": 9,
+            "movement": -3
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 9,
+            "movement": -2
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 10,
             "movement": -2
           },
           {
@@ -91,10 +91,29 @@
             "movement": -3
           },
           {
+            "country": "LT",
+            "name": "Lithuania",
+            "position": 27,
+            "movement": 66
+          },
+          {
             "country": "BJ",
             "name": "Benin",
-            "position": 35,
-            "movement": -20
+            "position": 29,
+            "movement": 6
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 37,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 44,
+            "movement": 9
           },
           {
             "country": "KW",
@@ -103,45 +122,39 @@
             "movement": -28
           },
           {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 53,
-            "movement": 3
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 57,
-            "movement": -43
+            "country": "QA",
+            "name": "Qatar",
+            "position": 59,
+            "movement": 0
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 58,
-            "movement": -21
+            "position": 63,
+            "movement": -11
           },
           {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 59,
-            "movement": -25
+            "country": "UG",
+            "name": "Uganda",
+            "position": 78,
+            "movement": 34
           },
           {
-            "country": "CG",
-            "name": "Republic of the Congo",
-            "position": 92,
-            "movement": 32
+            "country": "SN",
+            "name": "Senegal",
+            "position": 86,
+            "movement": 19
           },
           {
-            "country": "LT",
-            "name": "Lithuania",
+            "country": "CM",
+            "name": "Cameroon",
             "position": 93,
-            "movement": -13
+            "movement": 9
           },
           {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 95,
+            "country": "ML",
+            "name": "Mali",
+            "position": 94,
             "movement": -37
           },
           {
@@ -149,18 +162,6 @@
             "name": "Chad",
             "position": 96,
             "movement": -67
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 102,
-            "movement": -40
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 105,
-            "movement": 10
           },
           {
             "country": "ZW",
@@ -181,22 +182,43 @@
             "movement": -22
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 112,
-            "movement": -55
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 156,
-            "movement": -43
-          },
-          {
             "country": "SE",
             "name": "Sweden",
-            "position": 159,
-            "movement": -11
+            "position": 113,
+            "movement": 46
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 115,
+            "movement": -20
+          },
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 126,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MG",
+            "name": "Madagascar",
+            "position": 142,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AO",
+            "name": "Angola",
+            "position": 151,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 157,
+            "movement": -54
           },
           {
             "country": "AM",
@@ -206,28 +228,28 @@
             "status": "new"
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 164,
-            "movement": -64
+            "country": "BE",
+            "name": "Belgium",
+            "position": 167,
+            "movement": 28
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 172,
+            "movement": -68
           },
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 168,
-            "movement": -35
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 195,
-            "movement": -97
+            "position": 179,
+            "movement": -11
           },
           {
             "country": "DE",
             "name": "Germany",
-            "position": 195,
-            "movement": -53
+            "position": 188,
+            "movement": -1
           }
         ]
       },
@@ -263,20 +285,26 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 7,
-            "movement": 0
+            "position": 10,
+            "movement": -3
+          },
+          {
+            "country": "KY",
+            "name": "Cayman Islands",
+            "position": 46,
+            "movement": 95
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 13,
-            "movement": 160
+            "position": 56,
+            "movement": -43
           },
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 96,
-            "movement": 38
+            "position": 95,
+            "movement": 1
           },
           {
             "country": "NG",
@@ -285,23 +313,10 @@
             "movement": -1
           },
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 118,
-            "movement": 74
-          },
-          {
-            "country": "KY",
-            "name": "Cayman Islands",
-            "position": 141,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 181,
-            "movement": 5
+            "position": 132,
+            "movement": 49
           }
         ]
       },
@@ -313,13 +328,88 @@
             "country": "GH",
             "name": "Ghana",
             "position": 9,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Expresso",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 2,
+            "movement": -1
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 14,
+            "movement": -4
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 84,
+            "movement": -8
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 92,
+            "movement": 17
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 4,
+            "movement": 2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jolie",
@@ -332,7 +422,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 3,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "LR",
@@ -356,119 +446,14 @@
         ]
       },
       {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 14,
-            "movement": -9
-          }
-        ]
-      },
-      {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 46,
-            "movement": -19
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "The Villain I Never Was",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 21,
-            "movement": 0
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 62,
-            "movement": -54
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 110,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 111,
-            "movement": -5
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 161,
-            "movement": -92
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 8,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Expresso",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 1,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 1,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 14,
-            "movement": -4
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 84,
-            "movement": -8
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 92,
-            "movement": 17
+            "position": 50,
+            "movement": -18
           }
         ]
       },
@@ -479,8 +464,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 4,
-            "movement": 2
+            "position": 14,
+            "movement": -9
           }
         ]
       }
@@ -498,8 +483,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 4,
-            "movement": -2
+            "position": 7,
+            "movement": -3
           },
           {
             "country": "LR",
@@ -597,8 +582,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 10,
-            "movement": -5
+            "position": 11,
+            "movement": -1
           },
           {
             "country": "LR",
@@ -619,6 +604,19 @@
             "movement": -4
           }
         ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 65,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -634,8 +632,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 81,
-            "movement": -6
+            "position": 80,
+            "movement": 1
           },
           {
             "country": "SL",
@@ -668,6 +666,49 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "The Villain I Never Was",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 22,
+            "movement": -1
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 111,
+            "movement": -5
+          },
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 131,
+            "movement": -69
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 8,
+            "movement": -2
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Sacrifice",
     "platforms": [
       {
@@ -677,8 +718,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
-            "movement": 0
+            "position": 31,
+            "movement": -1
           },
           {
             "country": "LR",
@@ -709,8 +750,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 11,
-            "movement": -3
+            "position": 10,
+            "movement": 1
           },
           {
             "country": "LR",
@@ -734,8 +775,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 54,
-            "movement": 1
+            "position": 57,
+            "movement": -3
           }
         ]
       },
@@ -746,7 +787,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 13,
+            "position": 19,
             "movement": null,
             "status": "new"
           }
@@ -766,8 +807,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 50,
-            "movement": 2
+            "position": 49,
+            "movement": 1
           },
           {
             "country": "LR",
@@ -791,8 +832,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 51,
-            "movement": 0
+            "position": 47,
+            "movement": 4
           }
         ]
       },
@@ -822,8 +863,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 102,
-            "movement": 6
+            "position": 103,
+            "movement": -1
           }
         ]
       },
@@ -834,8 +875,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 140,
-            "movement": -18
+            "position": 143,
+            "movement": -17
           }
         ]
       }
@@ -853,8 +894,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 145,
-            "movement": -7
+            "position": 141,
+            "movement": 4
           },
           {
             "country": "LR",
@@ -880,7 +921,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 29,
-            "movement": -2
+            "movement": 0
           }
         ]
       }
@@ -898,8 +939,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 32,
-            "movement": 0
+            "position": 33,
+            "movement": -1
           }
         ]
       }
@@ -917,7 +958,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 44,
+            "position": 45,
             "movement": -1
           }
         ]
@@ -936,8 +977,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 53,
-            "movement": -3
+            "position": 54,
+            "movement": -1
           }
         ]
       }
@@ -955,8 +996,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 61,
-            "movement": 0
+            "position": 66,
+            "movement": -5
           }
         ]
       }
@@ -974,8 +1015,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 72,
-            "movement": -6
+            "position": 74,
+            "movement": -2
           }
         ]
       }
@@ -993,7 +1034,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 82,
+            "position": 83,
             "movement": -1
           }
         ]
@@ -1012,8 +1053,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 96,
-            "movement": 2
+            "position": 97,
+            "movement": -1
           }
         ]
       }
@@ -1031,8 +1072,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 113,
-            "movement": 2
+            "position": 114,
+            "movement": -1
           }
         ]
       }
@@ -1050,33 +1091,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 128,
-            "movement": -3
+            "position": 123,
+            "movement": 5
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Toxic Love City",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 144,
-            "movement": -35
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "January 9th",
@@ -1088,8 +1110,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 146,
-            "movement": 1
+            "position": 142,
+            "movement": 4
           }
         ]
       }
@@ -1107,8 +1129,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 147,
-            "movement": -7
+            "position": 148,
+            "movement": -1
           }
         ]
       }
@@ -1146,32 +1168,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 149,
-            "movement": -6
+            "movement": 0
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b2293fec5dd0786bef0c480cde3222bc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "WOTOWOTO SEASONING",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 138,
-            "movement": 9
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8cbdf2202137ed965826a417dd88e821/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Where Dem Boyz",
@@ -1184,7 +1187,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 163,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -1202,8 +1205,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 178,
-            "movement": 2
+            "position": 179,
+            "movement": -1
           }
         ]
       }
@@ -1212,7 +1215,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Changes",
+    "title": "Toxic Love City",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -1221,33 +1224,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 191,
-            "movement": -3
+            "position": 199,
+            "movement": -55
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Iron Boy",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 200,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   }
 ];
   
