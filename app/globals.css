@@ -1840,7 +1840,7 @@ a[class*="__certRow"]:focus-visible,
   border: 1px solid transparent;
   white-space: nowrap;
 }
-.tagAccent   { background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); color: var(--gold); }
+.tagAccent   { background: color-mix(in srgb, var(--gold-wash-base) calc(13% * var(--wash-strength)), transparent); color: var(--gold); }
 .tagNeutral  { background: rgba(245, 244, 240, 0.08); color: var(--text); }
 .tagOutline  { border-color: var(--gold); color: var(--gold); background: transparent; }
 .tagDiamond  { background: rgba(49, 161, 192, 0.16); color: var(--tier-diamond-ink); }

@@ -17,6 +17,8 @@
  * light mode who hit this got a full-viewport black page. light-dark() needs no
  * stylesheet and no theme script — only the color-scheme declared on <html>
  * below — which is why it is the one theming mechanism that still works here.
+ * The scheme itself is resolved from the stored choice, defaulting to dark,
+ * so the crash page never disagrees with the theme the reader was just in.
  *
  * The copy follows app/error.tsx deliberately — on a statistics site the first
  * worry a reader has is that the numbers are wrong, so both boundaries say the
@@ -31,7 +33,28 @@ export default function GlobalError({
   reset: () => void;
 }) {
   return (
-    <html lang="en" style={{ colorScheme: "light dark" }}>
+    /* colorScheme: dark, not "light dark".
+       light-dark() resolves against whatever colour-scheme the element carries,
+       and "light dark" hands that decision to the OS — which is the one thing
+       this site does not do. Everywhere else the theme comes from a STORED
+       CHOICE and an unset choice means dark, so on a light-OS machine a reader
+       who has never left dark mode would have hit an error and been shown a
+       white page: exactly the "reads as a different site" failure this file
+       exists to prevent. Dark is therefore the default here too, and the script
+       below upgrades it to light only for a reader who actually chose light —
+       the same resolution layout.tsx runs, minus the storage this page cannot
+       assume, and it degrades to dark if anything throws. */
+    <html lang="en" style={{ colorScheme: "dark" }}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              'try{var c=localStorage.getItem("theme");' +
+              'if(c==="light"||(c==="system"&&matchMedia("(prefers-color-scheme: light)").matches))' +
+              'document.documentElement.style.colorScheme="light"}catch(e){}',
+          }}
+        />
+      </head>
       <body
         style={{
           margin: 0,
