@@ -30,8 +30,8 @@
   margin: 14px 0 0;
 }
 .lede {
-  font-size: 18px;
-  line-height: 1.55;
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
   color: var(--text-body);
   max-width: 62ch;
   margin: 18px 0 0;
@@ -134,7 +134,8 @@
 }
 .numCol {
   text-align: right;
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;

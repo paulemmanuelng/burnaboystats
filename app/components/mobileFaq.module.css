@@ -69,7 +69,7 @@
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11px;
+  font-size: var(--type-label);
   letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--gold);
@@ -98,7 +98,7 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.lede { font-size: 14.5px; line-height: 1.5; color: var(--text-body-cool); margin: 12px 0 0; }
+.lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body-cool); margin: 12px 0 0; }
 
 /* ── Category rail ────────────────────────────────────────────────────── */
 .rail {
@@ -137,7 +137,7 @@
    a phone scrolls past headings, so each answer says where it belongs. */
 .itemGroup {
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-size: var(--type-label);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold);
@@ -145,18 +145,18 @@
 .q {
   margin: 8px 0 6px;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.3;
+  font-size: var(--type-h-prose);
+  font-weight: 600;
+  line-height: var(--type-h-prose-lh);
   letter-spacing: 0;
   text-transform: none;
 }
-.a { margin: 0; color: var(--text-body-cool-quiet); font-size: 14px; line-height: 1.6; }
+.a { margin: 0; color: var(--text-body-cool-quiet); font-size: var(--type-body); line-height: var(--type-body-lh); }
 
 .source {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  line-height: 1.6;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--dim);
   padding: 18px;
   margin: 0;

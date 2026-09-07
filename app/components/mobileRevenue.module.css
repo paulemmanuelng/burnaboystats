@@ -93,7 +93,7 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.lede { font-size: 14.5px; line-height: 1.55; color: var(--text-body); margin: 12px 0 0; }
+.lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); margin: 12px 0 0; }
 
 /* ── Stat grid: 2-up, hairline seams. Label only — screen 13's cells carry no
    sub-note, unlike 16's. ─────────────────────────────────────────────────── */
@@ -179,17 +179,17 @@
    would tint the board rather than pick anything out. */
 .rowOther { background: color-mix(in srgb, var(--text) 2%, transparent); }
 .rank {
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 700;
-  font-size: 11px;
+  font-size: var(--type-small);
   color: var(--dim);
   font-variant-numeric: tabular-nums;
 }
 .main { min-width: 0; }
 .venue { font-size: 13.5px; line-height: 1.3; }
 .meta {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   color: var(--text-muted);
   margin-top: 3px;
   overflow: hidden;

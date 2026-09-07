@@ -294,8 +294,8 @@
 .tSong { display: block; font-weight: 600; color: var(--text); }
 .tCredit {
   display: block;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   color: var(--text-muted);
   margin-top: 2px;
 }
@@ -304,13 +304,15 @@
 .tCountry { color: var(--text); }
 .tdPeak {
   text-align: right;
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
   font-weight: 700;
   white-space: nowrap;
 }
 .tdYear {
   text-align: right;
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
   color: var(--text-muted);
   white-space: nowrap;
 }
@@ -424,8 +426,8 @@
   margin-top: 14px;
 }
 .lede {
-  font-size: 18px;
-  line-height: 1.55;
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
   color: var(--text-body);
   max-width: 62ch;
   margin: 18px 0 0;

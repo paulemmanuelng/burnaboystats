@@ -99,8 +99,8 @@
   margin: 16px 0 0;
 }
 .lede {
-  font-size: 18px;
-  line-height: 1.55;
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
   max-width: 52ch;
   margin: 18px 0 0;
   color: var(--text-body-cool);
@@ -252,8 +252,8 @@
   text-transform: uppercase;
 }
 .albumYear {
-  font-family: var(--font-mono), monospace;
-  font-size: 12.5px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   margin-left: auto;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
@@ -410,9 +410,9 @@
   border-bottom: 1px solid var(--line);
 }
 .trackNum {
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   color: var(--gold);
-  font-size: 12.5px;
+  font-size: var(--type-small);
   min-width: 26px;
   text-align: right;
   font-variant-numeric: tabular-nums;

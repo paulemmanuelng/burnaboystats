@@ -40,8 +40,8 @@
   max-width: 20ch;
 }
 .lede {
-  font-size: 18px;
-  line-height: 1.55;
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
   color: var(--text-body);
   max-width: 66ch;
   margin: 20px 0 0;

@@ -459,8 +459,8 @@
   margin: 16px 0 0;
 }
 .lede {
-  font-size: 17.5px;
-  line-height: 1.55;
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
   max-width: 60ch;
   margin: 18px 0 0;
   color: var(--text-body-cool);
@@ -507,8 +507,8 @@
 .tierPct {
   margin-left: auto;
   padding-right: 40px;
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }

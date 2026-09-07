@@ -93,7 +93,7 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.lede { font-size: 14.5px; line-height: 1.55; color: var(--text-body); margin: 12px 0 0; }
+.lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); margin: 12px 0 0; }
 
 /* ── Record chips ─────────────────────────────────────────────────────────
    Body type at 12.5/600, not the mono caps the filter rails use — these are

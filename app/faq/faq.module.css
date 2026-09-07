@@ -33,9 +33,9 @@
   margin: 16px 0 0;
 }
 .lede {
-  font-size: 18px;
-  line-height: 1.55;
-  max-width: 60ch;
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
+  max-width: var(--measure);
   margin: 18px 0 0;
   color: var(--text-body-cool);
   text-wrap: pretty;
@@ -116,23 +116,24 @@
 .q {
   margin: 0 0 8px;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.3;
+  font-size: var(--type-h-prose);
+  font-weight: 600;
+  line-height: var(--type-h-prose-lh);
   letter-spacing: 0;
   text-transform: none;
   color: var(--text);
 }
-.a { margin: 0; max-width: 760px; color: var(--text-body-cool-quiet); font-size: 16px; line-height: 1.65; }
+.a { margin: 0; max-width: 760px; color: var(--text-body-cool-quiet); font-size: var(--type-body); line-height: var(--type-body-lh); }
 
 /* ── Source ─────────────────────────────────────────────────────────────── */
 .sourcePad { padding: 30px 40px 34px; }
 .source {
   margin: 0;
-  font-family: var(--font-mono), monospace;
-  font-size: 12.5px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   color: var(--text-muted);
-  line-height: 1.7;
+  line-height: var(--type-caption-lh);
+  max-width: var(--measure);
 }
 
 @media (max-width: 1239px) {

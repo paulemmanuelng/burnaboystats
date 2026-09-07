@@ -55,8 +55,8 @@
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.11em;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -84,7 +84,7 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.lede { font-size: 14.5px; line-height: 1.55; color: var(--text-body); margin: 12px 0 0; }
+.lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); margin: 12px 0 0; }
 
 /* ── Hero review line ─────────────────────────────────────────────────── */
 .reviewed {
@@ -93,7 +93,7 @@
   gap: 9px;
   margin-top: 14px;
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-size: var(--type-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--dim);
@@ -121,19 +121,19 @@
 /* Body font and sentence case — a principle is a statement, not a label. */
 .itemTitle {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.3;
+  font-weight: 600;
+  font-size: var(--type-h-prose);
+  line-height: var(--type-h-prose-lh);
   letter-spacing: 0;
   text-transform: none;
   margin: 0;
 }
-.itemBody { font-size: 12.5px; line-height: 1.6; color: var(--text-muted); margin: 6px 0 0; }
+.itemBody { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 6px 0 0; }
 /* The source area is a label, so it takes mono caps rather than body type. */
 .area {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11px;
+  font-size: var(--type-label);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text);

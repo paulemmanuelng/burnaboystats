@@ -14,8 +14,8 @@
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.11em;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -29,15 +29,15 @@
   margin: 14px 0 0;
   max-width: 20ch;
 }
-.intro { font-size: 18px; line-height: 1.6; color: var(--text-body); max-width: 74ch; margin: 20px 0 0; text-wrap: pretty; }
+.intro { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); max-width: var(--measure); margin: 20px 0 0; text-wrap: pretty; }
 .reviewed {
   display: flex;
   align-items: center;
   gap: 10px;
   margin: 20px 0 0;
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -90,8 +90,8 @@
   gap: 14px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.11em;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -136,8 +136,8 @@
 .statL {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.11em;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   margin-top: 12px;
   color: var(--text-body);
@@ -146,7 +146,14 @@
 
 .findingBody { display: grid; grid-template-columns: 1.35fr 1fr; gap: 44px; margin-top: 28px; align-items: start; }
 .prose { display: flex; flex-direction: column; gap: 16px; }
-.prose p { font-size: 16px; line-height: 1.7; color: var(--text-body); margin: 0; text-wrap: pretty; }
+/* The measure, on the paragraphs rather than on .prose.
+   .findingBody is grid-template-columns: 1.35fr 1fr only above 1239px; below
+   that it collapses to ONE column and this text ran the full 1100px -- 104
+   characters a line. Capping the paragraph works in both cases, and in the
+   two-column case it narrows the text from ~630px to ~560px, which is the
+   right-hand whitespace §2.1 asks for rather than an accident. */
+.prose > p { max-width: var(--measure); }
+.prose p { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; text-wrap: pretty; }
 .findingLinks { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
 .findingLink {
   display: inline-flex;
@@ -171,14 +178,14 @@
 .chartLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.11em;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
 }
 .bars { display: flex; flex-direction: column; gap: 13px; margin-top: 18px; }
 .barHead { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
-.barName { font-size: 13.5px; font-weight: 600; color: var(--text-muted); }
+.barName { font-size: var(--type-small); font-weight: 600; color: var(--text-muted); }
 /* The row the finding is about is lit; the rest are context. */
 .barNameHot { color: var(--text); }
 .barValue {
@@ -194,12 +201,14 @@
 .barFill { height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--ink-wash-base) 26%, transparent); }
 .barFillHot { background: linear-gradient(90deg, var(--grad-b), var(--gold)); }
 .chartNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  line-height: 1.6;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  letter-spacing: normal;
+  line-height: var(--type-caption-lh);
   color: var(--dim);
   margin: 16px 0 0;
+  /* Ran to 133 characters a line before this. */
+  max-width: var(--measure);
 }
 
 /* ── How to check this ──────────────────────────────────────────────────── */
@@ -214,7 +223,12 @@
   text-transform: uppercase;
   margin: 0;
 }
-.methodBody { font-size: 15.5px; line-height: 1.75; color: var(--text-body); margin: 14px 0 0; max-width: 88ch; }
+.methodBody { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 14px 0 0; /* A reviewer argued for leaving this at 88ch because .method is a VISIBLE
+     bordered box and capping its only child leaves the box lopsided. The box
+     is .method and keeps its full width; only the text caps -- and §2.1 asks
+     for exactly that whitespace ("leaves the right third of the container
+     empty -- deliberately"). 88 characters is the reason this task exists. */
+  max-width: var(--measure); }
 .methodBody a { color: var(--gold); }
 
 .pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 40px 72px; }

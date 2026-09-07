@@ -32,12 +32,18 @@
   text-transform: uppercase;
   margin: 16px 0 0;
 }
-.lede { font-size: 18px; line-height: 1.55; max-width: 56ch; margin: 18px 0 0; color: var(--text-body-cool); }
+.lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); max-width: 56ch; margin: 18px 0 0; color: var(--text-body-cool); }
 
 /* ── Split: biography beside the fast facts ─────────────────────────────── */
 .split { display: grid; grid-template-columns: 1.25fr 0.85fr; }
 .bioCol { padding: 44px 52px 46px 0; }
-.bioCol p { font-size: 17px; line-height: 1.65; color: var(--text-body-cool); margin: 0; }
+.bioCol p {
+  font-size: var(--type-body);
+  line-height: var(--type-body-lh);
+  color: var(--text-body-cool);
+  max-width: var(--measure);
+  margin: 0;
+}
 .bioCol p + p { margin-top: 16px; }
 .bioCol strong { color: var(--text); }
 .wikiWrap { margin: 22px 0 0; }
