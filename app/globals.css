@@ -3,7 +3,14 @@
    "Design tokens" (the variables below) keep the whole site
    consistent: change a value once, it updates everywhere.
    =========================================================== */
-:root {
+:root,
+/* The masthead is a dark island in light mode (§4.3). Rather than restating
+   seven values, it re-declares the SAME token list and pins its own
+   color-scheme, so every light-dark() below resolves dark inside it — and a
+   token added later is themed correctly here for free. Custom properties
+   resolve light-dark() where they are DECLARED, not where they are used, which
+   is why the island needs its own declaration and not just a color-scheme. */
+.navbar {
   /* Tell the browser this is a dark UI. Without it iOS Safari treats the page
      as light-scheme and applies its own colour adjustments to controls in Dark
      Mode — which was re-tinting the gold button's label toward its background
@@ -245,6 +252,7 @@
    listening for OS changes. A browser with JS off gets dark, unchanged. */
 :root { color-scheme: dark; }
 :root[data-theme="light"] { color-scheme: light; }
+/* ...and the masthead is deliberately NOT in that selector. */
 
 /* light-dark() takes COLOURS, and these two tokens are whole shadow values
    whose geometry also changes on paper — a 50px shadow that reads as depth on
@@ -507,24 +515,16 @@ a {
 :root[data-theme="light"] .navbar {
   background-color: var(--scrim);
   background-image: none;
-  border-bottom-color: var(--nav-line);
+  border-bottom-color: var(--line);
 }
-:root[data-theme="light"] .navbar,
-:root[data-theme="light"] .navbar * {
-  --text: #f5f4f0;
-  --text-muted: #9b9ba3;
-  --text-body: #cfc7bb;
-  --border: #26262b;
-  --bg-soft: #141416;
-  --line: rgba(245, 244, 240, 0.12);
-  --gold-ink: #ffb627;
-  --gold-display: #ffb627;
-}
-:root[data-theme="light"] { --nav-line: rgba(245, 244, 240, 0.12); }
 
 .navbar {
   position: sticky;
   top: 0;
+  /* The island declares the tokens, but `color` itself is inherited from
+     <body> — which in light mode is the paper ink. Without this line every bit
+     of nav text that does not set its own colour is dark-on-dark. */
+  color: var(--text);
   /* viewport-fit=cover: keep the nav's content out of the status bar. */
   padding-top: env(safe-area-inset-top, 0px);
   z-index: 50;
@@ -1177,6 +1177,8 @@ a.fact:hover {
   align-items: center;
   gap: 9px;
   margin: 2px 0 20px;
+  /* Spotify's own brand green. Not ours to theme — a Spotify button that is
+     not Spotify green stops being recognisable as one. */
   background: #1db954;
   color: #06241a;
   font-weight: 700;
