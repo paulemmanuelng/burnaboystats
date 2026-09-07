@@ -117,10 +117,14 @@ export default function FooterNav() {
 
       {footerColumns.map((col) => (
         <nav key={col.label} className="footerCol" aria-label={col.label}>
-          {/* h6, as the design has it — a footer sitemap shouldn't insert
-              itself into the page's heading outline, and each column's real
-              name for assistive tech is the nav's aria-label. */}
-          <h6 className="footerColTitle">{col.label}</h6>
+          {/* Not a heading. The reasoning that put an <h6> here — "a footer
+              sitemap shouldn't insert itself into the page's heading outline" —
+              is right, and an <h6> does exactly that: it made every page on the
+              site end on a level skip (h2 -> h6 on the home page), which is the
+              one thing an outline checker flags. The column's real name for
+              assistive tech is the nav's aria-label above, so the visible label
+              can be a plain paragraph and lose nothing. */}
+          <p className="footerColTitle">{col.label}</p>
           {col.links.map((l) =>
             /* The feed is a route handler, not a page — a plain anchor, so
                the router doesn't try to client-navigate to XML. */

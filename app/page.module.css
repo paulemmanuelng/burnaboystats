@@ -553,10 +553,17 @@
 .albumCover {
   aspect-ratio: 1;
   background-color: var(--bg-soft-2);
+  background-image: var(--art-1x);
   background-size: cover;
   background-position: center;
   overflow: hidden;
   border-radius: var(--radius-md);
+}
+/* 283px, so 300 on a 1x screen and 640 on a 2x one — it was pinned to 300 in
+   both, which is the right file for half the readers and a soft one for the
+   rest. Backgrounds cannot carry a srcset; this is the equivalent. */
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+  .albumCover { background-image: var(--art-2x); }
 }
 .albumRow { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; }
 .albumTitle {

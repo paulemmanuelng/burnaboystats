@@ -90,12 +90,20 @@
 .art {
   position: absolute;
   inset: 0;
+  background-image: var(--art-1x);
   background-size: cover;
   background-position: center 22%;
   transform: scale(1.02);
   transition: transform 420ms var(--ease), filter 420ms var(--ease);
   filter: grayscale(0.35) contrast(1.02);
+}/* A tile paints its artist photo at 325px, and Spotify's artist ladder is
+   160 / 320 / 640 — so the 1x rung is asked for as 320, not 325, or it rounds
+   straight back up to the 640 this is meant to stop asking for. Five pixels of
+   upscale on a photograph under a scrim, against 1MB across sixteen tiles. */
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+  .art { background-image: var(--art-2x); }
 }
+
 .tile:hover .art { transform: scale(1.07); filter: grayscale(0) contrast(1.04); }
 
 .scrim {

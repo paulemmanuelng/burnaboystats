@@ -9,7 +9,7 @@ import GlobeTeaser from "./components/GlobeTeaser";
 import SearchTrigger from "./components/SearchTrigger";
 import { homeScoreboard } from "./lib/homeScoreboard";
 import StatGlyph from "./components/StatGlyph";
-import { spotifyImage } from "./lib/spotifyImage";
+import { spotifyImage, spotifyBgVars } from "./lib/spotifyImage";
 import { titleKey } from "./lib/titleKey";
 import {
   ledgerRows,
@@ -246,7 +246,10 @@ export default function Home() {
                     // eslint-disable-next-line @next/next/no-img-element -- 28px thumb, CDN-sized
                     <img
                       className={styles.boardCover}
-                      src={c.cover}
+                      // "CDN-sized", said the comment, while the raw URL went
+                      // straight through: 22 of Spotify's 300px covers to paint
+                      // 28px squares. 64 is the smallest rung and still covers 2x.
+                      src={spotifyImage(c.cover, 64)}
                       alt={`${c.coverTitle} cover`}
                       loading="lazy"
                       width={28}
@@ -282,11 +285,7 @@ export default function Home() {
                 <Link key={a.title} href="/music" className={styles.albumCard}>
                   <div
                     className={styles.albumCover}
-                    style={
-                      a.cover
-                        ? { backgroundImage: `url(${spotifyImage(a.cover, 300)})` }
-                        : undefined
-                    }
+                    style={a.cover ? spotifyBgVars(a.cover, 300) : undefined}
                   />
                   <div className={styles.albumRow}>
                     <div className={styles.albumTitle}>{a.title}</div>
