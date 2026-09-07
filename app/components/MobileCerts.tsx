@@ -45,11 +45,15 @@ type Tier = (typeof TIER_ORDER)[number];
 // Taking them from the tokens is also what makes theming possible: a light
 // theme redefines --tier-* once, and a hardcoded copy here would keep painting
 // the dark values over it.
+// The INK role, not the FILL. A tier's fill carries the lightness spread that
+// separates four tiers at 8px; as TEXT on paper it is 2.74:1 for Diamond and
+// 1.07:1 for Platinum. Design §4.4 gives the tier word its own ink for exactly
+// this, and in dark each ink IS its fill, so nothing moves there.
 const INK: Record<Tier, string> = {
-  Diamond: "var(--tier-diamond)",
-  Platinum: "var(--tier-platinum)",
-  Gold: "var(--tier-gold)",
-  Silver: "var(--tier-silver)",
+  Diamond: "var(--tier-diamond-ink)",
+  Platinum: "var(--tier-platinum-ink)",
+  Gold: "var(--tier-gold-ink)",
+  Silver: "var(--tier-silver-ink)",
 };
 // The dark stop is DERIVED from the same token rather than typed, so the ramp
 // cannot drift from the ink again, and it follows the token into any theme.

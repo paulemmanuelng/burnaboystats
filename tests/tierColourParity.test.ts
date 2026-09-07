@@ -119,6 +119,35 @@ describe("tier colours come from the tokens", () => {
     ).toEqual([]);
   });
 
+  it("a map named INK uses the tier INK, not the tier fill", () => {
+    /**
+     * The gap the test above still left. It accepts any `--tier-*` token, so
+     * MobileCerts mapping Diamond to `var(--tier-diamond)` passed — and that is
+     * the FILL. A fill carries the lightness spread that separates four tiers
+     * at 8px; as TEXT on paper it measures 2.74:1 for Diamond and 1.07:1 for
+     * Platinum. Design §4.4 gives the tier word its own ink for exactly this.
+     *
+     * The map's own name is the evidence of intent: if it is called INK, its
+     * values are text, and text takes the -ink role.
+     */
+    const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
+    const bad: string[] = [];
+    for (const f of FILES.filter((p) => p.endsWith(".tsx") || p.endsWith(".ts"))) {
+      const src = code(f);
+      for (const m of src.matchAll(/\b(\w*INK\w*)\b[^=]*=\s*\{([^{}]*)\}/g)) {
+        const [, name, body] = m;
+        if (!TIERS.every((t) => new RegExp(`\\b${t}\\s*:`).test(body))) continue;
+        for (const t of TIERS) {
+          const v = new RegExp(`\\b${t}\\s*:\\s*"([^"]*)"`).exec(body);
+          if (v && /var\(--tier-/.test(v[1]) && !/-ink\)/.test(v[1])) {
+            bad.push(`${f}: ${name}.${t} = ${v[1]} — that is the fill; text takes --tier-${t.toLowerCase()}-ink`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
   it("--cyan is the Top 10 peak band and is never used as a tier colour", () => {
     // The exact confusion this file exists for: mobile painted its Diamond tier
     // in --cyan. globals.css reserves it for the peak band.

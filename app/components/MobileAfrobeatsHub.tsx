@@ -143,7 +143,7 @@ export default function MobileAfrobeatsHub({
             <Link
               key={a.slug}
               href={`/afrobeats/${a.slug}`}
-              className={styles.tile}
+              className={`${styles.tile} photoTile`}
               prefetch={false}
             >
               {/* Lazy: at 412x915 only the first row of the wall is on screen, so

@@ -47,13 +47,13 @@ function Floor() {
     <svg className={styles.floor} viewBox="0 0 1200 632" preserveAspectRatio="none" aria-hidden="true">
       <defs>
         <radialGradient id="carFloorGlow" cx="50%" cy="62%" r="55%">
-          <stop offset="0" stopColor="rgba(224,138,46,0.16)" />
-          <stop offset="0.55" stopColor="rgba(224,138,46,0.04)" />
-          <stop offset="1" stopColor="rgba(224,138,46,0)" />
+          <stop offset="0" stopColor="color-mix(in srgb, var(--floor-ink) 16%, transparent)" />
+          <stop offset="0.55" stopColor="color-mix(in srgb, var(--floor-ink) 4%, transparent)" />
+          <stop offset="1" stopColor="color-mix(in srgb, var(--floor-ink) 0%, transparent)" />
         </radialGradient>
       </defs>
       <rect x="0" y="0" width="1200" height="632" fill="url(#carFloorGlow)" />
-      <g stroke="rgba(245,240,232,0.06)" strokeWidth="1">
+      <g stroke="color-mix(in srgb, var(--ink-wash-base) 6%, transparent)" strokeWidth="1">
         <path d="M 600,150 L 60,632" />
         <path d="M 600,150 L 1140,632" />
         <path d="M 600,150 L 300,632" />
@@ -62,10 +62,10 @@ function Floor() {
         <line x1="0" y1="470" x2="1200" y2="470" />
         <line x1="0" y1="560" x2="1200" y2="560" />
       </g>
-      <ellipse cx="600" cy="452" rx="470" ry="118" fill="none" stroke="rgba(224,138,46,0.55)" strokeWidth="1.2" />
-      <ellipse cx="600" cy="452" rx="470" ry="118" fill="none" stroke="rgba(224,138,46,0.18)" strokeWidth="6" />
-      <ellipse cx="600" cy="452" rx="392" ry="96" fill="none" stroke="rgba(224,138,46,0.22)" strokeWidth="1" strokeDasharray="3 9" />
-      <g stroke="rgba(224,138,46,0.5)" strokeWidth="1">
+      <ellipse cx="600" cy="452" rx="470" ry="118" fill="none" stroke="color-mix(in srgb, var(--floor-ink) 55%, transparent)" strokeWidth="1.2" />
+      <ellipse cx="600" cy="452" rx="470" ry="118" fill="none" stroke="color-mix(in srgb, var(--floor-ink) 18%, transparent)" strokeWidth="6" />
+      <ellipse cx="600" cy="452" rx="392" ry="96" fill="none" stroke="color-mix(in srgb, var(--floor-ink) 22%, transparent)" strokeWidth="1" strokeDasharray="3 9" />
+      <g stroke="color-mix(in srgb, var(--floor-ink) 50%, transparent)" strokeWidth="1">
         <line x1="130" y1="452" x2="1070" y2="452" strokeDasharray="2 6" />
         <line x1="1010" y1="230" x2="1010" y2="410" />
         <line x1="1002" y1="230" x2="1018" y2="230" />
@@ -91,16 +91,16 @@ function Ring() {
     <svg className={styles.ring} viewBox="0 0 898 660" preserveAspectRatio="none" aria-hidden="true">
       <defs>
         <radialGradient id="heroFloorGlow" cx="50%" cy="66%" r="58%">
-          <stop offset="0" stopColor="rgba(224,138,46,0.16)" />
-          <stop offset="0.55" stopColor="rgba(224,138,46,0.04)" />
-          <stop offset="1" stopColor="rgba(224,138,46,0)" />
+          <stop offset="0" stopColor="color-mix(in srgb, var(--floor-ink) 16%, transparent)" />
+          <stop offset="0.55" stopColor="color-mix(in srgb, var(--floor-ink) 4%, transparent)" />
+          <stop offset="1" stopColor="color-mix(in srgb, var(--floor-ink) 0%, transparent)" />
         </radialGradient>
       </defs>
       <rect x="0" y="0" width="898" height="660" fill="url(#heroFloorGlow)" />
-      <ellipse cx="449" cy="475" rx="406" ry="106" fill="none" stroke="rgba(224,138,46,0.5)" strokeWidth="2" />
-      <ellipse cx="449" cy="475" rx="406" ry="106" fill="none" stroke="rgba(224,138,46,0.16)" strokeWidth="11" />
-      <ellipse cx="449" cy="475" rx="337" ry="88" fill="none" stroke="rgba(224,138,46,0.2)" strokeWidth="2" strokeDasharray="7 18" />
-      <line x1="0" y1="475" x2="898" y2="475" stroke="rgba(245,240,232,0.06)" strokeWidth="2" />
+      <ellipse cx="449" cy="475" rx="406" ry="106" fill="none" stroke="color-mix(in srgb, var(--floor-ink) 50%, transparent)" strokeWidth="2" />
+      <ellipse cx="449" cy="475" rx="406" ry="106" fill="none" stroke="color-mix(in srgb, var(--floor-ink) 16%, transparent)" strokeWidth="11" />
+      <ellipse cx="449" cy="475" rx="337" ry="88" fill="none" stroke="color-mix(in srgb, var(--floor-ink) 20%, transparent)" strokeWidth="2" strokeDasharray="7 18" />
+      <line x1="0" y1="475" x2="898" y2="475" stroke="color-mix(in srgb, var(--ink-wash-base) 6%, transparent)" strokeWidth="2" />
     </svg>
   );
 }
