@@ -17,8 +17,8 @@
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.11em;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -32,8 +32,8 @@
   margin: 14px 0 0;
   max-width: 22ch;
 }
-.lede { font-size: 19px; line-height: 1.55; color: var(--text-body); max-width: 60ch; margin: 20px 0 0; text-wrap: pretty; }
-.intro { font-size: 15.5px; line-height: 1.7; color: var(--text-muted); max-width: 76ch; margin: 20px 0 0; }
+.lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); max-width: var(--measure); margin: 20px 0 0; text-wrap: pretty; }
+.intro { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); max-width: var(--measure); margin: 20px 0 0; }
 /* Section body prose, and the inline link inside it. Both were referenced by
    page.tsx (styles.p, styles.link) and neither existed, so React dropped the
    className entirely: four paragraphs rendered at the global 16px white with no
@@ -42,7 +42,7 @@
    link, in the paragraph inviting people to report accessibility problems.
    .p matches .intro, the page's own section-prose convention; .link matches
    curator.module.css, the site's inline prose link. */
-.p { font-size: 15.5px; line-height: 1.7; color: var(--text-muted); max-width: 76ch; margin: 20px 0 0; }
+.p { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); max-width: var(--measure); margin: 20px 0 0; }
 .link { color: var(--gold); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); }
 .link:hover { color: var(--gold-bright-ink); border-bottom-color: var(--gold-bright-ink); }
 .reviewed {
@@ -51,8 +51,8 @@
   gap: 10px;
   margin: 22px 0 0;
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -82,8 +82,8 @@
 .countLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.11em;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   margin-top: 12px;
   line-height: 1.4;
@@ -94,8 +94,8 @@
 .eyebrow {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.11em;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -143,7 +143,8 @@
   text-transform: uppercase;
   margin: 0;
 }
-.principleP { font-size: 14.5px; line-height: 1.7; color: var(--text-body); margin: 14px 0 0; }
+.principleP { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 14px 0 0;   max-width: var(--measure);
+}
 
 /* ── Primary sources ────────────────────────────────────────────────────── */
 .sourceList { margin-top: 24px; border-top: 1px solid var(--line); }
@@ -167,13 +168,13 @@
 }
 .sourceTag {
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--dim);
   margin-top: 8px;
 }
-.sourceDetail { font-size: 15px; line-height: 1.7; color: var(--text-body); margin: 0; max-width: 82ch; }
+.sourceDetail { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; max-width: var(--measure); }
 
 /* ── Closing blocks ─────────────────────────────────────────────────────── */
 .blocks {
@@ -195,7 +196,7 @@
   text-transform: uppercase;
   margin: 0;
 }
-.blockP { font-size: 15px; line-height: 1.75; color: var(--text-body); margin: 14px 0 0; max-width: 84ch; }
+.blockP { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 14px 0 0; max-width: var(--measure); }
 .blockLinks { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
 .blockLink {
   display: inline-flex;
@@ -246,12 +247,12 @@
   gap: 12px;
   padding: 10px 0;
   border-top: 1px solid var(--line);
-  font-size: 14.5px;
+  font-size: var(--type-body);
 }
 .registerFlag { font-size: 15px; line-height: 1; letter-spacing: 2px; }
 .registerLink { color: var(--gold); text-decoration: none; font-weight: 600; }
 .registerLink:hover { text-decoration: underline; }
-.registerWhere { color: var(--text-muted); font-size: 13.5px; }
+.registerWhere { color: var(--text-muted); font-size: var(--type-small); }
 @media (max-width: 640px) {
   .registerRow { grid-template-columns: auto 1fr; }
   .registerWhere { grid-column: 2; }
@@ -267,8 +268,8 @@
   padding: 12px 0;
   border-top: 1px solid var(--line);
 }
-.rejectClaim { font-size: 14.5px; font-weight: 600; color: var(--text); }
-.rejectReason { margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+.rejectClaim { font-size: var(--type-body); font-weight: 600; color: var(--text); }
+.rejectReason { margin: 0; font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); }
 @media (max-width: 640px) {
   .rejectRow { grid-template-columns: 1fr; gap: 4px; }
 }

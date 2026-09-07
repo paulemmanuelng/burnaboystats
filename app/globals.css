@@ -59,6 +59,43 @@
      #d3d3da (x9) into it — three literals that were always the same job. */
   --text-body: light-dark(#4a443b, #cfc7bb);
 
+/* ── The reading scale (design response §2.1) ─────────────────────────────
+   The site had one prose size, 15.5px, and used it for answers, notes, card
+   descriptions and captions alike — so a FAQ answer was set at the same size
+   as the meta line under a figure. This is a real scale with four steps, and
+   13.5 keeps its job as the SECOND one rather than the only one.
+
+   Named --type-* rather than the response's --text-*: --text-body is already
+   a COLOUR role from the theming work, and one name cannot be both 16px and
+   #cfc7bb. Size and line-height are separate tokens because they are used in
+   separate declarations; they are always used as a pair.
+
+   Why 16: it is the floor Apple's HIG sets for body text (17pt ~ 16 CSS px)
+   and the size below which iOS zooms a focused field. 1.6 rather than 1.5
+   because Geist has a large x-height and 62 characters of it needs the lead. */
+  --type-lede: 18px;
+  --type-lede-lh: 1.5;
+  --type-body: 16px;
+  --type-body-lh: 1.6;
+  /* Today's body size, demoted to its real job: list meta, notes under
+     figures, card descriptions. */
+  --type-small: 13.5px;
+  --type-small-lh: 1.5;
+  /* Provenance sentences, footnotes, figcaptions. */
+  --type-caption: 12.5px;
+  --type-caption-lh: 1.45;
+  /* Kickers, table headers, chips. Space Mono 700, tracked, uppercase --
+     never a sentence. */
+  --type-label: 11px;
+  --type-label-lh: 1.2;
+  --type-label-tracking: 0.11em;
+  /* Headings INSIDE prose (FAQ questions, methodology sections). Anton stays
+     for page and section titles; it is a poster face, not a subhead face. */
+  --type-h-prose: 20px;
+  --type-h-prose-lh: 1.3;
+  /* Max width of any prose block. ~560px at 16px Geist. */
+  --measure: 62ch;
+
   /* Gold washes. The table names one at 10%; the modules use ~20 different
      alphas, so the base is exposed for color-mix() rather than minting a token
      per alpha:  color-mix(in srgb, var(--gold-wash-base) 5%, transparent) */
@@ -353,6 +390,13 @@
   --brand-fill: #8f2fa7;
   --brand-fill-hi: #b73c98;
   --brand-fill-lo: #6b3caf;
+}
+
+/* The lede is the one step that changes with the viewport: at 18px it reads
+   as body on a laptop, where the column is wider and the eye starts further
+   from the text. */
+@media (min-width: 900px) {
+  :root, .navbar { --type-lede: 20px; }
 }
 
 :root { color-scheme: dark; }

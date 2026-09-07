@@ -168,8 +168,8 @@
   line-height: 1.5;
 }
 .lede {
-  font-size: 13.5px;
-  line-height: 1.5;
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
   color: var(--text-body-cool);
   margin: 12px 0 0;
 }

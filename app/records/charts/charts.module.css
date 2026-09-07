@@ -424,8 +424,8 @@
   margin-top: 14px;
 }
 .lede {
-  font-size: 18px;
-  line-height: 1.55;
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
   color: var(--text-body);
   max-width: 62ch;
   margin: 18px 0 0;

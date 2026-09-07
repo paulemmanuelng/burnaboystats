@@ -19,7 +19,7 @@
   text-transform: uppercase;
   margin: 14px 0 0;
 }
-.lede { font-size: 19px; line-height: 1.55; color: var(--text-body); max-width: 56ch; margin: 20px 0 0; text-wrap: pretty; }
+.lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); max-width: 56ch; margin: 20px 0 0; text-wrap: pretty; }
 
 @media (max-width: 900px) {
   .wrap { padding: 0 18px; }

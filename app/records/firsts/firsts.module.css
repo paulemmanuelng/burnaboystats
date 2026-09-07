@@ -64,7 +64,7 @@
   text-transform: uppercase; margin: 16px 0 0;
 }
 .lede {
-  font-size: 18px; line-height: 1.55; max-width: 60ch;
+  font-size: var(--type-lede); line-height: var(--type-lede-lh); max-width: 60ch;
   margin: 18px 0 0; color: var(--text-body-cool); text-wrap: pretty;
 }
 

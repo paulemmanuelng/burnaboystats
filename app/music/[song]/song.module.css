@@ -291,14 +291,14 @@
 /* Sentence case in the body face — a question is prose, not display type. */
 .faqQ {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: none;
-  font-size: 16px;
-  line-height: 1.35;
+  font-size: var(--type-h-prose);
+  line-height: var(--type-h-prose-lh);
   letter-spacing: 0;
   margin: 0;
 }
-.faqA { font-size: 14.5px; line-height: 1.7; color: var(--text-body); margin: 0; }
+.faqA { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; }
 
 .onward { display: flex; gap: 10px; flex-wrap: wrap; padding: 44px 40px 76px; }
 
