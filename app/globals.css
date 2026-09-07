@@ -134,6 +134,7 @@
   --display-ramp-a: light-dark(#945e00, #ffd24a);
   --display-ramp-b: light-dark(#945e00, #ffb627);
   --display-ramp-c: light-dark(#945e00, #ff7a1a);
+  --display-ramp-dim: light-dark(#945e00, #c98a2e);
   --gold-wash-base: light-dark(#945e00, #ffb627);
   --gold-wash: light-dark(rgba(148, 94, 0, 0.10), rgba(255, 182, 39, 0.10));
   /* The car pages' stage light and floor ring. Paper needs MORE light, not

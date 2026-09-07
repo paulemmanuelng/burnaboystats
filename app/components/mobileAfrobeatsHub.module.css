@@ -67,7 +67,7 @@
   margin: 12px 0 0;
 }
 .ink {
-  background: linear-gradient(180deg, var(--gold-bright), var(--gold-fill));
+  background: linear-gradient(180deg, var(--display-ramp-a), var(--display-ramp-b));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

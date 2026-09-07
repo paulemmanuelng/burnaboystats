@@ -83,7 +83,7 @@
   font-size: 140px;
   line-height: 0.8;
   font-variant-numeric: tabular-nums;
-  background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 52%, var(--grad-b) 100%);
+  background: linear-gradient(180deg, var(--display-ramp-a) 0%, var(--display-ramp-b) 52%, var(--display-ramp-c) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
