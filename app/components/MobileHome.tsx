@@ -6,7 +6,7 @@ import { liveHeadline } from "../lib/liveHeadline";
 import { spotifyImage } from "../lib/spotifyImage";
 import { coverFor } from "../lib/covers";
 import { sameTitle } from "../lib/titleKey";
-import { numberWord, numberOneTitleFor, ukSinglesCell, ukAlbumsCell } from "../lib/homeData";
+import { numberOneTitleFor, ukSinglesCell, ukAlbumsCell } from "../lib/homeData";
 import {
   isRecentNumberOne,
   recentNumberOneTitle,
@@ -135,87 +135,73 @@ export default function MobileHome() {
 
   return (
     <div className={styles.screen}>
-      {/* Gold live band */}
-      <div className={styles.band}>
-        <span className={styles.livePill}>
-          <span className={styles.liveDot} aria-hidden="true" />
-          Live
-        </span>
-        <span className={styles.bandText}>
-          {live.title
-            ? `“${live.title}” — No. 1 in ${live.countries} countries on streaming charts`
-            : live.lead}
-        </span>
-      </div>
-
-      {/* Hero */}
+      {/* Hero.
+          Design response §1.2. The live figure leads: the fact a reader came
+          for is the first thing on the screen (y=121), not a ticker above a
+          name above a card 452px down. The card and the band are gone; every
+          part of them that carried a fact lives here now. */}
       <div className={styles.hero}>
-        <p className={styles.eyebrow}>
-          <span className={styles.rule} aria-hidden="true" />
-          The African Giant · Est. 2010
-        </p>
-        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
-            carries two — one per layout, and only ever one is visible. The SEO
-            gate checks that pairing rather than a bare count. */}
-        <h1 className={styles.title}>
-          Burna <span className={styles.titleGold}>Boy</span>
-        </h1>
-        <p className={styles.lede}>
-          Every certification, chart peak and record — sourced line by line, updated
-          the day it changes.
-        </p>
-        <div className={styles.actions}>
-          <Link href="/certifications" className={styles.primary}>
-            <span>View certifications</span>
-            <span aria-hidden="true">↗</span>
-          </Link>
-          <Link href="/music" className={styles.secondary}>
-            <span>Explore the music</span>
-            <span aria-hidden="true">↗</span>
-          </Link>
+        <div className={styles.liveLine}>
+          <span className={styles.livePill}>
+            <span className={styles.liveDot} aria-hidden="true" />
+            Live
+          </span>
+          <span className={styles.liveLineText}>Today&apos;s streaming charts</span>
         </div>
-      </div>
 
-      {/* Today's number */}
-      <div className={styles.today}>
-        <span className={styles.todayGlyphs} aria-hidden="true">
-          <span className={styles.tg1}>♬</span>
-          <span className={styles.tg2}>✦</span>
-          <span className={styles.tg3}>♩</span>
-          <span className={styles.tg4}>✧</span>
-          <span className={styles.tg5}>◍</span>
-        </span>
-        <div className={styles.todayInner}>
-        <div className={styles.todayKicker}>
-          <span className={styles.todayKickerRule} aria-hidden="true" />
-          Today&apos;s number
-        </div>
-        <div className={styles.todayRow}>
-          <div className={styles.todayFigure}>{live.countries}</div>
-          <Link href="/dai-dai" className={styles.todayCover}>
+        <div className={styles.figureRow}>
+          <div className={styles.figure}>{live.countries}</div>
+          <Link href="/dai-dai" className={styles.cover}>
             {/* eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN art */}
-            <img src={spotifyImage(DAI_DAI_COVER, 300)} alt="" width={112} height={112} />
-            <span className={styles.todayCoverLabel}>{live.title ?? "Dai Dai"} ↗</span>
+            <img src={spotifyImage(DAI_DAI_COVER, 300)} alt="" width={88} height={88} />
+            <span className={styles.coverLabel}>{live.title ?? "Dai Dai"} ↗</span>
           </Link>
         </div>
-        <div className={styles.todayCaption}>
-          {live.countries === 1
-            ? "Country at No. 1 on today's streaming charts"
-            : "Countries at No. 1 on today's streaming charts"}
+
+        {/* The caption names the record, because the live line above already
+            said which charts — so the two together read as one sentence. */}
+        <div className={styles.caption}>
+          {live.countries === 1 ? "Country" : "Countries"} at No. 1
+          {live.title ? ` with “${live.title}” right now` : " on today's streaming charts"}
         </div>
-        <p className={styles.todayNote}>
+        <p className={styles.arrivals}>
           {recentArrivals.length
             ? `${recentArrivals.slice(0, 4).join(", ").replace(/, ([^,]*)$/, " and $1")} joined ${arrivalWindowPhrase}.`
             : "On streaming charts right now, refreshed hourly."}
         </p>
-        <div className={styles.todayFoot}>
-          <span className={styles.todayFootDot} aria-hidden="true" />
+        <div className={styles.statusRow}>
+          <span className={styles.statusDot} aria-hidden="true" />
           <span>{changedSentence}</span>
-          <Link href="/live-charts" className={styles.todayFootLink}>
+          <Link href="/live-charts" className={styles.statusLink}>
             Live board ↗
           </Link>
         </div>
+
+        <div className={styles.divider} />
+
+        <div className={styles.nameRow}>
+          {/* Still the page's <h1>, at 30px rather than 62. Both layouts sit in
+              the DOM at once, so the document carries two — one per layout, and
+              only ever one is visible; the SEO gate checks that pairing rather
+              than a bare count. The name stays the heading precisely because
+              the figure above it changes every hour and a heading must not. */}
+          <h1 className={styles.title}>Burna Boy</h1>
+          <p className={styles.eyebrow}>
+            <span className={styles.rule} aria-hidden="true" />
+            The African Giant · Est. 2010
+          </p>
         </div>
+        <p className={styles.lede}>
+          Every certification, chart peak and record — sourced line by line, updated
+          the day it changes.
+        </p>
+        <Link href="/certifications" className={styles.primary}>
+          <span>View certifications</span>
+          <span aria-hidden="true">↗</span>
+        </Link>
+        <Link href="/music" className={styles.secondary}>
+          Explore the music →
+        </Link>
       </div>
 
       {/* Stat grid — four, two-up */}

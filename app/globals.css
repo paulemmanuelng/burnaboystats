@@ -36,6 +36,19 @@
      rules, dots, and data ink. */
   --gold: #ffb627;
   --gold-bright: #ffd24a;
+  /* Gold split by ROLE, from the design response's token table (§4.6). Every
+     dark value below is the gold already in use, so this is a no-op today —
+     the split exists because one #ffb627 cannot serve both a fill and text on
+     paper. Light mode gives them different values (#ffb627 fill / #b07000
+     display / #8a5a00 ink); until Task D lands they are deliberately equal. */
+  --gold-fill: #ffb627;     /* fills: buttons, bars */
+  --gold-display: #ffb627;  /* Anton >= 24px */
+  --gold-ink: #ffb627;      /* text, lines, icons */
+  --ink-on-gold: #14100a;   /* the label ON any gold fill */
+  /* One reading-text role. The table retires #cfc7bb (x64), #d8d8de (x38) and
+     #d3d3da (x9) into it — three literals that were always the same job. */
+  --text-body: #cfc7bb;
+
   --gold-dim: #c98a2e;
 
   /* Warm "Afro-Fusion" flourish gradient — use once per screen */
