@@ -81,7 +81,7 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
               the structure, these just give the eye somewhere to measure from. */}
           {GRID_X.map((g) => (
             <g key={g}>
-              <line x1={X(g)} y1={280} x2={X(g)} y2={20} stroke="rgba(245,244,240,0.05)" strokeWidth="1" />
+              <line x1={X(g)} y1={280} x2={X(g)} y2={20} stroke="color-mix(in srgb, var(--text) 5%, transparent)" strokeWidth="1" />
               <text
                 x={X(g)}
                 y={298}
@@ -95,13 +95,13 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
             </g>
           ))}
 
-          <line x1={70} y1={280} x2={1240} y2={280} stroke="rgba(245,244,240,0.3)" strokeWidth="1" />
-          <line x1={70} y1={20} x2={70} y2={280} stroke="rgba(245,244,240,0.3)" strokeWidth="1" />
+          <line x1={70} y1={280} x2={1240} y2={280} stroke="color-mix(in srgb, var(--text) 30%, transparent)" strokeWidth="1" />
+          <line x1={70} y1={20} x2={70} y2={280} stroke="color-mix(in srgb, var(--text) 30%, transparent)" strokeWidth="1" />
 
-          <text x={1240} y={312} textAnchor="end" fontFamily="var(--font-mono), monospace" fontSize="11" fill="#9b9ba3" letterSpacing="1">
+          <text x={1240} y={312} textAnchor="end" fontFamily="var(--font-mono), monospace" fontSize="11" fill="var(--text-muted)" letterSpacing="1">
             COUNTRIES →
           </text>
-          <text x={76} y={30} fontFamily="var(--font-mono), monospace" fontSize="11" fill="#9b9ba3" letterSpacing="1">
+          <text x={76} y={30} fontFamily="var(--font-mono), monospace" fontSize="11" fill="var(--text-muted)" letterSpacing="1">
             PLAQUES ↑
           </text>
 
@@ -117,8 +117,8 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
                   cx={cx}
                   cy={cy}
                   r={d.anchor ? 8 : 6}
-                  fill={d.anchor ? "var(--gold)" : "rgba(20,20,22,0.9)"}
-                  stroke={d.anchor ? "var(--gold-bright)" : "rgba(245,244,240,0.55)"}
+                  fill={d.anchor ? "var(--gold)" : "color-mix(in srgb, var(--bg-soft) 90%, transparent)"}
+                  stroke={d.anchor ? "var(--gold-bright-ink)" : "color-mix(in srgb, var(--text) 55%, transparent)"}
                   strokeWidth="1.5"
                 />
                 {/* Burna's name sets in caps and gold-bright. There is no
@@ -130,7 +130,7 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
                   textAnchor={p.anchor}
                   fontFamily="var(--font-mono), monospace"
                   fontSize="11"
-                  fill={d.anchor ? "#ffd24a" : "#f5f4f0"}
+                  fill={d.anchor ? "var(--gold-bright-ink)" : "var(--text)"}
                 >
                   {d.anchor ? d.name.toUpperCase() : d.name}
                 </text>
