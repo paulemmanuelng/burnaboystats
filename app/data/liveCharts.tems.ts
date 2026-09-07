@@ -87,8 +87,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 12,
-            "movement": 1
+            "position": 11,
+            "movement": 2
           },
           {
             "country": "UZ",
@@ -226,7 +226,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 40,
-            "movement": 4
+            "movement": 3
           },
           {
             "country": "BE",
@@ -361,6 +361,12 @@
             "movement": 40
           },
           {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 71,
+            "movement": 6
+          },
+          {
             "country": "CV",
             "name": "Cape Verde",
             "position": 72,
@@ -371,12 +377,6 @@
             "name": "Barbados",
             "position": 74,
             "movement": 6
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 74,
-            "movement": 5
           },
           {
             "country": "ZW",
@@ -394,7 +394,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 78,
-            "movement": 15
+            "movement": 6
           },
           {
             "country": "SC",
@@ -437,7 +437,7 @@
             "country": "AU",
             "name": "Australia",
             "position": 95,
-            "movement": 7
+            "movement": 9
           },
           {
             "country": "ML",
@@ -595,7 +595,7 @@
             "country": "IT",
             "name": "Italy",
             "position": 173,
-            "movement": 16
+            "movement": 17
           },
           {
             "country": "SK",
@@ -619,13 +619,14 @@
             "country": "CA",
             "name": "Canada",
             "position": 185,
-            "movement": -15
+            "movement": -6
           },
           {
             "country": "FR",
             "name": "France",
             "position": 189,
-            "movement": 11
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "CZ",
@@ -1127,52 +1128,52 @@
           {
             "country": "TJ",
             "name": "Tajikistan",
-            "position": 7,
-            "movement": -5
+            "position": 8,
+            "movement": -6
           },
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 19,
-            "movement": -15
+            "position": 23,
+            "movement": -20
           },
           {
             "country": "HU",
             "name": "Hungary",
-            "position": 27,
+            "position": 31,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
+            "position": 35,
             "movement": null,
             "status": "new"
           },
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 89,
-            "movement": -35
+            "position": 90,
+            "movement": -36
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 96,
-            "movement": -14
+            "position": 98,
+            "movement": -16
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 99,
-            "movement": -21
+            "position": 111,
+            "movement": -44
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 180,
-            "movement": -19
+            "position": 182,
+            "movement": -21
           }
         ]
       },
@@ -1238,8 +1239,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 12,
-            "movement": -2
+            "position": 14,
+            "movement": -1
           },
           {
             "country": "DM",
@@ -1518,24 +1519,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 22,
-            "movement": -17
-          },
-          {
-            "country": "MD",
-            "name": "Moldova",
-            "position": 100,
-            "movement": -6
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -1544,6 +1527,18 @@
             "name": "South Africa",
             "position": 128,
             "movement": 35
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 25,
+            "movement": -20
           }
         ]
       },
@@ -1689,8 +1684,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 80,
-            "movement": 2
+            "position": 87,
+            "movement": -1
           },
           {
             "country": "BS",
@@ -1714,7 +1709,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 178,
+            "position": 184,
             "movement": null,
             "status": "new"
           }
@@ -1952,13 +1947,13 @@
             "country": "DM",
             "name": "Dominica",
             "position": 22,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 88,
-            "movement": -15
+            "position": 92,
+            "movement": -19
           }
         ]
       },
@@ -2141,7 +2136,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 89,
-            "movement": -1
+            "movement": 0
           }
         ]
       }

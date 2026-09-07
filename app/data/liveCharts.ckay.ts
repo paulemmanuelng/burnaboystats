@@ -71,14 +71,14 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 6,
-            "movement": -2
+            "position": 7,
+            "movement": -3
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 89,
-            "movement": 0
+            "movement": -1
           }
         ]
       },
@@ -178,8 +178,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 86,
-            "movement": -58
+            "position": 123,
+            "movement": -91
           }
         ]
       }

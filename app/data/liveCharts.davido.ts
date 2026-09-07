@@ -206,16 +206,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 76,
-            "movement": -65
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 94,
-            "movement": -20
+            "position": 96,
+            "movement": -22
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 97,
+            "movement": -85
           }
         ]
       },
@@ -379,7 +379,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 88,
-            "movement": -6
+            "movement": -9
           },
           {
             "country": "BW",
@@ -877,9 +877,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 116,
-            "movement": null,
-            "status": "new"
+            "position": 136,
+            "movement": -95
           }
         ]
       },
@@ -994,15 +993,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": null,
-            "status": "new"
+            "position": 12,
+            "movement": 4
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 21,
-            "movement": -17
+            "position": 24,
+            "movement": -20
           }
         ]
       },
@@ -1817,8 +1815,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 90,
-            "movement": null,
-            "status": "new"
+            "movement": -1
           }
         ]
       }
@@ -1910,12 +1907,12 @@
             "country": "BW",
             "name": "Botswana",
             "position": 63,
-            "movement": 6
+            "movement": -1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 86,
+            "position": 85,
             "movement": 0
           }
         ]
@@ -2152,8 +2149,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 100,
-            "movement": -20
+            "position": 102,
+            "movement": -22
           }
         ]
       }
@@ -2291,7 +2288,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 80,
-            "movement": -19
+            "movement": -1
           }
         ]
       }
@@ -2428,26 +2425,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Ekuro",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 26,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/798485d74c5c9cd451070cd502092ea6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "FIA",
     "platforms": [
       {
@@ -2465,6 +2442,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ekuro",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 31,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/798485d74c5c9cd451070cd502092ea6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Tell Everybody",

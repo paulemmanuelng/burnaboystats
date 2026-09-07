@@ -386,7 +386,7 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 85,
+            "position": 106,
             "movement": null,
             "status": "new"
           }
@@ -458,8 +458,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 55,
-            "movement": -17
+            "position": 62,
+            "movement": -22
           },
           {
             "country": "GD",
@@ -470,7 +470,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 92,
+            "position": 109,
             "movement": null,
             "status": "new"
           }
@@ -518,6 +518,18 @@
             "movement": 0
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 7,
+            "movement": 72
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -528,20 +540,20 @@
     "platforms": [
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "KG",
             "name": "Kyrgyzstan",
-            "position": 1,
+            "position": 4,
             "movement": null,
             "status": "new"
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 25,
-            "movement": -12
+            "position": 29,
+            "movement": -16
           }
         ]
       }

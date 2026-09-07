@@ -443,26 +443,21 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 3,
-            "movement": 15
+            "position": 5,
+            "movement": 13
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": -5
+            "position": 8,
+            "movement": -6
           },
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 19,
-            "movement": 24
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 20,
-            "movement": -12
+            "country": "BS",
+            "name": "The Bahamas",
+            "position": 9,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "KN",
@@ -471,10 +466,22 @@
             "movement": -1
           },
           {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 22,
+            "movement": 21
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 24,
+            "movement": -16
+          },
+          {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 41,
-            "movement": -7
+            "position": 44,
+            "movement": -10
           }
         ]
       },
@@ -849,13 +856,13 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 108,
-            "movement": -2
+            "movement": -5
           },
           {
             "country": "FR",
             "name": "France",
             "position": 112,
-            "movement": 7
+            "movement": 5
           },
           {
             "country": "GD",
@@ -892,7 +899,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 138,
-            "movement": -15
+            "movement": -11
           },
           {
             "country": "BS",
@@ -917,7 +924,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 153,
-            "movement": -4
+            "movement": 8
           },
           {
             "country": "BZ",
@@ -1235,7 +1242,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 66,
+            "position": 87,
             "movement": null,
             "status": "new"
           }
@@ -1385,24 +1392,24 @@
             "country": "AG",
             "name": "Antigua and Barbuda",
             "position": 47,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 56,
+            "position": 58,
             "movement": -22
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 59,
-            "movement": 6
+            "movement": -1
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 89,
+            "position": 93,
             "movement": null,
             "status": "new"
           }
@@ -1674,7 +1681,7 @@
             "country": "FR",
             "name": "France",
             "position": 113,
-            "movement": 14
+            "movement": 11
           },
           {
             "country": "BJ",
@@ -1771,13 +1778,13 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 41,
-            "movement": -14
+            "position": 43,
+            "movement": -16
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 112,
+            "position": 132,
             "movement": null,
             "status": "new"
           }
@@ -1882,6 +1889,75 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Wo, man",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 7,
+            "movement": 2
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 7,
+            "movement": -1
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 31,
+            "movement": 0
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 48,
+            "movement": -5
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 195,
+            "movement": 5
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 9,
+            "movement": -1
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 71,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Misunderstood",
     "platforms": [
       {
@@ -1940,8 +2016,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
-            "movement": -54
+            "position": 89,
+            "movement": -72
           }
         ]
       },
@@ -1960,68 +2036,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Wo, man",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 7,
-            "movement": 2
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 7,
-            "movement": -1
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 31,
-            "movement": 0
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 48,
-            "movement": -5
-          },
-          {
-            "country": "GR",
-            "name": "Greece",
-            "position": 195,
-            "movement": 5
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 9,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Last Heartbreak Song",
@@ -2126,8 +2140,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
-            "movement": -82
+            "position": 124,
+            "movement": -98
           }
         ]
       },
@@ -2188,8 +2202,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 71,
-            "movement": -33
+            "position": 92,
+            "movement": -49
           }
         ]
       },
@@ -2393,8 +2407,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
-            "movement": -46
+            "position": 91,
+            "movement": -63
           }
         ]
       }
@@ -2464,8 +2478,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 125,
-            "movement": -84
+            "position": 145,
+            "movement": -98
           }
         ]
       }
@@ -2534,7 +2548,7 @@
             "country": "DM",
             "name": "Dominica",
             "position": 31,
-            "movement": -2
+            "movement": 0
           }
         ]
       }
@@ -2565,8 +2579,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
-            "movement": -85
+            "position": 150,
+            "movement": -100
           }
         ]
       }
@@ -2596,8 +2610,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 151,
-            "movement": -21
+            "position": 153,
+            "movement": -23
           }
         ]
       }
@@ -2674,34 +2688,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 103,
-            "movement": -75
+            "position": 123,
+            "movement": -91
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Midnight in New York",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 117,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Comforter",
@@ -2722,6 +2716,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e18f46f5169476d41ff6bf5f188e1127/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Midnight in New York",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 137,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ayra Starr - EP",
