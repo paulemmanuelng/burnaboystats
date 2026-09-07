@@ -32,7 +32,7 @@
   margin: 14px 0 0;
 }
 .lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); max-width: 56ch; margin: 20px 0 0; text-wrap: pretty; }
-.intro { font-size: 15.5px; line-height: 1.7; color: var(--text-muted); max-width: 78ch; margin: 20px 0 0; }
+.intro { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); max-width: var(--measure); margin: 20px 0 0; }
 
 .badges { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 22px; }
 .badge {
@@ -66,7 +66,7 @@
   text-transform: uppercase;
   margin: 0;
 }
-.body { font-size: 15px; line-height: 1.7; color: var(--text-body); margin: 12px 0 0; max-width: 78ch; }
+.body { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 12px 0 0; max-width: var(--measure); }
 .body a,
 .blockP a { color: var(--gold); }
 .code {
@@ -116,13 +116,12 @@
   color: var(--text-muted);
   white-space: nowrap;
 }
-.endpointWhat { display: block; font-size: 14px; line-height: 1.6; color: var(--text-body-warm); margin-top: 9px; max-width: 82ch; }
+.endpointWhat { display: block; font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin-top: 9px; max-width: var(--measure); }
 .note {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  line-height: 1.7;
-  letter-spacing: 0.08em;
-  color: var(--dim);
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+  max-width: var(--measure);
   margin: 14px 0 0;
   max-width: 82ch;
 }
@@ -184,8 +183,8 @@
   text-transform: uppercase;
   margin: 0;
 }
-.blockP { font-size: 14.5px; line-height: 1.7; color: var(--text-body); margin: 14px 0 0; }
-.blockMuted { font-size: 14px; line-height: 1.7; color: var(--text-muted); margin: 14px 0 0; }
+.blockP { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 14px 0 0; max-width: var(--measure); }
+.blockMuted { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 14px 0 0; max-width: var(--measure); }
 .blockMuted a { color: var(--gold); }
 .attrRow {
   display: flex;
@@ -249,7 +248,7 @@
   -webkit-text-stroke: 1px var(--gold);
   line-height: 1.2;
 }
-.caveatP { font-size: 15px; line-height: 1.7; color: var(--text-body); margin: 0; max-width: 88ch; }
+.caveatP { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; max-width: var(--measure); }
 .caveatP strong { color: var(--text); }
 
 .pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 40px 72px; }
