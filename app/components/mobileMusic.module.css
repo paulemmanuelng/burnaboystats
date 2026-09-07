@@ -229,14 +229,18 @@
 }
 
 /* ── Album grid ───────────────────────────────────────────────────────── */
+/* The seams are drawn by the CELLS, not by the container showing through a
+   1px gap. The gap trick is right for a grid whose cell count is fixed, but the
+   album count is odd as often as not, and an empty slot in the last row was
+   painting a half-width block of --rule -- a grey panel on paper, beside the
+   covers. With the seam on the cell, an empty slot is simply the page. */
 .albumGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--rule);
+  gap: 0;
+  background: var(--bg);
   margin-top: 14px;
   border-top: 1px solid var(--rule-soft);
-  border-bottom: 1px solid var(--rule-soft);
 }
 .albumCard {
   background: var(--bg);
@@ -320,6 +324,11 @@
 /* The album cards and the latest-album CTA are buttons that open the shared
    tracklist dialog, so they need the button reset. */
 .albumCard { border: 0; text-align: left; font: inherit; cursor: pointer; width: 100%; }
+/* The seams, after the reset above -- which sets border: 0 and would otherwise
+   win. The right-hand column has the screen edge instead of a seam, and the
+   last row's own bottom border closes the grid. */
+.albumCard { border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.albumCard:nth-child(2n) { border-right: 0; }
 .latestCta { border: 0; font: inherit; cursor: pointer; width: 100%; }
 
 /* Expand control for the song stories, matching the certifications screen. */
