@@ -19,7 +19,7 @@
 }
 /* The open section keeps a faint wash, so the header still reads as the head of
    something rather than as another row. */
-.headOpen { background: rgba(255, 182, 39, 0.05); }
+.headOpen { background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
 
 .name {
   font-family: var(--font-anton), sans-serif;

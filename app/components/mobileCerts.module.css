@@ -18,7 +18,7 @@
   position: sticky;
   top: 0;
   z-index: 5;
-  background: rgba(12, 10, 9, 0.94);
+  background: var(--scrim);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   padding: 12px 18px;
@@ -132,8 +132,8 @@
     /* Pushed out from 34%/0.72: the type has to clear 4.5:1 against the
        brightest region behind it, and several of these shots have pale
        backdrops. Darken the horizontal scrim until it does, per the spec. */
-    linear-gradient(90deg, var(--bg) 38%, rgba(10, 10, 11, 0.78) 62%, rgba(10, 10, 11, 0.35) 100%),
-    linear-gradient(180deg, rgba(10, 10, 11, 0.55) 0%, rgba(10, 10, 11, 0.1) 40%, var(--bg) 100%);
+    linear-gradient(90deg, var(--bg) 38%, color-mix(in srgb, var(--bg) 78%, transparent) 62%, color-mix(in srgb, var(--bg) 35%, transparent) 100%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 55%, transparent) 0%, color-mix(in srgb, var(--bg) 10%, transparent) 40%, var(--bg) 100%);
 }
 @media (prefers-reduced-motion: no-preference) {
   .heroArt { transition: opacity 300ms var(--ease); }
@@ -170,7 +170,7 @@
 .lede {
   font-size: 13.5px;
   line-height: 1.5;
-  color: #d8d8de;
+  color: var(--text-body-cool);
   margin: 12px 0 0;
 }
 
@@ -200,7 +200,7 @@
 }
 .tierTrack {
   height: 6px;
-  background: rgba(245, 240, 232, 0.09);
+  background: color-mix(in srgb, var(--ink-wash-base) 9%, transparent);
   margin-top: 9px;
   border-radius: 999px;
   overflow: hidden;
@@ -221,7 +221,7 @@
   min-height: 44px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid rgba(245, 244, 240, 0.18);
+  border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
   background: transparent;
   color: var(--gold);
   font-family: var(--font-mono), monospace;
@@ -236,9 +236,9 @@
   white-space: nowrap;
 }
 .chipOn {
-  background-color: var(--gold);
+  background-color: var(--gold-fill);
   /* The gold ramp — the site's one treatment for a gold fill. */
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
   border-color: var(--gold);
   color: #0a0a0b;
 }
@@ -259,7 +259,7 @@
   padding: 11px 14px;
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
-  background: rgba(255, 182, 39, 0.08);
+  background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent);
   font-size: 13px;
   line-height: 1.45;
   color: var(--text);
@@ -303,8 +303,8 @@
    (hover: hover) so a touch device never gets a state it can't leave. */
 @media (hover: hover) {
   .row:hover {
-    background: rgba(255, 182, 39, 0.06);
-    border-bottom-color: rgba(255, 182, 39, 0.4);
+    background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
+    border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
     padding-left: 26px;
   }
   .row:hover .rowTitle {
@@ -313,8 +313,8 @@
 }
 /* Touch has no hover, so the press gives the same feedback. */
 .row:active {
-  background: rgba(255, 182, 39, 0.06);
-  border-bottom-color: rgba(255, 182, 39, 0.4);
+  background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
 }
 .rowTop { display: flex; align-items: baseline; gap: 10px; }
 .rank {
@@ -394,7 +394,7 @@
   left: 0;
   right: 0;
   z-index: 40;
-  background: rgba(12, 10, 9, 0.94);
+  background: var(--scrim);
   backdrop-filter: blur(14px);
   border-top: 1px solid var(--line);
   padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 22px));
@@ -413,8 +413,8 @@
   border-radius: 999px;
   /* Same gold ramp as .btnPrimary and the home screen's own .primary — every
      gold action on the site runs one gradient, or the phone shows two golds. */
-  background-color: var(--gold);
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
   color: #000;
   -webkit-text-fill-color: #000;
   /* Promotes the layer at rest — see .btnPrimary for the iPhone reason. */
@@ -425,7 +425,7 @@
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  box-shadow: 0 0 26px rgba(255, 182, 39, 0.24);
+  box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 24%, transparent);
 }
 .actionIcon {
   width: 50px;
@@ -572,12 +572,12 @@
 .boardGo { color: var(--gold); font-size: 12px; }
 /* The live board keeps the green it uses everywhere else, so the two buttons
    say which kind of record they lead to before the label is read. */
-.boardLive .boardGo { color: var(--live, #3ed17f); }
+.boardLive .boardGo { color: var(--green); }
 .boardDot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--live, #3ed17f);
+  background: var(--green-dot);
   flex: none;
 }
 
@@ -632,7 +632,7 @@
    screen — the other caller of this component — on the site's gold. */
 [data-brand="starrgirl"] .total,
 [data-brand="starrgirl"] .kicker {
-  color: #f06ae0;
+  color: var(--brand-accent-ink);
 }
 
 /* The active filter pill. Same deepened ramp and white label as the primary
@@ -643,9 +643,9 @@
    Only .chipOn — the ACTIVE pill. The per-tier chips beside it keep their
    tier colours, because that is what distinguishes Diamond from Gold. */
 [data-brand="starrgirl"] .chipOn {
-  background-color: #8f2fa7;
-  background-image: linear-gradient(180deg, #b73c98 0%, #8f2fa7 52%, #6b3caf 100%);
-  border-color: #8f2fa7;
+  background-color: var(--brand-fill);
+  background-image: linear-gradient(180deg, var(--brand-fill-hi) 0%, var(--brand-fill) 52%, var(--brand-fill-lo) 100%);
+  border-color: var(--brand-fill);
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
 }

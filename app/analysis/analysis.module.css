@@ -29,7 +29,7 @@
   margin: 14px 0 0;
   max-width: 20ch;
 }
-.intro { font-size: 18px; line-height: 1.6; color: #cfc7bb; max-width: 74ch; margin: 20px 0 0; text-wrap: pretty; }
+.intro { font-size: 18px; line-height: 1.6; color: var(--text-body); max-width: 74ch; margin: 20px 0 0; text-wrap: pretty; }
 .reviewed {
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@
   gap: 10px;
   transition: background var(--dur-fast) var(--ease);
 }
-.tocItem:hover { background: rgba(245, 240, 232, 0.055); color: var(--text); }
+.tocItem:hover { background: color-mix(in srgb, var(--ink-wash-base) 5.5%, transparent); color: var(--text); }
 .tocNum {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -140,13 +140,13 @@
   letter-spacing: 0.11em;
   text-transform: uppercase;
   margin-top: 12px;
-  color: #cfc7bb;
+  color: var(--text-body);
   line-height: 1.4;
 }
 
 .findingBody { display: grid; grid-template-columns: 1.35fr 1fr; gap: 44px; margin-top: 28px; align-items: start; }
 .prose { display: flex; flex-direction: column; gap: 16px; }
-.prose p { font-size: 16px; line-height: 1.7; color: #cfc7bb; margin: 0; text-wrap: pretty; }
+.prose p { font-size: 16px; line-height: 1.7; color: var(--text-body); margin: 0; text-wrap: pretty; }
 .findingLinks { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
 .findingLink {
   display: inline-flex;
@@ -191,7 +191,7 @@
 }
 .barValueHot { color: var(--gold); }
 .barTrack { height: 8px; background: var(--bg-soft-2); border-radius: 999px; overflow: hidden; }
-.barFill { height: 8px; border-radius: 999px; background: rgba(245, 240, 232, 0.26); }
+.barFill { height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--ink-wash-base) 26%, transparent); }
 .barFillHot { background: linear-gradient(90deg, var(--grad-b), var(--gold)); }
 .chartNote {
   font-family: var(--font-mono), monospace;
@@ -204,7 +204,7 @@
 
 /* ── How to check this ──────────────────────────────────────────────────── */
 .methodPad { padding: 56px 40px 0; }
-.method { padding: 28px 32px; border: 1px solid rgba(255, 182, 39, 0.35); background: rgba(255, 182, 39, 0.05); }
+.method { padding: 28px 32px; border: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
 .methodH {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -214,7 +214,7 @@
   text-transform: uppercase;
   margin: 0;
 }
-.methodBody { font-size: 15.5px; line-height: 1.75; color: #cfc7bb; margin: 14px 0 0; max-width: 88ch; }
+.methodBody { font-size: 15.5px; line-height: 1.75; color: var(--text-body); margin: 14px 0 0; max-width: 88ch; }
 .methodBody a { color: var(--gold); }
 
 .pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 40px 72px; }

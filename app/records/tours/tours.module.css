@@ -55,7 +55,7 @@
   line-height: 1.55;
   max-width: 62ch;
   margin: 18px 0 0;
-  color: #d8d8de;
+  color: var(--text-body-cool);
   text-wrap: pretty;
 }
 
@@ -128,9 +128,9 @@
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-.tourRow:hover { background: rgba(245, 240, 232, 0.05); }
-.tourRowOpen { background: rgba(255, 182, 39, 0.05); }
-.tourRowOpen:hover { background: rgba(255, 182, 39, 0.08); }
+.tourRow:hover { background: color-mix(in srgb, var(--ink-wash-base) 5%, transparent); }
+.tourRowOpen { background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
+.tourRowOpen:hover { background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent); }
 .caret {
   color: var(--gold);
   font-size: 13px;
@@ -155,7 +155,7 @@
   display: inline-flex;
   padding: 3px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(62, 209, 127, 0.45);
+  border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
   background: transparent;
   color: var(--green);
   font-family: var(--font-mono), monospace;
@@ -203,13 +203,13 @@
   white-space: nowrap;
 }
 .dVenue { font-weight: 600; font-size: 14.5px; }
-.dCity { font-size: 13.5px; color: #d8d8de; }
+.dCity { font-size: 13.5px; color: var(--text-body-cool); }
 .dCountry { font-family: var(--font-mono), monospace; font-size: 12px; color: var(--text-muted); }
 .dCap {
   text-align: right;
   font-family: var(--font-mono), monospace;
   font-size: 12.5px;
-  color: #d8d8de;
+  color: var(--text-body-cool);
   font-variant-numeric: tabular-nums;
 }
 .dateNote {
@@ -238,7 +238,7 @@
 .jumpCard { background: var(--bg-soft); }
 .jumpCardAlt { background: var(--bg); }
 .jumpCard:hover,
-.jumpCardAlt:hover { border-color: var(--gold); background: rgba(255, 182, 39, 0.05); }
+.jumpCardAlt:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
 .jumpTitle {
   display: block;
   font-family: var(--font-anton), sans-serif;
@@ -270,12 +270,12 @@
   color: var(--text-muted);
   margin-top: 2px;
 }
-.tourCell { font-size: 13.5px; color: #d8d8de; }
+.tourCell { font-size: 13.5px; color: var(--text-body-cool); }
 .tickets {
   text-align: right;
   font-family: var(--font-mono), monospace;
   font-size: 13px;
-  color: #d8d8de;
+  color: var(--text-body-cool);
   font-variant-numeric: tabular-nums;
 }
 /* Gold marks HIS gross, so it is not the default. This top ten is not all his —
@@ -314,7 +314,7 @@
 }
 /* Green wash, matching the "African record" pill — these are the rows the pill
    would sit on if it appeared here. */
-.momentRecord { background: rgba(62, 209, 127, 0.06); }
+.momentRecord { background: color-mix(in srgb, var(--green) 6%, transparent); }
 .momentYear {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -335,7 +335,7 @@
 }
 .momentText {
   margin: 5px 0 0;
-  color: #d3d3da;
+  color: var(--text-body-cool-quiet);
   font-size: 14.5px;
   line-height: 1.6;
   max-width: 96ch;
@@ -365,8 +365,8 @@
    Deliberately quieter than a tour row and marked with its own tag: it is a
    plan, and the page's whole promise is that everything else is a result. */
 .upcoming {
-  border: 1px solid rgba(255, 182, 39, 0.28);
-  background: rgba(255, 182, 39, 0.04);
+  border: 1px solid color-mix(in srgb, var(--gold-ink) 28%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) 4%, transparent);
   border-radius: var(--radius);
   padding: 18px 20px;
   margin-bottom: 22px;
@@ -384,7 +384,7 @@
   letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--gold);
-  border: 1px solid rgba(255, 182, 39, 0.5);
+  border: 1px solid color-mix(in srgb, var(--gold-ink) 50%, transparent);
   border-radius: 999px;
   padding: 4px 10px;
 }
@@ -414,7 +414,7 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.upcomingText { font-size: 14px; line-height: 1.6; color: #cfc7bb; margin-top: 8px; }
+.upcomingText { font-size: 14px; line-height: 1.6; color: var(--text-body); margin-top: 8px; }
 .upcomingSource {
   font-family: var(--font-mono), monospace;
   font-size: 11px;

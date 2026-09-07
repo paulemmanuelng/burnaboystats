@@ -16,7 +16,7 @@
 .trigger:hover {
   border-color: var(--gold-dim);
   color: var(--text);
-  background: rgba(255, 182, 39, 0.06);
+  background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
 }
 .triggerLabel {
   letter-spacing: 0.02em;
@@ -46,10 +46,10 @@
 .panel {
   width: 100%;
   max-width: 560px;
-  background: var(--bg-soft-2, #141416);
+  background: var(--bg-soft-2, var(--bg-soft));
   border: 1px solid var(--border);
   border-radius: 14px;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 24px 70px color-mix(in srgb, var(--shadow-base) calc(60% * var(--shadow-strength)), transparent);
   overflow: hidden;
   animation: paletteRise 0.16s ease-out;
 }
@@ -134,7 +134,7 @@
   transition: background 0.1s ease;
 }
 .resultActive {
-  background: rgba(255, 182, 39, 0.12);
+  background: color-mix(in srgb, var(--gold-wash-base) 12%, transparent);
 }
 .resultMain {
   min-width: 0;

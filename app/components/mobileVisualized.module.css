@@ -18,7 +18,7 @@
   position: sticky;
   top: 0;
   z-index: 5;
-  background: rgba(12, 10, 9, 0.94);
+  background: var(--scrim);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   padding: 12px 18px;
@@ -80,7 +80,7 @@
   margin-top: 11px;
 }
 .gold {
-  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 45%, var(--grad-b));
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-fill) 45%, var(--grad-b));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -94,7 +94,7 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.lede { font-size: 14.5px; line-height: 1.55; color: #cfc7bb; margin: 12px 0 0; }
+.lede { font-size: 14.5px; line-height: 1.55; color: var(--text-body); margin: 12px 0 0; }
 
 /* ── Bar charts ───────────────────────────────────────────────────────── */
 .chart { border-top: 1px solid var(--line); padding: 20px 18px; }
@@ -137,14 +137,14 @@
 }
 .barTrack {
   height: 8px;
-  background: rgba(245, 244, 240, 0.07);
+  background: color-mix(in srgb, var(--text) 7%, transparent);
   border-radius: 999px;
   margin-top: 6px;
   overflow: hidden;
 }
 .barFill { height: 8px; border-radius: 999px; background: linear-gradient(90deg, var(--grad-b), var(--gold)); }
 /* A row that isn't his stays grey — the gold is the point of the chart. */
-.barFillOther { background: rgba(245, 244, 240, 0.26); }
+.barFillOther { background: color-mix(in srgb, var(--text) 26%, transparent); }
 .chartNote {
   font-family: var(--font-mono), monospace;
   font-size: 11px;

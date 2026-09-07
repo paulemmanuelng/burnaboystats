@@ -18,7 +18,7 @@
   position: sticky;
   top: 0;
   z-index: 5;
-  background: rgba(12, 10, 9, 0.94);
+  background: var(--scrim);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   padding: 12px 18px;
@@ -80,7 +80,7 @@
   margin-top: 11px;
 }
 .gold {
-  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 45%, var(--grad-b));
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-fill) 45%, var(--grad-b));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -94,7 +94,7 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.lede { font-size: 14.5px; line-height: 1.55; color: #cfc7bb; margin: 12px 0 0; }
+.lede { font-size: 14.5px; line-height: 1.55; color: var(--text-body); margin: 12px 0 0; }
 
 /* ── Stat strip: hairline seams ───────────────────────────────────────── */
 .statGrid {
@@ -131,7 +131,7 @@
 
 /* ── Tours ────────────────────────────────────────────────────────────── */
 .tour { border-top: 1px solid var(--line); }
-.tourOpen { background: rgba(255, 182, 39, 0.04); }
+.tourOpen { background: color-mix(in srgb, var(--gold-wash-base) 4%, transparent); }
 .tourBtn {
   width: 100%;
   min-height: 44px;
@@ -157,9 +157,9 @@
 .recordBadge {
   padding: 3px 8px;
   border-radius: 999px;
-  background-color: var(--gold);
+  background-color: var(--gold-fill);
   /* The gold ramp — the site's one treatment for a gold fill. */
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
   color: #0a0a0b;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -193,7 +193,7 @@
 }
 
 .tourBody { padding: 0 18px 18px; }
-.tourNote { font-size: 13px; line-height: 1.55; color: #b8b0a5; margin: 0 0 14px; }
+.tourNote { font-size: 13px; line-height: 1.55; color: var(--text-body-warm); margin: 0 0 14px; }
 .dateHead {
   display: flex;
   font-family: var(--font-mono), monospace;
@@ -249,7 +249,7 @@
   left: 0;
   right: 0;
   z-index: 40;
-  background: rgba(12, 10, 9, 0.94);
+  background: var(--scrim);
   backdrop-filter: blur(14px);
   border-top: 1px solid var(--line);
   padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 22px));
@@ -267,8 +267,8 @@
   border-radius: 999px;
   /* Same gold ramp as .btnPrimary and the home screen's own .primary — every
      gold action on the site runs one gradient, or the phone shows two golds. */
-  background-color: var(--gold);
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
   color: #000;
   -webkit-text-fill-color: #000;
   /* Promotes the layer at rest — see .btnPrimary for the iPhone reason. */
@@ -279,15 +279,15 @@
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
+  box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 25%, transparent);
 }
 
 /* Announced, not yet played — a plan, marked as one. */
 .upcoming {
   margin: 0 18px 18px;
   padding: 16px;
-  border: 1px solid rgba(255, 182, 39, 0.28);
-  background: rgba(255, 182, 39, 0.04);
+  border: 1px solid color-mix(in srgb, var(--gold-ink) 28%, transparent);
+  background: color-mix(in srgb, var(--gold-wash-base) 4%, transparent);
   border-radius: var(--radius);
 }
 .upcomingHead { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
@@ -298,7 +298,7 @@
   letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--gold);
-  border: 1px solid rgba(255, 182, 39, 0.5);
+  border: 1px solid color-mix(in srgb, var(--gold-ink) 50%, transparent);
   border-radius: 999px;
   padding: 3px 9px;
 }
@@ -323,7 +323,7 @@
   color: var(--text-muted);
   margin-top: 3px;
 }
-.upcomingText { font-size: 13px; line-height: 1.55; color: #cfc7bb; margin-top: 9px; }
+.upcomingText { font-size: 13px; line-height: 1.55; color: var(--text-body); margin-top: 9px; }
 .upcomingSource {
   font-family: var(--font-mono), monospace;
   font-size: 11px;

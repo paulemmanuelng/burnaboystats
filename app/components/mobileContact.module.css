@@ -21,7 +21,7 @@
   position: sticky;
   top: 0;
   z-index: 5;
-  background: rgba(12, 10, 9, 0.94);
+  background: var(--scrim);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   padding: 12px 18px;
@@ -76,7 +76,7 @@
   margin-top: 10px;
 }
 .gold {
-  background: linear-gradient(120deg, var(--gold-bright), var(--gold) 55%, var(--grad-b));
+  background: linear-gradient(120deg, var(--gold-bright), var(--gold-fill) 55%, var(--grad-b));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -90,7 +90,7 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.lede { font-size: 14.5px; line-height: 1.5; color: #d8d8de; margin: 12px 0 0; }
+.lede { font-size: 14.5px; line-height: 1.5; color: var(--text-body-cool); margin: 12px 0 0; }
 
 /* ── Form ─────────────────────────────────────────────────────────────── */
 .formBlock { padding: 8px 18px 22px; border-top: 1px solid var(--line); }
@@ -107,7 +107,7 @@
 
 /* ── Official channels ────────────────────────────────────────────────── */
 .channelBlock { padding: 20px 18px 8px; border-top: 1px solid var(--line); }
-.channelLede { font-size: 13.5px; line-height: 1.55; color: #d8d8de; margin: 10px 0 14px; }
+.channelLede { font-size: 13.5px; line-height: 1.55; color: var(--text-body-cool); margin: 10px 0 14px; }
 .channelLede strong { color: var(--text); }
 .channels { display: flex; flex-direction: column; gap: 10px; }
 .channel {

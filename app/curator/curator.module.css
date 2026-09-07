@@ -23,7 +23,7 @@
   margin: 14px 0 0;
   max-width: 22ch;
 }
-.lede { font-size: 19px; line-height: 1.55; color: #cfc7bb; max-width: 60ch; margin: 20px 0 0; text-wrap: pretty; }
+.lede { font-size: 19px; line-height: 1.55; color: var(--text-body); max-width: 60ch; margin: 20px 0 0; text-wrap: pretty; }
 .lede strong { color: var(--text); }
 .reviewed {
   display: flex;
@@ -55,8 +55,8 @@
 }
 .p { font-size: 15.5px; line-height: 1.75; color: var(--text-muted); max-width: 72ch; margin: 0; }
 .p strong { color: var(--text); }
-.link { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(255, 182, 39, 0.35); }
-.link:hover { color: var(--gold-bright); border-bottom-color: var(--gold-bright); }
+.link { color: var(--gold); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); }
+.link:hover { color: var(--gold-bright-ink); border-bottom-color: var(--gold-bright-ink); }
 
 @media (max-width: 720px) {
   .wrap { padding: 0 18px; }

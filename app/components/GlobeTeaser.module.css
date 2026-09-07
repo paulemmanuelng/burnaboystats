@@ -11,7 +11,7 @@
   padding: 26px 18px 24px;
   border-top: 1px solid var(--line);
   color: var(--text);
-  background: radial-gradient(120% 80% at 50% 120%, rgba(255, 182, 39, 0.13), transparent 62%);
+  background: radial-gradient(120% 80% at 50% 120%, color-mix(in srgb, var(--gold-wash-base) 13%, transparent), transparent 62%);
   transition: background var(--dur-fast) var(--ease);
 }
 .globe:hover { color: var(--text); }
@@ -44,14 +44,14 @@
   position: absolute;
   inset: -16px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 182, 39, 0.14);
+  border: 1px solid color-mix(in srgb, var(--gold-ink) 14%, transparent);
   display: block;
 }
 .ring2 {
   position: absolute;
   inset: -30px;
   border-radius: 50%;
-  border: 1px dashed rgba(255, 182, 39, 0.09);
+  border: 1px dashed color-mix(in srgb, var(--gold-ink) 9%, transparent);
   display: block;
 }
 /* The rotating globe fills the stage as a disc. */
@@ -61,10 +61,10 @@
   display: block;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid rgba(255, 182, 39, 0.28);
+  border: 1px solid color-mix(in srgb, var(--gold-ink) 28%, transparent);
   box-shadow:
     inset -22px -14px 46px rgba(0, 0, 0, 0.72),
-    0 0 44px rgba(255, 182, 39, 0.13);
+    0 0 44px color-mix(in srgb, var(--gold-glow-base) 13%, transparent);
 }
 
 /* Hairline seams inside a bounding border. */
@@ -113,7 +113,7 @@
   background: var(--green);
   display: block;
   flex: none;
-  box-shadow: 0 0 8px rgba(62, 209, 127, 0.7);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--green-dot) 70%, transparent);
 }
 .note { color: var(--text-muted); }
 .cta { margin-left: auto; color: var(--gold); }
@@ -129,7 +129,7 @@
     margin-top: 26px;
     background: none;
   }
-  .globe:hover .cta { color: var(--gold-bright); }
+  .globe:hover .cta { color: var(--gold-bright-ink); }
   .title { font-size: 30px; }
   .lede { font-size: 14px; }
   .stage {

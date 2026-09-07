@@ -10,8 +10,8 @@
   transition: background 0.18s ease, padding-left 0.18s ease;
 }
 .row:hover {
-  background: rgba(255, 182, 39, 0.06);
-  border-bottom-color: rgba(255, 182, 39, 0.4);
+  background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
   padding-left: 16px;
 }
 .rowMain { min-width: 0; }
@@ -117,7 +117,7 @@
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 .fChip:hover { border-color: var(--gold-dim); color: var(--text); }
-.fChipOn { background: rgba(255, 182, 39, 0.16); border-color: var(--gold); color: var(--gold); }
+.fChipOn { background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent); border-color: var(--gold); color: var(--gold); }
 .moreBodies {
   display: inline-flex;
   align-items: center;
@@ -134,7 +134,7 @@
   cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
-.moreBodies:hover { border-color: var(--gold); color: var(--gold-bright); background: rgba(255, 182, 39, 0.08); }
+.moreBodies:hover { border-color: var(--gold); color: var(--gold-bright-ink); background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent); }
 .filterMeta { display: flex; align-items: center; gap: 14px; font-size: 0.85rem; color: var(--text-muted); }
 .filterMeta b { color: var(--gold); }
 .clearBtn {
@@ -231,7 +231,7 @@
   line-height: 1.55;
   max-width: 62ch;
   margin: 18px 0 0;
-  color: #d8d8de;
+  color: var(--text-body-cool);
   text-wrap: pretty;
 }
 .heroActions { display: flex; gap: 10px; margin-top: 24px; }
@@ -312,7 +312,7 @@
   letter-spacing: 0;
   text-transform: none;
 }
-.faqA { margin: 0; color: #d3d3da; font-size: 15px; line-height: 1.65; }
+.faqA { margin: 0; color: var(--text-body-cool-quiet); font-size: 15px; line-height: 1.65; }
 
 /* ── Source ───────────────────────────────────────────────────────────── */
 .sourceBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
@@ -365,7 +365,7 @@
   gap: 6px;
   padding: 4px 11px;
   border-radius: 999px;
-  border: 1px solid rgba(62, 209, 127, 0.45);
+  border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
   color: var(--green);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -394,7 +394,7 @@
   padding: 13px 8px;
   border-bottom: 1px solid var(--line);
 }
-.rowWon { background: rgba(62, 209, 127, 0.05); }
+.rowWon { background: color-mix(in srgb, var(--green) 5%, transparent); }
 .year {
   font-family: var(--font-mono), monospace;
   font-size: 12.5px;

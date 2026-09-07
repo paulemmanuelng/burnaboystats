@@ -32,7 +32,7 @@
   margin: 14px 0 0;
   max-width: 22ch;
 }
-.lede { font-size: 19px; line-height: 1.55; color: #cfc7bb; max-width: 60ch; margin: 20px 0 0; text-wrap: pretty; }
+.lede { font-size: 19px; line-height: 1.55; color: var(--text-body); max-width: 60ch; margin: 20px 0 0; text-wrap: pretty; }
 .intro { font-size: 15.5px; line-height: 1.7; color: var(--text-muted); max-width: 76ch; margin: 20px 0 0; }
 /* Section body prose, and the inline link inside it. Both were referenced by
    page.tsx (styles.p, styles.link) and neither existed, so React dropped the
@@ -43,8 +43,8 @@
    .p matches .intro, the page's own section-prose convention; .link matches
    curator.module.css, the site's inline prose link. */
 .p { font-size: 15.5px; line-height: 1.7; color: var(--text-muted); max-width: 76ch; margin: 20px 0 0; }
-.link { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(255, 182, 39, 0.35); }
-.link:hover { color: var(--gold-bright); border-bottom-color: var(--gold-bright); }
+.link { color: var(--gold); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); }
+.link:hover { color: var(--gold-bright-ink); border-bottom-color: var(--gold-bright-ink); }
 .reviewed {
   display: flex;
   align-items: center;
@@ -143,7 +143,7 @@
   text-transform: uppercase;
   margin: 0;
 }
-.principleP { font-size: 14.5px; line-height: 1.7; color: #cfc7bb; margin: 14px 0 0; }
+.principleP { font-size: 14.5px; line-height: 1.7; color: var(--text-body); margin: 14px 0 0; }
 
 /* ── Primary sources ────────────────────────────────────────────────────── */
 .sourceList { margin-top: 24px; border-top: 1px solid var(--line); }
@@ -173,7 +173,7 @@
   color: var(--dim);
   margin-top: 8px;
 }
-.sourceDetail { font-size: 15px; line-height: 1.7; color: #cfc7bb; margin: 0; max-width: 82ch; }
+.sourceDetail { font-size: 15px; line-height: 1.7; color: var(--text-body); margin: 0; max-width: 82ch; }
 
 /* ── Closing blocks ─────────────────────────────────────────────────────── */
 .blocks {
@@ -185,7 +185,7 @@
 }
 .block { background: var(--bg); padding: 28px 30px; }
 /* The independence note spans the row — it applies to everything above it. */
-.blockWide { grid-column: 1 / -1; background: linear-gradient(rgba(255, 182, 39, 0.05), rgba(255, 182, 39, 0.05)), var(--bg); }
+.blockWide { grid-column: 1 / -1; background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 5%, transparent), color-mix(in srgb, var(--gold-wash-base) 5%, transparent)), var(--bg); }
 .blockH {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -195,7 +195,7 @@
   text-transform: uppercase;
   margin: 0;
 }
-.blockP { font-size: 15px; line-height: 1.75; color: #cfc7bb; margin: 14px 0 0; max-width: 84ch; }
+.blockP { font-size: 15px; line-height: 1.75; color: var(--text-body); margin: 14px 0 0; max-width: 84ch; }
 .blockLinks { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
 .blockLink {
   display: inline-flex;

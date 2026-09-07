@@ -21,7 +21,7 @@
   position: sticky;
   top: 0;
   z-index: 5;
-  background: rgba(12, 10, 9, 0.94);
+  background: var(--scrim);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   padding: 12px 18px;
@@ -75,7 +75,7 @@
   margin-top: 10px;
 }
 .gold {
-  background: linear-gradient(120deg, var(--gold-bright), var(--gold) 55%, var(--grad-b));
+  background: linear-gradient(120deg, var(--gold-bright), var(--gold-fill) 55%, var(--grad-b));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -89,7 +89,7 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.lede { font-size: 14.5px; line-height: 1.5; color: #d8d8de; margin: 12px 0 0; }
+.lede { font-size: 14.5px; line-height: 1.5; color: var(--text-body-cool); margin: 12px 0 0; }
 
 /* ── Fast facts ───────────────────────────────────────────────────────── */
 /* The facts come before the prose here — on a phone the answer people arrived
@@ -115,7 +115,7 @@
 
 /* ── Bio ──────────────────────────────────────────────────────────────── */
 .bio { padding: 20px 18px 8px; }
-.bio p { font-size: 14.5px; line-height: 1.6; color: #d8d8de; margin: 0; }
+.bio p { font-size: 14.5px; line-height: 1.6; color: var(--text-body-cool); margin: 0; }
 .bio p + p { margin-top: 12px; }
 .bio strong { color: var(--text); }
 .wikiLink {
@@ -154,8 +154,8 @@
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 0 3px rgba(232, 176, 75, 0.15);
+  background: var(--gold-fill);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--glow-base) 15%, transparent);
   display: block;
 }
 .tYear {

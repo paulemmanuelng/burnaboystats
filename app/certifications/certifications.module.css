@@ -54,8 +54,8 @@
   transition: background 0.18s ease, padding-left 0.18s ease;
 }
 .certRow:hover {
-  background: rgba(255, 182, 39, 0.06);
-  border-bottom-color: rgba(255, 182, 39, 0.4);
+  background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
   padding-left: 16px;
 }
 .certRow:hover .certTitle {
@@ -112,19 +112,19 @@
 
 /* Tier colours — ranking by colour, no fills (cleaner on rows) */
 .silver {
-  color: var(--tier-silver);
+  color: var(--tier-silver-ink);
   border-color: var(--tier-silver-edge);
 }
 .gold {
-  color: var(--tier-gold);
+  color: var(--tier-gold-ink);
   border-color: var(--tier-gold-edge);
 }
 .platinum {
-  color: var(--tier-platinum);
+  color: var(--tier-platinum-ink);
   border-color: var(--tier-platinum-edge);
 }
 .diamond {
-  color: var(--tier-diamond);
+  color: var(--tier-diamond-ink);
   border-color: var(--tier-diamond-edge);
 }
 
@@ -147,7 +147,7 @@
   margin: 26px 0 4px;
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
-  background: rgba(255, 182, 39, 0.08);
+  background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent);
   font-size: 0.9rem;
   color: var(--text);
 }
@@ -199,7 +199,7 @@
   color: var(--text);
 }
 .fChipOn {
-  background: rgba(255, 182, 39, 0.16);
+  background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent);
   border-color: var(--gold);
   color: var(--gold);
 }
@@ -252,8 +252,8 @@
   padding: 14px 22px;
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
-  background: rgba(255, 182, 39, 0.07);
-  color: var(--gold-bright);
+  background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent);
+  color: var(--gold-bright-ink);
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 1.3rem;
@@ -264,16 +264,16 @@
 }
 .yearBtn:hover {
   border-color: var(--gold);
-  background: rgba(255, 182, 39, 0.16);
+  background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent);
   transform: translateY(-2px);
 }
 .yearBtnOn {
-  background-color: var(--gold);
+  background-color: var(--gold-fill);
   /* The gold ramp — the site's one treatment for a gold fill. */
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
   color: var(--bg); -webkit-text-fill-color: var(--bg);
   border-color: var(--gold);
-  box-shadow: 0 6px 18px rgba(255, 182, 39, 0.24);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--gold-glow-base) 24%, transparent);
 }
 @media (max-width: 560px) {
   .yearBtn { min-width: 0; flex: 1; padding: 12px 10px; font-size: 1.1rem; }
@@ -409,8 +409,8 @@
     /* Last stop 0.62, not 0.46. The tier percentages sit at the far right,
        where the portrait is brightest and the scrim thinnest, and sampling the
        rendered pixels put them at 4.24:1 — under AA for 12px text. */
-    linear-gradient(90deg, var(--bg) 40%, rgba(10, 10, 11, 0.82) 66%, rgba(10, 10, 11, 0.62) 100%),
-    linear-gradient(180deg, rgba(10, 10, 11, 0.5) 0%, rgba(10, 10, 11, 0.08) 34%, rgba(10, 10, 11, 0.62) 100%);
+    linear-gradient(90deg, var(--bg) 40%, color-mix(in srgb, var(--bg) 82%, transparent) 66%, color-mix(in srgb, var(--bg) 62%, transparent) 100%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 50%, transparent) 0%, color-mix(in srgb, var(--bg) 8%, transparent) 34%, color-mix(in srgb, var(--bg) 62%, transparent) 100%);
 }
 
 /* Below the two-column breakpoint the rail stacks under the copy and there is no
@@ -445,7 +445,7 @@
 .eyebrowRule {
   width: 22px;
   height: 2px;
-  background: var(--gold); /* a 2px rule — a gradient renders as mud here */
+  background: var(--gold-fill); /* a 2px rule — a gradient renders as mud here */
   display: block;
   flex: none;
 }
@@ -463,7 +463,7 @@
   line-height: 1.55;
   max-width: 60ch;
   margin: 18px 0 0;
-  color: #d8d8de;
+  color: var(--text-body-cool);
   text-wrap: pretty;
 }
 .heroButtons { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
@@ -600,7 +600,7 @@
 }
 .fChip:hover { border-color: var(--gold-dim); color: var(--text); }
 .fChipOn {
-  background: rgba(255, 182, 39, 0.16);
+  background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent);
   border-color: var(--gold);
   color: var(--gold);
 }
@@ -662,7 +662,7 @@
   border-bottom: 1px solid var(--line);
   transition: background var(--dur-fast) var(--ease);
 }
-.certRow:hover { background: rgba(245, 240, 232, 0.05); }
+.certRow:hover { background: color-mix(in srgb, var(--ink-wash-base) 5%, transparent); }
 .certRowHead { min-width: 0; }
 .certTitle {
   display: block;
@@ -768,8 +768,8 @@
   padding: 0 22px;
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius-sm);
-  background: rgba(255, 182, 39, 0.07);
-  color: var(--gold-bright);
+  background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent);
+  color: var(--gold-bright-ink);
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
   font-size: 21px;
@@ -778,9 +778,9 @@
   transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .yearBtnOn {
-  background-color: var(--gold);
+  background-color: var(--gold-fill);
   /* The gold ramp — the site's one treatment for a gold fill. */
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
   border-color: var(--gold);
   color: #0a0a0b;
 }
@@ -805,7 +805,7 @@
   border-bottom: 1px solid var(--line);
   transition: background var(--dur-fast) var(--ease);
 }
-.eventRow:hover { background: rgba(245, 240, 232, 0.045); }
+.eventRow:hover { background: color-mix(in srgb, var(--ink-wash-base) 4.5%, transparent); }
 .eventMain {
   min-width: 0;
   display: flex;

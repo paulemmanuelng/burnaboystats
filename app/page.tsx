@@ -46,17 +46,25 @@ const lastVerified = new Date(
 ).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 
 // Tier colours carry data meaning and are never recoloured to gold.
+//
+// These used to be --cyan for Diamond and --silver for Platinum: the Top 10 and
+// Top 40 PEAK-BAND tokens, which mean something else entirely, plus a raw
+// #b8bcc4 for Silver. MobileCerts was corrected onto the tier tokens; this half
+// of the same design was not, so the two layouts painted different tiers — the
+// bug this file's own comment claims to prevent. Same tokens as mobile now.
 const TIER_INK: Record<string, string> = {
-  Diamond: "var(--cyan)",
-  Platinum: "var(--silver)",
-  Gold: "var(--gold)",
-  Silver: "#b8bcc4",
+  Diamond: "var(--tier-diamond-ink)",
+  Platinum: "var(--tier-platinum-ink)",
+  Gold: "var(--tier-gold-ink)",
+  Silver: "var(--tier-silver-ink)",
 };
+// The dark stop is DERIVED from the same token rather than typed, so the ramp
+// cannot drift from the ink again, and it follows the token into either theme.
 const TIER_GRAD: Record<string, string> = {
-  Diamond: "linear-gradient(90deg, #8fe3f0, #5fc9dc)",
-  Platinum: "linear-gradient(90deg, #dfe2e8, #b8bcc4)",
-  Gold: "linear-gradient(90deg, var(--gold-bright), var(--gold))",
-  Silver: "linear-gradient(90deg, #b8bcc4, #8f939b)",
+  Diamond: "linear-gradient(90deg, color-mix(in srgb, var(--tier-diamond) 58%, var(--bg)), var(--tier-diamond))",
+  Platinum: "linear-gradient(90deg, color-mix(in srgb, var(--tier-platinum) 58%, var(--bg)), var(--tier-platinum))",
+  Gold: "linear-gradient(90deg, color-mix(in srgb, var(--tier-gold) 58%, var(--bg)), var(--tier-gold))",
+  Silver: "linear-gradient(90deg, color-mix(in srgb, var(--tier-silver) 58%, var(--bg)), var(--tier-silver))",
 };
 
 // 2013–2025 is thirteen years, not twelve — the span is inclusive of both ends.

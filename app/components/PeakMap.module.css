@@ -33,7 +33,7 @@
   background: var(--bg-soft);
   border: 1px solid var(--gold-dim);
   border-radius: 10px;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--shadow-base) calc(55% * var(--shadow-strength)), transparent);
   pointer-events: none;
 }
 .tipCountry {
@@ -67,7 +67,7 @@
 .tipPeak {
   flex: none;
   font-family: var(--font-mono), monospace;
-  color: var(--gold-bright);
+  color: var(--gold-bright-ink);
 }
 .tipMore {
   display: block;

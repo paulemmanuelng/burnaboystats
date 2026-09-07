@@ -52,7 +52,7 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .pick:hover { border-color: var(--gold); color: var(--text); }
-.pickOn { border-color: var(--gold); background: rgba(255, 182, 39, 0.13); color: var(--gold); }
+.pickOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 13%, transparent); color: var(--gold); }
 .pickCover { width: 30px; height: 30px; border-radius: 999px; object-fit: cover; flex: none; }
 .pickYear { font-family: var(--font-mono), monospace; font-size: 11px; opacity: 0.65; padding-right: 6px; }
 
@@ -73,7 +73,7 @@
 .heroScrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, rgba(12, 10, 9, 0.94) 0%, rgba(12, 10, 9, 0.78) 52%, rgba(12, 10, 9, 0.6) 100%);
+  background: linear-gradient(100deg, color-mix(in srgb, var(--veil-base) 94%, transparent) 0%, color-mix(in srgb, var(--veil-base) 78%, transparent) 52%, color-mix(in srgb, var(--veil-base) 60%, transparent) 100%);
 }
 .heroGrid {
   position: relative;
@@ -83,7 +83,7 @@
   padding: 36px 38px;
   align-items: center;
 }
-.cover { width: 236px; height: 236px; object-fit: cover; box-shadow: 0 28px 70px rgba(0, 0, 0, 0.62); }
+.cover { width: 236px; height: 236px; object-fit: cover; box-shadow: 0 28px 70px color-mix(in srgb, var(--shadow-base) calc(62% * var(--shadow-strength)), transparent); }
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -107,7 +107,7 @@
   font-family: var(--font-mono), monospace;
   font-size: 12.5px;
   letter-spacing: 0.06em;
-  color: #cfc7bb;
+  color: var(--text-body);
   margin: 12px 0 0;
 }
 .tagline { font-size: 18px; line-height: 1.5; color: var(--gold); margin: 14px 0 0; max-width: 44ch; }
@@ -129,7 +129,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.blurb { font-size: 16.5px; line-height: 1.75; color: #cfc7bb; margin: 26px 0 0; max-width: 82ch; text-wrap: pretty; }
+.blurb { font-size: 16.5px; line-height: 1.75; color: var(--text-body); margin: 26px 0 0; max-width: 82ch; text-wrap: pretty; }
 
 /* ── Sections ───────────────────────────────────────────────────────────── */
 .sectionPad { padding: 44px 40px 0; }
@@ -165,9 +165,9 @@
 }
 .legendItem { display: flex; align-items: center; gap: 6px; }
 .legendDot { width: 10px; height: 10px; border-radius: 999px; display: block; }
-.dotOne { background: rgba(255, 182, 39, 0.22); border: 1px solid var(--gold); }
-.dotTen { border: 1px solid rgba(143, 227, 240, 0.55); }
-.dotForty { border: 1px solid rgba(223, 226, 232, 0.45); }
+.dotOne { background: color-mix(in srgb, var(--gold-wash-base) 22%, transparent); border: 1px solid var(--gold); }
+.dotTen { border: 1px solid color-mix(in srgb, var(--cyan) 55%, transparent); }
+.dotForty { border: 1px solid color-mix(in srgb, var(--silver) 45%, transparent); }
 
 /* ── By the numbers ─────────────────────────────────────────────────────── */
 /* Seams are drawn per card rather than by showing a --line bed through the
@@ -188,7 +188,7 @@
   flex-direction: column;
 }
 /* The first card is the song's headline figure, so it takes the tint. */
-.numCardLead { background: rgba(255, 182, 39, 0.05); }
+.numCardLead { background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
 .numValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -200,7 +200,7 @@
 .numValueLead { color: var(--gold); }
 /* "Diamond in France" is a value too — it just isn't a number. */
 .numValueLong { font-size: 30px; }
-.numLabel { font-size: 13px; line-height: 1.6; color: #cfc7bb; margin-top: 11px; }
+.numLabel { font-size: 13px; line-height: 1.6; color: var(--text-body); margin-top: 11px; }
 
 /* State E — a figure the record doesn't hold.
    designs/desktop/App States.dc.html, panel E.
@@ -225,7 +225,7 @@
 .numNote {
   font-size: 13px;
   line-height: 1.6;
-  color: #cfc7bb;
+  color: var(--text-body);
   margin: 16px 0 0;
   max-width: 74ch;
 }
@@ -247,9 +247,9 @@
 }
 /* Peak bands carry meaning and are never recoloured: No. 1 gold, Top 10 cyan,
    Top 40 silver, beyond muted. */
-.one { border-color: var(--gold); background: rgba(255, 182, 39, 0.22); color: var(--gold); }
-.top10 { border-color: rgba(143, 227, 240, 0.55); color: var(--cyan); }
-.top40 { border-color: rgba(223, 226, 232, 0.45); color: var(--silver); }
+.one { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 22%, transparent); color: var(--gold); }
+.top10 { border-color: color-mix(in srgb, var(--cyan) 55%, transparent); color: var(--cyan); }
+.top40 { border-color: color-mix(in srgb, var(--silver) 45%, transparent); color: var(--silver); }
 .rest { border-color: var(--border); color: var(--text-muted); }
 .flag { font-size: 15px; line-height: 1; }
 .peakName { font-family: var(--font-geist-sans), system-ui, sans-serif; font-weight: 500; font-size: 12.5px; opacity: 0.75; }
@@ -270,10 +270,10 @@
 }
 /* Certification tiers. Distinct from the peak bands above, which keep --cyan
    and --silver — the two used to share those tokens. */
-.diamond { border-color: var(--tier-diamond-edge); background: rgba(49, 161, 192, 0.13); color: var(--tier-diamond); }
-.platinum { border-color: var(--tier-platinum-edge); color: var(--tier-platinum); }
-.gold { border-color: var(--tier-gold-edge); background: rgba(251, 180, 23, 0.13); color: var(--tier-gold); }
-.silver { border-color: var(--tier-silver-edge); color: var(--tier-silver); }
+.diamond { border-color: var(--tier-diamond-edge); background: color-mix(in srgb, var(--tier-diamond) 13%, transparent); color: var(--tier-diamond-ink); }
+.platinum { border-color: var(--tier-platinum-edge); color: var(--tier-platinum-ink); }
+.gold { border-color: var(--tier-gold-edge); background: color-mix(in srgb, var(--tier-gold) 13%, transparent); color: var(--tier-gold-ink); }
+.silver { border-color: var(--tier-silver-edge); color: var(--tier-silver-ink); }
 .certCountry { font-family: var(--font-geist-sans), system-ui, sans-serif; font-weight: 500; opacity: 0.75; }
 
 .source { font-size: 13px; line-height: 1.65; color: var(--text-muted); margin: 18px 0 0; max-width: 78ch; }
@@ -298,7 +298,7 @@
   letter-spacing: 0;
   margin: 0;
 }
-.faqA { font-size: 14.5px; line-height: 1.7; color: #cfc7bb; margin: 0; }
+.faqA { font-size: 14.5px; line-height: 1.7; color: var(--text-body); margin: 0; }
 
 .onward { display: flex; gap: 10px; flex-wrap: wrap; padding: 44px 40px 76px; }
 
@@ -403,7 +403,7 @@
     padding-top: calc(12px + env(safe-area-inset-top, 0px));
     padding-left: calc(18px + env(safe-area-inset-left, 0px));
     padding-right: calc(18px + env(safe-area-inset-right, 0px));
-    background: rgba(12, 10, 9, 0.94);
+    background: var(--scrim);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
   }
@@ -449,7 +449,7 @@
     padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 22px));
   padding-left: calc(18px + env(safe-area-inset-left, 0px));
   padding-right: calc(18px + env(safe-area-inset-right, 0px));
-    background: rgba(12, 10, 9, 0.94);
+    background: var(--scrim);
     backdrop-filter: blur(14px);
     border-top: 1px solid var(--line);
   }
@@ -460,16 +460,16 @@
     justify-content: center;
     min-height: 50px;
     border-radius: 999px;
-    background-color: var(--gold);
+    background-color: var(--gold-fill);
     /* The gold ramp — the site's one treatment for a gold fill. */
-    background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+    background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
     color: var(--bg);
     font-family: var(--font-mono), monospace;
     font-weight: 700;
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
+    box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 25%, transparent);
   }
   .mobileShare {
     width: 50px;

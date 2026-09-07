@@ -28,7 +28,7 @@
   letter-spacing: 0.005em;
   text-transform: uppercase;
   margin: 18px 0 0;
-  text-shadow: 0 0 90px rgba(232, 176, 75, 0.15);
+  text-shadow: 0 0 90px color-mix(in srgb, var(--glow-base) 15%, transparent);
 }
 
 .tagline {
@@ -68,9 +68,9 @@
 }.tierHead .eyebrow {
   margin-bottom: 0;
 }@media (max-width: 760px) {}@keyframes featuredPulse {
-  0% { box-shadow: 0 0 0 0 rgba(255, 182, 39, 0.5); }
-  70% { box-shadow: 0 0 0 8px rgba(255, 182, 39, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 182, 39, 0); }
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold-wash-base) 50%, transparent); }
+  70% { box-shadow: 0 0 0 8px rgb(from var(--gold-wash-base) r g b / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(from var(--gold-wash-base) r g b / 0); }
 }@media (prefers-reduced-motion: reduce) {}
 /* Phones: same float layout, just tighter with a smaller cover. */
 @media (max-width: 620px) {}
@@ -148,7 +148,7 @@
 .eyebrowRule {
   width: 22px;
   height: 2px;
-  background: var(--gold);
+  background: var(--gold-fill);
   display: inline-block;
   flex: none;
 }
@@ -248,7 +248,7 @@
      one flat bright gold across the whole row. Bright to dim, no orange turn.
      The dimmest stop is 6.8:1 on the page ground, so the bottom of every digit
      still clears AA for body text, let alone the 3:1 this size needs. */
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 50%, var(--gold-dim) 100%);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 50%, var(--gold-dim) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -332,7 +332,7 @@
   background-image: none;
   color: var(--text);
   -webkit-text-fill-color: var(--text);
-  border-color: rgba(245, 244, 240, 0.42);
+  border-color: color-mix(in srgb, var(--text) 42%, transparent);
   box-shadow: none;
 }
 .historyCta:hover {
@@ -452,7 +452,7 @@
 }
 .tierTrack {
   height: 7px;
-  background: rgba(245, 240, 232, 0.09);
+  background: color-mix(in srgb, var(--ink-wash-base) 9%, transparent);
   margin-top: 10px;
   border-radius: 999px;
   overflow: hidden;
@@ -501,10 +501,10 @@
   border: 1px solid var(--line);
   object-fit: cover;
 }
-.boardNew .boardCover { border-color: rgba(62, 209, 127, 0.4); }
+.boardNew .boardCover { border-color: color-mix(in srgb, var(--green) 40%, transparent); }
 .boardCell:hover { background: var(--color-accent-200); }
 /* A newly-entered No. 1 reads green — the live/positive accent. */
-.boardNew { background: rgba(62, 209, 127, 0.07); }
+.boardNew { background: color-mix(in srgb, var(--green) 7%, transparent); }
 .boardTop { display: flex; align-items: center; gap: 6px; }
 .boardCode {
   font-family: var(--font-anton), sans-serif;
@@ -630,19 +630,19 @@
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
-  color: var(--bg);
-  background-color: var(--gold);
+  color: var(--ink-on-gold);
+  background-color: var(--gold-fill);
   background-image:
     radial-gradient(52% 78% at 8% -6%, rgba(255, 246, 214, 0.5), transparent 62%),
     radial-gradient(62% 96% at 100% 112%, rgba(150, 42, 18, 0.4), transparent 64%),
     radial-gradient(80% 70% at 68% 118%, rgba(196, 70, 16, 0.26), transparent 68%),
-    linear-gradient(122deg, var(--gold-bright) 0%, var(--gold) 40%, #f08a12 76%, #d96c0c 100%);
+    linear-gradient(122deg, var(--gold-bright) 0%, var(--gold-fill) 40%, #f08a12 76%, #d96c0c 100%);
 }
 .closerGlyphs {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  color: #5a2a06;
+  color: var(--burnt);
   font-family: var(--font-anton), sans-serif;
 }
 .closerGlyphs span { position: absolute; display: block; }
@@ -661,7 +661,7 @@
   width: 260px;
   height: 260px;
   border-radius: 50%;
-  border: 1px solid rgba(90, 42, 6, 0.12);
+  border: 1px solid color-mix(in srgb, var(--burnt) 12%, transparent);
 }
 .ring2 {
   bottom: -30%;
@@ -669,7 +669,7 @@
   width: 320px;
   height: 320px;
   border-radius: 50%;
-  border: 1px solid rgba(90, 42, 6, 0.1);
+  border: 1px solid color-mix(in srgb, var(--burnt) 10%, transparent);
 }
 .closerInner {
   position: relative;
@@ -712,11 +712,14 @@
   align-items: flex-start;
 }
 .closerLink {
-  border: 1px solid var(--bg);
-  color: var(--bg);
+  /* On the gold panel, so its ink is --ink-on-gold, not --bg. --bg is the page
+     ground: near-black in dark, which looked right, and cream on paper, which
+     would have made this button the same colour as the gold behind it. */
+  border: 1px solid var(--ink-on-gold);
+  color: var(--ink-on-gold);
   background: transparent;
 }
-.closerLink:hover { background: rgba(90, 42, 6, 0.12); }
+.closerLink:hover { background: color-mix(in srgb, var(--burnt) 12%, transparent); }
 
 /* The mobile home screen takes over below 900px, so this only has to survive
    the tablet band between the two layouts. */

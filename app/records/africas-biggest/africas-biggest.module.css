@@ -32,7 +32,7 @@
 .intro {
   font-size: 18px;
   line-height: 1.55;
-  color: #cfc7bb;
+  color: var(--text-body);
   max-width: 66ch;
   margin: 18px 0 0;
   text-wrap: pretty;
@@ -79,7 +79,7 @@
 .barValue { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); }
 /* Only the newest month is lit — the rest are the shape it arrived at. */
 .barValueNow { color: var(--gold); }
-.barFill { width: 100%; background: rgba(255, 182, 39, 0.28); display: block; }
+.barFill { width: 100%; background: color-mix(in srgb, var(--gold-wash-base) 28%, transparent); display: block; }
 .barFillNow { background: linear-gradient(180deg, var(--gold), var(--grad-b)); }
 .barMonth {
   font-family: var(--font-mono), monospace;
@@ -130,7 +130,7 @@
   color: var(--gold);
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(255, 182, 39, 0.13);
+  background: color-mix(in srgb, var(--gold-wash-base) 13%, transparent);
 }
 /* Hairline seams inside a bounding border, so the boards read as one table. */
 .boxGrid {
@@ -161,7 +161,7 @@
    and washed the whole board out. The gradient trick keeps the gold tint while
    compositing against the page colour, whatever the seam bed becomes. */
 .boxFeatured {
-  background: linear-gradient(rgba(255, 182, 39, 0.06), rgba(255, 182, 39, 0.06)), var(--bg);
+  background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 6%, transparent), color-mix(in srgb, var(--gold-wash-base) 6%, transparent)), var(--bg);
   grid-column: 1 / -1;
 }
 .boxHead { display: flex; align-items: flex-start; gap: 12px; }
@@ -208,7 +208,7 @@
   padding: 11px 0;
   border-bottom: 1px solid var(--line);
 }
-.entryHim { background: rgba(255, 182, 39, 0.07); }
+.entryHim { background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent); }
 .entryRank {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
@@ -229,7 +229,7 @@
   white-space: nowrap;
 }
 .valueTop { color: var(--silver); }
-.valueHim { color: var(--gold-bright); }
+.valueHim { color: var(--gold-bright-ink); }
 
 .yearList { display: flex; flex-direction: column; margin-top: 18px; border-top: 1px solid var(--line); }
 .yearRow { padding: 14px 0; border-bottom: 1px solid var(--line); }
@@ -249,7 +249,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--green);
-  border: 1px solid rgba(62, 209, 127, 0.45);
+  border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
   border-radius: 999px;
   padding: 3px 8px;
 }
@@ -263,15 +263,15 @@
   border-radius: 999px;
   border: 1px solid var(--border);
   background: transparent;
-  color: #cfc7bb;
+  color: var(--text-body);
   font-size: 12.5px;
   font-weight: 600;
 }
-.chipHim { border-color: var(--gold); background: rgba(255, 182, 39, 0.14); color: var(--gold); }
+.chipHim { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 14%, transparent); color: var(--gold); }
 .chipRank { font-family: var(--font-mono), monospace; font-size: 11px; font-weight: 700; opacity: 0.7; }
 .chipValue { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--text-muted); }
 
-.boxNote { font-size: 13px; line-height: 1.6; color: #cfc7bb; margin: 16px 0 0; max-width: 72ch; }
+.boxNote { font-size: 13px; line-height: 1.6; color: var(--text-body); margin: 16px 0 0; max-width: 72ch; }
 .sourceWrap { margin-top: auto; padding-top: 14px; }
 /* A standalone disclosure control, so the 24px target floor applies — it
    measured 16px. inline-flex rather than a padding bump so the row it sits in
@@ -312,7 +312,7 @@
   letter-spacing: 0;
   margin: 0;
 }
-.faqA { font-size: 14.5px; line-height: 1.65; color: #cfc7bb; margin: 0; }
+.faqA { font-size: 14.5px; line-height: 1.65; color: var(--text-body); margin: 0; }
 
 .pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 44px 40px 72px; }
 

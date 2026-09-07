@@ -17,7 +17,7 @@
   position: sticky;
   top: 0;
   z-index: 5;
-  background: rgba(12, 10, 9, 0.94);
+  background: var(--scrim);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   padding: 12px 18px;
@@ -79,7 +79,7 @@
   margin: 11px 0 0;
 }
 .gold {
-  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 45%, var(--grad-b));
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-fill) 45%, var(--grad-b));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -93,7 +93,7 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.lede { font-size: 14.5px; line-height: 1.55; color: #cfc7bb; margin: 12px 0 0; }
+.lede { font-size: 14.5px; line-height: 1.55; color: var(--text-body); margin: 12px 0 0; }
 
 /* ── Stat grid: 2-up, hairline seams. Label only — screen 13's cells carry no
    sub-note, unlike 16's. ─────────────────────────────────────────────────── */
@@ -148,7 +148,7 @@
   white-space: nowrap;
   cursor: pointer;
 }
-.chipOn { background: rgba(255, 182, 39, 0.16); border-color: var(--gold); color: var(--gold); }
+.chipOn { background: color-mix(in srgb, var(--gold-wash-base) 16%, transparent); border-color: var(--gold); color: var(--gold); }
 
 .metaBar {
   display: flex;
@@ -177,7 +177,7 @@
 }
 /* The wash marks the rows that are NOT his — 27 of 41 are, so tinting those
    would tint the board rather than pick anything out. */
-.rowOther { background: rgba(245, 244, 240, 0.02); }
+.rowOther { background: color-mix(in srgb, var(--text) 2%, transparent); }
 .rank {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -232,7 +232,7 @@
   left: 0;
   right: 0;
   z-index: 40;
-  background: rgba(12, 10, 9, 0.94);
+  background: var(--scrim);
   backdrop-filter: blur(14px);
   border-top: 1px solid var(--line);
   padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 22px));
@@ -251,8 +251,8 @@
   border-radius: 999px;
   /* Same gold ramp as .btnPrimary and the home screen's own .primary — every
      gold action on the site runs one gradient, or the phone shows two golds. */
-  background-color: var(--gold);
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
   color: #000;
   -webkit-text-fill-color: #000;
   /* Promotes the layer at rest — see .btnPrimary for the iPhone reason. */
@@ -263,5 +263,5 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-align: center;
-  box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
+  box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 25%, transparent);
 }

@@ -101,7 +101,7 @@
 .scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 10, 11, 0.15) 0%, rgba(10, 10, 11, 0.62) 52%, rgba(10, 10, 11, 0.93) 100%);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 15%, transparent) 0%, color-mix(in srgb, var(--bg) 62%, transparent) 52%, color-mix(in srgb, var(--bg) 93%, transparent) 100%);
 }
 
 .tileBody {
@@ -130,7 +130,7 @@
   padding: 3px 9px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: rgba(10, 10, 11, 0.55);
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
   color: var(--muted);
 }
 .anchorTag { color: var(--gold); border-color: var(--gold); }
@@ -228,7 +228,7 @@
   padding: 3px 9px;
   border-radius: 999px;
   border: 1px dashed var(--line);
-  background: rgba(10, 10, 11, 0.55);
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
   color: var(--muted);
 }
 
@@ -324,16 +324,16 @@
 }
 
 /* The live rail's label carries the same pulse the live pages use. */
-.railLive { display: inline-flex; align-items: center; gap: 7px; color: var(--live, #3ed17f); }
+.railLive { display: inline-flex; align-items: center; gap: 7px; color: var(--green); }
 .railDot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--live, #3ed17f);
+  background: var(--green-dot);
   animation: railPulse 2.4s var(--ease) infinite;
 }
 @keyframes railPulse {
-  0% { box-shadow: 0 0 0 0 rgba(62, 209, 127, 0.5); }
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--green-dot) 50%, transparent); }
   70% { box-shadow: 0 0 0 6px rgba(62, 209, 127, 0); }
   100% { box-shadow: 0 0 0 0 rgba(62, 209, 127, 0); }
 }
@@ -343,7 +343,7 @@
    site, and the rails are the one place he is measured against the board rather
    than introduced by it — so the reader has to be able to find him at a glance. */
 .railAnchor {
-  border-color: rgba(255, 182, 39, 0.42);
+  border-color: color-mix(in srgb, var(--gold-ink) 42%, transparent);
   color: var(--gold);
 }
 .railAnchor:hover { border-color: var(--gold); }

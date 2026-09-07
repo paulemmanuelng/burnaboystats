@@ -22,10 +22,10 @@
   color: var(--gold);
 }
 .down {
-  color: #f2726a;
+  color: var(--delta-down);
 }
 .down .arrow {
-  color: #f2726a;
+  color: var(--delta-down);
 }
 .label {
   color: var(--text-muted);

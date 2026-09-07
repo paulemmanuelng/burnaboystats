@@ -49,6 +49,21 @@ function tokenValue(name: string) {
   return m[1].toLowerCase();
 }
 
+/**
+ * EVERY literal a token owns. A themed token is `light-dark(<light>, <dark>)`,
+ * so it owns two — and a component that hardcodes either one has made the same
+ * mistake. Reading only the first hex would quietly stop checking the dark
+ * value on the day a token started theming, which is exactly when this file
+ * matters most.
+ */
+function tokenValues(name: string): string[] {
+  const decl = new RegExp(`--${name}:\\s*([^;]+);`).exec(TOKENS);
+  if (!decl) throw new Error(`--${name} not found in globals.css`);
+  const hexes = decl[1].match(/#[0-9a-fA-F]{3,8}/g);
+  if (!hexes) throw new Error(`--${name} holds no literal: ${decl[1]}`);
+  return hexes.map((h) => h.toLowerCase());
+}
+
 describe("tier colours come from the tokens", () => {
   it("globals.css still owns a value for every tier", () => {
     for (const t of ["tier-diamond", "tier-platinum", "tier-gold", "tier-silver"])
@@ -69,12 +84,51 @@ describe("tier colours come from the tokens", () => {
     expect(bad).toEqual([]);
   });
 
+  it("a tier map's colours come from the tier tokens, not from other tokens", () => {
+    /**
+     * The gap the two tests above left open. They catch a hardcoded tier VALUE,
+     * and they catch --cyan on a cert screen. Neither caught app/page.tsx
+     * mapping Diamond to var(--cyan) and Platinum to var(--silver) — the Top 10
+     * and Top 40 peak-band tokens — because no literal was typed and the file
+     * is not named like a cert screen. The homepage painted two tiers in
+     * another palette's colours for as long as that map existed.
+     *
+     * So: wherever the four tier names are mapped to colours, every value must
+     * name a --tier-* token.
+     */
+    const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
+    const bad: string[] = [];
+    for (const f of FILES.filter((p) => p.endsWith(".tsx") || p.endsWith(".ts"))) {
+      const src = code(f);
+      for (const m of src.matchAll(/\{([^{}]*Diamond\s*:[^{}]*)\}/g)) {
+        const body = m[1];
+        if (!TIERS.every((t) => new RegExp(`\\b${t}\\s*:`).test(body))) continue;
+        for (const t of TIERS) {
+          const v = new RegExp(`\\b${t}\\s*:\\s*("([^"]*)"|\`([^\`]*)\`)`).exec(body);
+          if (!v) continue;
+          const value = v[2] ?? v[3] ?? "";
+          if (!/var\(--tier-/.test(value)) {
+            bad.push(`${f}: ${t} -> ${value.slice(0, 70)}`);
+          }
+        }
+      }
+    }
+    expect(
+      bad,
+      "a tier's colour IS its meaning; read it from --tier-* so both layouts and both themes agree"
+    ).toEqual([]);
+  });
+
   it("--cyan is the Top 10 peak band and is never used as a tier colour", () => {
     // The exact confusion this file exists for: mobile painted its Diamond tier
     // in --cyan. globals.css reserves it for the peak band.
-    const cyan = /--cyan:\s*(#[0-9a-fA-F]{6})/.exec(TOKENS)![1].toLowerCase();
+    const cyans = tokenValues("cyan");
     const certScreens = FILES.filter((f) => /Cert|certification/i.test(f));
-    const bad = certScreens.filter((f) => code(f).toLowerCase().includes(cyan));
-    expect(bad, `--cyan (${cyan}) is the Top 10 band, not a tier`).toEqual([]);
+    const bad = certScreens.flatMap((f) =>
+      cyans
+        .filter((c) => code(f).toLowerCase().includes(c))
+        .map((c) => `${f} uses ${c}`)
+    );
+    expect(bad, `--cyan (${cyans.join(" / ")}) is the Top 10 band, not a tier`).toEqual([]);
   });
 });

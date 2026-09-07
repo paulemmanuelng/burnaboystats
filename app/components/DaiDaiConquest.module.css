@@ -25,8 +25,8 @@
 }
 /* Charted — a warm neutral. No. 1 — gold. The two tiers are the whole point of
    the grid, so they carry the only colour on it. */
-.cellOn { background: linear-gradient(rgba(245, 240, 232, 0.07), rgba(245, 240, 232, 0.07)), var(--bg); }
-.cellOne { background: linear-gradient(rgba(255, 182, 39, 0.3), rgba(255, 182, 39, 0.3)), var(--bg); }
+.cellOn { background: linear-gradient(color-mix(in srgb, var(--ink-wash-base) 7%, transparent), color-mix(in srgb, var(--ink-wash-base) 7%, transparent)), var(--bg); }
+.cellOne { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 30%, transparent), color-mix(in srgb, var(--gold-wash-base) 30%, transparent)), var(--bg); }
 
 .flag { font-size: 17px; line-height: 1; }
 
@@ -38,17 +38,17 @@
   color: var(--dim);
 }
 .cellOn .code { color: var(--text); }
-.cellOne .code { color: var(--gold-bright); }
+.cellOne .code { color: var(--gold-bright-ink); }
 
 .peak {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   font-weight: 700;
-  color: rgba(138, 130, 121, 0.5);
+  color: color-mix(in srgb, var(--text-dim-warm) 50%, transparent);
   font-variant-numeric: tabular-nums;
 }
 .cellOn .peak { color: var(--text-muted); }
-.cellOne .peak { color: var(--gold-bright); }
+.cellOne .peak { color: var(--gold-bright-ink); }
 
 .legend {
   display: flex;
@@ -64,8 +64,8 @@
 }
 .legendItem { display: flex; align-items: center; gap: 7px; }
 .swatch { width: 11px; height: 11px; display: block; }
-.swatchOne { background: linear-gradient(rgba(255, 182, 39, 0.3), rgba(255, 182, 39, 0.3)), var(--bg); border: 1px solid var(--gold); }
-.swatchOn { background: linear-gradient(rgba(245, 240, 232, 0.07), rgba(245, 240, 232, 0.07)), var(--bg); border: 1px solid var(--line); }
+.swatchOne { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 30%, transparent), color-mix(in srgb, var(--gold-wash-base) 30%, transparent)), var(--bg); border: 1px solid var(--gold); }
+.swatchOn { background: linear-gradient(color-mix(in srgb, var(--ink-wash-base) 7%, transparent), color-mix(in srgb, var(--ink-wash-base) 7%, transparent)), var(--bg); border: 1px solid var(--line); }
 .status { margin-left: auto; }
 
 @media (max-width: 1239px) {

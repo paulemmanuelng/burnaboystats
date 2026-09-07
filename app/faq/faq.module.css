@@ -37,7 +37,7 @@
   line-height: 1.55;
   max-width: 60ch;
   margin: 18px 0 0;
-  color: #d8d8de;
+  color: var(--text-body-cool);
   text-wrap: pretty;
 }
 
@@ -123,7 +123,7 @@
   text-transform: none;
   color: var(--text);
 }
-.a { margin: 0; max-width: 760px; color: #d3d3da; font-size: 16px; line-height: 1.65; }
+.a { margin: 0; max-width: 760px; color: var(--text-body-cool-quiet); font-size: 16px; line-height: 1.65; }
 
 /* ── Source ─────────────────────────────────────────────────────────────── */
 .sourcePad { padding: 30px 40px 34px; }

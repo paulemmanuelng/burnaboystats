@@ -17,7 +17,7 @@
   position: sticky;
   top: 0;
   z-index: 5;
-  background: rgba(12, 10, 9, 0.94);
+  background: var(--scrim);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   padding: 12px 18px;
@@ -79,7 +79,7 @@
   margin: 11px 0 0;
 }
 .gold {
-  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 45%, var(--grad-b));
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-fill) 45%, var(--grad-b));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -93,7 +93,7 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.lede { font-size: 14.5px; line-height: 1.55; color: #cfc7bb; margin: 12px 0 0; }
+.lede { font-size: 14.5px; line-height: 1.55; color: var(--text-body); margin: 12px 0 0; }
 
 /* ── Stat grid: 2-up, hairline seams. Label only — screen 13's cells carry no
    sub-note, unlike 16's. ─────────────────────────────────────────────────── */

@@ -17,7 +17,7 @@
   position: sticky;
   top: 0;
   z-index: 5;
-  background: rgba(12, 10, 9, 0.94);
+  background: var(--scrim);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   padding: 12px 18px;
@@ -79,7 +79,7 @@
   margin: 11px 0 0;
 }
 .gold {
-  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 45%, var(--grad-b));
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-fill) 45%, var(--grad-b));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -93,7 +93,7 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.lede { font-size: 14.5px; line-height: 1.55; color: #cfc7bb; margin: 12px 0 0; }
+.lede { font-size: 14.5px; line-height: 1.55; color: var(--text-body); margin: 12px 0 0; }
 
 /* ── Hero pills ───────────────────────────────────────────────────────── */
 .pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
@@ -111,7 +111,7 @@
   letter-spacing: 0.08em;
 }
 /* The first pill is the headline figure and carries the live dot. */
-.pillLive { border-color: rgba(255, 182, 39, 0.4); background: rgba(255, 182, 39, 0.08); color: var(--gold); }
+.pillLive { border-color: color-mix(in srgb, var(--gold-ink) 40%, transparent); background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent); color: var(--gold); }
 .pillDot { width: 6px; height: 6px; border-radius: 999px; background: var(--green); display: block; }
 
 /* ── Blocks ───────────────────────────────────────────────────────────── */
@@ -138,7 +138,7 @@
 .verb {
   padding: 3px 8px;
   border-radius: 4px;
-  background: rgba(255, 182, 39, 0.14);
+  background: color-mix(in srgb, var(--gold-wash-base) 14%, transparent);
   color: var(--gold);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -154,12 +154,12 @@
   margin-top: 12px;
   padding: 13px 14px;
   border-radius: 8px;
-  background: #0f0f11;
+  background: var(--code-bg);
   border: 1px solid var(--line);
   overflow-x: auto;
 }
-.codeLine { font-family: var(--font-mono), monospace; font-size: 11.5px; color: var(--gold-bright); white-space: pre; }
-.codeAttr { font-family: var(--font-mono), monospace; font-size: 11px; color: #cfc7bb; white-space: pre; }
+.codeLine { font-family: var(--font-mono), monospace; font-size: 11.5px; color: var(--gold-bright-ink); white-space: pre; }
+.codeAttr { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--text-body); white-space: pre; }
 
 /* ── Caveats ──────────────────────────────────────────────────────────── */
 .caveat { padding: 12px 0; border-bottom: 1px solid var(--line); }
@@ -194,7 +194,7 @@
   left: 0;
   right: 0;
   z-index: 40;
-  background: rgba(12, 10, 9, 0.94);
+  background: var(--scrim);
   backdrop-filter: blur(14px);
   border-top: 1px solid var(--line);
   padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 22px));
@@ -213,8 +213,8 @@
   border-radius: 999px;
   /* Same gold ramp as .btnPrimary and the home screen's own .primary — every
      gold action on the site runs one gradient, or the phone shows two golds. */
-  background-color: var(--gold);
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
   color: #000;
   -webkit-text-fill-color: #000;
   /* Promotes the layer at rest — see .btnPrimary for the iPhone reason. */
@@ -225,5 +225,5 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-align: center;
-  box-shadow: 0 0 26px rgba(255, 182, 39, 0.25);
+  box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 25%, transparent);
 }

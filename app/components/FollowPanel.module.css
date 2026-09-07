@@ -1,9 +1,9 @@
 .wrap {
   margin: 44px auto 8px;
   padding: 26px 24px;
-  border: 1px solid rgba(255, 182, 39, 0.22);
+  border: 1px solid color-mix(in srgb, var(--gold-ink) 22%, transparent);
   border-radius: var(--radius);
-  background: linear-gradient(165deg, rgba(255, 182, 39, 0.1), rgba(226, 52, 43, 0.05) 55%, transparent),
+  background: linear-gradient(165deg, var(--gold-wash), color-mix(in srgb, var(--grad-c) 5%, transparent) 55%, transparent),
     var(--bg-soft);
 }
 .eyebrow {
@@ -53,7 +53,7 @@
 
 .primary {
   color: #1a1204;
-  background: linear-gradient(120deg, var(--gold-bright), var(--gold));
+  background: linear-gradient(120deg, var(--gold-bright), var(--gold-fill));
   border: none;
   cursor: pointer;
   transition: filter var(--dur-fast) var(--ease);
@@ -65,7 +65,7 @@
 .secondary {
   color: var(--text);
   border: 1px solid var(--line);
-  background: rgba(245, 244, 240, 0.04);
+  background: color-mix(in srgb, var(--text) 4%, transparent);
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .secondary:hover {
@@ -76,7 +76,7 @@
 .installed {
   color: var(--gold);
   border: 1px solid var(--gold-dim);
-  background: rgba(255, 182, 39, 0.08);
+  background: color-mix(in srgb, var(--gold-wash-base) 8%, transparent);
 }
 .hint {
   color: var(--text-muted);

@@ -60,11 +60,16 @@ const burnaLiveNote = andMore(burnaPlats.top, burnaPlats.total);
 
 // ── Derived figures for the hero rail and the summary strip ───────────────
 const TIER_ORDER = ["Diamond", "Platinum", "Gold", "Silver"] as const;
+// A tier's colour IS the tier. These read --cyan for Diamond and --silver for
+// Platinum: the Top 10 and Top 40 PEAK-BAND tokens, which globals.css reserves
+// for the chart screens in as many words. So the certification ledger painted
+// its top two tiers in another palette's colours, and Silver in a raw hex that
+// no theme could reach. Same four tokens as MobileCerts now.
 const TIER_INK: Record<string, string> = {
-  Diamond: "var(--cyan)",
-  Platinum: "var(--silver)",
-  Gold: "var(--gold)",
-  Silver: "#b8bcc4",
+  Diamond: "var(--tier-diamond-ink)",
+  Platinum: "var(--tier-platinum-ink)",
+  Gold: "var(--tier-gold-ink)",
+  Silver: "var(--tier-silver-ink)",
 };
 
 const tierRail = TIER_ORDER.map((name) => {
