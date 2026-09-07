@@ -33,10 +33,22 @@ const CHANGED = "burnaboystats:themechange";
 function subscribe(onChange: () => void) {
   window.addEventListener(CHANGED, onChange);
   window.addEventListener("storage", onChange);
+  // The OS is part of this store too: while the choice is "system" the RESOLVED
+  // theme changes without anything being stored, and the mini flip has to know
+  // which way it is flipping.
+  const mq = window.matchMedia(QUERY);
+  mq.addEventListener("change", onChange);
   return () => {
     window.removeEventListener(CHANGED, onChange);
     window.removeEventListener("storage", onChange);
+    mq.removeEventListener("change", onChange);
   };
+}
+
+/** What is actually painted right now, which is not the same as the choice. */
+function getResolved(): "dark" | "light" {
+  const c = getChoice();
+  return c === "system" ? (window.matchMedia(QUERY).matches ? "light" : "dark") : c;
 }
 
 function getChoice(): Choice {
@@ -86,8 +98,13 @@ const OPTIONS: { value: Choice; label: string; icon: ReactElement }[] = [
   },
 ];
 
-export default function ThemeToggle({ variant = "compact" }: { variant?: "compact" | "full" }) {
+export default function ThemeToggle({
+  variant = "compact",
+}: {
+  variant?: "compact" | "full" | "mini";
+}) {
   const choice = useSyncExternalStore(subscribe, getChoice, getServerChoice);
+  const resolved = useSyncExternalStore(subscribe, getResolved, getServerChoice) as "dark" | "light";
 
   // The one place <html> is written. Re-runs when the choice changes, and while
   // the choice is "system" it also follows the OS — the listener is removed the
@@ -112,6 +129,28 @@ export default function ThemeToggle({ variant = "compact" }: { variant?: "compac
     }
     window.dispatchEvent(new Event(CHANGED));
   };
+
+  // The one-tap flip for the mobile bar. Not a picker: it shows the mode you
+  // will GET and swaps to the other, which is why it can be a single 34px
+  // circle where three 44px segments did not fit. "System" is still reachable,
+  // in the sheet -- tapping this from system simply commits to what you see.
+  if (variant === "mini") {
+    const next = resolved === "dark" ? "light" : "dark";
+    const label = next === "light" ? "Switch to light mode" : "Switch to dark mode";
+    return (
+      <button
+        type="button"
+        className={styles.mini}
+        onClick={() => pick(next)}
+        aria-label={label}
+        title={label}
+      >
+        <span className={styles.icon}>
+          {(next === "light" ? OPTIONS[1] : OPTIONS[0]).icon}
+        </span>
+      </button>
+    );
+  }
 
   return (
     <div

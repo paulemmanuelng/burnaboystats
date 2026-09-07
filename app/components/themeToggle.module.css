@@ -58,3 +58,44 @@
 .full { display: flex; width: 100%; }
 .full .opt { flex: 1; min-height: 44px; padding: 0 10px; }
 .label { line-height: 1; }
+
+/* ── The mini flip ────────────────────────────────────────────────────────
+   One tap, dark <-> light, in the 55px of slack between the wordmark and the
+   search circle on a phone. It is a FLIP, not a picker, which is the only
+   reason it fits: three 44px segments is 132px and pushed the whole page
+   sideways. "System" still lives in the sheet.
+
+   34px of circle, 44px of touch. The visible button is deliberately smaller
+   than the 44px search trigger beside it -- it is a secondary control and
+   should not compete -- but the ::after below grows the hit area back to the
+   site's 44px minimum, the same trick the FAQ disclosure uses. */
+.mini {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.mini::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+}
+.mini:hover { color: var(--text); border-color: var(--rule-soft); }
+.mini svg { display: block; width: 15px; height: 15px; }
+
+/* Mobile only. The desktop bar has room for the full three-state control, and
+   showing both would be two controls for one setting. */
+@media (min-width: 901px) {
+  .mini { display: none; }
+}

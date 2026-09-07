@@ -44,11 +44,18 @@ export default function Nav() {
         </Link>
 
         <div className="navRight">
+          {/* Appearance, phone only: a single tap that flips dark <-> light,
+              sitting in the slack between the wordmark and the search circle.
+              It comes FIRST so it lands in that gap rather than crowding the
+              hamburger. */}
+          <ThemeToggle variant="mini" />
+
           {/* Site search — opens a ⌘K command palette */}
           <SearchPalette />
 
-          {/* Appearance. Icon-only at every desktop width — see the note in
-              themeToggle.module.css; the labelled version is in the sheet. */}
+          {/* The same setting on desktop, where there is room for all three
+              states. The two never show together, and System stays in the
+              sheet on both. */}
           <ThemeToggle />
 
           {/* Stat card — the design's one gold action in the bar. Desktop
