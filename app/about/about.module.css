@@ -32,18 +32,18 @@
   text-transform: uppercase;
   margin: 16px 0 0;
 }
-.lede { font-size: 18px; line-height: 1.55; max-width: 56ch; margin: 18px 0 0; color: #d8d8de; }
+.lede { font-size: 18px; line-height: 1.55; max-width: 56ch; margin: 18px 0 0; color: var(--text-body-cool); }
 
 /* ── Split: biography beside the fast facts ─────────────────────────────── */
 .split { display: grid; grid-template-columns: 1.25fr 0.85fr; }
 .bioCol { padding: 44px 52px 46px 0; }
-.bioCol p { font-size: 17px; line-height: 1.65; color: #d8d8de; margin: 0; }
+.bioCol p { font-size: 17px; line-height: 1.65; color: var(--text-body-cool); margin: 0; }
 .bioCol p + p { margin-top: 16px; }
 .bioCol strong { color: var(--text); }
 .wikiWrap { margin: 22px 0 0; }
 .wikiLink {
   font-weight: 600;
-  border-bottom: 1px solid rgba(255, 182, 39, 0.4);
+  border-bottom: 1px solid color-mix(in srgb, var(--gold-ink) 40%, transparent);
   padding-bottom: 2px;
   transition: border-color var(--dur-fast) var(--ease);
 }
@@ -93,8 +93,8 @@
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 0 4px rgba(232, 176, 75, 0.15);
+  background: var(--gold-fill);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--glow-base) 15%, transparent);
   display: block;
 }
 .tYear {

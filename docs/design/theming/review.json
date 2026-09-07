@@ -457,7 +457,7 @@
    "claimed": "var(--text-body)",
    "correction": "Do not swap this line until .heroCard is decided. .heroCard is a permanently-dark surface, so use the pattern globals.css already ships for the masthead (:509-520): add `:root[data-theme=\"light\"] .heroCard, :root[data-theme=\"light\"] .heroCard * { --text: #f5f4f0; --text-body: #cfc7bb; --text-muted: #9b9ba3; --gold-ink: #ffb627; }` and THEN var(--text-body) is correct here and dark stays untouched. Note the same scrim traps .title, .kicker and .tagline (var(--gold) -> #8a5a00) in the same hero, so the fix belongs at .heroCard, not at this line.",
    "severity": "unreadable",
-   "lens": "role-fit \u2014 verified the CSS property and the *surface* at each of the 109 sites. Coverage first: the 109 decisions account for exactly 113 minus 4 repo occurrences of #cfc7bb/#d8d8de/#d3d3da in app/**/*.css; the 4 unmapped are the token declarations themselves (globals.css:51,52,53 and the :root[data-theme=\"light\"] .navbar override at :509). No site was missed and none is invented.\n\nProperty/role: all 109 are `color` on text, so --text-body is the right ROLE token at every site; none is a background, border, or gradient stop, so no fill/ink collapse (Rule 2) occurs in this family. No site sets a gold background whose text is being retokenized, so Rule 3 is not engaged. Rule 4 chrome: the ~30 rgba(12,10,9,.94) / rgba(10,10,11,.95) rules at line ~20 of every mobile*.module.css are the top bars and bottom action bars; no body-family literal lives in one, so no mapped line is chrome \u2014 with the exceptions below.\n\nDark no-op (Rule 1): all 64 #cfc7bb sites are byte-identical (--text-body dark = #cfc7bb, globals.css:53). All 45 #d8d8de/#d3d3da sites are correctly declared darkIdentical:false, and every one of them states the blessed three-grey consolidation explicitly \u2014 globals.css:51-53's own comment (\"The table retires #cfc7bb (x64), #d8d8de (x38) and #d3d3da (x9)\") matches the counts exactly. No rounding is smuggled in.\n\nLight legibility on surfaces that DO theme: --text-body #4a443b measures 8.77:1 on --bg #f7f4ee, 9.62:1 on --bg-soft #ffffff, 8.03:1 on --bg-soft-2 #efeae1, 7.32:1 on --bg-raised #e6e0d4 \u2014 AAA everywhere. The 5%/10%/14% gold washes (.method, .blockGold, .blockWide, .numCardLead, .noteText's .note, todaysNumber .panel) are tints over those surfaces, not fills, so the mapping is right to keep --text-body and not --ink-on-gold at all six. The chip/label sites (api .badge:46, mobileDeepPage .chip:144, africas-biggest .chip:266, cars .tallyMake:142, charts .splitLabel:526, StatCardMaker .metaValue:216, analysis .statL:143) all sit on transparent or var()-backed grounds whose gold/green variants (.badgeLicence, .chipOn, .chipHim) override colour and background together \u2014 no gold-on-gold. Two near-misses I cleared: search.module.css:27 .lede looks like it lands on the \u2264900px sticky rgba(12,10,9,.94) heroPad, but the same media block sets `.kicker, .lede { display: none }` \u2014 safe; and DaiDaiStory .stepBody:223 is in the steps column, not under the .sticky::after radial scrim \u2014 safe.\n\nThe failures are all one kind: text retokenized to paper ink over a surface that stays dark. The mapping caught two and missed three, including the one it explicitly reasoned about (song .credit) without opening the hero it lives in."
+   "lens": "role-fit \u2014 verified the CSS property and"
   },
   {
    "file": "app/components/mobileCerts.module.css",
@@ -466,7 +466,7 @@
    "claimed": "var(--text-body)",
    "correction": "Same treatment as song .heroCard: scope the dark ink inside .hero for light mode (`:root[data-theme=\"light\"] .hero, :root[data-theme=\"light\"] .hero * { --text-body: #cfc7bb; --text-muted: #9b9ba3; --text: #f5f4f0; }`), or replace the scrim's rgba(10,10,11,.78)/.35 stops with light-dark() paper equivalents so the whole hero themes. Either way this line is blocked on that decision; if neither happens, keep the #d8d8de literal.",
    "severity": "unreadable",
-   "lens": "role-fit \u2014 verified the CSS property and the *surface* at each of the 109 sites. Coverage first: the 109 decisions account for exactly 113 minus 4 repo occurrences of #cfc7bb/#d8d8de/#d3d3da in app/**/*.css; the 4 unmapped are the token declarations themselves (globals.css:51,52,53 and the :root[data-theme=\"light\"] .navbar override at :509). No site was missed and none is invented.\n\nProperty/role: all 109 are `color` on text, so --text-body is the right ROLE token at every site; none is a background, border, or gradient stop, so no fill/ink collapse (Rule 2) occurs in this family. No site sets a gold background whose text is being retokenized, so Rule 3 is not engaged. Rule 4 chrome: the ~30 rgba(12,10,9,.94) / rgba(10,10,11,.95) rules at line ~20 of every mobile*.module.css are the top bars and bottom action bars; no body-family literal lives in one, so no mapped line is chrome \u2014 with the exceptions below.\n\nDark no-op (Rule 1): all 64 #cfc7bb sites are byte-identical (--text-body dark = #cfc7bb, globals.css:53). All 45 #d8d8de/#d3d3da sites are correctly declared darkIdentical:false, and every one of them states the blessed three-grey consolidation explicitly \u2014 globals.css:51-53's own comment (\"The table retires #cfc7bb (x64), #d8d8de (x38) and #d3d3da (x9)\") matches the counts exactly. No rounding is smuggled in.\n\nLight legibility on surfaces that DO theme: --text-body #4a443b measures 8.77:1 on --bg #f7f4ee, 9.62:1 on --bg-soft #ffffff, 8.03:1 on --bg-soft-2 #efeae1, 7.32:1 on --bg-raised #e6e0d4 \u2014 AAA everywhere. The 5%/10%/14% gold washes (.method, .blockGold, .blockWide, .numCardLead, .noteText's .note, todaysNumber .panel) are tints over those surfaces, not fills, so the mapping is right to keep --text-body and not --ink-on-gold at all six. The chip/label sites (api .badge:46, mobileDeepPage .chip:144, africas-biggest .chip:266, cars .tallyMake:142, charts .splitLabel:526, StatCardMaker .metaValue:216, analysis .statL:143) all sit on transparent or var()-backed grounds whose gold/green variants (.badgeLicence, .chipOn, .chipHim) override colour and background together \u2014 no gold-on-gold. Two near-misses I cleared: search.module.css:27 .lede looks like it lands on the \u2264900px sticky rgba(12,10,9,.94) heroPad, but the same media block sets `.kicker, .lede { display: none }` \u2014 safe; and DaiDaiStory .stepBody:223 is in the steps column, not under the .sticky::after radial scrim \u2014 safe.\n\nThe failures are all one kind: text retokenized to paper ink over a surface that stays dark. The mapping caught two and missed three, including the one it explicitly reasoned about (song .credit) without opening the hero it lives in."
+   "lens": "role-fit \u2014 verified the CSS property and"
   },
   {
    "file": "app/certifications/certifications.module.css",
@@ -475,7 +475,7 @@
    "claimed": "var(--text-body)",
    "correction": "Either push the scrim's opaque themed stop out past the copy column (e.g. `var(--bg) 62%` at the single-column breakpoint, mirroring what the existing comment already did when it moved 0.46 to 0.62 for the tier percentages), or scope dark tokens onto .heroCopy for light mode as with the two above. Do not land this line on --text-body while the 90deg gradient's dark stops stay hardcoded.",
    "severity": "breaks-light",
-   "lens": "role-fit \u2014 verified the CSS property and the *surface* at each of the 109 sites. Coverage first: the 109 decisions account for exactly 113 minus 4 repo occurrences of #cfc7bb/#d8d8de/#d3d3da in app/**/*.css; the 4 unmapped are the token declarations themselves (globals.css:51,52,53 and the :root[data-theme=\"light\"] .navbar override at :509). No site was missed and none is invented.\n\nProperty/role: all 109 are `color` on text, so --text-body is the right ROLE token at every site; none is a background, border, or gradient stop, so no fill/ink collapse (Rule 2) occurs in this family. No site sets a gold background whose text is being retokenized, so Rule 3 is not engaged. Rule 4 chrome: the ~30 rgba(12,10,9,.94) / rgba(10,10,11,.95) rules at line ~20 of every mobile*.module.css are the top bars and bottom action bars; no body-family literal lives in one, so no mapped line is chrome \u2014 with the exceptions below.\n\nDark no-op (Rule 1): all 64 #cfc7bb sites are byte-identical (--text-body dark = #cfc7bb, globals.css:53). All 45 #d8d8de/#d3d3da sites are correctly declared darkIdentical:false, and every one of them states the blessed three-grey consolidation explicitly \u2014 globals.css:51-53's own comment (\"The table retires #cfc7bb (x64), #d8d8de (x38) and #d3d3da (x9)\") matches the counts exactly. No rounding is smuggled in.\n\nLight legibility on surfaces that DO theme: --text-body #4a443b measures 8.77:1 on --bg #f7f4ee, 9.62:1 on --bg-soft #ffffff, 8.03:1 on --bg-soft-2 #efeae1, 7.32:1 on --bg-raised #e6e0d4 \u2014 AAA everywhere. The 5%/10%/14% gold washes (.method, .blockGold, .blockWide, .numCardLead, .noteText's .note, todaysNumber .panel) are tints over those surfaces, not fills, so the mapping is right to keep --text-body and not --ink-on-gold at all six. The chip/label sites (api .badge:46, mobileDeepPage .chip:144, africas-biggest .chip:266, cars .tallyMake:142, charts .splitLabel:526, StatCardMaker .metaValue:216, analysis .statL:143) all sit on transparent or var()-backed grounds whose gold/green variants (.badgeLicence, .chipOn, .chipHim) override colour and background together \u2014 no gold-on-gold. Two near-misses I cleared: search.module.css:27 .lede looks like it lands on the \u2264900px sticky rgba(12,10,9,.94) heroPad, but the same media block sets `.kicker, .lede { display: none }` \u2014 safe; and DaiDaiStory .stepBody:223 is in the steps column, not under the .sticky::after radial scrim \u2014 safe.\n\nThe failures are all one kind: text retokenized to paper ink over a surface that stays dark. The mapping caught two and missed three, including the one it explicitly reasoned about (song .credit) without opening the hero it lives in."
+   "lens": "role-fit \u2014 verified the CSS property and"
   },
   {
    "file": "app/components/mobileApi.module.css",
@@ -484,7 +484,7 @@
    "claimed": "var(--text-body) (flagged)",
    "correction": "Resolve it: .codeBox is a permanently-dark surface, so scope the dark tokens inside it \u2014 `:root[data-theme=\"light\"] .codeBox, :root[data-theme=\"light\"] .codeBox * { --text-body: #cfc7bb; }` \u2014 then var(--text-body) is correct here. If that scoping is not taken, this line keeps the #cfc7bb literal and must be dropped from the body family, not shipped with a caveat.",
    "severity": "unreadable",
-   "lens": "role-fit \u2014 verified the CSS property and the *surface* at each of the 109 sites. Coverage first: the 109 decisions account for exactly 113 minus 4 repo occurrences of #cfc7bb/#d8d8de/#d3d3da in app/**/*.css; the 4 unmapped are the token declarations themselves (globals.css:51,52,53 and the :root[data-theme=\"light\"] .navbar override at :509). No site was missed and none is invented.\n\nProperty/role: all 109 are `color` on text, so --text-body is the right ROLE token at every site; none is a background, border, or gradient stop, so no fill/ink collapse (Rule 2) occurs in this family. No site sets a gold background whose text is being retokenized, so Rule 3 is not engaged. Rule 4 chrome: the ~30 rgba(12,10,9,.94) / rgba(10,10,11,.95) rules at line ~20 of every mobile*.module.css are the top bars and bottom action bars; no body-family literal lives in one, so no mapped line is chrome \u2014 with the exceptions below.\n\nDark no-op (Rule 1): all 64 #cfc7bb sites are byte-identical (--text-body dark = #cfc7bb, globals.css:53). All 45 #d8d8de/#d3d3da sites are correctly declared darkIdentical:false, and every one of them states the blessed three-grey consolidation explicitly \u2014 globals.css:51-53's own comment (\"The table retires #cfc7bb (x64), #d8d8de (x38) and #d3d3da (x9)\") matches the counts exactly. No rounding is smuggled in.\n\nLight legibility on surfaces that DO theme: --text-body #4a443b measures 8.77:1 on --bg #f7f4ee, 9.62:1 on --bg-soft #ffffff, 8.03:1 on --bg-soft-2 #efeae1, 7.32:1 on --bg-raised #e6e0d4 \u2014 AAA everywhere. The 5%/10%/14% gold washes (.method, .blockGold, .blockWide, .numCardLead, .noteText's .note, todaysNumber .panel) are tints over those surfaces, not fills, so the mapping is right to keep --text-body and not --ink-on-gold at all six. The chip/label sites (api .badge:46, mobileDeepPage .chip:144, africas-biggest .chip:266, cars .tallyMake:142, charts .splitLabel:526, StatCardMaker .metaValue:216, analysis .statL:143) all sit on transparent or var()-backed grounds whose gold/green variants (.badgeLicence, .chipOn, .chipHim) override colour and background together \u2014 no gold-on-gold. Two near-misses I cleared: search.module.css:27 .lede looks like it lands on the \u2264900px sticky rgba(12,10,9,.94) heroPad, but the same media block sets `.kicker, .lede { display: none }` \u2014 safe; and DaiDaiStory .stepBody:223 is in the steps column, not under the .sticky::after radial scrim \u2014 safe.\n\nThe failures are all one kind: text retokenized to paper ink over a surface that stays dark. The mapping caught two and missed three, including the one it explicitly reasoned about (song .credit) without opening the hero it lives in."
+   "lens": "role-fit \u2014 verified the CSS property and"
   },
   {
    "file": "app/records/tours/map/map.module.css",
@@ -493,7 +493,7 @@
    "claimed": "var(--text-body) (flagged)",
    "correction": "Fix at .card, not at this line: `:root[data-theme=\"light\"] .card, :root[data-theme=\"light\"] .card * { --text: #f5f4f0; --text-body: #cfc7bb; --gold-ink: #ffb627; }` \u2014 the floating hover card is chrome-like (it is effectively --scrim) and should stay dark in both themes, matching how car.module.css handles its own overlay card. With that scoping, var(--text-body) here is correct and dark is untouched.",
    "severity": "unreadable",
-   "lens": "role-fit \u2014 verified the CSS property and the *surface* at each of the 109 sites. Coverage first: the 109 decisions account for exactly 113 minus 4 repo occurrences of #cfc7bb/#d8d8de/#d3d3da in app/**/*.css; the 4 unmapped are the token declarations themselves (globals.css:51,52,53 and the :root[data-theme=\"light\"] .navbar override at :509). No site was missed and none is invented.\n\nProperty/role: all 109 are `color` on text, so --text-body is the right ROLE token at every site; none is a background, border, or gradient stop, so no fill/ink collapse (Rule 2) occurs in this family. No site sets a gold background whose text is being retokenized, so Rule 3 is not engaged. Rule 4 chrome: the ~30 rgba(12,10,9,.94) / rgba(10,10,11,.95) rules at line ~20 of every mobile*.module.css are the top bars and bottom action bars; no body-family literal lives in one, so no mapped line is chrome \u2014 with the exceptions below.\n\nDark no-op (Rule 1): all 64 #cfc7bb sites are byte-identical (--text-body dark = #cfc7bb, globals.css:53). All 45 #d8d8de/#d3d3da sites are correctly declared darkIdentical:false, and every one of them states the blessed three-grey consolidation explicitly \u2014 globals.css:51-53's own comment (\"The table retires #cfc7bb (x64), #d8d8de (x38) and #d3d3da (x9)\") matches the counts exactly. No rounding is smuggled in.\n\nLight legibility on surfaces that DO theme: --text-body #4a443b measures 8.77:1 on --bg #f7f4ee, 9.62:1 on --bg-soft #ffffff, 8.03:1 on --bg-soft-2 #efeae1, 7.32:1 on --bg-raised #e6e0d4 \u2014 AAA everywhere. The 5%/10%/14% gold washes (.method, .blockGold, .blockWide, .numCardLead, .noteText's .note, todaysNumber .panel) are tints over those surfaces, not fills, so the mapping is right to keep --text-body and not --ink-on-gold at all six. The chip/label sites (api .badge:46, mobileDeepPage .chip:144, africas-biggest .chip:266, cars .tallyMake:142, charts .splitLabel:526, StatCardMaker .metaValue:216, analysis .statL:143) all sit on transparent or var()-backed grounds whose gold/green variants (.badgeLicence, .chipOn, .chipHim) override colour and background together \u2014 no gold-on-gold. Two near-misses I cleared: search.module.css:27 .lede looks like it lands on the \u2264900px sticky rgba(12,10,9,.94) heroPad, but the same media block sets `.kicker, .lede { display: none }` \u2014 safe; and DaiDaiStory .stepBody:223 is in the steps column, not under the .sticky::after radial scrim \u2014 safe.\n\nThe failures are all one kind: text retokenized to paper ink over a surface that stays dark. The mapping caught two and missed three, including the one it explicitly reasoned about (song .credit) without opening the hero it lives in."
+   "lens": "role-fit \u2014 verified the CSS property and"
   },
   {
    "file": "app/components/mobileNavSheet.module.css",
@@ -502,7 +502,7 @@
    "claimed": "rgba(0, 0, 0, 0.5) \u2014 STAYS, chrome per design 4.3",
    "correction": "This decision cannot be made before the background is. Either (a) the bg family adds `:root[data-theme=\"light\"] .sheet { background: linear-gradient(180deg, #111113 0%, #0a0a0b 34%) }` \u2014 pinning the sheet dark the way .navbar is pinned \u2014 and only then does the literal legitimately stay; or (b) the sheet themes, and this shadow must theme with it: color-mix(in srgb, var(--shadow-base) calc(50% * var(--shadow-strength)), transparent). Do not mark it STAYS while the surface it belongs to reads var(--bg).",
    "severity": "breaks-light",
-   "lens": "role-fit \u2014 verified each literal against the actual CSS property and the surrounding declarations. What holds up: all 24 mask stops (certifications 368/369/385/386, mobileCerts 107/108, scrollRail 8\u201317) really are `(-webkit-)mask-image` alpha ramps and correctly stay; GlobeTeaser:66 really is an inset terminator on a disc that cannot theme \u2014 GlobeCanvas.tsx paints it from JS constants (OCEAN \"#0d0f14\", STROKE \"#0a0a0b\"), so \"STAYS\" is right and the flag is right; all 12 `#000` \u2192 `--ink-on-gold` calls sit on `color` / `-webkit-text-fill-color` at 11px mono over a `var(--gold)` ramp, so rule 3 is the correct role and `--ink-on-gold` #14100a on a #ffb627 fill is 10.8:1 in both modes; the dead-declaration claims (mobileOfficialCharts:380, mobileTourMap:181, mobileTours:276 all re-declare `color: #0a0a0b` after the `#000`) are true, I confirmed each; statCardButton:39 and music:333 really are byte-identical to `--shadow` (`0 20px 50px rgba(0,0,0,.45)`, globals.css:108). The color-mix maths is sound: `color-mix(in srgb, #000 55%, transparent)` = exactly rgba(0,0,0,.55), and 0.31 is exactly .14/.45. What does not hold up is the surface reasoning behind three \"themes\"/\"stays\" calls, and the fact that the strength multiplier themes the shadow's alpha but not its geometry \u2014 which is the one thing globals.css:249\u2013254 says out loud must change on paper."
+   "lens": "role-fit \u2014 verified each literal against"
   },
   {
    "file": "app/records/tours/map/map.module.css",
@@ -511,7 +511,7 @@
    "claimed": "shadow themes regardless of whether the card stays dark; flag the gold border for a human",
    "correction": "Keep the shadow replacement as proposed, but restate the flag: the card is a hardcoded-dark surface whose ink themes. Either pin the card's ink dark-mode-side (`:root[data-theme=\"light\"] .card, .card * { --text:#f5f4f0; --dim:#85858e; }`, the .navbar pattern) or let the card become var(--bg-soft) on paper. Also note that #cfc7bb on line 268 is a text-family literal inside this same card and must move in the same commit, not separately.",
    "severity": "unreadable",
-   "lens": "role-fit \u2014 verified each literal against the actual CSS property and the surrounding declarations. What holds up: all 24 mask stops (certifications 368/369/385/386, mobileCerts 107/108, scrollRail 8\u201317) really are `(-webkit-)mask-image` alpha ramps and correctly stay; GlobeTeaser:66 really is an inset terminator on a disc that cannot theme \u2014 GlobeCanvas.tsx paints it from JS constants (OCEAN \"#0d0f14\", STROKE \"#0a0a0b\"), so \"STAYS\" is right and the flag is right; all 12 `#000` \u2192 `--ink-on-gold` calls sit on `color` / `-webkit-text-fill-color` at 11px mono over a `var(--gold)` ramp, so rule 3 is the correct role and `--ink-on-gold` #14100a on a #ffb627 fill is 10.8:1 in both modes; the dead-declaration claims (mobileOfficialCharts:380, mobileTourMap:181, mobileTours:276 all re-declare `color: #0a0a0b` after the `#000`) are true, I confirmed each; statCardButton:39 and music:333 really are byte-identical to `--shadow` (`0 20px 50px rgba(0,0,0,.45)`, globals.css:108). The color-mix maths is sound: `color-mix(in srgb, #000 55%, transparent)` = exactly rgba(0,0,0,.55), and 0.31 is exactly .14/.45. What does not hold up is the surface reasoning behind three \"themes\"/\"stays\" calls, and the fact that the strength multiplier themes the shadow's alpha but not its geometry \u2014 which is the one thing globals.css:249\u2013254 says out loud must change on paper."
+   "lens": "role-fit \u2014 verified each literal against"
   },
   {
    "file": "app/components/BirthdayCelebration.module.css",
@@ -520,7 +520,7 @@
    "claimed": "floating notice, so it themes \u2014 first layer only",
    "correction": "Replacement for the black layer is fine as written. Correct the note: this pill is a hardcoded-dark surface with theming ink. It needs either a scoped dark pin for .banner and its children, or a themed background \u2014 and that decision has to land in the same change as this shadow, or the banner is a dark lozenge full of brown-grey text on paper. (The glow observation in the note is right: with --glow: none on paper, the two gold layers should go with it.)",
    "severity": "unreadable",
-   "lens": "role-fit \u2014 verified each literal against the actual CSS property and the surrounding declarations. What holds up: all 24 mask stops (certifications 368/369/385/386, mobileCerts 107/108, scrollRail 8\u201317) really are `(-webkit-)mask-image` alpha ramps and correctly stay; GlobeTeaser:66 really is an inset terminator on a disc that cannot theme \u2014 GlobeCanvas.tsx paints it from JS constants (OCEAN \"#0d0f14\", STROKE \"#0a0a0b\"), so \"STAYS\" is right and the flag is right; all 12 `#000` \u2192 `--ink-on-gold` calls sit on `color` / `-webkit-text-fill-color` at 11px mono over a `var(--gold)` ramp, so rule 3 is the correct role and `--ink-on-gold` #14100a on a #ffb627 fill is 10.8:1 in both modes; the dead-declaration claims (mobileOfficialCharts:380, mobileTourMap:181, mobileTours:276 all re-declare `color: #0a0a0b` after the `#000`) are true, I confirmed each; statCardButton:39 and music:333 really are byte-identical to `--shadow` (`0 20px 50px rgba(0,0,0,.45)`, globals.css:108). The color-mix maths is sound: `color-mix(in srgb, #000 55%, transparent)` = exactly rgba(0,0,0,.55), and 0.31 is exactly .14/.45. What does not hold up is the surface reasoning behind three \"themes\"/\"stays\" calls, and the fact that the strength multiplier themes the shadow's alpha but not its geometry \u2014 which is the one thing globals.css:249\u2013254 says out loud must change on paper."
+   "lens": "role-fit \u2014 verified each literal against"
   },
   {
    "file": "app/globals.css",
@@ -529,7 +529,7 @@
    "claimed": "--shadow-strength 0.31 'is derived, not invented \u2014 the exact ratio --shadow already applies'",
    "correction": "The alpha ratio is right; the omission is that --shadow's paper answer was alpha AND geometry, and this token only does half. Either pair it with a geometry decision per site (a --shadow-sm/-md/-lg set of whole declarations, which is what --shadow already is), or state explicitly in the token's rationale that 11 sites deliberately keep dark blur radii on paper and get a human sign-off on that. Do not let it pass as a silent consequence of a colour-only patch. For statCardButton:39 and music:333 the `replacement` field should BE `box-shadow: var(--shadow)`, not the color-mix \u2014 as written, a mechanical apply takes the fallback and loses the paper geometry the note recommends.",
    "severity": "breaks-light",
-   "lens": "role-fit \u2014 verified each literal against the actual CSS property and the surrounding declarations. What holds up: all 24 mask stops (certifications 368/369/385/386, mobileCerts 107/108, scrollRail 8\u201317) really are `(-webkit-)mask-image` alpha ramps and correctly stay; GlobeTeaser:66 really is an inset terminator on a disc that cannot theme \u2014 GlobeCanvas.tsx paints it from JS constants (OCEAN \"#0d0f14\", STROKE \"#0a0a0b\"), so \"STAYS\" is right and the flag is right; all 12 `#000` \u2192 `--ink-on-gold` calls sit on `color` / `-webkit-text-fill-color` at 11px mono over a `var(--gold)` ramp, so rule 3 is the correct role and `--ink-on-gold` #14100a on a #ffb627 fill is 10.8:1 in both modes; the dead-declaration claims (mobileOfficialCharts:380, mobileTourMap:181, mobileTours:276 all re-declare `color: #0a0a0b` after the `#000`) are true, I confirmed each; statCardButton:39 and music:333 really are byte-identical to `--shadow` (`0 20px 50px rgba(0,0,0,.45)`, globals.css:108). The color-mix maths is sound: `color-mix(in srgb, #000 55%, transparent)` = exactly rgba(0,0,0,.55), and 0.31 is exactly .14/.45. What does not hold up is the surface reasoning behind three \"themes\"/\"stays\" calls, and the fact that the strength multiplier themes the shadow's alpha but not its geometry \u2014 which is the one thing globals.css:249\u2013254 says out loud must change on paper."
+   "lens": "role-fit \u2014 verified each literal against"
   },
   {
    "file": "app/globals.css",
@@ -538,7 +538,7 @@
    "claimed": "--shadow-strength: dark 1, light 0.31",
    "correction": "State the declaration site: --shadow-base: light-dark(#17140f, #000000) on :root, and --shadow-strength: 1 on :root with --shadow-strength: 0.31 added to the existing :root[data-theme=\"light\"] block at globals.css:253 (alongside --shadow and --glow). Same block, same reason the comment there already gives.",
    "severity": "breaks-dark",
-   "lens": "role-fit \u2014 verified each literal against the actual CSS property and the surrounding declarations. What holds up: all 24 mask stops (certifications 368/369/385/386, mobileCerts 107/108, scrollRail 8\u201317) really are `(-webkit-)mask-image` alpha ramps and correctly stay; GlobeTeaser:66 really is an inset terminator on a disc that cannot theme \u2014 GlobeCanvas.tsx paints it from JS constants (OCEAN \"#0d0f14\", STROKE \"#0a0a0b\"), so \"STAYS\" is right and the flag is right; all 12 `#000` \u2192 `--ink-on-gold` calls sit on `color` / `-webkit-text-fill-color` at 11px mono over a `var(--gold)` ramp, so rule 3 is the correct role and `--ink-on-gold` #14100a on a #ffb627 fill is 10.8:1 in both modes; the dead-declaration claims (mobileOfficialCharts:380, mobileTourMap:181, mobileTours:276 all re-declare `color: #0a0a0b` after the `#000`) are true, I confirmed each; statCardButton:39 and music:333 really are byte-identical to `--shadow` (`0 20px 50px rgba(0,0,0,.45)`, globals.css:108). The color-mix maths is sound: `color-mix(in srgb, #000 55%, transparent)` = exactly rgba(0,0,0,.55), and 0.31 is exactly .14/.45. What does not hold up is the surface reasoning behind three \"themes\"/\"stays\" calls, and the fact that the strength multiplier themes the shadow's alpha but not its geometry \u2014 which is the one thing globals.css:249\u2013254 says out loud must change on paper."
+   "lens": "role-fit \u2014 verified each literal against"
   },
   {
    "file": "app/certifications/certifications.module.css",
@@ -547,7 +547,7 @@
    "claimed": "role: fill",
    "correction": "role: mask (or alpha) for all 24 mask-stop entries, so the role field agrees with the property and with the STAYS verdict. No change to the replacements.",
    "severity": "cosmetic",
-   "lens": "role-fit \u2014 verified each literal against the actual CSS property and the surrounding declarations. What holds up: all 24 mask stops (certifications 368/369/385/386, mobileCerts 107/108, scrollRail 8\u201317) really are `(-webkit-)mask-image` alpha ramps and correctly stay; GlobeTeaser:66 really is an inset terminator on a disc that cannot theme \u2014 GlobeCanvas.tsx paints it from JS constants (OCEAN \"#0d0f14\", STROKE \"#0a0a0b\"), so \"STAYS\" is right and the flag is right; all 12 `#000` \u2192 `--ink-on-gold` calls sit on `color` / `-webkit-text-fill-color` at 11px mono over a `var(--gold)` ramp, so rule 3 is the correct role and `--ink-on-gold` #14100a on a #ffb627 fill is 10.8:1 in both modes; the dead-declaration claims (mobileOfficialCharts:380, mobileTourMap:181, mobileTours:276 all re-declare `color: #0a0a0b` after the `#000`) are true, I confirmed each; statCardButton:39 and music:333 really are byte-identical to `--shadow` (`0 20px 50px rgba(0,0,0,.45)`, globals.css:108). The color-mix maths is sound: `color-mix(in srgb, #000 55%, transparent)` = exactly rgba(0,0,0,.55), and 0.31 is exactly .14/.45. What does not hold up is the surface reasoning behind three \"themes\"/\"stays\" calls, and the fact that the strength multiplier themes the shadow's alpha but not its geometry \u2014 which is the one thing globals.css:249\u2013254 says out loud must change on paper."
+   "lens": "role-fit \u2014 verified each literal against"
   },
   {
    "file": "app/components/mobileNavSheet.module.css",
@@ -853,7 +853,7 @@
    "claimed": "delta under 1/255, so this is the strongest candidate in the family for folding onto --text and deleting the proposed token",
    "correction": "Ship --white-wash-base as proposed (dark #ffffff) and strike the fold-onto---text recommendation from both the site note and the token's `why`. The replacement as written is correct and byte-identical; only the suggested follow-up breaks dark. If the team wants one wash base rather than two, that is a deliberate dark-mode change and must be blessed as such, not slipped in as a normalisation.",
    "severity": "breaks-dark",
-   "lens": "dark-identity \u2014 resolved every proposed token/color-mix against app/globals.css and every literal against its call site.\n\nTOKEN VALUES CONFIRMED (read from globals.css, not trusted from the table): --text light-dark(#17140f, #f5f4f0); --line dark rgba(245,244,240,.12); --rule dark rgba(245,244,240,.38); --rule-soft dark rgba(245,244,240,.24); --bg dark #0a0a0b; --bg-soft dark #141416; --bg-soft-2 dark #1c1c21; --bg-raised dark #24242a; --gold: var(--gold-ink) = #ffb627 dark; --scrim rgba(12,10,9,.94) (no light-dark, does not theme).\n\nALL 42 LITERALS VERIFIED PRESENT AND EXACT at the stated file:line. Family arithmetic checks out: 22 sites are rgba(245,240,232,a) (-> --ink-wash-base), 11 are rgba(245,244,240,a) (-> --text, base byte-identical to #f5f4f0), 3 are rgba(255,255,255,a) (-> --white-wash-base), 6 stay literal. 22+11+3+6 = 42.\n\nTHE 42 REPLACEMENTS THEMSELVES ARE DARK NO-OPS. color-mix(in srgb, C p%, transparent) mixes premultiplied in a rectangular space, so it yields exactly rgba(C, p/100) \u2014 the idiom globals.css already ships at --color-accent-100 and .tagAccent. Both proposed new tokens carry the correct dark bytes (#f5f0e8, #ffffff). I found no drift in any replacement as written.\n\nBOTH NEW TOKENS ARE JUSTIFIED, and I verified the drift they exist to hold rather than trusting the claim: #f5f0e8 vs #f5f4f0 at a=.045 over #0a0a0b rounds G to 20 vs 21; at a=.26 it rounds B to 68 vs 71. #ffffff vs #f5f4f0 at a=.015 over #0a0a0b rounds B to 15 vs 14. Neither can be folded onto --text.\n\nWHAT I FOUND instead lives in the notes: two of them recommend follow-up consolidations whose arithmetic is wrong and which WOULD break dark; three misdescribe the compositing or scoping at the call site in ways that would send a reviewer to the wrong conclusion; and the family has a scope gap into .tsx.\n\nOPERATIONAL WARNING: app/globals.css was being rewritten by a concurrent process during this review. Its md5 changed twice (0f418a41 -> e7540f0b) and --line moved from line 18 to line 25. The token VALUES were stable across all reads, but any patch must locate declarations by content, not by line number, and re-read globals.css immediately before editing."
+   "lens": "dark-identity \u2014 resolved every proposed "
   },
   {
    "file": "app/components/mobileVisualized.module.css",
@@ -862,7 +862,7 @@
    "claimed": "same job and same alpha ... worth normalising later",
    "correction": "Keep the two bases distinct and delete the \"worth normalising later\" suggestion, or restate it explicitly as a deliberate dark-mode change requiring sign-off. Correct the --ink-wash-base rationale to \"up to 3/255\".",
    "severity": "breaks-dark",
-   "lens": "dark-identity \u2014 resolved every proposed token/color-mix against app/globals.css and every literal against its call site.\n\nTOKEN VALUES CONFIRMED (read from globals.css, not trusted from the table): --text light-dark(#17140f, #f5f4f0); --line dark rgba(245,244,240,.12); --rule dark rgba(245,244,240,.38); --rule-soft dark rgba(245,244,240,.24); --bg dark #0a0a0b; --bg-soft dark #141416; --bg-soft-2 dark #1c1c21; --bg-raised dark #24242a; --gold: var(--gold-ink) = #ffb627 dark; --scrim rgba(12,10,9,.94) (no light-dark, does not theme).\n\nALL 42 LITERALS VERIFIED PRESENT AND EXACT at the stated file:line. Family arithmetic checks out: 22 sites are rgba(245,240,232,a) (-> --ink-wash-base), 11 are rgba(245,244,240,a) (-> --text, base byte-identical to #f5f4f0), 3 are rgba(255,255,255,a) (-> --white-wash-base), 6 stay literal. 22+11+3+6 = 42.\n\nTHE 42 REPLACEMENTS THEMSELVES ARE DARK NO-OPS. color-mix(in srgb, C p%, transparent) mixes premultiplied in a rectangular space, so it yields exactly rgba(C, p/100) \u2014 the idiom globals.css already ships at --color-accent-100 and .tagAccent. Both proposed new tokens carry the correct dark bytes (#f5f0e8, #ffffff). I found no drift in any replacement as written.\n\nBOTH NEW TOKENS ARE JUSTIFIED, and I verified the drift they exist to hold rather than trusting the claim: #f5f0e8 vs #f5f4f0 at a=.045 over #0a0a0b rounds G to 20 vs 21; at a=.26 it rounds B to 68 vs 71. #ffffff vs #f5f4f0 at a=.015 over #0a0a0b rounds B to 15 vs 14. Neither can be folded onto --text.\n\nWHAT I FOUND instead lives in the notes: two of them recommend follow-up consolidations whose arithmetic is wrong and which WOULD break dark; three misdescribe the compositing or scoping at the call site in ways that would send a reviewer to the wrong conclusion; and the family has a scope gap into .tsx.\n\nOPERATIONAL WARNING: app/globals.css was being rewritten by a concurrent process during this review. Its md5 changed twice (0f418a41 -> e7540f0b) and --line moved from line 18 to line 25. The token VALUES were stable across all reads, but any patch must locate declarations by content, not by line number, and re-read globals.css immediately before editing."
+   "lens": "dark-identity \u2014 resolved every proposed "
   },
   {
    "file": "app/analysis/analysis.module.css",
@@ -871,7 +871,7 @@
    "claimed": "this is a lift-on-hover wash, not a surface in its own right ... 5.5% #f5f0e8 over #0a0a0b ~ #191817",
    "correction": "Keep the color-mix (it is the only dark no-op), but fix the rationale and add the compositing guard: patch to `background: linear-gradient(color-mix(in srgb, var(--ink-wash-base) 5.5%, transparent), color-mix(in srgb, var(--ink-wash-base) 5.5%, transparent)), var(--bg);` - the same device already used at api.module.css:96, which restores the var(--bg) layer the shorthand drops and is byte-identical in dark. Without it, flag the light-mode result explicitly rather than describing it as a subtle lift.",
    "severity": "breaks-light",
-   "lens": "dark-identity \u2014 resolved every proposed token/color-mix against app/globals.css and every literal against its call site.\n\nTOKEN VALUES CONFIRMED (read from globals.css, not trusted from the table): --text light-dark(#17140f, #f5f4f0); --line dark rgba(245,244,240,.12); --rule dark rgba(245,244,240,.38); --rule-soft dark rgba(245,244,240,.24); --bg dark #0a0a0b; --bg-soft dark #141416; --bg-soft-2 dark #1c1c21; --bg-raised dark #24242a; --gold: var(--gold-ink) = #ffb627 dark; --scrim rgba(12,10,9,.94) (no light-dark, does not theme).\n\nALL 42 LITERALS VERIFIED PRESENT AND EXACT at the stated file:line. Family arithmetic checks out: 22 sites are rgba(245,240,232,a) (-> --ink-wash-base), 11 are rgba(245,244,240,a) (-> --text, base byte-identical to #f5f4f0), 3 are rgba(255,255,255,a) (-> --white-wash-base), 6 stay literal. 22+11+3+6 = 42.\n\nTHE 42 REPLACEMENTS THEMSELVES ARE DARK NO-OPS. color-mix(in srgb, C p%, transparent) mixes premultiplied in a rectangular space, so it yields exactly rgba(C, p/100) \u2014 the idiom globals.css already ships at --color-accent-100 and .tagAccent. Both proposed new tokens carry the correct dark bytes (#f5f0e8, #ffffff). I found no drift in any replacement as written.\n\nBOTH NEW TOKENS ARE JUSTIFIED, and I verified the drift they exist to hold rather than trusting the claim: #f5f0e8 vs #f5f4f0 at a=.045 over #0a0a0b rounds G to 20 vs 21; at a=.26 it rounds B to 68 vs 71. #ffffff vs #f5f4f0 at a=.015 over #0a0a0b rounds B to 15 vs 14. Neither can be folded onto --text.\n\nWHAT I FOUND instead lives in the notes: two of them recommend follow-up consolidations whose arithmetic is wrong and which WOULD break dark; three misdescribe the compositing or scoping at the call site in ways that would send a reviewer to the wrong conclusion; and the family has a scope gap into .tsx.\n\nOPERATIONAL WARNING: app/globals.css was being rewritten by a concurrent process during this review. Its md5 changed twice (0f418a41 -> e7540f0b) and --line moved from line 18 to line 25. The token VALUES were stable across all reads, but any patch must locate declarations by content, not by line number, and re-read globals.css immediately before editing."
+   "lens": "dark-identity \u2014 resolved every proposed "
   },
   {
    "file": "app/components/SearchPalette.module.css",
@@ -880,7 +880,7 @@
    "claimed": "CHROME - do not theme ... WARNING: the rest of this rule does NOT hold - color: var(--text-muted) and border: var(--line) both flip to dark ink",
    "correction": "Strike the warning and the needsHumanDecision it raises. Also reconsider the decision itself: because the island pins color-scheme:dark, `color-mix(in srgb, var(--text) 5%, transparent)` resolves to exactly rgba(245,244,240,0.05) inside the navbar in BOTH themes - byte-identical in dark, identical in light, and consistent with the var(--text-muted)/var(--line) already in the same rule. The token form is strictly better here than pinning the literal; the literal is safe but is the odd one out in a rule whose other two colours are already tokens.",
    "severity": "cosmetic",
-   "lens": "dark-identity \u2014 resolved every proposed token/color-mix against app/globals.css and every literal against its call site.\n\nTOKEN VALUES CONFIRMED (read from globals.css, not trusted from the table): --text light-dark(#17140f, #f5f4f0); --line dark rgba(245,244,240,.12); --rule dark rgba(245,244,240,.38); --rule-soft dark rgba(245,244,240,.24); --bg dark #0a0a0b; --bg-soft dark #141416; --bg-soft-2 dark #1c1c21; --bg-raised dark #24242a; --gold: var(--gold-ink) = #ffb627 dark; --scrim rgba(12,10,9,.94) (no light-dark, does not theme).\n\nALL 42 LITERALS VERIFIED PRESENT AND EXACT at the stated file:line. Family arithmetic checks out: 22 sites are rgba(245,240,232,a) (-> --ink-wash-base), 11 are rgba(245,244,240,a) (-> --text, base byte-identical to #f5f4f0), 3 are rgba(255,255,255,a) (-> --white-wash-base), 6 stay literal. 22+11+3+6 = 42.\n\nTHE 42 REPLACEMENTS THEMSELVES ARE DARK NO-OPS. color-mix(in srgb, C p%, transparent) mixes premultiplied in a rectangular space, so it yields exactly rgba(C, p/100) \u2014 the idiom globals.css already ships at --color-accent-100 and .tagAccent. Both proposed new tokens carry the correct dark bytes (#f5f0e8, #ffffff). I found no drift in any replacement as written.\n\nBOTH NEW TOKENS ARE JUSTIFIED, and I verified the drift they exist to hold rather than trusting the claim: #f5f0e8 vs #f5f4f0 at a=.045 over #0a0a0b rounds G to 20 vs 21; at a=.26 it rounds B to 68 vs 71. #ffffff vs #f5f4f0 at a=.015 over #0a0a0b rounds B to 15 vs 14. Neither can be folded onto --text.\n\nWHAT I FOUND instead lives in the notes: two of them recommend follow-up consolidations whose arithmetic is wrong and which WOULD break dark; three misdescribe the compositing or scoping at the call site in ways that would send a reviewer to the wrong conclusion; and the family has a scope gap into .tsx.\n\nOPERATIONAL WARNING: app/globals.css was being rewritten by a concurrent process during this review. Its md5 changed twice (0f418a41 -> e7540f0b) and --line moved from line 18 to line 25. The token VALUES were stable across all reads, but any patch must locate declarations by content, not by line number, and re-read globals.css immediately before editing."
+   "lens": "dark-identity \u2014 resolved every proposed "
   },
   {
    "file": "app/live-charts/liveCharts.module.css",
@@ -889,7 +889,7 @@
    "claimed": "an ink wash lands over a gold wash ... compositing order is unchanged, so it should darken rather than fight",
    "correction": "Replace the note with the real behaviour: the hover replaces .entryTop's gold wash rather than compositing over it, so the No.1 highlight disappears while hovered. Keep the color-mix (dark no-op). If preserving the No.1 marker on hover is wanted, that is a separate behavioural fix - e.g. give .entryTop:hover its own gold-family rule - and belongs to the gold family, not here.",
    "severity": "cosmetic",
-   "lens": "dark-identity \u2014 resolved every proposed token/color-mix against app/globals.css and every literal against its call site.\n\nTOKEN VALUES CONFIRMED (read from globals.css, not trusted from the table): --text light-dark(#17140f, #f5f4f0); --line dark rgba(245,244,240,.12); --rule dark rgba(245,244,240,.38); --rule-soft dark rgba(245,244,240,.24); --bg dark #0a0a0b; --bg-soft dark #141416; --bg-soft-2 dark #1c1c21; --bg-raised dark #24242a; --gold: var(--gold-ink) = #ffb627 dark; --scrim rgba(12,10,9,.94) (no light-dark, does not theme).\n\nALL 42 LITERALS VERIFIED PRESENT AND EXACT at the stated file:line. Family arithmetic checks out: 22 sites are rgba(245,240,232,a) (-> --ink-wash-base), 11 are rgba(245,244,240,a) (-> --text, base byte-identical to #f5f4f0), 3 are rgba(255,255,255,a) (-> --white-wash-base), 6 stay literal. 22+11+3+6 = 42.\n\nTHE 42 REPLACEMENTS THEMSELVES ARE DARK NO-OPS. color-mix(in srgb, C p%, transparent) mixes premultiplied in a rectangular space, so it yields exactly rgba(C, p/100) \u2014 the idiom globals.css already ships at --color-accent-100 and .tagAccent. Both proposed new tokens carry the correct dark bytes (#f5f0e8, #ffffff). I found no drift in any replacement as written.\n\nBOTH NEW TOKENS ARE JUSTIFIED, and I verified the drift they exist to hold rather than trusting the claim: #f5f0e8 vs #f5f4f0 at a=.045 over #0a0a0b rounds G to 20 vs 21; at a=.26 it rounds B to 68 vs 71. #ffffff vs #f5f4f0 at a=.015 over #0a0a0b rounds B to 15 vs 14. Neither can be folded onto --text.\n\nWHAT I FOUND instead lives in the notes: two of them recommend follow-up consolidations whose arithmetic is wrong and which WOULD break dark; three misdescribe the compositing or scoping at the call site in ways that would send a reviewer to the wrong conclusion; and the family has a scope gap into .tsx.\n\nOPERATIONAL WARNING: app/globals.css was being rewritten by a concurrent process during this review. Its md5 changed twice (0f418a41 -> e7540f0b) and --line moved from line 18 to line 25. The token VALUES were stable across all reads, but any patch must locate declarations by content, not by line number, and re-read globals.css immediately before editing."
+   "lens": "dark-identity \u2014 resolved every proposed "
   },
   {
    "file": "app/components/mobileDeepPage.module.css",
@@ -898,7 +898,7 @@
    "claimed": "the scrim over the image stays dark in both themes, so its ink stays light",
    "correction": "Keep both #f5f0e8-at-.55 literals (correct, dark no-op), but record the dependency explicitly as a cross-family constraint: app/components/mobileDeepPage.module.css:384 and app/records/cars/cars.module.css:290's rgba(12,10,9,0.6) MUST stay a dark literal or map to --scrim, and must not be swept in with the 0.94 chrome backdrops as a single 'scrim' token, because 0.6 here is a photo scrim and the caption ink above it is pinned light against it.",
    "severity": "breaks-light",
-   "lens": "dark-identity \u2014 resolved every proposed token/color-mix against app/globals.css and every literal against its call site.\n\nTOKEN VALUES CONFIRMED (read from globals.css, not trusted from the table): --text light-dark(#17140f, #f5f4f0); --line dark rgba(245,244,240,.12); --rule dark rgba(245,244,240,.38); --rule-soft dark rgba(245,244,240,.24); --bg dark #0a0a0b; --bg-soft dark #141416; --bg-soft-2 dark #1c1c21; --bg-raised dark #24242a; --gold: var(--gold-ink) = #ffb627 dark; --scrim rgba(12,10,9,.94) (no light-dark, does not theme).\n\nALL 42 LITERALS VERIFIED PRESENT AND EXACT at the stated file:line. Family arithmetic checks out: 22 sites are rgba(245,240,232,a) (-> --ink-wash-base), 11 are rgba(245,244,240,a) (-> --text, base byte-identical to #f5f4f0), 3 are rgba(255,255,255,a) (-> --white-wash-base), 6 stay literal. 22+11+3+6 = 42.\n\nTHE 42 REPLACEMENTS THEMSELVES ARE DARK NO-OPS. color-mix(in srgb, C p%, transparent) mixes premultiplied in a rectangular space, so it yields exactly rgba(C, p/100) \u2014 the idiom globals.css already ships at --color-accent-100 and .tagAccent. Both proposed new tokens carry the correct dark bytes (#f5f0e8, #ffffff). I found no drift in any replacement as written.\n\nBOTH NEW TOKENS ARE JUSTIFIED, and I verified the drift they exist to hold rather than trusting the claim: #f5f0e8 vs #f5f4f0 at a=.045 over #0a0a0b rounds G to 20 vs 21; at a=.26 it rounds B to 68 vs 71. #ffffff vs #f5f4f0 at a=.015 over #0a0a0b rounds B to 15 vs 14. Neither can be folded onto --text.\n\nWHAT I FOUND instead lives in the notes: two of them recommend follow-up consolidations whose arithmetic is wrong and which WOULD break dark; three misdescribe the compositing or scoping at the call site in ways that would send a reviewer to the wrong conclusion; and the family has a scope gap into .tsx.\n\nOPERATIONAL WARNING: app/globals.css was being rewritten by a concurrent process during this review. Its md5 changed twice (0f418a41 -> e7540f0b) and --line moved from line 18 to line 25. The token VALUES were stable across all reads, but any patch must locate declarations by content, not by line number, and re-read globals.css immediately before editing."
+   "lens": "dark-identity \u2014 resolved every proposed "
   },
   {
    "file": "app/components/HubScatter.tsx",
@@ -907,7 +907,7 @@
    "claimed": "family 'ink-alpha' (42 decisions)",
    "correction": "Confirm whether a separate .tsx family owns these seven sites. If not, they belong in this family and take the same treatment: color-mix(in srgb, var(--text) N%, transparent) for the rgba(245,244,240,a) sites and color-mix(in srgb, var(--ink-wash-base) N%, transparent) for the two rgba(245,240,232,0.06) car-stage strokes - all byte-identical in dark. Note that HubScatter:121 already reads var(--gold-bright) from CSS in the same expression, so var() resolves in these attributes and the pattern is proven in that file.",
    "severity": "breaks-light",
-   "lens": "dark-identity \u2014 resolved every proposed token/color-mix against app/globals.css and every literal against its call site.\n\nTOKEN VALUES CONFIRMED (read from globals.css, not trusted from the table): --text light-dark(#17140f, #f5f4f0); --line dark rgba(245,244,240,.12); --rule dark rgba(245,244,240,.38); --rule-soft dark rgba(245,244,240,.24); --bg dark #0a0a0b; --bg-soft dark #141416; --bg-soft-2 dark #1c1c21; --bg-raised dark #24242a; --gold: var(--gold-ink) = #ffb627 dark; --scrim rgba(12,10,9,.94) (no light-dark, does not theme).\n\nALL 42 LITERALS VERIFIED PRESENT AND EXACT at the stated file:line. Family arithmetic checks out: 22 sites are rgba(245,240,232,a) (-> --ink-wash-base), 11 are rgba(245,244,240,a) (-> --text, base byte-identical to #f5f4f0), 3 are rgba(255,255,255,a) (-> --white-wash-base), 6 stay literal. 22+11+3+6 = 42.\n\nTHE 42 REPLACEMENTS THEMSELVES ARE DARK NO-OPS. color-mix(in srgb, C p%, transparent) mixes premultiplied in a rectangular space, so it yields exactly rgba(C, p/100) \u2014 the idiom globals.css already ships at --color-accent-100 and .tagAccent. Both proposed new tokens carry the correct dark bytes (#f5f0e8, #ffffff). I found no drift in any replacement as written.\n\nBOTH NEW TOKENS ARE JUSTIFIED, and I verified the drift they exist to hold rather than trusting the claim: #f5f0e8 vs #f5f4f0 at a=.045 over #0a0a0b rounds G to 20 vs 21; at a=.26 it rounds B to 68 vs 71. #ffffff vs #f5f4f0 at a=.015 over #0a0a0b rounds B to 15 vs 14. Neither can be folded onto --text.\n\nWHAT I FOUND instead lives in the notes: two of them recommend follow-up consolidations whose arithmetic is wrong and which WOULD break dark; three misdescribe the compositing or scoping at the call site in ways that would send a reviewer to the wrong conclusion; and the family has a scope gap into .tsx.\n\nOPERATIONAL WARNING: app/globals.css was being rewritten by a concurrent process during this review. Its md5 changed twice (0f418a41 -> e7540f0b) and --line moved from line 18 to line 25. The token VALUES were stable across all reads, but any patch must locate declarations by content, not by line number, and re-read globals.css immediately before editing."
+   "lens": "dark-identity \u2014 resolved every proposed "
   },
   {
    "file": "app/globals.css",
@@ -916,7 +916,7 @@
    "claimed": "NEW TOKENS PROPOSED: --ink-wash-base { dark #f5f0e8, light #17140f }, --white-wash-base { dark #ffffff, light #17140f }",
    "correction": "Specify the declaration site: add both tokens INSIDE the existing `:root, .navbar { ... }` block alongside --gold-wash-base, as `--ink-wash-base: light-dark(#17140f, #f5f0e8);` and `--white-wash-base: light-dark(#17140f, #ffffff);` - CSS order is light-dark(LIGHT, DARK). Do not open a second `:root`-only block. Locate the block by content, not by line: globals.css was being rewritten during this review and --line moved from line 18 to line 25 between reads.",
    "severity": "breaks-light",
-   "lens": "dark-identity \u2014 resolved every proposed token/color-mix against app/globals.css and every literal against its call site.\n\nTOKEN VALUES CONFIRMED (read from globals.css, not trusted from the table): --text light-dark(#17140f, #f5f4f0); --line dark rgba(245,244,240,.12); --rule dark rgba(245,244,240,.38); --rule-soft dark rgba(245,244,240,.24); --bg dark #0a0a0b; --bg-soft dark #141416; --bg-soft-2 dark #1c1c21; --bg-raised dark #24242a; --gold: var(--gold-ink) = #ffb627 dark; --scrim rgba(12,10,9,.94) (no light-dark, does not theme).\n\nALL 42 LITERALS VERIFIED PRESENT AND EXACT at the stated file:line. Family arithmetic checks out: 22 sites are rgba(245,240,232,a) (-> --ink-wash-base), 11 are rgba(245,244,240,a) (-> --text, base byte-identical to #f5f4f0), 3 are rgba(255,255,255,a) (-> --white-wash-base), 6 stay literal. 22+11+3+6 = 42.\n\nTHE 42 REPLACEMENTS THEMSELVES ARE DARK NO-OPS. color-mix(in srgb, C p%, transparent) mixes premultiplied in a rectangular space, so it yields exactly rgba(C, p/100) \u2014 the idiom globals.css already ships at --color-accent-100 and .tagAccent. Both proposed new tokens carry the correct dark bytes (#f5f0e8, #ffffff). I found no drift in any replacement as written.\n\nBOTH NEW TOKENS ARE JUSTIFIED, and I verified the drift they exist to hold rather than trusting the claim: #f5f0e8 vs #f5f4f0 at a=.045 over #0a0a0b rounds G to 20 vs 21; at a=.26 it rounds B to 68 vs 71. #ffffff vs #f5f4f0 at a=.015 over #0a0a0b rounds B to 15 vs 14. Neither can be folded onto --text.\n\nWHAT I FOUND instead lives in the notes: two of them recommend follow-up consolidations whose arithmetic is wrong and which WOULD break dark; three misdescribe the compositing or scoping at the call site in ways that would send a reviewer to the wrong conclusion; and the family has a scope gap into .tsx.\n\nOPERATIONAL WARNING: app/globals.css was being rewritten by a concurrent process during this review. Its md5 changed twice (0f418a41 -> e7540f0b) and --line moved from line 18 to line 25. The token VALUES were stable across all reads, but any patch must locate declarations by content, not by line number, and re-read globals.css immediately before editing."
+   "lens": "dark-identity \u2014 resolved every proposed "
   },
   {
    "file": "app/page.module.css",
@@ -1223,6 +1223,555 @@
    "problem": "A comment is not a decision under a lens whose whole premise is 'the role is decided by the CSS property'. There is no property here.",
    "severity": "cosmetic",
    "lens": "role-fit"
+  },
+  {
+   "file": "app/components/mobileTabBar.module.css",
+   "line": 43,
+   "problem": "The mapping declares line 43 \"CHROME\" and stops at that one line without reading the block. `.bar` hard-codes `background: rgba(12,10,9,0.94)` but is NOT a token island \u2014 globals.css declares the token list on `:root, .navbar` ONLY (verified: `.navbar` is the sole extra selector, and the only other `color-scheme` declarations are `:root`/`:root[data-theme=\"light\"]`). So in light mode the bar's ground stays near-black while every one of its children resolves the PAPER token: `.tab { color: var(--text-muted) }` becomes #5f584f (2.6:1 on the dark bar), `.tabOn { color: var(--gold) }` becomes #8a5a00 (3.1:1 on an 11px label), and `border-top: 1px solid var(--line)` becomes rgba(23,20,15,.12) \u2014 a near-black hairline on near-black. The whole bottom navigation goes unreadable on paper. Rule 4 was applied to the literal but not to the element.",
+   "claimed": "rgba(255, 182, 39, 0.08) kept as a literal, \"CHROME. The bottom tab bar's backdrop is rgba(12,10,9,0.94) (= --scrim) and stays dark in both themes per design 4.3\"",
+   "correction": "Keeping the literal is right, but it is not sufficient. `.bar` must become a dark token island the way `.navbar` is: add `.bar`'s selector to the `:root, .navbar` declaration list in globals.css (or re-declare the token list plus `color-scheme: dark` on it). Also replace the hard-coded rgba(12,10,9,0.94) with var(--scrim) so the chrome decision lives in one place. Until the island exists, every `var(--text-muted)`, `var(--gold)` and `var(--line)` inside `.bar` is a broken pair.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/components/DaiDaiConquest.module.css",
+   "line": 29,
+   "problem": "The note says `.cellOne` \"carries flag + country code text, so this is a tint over var(--bg), not a fill\" \u2014 but it never checks what colour that text is. Lines 41 and 51 are `.cellOne .code { color: var(--gold-bright) }` and `.cellOne .peak { color: var(--gold-bright) }`. --gold-bright is #ffd24a and is unchanged in light (globals.css:48, a flat literal, no light-dark). Themed, the cell composites to roughly rgb(220,197,158); #ffd24a on that is 1.16:1. The country code and the peak number \u2014 the entire content of the No.1 cells, which the file's own comment calls \"the whole point of the grid\" \u2014 become invisible on paper. Line 67 (the legend swatch) inherits the same ground but its label is var(--dim), so only the grid breaks.",
+   "claimed": "color-mix(in srgb, var(--gold-wash-base) 30%, transparent) with note \"carries flag + country code text, so this is a tint\"",
+   "correction": "The wash replacement is correct; the pair is not. `.cellOne .code` and `.cellOne .peak` (lines 41, 51) must move off --gold-bright. On a 30% --gold-wash-base ground the readable value is var(--text) for `.code` and var(--gold-ink) for `.peak` (5.2:1 and ~3.4:1 on the composited cell), keeping dark as-is only if you give them a light-dark of their own \u2014 #ffd24a in dark, #17140f / #8a5a00 in light. Flag this decision as blocking the line-29 change: theming the background without it is strictly worse than leaving both dark.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/certifications/certifications.module.css",
+   "line": 255,
+   "problem": "`.yearBtn` sets `background: rgba(255,182,39,0.07)` and, two lines down at 256, `color: var(--gold-bright)` on 1.3rem Anton. The mapping themes the background to a 7% #b07000 wash over paper and says nothing about the label, which stays #ffd24a. That is ~1.5:1 \u2014 the year buttons, the primary navigation of the certifications ledger, become blank pills. The mapping DID flag this exact hazard at liveCharts:175 and awards:137 but missed the two biggest instances of it.",
+   "claimed": "color-mix(in srgb, var(--gold-wash-base) 7%, transparent), no pairing note",
+   "correction": "Same wash replacement, but the change is blocked on line 256: `.yearBtn { color: var(--gold-bright) }` must become var(--gold-ink) (a light-dark whose dark value is #ffb627 differs from today's #ffd24a, so if byte-identical dark is required, mint the pair explicitly as light-dark(#8a5a00, #ffd24a) rather than rounding). Identical fix at line 771/772, the mobile twin, which the mapping also lists (771) without the note.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/certifications/certifications.module.css",
+   "line": 273,
+   "problem": "The rule-3 trap the mapping half-spots at line 276 is deeper than an --ink-on-gold swap. The fill is `linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%)`, and globals.css:47 sets `--gold: var(--gold-ink)`, which is #8a5a00 in light. So on paper the ramp runs #ffd24a \u2192 #8a5a00 \u2192 #c98a2e: non-monotone, and the 48% band is a dark brown. --ink-on-gold (#14100a) measures 3.20:1 against that band \u2014 below AA for an 11\u201321px label \u2014 so the mapping's own prescribed fix does not clear. This same literal ramp appears at globals.css:455 (.btnPrimary, with color:#000), certifications:783, StatCardMaker:75/140, song.module.css:465, charts:185, mobileStatCards:196, mobileCerts:241/417, mobileTours:162/271, mobileDeepPage:316, mobileApi:217, mobileRevenue:255, mobileOfficialCharts:375, mobileMethodology:214, mobileTourMap:176, mobileMusic:188, mobileAnalysis:231, mobileAfricasBiggest:218, mobileNavSheet:211 \u2014 every gold button on the site. globals.css:1416 already writes the same ramp with var(--gold-fill) at the 48% stop, which is the proof the split was meant to land here and did not.",
+   "claimed": "Line 276 note: \".yearBtnOn sets color/-webkit-text-fill-color: var(--bg) over a gold fill \u2014 in light that becomes paper-on-gold. Must be --ink-on-gold.\"",
+   "correction": "Two changes, not one. (a) The label: var(--bg) / #0a0a0b / #000 \u2192 var(--ink-on-gold), as proposed. (b) The fill: the 48% stop must be var(--gold-fill), not var(--gold) \u2014 `linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%)`, matching globals.css:1416. --gold-fill is #ffb627 in both modes, so dark is a byte-identical no-op and light gets a real gold slab with --ink-on-gold at ~10.6:1. Apply the same pair to `background-color: var(--gold)` on the line above, which is the solid fallback the comment says exists so the label \"never sits over nothing\". Without (b), (a) ships a 3.2:1 label.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/components/BirthdayCelebration.module.css",
+   "line": 55,
+   "problem": "The \"dark toast, treated as chrome\" reasoning covers the two gold box-shadow literals and nothing else in the block. `.banner` hard-codes `linear-gradient(135deg, rgba(20,16,8,0.96), rgba(9,9,11,0.96))` but, like `.bar`, is not a token island \u2014 so on paper the surface stays near-black while its contents theme: `.sub { color: var(--text-muted) }` \u2192 #5f584f (~2.5:1), `.link { color: var(--gold) }` \u2192 #8a5a00 (~3.0:1), `.title { color: var(--gold-bright) }` stays readable by accident, and worst, `.close { border: 1px solid var(--line); color: var(--text-muted) }` \u2192 a rgba(23,20,15,.12) ring on near-black, i.e. the dismiss button on a fixed, screen-blocking banner becomes invisible. `border: 1px solid var(--gold)` on line 52 also drops from #ffb627 to #8a5a00 against that same dark ground.",
+   "claimed": "rgba(255, 182, 39, 0.12) and rgba(255, 182, 39, 0.22) kept as literals; \"it is a dark toast in both themes \u2014 treated as chrome and left unchanged\"",
+   "correction": "If the banner is chrome, make it chrome properly: re-declare the token island on `.banner` (as globals.css does for `.navbar`) and swap the hard-coded gradient for var(--scrim), so --line, --text-muted, --gold and --text inside it all resolve dark. Leaving the two shadow literals alone is only correct once that holds. Flag as blocking, because the invisible `.close` is a trap-the-user failure, not a cosmetic one.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/live-charts/liveCharts.module.css",
+   "line": 226,
+   "problem": "`.entryTop` is the current-No.1 row \u2014 \"the thing people come to see\", per the rule's own comment. Its wash themes to var(--gold-wash) (10% #b07000 over the card), but line 228, `.entryTop .pos { color: var(--gold-bright) }`, does not. #ffd24a on a 10% brown-over-white ground is ~1.4:1: the chart position, the one datum the highlight exists to point at, disappears. The mapping's note for this line only discusses the 0.10-vs-0.1 spelling.",
+   "claimed": "var(--gold-wash), note \"Written 0.10 here and 0.1 elsewhere \u2014 same value, same token.\"",
+   "correction": "Keep var(--gold-wash), and pair it: line 228 \u2192 var(--gold-ink) (or an explicit light-dark(#8a5a00, #ffd24a) if the dark #ffd24a must be preserved byte-for-byte). Same unflagged pattern at charts.module.css:317 (.pkOne), africas-biggest:232 (.valueHim), cars.module.css:317 and mobileDeepPage:431 (.tileLead .tileValue) \u2014 all bare --gold-bright text whose sibling chips/borders the mapping DOES theme, so the two halves of each pair split.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/components/mobileHome.module.css",
+   "line": 86,
+   "problem": "Not in the mapping's list, but it is the pairing consequence of theming the grounds beneath it. `.figure` is a 140px Anton numeral painted through `-webkit-background-clip: text` with `linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 52%, var(--grad-b) 100%)`. On paper the top half of every hero figure is #ffd24a (1.4:1 on #f7f4ee) and only the lower half darkens \u2014 the numerals read as half-erased. globals.css:69-71 declares --display-ramp-a/b/c precisely for this (\"a fill ramp on paper is 1.5:1 \u2014 unreadable\") and none of the ~20 sites use it: mobileHome:86, mobileDeepPage:85, mobileAwards:82, mobileTours:83, mobileRevenue:82, mobileApi:82, mobileAnalysis:82, mobileStatCards:82, mobileAfricasBiggest:82, mobileTourMap:82, mobileFestivals:82, mobileVisualized:82, mobileMethodology:73, mobileOfficialCharts:83, mobileFirsts:82, mobileAfrobeatsHub:70, mobileMusic:87, mobileRecords:83, mobileUpdates:92, mobileContact:79, mobileFaq:87, mobileAbout:78, mobileLiveCharts:87, todaysNumber:97, page.module.css:251/639.",
+   "claimed": "not mapped (var() sites, outside the literal family)",
+   "correction": "Every background-clip:text ramp becomes `linear-gradient(<same angle>, var(--display-ramp-a), var(--display-ramp-b) <same midpoint>, var(--display-ramp-c))`. The three display-ramp tokens are byte-identical to #ffd24a / #ffb627 / #ff7a1a in dark, so this is a no-op there. Call this out to the mapping's owner as a prerequisite: the gold family's washes and grounds are being themed under display type that is not.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/records/tours/map/map.module.css",
+   "line": 91,
+   "problem": "The mapping themes the legend swatch fill to 75% --gold-wash-base but the block's border, line 92, is `border: 1px solid var(--gold-bright)` \u2014 unchanged #ffd24a. Its sibling `.swatch` (line 82) is bordered `var(--gold)`, which DOES theme to #8a5a00. So on paper the square swatch keeps a dark ring and the dot swatch's ring vanishes into the paper, and the two legend keys stop looking like one system. Same split on the map itself: `.dot` (line 229) gets a themed 75% brown fill with a `stroke: var(--gold-bright)` that stays bright yellow \u2014 the mapping notes the hover inversion at 216/229 but not the stroke on the resting state.",
+   "claimed": "color-mix(in srgb, var(--gold-wash-base) 75%, transparent), note \"must match .dot (line 229)\"",
+   "correction": "Match the borders too: line 92 `var(--gold-bright)` \u2192 `var(--gold-ink)` so both legend keys carry the same ring, and `.dot`'s stroke (line 230) with it. Then resolve the hover the mapping already flagged: `.on:hover/.activePath` and `.dot:hover` need a light value darker than the 42%/75% resting fill (e.g. var(--gold-ink) or --gold-wash-base at 100%), not #ffd24a, or hover reads as de-emphasis on paper.",
+   "severity": "breaks-light",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/components/RankedBars.module.css",
+   "line": 78,
+   "problem": "`background: var(--gold-bright)` as a bar FILL marking the single biggest row \u2014 \"the loudest gold\", per the comment. #ffd24a against --bg-soft #ffffff is 1.4:1, so on paper the chart's most important bar is the one you cannot see, while its neighbours (line 67, `background: var(--gold)` \u2192 #8a5a00) are dark brown. The hierarchy inverts completely. Not in the mapping's list because both are var() sites, but the mapping's own africas-biggest:82 note reasons about exactly this lit/unlit relationship and reaches the opposite conclusion for a neighbouring file.",
+   "claimed": "not mapped",
+   "correction": "Bars are fills: line 67 `var(--gold)` \u2192 `var(--gold-fill)` and line 78 `var(--gold-bright)` \u2192 keep --gold-bright (it is the fill-ramp top and is legitimately unchanged) \u2014 that restores lit-brighter-than-unlit in dark AND gives paper a #ffb627 base with a #ffd24a lead, both of which read as a bar against white. The current mapping's africas-biggest:82 decision (wash base for unlit, `linear-gradient(var(--gold), var(--grad-b))` left alone for lit) should be revisited the same way: var(--gold) inside a bar gradient is --gold-ink, so the lit bar turns dark-brown-to-orange on paper.",
+   "severity": "breaks-light",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/certifications/certifications.module.css",
+   "line": 150,
+   "problem": "A consistent surface/edge mismatch the mapping leaves behind: `.focusBar` themes its 8% wash but its `border: 1px solid var(--gold-dim)` is #c98a2e, a flat literal the table marks \"fill ramp base (fills only)\" and does not theme. On paper that is 2.63:1 against --bg and a different hue from both the wash (#b07000) and the label (`.focusBar b { color: var(--gold) }` \u2192 #8a5a00), so the panel reads as three golds. Same pairing at mobileCerts:~258, mobileOfficialCharts:~180, liveCharts:441 (.notice), certifications:264/769 (.yearBtn), awards:~126 (.moreBodies dashed edge), and as a hover border at SearchPalette:18, certifications:198, charts:134, awards:119.",
+   "claimed": "color-mix(in srgb, var(--gold-wash-base) 8%, transparent) \u2014 background only, border not considered",
+   "correction": "Where --gold-dim is used as a border-color rather than as a gradient stop it is a hairline rule, so per rule 2 it should be var(--gold-ink) at full or a color-mix alpha. Dark is NOT a no-op there (#c98a2e vs #ffb627), so raise it as a deliberate consolidation for sign-off rather than folding it in silently \u2014 or, if dark must not move, mint light-dark(#8a5a00, #c98a2e). Either way the border decision has to travel with the wash decision on the same rule.",
+   "severity": "cosmetic",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/components/mobileNavSheet.module.css",
+   "line": 145,
+   "problem": "The HUMAN note correctly spots that the sheet is half-themed, but understates the pairing consequence. `.rowActive` sets both `background: rgba(255,182,39,0.07)` (which the mapping themes) AND `color: var(--gold)` (which themes to #8a5a00) \u2014 and the sheet's ground is `linear-gradient(180deg, #111113 0%, var(--bg) 34%)`, so rows in the top 34% sit on a near-black band that does not theme. An active row landing there gets #8a5a00 text on #111113: ~3.0:1. The rows above it, `.row { color: var(--text) }`, get #17140f on #111113 \u2014 effectively invisible.",
+   "claimed": "color-mix(in srgb, var(--gold-wash-base) 7%, transparent), note \"If the black family keeps #111113, the top of the sheet stays dark while this active-row wash themes to paper.\"",
+   "correction": "State it as a blocker rather than a cross-family observation: the #111113 stop must theme (light-dark(#ffffff, #111113) or var(--bg-soft)), because the sheet's own `.row`/`.rowActive` text tokens theme unconditionally and there is no island declaration on this component. Sequence the line-145 wash change behind it.",
+   "severity": "breaks-light",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/afrobeats/afrobeats.module.css",
+   "line": 346,
+   "problem": "The HUMAN note reasons that #ffb627 at 42% is invisible on paper and picks the ink base \u2014 correct direction, but it does not check the result. #8a5a00 at 42% over a white card composites to roughly rgb(206,186,148), which is 1.3:1 against --bg-soft. `.railAnchor` is the marker that finds Burna Boy in the rails (\"the reader has to be able to find him at a glance\"), and the border is half of that signal; at 1.3:1 it is a smudge. The chip's `color: var(--gold)` label survives, so the pair does not go invisible, but the border does not do its job. Identical case at mobileAfrobeatsHub:335 (.pillAnchor), which the mapping flags with the same reasoning.",
+   "claimed": "color-mix(in srgb, var(--gold-ink) 42%, transparent)",
+   "correction": "Ink base is right; the alpha is not portable. Either raise the light alpha (a light-dark border-color at ~70% ink clears 3:1 on --bg-soft while dark keeps rgba(255,182,39,.42) exactly), or accept it as decorative and let the gold label carry the marking \u2014 but say which, because the current note argues the marker must read and then ships a value that does not. Same call for mobileAfrobeatsHub:335.",
+   "severity": "cosmetic",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/components/StatCardMaker.module.css",
+   "line": 151,
+   "problem": "`.primary:hover { background: var(--gold-bright) }` replaces the whole ramp with a flat #ffd24a. In light that makes hover LIGHTER than the resting fill (whose 48% band resolves to #8a5a00 today, or #ffb627 once the ramp is fixed), and it drops the `background-image` shorthand so the rest state's gradient is discarded rather than deepened. Paired with `color: #0a0a0b` on line 141 the rest state is 3.2:1 and the hover state 11:1 \u2014 the button gets *more* legible on hover, which is the inverse of the affordance. The mapping touches line 148 (the glow) in this rule and does not look at 141 or 151.",
+   "claimed": "line 148 \u2192 color-mix(in srgb, var(--gold-glow-base) 25%, transparent); lines 141 and 151 not considered",
+   "correction": "Line 141 `color: #0a0a0b` \u2192 var(--ink-on-gold). Line 151 \u2192 `background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-bright) 48%, var(--gold-fill) 100%)` or simply lighten the existing stops, so hover stays a fill and stays above the rest state in both themes. Note also that --gold-glow-base: transparent removes the only lift this button has on paper, and unlike the halo on a card it is a primary control \u2014 pair it with var(--shadow) rather than deleting it, as the mapping itself suggests for certifications:276.",
+   "severity": "breaks-light",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/records/charts/charts.module.css",
+   "line": 74,
+   "problem": "The proposed --peak-rest light value is #6b6b74, which is byte-identical to --silver's light value (globals.css:133, light-dark(#6b6b74, #dfe2e8)). Line 73 (.top40) and line 74 (.rest) are two of the four peak bands and they render as the SAME colour on paper. The note claims the light value is 'matched to --silver's light so the band ramp stays ordered' -- matching them is exactly what destroys the ordering. In dark the two are clearly separate (#dfe2e8 vs #9aa0a6); in light a Top-40 chip and a beyond-Top-40 chip become indistinguishable, and the same collapse hits the table view (.pkTop40 line 319 vs .pkRest) and the legend. These are data-meaning colours -- globals.css:130 says so in as many words ('carry meaning of their own') -- so a colour that no longer distinguishes has failed its role regardless of its contrast ratio.",
+   "claimed": "--peak-rest: light-dark(#6b6b74, #9aa0a6)",
+   "correction": "Give --peak-rest a light value one step quieter than --silver's, not equal to it -- e.g. light-dark(#57575f, #9aa0a6) (5.98:1 on #f7f4ee, and visibly cooler/darker than --silver's #6b6b74 at 4.81:1) so cyan > silver > rest still reads as a ramp. Dark stays #9aa0a6, unchanged. Alternatively drop the new token and route .rest to --text-muted the way .pkRest already does -- but that is NOT byte-identical in dark (#9b9ba3 vs #9aa0a6), so it needs flagging as a deliberate consolidation, not a silent one.",
+   "severity": "breaks-light",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/components/mobileApi.module.css",
+   "line": 157,
+   "problem": "The mapping flips .codeBox's background to the inset paper tone (#efeae1) and then hands off the consequence it creates: the very next line, .codeLine (11.5px mono), is color: var(--gold-bright), which is #ffd24a in BOTH modes -- a fill-ramp token the table forbids as text. #ffd24a on #efeae1 measures 1.20:1. The mapping's own note says 'that line needs --gold-ink and is worth checking with the gold family owner', which is rule 3 stated and then not applied: the background themes and the text inside it does not. A code well is also the wrong candidate for flipping in the first place -- it is the one surface on the site whose whole job is to be a dark inset holding syntax colour, and globals.css already ships the mechanism for a pinned-dark island (.navbar re-declares the full token list plus color-scheme: dark, see globals.css:7-19).",
+   "claimed": "--code-bg: light-dark(#efeae1, #0f0f11)",
+   "correction": "Either (a) keep the code well dark in both modes and pin it as an island -- give .codeBox its own color-scheme: dark and let --gold-bright, #cfc7bb and --line resolve dark inside it, so nothing in the block needs a new value; or (b) if it must flip, the mapping must also carry .codeLine to var(--gold-ink) (light #8a5a00, 5.40:1 on paper -- a dark no-op since --gold-ink is #ffb627 in dark) and .codeAttr's #cfc7bb to --text-body (a blessed consolidation, 8.04:1 on #efeae1). Do not land --code-bg's light value without one of these.",
+   "severity": "unreadable",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/components/BirthdayCelebration.module.css",
+   "line": 54,
+   "problem": "The decision freezes the two gradient stops dark and calls the toast 'floating chrome' -- but freezing one background literal does not freeze the box. Read the surrounding declarations: line 53 is border: 1px solid var(--gold) (resolves to --gold-ink #8a5a00 in light -- 3.20:1 against the frozen #141008 ground, a dull brown ring where a gold one is the whole point), and .sub at line ~92 is color: var(--text-muted) (resolves to #5f584f in light -- 2.50:1 on the frozen dark toast, unreadable). .title's --gold-bright happens to survive only by accident, because it is one of the tokens that does not theme. The note spots the risk ('check that the toast's text does not pick up a themed --text') and then still records darkIdentical: true with no fix.",
+   "claimed": "keep rgba(20,16,8,0.96) / rgba(9,9,11,0.96) as literals; no token needed",
+   "correction": "If the toast stays dark, pin it the way globals.css:7-19 pins .navbar: add color-scheme: dark to .banner and let every light-dark() token inside resolve dark. Then the literals can stay AND --gold, --text-muted and --text keep their dark values. Freezing the background alone is not a valid outcome for this rule.",
+   "severity": "unreadable",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/about/about.module.css",
+   "line": 97,
+   "problem": "Two role errors. (1) This is box-shadow: 0 0 0 4px -- zero offset, ZERO BLUR, pure spread. That is a hard-edged ring drawn outside the 14px dot, i.e. a decorative border, not a glow. It is not the same construct as page.module.css:31 (text-shadow 0 0 90px), which is a genuine ambient bloom. Section 4.6's 'glows do not exist on paper' retires the bloom; it does not retire a ring. One --glow-base cannot serve both, because the correct light behaviour differs: the 90px bloom goes, the ring stays. Collapsing it to transparent deletes structure. (2) The note's justification is factually wrong: it says 'the dot itself stays gold via --gold, which still reads on cream', but globals.css:47 declares --gold: var(--gold-ink), which is #8a5a00 in light. The dot goes brown, not gold -- and background is a fill property, so per rule 2 it should be var(--gold-fill) anyway. Same pair of errors at app/components/mobileAbout.module.css:158 (the 3px mobile twin, .tDot also background: var(--gold)).",
+   "claimed": "color-mix(in srgb, var(--glow-base) 15%, transparent) with --glow-base: light-dark(transparent, #e8b04b)",
+   "correction": "Split the token. Keep --glow-base: light-dark(transparent, #e8b04b) for page.module.css:31 ONLY (a true 0 0 90px bloom). For the two ring sites mint --gold-halo: light-dark(#b07000, #e8b04b) and use color-mix(in srgb, var(--gold-halo) 15%, transparent) -- byte-identical in dark, a visible warm ring on paper. Separately flag .tDot's background: var(--gold) -> var(--gold-fill) in both files; the mapping flags this exact fill-on-ink error in BackToTop, FollowPanel and charts but misses it here.",
+   "severity": "breaks-light",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/components/ScatterChart.module.css",
+   "line": 39,
+   "problem": "The note validates --dot-muted against the wrong surface. It measures 3.88:1 on #f7f4ee (the ground) but never measures it against the mark it exists to be recessive to: .dot on line 29 is fill: var(--gold), which resolves to --gold-ink #8a5a00 in light. #7f7a72 against #8a5a00 is 1.39:1 -- the muted point and the Burna point become the same tone on paper, and the chart's only encoding is lost. Even against the correct fill-grade gold (#ffb627) it is 2.43:1. Compounding it, .dot's fill: var(--gold) is itself a rule-2 error the mapping does not flag: an SVG fill on a non-text data mark is a fill role, not an ink role, and the mapping flags this same pattern elsewhere.",
+   "claimed": "--dot-muted: light-dark(#7f7a72, #55555d), 3.88:1 on #f7f4ee",
+   "correction": "Flag .dot's fill: var(--gold) -> var(--gold-fill) (dark no-op, #ffb627 both sides) as a prerequisite, then pick a --dot-muted light value that separates from #ffb627 as well as from the ground -- a cool mid grey such as light-dark(#6b6b74, #55555d) gives 4.81:1 on paper and a clear lightness gap from the gold mark. State the ratio against the primary mark, not only against the page.",
+   "severity": "breaks-light",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/components/RankedBars.module.css",
+   "line": 83,
+   "problem": "Same validation error as ScatterChart, plus a floor miss. The muted bar's job is to be recessive against the gold bars, and the sibling .fill on line 67 is background: var(--gold) -- a BAR FILL painted with the ink alias, which resolves to #8a5a00 in light. #8d877d against #8a5a00 is 1.66:1; against the correct --gold-fill it is 2.03:1. Either way the two bar states stop reading as two states. The mapping never flags .fill's fill-on-ink even though it flags the identical error in BackToTop:40 and charts:184. Separately, the stated 2.97:1 against the .track (verified: .track is background: var(--bg-soft-2), #efeae1 in light) is BELOW the 3:1 WCAG floor for a non-text graphic -- the note quotes the number and calls it fine.",
+   "claimed": "--bar-muted: light-dark(#8d877d, #4a4a52); 'light gives 2.97:1 against a --bg-soft-2 track ... keeping it clearly recessive to the gold bars'",
+   "correction": "Flag .fill's background: var(--gold) -> var(--gold-fill) (dark no-op) as part of this decision, and darken --bar-muted's light value until it clears 3:1 on #efeae1 and separates from #ffb627 -- e.g. light-dark(#7a746b, #4a4a52), 3.98:1 on the track. Keep dark #4a4a52 unchanged.",
+   "severity": "breaks-light",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/live-charts/liveCharts.module.css",
+   "line": 8,
+   "problem": "The token is correctly derived for the halo, but it is minted as the ONLY home for the literal #35d07f -- and that literal is not only a dot. Line 246, two hundred lines down in the same file, is .moveUp { font-size: 0.8rem; color: #35d07f } -- the same green as 12.8px TEXT. --live-dot's light value #1f9a5a is a deliberately non-text grade (it mirrors --green-dot, which globals.css:171-173 documents as answering a 3:1 floor, not 4.5:1); on paper it measures 3.28:1 on #f7f4ee and 3.60:1 on #ffffff. Whoever migrates .moveUp will reach for the one token that carries its dark value and land under the text floor. The mapping names the two-greens problem but resolves it in the direction that hides the trap rather than the one that closes it.",
+   "claimed": "--live-dot: light-dark(#1f9a5a, #35d07f), sites: 1",
+   "correction": "Mint the pair, not the singleton: --live-dot: light-dark(#1f9a5a, #35d07f) for the dot and its halo (non-text, 3:1), and --live-ink: light-dark(#177a45, #35d07f) for .moveUp's text (4.90:1 on paper, and dark stays #35d07f so line 246 is a byte-identical no-op). Say explicitly in the token's comment that --live-dot must never be used as color.",
+   "severity": "breaks-light",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/timeline/timeline.module.css",
+   "line": 224,
+   "problem": "The correction itself is right -- --tier-silver is a FILL and this is an 11px badge word, so --tier-silver-ink (dark value identical to the fill, so a free no-op) is the correct role. But the mapping stops at the one line that happened to contain a hex literal and leaves the identical error on its immediate neighbours: line 216 .kind_award { color: var(--tier-platinum) } is #EFEDE6 at 1.07:1 on paper, and line 217 .kind_milestone { color: var(--tier-diamond) } is #31A1C0 at 2.74:1 -- both fill tokens used as 11px text. The same gap exists in app/music/[song]/song.module.css, where the mapping flags color: var(--tier-diamond) (line 273) and var(--tier-gold) (line 275) because those rules carry a background literal, but skips line 274 .platinum { color: var(--tier-platinum) } (1.07:1) and line 276 .silver { color: var(--tier-silver) } (2.99:1), which do not.",
+   "claimed": "var(--tier-silver-ink) for timeline:224; rule-3 flags raised only on song.module.css:273 and :275",
+   "correction": "Carry the whole tier family in one pass: timeline.module.css:216 -> var(--tier-platinum-ink), :217 -> var(--tier-diamond-ink); song.module.css:274 -> var(--tier-platinum-ink), :276 -> var(--tier-silver-ink). Every one of these is a byte-identical no-op in dark (globals.css:162-165 sets each ink to its own fill in dark) and every one is unreadable on paper if left. Fixing only the lines that contained a literal leaves the light theme half-migrated.",
+   "severity": "unreadable",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/components/DaiDaiConquest.module.css",
+   "line": 47,
+   "problem": "The role description is wrong, and it is wrong in a way that changes whether the new token is justified. The note calls this 'the deliberately faint no peak recorded state (the .cellOn/.cellOne overrides brighten it)'. Read the component: DaiDaiConquest.tsx line 100 sets className={`${styles.cell} ${c.peak === 1 ? styles.cellOne : styles.cellOn}`} -- EVERY cell gets one of the two, unconditionally, and both override .peak's colour (lines 51-52: var(--text-muted) and var(--gold-bright)). There is no 'no peak recorded' state; line 47 never paints. It is dead code. That makes --text-dim-warm a one-site token (dai-dai.module.css:189), not two, and the note's fallback advice ('if it must be perceivable raise the alpha') is moot. For completeness the arithmetic is also optimistic: #6f685f at 50% over the light .cell ground is 2.07:1, not the ~2.2:1 quoted.",
+   "claimed": "color-mix(in srgb, var(--text-dim-warm) 50%, transparent); --text-dim-warm sites: 2",
+   "correction": "Record this site as dead code and recommend deleting the color declaration on line 47 (a no-op in both themes), the same call the mapping makes correctly for cars.module.css:66-67. Restate --text-dim-warm as a 1-site token justified by dai-dai.module.css:189 alone -- which is still a legitimate new token, since #8a8279 is byte-identical to neither --dim nor --text-muted.",
+   "severity": "cosmetic",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/page.module.css",
+   "line": 639,
+   "problem": "The CRITICAL flag on this line is correct as far as it goes -- the gradient's 40% stop is var(--gold) and a gradient stop must be --gold-fill -- but it names only one of the panel's two gold fills. Line 634, five lines up in the same rule, is background-color: var(--gold): the panel's opaque base layer sitting under all four background-image layers. It resolves to --gold-ink #8a5a00 in light, so the base under the radial washes goes brown even after the gradient stop is fixed, and it shows wherever the gradient is transparent. The mapping's other rule-3 flags in this family (BackToTop:40-41, charts:184-185) correctly name background-color AND the gradient stop together; this one drops the background-color.",
+   "claimed": "'the 40% stop is var(--gold) ... that stop must become --gold-fill' -- background-color: var(--gold) on line 634 not mentioned",
+   "correction": "Extend the flag to both: page.module.css:634 background-color: var(--gold) -> var(--gold-fill), and the linear-gradient's 40% stop on line 639 -> var(--gold-fill). Both are byte-identical no-ops in dark (--gold-fill is #ffb627 flat). Keep the existing flags on .closer's color: var(--bg) (line 633) and .closerLink's border/color: var(--bg) (line 715), which are correct.",
+   "severity": "breaks-light",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/components/mobileTabBar.module.css",
+   "line": 43,
+   "problem": "The chrome call for this line is right, but the exemption is applied to one declaration instead of the component. `.bar` (line 23) hardcodes `rgba(12,10,9,0.94)` and \u2014 unlike `.navbar`, which re-declares the whole token list under `color-scheme: dark` at globals.css:6-18 \u2014 `.bar` re-declares nothing. So the backdrop stays dark while everything inside it themes to paper values: `.tab { color: var(--text-muted) }` becomes #5f584f on the composited scrim #1a1817 = 2.53:1, `.tabOn { color: var(--gold) }` (line 44) becomes #8a5a00 = 2.99:1 at 11-12px, and `border-top: 1px solid var(--line)` becomes rgba(23,20,15,.12) \u2014 a near-black hairline on a near-black bar. Rule 4 says the tab bar stays dark; nothing made its contents stay dark with it. The same shape repeats on ~20 `.actionBar`/back-bar siblings that hardcode the same scrim literal.",
+   "claimed": "role \"chrome\", replacement rgba(255, 182, 39, 0.08) unchanged, note \"the bottom tab bar's backdrop is rgba(12,10,9,0.94) (= --scrim) and stays dark in both themes per design 4.3, so this press wash keeps its dark literal\"",
+   "correction": "Keep the literal, but make the exemption structural, not per-declaration: `.bar` must join the `.navbar` dark-island selector in globals.css (its own `color-scheme: dark` plus the token re-declaration), or every gold/text/line token inside it has to be pinned to a dark literal too. As written, dark is a no-op and light ships a dark bar with 2.5:1 labels.",
+   "severity": "unreadable",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/components/mobileCerts.module.css",
+   "line": 428,
+   "problem": "This glow is on `.actionPrimary` (line 407), which lives inside `.actionBar` (line 391) whose background is a hardcoded `rgba(12,10,9,0.94)` \u2014 the same scrim the mapping itself declares stays dark in both themes. The glow's role here is lift against a dark bar, not decoration on paper, so `--gold-glow-base: transparent` deletes the only separation between the gold pill and the bar on a surface that never becomes paper. Ten more of the fourteen glow decisions are the identical pattern: mobileTours:282 (bar at 252), mobileStatCards:204 (180), mobileApi:228 (197), mobileAnalysis:242 (211), mobileRevenue:266 (235), mobileOfficialCharts:386 (356), mobileMethodology:225 (194), mobileTourMap:187 (157), mobileDeepPage:327 (296), music/[song]/song.module.css:472 (452). Only certifications:276, GlobeTeaser:67 and StatCardMaker:148 actually sit on a themed page ground.",
+   "claimed": "color-mix(in srgb, var(--gold-glow-base) 24%, transparent), with --gold-glow-base light: transparent because \"glows do not exist on paper\"",
+   "correction": "Split the fourteen. The eleven action-bar glows are chrome \u2014 keep the literal, same call made for mobileTabBar:43, and tie them to whatever the dark-island decision turns out to be. Only certifications:276, GlobeTeaser:67 and StatCardMaker:148 belong on --gold-glow-base.",
+   "severity": "breaks-light",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/components/mobileCerts.module.css",
+   "line": 417,
+   "problem": "Rule 2 says a background-color and a gradient stop are FILLS, so they take --gold-fill. Twenty-three rules across the site paint the site's one gold button as `background-color: var(--gold)` + `linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%)`, and --gold is the legacy alias that globals.css:47 resolves to --gold-ink \u2014 #8a5a00 on paper. So on light the ramp reads #ffd24a -> #8a5a00 -> #c98a2e: bright yellow, then a dark-brown band across the middle, then mid-brown. The label over that midpoint (#000 here, var(--bg) at certifications:274 and mobileStatCards:197, #0a0a0b at StatCardMaker:141, --ink-on-gold as proposed) measures 3.19:1 against #8a5a00 at 11px \u2014 below AA. Fourteen of this family's own decisions are box-shadows on these exact rules, and three of its HUMAN notes discuss the label colour while never looking at the fill under it.",
+   "claimed": "Not mapped (it is already a var, so it fell outside the 163). The notes at certifications:276, mobileStatCards:204 and song:472 treat the label as the only rule-3 trap in these rules.",
+   "correction": "The middle stop and the background-color are fills: --gold-fill (#ffb627, unchanged both modes). Then --ink-on-gold over it is 10.8:1. Fix all 23 ramp sites together (globals.css:455, page:251, song:465, charts:185, certifications:273/783, StatCardMaker:75/140, mobileStatCards:196, mobileCerts:241/417, mobileTours:162/271, mobileApi:217, mobileAnalysis:231, mobileRevenue:255, mobileOfficialCharts:375, mobileMethodology:214, mobileNavSheet:211, mobileMusic:188, mobileDeepPage:316, mobileTourMap:176, mobileAfricasBiggest:218).",
+   "severity": "unreadable",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/components/mobileDeepPage.module.css",
+   "line": 223,
+   "problem": "Role is declared \"fill\" and then given the wash base, unlabelled as a rule-2 deviation. #b07000 at 30% over the card's var(--bg-soft) (#ffffff on paper) composites to rgb(231,212,178) = 1.45:1 against the card. This bar IS the data encoding for every row of the list, so WCAG 1.4.11 wants 3:1. The lead bar at line 226 (55%) lands at 2.05:1 and at least reads; the plain bar does not. --gold-fill would be worse (#ffb627 at 30% = ~1.15:1), so the wash base is the better of two failures, not a fix.",
+   "claimed": "role \"fill\", color-mix(in srgb, var(--gold-wash-base) 30%, transparent), \"the wash base gives the same value in dark and a readable tan on paper\"",
+   "correction": "A data bar cannot be an alpha over paper. Give the light value an opaque fill (a solid in the --gold-fill/--gold-wash-base family at full alpha, scaled by the bar's width rather than its opacity) or put a --bg-soft-2 track behind it so the bar has an edge. Dark keeps rgba(255,182,39,.30) either way. Same correction for line 226.",
+   "severity": "breaks-light",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/records/tours/map/map.module.css",
+   "line": 216,
+   "problem": "The mapping flags the --gold-bright hover inversion but not the base separation, which is the map's whole point. `.on` at wash-base 42% composites to rgb(227,207,171); `.off` is var(--bg-soft-2) = #efeae1 on paper. Contrast between performed and not-performed countries: 1.27:1. The one thing this page encodes \u2014 where he has played \u2014 stops being visible. #ffb627 at 42% would be worse (~1.1:1), so again the wash base is the less-bad option rather than a working one. `.dot` at line 229 (75%) fares better but its `stroke: var(--gold-bright)` (line 230) does not theme.",
+   "claimed": "role \"data\", color-mix(in srgb, var(--gold-wash-base) 42%, transparent), note raises only the hover/.activePath --gold-bright inversion",
+   "correction": "Treat `.on` as a data fill needing 3:1 against `.off`: an opaque light value (roughly #d9a24a-to-#b07000 territory, tuned against #efeae1) rather than an alpha, with the hover a further darkening of the same hue instead of --gold-bright. Legend swatches at lines 82/91 must take the identical value, and their borders (line 83 var(--gold), line 92 var(--gold-bright)) need to match the paths' stroke, which is a near-black rgba(12,10,9,0.9).",
+   "severity": "breaks-light",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/records/africas-biggest/africas-biggest.module.css",
+   "line": 82,
+   "problem": "Two problems in one decision. (a) The note's justification is built on the ramp bug: it argues the unlit bars must follow `.barFillNow` (line 83) \"because var(--gold) resolves to --gold-ink in light\" \u2014 but that gradient is a FILL, so under rule 2 its stops should be --gold-fill and --grad-b, and var(--gold) resolving to ink there is the defect, not the reference point. (b) The chosen value composites to ~1.4:1 against the panel, so the unlit bars \u2014 the shape the newest month is being read against \u2014 disappear on paper while the lit one stays strong.",
+   "claimed": "role \"fill\", color-mix(in srgb, var(--gold-wash-base) 28%, transparent), \"its lit sibling .barFillNow is linear-gradient(var(--gold), var(--grad-b)), and var(--gold) resolves to --gold-ink in light \u2014 so the unlit bars must be the same brown-gold family\"",
+   "correction": "Fix line 83 first (--gold-fill for the stop), then set line 82 to an opaque light value that clears 3:1 against the panel. Keep dark at rgba(255,182,39,.28).",
+   "severity": "breaks-light",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/page.module.css",
+   "line": 71,
+   "problem": "`featuredPulse` is dead CSS. The only occurrence of the name anywhere under app/ is the `@keyframes featuredPulse` block itself at line 70 \u2014 no `animation:` property references it, and the `@media (prefers-reduced-motion: reduce)` guard on line 74 is an empty block, which is the tell that the rule that used it was removed. The HUMAN escalation asks Paul to adjudicate \"the only 'featured' affordance on the item\" for a ring that never renders in either theme.",
+   "claimed": "role \"shadow\", color-mix(in srgb, var(--gold-wash-base) 50%, transparent), flagged HUMAN: \"it is the only 'featured' affordance on the item... Confirm.\"",
+   "correction": "Drop all three decisions (lines 71, 72, 73) from the mapping and spend the human review elsewhere; the keyframe should be deleted separately.",
+   "severity": "cosmetic",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/globals.css",
+   "line": 72,
+   "problem": "Two of the three \"NEW TOKENS PROPOSED\" already exist with exactly the proposed values. --gold-wash-base is declared at line 72 as light-dark(#b07000, #ffb627); --gold-wash at line 73 as light-dark(rgba(176,112,0,0.10), rgba(255,182,39,0.10)). The proposal's rationale (\"The table names it but globals.css does not declare it yet\") is false for both. Only --gold-glow-base is genuinely new. This matters because a reviewer reading the new-token block would expect three declarations to land and might re-add the two that exist, shadowing or duplicating them.",
+   "claimed": "--gold-wash-base: \"The table names it but globals.css does not declare it yet\"; --gold-wash listed as a new token at 7 sites",
+   "correction": "Reduce the new-token list to --gold-glow-base alone, and note that the 109 wash-base sites and 7 wash sites resolve against declarations already in the file.",
+   "severity": "cosmetic",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/afrobeats/[artist]/artist.module.css",
+   "line": 434,
+   "problem": "The reason given for reaching past color-mix to relative-colour syntax is wrong. CSS interpolates gradients and shadows with premultiplied alpha precisely so a zero-alpha stop's hue cannot bleed into the mid-tones \u2014 `transparent`, `rgba(255,182,39,0)` and `color-mix(..., 0%, transparent)` all produce identical results in a gradient. So `rgb(from var(--gold-wash-base) r g b / 0)` buys nothing, and it narrows browser support (relative colour syntax landed later than color-mix) and introduces a `light-dark()` origin colour, which is the least-tested corner of that syntax. Same at page.module.css:72 and :73.",
+   "claimed": "rgb(from var(--gold-wash-base) r g b / 0), \"color-mix at 0% collapses to rgba(0,0,0,0) and would shift the gradient's mid-tones\"",
+   "correction": "Use `transparent`. Dark stays byte-identical and there is no interpolation difference to preserve.",
+   "severity": "cosmetic",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/components/mobileTours.module.css",
+   "line": 282,
+   "problem": "Beyond the glow (see the mobileCerts:428 finding), `.actionPrimary` here sets `color: #000` on line 272 and then `color: #0a0a0b` again on line 276 \u2014 a duplicated, conflicting declaration in one rule. Across the four buttons this family's HUMAN notes touch there are four different inks for the same component: #000 (here and mobileCerts:418), var(--bg) (certifications:274, mobileStatCards:197), #0a0a0b (StatCardMaker:141, and the second declaration here). Only the var(--bg) pair is flagged as the rule-3 trap; the hardcoded ones survive light mode by accident rather than by rule.",
+   "claimed": "color-mix(in srgb, var(--gold-glow-base) 25%, transparent); rule-3 notes raised only where the label is var(--bg)",
+   "correction": "Normalise every label on the gold ramp to --ink-on-gold in one pass (and delete the duplicate `color` on line 276), rather than fixing only the two that happen to use var(--bg).",
+   "severity": "cosmetic",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/afrobeats/afrobeats.module.css",
+   "line": 346,
+   "problem": "I agree with the deviation \u2014 flagging what it costs, not asking to reverse it. `.railAnchor:hover` (line 349) sets `border-color: var(--gold)`, so on paper hover darkens the same hue that the 42% rest state already uses; --gold-fill would make hover a hue jump from yellow to brown. But the resulting rest border composites to ~rgb(201,179,138), about 1.5:1 against the page \u2014 under WCAG 1.4.11's 3:1 for a control boundary. The pill it marks is the reader's way of finding Burna Boy in the rails, and it is what distinguishes him from the neighbouring `.pillLive` at rgba(62,209,127,0.32). Same at mobileAfrobeatsHub:335.",
+   "claimed": "color-mix(in srgb, var(--gold-ink) 42%, transparent), flagged HUMAN with \"Confirm the ink base\"",
+   "correction": "Confirm the ink base \u2014 it is right \u2014 but raise the light alpha (roughly 70% of --gold-ink clears 3:1) rather than carrying 42% across. Dark must stay rgba(255,182,39,.42), so this needs a light-dark() pair or a light-only override, not a single color-mix.",
+   "severity": "cosmetic",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/certifications/certifications.module.css",
+   "line": 202,
+   "problem": "The wash call is right (the chip's own color and border-color on lines 203-204 are var(--gold)), but the result has no headroom. #b07000 at 16% over --bg composites to rgb(235,223,200); the chip's label at --gold-ink #8a5a00 measures 4.50:1 \u2014 exactly the AA threshold, with zero margin, on an 11-13px mono label. Any later darkening of the wash or lightening of the ink drops it below. The same 16% wash + var(--gold) label pattern repeats at awards:120, charts:135, mobileAwards:156, mobileRevenue:151, mobileStatCards:117, mobileOfficialCharts:167, mobileDeepPage:152, mobileAfricasBiggest:156 and certifications:603/267.",
+   "claimed": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent), \".fChipOn pairs this with color: var(--gold) \u2014 wash keeps chip text readable once --gold resolves to --gold-ink\"",
+   "correction": "Record the 4.50:1 measurement in the mapping so it is treated as a tested floor, and pin these eleven 16% sites to one shared expression, so a future alpha tweak cannot silently push a selected chip under AA.",
+   "severity": "cosmetic",
+   "lens": "role-fit"
+  },
+  {
+   "file": "app/records/cars/cars.module.css",
+   "line": 66,
+   "problem": "The record sets darkIdentical:false and the note says \"delete\", but the `replacement` field still reads `var(--red-ink)`. A patch tool consumes `replacement`, not the note. --red-ink dark is #e0796d (globals.css:175); the literal is #ff9c8a. Applying the field as written shifts dark by 31/-3/19 units of R/G/B. The rule IS dead (three same-specificity `.tagSold` blocks at 66, 206 and 325; 325 wins, repainting color and, via the `border` shorthand, border-color), so nothing renders today \u2014 but the mapping must not carry a dark-breaking value in the field that gets applied.",
+   "claimed": "var(--red-ink)",
+   "correction": "Set replacement to a deletion of lines 66-67, not a token. If the rule is kept for any reason, no existing token is byte-identical to #ff9c8a and a new one must be minted rather than rounded onto --red-ink.",
+   "severity": "breaks-dark",
+   "lens": "dark-identity"
+  },
+  {
+   "file": "app/records/cars/cars.module.css",
+   "line": 67,
+   "problem": "Same defect as line 66. `replacement` is `color-mix(in srgb, var(--red-ink) 45%, transparent)`, which in dark computes rgba(224,121,109,0.45) against a literal of rgba(255,120,90,0.45) \u2014 a 31/1/19 drift. Flagged darkIdentical:false but still shipped as an applicable expression.",
+   "claimed": "color-mix(in srgb, var(--red-ink) 45%, transparent)",
+   "correction": "Replace the field with a deletion of lines 66-67 alongside line 66's `color`.",
+   "severity": "breaks-dark",
+   "lens": "dark-identity"
+  },
+  {
+   "file": "app/music/[song]/song.module.css",
+   "line": 274,
+   "problem": "The rule-3 flags on lines 273 and 275 correctly say `color: var(--tier-diamond)` and `color: var(--tier-gold)` are tier FILLS used as 12px text and must become the -ink variants. But the same four-line block paints `.platinum { color: var(--tier-platinum) }` (274) and `.silver { color: var(--tier-silver) }` (276) the same way. Those two carry no colour literal, so they never entered the mapping and get no flag \u2014 yet --tier-platinum is #EFEDE6 in BOTH modes (globals.css:143), which is ~1.05:1 on #f7f4ee. Fixing only the two chips that happen to have a literal leaves the platinum tier word invisible on paper.",
+   "claimed": "rule-3 flag raised for .diamond (273) and .gold (275) only",
+   "correction": "Extend the ink swap to all four tier words in the block: 274 -> var(--tier-platinum-ink), 276 -> var(--tier-silver-ink). Both are declared at globals.css:162 and 165 with dark values identical to their fills, so both are free dark no-ops.",
+   "severity": "unreadable",
+   "lens": "dark-identity"
+  },
+  {
+   "file": "app/components/BirthdayCelebration.module.css",
+   "line": 54,
+   "problem": "The decision freezes both gradient stops so the toast stays dark on paper, then defers the consequence to a \"check that\" aside. The consequence is real and is created by this decision: the same component paints .sub with var(--text-muted) (light #5f584f, globals.css:36) at line 93, .close with var(--text-muted) at line 118, and .close's border with var(--line) (light rgba(23,20,15,0.12)) at line 116. On rgba(20,16,8,0.96) those land near 2:1 with an invisible border. Freezing two stops is not enough to make a component dark.",
+   "claimed": "keep rgba(20,16,8,0.96) / rgba(9,9,11,0.96) literals; chrome stays dark",
+   "correction": "If the toast stays dark, make .banner a scheme island the way globals.css:6-18 does for .navbar \u2014 re-declare the token list under `color-scheme: dark` on the banner \u2014 rather than pinning two literals and leaving eight token references to flip underneath them.",
+   "severity": "breaks-light",
+   "lens": "dark-identity"
+  },
+  {
+   "file": "app/about/about.module.css",
+   "line": 97,
+   "problem": "The note claims \"the dot itself stays gold via --gold, which still reads on cream\". globals.css:47 declares `--gold: var(--gold-ink)` and its own comment (line 45) says the alias \"degrades to legible brass on paper\" \u2014 light #8a5a00, a brown. So the halo collapses to transparent AND the 14px dot it surrounds turns brown: the timeline marker all but disappears on paper. Line 96 is `background: var(--gold)` on a non-text mark, which under rule 2 is a FILL and needs --gold-fill \u2014 exactly the flag the mapping raised for BackToTop:40-41, charts:184-185 and page:639, and missed here. Dark is unaffected either way.",
+   "claimed": "the dot stays gold via --gold",
+   "correction": "Add the rule-2 flag: about.module.css:96, mobileAbout.module.css:157 and globals.css:918 all set `background: var(--gold)` on the .tDot and must become var(--gold-fill). Strike the \"still reads on cream\" claim.",
+   "severity": "breaks-light",
+   "lens": "dark-identity"
+  },
+  {
+   "file": "app/records/charts/charts.module.css",
+   "line": 74,
+   "problem": "--peak-rest is proposed as light-dark(#6b6b74, #9aa0a6), and #6b6b74 is byte-for-byte --silver's light value (globals.css:133). Both chips also carry a 40% border alpha. So on paper .top40 and .rest render identically \u2014 two of the four peak bands collapse into one, in the file whose own comment at line 483 insists on \"the same three bands the peak chips use\". Dark keeps them distinct (#dfe2e8 vs #9aa0a6), so the light flip silently destroys a distinction dark preserves. The rationale (\"matched to --silver's light so the band ramp stays ordered\") describes the opposite of an ordered ramp.",
+   "claimed": "--peak-rest light #6b6b74, matched to --silver's light",
+   "correction": "Give --peak-rest a light value below --silver's \u2014 --text-muted's #5f584f is the natural rung and is what every other file already uses for this band \u2014 so cyan / silver / rest stay three separable steps on paper as they are in dark.",
+   "severity": "breaks-light",
+   "lens": "dark-identity"
+  },
+  {
+   "file": "app/live-charts/liveCharts.module.css",
+   "line": 8,
+   "problem": "--live-dot is minted at a 3:1 non-text grade (light #1f9a5a) on the strength of the halo alone, but #35d07f appears three times in this file: line 7 (dot background), line 8 (this halo) and line 246 `.moveUp { font-size: 0.8rem; color: #35d07f }` \u2014 12.8px TEXT. Line 246 is outside this family, so it will be mapped by whoever owns the greens, and --live-dot is the token it will attract by name and by exact dark match. #1f9a5a on #f7f4ee is 3.3:1, short of the 4.5:1 that 12.8px text needs. Dark is a no-op throughout.",
+   "claimed": "--live-dot: light-dark(#1f9a5a, #35d07f)",
+   "correction": "Scope --live-dot to lines 7-8 explicitly in the token's `why`, and state that liveCharts:246 must take --green (light #177a45) \u2014 the text grade, matching --move-down's treatment of the falling twin on line 247.",
+   "severity": "breaks-light",
+   "lens": "dark-identity"
+  },
+  {
+   "file": "app/about/about.module.css",
+   "line": 97,
+   "problem": "--glow-base is declared with sites: 3 (about:97, mobileAbout:158, page:31). rgba(232,176,75,\u00b7) occurs four more times in app/globals.css: line 919 is a byte-identical `box-shadow: 0 0 0 4px rgba(232,176,75,0.15)` on the shared .tDot, and 329 / 965 / 1001 use the same base at 0.10 / 0.10 / 0.08. Collapsing three of seven to transparent leaves globals.css:919 painting a dark-only halo on paper next to two siblings that no longer have one \u2014 the three timeline dots on the site diverge.",
+   "claimed": "--glow-base sites: 3",
+   "correction": "Raise the count to at least 4 to include globals.css:919, and route globals.css:329/965/1001 through color-mix on the same base at their own alphas.",
+   "severity": "cosmetic",
+   "lens": "dark-identity"
+  },
+  {
+   "file": "app/live-charts/liveCharts.module.css",
+   "line": 8,
+   "problem": "Two identical constructs get opposite light treatments with no stated distinction. about:97 and liveCharts:8 are both `box-shadow: 0 0 0 4px <base at low alpha>` \u2014 zero blur, i.e. a solid ring, not ambient light. The gold one is collapsed to transparent as a \"glow\", the green one is kept because \"it is the pulse that carries the meaning\". Section 4.6's rule is about glows; a 0-blur box-shadow is a ring. Dark is a no-op under either reading, but the split is arbitrary as written.",
+   "claimed": "gold ring -> transparent on paper; identical green ring -> kept",
+   "correction": "Decide by blur radius, not by hue: page.module.css:31 (90px blur, genuinely ambient) collapses; the three 0-blur rings \u2014 about:97, mobileAbout:158, liveCharts:8 \u2014 are structural and should theme rather than vanish. State whichever rule is chosen once, and apply it to all four.",
+   "severity": "cosmetic",
+   "lens": "dark-identity"
+  },
+  {
+   "file": "app/certifications/certifications.module.css",
+   "line": 276,
+   "problem": "--gold-glow-base is referenced by 14 decisions but is declared NOWHERE in the repo (grep across app/ returns zero hits; app/globals.css lines 21-235 declare --gold, --gold-bright, --gold-fill, --gold-display, --gold-ink, --ink-on-gold, --gold-wash-base, --gold-wash, --gold-dim, --glow -- no --gold-glow-base). I verified empirically against the running dev server in Chrome 148: with the token undeclared, `box-shadow: 0 6px 18px color-mix(in srgb, var(--gold-glow-base) 24%, transparent)` computes to `box-shadow: none`. var() referencing an undeclared custom property is invalid at computed-value time, which discards the WHOLE box-shadow declaration, not just the colour. So in DARK mode all 14 gold halos disappear -- this is not a colour drift, it is the shadow ceasing to exist. Affected: certifications.module.css:276, components/GlobeTeaser.module.css:67, components/StatCardMaker.module.css:148, components/mobileAnalysis.module.css:242, components/mobileApi.module.css:228, components/mobileCerts.module.css:428, components/mobileDeepPage.module.css:327, components/mobileMethodology.module.css:225, components/mobileOfficialCharts.module.css:386, components/mobileRevenue.module.css:266, components/mobileStatCards.module.css:204, components/mobileTourMap.module.css:187, components/mobileTours.module.css:282, music/[song]/song.module.css:472.",
+   "claimed": "color-mix(in srgb, var(--gold-glow-base) 24%, transparent), darkIdentical: true",
+   "correction": "The 14 rows are dark-safe ONLY if `--gold-glow-base: light-dark(transparent, #ffb627);` lands in the SAME change. Declare it inside the existing shared `:root, .navbar { ... }` block in app/globals.css (beside --gold-wash-base at line 72), not in a new :root-only rule -- the masthead is a colour-scheme:dark island that re-declares the token list, and a :root-only declaration would leak the light `transparent` value into it. I verified that once the token exists, `color-mix(in srgb, var(--gold-glow-base) 24%, transparent)` computes to color(srgb 1 0.713726 0.152941 / 0.24) in dark = rgb(255,182,39)/0.24, byte-identical to the literal. Treat token-declaration as a hard precondition on these 14 rows, not a follow-up.",
+   "severity": "breaks-dark",
+   "lens": "dark-identity"
+  },
+  {
+   "file": "app/globals.css",
+   "line": 72,
+   "problem": "The NEW TOKENS PROPOSED block is factually wrong about two of its three entries, which is why finding #1 is dangerous rather than merely disclosed. --gold-wash-base is ALREADY declared at app/globals.css:72 as `light-dark(#b07000, #ffb627)` and --gold-wash at line 73 as `light-dark(rgba(176,112,0,0.10), rgba(255,182,39,0.10))` -- exactly the proposed values, and already in live use at globals.css:206, 207, 1555, 1558, 1596. Only --gold-glow-base is genuinely new. An implementer reading the block as a to-do list gets two no-op additions and one that is easy to skim past as 'already handled like the other two'.",
+   "claimed": "--gold-wash-base and --gold-wash listed as NEW TOKENS PROPOSED",
+   "correction": "Strike --gold-wash-base and --gold-wash from the new-token block (they exist, values match, no drift either way). Restate the block as a single required addition: --gold-glow-base. No dark drift from this item on its own -- the values are identical -- but the block must not be trusted as the migration checklist in its current form.",
+   "severity": "cosmetic",
+   "lens": "dark-identity"
+  },
+  {
+   "file": "app/afrobeats/[artist]/artist.module.css",
+   "line": 434,
+   "problem": "Three decisions (artist.module.css:434 stop 2, page.module.css:72 and :73) introduce relative-colour syntax, `rgb(from var(--gold-wash-base) r g b / 0)`, on a stated rationale that is FALSE. The note claims 'color-mix at 0% collapses to rgba(0,0,0,0) and would shift the gradient's mid-tones'. CSS gradients and CSS animations interpolate colours in PREMULTIPLIED alpha by default, so a zero-alpha endpoint's RGB channels are discarded during interpolation. I proved this in-browser: two identical gradients differing only in their zero-alpha stop (rgba(255,182,39,0) vs rgba(0,0,0,0), and again vs the `transparent` keyword) composited with mix-blend-mode:difference render pure black -- pixel-identical. So the problem the new syntax solves does not exist. Dark identity itself checks out (I measured rgb(from var(--gold-wash-base) r g b / 0) -> color(srgb 1 0.713726 0.152941 / 0) in dark, byte-identical to rgba(255,182,39,0)), but relative-colour syntax appears NOWHERE else in this repo, and it carries a narrower support floor than color-mix (Firefox 128 / Safari 16.4). On a migration whose one hard rule is 'dark must be a no-op', these three rows spend real syntax risk -- a parse failure drops the whole background/box-shadow declaration in DARK -- to buy nothing.",
+   "claimed": "rgb(from var(--gold-wash-base) r g b / 0)",
+   "correction": "Use the `transparent` keyword at all three sites. It is provably pixel-identical in both the gradient (artist.module.css:434) and the @keyframes box-shadow interpolation (page.module.css:72-73), needs no new syntax, and cannot fail to parse. If the zero-alpha hue is wanted for readability, `rgba(255,182,39,0)` may simply be left as-is -- it is already theme-neutral at alpha 0.",
+   "severity": "cosmetic",
+   "lens": "dark-identity"
+  },
+  {
+   "file": "app/components/mobileNavSheet.module.css",
+   "line": 57,
+   "problem": "The mapping pins #111113 as \"masthead/nav chrome\" under design 4.3, but the sheet is NOT chrome by the repo's own definition. Design 4.3's dark island is implemented as the `.navbar` selector in globals.css:13, which re-declares every token with color-scheme:dark. MobileNavSheet is rendered from app/layout.tsx:210 as a sibling of the nav, not inside .navbar, so every token in this file themes. Pinning the 0% stop while `var(--bg)` at 34% themes gives a sheet that fades near-black -> cream, and the whole .head block (.brand inheriting --text at #17140f, .close, .dismissHint at --text-muted #5f584f, the --line hairline at rgba(23,20,15,.12)) sits in the pinned near-black band. --text on #111113 measures 1.03:1.",
+   "claimed": "#111113 (keep the literal; chrome does not theme)",
+   "correction": "Either theme the whole gradient (e.g. color-mix(in srgb, var(--text) 6%, var(--bg-soft-2)) -> var(--bg), keeping the dark stop byte-identical via a new light-dark token) or wrap the sheet in the .navbar token island so its text stays dark-scheme too. Half-pinning one gradient stop is the one option that cannot work.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/components/mobileNavSheet.module.css",
+   "line": 212,
+   "problem": "Not in the mapping at all, and it is in a file the mapping edits. `.statCard` sets background-color: var(--gold) + the gold ramp (line 209/211) with `color: var(--bg)`. In light --gold resolves to --gold-ink #8a5a00 (globals.css:47), so the pill goes brown, and --bg becomes #f7f4ee, i.e. cream. If the fill is corrected to --gold-fill per rule 2, cream on #ffb627 is 1.60:1; if the fill is left as-is, the button is brown. Broken either way: this is exactly the rule-3 failure the mapping flags elsewhere, in a rule it read past.",
+   "claimed": "(unmapped)",
+   "correction": "line 209 + the 48% stop on 211 -> var(--gold-fill); line 212 -> var(--ink-on-gold)",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/music/[song]/song.module.css",
+   "line": 466,
+   "problem": "Same missed pair in another mapped file. `.mobilePrimary` sets background-color: var(--gold) + the gold ramp and `color: var(--bg)`. `color: var(--bg)` on a gold fill occurs at six sites repo-wide (page.module.css:633 and :716, song.module.css:466, certifications.module.css:274, mobileNavSheet.module.css:212, mobileStatCards.module.css:197). The mapping catches only the two page.module.css ones and treats them as local closer-panel quirks, so it never names the systemic pattern.",
+   "claimed": "(unmapped)",
+   "correction": "color: var(--ink-on-gold) at all six sites; background-color and the 48% ramp stop -> var(--gold-fill)",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/timeline/timeline.module.css",
+   "line": 216,
+   "problem": "The mapping correctly diagnoses the fill-as-text defect at line 224 (.kind_chart) and then stops reading. Lines 216, 217 and 225 are the same 11px badge rule block with the same defect. `.kind_award { color: var(--tier-platinum) }` is #EFEDE6 as TEXT: 1.07:1 on --bg, 1.17:1 on a white card. That is not \"low contrast\", it is an invisible badge. Line 217 `.kind_milestone { color: var(--tier-diamond) }` is 2.74:1. Line 225 `.kind_tour { color: var(--tier-gold-edge, var(--gold)) }` paints text with an EDGE token, an alpha value, which composites to 2.50:1 on paper. All three are free no-ops in dark because each *-ink dark value equals its fill.",
+   "claimed": "only line 224 corrected to var(--tier-silver-ink)",
+   "correction": "216 -> var(--tier-platinum-ink); 217 -> var(--tier-diamond-ink); 225 -> var(--tier-gold-ink). All three are byte-identical in dark, same as the 224 fix.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/music/[song]/song.module.css",
+   "line": 274,
+   "problem": "The mapping flags the tier-word-as-text problem for .diamond (273) and .gold (275) because those two rules carry a background literal that landed in its sweep. Lines 274 and 276 have no literal, so they were never opened \u2014 but `.platinum { color: var(--tier-platinum) }` is 1.17:1 on the --bg-soft card and `.silver { color: var(--tier-silver) }` is 2.99:1. Selecting rules by \"has a hex in it\" is precisely how a half-fixed chip row ships: two of four tiers legible, two invisible.",
+   "claimed": "(unmapped; only 273 and 275 flagged)",
+   "correction": "274 -> var(--tier-platinum-ink); 276 -> var(--tier-silver-ink). Both byte-identical in dark.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/components/DaiDaiConquest.module.css",
+   "line": 29,
+   "problem": "The mapping edits line 47 in this file and did not read the overrides four lines below it that it explicitly mentions. `.cellOne` is `linear-gradient(rgba(255,182,39,.3), rgba(255,182,39,.3)), var(--bg)` \u2014 a 30% gold wash over the page ground \u2014 and `.cellOne .code` / `.cellOne .peak` (lines 41, 42) set `color: var(--gold-bright)`, which is #ffd24a pinned in BOTH modes as a fill-ramp token. In dark the wash lands on near-black so the pair reads. In light the cell computes to ~#f9e1b2 and #ffd24a on it is 1.13:1 \u2014 the No.1 tier, the whole point of the grid, disappears. The same block's `.cellOn` wash (line 28) is rgba(245,240,232,.07), a near-white at 7%, which over cream is invisible: the \"charted\" tier vanishes too.",
+   "claimed": "(unmapped; mapping only says \"the .cellOn/.cellOne overrides brighten it\")",
+   "correction": "lines 41/42 -> var(--ink-on-gold) (the text sits on a gold fill); line 28's near-white wash -> color-mix(in srgb, var(--text) 7%, transparent) so the charted tier inverts with the theme",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/components/mobileApi.module.css",
+   "line": 157,
+   "problem": "The mapping's own proposal creates the break it then flags in a footnote. --code-bg light #efeae1 puts `.codeLine { color: var(--gold-bright) }` (line 162) at 1.20:1, not the ~1.6:1 the note estimates. And --gold-bright cannot simply become --gold-ink, because the well's other ink, `.codeAttr { color: #cfc7bb }` (line 163), is one of the three greys the table retires into --text-body (#4a443b light) \u2014 that pair only works on a LIGHT well, while gold-bright only works on a DARK one. The well's background and its two ink colours are one decision and the mapping splits them across three families.",
+   "claimed": "--code-bg: light-dark(#efeae1, #0f0f11)",
+   "correction": "Decide the block as a unit. Either keep the well dark in both modes (a code well is conventionally inverted) and pin .codeAttr's grey with it, or take --code-bg light and move .codeLine to var(--gold-ink) and .codeAttr to var(--text-body) in the same change.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/components/BirthdayCelebration.module.css",
+   "line": 54,
+   "problem": "The mapping pins the toast dark and then writes \"check that the toast's text does not pick up a themed --text\" without checking. It does, three times: `.sub` (line 95) and `.close` (line 110) use var(--text-muted), which becomes #5f584f = 2.50:1 on the pinned toast; `.link` (line 101) uses var(--gold), which resolves to --gold-ink #8a5a00 = 3.15:1; and `.close`'s `border: 1px solid var(--line)` becomes rgba(23,20,15,.12), a dark hairline on a near-black disc. Only `.title` (--gold-bright, pinned) survives. A pinned surface obliges you to pin every ink on it, and the mapping pinned one side of the pair.",
+   "claimed": "rgba(20,16,8,.96) / rgba(9,9,11,.96) kept as-is, text left unexamined",
+   "correction": "If the toast stays dark, scope a dark token island onto .banner the way globals.css:13 does for .navbar, so --text-muted/--line/--gold resolve dark inside it. Otherwise theme the toast surface with everything on it.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/live-charts/liveCharts.module.css",
+   "line": 8,
+   "problem": "--live-dot is minted with sites:1, but #35d07f has two other uses in this same file that the mapping never opened: line 7 `background: #35d07f` (the dot itself, NON-TEXT) and line 246 `.moveUp { color: #35d07f }` (0.8rem = 12.8px TEXT, the twin of the .moveDown the mapping does map on line 247). One token cannot serve both: --live-dot's light #1f9a5a is 3.28:1 as text and fails, while the text-safe --green (#177a45, 4.90:1) is not a dark no-op for #35d07f. The mapping mints --move-down for the falling marker while leaving the rising marker beside it with no home, so the up/down pair ends up at 3.28:1 vs 5.95:1 on paper.",
+   "claimed": "--live-dot: light-dark(#1f9a5a, #35d07f), sites: 1",
+   "correction": "Split it: --live-dot (non-text) keeps light #1f9a5a for lines 7-8; line 246 needs a text-grade token whose DARK value is #35d07f, e.g. --move-up: light-dark(#177a45, #35d07f). Correct the site count and say the two greens diverge in light.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/components/mobileCerts.module.css",
+   "line": 635,
+   "problem": "The note says the hero \"sits over a photograph, so neither value is guaranteed by the page ground alone\", but the ground is not just a photograph \u2014 it is .heroScrim (lines 126-136), whose gradients are `linear-gradient(90deg, var(--bg) 38%, rgba(10,10,11,.78) 62%, rgba(10,10,11,.35) 100%)` and `linear-gradient(180deg, rgba(10,10,11,.55) 0%, ..., var(--bg) 100%)`. Half of each ramp themes to cream and half is a pinned near-black literal, so in light the hero is a cream-to-black-to-cream smear, and the proposed dark magenta #a3157f (and the 11px .kicker in particular) lands on the pinned dark region. The brand-ink decision cannot be certified until the scrim's pinned stops are resolved in the same pass.",
+   "claimed": "var(--brand-accent-ink), light #a3157f at 6.44:1 on #f7f4ee",
+   "correction": "Value is right; the dependency is missing. Flag .heroScrim's rgba(10,10,11,*) stops as a blocker for this decision \u2014 they must theme with var(--bg) or the whole hero must be pinned dark.",
+   "severity": "unreadable",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/components/RankedBars.module.css",
+   "line": 83,
+   "problem": "The stated rationale \u2014 \"keeping it clearly recessive to the gold bars above it\" \u2014 is checked against a gold bar that will not exist. `.fill` (line 67) is `background: var(--gold)`, a FILL on the legacy alias, which globals.css:47 resolves to --gold-ink #8a5a00 on paper: a rule-2 violation sitting eight lines above the mapped line and unmentioned. Separately, the proposed light #8d877d measures 2.97:1 against the --bg-soft-2 track (line 57), below the 3:1 a non-text data mark needs \u2014 the mapping states the number and then calls it fine.",
+   "claimed": "--bar-muted: light-dark(#8d877d, #4a4a52)",
+   "correction": "Flag line 67 and line 78 (.row:first-child .fill uses --gold-bright, a fill token, which is fine) \u2014 line 67 needs var(--gold-fill). Darken --bar-muted's light value to clear 3:1 on #efeae1 (roughly #868076 or below).",
+   "severity": "breaks-light",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/page.module.css",
+   "line": 639,
+   "problem": "The note correctly flags the 40% `var(--gold)` stop on this line, but line 634 \u2014 `background-color: var(--gold)` \u2014 is the panel's base fill under the gradient and has the same defect. It matters because the gradient is a background-image: any browser that fails to paint it, and every transparent region of it, falls through to the base colour, which on paper would be #8a5a00 brown under the cream text the same block sets on line 633.",
+   "claimed": "note flags only the gradient stop on line 639",
+   "correction": "line 634 background-color: var(--gold) -> var(--gold-fill), alongside the 40% stop",
+   "severity": "breaks-light",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/records/charts/charts.module.css",
+   "line": 73,
+   "problem": "Preserving each file's own alpha is right for dark, but it is not checked against the light ground. A band edge that was a LIGHT colour at 40-45% on a dark card becomes a DARK colour at the same alpha on a white card: --silver at 45% over --bg-soft #ffffff composites to 1.89:1, and at 40% here it is weaker still. The Top-40 chip keeps its label (4.81:1) but loses the edge that distinguishes it from .rest. Same alphas at artist.module.css:361/379 and song.module.css:170/252.",
+   "claimed": "color-mix(in srgb, var(--silver) 40%, transparent), exact alpha preserved",
+   "correction": "Keep the exact alpha for the dark no-op but state that the light edge falls under 3:1, and either raise the light-mode alpha via a light-dark alpha token or accept that the band edges are decorative on paper \u2014 do not leave it unstated.",
+   "severity": "cosmetic",
+   "lens": "pairing"
+  },
+  {
+   "file": "app/page.module.css",
+   "line": 31,
+   "problem": "--glow-base is proposed as one token for three sites with two different roles. page.module.css:31 is `text-shadow: 0 0 90px ...` \u2014 a genuine ambient bloom, correctly collapsed to nothing on paper. about.module.css:97 and mobileAbout.module.css:158 are `box-shadow: 0 0 0 4px/3px ...` \u2014 zero blur, pure spread: a solid concentric RING around the timeline dot, i.e. geometry, not light. Collapsing the ring to transparent deletes a shape, and section 4.6's \"glows do not exist on paper\" does not cover it. One token forces the same answer on both.",
+   "claimed": "--glow-base: light-dark(transparent, #e8b04b) for all three sites",
+   "correction": "Keep --glow-base (transparent in light) for the 90px bloom only. Give the two 0-blur rings their own token that keeps a visible light value, e.g. light-dark(rgba(176,112,0,.15), rgba(232,176,75,.15)) via color-mix on a light-dark base, so the dot keeps its ring on paper.",
+   "severity": "cosmetic",
+   "lens": "pairing"
   }
  ],
  "newTokens": [

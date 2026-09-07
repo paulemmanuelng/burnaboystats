@@ -22,7 +22,7 @@
   width: 100%;
   border: 0;
   padding: 0;
-  background: rgba(10, 10, 11, 0.72);
+  background: color-mix(in srgb, var(--scrim-cool) 72%, transparent);
   backdrop-filter: blur(1.5px);
   display: flex;
   align-items: flex-end;
@@ -142,7 +142,7 @@
   color: var(--text);
 }
 .rowActive {
-  background: rgba(255, 182, 39, 0.07);
+  background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent);
   color: var(--gold);
 }
 
@@ -206,9 +206,9 @@
   min-height: 44px;
   padding: 0 16px;
   border-radius: 999px;
-  background-color: var(--gold);
+  background-color: var(--gold-fill);
   /* The gold ramp — the site's one treatment for a gold fill. */
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
   color: var(--bg);
   font-family: var(--font-mono), monospace;
   font-weight: 700;

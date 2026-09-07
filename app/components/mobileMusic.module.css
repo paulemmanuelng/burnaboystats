@@ -18,7 +18,7 @@
   position: sticky;
   top: 0;
   z-index: 5;
-  background: rgba(10, 10, 11, 0.95);
+  background: color-mix(in srgb, var(--scrim-cool) 95%, transparent);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   padding: 12px 18px;
@@ -84,7 +84,7 @@
   margin-top: 10px;
 }
 .gold {
-  background: linear-gradient(120deg, var(--gold-bright), var(--gold) 55%, var(--grad-b));
+  background: linear-gradient(120deg, var(--gold-bright), var(--gold-fill) 55%, var(--grad-b));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -98,7 +98,7 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
-.lede { font-size: 14.5px; line-height: 1.5; color: #d8d8de; margin: 12px 0 0; }
+.lede { font-size: 14.5px; line-height: 1.5; color: var(--text-body-cool); margin: 12px 0 0; }
 
 /* Hairline seams: 1px gaps over a divider-coloured bed. */
 .countGrid {
@@ -173,7 +173,7 @@
   color: var(--text-muted);
   margin-top: 6px;
 }
-.latestText { font-size: 13px; line-height: 1.45; color: #d8d8de; margin-top: 8px; }
+.latestText { font-size: 13px; line-height: 1.45; color: var(--text-body-cool); margin-top: 8px; }
 .latestCta {
   display: flex;
   align-items: center;
@@ -184,8 +184,8 @@
   border-radius: 999px;
   /* Same gold ramp as .btnPrimary and the home screen's own .primary — every
      gold action on the site runs one gradient, or the phone shows two golds. */
-  background-color: var(--gold);
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
   color: #000;
   -webkit-text-fill-color: #000;
   /* Promotes the layer at rest — see .btnPrimary for the iPhone reason. */

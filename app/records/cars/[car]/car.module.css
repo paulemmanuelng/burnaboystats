@@ -94,7 +94,7 @@
   gap: 3px;
   padding: 12px 16px;
   border: 1px solid var(--border);
-  background: rgba(12, 10, 9, 0.72);
+  background: color-mix(in srgb, var(--veil-base) 72%, transparent);
 }
 .valueUsd {
   font-family: var(--font-anton), sans-serif;
@@ -178,7 +178,7 @@
 .performance { grid-area: performance; padding-bottom: 8px; align-self: end; }
 .card {
   border: 1px solid var(--border);
-  background: rgba(21, 18, 16, 0.86);
+  background: var(--card-glass);
   backdrop-filter: blur(6px);
 }
 .cardHead {
@@ -204,7 +204,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 3px 8px;
-  border: 1px solid rgba(255, 182, 39, 0.45);
+  border: 1px solid color-mix(in srgb, var(--gold-ink) 45%, transparent);
   color: var(--gold);
   white-space: nowrap;
 }
@@ -269,7 +269,7 @@
   font-size: 10.5px;
 }
 .barKey { letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
-.barTrack { height: 6px; background: rgba(245, 240, 232, 0.08); overflow: hidden; display: block; }
+.barTrack { height: 6px; background: color-mix(in srgb, var(--ink-wash-base) 8%, transparent); overflow: hidden; display: block; }
 /* The site's gold ramp, laid along the bar. */
 .barFill { display: block; height: 6px; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); }
 .barVal { text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
@@ -297,7 +297,7 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(245, 240, 232, 0.22);
+  border: 1px solid color-mix(in srgb, var(--ink-wash-base) 22%, transparent);
   box-shadow: inset 0 0 0 3px var(--bg);
   display: block;
 }
@@ -324,7 +324,7 @@
 .provText {
   font-size: 15px;
   line-height: 1.7;
-  color: #cfc7bb;
+  color: var(--text-body);
   margin: 10px 0 0;
   max-width: 78ch;
   text-wrap: pretty;
@@ -349,11 +349,11 @@
   gap: 16px;
   padding: 18px 20px;
   border: 1px solid var(--gold);
-  background: rgba(255, 182, 39, 0.06);
+  background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent);
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-a.source:hover { background: rgba(255, 182, 39, 0.14); }
+a.source:hover { background: color-mix(in srgb, var(--gold-wash-base) 14%, transparent); }
 .sourceNone { border-color: var(--border); background: transparent; }
 .sourceText { display: flex; flex-direction: column; gap: 5px; }
 .sourceKicker {
@@ -524,7 +524,7 @@ a.source:hover { background: rgba(255, 182, 39, 0.14); }
     padding-top: calc(12px + env(safe-area-inset-top, 0px));
     padding-left: calc(18px + env(safe-area-inset-left, 0px));
     padding-right: calc(18px + env(safe-area-inset-right, 0px));
-    background: rgba(12, 10, 9, 0.94);
+    background: var(--scrim);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
   }

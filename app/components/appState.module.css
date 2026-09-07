@@ -20,7 +20,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(110% 70% at 50% -10%, rgba(192, 57, 43, 0.1), transparent 55%);
+  background: radial-gradient(110% 70% at 50% -10%, color-mix(in srgb, var(--red) 10%, transparent), transparent 55%);
 }
 
 .glyph {
@@ -32,18 +32,18 @@
 }
 /* The 402px stand-in for `.icon` — hidden until the mobile block turns it on. */
 .glyphMobileOnly { display: none; }
-.glyphError { color: #e06a5c; }
+.glyphError { color: var(--error-ink); }
 .icon {
   position: relative;
   width: 56px;
   height: 56px;
   border-radius: 999px;
-  border: 2px solid rgba(192, 57, 43, 0.5);
-  background: rgba(192, 57, 43, 0.12);
+  border: 2px solid color-mix(in srgb, var(--red) 50%, transparent);
+  background: color-mix(in srgb, var(--red) 12%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #e06a5c;
+  color: var(--error-ink);
 }
 .iconMuted {
   width: 46px;

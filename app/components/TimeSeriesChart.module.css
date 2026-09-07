@@ -24,7 +24,7 @@
 }
 
 .area {
-  fill: rgba(255, 182, 39, 0.1);
+  fill: var(--gold-wash);
   stroke: none;
 }
 .line {

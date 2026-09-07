@@ -42,7 +42,7 @@
 .lede {
   font-size: 18px;
   line-height: 1.55;
-  color: #cfc7bb;
+  color: var(--text-body);
   max-width: 66ch;
   margin: 20px 0 0;
   text-wrap: pretty;
@@ -74,8 +74,8 @@
   transition: background var(--dur-fast) var(--ease);
 }
 /* The four the page is built around get a wash and larger type. */
-.statBig { background: linear-gradient(rgba(255, 182, 39, 0.05), rgba(255, 182, 39, 0.05)), var(--bg); }
-.stat:hover { background: linear-gradient(rgba(255, 182, 39, 0.09), rgba(255, 182, 39, 0.09)), var(--bg); color: var(--text); }
+.statBig { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 5%, transparent), color-mix(in srgb, var(--gold-wash-base) 5%, transparent)), var(--bg); }
+.stat:hover { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) 9%, transparent), color-mix(in srgb, var(--gold-wash-base) 9%, transparent)), var(--bg); color: var(--text); }
 .numRow { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .num {
   font-family: var(--font-anton), sans-serif;

@@ -37,7 +37,7 @@
   line-height: 1.55;
   max-width: 60ch;
   margin: 18px 0 0;
-  color: #d8d8de;
+  color: var(--text-body-cool);
   text-wrap: pretty;
 }
 
@@ -52,7 +52,7 @@
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-.countCell:hover { background: rgba(255, 182, 39, 0.07); color: var(--text); }
+.countCell:hover { background: color-mix(in srgb, var(--gold-wash-base) 7%, transparent); color: var(--text); }
 /* White, not gold: these are three slices of one total, none of them a record. */
 .countValue {
   font-family: var(--font-anton), sans-serif;
@@ -103,7 +103,7 @@
   align-items: start;
   transition: background var(--dur-fast) var(--ease);
 }
-.row:hover { background: rgba(245, 240, 232, 0.05); }
+.row:hover { background: color-mix(in srgb, var(--ink-wash-base) 5%, transparent); }
 .year {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -123,7 +123,7 @@
   text-transform: none;
 }
 .place { color: var(--text-muted); font-weight: 400; }
-.note { margin: 5px 0 0; color: #d3d3da; font-size: 14.5px; line-height: 1.6; max-width: 96ch; }
+.note { margin: 5px 0 0; color: var(--text-body-cool-quiet); font-size: 14.5px; line-height: 1.6; max-width: 96ch; }
 
 /* ── Source band ────────────────────────────────────────────────────────── */
 .sourcePad { padding: 30px 40px 34px; }

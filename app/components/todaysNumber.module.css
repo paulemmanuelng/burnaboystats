@@ -15,7 +15,7 @@
      running the identical pair, which turned the whole top of the page into one
      warm field. Now the numeral is the only bright thing in it. */
   background-color: var(--bg-soft);
-  background-image: radial-gradient(110% 85% at 0% 0%, rgba(255, 182, 39, 0.14), transparent 58%);
+  background-image: radial-gradient(110% 85% at 0% 0%, color-mix(in srgb, var(--gold-wash-base) 14%, transparent), transparent 58%);
   /* No border. Job 3 asks for "border 1px var(--line)", but that rule is written
      for the mobile card, which floats. Here the panel is a full-bleed cell of
      the hero grid — it is already enclosed by the column's border-left, the
@@ -52,14 +52,14 @@
   right: -8%;
   width: 150px;
   height: 150px;
-  border: 1px solid rgba(90, 42, 6, 0.14);
+  border: 1px solid color-mix(in srgb, var(--burnt) 14%, transparent);
 }
 .ring2 {
   bottom: -9%;
   left: 60%;
   width: 120px;
   height: 120px;
-  background: rgba(90, 42, 6, 0.05);
+  background: color-mix(in srgb, var(--burnt) 5%, transparent);
 }
 
 .kicker {
@@ -94,7 +94,7 @@
   line-height: 0.82;
   letter-spacing: 0.01em;
   font-variant-numeric: tabular-nums;
-  background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 50%, var(--grad-b) 100%);
+  background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 50%, var(--grad-b) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -125,7 +125,7 @@
   height: 146px;
   object-fit: cover;
   border-radius: var(--radius-md);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--shadow-base) calc(45% * var(--shadow-strength)), transparent);
   display: block;
 }
 .coverLabel {
@@ -155,7 +155,7 @@
   margin: 10px 0 0;
   opacity: 0.85;
   max-width: 46ch;
-  color: #cfc7bb;
+  color: var(--text-body);
 }
 @media (max-width: 900px) {
   .panel { padding: 24px 20px; }
@@ -180,7 +180,7 @@
   background: var(--green);
   display: block;
   flex: none;
-  box-shadow: 0 0 8px rgba(62, 209, 127, 0.7);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--green-dot) 70%, transparent);
 }
 .statusText { color: var(--text-muted); }
 /* Same 24px target minimum — the status row has the room. */

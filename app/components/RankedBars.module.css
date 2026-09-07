@@ -64,7 +64,7 @@
   height: 100%;
   border-radius: 999px;
   /* Bar grows in on load; disabled under reduced-motion below. */
-  background: var(--gold);
+  background: var(--gold-fill);
   transform-origin: left center;
   animation: grow 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
@@ -80,7 +80,7 @@
 
 /* Recessive rows (e.g. non–Burna Boy shows) so the gold marks own the chart. */
 .muted .fill {
-  background: #4a4a52;
+  background: var(--bar-muted);
   animation: none;
 }
 .muted .name,

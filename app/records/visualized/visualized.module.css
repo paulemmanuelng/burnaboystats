@@ -29,7 +29,7 @@
 .lede {
   font-size: 18px;
   line-height: 1.55;
-  color: #cfc7bb;
+  color: var(--text-body);
   max-width: 60ch;
   margin: 18px 0 0;
   text-wrap: pretty;

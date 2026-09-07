@@ -24,9 +24,9 @@
 .peak {
   background: linear-gradient(
     90deg,
-    rgba(245, 244, 240, 0.05) 25%,
-    rgba(245, 244, 240, 0.09) 37%,
-    rgba(245, 244, 240, 0.05) 63%
+    color-mix(in srgb, var(--text) 5%, transparent) 25%,
+    color-mix(in srgb, var(--text) 9%, transparent) 37%,
+    color-mix(in srgb, var(--text) 5%, transparent) 63%
   );
   background-size: 400% 100%;
   animation: shimmer 1.4s ease-in-out infinite;

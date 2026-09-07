@@ -95,7 +95,7 @@
   text-transform: uppercase; margin-top: 14px;
 }
 .lede {
-  font-size: 18px; line-height: 1.55; color: #cfc7bb;
+  font-size: 18px; line-height: 1.55; color: var(--text-body);
   max-width: 64ch; margin: 20px 0 0; text-wrap: pretty;
 }
 
@@ -139,7 +139,7 @@
   border: 1px solid var(--border); background: transparent; font-size: 13px;
 }
 .tallyNum { font-family: var(--font-anton), sans-serif; font-weight: 400; font-size: 16px; color: var(--gold); }
-.tallyMake { color: #cfc7bb; }
+.tallyMake { color: var(--text-body); }
 
 /* ── The garage ───────────────────────────────────────────────────────── */
 .listWrap { max-width: 1240px; margin: 0 auto; padding: 38px 40px 0; }
@@ -150,7 +150,7 @@
   align-items: start;
   transition: background var(--dur-fast) var(--ease);
 }
-.carRow:hover { background: rgba(245, 240, 232, 0.045); }
+.carRow:hover { background: color-mix(in srgb, var(--ink-wash-base) 4.5%, transparent); }
 .rank {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
   font-size: 26px; line-height: 0.9; color: var(--text-muted);
@@ -168,7 +168,7 @@
   text-transform: uppercase; margin-top: 8px;
 }
 .modelLead { font-size: 32px; }
-.desc { font-size: 13.5px; line-height: 1.65; color: #b8b0a5; margin: 10px 0 0; max-width: 78ch; }
+.desc { font-size: 13.5px; line-height: 1.65; color: var(--text-body-warm); margin: 10px 0 0; max-width: 78ch; }
 .carLink {
   display: inline-flex; align-items: center; min-height: 38px; margin-top: 12px;
   font-family: var(--font-mono), monospace; font-weight: 700;
@@ -203,7 +203,7 @@
   font-family: var(--font-mono), monospace; font-weight: 700;
   font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
 }
-.tagSold { border: 1px solid rgba(192, 57, 43, 0.5); background: rgba(192, 57, 43, 0.1); color: #e0796d; }
+.tagSold { border: 1px solid color-mix(in srgb, var(--red) 50%, transparent); background: color-mix(in srgb, var(--red) 10%, transparent); color: var(--red-ink); }
 .tagUnconfirmed { border: 1px solid var(--border); background: transparent; color: var(--text-muted); }
 .formerRow .make { margin-top: 11px; }
 .formerModel {
@@ -219,12 +219,12 @@
 
 /* ── A note on this list ──────────────────────────────────────────────── */
 .noteWrap { max-width: 1240px; margin: 0 auto; padding: 40px 40px 0; }
-.note { padding: 24px 28px; border: 1px solid rgba(255, 182, 39, 0.35); background: rgba(255, 182, 39, 0.05); }
+.note { padding: 24px 28px; border: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
 .noteKicker {
   font-family: var(--font-mono), monospace; font-weight: 700;
   font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted);
 }
-.noteText { font-size: 13.5px; line-height: 1.75; color: #cfc7bb; margin: 12px 0 0; max-width: 92ch; }
+.noteText { font-size: 13.5px; line-height: 1.75; color: var(--text-body); margin: 12px 0 0; max-width: 92ch; }
 .noteFine { font-size: 12.5px; line-height: 1.7; color: var(--text-muted); margin: 14px 0 0; max-width: 92ch; }
 
 .actionWrap { max-width: 1240px; margin: 0 auto; padding: 40px 40px 72px; }
@@ -273,10 +273,10 @@
 }
 .tile:hover, .tile:focus-visible { border-color: var(--gold); }
 /* The most expensive car leads — a gold-tinted border, gold rank and value. */
-.tileLead { border-color: rgba(255, 182, 39, 0.55); }
+.tileLead { border-color: color-mix(in srgb, var(--gold-ink) 55%, transparent); }
 .tileImg {
   position: relative; display: block;
-  aspect-ratio: 16 / 10; overflow: hidden; background: #0a0908;
+  aspect-ratio: 16 / 10; overflow: hidden; background: var(--photo-well);
 }
 .tilePic { display: block; width: 100%; height: 100%; object-fit: cover; }
 @media (prefers-reduced-motion: no-preference) {
@@ -287,7 +287,7 @@
   position: absolute; left: 12px; bottom: 10px;
   font-family: var(--font-mono), monospace; font-size: 10px;
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.55); background: rgba(12, 10, 9, 0.6);
+  color: rgba(245, 240, 232, 0.55); background: color-mix(in srgb, var(--veil-base) 60%, transparent);
   padding: 3px 7px;
 }
 .tileMeta {
@@ -322,7 +322,7 @@
 .formerWrap { padding-top: 52px; }
 .formerLead { color: var(--text); font-weight: 600; }
 /* Sold reads amber per the v2 design — the status is a fact, not a warning. */
-.tagSold { border: 1px solid rgba(245, 137, 11, 0.5); background: rgba(245, 137, 11, 0.1); color: #f5890b; }
+.tagSold { border: 1px solid color-mix(in srgb, var(--sold-ink) 50%, transparent); background: color-mix(in srgb, var(--sold-ink) 10%, transparent); color: var(--sold-ink); }
 
 @media (max-width: 1239px) {
   .garageWrap { padding-inline: 32px; }
@@ -348,7 +348,7 @@
   font-family: var(--font-mono), monospace; font-size: 10.5px;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
 }
-.mFormerSold { color: #f5890b; }
+.mFormerSold { color: var(--sold-ink); }
 .mFormerName {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
   font-size: 16px; line-height: 1.05; text-transform: uppercase;
@@ -359,6 +359,6 @@
 }
 .mNote {
   margin: 20px 18px 0; padding: 14px 16px;
-  border: 1px solid rgba(255, 182, 39, 0.35); background: rgba(255, 182, 39, 0.05);
+  border: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent);
 }
 .mNoteText { font-size: 12px; color: var(--text-muted); line-height: 1.55; margin: 0; }

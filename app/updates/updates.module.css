@@ -46,7 +46,7 @@
   line-height: 1.55;
   max-width: 56ch;
   margin: 18px 0 0;
-  color: #d8d8de;
+  color: var(--text-body-cool);
   text-wrap: pretty;
 }
 .lastEntry {
@@ -78,7 +78,7 @@
 }
 
 .heroAside { border-left: 1px solid var(--line); padding-left: 40px; }
-.asideText { font-size: 14px; line-height: 1.55; color: #d8d8de; margin: 12px 0 0; }
+.asideText { font-size: 14px; line-height: 1.55; color: var(--text-body-cool); margin: 12px 0 0; }
 .tally { display: flex; gap: 26px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); }
 /* White, not gold — these count the log, not his achievements. */
 .tallyValue {
@@ -167,7 +167,7 @@
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-.row:hover { background: rgba(245, 240, 232, 0.05); color: var(--text); }
+.row:hover { background: color-mix(in srgb, var(--ink-wash-base) 5%, transparent); color: var(--text); }
 .rowDate {
   font-family: var(--font-mono), monospace;
   font-size: 12.5px;

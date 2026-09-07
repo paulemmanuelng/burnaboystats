@@ -1,0 +1,5027 @@
+[
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 505,
+  "literal": "rgba(62, 209, 127, 0.14)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--green) 14%, transparent)",
+  "darkIdentical": true,
+  "note": "Opening stop of the .liveCta .chartCtaGlow radial-gradient \u2014 a corner wash behind the live panel, not text. Arbitrary alpha, so color-mix on the --green base per the brief's own rgba(62,209,127,0.4) example. Dark resolves to rgba(62,209,127,.14), byte-identical."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 516,
+  "literal": "var(--live, #3ed17f)",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--green)",
+  "darkIdentical": true,
+  "note": ".liveKicker \u2014 an 11px uppercase mono label. TEXT, so it takes --green (#177a45 on paper). --live is already an alias of --green in globals.css:184, so the fallback literal can be dropped; dark is unchanged either way."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 522,
+  "literal": "var(--live, #3ed17f)",
+  "property": "background",
+  "role": "fill",
+  "replacement": "var(--green-dot)",
+  "darkIdentical": true,
+  "note": ".liveDot \u2014 an 8px round solid fill with no text in it. NON-TEXT, so --green-dot (#1f9a5a on paper) keeps the dot bright enough to read as an indicator instead of dropping to the dark forest text green. Dark value #3ed17f is identical."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 523,
+  "literal": "rgba(62, 209, 127, 0.6)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--green-dot) 60%, transparent)",
+  "darkIdentical": true,
+  "note": "Resting ring of the .liveDot pulse. Glow attached to the dot, so it takes the dot base rather than the text base. On paper this becomes a soft #1f9a5a halo rather than disappearing \u2014 see needsHumanDecision about whether live pulses should be suppressed in light mode."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 527,
+  "literal": "rgba(62, 209, 127, 0.55)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--green-dot) 55%, transparent)",
+  "darkIdentical": true,
+  "note": "livePulse keyframe 0% \u2014 same dot ring, same base as line 523."
+ },
+ {
+  "file": "app/afrobeats/afrobeats.module.css",
+  "line": 327,
+  "literal": "var(--live, #3ed17f)",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--green)",
+  "darkIdentical": true,
+  "note": ".railLive \u2014 the live rail's inline label text (12.5px context). TEXT role, --green."
+ },
+ {
+  "file": "app/afrobeats/afrobeats.module.css",
+  "line": 332,
+  "literal": "var(--live, #3ed17f)",
+  "property": "background",
+  "role": "fill",
+  "replacement": "var(--green-dot)",
+  "darkIdentical": true,
+  "note": ".railDot \u2014 7px solid round indicator, no text inside. NON-TEXT, --green-dot."
+ },
+ {
+  "file": "app/afrobeats/afrobeats.module.css",
+  "line": 336,
+  "literal": "rgba(62, 209, 127, 0.5)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--green-dot) 50%, transparent)",
+  "darkIdentical": true,
+  "note": "railPulse 0% \u2014 ring emanating from .railDot, so it uses the dot base."
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 54,
+  "literal": "rgba(62, 209, 127, 0.4)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--green) 40%, transparent)",
+  "darkIdentical": true,
+  "note": ".badgeLive \u2014 the pill's own outline. Border role, arbitrary alpha, color-mix on --green. Text-on-fill check: the same rule sets color: var(--green) over a 10% green wash (not a solid fill), so both halves theme together and there is no green-on-green risk on paper."
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 54,
+  "literal": "rgba(62, 209, 127, 0.1)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--green) 10%, transparent)",
+  "darkIdentical": true,
+  "note": ".badgeLive's tinted background \u2014 a 10% wash, not a solid fill, so the --green text on it stays legible in both modes. Second literal on the same source line as the border above; both are patched independently."
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 102,
+  "literal": "rgba(62, 209, 127, 0.14)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--green) 14%, transparent)",
+  "darkIdentical": true,
+  "note": ".method \u2014 the GET chip behind an endpoint path. 14% wash; its color is var(--green) at 11px, which themes to the text green, so wash + ink stay in step."
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 103,
+  "literal": "rgba(62, 209, 127, 0.4)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--green) 40%, transparent)",
+  "darkIdentical": true,
+  "note": ".method's 1px outline. Border role on a chip, color-mix on --green at the exact same alpha."
+ },
+ {
+  "file": "app/components/GlobeTeaser.module.css",
+  "line": 116,
+  "literal": "rgba(62, 209, 127, 0.7)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--green-dot) 70%, transparent)",
+  "darkIdentical": true,
+  "note": "Static 8px halo on the freshness .dot (background: var(--green) directly above \u2014 that sibling is outside my index but is a NON-TEXT fill and should become --green-dot too; flagged). Glow keeps the dot base so the halo matches the disc it surrounds."
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 294,
+  "literal": "var(--live, #3ed17f)",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--green)",
+  "darkIdentical": true,
+  "note": ".liveLabel \u2014 11px uppercase mono section label. TEXT, --green."
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 304,
+  "literal": "var(--live, #3ed17f)",
+  "property": "background",
+  "role": "fill",
+  "replacement": "var(--green-dot)",
+  "darkIdentical": true,
+  "note": ".liveDot (mobile) \u2014 7px solid round indicator, no text. NON-TEXT, --green-dot."
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 305,
+  "literal": "rgba(62, 209, 127, 0.55)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--green-dot) 55%, transparent)",
+  "darkIdentical": true,
+  "note": "Static glow on the mobile live dot (no pulse on phone). Dot base."
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 333,
+  "literal": "var(--live, #3ed17f)",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--green)",
+  "darkIdentical": true,
+  "note": ".pillNumLive \u2014 an 11px mono figure inside a pill. TEXT, --green. Note it sits inside .pillLive, whose only green is a 32% border (next site), so ink and edge theme independently and correctly."
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 334,
+  "literal": "rgba(62, 209, 127, 0.32)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--green) 32%, transparent)",
+  "darkIdentical": true,
+  "note": ".pillLive \u2014 the live pill's outline, overriding var(--line). Border role, color-mix on --green at 32%."
+ },
+ {
+  "file": "app/components/mobileAwards.module.css",
+  "line": 246,
+  "literal": "rgba(62, 209, 127, 0.45)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--green) 45%, transparent)",
+  "darkIdentical": true,
+  "note": ".resultWon \u2014 the WON pill's outline. Border role. Its color is var(--green) over a 9% wash, so ink/edge/wash all theme together."
+ },
+ {
+  "file": "app/components/mobileAwards.module.css",
+  "line": 247,
+  "literal": "rgba(62, 209, 127, 0.09)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--green) 9%, transparent)",
+  "darkIdentical": true,
+  "note": ".resultWon's tint \u2014 a 9% wash, not a solid fill, so the --green label on top stays readable on paper."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 575,
+  "literal": "var(--live, #3ed17f)",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--green)",
+  "darkIdentical": true,
+  "note": ".boardLive .boardGo \u2014 a 12px arrow/label glyph rendered as text. TEXT, --green."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 580,
+  "literal": "var(--live, #3ed17f)",
+  "property": "background",
+  "role": "fill",
+  "replacement": "var(--green-dot)",
+  "darkIdentical": true,
+  "note": ".boardDot \u2014 7px solid round indicator on the live board button. NON-TEXT, --green-dot."
+ },
+ {
+  "file": "app/components/mobileHome.module.css",
+  "line": 157,
+  "literal": "rgba(62, 209, 127, 0.7)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--green-dot) 70%, transparent)",
+  "darkIdentical": true,
+  "note": ".statusDot halo. Its background is var(--green) on line 156 (outside my index) \u2014 that solid dot fill should move to --green-dot for the same reason; flagged."
+ },
+ {
+  "file": "app/components/mobileHome.module.css",
+  "line": 398,
+  "literal": "rgba(62, 209, 127, 0.4)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--green) 40%, transparent)",
+  "darkIdentical": true,
+  "note": ".boardNew .boardCover \u2014 the 1px edge on a 24px cover thumbnail, overriding var(--line). Border/hairline role, --green base."
+ },
+ {
+  "file": "app/components/mobileHome.module.css",
+  "line": 400,
+  "literal": "rgba(62, 209, 127, 0.07)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--green) 7%, transparent)",
+  "darkIdentical": true,
+  "note": ".boardNew \u2014 a 7% cell tint marking a newly-added No. 1. Wash, not a fill; the .boardCode inside it is var(--green) text, which themes correctly on its own."
+ },
+ {
+  "file": "app/components/mobileLiveCharts.module.css",
+  "line": 288,
+  "literal": "rgba(62, 209, 127, 0.08)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--green) 8%, transparent)",
+  "darkIdentical": true,
+  "note": ".chipTop \u2014 8% tint on a No. 1 chip. Wash. The .posTop figure inside is var(--green) text and themes separately, so no ink-on-fill collision."
+ },
+ {
+  "file": "app/components/todaysNumber.module.css",
+  "line": 183,
+  "literal": "rgba(62, 209, 127, 0.7)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--green-dot) 70%, transparent)",
+  "darkIdentical": true,
+  "note": ".statusDot halo, same pattern as mobileHome:157. Its background: var(--green) sibling (line 180) is a NON-TEXT dot fill and should follow to --green-dot; flagged."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 7,
+  "literal": "#35d07f",
+  "property": "background",
+  "role": "fill",
+  "replacement": "var(--live-dot)",
+  "darkIdentical": false,
+  "note": "NOT byte-identical: this is a stray second live green (#35d07f) sitting beside the canonical #3ed17f \u2014 it predates the one-green consolidation recorded at globals.css:177-184. .liveDot is an 8px solid round indicator, so --green-dot is the right role, but adopting it shifts dark by rgb(+9,+1,0), a visually imperceptible but real change. Needs sign-off (see needsHumanDecision); if dark must be a strict no-op, keep the literal for now.",
+  "_rescued_from": "var(--green-dot)"
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 246,
+  "literal": "#35d07f",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--live-dot)",
+  "darkIdentical": false,
+  "note": "NOT byte-identical: same stray #35d07f. .moveUp is a 0.8rem (~12.8px) mono positive-delta arrow \u2014 TEXT, exactly the 'positive delta' role --green names, so --green is the correct target. Dark shifts rgb(+9,+1,0). Same sign-off as line 7.",
+  "_rescued_from": "var(--green)"
+ },
+ {
+  "file": "app/page.module.css",
+  "line": 504,
+  "literal": "rgba(62, 209, 127, 0.4)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--green) 40%, transparent)",
+  "darkIdentical": true,
+  "note": ".boardNew .boardCover \u2014 desktop twin of mobileHome:398. 1px edge on a 28px cover thumbnail. Border role, --green base."
+ },
+ {
+  "file": "app/page.module.css",
+  "line": 507,
+  "literal": "rgba(62, 209, 127, 0.07)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--green) 7%, transparent)",
+  "darkIdentical": true,
+  "note": ".boardNew \u2014 desktop twin of mobileHome:400. 7% cell tint. Note the hover rule on the next line (.boardCell:hover) uses var(--color-accent-200), which is a separate family; the green wash and the hover surface must be checked together on paper so the NEW state stays visible under hover."
+ },
+ {
+  "file": "app/records/africas-biggest/africas-biggest.module.css",
+  "line": 252,
+  "literal": "rgba(62, 209, 127, 0.45)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--green) 45%, transparent)",
+  "darkIdentical": true,
+  "note": ".inProgress \u2014 outline of an 11px 'in progress' pill whose color is var(--green) on a transparent background. Border role; edge and ink theme together, no fill involved."
+ },
+ {
+  "file": "app/records/awards/awards.module.css",
+  "line": 368,
+  "literal": "rgba(62, 209, 127, 0.45)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--green) 45%, transparent)",
+  "darkIdentical": true,
+  "note": ".winPill \u2014 outlined WON pill, color: var(--green), no background fill. Border role, same 45% recipe as the other three win/record pills."
+ },
+ {
+  "file": "app/records/awards/awards.module.css",
+  "line": 397,
+  "literal": "rgba(62, 209, 127, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--green) 5%, transparent)",
+  "darkIdentical": true,
+  "note": ".rowWon \u2014 a 5% row tint on the awards list. Wash. At 5% of #177a45 on #f7f4ee this will be very faint on paper; worth eyeballing that a won row is still distinguishable, but the value is a faithful no-op in dark."
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 158,
+  "literal": "rgba(62, 209, 127, 0.45)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--green) 45%, transparent)",
+  "darkIdentical": true,
+  "note": ".recordPill \u2014 'African record' pill, explicitly green outline + green text on background: transparent (the comment says so). Border role, --green base."
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 317,
+  "literal": "rgba(62, 209, 127, 0.06)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--green) 6%, transparent)",
+  "darkIdentical": true,
+  "note": ".momentRecord \u2014 6% row wash matching the .recordPill above. Wash role; the text in the row uses --gold/--text tokens, so nothing lands green-on-green."
+ },
+ {
+  "file": "app/about/about.module.css",
+  "line": 35,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede paragraph, 18px/1.55, 56ch measure \u2014 genuine reading text. Blessed consolidation: the table explicitly retires #d8d8de into --text-body, so dark shifts #d8d8de -> #cfc7bb. Deliberate merge of the three reading greys, not a rounding.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/about/about.module.css",
+  "line": 40,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Biography body paragraphs (.bioCol p, 17px/1.65); its strong already uses var(--text). Blessed consolidation of #d8d8de into --text-body \u2014 dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/analysis/analysis.module.css",
+  "line": 32,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/analysis/analysis.module.css",
+  "line": 143,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Not prose: .statL is an 11px mono uppercase stat label under a 52px figure. It reads as a label rather than reading text, but the literal IS the --text-body dark value, so the mapping is byte-identical and the light value (#4a443b) still reads correctly as a label. Kept on --text-body rather than --text-muted precisely because --text-muted would change dark."
+ },
+ {
+  "file": "app/analysis/analysis.module.css",
+  "line": 149,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/analysis/analysis.module.css",
+  "line": 217,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Body prose inside .method, which carries a 5% gold wash background \u2014 a tint, not a gold fill, so --text-body (not --ink-on-gold) is correct in both themes."
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 34,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 46,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Chip label, not prose: .badge is an 11px mono uppercase pill. Background is transparent with var(--border), so there is no fill for the text to collide with \u2014 --text-body is safe. Sibling .badgeLicence overrides both border and colour to gold, so it is unaffected."
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 69,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 170,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Code block text (.pre, 12.5px mono). Its surface is var(--bg-soft), which themes to white on paper, so body ink on it is correct \u2014 unlike the mobile code box, which is a hardcoded dark literal."
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 187,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Block prose; the .blockGold variant behind it is a 5% gold wash, not a fill, so --text-body is right and --ink-on-gold would be wrong."
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 252,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 466,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede, 17.5px/1.55, 60ch. Blessed consolidation of #d8d8de into --text-body \u2014 dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/DaiDaiStory.module.css",
+  "line": 223,
+  "literal": "#d3d3da",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool-quiet)",
+  "darkIdentical": false,
+  "note": "Scrollytelling step body (.stepBody, 1.08rem/1.65) \u2014 reading text. Blessed consolidation of #d3d3da into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/StatCardMaker.module.css",
+  "line": 200,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/StatCardMaker.module.css",
+  "line": 216,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "data",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Right-aligned value in a label/value meta row (label is var(--text-muted)). Data value rather than prose, but the same reading-ink role and byte-identical in dark."
+ },
+ {
+  "file": "app/components/mobileAbout.module.css",
+  "line": 92,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Mobile hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileAbout.module.css",
+  "line": 118,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Mobile bio paragraphs; strong already var(--text). Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileAfricasBiggest.module.css",
+  "line": 96,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileAnalysis.module.css",
+  "line": 96,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileAnalysis.module.css",
+  "line": 168,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileAnalysis.module.css",
+  "line": 199,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Emphasis inside .checkBody: the em is brightened from var(--text-muted) up to reading ink. Sits on var(--bg-soft), so it themes cleanly."
+ },
+ {
+  "file": "app/components/mobileApi.module.css",
+  "line": 96,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileApi.module.css",
+  "line": 162,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "FLAG \u2014 text on a surface that does not theme. .codeAttr sits inside .codeBox, whose background is the hardcoded literal #0f0f11 (line 157, another family) and whose sibling .codeLine is var(--gold-bright). If that box stays dark and this text becomes #4a443b, the attribute line goes near-black on near-black. Either the code box must theme with the page, or this line must stay a light literal. Dark is a no-op either way."
+ },
+ {
+  "file": "app/components/mobileAwards.module.css",
+  "line": 96,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 173,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Mobile hero lede, 13.5px/1.5. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileContact.module.css",
+  "line": 93,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Mobile hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileContact.module.css",
+  "line": 110,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Section lede above the official-channels list; strong already var(--text). Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 99,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 144,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Chip label, not prose: 11px mono uppercase filter chip. Background is transparent with a var(--line) edge, so there is no fill to collide with \u2014 --text-body is safe in both themes."
+ },
+ {
+  "file": "app/components/mobileFaq.module.css",
+  "line": 101,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Mobile hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileFaq.module.css",
+  "line": 154,
+  "literal": "#d3d3da",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool-quiet)",
+  "darkIdentical": false,
+  "note": "FAQ answer body (.a, 14px/1.6); the question above it is the heading and keeps var(--text) by inheritance. Blessed consolidation of #d3d3da into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileFaqSection.module.css",
+  "line": 59,
+  "literal": "#d3d3da",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool-quiet)",
+  "darkIdentical": false,
+  "note": "FAQ answer body, question is the sibling heading. Blessed consolidation of #d3d3da into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileFestivals.module.css",
+  "line": 96,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileFirsts.module.css",
+  "line": 96,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileHome.module.css",
+  "line": 422,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Song name line inside a board cell (12.5px). Cell background is var(--bg), or a 7% green wash on .boardNew \u2014 a tint, not a fill, so reading ink is correct. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileLiveCharts.module.css",
+  "line": 101,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Mobile hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileMethodology.module.css",
+  "line": 87,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileMusic.module.css",
+  "line": 101,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Mobile hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileMusic.module.css",
+  "line": 176,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Blurb under the latest-release title (13px/1.45) \u2014 reading text. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileOfficialCharts.module.css",
+  "line": 97,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileRecords.module.css",
+  "line": 97,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Mobile hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileRevenue.module.css",
+  "line": 96,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileStatCards.module.css",
+  "line": 96,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileTourMap.module.css",
+  "line": 97,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileTours.module.css",
+  "line": 97,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileTours.module.css",
+  "line": 326,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Descriptive text under an upcoming-show venue/city pair \u2014 reading text, not a label."
+ },
+ {
+  "file": "app/components/mobileUpdates.module.css",
+  "line": 106,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Mobile hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/mobileVisualized.module.css",
+  "line": 97,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/todaysNumber.module.css",
+  "line": 158,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Note paragraph (13px/1.5, 46ch, opacity .85) in the hero's right panel. The panel is var(--bg-soft) plus a 14% gold radial wash \u2014 a wash, not a gold fill, so reading ink is correct and --ink-on-gold would be wrong."
+ },
+ {
+  "file": "app/contact/contact.module.css",
+  "line": 34,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/contact/contact.module.css",
+  "line": 48,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Form intro paragraph. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/contact/contact.module.css",
+  "line": 52,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Channels intro paragraph; strong already var(--text). Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/curator/curator.module.css",
+  "line": 26,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/dai-dai/dai-dai.module.css",
+  "line": 27,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/dai-dai/dai-dai.module.css",
+  "line": 156,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Caption under a big figure. The lead card behind it carries a 5% gold tint, not a fill, so reading ink stays correct."
+ },
+ {
+  "file": "app/dai-dai/dai-dai.module.css",
+  "line": 257,
+  "literal": "#d3d3da",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool-quiet)",
+  "darkIdentical": false,
+  "note": "Closing paragraph (.outroLead, 1.1rem/1.6) \u2014 reading text. Blessed consolidation of #d3d3da into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/faq/faq.module.css",
+  "line": 40,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/faq/faq.module.css",
+  "line": 126,
+  "literal": "#d3d3da",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool-quiet)",
+  "darkIdentical": false,
+  "note": "FAQ answer body; the question above is explicitly var(--text), confirming answer-vs-heading split. Blessed consolidation of #d3d3da into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 424,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede, 18px/1.55, 62ch. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/methodology/methodology.module.css",
+  "line": 35,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/methodology/methodology.module.css",
+  "line": 146,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/methodology/methodology.module.css",
+  "line": 176,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Detail prose in the primary-sources rows; the row's name is var(--gold) and its tag var(--dim), so this is the reading column."
+ },
+ {
+  "file": "app/methodology/methodology.module.css",
+  "line": 198,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Closing-block prose; .blockWide behind it is a 5% gold wash, not a fill."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 110,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Credit line under the song title (12.5px mono). A secondary line rather than prose, but the literal is exactly the --text-body dark value, so the mapping is a no-op in dark."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 132,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 203,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Caption under a stat figure; the lead card's 5% gold tint is a wash, not a fill."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 228,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 301,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "FAQ answer; the question (.faqQ) is the heading and inherits var(--text)."
+ },
+ {
+  "file": "app/music/music.module.css",
+  "line": 106,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/music/music.module.css",
+  "line": 172,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Blurb under the latest-release title. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/press/press.module.css",
+  "line": 26,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/africas-biggest/africas-biggest.module.css",
+  "line": 35,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Hero intro prose; its strong is already var(--text)."
+ },
+ {
+  "file": "app/records/africas-biggest/africas-biggest.module.css",
+  "line": 266,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Chip label (12.5px/600) on a transparent chip with a var(--border) edge \u2014 no fill to collide with. The .chipHim variant overrides both the wash and the colour to gold, so it is untouched."
+ },
+ {
+  "file": "app/records/africas-biggest/africas-biggest.module.css",
+  "line": 274,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/africas-biggest/africas-biggest.module.css",
+  "line": 315,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "FAQ answer; .faqQ above is the heading."
+ },
+ {
+  "file": "app/records/awards/awards.module.css",
+  "line": 234,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/awards/awards.module.css",
+  "line": 315,
+  "literal": "#d3d3da",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool-quiet)",
+  "darkIdentical": false,
+  "note": "FAQ answer body; .faqQ above is the heading. Blessed consolidation of #d3d3da into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/by-the-numbers/byTheNumbers.module.css",
+  "line": 45,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/cars/[car]/car.module.css",
+  "line": 327,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Provenance prose (15px/1.7, 78ch) under a gold kicker \u2014 reading text on the car page, not stage lighting."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 98,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 142,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Make name inside a tally chip; the chip is transparent with a var(--border) edge and its number is var(--gold), so this is the neutral half of the pair \u2014 no fill collision."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 227,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Note prose inside a box with a 5% gold wash \u2014 a tint, not a fill."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 429,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 526,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Label beside a gold figure in a split row \u2014 the neutral half of a number/label pair."
+ },
+ {
+  "file": "app/records/firsts/firsts.module.css",
+  "line": 68,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/firsts/firsts.module.css",
+  "line": 138,
+  "literal": "#d3d3da",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool-quiet)",
+  "darkIdentical": false,
+  "note": "Row body text under a bold .title heading (92ch measure) \u2014 reading text. Blessed consolidation of #d3d3da into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/records.module.css",
+  "line": 80,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/records.module.css",
+  "line": 204,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "data",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Tour-name cell in the leaderboard table \u2014 a data cell, not prose, but the same reading-ink role (the row's muted metadata is already var(--text-muted)). Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/records.module.css",
+  "line": 209,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "data",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Tickets-sold figure (mono, tabular-nums) in the leaderboard \u2014 numeric data at reading-ink weight. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/tours/festivals/festivals.module.css",
+  "line": 40,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/tours/festivals/festivals.module.css",
+  "line": 126,
+  "literal": "#d3d3da",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool-quiet)",
+  "darkIdentical": false,
+  "note": "Note under a bold .name heading (96ch measure) \u2014 reading text. Blessed consolidation of #d3d3da into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/tours/map/map.module.css",
+  "line": 35,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/tours/map/map.module.css",
+  "line": 143,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "data",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "City-names cell in the map table (13.5px/1.7) \u2014 a list of names read as text; the header row is var(--text)."
+ },
+ {
+  "file": "app/records/tours/map/map.module.css",
+  "line": 281,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "FLAG \u2014 text on a surface that does not theme. .cardEvents li sits inside the floating hover card .card, whose background is the hardcoded scrim-like literal rgba(12, 10, 9, 0.97) (line 243). If that card stays dark (it is effectively --scrim) and this list becomes #4a443b, the events read near-black on near-black. Either the card themes to a paper surface or this text must stay light. Dark is a no-op either way."
+ },
+ {
+  "file": "app/records/tours/revenue/revenue.module.css",
+  "line": 40,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/tours/revenue/revenue.module.css",
+  "line": 133,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "data",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Tour-name cell in the 43-row revenue board \u2014 data cell at reading-ink weight. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 58,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 206,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "data",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "City cell in the tour-dates table; the venue above it inherits var(--text) and the country beside it is var(--text-muted), so this is the mid reading tier. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 212,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "data",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Capacity figure (mono, tabular-nums) in the tour-dates table. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 273,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "data",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Tour cell in the top-ten board. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 278,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "data",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Tickets figure (mono, tabular-nums) in the top-ten board. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 338,
+  "literal": "#d3d3da",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool-quiet)",
+  "darkIdentical": false,
+  "note": "Moment body text under a bold .momentTitle heading (96ch measure) \u2014 reading text. Blessed consolidation of #d3d3da into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 417,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true,
+  "note": "Descriptive text under an upcoming-show venue/city pair \u2014 the desktop twin of mobileTours .upcomingText."
+ },
+ {
+  "file": "app/records/visualized/visualized.module.css",
+  "line": 32,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/search/search.module.css",
+  "line": 27,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/share/share.module.css",
+  "line": 22,
+  "literal": "#cfc7bb",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/updates/updates.module.css",
+  "line": 49,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Hero lede. Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/updates/updates.module.css",
+  "line": 81,
+  "literal": "#d8d8de",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-cool)",
+  "darkIdentical": false,
+  "note": "Aside prose in the hero's right column (14px/1.55). Blessed consolidation of #d8d8de into --text-body; dark shifts to #cfc7bb by design.",
+  "_rescued_from": "var(--text-body)"
+ },
+ {
+  "file": "app/components/BirthdayCelebration.module.css",
+  "line": 55,
+  "literal": "rgba(0, 0, 0, 0.55)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(55% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Drop shadow under the fixed birthday banner pill (bottom: 22px, z-index 60). It is a floating notice over page content, not masthead/tab-bar chrome, so it themes. First layer only \u2014 the other two layers of this box-shadow are gold (rgba(255,182,39,.12) ring and .22 glow) and belong to the gold/glow family; note that under the table --glow resolves to none on paper, so the ring and glow should go with it or the pill will read as a hard gold halo on white."
+ },
+ {
+  "file": "app/components/DaiDaiStory.module.css",
+  "line": 72,
+  "literal": "rgba(0, 0, 0, 0.55)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(55% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Drop shadow lifting the .cover hero artwork off the page. A true cast shadow \u2014 themes."
+ },
+ {
+  "file": "app/components/DaiDaiStory.module.css",
+  "line": 86,
+  "literal": "rgba(0, 0, 0, 0.5)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(50% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Drop shadow under the overlapping circular artist portraits (.duoImg, 2px gold border). Cast shadow \u2014 themes."
+ },
+ {
+  "file": "app/components/DaiDaiStory.module.css",
+  "line": 284,
+  "literal": "rgba(0, 0, 0, 0.65)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(65% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Desktop sticky scrollytelling card (background: var(--bg-soft), border var(--line)). The -6px spread keeps it a tight lift under a pinned panel; the surface themes, so the shadow must too or the card sits on a black smudge on paper."
+ },
+ {
+  "file": "app/components/PeakMap.module.css",
+  "line": 36,
+  "literal": "rgba(0, 0, 0, 0.55)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(55% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Drop shadow on the .tip hover/tap tooltip (background var(--bg-soft), border var(--gold-dim)). Floating surface over the map \u2014 themes."
+ },
+ {
+  "file": "app/components/SearchPalette.module.css",
+  "line": 52,
+  "literal": "rgba(0, 0, 0, 0.6)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(60% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Modal search-palette .panel (background var(--bg-soft-2), border var(--border)). A modal is not masthead chrome \u2014 the panel surface themes to paper, so the shadow themes with it. Its own backdrop rgba(6,6,8,.72) at line 39 is a scrim and belongs to the scrim/bg family."
+ },
+ {
+  "file": "app/components/mobileHome.module.css",
+  "line": 109,
+  "literal": "rgba(0, 0, 0, 0.45)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(45% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Drop shadow under the 88px album-cover thumbnail on the mobile home rail (the img also carries background var(--bg-soft-2), so the surface themes). Cast shadow \u2014 themes. Dark alpha .45 is --shadow's own alpha, so the light result lands on rgba(23,20,15,.14), exactly --shadow's paper value."
+ },
+ {
+  "file": "app/components/statCardButton.module.css",
+  "line": 39,
+  "literal": "rgba(0, 0, 0, 0.45)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(45% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Modal .dialog (background var(--bg-soft), border var(--border)). The whole declaration `0 20px 50px rgba(0,0,0,.45)` is byte-identical to --shadow in dark, so the tidier edit is `box-shadow: var(--shadow)` \u2014 that also picks up the lighter paper GEOMETRY (0 12px 32px), which a per-literal colour swap cannot. Recommend the whole-declaration form here; the color-mix given is the safe per-literal fallback and computes identically in dark either way."
+ },
+ {
+  "file": "app/components/todaysNumber.module.css",
+  "line": 128,
+  "literal": "rgba(0, 0, 0, 0.45)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(45% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Drop shadow under the 146px cover image in the Today's Number card. Cast shadow \u2014 themes. Alpha .45 maps to rgba(23,20,15,.14) on paper, matching --shadow."
+ },
+ {
+  "file": "app/dai-dai/dai-dai.module.css",
+  "line": 95,
+  "literal": "rgba(0, 0, 0, 0.5)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(50% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Drop shadow under .lineupPhoto, the circular lineup portraits (2px var(--line) border, gold for the headliner). Cast shadow \u2014 themes."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 86,
+  "literal": "rgba(0, 0, 0, 0.62)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(62% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Drop shadow under the 236px hero cover on a song deep-dive page \u2014 the heaviest lift on the site (0 28px 70px). Cast shadow, themes. Written as a one-line rule, so the index's `[.cover { width]` property field is a parsing artefact; the real property is box-shadow."
+ },
+ {
+  "file": "app/music/music.module.css",
+  "line": 333,
+  "literal": "rgba(0, 0, 0, 0.45)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(45% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Modal .dialog on /music (background var(--bg-soft), border var(--border)). Like statCardButton:39 the whole declaration is byte-identical to --shadow in dark, so `box-shadow: var(--shadow)` is the better edit and picks up the lighter paper geometry too. The color-mix is the safe per-literal fallback. Its backdrop rgba(8,7,6,.6) at line 324 is a scrim, not this family."
+ },
+ {
+  "file": "app/records/tours/map/map.module.css",
+  "line": 246,
+  "literal": "rgba(0, 0, 0, 0.55)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--shadow-base) calc(55% * var(--shadow-strength)), transparent)",
+  "darkIdentical": true,
+  "note": "Drop shadow under the floating detail card that follows the cursor on the tour map. The card itself is a hardcoded dark rgba(12,10,9,.97) with a var(--gold) border \u2014 a bg/scrim-family call \u2014 but its shadow falls on the page ground, so it themes regardless of whether the card stays dark. Flagged for a human: if the card DOES stay dark, check the gold border resolves to --gold-fill/--gold-ink sensibly against it."
+ },
+ {
+  "file": "app/analysis/analysis.module.css",
+  "line": 75,
+  "literal": "rgba(245, 240, 232, 0.055)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 5.5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": "TOC card hover. The card's resting surface is var(--bg) and the grid seams are var(--rule), so this is a lift-on-hover wash, not a surface in its own right \u2014 --bg-raised (#24242a opaque) does NOT compute to the same colour here (5.5% #f5f0e8 over #0a0a0b \u2248 #191817), so color-mix is the only no-op. Base is #f5f0e8, not --text's #f5f4f0."
+ },
+ {
+  "file": "app/analysis/analysis.module.css",
+  "line": 194,
+  "literal": "rgba(245, 240, 232, 0.26)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 26%, transparent)",
+  "role": "data",
+  "darkIdentical": true,
+  "note": "The neutral bar fill \u2014 the context rows of a finding's chart, with .barFillHot beside it carrying the gold gradient for the row the finding is about. It rides inside .barTrack (var(--bg-soft-2)), so on paper it becomes dark ink at 26% on the light inset track: still reads as filled, still recedes behind the gold. Base is #f5f0e8."
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 96,
+  "literal": "rgba(245, 240, 232, 0.055)",
+  "property": "background (first gradient stop)",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 5.5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": "First of the two identical stops in .endpoint:hover's flat linear-gradient over var(--bg) \u2014 the gradient is a compositing trick to lift a translucent wash off the var(--rule) seam bed, same device as DaiDaiConquest. Row hover, not a surface. Base is #f5f0e8."
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 96,
+  "literal": "rgba(245, 240, 232, 0.055)",
+  "property": "background (second gradient stop)",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 5.5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": "Second stop of the same flat gradient on .endpoint:hover \u2014 must be patched identically to the first or the hover develops a ramp."
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 665,
+  "literal": "rgba(245, 240, 232, 0.05)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": "Certification row hover inside .groupList, a --line-separated list on the page ground. Pure hover feedback, no data meaning. Base is #f5f0e8."
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 808,
+  "literal": "rgba(245, 240, 232, 0.045)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 4.5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": "Event row hover in the timeline list. Same job as .certRow:hover one section up but a hair lighter (.045 vs .05) because the rows are denser \u2014 keep the two alphas distinct rather than normalising them."
+ },
+ {
+  "file": "app/components/DaiDaiConquest.module.css",
+  "line": 28,
+  "literal": "rgba(245, 240, 232, 0.07)",
+  "property": "background (first gradient stop)",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 7%, transparent)",
+  "role": "data",
+  "darkIdentical": true,
+  "note": "NOT a hover \u2014 .cellOn is the 'charted' tier of the conquest grid, the warm-neutral counterpart to .cellOne's gold. It encodes data, so on paper it must invert to a dark wash or every charted country reads as blank. The file header explains the gradient-over-var(--bg) trick: a bare translucent wash on the --rule seam bed went olive. Its text (.cellOn .code) is var(--text) and themes with it, so the pairing stays legible. Base is #f5f0e8."
+ },
+ {
+  "file": "app/components/DaiDaiConquest.module.css",
+  "line": 28,
+  "literal": "rgba(245, 240, 232, 0.07)",
+  "property": "background (second gradient stop)",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 7%, transparent)",
+  "role": "data",
+  "darkIdentical": true,
+  "note": "Second stop of .cellOn's flat gradient \u2014 patch identically to the first."
+ },
+ {
+  "file": "app/components/DaiDaiConquest.module.css",
+  "line": 68,
+  "literal": "rgba(245, 240, 232, 0.07)",
+  "property": "background (first gradient stop)",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 7%, transparent)",
+  "role": "data",
+  "darkIdentical": true,
+  "note": ".swatchOn is the legend key for .cellOn and must be patched to exactly the same expression, or the legend stops matching the grid it explains. Its border is var(--line), which themes."
+ },
+ {
+  "file": "app/components/DaiDaiConquest.module.css",
+  "line": 68,
+  "literal": "rgba(245, 240, 232, 0.07)",
+  "property": "background (second gradient stop)",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 7%, transparent)",
+  "role": "data",
+  "darkIdentical": true,
+  "note": "Second stop of .swatchOn's flat gradient \u2014 patch identically."
+ },
+ {
+  "file": "app/components/FollowPanel.module.css",
+  "line": 68,
+  "literal": "rgba(245, 244, 240, 0.04)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--text) 4%, transparent)",
+  "role": "fill",
+  "darkIdentical": true,
+  "note": "Byte-identical: base is #f5f4f0 = --text exactly. .secondary is the ghost button in the /updates follow panel \u2014 page body, not chrome. Its color is var(--text) and its border var(--line), both of which theme, so surface and label invert together; no gold-on-gold hazard. Contrast with .primary two rules up, a gold fill with a hardcoded dark label (#1a1204, a different family)."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 203,
+  "literal": "rgba(245, 240, 232, 0.09)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 9%, transparent)",
+  "role": "fill",
+  "darkIdentical": true,
+  "note": ".tierTrack \u2014 the unfilled remainder of a tier progress bar, with .tierFill painted over it. The table's --bg-soft-2 is the nominal 'track' token but is opaque #1c1c21 and does not equal 9% #f5f0e8 over the card, so color-mix is the only no-op. Twin of app/page.module.css:455 at the same alpha; keep them in step."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 224,
+  "literal": "rgba(245, 244, 240, 0.18)",
+  "property": "border",
+  "replacement": "color-mix(in srgb, var(--text) 18%, transparent)",
+  "role": "border",
+  "darkIdentical": true,
+  "note": "Byte-identical: base is #f5f4f0 = --text. Outline border of the tier filter chip (.chip) in the horizontal rail. Its background is transparent and its color is var(--gold) \u2014 an OUTLINE control, not a gold fill, so rule 2's 'border on a control -> --gold-fill' does not apply: the border is ink here, not gold. On paper it becomes dark ink at 18% around a --gold-ink label on the page ground, which is the right reading."
+ },
+ {
+  "file": "app/components/mobileHome.module.css",
+  "line": 489,
+  "literal": "rgba(245, 240, 232, 0.07)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 7%, transparent)",
+  "role": "fill",
+  "darkIdentical": true,
+  "note": ".railYear \u2014 the neutral year pill in the mobile chart rail, quiet sibling of .railPeak directly above it (a 14% gold wash). Its color is var(--text-muted), which themes, so pill and label invert together. Base is #f5f0e8."
+ },
+ {
+  "file": "app/components/mobileRevenue.module.css",
+  "line": 180,
+  "literal": "rgba(245, 244, 240, 0.02)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--text) 2%, transparent)",
+  "role": "data",
+  "darkIdentical": true,
+  "note": "Byte-identical: base is #f5f4f0 = --text. .rowOther marks the gross-night rows that are NOT his \u2014 the file's own comment explains the polarity (tinting his rows would tint the whole board). Data, not decoration, so it must invert. At 2% this is the faintest wash in the family; verify it survives on paper, where a 2% dark tint on #f7f4ee is roughly #f2efe9."
+ },
+ {
+  "file": "app/components/mobileVisualized.module.css",
+  "line": 140,
+  "literal": "rgba(245, 244, 240, 0.07)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--text) 7%, transparent)",
+  "role": "fill",
+  "darkIdentical": true,
+  "note": "Byte-identical: base is #f5f4f0 = --text. .barTrack \u2014 the unfilled groove behind .barFill (the gold gradient). Inverts to a light-grey groove on paper, which is what a track should be."
+ },
+ {
+  "file": "app/components/mobileVisualized.module.css",
+  "line": 147,
+  "literal": "rgba(245, 244, 240, 0.26)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--text) 26%, transparent)",
+  "role": "data",
+  "darkIdentical": true,
+  "note": "Byte-identical: base is #f5f4f0 = --text. .barFillOther \u2014 the grey fill for rows that aren't his, per the comment 'the gold is the point of the chart'. Same job and same alpha as analysis.module.css:194, but that one is #f5f0e8-based, so the two get different bases despite one design intent \u2014 worth normalising later."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 109,
+  "literal": "rgba(255, 255, 255, 0.015)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--white-wash-base) 1.5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": "PURE WHITE base, not --text. .release[open] \u2014 the faint lift marking an expanded <details> block. Using var(--text) (#f5f4f0) instead would be a rounding; at 1.5% the delta is under 1/255, so this is the strongest candidate in the family for folding onto --text and deleting the proposed token."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 166,
+  "literal": "rgba(255, 255, 255, 0.02)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--white-wash-base) 2%, transparent)",
+  "role": "fill",
+  "darkIdentical": true,
+  "note": "PURE WHITE base. .chip \u2014 the per-platform placement pill; border is var(--border) and its text spans use var(--text)/var(--text-muted), all of which theme, so the pill inverts coherently. Distinct from .chipNo1 just below, a 16% gold wash (another family)."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 222,
+  "literal": "rgba(255, 255, 255, 0.04)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--white-wash-base) 4%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": "PURE WHITE base. Hover on .entry AND .entryTop \u2014 note it also fires on .entryTop, whose resting background is a 10% gold wash, so on paper an ink wash lands over a gold wash. Check that pairing visually once both families are patched; compositing order is unchanged, so it should darken rather than fight."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 367,
+  "literal": "rgba(245, 244, 240, 0.14)",
+  "property": "border",
+  "replacement": "color-mix(in srgb, var(--text) 14%, transparent)",
+  "role": "border",
+  "darkIdentical": true,
+  "note": "Byte-identical: base is #f5f4f0 = --text. Hairline around the 1.05em cover-art tile in a release title. Decorative edge on an image, close to --line (.12) but not equal \u2014 do not fold it into var(--line), that would be a rounding."
+ },
+ {
+  "file": "app/page.module.css",
+  "line": 335,
+  "literal": "rgba(245, 244, 240, 0.42)",
+  "property": "border-color",
+  "replacement": "color-mix(in srgb, var(--text) 42%, transparent)",
+  "role": "border",
+  "darkIdentical": true,
+  "note": "Byte-identical: base is #f5f4f0 = --text. .historyCta is the home page's SECONDARY action \u2014 the rule deliberately strips the gold fill (background-image: none, color: var(--text)) so the screen keeps one gold action. Rule 2's 'border on a control -> --gold-fill' does not apply: this border is ink by design, and the gold only appears on :hover (already tokenised). Same 0.42 as globals.css .btnSecondary (a separate family) and for the same reason \u2014 it clears the 3:1 WCAG floor for a control boundary; 42% #17140f on #f7f4ee holds that on paper."
+ },
+ {
+  "file": "app/page.module.css",
+  "line": 455,
+  "literal": "rgba(245, 240, 232, 0.09)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 9%, transparent)",
+  "role": "fill",
+  "darkIdentical": true,
+  "note": "Desktop .tierTrack \u2014 the groove behind .tierFill in the home page certification tier bars. Exact twin of mobileCerts.module.css:203; patch both or desktop and mobile drift. Base is #f5f0e8."
+ },
+ {
+  "file": "app/records/cars/[car]/car.module.css",
+  "line": 272,
+  "literal": "rgba(245, 240, 232, 0.08)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 8%, transparent)",
+  "role": "fill",
+  "darkIdentical": true,
+  "note": ".barTrack in the performance panel, with .barFill (the --gold-dim -> --gold ramp) laid along it. The car pages keep a lit stage, but the table gives --floor-glow and --floor-ring explicit LIGHT values, so the car page does go to paper and this track must invert with it. Base is #f5f0e8."
+ },
+ {
+  "file": "app/records/cars/[car]/car.module.css",
+  "line": 300,
+  "literal": "rgba(245, 240, 232, 0.22)",
+  "property": "border",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 22%, transparent)",
+  "role": "border",
+  "darkIdentical": true,
+  "note": ".swatch \u2014 the ring around each livery colour disc (aria-hidden, decorative). The disc's fill is an inline brand colour, out of this family; the ring is ink and must invert so the disc still reads as a disc on paper. Its companion box-shadow: inset 0 0 0 3px var(--bg) already themes, which is what makes inverting the ring necessary rather than optional."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 153,
+  "literal": "rgba(245, 240, 232, 0.045)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 4.5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": ".carRow:hover in the garage list. Plain hover feedback on a --line-separated list. Base is #f5f0e8."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 369,
+  "literal": "rgba(245, 244, 240, 0.07)",
+  "property": "border-bottom",
+  "replacement": "color-mix(in srgb, var(--text) 7%, transparent)",
+  "role": "border",
+  "darkIdentical": true,
+  "note": "Byte-identical: base is #f5f4f0 = --text. Inside the breakpoint where .table collapses to stacked cards: this divides cells WITHIN one stacked row, deliberately lighter than the var(--line) border around the whole row so the two levels of structure stay distinguishable. Do not fold into var(--line) \u2014 the hierarchy is the point."
+ },
+ {
+  "file": "app/records/charts/chartsLoading.module.css",
+  "line": 27,
+  "literal": "rgba(245, 244, 240, 0.05)",
+  "property": "background (shimmer gradient, 25% stop)",
+  "replacement": "color-mix(in srgb, var(--text) 5%, transparent)",
+  "role": "fill",
+  "darkIdentical": true,
+  "note": "Byte-identical: base is #f5f4f0 = --text. Skeleton shimmer for the Charts route, shared by .title/.subtitle/.statNum/.chip/.rowTitle/.peak. All three stops must be patched together or the ramp breaks. On paper it becomes a dark-ink shimmer on the light ground \u2014 the correct inversion for a loading placeholder."
+ },
+ {
+  "file": "app/records/charts/chartsLoading.module.css",
+  "line": 28,
+  "literal": "rgba(245, 244, 240, 0.09)",
+  "property": "background (shimmer gradient, 37% stop)",
+  "replacement": "color-mix(in srgb, var(--text) 9%, transparent)",
+  "role": "fill",
+  "darkIdentical": true,
+  "note": "Byte-identical. The bright crest of the shimmer ramp \u2014 the 25%/63% stops sit at .05 and this at .09. Keep the three alphas distinct."
+ },
+ {
+  "file": "app/records/charts/chartsLoading.module.css",
+  "line": 29,
+  "literal": "rgba(245, 244, 240, 0.05)",
+  "property": "background (shimmer gradient, 63% stop)",
+  "replacement": "color-mix(in srgb, var(--text) 5%, transparent)",
+  "role": "fill",
+  "darkIdentical": true,
+  "note": "Byte-identical. Trailing stop of the shimmer ramp, mirroring line 27."
+ },
+ {
+  "file": "app/records/firsts/firsts.module.css",
+  "line": 126,
+  "literal": "rgba(245, 240, 232, 0.05)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": ".row:hover in the Firsts list. One of seven identical .05 #f5f0e8 row hovers across the site (certifications, firsts, festivals, revenue, tours, search, updates) \u2014 patch all seven to the same expression so the hover reads the same everywhere."
+ },
+ {
+  "file": "app/records/tours/festivals/festivals.module.css",
+  "line": 106,
+  "literal": "rgba(245, 240, 232, 0.05)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": ".row:hover in the festivals list \u2014 same shared row-hover wash. Base is #f5f0e8."
+ },
+ {
+  "file": "app/records/tours/revenue/revenue.module.css",
+  "line": 111,
+  "literal": "rgba(245, 240, 232, 0.05)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": ".row:hover on the revenue board. Note .rowHis directly above is a 4% GOLD wash (another family) marking his rows: hovering one of his rows composites ink over gold. Both inverting keeps the same layering, but this is worth an eyeball once both patches land."
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 131,
+  "literal": "rgba(245, 240, 232, 0.05)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": ".tourRow:hover. The row is a <button> (background: transparent, border: 0, color: var(--text)), so this is a control hover rather than a list-row hover \u2014 but the property is background and the colour is ink, so the wash treatment is right. .tourRowOpen and its hover directly below are gold washes (another family) and must not be collapsed into this one."
+ },
+ {
+  "file": "app/search/search.module.css",
+  "line": 154,
+  "literal": "rgba(245, 240, 232, 0.05)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": ".row:hover on the search results list; the rule also re-asserts color: var(--text), which already themes. Base is #f5f0e8."
+ },
+ {
+  "file": "app/updates/updates.module.css",
+  "line": 170,
+  "literal": "rgba(245, 240, 232, 0.05)",
+  "property": "background",
+  "replacement": "color-mix(in srgb, var(--ink-wash-base) 5%, transparent)",
+  "role": "wash",
+  "darkIdentical": true,
+  "note": ".row:hover on the updates log; the rule also re-asserts color: var(--text), which already themes. Last of the seven shared .05 row hovers."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 75,
+  "literal": "rgba(10,10,11,0.55)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 55%, transparent)",
+  "darkIdentical": true,
+  "note": ".heroScrim is a body-content veil over the blurred artist portrait, not chrome. The base 10,10,11 is exactly --bg's dark value, so this is the page ground at alpha and must theme to paper \u2014 otherwise light mode gets a black hero. Same pattern the certifications hero already writes literally (var(--bg) as the first stop of the same gradient)."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 75,
+  "literal": "rgba(10,10,11,0.9)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 90%, transparent)",
+  "darkIdentical": true,
+  "note": "Second stop of the same .heroScrim gradient."
+ },
+ {
+  "file": "app/afrobeats/afrobeats.module.css",
+  "line": 104,
+  "literal": "rgba(10, 10, 11, 0.15)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 15%, transparent)",
+  "darkIdentical": true,
+  "note": ".scrim over the artist tile's press shot \u2014 page ground at alpha, body content, themes."
+ },
+ {
+  "file": "app/afrobeats/afrobeats.module.css",
+  "line": 104,
+  "literal": "rgba(10, 10, 11, 0.62)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 62%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/afrobeats/afrobeats.module.css",
+  "line": 104,
+  "literal": "rgba(10, 10, 11, 0.93)",
+  "property": "background (linear-gradient stop 3)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 93%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/afrobeats/afrobeats.module.css",
+  "line": 133,
+  "literal": "rgba(10, 10, 11, 0.55)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 55%, transparent)",
+  "darkIdentical": true,
+  "note": ".topBadge/.anchorTag chip sitting on the tile photo. Its text is var(--muted) and its border var(--line), both of which theme, so the chip ground must theme with them."
+ },
+ {
+  "file": "app/afrobeats/afrobeats.module.css",
+  "line": 231,
+  "literal": "rgba(10, 10, 11, 0.55)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 55%, transparent)",
+  "darkIdentical": true,
+  "note": ".pendingBadge \u2014 same chip on a greyed-out tile."
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 412,
+  "literal": "rgba(10, 10, 11, 0.82)",
+  "property": "background (90deg gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 82%, transparent)",
+  "darkIdentical": true,
+  "note": "Proof site for the whole cool half of this family: stop 1 of this very gradient is already written as var(--bg). The literal IS the page ground at alpha and must theme with it, or in light mode the hero fades from paper into black."
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 412,
+  "literal": "rgba(10, 10, 11, 0.62)",
+  "property": "background (90deg gradient stop 3)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 62%, transparent)",
+  "darkIdentical": true,
+  "note": "The comment above this line pins 0.62 to a measured 4.24:1 contrast result for 12px tier percentages. Once the scrim themes to paper, that measurement no longer holds in light mode \u2014 re-sample the tier rail against the light hero before shipping."
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 413,
+  "literal": "rgba(10, 10, 11, 0.5)",
+  "property": "background (180deg gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 50%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 413,
+  "literal": "rgba(10, 10, 11, 0.08)",
+  "property": "background (180deg gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 8%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 413,
+  "literal": "rgba(10, 10, 11, 0.62)",
+  "property": "background (180deg gradient stop 3)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 62%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/DaiDaiStory.module.css",
+  "line": 54,
+  "literal": "rgba(10, 10, 11, 0.35)",
+  "property": "background (radial-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 35%, transparent)",
+  "darkIdentical": true,
+  "note": ".sticky::after \u2014 a radial veil over the blurred cover art so the centred story text reads. Body content, themes; the text on top is --text, which flips to ink."
+ },
+ {
+  "file": "app/components/DaiDaiStory.module.css",
+  "line": 54,
+  "literal": "rgba(10, 10, 11, 0.82)",
+  "property": "background (radial-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 82%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/DaiDaiStory.module.css",
+  "line": 348,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. Fixed mobile back bar (z-index 45, blur(14px), safe-area insets, 1px bottom divider). Rule 4: stays dark in both themes. Byte-identical \u2014 this literal is --scrim's exact value."
+ },
+ {
+  "file": "app/components/StatCardMaker.module.css",
+  "line": 109,
+  "literal": "rgba(12, 10, 9, 0.82)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--veil-base) 82%, transparent)",
+  "darkIdentical": true,
+  "note": "NOT chrome. .failed is an in-page overlay covering the card preview, and its own text is var(--text-muted) \u2014 if this ground stayed dark while that text flipped to ink the message would vanish. Warm near-black base (12,10,9) has no themed token today; --veil-base (new, dark #0c0a09) makes dark byte-identical."
+ },
+ {
+  "file": "app/components/mobileAbout.module.css",
+  "line": 24,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar, sticky top, blur(14px), safe-area top inset. Rule 4 \u2014 stays dark."
+ },
+ {
+  "file": "app/components/mobileAfricasBiggest.module.css",
+  "line": 20,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar. Stays dark."
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 24,
+  "literal": "rgba(10, 10, 11, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "color-mix(in srgb, var(--scrim-cool) 94%, transparent)",
+  "darkIdentical": true,
+  "note": "CHROME, but on the COOL near-black rather than --scrim's warm one. Sticky top bar, z-index 30, blur(14px), safe-area insets. It must NOT become color-mix(var(--bg)) like the photo scrims in the same file \u2014 that would turn the masthead to paper against rule 4. Needs the new fixed --scrim-cool (#0a0a0b both modes) to stay byte-identical; see needsHumanDecision about normalising these four bars onto --scrim instead."
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 131,
+  "literal": "rgba(10, 10, 11, 0.14)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 14%, transparent)",
+  "darkIdentical": true,
+  "note": ".doorScrim over the full-colour Burna portrait tile. Body content \u2014 themes."
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 132,
+  "literal": "rgba(10, 10, 11, 0.6)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 60%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 133,
+  "literal": "rgba(10, 10, 11, 0.93)",
+  "property": "background (linear-gradient stop 3)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 93%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 180,
+  "literal": "rgba(10, 10, 11, 0.55)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 55%, transparent)",
+  "darkIdentical": true,
+  "note": ".anchorTag chip on the door photo; border and text are var(--gold), which themes, so the ground must too."
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 224,
+  "literal": "rgba(10, 10, 11, 0.1)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 10%, transparent)",
+  "darkIdentical": true,
+  "note": ".scrim over the greyed wall tiles."
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 225,
+  "literal": "rgba(10, 10, 11, 0.62)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 62%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 226,
+  "literal": "rgba(10, 10, 11, 0.94)",
+  "property": "background (linear-gradient stop 3)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 94%, transparent)",
+  "darkIdentical": true,
+  "note": "Same alpha as the chrome bar at line 24 but a completely different role \u2014 this one is a photo scrim in the page body and MUST theme, that one is the masthead and must not. This is the pair that makes the family dangerous."
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 263,
+  "literal": "rgba(10, 10, 11, 0.5)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 50%, transparent)",
+  "darkIdentical": true,
+  "note": ".badge on a wall tile; its text is var(--text) and its border var(--rule-soft), so the ground themes with them."
+ },
+ {
+  "file": "app/components/mobileAnalysis.module.css",
+  "line": 20,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar. Stays dark."
+ },
+ {
+  "file": "app/components/mobileAnalysis.module.css",
+  "line": 211,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .actionBar \u2014 fixed bottom bar that replaces the tab bar on deep screens. Rule 4 names bottom tab bar backdrops explicitly."
+ },
+ {
+  "file": "app/components/mobileApi.module.css",
+  "line": 20,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileApi.module.css",
+  "line": 197,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .actionBar, fixed bottom."
+ },
+ {
+  "file": "app/components/mobileAwards.module.css",
+  "line": 20,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 21,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 135,
+  "literal": "rgba(10, 10, 11, 0.78)",
+  "property": "background (90deg gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 78%, transparent)",
+  "darkIdentical": true,
+  "note": ".heroScrim \u2014 stop 1 of this same gradient is already var(--bg), same proof as the desktop certifications hero. The comment pins 0.78 to a 4.5:1 measurement; re-sample in light mode."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 135,
+  "literal": "rgba(10, 10, 11, 0.35)",
+  "property": "background (90deg gradient stop 3)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 35%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 136,
+  "literal": "rgba(10, 10, 11, 0.55)",
+  "property": "background (180deg gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 55%, transparent)",
+  "darkIdentical": true,
+  "note": "This gradient's last stop is literally var(--bg), so leaving the first stop hardcoded would make it fade from black to paper in light mode."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 136,
+  "literal": "rgba(10, 10, 11, 0.1)",
+  "property": "background (180deg gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--bg) 10%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 397,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .actionBar, fixed bottom."
+ },
+ {
+  "file": "app/components/mobileContact.module.css",
+  "line": 24,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 21,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 296,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .actionBar, fixed bottom."
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 372,
+  "literal": "#0a0908",
+  "property": "background",
+  "role": "fill",
+  "replacement": "var(--photo-well)",
+  "darkIdentical": true,
+  "note": ".tileImg is the 16/10 matte behind a car photograph \u2014 visible only before the image paints or if it letterboxes. Opaque, and a third near-black (#0a0908) that matches no existing token, so it needs its own. Whether the matte should go pale on paper is a taste call; see needsHumanDecision."
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 384,
+  "literal": "rgba(12, 10, 9, 0.6)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--veil-base) 60%, transparent)",
+  "darkIdentical": true,
+  "note": ".tileBadge sits on the car photo; its text is rgba(245,240,232,.55) (bone family, which will flip to ink), so this chip ground must theme with it or the badge goes invisible. Body content, not chrome."
+ },
+ {
+  "file": "app/components/mobileFaq.module.css",
+  "line": 24,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileFestivals.module.css",
+  "line": 20,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileFirsts.module.css",
+  "line": 20,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileLiveCharts.module.css",
+  "line": 21,
+  "literal": "rgba(10, 10, 11, 0.95)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "color-mix(in srgb, var(--scrim-cool) 95%, transparent)",
+  "darkIdentical": true,
+  "note": "CHROME on the cool near-black at 0.95 \u2014 neither --scrim's hue nor its alpha. Sticky .backBar, blur(14px), safe-area insets. Stays dark; needs --scrim-cool to stay byte-identical."
+ },
+ {
+  "file": "app/components/mobileMethodology.module.css",
+  "line": 20,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileMethodology.module.css",
+  "line": 194,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .actionBar, fixed bottom."
+ },
+ {
+  "file": "app/components/mobileMusic.module.css",
+  "line": 21,
+  "literal": "rgba(10, 10, 11, 0.95)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "color-mix(in srgb, var(--scrim-cool) 95%, transparent)",
+  "darkIdentical": true,
+  "note": "CHROME. Sticky .backBar on the cool near-black at 0.95. Stays dark."
+ },
+ {
+  "file": "app/components/mobileNavSheet.module.css",
+  "line": 25,
+  "literal": "rgba(10, 10, 11, 0.72)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "color-mix(in srgb, var(--scrim-cool) 72%, transparent)",
+  "darkIdentical": true,
+  "note": "CHROME. .backdrop is the full-viewport dimmer behind the nav sheet \u2014 rule 4 names sheet backdrops. A modal dimmer stays dark in light mode too (that is how the sheet reads as lifted); it must NOT be var(--bg) at alpha or light mode's nav would open onto a white-on-white veil."
+ },
+ {
+  "file": "app/components/mobileOfficialCharts.module.css",
+  "line": 21,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileOfficialCharts.module.css",
+  "line": 356,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .actionBar, fixed bottom."
+ },
+ {
+  "file": "app/components/mobileRecords.module.css",
+  "line": 21,
+  "literal": "rgba(10, 10, 11, 0.95)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "color-mix(in srgb, var(--scrim-cool) 95%, transparent)",
+  "darkIdentical": true,
+  "note": "CHROME. Sticky .backBar on the cool near-black at 0.95. Stays dark."
+ },
+ {
+  "file": "app/components/mobileRevenue.module.css",
+  "line": 20,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileRevenue.module.css",
+  "line": 235,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .actionBar, fixed bottom."
+ },
+ {
+  "file": "app/components/mobileStatCards.module.css",
+  "line": 20,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileStatCards.module.css",
+  "line": 180,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .actionBar, fixed bottom."
+ },
+ {
+  "file": "app/components/mobileStatCards.module.css",
+  "line": 236,
+  "literal": "rgba(12, 10, 9, 0.82)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--veil-base) 82%, transparent)",
+  "darkIdentical": true,
+  "note": "NOT chrome despite the same file. .failed is the in-card render-failure overlay; its own text is var(--text-muted), so the ground must theme with it. Mirrors StatCardMaker.module.css:109."
+ },
+ {
+  "file": "app/components/mobileTabBar.module.css",
+  "line": 2,
+  "literal": "rgba(12,10,9,0.94)",
+  "property": "comment (spec prose, not a declaration)",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "This literal is inside the file's header comment describing the spec \u2014 it paints nothing. Update the prose to say var(--scrim) so the comment does not contradict line 23 after the patch. Zero render risk either way."
+ },
+ {
+  "file": "app/components/mobileTabBar.module.css",
+  "line": 23,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME, the canonical one. .bar is the fixed five-tab bottom bar (z-index 60, blur(14px), home-indicator inset). Rule 4 names it explicitly. Byte-identical to --scrim."
+ },
+ {
+  "file": "app/components/mobileTourMap.module.css",
+  "line": 21,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileTourMap.module.css",
+  "line": 157,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .actionBar, fixed bottom."
+ },
+ {
+  "file": "app/components/mobileTours.module.css",
+  "line": 21,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileTours.module.css",
+  "line": 252,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .actionBar, fixed bottom."
+ },
+ {
+  "file": "app/components/mobileUpdates.module.css",
+  "line": 24,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/mobileVisualized.module.css",
+  "line": 21,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .backBar."
+ },
+ {
+  "file": "app/components/statCardButton.module.css",
+  "line": 29,
+  "literal": "rgba(8, 7, 6, 0.5)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "color-mix(in srgb, var(--scrim-deep) 50%, transparent)",
+  "darkIdentical": true,
+  "note": "CHROME-class overlay: .backdrop is the fixed full-viewport dimmer behind the stat-card dialog (z-index 70). A modal dimmer stays dark in light mode. A FOURTH near-black base (8,7,6) appears here and in music.module.css:324 only \u2014 no existing token matches it, hence --scrim-deep."
+ },
+ {
+  "file": "app/components/statCardButton.module.css",
+  "line": 107,
+  "literal": "rgba(12, 10, 9, 0.82)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--veil-base) 82%, transparent)",
+  "darkIdentical": true,
+  "note": "NOT chrome. .failed render-failure overlay inside the dialog; text is var(--text-muted). Themes."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 76,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--veil-base) 94%, transparent)",
+  "darkIdentical": true,
+  "note": "NOT chrome even though the alpha matches --scrim exactly. .heroScrim veils the blurred cover art behind the song hero, whose title and metadata are --text/--text-body. If this stayed --scrim the whole song hero would be a black box in light mode. The alpha collision with the masthead is the single most dangerous line in this family."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 76,
+  "literal": "rgba(12, 10, 9, 0.78)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--veil-base) 78%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 76,
+  "literal": "rgba(12, 10, 9, 0.6)",
+  "property": "background (linear-gradient stop 3)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--veil-base) 60%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 406,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .mobileBackBar inside the max-width media query \u2014 sticky top, z-index 45, blur(14px), safe-area insets. Same file as line 76 and the opposite verdict; the property is identical, the element is not."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 452,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .mobileActionBar, fixed bottom, replaces the tab bar."
+ },
+ {
+  "file": "app/music/music.module.css",
+  "line": 324,
+  "literal": "rgba(8, 7, 6, 0.6)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "color-mix(in srgb, var(--scrim-deep) 60%, transparent)",
+  "darkIdentical": true,
+  "note": "CHROME-class overlay. .backdrop behind the tracklist dialog (fixed, z-index 70). Stays dark. Second and last user of the 8,7,6 base."
+ },
+ {
+  "file": "app/records/cars/[car]/car.module.css",
+  "line": 97,
+  "literal": "rgba(12, 10, 9, 0.72)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--veil-base) 72%, transparent)",
+  "darkIdentical": true,
+  "note": "NOT chrome. .valueBox is an inset panel in the car hero holding .valueUsd (inherits --text) and .valueNaira (--text-muted). Both flip to ink, so the panel ground must flip to paper. Its border is already var(--border), which themes \u2014 a themed border round an untinted black panel is exactly the black-hole failure."
+ },
+ {
+  "file": "app/records/cars/[car]/car.module.css",
+  "line": 527,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .mobileBackBar, sticky top, blur(14px), safe-area insets."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 279,
+  "literal": "#0a0908",
+  "property": "background",
+  "role": "fill",
+  "replacement": "var(--photo-well)",
+  "darkIdentical": true,
+  "note": "Desktop twin of mobileDeepPage:372 \u2014 the 16/10 matte behind a car photo. Same new token; keep the two in step."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 290,
+  "literal": "rgba(12, 10, 9, 0.6)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--veil-base) 60%, transparent)",
+  "darkIdentical": true,
+  "note": "Desktop twin of mobileDeepPage:384 \u2014 .tileBadge on the car photo, text rgba(245,240,232,.55) which themes to ink. Ground themes with it."
+ },
+ {
+  "file": "app/records/tours/map/map.module.css",
+  "line": 212,
+  "literal": "rgba(12, 10, 9, 0.9)",
+  "property": "stroke (in .off { fill: var(--bg-soft-2); stroke: \u2026 })",
+  "role": "data",
+  "replacement": "color-mix(in srgb, var(--scrim-base) 90%, transparent)",
+  "darkIdentical": true,
+  "note": "NOT a scrim and not chrome \u2014 this is the country-border hairline on the tour SVG, drawn DARKER than the shapes it separates (fill --bg-soft-2). It cannot become --rule or --line: those are light-on-dark in dark mode and would erase the borders today. It also must not use --veil-base, which would go paper in light mode and erase them there. Fixed --scrim-base keeps the dark render identical and gives light mode a firm dark border; see needsHumanDecision on whether light should be lighter."
+ },
+ {
+  "file": "app/records/tours/map/map.module.css",
+  "line": 217,
+  "literal": "rgba(12, 10, 9, 0.9)",
+  "property": "stroke",
+  "role": "data",
+  "replacement": "color-mix(in srgb, var(--scrim-base) 90%, transparent)",
+  "darkIdentical": true,
+  "note": "Same hairline on .on (the performed-in countries, filled rgba(255,182,39,.42)). Must move with line 212 or the two halves of the map get different borders."
+ },
+ {
+  "file": "app/records/tours/map/map.module.css",
+  "line": 244,
+  "literal": "rgba(12, 10, 9, 0.97)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--veil-base) 97%, transparent)",
+  "darkIdentical": true,
+  "note": "NOT chrome. .card is the floating detail popover over the map, holding .cardName (--text), .cardRegion (--gold), .cardEvents li (#cfc7bb) and .cardMore (--dim) \u2014 every one of those flips to ink, so the popover ground must flip to paper or the tooltip goes blank in light mode."
+ },
+ {
+  "file": "app/search/search.module.css",
+  "line": 257,
+  "literal": "rgba(12, 10, 9, 0.94)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--scrim)",
+  "darkIdentical": true,
+  "note": "CHROME. .heroPad inside the mobile media query \u2014 the sticky search masthead (z-index 45, blur(14px), safe-area top inset, 1px bottom divider). Stays dark."
+ },
+ {
+  "file": "app/about/about.module.css",
+  "line": 46,
+  "literal": "rgba(255, 182, 39, 0.4)",
+  "property": "border-bottom",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 40%, transparent)",
+  "darkIdentical": true,
+  "note": "Hairline underline on .wikiLink, whose hover goes to var(--gold) \u2014 ink base keeps the rest state a fainter version of the same hue in both themes."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 359,
+  "literal": "rgba(255, 182, 39, 0.22)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 22%, transparent)",
+  "darkIdentical": true,
+  "note": "No.1 peak chip: gold TEXT sits on this tint, so it must stay a wash (not --gold-fill) or light mode gets gold-on-gold. Text/border on the same rule are var(--gold) -> --gold-ink."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 377,
+  "literal": "rgba(255, 182, 39, 0.22)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 22%, transparent)",
+  "darkIdentical": true,
+  "note": "Legend dot for .one above \u2014 must use the identical expression as line 359 or the legend stops matching the chip it labels."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 434,
+  "literal": "rgba(255, 182, 39, 0.14)",
+  "property": "background (radial-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 14%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 434,
+  "literal": "rgba(255, 182, 39, 0)",
+  "property": "background (radial-gradient stop 2)",
+  "role": "wash",
+  "replacement": "rgb(from var(--gold-wash-base) r g b / 0)",
+  "darkIdentical": true,
+  "note": "Zero-alpha stop: color-mix at 0% collapses to rgba(0,0,0,0) and would shift the gradient's mid-tones. Relative-colour syntax keeps the hue at alpha 0, byte-identical in dark."
+ },
+ {
+  "file": "app/afrobeats/afrobeats.module.css",
+  "line": 346,
+  "literal": "rgba(255, 182, 39, 0.42)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 42%, transparent)",
+  "darkIdentical": true,
+  "note": "HUMAN: .railAnchor is an interactive chip, so rule 2 would say --gold-fill. But the literal is translucent and #ffb627 at 42% over #f7f4ee is essentially invisible, while its own color: var(--gold) themes to #8a5a00. Ink base chosen so border and label stay one hue."
+ },
+ {
+  "file": "app/analysis/analysis.module.css",
+  "line": 207,
+  "literal": "rgba(255, 182, 39, 0.35)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 35%, transparent)",
+  "darkIdentical": true,
+  "note": "Edge of a static callout panel, not a control \u2014 hairline rule per rule 2's second clause."
+ },
+ {
+  "file": "app/analysis/analysis.module.css",
+  "line": 207,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 56,
+  "literal": "rgba(255, 182, 39, 0.13)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 13%, transparent)",
+  "darkIdentical": true,
+  "note": ".badgeLicence layers this tint over var(--bg) and carries color: var(--gold) \u2014 wash, not fill, so the label stays legible on paper."
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 56,
+  "literal": "rgba(255, 182, 39, 0.13)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 13%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 177,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 177,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 57,
+  "literal": "rgba(255, 182, 39, 0.06)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 6%, transparent)",
+  "darkIdentical": true,
+  "note": "Row-hover reading aid on the certifications ledger."
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 58,
+  "literal": "rgba(255, 182, 39, 0.4)",
+  "property": "border-bottom-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 40%, transparent)",
+  "darkIdentical": true,
+  "note": "Hairline row divider lit on hover \u2014 ink base, not fill."
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 150,
+  "literal": "rgba(255, 182, 39, 0.08)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 8%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 202,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true,
+  "note": ".fChipOn pairs this with color: var(--gold) \u2014 wash keeps chip text readable once --gold resolves to --gold-ink."
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 255,
+  "literal": "rgba(255, 182, 39, 0.07)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 7%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 267,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 276,
+  "literal": "rgba(255, 182, 39, 0.24)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 24%, transparent)",
+  "darkIdentical": true,
+  "note": "HUMAN: gold-tinted drop shadow under .yearBtnOn. --gold-glow-base is transparent on paper so the lift disappears; substitute var(--shadow) if a neutral lift is wanted. Separately: .yearBtnOn sets color/-webkit-text-fill-color: var(--bg) over a gold fill \u2014 in light that becomes paper-on-gold. Must be --ink-on-gold."
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 603,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/certifications/certifications.module.css",
+  "line": 771,
+  "literal": "rgba(255, 182, 39, 0.07)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 7%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/DaiDaiConquest.module.css",
+  "line": 29,
+  "literal": "rgba(255, 182, 39, 0.3)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 30%, transparent)",
+  "darkIdentical": true,
+  "note": ".cellOne carries flag + country code text, so this is a tint over var(--bg), not a fill."
+ },
+ {
+  "file": "app/components/DaiDaiConquest.module.css",
+  "line": 29,
+  "literal": "rgba(255, 182, 39, 0.3)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 30%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/DaiDaiConquest.module.css",
+  "line": 67,
+  "literal": "rgba(255, 182, 39, 0.3)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 30%, transparent)",
+  "darkIdentical": true,
+  "note": "Legend swatch for .cellOne \u2014 must stay byte-for-byte the same expression as line 29."
+ },
+ {
+  "file": "app/components/DaiDaiConquest.module.css",
+  "line": 67,
+  "literal": "rgba(255, 182, 39, 0.3)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 30%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/FollowPanel.module.css",
+  "line": 4,
+  "literal": "rgba(255, 182, 39, 0.22)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 22%, transparent)",
+  "darkIdentical": true,
+  "note": "Panel edge, not a control edge."
+ },
+ {
+  "file": "app/components/FollowPanel.module.css",
+  "line": 6,
+  "literal": "rgba(255, 182, 39, 0.1)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "var(--gold-wash)",
+  "darkIdentical": true,
+  "note": "Exactly 10% \u2014 the named token, whose dark value rgba(255,182,39,.10) is byte-identical. The red stop beside it belongs to another family."
+ },
+ {
+  "file": "app/components/FollowPanel.module.css",
+  "line": 79,
+  "literal": "rgba(255, 182, 39, 0.08)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 8%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/GlobeTeaser.module.css",
+  "line": 14,
+  "literal": "rgba(255, 182, 39, 0.13)",
+  "property": "background (radial-gradient)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 13%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/GlobeTeaser.module.css",
+  "line": 47,
+  "literal": "rgba(255, 182, 39, 0.14)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 14%, transparent)",
+  "darkIdentical": true,
+  "note": "Decorative stage ring \u2014 hairline, ink base."
+ },
+ {
+  "file": "app/components/GlobeTeaser.module.css",
+  "line": 54,
+  "literal": "rgba(255, 182, 39, 0.09)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 9%, transparent)",
+  "darkIdentical": true,
+  "note": "Dashed outer stage ring \u2014 hairline, ink base."
+ },
+ {
+  "file": "app/components/GlobeTeaser.module.css",
+  "line": 64,
+  "literal": "rgba(255, 182, 39, 0.28)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 28%, transparent)",
+  "darkIdentical": true,
+  "note": "Edge of the globe disc (a graphic), not a control."
+ },
+ {
+  "file": "app/components/GlobeTeaser.module.css",
+  "line": 67,
+  "literal": "rgba(255, 182, 39, 0.13)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 13%, transparent)",
+  "darkIdentical": true,
+  "note": "44px outer glow around the globe \u2014 vanishes on paper, per the table's --glow -> none."
+ },
+ {
+  "file": "app/components/SearchPalette.module.css",
+  "line": 19,
+  "literal": "rgba(255, 182, 39, 0.06)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 6%, transparent)",
+  "darkIdentical": true,
+  "note": "Search trigger hover, sits on the page surface (not the modal), so it themes."
+ },
+ {
+  "file": "app/components/SearchPalette.module.css",
+  "line": 137,
+  "literal": "rgba(255, 182, 39, 0.12)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 12%, transparent)",
+  "darkIdentical": true,
+  "note": "Active result row inside .panel, whose background is var(--bg-soft-2) \u2014 the panel themes, so the wash must too."
+ },
+ {
+  "file": "app/components/Sparkline.module.css",
+  "line": 12,
+  "literal": "rgba(255, 182, 39, 0.1)",
+  "property": "fill",
+  "role": "wash",
+  "replacement": "var(--gold-wash)",
+  "darkIdentical": true,
+  "note": "SVG area under a stroke: var(--gold) line. Exactly 10%, and the wash hue tracks the line's ink hue in light."
+ },
+ {
+  "file": "app/components/StatCardMaker.module.css",
+  "line": 35,
+  "literal": "rgba(255, 182, 39, 0.13)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 13%, transparent)",
+  "darkIdentical": true,
+  "note": ".chipOn also sets color: var(--gold) \u2014 wash, so the selected chip does not become gold-on-gold."
+ },
+ {
+  "file": "app/components/StatCardMaker.module.css",
+  "line": 93,
+  "literal": "rgba(255, 182, 39, 0.28)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 28%, transparent)",
+  "darkIdentical": true,
+  "note": "Picture frame around the PNG preview <img> \u2014 a hairline, not a control edge."
+ },
+ {
+  "file": "app/components/StatCardMaker.module.css",
+  "line": 148,
+  "literal": "rgba(255, 182, 39, 0.25)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 25%, transparent)",
+  "darkIdentical": true,
+  "note": "Halo under the gold primary button \u2014 gone on paper."
+ },
+ {
+  "file": "app/components/TimeSeriesChart.module.css",
+  "line": 27,
+  "literal": "rgba(255, 182, 39, 0.1)",
+  "property": "fill",
+  "role": "wash",
+  "replacement": "var(--gold-wash)",
+  "darkIdentical": true,
+  "note": "Area under the stroke: var(--gold) series line \u2014 same treatment as Sparkline."
+ },
+ {
+  "file": "app/components/filterEmpty.module.css",
+  "line": 23,
+  "literal": "rgba(255, 182, 39, 0.14)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 14%, transparent)",
+  "darkIdentical": true,
+  "note": ".clear has border and color both var(--gold) \u2014 a washed outline button, so the background must not become --gold-fill."
+ },
+ {
+  "file": "app/components/liveBand.module.css",
+  "line": 11,
+  "literal": "rgba(255, 182, 39, 0.14)",
+  "property": "background-image (radial-gradient)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 14%, transparent)",
+  "darkIdentical": true,
+  "note": "Corner light on the live band. Not chrome \u2014 the band's own background-color is var(--bg-soft) and it sits below the nav, not in it."
+ },
+ {
+  "file": "app/components/mobileAfricasBiggest.module.css",
+  "line": 156,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true,
+  "note": "Selected filter chip with color: var(--gold) on top \u2014 wash."
+ },
+ {
+  "file": "app/components/mobileAfricasBiggest.module.css",
+  "line": 231,
+  "literal": "rgba(255, 182, 39, 0.08)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 8%, transparent)",
+  "darkIdentical": true,
+  "note": "\"His row\" marker in a ranked list."
+ },
+ {
+  "file": "app/components/mobileAfrobeatsHub.module.css",
+  "line": 335,
+  "literal": "rgba(255, 182, 39, 0.42)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 42%, transparent)",
+  "darkIdentical": true,
+  "note": "HUMAN: same case as afrobeats.module.css:346 \u2014 an anchor pill. Rule 2 would say --gold-fill, but at 42% alpha #ffb627 disappears on paper and the pill's own color: var(--gold) themes to ink. Confirm the ink base."
+ },
+ {
+  "file": "app/components/mobileAnalysis.module.css",
+  "line": 242,
+  "literal": "rgba(255, 182, 39, 0.25)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 25%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileApi.module.css",
+  "line": 114,
+  "literal": "rgba(255, 182, 39, 0.4)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 40%, transparent)",
+  "darkIdentical": true,
+  "note": "HUMAN: .pillLive is a static badge, not an interactive control, and its background on the same line is a wash \u2014 an ink border keeps border, wash and gold label in one hue on paper. Rule 2's --gold-fill would split them."
+ },
+ {
+  "file": "app/components/mobileApi.module.css",
+  "line": 114,
+  "literal": "rgba(255, 182, 39, 0.08)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 8%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileApi.module.css",
+  "line": 141,
+  "literal": "rgba(255, 182, 39, 0.14)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 14%, transparent)",
+  "darkIdentical": true,
+  "note": ".verb tag carries color: var(--gold) \u2014 wash keeps the HTTP verb readable."
+ },
+ {
+  "file": "app/components/mobileApi.module.css",
+  "line": 228,
+  "literal": "rgba(255, 182, 39, 0.25)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 25%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileAwards.module.css",
+  "line": 156,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 262,
+  "literal": "rgba(255, 182, 39, 0.08)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 8%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 306,
+  "literal": "rgba(255, 182, 39, 0.06)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 6%, transparent)",
+  "darkIdentical": true,
+  "note": "Hover twin of the desktop .certRow:hover (certifications.module.css:57) \u2014 keep the two identical."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 307,
+  "literal": "rgba(255, 182, 39, 0.4)",
+  "property": "border-bottom-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 40%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 316,
+  "literal": "rgba(255, 182, 39, 0.06)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 6%, transparent)",
+  "darkIdentical": true,
+  "note": ":active twin of the :hover rule above \u2014 must match line 306."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 317,
+  "literal": "rgba(255, 182, 39, 0.4)",
+  "property": "border-bottom-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 40%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 428,
+  "literal": "rgba(255, 182, 39, 0.24)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 24%, transparent)",
+  "darkIdentical": true,
+  "note": "0.24, not the 0.25 its eleven siblings use \u2014 kept at 24% rather than rounded into a shared token, so dark stays byte-identical."
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 152,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 187,
+  "literal": "rgba(255, 182, 39, 0.06)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 6%, transparent)",
+  "darkIdentical": true,
+  "note": "The lead row of the list \u2014 the page's answer row."
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 223,
+  "literal": "rgba(255, 182, 39, 0.3)",
+  "property": "background",
+  "role": "fill",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 30%, transparent)",
+  "darkIdentical": true,
+  "note": "Data bar. The table names --gold-fill for bars, but the rule's own comment calls this \"a quiet tint, not a gold slab\", and #ffb627 at 30% is near-invisible on #f7f4ee; the wash base gives the same value in dark and a readable tan on paper."
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 226,
+  "literal": "rgba(255, 182, 39, 0.55)",
+  "property": "background",
+  "role": "fill",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 55%, transparent)",
+  "darkIdentical": true,
+  "note": "Lead row's bar \u2014 same base as line 223 so the two stay one ramp."
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 278,
+  "literal": "rgba(255, 182, 39, 0.09)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 9%, transparent)",
+  "darkIdentical": true,
+  "note": "Touch press state on a row link."
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 327,
+  "literal": "rgba(255, 182, 39, 0.25)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 25%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 364,
+  "literal": "rgba(255, 182, 39, 0.09)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 9%, transparent)",
+  "darkIdentical": true,
+  "note": "Touch press state on a tile."
+ },
+ {
+  "file": "app/components/mobileDeepPage.module.css",
+  "line": 366,
+  "literal": "rgba(255, 182, 39, 0.55)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 55%, transparent)",
+  "darkIdentical": true,
+  "note": "Semantic \"leads\" marker on a card edge \u2014 must stay visible on paper, so ink base. Mirrors cars.module.css:276."
+ },
+ {
+  "file": "app/components/mobileHome.module.css",
+  "line": 280,
+  "literal": "rgba(255, 182, 39, 0.1)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "var(--gold-wash)",
+  "darkIdentical": true,
+  "note": "Exactly 10%; the rule's comment fixes 0.10 deliberately between 0.07 and 0.16, so keep the alpha exact."
+ },
+ {
+  "file": "app/components/mobileHome.module.css",
+  "line": 284,
+  "literal": "rgba(255, 182, 39, 0.1)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "var(--gold-wash)",
+  "darkIdentical": true,
+  "note": ":active twin of the :hover on line 280 \u2014 same token."
+ },
+ {
+  "file": "app/components/mobileHome.module.css",
+  "line": 482,
+  "literal": "rgba(255, 182, 39, 0.14)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 14%, transparent)",
+  "darkIdentical": true,
+  "note": ".railPeak carries color: var(--gold) \u2014 wash."
+ },
+ {
+  "file": "app/components/mobileLiveCharts.module.css",
+  "line": 107,
+  "literal": "rgba(255, 182, 39, 0.08)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 8%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileLiveCharts.module.css",
+  "line": 204,
+  "literal": "rgba(255, 182, 39, 0.04)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 4%, transparent)",
+  "darkIdentical": true,
+  "note": "Open-row wash; at 4% this is already at the edge of visibility, and #b07000 at 4% on paper is roughly as faint as #ffb627 at 4% is on ink \u2014 no alpha change made."
+ },
+ {
+  "file": "app/components/mobileMethodology.module.css",
+  "line": 225,
+  "literal": "rgba(255, 182, 39, 0.25)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 25%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileNavSheet.module.css",
+  "line": 145,
+  "literal": "rgba(255, 182, 39, 0.07)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 7%, transparent)",
+  "darkIdentical": true,
+  "note": "HUMAN: the sheet is only half-themed \u2014 background: linear-gradient(180deg, #111113 0%, var(--bg) 34%). If the black family keeps #111113, the top of the sheet stays dark while this active-row wash themes to paper."
+ },
+ {
+  "file": "app/components/mobileOfficialCharts.module.css",
+  "line": 167,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileOfficialCharts.module.css",
+  "line": 183,
+  "literal": "rgba(255, 182, 39, 0.08)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 8%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileOfficialCharts.module.css",
+  "line": 386,
+  "literal": "rgba(255, 182, 39, 0.25)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 25%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileRevenue.module.css",
+  "line": 151,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileRevenue.module.css",
+  "line": 266,
+  "literal": "rgba(255, 182, 39, 0.25)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 25%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileSections.module.css",
+  "line": 22,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true,
+  "note": "Open accordion header wash."
+ },
+ {
+  "file": "app/components/mobileStatCards.module.css",
+  "line": 117,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileStatCards.module.css",
+  "line": 127,
+  "literal": "rgba(255, 182, 39, 0.28)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 28%, transparent)",
+  "darkIdentical": true,
+  "note": "Frame around the card preview image \u2014 hairline."
+ },
+ {
+  "file": "app/components/mobileStatCards.module.css",
+  "line": 204,
+  "literal": "rgba(255, 182, 39, 0.25)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 25%, transparent)",
+  "darkIdentical": true,
+  "note": "HUMAN: this button (.primary) sets color: var(--bg) on the gold ramp \u2014 in light --bg is paper, giving cream text on a gold fill. Should be --ink-on-gold. Out of my family but it is the rule-3 trap."
+ },
+ {
+  "file": "app/components/mobileTourMap.module.css",
+  "line": 187,
+  "literal": "rgba(255, 182, 39, 0.25)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 25%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileTours.module.css",
+  "line": 134,
+  "literal": "rgba(255, 182, 39, 0.04)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 4%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileTours.module.css",
+  "line": 282,
+  "literal": "rgba(255, 182, 39, 0.25)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 25%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileTours.module.css",
+  "line": 289,
+  "literal": "rgba(255, 182, 39, 0.28)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 28%, transparent)",
+  "darkIdentical": true,
+  "note": "Edge of the \"announced, not yet played\" callout \u2014 panel, not control. Mirrors tours.module.css:368."
+ },
+ {
+  "file": "app/components/mobileTours.module.css",
+  "line": 290,
+  "literal": "rgba(255, 182, 39, 0.04)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 4%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/components/mobileTours.module.css",
+  "line": 301,
+  "literal": "rgba(255, 182, 39, 0.5)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 50%, transparent)",
+  "darkIdentical": true,
+  "note": "Outline of the UPCOMING tag, whose text is var(--gold) \u2014 border and label share the ink hue in both themes."
+ },
+ {
+  "file": "app/components/statCardButton.module.css",
+  "line": 74,
+  "literal": "rgba(255, 182, 39, 0.28)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 28%, transparent)",
+  "darkIdentical": true,
+  "note": "Preview image frame \u2014 same treatment as StatCardMaker:93 and mobileStatCards:127."
+ },
+ {
+  "file": "app/components/todaysNumber.module.css",
+  "line": 18,
+  "literal": "rgba(255, 182, 39, 0.14)",
+  "property": "background-image (radial-gradient)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 14%, transparent)",
+  "darkIdentical": true,
+  "note": "One-corner glow on a var(--bg-soft) panel \u2014 must match liveBand.module.css:11, which is the identical treatment directly above it."
+ },
+ {
+  "file": "app/contact/contact.module.css",
+  "line": 68,
+  "literal": "rgba(255, 182, 39, 0.06)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 6%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/curator/curator.module.css",
+  "line": 58,
+  "literal": "rgba(255, 182, 39, 0.35)",
+  "property": "border-bottom",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 35%, transparent)",
+  "darkIdentical": true,
+  "note": "Inline prose link underline \u2014 text is var(--gold), so the underline is the same ink at 35%."
+ },
+ {
+  "file": "app/dai-dai/dai-dai.module.css",
+  "line": 146,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true,
+  "note": "Headline stat card tint; the numeral on it is var(--text)."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 71,
+  "literal": "rgba(255, 182, 39, 0.14)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 14%, transparent)",
+  "darkIdentical": true,
+  "note": "Caret disc on summary hover; the caret glyph is var(--gold) \u2014 wash, not fill."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 175,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true,
+  "note": ".chipNo1 carries color: var(--gold-bright), which does NOT theme \u2014 on paper a #ffd24a label on a 16% #b07000 wash is weak. Worth a look with the gold-bright audit."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 226,
+  "literal": "rgba(255, 182, 39, 0.10)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "var(--gold-wash)",
+  "darkIdentical": true,
+  "note": "Written 0.10 here and 0.1 elsewhere \u2014 same value, same token."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 376,
+  "literal": "rgba(255, 182, 39, 0.22)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 22%, transparent)",
+  "darkIdentical": true,
+  "note": "Cover-art fallback tile; the letter on it is var(--gold)."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 376,
+  "literal": "rgba(255, 182, 39, 0.06)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 6%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 377,
+  "literal": "rgba(255, 182, 39, 0.28)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 28%, transparent)",
+  "darkIdentical": true,
+  "note": "Edge of the cover-art placeholder \u2014 a graphic frame, not a control."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 443,
+  "literal": "rgba(255, 182, 39, 0.08)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 8%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/methodology/methodology.module.css",
+  "line": 46,
+  "literal": "rgba(255, 182, 39, 0.35)",
+  "property": "border-bottom",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 35%, transparent)",
+  "darkIdentical": true,
+  "note": "Prose link underline \u2014 identical to curator.module.css:58 by design; keep them the same."
+ },
+ {
+  "file": "app/methodology/methodology.module.css",
+  "line": 188,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/methodology/methodology.module.css",
+  "line": 188,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 55,
+  "literal": "rgba(255, 182, 39, 0.13)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 13%, transparent)",
+  "darkIdentical": true,
+  "note": ".pickOn is a selected song chip with color: var(--gold) \u2014 wash."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 168,
+  "literal": "rgba(255, 182, 39, 0.22)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 22%, transparent)",
+  "darkIdentical": true,
+  "note": "Legend dot for the No.1 peak band \u2014 must match line 250 exactly."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 191,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 250,
+  "literal": "rgba(255, 182, 39, 0.22)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 22%, transparent)",
+  "darkIdentical": true,
+  "note": "No.1 peak chip. The rule's own comment says peak bands are never recoloured \u2014 the hue moves with the theme but the band stays the gold one."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 472,
+  "literal": "rgba(255, 182, 39, 0.25)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-glow-base) 25%, transparent)",
+  "darkIdentical": true,
+  "note": "HUMAN: the same rule sets color: var(--bg) over the gold ramp \u2014 paper-on-gold in light. Needs --ink-on-gold."
+ },
+ {
+  "file": "app/music/music.module.css",
+  "line": 31,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/music/music.module.css",
+  "line": 295,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/page.module.css",
+  "line": 71,
+  "literal": "rgba(255, 182, 39, 0.5)",
+  "property": "box-shadow (keyframe 0%)",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 50%, transparent)",
+  "darkIdentical": true,
+  "note": "HUMAN: this is a spread ring, not a blur glow \u2014 it is the only \"featured\" affordance on the item, so I used the wash base (visible brown ring on paper) rather than --gold-glow-base (which would delete the animation in light). Confirm."
+ },
+ {
+  "file": "app/page.module.css",
+  "line": 72,
+  "literal": "rgba(255, 182, 39, 0)",
+  "property": "box-shadow (keyframe 70%)",
+  "role": "shadow",
+  "replacement": "rgb(from var(--gold-wash-base) r g b / 0)",
+  "darkIdentical": true,
+  "note": "Zero-alpha end state; relative colour keeps the hue through the interpolation and is byte-identical in dark."
+ },
+ {
+  "file": "app/page.module.css",
+  "line": 73,
+  "literal": "rgba(255, 182, 39, 0)",
+  "property": "box-shadow (keyframe 100%)",
+  "role": "shadow",
+  "replacement": "rgb(from var(--gold-wash-base) r g b / 0)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/press/press.module.css",
+  "line": 52,
+  "literal": "rgba(255, 182, 39, 0.35)",
+  "property": "border-bottom",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 35%, transparent)",
+  "darkIdentical": true,
+  "note": "Third copy of the prose-link underline (curator, methodology, press) \u2014 keep all three identical."
+ },
+ {
+  "file": "app/records/africas-biggest/africas-biggest.module.css",
+  "line": 82,
+  "literal": "rgba(255, 182, 39, 0.28)",
+  "property": "background",
+  "role": "fill",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 28%, transparent)",
+  "darkIdentical": true,
+  "note": "Trend bars. Its lit sibling .barFillNow is linear-gradient(var(--gold), var(--grad-b)), and var(--gold) resolves to --gold-ink in light \u2014 so the unlit bars must be the same brown-gold family, not #ffb627."
+ },
+ {
+  "file": "app/records/africas-biggest/africas-biggest.module.css",
+  "line": 133,
+  "literal": "rgba(255, 182, 39, 0.13)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 13%, transparent)",
+  "darkIdentical": true,
+  "note": ".groupCount pill carries color: var(--gold)."
+ },
+ {
+  "file": "app/records/africas-biggest/africas-biggest.module.css",
+  "line": 164,
+  "literal": "rgba(255, 182, 39, 0.06)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 6%, transparent)",
+  "darkIdentical": true,
+  "note": "The gradient-over-opaque-var(--bg) trick exists so the tint never composites against the seam bed; keep both the layering and the alpha."
+ },
+ {
+  "file": "app/records/africas-biggest/africas-biggest.module.css",
+  "line": 164,
+  "literal": "rgba(255, 182, 39, 0.06)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 6%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/africas-biggest/africas-biggest.module.css",
+  "line": 211,
+  "literal": "rgba(255, 182, 39, 0.07)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 7%, transparent)",
+  "darkIdentical": true,
+  "note": "\"His entry\" row marker."
+ },
+ {
+  "file": "app/records/africas-biggest/africas-biggest.module.css",
+  "line": 270,
+  "literal": "rgba(255, 182, 39, 0.14)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 14%, transparent)",
+  "darkIdentical": true,
+  "note": ".chipHim sets color: var(--gold) on this tint \u2014 wash."
+ },
+ {
+  "file": "app/records/awards/awards.module.css",
+  "line": 13,
+  "literal": "rgba(255, 182, 39, 0.06)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 6%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/awards/awards.module.css",
+  "line": 14,
+  "literal": "rgba(255, 182, 39, 0.4)",
+  "property": "border-bottom-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 40%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/awards/awards.module.css",
+  "line": 120,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/awards/awards.module.css",
+  "line": 137,
+  "literal": "rgba(255, 182, 39, 0.08)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 8%, transparent)",
+  "darkIdentical": true,
+  "note": ".moreBodies:hover also sets color: var(--gold-bright), which is unchanged in light \u2014 a bright yellow label on an 8% paper wash will be hard to read. Flag with the gold-bright pass."
+ },
+ {
+  "file": "app/records/by-the-numbers/byTheNumbers.module.css",
+  "line": 77,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/by-the-numbers/byTheNumbers.module.css",
+  "line": 77,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/by-the-numbers/byTheNumbers.module.css",
+  "line": 78,
+  "literal": "rgba(255, 182, 39, 0.09)",
+  "property": "background (linear-gradient stop 1)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 9%, transparent)",
+  "darkIdentical": true,
+  "note": "Hover wash must stay one step above the .statBig rest wash (5%) on both grounds."
+ },
+ {
+  "file": "app/records/by-the-numbers/byTheNumbers.module.css",
+  "line": 78,
+  "literal": "rgba(255, 182, 39, 0.09)",
+  "property": "background (linear-gradient stop 2)",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 9%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/cars/[car]/car.module.css",
+  "line": 207,
+  "literal": "rgba(255, 182, 39, 0.45)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 45%, transparent)",
+  "darkIdentical": true,
+  "note": ".baseTag is a small static label with color: var(--gold) \u2014 outline takes the same ink."
+ },
+ {
+  "file": "app/records/cars/[car]/car.module.css",
+  "line": 352,
+  "literal": "rgba(255, 182, 39, 0.06)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 6%, transparent)",
+  "darkIdentical": true,
+  "note": "Source panel; border is var(--gold) and text var(--text) \u2014 wash keeps the text legible."
+ },
+ {
+  "file": "app/records/cars/[car]/car.module.css",
+  "line": 356,
+  "literal": "rgba(255, 182, 39, 0.14)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 14%, transparent)",
+  "darkIdentical": true,
+  "note": "Hover of the rule above \u2014 same base."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 222,
+  "literal": "rgba(255, 182, 39, 0.35)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 35%, transparent)",
+  "darkIdentical": true,
+  "note": "Callout panel edge."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 222,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 276,
+  "literal": "rgba(255, 182, 39, 0.55)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 55%, transparent)",
+  "darkIdentical": true,
+  "note": "Marks the lead car. Rule 2 would call an <a> tile a control and send this to --gold-fill, but the marker has to read against a white card, so ink base. Must match mobileDeepPage:366."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 362,
+  "literal": "rgba(255, 182, 39, 0.35)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 35%, transparent)",
+  "darkIdentical": true,
+  "note": "Mobile twin of .note (line 222) \u2014 keep identical."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 362,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 21,
+  "literal": "rgba(255, 182, 39, 0.06)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 6%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 22,
+  "literal": "rgba(255, 182, 39, 0.4)",
+  "property": "border-bottom-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 40%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 71,
+  "literal": "rgba(255, 182, 39, 0.12)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 12%, transparent)",
+  "darkIdentical": true,
+  "note": "No.1 peak chip with color and border-color both var(--gold) \u2014 wash, or the chip goes gold-on-gold on paper."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 135,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 207,
+  "literal": "rgba(255, 182, 39, 0.08)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 8%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 290,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true,
+  "note": "Table row hover; must stay below .rowOne's 7% rest wash on line 291 in both themes."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 291,
+  "literal": "rgba(255, 182, 39, 0.07)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 7%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 292,
+  "literal": "rgba(255, 182, 39, 0.1)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "var(--gold-wash)",
+  "darkIdentical": true,
+  "note": "Exactly 10% \u2014 the named token. Top of the 5/7/10 hover ladder on this table."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 484,
+  "literal": "rgba(255, 182, 39, 0.2)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 20%, transparent)",
+  "darkIdentical": true,
+  "note": "Legend dot for the No.1 band. It is already a different alpha from the chip it labels (12%), so no pairing constraint \u2014 but keep it on the same base."
+ },
+ {
+  "file": "app/records/firsts/firsts.module.css",
+  "line": 12,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/records.module.css",
+  "line": 171,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true,
+  "note": "Card hover; the card's rest background is var(--bg-soft), so on paper this is a tint over white \u2014 5% of #b07000 stays perceptible."
+ },
+ {
+  "file": "app/records/tours/festivals/festivals.module.css",
+  "line": 55,
+  "literal": "rgba(255, 182, 39, 0.07)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 7%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/tours/map/map.module.css",
+  "line": 82,
+  "literal": "rgba(255, 182, 39, 0.42)",
+  "property": "background",
+  "role": "data",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 42%, transparent)",
+  "darkIdentical": true,
+  "note": "Legend swatch for the shaded countries \u2014 must use the identical expression as the map's .on fill (line 216) or the legend stops matching the map."
+ },
+ {
+  "file": "app/records/tours/map/map.module.css",
+  "line": 91,
+  "literal": "rgba(255, 182, 39, 0.75)",
+  "property": "background",
+  "role": "data",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 75%, transparent)",
+  "darkIdentical": true,
+  "note": "Legend swatch for the island-nation dot marker \u2014 must match .dot (line 229)."
+ },
+ {
+  "file": "app/records/tours/map/map.module.css",
+  "line": 122,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/tours/map/map.module.css",
+  "line": 216,
+  "literal": "rgba(255, 182, 39, 0.42)",
+  "property": "fill",
+  "role": "data",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 42%, transparent)",
+  "darkIdentical": true,
+  "note": "HUMAN: countries he has performed in. #ffb627 at 42% on #f7f4ee barely separates from the ground, so the wash base is used. But :hover/.activePath are var(--gold-bright) (#ffd24a, unchanged in light) \u2014 on paper the hover would be LIGHTER than the base, inverting the emphasis. Needs a light-mode hover value."
+ },
+ {
+  "file": "app/records/tours/map/map.module.css",
+  "line": 229,
+  "literal": "rgba(255, 182, 39, 0.75)",
+  "property": "fill",
+  "role": "data",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 75%, transparent)",
+  "darkIdentical": true,
+  "note": "Island-nation markers; same --gold-bright stroke/hover problem as line 216."
+ },
+ {
+  "file": "app/records/tours/revenue/revenue.module.css",
+  "line": 75,
+  "literal": "rgba(255, 182, 39, 0.16)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 16%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/tours/revenue/revenue.module.css",
+  "line": 110,
+  "literal": "rgba(255, 182, 39, 0.04)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 4%, transparent)",
+  "darkIdentical": true,
+  "note": "\"His rows\" wash. Its neighbour .row:hover is rgba(245,240,232,.05) (text family) \u2014 the two must stay distinguishable after both are themed."
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 132,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 133,
+  "literal": "rgba(255, 182, 39, 0.08)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 8%, transparent)",
+  "darkIdentical": true,
+  "note": "Hover of the open row \u2014 one step above line 132 in both themes."
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 241,
+  "literal": "rgba(255, 182, 39, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 5%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 368,
+  "literal": "rgba(255, 182, 39, 0.28)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 28%, transparent)",
+  "darkIdentical": true,
+  "note": "Desktop twin of mobileTours:289 \u2014 keep identical."
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 369,
+  "literal": "rgba(255, 182, 39, 0.04)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--gold-wash-base) 4%, transparent)",
+  "darkIdentical": true
+ },
+ {
+  "file": "app/records/tours/tours.module.css",
+  "line": 387,
+  "literal": "rgba(255, 182, 39, 0.5)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--gold-ink) 50%, transparent)",
+  "darkIdentical": true,
+  "note": "UPCOMING tag outline, text is var(--gold) \u2014 desktop twin of mobileTours:301."
+ },
+ {
+  "file": "app/about/about.module.css",
+  "line": 97,
+  "literal": "rgba(232, 176, 75, 0.15)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--glow-base) 15%, transparent)",
+  "darkIdentical": true,
+  "note": "The 4px halo ring around .tDot, the gold timeline dot (background: var(--gold) on the line above). Base #e8b04b is not a token, so I propose --glow-base: light-dark(transparent, #e8b04b). Dark computes rgba(232,176,75,0.15) byte-for-byte; light collapses to transparent, which is the section-4.6 rule that glows do not exist on paper \u2014 the dot itself stays gold via --gold, which still reads on cream."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 360,
+  "literal": "rgba(143, 227, 240, 0.55)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--cyan) 55%, transparent)",
+  "darkIdentical": true,
+  "note": "Top-10 peak chip edge. --cyan is already light-dark(#0b6e7e, #8fe3f0), so dark resolves to rgba(143,227,240,0.55) exactly. The same rule's color: var(--cyan) is already tokenised, so edge and label theme together."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 361,
+  "literal": "rgba(223, 226, 232, 0.45)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--silver) 45%, transparent)",
+  "darkIdentical": true,
+  "note": "Top-40 peak chip edge; --silver dark is #dfe2e8, so the mix is byte-identical in dark."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 378,
+  "literal": "rgba(143, 227, 240, 0.55)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--cyan) 55%, transparent)",
+  "darkIdentical": true,
+  "note": "Legend dot for the Top-10 band \u2014 a 9px ring with no fill. Same band token as the chip it explains."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 379,
+  "literal": "rgba(223, 226, 232, 0.45)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--silver) 45%, transparent)",
+  "darkIdentical": true,
+  "note": "Legend dot for the Top-40 band."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 589,
+  "literal": "#f06ae0",
+  "property": "color",
+  "role": "display",
+  "replacement": "var(--brand-accent-ink)",
+  "darkIdentical": true,
+  "note": "Ayra Starr's name at clamp(40px, 6vw, 76px) \u2014 the no-@supports fallback under the clipped gradient. Per design 6.5 this is brand, not site palette: --brand-accent-ink scoped to [data-brand=\"starrgirl\"], light-dark(#a3157f, #f06ae0). Dark keeps #f06ae0 exactly. Light #a3157f measures 6.44:1 on #f7f4ee (and 5.90:1 on --bg-soft-2), so it clears 4.5:1 even though at this size 3:1 would do \u2014 the ink value is deliberately reusable at small sizes."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 592,
+  "literal": "#ff5cd6",
+  "property": "background-image",
+  "role": "display",
+  "replacement": "var(--brand-grad-1)",
+  "darkIdentical": true,
+  "note": "Gradient stop 0% \u2014 but background-clip:text means this is TEXT, not a fill, so it must clear a text ratio, not a fill one. --brand-grad-1: light-dark(#a3157f, #ff5cd6). Dark #ff5cd6 unchanged (7.31:1 on #0a0a0b); light #a3157f = 6.44:1 on #f7f4ee."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 592,
+  "literal": "#c94ae8",
+  "property": "background-image",
+  "role": "display",
+  "replacement": "var(--brand-grad-2)",
+  "darkIdentical": true,
+  "note": "Gradient stop 46%, clipped to text. --brand-grad-2: light-dark(#7d1a9e, #c94ae8). Dark #c94ae8 unchanged (5.30:1 on #0a0a0b); light #7d1a9e = 7.61:1 on #f7f4ee. Hue held so the magenta-to-violet sweep survives the flip."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 592,
+  "literal": "#9a5cf4",
+  "property": "background-image",
+  "role": "display",
+  "replacement": "var(--brand-grad-3)",
+  "darkIdentical": true,
+  "note": "Gradient stop 100%, clipped to text. --brand-grad-3: light-dark(#5b2bb5, #9a5cf4). Dark #9a5cf4 unchanged (4.91:1 on #0a0a0b); light #5b2bb5 = 7.78:1 on #f7f4ee."
+ },
+ {
+  "file": "app/afrobeats/[artist]/artist.module.css",
+  "line": 605,
+  "literal": "#f06ae0",
+  "property": "color",
+  "role": "display",
+  "replacement": "var(--brand-accent-ink)",
+  "darkIdentical": true,
+  "note": ".numLead .numValue is clamp(26px, 3.4vw, 42px) Anton \u2014 display size. Same brand ink as the title; the file's own comment says the value is chosen flat precisely because this figure is reused small, which is exactly why the ink (4.5:1-safe) variant is right rather than a display-only one."
+ },
+ {
+  "file": "app/api/api.module.css",
+  "line": 119,
+  "literal": "#b8b0a5",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-warm)",
+  "darkIdentical": true,
+  "note": ".endpointWhat is 14px/1.6 prose at 82ch \u2014 reading text. #b8b0a5 is a WARM grey and is NOT one of the three the table retires (#cfc7bb, #d8d8de, #d3d3da), so folding it into --text-body would change dark by ~23 units of red. Proposing --text-body-warm: light-dark(#544d43, #b8b0a5) instead. Light #544d43 = 7.59:1 on paper. See needsHumanDecision if you would rather bless a fourth consolidation."
+ },
+ {
+  "file": "app/components/BackToTop.module.css",
+  "line": 12,
+  "literal": "rgba(20, 20, 23, 0.9)",
+  "property": "background",
+  "role": "chrome",
+  "replacement": "var(--bg-float)",
+  "darkIdentical": true,
+  "note": "The floating back-to-top puck \u2014 a translucent surface over the page with backdrop-filter, not part of the masthead, so it should theme. No existing token is byte-identical: --bg-soft dark is #141416 = rgb(20,20,22), one unit of blue away, so I will not round. Proposing --bg-float: light-dark(rgba(255,255,255,0.90), rgba(20,20,23,0.90))."
+ },
+ {
+  "file": "app/components/BackToTop.module.css",
+  "line": 42,
+  "literal": "#14100a",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--ink-on-gold)",
+  "darkIdentical": true,
+  "note": "Text on a gold fill: the :hover rule sets background: var(--gold) directly above. --ink-on-gold is #14100a in BOTH modes, so this is a pure no-op. RULE 3 FLAG: the sibling background: var(--gold) and border-color: var(--gold) on lines 40-41 resolve to --gold-ink (#8a5a00) in light, which turns a gold button into a brown one under near-black text. Those two must become var(--gold-fill)."
+ },
+ {
+  "file": "app/components/BackToTop.module.css",
+  "line": 42,
+  "literal": "#14100a",
+  "property": "-webkit-text-fill-color",
+  "role": "text",
+  "replacement": "var(--ink-on-gold)",
+  "darkIdentical": true,
+  "note": "The -webkit-text-fill-color twin of the color above \u2014 present because the site clips gradient text elsewhere and the property must be reset explicitly. Same token, same no-op."
+ },
+ {
+  "file": "app/components/DaiDaiConquest.module.css",
+  "line": 47,
+  "literal": "rgba(138, 130, 121, 0.5)",
+  "property": "color",
+  "role": "text",
+  "replacement": "color-mix(in srgb, var(--text-dim-warm) 50%, transparent)",
+  "darkIdentical": true,
+  "note": ".peak in the conquest grid \u2014 11px mono, the deliberately faint 'no peak recorded' state (the .cellOn/.cellOne overrides brighten it). Base #8a8279 is the same warm grey as dai-dai.module.css:189, so both take the proposed --text-dim-warm: light-dark(#6f685f, #8a8279); the mix keeps the exact 50%. Dark is byte-identical. Note the effective contrast is low by design in both modes (~2.2:1 on paper) \u2014 it is a placeholder, not reading text, but if it must be perceivable raise the alpha rather than the token."
+ },
+ {
+  "file": "app/components/FollowPanel.module.css",
+  "line": 6,
+  "literal": "rgba(226, 52, 43, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--grad-c) 5%, transparent)",
+  "darkIdentical": true,
+  "note": "Middle stop of the panel's warm wash, layered over var(--bg-soft). --grad-c is #e2342b and is UNCHANGED in both modes per the table, so the mix is byte-identical in dark and gives a 5% red tint over white in light \u2014 the same optical role."
+ },
+ {
+  "file": "app/components/RankedBars.module.css",
+  "line": 83,
+  "literal": "#4a4a52",
+  "property": "background",
+  "role": "data",
+  "replacement": "var(--bar-muted)",
+  "darkIdentical": true,
+  "note": "The recessive bar fill for non-Burna rows, inside a rounded track \u2014 a non-text data mark, so it needs separation from the track rather than a text ratio. No token is byte-identical. Proposing --bar-muted: light-dark(#8d877d, #4a4a52); light gives 2.97:1 against a --bg-soft-2 track and 3.56:1 against white, keeping it clearly recessive to the gold bars above it."
+ },
+ {
+  "file": "app/components/ScatterChart.module.css",
+  "line": 39,
+  "literal": "#55555d",
+  "property": "fill",
+  "role": "data",
+  "replacement": "var(--dot-muted)",
+  "darkIdentical": true,
+  "note": "SVG fill for .dotMuted \u2014 the recessive scatter point, stroked with var(--bg). Non-text data mark on the page ground. Proposing --dot-muted: light-dark(#7f7a72, #55555d); light measures 3.88:1 on #f7f4ee, which a small dot needs more of than a wide bar does. Deliberately a different token from --bar-muted because the dark values differ (#55555d vs #4a4a52) and rule 1 forbids collapsing them."
+ },
+ {
+  "file": "app/components/SearchPalette.module.css",
+  "line": 49,
+  "literal": "#141416",
+  "property": "background",
+  "role": "fill",
+  "replacement": "var(--bg-soft)",
+  "darkIdentical": true,
+  "note": "This literal is a FALLBACK inside var(--bg-soft-2, #141416) and is already dead code: --bg-soft-2 is declared in :root, so the fallback never resolves today (and is stale anyway \u2014 --bg-soft-2 dark is #1c1c21, not #141416). Deleting it is a no-op in dark and removes exactly the light-mode hazard timeline.module.css:216 warns about: a stale copy painting the dark value onto paper.",
+  "_rescued_from": "var(--bg-soft-2)"
+ },
+ {
+  "file": "app/components/TrendDelta.module.css",
+  "line": 25,
+  "literal": "#f2726a",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--delta-down)",
+  "darkIdentical": true,
+  "note": ".down at 0.78rem mono \u2014 a negative delta figure. The table's --red-ink is #e0796d in dark, which is close but not byte-identical, so per rule 1 I propose --delta-down: light-dark(#b3261e, #f2726a) rather than round. Light #b3261e = 5.95:1 on paper, matching --red-ink's light value so the two reds converge on paper even though they differ in dark."
+ },
+ {
+  "file": "app/components/TrendDelta.module.css",
+  "line": 28,
+  "literal": "#f2726a",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--delta-down)",
+  "darkIdentical": true,
+  "note": ".down .arrow \u2014 the glyph beside the figure, 0.6875rem. Same token; it must match the number it points at."
+ },
+ {
+  "file": "app/components/appState.module.css",
+  "line": 23,
+  "literal": "rgba(192, 57, 43, 0.1)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--red) 10%, transparent)",
+  "darkIdentical": true,
+  "note": ".washError \u2014 the ambient radial behind the error state, pointer-events:none. --red is #c0392b unchanged in both modes, which is precisely the 'wash only, never text' role, so the mix is byte-identical in dark and a 10% red bloom on paper in light."
+ },
+ {
+  "file": "app/components/appState.module.css",
+  "line": 35,
+  "literal": "#e06a5c",
+  "property": "color",
+  "role": "display",
+  "replacement": "var(--error-ink)",
+  "darkIdentical": true,
+  "note": ".glyphError is the 104px Anton glyph \u2014 display size, but the same literal is reused at icon size on line 46, so one ink-grade token serves both. --red-ink's dark is #e0796d, not this, so proposing --error-ink: light-dark(#b3261e, #e06a5c). Light #b3261e = 5.95:1 on paper."
+ },
+ {
+  "file": "app/components/appState.module.css",
+  "line": 41,
+  "literal": "rgba(192, 57, 43, 0.5)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--red) 50%, transparent)",
+  "darkIdentical": true,
+  "note": ".icon's 2px ring. Base is --red (#c0392b, unchanged both modes), so byte-identical in dark; on paper a 50% #c0392b ring over the page reads as a clear alert edge."
+ },
+ {
+  "file": "app/components/appState.module.css",
+  "line": 42,
+  "literal": "rgba(192, 57, 43, 0.12)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--red) 12%, transparent)",
+  "darkIdentical": true,
+  "note": ".icon's tinted disc. Same --red base, exact alpha preserved."
+ },
+ {
+  "file": "app/components/appState.module.css",
+  "line": 46,
+  "literal": "#e06a5c",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--error-ink)",
+  "darkIdentical": true,
+  "note": "The glyph inside .icon, sitting on the 12% red wash from line 42. --error-ink light (#b3261e) on that wash over paper stays above 5:1, so the mark and its disc theme together \u2014 no red-on-red."
+ },
+ {
+  "file": "app/components/mobileAbout.module.css",
+  "line": 158,
+  "literal": "rgba(232, 176, 75, 0.15)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--glow-base) 15%, transparent)",
+  "darkIdentical": true,
+  "note": "The mobile twin of about.module.css:97 \u2014 a 3px halo (not 4px) around the same gold timeline dot. Same --glow-base token; both layouts must get the treatment, and this is the pair the mobile/desktop split usually drops."
+ },
+ {
+  "file": "app/components/mobileApi.module.css",
+  "line": 157,
+  "literal": "#0f0f11",
+  "property": "background",
+  "role": "fill",
+  "replacement": "var(--code-bg)",
+  "darkIdentical": true,
+  "note": ".codeBox \u2014 a code well inset below the page surface, holding var(--gold-bright) code lines and #cfc7bb attrs. Darker than --bg-soft-2 (#1c1c21) so no existing token is byte-identical. Proposing --code-bg: light-dark(#efeae1, #0f0f11) \u2014 on paper a code well should be the inset tone, i.e. --bg-soft-2's light value. NOTE the sibling .codeLine uses --gold-bright (#ffd24a, fill-ramp, unchanged) as TEXT; on a #efeae1 well that is ~1.6:1 and will be unreadable \u2014 that line needs --gold-ink and is worth checking with the gold family owner."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 635,
+  "literal": "#f06ae0",
+  "property": "color",
+  "role": "display",
+  "replacement": "var(--brand-accent-ink)",
+  "darkIdentical": true,
+  "note": "ONE declaration colours two very different things: [data-brand=\"starrgirl\"] .total (86px Anton) AND .kicker (11px mono uppercase). The 11px kicker is the binding constraint, so the ink grade \u2014 light-dark(#a3157f, #f06ae0), 6.44:1 on paper \u2014 is correct for both; a display-grade brand value would fail the kicker. Dark is unchanged. Also note the hero sits over a photograph, so neither value is guaranteed by the page ground alone. Raised in needsHumanDecision in case Paul wants the rule split."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 646,
+  "literal": "#8f2fa7",
+  "property": "background-color",
+  "role": "fill",
+  "replacement": "var(--brand-fill)",
+  "darkIdentical": true,
+  "note": "The active filter pill's base fill, with an explicit color:#ffffff / -webkit-text-fill-color:#ffffff on lines 649-650. White on #8f2fa7 is 6.70:1, which holds on paper as well as on black, so this brand fill does NOT flip: --brand-fill: #8f2fa7 in both modes. Rule 3 is already satisfied here \u2014 fill and label are set in the same block and neither themes."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 647,
+  "literal": "#b73c98",
+  "property": "background-image",
+  "role": "fill",
+  "replacement": "var(--brand-fill-hi)",
+  "darkIdentical": true,
+  "note": "Top stop of the pill's deepened ramp. White on it is 5.11:1 \u2014 the worst point of the gradient and still above the 4.5:1 a button label needs, which is what the file's own comment is protecting. Unchanged in both modes."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 647,
+  "literal": "#8f2fa7",
+  "property": "background-image",
+  "role": "fill",
+  "replacement": "var(--brand-fill)",
+  "darkIdentical": true,
+  "note": "Mid stop (52%) \u2014 the same value as the background-color base on line 646, so it takes the same token."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 647,
+  "literal": "#6b3caf",
+  "property": "background-image",
+  "role": "fill",
+  "replacement": "var(--brand-fill-lo)",
+  "darkIdentical": true,
+  "note": "Bottom stop. White on it is 7.27:1. Unchanged in both modes."
+ },
+ {
+  "file": "app/components/mobileCerts.module.css",
+  "line": 648,
+  "literal": "#8f2fa7",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "var(--brand-fill)",
+  "darkIdentical": true,
+  "note": "Border on a control, so per rule 2 it takes the FILL-grade brand token, not the ink \u2014 the edge of a filled pill should match its fill, not its text."
+ },
+ {
+  "file": "app/components/mobileTours.module.css",
+  "line": 196,
+  "literal": "#b8b0a5",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-warm)",
+  "darkIdentical": true,
+  "note": ".tourNote is 13px/1.55 prose \u2014 reading text, same warm grey as api.module.css:119 and cars.module.css:171. Same proposed --text-body-warm; not one of the three greys the table retires, so no consolidation without a decision."
+ },
+ {
+  "file": "app/components/todaysNumber.module.css",
+  "line": 55,
+  "literal": "rgba(90, 42, 6, 0.14)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--burnt) 14%, transparent)",
+  "darkIdentical": true,
+  "note": "A decorative 150px ring in the hero's right panel. The panel's own comment records that this block was moved OFF a gold fill onto var(--bg-soft), so the burnt-brown ring is a leftover that is nearly invisible on near-black today and will become a faint warm ring on white \u2014 an improvement, not a regression. Proposing --burnt: #5a2a06 (identical in both modes; it is the warm ink of the amber panels, distinct from --ink-on-gold #14100a) so the six sites that use this brown share one home."
+ },
+ {
+  "file": "app/components/todaysNumber.module.css",
+  "line": 62,
+  "literal": "rgba(90, 42, 6, 0.05)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--burnt) 5%, transparent)",
+  "darkIdentical": true,
+  "note": "The second decorative ring, filled rather than stroked. Same --burnt base, exact 5% preserved."
+ },
+ {
+  "file": "app/dai-dai/dai-dai.module.css",
+  "line": 189,
+  "literal": "#8a8279",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-dim-warm)",
+  "darkIdentical": true,
+  "note": ".numGroupIntro is 13.5px/1.6 prose under a section head \u2014 reading text, one step quieter than body. #8a8279 sits between --dim (#85858e) and --text-muted (#9b9ba3) in dark but is warmer than both, so neither is byte-identical. Proposing --text-dim-warm: light-dark(#6f685f, #8a8279); light #6f685f = 5.01:1 on paper. Shared with DaiDaiConquest.module.css:47, which uses the same base at 50%."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 8,
+  "literal": "rgba(53, 208, 127, 0.16)",
+  "property": "box-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--live-dot) 16%, transparent)",
+  "darkIdentical": true,
+  "note": "The pulsing halo ring around the live dot. Its base must match the dot it surrounds \u2014 .liveDot on line 7 is background:#35d07f, which is NOT --green-dot's #3ed17f, so a mix on --green-dot would shift dark by 9 units of red. Proposing --live-dot: light-dark(#1f9a5a, #35d07f). Unlike the gold glows this halo does NOT vanish on paper \u2014 it is the pulse that carries the 'live' meaning, not ambient light. See needsHumanDecision about the two live greens."
+ },
+ {
+  "file": "app/live-charts/liveCharts.module.css",
+  "line": 247,
+  "literal": "#e2564a",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--move-down)",
+  "darkIdentical": true,
+  "note": ".moveDown at 0.8rem mono \u2014 a falling-position marker. A third distinct dark red (vs --red-ink #e0796d and TrendDelta's #f2726a), so per rule 1 it gets its own token rather than a rounded one: --move-down: light-dark(#b3261e, #e2564a). Light #b3261e = 5.95:1 on paper. Consolidation question raised in needsHumanDecision."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 169,
+  "literal": "rgba(143, 227, 240, 0.55)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--cyan) 55%, transparent)",
+  "darkIdentical": true,
+  "note": ".dotTen legend swatch \u2014 a 10px ring, no fill. Byte-identical in dark since --cyan's dark is #8fe3f0."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 170,
+  "literal": "rgba(223, 226, 232, 0.45)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--silver) 45%, transparent)",
+  "darkIdentical": true,
+  "note": ".dotForty legend swatch. --silver dark #dfe2e8, byte-identical."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 251,
+  "literal": "rgba(143, 227, 240, 0.55)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--cyan) 55%, transparent)",
+  "darkIdentical": true,
+  "note": "Top-10 peak chip edge \u2014 the file's comment says these bands are never recoloured, and tokenising the edge onto the same --cyan the label already uses is what keeps that true across themes."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 252,
+  "literal": "rgba(223, 226, 232, 0.45)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--silver) 45%, transparent)",
+  "darkIdentical": true,
+  "note": "Top-40 peak chip edge; pairs with the existing color: var(--silver) on the same line."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 273,
+  "literal": "rgba(49, 161, 192, 0.13)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--tier-diamond) 13%, transparent)",
+  "darkIdentical": true,
+  "note": "Diamond certification chip fill. --tier-diamond is #31A1C0 in BOTH modes (it is a fill token), so byte-identical in dark and a 13% teal tint on paper. RULE 3 FLAG: the same rule sets color: var(--tier-diamond) \u2014 the tier word AS TEXT at 12px \u2014 which on paper is ~3.3:1 and fails; it should be var(--tier-diamond-ink) (already declared in globals, dark value identical, so a free no-op)."
+ },
+ {
+  "file": "app/music/[song]/song.module.css",
+  "line": 275,
+  "literal": "rgba(251, 180, 23, 0.13)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--tier-gold) 13%, transparent)",
+  "darkIdentical": true,
+  "note": "Gold certification chip fill; --tier-gold #FBB417 unchanged in both modes. Same rule-3 flag: color: var(--tier-gold) is the tier word as 12px text and needs var(--tier-gold-ink) (light #8a5a00), which is a dark no-op."
+ },
+ {
+  "file": "app/page.module.css",
+  "line": 31,
+  "literal": "rgba(232, 176, 75, 0.15)",
+  "property": "text-shadow",
+  "role": "shadow",
+  "replacement": "color-mix(in srgb, var(--glow-base) 15%, transparent)",
+  "darkIdentical": true,
+  "note": "A 90px ambient bloom behind the hero title. This is the clearest case of 'glows do not exist on paper': --glow-base resolves to transparent in light, collapsing the shadow to nothing while the Anton title itself keeps its own colour. Dark computes rgba(232,176,75,0.15) byte-for-byte. --glow itself cannot be used here because its dark value is a different blur and alpha."
+ },
+ {
+  "file": "app/page.module.css",
+  "line": 645,
+  "literal": "#5a2a06",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--burnt)",
+  "darkIdentical": true,
+  "note": ".closerGlyphs \u2014 the burnt Anton glyphs scattered across the gold panel at 8-16% opacity. --burnt is #5a2a06 in both modes, so this is a semantic rename, not a colour change: the panel it sits on does not flip, so neither can the ink."
+ },
+ {
+  "file": "app/page.module.css",
+  "line": 664,
+  "literal": "rgba(90, 42, 6, 0.12)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--burnt) 12%, transparent)",
+  "darkIdentical": true,
+  "note": ".ring1, a 260px decorative circle on the gold panel. Same --burnt base at the exact alpha; identical in both modes because the panel is."
+ },
+ {
+  "file": "app/page.module.css",
+  "line": 672,
+  "literal": "rgba(90, 42, 6, 0.1)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--burnt) 10%, transparent)",
+  "darkIdentical": true,
+  "note": ".ring2, the 320px twin at a slightly lower alpha. Same treatment."
+ },
+ {
+  "file": "app/page.module.css",
+  "line": 719,
+  "literal": "rgba(90, 42, 6, 0.12)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--burnt) 12%, transparent)",
+  "darkIdentical": true,
+  "note": ".closerLink:hover \u2014 a 12% burnt wash inside the outlined button on the gold panel. RULE 3 FLAG: the base .closerLink (line 715) sets border and color to var(--bg), which is the page ground \u2014 in light that becomes #f7f4ee, i.e. cream text on a gold panel, unreadable. Those must be var(--ink-on-gold), as must the .closer rule's own color: var(--bg) on line 633."
+ },
+ {
+  "file": "app/records/cars/[car]/car.module.css",
+  "line": 181,
+  "literal": "rgba(21, 18, 16, 0.86)",
+  "property": "background",
+  "role": "fill",
+  "replacement": "var(--card-glass)",
+  "darkIdentical": true,
+  "note": "The spec/performance cards on the car detail page \u2014 translucent with backdrop-filter, floating over the car stage. No token is byte-identical (--bg-soft is opaque #141416). Proposing --card-glass: light-dark(rgba(255,255,255,0.86), rgba(21,18,16,0.86)). But these are the pages the table's --floor-glow/--floor-ring stage tokens are written for, and it is not obvious the stage flips at all \u2014 raised in needsHumanDecision."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 171,
+  "literal": "#b8b0a5",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--text-body-warm)",
+  "darkIdentical": true,
+  "note": ".desc is 13.5px/1.65 at 78ch \u2014 reading text, the third home of this warm grey alongside api.module.css:119 and mobileTours.module.css:196. Same proposed token."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 206,
+  "literal": "rgba(192, 57, 43, 0.5)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--red) 50%, transparent)",
+  "darkIdentical": true,
+  "note": "Border of the earlier red .tagSold. --red (#c0392b) is unchanged in both modes so the mix is byte-identical, though note this whole rule is superseded by the amber .tagSold at line 325 \u2014 tokenise it for safety, but it is a candidate for deletion along with lines 66-67."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 206,
+  "literal": "rgba(192, 57, 43, 0.1)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--red) 10%, transparent)",
+  "darkIdentical": true,
+  "note": "The 10% red chip fill in the same superseded rule. --red base, exact alpha, byte-identical in dark."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 206,
+  "literal": "#e0796d",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--red-ink)",
+  "darkIdentical": true,
+  "note": "The one red in this family that IS byte-identical to a table token: --red-ink's dark value is exactly #e0796d, and the table names 'sold' as its role. Light #b3261e = 5.95:1 on paper. Superseded by line 325 at runtime, but the swap is free and correct."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 325,
+  "literal": "rgba(245, 137, 11, 0.5)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--sold-ink) 50%, transparent)",
+  "darkIdentical": true,
+  "note": "The LIVE .tagSold \u2014 the v2 amber that actually renders. Base #f5890b is not --ember (#ff7a1a), so proposing --sold-ink: light-dark(#8f4700, #f5890b). Dark mix is byte-identical."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 325,
+  "literal": "rgba(245, 137, 11, 0.1)",
+  "property": "background",
+  "role": "wash",
+  "replacement": "color-mix(in srgb, var(--sold-ink) 10%, transparent)",
+  "darkIdentical": true,
+  "note": "The 10% amber chip fill of the live .tagSold. Same base, exact alpha."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 325,
+  "literal": "#f5890b",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--sold-ink)",
+  "darkIdentical": true,
+  "note": "The 11px uppercase 'SOLD' label. --sold-ink light #8f4700 = 6.23:1 on paper (5.71:1 on --bg-soft-2), comfortably clear of 4.5:1 at this size. Dark keeps #f5890b (7.98:1)."
+ },
+ {
+  "file": "app/records/cars/cars.module.css",
+  "line": 351,
+  "literal": "#f5890b",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--sold-ink)",
+  "darkIdentical": true,
+  "note": ".mFormerSold \u2014 the mobile screen-18 twin of the desktop tag, 10.5px uppercase. Same token; this is exactly the desktop/mobile pair that gets missed when only one layout is patched."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 72,
+  "literal": "#8fe3f0",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--cyan)",
+  "darkIdentical": true,
+  "note": ".top10 peak chip label at 0.74rem. --cyan is already light-dark(#0b6e7e, #8fe3f0) in globals, so dark is a byte-identical no-op and light gives 5.39:1 on paper. This is the Top-10 band, the only role the table allows --cyan in."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 72,
+  "literal": "rgba(143, 227, 240, 0.5)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--cyan) 50%, transparent)",
+  "darkIdentical": true,
+  "note": "The chip's edge in the same rule \u2014 note the alpha here is 0.5, not the 0.55 used on the song and artist pages; the mix preserves each file's own value rather than unifying them."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 73,
+  "literal": "#dfe2e8",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--silver)",
+  "darkIdentical": true,
+  "note": ".top40 chip label. --silver light #6b6b74 = 4.81:1 on paper, dark #dfe2e8 unchanged. Top-40 band only, per the table."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 73,
+  "literal": "rgba(223, 226, 232, 0.4)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--silver) 40%, transparent)",
+  "darkIdentical": true,
+  "note": "Top-40 chip edge at this file's own 0.4 alpha."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 74,
+  "literal": "#9aa0a6",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--peak-rest)",
+  "darkIdentical": true,
+  "note": ".rest \u2014 the fourth peak band ('beyond Top 40'). Every other file writes this as var(--muted)/var(--text-muted); this file hardcodes a cooler grey that is NOT --text-muted's #9b9ba3 (off by 5 units of green, 3 of blue), so rule 1 forbids folding it in. Proposing --peak-rest: light-dark(#6b6b74, #9aa0a6), light = 4.81:1 on paper and matched to --silver's light so the band ramp stays ordered."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 74,
+  "literal": "rgba(154, 160, 166, 0.4)",
+  "property": "border-color",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--peak-rest) 40%, transparent)",
+  "darkIdentical": true,
+  "note": "The .rest chip edge \u2014 the same #9aa0a6 at 40%, so it follows the same proposed token."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 186,
+  "literal": "#14100a",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--ink-on-gold)",
+  "darkIdentical": true,
+  "note": ".viewBtnOn's label, on the gold ramp set two lines above. --ink-on-gold is #14100a in both modes \u2014 a pure no-op. RULE 3 FLAG: lines 184-185 use background-color: var(--gold) and a gradient stop var(--gold); both resolve to --gold-ink (#8a5a00) in light, so the active toggle would go dark brown under near-black text. Both need var(--gold-fill) (the --gold-bright and --gold-dim stops are already fill-ramp tokens and are fine)."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 187,
+  "literal": "#14100a",
+  "property": "-webkit-text-fill-color",
+  "role": "text",
+  "replacement": "var(--ink-on-gold)",
+  "darkIdentical": true,
+  "note": "The -webkit-text-fill-color twin of line 186. Same token, same no-op; it must move with its color or the button label desyncs in WebKit."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 318,
+  "literal": "#8fe3f0",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--cyan)",
+  "darkIdentical": true,
+  "note": ".pkTop10 \u2014 the peak cell in the table view, the same band as the chip on line 72 rendered as bare mono text. Same token so the two views cannot drift."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 319,
+  "literal": "#dfe2e8",
+  "property": "color",
+  "role": "text",
+  "replacement": "var(--silver)",
+  "darkIdentical": true,
+  "note": ".pkTop40 \u2014 the table-view twin of line 73."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 485,
+  "literal": "rgba(143, 227, 240, 0.5)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--cyan) 50%, transparent)",
+  "darkIdentical": true,
+  "note": ".legendTen \u2014 a 9px unfilled swatch keyed to the Top-10 chip; the comment above it says it must be 'the same three bands the peak chips use', so it takes the identical expression at the identical alpha."
+ },
+ {
+  "file": "app/records/charts/charts.module.css",
+  "line": 486,
+  "literal": "rgba(223, 226, 232, 0.4)",
+  "property": "border",
+  "role": "border",
+  "replacement": "color-mix(in srgb, var(--silver) 40%, transparent)",
+  "darkIdentical": true,
+  "note": ".legendForty \u2014 the Top-40 legend swatch, matched to line 73's edge."
+ }
+]

@@ -77,7 +77,7 @@ a.card:hover {
   line-height: 1.55;
   max-width: 56ch;
   margin: 18px 0 0;
-  color: #d8d8de;
+  color: var(--text-body-cool);
   text-wrap: pretty;
 }
 
@@ -168,7 +168,7 @@ a.card:hover {
   color: var(--text);
   transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.card:hover { border-color: var(--gold); background: rgba(255, 182, 39, 0.05); }
+.card:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 5%, transparent); }
 .cardTitle {
   display: block;
   font-family: var(--font-anton), sans-serif;
@@ -201,12 +201,12 @@ a.card:hover {
   color: var(--text-muted);
   margin-top: 2px;
 }
-.tour { font-size: 13.5px; color: #d8d8de; }
+.tour { font-size: 13.5px; color: var(--text-body-cool); }
 .tickets {
   text-align: right;
   font-family: var(--font-mono), monospace;
   font-size: 13px;
-  color: #d8d8de;
+  color: var(--text-body-cool);
   font-variant-numeric: tabular-nums;
 }
 .gross {

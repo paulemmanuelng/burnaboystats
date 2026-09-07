@@ -24,7 +24,7 @@
   text-transform: uppercase;
   margin: 14px 0 0;
 }
-.lede { font-size: 18px; line-height: 1.55; color: #cfc7bb; max-width: 54ch; margin: 18px 0 0; }
+.lede { font-size: 18px; line-height: 1.55; color: var(--text-body); max-width: 54ch; margin: 18px 0 0; }
 
 /* ── Field ──────────────────────────────────────────────────────────────── */
 .field {
@@ -151,7 +151,7 @@
   align-items: baseline;
   transition: background var(--dur-fast) var(--ease);
 }
-.row:hover { background: rgba(245, 240, 232, 0.05); color: var(--text); }
+.row:hover { background: color-mix(in srgb, var(--ink-wash-base) 5%, transparent); color: var(--text); }
 .kind {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -254,7 +254,7 @@
     z-index: 45;
     padding: 12px 18px 14px;
     padding-top: calc(12px + env(safe-area-inset-top, 0px));
-    background: rgba(12, 10, 9, 0.94);
+    background: var(--scrim);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
   }

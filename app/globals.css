@@ -250,6 +250,101 @@
    So the inline script in layout.tsx resolves all three states to an explicit
    `data-theme`, and keeps resolving it while the choice is "system" by
    listening for OS changes. A browser with JS off gets dark, unchanged. */
+
+/* ── Tokens the module migration needs ────────────────────────────────────
+   Declared on the SAME selector as the block above, so the masthead island
+   gets them too. A :root-only declaration would leak the light value into a
+   bar that is pinned to color-scheme: dark.
+
+   Every dark value below is the literal it replaces, exactly. That is the
+   whole contract of this migration: on paper the site changes completely; in
+   dark nothing moves. Where no existing token was byte-identical, a new one is
+   minted rather than the literal being rounded onto a near neighbour — three
+   separate reviewers caught roundings that would have shifted dark by a few
+   units each across dozens of sites. */
+:root,
+.navbar {
+  /* Reading text. The design table retires #cfc7bb, #d8d8de and #d3d3da into
+     ONE role, and on paper that is exactly right — all three become #4a443b.
+     In dark they stay distinct, because folding them would recolour 46 sites
+     from a cool grey to a warm beige (13.94:1 -> 12.16:1). That consolidation
+     is a real visible change and deserves its own decision, not a free ride on
+     a migration whose promise is that dark does not move. */
+  --text-body-cool: light-dark(#4a443b, #d8d8de);
+  --text-body-cool-quiet: light-dark(#4a443b, #d3d3da);
+  /* Warm reading greys from the api / tours / cars prose. */
+  --text-body-warm: light-dark(#544d43, #b8b0a5);
+  --text-dim-warm: light-dark(#6f685f, #8a8279);
+
+  /* Wash bases for color-mix(). Two, not one: at alpha .045 over #0a0a0b,
+     #f5f0e8 and #f5f4f0 round to different greens, and at .26 they differ by
+     3/255 in blue. A reviewer checked the arithmetic at the rendered pixel. */
+  --ink-wash-base: light-dark(#17140f, #f5f0e8);
+  --white-wash-base: light-dark(#17140f, #ffffff);
+
+  /* Glows. light-dark() cannot wrap a whole box-shadow, and the 14 gold halos
+     use four different geometries — so the COLOUR carries the theme and goes
+     transparent on paper, where glows do not exist. Without these declared,
+     var() would be invalid at computed-value time and drop the entire
+     box-shadow: the halos would vanish in DARK, not just in light. */
+  --gold-glow-base: light-dark(transparent, #ffb627);
+  --glow-base: light-dark(transparent, #e8b04b);
+  --red-glow-base: light-dark(transparent, #c0392b);
+  /* The page-edge vignette and the film grain are dark-room devices: they read
+     as depth on black and as dirt on paper. Both fade out rather than invert. */
+  --vignette-ink: light-dark(transparent, rgba(0, 0, 0, 0.7));
+  --grain-opacity: 0.06;
+
+  /* Drop shadows. The colour themes; the ALPHA is scaled by a plain number,
+     because a 45%-black shadow that reads as depth on black reads as dirt on
+     paper. Not a colour, so not light-dark() — see the override block below. */
+  --shadow-base: light-dark(#17140f, #000000);
+  --shadow-strength: 1;
+
+  /* Near-blacks, kept apart because they are four different inks doing three
+     different jobs. --scrim (warm, chrome) is above; these are its relatives.
+     --veil-base is the one that THEMES: it is a page-level veil, not chrome. */
+  --veil-base: light-dark(#f7f4ee, #0c0a09);
+  --scrim-base: #0c0a09;   /* un-alpha'd warm scrim ink; map country borders */
+  --scrim-cool: #0a0a0b;   /* the cool near-black used by four chrome bars */
+  --scrim-deep: #080706;   /* the two modal dimmers */
+  --photo-well: light-dark(#e6e0d4, #0a0908);  /* matte behind a car photo */
+  --code-bg: light-dark(#efeae1, #0f0f11);
+  --bg-float: light-dark(rgba(255, 255, 255, 0.90), rgba(20, 20, 23, 0.90));
+  --card-glass: light-dark(rgba(255, 255, 255, 0.86), rgba(21, 18, 16, 0.86));
+  --burnt: #5a2a06;        /* the amber panels' ink; NOT --ink-on-gold */
+
+  /* Reds. Four distinct darks the site accumulated for one meaning; they
+     converge on paper and stay themselves in dark. */
+  --error-ink: light-dark(#b3261e, #e06a5c);
+  --delta-down: light-dark(#b3261e, #f2726a);
+  --move-down: light-dark(#b3261e, #e2564a);
+  --sold-ink: light-dark(#8f4700, #f5890b);   /* "a fact, not a warning" */
+
+  /* Greens. --live-dot is nine units off --green and must not be folded into
+     it: that would move the live pulse on /live-charts in dark. */
+  --live-dot: light-dark(#1f9a5a, #35d07f);
+
+  /* Non-text data marks: a 3:1 floor, not 4.5. */
+  --bar-muted: light-dark(#8d877d, #4a4a52);
+  --dot-muted: light-dark(#7f7a72, #55555d);
+  --peak-rest: light-dark(#6b6b74, #9aa0a6);  /* the "beyond Top 40" band */
+}
+
+/* Ayra Starr's brand, scoped — not the site palette (design §6.5). The fills
+   are frozen in both modes because white sits on them; only the inks and the
+   text gradient deepen for paper. */
+[data-brand="starrgirl"] {
+  --brand-accent: #f06ae0;
+  --brand-accent-ink: light-dark(#a3157f, #f06ae0);   /* 6.44:1 on paper */
+  --brand-grad-1: light-dark(#a3157f, #ff5cd6);
+  --brand-grad-2: light-dark(#7d1a9e, #c94ae8);
+  --brand-grad-3: light-dark(#5b2bb5, #9a5cf4);
+  --brand-fill: #8f2fa7;
+  --brand-fill-hi: #b73c98;
+  --brand-fill-lo: #6b3caf;
+}
+
 :root { color-scheme: dark; }
 :root[data-theme="light"] { color-scheme: light; }
 /* ...and the masthead is deliberately NOT in that selector. */
@@ -261,6 +356,10 @@
 :root[data-theme="light"] {
   --shadow: 0 12px 32px rgba(23, 20, 15, 0.14);
   --glow: none;
+  /* 0.31 is exactly .14/.45 — the ratio between the light and dark --shadow
+     alphas, so every ad-hoc shadow thins by the same factor the named one does. */
+  --shadow-strength: 0.31;
+  --grain-opacity: 0.022;
 }
 
 /* Figures line up in columns only if the numerals are tabular. The site is
@@ -326,8 +425,8 @@ body::before {
   z-index: -3;
   pointer-events: none;
   background:
-    radial-gradient(110% 70% at 50% -10%, rgba(232, 176, 75, 0.10), transparent 55%),
-    radial-gradient(100% 80% at 50% 115%, rgba(192, 57, 43, 0.10), transparent 55%);
+    radial-gradient(110% 70% at 50% -10%, color-mix(in srgb, var(--glow-base) 10%, transparent), transparent 55%),
+    radial-gradient(100% 80% at 50% 115%, color-mix(in srgb, var(--red-glow-base) 10%, transparent), transparent 55%);
 }
 body::after {
   content: "";
@@ -335,7 +434,7 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  box-shadow: inset 0 0 200px 40px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0 0 200px 40px var(--vignette-ink);
 }
 
 /* Subtle film-grain texture behind content */
@@ -344,7 +443,7 @@ body::after {
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  opacity: 0.06;
+  opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -441,7 +540,7 @@ a {
 .btnPrimary {
   /* Solid fill declared first so the label never sits over nothing if the
      gradient fails to paint. */
-  background-color: var(--gold);
+  background-color: var(--gold-fill);
   /* Gold ramp rather than one flat bright gold, which read as glare at this
      size. It stays inside the gold family — bright to dim, no orange turn — so
      the pill reads as lit metal rather than a colour shift.
@@ -452,7 +551,7 @@ a {
      translateZ that promotes the layer at rest. The ramp is also deliberately
      narrow: black on its darkest stop is 7.2:1, so even a partial composite
      could not take the label below AA. */
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 48%, var(--gold-dim) 100%);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
   /* Pure black, pinned twice: WebKit resolves -webkit-text-fill-color ahead of
      `color`. This label was reported rendering orange-on-gold on an iPhone
      while measuring 10.6:1 in every desktop browser — no rule in this codebase
@@ -632,7 +731,7 @@ a {
   bottom: -6px;
   width: 0;
   height: 2px;
-  background: var(--gold);
+  background: var(--gold-fill);
   transition: width var(--dur) var(--ease);
 }
 .navLinks a:hover {
@@ -915,7 +1014,7 @@ a.fact:hover {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--gold);
+  background: var(--gold-fill);
   box-shadow: 0 0 0 4px rgba(232, 176, 75, 0.15);
 }
 .tYear {

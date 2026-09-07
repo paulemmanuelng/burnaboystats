@@ -31,7 +31,7 @@
   text-transform: uppercase;
   margin: 16px 0 0;
 }
-.lede { font-size: 18px; line-height: 1.55; max-width: 52ch; margin: 18px 0 0; color: #d8d8de; }
+.lede { font-size: 18px; line-height: 1.55; max-width: 52ch; margin: 18px 0 0; color: var(--text-body-cool); }
 
 /* ── Split: form beside the official channels ───────────────────────────── */
 .split { display: grid; grid-template-columns: 1.2fr 0.9fr; }
@@ -45,11 +45,11 @@
   text-transform: uppercase;
   margin: 12px 0 0;
 }
-.formLede { font-size: 16px; line-height: 1.6; color: #d8d8de; margin: 12px 0 24px; max-width: 56ch; }
+.formLede { font-size: 16px; line-height: 1.6; color: var(--text-body-cool); margin: 12px 0 24px; max-width: 56ch; }
 .formWrap { max-width: 620px; }
 
 .channelCol { border-left: 1px solid var(--line); padding: 44px 0 48px 44px; }
-.channelLede { font-size: 16px; line-height: 1.6; color: #d8d8de; margin: 12px 0 18px; }
+.channelLede { font-size: 16px; line-height: 1.6; color: var(--text-body-cool); margin: 12px 0 18px; }
 .channelLede strong { color: var(--text); }
 .channels { display: flex; flex-direction: column; gap: 12px; }
 /* Pills, not rows: each is a destination off the site, and the shape says so. */
@@ -65,7 +65,7 @@
   min-height: 44px;
   transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
 }
-.channel:hover { border-color: var(--gold); background: rgba(255, 182, 39, 0.06); color: var(--text); }
+.channel:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) 6%, transparent); color: var(--text); }
 .channelLabel {
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;

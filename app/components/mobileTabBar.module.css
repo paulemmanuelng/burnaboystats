@@ -1,5 +1,5 @@
 /* Fixed bottom tab bar — mobile only.
-   Spec: sticky bottom, rgba(12,10,9,0.94) + blur(14px), 1px top divider,
+   Spec: sticky bottom, var(--scrim) + blur(14px), 1px top divider,
    padding 8px 10px 30px, five equal columns, 48px minimum tap target. */
 .bar {
   display: none;
@@ -20,7 +20,7 @@
     padding: 8px 10px max(30px, env(safe-area-inset-bottom, 0px));
     padding-left: calc(10px + env(safe-area-inset-left, 0px));
     padding-right: calc(10px + env(safe-area-inset-right, 0px));
-    background: rgba(12, 10, 9, 0.94);
+    background: var(--scrim);
     /* Unprefixed only — the build adds -webkit- itself. Writing both by hand
        makes the pipeline keep the prefixed line alone, which Firefox ignores. */
     backdrop-filter: blur(14px);

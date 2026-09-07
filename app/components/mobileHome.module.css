@@ -83,7 +83,7 @@
   font-size: 140px;
   line-height: 0.8;
   font-variant-numeric: tabular-nums;
-  background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 52%, var(--grad-b) 100%);
+  background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 52%, var(--grad-b) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -106,7 +106,7 @@
   height: 88px;
   border-radius: 8px;
   background: var(--bg-soft-2);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--shadow-base) calc(45% * var(--shadow-strength)), transparent);
 }
 .coverLabel {
   display: block;
@@ -154,7 +154,7 @@
   height: 7px;
   border-radius: 50%;
   background: var(--green);
-  box-shadow: 0 0 8px rgba(62, 209, 127, 0.7);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--green-dot) 70%, transparent);
   flex: none;
 }
 .statusLink {
@@ -277,11 +277,11 @@
    selected state rather than a hover. */
 @media (hover: hover) {
   .stat:hover {
-    background: rgba(255, 182, 39, 0.1);
+    background: var(--gold-wash);
   }
 }
 .stat:active {
-  background: rgba(255, 182, 39, 0.1);
+  background: var(--gold-wash);
 }
 /* Watermark pictograms — see page.module.css .scoreGlyph for the rationale.
    Smaller cells, smaller art, same whisper. */
@@ -395,9 +395,9 @@
   border: 1px solid var(--line);
   object-fit: cover;
 }
-.boardNew .boardCover { border-color: rgba(62, 209, 127, 0.4); }
+.boardNew .boardCover { border-color: color-mix(in srgb, var(--green) 40%, transparent); }
 /* A newly-added No. 1 reads green, matching the live/positive accent. */
-.boardNew { background: rgba(62, 209, 127, 0.07); }
+.boardNew { background: color-mix(in srgb, var(--green) 7%, transparent); }
 .boardTop {
   display: flex;
   align-items: center;
@@ -419,7 +419,7 @@
 .boardNew .boardFlag { color: var(--green); }
 .boardName {
   font-size: 12.5px;
-  color: #d8d8de;
+  color: var(--text-body-cool);
   margin-top: 2px;
 }
 .boardChart {
@@ -479,14 +479,14 @@
 .railPeak {
   padding: 3px 8px;
   border-radius: 999px;
-  background: rgba(255, 182, 39, 0.14);
+  background: color-mix(in srgb, var(--gold-wash-base) 14%, transparent);
   color: var(--gold);
   white-space: nowrap;
 }
 .railYear {
   padding: 3px 8px;
   border-radius: 999px;
-  background: rgba(245, 240, 232, 0.07);
+  background: color-mix(in srgb, var(--ink-wash-base) 7%, transparent);
   color: var(--text-muted);
 }
 
