@@ -12,7 +12,7 @@ Original sweep **17 Aug 2026**; **audit repair pass applied the same day** — s
 
 ## Headline
 
-**174 chart entries** — release × country pairs — across **52 chart countries and entities** (50 national charts plus the two Billboard Global charts).
+**175 chart entries** — release × country pairs — across **52 chart countries and entities** (50 national charts plus the two Billboard Global charts).
 
 **3 No. 1 placements**, in 3 countries, all for the same song.
 
@@ -22,15 +22,15 @@ Original sweep **17 Aug 2026**; **audit repair pass applied the same day** — s
 | 🇬🇧 United Kingdom | **No. 4** — "Water", Official Singles Chart. Albums: **No. 19**, *Tyla*, Official Albums Chart |
 | 🌐 Billboard Global 200 | **No. 6** — "Water" (67 weeks). Global Excl. U.S.: **No. 6** (75 weeks) |
 
-The shape of the discography is lopsided in a way worth stating plainly: **"Water" alone accounts for 37 of the 174 entries** and all three No. 1s. Four songs — "Water", "Chanel", "Push 2 Start", "She Did It Again" — plus the two albums account for **141 of 174 entries (81%)**. The remaining 33 are spread thinly, and the repair pass showed why: the deep South African album-cut block that used to pad the tail was sitting below the depth TOSAC actually publishes, and has been removed.
+The shape of the discography is lopsided in a way worth stating plainly: **"Water" alone accounts for 37 of the 175 entries** and all three No. 1s. Four songs — "Water", "Chanel", "Push 2 Start", "She Did It Again" — plus the two albums account for **141 of 174 entries (81%)**. The remaining 33 are spread thinly, and the repair pass showed why: the deep South African album-cut block that used to pad the tail was sitting below the depth TOSAC actually publishes, and has been removed.
 
-### Singles — 144
+### Singles — 145
 
 | release | chart peaks by country (best first) | entries |
 |---|---|---|
 | Water | 🇦🇪 #1 · 🇳🇿 #1 · 🇸🇷 #1 · 🇧🇬 #2 · 🇪🇪 #3 · 🇿🇦 #3 · 🇬🇧 #4 · 🇵🇭 #4 · 🇬🇷 #5 · 🇦🇺 #6 · 🌐 #6 · 🌍 #6 · 🇮🇪 #6 · 🇱🇺 #6 · 🇳🇱 #6 · 🇺🇸 #7 · 🇵🇹 #9 · 🇩🇰 #10 · 🇵🇦 #10 · 🇸🇪 #10 · 🇨🇭 #11 · 🇧🇪 #12 · 🇳🇬 #13 · 🇮🇸 #14‡ · 🇱🇹 #14 · 🇱🇻 #14 · 🇳🇴 #14 · 🇸🇬 #14 · 🇨🇦 #15 · 🇫🇷 #22 · 🇩🇪 #25 · 🇻🇪 #36 · 🇦🇹 #46 · 🇸🇰 #57 · 🇧🇷 #59 · 🇵🇱 #83 · 🇺🇦 #86 | **37** |
 | Chanel | 🇮🇳 #2 · 🇦🇪 #3 · 🇸🇷 #3 · 🇵🇭 #4 · 🇲🇾 #5 · 🇸🇬 #6 · 🇷🇸 #7 · 🌍 #8 · 🇬🇹 #8 · 🇸🇦 #11 · 🌐 #11 · 🇱🇧 #12 · 🇬🇷 #14 · 🇦🇺 #15 · 🇬🇧 #15 · 🇲🇹 #16 · 🇳🇿 #16 · 🇳🇱 #19 · 🇪🇪 #20 · 🇱🇺 #20 · 🇨🇦 #22 · 🇨🇭 #23 · 🇿🇦 #24 · 🇸🇪 #28 · 🇧🇪 #29 · 🇳🇬 #29 · 🇮🇪 #33 · 🇩🇪 #34 · 🇦🇹 #39 · 🇺🇸 #43 · 🇵🇦 #48 · 🇵🇹 #49 · 🇫🇷 #50 · 🇳🇴 #53 · 🇮🇱 #85 · 🇱🇹 #85 · 🇰🇷 #196 | **37** |
-| She Did It Again (ft. Zara Larsson) | 🇸🇪 #2 · 🇸🇷 #4 · 🇿🇦 #9 · 🇬🇷 #28 · 🇳🇴 #32 · 🇨🇭 #34 · 🇩🇪 #47 · 🇦🇹 #48 · 🇨🇦 #55 · 🇺🇸 #59 · 🇮🇪 #61 · 🇳🇬 #62 · 🇳🇱 #62 · 🌐 #74 · 🌍 #79 · 🇦🇺 #87 · 🇪🇪 #91 · 🇫🇷 #110 · 🇵🇹 #125 | **19** |
+| She Did It Again (ft. Zara Larsson) | 🇸🇪 #2 · 🇸🇷 #4 · 🇿🇦 #9 · 🇬🇷 #28 · 🇳🇴 #32 · 🇨🇭 #34 · 🇬🇧 #40 · 🇩🇪 #47 · 🇦🇹 #48 · 🇨🇦 #55 · 🇺🇸 #59 · 🇮🇪 #61 · 🇳🇬 #62 · 🇳🇱 #62 · 🌐 #74 · 🌍 #79 · 🇦🇺 #87 · 🇪🇪 #91 · 🇫🇷 #110 · 🇵🇹 #125 | **20** |
 | Push 2 Start | 🇸🇷 #3 · 🇿🇦 #3 · 🇱🇧 #8 · 🇲🇰 #10 · 🇦🇪 #16 · 🇬🇷 #18 · 🇳🇿 #20 · 🇬🇧 #23 · 🇳🇬 #30 · 🇳🇱 #38 · 🇱🇹 #40 · 🇦🇺 #44 · 🌍 #54 · 🇨🇭 #55 · 🇨🇦 #70 · 🌐 #70 · 🇺🇸 #88 · 🇵🇹 #99 | **18** |
 | Jump (with Gunna & Skillibeng) | 🇬🇷 #31 · 🇬🇧 #38 · 🇨🇭 #49 · 🇳🇱 #51 · 🇳🇬 #57 · 🇮🇪 #66 · 🇨🇦 #87 · 🇵🇹 #179 · 🌍 #190 · 🌐 #195 | **10** |
 | Talk to Me (Damiano David, Tyla & Nile Rodgers) | 🇧🇬 #5 · 🇪🇪 #11 · 🇸🇮 #14 · 🇳🇱 #15 · 🇱🇧 #16 · 🇰🇿 #33 · 🇧🇪 #44 | **7** |
@@ -45,7 +45,7 @@ The shape of the discography is lopsided in a way worth stating plainly: **"Wate
 | Body Go (with Moliy) | 🇳🇬 #31 | **1** |
 | Memories (Lojay ft. Tyla) | 🇳🇬 #93 | **1** |
 
-*Singles subtotal: 37 + 37 + 19 + 18 + 10 + 7 + 4 + 2 + 2 + 2 + 1×6 = **144*** ✓
+*Singles subtotal: 37 + 37 + 20 + 18 + 10 + 7 + 4 + 2 + 2 + 2 + 1×6 = **145*** ✓
 
 Twelve releases that appeared in the previous version of this file — "Truth or Dare", "Is It Love", "Double Blind", "Mr. Nonchalant", "Mr. Media", "Kiss", "Nice Guy", "I Don't Care", "Right Now", "Crazy of Me", "Feel Something" and "Hot Tubs" — now have **zero countable entries** and have been removed from the table entirely. Each rested on a single South African position deeper than the depth TOSAC published in that release's window. See *Deliberately excluded* and *Audit repairs*.
 
@@ -58,7 +58,7 @@ Twelve releases that appeared in the previous version of this file — "Truth or
 
 *Albums subtotal: 19 + 11 = **30*** ✓
 
-**144 + 30 = 174 chart entries** ✓ — matches the headline.
+**145 + 30 = 175 chart entries** ✓ — matches the headline.
 
 ### No. 1 placements
 
@@ -287,7 +287,7 @@ Every one of the 30 is now a **read** zero rather than an unfound one. There is 
 | 🇺🇬 Uganda | platform only | — | — |
 | 🇺🇦 Ukraine | airplay carve-out | 1 | TopHit — Top Radio Hits Ukraine (weekly Top 100) — Carve-out applies. Only placements inside the published Top 100 are counted, which is what removes 'Talk to Me' at Ukraine No. 102. |
 | 🇦🇪 United Arab Emirates | official chart | 3 | IFPI — The Official UAE Chart (streaming, BMAT) — Streaming, not airplay. The site publishes only the current week with no searchable archive, so peaks come from chart tables citing archived weeks. *(The same open API that opened Saudi Arabia and Egypt also serves `key=ae`; a full UAE re-read is the obvious next repair and is listed as open below.)* |
-| 🇬🇧 United Kingdom | official chart | 8 | Official Charts Company — Official Singles / Official Albums — Artist pages read directly from the live DOM. The Official Afrobeats Chart, Hip Hop and R&B charts, Streaming, Sales, Downloads, Physical and Video Streaming charts on the same pages are all excluded. |
+| 🇬🇧 United Kingdom | official chart | 9 | Official Charts Company — Official Singles / Official Albums — Artist pages read directly from the live DOM. The Official Afrobeats Chart, Hip Hop and R&B charts, Streaming, Sales, Downloads, Physical and Video Streaming charts on the same pages are all excluded. |
 | 🇺🇸 United States | official chart | 6 | Billboard — Hot 100 / Billboard 200 — Read from Billboard artist chart-history pages, each chart code identity-checked by permalink to defeat Billboard's silent fallback to the Hot 100. |
 | 🇺🇾 Uruguay | airplay carve-out | — | Monitor Latino Uruguay (General) — The 'Uruguay Anglo' list is a component and is excluded — which removes 'Is It' at Uruguay No. 12. |
 | 🇺🇿 Uzbekistan | platform only | — | Not in TopHit's country set. |
@@ -303,7 +303,7 @@ Every one of the 30 is now a **read** zero rather than an unfound one. There is 
 
 ## Deliberately excluded
 
-This is the section that makes the number defensible. Every peak below is real and is **not** in the 174.
+This is the section that makes the number defensible. Every peak below is real and is **not** in the 175.
 
 **🇹🇷 Türkiye — the whole market, four rows and a No. 1.** "Push 2 Start" #1 (Radiomonitor Türkiye International Airplay, week 17 of 2025, Sean Paul remix credit line; the solo version peaked #5 in week 9), "Talk to Me" #3, "Water" #9 and "Chanel" #9 are all **airplay in a country that publishes a non-airplay national chart**, so the carve-out lapses. Türkiye is recorded from Billboard Turkey Songs, where she has no entry. This is the single largest correction in the repair pass: it costs four entries, one chart country and one of her four No. 1 placements.
 
@@ -401,7 +401,7 @@ Eleven investigation threads were reopened against this file. What changed:
 - 🇳🇬 Nigeria's other 14 rows remain **unverified by construction** — TurnTable publishes no weekly archive.
 
 **Still open.**
-1. **🇮🇸 Iceland "Water" #14** — re-run when archive.org returns. If the 28 Oct 2023 week cannot be confirmed, drop it: entries 174 → 173, chart countries 52 → 51.
+1. **🇮🇸 Iceland "Water" #14** — re-run when archive.org returns. If the 28 Oct 2023 week cannot be confirmed, drop it: entries 175 → 174, chart countries 52 → 51.
 2. **🇿🇦 South Africa** — the six survivors need a named TOSAC weekly edition each. If any turns out to sit on the Local chart, the count falls below 6.
 3. **🇦🇪 United Arab Emirates** — three entries including a No. 1, still resting on chart tables. The same open MENA API that opened Saudi Arabia and Egypt serves `key=ae`; this is the cheapest remaining verification and would put her only surviving non-NZ, non-Suriname No. 1 on a direct read.
 4. **🇳🇬 Nigeria** — 14 of 15 rows unverifiable through TurnTable's public surface.
@@ -414,7 +414,7 @@ Under this identical standard, **Burna Boy has 280 chart entries and 48 No. 1 pl
 
 The honest comparison is that these are not close, and the repair pass widened the gap:
 
-- **Entries: 280 vs 174.** Tyla reaches 62% of Burna Boy's total — down from an apparent 70% before the audit, because 21 of the old 195 were not countable placements. Her 174 is heavily front-loaded onto one song: strip "Water" out and she has 137. Burna Boy has no comparable single point of failure.
+- **Entries: 280 vs 175.** Tyla reaches 62% of Burna Boy's total — down from an apparent 70% before the audit, because 21 of the old 195 were not countable placements. Her 174 is heavily front-loaded onto one song: strip "Water" out and she has 137. Burna Boy has no comparable single point of failure.
 - **No. 1 placements: 48 vs 3.** This is the real distance — a **16× gap**. Burna Boy's No. 1s span many chart countries; Tyla's three sit in New Zealand, the UAE and Suriname, **all for the same song**. She has never topped the US, UK, Global 200, Nigerian, South African or Turkish national chart. On the metric the site treats as the headline stat, she is very early.
 - **Chart countries: 71 vs 52.** Tyla covers 73% of Burna Boy's geographic footprint. The A–Z sweep closed most of the gap the regional sweep left open — the Philippines, Malta, Serbia, Slovenia, North Macedonia, Guatemala, South Korea and Thailand were all found on that pass — and the repair pass has now closed the archival gaps too: Egypt, Belarus, Moldova, Kazakhstan and Russia have all been read, and four of the five returned proven zeroes. What remains soft is not coverage but **verification**: South Africa and the UAE rest on citations, Nigeria on an editorial text-mine, and Iceland on a week nobody can currently open.
 
@@ -422,7 +422,7 @@ Where she genuinely leads: **peak height in the US and on Billboard Global relat
 
 ---
 
-*Sweep date 17 Aug 2026, audit repairs applied the same day. 174 entries · 52 chart countries and entities · 3 No. 1 placements · 204 rows assessed (202 territories + 2 supranational Billboard Global charts) · 0 unreachable charts. Companion to the certification deliverables in this directory; same standard, same directory, built to sit alongside them.*
+*Sweep date 17 Aug 2026, audit repairs applied the same day. 175 entries · 52 chart countries and entities · 3 No. 1 placements · 204 rows assessed (202 territories + 2 supranational Billboard Global charts) · 0 unreachable charts. Companion to the certification deliverables in this directory; same standard, same directory, built to sit alongside them.*
 
 ## Open items closed (17 Aug 2026)
 

@@ -4,11 +4,11 @@
 
 ## Headline
 
-- **67 chart entries** across **13 territories**
+- **68 chart entries** across **13 territories**
 - **1 No. 1 placement**
-- **49 charting singles, 5 charting projects**
+- **50 charting singles, 5 charting projects**
 
-**Total: 49 + 5 = 67 chart entries.**
+**Total: 50 + 5 = 68 chart entries.**
 
 ## Every placing
 
@@ -40,6 +40,7 @@
 | letting go | 🇳🇬 NG | TurnTable (TCSN) | 19 |
 | Obaa Sima | 🇳🇬 NG | TurnTable (TCSN) | 19 |
 | Peru | 🇳🇱 NL | NVPI | 21 |
+| CLAAT! | 🇳🇬 NG | TurnTable (TCSN) | 21 |
 | back n forth | 🇳🇬 NG | TurnTable (TCSN) | 22 |
 | Compromise | 🇳🇬 NG | TurnTable (TCSN) | 23 |
 | Diana | 🇳🇬 NG | TurnTable (TCSN) | 25 |

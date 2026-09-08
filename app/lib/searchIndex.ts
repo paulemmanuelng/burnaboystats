@@ -454,7 +454,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Rema — Chart History",
     path: "/afrobeats/rema/charts",
     section: "Afrobeats",
-    description: "Every Rema official chart entry and peak — 118 entries and 17 No. 1 placements, country by country.",
+    description: "Every Rema official chart entry and peak — 119 entries and 17 No. 1 placements, country by country.",
     keywords: ["rema", "calm down", "divine ikubor", "rema charts", "rema chart history", "rema chart peaks", "rema number ones"],
   },
   {
@@ -482,7 +482,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Tyla — Chart History",
     path: "/afrobeats/tyla/charts",
     section: "Afrobeats",
-    description: "Every Tyla official chart entry and peak — 174 entries and 3 No. 1 placements, country by country.",
+    description: "Every Tyla official chart entry and peak — 175 entries and 3 No. 1 placements, country by country.",
     keywords: ["tyla", "water", "amapiano", "tyla charts", "tyla chart history", "tyla chart peaks", "tyla number ones"],
   },
   {
@@ -510,7 +510,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Omah Lay",
     path: "/afrobeats/omah-lay",
     section: "Afrobeats",
-    description: "Omah Lay's 62 certifications across 9 countries and 70 official chart entries, verified at source.",
+    description: "Omah Lay's 62 certifications across 9 countries and 71 official chart entries, verified at source.",
     keywords: ["omah lay", "understand", "soso", "boy alone", "omah lay certifications"],
   },
   {
@@ -580,7 +580,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Omah Lay — Chart History",
     path: "/afrobeats/omah-lay/charts",
     section: "Afrobeats",
-    description: "Every Omah Lay official chart entry and peak — 70 entries and 6 No. 1 placements, country by country.",
+    description: "Every Omah Lay official chart entry and peak — 71 entries and 6 No. 1 placements, country by country.",
     keywords: ["omah lay", "understand", "soso", "omah lay charts", "omah lay chart history", "omah lay number ones"],
   },
   {
@@ -608,14 +608,14 @@ export const searchIndex: SearchDoc[] = [
     title: "CKay — Certifications & Chart Records",
     path: "/afrobeats/ckay",
     section: "Afrobeats",
-    description: "CKay's 28 certifications across 15 countries and 29 official chart entries, verified at source.",
+    description: "CKay's 28 certifications across 15 countries and 31 official chart entries, verified at source.",
     keywords: ["ckay", "chukwuka ekweani", "love nwantiti", "emiliana", "sad romance", "ckay certifications"],
   },
   {
     title: "CKay — Official Chart Peaks",
     path: "/afrobeats/ckay/charts",
     section: "Afrobeats",
-    description: "Every official chart peak for CKay — 29 entries across 20 territories, 6 of them No. 1.",
+    description: "Every official chart peak for CKay — 31 entries across 20 territories, 6 of them No. 1.",
     keywords: ["ckay charts", "love nwantiti chart", "ckay peak", "ckay number one"],
   },
   {
@@ -713,7 +713,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Fireboy DML — Certifications & Chart Records",
     path: "/afrobeats/fireboy-dml",
     section: "Afrobeats",
-    description: "Fireboy DML's 36 certifications across 6 countries and 67 official chart entries, verified at source.",
+    description: "Fireboy DML's 36 certifications across 6 countries and 68 official chart entries, verified at source.",
     keywords: ["fireboy dml", "adedamola adefolahan", "peru", "bandana", "playboy", "fireboy dml certifications"],
   },
   {
