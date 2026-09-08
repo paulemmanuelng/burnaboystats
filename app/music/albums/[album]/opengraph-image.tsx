@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogId } from "../../../lib/og-image";
+import { ogId, cardUrl } from "../../../lib/og-image";
 import { albumPageBySlug, albumPageSlugs } from "../../../data/albumPages";
 import { albums } from "../../../data/albums";
 import { albumCharts } from "../../../data/charts";
@@ -32,7 +32,7 @@ export async function generateImageMetadata({
 }) {
   const { album: slug } = await params;
   const { countries, best, certCount } = albumStats(slug);
-  return [{ id: ogId(`${slug}|${best}|${countries}|${certCount}`), alt, size, contentType }];
+  return [{ id: ogId(`${slug}|${best}|${countries}|${certCount}|${cardUrl(`/music/albums/${slug}`)}`), alt, size, contentType }];
 }
 
 export const size = { width: 1200, height: 630 };
@@ -126,7 +126,7 @@ export default async function Image({ params }: { params: Promise<{ album: strin
         </div>
 
         <div style={{ display: "flex", fontSize: 26, color: "#9b9ba3", letterSpacing: 4, fontWeight: 700 }}>
-          BURNABOYSTATS.COM/MUSIC/ALBUMS/{(page?.slug ?? "").toUpperCase()}
+          {cardUrl(`/music/albums/${page?.slug ?? ""}`)}
         </div>
       </div>
     ),

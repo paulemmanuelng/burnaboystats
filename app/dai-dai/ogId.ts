@@ -1,4 +1,4 @@
-import { ogId } from "../lib/og-image";
+import { ogId, cardUrl } from "../lib/og-image";
 import { daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
 import { daiDaiCertCount } from "../data/certifications";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
@@ -31,4 +31,8 @@ export const ogStats = [
   { v: `${daiDaiCertCount}`, l: "Certs" },
 ];
 
-export const daiDaiOgId = ogId([...ogStats.map((s) => s.v), DAYS_AT_NO1].join("-"));
+// cardUrl is in the id because it is printed ON the card, and because this card
+// has been advertising a dead /DAI-DAI since it shipped. An id that does not move
+// keeps serving the picture a scraper already cached, so the correction would
+// never reach the previews that are wrong — which is the entire point of it.
+export const daiDaiOgId = ogId([...ogStats.map((s) => s.v), DAYS_AT_NO1, cardUrl("/dai-dai")].join("-"));

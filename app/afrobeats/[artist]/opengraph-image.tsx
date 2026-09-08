@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogId } from "../../lib/og-image";
+import { ogId, cardUrl } from "../../lib/og-image";
 import {
   artistBySlug,
   afrobeatsSlugs,
@@ -22,7 +22,7 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   // preview follows the artist rather than freezing at first scrape. Next probes
   // this route once with no params, so the id must survive an undefined slug.
   const sig = a
-    ? `${slug}|${certCount(a)}|${countryCount(a)}|${chartEntries(a)}|${chartNo1s(a)}`
+    ? `${slug}|${certCount(a)}|${countryCount(a)}|${chartEntries(a)}|${chartNo1s(a)}|${cardUrl(`/afrobeats/${slug}`)}`
     : `${slug}`;
   return [{ id: ogId(sig), alt, size, contentType }];
 }
@@ -131,7 +131,7 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
         </div>
 
         <div style={{ display: "flex", fontSize: 25, color: "#9b9ba3", letterSpacing: 3, fontWeight: 700 }}>
-          BURNABOYSTATS.COM/AFROBEATS/{(a?.slug ?? "").toUpperCase()}
+          {cardUrl(`/afrobeats/${a?.slug ?? ""}`)}
         </div>
       </div>
     ),

@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { timelineEntryCount, timelineEras } from "../data/timeline";
 import { totalAwards } from "../data/certifications";
 import { numberOnes } from "../data/charts";
-import { ogId } from "../lib/og-image";
+import { ogId, cardUrl } from "../lib/og-image";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -18,7 +18,7 @@ const GOLD = "#ffb627";
 export const generateImageMetadata = () => [
   {
     id: ogId(
-      [timelineEras.length, timelineEntryCount, totalAwards(), numberOnes].join("|")
+      [timelineEras.length, timelineEntryCount, totalAwards(), numberOnes, cardUrl("/timeline")].join("|")
     ),
     alt,
     size,
@@ -97,7 +97,7 @@ export default function Image() {
         </div>
 
         <div style={{ display: "flex", fontSize: 26, color: "#9b9ba3", letterSpacing: 4, fontWeight: 700 }}>
-          BURNABOYSTATS.COM/TIMELINE
+          {cardUrl("/timeline")}
         </div>
       </div>
     ),

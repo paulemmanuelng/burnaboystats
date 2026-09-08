@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogId } from "../../../lib/og-image";
+import { ogId, cardUrl } from "../../../lib/og-image";
 import { artistBySlug, afrobeatsArtists, chartEntries, chartTerritories, chartNo1s, chartCountryMeta, bestPeaks } from "../../../data/afrobeats";
 
 export function generateStaticParams() {
@@ -11,7 +11,7 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   const a = artistBySlug(slug);
   // Survives the param-less probe Next runs while collecting page data.
   const sig = a
-    ? `${slug}|charts|${chartEntries(a)}|${chartTerritories(a)}|${chartNo1s(a)}`
+    ? `${slug}|charts|${chartEntries(a)}|${chartTerritories(a)}|${chartNo1s(a)}|${cardUrl(`/afrobeats/${slug}/charts`)}`
     : `${slug}`;
   return [{ id: ogId(sig), alt, size, contentType }];
 }
@@ -154,7 +154,7 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
         </div>
 
         <div style={{ display: "flex", fontSize: 24, color: "#9b9ba3", letterSpacing: 3, fontWeight: 700 }}>
-          BURNABOYSTATS.COM/AFROBEATS/{(a?.slug ?? "").toUpperCase()}/CHARTS
+          {cardUrl(`/afrobeats/${a?.slug ?? ""}/charts`)}
         </div>
       </div>
     )

@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { cardUrl } from "../lib/og-image";
 import { daiDaiOgId, ogStats as stats, DAYS_AT_NO1 } from "./ogId";
 
 // A rich, data-driven share card (like Polymarket's) — cover art + the headline
@@ -142,7 +143,7 @@ export default function Image() {
         {/* Footer: link + halftime hook */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ display: "flex", fontSize: 26, color: "#9b9ba3", letterSpacing: 4, fontWeight: 700 }}>
-            BURNABOYSTATS.COM/DAI-DAI
+            {cardUrl("/dai-dai")}
           </div>
           <div
             style={{

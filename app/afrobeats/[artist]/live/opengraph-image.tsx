@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogId } from "../../../lib/og-image";
+import { ogId, cardUrl } from "../../../lib/og-image";
 import { artistBySlug } from "../../../data/afrobeats";
 import { LIVE_BOARDS, liveBoardFor } from "../../../data/liveBoards";
 
@@ -13,7 +13,9 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   // The card is a snapshot, so its id has to move with the snapshot — otherwise
   // a scraper keeps serving whatever it read the first time. Survives the
   // param-less probe Next runs while collecting page data.
-  const sig = b ? `${slug}|live|${b.updated}|${b.placements}|${b.countries}|${b.numberOnes}` : `${slug}`;
+  const sig = b
+    ? `${slug}|live|${b.updated}|${b.placements}|${b.countries}|${b.numberOnes}|${cardUrl(`/afrobeats/${slug}/live`)}`
+    : `${slug}`;
   return [{ id: ogId(sig), alt, size, contentType }];
 }
 
@@ -144,7 +146,7 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
         </div>
 
         <div style={{ display: "flex", fontSize: 24, color: "#9b9ba3", letterSpacing: 3, fontWeight: 700 }}>
-          PLATFORM CHARTS · BURNABOYSTATS.COM/AFROBEATS/{(slug ?? "").toUpperCase()}/LIVE
+          PLATFORM CHARTS · {cardUrl(`/afrobeats/${slug ?? ""}/live`)}
         </div>
       </div>
     ),
