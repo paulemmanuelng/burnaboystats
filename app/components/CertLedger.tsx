@@ -29,11 +29,15 @@ const FILTERS: { key: Tier | "All"; label: string }[] = [
 // Tier colours carry data meaning and are never recoloured to gold.
 // The plate is DERIVED from the same ink rather than frozen as an rgba, so it
 // follows the tier into either theme instead of staying a dark-mode tint.
+// Through --wash-strength, because a plate mixed from the very ink that reads
+// ON it eats its own contrast: at a flat 14% on paper the Diamond pill measured
+// 4.43:1, Gold 4.18 and Silver 4.25, all under AA. Thinned to 0.42 of that in
+// light they clear at 4.97 / 4.62 / 4.57; dark multiplies by 1 and does not move.
 const PILL: Record<Tier, { fill: string; ink: string }> = {
-  Diamond: { fill: "color-mix(in srgb, var(--tier-diamond-ink) 14%, transparent)", ink: "var(--tier-diamond-ink)" },
-  Platinum: { fill: "color-mix(in srgb, var(--tier-platinum-ink) 14%, transparent)", ink: "var(--tier-platinum-ink)" },
-  Gold: { fill: "color-mix(in srgb, var(--tier-gold-ink) 13%, transparent)", ink: "var(--tier-gold-ink)" },
-  Silver: { fill: "color-mix(in srgb, var(--tier-silver-ink) 10%, transparent)", ink: "var(--tier-silver-ink)" },
+  Diamond: { fill: "color-mix(in srgb, var(--tier-diamond-ink) calc(14% * var(--wash-strength)), transparent)", ink: "var(--tier-diamond-ink)" },
+  Platinum: { fill: "color-mix(in srgb, var(--tier-platinum-ink) calc(14% * var(--wash-strength)), transparent)", ink: "var(--tier-platinum-ink)" },
+  Gold: { fill: "color-mix(in srgb, var(--tier-gold-ink) calc(13% * var(--wash-strength)), transparent)", ink: "var(--tier-gold-ink)" },
+  Silver: { fill: "color-mix(in srgb, var(--tier-silver-ink) calc(10% * var(--wash-strength)), transparent)", ink: "var(--tier-silver-ink)" },
 };
 
 const ROWS_SHOWN = 15;
