@@ -7,6 +7,7 @@ import {
   DAI_DAI_SPOTIFY_CONFIRMED_THROUGH,
   DAI_DAI_YT_CONFIRMED_THROUGH,
   DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF,
+  DAI_DAI_YT_RUN_ENDED,
 } from "../app/data/daiDai";
 
 // A figure the site describes as LIVE — "still climbing", "and counting" — is
@@ -169,18 +170,15 @@ describe("published figures do not claim to be live once they have stopped movin
         text: page("app/dai-dai/page.tsx", /both still counting/),
         movedOn: DAI_DAI_SPOTIFY_CONFIRMED_THROUGH,
       },
-      {
-        id: "Dai Dai — YouTube No. 1, “unbroken since 9 June”",
-        text: page("app/dai-dai/page.tsx", /unbroken since/),
-        movedOn: DAI_DAI_YT_CONFIRMED_THROUGH,
-      },
-      // The Spanish edition mirrors both and goes stale on the same day. It was
-      // outside the guard entirely — the detector could not even read it.
-      {
-        id: "Dai Dai ES — YouTube No. 1, “sin interrupción desde”",
-        text: page("app/dai-dai/es/page.tsx", /sin interrupci[oó]n desde/),
-        movedOn: DAI_DAI_YT_CONFIRMED_THROUGH,
-      },
+      // The YouTube run is no longer registered as ongoing because it is no
+      // longer ongoing: read at YouTube's own chart on 8 Sep 2026, "Dai Dai"
+      // sits at No. 2 behind LISA's "SaWaDiKa". The prose now states it as the
+      // dated, finished run it is — which is precisely the rewrite this guard
+      // asks for when it fires, arrived at a few days early because the claim
+      // went false before the alarm was due to ring.
+      //
+      // Both editions are held to that below, by a check that fails if the
+      // ongoing wording ever comes back without the run resuming.
       // The total days at No. 1 — 37 — which until today had no constant and no
       // reading date anywhere, and is stated in seventeen places.
       {
@@ -192,6 +190,21 @@ describe("published figures do not claim to be live once they have stopped movin
     expect(staleLiveClaims(claims), "rewrite these to state the figure as the dated high it is").toEqual([]);
   });
 
+  // The reverse guard. Once a run is over, the ongoing wording must not come
+  // back — in either language — unless the data says the run resumed.
+  it("neither edition writes the YouTube run as ongoing while it is over", () => {
+    if (!DAI_DAI_YT_RUN_ENDED) return; // resumed: the claim may be live again
+    for (const file of ["app/dai-dai/page.tsx", "app/dai-dai/es/page.tsx"]) {
+      const src = readFileSync(file, "utf8");
+      const line = src.split("\n").find((l) => /YouTube/.test(l) && /No\. ?1|n[uú]mero 1/.test(l));
+      expect(line, `${file}: no YouTube No. 1 line found — was it reworded?`).toBeTruthy();
+      expect(
+        ONGOING.test(line!),
+        `${file} writes the YouTube No. 1 run as ongoing, but DAI_DAI_YT_RUN_ENDED is true`
+      ).toBe(false);
+    }
+  });
+
   // The alarm is only worth having if it actually goes off, so this proves it
   // does rather than trusting that it would. Run the same claims forward: on
   // 30 Sep 2026 every one of them is weeks past its reading date and every one
@@ -201,15 +214,13 @@ describe("published figures do not claim to be live once they have stopped movin
     const LATER = new Date("2026-09-30T12:00:00Z");
     const claims: LiveClaim[] = [
       { id: "spotify-streak", text: page("app/dai-dai/page.tsx", /both still counting/), movedOn: DAI_DAI_SPOTIFY_CONFIRMED_THROUGH },
-      { id: "youtube-run", text: page("app/dai-dai/page.tsx", /unbroken since/), movedOn: DAI_DAI_YT_CONFIRMED_THROUGH },
-      { id: "youtube-run-es", text: page("app/dai-dai/es/page.tsx", /sin interrupci[oó]n desde/), movedOn: DAI_DAI_YT_CONFIRMED_THROUGH },
       { id: "days-at-no1", text: page("app/dai-dai/page.tsx", /in total at No\. 1 on Spotify/), movedOn: DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF },
     ];
     const flagged = staleLiveClaims(claims, LATER).map((m) => m.split(":")[0]);
     expect(
       flagged.sort(),
       "a registered ongoing claim is not reachable by the detector — check the wording still matches ONGOING"
-    ).toEqual(["days-at-no1", "spotify-streak", "youtube-run", "youtube-run-es"]);
+    ).toEqual(["days-at-no1", "spotify-streak"]);
   });
 });
 

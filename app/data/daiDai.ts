@@ -115,8 +115,28 @@ export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-08-28";
 // no chart day is missing from the middle. Rows were matched on video id
 // fcnDmrtj6Sk, not on title: from 8 Aug a second row, "Dai dai (Live)" by
 // Shakira & Beéle (mapfegnAXOg), sits on the same chart.
-export const DAI_DAI_YT_NO1_SINCE = "2026-06-09"; // first day of the current unbroken run
-export const DAI_DAI_YT_CONFIRMED_THROUGH = "2026-08-27"; // latest published daily chart
+export const DAI_DAI_YT_NO1_SINCE = "2026-06-09"; // first day of the run
+export const DAI_DAI_YT_CONFIRMED_THROUGH = "2026-08-27"; // last chart read AT No. 1
+
+/**
+ * THE RUN HAS ENDED. Read at the body on 8 Sep 2026: YouTube's Global Daily Top
+ * Music Videos chart, dated 6 Sep 2026, has LISA's "SaWaDiKa" at No. 1 and
+ * "Dai Dai" at No. 2 — and the chart's own Yesterday column shows the same
+ * order on 5 Sep, so it was not a one-day dip.
+ *
+ * The exact last day at No. 1 is NOT established. charts.youtube.com renders
+ * only the latest chart; its dated URLs return an empty client-side payload,
+ * the same wall the TurnTable Top 50 hit. SaWaDiKa shows 4 days on chart, so it
+ * took the top somewhere between 3 and 5 Sep — which brackets the ending but
+ * does not date it, and this project does not publish a figure it has not read.
+ *
+ * So the site states what IS established: 80 days at No. 1 from 9 June through
+ * the 27 Aug chart, and that the run has since ended. When the exact date is
+ * known, set DAI_DAI_YT_NO1_ENDED and the prose can name it.
+ */
+export const DAI_DAI_YT_RUN_ENDED = true;
+/** The chart that established the run was over, and what it showed. */
+export const DAI_DAI_YT_ENDED_SEEN_ON = "2026-09-06";
 
 /** Consecutive days at No. 1 on YouTube's global daily music-video chart. */
 export const daiDaiYouTubeDaysAtNo1 = daysInclusive(
