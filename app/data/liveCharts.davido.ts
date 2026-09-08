@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-07";
+  export const liveChartsUpdated = "2026-09-08";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -208,14 +208,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 96,
-            "movement": -22
+            "position": 105,
+            "movement": -23
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": -85
+            "position": 130,
+            "movement": -115
           }
         ]
       },
@@ -370,16 +370,16 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 84,
+            "movement": -7
+          },
+          {
             "country": "QA",
             "name": "Qatar",
             "position": 87,
             "movement": 14
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 88,
-            "movement": -9
           },
           {
             "country": "BW",
@@ -877,8 +877,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 136,
-            "movement": -95
+            "position": 169,
+            "movement": -115
           }
         ]
       },
@@ -993,14 +993,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": 4
+            "position": 14,
+            "movement": 7
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 24,
-            "movement": -20
+            "position": 33,
+            "movement": -28
           }
         ]
       },
@@ -1466,6 +1466,19 @@
             "status": "new"
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 20,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -1617,8 +1630,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 179,
-            "movement": 7
+            "position": 175,
+            "movement": 1
           }
         ]
       }
@@ -1803,19 +1816,19 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 19,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 49,
-            "movement": -2
+            "position": 45,
+            "movement": -1
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 90,
-            "movement": -1
+            "position": 78,
+            "movement": 11
           }
         ]
       }
@@ -1889,7 +1902,7 @@
             "country": "SZ",
             "name": "Swaziland",
             "position": 17,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "NE",
@@ -1900,20 +1913,20 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 52,
-            "movement": -2
+            "position": 48,
+            "movement": -1
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 63,
-            "movement": -1
+            "position": 55,
+            "movement": 7
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 85,
-            "movement": 0
+            "position": 83,
+            "movement": 2
           }
         ]
       },
@@ -1981,8 +1994,8 @@
           {
             "country": "AI",
             "name": "Anguilla",
-            "position": 53,
-            "movement": 0
+            "position": 52,
+            "movement": 1
           }
         ]
       }
@@ -2149,8 +2162,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 102,
-            "movement": -22
+            "position": 111,
+            "movement": -23
           }
         ]
       }
@@ -2264,37 +2277,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "OVER DEM",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 107,
-            "movement": 19
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 80,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Assurance",
@@ -2444,26 +2426,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Ekuro",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 31,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/798485d74c5c9cd451070cd502092ea6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Tell Everybody",
     "platforms": [
       {
@@ -2481,6 +2443,45 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "OVER DEM",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 107,
+            "movement": 19
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ekuro",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 38,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/798485d74c5c9cd451070cd502092ea6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Aye",
@@ -2731,25 +2732,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/50d12a3358fb88c810b8c9231ced0cd6/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Oriade",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 153,
-            "movement": -53
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Baddest Boy",

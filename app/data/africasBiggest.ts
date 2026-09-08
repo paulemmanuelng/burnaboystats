@@ -192,9 +192,9 @@ export const statBoxes: LeaderboardBox[] = [
         // write into the 2025 historical row. Keep a marker on every row the bot
         // writes, and keep them unique. tests/watchedMetrics.test.ts enforces it.
         entries: [
-          /* live:streams-2026-tems */ { name: "Tems", value: "1.765B" },
-          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.753B" },
-          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.750B" },
+          /* live:streams-2026-tems */ { name: "Tems", value: "1.771B" },
+          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.759B" },
+          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.757B" },
           { name: "Asake", value: "1.335B" },
           { name: "Tyla", value: "1.138B" },
         ],

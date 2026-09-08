@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-07";
+  export const liveChartsUpdated = "2026-09-08";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","iTunes"];
@@ -363,6 +363,19 @@
             "movement": -3
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 29,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -471,8 +484,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
-            "movement": -4
+            "position": 77,
+            "movement": -13
           }
         ]
       }
@@ -582,8 +595,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 32,
-            "movement": -4
+            "position": 38,
+            "movement": -10
           }
         ]
       }
@@ -927,7 +940,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 188,
+            "position": 196,
             "movement": -22
           }
         ]
@@ -1042,7 +1055,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 118,
-            "movement": -2
+            "movement": -1
           }
         ]
       }

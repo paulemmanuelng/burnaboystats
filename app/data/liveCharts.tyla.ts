@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-07";
+  export const liveChartsUpdated = "2026-09-08";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -224,7 +224,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 5,
+            "position": 6,
             "movement": null,
             "status": "new"
           }
@@ -380,13 +380,13 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 24,
-            "movement": -6
+            "position": 25,
+            "movement": -5
           },
           {
             "country": "DE",
             "name": "Germany",
-            "position": 106,
+            "position": 146,
             "movement": null,
             "status": "new"
           }
@@ -458,8 +458,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 62,
-            "movement": -22
+            "position": 63,
+            "movement": -17
           },
           {
             "country": "GD",
@@ -470,7 +470,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 109,
+            "position": 111,
             "movement": null,
             "status": "new"
           }
@@ -526,8 +526,8 @@
           {
             "country": "SK",
             "name": "Slovakia",
-            "position": 7,
-            "movement": 72
+            "position": 9,
+            "movement": 76
           }
         ]
       }
@@ -545,15 +545,15 @@
           {
             "country": "KG",
             "name": "Kyrgyzstan",
-            "position": 4,
+            "position": 5,
             "movement": null,
             "status": "new"
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 29,
-            "movement": -16
+            "position": 31,
+            "movement": -14
           }
         ]
       }
