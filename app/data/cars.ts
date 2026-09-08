@@ -475,6 +475,13 @@ function formatUsd(n: number): string {
 }
 export const totalValueFormatted = formatUsd(totalValueUsd);
 
+// The single most valuable car, and its price already formatted. It exists so
+// that prose about "his most expensive car" reads the figure instead of typing
+// it: the FAQ answer restated the Chiron at $6.19M and was left behind the day
+// the ₦9bn was re-converted at the announcement-day rate.
+export const topCar = currentCars[0];
+export const topCarValueFormatted = formatUsd(topCar.valueUsd);
+
 // ── The garage: the current cars as pages ───────────────────────────────────
 // Rank is the position in the value-sorted list, so it can never disagree with
 // the index. The image block is derived from the slug: one hero and one 16:10

@@ -102,6 +102,62 @@ describe("hooks agree with the data when the figure is spelled out", () => {
   });
 });
 
+// Two more shapes, both of which went stale on 7 Sep 2026 when the albums chart
+// was finally queried for three board artists (#179). That sweep moved BNXN from
+// 6 Nigerian No. 1s to 7 and Olamide from 99 charted records to 104 — every
+// derived surface followed, and both hooks went on saying the singles-only
+// figure directly above them. The board counts a country's principal national
+// SINGLES OR ALBUMS chart, so the album rows count.
+describe("hooks agree with the data on Nigerian chart figures", () => {
+  const ngNo1s = (a: (typeof afrobeatsArtists)[number]) =>
+    (a.charts ?? []).filter((r) => (r.entries ?? []).some((e) => e.c === "NG" && e.peak === 1)).length;
+  const ngRecords = (a: (typeof afrobeatsArtists)[number]) =>
+    (a.charts ?? []).filter((r) => (r.entries ?? []).some((e) => e.c === "NG")).length;
+
+  it("no hook misstates its Nigerian No. 1 count", () => {
+    const wrong: string[] = [];
+    for (const a of afrobeatsArtists) {
+      const m = new RegExp(`(${NUM})\\s+Nigerian No\\.\\s?1s`, "i").exec(a.hook ?? "");
+      if (!m) continue;
+      const said = toNumber(m[1]);
+      if (said === null) continue;
+      const actual = ngNo1s(a);
+      if (said !== actual) wrong.push(`${a.slug}: hook says ${m[1]} (${said}), data has ${actual}`);
+    }
+    expect(wrong).toEqual([]);
+  });
+
+  it("no hook misstates how many records it charted in Nigeria", () => {
+    const wrong: string[] = [];
+    for (const a of afrobeatsArtists) {
+      const m = new RegExp(`(${NUM}(?:\\s+\\w+){0,2})\\s+charted records in Nigeria`, "i").exec(a.hook ?? "");
+      if (!m) continue;
+      // "A hundred and four" — strip the article, then read the compound.
+      const raw = m[1].replace(/^(?:a|an)\s+/i, "");
+      const said = HUNDREDS(raw);
+      if (said === null) continue;
+      const actual = ngRecords(a);
+      if (said !== actual) wrong.push(`${a.slug}: hook says "${m[1]}" (${said}), data has ${actual}`);
+    }
+    expect(wrong).toEqual([]);
+  });
+});
+
+// toNumber stops at ninety-nine. Once a figure crosses a hundred the hook has to
+// spell it "a hundred and four", so the parser needs the extra rung.
+function HUNDREDS(raw: string): number | null {
+  const t = raw.trim().toLowerCase();
+  if (/^\d+$/.test(t)) return Number(t);
+  const m = /^(?:(\w+)\s+)?hundred(?:\s+and\s+(.+))?$/.exec(t);
+  if (m) {
+    const mult = m[1] ? toNumber(m[1]) : 1;
+    const rest = m[2] ? toNumber(m[2]) : 0;
+    if (mult === null || rest === null) return null;
+    return mult * 100 + rest;
+  }
+  return toNumber(t);
+}
+
 // Numbers were guarded; SUPERLATIVES were not, and that is the half that broke.
 // Olamide's hook claimed "the deepest home catalogue on this board, and more
 // than anyone else has put on the chart" while Seyi Vibez sat above him with

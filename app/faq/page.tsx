@@ -8,7 +8,7 @@ import { totalWins, totalNominations, ceremonyCount, ceremonies } from "../data/
 import { numberOnes, numberOneReleases, daiDaiNumberOnes } from "../data/charts";
 import { countryCount as performedCountryCount, regionCount } from "../data/performedCountries";
 import { festivals } from "../data/tours";
-import { carCount, totalValueFormatted } from "../data/cars";
+import { carCount, totalValueFormatted, topCarValueFormatted } from "../data/cars";
 import { BURNA_HOT_100_ENTRIES } from "../data/africasBiggest";
 import { lastUpdated } from "../lib/api";
 
@@ -131,7 +131,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "cars",
     q: "What is Burna Boy's most expensive car?",
-    a: `Burna Boy's most expensive car is his ₦9 billion one-of-one widebody Bugatti Chiron — a custom build by Dubai's Venuum, unveiled in July 2026 and billed as the world's first widebody Chiron. It is reported as the most expensive car in West Africa (around $6.19 million).`,
+    a: `Burna Boy's most expensive car is his ₦9 billion one-of-one widebody Bugatti Chiron — a custom build by Dubai's Venuum, unveiled in July 2026 and billed as the world's first widebody Chiron. It is reported as the most expensive car in West Africa (${topCarValueFormatted} at the naira-to-dollar rate on the day it was announced).`,
   },
   {
     g: "cars",
