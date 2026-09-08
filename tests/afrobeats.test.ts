@@ -856,6 +856,34 @@ describe("board chart provenance", () => {
     ).toEqual([]);
   });
 
+  // WHAT THIS PAIR CANNOT SEE, stated so nobody mistakes it for full cover.
+  // The bug that actually shipped was six airplay charts LABELLED AS NATIONAL —
+  // Malta as "Official Malta Chart", Serbia and North Macedonia as "Billboard …
+  // Songs", Slovenia as "SloTop50", Belarus as "TopHit". A body that does not
+  // say "airplay" is invisible to a check that keys on the word, and no amount
+  // of string matching can tell that "Official Malta Chart" is a radio panel.
+  // That is a research fact, not a testable one.
+  //
+  // So the set is PINNED instead: the number of airplay markets the board
+  // tracks is fixed here, and adding or relabelling one has to move this
+  // number deliberately. It converts a silent change into a failing test,
+  // which is the most a test can honestly do about it.
+  it("the count of airplay markets the board tracks is pinned", () => {
+    const codes = new Set<string>();
+    for (const a of sweptArtists) {
+      for (const r of a.charts) {
+        for (const e of r.entries) {
+          if (/airplay/i.test(chartCountryMeta(e.c).body)) codes.add(e.c);
+        }
+      }
+    }
+    expect(
+      codes.size,
+      `the board now tracks ${codes.size} airplay markets, not 17 (${[...codes].sort().join(", ")}). ` +
+        "If a market was added, confirm at the source that it has no other national chart, then move this number."
+    ).toBe(17);
+  });
+
   // The carve-out only holds where a country has no alternative. Croatia is the
   // worked example on Burna Boy's side — HDU's Top lista has an airplay No. 1,
   // but Billboard Croatia Songs exists, so it does not count — and the board

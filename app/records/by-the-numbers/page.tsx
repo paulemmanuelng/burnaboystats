@@ -8,6 +8,13 @@ import { pageMetadata, datasetJsonLd, CANONICAL_ORIGIN } from "../../lib/seo";
 import { totalAwards, countryCount } from "../../data/certifications";
 import { totalWins, totalNominations, ceremonyCount } from "../../data/awards";
 import { numberOnes, chartCountryCount, allChartItems } from "../../data/charts";
+// NOT charts.chartCountryCount (69, every territory he has ever charted in) and
+// not charts.numberOneCountryCount (32, which counts the two Billboard global
+// charts as territories). charts.ts forbids the first pairing by name: putting a
+// No. 1s count beside chartCountryCount claims he topped the chart in every
+// territory he has appeared in. The home page was fixed for exactly this and
+// renders 30; this tile, one click away, still said 69.
+import { numberOneCountryCount } from "../../lib/analysis";
 import {
   countryCount as performedCountryCount,
   regionCount,
@@ -103,7 +110,7 @@ export const stats: {
 }[] = [
   { num: `${totalAwards()}`, label: "Certifications", sub: `across ${countryCount} countries — most of any African artist`, href: "/certifications", big: true },
   { num: `${totalWins}`, label: "Award wins", sub: `from ${totalNominations} nominations across ${ceremonyCount} bodies — a 2021 Grammy, plus BET, MOBO, Headies & AFRIMA`, href: "/records/awards" },
-  { num: `${numberOnes}`, label: "No. 1 chart placements", sub: `${nationalOnes} on national charts, plus both Billboard global charts — across ${chartCountryCount} charting territories`, href: "/records/charts" },
+  { num: `${numberOnes}`, label: "No. 1 chart placements", sub: `${nationalOnes} on national charts, plus both Billboard global charts — in ${numberOneCountryCount} countries`, href: "/records/charts" },
   { num: "$30.46M", label: "Highest-grossing African tour", sub: "the I Told Them… Tour — a world record for an African act", href: "/records/tours", big: true },
   { num: "$6.15M", label: "Biggest concert by an African artist", sub: "London Stadium, June 2024 — 58,973 fans", href: "/records/tours" },
   { num: `${BURNA_HOT_100_ENTRIES}`, label: "Billboard Hot 100 entries", sub: "the most by any African artist, six years running", href: "/records/charts" },

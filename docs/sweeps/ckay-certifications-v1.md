@@ -68,7 +68,7 @@ gave him two.
 | 🇳🇬 Nigeria | by now | Silver |
 | 🇳🇬 Nigeria | WATAWI | Silver |
 
-**Per country:** 🇳🇬 10, 🇫🇷 2, 🇨🇦 2, 🇬🇧 2, 🇳🇱 2, and one each in 🇺🇸 🇵🇹 🇵🇱 🇦🇹 🇩🇪 🇩🇰 🇪🇸 🇮🇹 🇦🇺. Sum: 10 + 2 + 2 + 2 + 2 + 9 = **27** ✓
+**Per country:** 🇳🇬 10, 🇫🇷 2, 🇨🇦 2, 🇬🇧 2, 🇳🇱 2, and one each in 🇺🇸 🇵🇹 🇵🇱 🇦🇹 🇩🇪 🇩🇰 🇪🇸 🇮🇹 🇦🇺 🇳🇿. Sum: 10 + 2 + 2 + 2 + 2 + 10 = **28** ✓
 
 **Featured credits, counted as the rules require:** "La La" is Davido's record
 and "Beggie Beggie" is Ayra Starr's. Both carry his credit, so both count. The

@@ -52,7 +52,7 @@
 
 > **Why the number moved — pass one.** Wikipedia and the fan tallies carried **60** Rema claims. Ten did not survive a register check (Soweto's Spanish Gold belongs to Victony & Tempoe; two "RCN Nigeria" awards cite a dead domain of a body that is not TCSN; Ginger Me's and Soundgasm's Nigerian awards were absent from TurnTable's *displayed* register; Bubalu's and Rave & Roses' "US Gold" are each a duplicate of a plaque already counted; India, Chile and "Central America" had no register entry at all). That left **50**. Sweeping the registers found **11** certifications no secondary source listed. Net: 60 − 10 + 11 = **61**.
 >
-> **Why the number moved again — gap sweep, 16 Aug 2026.** Reading TurnTable's own archived captures instead of only its live 500-row display added **19** further Nigerian plaques — ten Gold and nine **Silver**, a tier the live register no longer serves at all. Two of pass one's removals are thereby **reinstated**: *Ginger Me* and *Soundgasm* are both certified in Nigeria, at **Gold**, and were simply truncated out of the live view. Nine national registers that were never queried in pass one (Ireland, Finland, Singapore, Malaysia, Turkey, Croatia, Argentina, Chile/Colombia/Peru, Slovakia) returned **zero** — every one of them for a structural reason, not because Rema fell short. Poland, Norway, Australia and Greece — the four entries that were previously unverified or spot-checked — are now **register-confirmed**, moving Rema from 58/61 verified to **80/80 verified**. Net: 61 + 19 = **80**.
+> **Why the number moved again — gap sweep, 16 Aug 2026.** Reading TurnTable's own archived captures instead of only its live 500-row display added **19** further Nigerian plaques — ten Gold and nine **Silver**, a tier the live register no longer serves at all. Two of pass one's removals are thereby **reinstated**: *Ginger Me* and *Soundgasm* are both certified in Nigeria, at **Gold**, and were simply truncated out of the live view. Nine national registers that were never queried in pass one (Ireland, Finland, Singapore, Malaysia, Turkey, Croatia, Argentina, Chile/Colombia/Peru, Slovakia) returned **zero** — every one of them for a structural reason, not because Rema fell short. Poland, Norway, Australia and Greece — the four entries that were previously unverified or spot-checked — are now **register-confirmed**, moving Rema from 58/61 verified to **80/80 verified**. Net: 61 + 19 = **80** — the total *as of this sweep, 16 Aug 2026*. Two later rows (Colombia's Diamond, and *Secondhand* 🇵🇹 Gold reinstated on 28 Aug) take the file to its published **82**.
 
 ### Albums — 7
 | release | certifications |
@@ -126,13 +126,19 @@
 - **Gold 23** — Calm Down (AT, NL) 2 · Rave & Roses Ultra (US) 1 · Soundgasm (CH, NL, **NG**) 3 · Dumebi (CH) 1 · Soweto (UK) 1 · lead single-country golds: Trouble Maker 🇳🇬, Corny 🇫🇷, Fame – A COLORS ENCORE 🇧🇷, **Ginger Me 🇳🇬, HEIS 🇳🇬, War Machine 🇳🇬, Kelebu 🇳🇬, March Am 🇳🇬, Reason You 🇳🇬, Red Potion 🇳🇬** = 10 · featured golds: Secondhand 🇨🇦, **Secondhand 🇵🇹**, Toxic 🇫🇷, **Compromise 🇳🇬, Lalala 🇳🇬** = 5 → 2+1+3+1+1+10+5 = **23**
 - **Silver 13** — 🇬🇧 ×4: Rave & Roses, Soundgasm, Charm, Dumebi · 🇳🇬 ×9: Bounce, Don't Leave, Egungun, Hov, Now I Know, Time N Affection (lead, 6) + Dimension, Mukulu, Too Correct (featured, 3) → **13**
 
-4 + 41 + 22 + 13 = **80** ✓ · Sections: 7 albums + 62 lead + 11 featured = **80** ✓
+5 + 41 + 23 + 13 = **82** ✓ · Sections: 7 albums + 63 lead + 12 featured = **82** ✓
+
+> Two rows landed after this decomposition was first written and are included
+> above: **Colombia — Diamond** (added 26 Aug, taking Diamond 4 → 5 and lead
+> singles 62 → 63) and ***Secondhand* 🇵🇹 Gold** (the retracted refutation,
+> reinstated 28 Aug, taking Gold 22 → 23 and featured 11 → 12). The tier and
+> section splits above are derived from the data as it stands today.
 
 ## Award events vs plaques
 
 This section exists because fan trackers and the site count different things, and the difference is arithmetic rather than disagreement about facts.
 
-- **Plaque convention (this file, and burnaboystats.com):** one plaque per title per country, at its **current highest tier**. Rema = **80**.
+- **Plaque convention (this file, and burnaboystats.com):** one plaque per title per country, at its **current highest tier**. Rema = **82**.
 - **Award-event convention (most fan trackers):** every separate dated announcement the register published — Gold, then Platinum, then 2×, then Diamond all count individually. Rema = **at least 119**.
 
 ### Where the events are documented
@@ -162,12 +168,16 @@ This section exists because fan trackers and the site count different things, an
 ```
  42 plaques with events counted this pass ....................  65 announcements
   5 plaques with pass-one ladders described ..................  ≥21 announcements
- 33 remaining plaques, no step history recorded (≥1 each) ....  ≥33 announcements
+ 35 remaining plaques, no step history recorded (≥1 each) ....  ≥35 announcements
  ---                                                            ---
- 80 plaques                                                     ≥119 announcements
+ 82 plaques                                                     ≥121 announcements
 ```
 
-42 + 5 + 33 = **80** ✓ · 65 + 21 + 33 = **119** ✓
+42 + 5 + 35 = **82** ✓ · 65 + 21 + 35 = **121** ✓
+
+> The Colombian Diamond and the reinstated *Secondhand* 🇵🇹 Gold both sit in the
+> no-step-history bucket: neither register publishes the ladder behind them, so
+> each contributes one plaque and at least one announcement.
 
 ### Honest limits on the event number
 

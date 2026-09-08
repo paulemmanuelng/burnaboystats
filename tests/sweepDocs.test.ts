@@ -49,35 +49,108 @@ describe("sweep documents back the Afrobeats Board", () => {
   });
 
   // The header was guarded and the BODY was not, so four files stated two
-  // different plaque totals for the same artist: Asake 80 in the header and 79
-  // at :150, Wizkid 156 and "Wizkid = 155", Tems 71 against 68 and 70, and Seyi
-  // Vibez's comparison paragraph still reading 103 after the mis-credited Road
-  // Runners row came out. A reader quoting the file could pick either number.
+  // different plaque totals for the same artist. The first version of this
+  // check was then fitted to those four bugs and MISSED A FIFTH: Rema's body
+  // said `Rema = **80**.` — period outside the bold — against a header of 82,
+  // and the regex required the period inside. It also had no anti-vacuity
+  // assertion, so it could have matched nothing anywhere and stayed green.
+  //
+  // Both are fixed here: more phrasings, and a floor on how many files it
+  // actually reads a figure out of.
   it("no body figure contradicts the file's own plaque total", () => {
     // Only phrasings that mean THIS artist's own plaque count. A tier table's
     // gross, or a sentence about Burna Boy's 230, is a different claim.
     const CLAIMS = [
-      /\*\*Plaque count \(this file[^)]*\): (\d+)\.\*\*/g,
+      /\*\*Plaque count \(this file[^)]*\): (\d+)\.?\*\*/g,
       /\*\*(\d+) plaques\*\* \(this file/g,
-      /\*\*[A-Z][a-zA-Z ]+ = (\d+)\.\*\*/g,
+      // "**Wizkid = 155.**" and "Rema = **82**." — the bold may wrap the whole
+      // clause or only the numeral, and the period may fall either side.
+      /\*\*[A-Z][a-zA-Z .]+ = (\d+)\.?\*\*/g,
+      /\b[A-Z][a-zA-Z ]+ = \*\*(\d+)\*\*\.?/g,
+      // Decomposition lines, but ONLY those that name what they decompose. A
+      // bare "= **N** ✓" also matches legitimate sub-sums — Rema's 121
+      // announcements, Ayra Starr's group splits — and would fail on those.
+      // Matched per LINE rather than per segment because the label sits at the
+      // start and the total at the end, with "·" between them:
+      //   "**Tier split:** Platinum **53** · Gold **14** · Silver **13** = **80** ✓"
+      /^.*(?:tier split|country split|per country|sections?:).*?=\s*\*\*(\d+)\*\*\s*✓.*$/gim,
+      // The ledger foot: " 82 plaques    ≥121 announcements"
+      /^\s*(\d+) plaques\s{2,}/gm,
     ];
     const wrong: string[] = [];
+    let filesWithAFigure = 0;
     for (const a of afrobeatsArtists) {
       if (!a.swept) continue;
       const doc = readFileSync(certDoc(a.slug), "utf8");
       const actual = certCount(a);
+      let sawOne = false;
       for (const re of CLAIMS) {
         for (const m of doc.matchAll(re)) {
+          sawOne = true;
           if (Number(m[1]) !== actual) {
-            wrong.push(`${a.name}: body says ${m[1]}, data has ${actual} — "${m[0].slice(0, 60)}"`);
+            wrong.push(`${a.name}: body says ${m[1]}, data has ${actual} — "${m[0].trim().slice(0, 60)}"`);
           }
         }
       }
+      if (sawOne) filesWithAFigure++;
     }
+
+    // Anti-vacuity. Without this the whole check passes by matching nothing,
+    // which is how the Rema defect survived the first version.
+    expect(
+      filesWithAFigure,
+      "the body patterns matched a plaque figure in almost no file — they have gone stale against the documents"
+    ).toBeGreaterThanOrEqual(Math.ceil(afrobeatsArtists.filter((a) => a.swept).length / 2));
+
     expect(
       wrong,
       "a sweep document states a plaque count that its own guarded header contradicts"
     ).toEqual([]);
+  });
+
+  // The check above holds the stated TOTAL to the data. It cannot see a
+  // decomposition whose parts no longer add up to the total it prints —
+  // "Platinum 53 · Gold 13 · Silver 13 = **80**" states the right answer to the
+  // wrong sum, and that is how these files drift: someone corrects the headline
+  // and leaves the addends. So the arithmetic is checked as arithmetic.
+  it("every decomposition's parts add up to the total it states", () => {
+    const LINE = /^.*(?:tier split|country split|per country|sections?:).*?=\s*\*\*(\d+)\*\*\s*✓.*$/gim;
+    const bad: string[] = [];
+    let checked = 0;
+    for (const a of afrobeatsArtists) {
+      if (!a.swept) continue;
+      const doc = readFileSync(certDoc(a.slug), "utf8");
+      for (const m of doc.matchAll(LINE)) {
+        const line = m[0];
+        const stated = Number(m[1]);
+        // Match the written arithmetic directly rather than scraping numbers
+        // off the line — "a + b + c = **N**", or bold figures separated by "·"
+        // where the file writes the split that way. Anything else is left
+        // alone: a guess at which numerals are addends is how a check like this
+        // starts failing on prose.
+        const sums: { parts: number[]; total: number }[] = [];
+        for (const e of line.matchAll(/(\d+(?:\s*\+\s*\d+)+)\s*=\s*\*\*(\d+)\*\*/g)) {
+          sums.push({ parts: e[1].split("+").map((p) => Number(p.trim())), total: Number(e[2]) });
+        }
+        if (!sums.length) {
+          // "**53** · Gold **14** · Silver **13** = **80** ✓" — every bold
+          // figure LEFT of the "=" is an addend, including the last one, which
+          // is followed by the equals rather than by another "·".
+          const lhs = line.slice(0, line.lastIndexOf("="));
+          const dotted = [...lhs.matchAll(/\*\*(\d+)\*\*/g)].map((x) => Number(x[1]));
+          if (dotted.length >= 2) sums.push({ parts: dotted, total: stated });
+        }
+        for (const { parts, total } of sums) {
+          checked++;
+          const sum = parts.reduce((t, n) => t + n, 0);
+          if (sum !== total) {
+            bad.push(`${a.name}: ${parts.join(" + ")} = ${sum}, but the line states ${total} — "${line.trim().slice(0, 80)}"`);
+          }
+        }
+      }
+    }
+    expect(checked, "no decomposition arithmetic was parsed — the phrasings have drifted").toBeGreaterThan(3);
+    expect(bad, "a decomposition's parts no longer sum to the total it prints").toEqual([]);
   });
 
   it("states a chart-entry total matching the data, bar the documented divergence", () => {
