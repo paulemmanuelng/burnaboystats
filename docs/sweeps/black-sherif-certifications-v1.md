@@ -49,6 +49,19 @@ across 8 annual TOP reports and 295 weekly PDFs.
 - **ČNS IFPI (Czechia / Slovakia)** — the tier prints inside a chart row, so only
   a currently-charting title is ever visible. A very weak negative.
 - **Ultratop (Belgium)** and **GLF (Sweden)** — not reached.
-- **Ghana's own bodies** — GHAMRO's host never completes a connection and MUSIGA
-  has no DNS record, which matters here specifically. Whether Ghana operates a certification
-  programme at all is unresolved.
+- **Ghana — RESOLVED 8 Sep 2026, and it is not a gap.** This sat unresolved for
+  months and mattered more for him than for anyone: he is the board's only
+  Ghanaian artist, so an unread Ghanaian register would have left his zero
+  permanently provisional. There is **no Ghanaian sales or streaming
+  certification programme at all**, so there is no register to read and no plaque
+  he can be missing. Established positively, at the bodies' own surfaces, on four
+  independent lines: IFPI's Local Associations and National Groups directory read
+  in full — 46 entries, of which the African members are exactly Kenya (RIKE),
+  Nigeria (ReLPI) and South Africa (RiSA), with Ghana absent; IFPI's separate
+  direct-members country selector, 57 countries, no Ghana; GHAMRO's live site
+  read in full, all six pages, which describes itself as a *collecting society*
+  for royalties and never claims a certification function; and MUSIGA, a
+  musicians' union with no such programme either.
+
+  His zero is therefore **complete for Ghana by nonexistence**, which is a
+  stronger statement than "read and found nothing".
