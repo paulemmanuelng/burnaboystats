@@ -13,6 +13,7 @@ import { daiDaiCertCount } from "../data/certifications";
 import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
+import { daiDaiOgId } from "./ogId";
 
 // Countries "Dai Dai" charted in, mapped to the world-map's ISO id space, for
 // the animated takeover map. Excludes the two Billboard global charts (not
@@ -149,6 +150,13 @@ export default function DaiDaiPage() {
     },
     about: { "@type": "MusicRecording", name: "Dai Dai" },
     url: `${CANONICAL_ORIGIN}/dai-dai`,
+    // Search Console asked for `image` and it was omitted because the bare
+    // /dai-dai/opengraph-image path 404s — generateImageMetadata puts a hashed
+    // id in the path, so the field would have pointed at a dead URL. That is
+    // fixed rather than worked around: the id is now shared (./ogId), so this
+    // cites the same 200 the og:image tag does, and it re-versions with the
+    // card instead of going stale.
+    image: `${CANONICAL_ORIGIN}/dai-dai/opengraph-image/${daiDaiOgId}`,
     // Search Console flagged five non-critical Event fields as missing
     // (image, description, endDate, organizer.url, offers). None blocked the
     // rich result, but each one it has is a feature the listing can show.

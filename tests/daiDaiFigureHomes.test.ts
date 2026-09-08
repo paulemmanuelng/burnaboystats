@@ -32,7 +32,11 @@ const HOMES: Home[] = [
   { file: "app/dai-dai/page.tsx", label: "EN page description", re: /anthem: (\d+) days as Earth/ },
   { file: "app/dai-dai/page.tsx", label: "EN hero card", re: /after (\d+) days as the most-streamed/ },
   { file: "app/dai-dai/page.tsx", label: "EN streak card", re: /\{ v: "(\d+) days", l: ["`]in total at No\. 1 on Spotify/ },
-  { file: "app/dai-dai/opengraph-image.tsx", label: "EN share card", re: /const DAYS_AT_NO1 = (\d+);/ },
+  // The EN share card's figure moved to app/dai-dai/ogId.ts on 8 Sep 2026 —
+  // the page's MusicEvent JSON-LD needed the same card id to cite an image URL
+  // that resolves, so the id and the numbers behind it became shared. Still one
+  // home, just a different file.
+  { file: "app/dai-dai/ogId.ts", label: "EN share card", re: /export const DAYS_AT_NO1 = (\d+);/ },
   { file: "app/dai-dai/es/opengraph-image.tsx", label: "ES share card", re: /— (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES page description", re: /Burna Boy: (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES story body", re: /la semanal: (\d+) días como/ },
@@ -72,9 +76,16 @@ describe("the days-at-No.1 figure agrees with itself everywhere", () => {
     // The days figure is not one of `stats`, so if the id stops folding it in,
     // the card freezes at whatever number was live when a scraper first cached
     // it: the page updates, the link preview does not, and nothing fails.
-    const og = read("app/dai-dai/opengraph-image.tsx");
-    expect(og, "the share card's id no longer folds in DAYS_AT_NO1, so its preview can go stale").toMatch(
+    // The id derivation moved to ./ogId on 8 Sep 2026, so the page's MusicEvent
+    // JSON-LD could cite the same card URL. Check it where it now lives, and
+    // check the route still uses that id rather than computing its own.
+    const id = read("app/dai-dai/ogId.ts");
+    expect(id, "the share card's id no longer folds in DAYS_AT_NO1, so its preview can go stale").toMatch(
       /ogId\(\[[^\]]*DAYS_AT_NO1[^\]]*\]\.join/,
+    );
+    const og = read("app/dai-dai/opengraph-image.tsx");
+    expect(og, "the share-card route must use the shared id, not one of its own").toMatch(
+      /generateImageMetadata\s*=\s*\(\)\s*=>\s*\[\{\s*id:\s*daiDaiOgId/,
     );
   });
 });

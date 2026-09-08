@@ -112,7 +112,10 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         path: `/afrobeats/${a.slug}`,
         keywords: [a.name, "certifications", "RIAA", "BPI", "gold", "platinum", "diamond", "Afrobeats"],
         variableMeasured: ["Certification tier", "Country / territory", "Release", "Certifying body"],
-        dateModified: lastUpdated,
+        // The sweep that produced these figures, not the newest date in the whole
+        // updates feed. sitemap.ts already uses verifiedOn for this route and says
+        // the two can never disagree; dateModified was the half that disagreed.
+        dateModified: a.verifiedOn,
         about: { name: a.name, sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`] },
       })
     : null;

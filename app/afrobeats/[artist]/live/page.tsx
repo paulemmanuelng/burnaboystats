@@ -45,7 +45,11 @@ function liveDescription(
   lead?: { title: string; best: number; charts: number }
 ): string {
   const head = lead
-    ? `${name} is on ${board.placements} platform charts in ${board.countries} countries right now, led by \u201C${lead.title}\u201D at No. ${lead.best} across ${lead.charts}.`
+    // "at No. N across M" read as if the release held that position on all M
+    // charts — Black Sherif's lead was published as "at No. 1 across 33" off a
+    // single No. 1. `best` is its best position ANYWHERE; `charts` is how many
+    // charts it sits on. Two different facts, so the sentence names both.
+    ? `${name} is on ${board.placements} platform charts in ${board.countries} countries right now, led by \u201C${lead.title}\u201D, best No. ${lead.best}, on ${lead.charts} charts.`
     : `Every ${name} release charting right now: ${board.placements} live placements across ${board.countries} countries.`;
   for (const tail of LIVE_TAILS) {
     const full = `${head} ${tail}`;

@@ -132,7 +132,7 @@
 Two conventions produce two very different numbers from the same registers. This section states both and shows the arithmetic, because fan trackers and this document are not counting the same thing.
 
 **Convention A — plaques (the site's rule, the one used above).**
-One plaque per title per country at its current tier. A Gold that later became Platinum is one plaque. **Wizkid = 155.** Comparable to Burna Boy's 229 on burnaboystats.com.
+One plaque per title per country at its current tier. A Gold that later became Platinum is one plaque. **Wizkid = 156.** Comparable to Burna Boy's 229 on burnaboystats.com.
 
 **Convention B — award events.**
 Every separate announcement the register made, so a Gold→Platinum→2× ladder counts as three. This is what fan tallies count, usually without saying so.

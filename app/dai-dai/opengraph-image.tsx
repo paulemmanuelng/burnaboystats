@@ -1,7 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogId } from "../lib/og-image";
-import { daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
-import { daiDaiCertCount } from "../data/certifications";
+import { daiDaiOgId, ogStats as stats, DAYS_AT_NO1 } from "./ogId";
 
 // A rich, data-driven share card (like Polymarket's) — cover art + the headline
 // Dai Dai stats + the song/halftime hook + the link. Auto-used as the page's
@@ -14,25 +12,12 @@ export const alt =
 const COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 const GOLD = "#ffb627";
 
-// Days at No. 1 on Spotify's Global Daily chart. Declared here rather than
-// written into the sentence below because the id underneath has to see it:
-// this figure is not part of `stats`, so a card whose only change was the
-// prose would keep its old id and stay frozen at the previous number in
-// every preview that had already cached it.
-const DAYS_AT_NO1 = 37;
-
-const stats = [
-  { v: "No.1", l: "Global 200" },
-  { v: `${daiDaiNumberOnes}`, l: "Country No.1s" },
-  { v: `${daiDaiChartEntryCount}`, l: "Charts" },
-  { v: `${daiDaiCertCount}`, l: "Certs" },
-];
+// DAYS_AT_NO1 and `stats` now live in ./ogId, because the page's MusicEvent
+// JSON-LD needs the same id to cite an image URL that resolves.
 
 // Versioned by the stats on the card, so a share preview can't stay frozen at
 // last month's numbers once a platform has cached it.
-export const generateImageMetadata = () => [
-  { id: ogId([...stats.map((s) => s.v), DAYS_AT_NO1].join("-")), alt, size, contentType },
-];
+export const generateImageMetadata = () => [{ id: daiDaiOgId, alt, size, contentType }];
 
 export default function Image() {
 

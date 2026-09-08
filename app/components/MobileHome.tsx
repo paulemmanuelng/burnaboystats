@@ -6,7 +6,7 @@ import { liveHeadline } from "../lib/liveHeadline";
 import { spotifyImage } from "../lib/spotifyImage";
 import { coverFor } from "../lib/covers";
 import { sameTitle } from "../lib/titleKey";
-import { numberOneTitleFor, ukSinglesCell, ukAlbumsCell } from "../lib/homeData";
+import { numberOneTitleFor, ukSinglesCell, ukAlbumsCell, careerNumberOnes } from "../lib/homeData";
 import {
   isRecentNumberOne,
   recentNumberOneTitle,
@@ -227,8 +227,12 @@ export default function MobileHome() {
               national chart a release topped, so the link has to land on the
               page that holds those peaks — /live-charts is a different claim
               (charting right now) and a different dataset. */}
+          {/* The same link, the same figure and the same noun as the desktop
+              CTA. Mobile printed the COUNTRY count (30) with no noun at all
+              while desktop printed career placements (47) — two different
+              facts behind one label, one click apart. */}
           <Link href="/records/charts" className={styles.sectionLink}>
-            All {numberOneCountries.length} ↗
+            All {careerNumberOnes} career No. 1s ↗
           </Link>
         </div>
         <div className={styles.boardGrid}>

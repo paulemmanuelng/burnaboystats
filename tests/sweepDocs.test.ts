@@ -48,6 +48,38 @@ describe("sweep documents back the Afrobeats Board", () => {
     }
   });
 
+  // The header was guarded and the BODY was not, so four files stated two
+  // different plaque totals for the same artist: Asake 80 in the header and 79
+  // at :150, Wizkid 156 and "Wizkid = 155", Tems 71 against 68 and 70, and Seyi
+  // Vibez's comparison paragraph still reading 103 after the mis-credited Road
+  // Runners row came out. A reader quoting the file could pick either number.
+  it("no body figure contradicts the file's own plaque total", () => {
+    // Only phrasings that mean THIS artist's own plaque count. A tier table's
+    // gross, or a sentence about Burna Boy's 230, is a different claim.
+    const CLAIMS = [
+      /\*\*Plaque count \(this file[^)]*\): (\d+)\.\*\*/g,
+      /\*\*(\d+) plaques\*\* \(this file/g,
+      /\*\*[A-Z][a-zA-Z ]+ = (\d+)\.\*\*/g,
+    ];
+    const wrong: string[] = [];
+    for (const a of afrobeatsArtists) {
+      if (!a.swept) continue;
+      const doc = readFileSync(certDoc(a.slug), "utf8");
+      const actual = certCount(a);
+      for (const re of CLAIMS) {
+        for (const m of doc.matchAll(re)) {
+          if (Number(m[1]) !== actual) {
+            wrong.push(`${a.name}: body says ${m[1]}, data has ${actual} — "${m[0].slice(0, 60)}"`);
+          }
+        }
+      }
+    }
+    expect(
+      wrong,
+      "a sweep document states a plaque count that its own guarded header contradicts"
+    ).toEqual([]);
+  });
+
   it("states a chart-entry total matching the data, bar the documented divergence", () => {
     for (const a of afrobeatsArtists) {
       // Phrasing varies across the nine files ("104 + 19 = 123 chart entries",

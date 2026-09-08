@@ -147,7 +147,7 @@ The cause is structural. The live register is **hard-capped at 500 rows and sort
 
 Fan trackers and this file count two different things, and the Nigerian register is the only one in this sweep that exposes the difference as data.
 
-**Plaque count (this file, and burnaboystats.com's convention): 79.** One plaque per title per country at its current tier. Burna Boy's 230 is counted the same way, so the two are directly comparable.
+**Plaque count (this file, and burnaboystats.com's convention): 80.** One plaque per title per country at its current tier. Burna Boy's 230 is counted the same way, so the two are directly comparable.
 
 **Award-event count (the fan-tracker convention): every separate dated announcement counts.** *Terminator* was announced 4× Platinum in June 2023, then 5×, then 6×, then 7× — one plaque, four certifications by that convention.
 

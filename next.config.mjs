@@ -34,7 +34,11 @@ const nextConfig = {
           "style-src 'self' 'unsafe-inline'",
           "img-src 'self' data: blob: https://cdn-images.dzcdn.net https://is1-ssl.mzstatic.com https://i.scdn.co",
           "font-src 'self' data:",
-          "connect-src 'self' https://va.vercel-scripts.com https://vitals.vercel-insights.com",
+          // formsubmit.co is the contact form's POST target (ContactForm.tsx) and
+          // the only non-same-origin fetch in the app. connect-src is declared,
+          // so it does not fall back to default-src — without this the policy
+          // would have blocked the form the moment it stopped being report-only.
+          "connect-src 'self' https://va.vercel-scripts.com https://vitals.vercel-insights.com https://formsubmit.co",
           "frame-ancestors 'self'",
           "base-uri 'self'",
           "form-action 'self'",

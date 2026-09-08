@@ -15,7 +15,7 @@ import { chartEntryCount, numberOnes } from "../data/charts";
 // word, two numbers, on pages a writer reads together.
 import { chartedCountryCount } from "../lib/analysis";
 import { totalWins, totalNominations } from "../data/awards";
-import { countryCount as performedCountryCount } from "../data/performedCountries";
+import { countryCount as performedCountryCount, regionCount } from "../data/performedCountries";
 import { spotifyTotalStreams } from "../data/streamingTotals";
 import { updates } from "../data/updates";
 
@@ -49,7 +49,7 @@ const figures = [
   { value: String(numberOnes), label: "No. 1 placements", sub: "worldwide", href: "/records/charts" },
   { value: String(totalWins), label: "Award wins", sub: `${totalNominations} nominations`, href: "/records/awards" },
   { value: spotifyTotalStreams, label: "Career streams", sub: "Spotify, all credits", href: "/records/by-the-numbers" },
-  { value: String(performedCountryCount), label: "Countries performed in", sub: "7 regions", href: "/records/tours/map" },
+  { value: String(performedCountryCount), label: "Countries performed in", sub: `${regionCount} regions`, href: "/records/tours/map" },
 ];
 
 const X_CONTACT = "https://x.com/paulemmanuelng";

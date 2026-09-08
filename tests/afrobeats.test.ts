@@ -829,6 +829,42 @@ describe("board chart provenance", () => {
     expect(bad).toEqual([]);
   });
 
+  // The mirror, and it corrects the premise of the check above. BOARD_AIRPLAY
+  // lists five countries; the board actually tracks SEVENTEEN airplay markets,
+  // so that constant is a partial registry rather than the authority, and a
+  // subset check against it would have failed on twelve legitimate rows.
+  //
+  // The real rule — airplay counts only where the country has no other national
+  // chart — is carried by the body strings themselves, every one of which
+  // states its own justification. So that is what is enforced: an airplay chart
+  // may be tracked only if the body says why it is admissible. A bare
+  // "Radiomonitor airplay" with no justification is the thing to catch.
+  it("every airplay chart the board tracks justifies itself in its own body", () => {
+    const JUSTIFIED = /no other national chart|no other chart|only national|the national chart/i;
+    const bare = new Map<string, string>();
+    for (const a of sweptArtists) {
+      for (const r of a.charts) {
+        for (const e of r.entries) {
+          const body = chartCountryMeta(e.c).body;
+          if (/airplay/i.test(body) && !JUSTIFIED.test(body)) bare.set(e.c, body);
+        }
+      }
+    }
+    expect(
+      [...bare].map(([c, b]) => `${c}: "${b}" — airplay with no stated justification`),
+      "an airplay chart counts only where the country has no other national chart, and the body must say so"
+    ).toEqual([]);
+  });
+
+  // The carve-out only holds where a country has no alternative. Croatia is the
+  // worked example on Burna Boy's side — HDU's Top lista has an airplay No. 1,
+  // but Billboard Croatia Songs exists, so it does not count — and the board
+  // must not diverge from that.
+  it("does not treat Croatia as a board airplay exception", () => {
+    expect("HR" in BOARD_AIRPLAY).toBe(false);
+    expect(/airplay/i.test(chartCountryMeta("HR").body ?? "")).toBe(false);
+  });
+
   it("no board chart entry is attributed to a platform chart", () => {
     const bad: string[] = [];
     for (const a of sweptArtists) {

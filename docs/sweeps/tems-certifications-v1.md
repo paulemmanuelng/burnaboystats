@@ -54,7 +54,7 @@
 
 This section exists because fan trackers and the site are counting two different things. A tally circulating as **"41 international certifications in 2026"** cannot be compared with the number above until the convention is fixed.
 
-**Plaque count (this file, and burnaboystats.com's convention): 68.** One plaque per title per country at its current tier. Burna Boy's 229 is counted the same way, so the two are directly comparable.
+**Plaque count (this file, and burnaboystats.com's convention): 71.** One plaque per title per country at its current tier. Burna Boy's 229 is counted the same way, so the two are directly comparable.
 
 **Award-event count (the fan-tracker convention): every separate announcement counts.** Wait For U in Australia was announced Platinum on 24.08.2022 and 2× Platinum on 03.03.2023 — one plaque, two certifications by that convention.
 
@@ -104,7 +104,7 @@ date stamped across that whole weekly batch.
 One country, three titles: **6 announcements behind 3 plaques.** Multiply that pattern across the ~20 countries "Raindance" was certified in during 2026 and the low-40s fan figure is not inflated — it is the same events counted by a different rule.
 
 **Both numbers are now defensible, and they measure different things:**
-- **70 plaques** (this file, and burnaboystats.com's convention — directly comparable to Burna Boy's 230).
+- **71 plaques** (this file, and burnaboystats.com's convention — directly comparable to Burna Boy's 230).
 - **~41 award announcements in 2026** (the fan-tracker convention, counting every Gold→Platinum→multi-Platinum step and every country separately).
 
 Neither is wrong. Quoting one against the other is.
