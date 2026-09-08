@@ -165,9 +165,18 @@ describe("published figures do not claim to be live once they have stopped movin
       // from the prose most likely to rot. Each is anchored to the day the
       // chart behind it was last actually read, not to another copy of the
       // number: that distinction is the whole point of this file.
+      //
+      // Looked up by the figure it states, not by the wording that framed it.
+      // “both still counting” was this claim's own address, so restating the card
+      // as the dated count it is would have made page() throw and taken the
+      // registration down with the wording — the guard would have been
+      // “fixed” by deleting the thing it guards. The sentence still names the
+      // straight-day streak; that is what the claim is about, and it is what
+      // this matches on now. daiDaiParity pins the same phrase independently,
+      // so the address has two reasons to survive a rewrite.
       {
-        id: "Dai Dai — Spotify streak, “both still counting”",
-        text: page("app/dai-dai/page.tsx", /both still counting/),
+        id: "Dai Dai — Spotify streak",
+        text: page("app/dai-dai/page.tsx", /straight days on the chart/),
         movedOn: DAI_DAI_SPOTIFY_CONFIRMED_THROUGH,
       },
       // The YouTube run is no longer registered as ongoing because it is no
@@ -184,6 +193,22 @@ describe("published figures do not claim to be live once they have stopped movin
       {
         id: "Dai Dai — total days at No. 1 on Spotify",
         text: page("app/dai-dai/page.tsx", /in total at No\. 1 on Spotify/),
+        movedOn: DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF,
+      },
+      // /dai-dai/es publishes both of those figures in one card, off the same
+      // two anchors, and goes stale on the same day. It was never registered —
+      // which is how the four Spanish tokens in ONGOING came to sit in a list
+      // that pointed at no Spanish prose. Registering them is what makes
+      // “anything done to one edition is done to the other” enforceable rather
+      // than remembered.
+      {
+        id: "Dai Dai (ES) — Spotify streak",
+        text: page("app/dai-dai/es/page.tsx", /seguidos en la lista/),
+        movedOn: DAI_DAI_SPOTIFY_CONFIRMED_THROUGH,
+      },
+      {
+        id: "Dai Dai (ES) — total days at No. 1 on Spotify",
+        text: page("app/dai-dai/es/page.tsx", /en total en el n[uú]mero 1/),
         movedOn: DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF,
       },
     ];
@@ -206,21 +231,66 @@ describe("published figures do not claim to be live once they have stopped movin
   });
 
   // The alarm is only worth having if it actually goes off, so this proves it
-  // does rather than trusting that it would. Run the same claims forward: on
-  // 30 Sep 2026 every one of them is weeks past its reading date and every one
-  // must be named. If this ever passes with an empty list, the registration
-  // above has come loose from the anchors.
-  it("fires on those same claims once their charts go unread", () => {
+  // does rather than trusting that it would.
+  //
+  // It used to prove that from the PUBLISHED sentence: the card said “both
+  // still counting”, so running it forward to 30 Sep reached the detector and
+  // the list came back full. On 12 Sep 2026 the alarm rang and the second of
+  // the two fixes it offers was taken — the figures are stated as the dated
+  // highs they are — so that proof would now come back empty for the RIGHT
+  // reason as well as the wrong one, and could no longer tell them apart. Kept
+  // as it was, it would have been a test demanding the stale wording stay.
+  //
+  // So it proves the WIRING, which is the half that rots invisibly: every
+  // lookup still finds a real published line (page() throws otherwise), every
+  // anchor is still a real date, and ongoing wording written over that anchor
+  // is still caught. Put the wording back on the real lines and require all
+  // four claims — both editions — to be named.
+  it("still catches those claims if the ongoing wording comes back", () => {
     const LATER = new Date("2026-09-30T12:00:00Z");
+    const relapsed = (text: string) => `${text}, and counting`;
     const claims: LiveClaim[] = [
-      { id: "spotify-streak", text: page("app/dai-dai/page.tsx", /both still counting/), movedOn: DAI_DAI_SPOTIFY_CONFIRMED_THROUGH },
-      { id: "days-at-no1", text: page("app/dai-dai/page.tsx", /in total at No\. 1 on Spotify/), movedOn: DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF },
+      { id: "spotify-streak", text: relapsed(page("app/dai-dai/page.tsx", /straight days on the chart/)), movedOn: DAI_DAI_SPOTIFY_CONFIRMED_THROUGH },
+      { id: "days-at-no1", text: relapsed(page("app/dai-dai/page.tsx", /in total at No\. 1 on Spotify/)), movedOn: DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF },
+      { id: "es-spotify-streak", text: relapsed(page("app/dai-dai/es/page.tsx", /seguidos en la lista/)), movedOn: DAI_DAI_SPOTIFY_CONFIRMED_THROUGH },
+      { id: "es-days-at-no1", text: relapsed(page("app/dai-dai/es/page.tsx", /en total en el n[uú]mero 1/)), movedOn: DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF },
     ];
     const flagged = staleLiveClaims(claims, LATER).map((m) => m.split(":")[0]);
     expect(
       flagged.sort(),
-      "a registered ongoing claim is not reachable by the detector — check the wording still matches ONGOING"
-    ).toEqual(["days-at-no1", "spotify-streak"]);
+      "a registered claim is not reachable by the detector — check the lookup still matches the published line"
+    ).toEqual(["days-at-no1", "es-days-at-no1", "es-spotify-streak", "spotify-streak"]);
+  });
+
+  // The other half of the fix, and the half that is easy to lose later:
+  // dropping the ongoing wording is not enough on its own. A figure with no
+  // currency claim AND no reading date tells a reader nothing about when it was
+  // true — which is the state the days-at-No. 1 total was in for its whole life
+  // on this site. Both editions must state the date, and must state it by
+  // interpolating the anchor rather than typing it.
+  it("both editions date the Spotify card instead of writing it as live", () => {
+    const surfaces: [string, RegExp, string][] = [
+      ["app/dai-dai/page.tsx", /in total at No\. 1 on Spotify/, "DAI_DAI_SPOTIFY_READ_ON_LONG"],
+      ["app/dai-dai/es/page.tsx", /en total en el n[uú]mero 1/, "DAI_DAI_SPOTIFY_READ_ON_LONG_ES"],
+    ];
+    for (const [file, re, stamp] of surfaces) {
+      const line = page(file, re);
+      expect(ONGOING.test(line), `${file} writes the Spotify run as ongoing again`).toBe(false);
+      expect(line, `${file} states the figure with no reading date`).toContain(`\${${stamp}}`);
+    }
+  });
+
+  // One printed date now stands for two anchors: the card names the chart it
+  // was read off once, and both the days-at-No. 1 total and the streak hang on
+  // it. That is only honest while the two anchors are the same chart read.
+  // DAI_DAI_SPOTIFY_READ_ON already takes the older of the two, so a divergence
+  // under-states rather than over-states — but under-stating silently is still
+  // the site knowing something it does not say. Split the sentence instead.
+  it("the two Spotify anchors are the single chart the prose names", () => {
+    expect(
+      DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF,
+      "the anchors have diverged, so one printed date cannot speak for both — give each figure its own date in the card"
+    ).toBe(DAI_DAI_SPOTIFY_CONFIRMED_THROUGH);
   });
 });
 

@@ -10,7 +10,7 @@ import { lastUpdated } from "../lib/api";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES, weeksAtPeak, weeksOnChart } from "../data/charts";
 import { liveCharts } from "../data/liveCharts";
 import { daiDaiCertCount } from "../data/certifications";
-import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../data/daiDai";
+import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_READ_ON_LONG, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 import { daiDaiOgId } from "./ogId";
@@ -211,11 +211,11 @@ export default function DaiDaiPage() {
   const numberGroups: { label: string; intro: string; items: { v: string; l: string }[] }[] = [
     {
       label: "The streaming streaks",
-      intro: "The daily and weekly runs — every one still counting.",
+      intro: `The daily and weekly runs, as last read off each chart — the Spotify daily figures through ${DAI_DAI_SPOTIFY_READ_ON_LONG}.`,
       items: [
-        { v: "37 days", l: `in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, now five clear of Djo's “End of Beginning” (32) and six of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31); 72 days inside the global Top 10 and ${daiDaiSpotifyStraightDays} straight days on the chart, both still counting` },
+        { v: "37 days", l: `in total at No. 1 on Spotify's Global Daily Top Songs chart, counted through the chart dated ${DAI_DAI_SPOTIFY_READ_ON_LONG} — a first for an African artist, and the most days at No. 1 by any song in 2026, five clear of Djo's “End of Beginning” (32) and six of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31); 72 days inside the global Top 10 and ${daiDaiSpotifyStraightDays} straight days on the chart, read the same day — not a reading of today` },
         { v: "6 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, in its 13th week on it — peaking at 40.28M streams in a single week" },
-        { v: "No. 114", l: `where it entered Spotify's Global Daily Top Songs chart on 15 May 2026, the day after release — it took the No. 1 spot from there and has been on it every day but one since — ${daiDaiSpotifyStraightDays} straight days now, ${daiDaiSpotifyDaysOnChart} in all (Spotify Charts)` },
+        { v: "No. 114", l: `where it entered Spotify's Global Daily Top Songs chart on 15 May 2026, the day after release — it took the No. 1 spot from there and has been on it every day but one since — ${daiDaiSpotifyStraightDays} straight days and ${daiDaiSpotifyDaysOnChart} in all, counted through the chart dated ${DAI_DAI_SPOTIFY_READ_ON_LONG} (Spotify Charts)` },
         { v: "58 days", l: "at No. 1 on Apple Music's European songs chart — plus 11 days atop the worldwide Apple Music chart" },
         { v: "40 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
         { v: "No. 1", l: liveOnesLabel },
