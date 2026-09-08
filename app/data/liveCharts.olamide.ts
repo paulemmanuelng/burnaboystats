@@ -38,7 +38,7 @@
   export const liveChartsUpdated = "2026-09-08";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Spotify","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -153,20 +153,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 88,
-            "movement": -26
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 76,
-            "movement": 0
+            "position": 90,
+            "movement": -28
           }
         ]
       }
@@ -257,53 +245,20 @@
         ]
       },
       {
-        "platform": "Deezer",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": 0
+            "position": 11,
+            "movement": 53
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Carpe Diem",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 81,
-            "movement": -1
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 186,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Olamidé",
@@ -316,7 +271,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 51,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "BJ",
@@ -331,6 +286,32 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Unruly",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 75,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 129,
+            "movement": 9
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Eyan Mayweather",
     "platforms": [
       {
@@ -340,8 +321,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 144,
-            "movement": 9
+            "position": 180,
+            "movement": -36
           }
         ]
       },
@@ -353,7 +334,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 113,
-            "movement": -4
+            "movement": -3
           }
         ]
       }
@@ -467,7 +448,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 123,
+            "position": 144,
             "movement": null,
             "status": "new"
           }
@@ -478,7 +459,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/86af91b1d3aa36ef681c91cfbefc7702/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Unruly",
+    "title": "Carpe Diem",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -487,14 +468,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": -3
+            "position": 80,
+            "movement": 1
           }
         ]
       }
     ],
     "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ikigai / 生き甲斐, Vol. 1",
@@ -506,14 +487,34 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 143,
-            "movement": -21
+            "position": 132,
+            "movement": 11
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "UY Scuti",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 151,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Street OT",
@@ -526,7 +527,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 106,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
@@ -545,32 +546,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 150,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Loading",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 100,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   }
 ];
   
