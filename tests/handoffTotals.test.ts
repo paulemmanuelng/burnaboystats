@@ -136,7 +136,7 @@ describe("handoff checklist — data integrity", () => {
     expect(firstsCount).toBe(52);
   });
 
-  it("values the current car collection at $16.46M — current only", () => {
+  it("values the current car collection at $16.84M — current only", () => {
     // "Current only" is the operative rule, and it is stricter than the
     // checklist's shorthand "exclude sold": a car is in the headline total
     // only when it carries NO status at all. Excluding just `sold` leaves the
@@ -145,7 +145,12 @@ describe("handoff checklist — data integrity", () => {
     const value = current.reduce((sum, c) => sum + c.valueUsd, 0);
 
     expect(totalValueUsd).toBe(value);
-    expect(`$${(value / 1e6).toFixed(2)}M`).toBe("$16.46M");
+    // $16.84M, up from $16.46M on 8 Sep 2026: the Bugatti's dollar figure is
+    // DERIVED from its naira price, and it was being derived at the wrong rate.
+    // ₦9bn at ₦1,370.08/$ — the rate the day the purchase was announced,
+    // 5 July 2026 — is $6.57M, not the $6.19M that was there, which implied
+    // ₦1,454/$ and matches no date near the announcement.
+    expect(`$${(value / 1e6).toFixed(2)}M`).toBe("$16.84M");
 
     // Both excluded pools are non-empty, so the filter is doing real work.
     expect(cars.filter((c) => c.status === "sold").length).toBeGreaterThan(0);

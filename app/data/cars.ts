@@ -219,7 +219,15 @@ export interface GarageCar extends Car {
 export const cars: Car[] = [
   {
     make: "Bugatti", model: "Chiron (Venuum Widebody)",
-    valueUsd: 6_190_000, valueNaira: "₦9 billion",
+    // ₦9bn is the SOURCE figure here, not a conversion of the dollar — this is
+    // the one car in the fleet reported in naira, so the dollar is derived from
+    // it rather than the other way round. Converted at the rate on the day the
+    // purchase was announced, 5 July 2026: ₦1,370.08/$ (₦1,369.62 on the 3rd,
+    // ₦1,370.28 on the 6th). ₦9,000,000,000 ÷ 1,370.08 = $6,568,942, carried at
+    // $6.57m — the naira figure is itself a round "reportedly", so more
+    // precision than that would be false confidence. It was $6,190,000, which
+    // implied ₦1,454/$ — a rate from no date near the announcement.
+    valueUsd: 6_570_000, valueNaira: "₦9 billion",
     desc: "A one-of-one custom build by Dubai's Venuum, unveiled July 2026 and billed as the world's first widebody Chiron — baby blue over black with a French-tricolour stripe, a “7” roundel, and his name engraved on the rear spoiler. Reported as the most expensive car in West Africa, though neither Burna Boy nor Venuum has publicly confirmed the exact price — every outlet hedges it as \"reportedly\" ₦9 billion.",
     // He hasn't driven it yet — this is the official reveal video of the finished build.
     link: "https://www.youtube.com/watch?v=YNP3X59Yv6Y",
