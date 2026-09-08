@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { ogId, cardUrl } from "../../../lib/og-image";
+import { OgLockup, ogFonts } from "../../../lib/og-lockup";
 import { artistBySlug, afrobeatsArtists, chartEntries, chartTerritories, chartNo1s, chartCountryMeta, bestPeaks } from "../../../data/afrobeats";
 
 export function generateStaticParams() {
@@ -38,7 +39,7 @@ export const alt = "Official chart peaks by country, read from each country's ow
  * caught. The id in the URL is a content hash, so the bytes are immutable.
  */
 async function png(node: React.ReactElement) {
-  const buf = await new ImageResponse(node, { ...size }).arrayBuffer();
+  const buf = await new ImageResponse(node, { ...size, fonts: ogFonts }).arrayBuffer();
   return new Response(buf, {
     headers: {
       "Content-Type": contentType,
@@ -83,6 +84,13 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
           position: "relative",
         }}
       >
+        {/* LOGO.md puts the lockup top-LEFT on a share card. On this one the
+            top-left corner is the kicker's, so the mark takes the facing
+            corner rather than displacing it — same 44px height, same clear
+            space, and the card's own composition is untouched. */}
+        <div style={{ position: "absolute", top: 56, right: 64, display: "flex" }}>
+          <OgLockup />
+        </div>
         <div
           style={{
             position: "absolute",
@@ -96,7 +104,10 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
         />
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontSize: 26, letterSpacing: 6, color: GOLD, textTransform: "uppercase", fontWeight: 700 }}>
+          <div style={{ display: "flex", fontSize: 26, letterSpacing: 6, color: GOLD, textTransform: "uppercase", fontWeight: 700,
+          // Capped so a long kicker wraps rather than running under the
+          // lockup in the facing corner (1072 box - 238 mark - clear space).
+          maxWidth: 780 }}>
             Official charts · peak positions
           </div>
           <div style={{ display: "flex", fontSize: 92, fontWeight: 800, letterSpacing: -3, lineHeight: 1, marginTop: 16, color: GOLD }}>

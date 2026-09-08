@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { cardUrl } from "../lib/og-image";
+import { OgLockup, ogFonts } from "../lib/og-lockup";
 import { daiDaiOgId, ogStats as stats, DAYS_AT_NO1 } from "./ogId";
 
 // A rich, data-driven share card (like Polymarket's) — cover art + the headline
@@ -38,6 +39,13 @@ export default function Image() {
           position: "relative",
         }}
       >
+        {/* LOGO.md puts the lockup top-LEFT on a share card. On this one the
+            top-left corner is the kicker's, so the mark takes the facing
+            corner rather than displacing it — same 44px height, same clear
+            space, and the card's own composition is untouched. */}
+        <div style={{ position: "absolute", top: 56, right: 64, display: "flex" }}>
+          <OgLockup />
+        </div>
         {/* gold glow, top-right */}
         <div
           style={{
@@ -60,6 +68,10 @@ export default function Image() {
             color: GOLD,
             textTransform: "uppercase",
             fontWeight: 700,
+            // Capped so a long kicker wraps instead of running under the
+            // lockup in the facing corner. "Shakira × Burna Boy · 2026 World
+            // Cup Anthem" is 42 characters and filled the row on its own.
+            maxWidth: 780,
           }}
         >
           Shakira × Burna Boy · 2026 World Cup Anthem
@@ -163,6 +175,6 @@ export default function Image() {
         </div>
       </div>
     ),
-    { ...size }
+    { ...size, fonts: ogFonts }
   );
 }

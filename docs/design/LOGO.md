@@ -42,7 +42,7 @@ Clear space: **one bar width (11 units) on every side.** Never render the crown 
 - **Nav / footer:** keep `.brand` and `.footerMark` as live text (they already match the wordmark). Add the mark as an inline SVG **before** the text: 22px tall in the 68px bar, `gap: 10px`, `aria-hidden` (the text is the accessible name). Nothing else about the header changes — lockup, sizes, gold word all stay.
 - **Below 24px of height the wordmark drops and the crown stands alone** — the tab bar's Home icon, the back bars, the `Stat card` chip.
 - **Light mode (when it ships):** the header stays dark (masthead), so the mark never needs a light variant there. On any themed surface use `burnaboystats-mark-tile.svg`, never the bare mark on paper.
-- **OG images:** `burnaboystats-horizontal.svg` top-left at 44px tall, on the dark ground they already use.
+- **OG images:** the horizontal lockup top-left at 44px tall, on the dark ground they already use. **Not the SVG file** — share cards are rasterised by resvg with no fonts loaded, so an `<img>` of `burnaboystats-horizontal.svg` draws the crown and silently drops both lines of type (the outlining rule above, in the one place it bites). `app/lib/og-lockup.tsx` rebuilds it from the same coordinates with Anton and Space Mono handed to satori. On the cards whose top-left corner is already a kicker — the ten bespoke stat cards — the mark takes the facing corner rather than displacing it.
 - **`<head>`:**
   ```html
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">

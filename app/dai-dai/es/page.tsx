@@ -18,6 +18,7 @@ import { liveCharts } from "../../data/liveCharts";
 import { daiDaiCertCount } from "../../data/certifications";
 import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
+import { daiDaiEsOgId } from "./ogId";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../../lib/artistImages";
 
 /**
@@ -110,7 +111,9 @@ export default function DaiDaiPageES() {
       "La historia de “Dai Dai”, el himno oficial del Mundial de la FIFA 2026 de Shakira y Burna Boy — su recorrido histórico en listas, streaming y certificaciones, y su actuación en el show de medio tiempo de la Final.",
     datePublished: "2026-07-16",
     dateModified: asDateTime(lastUpdated),
-    image: [`${CANONICAL_ORIGIN}${ES_PATH}/opengraph-image`],
+    // The id segment is not optional: generateImageMetadata puts it in the
+    // path, so the bare route 404s and this field would cite a dead URL.
+    image: [`${CANONICAL_ORIGIN}${ES_PATH}/opengraph-image/${daiDaiEsOgId}`],
     inLanguage: "es",
     author: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },
     publisher: { "@type": "Organization", name: SITE_NAME, url: CANONICAL_ORIGIN },

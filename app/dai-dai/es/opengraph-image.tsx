@@ -1,12 +1,12 @@
 import { ogImage, size, contentType } from "../../lib/og-image";
+import { esCard, ES_ALT, esOgVersions } from "./ogId";
 
 export { size, contentType };
-export const alt = "Dai Dai — el himno del Mundial 2026 de Shakira y Burna Boy";
+export const alt = ES_ALT;
+
+// Versioned by the card's own copy — and the same id the page's JSON-LD cites.
+export const generateImageMetadata = esOgVersions;
 
 export default function Image() {
-  return ogImage({
-    kicker: "Mundial de la FIFA 2026",
-    title: "Dai Dai",
-    sub: "El himno de Shakira y Burna Boy — 37 días como la canción más escuchada del mundo",
-  });
+  return ogImage(esCard);
 }
