@@ -41,6 +41,35 @@ export function ogImage({ kicker, title, sub }: { kicker: string; title: string;
 }
 
 /**
+ * The address a share card prints, bottom-left: BURNABOYSTATS.COM/dai-dai.
+ *
+ * THE CASE IS LOAD-BEARING. A hostname is case-insensitive (RFC 4343), so the
+ * domain can carry the cards' tracked caps and still be typed back correctly. A
+ * PATH is not, and this site does no case folding — there is no middleware.ts,
+ * and next.config.mjs redirects only the vercel host and /tour. Every card that
+ * printed a path was printing a dead one, checked rather than assumed:
+ *
+ *   /timeline                   200      /TIMELINE                   404
+ *   /dai-dai                    200      /DAI-DAI                    404
+ *   /music/last-last            200      /MUSIC/LAST-LAST            404
+ *   /music/albums/love-damini   200      /MUSIC/ALBUMS/LOVE-DAMINI   404
+ *   /afrobeats/wizkid           200      /AFROBEATS/WIZKID           404
+ *   /afrobeats/wizkid/charts    200      /AFROBEATS/WIZKID/CHARTS    404
+ *   /afrobeats/seyi-vibez/live  200      /AFROBEATS/SEYI-VIBEZ/LIVE  404
+ *
+ * Five of those seven built the string as `${slug.toUpperCase()}` and two typed
+ * it in caps; all seven have shipped a 404 since the day they went up. That line
+ * exists to survive a screenshot with no link chrome — reposted into a group
+ * chat, cropped into a slide — which is the one case where the reader has to
+ * retype what they can see. So the domain shouts and the path does not.
+ *
+ * Feed the RESULT into the card's ogId as well. A card whose id does not move
+ * keeps serving the picture a scraper cached, so the fix would never reach the
+ * previews that are already wrong — which is the whole population this is for.
+ */
+export const cardUrl = (path: string) => `BURNABOYSTATS.COM${path.toLowerCase()}`;
+
+/**
  * Cache key for a social preview card.
  *
  * Next derives the `?<hash>` on an og:image URL from the route file, not from
