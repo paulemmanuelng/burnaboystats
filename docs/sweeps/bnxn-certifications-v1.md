@@ -55,6 +55,76 @@ Rema's *Secondhand* Canadian Gold, which that register credits to Don Toliver
 alone. Music Canada also carries a Gold row for *Finesse* on the same date,
 superseded by the Platinum.
 
+## Verified at the register, 8 Sep 2026
+
+The ten international rows above were **harvested but never verified** — the
+sweep that found them died on a usage limit before a single verifier ran, and
+they were published on that basis. They have now been read back at each issuing
+body and **all ten stand up, with no tier drift**, each pinned to the register's
+own artist entity rather than to a title:
+
+| Body | Pin | Row |
+|---|---|---|
+| BPI | artist **5461** / title **6442** | `PHEELZ & BNXN` — FINESSE — Gold 14.11.2025 (Silver 13.01.2023 before it) |
+| BPI | artist **6113** / title **9748** | `JAE5 FT DAVE & BNXN` — PROPELLER — Silver |
+| BPI | artist **6116** / title **8312** | `WIZKID FT BUJU` — MOOD — Silver |
+| RIAA | award **435906** | `PHEELZ & BNXN` — FINESSE — Gold |
+| RIAA | award **426801** | `WIZKID` / title `MOOD (FEAT. BNXN)` — Gold |
+| Music Canada | no id published | `Pheelz` — Finesse — Platinum (Gold same day, superseded) |
+| Music Canada | no id published | `Wizkid` — `Mood (Ft. Buju)` — Gold |
+| RMNZ | TablePress 2052 | `Pheelz And BNXN` — Finesse — Gold |
+| RMNZ | TablePress 2052 | `WizKid feat. Buju` — Mood — Gold |
+| SNEP | Catégorie = Singles | `PHEELZ & BNXN` — FINESSE — Platine |
+
+**The collision the pinning guards against is live, not theoretical.** BPI title
+id 10277 "INFINITY" returns four different singles — Jaymes Young (Gold, artist
+5108), One Direction (Silver, 1996), **Guru Josh Project (PLATINUM, 2003)** and
+Olamide ft Omah Lay (Silver, 6924). A title-only match imports Guru Josh's
+Platinum. RMNZ likewise returns 9 "Finesse" rows and 16 "Mood" rows; exactly one
+of each is his.
+
+**BPI has exactly three entities naming him** (5461, 6113, 6116) and **no Buju
+Banton entity at all**, so the Jamaican artist cannot leak in from that register.
+Music Canada does hold Buju Banton — and spells him in full ("Buju Banton
+Champion", Island, 27 Jul 2023) in the very same result set where it writes the
+bare "Buju" for *Mood*, so the register distinguishes them itself.
+
+## Albums and EPs: proven zero, and now actually looked for
+
+Every international row he holds is a **single**. Until this pass no album or EP
+register had ever been searched for him anywhere — the format was simply never
+covered. It has now been, and he holds none:
+
+- **RMNZ album table 2051** — all **4,050 rows** downloaded and grepped locally,
+  matching the server's own `recordsTotal`. Nothing for any long-form title.
+  Near-misses a loose search would have taken: Benson Boone (6 rows), LMFAO
+  "Sorry For Party Rocking", Metro Boomin "Heroes And Villains".
+- **Music Canada's entire EP bucket, read row by row** — the `gp_format` facet
+  publishes its own size and *Album – Extended Play* holds **five rows in total**
+  (Nine Inch Nails "Broken", Soul II Soul "Keep On Movin'", Bryan Adams "Diana").
+  No EP by any of the three exists in Canada because almost no EP does.
+- **BPI, RIAA, SNEP, NVPI** (full 6,493-row dump), **BVMI, IFPI Austria,
+  Switzerland, Danmark, Norge, FIMI, PROMUSICAE, ZPAV/OLiS, MAHASZ, RiSA,
+  AMPROFON, Pro-Música Brasil** — all nil for long-form, all three artists.
+- **RIAJ (Japan)** — nil across all three Japanese registers (ゴールドディスク認定,
+  ダウンロード認定, ストリーミング認定 / 3,077 rows), read through the API, which
+  reports its own `info.count` over the whole register. Controls prove the search
+  works and matches Latin script (マライア 45 rows, ビートルズ 19). Note for a
+  future sweep: RIAJ's *HTML* search form at `/data/gd/search/` has the same
+  client-side-filter trap as Music Canada's FacetWP — a plain GET returns an
+  unfiltered page of identical byte length for every term. Use the API.
+
+**His long-form catalogue is seven releases, not the three this sweep first
+listed.** *Still In Charge – EP* is dated **24 September 2026** on Apple — after
+this sweep — so its nil is trivially true rather than informative, and it is the
+one release worth re-checking once it has been out long enough to certify.
+
+### A register trap worth carrying forward
+**Music Canada truncates any result set at 200 rows**, silently. `total_rows`
+returns exactly 200 and further pages come back empty, so a broad query looks
+exhausted when it is not. Any Canadian zero must come from a query narrow enough
+to land under 200, or it is not a zero.
+
 ## Proven zeros — registers read in full, holding nothing
 
 RIAA (US) · Music Canada · RMNZ (New Zealand) · SNEP (France) · BVMI (Germany) · IFPI Switzerland · IFPI Austria · NVPI (Netherlands) · IFPI Danmark · IFPI Norge · ZPAV (Poland) · MAHASZ (Hungary) · FIMI (Italy) · PROMUSICAE (Spain) · AMPROFON (Mexico) · Pro-Música Brasil · RiSA (South Africa) · Ghana · RIKE (Kenya) · AFP/Audiogest (Portugal)
