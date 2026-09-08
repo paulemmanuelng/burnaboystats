@@ -1,6 +1,7 @@
 import { ogId } from "../lib/og-image";
 import { daiDaiNumberOnes, daiDaiChartEntryCount } from "../data/charts";
 import { daiDaiCertCount } from "../data/certifications";
+import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
 
 /**
  * The id segment in this page's own share-card URL.
@@ -18,7 +19,10 @@ import { daiDaiCertCount } from "../data/certifications";
  * in `stats`, because otherwise a card whose only change was that sentence
  * would keep its old id.
  */
-export const DAYS_AT_NO1 = 37;
+/** Re-exported from data/daiDai, which is where the figure and its reading
+ *  date now live. Kept as a named export because the figure-homes guard and
+ *  the card's cache id both refer to it by this name. */
+export const DAYS_AT_NO1 = DAI_DAI_SPOTIFY_NO1_DAYS;
 
 export const ogStats = [
   { v: "No.1", l: "Global 200" },

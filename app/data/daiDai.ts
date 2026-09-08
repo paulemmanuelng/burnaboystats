@@ -74,6 +74,30 @@ export const daiDaiSpotifyDaysOnChart =
   daysInclusive(DAI_DAI_SPOTIFY_DEBUT, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH) -
   DAI_DAI_SPOTIFY_DAYS_OFF;
 
+/**
+ * TOTAL days spent AT No. 1 on the Spotify Global Daily chart.
+ *
+ * A fourth, separate number: not the streak, not days-on-chart, not
+ * consecutive days at the top — the count of chart days the song has led,
+ * added up across two spells either side of the August reclaim.
+ *
+ * It lived nowhere. It was typed into twelve places in two languages —
+ * page copy, the FAQ answer that is also emitted as FAQPage structured data,
+ * the story rail, the share card's cache id, and africasBiggest's board note —
+ * with no constant behind it and no date saying when it was counted. Its three
+ * siblings above all carry an anchor and are pinned; this one was correct only
+ * because someone kept remembering it.
+ *
+ * The anchor is what matters. Reconciled against the updates feed's own dated
+ * ledger, which records each new day at No. 1 as it lands: the 31st on
+ * 12 Aug, 33rd on 14 Aug, 34th on 15 Aug, 36th on 21 Aug, and the 28 Aug entry
+ * confirming "37 of them at No. 1". Spotify's chart is login-gated, so like
+ * everything else here this is a record of what was read off-site, not
+ * something a scraper refreshes — which is exactly why it needs a date.
+ */
+export const DAI_DAI_SPOTIFY_NO1_DAYS = 37;
+export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-08-28";
+
 // ---------------------------------------------------------------------------
 // The YouTube Global Daily Top Music Videos run, on the same footing and for
 // the same reason.

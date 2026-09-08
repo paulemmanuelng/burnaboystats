@@ -32,11 +32,11 @@ const HOMES: Home[] = [
   { file: "app/dai-dai/page.tsx", label: "EN page description", re: /anthem: (\d+) days as Earth/ },
   { file: "app/dai-dai/page.tsx", label: "EN hero card", re: /after (\d+) days as the most-streamed/ },
   { file: "app/dai-dai/page.tsx", label: "EN streak card", re: /\{ v: "(\d+) days", l: ["`]in total at No\. 1 on Spotify/ },
-  // The EN share card's figure moved to app/dai-dai/ogId.ts on 8 Sep 2026 —
-  // the page's MusicEvent JSON-LD needed the same card id to cite an image URL
-  // that resolves, so the id and the numbers behind it became shared. Still one
-  // home, just a different file.
-  { file: "app/dai-dai/ogId.ts", label: "EN share card", re: /export const DAYS_AT_NO1 = (\d+);/ },
+  // The figure's home is now app/data/daiDai.ts, beside its three siblings and
+  // with a reading date of its own. ogId re-exports it for the share card's
+  // cache id; the seventeen prose statements below still spell it out, and this
+  // list is what holds them to the constant.
+  { file: "app/data/daiDai.ts", label: "the constant", re: /export const DAI_DAI_SPOTIFY_NO1_DAYS = (\d+);/ },
   { file: "app/dai-dai/es/opengraph-image.tsx", label: "ES share card", re: /— (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES page description", re: /Burna Boy: (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES story body", re: /la semanal: (\d+) días como/ },

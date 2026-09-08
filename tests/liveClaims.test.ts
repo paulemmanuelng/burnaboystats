@@ -2,6 +2,12 @@ import { describe, it, expect } from "vitest";
 import { statBoxes, BURNA_PEAK_LISTENERS_SET_ON } from "../app/data/africasBiggest";
 import { firstGroups, APPLE_TOP_100 } from "../app/data/firsts";
 import { updates } from "../app/data/updates";
+import { readFileSync } from "node:fs";
+import {
+  DAI_DAI_SPOTIFY_CONFIRMED_THROUGH,
+  DAI_DAI_YT_CONFIRMED_THROUGH,
+  DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF,
+} from "../app/data/daiDai";
 
 // A figure the site describes as LIVE — "still climbing", "and counting" — is
 // making two claims: the number, and that the number is current. The second one
@@ -20,9 +26,43 @@ import { updates } from "../app/data/updates";
 // were a month stale. Two copies of a wrong number agree perfectly. A number
 // and the day it was read do not.
 
-/** Wording that tells a reader the figure is still moving. */
-const ONGOING =
-  /still (?:climbing|rising|growing)|and (?:still )?(?:climbing|rising|counting)|keeps? (?:climbing|rising)|continues? to (?:climb|rise)/i;
+/**
+ * Wording that tells a reader the figure is still moving.
+ *
+ * The first version required the ongoing token to follow "and" immediately,
+ * which fitted the one sentence it was written for and missed every other shape
+ * the site actually uses. Measured against the real prose:
+ *
+ *   "…and 99 straight days on the chart, both still counting"  ← "and" is six
+ *      words upstream, so "and (?:still )?counting" never matched
+ *   "…as the most-viewed music video worldwide, unbroken since 9 June"
+ *      ← no ongoing token at all, yet it is the strongest live claim on the site
+ *   "…sin interrupción desde el 9 de junio"  ← Spanish was not modelled, and
+ *      /dai-dai/es mirrors every one of these claims
+ *
+ * So: the tokens stand alone, "unbroken/uninterrupted since" counts as ongoing
+ * in its own right, and the Spanish equivalents are here because the Spanish
+ * edition publishes the same claims and can go stale on the same day.
+ */
+const ONGOING = new RegExp(
+  [
+    // English
+    "still (?:climbing|rising|growing|counting|going)",
+    "(?:and|,) (?:still |and )?(?:climbing|rising|counting)",
+    "both still counting",
+    "keeps? (?:climbing|rising|going)",
+    "continues? to (?:climb|rise)",
+    "unbroken since",
+    "uninterrupted since",
+    "and counting",
+    // Spanish — /dai-dai/es carries the same claims
+    "sin interrupci\\u00f3n desde",
+    "y (?:sigue|siguen) (?:sumando|subiendo|creciendo)",
+    "sigue (?:sumando|subiendo|en ascenso)",
+    "y contando",
+  ].join("|"),
+  "i"
+);
 
 /**
  * How long a figure may sit unchanged and still be written as live.
@@ -89,6 +129,21 @@ const first = (titleFragment: string) => {
   return hits[0];
 };
 
+/**
+ * Pull one published sentence out of a page file.
+ *
+ * The two original claims read their prose from data modules. The claims added
+ * below are written inline in the page, so they are read from source — and the
+ * lookup THROWS when it matches nothing, because a silently-missing claim is
+ * how a guard passes while the thing it guards has been reworded away.
+ */
+const page = (file: string, re: RegExp): string => {
+  const src = readFileSync(file, "utf8");
+  const line = src.split("\n").find((l) => re.test(l));
+  if (!line) throw new Error(`no line in ${file} matching ${re} — was the claim reworded?`);
+  return line;
+};
+
 describe("published figures do not claim to be live once they have stopped moving", () => {
   it("no leaderboard or milestone on the site is writing a frozen figure as a running one", () => {
     const claims: LiveClaim[] = [
@@ -104,8 +159,57 @@ describe("published figures do not claim to be live once they have stopped movin
         text: first("Apple Music's Global Top 100").text,
         movedOn: APPLE_TOP_100.countedOn,
       },
+      // The site's two largest running claims, and the two that were NOT
+      // registered — so the guard existed, was correct, and was pointed away
+      // from the prose most likely to rot. Each is anchored to the day the
+      // chart behind it was last actually read, not to another copy of the
+      // number: that distinction is the whole point of this file.
+      {
+        id: "Dai Dai — Spotify streak, “both still counting”",
+        text: page("app/dai-dai/page.tsx", /both still counting/),
+        movedOn: DAI_DAI_SPOTIFY_CONFIRMED_THROUGH,
+      },
+      {
+        id: "Dai Dai — YouTube No. 1, “unbroken since 9 June”",
+        text: page("app/dai-dai/page.tsx", /unbroken since/),
+        movedOn: DAI_DAI_YT_CONFIRMED_THROUGH,
+      },
+      // The Spanish edition mirrors both and goes stale on the same day. It was
+      // outside the guard entirely — the detector could not even read it.
+      {
+        id: "Dai Dai ES — YouTube No. 1, “sin interrupción desde”",
+        text: page("app/dai-dai/es/page.tsx", /sin interrupci[oó]n desde/),
+        movedOn: DAI_DAI_YT_CONFIRMED_THROUGH,
+      },
+      // The total days at No. 1 — 37 — which until today had no constant and no
+      // reading date anywhere, and is stated in seventeen places.
+      {
+        id: "Dai Dai — total days at No. 1 on Spotify",
+        text: page("app/dai-dai/page.tsx", /in total at No\. 1 on Spotify/),
+        movedOn: DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF,
+      },
     ];
     expect(staleLiveClaims(claims), "rewrite these to state the figure as the dated high it is").toEqual([]);
+  });
+
+  // The alarm is only worth having if it actually goes off, so this proves it
+  // does rather than trusting that it would. Run the same claims forward: on
+  // 30 Sep 2026 every one of them is weeks past its reading date and every one
+  // must be named. If this ever passes with an empty list, the registration
+  // above has come loose from the anchors.
+  it("fires on those same claims once their charts go unread", () => {
+    const LATER = new Date("2026-09-30T12:00:00Z");
+    const claims: LiveClaim[] = [
+      { id: "spotify-streak", text: page("app/dai-dai/page.tsx", /both still counting/), movedOn: DAI_DAI_SPOTIFY_CONFIRMED_THROUGH },
+      { id: "youtube-run", text: page("app/dai-dai/page.tsx", /unbroken since/), movedOn: DAI_DAI_YT_CONFIRMED_THROUGH },
+      { id: "youtube-run-es", text: page("app/dai-dai/es/page.tsx", /sin interrupci[oó]n desde/), movedOn: DAI_DAI_YT_CONFIRMED_THROUGH },
+      { id: "days-at-no1", text: page("app/dai-dai/page.tsx", /in total at No\. 1 on Spotify/), movedOn: DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF },
+    ];
+    const flagged = staleLiveClaims(claims, LATER).map((m) => m.split(":")[0]);
+    expect(
+      flagged.sort(),
+      "a registered ongoing claim is not reachable by the detector — check the wording still matches ONGOING"
+    ).toEqual(["days-at-no1", "spotify-streak", "youtube-run", "youtube-run-es"]);
   });
 });
 
