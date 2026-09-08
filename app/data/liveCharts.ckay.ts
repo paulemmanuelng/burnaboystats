@@ -51,14 +51,13 @@
           {
             "country": "MR",
             "name": "Mauritania",
-            "position": 44,
-            "movement": null,
-            "status": "new"
+            "position": 127,
+            "movement": -83
           },
           {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 118,
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 181,
             "movement": null,
             "status": "new"
           }
@@ -72,13 +71,13 @@
             "country": "RU",
             "name": "Russia",
             "position": 9,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 86,
-            "movement": 2
+            "movement": 3
           }
         ]
       },
@@ -89,8 +88,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 149,
-            "movement": -16
+            "position": 154,
+            "movement": -5
           }
         ]
       }
@@ -102,58 +101,39 @@
     "title": "BODY",
     "platforms": [
       {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 112,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 148,
+            "movement": 12
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": -5
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 160,
-            "movement": 6
+            "position": 98,
+            "movement": 19
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Boyfriend",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 56,
-            "movement": 10
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 146,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BODY (danz)",
@@ -187,16 +167,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "E CLEAR",
+    "title": "forever",
     "platforms": [
       {
-        "platform": "Deezer",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
+            "position": 5,
             "movement": null,
             "status": "new"
           }
@@ -204,7 +184,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "EMOTIONS",
@@ -227,6 +207,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8f2c610ad0f59119d6991e2d97a3f717/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "E CLEAR",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 84,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "La La",
     "platforms": [
       {
@@ -236,8 +236,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
-            "movement": -1
+            "position": 170,
+            "movement": -10
           }
         ]
       }
@@ -246,23 +246,23 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Sad Romance",
+    "title": "Boyfriend",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 184,
-            "movement": -94
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 56,
+            "movement": 10
           }
         ]
       }
     ],
     "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b606366687e3c46d407569aa03ae26bf/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   }
 ];
   

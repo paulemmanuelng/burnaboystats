@@ -51,14 +51,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 50,
-            "movement": -8
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 52,
-            "movement": 47
+            "position": 46,
+            "movement": 4
           },
           {
             "country": "SL",
@@ -67,10 +61,10 @@
             "movement": 5
           },
           {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 63,
-            "movement": 119
+            "country": "NA",
+            "name": "Namibia",
+            "position": 65,
+            "movement": -13
           },
           {
             "country": "KE",
@@ -91,6 +85,12 @@
             "movement": 15
           },
           {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 116,
+            "movement": -53
+          },
+          {
             "country": "LR",
             "name": "Liberia",
             "position": 117,
@@ -99,26 +99,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 136,
-            "movement": 4
+            "position": 133,
+            "movement": 3
           },
           {
             "country": "CM",
             "name": "Cameroon",
             "position": 141,
             "movement": -3
-          },
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 150,
-            "movement": 2
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 166,
-            "movement": -4
           },
           {
             "country": "BJ",
@@ -148,8 +136,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
-            "movement": -6
+            "position": 99,
+            "movement": 5
           }
         ]
       }
@@ -184,16 +172,23 @@
             "movement": -22
           },
           {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 95,
+            "movement": 44
+          },
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 108,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
             "position": 116,
             "movement": 2
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 139,
-            "movement": -29
           },
           {
             "country": "GH",
@@ -250,8 +245,8 @@
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 78,
-            "movement": -9
+            "position": 71,
+            "movement": 7
           },
           {
             "country": "SL",
@@ -318,9 +313,9 @@
             "movement": 49
           },
           {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 137,
+            "country": "BJ",
+            "name": "Benin",
+            "position": 192,
             "movement": null,
             "status": "new"
           }
@@ -346,8 +341,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 112,
-            "movement": -6
+            "position": 113,
+            "movement": -1
           },
           {
             "country": "LR",
@@ -358,9 +353,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 134,
-            "movement": null,
-            "status": "new"
+            "position": 163,
+            "movement": -29
           }
         ]
       },
@@ -380,6 +374,83 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/20b709c21edd2d8924cf88132a94ff1e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Peru",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 119,
+            "movement": -39
+          },
+          {
+            "country": "MR",
+            "name": "Mauritania",
+            "position": 126,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 191,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 65,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4ab733790d692331a550d79a27e254ae/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "adedamola",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 81,
+            "movement": 8
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 118,
+            "movement": 73
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 178,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "So it Goes",
@@ -407,37 +478,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Peru",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 80,
-            "movement": -26
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 65,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4ab733790d692331a550d79a27e254ae/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "iseoluwa",
     "platforms": [
       {
@@ -453,8 +493,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 170,
-            "movement": 7
+            "position": 177,
+            "movement": -7
           }
         ]
       }
@@ -487,31 +527,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "adedamola",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 81,
-            "movement": 8
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 118,
-            "movement": 73
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Need You",
@@ -589,45 +604,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1f08dd48d80531f5b9f6081668a10ca1/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Original Don",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 97,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/03497bacc7b813ad1a1a80f3b92557ab/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Dopamine",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 196,
-            "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2454c47103560319b1992920e1a866e9/500x500-000000-80-0-0.jpg"
   }
 ];
   
