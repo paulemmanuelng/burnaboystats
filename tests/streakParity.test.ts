@@ -110,7 +110,10 @@ const STREAKS: Streak[] = [
   },
   {
     id: "YouTube most-viewed — days at No. 1",
-    page: `v: \`\\$\\{daiDaiYouTubeDaysAtNo1\\} days\`, l: "as the most-viewed music video on YouTube`,
+    // Reworded on 8 Sep 2026 when the run ended — the card now opens "at No. 1
+    // as the most-viewed…" and states the run as finished. The floor rule still
+    // applies to the 80 days it held.
+    page: `v: \`\\$\\{daiDaiYouTubeDaysAtNo1\\} days\`, l: "at No. 1 as the most-viewed music video on YouTube`,
     derived: daiDaiYouTubeDaysAtNo1,
     feed: [
       `${ORD} day as YouTube${A}s most-viewed`,
