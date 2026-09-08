@@ -60,7 +60,11 @@ const tourYears = tours.flatMap((t) => yearsOf(t.years));
 const yearSpan = `${Math.min(...tourYears)} — ${Math.max(...tourYears)}`;
 
 const headline = [
-  { value: `$${grossOf(topTour.gross).toFixed(1)}M`, label: "Top tour gross · African record" },
+  // topTour.gross verbatim, not re-rounded. toFixed(1) turned "$30.46M" into
+  // "$30.5M", so the desktop hero of this very page disagreed with its own
+  // <title>, its OG card, and the mobile screen rendered into the same
+  // document — which reads the string straight through.
+  { value: topTour.gross ?? "—", label: "Top tour gross · African record" },
   { value: topShowM(1), label: "Biggest concert · African record" },
   { value: topTicketsShort, label: `Tickets · ${topTour.name}` },
 ];

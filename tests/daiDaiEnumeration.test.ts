@@ -58,6 +58,7 @@ describe("the Dai Dai certification sentence names every country", () => {
   it("every certified country appears in every enumeration", () => {
     const codes = [...new Set(cert!.certs.map((c) => c.c))];
     const missing: string[] = [];
+    const perFile: Record<string, number> = Object.fromEntries(SURFACES.map((f) => [f, 0]));
     let found = 0;
 
     for (const file of SURFACES) {
@@ -65,6 +66,7 @@ describe("the Dai Dai certification sentence names every country", () => {
       lines.forEach((line, i) => {
         if (!isEnumeration(line)) return;
         found++;
+        perFile[file]++;
         for (const code of codes) {
           const names = NAMES[code];
           if (!names) {
@@ -78,11 +80,16 @@ describe("the Dai Dai certification sentence names every country", () => {
       });
     }
 
-    // If the sentences are ever reworded past the marker, this guard would pass
-    // by finding nothing. Assert it found them.
-    expect(found, "no Dai Dai enumeration matched — has the wording changed?").toBeGreaterThanOrEqual(
-      SURFACES.length
-    );
+    // PER FILE, not in aggregate. The first version asserted `found >= 3` across
+    // all three surfaces — and the Spanish page alone carries three
+    // enumerations, so rewording it past the marker left the total at 3, the
+    // test green, and the Spanish copy (the one that shipped missing acts
+    // before) checked by nothing at all.
+    const silent = Object.entries(perFile)
+      .filter(([, n]) => n === 0)
+      .map(([file]) => `${file} — no enumeration matched; was it reworded past the marker?`);
+    expect(silent, "a surface stopped being checked without failing").toEqual([]);
+    expect(found, "no Dai Dai enumeration matched anywhere").toBeGreaterThanOrEqual(SURFACES.length);
     expect(missing).toEqual([]);
   });
 });

@@ -15,7 +15,7 @@
 *Tier split: 2 + 23 + 23 + 13 = **61*** ✓
 *Sections: 1 album (2 plaques) + 32 lead-single titles (43 plaques) + 14 featured titles (16 plaques) = **61*** ✓
 
-**Country split:** 🇳🇬 43 · 🇫🇷 6 · 🇬🇧 4 · 🇨🇦 3 · 🇿🇦 1 · 🇵🇹 1 · 🇺🇸 1 · 🇪🇸 1 · 🇩🇪 1 = **61** ✓ across **9 countries**.
+**Country split:** 🇳🇬 43 · 🇫🇷 6 · 🇬🇧 4 · 🇨🇦 3 · 🇵🇹 2 · 🇿🇦 1 · 🇺🇸 1 · 🇪🇸 1 · 🇩🇪 1 = **62** ✓ across **9 countries**.
 
 > **The headline finding: the live Nigerian register shows less than half of it.** 22 of the 43 Nigerian plaques are on turntablecharts.com today; **21 are archive-only** — all 9 Silvers and 12 of the 14 Golds. Reading only the live page would report Omah Lay at 22 Nigerian plaques and would report Silver as a tier he has never held. He holds nine.
 >

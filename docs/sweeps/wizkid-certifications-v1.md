@@ -125,7 +125,7 @@
 - **Gold 60** — Made in Lagos (US, UK, CA, NZ, CH, NL, **NG**) 7 · Essence FR 1 · Come Closer (FR, CH) 2 · Joro (US, CA) 2 · Ginger (US, CA, CH) 3 · Mood (US, CA) 2 · Energy NZ 1 · 2 Sugar CA 1 · Brown Skin Girl (US, AU, CA, NZ) 4 · Call Me Every Day (CA, CH, NZ) 3 · Soco (US, CA) 2 · G Love UK 1 · Boom FR 1 · Can't Believe CA 1 · Borrowed Love CA 1 · Checklist BR 1 · Gyrate ZA 1 · Reckless ZA 1 · Mighty Wine ZA 1 · Roma ZA 1 · Sweet One ZA 1 · Diamonds NG 1 · Many Ways NG 1 → subtotal 40 · plus **20 new 🇳🇬 Golds**: Ojuelegba, Alaye, Anoti, Après Minuit, Bad For You, Bend, Blessed, Break Me Down, Call Me Every Day, Dynamite, Easy With Me, Ebelebe, Karamo, No Stress, Ololufé, Pray, Reckless, Time, Turbulence, Wow → 40 + 20 = **60**
 - **Silver 29** — 🇬🇧 ×9 (Joro, Ginger, Mood, Brown Skin Girl, Call Me Every Day, Soco, Mamacita, I Like, Ojuelegba) + 🇳🇬 ×20 (Balance, Come Closer, Don't Care, Energy, Everyday, Flower Pads, Frames, IDG, Iskolodo, Like That, Longtime, Lose, Love My Baby, Mighty Wine, Piece of Me, Roma, Smile, Soji, Sweet One, True Love) → **29**
 
-6 + 60 + 60 + 29 = **155** ✓  ·  Sections: 7 albums + 89 lead + 59 featured = **155** ✓
+6 + 61 + 60 + 29 = **156** ✓  ·  Sections: 7 albums + 90 lead + 59 featured = **156** ✓
 
 ## Award events vs plaques
 

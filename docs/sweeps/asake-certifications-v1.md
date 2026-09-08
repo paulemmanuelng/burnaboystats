@@ -18,7 +18,7 @@
 | 🇺🇸 United States (RIAA) | **1** |
 | **total** | **79** |
 
-**Tier split:** Platinum-tier (incl. multi-platinum) **53** · Gold **13** · Silver **13** = **79** ✓
+**Tier split:** Platinum-tier (incl. multi-platinum) **53** · Gold **14** · Silver **13** = **80** ✓
 
 > **The shape of this file in one line:** Asake is, on the registers, a **one-market artist with a British footnote**. 71 of his 79 plaques (90%) are Nigerian, and **18 of those 71 exist only in the archived register** — the live TurnTable page cannot show them. Eighteen non-Nigerian registers were read at source and returned a proven zero. Outside Nigeria he holds seven British plaques and exactly **one** American one, and it is not on a record he leads.
 
