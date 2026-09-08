@@ -208,14 +208,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": 68
+            "position": 14,
+            "movement": 83
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
-            "movement": -25
+            "position": 125,
+            "movement": -29
           }
         ]
       },
@@ -1120,13 +1120,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 5,
-            "movement": 16
+            "movement": 19
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
-            "movement": 1
+            "position": 15,
+            "movement": -3
           }
         ]
       },
@@ -1368,7 +1368,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
+            "position": 136,
             "movement": null,
             "status": "new"
           }
@@ -1616,14 +1616,14 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 19,
-            "movement": 0
+            "position": 20,
+            "movement": -1
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 45,
-            "movement": 4
+            "position": 54,
+            "movement": -5
           },
           {
             "country": "BW",
@@ -1776,8 +1776,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 181,
-            "movement": -2
+            "position": 184,
+            "movement": -14
           }
         ]
       }
@@ -2065,8 +2065,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 17,
-            "movement": 0
+            "position": 18,
+            "movement": -1
           },
           {
             "country": "NE",
@@ -2075,16 +2075,16 @@
             "movement": -1
           },
           {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 48,
-            "movement": 4
-          },
-          {
             "country": "BW",
             "name": "Botswana",
             "position": 55,
             "movement": 8
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 57,
+            "movement": -5
           },
           {
             "country": "BF",
@@ -2214,8 +2214,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 125,
-            "movement": -25
+            "position": 131,
+            "movement": -29
           }
         ]
       },
@@ -2654,25 +2654,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Ekuro",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 136,
-            "movement": -110
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/798485d74c5c9cd451070cd502092ea6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Hmmm",
     "platforms": [
       {
@@ -2690,6 +2671,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d40b73f50ac9badee18d53685c838aba/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ekuro",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 161,
+            "movement": -130
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/798485d74c5c9cd451070cd502092ea6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Activate",

@@ -454,33 +454,33 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 22,
-            "movement": -7
+            "position": 23,
+            "movement": -8
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 55,
+            "position": 28,
             "movement": null,
             "status": "new"
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 77,
-            "movement": -9
+            "position": 78,
+            "movement": -5
+          },
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 89,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 129,
+            "position": 148,
             "movement": null,
             "status": "new"
           }

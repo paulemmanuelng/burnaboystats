@@ -209,7 +209,7 @@
             "country": "BM",
             "name": "Bermuda",
             "position": 76,
-            "movement": -14
+            "movement": -7
           }
         ]
       }
@@ -678,13 +678,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 5,
-            "movement": 16
+            "movement": 19
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
-            "movement": 1
+            "position": 15,
+            "movement": -3
           }
         ]
       },
@@ -824,14 +824,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 94,
+            "position": 95,
             "movement": -15
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 102,
-            "movement": -25
+            "position": 108,
+            "movement": -29
           }
         ]
       },
@@ -992,8 +992,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 94,
-            "movement": -4
+            "position": 95,
+            "movement": -1
           }
         ]
       }
@@ -1351,7 +1351,7 @@
             "country": "FR",
             "name": "France",
             "position": 69,
-            "movement": 2
+            "movement": 3
           },
           {
             "country": "BE",
@@ -1401,6 +1401,18 @@
     "title": "Gut Genug",
     "platforms": [
       {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 136,
+            "movement": -16
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -1410,18 +1422,6 @@
             "position": 74,
             "movement": null,
             "status": "re"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 136,
-            "movement": -16
           }
         ]
       }

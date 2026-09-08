@@ -218,8 +218,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 2,
-            "movement": 3
+            "position": 3,
+            "movement": 2
           }
         ]
       }
@@ -332,15 +332,9 @@
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 16,
+            "position": 17,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 87,
-            "movement": -81
           }
         ]
       }
@@ -407,7 +401,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 150,
+            "position": 183,
             "movement": null,
             "status": "new"
           }
@@ -514,13 +508,13 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 25,
-            "movement": -1
+            "position": 34,
+            "movement": -10
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 28,
+            "position": 36,
             "movement": null,
             "status": "new"
           }
@@ -637,21 +631,21 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 74,
-            "movement": -14
-          },
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 78,
-            "movement": null,
-            "status": "new"
+            "position": 83,
+            "movement": -23
           },
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 90,
-            "movement": -2
+            "position": 91,
+            "movement": -3
+          },
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 98,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -681,14 +675,14 @@
           {
             "country": "KG",
             "name": "Kyrgyzstan",
-            "position": 21,
-            "movement": -19
+            "position": 22,
+            "movement": -20
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 35,
-            "movement": -10
+            "position": 37,
+            "movement": -8
           }
         ]
       },
@@ -731,7 +725,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 94,
+            "position": 118,
             "movement": null,
             "status": "new"
           }
@@ -828,7 +822,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 115,
+            "position": 142,
             "movement": null,
             "status": "new"
           }

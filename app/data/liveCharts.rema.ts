@@ -290,7 +290,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 128,
+            "position": 148,
             "movement": null,
             "status": "new"
           }
@@ -1179,8 +1179,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 72,
-            "movement": -26
+            "position": 79,
+            "movement": -30
           }
         ]
       },
@@ -1236,19 +1236,19 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 27,
-            "movement": 0
+            "position": 28,
+            "movement": -1
           },
           {
             "country": "KH",
             "name": "Cambodia",
-            "position": 60,
-            "movement": -8
+            "position": 61,
+            "movement": -9
           },
           {
             "country": "MX",
             "name": "Mexico",
-            "position": 172,
+            "position": 188,
             "movement": null,
             "status": "new"
           }
@@ -1423,7 +1423,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 72,
+            "position": 91,
             "movement": null,
             "status": "new"
           }
@@ -1463,7 +1463,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 68,
-            "movement": -17
+            "movement": -15
           }
         ]
       }
@@ -1528,25 +1528,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Mara",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 200,
-            "movement": -25
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Commando - EP",

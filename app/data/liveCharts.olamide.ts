@@ -147,8 +147,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 96,
-            "movement": -25
+            "position": 102,
+            "movement": -29
           }
         ]
       }
@@ -252,8 +252,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": 81
+            "position": 20,
+            "movement": 96
           }
         ]
       }
@@ -334,8 +334,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 114,
-            "movement": -4
+            "position": 117,
+            "movement": -6
           }
         ]
       }
@@ -440,26 +440,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Canada",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 177,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/86af91b1d3aa36ef681c91cfbefc7702/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Carpe Diem",
     "platforms": [
       {
@@ -527,8 +507,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 107,
-            "movement": -3
+            "position": 110,
+            "movement": -5
           }
         ]
       }
@@ -546,8 +526,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
-            "movement": -1
+            "position": 154,
+            "movement": -7
           }
         ]
       }

@@ -307,7 +307,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 180,
-            "movement": -9
+            "movement": -1
           },
           {
             "country": "MU",
@@ -570,8 +570,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": -102
+            "position": 131,
+            "movement": -128
           }
         ]
       }
@@ -969,8 +969,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 75,
-            "movement": 0
+            "position": 78,
+            "movement": -3
           },
           {
             "country": "KE",
@@ -1043,7 +1043,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 78,
-            "movement": -16
+            "movement": -14
           },
           {
             "country": "TZ",
@@ -1110,7 +1110,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 63,
-            "movement": -57
+            "movement": -58
           },
           {
             "country": "BJ",
@@ -1181,8 +1181,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
-            "movement": -4
+            "position": 8,
+            "movement": -7
           }
         ]
       }
@@ -1280,8 +1280,8 @@
           {
             "country": "BG",
             "name": "Bulgaria",
-            "position": 60,
-            "movement": -5
+            "position": 62,
+            "movement": -7
           }
         ]
       }
@@ -1383,8 +1383,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": -14
+            "position": 21,
+            "movement": -19
           }
         ]
       }
@@ -1765,7 +1765,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 8,
-            "movement": -3
+            "movement": -7
           },
           {
             "country": "NG",
@@ -1832,7 +1832,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 60,
-            "movement": -18
+            "movement": -16
           },
           {
             "country": "NE",
@@ -1874,8 +1874,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 125,
-            "movement": -106
+            "position": 150,
+            "movement": -127
           }
         ]
       }
@@ -2006,7 +2006,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 13,
+            "position": 14,
             "movement": -11
           }
         ]
@@ -2049,8 +2049,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 133,
-            "movement": -5
+            "position": 136,
+            "movement": -7
           }
         ]
       }
@@ -2154,8 +2154,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 91,
-            "movement": -5
+            "position": 94,
+            "movement": -8
           }
         ]
       }
@@ -2186,7 +2186,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 3,
+            "position": 5,
             "movement": null,
             "status": "new"
           }
@@ -2218,7 +2218,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 116,
+            "position": 141,
             "movement": null,
             "status": "new"
           }
@@ -2298,9 +2298,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IT",
-            "name": "Italy",
-            "position": 199,
+            "country": "BE",
+            "name": "Belgium",
+            "position": 144,
             "movement": null,
             "status": "new"
           }
@@ -2352,8 +2352,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 21,
-            "movement": -8
+            "position": 23,
+            "movement": -10
           }
         ]
       }
@@ -2409,7 +2409,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 56,
             "movement": null,
             "status": "new"
           }
@@ -2450,7 +2450,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 86,
-            "movement": -11
+            "movement": -10
           }
         ]
       }
@@ -2487,8 +2487,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 74,
-            "movement": -26
+            "position": 81,
+            "movement": -30
           }
         ]
       }
@@ -2506,7 +2506,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 27,
+            "position": 33,
             "movement": null,
             "status": "new"
           }
@@ -2616,25 +2616,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/afea1bda5fb6b9c56301ea949d4516bf/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "No Stress",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 146,
-            "movement": -25
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/31566a105920b61a40e268a4b8997791/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Anxious",
     "platforms": [
       {
@@ -2644,8 +2625,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 90,
-            "movement": -9
+            "position": 92,
+            "movement": -11
           }
         ]
       }
@@ -2654,24 +2635,23 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/bc2fb454695d80d8c78f43478549c26f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Oshe",
+    "title": "No Stress",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 196,
-            "movement": null,
-            "status": "new"
+            "country": "GH",
+            "name": "Ghana",
+            "position": 152,
+            "movement": -29
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c2155cc0c6043fe98970ef934de897c7/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/31566a105920b61a40e268a4b8997791/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Low",
@@ -2683,8 +2663,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": -111
+            "position": 159,
+            "movement": -131
           }
         ]
       }
@@ -2702,8 +2682,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
-            "movement": -131
+            "position": 186,
+            "movement": -149
           }
         ]
       }

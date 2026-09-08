@@ -439,45 +439,45 @@
             "country": "GH",
             "name": "Ghana",
             "position": 4,
-            "movement": 15
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 4,
-            "movement": 3
+            "movement": 18
           },
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 6,
-            "movement": -3
+            "position": 7,
+            "movement": -4
           },
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 16,
-            "movement": null,
-            "status": "new"
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 9,
+            "movement": -1
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 19,
+            "position": 20,
             "movement": -15
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 20,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BS",
             "name": "The Bahamas",
-            "position": 26,
+            "position": 28,
             "movement": null,
             "status": "new"
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 30,
-            "movement": -10
+            "position": 32,
+            "movement": -8
           },
           {
             "country": "KN",
@@ -488,8 +488,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 47,
-            "movement": -6
+            "position": 51,
+            "movement": -7
           }
         ]
       },
@@ -930,8 +930,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
-            "movement": -13
+            "position": 20,
+            "movement": -16
           }
         ]
       }
@@ -1242,8 +1242,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 24,
-            "movement": 0
+            "position": 25,
+            "movement": -1
           },
           {
             "country": "AG",
@@ -1260,14 +1260,14 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 70,
-            "movement": -14
+            "position": 79,
+            "movement": -23
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 93,
-            "movement": -4
+            "position": 94,
+            "movement": -1
           }
         ]
       },
@@ -1759,6 +1759,81 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Wo, man",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 7,
+            "movement": 2
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 7,
+            "movement": -1
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 31,
+            "movement": 0
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 48,
+            "movement": -5
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 195,
+            "movement": 5
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 19,
+            "movement": -10
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 25,
+            "movement": 46
+          },
+          {
+            "country": "PE",
+            "name": "Peru",
+            "position": 145,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Gimme Dat",
     "platforms": [
       {
@@ -1835,68 +1910,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Wo, man",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 7,
-            "movement": 2
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 7,
-            "movement": -1
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 31,
-            "movement": 0
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 48,
-            "movement": -5
-          },
-          {
-            "country": "GR",
-            "name": "Greece",
-            "position": 195,
-            "movement": 5
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 21,
-            "movement": -12
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Dangerous",
     "platforms": [
       {
@@ -1954,7 +1967,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 56,
+            "position": 57,
             "movement": -14
           }
         ]
@@ -2476,8 +2489,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 176,
-            "movement": -25
+            "position": 182,
+            "movement": -29
           }
         ]
       }
@@ -2665,7 +2678,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 59,
+            "position": 80,
             "movement": null,
             "status": "new"
           }
