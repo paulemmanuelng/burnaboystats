@@ -39,6 +39,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-08",
+    category: "Lifestyle",
+    text: `A correction to the garage total, now ${totalValueFormatted} across ${carCount} cars. The Bugatti Chiron is the one car here whose price is reported in naira — ₦9 billion — so its dollar figure is derived from that rather than the other way round, and it was being derived at ₦1,454 to the dollar: a rate matching no date near the purchase. Re-converted at ₦1,370.08, the rate on 5 July 2026, the day the buy was announced. Nothing about the car changed; only the arithmetic did.`,
+    href: "/records/cars",
+  },
+  {
     date: "2026-09-06",
     category: "Streaming",
     text: "A billion views for “Dai Dai”. The official video reads 1,008,439,801 on YouTube, read at the video's own page — Burna Boy's first music video to a billion, from a 23 May release. The site had been publishing the count all along; the crossing itself went unlogged because the figure is written by the stats pipeline and the milestone is not.",
