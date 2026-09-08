@@ -547,7 +547,7 @@ The Netherlands "Boom" figure stays at **#33** (Nederlandse Top 40) rather than 
 
 ### Context
 
-Under the **identical standard**, Burna Boy has **280 chart entries** and **48 No. 1 placements** across **71 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
+Under the **identical standard**, Burna Boy has **278 chart entries** and **47 No. 1 placements** across **67 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
 
 Comparing honestly:
 
@@ -557,7 +557,7 @@ Comparing honestly:
 | No. 1 placements | 24 | 48 |
 | Chart countries | 32 | 71 |
 
-Burna Boy is ahead on all three, and the gap in **country breadth** (32 vs 71) is wider than the gap in entries — Burna Boy charts in roughly twice as many territories, which is what compounds into nearly twice the entry count. Wizkid's footprint is concentrated: Nigeria (24 entries), the UK (23) and the US/Global charts (19) supply 66 of 154 entries, **43%** of his total. He returns zero across East, South and Southeast Asia, zero on all three MENA national charts (Egypt, Saudi Arabia and the UAE — the first two now proven by full reads of their entire published history), and zero on every Billboard Latin American national chart.
+Burna Boy is ahead on all three, and the gap in **country breadth** (30 vs 67) is wider than the gap in entries — Burna Boy charts in roughly twice as many territories, which is what compounds into nearly twice the entry count. Wizkid's footprint is concentrated: Nigeria (24 entries), the UK (23) and the US/Global charts (19) supply 66 of 154 entries, **43%** of his total. He returns zero across East, South and Southeast Asia, zero on all three MENA national charts (Egypt, Saudi Arabia and the UAE — the first two now proven by full reads of their entire published history), and zero on every Billboard Latin American national chart.
 
 Two qualifications that cut in Wizkid's favour, and one that does not:
 

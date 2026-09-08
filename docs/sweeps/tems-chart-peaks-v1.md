@@ -404,11 +404,11 @@ Every one of the eight matches this file exactly. The audit's premise is the par
 
 ### Context
 
-Under this **identical** standard, Burna Boy holds **280 chart entries and 48 No. 1 placements across 71 chart countries** ([burnaboystats.com](https://burnaboystats.com)). Tems has **124 entries, 7 No. 1 placements, 42 chart countries** — 44% of his entry count, 59% of his country reach, and 15% of his No. 1s.
+Under this **identical** standard, Burna Boy holds **278 chart entries and 47 No. 1 placements across 67 chart countries** ([burnaboystats.com](https://burnaboystats.com)). Tems has **124 entries, 7 No. 1 placements, 42 chart countries** — 45% of his entry count, 63% of his country reach, and 15% of his No. 1s.
 
 The honest reading is that these are two different shapes of chart career, not two points on one scale.
 
-- **Burna Boy's is broad and self-driven.** 71 countries and 48 No. 1s built across roughly a decade and seven albums, most of it under his own name. His No. 1 count is nearly seven times hers off only 2.3× the entries — that ratio is the real gap, and it is a gap in headline records, not in geography.
+- **Burna Boy's is broad and self-driven.** 67 countries and 47 No. 1s built across roughly a decade and seven albums, most of it under his own name. His No. 1 count is nearly seven times hers off only 2.2× the entries — that ratio is the real gap, and it is a gap in headline records, not in geography.
 - **Tems' is narrow, recent, and concentrated.** Her 42-country reach is genuinely close to his, but it is carried by two records: *Raindance* and *Wait For U* are 65 of her 124 entries, and 5 of her 7 No. 1s are one song. **Strip *Raindance* out and she drops from 42 countries to 20** — 22 of her 42 territories are *Raindance* and nothing else. (The previous version put that figure at 26; recomputing it from the de-duplicated tables gives 20.) Burna Boy has no comparable single-record dependency.
 - **Her credits skew featured.** Six of her seven No. 1 placements come from records where she is a featured or co-billed act. Her biggest solo lead single, *Love Me JeJe*, peaked at 🇳🇬8 / 🇬🇧36 and charted in four countries.
 - **Where she is ahead:** she has a **Billboard Hot 100 No. 1**, which Burna Boy does not, and her Global 200 peak of No. 2 is the higher of the two.

@@ -241,7 +241,7 @@ This **closes the "Nigeria is structurally unverifiable beyond the current week"
 
 ### Context
 
-Under this identical standard, **Burna Boy has 280 chart entries and 48 No. 1 placements across 71 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
+Under this identical standard, **Burna Boy has 278 chart entries and 47 No. 1 placements across 69 chart territories** ([burnaboystats.com](https://burnaboystats.com)).
 
 The comparison is not close, and it is not really a comparison of size — it is a comparison of shape. Seyi Vibez's **114 entries** is **41% of Burna Boy's count**, which for an artist whose first chart week was January 2021 is a remarkable rate. But those 114 entries sit in **1 chart territory against Burna Boy's 71**, and his **11 No. 1s against 48** are all in that one country. Burna Boy's ledger is 71 territories deep and comparatively shallow in each; Seyi Vibez's is one territory deep and, within it, denser than anyone else's in this sweep series.
 

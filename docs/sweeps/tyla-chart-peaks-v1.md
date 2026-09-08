@@ -410,11 +410,11 @@ Eleven investigation threads were reopened against this file. What changed:
 
 ### Context
 
-Under this identical standard, **Burna Boy has 280 chart entries and 48 No. 1 placements across 71 chart countries** (burnaboystats.com).
+Under this identical standard, **Burna Boy has 278 chart entries and 47 No. 1 placements across 67 chart countries** (burnaboystats.com).
 
 The honest comparison is that these are not close, and the repair pass widened the gap:
 
-- **Entries: 280 vs 175.** Tyla reaches 62% of Burna Boy's total — down from an apparent 70% before the audit, because 21 of the old 195 were not countable placements. Her 174 is heavily front-loaded onto one song: strip "Water" out and she has 137. Burna Boy has no comparable single point of failure.
+- **Entries: 278 vs 175.** Tyla reaches 63% of Burna Boy's total — down from an apparent 70% before the audit, because 21 of the old 195 were not countable placements. Her 175 is heavily front-loaded onto one song: strip "Water" out and she has 137. Burna Boy has no comparable single point of failure.
 - **No. 1 placements: 48 vs 3.** This is the real distance — a **16× gap**. Burna Boy's No. 1s span many chart countries; Tyla's three sit in New Zealand, the UAE and Suriname, **all for the same song**. She has never topped the US, UK, Global 200, Nigerian, South African or Turkish national chart. On the metric the site treats as the headline stat, she is very early.
 - **Chart countries: 71 vs 52.** Tyla covers 73% of Burna Boy's geographic footprint. The A–Z sweep closed most of the gap the regional sweep left open — the Philippines, Malta, Serbia, Slovenia, North Macedonia, Guatemala, South Korea and Thailand were all found on that pass — and the repair pass has now closed the archival gaps too: Egypt, Belarus, Moldova, Kazakhstan and Russia have all been read, and four of the five returned proven zeroes. What remains soft is not coverage but **verification**: South Africa and the UAE rest on citations, Nigeria on an editorial text-mine, and Iceland on a week nobody can currently open.
 

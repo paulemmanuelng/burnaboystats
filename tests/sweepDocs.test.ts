@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { afrobeatsArtists, certCount, chartEntries } from "../app/data/afrobeats";
+import { allChartItems } from "../app/data/charts";
 import { artistFaqs } from "../app/lib/boardFaqs";
 
 // The sweep documents in docs/sweeps/ are the evidence for every figure on the
@@ -169,6 +170,45 @@ describe("sweep documents back the Afrobeats Board", () => {
         expect(stated, `${a.name}: the sweep document and afrobeats.ts disagree on the chart-entry count`).toBe(chartEntries(a));
       }
     }
+  });
+
+  it("every sweep document's Burna Boy denominator matches the data", () => {
+    /**
+     * Eight documents compare their artist against Burna Boy, and every one
+     * opens with the same sentence: "Under this identical standard, Burna Boy
+     * has N chart entries and M No. 1 placements across K chart countries".
+     * All eight said 280 / 48 / 71. The data says 278 / 47 / 69 territories,
+     * 67 countries — so four percentages in each cascaded off a stale number,
+     * and nothing failed, because a denominator in prose is not executable.
+     *
+     * COUNTRIES AND TERRITORIES ARE NOT THE SAME WORD here: GLB and GLBX are
+     * supranational Billboard charts, so 69 territories is 67 countries. The
+     * sentence is checked against whichever noun it actually uses — getting
+     * that wrong is how a fix introduces its own error, which it nearly did.
+     */
+    const entries = allChartItems.reduce((n, r) => n + r.entries.length, 0);
+    const no1s = allChartItems.reduce((n, r) => n + r.entries.filter((e) => e.peak === 1).length, 0);
+    const codes = new Set(allChartItems.flatMap((r) => r.entries.map((e) => e.c)));
+    const territories = codes.size;
+    const countries = [...codes].filter((c) => c !== "GLB" && c !== "GLBX").length;
+
+    const RE = /Burna Boy\*{0,2} (?:has|holds) \*{0,2}(\d+) chart entries\*{0,2} and \*{0,2}(\d+) No\. 1 placements\*{0,2} across \*{0,2}(\d+) chart (countries|territories)/g;
+    const wrong: string[] = [];
+    let found = 0;
+    for (const a of afrobeatsArtists) {
+      const doc = peakDoc(a.slug);
+      if (!existsSync(doc)) continue;
+      for (const m of readFileSync(doc, "utf8").matchAll(RE)) {
+        found++;
+        const [, e, n, k, noun] = m;
+        const want = noun === "countries" ? countries : territories;
+        if (Number(e) !== entries) wrong.push(`${a.slug}: says ${e} entries, data ${entries}`);
+        if (Number(n) !== no1s) wrong.push(`${a.slug}: says ${n} No. 1s, data ${no1s}`);
+        if (Number(k) !== want) wrong.push(`${a.slug}: says ${k} chart ${noun}, data ${want}`);
+      }
+    }
+    expect(found, "no Burna Boy denominator sentence matched — have the documents been reworded?").toBeGreaterThan(4);
+    expect(wrong, "a sweep document compares its artist against a stale Burna Boy total").toEqual([]);
   });
 
   it("tells a READER why Nigeria will not match TurnTable, on both layouts", () => {
