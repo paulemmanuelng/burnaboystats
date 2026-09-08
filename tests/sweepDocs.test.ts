@@ -29,7 +29,7 @@ const peakDoc = (slug: string) => join(DIR, `${slug}-chart-peaks-v1.md`);
  * methodology rejects.
  */
 const DOCUMENTED_ENTRY_DIVERGENCES: Record<string, { doc: number; data: number; why: string }> = {
-  wizkid: { doc: 154, data: 153, why: '"Dynamite" ZA #45 removed under the same depth rule the file applies to "Money & Love" ZA #98' },
+  wizkid: { doc: 155, data: 154, why: '"Dynamite" ZA #45 removed under the same depth rule the file applies to "Money & Love" ZA #98' },
 };
 
 describe("sweep documents back the Afrobeats Board", () => {

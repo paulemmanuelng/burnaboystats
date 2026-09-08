@@ -370,6 +370,9 @@ describe("records that appear on two boards", () => {
         "Eja Meja", "Essence", "FUJI PARTY", "Fi Kan We Kan", "Free", "Gang",
         "Gimme Dat", "Gwagwalada", "Jogodo", "MMS", "MY HEALER", "Modupe",
         "New Religion", "No Competition", "One Call", "Pressure",
+        // Joined the shared list on 8 Sep 2026 with the 6 Sep sweep: BNXN
+        // already carried it, and Victony's NG 42 puts it on both boards.
+        "WHO THIS",
         "REAL, Vol. 1 \u2013 EP", "Set Up", "Shibebe", "Skido", "So It Goes", "Soweto",
         "Stubborn", "Toxic", "Turbulence", "Uptown Disco", "Who's Dat Girl",
         "With You", "Won Da Mo",

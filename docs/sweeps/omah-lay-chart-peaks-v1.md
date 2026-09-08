@@ -10,16 +10,16 @@ Swept **19 August 2026** in two halves — Nigeria/Africa/Billboard Global, and 
 
 ## Headline
 
-- **70 chart entries** (release × chart-territory pairs)
+- **71 chart entries** (release × chart-territory pairs)
 - **14 countries**, plus the two Billboard Global charts — **16 chart territories**
 - **6 No. 1 placements**, all in **1 country** (Nigeria)
 - **Major markets:** 🇺🇸 US — **no Hot 100 entry ever**, and **no Billboard 200 entry ever**. 🇬🇧 UK — **No. 76** (*Attention*, Official Singles Chart). 🌐 Billboard Global 200 — **No. 74**; Global Excl. US — **No. 73**, both *Attention*, both for two weeks in March 2022. **Best peak anywhere outside Nigeria: 🇫🇷 No. 2** — *Namek* (Jul feat. Omah Lay), 27 weeks.
 
-**The shape of the career is unmistakable in the data. 42 of the 70 entries (60%) are Nigerian.** Strip Nigeria out and 28 entries remain, and **all of them come from just seven titles — four of which are guest spots on someone else's record** (Luciano, Ninho, Jul, Davido). His own lead singles account for only 10 of the 28: *soso* (4), *Boy Alone* (4), *Woman* (1) and *Attention* is a co-billed duet. He has **never charted a solo lead single** in the UK, Ireland, Germany, Austria, Canada, Luxembourg, Belgium or Sweden.
+**The shape of the career is unmistakable in the data. 43 of the 71 entries (61%) are Nigerian.** Strip Nigeria out and 28 entries remain, and **all of them come from just seven titles — four of which are guest spots on someone else's record** (Luciano, Ninho, Jul, Davido). His own lead singles account for only 10 of the 28: *soso* (4), *Boy Alone* (4), *Woman* (1) and *Attention* is a co-billed duet. He has **never charted a solo lead single** in the UK, Ireland, Germany, Austria, Canada, Luxembourg, Belgium or Sweden.
 
-**Reconciliation note.** The two halves report 47 and 24 entries. The published total is **70**, not 71, because one claim was refuted and removed (🇳🇬 *Woman* — see Removals) and one non-claim was discarded. The halves share no territory, so nothing is double-counted between them.
+**Reconciliation note (19 Aug 2026 half-sweep).** The two halves reported 47 and 24 entries. The total published *that day* was **70**, not 71, because one claim was refuted and removed (🇳🇬 *Woman* — see Removals) and one non-claim was discarded. The halves share no territory, so nothing is double-counted between them.
 
-## Singles — 62
+## Singles — 63
 
 | release | chart peaks by country | |
 |---|---|---|
@@ -52,6 +52,7 @@ Swept **19 August 2026** in two halves — Nigeria/Africa/Billboard Global, and 
 | JULIA | 🇳🇬 #19 | **1** |
 | MARY GO ROUND | 🇳🇬 #21 | **1** |
 | Last Time (Zinoleesky ft. Omah Lay) | 🇳🇬 #23 | **1** |
+| Gut Genug | 🇳🇬 #24 | **1** |
 | AMEN | 🇳🇬 #29 | **1** |
 | bend you | 🇳🇬 #32 | **1** |
 | it's yours | 🇳🇬 #33 | **1** |
@@ -66,7 +67,7 @@ Swept **19 August 2026** in two halves — Nigeria/Africa/Billboard Global, and 
 | never forget | 🇳🇬 #90 | **1** |
 | recognize | 🇳🇬 #94 | **1** |
 
-**Singles subtotal:** 11 + 5 + 4 + 3 + 2 + (1 × 37) = **62** ✓
+**Singles subtotal:** 11 + 5 + 4 + 3 + 2 + (1 × 38) = **63** ✓
 
 ⚑ = single-source row, flagged (see "Open flags"). † = peak read from the register's own `highestPosition` field rather than observed at rank 1 in a captured issue (see gap 3).
 
@@ -81,9 +82,9 @@ Swept **19 August 2026** in two halves — Nigeria/Africa/Billboard Global, and 
 
 **Albums subtotal:** 5 + 1 + 1 + 1 = **8** ✓
 
-**Total: 62 + 8 = 70 chart entries.** ✓
+**Total: 63 + 8 = 71 chart entries.** ✓
 
-**Distribution check** — the 70 entries fall in 14 countries plus the 2 supranational Billboard Global charts: 🇳🇬 42 · 🇨🇭 5 · 🇫🇷 4 · 🇳🇱 3 · 🇬🇧 2 · 🇵🇹 2 · 🇧🇪 2 · 🇿🇦 2 · then eight territories with 1 each (🇨🇦 🇩🇪 🇦🇹 🇱🇺 🇮🇪 🇸🇪 🌐 GLB 🌐 GLBX). Sum: 42 + 5 + 4 + 3 + 2 + 2 + 2 + 2 + 8 = **70** ✓. No release appears twice for the same country.
+**Distribution check** — the 71 entries fall in 14 countries plus the 2 supranational Billboard Global charts: 🇳🇬 43 · 🇨🇭 5 · 🇫🇷 4 · 🇳🇱 3 · 🇬🇧 2 · 🇵🇹 2 · 🇧🇪 2 · 🇿🇦 2 · then eight territories with 1 each (🇨🇦 🇩🇪 🇦🇹 🇱🇺 🇮🇪 🇸🇪 🌐 GLB 🌐 GLBX). Sum: 42 + 5 + 4 + 3 + 2 + 2 + 2 + 2 + 8 = **70** ✓. No release appears twice for the same country.
 
 ## No. 1 placements
 

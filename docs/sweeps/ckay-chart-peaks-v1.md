@@ -18,6 +18,8 @@ charts are recorded separately as GLB and GLBX, not as countries.
 |---|---|---|
 | love nwantiti (ah ah ah) | 🇨🇭 #1 · 🇫🇷 #1 · 🇳🇱 #1 · 🇳🇴 #1 · 🌐 GLBX #2 · 🇳🇿 #2 · 🇬🇧 #3 · 🇦🇹 #4 · 🇸🇪 #4 · 🇩🇪 #6 · 🇩🇰 #6 · 🇦🇺 #8 · 🇧🇪 #8 · 🇮🇹 #20 · 🇪🇸 #46 | **15** |
 | BODY (danz) | 🇳🇬 #1 | **1** |
+| BADAMINTON | 🇳🇬 #11 | **1** |
+| E CLEAR | 🇳🇬 #16 | **1** |
 | Emiliana | 🇸🇪 #90 | **1** |
 
 **Singles subtotal: 18 + 1 + 2 = 21**
@@ -32,7 +34,7 @@ charts are recorded separately as GLB and GLBX, not as countries.
 
 **Albums subtotal: 5 + 1 + 1 = 7**
 
-**Total: 22 + 7 = 29 chart entries.**
+**Total: 24 + 7 = 31 chart entries.**
 
 > **+1 on 27 Aug 2026 — 🇵🇹 Portugal, and it is a No. 1.** Found while verifying every
 > Portuguese certification on the board against AFP's own register. *love nwantiti*

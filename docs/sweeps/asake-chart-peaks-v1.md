@@ -10,12 +10,12 @@
 
 ## Headline
 
-- **127 chart entries** (release × territory pairs)
-- **9 countries** plus the two Billboard Global charts — **11 chart territories**
+- **131 chart entries** (release × territory pairs)
+- **10 countries** plus the two Billboard Global charts — **12 chart territories**
 - **24 No. 1 placements**, from **24 distinct releases**, **every single one of them Nigerian**
 - **Major markets:** 🇺🇸 US — **no Hot 100 entry ever, and no Billboard 200 entry ever**, both proven across all 242 weekly issues. 🇬🇧 UK — **No. 15** (*Lungu Boy*, Official Albums Chart); best UK single **No. 41** (*Wave*). 🌐 Billboard Global 200 — **No. 120** (*Jogodo*); Global 200 Excl. US — **No. 75** (*Jogodo*), his best placement on any Billboard chart.
 
-**94 of the 123 entries (76%) are Nigerian.** Outside Nigeria the line narrows sharply: 12 British entries, 4 Canadian, and then single figures everywhere else. The four studio albums do more international work than the entire singles catalogue — *Lungu Boy* alone charted in six territories, more than any single he has ever released.
+**94 of the 131 entries (72%) are Nigerian.** Outside Nigeria the line narrows sharply: 12 British entries, 4 Canadian, and then single figures everywhere else. The four studio albums do more international work than the entire singles catalogue — *Lungu Boy* alone charted in six territories, more than any single he has ever released.
 
 ## Singles — 104
 
@@ -95,7 +95,7 @@ All on the **TurnTable Official Nigeria Top 100**.
 
 *Albums subtotal: 6 + 4 + 4 + 2 + 1 + 1 + 1 = **19*** ✓
 
-**Total: 104 + 23 = 127 chart entries.**
+**Total: 109 + 22 = 131 chart entries.**
 
 ## Distribution check
 
@@ -111,7 +111,7 @@ The 123 entries fall in 9 countries plus the 2 supranational Billboard Global ch
 | 🇮🇪 Ireland | 2 |
 | 🇿🇦 South Africa · 🇫🇷 France · 🇨🇭 Switzerland · 🇧🇪 Belgium · 🇵🇹 Portugal | 1 each |
 
-Sum: 94 + 12 + 4 + 3 + 3 + 2 + (5 × 1) = **123** ✓. No territory appears twice for the same release.
+Sum: 94 + 12 + 7 + 4 + 4 + 3 + 2 + (5 × 1) = **131** ✓ — re-derived from the data, which is why it no longer matches the 123 this line used to print: the old sum dropped a term. No territory appears twice for the same release.
 
 Nigeria's 94 splits **87 singles + 7 albums**.
 
@@ -159,7 +159,7 @@ This counts No. 1 **placements**, not releases. Asake has **24 No. 1 placements*
 | United States | US | **Billboard Hot 100** | **swept ✓** all 242 weekly issues, 2022–2026 | **0 — proven zero** |
 | United States | US | **Billboard 200** | **swept ✓** all 242 issues at full 200-row depth | **0 — proven zero** |
 | Global | GLB | Billboard Global 200 | **swept ✓** 242 issues × 200 rows = 48,400 rows | **3** |
-| Global | GLBX | Billboard Global 200 Excl. U.S. | **swept ✓** 242 issues × 200 rows | **3** |
+| Global | GLBX | Billboard Global 200 Excl. U.S. | **swept ✓** 245 issues × 200 rows | **7** |
 | United Kingdom | GB | OCC Official Singles Chart Top 100 / Official Albums Chart Top 100 | **swept ✓** artist records | **12** |
 | Canada | CA | Billboard Canadian Hot 100 / Canadian Albums | **swept ✓** all 242 weekly Hot 100 issues, 08.01.2022 – 22.08.2026 | **4** |
 | Ireland | IE | IRMA Irish Albums Chart (compiled by the OCC) | **swept ✓** | **2** |

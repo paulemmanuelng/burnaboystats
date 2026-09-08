@@ -14,18 +14,18 @@
 
 | | |
 |---|---|
-| **Total chart entries** (title × country pairs) | **118** |
+| **Total chart entries** (title × country pairs) | **119** |
 | **Distinct chart territories** | **53** (51 countries + the 2 Billboard Global charts) |
 | **No. 1 placements** | **17**, across **9** territories |
 | **US — Billboard Hot 100** | **No. 3** — *Calm Down* (57 weeks) |
 | **UK — Official Singles Chart** | **No. 3** — *Calm Down* |
 | **Billboard Global 200** | **No. 3** — *Calm Down* (123 weeks); **No. 1** on Global Excl. U.S. (137 weeks) |
 
-One record carries the international side of this discography almost entirely: *Calm Down* accounts for **50 of the 118 entries** and **8 of the 17 No. 1 placements**, and **29 of the 53 territories are reached by that song and nothing else**. Strip it out and Rema is a Nigeria-dominant artist with a mid-table Western footprint — 68 entries across 24 territories, and every remaining No. 1 is Nigerian.
+One record carries the international side of this discography almost entirely: *Calm Down* accounts for **50 of the 119 entries** and **8 of the 17 No. 1 placements**, and **29 of the 53 territories are reached by that song and nothing else**. Strip it out and Rema is a Nigeria-dominant artist with a mid-table Western footprint — 68 entries across 24 territories, and every remaining No. 1 is Nigerian.
 
 ---
 
-### Singles — 105
+### Singles — 106
 
 | Title | Countries (best peak first) | Count |
 |---|---|---|
@@ -47,6 +47,7 @@ One record carries the international side of this discography almost entirely: *
 | HEHEHE | 🇳🇬 #3 | **1** |
 | OZEBA | 🇳🇬 #3 | **1** |
 | Favorite Girl *(Darkoo ft. Rema)* | 🇳🇬 #3 | **1** |
+| TEA | 🇳🇬 #3 | **1** |
 | Kelebu | 🇳🇬 #5 | **1** |
 | YAYO | 🇳🇬 #6 | **1** |
 | Goals *(with Lisa & Anitta)* | 🇳🇬 #62 | **1** |
@@ -54,7 +55,7 @@ One record carries the international side of this discography almost entirely: *
 | Dimension *(JAE5 ft. Skepta & Rema)* | 🇬🇧 #58 | **1** |
 | One Time *(Dadju ft. Rema)* | 🇫🇷 #171 | **1** |
 
-**Subtotal: 50 + 12 + 6 + 6 + 5 + 4 + 3 + 3 + (16 × 1) = 105 singles entries.**
+**Subtotal: 50 + 12 + 6 + 6 + 5 + 4 + 3 + 3 + (17 × 1) = 106 singles entries.**
 
 ### Albums — 13
 
@@ -67,7 +68,7 @@ One record carries the international side of this discography almost entirely: *
 
 **Subtotal: 6 + 5 + 1 + 1 = 13 album entries.**
 
-**105 + 13 = 118 total chart entries, across 53 territories.**
+**106 + 13 = 119 total chart entries, across 53 territories.**
 
 Note on chart depth: SNEP (France) and Ultratop (Belgium) publish 200-position charts, AFP/Audiogest (Portugal) publishes a Top 200 singles chart and (since week 04 of 2024) a Top 200 albums chart, and ORF's Ö3 Austria Top 40 publishes one continuous **1–75** ranking on both the singles and the Longplay side. So *One Time* #171, *Soundgasm* #179, *Baby* #196, *Rave & Roses* BE #189, *HEIS* FR #136 / BE #131 and *Secondhand* AT #68 are placings **on** the principal national chart, not on an extension list below it. UK positions 101–200 are a separate extension chart and are excluded.
 
@@ -250,7 +251,7 @@ Nine of the seventeen are Nigerian. Outside Nigeria, every single No. 1 belongs 
 | 🇳🇿 New Zealand (NZ) | Official chart | Recorded Music NZ Official Top 40 Singles / Albums | — |
 | 🇳🇮 Nicaragua (NI) | Airplay carve-out | Monitor Latino Nicaragua (General) | — |
 | 🇳🇪 Niger (NE) | No chart | — | — |
-| 🇳🇬 Nigeria (NG) | Official chart | TurnTable Official Nigeria Top 100 / Official Top 100 Albums | 22 Rema entries. Three album rows — *Rave & Roses (Ultra)* #2, *HEIS* #1, *Rema* (compilation) #54 — were read from the live TurnTable payload of 6 Aug 2026 and are **verified**. The rest are text-mined from TurnTable editorial and remain unverified; see the Nigeria note under *Known gaps*. |
+| 🇳🇬 Nigeria (NG) | Official chart | TurnTable Official Nigeria Top 100 / Official Top 100 Albums | 23 Rema entries. Three album rows — *Rave & Roses (Ultra)* #2, *HEIS* #1, *Rema* (compilation) #54 — were read from the live TurnTable payload of 6 Aug 2026 and are **verified**. The rest are text-mined from TurnTable editorial and remain unverified; see the Nigeria note under *Known gaps*. |
 | 🇰🇵 North Korea (KP) | No chart | — | — |
 | 🇲🇰 North Macedonia (MK) | Airplay carve-out | Radiomonitor North Macedonia | No Rema placement. |
 | 🇳🇴 Norway (NO) | Official chart | VG-lista (IFPI Norge) | Singles chart was a Top 20 until week 14 of 2025; the quoted #27 cannot sit on the published chart, so Norway is a no-placement pending a re-read of the weekly issues. |
@@ -444,9 +445,9 @@ The numbers above are defensible because of what is *not* in them. Each of these
 
 Under this identical standard, **Burna Boy has 280 chart entries and 48 No. 1 placements across 71 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
 
-The honest comparison: Rema's **118 entries across 53 territories** is about **42% of Burna Boy's entry count** and **75% of his territorial reach**, with **17 No. 1s against 48** — roughly a third. The gap is one of depth, not of ceiling. Rema's single best record outperforms anything in the comparison set on the Billboard Global Excl. U.S. chart, where *Calm Down* spent a week at No. 1 and 137 weeks on the chart, and his Hot 100 and UK peaks of No. 3 are both strong. But that is one song. Of his 53 territories, **50 were entered by *Calm Down***, and **29 by no other Rema release at all**; only **24** territories are reachable without it. Burna Boy's 280 entries are spread across a deep catalogue of charting albums and singles; Rema's album footprint is five entries for *HEIS* and six for *Rave & Roses*, and his non-*Calm Down* singles rarely clear the top 50 in any Western market — *Secondhand*, his second-strongest international record, peaks at #18 (Greece) and sits in the 30s–90s everywhere else. Only *Bubalu*, on a Feid co-billing, opens a region (Andean and Spanish-language markets) that *Calm Down* did not.
+The honest comparison: Rema's **119 entries across 53 territories** is about **43% of Burna Boy's entry count** and **75% of his territorial reach**, with **17 No. 1s against 48** — roughly a third. The gap is one of depth, not of ceiling. Rema's single best record outperforms anything in the comparison set on the Billboard Global Excl. U.S. chart, where *Calm Down* spent a week at No. 1 and 137 weeks on the chart, and his Hot 100 and UK peaks of No. 3 are both strong. But that is one song. Of his 53 territories, **50 were entered by *Calm Down***, and **29 by no other Rema release at all**; only **24** territories are reachable without it. Burna Boy's 280 entries are spread across a deep catalogue of charting albums and singles; Rema's album footprint is five entries for *HEIS* and six for *Rave & Roses*, and his non-*Calm Down* singles rarely clear the top 50 in any Western market — *Secondhand*, his second-strongest international record, peaks at #18 (Greece) and sits in the 30s–90s everywhere else. Only *Bubalu*, on a Feid co-billing, opens a region (Andean and Spanish-language markets) that *Calm Down* did not.
 
-Two structural caveats before anyone treats the ratio as a like-for-like career verdict. First, Rema's Nigerian line is unusually strong — 7 Nigerian No. 1 singles plus 2 No. 1 albums, from 22 Nigerian entries — but Nigerian coverage is capped by TurnTable's lack of a public archive, so that count is a floor. Second, Rema is roughly a decade behind on catalogue: 280 entries reflect far more release years, and *Calm Down* is only four years old with several of its runs still open.
+Two structural caveats before anyone treats the ratio as a like-for-like career verdict. First, Rema's Nigerian line is unusually strong — 7 Nigerian No. 1 singles plus 2 No. 1 albums, from 23 Nigerian entries — but Nigerian coverage is capped by TurnTable's lack of a public archive, so that count is a floor. Second, Rema is roughly a decade behind on catalogue: 280 entries reflect far more release years, and *Calm Down* is only four years old with several of its runs still open.
 
 ---
 
