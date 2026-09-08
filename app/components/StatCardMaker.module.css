@@ -32,7 +32,7 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .chip:hover { border-color: var(--gold); }
-.chipOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(13% * var(--wash-strength)), transparent); color: var(--gold); }
+.chipOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); color: var(--gold); }
 
 /* ── Preview beside the provenance ──────────────────────────────────────── */
 .mainPad { padding: 28px 40px 0; }

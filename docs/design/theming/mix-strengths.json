@@ -134,7 +134,7 @@
   "app/components/StatCardMaker.module.css": [
     "--gold-glow-base 25%",
     "--gold-ink 28%",
-    "--gold-wash-base 13%",
+    "--gold-wash-base 16%",
     "--scrim-base 82%"
   ],
   "app/components/appState.module.css": [
@@ -305,7 +305,7 @@
     "--gold-wash-base 10%",
     "--gold-wash-base 10%",
     "--gold-wash-base 13%",
-    "--gold-wash-base 13%",
+    "--gold-wash-base 16%",
     "--gold-wash-base 18%",
     "--gold-wash-base 40%",
     "--gold-wash-base 5%",
