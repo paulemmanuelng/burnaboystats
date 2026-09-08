@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { ogId, cardUrl } from "../../lib/og-image";
+import { OgLockup, ogFonts } from "../../lib/og-lockup";
 import {
   artistBySlug,
   afrobeatsSlugs,
@@ -63,6 +64,13 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
           position: "relative",
         }}
       >
+        {/* LOGO.md puts the lockup top-LEFT on a share card. On this one the
+            top-left corner is the kicker's, so the mark takes the facing
+            corner rather than displacing it — same 44px height, same clear
+            space, and the card's own composition is untouched. */}
+        <div style={{ position: "absolute", top: 56, right: 64, display: "flex" }}>
+          <OgLockup />
+        </div>
         <div
           style={{
             position: "absolute",
@@ -75,7 +83,10 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
           }}
         />
 
-        <div style={{ display: "flex", fontSize: 26, letterSpacing: 6, color: GOLD, textTransform: "uppercase", fontWeight: 700 }}>
+        <div style={{ display: "flex", fontSize: 26, letterSpacing: 6, color: GOLD, textTransform: "uppercase", fontWeight: 700,
+          // Capped so a long kicker wraps rather than running under the
+          // lockup in the facing corner (1072 box - 238 mark - clear space).
+          maxWidth: 780 }}>
           The Afrobeats Board {a ? `· ${a.country}` : ""}
         </div>
 
@@ -135,6 +146,6 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
         </div>
       </div>
     ),
-    { ...size }
+    { ...size, fonts: ogFonts }
   );
 }

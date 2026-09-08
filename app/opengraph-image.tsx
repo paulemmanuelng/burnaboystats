@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { OgLockup, ogFonts } from "./lib/og-lockup";
 
 // Social share preview card (shown when the link is pasted on X, WhatsApp, etc.)
 export const alt = "Burna Boy Stats — Certifications, Charts, Awards & Records";
@@ -21,6 +22,11 @@ export default function OpengraphImage() {
           fontFamily: "sans-serif",
         }}
       >
+        {/* LOGO.md: "OG images: burnaboystats-horizontal.svg top-left at 44px
+            tall, on the dark ground they already use." */}
+        <div style={{ position: "absolute", top: 46, left: 64, display: "flex" }}>
+          <OgLockup />
+        </div>
         <div style={{ display: "flex", fontSize: 140, fontWeight: 800, letterSpacing: -4 }}>
           <span>BURNA</span>
           <span style={{ color: "#ffb627", marginLeft: 28 }}>BOY</span>
@@ -33,6 +39,6 @@ export default function OpengraphImage() {
         </div>
       </div>
     ),
-    { ...size }
+    { ...size, fonts: ogFonts }
   );
 }

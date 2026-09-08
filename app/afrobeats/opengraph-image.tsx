@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { OgLockup, ogFonts } from "../lib/og-lockup";
 import { ogId } from "../lib/og-image";
 import { afrobeatsArtists, artistBySlug, certCount, AFROBEATS_VERIFIED_ON } from "../data/afrobeats";
 import { totalAwards } from "../data/certifications";
@@ -59,6 +60,13 @@ export default function Image() {
           position: "relative",
         }}
       >
+        {/* LOGO.md puts the lockup top-LEFT on a share card. On this one the
+            top-left corner is the kicker's, so the mark takes the facing
+            corner rather than displacing it — same 44px height, same clear
+            space, and the card's own composition is untouched. */}
+        <div style={{ position: "absolute", top: 44, right: 56, display: "flex" }}>
+          <OgLockup />
+        </div>
         {/* Two soft gold pools, matching the other cards on this site. Kept
             behind the faces so the portraits stay the brightest thing here. */}
         <div
@@ -176,6 +184,6 @@ export default function Image() {
         </div>
       </div>
     ),
-    size,
+    { ...size, fonts: ogFonts },
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import styles from "./primitives.module.css";
+import { ROOT_OG_IMAGE } from "../lib/og-image";
 
 /**
  * Primitives scratch page — every shared variant on one screen.
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Burna Boy Stats",
     type: "website",
     locale: "en_US",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Burna Boy Stats" }],
+    images: [{ url: ROOT_OG_IMAGE, width: 1200, height: 630, alt: "Burna Boy Stats" }],
   },
 };
 

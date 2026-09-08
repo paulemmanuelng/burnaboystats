@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SearchResults from "../components/SearchResults";
 import { SITE_NAME } from "../lib/seo";
 import { searchStats } from "../lib/searchStats";
+import { ROOT_OG_IMAGE } from "../lib/og-image";
 
 const DESCRIPTION =
   "Search Burna Boy's charts, awards, certifications, tours, cars and career records.";
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     type: "website",
     locale: "en_US",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: SITE_NAME }],
+    images: [{ url: ROOT_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary_large_image",

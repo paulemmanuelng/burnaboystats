@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { OgLockup, ogFonts } from "../../../lib/og-lockup";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ogId } from "../../../lib/og-image";
@@ -53,6 +54,13 @@ export default async function Image({ params }: { params: Promise<{ car: string 
           position: "relative",
         }}
       >
+        {/* LOGO.md puts the lockup top-LEFT on a share card. On this one the
+            top-left corner is the kicker's, so the mark takes the facing
+            corner rather than displacing it — same 44px height, same clear
+            space, and the card's own composition is untouched. */}
+        <div style={{ position: "absolute", top: 56, right: 64, display: "flex" }}>
+          <OgLockup />
+        </div>
         <div
           style={{
             position: "absolute",
@@ -103,6 +111,6 @@ export default async function Image({ params }: { params: Promise<{ car: string 
         )}
       </div>
     ),
-    { ...size }
+    { ...size, fonts: ogFonts }
   );
 }

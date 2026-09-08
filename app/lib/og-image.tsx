@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { OgLockup, ogFonts } from "./og-lockup";
 
 // Shared Open Graph card generator so every route gets a branded, on-message
 // share image (gold-on-near-black, matching the site).
@@ -22,6 +23,12 @@ export function ogImage({ kicker, title, sub }: { kicker: string; title: string;
           fontFamily: "sans-serif",
         }}
       >
+        {/* LOGO.md: "OG images: burnaboystats-horizontal.svg top-left at 44px
+            tall, on the dark ground they already use." Absolutely positioned so
+            it does not enter the centred column and shift the headline. */}
+        <div style={{ position: "absolute", top: 46, left: 90, display: "flex" }}>
+          <OgLockup />
+        </div>
         <div style={{ fontSize: 28, letterSpacing: 8, color: "#ffb627", textTransform: "uppercase" }}>
           {kicker}
         </div>
@@ -36,7 +43,7 @@ export function ogImage({ kicker, title, sub }: { kicker: string; title: string;
         </div>
       </div>
     ),
-    { ...size }
+    { ...size, fonts: ogFonts }
   );
 }
 
@@ -70,6 +77,34 @@ export function ogImage({ kicker, title, sub }: { kicker: string; title: string;
 export const cardUrl = (path: string) => `BURNABOYSTATS.COM${path.toLowerCase()}`;
 
 /**
+ * The version of the card ART, folded into every id below.
+ *
+ * An id derived only from a card's TEXT cannot express "the same words, drawn
+ * differently". The lockup is exactly that change: the copy on all thirty-seven
+ * cards is identical either side of it, so without this every preview already
+ * scraped by X, Facebook, Slack and iMessage would go on serving the logo-less
+ * image for as long as their caches live — which for some of them is forever.
+ *
+ * Bump it whenever the drawing changes and the words do not. Do NOT bump it for
+ * a data change; those move their own ids already, and re-versioning all
+ * thirty-seven cards to ship one new figure is just churn.
+ */
+export const OG_ART = "lockup-1";
+
+/**
+ * The root card's URL, for the three pages that cite it by hand.
+ *
+ * /404, /search and /primitives draw no card of their own — they name the root
+ * one, because the inherited openGraph block drops `images` the moment a page
+ * declares any field of its own (see the notes on those pages). A bare
+ * `/opengraph-image` carries no version at all, so when the art changed those
+ * three were the only surfaces on the site whose preview could never be
+ * re-scraped. The query is inert to Next, which matches the route and ignores
+ * it, and distinct to every cache that has already stored the old picture.
+ */
+export const ROOT_OG_IMAGE = `/opengraph-image?${OG_ART}`;
+
+/**
  * Cache key for a social preview card.
  *
  * Next derives the `?<hash>` on an og:image URL from the route file, not from
@@ -83,7 +118,8 @@ export const cardUrl = (path: string) => `BURNABOYSTATS.COM${path.toLowerCase()}
  */
 export function ogId(s: string) {
   let h = 5381;
-  for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+  const salted = `${OG_ART}|${s}`;
+  for (let i = 0; i < salted.length; i++) h = ((h * 33) ^ salted.charCodeAt(i)) >>> 0;
   return h.toString(36);
 }
 

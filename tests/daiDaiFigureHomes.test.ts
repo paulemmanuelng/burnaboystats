@@ -37,7 +37,9 @@ const HOMES: Home[] = [
   // cache id; the seventeen prose statements below still spell it out, and this
   // list is what holds them to the constant.
   { file: "app/data/daiDai.ts", label: "the constant", re: /export const DAI_DAI_SPOTIFY_NO1_DAYS = (\d+);/ },
-  { file: "app/dai-dai/es/opengraph-image.tsx", label: "ES share card", re: /— (\d+) días como/ },
+  // Moved out of the route on 8 Sep 2026, so the ES page's Article JSON-LD
+  // could cite the same card id and stop pointing at a bare 404.
+  { file: "app/dai-dai/es/ogId.ts", label: "ES share card", re: /— (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES page description", re: /Burna Boy: (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES story body", re: /la semanal: (\d+) días como/ },
   { file: "app/dai-dai/es/page.tsx", label: "ES hero card", re: /tras (\d+) días como/ },
