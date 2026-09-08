@@ -352,8 +352,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 69,
-            "movement": -12
+            "position": 71,
+            "movement": -14
           }
         ]
       },
@@ -480,16 +480,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 14,
-            "movement": 7
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 33,
-            "movement": -28
+            "position": 3,
+            "movement": 6
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 58,
+            "movement": -13
           }
         ]
       },
@@ -864,14 +864,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 85,
-            "movement": -8
+            "position": 88,
+            "movement": -11
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 88,
-            "movement": -23
+            "position": 94,
+            "movement": -26
           }
         ]
       },
@@ -1019,7 +1019,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 91,
-            "movement": -9
+            "movement": -7
           }
         ]
       }
@@ -1285,8 +1285,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 73,
-            "movement": 2
+            "position": 72,
+            "movement": 0
           },
           {
             "country": "BE",
@@ -1396,6 +1396,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "reason",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 169,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Holy Ghost",
     "platforms": [
       {
@@ -1454,29 +1473,22 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d9cbcfdbfb5dab6a1a37aeae7039d83c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "reason",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 169,
-            "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "MARY GO ROUND",
+    "title": "WATER SPIRIT",
     "platforms": [],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Lo lo",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "woman",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1724f66c550648b497bd7ccec64b9179/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "People",

@@ -135,16 +135,16 @@
             "movement": -23
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 71,
-            "movement": -16
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 78,
             "movement": 34
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 84,
+            "movement": -22
           },
           {
             "country": "SN",
@@ -226,7 +226,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 171,
-            "movement": -41
+            "movement": -8
           },
           {
             "country": "KE",
@@ -244,8 +244,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 186,
-            "movement": -37
+            "position": 181,
+            "movement": -23
           }
         ]
       },
@@ -257,6 +257,19 @@
             "country": "GH",
             "name": "Ghana",
             "position": 2,
+            "movement": -1
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 8,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 182,
             "movement": null,
             "status": "new"
           }
@@ -324,7 +337,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 9,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -372,7 +385,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 25,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -449,7 +462,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 8,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -485,8 +498,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 8,
-            "movement": 35
+            "position": 15,
+            "movement": 31
           }
         ]
       },
@@ -765,14 +778,46 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 37,
-            "movement": -28
+            "position": 42,
+            "movement": -29
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Lord I'm Amazed",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 179,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 4,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jesus Christ 2",
@@ -827,8 +872,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 160,
-            "movement": -24
+            "position": 166,
+            "movement": -26
           }
         ]
       }
@@ -1139,25 +1184,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Lord I'm Amazed",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 179,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Toxic Love City",

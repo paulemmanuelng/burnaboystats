@@ -153,8 +153,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 82,
-            "movement": -23
+            "position": 88,
+            "movement": -26
           }
         ]
       },
@@ -257,19 +257,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 148,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -365,8 +352,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": -2
+            "position": 113,
+            "movement": -4
           }
         ]
       }
@@ -384,8 +371,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 99,
-            "movement": -7
+            "position": 100,
+            "movement": -8
           }
         ]
       }
@@ -480,7 +467,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
+            "position": 123,
             "movement": null,
             "status": "new"
           }
@@ -489,25 +476,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/86af91b1d3aa36ef681c91cfbefc7702/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Zion",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 166,
-            "movement": -114
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4183e7168bf3cccfd336e9822624ce7c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Unruly",
@@ -557,8 +525,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 101,
-            "movement": -1
+            "position": 106,
+            "movement": -3
           }
         ]
       }
@@ -576,8 +544,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 145,
-            "movement": 1
+            "position": 150,
+            "movement": -1
           }
         ]
       }

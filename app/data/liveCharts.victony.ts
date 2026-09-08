@@ -277,12 +277,6 @@
             "name": "Dominican Republic",
             "position": 194,
             "movement": 4
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 199,
-            "movement": -4
           }
         ]
       },
@@ -459,9 +453,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 4,
+            "country": "PT",
+            "name": "Portugal",
+            "position": 20,
             "movement": null,
             "status": "new"
           },
@@ -469,25 +463,18 @@
             "country": "MU",
             "name": "Mauritius",
             "position": 22,
-            "movement": -15
+            "movement": -14
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 74,
-            "movement": -13
+            "movement": -11
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 88,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 111,
+            "country": "CO",
+            "name": "Colombia",
+            "position": 95,
             "movement": null,
             "status": "new"
           }
@@ -735,14 +722,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 114,
-            "movement": -6
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 120,
-            "movement": 4
+            "position": 109,
+            "movement": 11
           },
           {
             "country": "ML",
@@ -756,6 +737,12 @@
             "position": 123,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 124,
+            "movement": -19
           },
           {
             "country": "AE",
@@ -1453,25 +1440,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Babylon",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 175,
-            "movement": -115
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2d663b939236f5b42b169e75ec16fc14/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Skido",
