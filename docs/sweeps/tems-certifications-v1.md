@@ -29,7 +29,7 @@
 ### Featured appearances — 40
 | song | certifications |
 |---|---|
-| Raindance (Dave ft. Tems) | 🇬🇧 2× Platinum ✓ (07.08.2026) · 🇵🇹 2× Platina ✓ · 🇧🇷 2× Platinum ✓ · 🇬🇷 2× Platinum ✓ (Jul 2026) · 🇫🇷 Platine ✓ (14.05.2026) · 🇨🇦 Platinum ✓ · 🇧🇪 Platinum ✓ (13.04.2026) · 🇳🇱 Platinum ✓ · 🇳🇿 2× Platinum ✓ (27.08.2026) · 🇦🇺 Platinum ✓ (Mar 2026) · 🇩🇰 Guld ✓ · 🇮🇹 Gold ✓ · 🇳🇬 Gold ✓ · 🇵🇱 Gold ✓ (05.08.2026) — **14** |
+| Raindance (Dave ft. Tems) | 🇬🇧 2× Platinum ✓ (07.08.2026) · 🇵🇹 3× Platina ✓ (Semana 35 de 2026) · 🇧🇷 2× Platinum ✓ · 🇬🇷 2× Platinum ✓ (Jul 2026) · 🇫🇷 Platine ✓ (14.05.2026) · 🇨🇦 Platinum ✓ · 🇧🇪 Platinum ✓ (13.04.2026) · 🇳🇱 Platinum ✓ · 🇳🇿 2× Platinum ✓ (27.08.2026) · 🇦🇺 Platinum ✓ (Mar 2026) · 🇩🇰 Platin ✓ (07.07.2026) · 🇮🇹 Gold ✓ · 🇳🇬 Gold ✓ · 🇵🇱 Gold ✓ (05.08.2026) — **14** |
 | Wait For U (Future ft. Drake & Tems) | 🇺🇸 **Diamond** (11× Platinum) ✓ (16.07.2026) · 🇳🇿 4× Platinum ✓ · 🇬🇧 2× Platinum ✓ · 🇨🇦 2× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇦🇺 2× Platinum ✓ (03.03.2023) · 🇵🇹 2× Platina ✓ (*new*) · 🇩🇰 Platin ✓ · 🇫🇷 Or ✓ (27.06.2024) · 🇦🇹 Gold ✓ · 🇮🇹 Gold ✓ · 🇪🇸 Gold ✓ · 🇵🇱 Gold ✓ — **13** |
 | Essence (Wizkid ft. Tems) | 🇺🇸 5× Platinum ✓ (02.06.2025) · 🇨🇦 3× Platinum ✓ · 🇳🇿 3× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇿🇦 Multi-Platinum ✓ · 🇬🇧 Platinum ✓ · 🇨🇭 Platinum ✓ · 🇫🇷 Or ✓ — **8** |
 | Fountains (Drake ft. Tems) | 🇳🇿 Gold ✓ · 🇦🇺 Gold ✓ (2024) · 🇵🇹 Ouro ✓ (AFP award card, March 2026) · 🇬🇧 Silver ✓ — **4** |
@@ -97,7 +97,7 @@ date stamped across that whole weekly batch.
 
 | release | Portugal 2026 ladder | announcements | plaques |
 |---|---|---|---|
-| Raindance | **OU** wk 13 (Feb) → **PL** wk 18 (Mar) → **2PL** wk 29 (May) | 3 | 1 |
+| Raindance | **OU** wk 13 (Feb) → **PL** wk 18 (Mar) → **2PL** wk 29 (May) → **3PL** wk 35 (Aug) | 4 | 1 |
 | Me & U | **OU** wk 106 (Jan) → **PL** wk 118 (Apr) | 2 | 1 |
 | Wait For U | **2PL** from wk 148 (Jan) | 1 (in window) | 1 |
 
@@ -155,7 +155,7 @@ Every United States tier in this file was re-confirmed at source in one pass —
 | ARIA (Australia) | **swept ✓** — *upgraded from "not verifiable"* | 3 — the 404 was a dead path, not a dead register. Live accreditation set is 68 PDFs (1990–Jul 2026) in ARIA's own Dropbox folder linked from aria.com.au/accreditations. Wait For U 2×P (P 24.08.2022 → 2×P 03.03.2023), Fountains Gold (2024), **Raindance Platinum (Mar 2026, in no secondary source)**. Period snapshots, so event counts are a floor. |
 | ZPAV (Poland) | **swept ✓** — *upgraded from "not verifiable"* | 2 — bestsellery.zpav.pl is retired, not geo-blocked; the register moved to **olis.pl** ("Oficjalna Lista Wyróżnień"), searchable by artist *and* title, with a dated row per tier step. Wait For U Gold, Raindance Gold (05.08.2026, ten days old at sweep time). |
 | IFPI Greece | **swept ✓** — *upgraded from "not verifiable"* | 1 — no archive exists, but certifications are published as an unlabelled **Award column inside the weekly Digital Singles (International) chart** (G/P/2P/3P/D). Reconstructed from 512 Wayback captures + the live page. Raindance 2×P, ladder fully visible. **The Award column only exists from 2021, and albums are never certified in this register.** |
-| IFPI Danmark | **swept ✓** | 2 — Wait For U Platin, Raindance Guld. Step-publishing register; step counts not extracted. |
+| IFPI Danmark | **swept ✓** | 2 — Wait For U Platin (24.09.2025), Raindance Platin (07.07.2026). Register publishes each tier step as its own dated row, so a title's current tier is its newest row, not its first. |
 | IFPI Switzerland | **swept ✓** (swisscharts mirror; hitparade.ch Cloudflare-blocks) | 2 — Essence Platinum, Me & U Gold. Full 2020–2026 year listings read. |
 | IFPI Austria | **swept ✓** | 1 — Wait For U Gold. |
 | FIMI (Italy) | **swept ✓** (POST endpoint, both formats × 7 years, 322 title queries) | 2 — Wait For U Gold, Raindance Gold. Both absent from Wikipedia's Tems page. |

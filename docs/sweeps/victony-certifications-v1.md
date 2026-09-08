@@ -49,7 +49,7 @@ TurnTable's live register serves a hard cap of 500 rows and **no Silver at all**
 
 ## Proven zeros vs gaps
 
-**Proven zeros** — read in full, holding nothing: 🇨🇦 Music Canada · 🇫🇷 SNEP · 🇧🇪 BEA · 🇳🇱 NVPI · 🇩🇪 BVMI · 🇦🇹 IFPI Austria · 🇨🇭 IFPI Switzerland · 🇩🇰 IFPI Danmark · 🇳🇴 IFPI Norge · 🇮🇹 FIMI · 🇦🇺 ARIA · 🇳🇿 Recorded Music NZ · 🇿🇦 RiSA · 🇸🇪 IFPI Sverige
+**Proven zeros** — read in full, holding nothing: 🇨🇦 Music Canada · 🇧🇪 BEA · 🇳🇱 NVPI · 🇩🇪 BVMI · 🇦🇹 IFPI Austria · 🇨🇭 IFPI Switzerland · 🇩🇰 IFPI Danmark · 🇳🇴 IFPI Norge · 🇮🇹 FIMI · 🇦🇺 ARIA · 🇳🇿 Recorded Music NZ · 🇿🇦 RiSA · 🇸🇪 IFPI Sverige
 
 **Correction, 28 Aug 2026 — Portugal was wrongly listed as a proven zero.** The
 21 Aug sweep read AFP/Audiogest's weekly TOP register in full and found nothing,
