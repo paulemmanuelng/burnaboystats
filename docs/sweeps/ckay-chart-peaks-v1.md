@@ -12,29 +12,31 @@ charts are recorded separately as GLB and GLBX, not as countries.
 - **15 countries**, plus the US, Canada and both Billboard global charts — **19 chart territories**
 - **5 No. 1 placements** across **5 countries**
 
-## Singles — 21
+## Singles — 25
 
 | release | chart peaks by country | |
 |---|---|---|
 | love nwantiti (ah ah ah) | 🇨🇭 #1 · 🇫🇷 #1 · 🇳🇱 #1 · 🇳🇴 #1 · 🌐 GLBX #2 · 🇳🇿 #2 · 🇬🇧 #3 · 🇦🇹 #4 · 🇸🇪 #4 · 🇩🇪 #6 · 🇩🇰 #6 · 🇦🇺 #8 · 🇧🇪 #8 · 🇮🇹 #20 · 🇪🇸 #46 | **15** |
 | BODY (danz) | 🇳🇬 #1 | **1** |
+| AFRICAN GIRLS | 🇳🇬 #20 | **1** |
 | BADAMINTON | 🇳🇬 #11 | **1** |
 | E CLEAR | 🇳🇬 #16 | **1** |
 | Emiliana | 🇸🇪 #90 | **1** |
 
 **Singles subtotal: 18 + 1 + 2 = 21**
 
-## Albums — 7
+## Albums — 8
 
 | release | chart peaks by country | |
 |---|---|---|
 | CKay The First | 🇳🇱 #12 · 🇩🇰 #24 · 🇫🇷 #35 | **3** |
 | Boyfriend | 🇫🇷 #60 | **1** |
 | Sad Romance | 🇫🇷 #88 | **1** |
+| BANGER BOY | 🇳🇬 #62 | **1** |
 
-**Albums subtotal: 5 + 1 + 1 = 7**
+**Albums subtotal: 5 + 1 + 1 + 1 = 8**
 
-**Total: 24 + 7 = 31 chart entries.**
+**Total: 25 + 8 = 33 chart entries.**
 
 > **+1 on 27 Aug 2026 — 🇵🇹 Portugal, and it is a No. 1.** Found while verifying every
 > Portuguese certification on the board against AFP's own register. *love nwantiti*

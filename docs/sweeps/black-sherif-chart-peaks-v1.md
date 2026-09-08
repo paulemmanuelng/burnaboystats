@@ -9,7 +9,7 @@ Shazam, YouTube, Audiomack, Boomplay); **genre and component charts** (Billboard
 U.S. Afrobeats Songs, Streaming Songs, Radio Songs); extension charts below a
 main chart; year-end, mid-week and recurrent charts.
 
-## Total: 22 singles + 0 albums = 22 chart entries
+## Total: 22 singles + 2 albums = 24 chart entries
 
 **1 No. 1**, all in Nigeria. **1 territory.**
 

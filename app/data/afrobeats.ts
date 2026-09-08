@@ -359,7 +359,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     image: "https://i.scdn.co/image/ab6761610000e5eb317c2d84e6d0155cdb1ecd49",
     verifiedOn: AFROBEATS_VERIFIED_ON_6,
     swept: true,
-    chartPublished: { entries: 22, territories: 1, no1s: 1 },
+    chartPublished: { entries: 24, territories: 1, no1s: 1 },
     releases: [
       { title: "Wotowoto Seasoning", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8cbdf2202137ed965826a417dd88e821/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Kwaku The Traveller", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
@@ -409,6 +409,8 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "SWAGGA", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/8652533854fa49e3c364a77c4e2ae9b5/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 88 }] },
       { title: "The Homeless Song", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 88 }] },
       { title: "Oil In My Head", kind: "Singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/73/16/88/73168899-de60-6429-b70b-6de58aefe55e/194690942938_cover.jpg/300x300bb.jpg", entries: [{ c: "NG", peak: 95 }] },
+      { title: "IRON BOY", kind: "Albums", entries: [{ c: "NG", peak: 3 }] },
+      { title: "The Villain I Never Was", kind: "Albums", entries: [{ c: "NG", peak: 6 }] },
     ],
   },
   {
@@ -423,7 +425,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     image: "https://i.scdn.co/image/ab6761610000e5eb54047830689ea245d14a390f",
     verifiedOn: AFROBEATS_VERIFIED_ON_6,
     swept: true,
-    chartPublished: { entries: 103, territories: 7, no1s: 7 },
+    chartPublished: { entries: 104, territories: 7, no1s: 7 },
     releases: [
       { title: "Gwagwalada", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 5 }] },
       { title: "Alone", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/1fe91c5c64c50b4f4a901d248114d99d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }] },
@@ -589,6 +591,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Sincerely, Benson", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "RnB", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
       { title: "The Game Needs Us - EP", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }] },
+      { title: "Bad Since '97", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 14 }] },
     ],
   },
   {
@@ -1912,7 +1915,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     image: "https://i.scdn.co/image/ab6761610000e5ebff101c2e561cfcff3f6195aa",
     verifiedOn: AFROBEATS_VERIFIED_ON_4,
     swept: true,
-    chartPublished: { entries: 31, territories: 20, no1s: 6 },
+    chartPublished: { entries: 33, territories: 20, no1s: 6 },
     releases: [
       { title: "love nwantiti (ah ah ah)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "US", level: "Platinum", x: 8 }, { c: "PT", level: "Platinum", x: 6 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PL", level: "Platinum", x: 4 }, { c: "NL", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "IT", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "NG", level: "Gold" }] },
       { title: "Emiliana", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "UK", level: "Silver" }] },
@@ -1931,9 +1934,11 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Emiliana", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg", entries: [{ c: "SE", peak: 90 }, { c: "GLB", peak: 176 }, ] },
       { title: "BADAMINTON", kind: "Singles", entries: [{ c: "NG", peak: 11 }] },
       { title: "E CLEAR", kind: "Singles", entries: [{ c: "NG", peak: 16 }] },
+      { title: "AFRICAN GIRLS", kind: "Singles", entries: [{ c: "NG", peak: 20 }] },
       { title: "CKay The First", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg", entries: [{ c: "NL", peak: 12 }, { c: "DK", peak: 24 }, { c: "FR", peak: 35 }, { c: "US", peak: 117 }, { c: "CA", peak: 20 }, ] },
       { title: "Boyfriend", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg", entries: [{ c: "FR", peak: 60 }] },
       { title: "Sad Romance", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg", entries: [{ c: "FR", peak: 88 }] },
+      { title: "BANGER BOY", kind: "Albums", entries: [{ c: "NG", peak: 62 }] },
     ],
   },
 ];
