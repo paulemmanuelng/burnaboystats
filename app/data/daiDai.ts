@@ -98,6 +98,41 @@ export const daiDaiSpotifyDaysOnChart =
 export const DAI_DAI_SPOTIFY_NO1_DAYS = 37;
 export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-08-28";
 
+/**
+ * The day the Spotify Global Daily figures on the song pages were last read.
+ *
+ * The streak and the days-at-No. 1 total carry their own anchors, and both
+ * currently point at the same 28 Aug chart. This takes the OLDER of the two, so
+ * a sentence quoting it can never date a figure fresher than its own anchor: if
+ * one moves and the other does not, the prose falls back to the day both were
+ * still established, and liveClaims.test.ts says so out loud.
+ */
+export const DAI_DAI_SPOTIFY_READ_ON: string =
+  DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF < DAI_DAI_SPOTIFY_CONFIRMED_THROUGH
+    ? DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF
+    : DAI_DAI_SPOTIFY_CONFIRMED_THROUGH;
+
+const longDate = (iso: string, locale: "en-GB" | "es-ES") =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
+/**
+ * "28 August 2026" and "28 de agosto de 2026" — one spelling per edition, both
+ * derived from the anchor above, exactly as BURNA_PEAK_LISTENERS_SET_ON_LONG is
+ * in africasBiggest.ts.
+ *
+ * A figure this project cannot re-read has to publish the day it WAS read, and
+ * the date is the one part of that sentence that would go stale silently: typed
+ * into four sentences in two languages, it would be the last thing on the page
+ * still saying 28 August after the anchor moved.
+ */
+export const DAI_DAI_SPOTIFY_READ_ON_LONG = longDate(DAI_DAI_SPOTIFY_READ_ON, "en-GB");
+export const DAI_DAI_SPOTIFY_READ_ON_LONG_ES = longDate(DAI_DAI_SPOTIFY_READ_ON, "es-ES");
+
 // ---------------------------------------------------------------------------
 // The YouTube Global Daily Top Music Videos run, on the same footing and for
 // the same reason.

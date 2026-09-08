@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { cardinalWord, ordinalWord } from "../app/lib/plural";
 import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
 import { daiDaiCertCount } from "../app/data/certifications";
-import { daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH } from "../app/data/daiDai";
+import { daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_READ_ON_LONG, DAI_DAI_SPOTIFY_READ_ON_LONG_ES } from "../app/data/daiDai";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -75,6 +75,12 @@ const DERIVED: Record<string, number | string | null> = {
   daiDaiSpotifyDaysOnChart,
   daiDaiSpotifyStraightDays,
   daiDaiYouTubeDaysAtNo1,
+  // Not a figure but a date: the day the Spotify Global Daily run was last
+  // read, which both cards now name instead of calling the run live. One
+  // spelling per edition, both off the same anchor — so the digit comparison
+  // below sees the same 28 and 2026 on each side, as it should.
+  DAI_DAI_SPOTIFY_READ_ON_LONG,
+  DAI_DAI_SPOTIFY_READ_ON_LONG_ES,
 };
 // Two interpolation shapes appear in the cards: a bare `${weeksDE}`, and a
 // `${ordinalWord(weeksGLB, "es")}` where the Spanish edition needs the word
