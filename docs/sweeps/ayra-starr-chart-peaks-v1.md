@@ -14,7 +14,7 @@
 > peak to date, not a closed run: the album released 14 August 2026 and could
 > still climb. Territories stay at 30, since France was already counted.
 
-- **79 chart entries** (title × country pairs)
+- **82 chart entries** (title × country pairs)
 - **28 countries**, plus the two Billboard Global charts — **30 chart territories**
 - **10 No. 1 placements** across **5 countries**
 - **Major markets:** 🇺🇸 US — **no Hot 100 entry ever**; her only US placement is *The Year I Turned 21* at **No. 195** on the Billboard 200. 🇬🇧 UK — **No. 24** (*Rush*, Official Singles Chart). 🌐 Billboard Global 200 — **No. 24** (*Santa*); Global 200 Excl. US — **No. 14** (*Santa*), her best placement on any Billboard chart.
@@ -31,7 +31,11 @@ The shape of the career is unmistakable in the data: **28 of 78 entries (36%) ar
 | Santa (Rvssian, Rauw Alejandro & Ayra Starr) | 🇪🇸 #1 · 🇵🇪 #1 · 🇧🇴 #1 · 🇨🇴 #2 · 🇪🇨 #2 · 🇵🇦 #5 · 🇨🇱 #7 · 🇦🇷 #11 · 🌐 GLBX #14 · 🇲🇽 #15 · 🌐 GLB #24 · 🇨🇭 #38 · 🇮🇹 #46 · 🇵🇹 #50 | **14** |
 | My Love (Leigh-Anne ft. Ayra Starr) | 🇸🇷 #5 · 🇬🇧 #28 · 🇳🇬 #64 | **3** |
 | 2 Sugar (Wizkid ft. Ayra Starr) | 🇳🇬 #5 · 🇬🇧 #70 · 🇿🇦 #70 | **3** |
-| Gimme Dat (Ayra Starr & Wizkid) | 🇳🇬 #3 · 🇸🇷 #6 · 🇬🇧 #89 | **3** |
+| Gimme Dat (Ayra Starr & Wizkid) | 🇳🇬 #3 · 🇸🇷 #6 | **2** |
+| Heaven Baby | 🇳🇬 #2 | **1** |
+| Dangerous | 🇳🇬 #31 | **1** |
+| Treasure | 🇳🇬 #38 | **1** |
+| Ms. Paper (Ayra Starr ft. Theodora) | 🇳🇬 #66 | **1** |
 | Bloody Samaritan | 🇳🇬 #1 · 🇸🇷 #34 | **2** |
 | Sability | 🇳🇬 #1 · 🇸🇷 #6 | **2** |
 | Commas | 🇳🇬 #2 · 🇳🇱 #83 | **2** |
@@ -60,7 +64,7 @@ The shape of the career is unmistakable in the data: **28 of 78 entries (36%) ar
 | Aye Kan (Angélique Kidjo ft. Ayra Starr) | 🇳🇬 #33 | **1** |
 | Show Me (with Latto) | 🇳🇬 #54 † | **1** |
 
-**Singles subtotal:** 16 + 14 + (3 × 3) + (2 × 6) + (1 × 21) = 16 + 14 + 9 + 12 + 21 = **72**
+**Singles subtotal:** 16 + 14 + (3 × 2) + (2 × 7) + (1 × 25) = 16 + 14 + 6 + 14 + 25 = **75**
 
 ### Albums — 7
 
@@ -72,9 +76,9 @@ The shape of the career is unmistakable in the data: **28 of 78 entries (36%) ar
 
 **Albums subtotal:** 1 + 5 + 1 = **7**
 
-**Total: 72 + 7 = 79 chart entries.**
+**Total: 75 + 7 = 82 chart entries.**
 
-Distribution check — the 79 entries fall in 28 countries plus the 2 supranational Billboard Global charts: 🇳🇬 28, 🇸🇷 9, 🇬🇧 5, 🇫🇷 5, then six territories with 2 each (🌐 GLB, 🌐 GLBX, 🇨🇦, 🇨🇭, 🇳🇱, 🇿🇦), then 20 with 1 each (🇱🇧 🇱🇺 🇧🇪 🇭🇺 🇮🇪 🇸🇪 🇪🇸 🇵🇪 🇧🇴 🇨🇴 🇪🇨 🇵🇦 🇨🇱 🇦🇷 🇲🇽 🇮🇹 🇵🇹 🇲🇹 🇷🇺 🇺🇸). Sum: 28 + 9 + 5 + 5 + (6 × 2) + 20 = **79** ✓. No country appears twice for the same title.
+Distribution check — the 82 entries fall in 28 countries plus the 2 supranational Billboard Global charts: 🇳🇬 32, 🇸🇷 9, 🇬🇧 4, 🇫🇷 5, then six territories with 2 each (🌐 GLB, 🌐 GLBX, 🇨🇦, 🇨🇭, 🇳🇱, 🇿🇦), then 20 with 1 each (🇱🇧 🇱🇺 🇧🇪 🇭🇺 🇮🇪 🇸🇪 🇪🇸 🇵🇪 🇧🇴 🇨🇴 🇪🇨 🇵🇦 🇨🇱 🇦🇷 🇲🇽 🇮🇹 🇵🇹 🇲🇹 🇷🇺 🇺🇸). Sum: 28 + 9 + 5 + 5 + (6 × 2) + 20 = **79** ✓. No country appears twice for the same title.
 
 ### No. 1 placements
 
@@ -450,7 +454,7 @@ This section is what makes the 78 defensible. Every peak below is real; none of 
 
 Under this identical standard, **Burna Boy has 280 chart entries and 48 No. 1 placements across 71 chart countries** ([burnaboystats.com](https://burnaboystats.com)).
 
-The honest comparison: Ayra Starr's **78 entries across 30 chart territories** is a little over **a quarter of Burna Boy's entry count (28%) and 39% of his chart-country reach** — and the gap in No. 1s is wider still, 10 to 48. But the two lines are not measuring the same thing. Burna Boy's 280 is built on a fifteen-year catalogue with more than a dozen records that charted in ten-plus countries each; Ayra Starr debuted in 2021, and her entire international footprint outside Nigeria rests on **two songs**. Strip *Rush* and *Santa* out and the 50 non-Nigerian entries become 21.
+The honest comparison: Ayra Starr's **82 entries across 30 chart territories** is a little over **a quarter of Burna Boy's entry count (28%) and 39% of his chart-country reach** — and the gap in No. 1s is wider still, 10 to 48. But the two lines are not measuring the same thing. Burna Boy's 280 is built on a fifteen-year catalogue with more than a dozen records that charted in ten-plus countries each; Ayra Starr debuted in 2021, and her entire international footprint outside Nigeria rests on **two songs**. Strip *Rush* and *Santa* out and the 50 non-Nigerian entries become 21.
 
 Where she is genuinely ahead of where he was at the same career stage is **chart reach in Latin America**: a Spanish No. 1, a Peruvian No. 1 held for six weeks, a Bolivian No. 1, plus No. 2 in Colombia and Ecuador and No. 5 in Panama — all from a single guest-billed record, in a market Burna Boy has never topped. *Santa* alone is her widest-charting release outside Nigeria, at 14 territories to *Rush*'s 15 including the Nigerian row. Where she is behind is the US and the UK, and the gap there is stark rather than marginal: **no Hot 100 entry has ever existed**, and her best UK peak (24) and best Billboard Global peak (14, on a featured credit) are both well short of a headline placement. Her Nigerian record remains the strongest part of the line by some distance — 26 charting singles, 2 charting albums and 6 No. 1 placements at home — and the international catalogue has not yet caught up to it.
 
@@ -469,3 +473,24 @@ The two sweeps disagreed because they were looking at different things. `tonlist
 - ***Water*** (Tyla) 🇮🇸 **#14 remains unproven** and keeps its marker. Only 8 weekly captures survive for 2024 and none covers the week the peak would fall in. Absence from those eight is not disproof — the figure is neither confirmed nor refuted, and is left flagged rather than promoted or deleted.
 
 **A correction worth recording:** the year-end lists are *not* peaks. The 2016 year-end Top 100 places "One Dance" at #18 credited to "Drake" alone, which is the likeliest origin of a claimed Icelandic peak of 18 for that record. A year-end ranking and a weekly peak are different measurements, and only the weekly one satisfies this file's standard.
+
+---
+
+## Held back from the 6 Sep sweep — three rows, deliberately not published
+
+Three further Nigerian peaks were swept and adjudicated as standing: **Amazing
+🇳🇬 #70, Misunderstood 🇳🇬 #86, Midnight in New York 🇳🇬 #95**. They are NOT in the
+82 above, and that is a decision rather than an oversight.
+
+All three rest on a **single Wayback capture of one week-34 TurnTable payload**.
+TurnTable publishes no archive, so there is no second read to be had, and the
+adjudicator's defence — that the same capture reproduces six already-published
+values — is a check on the capture, not on these three rows. This repo's rule is
+that a figure is confirmed at the body and that an unreadable register means
+omit, never publish-with-caveat; one unrepeatable capture is the case that rule
+was written for.
+
+Nothing in the test suite could have caught this either way: `chartPublished`
+equality verifies arithmetic, not provenance, and would have passed at 85 whether
+the three rows were right or wrong. Re-read them from a live payload in a later
+sweep, and add them then.

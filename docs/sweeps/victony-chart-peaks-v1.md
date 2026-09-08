@@ -4,11 +4,13 @@
 
 ## Headline
 
-- **40 chart entries** across **6 territories**
+- **51 chart entries** across **6 territories**
 - **1 No. 1 placement**
-- **32 charting singles, 2 charting projects**
+- **42 charting singles, 3 charting projects** (title counts; they carry 48 and 3 entries respectively)
 
-**Total: 32 + 2 = 40 chart entries.**
+**Total: 48 + 3 = 51 chart entries** across 6 territories — 🇳🇬 45 · 🇬🇧 2 · 🇨🇭 1 · 🇳🇱 1 · 🇨🇦 1 · 🌐 GLBX 1.
+
+*(The line this replaces read "32 + 2 = 40", summing title counts and labelling the result entries. Both figures are now derived from the data.)*
 
 ## Every placing
 

@@ -426,7 +426,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Wizkid — Chart History",
     path: "/afrobeats/wizkid/charts",
     section: "Afrobeats",
-    description: "Every Wizkid official chart entry and peak — 153 entries and 24 No. 1 placements, country by country.",
+    description: "Every Wizkid official chart entry and peak — 154 entries and 24 No. 1 placements, country by country.",
     keywords: ["wizkid", "wizzy", "star boy", "wizkid charts", "wizkid chart history", "wizkid chart peaks", "wizkid number ones"],
   },
   {
@@ -496,14 +496,14 @@ export const searchIndex: SearchDoc[] = [
     title: "Ayra Starr — Chart History",
     path: "/afrobeats/ayra-starr/charts",
     section: "Afrobeats",
-    description: "Every Ayra Starr official chart entry and peak — 79 entries and 10 No. 1 placements, country by country.",
+    description: "Every Ayra Starr official chart entry and peak — 82 entries and 10 No. 1 placements, country by country.",
     keywords: ["ayra starr", "rush", "sability", "ayra starr charts", "ayra starr chart history", "ayra starr chart peaks", "ayra starr number ones"],
   },
   {
     title: "Asake",
     path: "/afrobeats/asake",
     section: "Afrobeats",
-    description: "Asake's 80 certifications across 4 countries and 127 official chart entries, verified at source.",
+    description: "Asake's 80 certifications across 4 countries and 131 official chart entries, verified at source.",
     keywords: ["asake", "ahmed ololade", "mr money", "lonely at the top", "asake certifications"],
   },
   {
@@ -566,7 +566,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Asake — Chart History",
     path: "/afrobeats/asake/charts",
     section: "Afrobeats",
-    description: "Every Asake official chart entry and peak — 127 entries and 24 No. 1 placements, country by country.",
+    description: "Every Asake official chart entry and peak — 131 entries and 24 No. 1 placements, country by country.",
     keywords: ["asake", "ahmed ololade", "mr money", "asake charts", "asake chart history", "asake number ones"],
   },
   {
@@ -692,7 +692,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Victony — Certifications & Chart Records",
     path: "/afrobeats/victony",
     section: "Afrobeats",
-    description: "Victony's 24 certifications across 6 countries and 40 official chart entries, verified at source.",
+    description: "Victony's 24 certifications across 6 countries and 51 official chart entries, verified at source.",
     keywords: ["victony", "anthony victor", "outlaw", "stubborn", "soweto", "victony certifications"],
   },
   {

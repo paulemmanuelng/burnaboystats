@@ -12,7 +12,7 @@ Global-chart shorthand in the tables: 🌐 = Billboard Global 200, 🌍 = Billbo
 
 | | |
 |---|---|
-| **Total chart entries** (title × country pairs) | **154** |
+| **Total chart entries** (title × country pairs) | **155** |
 | **Distinct chart countries** | **32** (30 national charts + Billboard Global 200 and Global 200 Excl. US) |
 | **No. 1 placements** | **24** |
 | **Best US peak** | **No. 1** — "One Dance" (Drake feat. Wizkid & Kyla), Billboard Hot 100, 36 weeks |
@@ -21,7 +21,7 @@ Global-chart shorthand in the tables: 🌐 = Billboard Global 200, 🌍 = Billbo
 | Best *lead-credit* US peak | No. 9 — "Essence", Billboard Hot 100, 35 weeks |
 | Best US album peak | No. 28 — *Made in Lagos*, Billboard 200 |
 
-Split: **118 singles entries** across 36 titles, **36 albums entries** across 6 titles. 118 + 36 = **154**.
+Split: **118 singles entries** across 37 titles, **37 albums entries** across 6 titles. 118 + 37 = **155**.
 
 ---
 
@@ -43,7 +43,8 @@ Split: **118 singles entries** across 36 titles, **36 albums entries** across 6 
 | Piece of My Heart *(feat. Brent Faiyaz)* | 🇳🇬 #1 · 🇸🇷 #8 · 🇬🇧 #61 | **3** |
 | 2 Sugar *(feat. Ayra Starr)* | 🇳🇬 #5 · 🇬🇧 #70 · 🇿🇦 #70 | **3** |
 | Coca Body *(Frenna feat. Odeal & Wizkid)* | 🇸🇷 #19 · 🇳🇬 #22 · 🇳🇱 #80 | **3** |
-| Gimme Dat *(Ayra Starr feat. Wizkid)* | 🇳🇬 #3 · 🇸🇷 #6 · 🇬🇧 #89 | **3** |
+| Gimme Dat *(Ayra Starr feat. Wizkid)* | 🇳🇬 #3 · 🇸🇷 #6 | **2** |
+| Oshe *(Wande Coal & Wizkid)* | 🇳🇬 #14 | **1** |
 | Link Up *(Metro Boomin, Don Toliver & Wizkid feat. BEAM & Toian)* | 🇨🇦 #69 · 🌐 #167 | **2** |
 | Mamacita *(Tinie Tempah feat. Wizkid)* | 🇬🇧 #45 · 🇮🇪 #71 | **2** |
 | Ginger *(feat. Burna Boy)* | 🇳🇬 #1 · 🇬🇧 #67 | **2** |
@@ -66,24 +67,24 @@ Split: **118 singles entries** across 36 titles, **36 albums entries** across 6 
 | Alive *(Jorja Smith feat. Wizkid)* | 🇳🇬 #14 | **1** |
 | Man on a Mission *(Chris Brown feat. Wizkid)* | 🇳🇬 #29 | **1** |
 
-**Singles subtotal:** 25 + 12 + 8 + 6 + 4 + 4 + 4 + 4 + 4 + 4 + 3 + 3 + 3 + 3 + 3 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = **118**
+**Singles subtotal:** 25 + 12 + 8 + 6 + 4 + 4 + 4 + 4 + 4 + 4 + 3 + 3 + 3 + 3 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = **118**
 
 *(25 + 12 + 8 + 6 = 51; six rows of 4 = 24 → 75; five rows of 3 = 15 → 90; seven rows of 2 = 14 → 104; fourteen rows of 1 = 14 → **118**. 36 titles in all.)*
 
-### Albums — 36
+### Albums — 37
 
 | Title | Chart peaks by country (best first) | Count |
 |---|---|---|
 | Morayo *(2024)* | 🇳🇬 #1 · 🇬🇧 #14 · 🇨🇭 #35 · 🇨🇦 #48 · 🇮🇪 #50 · 🇫🇷 #84 · 🇳🇱 #87 · 🇺🇸 #98 · 🇧🇪 #148 · 🇵🇹 #181 | **10** |
 | Made in Lagos *(2020)* | 🇬🇧 #15 · 🇳🇬 #17 · 🇺🇸 #28 · 🇳🇱 #33 · 🇮🇪 #42 · 🇨🇦 #45 · 🇫🇷 #60 · 🇧🇪 #69 · 🇨🇭 #73 | **9** |
 | More Love, Less Ego *(2022)* | 🇳🇬 #1 · 🇬🇧 #16 · 🇳🇱 #30 · 🇨🇦 #45 · 🇨🇭 #54 · 🇺🇸 #59 · 🇧🇪 #91 · 🇮🇪 #100 · 🇫🇷 #135 | **9** |
-| Sounds from the Other Side *(2017)* | 🇨🇦 #58 · 🇬🇧 #91 · 🇳🇱 #99 · 🇺🇸 #107 · 🇫🇷 #140 · 🇧🇪 #152 | **6** |
+| Sounds from the Other Side *(2017)* | 🇳🇬 #76 · 🇨🇦 #58 · 🇬🇧 #91 · 🇳🇱 #99 · 🇺🇸 #107 · 🇫🇷 #140 · 🇧🇪 #152 | **7** |
 | REAL, Vol. 1 – EP *(Wizkid & Asake)* | 🇳🇬 #1 | **1** |
 | Ayo *(2014)* | 🇳🇬 #54 | **1** |
 
-**Albums subtotal:** 10 + 9 + 9 + 6 + 1 + 1 = **36**
+**Albums subtotal:** 10 + 9 + 9 + 7 + 1 + 1 = **37**
 
-**Total: 118 + 36 = 154 chart entries.**
+**Total: 118 + 37 = 155 chart entries.**
 
 Chart-depth notes so the three-digit numbers read correctly: France's SNEP **Top Singles and Top Albums are 200-position charts** (which is why "Come Closer" #107 and *More Love, Less Ego* #135 are real chart entries, not near-misses); Portugal's **AFP/Audiogest Top 200 Singles** has run 1–200 in every era, and the **AFP/Audiogest Top 200 Álbuns** has run 1–200 since **week 04 of 2024 (19 January 2024)** — *Morayo* is a November 2024 release, so its #181 sits inside the published chart (before that week the Portuguese albums chart was a Top 50, and no pre-2024 Portuguese albums row is carried here); Belgium's Ultratop Albums chart is a **Top 200**; and Billboard Global 200 / Global Excl. US are **200-position charts**. Austria's official chart is branded **Ö3 Austria Top 40** but publishes one continuous **1–75** ranking on both the singles list and the Longplay list, so "Boom" at #57 is a placing on the principal chart proper, not on an extension chart. Every peak past 100 above sits on the principal chart proper. Nigeria's *Made in Lagos* figure (#17) is the **Deluxe Edition** — confirmed in TurnTable's own payload — because the TurnTable albums chart only launched 8 November 2022, two years after the original release.
 
@@ -463,7 +464,7 @@ Other judgment calls:
 
 ## Audit repairs (17 Aug 2026)
 
-**Totals: 158 → 154 entries · 33 → 32 chart countries · 24 No. 1 placements (unchanged).**
+**Totals: 158 → 155 entries · 33 → 32 chart countries · 24 No. 1 placements (unchanged).**
 
 **Rows removed (4 entries)**
 
@@ -515,7 +516,7 @@ Matrix status counts move accordingly: official 59 → **60**, airplay carve-out
 **Errors found and fixed in the file's own arithmetic**
 
 - The No. 1 section said "Four releases account for all 24." It is **ten** — "One Dance" plus nine Nigerian No. 1s. Placement count and country count were correct.
-- Every per-row count, both subtotals, the split line and the headline were recomputed from the tables rather than edited: singles 118 across 36 titles, albums 36 across 6 titles, 118 + 36 = 154.
+- Every per-row count, both subtotals, the split line and the headline were recomputed from the tables rather than edited: singles 118 across 37 titles, albums 36 across 6 titles, 118 + 36 = 154.
 
 **Cross-artist duplicates registered**
 
