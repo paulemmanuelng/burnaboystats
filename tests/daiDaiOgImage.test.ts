@@ -35,3 +35,30 @@ describe("the Dai Dai MusicEvent image resolves", () => {
     expect(daiDaiOgId.length).toBeGreaterThan(2);
   });
 });
+
+// Search Console's Events report is the only place these two surface, and it is
+// a slow feedback loop — it flagged them, they were fixed, and the fix cannot be
+// confirmed until Google recrawls. So they are pinned here instead.
+describe("the MusicEvent keeps the fields Search Console asked for", () => {
+  it("publishes an image", () => {
+    expect(PAGE, "Events reported 'Missing field image'").toMatch(/image:\s*`\$\{CANONICAL_ORIGIN\}\/dai-dai\/opengraph-image\//);
+  });
+
+  it("publishes offers.availability, and only a value Google accepts", () => {
+    const m = /availability:\s*"([^"]+)"/.exec(PAGE);
+    expect(m, "Events reported 'Missing field availability (in offers)'").not.toBeNull();
+    // Google's Event docs accept exactly these three.
+    expect([
+      "https://schema.org/InStock",
+      "https://schema.org/SoldOut",
+      "https://schema.org/PreOrder",
+    ]).toContain(m![1]);
+  });
+
+  it("keeps the offer bounded by its dates, which is what makes InStock true", () => {
+    // InStock is only honest here because the offer says when it applied. Lose
+    // the dates and the claim becomes "you can still watch it".
+    expect(PAGE).toMatch(/validFrom:\s*"2026-05-15"/);
+    expect(PAGE).toMatch(/validThrough:\s*"2026-07-19"/);
+  });
+});

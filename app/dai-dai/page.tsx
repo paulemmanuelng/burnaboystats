@@ -168,14 +168,22 @@ export default function DaiDaiPage() {
     // The show itself was not ticketed separately from the match, and it
     // streamed free — which is a real answer to "offers", not a missing one.
     //
-    // No `availability`, deliberately. The performance ended on 19 July 2026
-    // and this used to carry `InStock`, which tells a crawler a viewer can
-    // still get in. Every schema.org availability value misdescribes a free
-    // broadcast that has already happened — SoldOut and OutOfStock both imply
-    // stock that ran out — so the offer is bounded by its dates instead and
-    // says nothing it cannot support.
+    // `availability` was left out twice before, on the reasoning that every
+    // schema.org value misdescribes a free broadcast that has already happened:
+    // SoldOut and OutOfStock both imply stock that ran out, and a bare InStock
+    // reads as "you can still get in". That reasoning was half right. What it
+    // missed is that availability is a property OF THIS OFFER, and this offer
+    // is explicitly bounded — validFrom 15 May, validThrough 19 July 2026. Read
+    // with its own dates, InStock says "during that window this was available
+    // to everyone at no charge", which is exactly what happened. The dates are
+    // what carry "it is over"; that is what dates are for.
+    //
+    // Google's Event documentation accepts InStock, SoldOut and PreOrder, and
+    // of the three only InStock is true of a free stream nobody was turned away
+    // from. So the field is present and honest rather than absent and safe.
     offers: {
       "@type": "Offer",
+      availability: "https://schema.org/InStock",
       price: "0",
       priceCurrency: "USD",
       url: `${CANONICAL_ORIGIN}/dai-dai`,
