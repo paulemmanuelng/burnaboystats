@@ -71,7 +71,10 @@
 .ticketBtns { display: flex; flex-direction: column; gap: 9px; margin-top: 16px; }
 /* Left-aligned labels: three stacked full-width buttons read as a list, and a
    list is scanned down its left edge. */
-.ticketBtns .btn { width: 100%; justify-content: flex-start; }
+.ticketBtns :global(.btn) { width: 100%; justify-content: flex-start; }  /* :global — the ticket links carry the UNHASHED global class, so a bare
+     .btn here compiles to a local name and matches nothing. The site's other
+     three call sites wrap it; this one did not, so global .btn's
+     justify-content: center stood and the labels were centred, not listed. */
 
 /* ── Headline strip ─────────────────────────────────────────────────────── */
 .headlineGrid { display: grid; grid-template-columns: repeat(3, 1fr); }

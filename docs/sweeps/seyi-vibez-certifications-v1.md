@@ -28,14 +28,14 @@
 | Platinum (incl. multi-platinum) | 44 |
 | Gold | 39 |
 | Silver | 19 |
-| **total** | **103** ✓ |
+| **total (as the register reads, before the credit correction below)** | **103** ✓ |
 
 | split | count |
 |---|---|
 | Lead / co-billed singles | 76 |
 | Featured appearances | 27 |
 | Albums | **0** |
-| **total** | **103** ✓ |
+| **total (as the register reads, before the credit correction below)** | **103** ✓ |
 
 ## The credit test, run in full — 28 Aug 2026
 
@@ -305,8 +305,8 @@ If anyone quotes an "award events" figure for Seyi Vibez rather than a plaque co
 
 ### Context
 
-Under this identical standard, **Burna Boy holds 230 certifications across 26 countries** ([burnaboystats.com](https://burnaboystats.com)). Elsewhere in this sweep series: **Wizkid 155**, **Tems 70**.
+Under this identical standard, **Burna Boy holds 230 certifications across 26 countries** ([burnaboystats.com](https://burnaboystats.com)). Elsewhere in this sweep series: **Wizkid 156**, **Tems 71**.
 
-Seyi Vibez's **103** is the third-largest total in the series and the most lopsided by a distance: it is a **single-market** figure. Burna Boy's 230 spans 26 countries; Seyi Vibez's 103 spans one. Read as a per-country number, though, it is extraordinary — 103 Nigerian plaques is more Nigerian certifications than any other artist swept in this series carries, and it is built almost entirely from singles the international registers have never seen. His top plaque, *Cana* at **6× Platinum**, is the highest single-title tier found for any artist in this sweep outside Burna Boy's own file.
+Seyi Vibez's **102** is the third-largest total in the series and the most lopsided by a distance: it is a **single-market** figure. Burna Boy's 230 spans 26 countries; Seyi Vibez's 102 spans one. Read as a per-country number, though, it is extraordinary — 102 Nigerian plaques is more Nigerian certifications than any other artist swept in this series carries, and it is built almost entirely from singles the international registers have never seen. His top plaque, *Cana* at **6× Platinum**, is the highest single-title tier found for any artist in this sweep outside Burna Boy's own file.
 
 The honest reading is that his certification career and his streaming career occupy the same country. That is not a weakness in the data — it is the finding. And the second finding is methodological: **half of it is invisible on the register's own website**, and would stay invisible to anyone who trusted the live page.

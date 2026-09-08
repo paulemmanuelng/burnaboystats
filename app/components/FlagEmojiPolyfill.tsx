@@ -13,9 +13,17 @@ import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
  * boards and prose alike. Everything else falls through: the font
  * contains nothing but flag sequences.
  */
+/**
+ * Self-hosted, deliberately. Called with no arguments the package injects an
+ * @font-face pointing at cdn.jsdelivr.net — a third-party font fetch that the
+ * CSP's `font-src 'self' data:` does not allow and that nothing on a Mac would
+ * ever reveal, because the polyfill only fires when the flag render test fails.
+ * The package ships the woff2 itself, so it is copied into public/fonts and
+ * served from our own origin: the policy stays honest and the third party goes.
+ */
 export default function FlagEmojiPolyfill() {
   useEffect(() => {
-    polyfillCountryFlagEmojis();
+    polyfillCountryFlagEmojis("Twemoji Country Flags", "/fonts/TwemojiCountryFlags.woff2");
   }, []);
 
   return null;

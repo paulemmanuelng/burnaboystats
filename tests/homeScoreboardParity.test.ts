@@ -57,4 +57,18 @@ describe("the homepage No. 1s tile", () => {
       ).toBe(false);
     }
   });
+
+  // The section BELOW the tiles had the same disease and no guard. Desktop's
+  // board CTA read "All 47 career No. 1s" (placements); mobile's read "All 30"
+  // (countries) with no noun at all — two different facts behind one link,
+  // one click apart. Both now render careerNumberOnes with its noun.
+  it("both layouts label the No. 1 board link with the same figure", () => {
+    const desktop = read("app/page.tsx");
+    const mobile = read("app/components/MobileHome.tsx");
+    const LABEL = /All \{careerNumberOnes\} career No\. 1s/;
+    expect(desktop, "app/page.tsx no longer renders the board CTA as expected").toMatch(LABEL);
+    expect(mobile, "MobileHome's board CTA must say the same thing as desktop's").toMatch(LABEL);
+    // The shape that was wrong: a bare count with no noun.
+    expect(mobile).not.toMatch(/All \{numberOneCountries\.length\}/);
+  });
 });

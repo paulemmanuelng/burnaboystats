@@ -108,7 +108,10 @@ export default async function AfroArtistChartsPage({
     path: `/afrobeats/${a.slug}/charts`,
     keywords: [a.name, "chart positions", "official charts", "peak chart position", "Afrobeats charts"],
     variableMeasured: ["Peak chart position", "Country / territory", "Release", "Chart"],
-        dateModified: lastUpdated,
+        // The sweep that produced these figures, not the newest date in the whole
+        // updates feed. sitemap.ts already uses verifiedOn for this route and says
+        // the two can never disagree; dateModified was the half that disagreed.
+        dateModified: a.verifiedOn,
     about: { name: a.name, sameAs: [a.wikipedia, `https://open.spotify.com/artist/${a.spotifyId}`] },
   });
 

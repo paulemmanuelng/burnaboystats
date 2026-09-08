@@ -122,10 +122,20 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
     "@context": "https://schema.org",
     "@type": "MusicRecording",
     name: song.title,
+    // Split on every separator the credits actually use. Splitting on " ft. "
+    // alone published "Burna Boy feat. Travis Scott" as ONE artist name, because
+    // two songs are credited with "feat." and everything else with "ft.".
     byArtist: song.credit
-      ? song.credit.split(" ft. ").flatMap((n) => n.split(" & ")).map((name) => ({ "@type": "MusicGroup", name: name.trim() }))
+      ? song.credit
+          .split(/\s+(?:ft\.|feat\.|featuring|&|,)\s+/i)
+          .map((name) => ({ "@type": "MusicGroup", name: name.trim() }))
+          .filter((a) => a.name)
       : { "@type": "MusicGroup", name: "Burna Boy" },
-    inAlbum: { "@type": "MusicAlbum", name: song.album },
+    // "Single" is songs.ts's placeholder for a track that was never on an album,
+    // so publishing it as an album name asserts a release that does not exist.
+    ...(song.album && song.album !== "Single"
+      ? { inAlbum: { "@type": "MusicAlbum", name: song.album } }
+      : {}),
     datePublished: String(song.year),
     url: `${CANONICAL_ORIGIN}/music/${song.slug}`,
   };
