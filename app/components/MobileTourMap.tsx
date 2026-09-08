@@ -14,9 +14,12 @@ import BackLink from "./BackLink";
  *
  * The design mocks the map with scattered dots because its prototype can't run
  * the real one — this renders the actual PerformanceMap in that frame. The
- * region list underneath is not decoration: ten island nations have no usable
- * shape at 110m and appear only as markers, so the list is the accessible
- * equivalent of the map for anyone who can't work a pinch-zoom.
+ * region list underneath is not decoration: eight territories have no usable
+ * shape at 110m and appear only as markers — seven Caribbean or Indian Ocean
+ * island states plus Kosovo, which is landlocked and small rather than an
+ * island — so the list is the accessible equivalent of the map for anyone who
+ * can't work a pinch-zoom. The count is the number of entries in
+ * performedCountries carrying a `marker`; tests/tourMap.test.ts holds it.
  */
 export default function MobileTourMap({
   countryCount,
