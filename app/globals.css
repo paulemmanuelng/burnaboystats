@@ -742,13 +742,30 @@ a {
      boundary, which the 0.12 hairline did not — so this resolves the contrast
      question rather than trading it off. */
   border-color: var(--btn-edge);
+  /* Pinned twice, and the resets below it, for exactly the reason .btnPrimary
+     is — see the CAUTION on that rule. WebKit resolves -webkit-text-fill-color
+     ahead of `color`, and this site has already had one iPhone-only label tint
+     reported on the button sitting directly beside this one. That fix never
+     reached the secondary.
+     Reported 9 Sep 2026: on /dai-dai the two secondary labels rendered blank on
+     an iPhone while measuring 18:1 in every desktop browser and in a 375px
+     emulated viewport — the same signature as the earlier report, which is a
+     device-side composite, not a cascade the desktop can see. The Spanish
+     edition, whose hero carries ONE secondary rather than two, was unaffected.
+     Nothing here has ever set the label to anything but --text, so the tint is
+     applied on the device; these four lines close every route it could take. */
   color: var(--text);
+  -webkit-text-fill-color: var(--text);
   background: var(--btn-face);
+  text-shadow: none;
+  filter: none;
+  mix-blend-mode: normal;
 }
 .btnSecondary:hover {
   transform: translateY(-3px);
   border-color: var(--gold);
   color: var(--gold);
+  -webkit-text-fill-color: var(--gold);
   background: color-mix(in srgb, var(--white-wash-base) 6%, transparent);
 }
 
@@ -1795,7 +1812,14 @@ a[class*="__certRow"]:focus-visible,
 .btnGhost {
   background: transparent;
   border-color: transparent;
+  /* Pinned for the same reason as its two siblings above. This one was found
+     by the guard rather than by a report: it is the third button on the site
+     to set a label colour, and the only one that had never been through an
+     iPhone tint bug — which is a reason to harden it, not a reason to wait for
+     one. A ghost button is the worst case of the three, because it has no fill
+     and no border, so a mis-tinted label leaves nothing on screen at all. */
   color: var(--gold);
+  -webkit-text-fill-color: var(--gold);
   padding: 0 8px;
 }
 .btnGhost:hover {
