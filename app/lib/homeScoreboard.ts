@@ -1,5 +1,5 @@
 import { numberOnes } from "../data/charts";
-import { numberOneCountryCount, countryNumberOnes } from "./analysis";
+import { numberOneCountryCount, countryNumberOnes, globalChartsTopped } from "./analysis";
 import { totalAwards, countryCount as certCountryCount } from "../data/certifications";
 import { albums as studioAlbums } from "../data/albums";
 import { countryCount as playedCount, regionCount } from "../data/performedCountries";
@@ -56,7 +56,7 @@ export const homeScoreboard: ScoreboardStat[] = [
     value: String(countryNumberOnes),
     label: "No. 1s · official charts",
     glyph: "no1s",
-    source: `${numberOneCountryCount} countries · +${numberOnes - countryNumberOnes} global charts`,
+    source: `${numberOneCountryCount} countries · +${globalChartsTopped} global charts`,
     href: "/records/charts",
   },
   {

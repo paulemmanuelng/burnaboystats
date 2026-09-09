@@ -295,20 +295,31 @@
   -webkit-text-fill-color: var(--text);
   transition: color var(--dur) var(--ease), -webkit-text-fill-color var(--dur) var(--ease);
 }
+/* Both rows reserve two lines. The No. 1s tile's label and source are now the
+   longest on the strip — "No. 1s · official charts" and
+   "30 countries · +2 global charts" — and at every desktop width from 1240 to
+   1920 they wrap, which left the five cells on different baselines and clipped
+   the disclosure. Reserving the second line keeps the row aligned whether a
+   cell uses it or not; the alternative, shortening the string, would drop the
+   "+2 global charts" the disclosure exists to carry. */
 .scoreLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
+  line-height: 1.35;
   letter-spacing: 0.11em;
   text-transform: uppercase;
   margin-top: 12px;
+  min-height: calc(2 * 1.35em);
 }
 .scoreSource {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
+  line-height: 1.35;
   letter-spacing: 0.06em;
   margin-top: 6px;
   color: var(--text-muted);
+  min-height: calc(2 * 1.35em);
 }
 
 /* ── History made ───────────────────────────────────────────────────── */

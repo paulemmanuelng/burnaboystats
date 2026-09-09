@@ -82,9 +82,25 @@ export default function TodaysNumber() {
         sentence carries the number; the tile carries the numeral. */}
     <div className={styles.official}>
       <div className={styles.officialKicker}>Official national charts</div>
+      {/* Two clauses came off this sentence on 9 Sep 2026, both because they
+          were checkably false:
+
+          "the figure the records pages are built on" — /records/charts is
+          built on numberOnes (47), in its title, its hero tile and its lede.
+          The tile links there, so a reader following the 45 landed on a page
+          headlined 47. Whether that page should move to 45 is an editorial
+          decision, not something this sentence can assert on its behalf.
+
+          "official bodies only" — of the 45, eight are not: five are
+          airplay/broadcast-monitor charts (Lebanon x2, Panama, Venezuela,
+          Estonia) and three are Billboard-compiled country charts (Colombia,
+          Argentina, Luxembourg), by charts.ts's own NOT_A_NATIONAL_BODY
+          classifier. /records/charts publishes exactly that split in prose.
+          charts.ts already records this mistake being shipped once. The
+          wording now matches the linked page's own. */}
       <p className={styles.officialText}>
         Career total: {countryNumberOnes} No.&nbsp;1s across {numberOneCountryCount}{" "}
-        countries, official bodies only — the figure the records pages are built on.
+        countries, on each country&apos;s principal national chart.
       </p>
     </div>
 
