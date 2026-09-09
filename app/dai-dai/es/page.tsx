@@ -239,7 +239,7 @@ export default function DaiDaiPageES() {
       intro: "El video de “Dai Dai”, con carrera propia.",
       items: [
         { v: DAI_DAI_VIDEO_VIEWS, l: "visualizaciones en YouTube — 600 millones en 67 días, el video musical más rápido de la carrera de ambos artistas hasta esa cifra y el único de 2026 en alcanzarla. Superó los 500 millones en 59,4 días (el 12.º más rápido de la historia) y los 700 millones en 74,8 días — el 8.º video musical más rápido en la historia de YouTube" },
-        { v: `${daiDaiYouTubeDaysAtNo1} días`, l: "en el número 1 como el video musical más visto del mundo en YouTube, del 9 de junio a la lista del 27 de agosto — la racha ya terminó: el video figura en el número 2 en la lista del 6 de septiembre de 2026. Ya supera los 6,1 millones de “me gusta”" },
+        { v: `${daiDaiYouTubeDaysAtNo1} días`, l: "seguidos en el número 1 como el video musical más visto del mundo en YouTube, del 9 de junio a la lista del 27 de agosto. Esa racha se cortó —el video quedó en el número 2 en las listas del 5 y el 6 de septiembre— y desde entonces ha recuperado la cima: número 1 otra vez en la lista del 7 de septiembre de 2026, en su día 108 en la lista. Los 80 son un total cerrado, no una racha en curso; el nuevo tramo empezó un día que nadie ha leído. Ya supera los 6,1 millones de “me gusta”" },
       ],
     },
   ];

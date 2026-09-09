@@ -41,6 +41,18 @@ export const updates: Update[] = [
   {
     date: "2026-09-09",
     category: "Streaming",
+    text: "Back on top on YouTube: the “Dai Dai” video retakes No. 1 on the Global Daily Top Music Videos chart dated 7 September, up from No. 2, on its 108th day on the chart. Its first run there — 80 consecutive days from 9 June — closed at the end of August, and the video spent the charts dated 5 and 6 September at No. 2 behind LISA's “SaWaDiKa”. The 80 stays a closed count rather than growing: the day this new spell began has not been read, because charts.youtube.com renders only the latest chart.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-09-09",
+    category: "Charts",
+    text: "Nine weeks at No. 1 in France. SNEP's own weekly Top Singles has “Dai Dai” leading every issue from the semaine du 10 juillet to the current semaine du 4 septembre 2026 — an unbroken run, and three weeks longer than the site had recorded. It has been on the French chart since the semaine du 29 mai, when it entered at No. 95.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-09-09",
+    category: "Streaming",
     text: "The Spotify run at No. 1 is over, and the shape of the whole run turns out to have been misread. Spotify's Global Daily Top Songs chart for 7 September has “Dai Dai” at No. 11, down five, with a streak of 109 days and — in the chart's own expanded row — 110 days on the chart in total since it entered at No. 114 on 15 May. Those two columns settle something this site had wrong all summer: 15 May to 7 September is 116 days, so the song spent six of them off the chart, not the one it had been credited with. It fell straight back off after the debut and returned on 22 May. The published totals are unchanged — 37 days at No. 1, counted through the 28 August chart, now a closed figure rather than a running one.",
     href: "/dai-dai",
   },
@@ -95,7 +107,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-02",
     category: "Charts",
-    text: "A 10th week atop Mediatraffic's United World Chart: “Dai Dai” leads the global ranking again in the issue dated 5 September, on 283,000 points. It remains the first Burna Boy record ever to top it.",
+    text: "A 10th week atop Mediatraffic's United World Chart: “Dai Dai” leads the global ranking again in the chart week dated 5 September, on 283,000 points. It remains the first Burna Boy record ever to top it.",
     href: "/dai-dai",
   },
   {

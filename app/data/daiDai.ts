@@ -236,9 +236,30 @@ export const DAI_DAI_YT_CONFIRMED_THROUGH = "2026-08-27"; // last chart read AT 
  * the 27 Aug chart, and that the run has since ended. When the exact date is
  * known, set DAI_DAI_YT_NO1_ENDED and the prose can name it.
  */
-export const DAI_DAI_YT_RUN_ENDED = true;
+export const DAI_DAI_YT_RUN_ENDED = false;
 /** The chart that established the run was over, and what it showed. */
 export const DAI_DAI_YT_ENDED_SEEN_ON = "2026-09-06";
+
+/**
+ * AND IT IS BACK. Read at the body on 9 Sep 2026: YouTube's Global Daily Top
+ * Music Videos chart, dated 7 Sep 2026, has "Dai Dai" at No. 1 again — its
+ * Yesterday column reads 2, which independently confirms the 6 Sep reading
+ * above was right, so the ending was real and this reclaim is new. The row's
+ * own "Days on chart" counter reads 108, matching this file's accounting
+ * exactly (97 on the 27 Aug chart, plus eleven days). Credited "Shakira &
+ * Burna Boy", which is what separates it from "Dai dai (Live)".
+ *
+ * THE 80 DOES NOT MOVE, and that is the whole point of the instruction above:
+ * "do not simply add days, because the gap in between is not established
+ * either." The song was demonstrably NOT at No. 1 on 5 or 6 September, so the
+ * run from 9 June is a CLOSED count of 80 consecutive days through the 27 Aug
+ * chart. What is No. 1 now is a new spell whose first day nobody has read.
+ *
+ * So the site states both, separately, and neither as a total: 80 straight days
+ * to 27 August, and No. 1 again on the chart dated 7 September.
+ */
+export const DAI_DAI_YT_NO1_AGAIN_SEEN_ON = "2026-09-07";
+export const DAI_DAI_YT_DAYS_ON_CHART_AT_RECLAIM = 108;
 
 /** Consecutive days at No. 1 on YouTube's global daily music-video chart. */
 export const daiDaiYouTubeDaysAtNo1 = daysInclusive(
