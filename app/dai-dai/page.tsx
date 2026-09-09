@@ -7,10 +7,11 @@ import DaiDaiNumbers from "../components/DaiDaiNumbers";
 import FaqList from "../components/FaqList";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../lib/seo";
 import { lastUpdated } from "../lib/api";
+import { cardinalWord } from "../lib/plural";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES, weeksAtPeak, weeksOnChart } from "../data/charts";
 import { liveCharts } from "../data/liveCharts";
 import { daiDaiCertCount } from "../data/certifications";
-import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_READ_ON_LONG, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../data/daiDai";
+import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 import { daiDaiOgId } from "./ogId";
@@ -211,11 +212,11 @@ export default function DaiDaiPage() {
   const numberGroups: { label: string; intro: string; items: { v: string; l: string }[] }[] = [
     {
       label: "The streaming streaks",
-      intro: `The daily and weekly runs, as last read off each chart — the Spotify daily figures through ${DAI_DAI_SPOTIFY_READ_ON_LONG}.`,
+      intro: `The daily and weekly runs, as last read off each chart — the Spotify streak through ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG}, the days at No. 1 through ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG}.`,
       items: [
-        { v: "37 days", l: `in total at No. 1 on Spotify's Global Daily Top Songs chart, counted through the chart dated ${DAI_DAI_SPOTIFY_READ_ON_LONG} — a first for an African artist, and the most days at No. 1 by any song in 2026, five clear of Djo's “End of Beginning” (32) and six of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31); 72 days inside the global Top 10 and ${daiDaiSpotifyStraightDays} straight days on the chart, read the same day — not a reading of today` },
+        { v: "37 days", l: `in total at No. 1 on Spotify's Global Daily Top Songs chart — a first for an African artist, and the most days at No. 1 by any song in 2026, five clear of Djo's “End of Beginning” (32) and six of Justin Bieber & Nicki Minaj's “Beauty And A Beat” (31). A closed total: counted through the chart dated ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG}, with ${DAI_DAI_SPOTIFY_TOP10_DAYS} days inside the global Top 10 read off that same chart, and the run at the top has since ended` },
         { v: "6 weeks", l: "at No. 1 on Spotify's Global Weekly Top Songs chart, in its 13th week on it — peaking at 40.28M streams in a single week" },
-        { v: "No. 114", l: `where it entered Spotify's Global Daily Top Songs chart on 15 May 2026, the day after release — it took the No. 1 spot from there and has been on it every day but one since — ${daiDaiSpotifyStraightDays} straight days and ${daiDaiSpotifyDaysOnChart} in all, counted through the chart dated ${DAI_DAI_SPOTIFY_READ_ON_LONG} (Spotify Charts)` },
+        { v: "No. 114", l: `where it entered Spotify's Global Daily Top Songs chart on 15 May 2026, the day after release — it fell straight back off for ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "en")} days, returned on 22 May and has not left since: ${daiDaiSpotifyStraightDays} straight days on the chart and ${daiDaiSpotifyDaysOnChart} in all, counted through the chart dated ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG}, which prints both figures in its own columns (Spotify Charts)` },
         { v: "58 days", l: "at No. 1 on Apple Music's European songs chart — plus 11 days atop the worldwide Apple Music chart" },
         { v: "40 days", l: "at No. 1 on the worldwide iTunes songs chart, and 15 days atop the European iTunes chart" },
         { v: "No. 1", l: liveOnesLabel },
@@ -234,7 +235,13 @@ export default function DaiDaiPage() {
         { v: `${weeksSE} weeks`, l: `at No. 1 on Sweden's Sverigetopplistan, retaken in week 34 after a week at No. 2 — ${runSE} weeks on the list` },
         { v: `${weeksNO} weeks`, l: "at No. 1 on Norway's VG-lista Topp 40 — four consecutive weeks, from week 31" },
         { v: "No. 1", l: "India's IMI International Top 20 Singles Chart — the first Burna Boy song to top a chart in India" },
-        { v: "No. 1", l: "Official MENA Chart Top 20 — still on top in the latest week — and Billboard's US World Digital Song Sales chart" },
+        // The "still on top in the latest week" clause was dropped on 9 Sep 2026: it
+        // had not been re-read since 4 Aug, and the feed entry of that date states
+        // only that the song was "still leading the Official MENA Chart's latest
+        // week" — it never names the week, so the claim could not be dated without
+        // publishing a chart week nobody had read. The peak stands; the currency
+        // claim does not.
+        { v: "No. 1", l: "Official MENA Chart Top 20 — and Billboard's US World Digital Song Sales chart" },
         { v: "No. 2", l: `UK Official Singles Chart — a ${weeksUK}th week at that peak, ${runUK} weeks in. The first FIFA World Cup song ever to reach the UK Top 10, and by far the highest-charting World Cup song in UK history, beating Shakira's own “Waka Waka” (No. 21)` },
         { v: "No. 3", l: "Billboard Canadian Hot 100 — a new peak and Burna Boy's first-ever top 10 in Canada, where his best song placing had been No. 14. It is also Shakira's first Canadian top 10 since “She Wolf” in 2009" },
         { v: "No. 17", l: "Billboard Hot 100 (US) — a 42-to-17 jump on the chart dated 1 August, the highest-charting World Cup song in Hot 100 history. Luminate logged 8.6M US streams (+69%), 13.9M radio airplay audience (+11%) and 7,000 sold (+322%) in the 17–23 July tracking week" },

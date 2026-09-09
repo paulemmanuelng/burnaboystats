@@ -16,7 +16,7 @@ import {
 } from "../../data/charts";
 import { liveCharts } from "../../data/liveCharts";
 import { daiDaiCertCount } from "../../data/certifications";
-import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_READ_ON_LONG_ES, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
+import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { daiDaiEsOgId } from "./ogId";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../../lib/artistImages";
@@ -189,11 +189,11 @@ export default function DaiDaiPageES() {
   const numberGroups = [
     {
       label: "Las rachas en streaming",
-      intro: `Las rachas diarias y semanales, según la última lectura de cada lista — las cifras de la lista diaria de Spotify, hasta la del ${DAI_DAI_SPOTIFY_READ_ON_LONG_ES}.`,
+      intro: `Las rachas diarias y semanales, según la última lectura de cada lista — la racha en Spotify hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}; los días en el número 1, hasta la del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES}.`,
       items: [
-        { v: "37 días", l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify, contados hasta la lista del ${DAI_DAI_SPOTIFY_READ_ON_LONG_ES} —algo inédito para un artista africano, y recuperado en agosto como la racha más larga de cualquier lanzamiento de 2026—; la canción con más días en el número 1 de todo 2026, cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31); 72 días dentro del top 10 mundial y ${daiDaiSpotifyStraightDays} seguidos en la lista, leídos ese mismo día —no una lectura de hoy` },
+        { v: "37 días", l: `en total en el número 1 de la lista Global Daily Top Songs de Spotify —algo inédito para un artista africano, y la canción con más días en el número 1 de todo 2026, cinco por delante de “End of Beginning” de Djo (32) y seis de “Beauty And A Beat” de Justin Bieber y Nicki Minaj (31)—. Es un total cerrado: contado hasta la lista del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES}, con ${DAI_DAI_SPOTIFY_TOP10_DAYS} días dentro del top 10 mundial leídos en esa misma lista, y la racha en la cima ya ha terminado` },
         { v: "6 semanas", l: "en el número 1 de la lista Global Weekly Top Songs de Spotify, en su 13.ª semana en ella — con un pico de 40,28 millones de reproducciones en una sola semana" },
-        { v: "N.º 114", l: `puesto por el que entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, un día después de su lanzamiento — desde ahí llegó al número 1 y ha estado en ella todos los días salvo uno — ${daiDaiSpotifyStraightDays} días seguidos y ${daiDaiSpotifyDaysOnChart} en total, contados hasta la lista del ${DAI_DAI_SPOTIFY_READ_ON_LONG_ES} (Spotify Charts)` },
+        { v: "N.º 114", l: `puesto por el que entró en la lista Global Daily Top Songs de Spotify el 15 de mayo de 2026, un día después de su lanzamiento — cayó de ella durante ${cardinalWord(DAI_DAI_SPOTIFY_DAYS_OFF, "es")} días, volvió el 22 de mayo y no ha salido desde entonces: ${daiDaiSpotifyStraightDays} seguidos en la lista y ${daiDaiSpotifyDaysOnChart} en total, contados hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}, que imprime ambas cifras en sus propias columnas (Spotify Charts)` },
         { v: "58 días", l: "en el número 1 de la lista europea de Apple Music, más 11 días en la cima de la lista mundial de Apple Music" },
         { v: "40 días", l: "en el número 1 de la lista mundial de canciones de iTunes, y 15 días en la cima de la lista europea de iTunes" },
         { v: "N.º 1", l: liveOnesLabel },
@@ -212,7 +212,10 @@ export default function DaiDaiPageES() {
         { v: `${weeksSE} semanas`, l: `en el número 1 de la Sverigetopplistan sueca, recuperado en la semana 34 tras una semana en el N.º 2 — ${runSE} semanas en lista` },
         { v: `${weeksNO} semanas`, l: "en el número 1 de la VG-lista Topp 40 de Noruega — cuatro semanas consecutivas, desde la semana 31" },
         { v: "N.º 1", l: "en la lista IMI International Top 20 Singles de la India — la primera canción de Burna Boy que encabeza una lista en ese país" },
-        { v: "N.º 1", l: "en el Official MENA Chart Top 20 —todavía en la cima en su última semana— y en la lista US World Digital Song Sales de Billboard" },
+        // Igual que en la edición inglesa: se retira la afirmación de actualidad,
+        // que no se releía desde el 4 de agosto y no puede fecharse sin publicar
+        // una semana de lista que nadie ha leído. El pico se mantiene.
+        { v: "N.º 1", l: "en el Official MENA Chart Top 20 y en la lista US World Digital Song Sales de Billboard" },
         { v: "N.º 2", l: `en la lista oficial de sencillos del Reino Unido — ${weeksUK}.ª semana en ese pico, ya con ${runUK} semanas en lista. La primera canción de un Mundial de la FIFA que entra en el top 10 británico, muy por encima del N.º 21 que alcanzó “Waka Waka” de la propia Shakira` },
         { v: "N.º 3", l: "en el Billboard Canadian Hot 100 — un nuevo pico y el primer top 10 de Burna Boy en Canadá, donde su mejor posición había sido el N.º 14. Es también el primer top 10 canadiense de Shakira desde “She Wolf” en 2009" },
         { v: "N.º 17", l: "en el Billboard Hot 100 de Estados Unidos — un salto del 42 al 17 en la lista del 1 de agosto, el pico más alto de una canción mundialista en la historia del Hot 100. Luminate registró 8,6 millones de reproducciones en Estados Unidos (+69 %), 13,9 millones de audiencia radial (+11 %) y 7.000 copias vendidas (+322 %) en la semana de seguimiento del 17 al 23 de julio" },

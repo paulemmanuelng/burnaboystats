@@ -39,6 +39,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-09",
+    category: "Streaming",
+    text: "The Spotify run at No. 1 is over, and the shape of the whole run turns out to have been misread. Spotify's Global Daily Top Songs chart for 7 September has “Dai Dai” at No. 11, down five, with a streak of 109 days and — in the chart's own expanded row — 110 days on the chart in total since it entered at No. 114 on 15 May. Those two columns settle something this site had wrong all summer: 15 May to 7 September is 116 days, so the song spent six of them off the chart, not the one it had been credited with. It fell straight back off after the debut and returned on 22 May. The published totals are unchanged — 37 days at No. 1, counted through the 28 August chart, now a closed figure rather than a running one.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-09-08",
     category: "Lifestyle",
     text: `A correction to the garage total, now ${totalValueFormatted} across ${carCount} cars. The Bugatti Chiron is the one car here whose price is reported in naira — ₦9 billion — so its dollar figure is derived from that rather than the other way round, and it was being derived at ₦1,454 to the dollar: a rate matching no date near the purchase. Re-converted at ₦1,370.08, the rate on 5 July 2026, the day the buy was announced. Nothing about the car changed; only the arithmetic did.`,
@@ -143,7 +149,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-28",
     category: "Streaming",
-    text: "Seventy days inside the global Top 10, from a start nobody would have predicted: “Dai Dai” entered Spotify's Global Daily Top Songs chart at No. 114 on 15 May, the day after release, and has left it exactly once since — 98 straight days on the chart, 37 of them at No. 1, and still there at No. 8 with 3,228,190 streams. No African song has spent longer in the global Top 10 since the chart launched.",
+    text: "Seventy days inside the global Top 10, from a start nobody would have predicted: “Dai Dai” entered Spotify's Global Daily Top Songs chart at No. 114 on 15 May, the day after release, and had left it for six days since — 98 days on the chart, 37 of them at No. 1, and still there at No. 8 with 3,228,190 streams. (This read “98 straight days” and “has left it exactly once” until 9 Sep 2026: 98 is the TOTAL, not the streak, and the song had left the chart for six days rather than one — both settled by the columns Spotify prints on its 7 September chart.) No African song has spent longer in the global Top 10 since the chart launched.",
     href: "/dai-dai",
   },
   {

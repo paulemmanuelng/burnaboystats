@@ -34,11 +34,12 @@ const MONTHS: Record<string, number> = { May: 4, June: 5, July: 6, August: 7, Se
  * Readings in updates.ts that name BOTH their chart date and the day count —
  * "…for 10 August…82 days on the chart", "A 90th day…on the 18 August list".
  *
- * This is the LEGACY series, and it is one day ahead of Spotify's own column
- * throughout (see below). Only entries describing charts BEFORE the body read
- * are collected: from the body read onward the column governs, and mixing the
- * two conventions in one set would make the consistency check fail on a
- * correct entry.
+ * These are TOTAL days on chart, and reading them as anything else is what went
+ * wrong here. This file used to treat them as STREAKS, found them all exactly
+ * one day ahead of Spotify's own Streak column, and pinned that offset as a
+ * known transcription drift — a test asserting the discrepancy rather than
+ * resolving it. They are not streaks and there is no drift: every one of them
+ * is the exact total once the song is six days off the chart rather than one.
  */
 const anchors = updates.flatMap((u) => {
   if (!/Global Daily|Daily Top Songs/.test(u.text)) return [];
@@ -61,27 +62,37 @@ describe("the Spotify Global Daily run", () => {
     ).toBeGreaterThanOrEqual(4);
   });
 
-  it("has one start date that every dated reading agrees on", () => {
-    const implied = anchors.map((a) => ({
+  it("every dated reading in the feed reconciles as a TOTAL day count", () => {
+    // The strong form, and the one the old version could not do: DAYS_OFF
+    // appears on ONE side here. Six published readings, each naming its own
+    // chart, each derived from the debut and DAYS_OFF alone — so a wrong
+    // DAYS_OFF cannot balance the equation by sitting on both sides of it.
+    // That is exactly how DAYS_OFF = 1 survived a green suite from May to
+    // September while every one of these readings contradicted it.
+    const off = anchors.map((a) => ({
       ...a,
-      startsOn: new Date((day(a.chartDate) - a.n + 1) * 86_400_000).toISOString().slice(0, 10),
+      derived: inclusive(DAI_DAI_SPOTIFY_DEBUT, a.chartDate) - DAI_DAI_SPOTIFY_DAYS_OFF,
     }));
-    const distinct = [...new Set(implied.map((i) => i.startsOn))];
     expect(
-      distinct.length === 1 ? [] : implied.map((i) => `${i.entry}: ${i.n} on ${i.chartDate} → ${i.startsOn}`),
-      `the feed's own readings imply different start dates (${distinct.join(" vs ")}). One of those entries is wrong.`,
+      off.filter((a) => a.derived !== a.n).map((a) => `${a.entry}: feed says ${a.n} for the ${a.chartDate} chart, DAYS_OFF=${DAI_DAI_SPOTIFY_DAYS_OFF} derives ${a.derived}`),
+      "the feed's own dated readings no longer agree with DAYS_OFF — one of them is wrong, or DAYS_OFF is",
     ).toEqual([]);
-    // The feed's prose sits exactly ONE DAY AHEAD of Spotify's own Streak
-    // column — it says 82 for the 10 Aug chart where the column reads 81 — so
-    // it implies 21 May where the body says 22 May. The body governs; this
-    // pins the known offset so it cannot quietly widen. If this ever fails,
-    // the two series have drifted further apart and one of them has changed.
-    const feedStart = Date.parse(`${distinct[0]}T00:00:00Z`) / 86_400_000;
-    const bodyStart = Date.parse(`${DAI_DAI_SPOTIFY_STREAK_SINCE}T00:00:00Z`) / 86_400_000;
+  });
+
+  // Spotify prints the total itself, which is the one number on this page that
+  // nothing on our side could otherwise check: streak, total and days-off are
+  // three constants and two dates, and any one of them can be wrong without the
+  // arithmetic between them complaining. This is the external anchor.
+  it("matches the Total days on chart Spotify prints in the expanded row", () => {
     expect(
-      bodyStart - feedStart,
-      `the feed's readings imply ${distinct[0]} and the body read implies ${DAI_DAI_SPOTIFY_STREAK_SINCE}; that gap was 1 day and is now ${bodyStart - feedStart}`,
-    ).toBe(1);
+      daiDaiSpotifyDaysOnChart,
+      `Spotify's ${DAI_DAI_SPOTIFY_BODY_READ.date} chart shows Total days on chart ${DAI_DAI_SPOTIFY_BODY_READ.totalDaysOnChart}`,
+    ).toBe(DAI_DAI_SPOTIFY_BODY_READ.totalDaysOnChart);
+    // And the same row names the debut, so the other end is anchored too.
+    expect(
+      inclusive(DAI_DAI_SPOTIFY_DEBUT, DAI_DAI_SPOTIFY_BODY_READ.date) - DAI_DAI_SPOTIFY_BODY_READ.totalDaysOnChart,
+      "the debut, the total and DAYS_OFF no longer reconcile",
+    ).toBe(DAI_DAI_SPOTIFY_DAYS_OFF);
   });
 
   // The published streak comes from Spotify's own column, not from our prose.

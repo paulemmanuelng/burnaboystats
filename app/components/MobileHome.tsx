@@ -305,7 +305,7 @@ export default function MobileHome() {
         </h2>
         <p className={styles.historyText}>
           First African headliner of a World Cup Final halftime show. “Dai Dai” spent
-          37 days as the most-streamed song on Earth — and back on top.
+          37 days as the most-streamed song on Earth — back on top in August.
         </p>
         <Link href="/dai-dai" className={styles.historyCta}>
           Read the story ↗
