@@ -67,4 +67,40 @@ describe("button labels cannot be re-tinted by the device", () => {
       }
     }
   });
+
+  // THE THIRD GUARD, and the one that took three attempts to identify.
+  //
+  // Pinning the fill colour and resetting filter/blend was not enough:
+  // .btnSecondary's label was still blank on iPhone, and the tell was that it
+  // appeared ON HOVER. The only thing hover added was a transform — a
+  // compositing layer. With no layer at rest the label did not paint at all.
+  //
+  // So every button that pins a fill colour must also be promoted at rest, and
+  // must KEEP the promotion in its hover state rather than swapping it out for
+  // a plain translate, which tears the layer down and rebuilds it.
+  it.each([".btnPrimary", ".btnSecondary", ".btnGhost"])(
+    "%s promotes its layer at rest",
+    (name) => {
+      const rule = buttonRules.find((r) => r.selector === name);
+      expect(rule, `${name} is gone from globals.css`).toBeTruthy();
+      expect(
+        /transform\s*:[^;]*translateZ\(0\)/.test(rule!.body),
+        `${name} does not promote its compositing layer at rest. Without it a WebKit ` +
+          `label can fail to paint until something else creates a layer — which is exactly ` +
+          `how .btnSecondary shipped blank until hover.`
+      ).toBe(true);
+    }
+  );
+
+  it.each([".btnPrimary", ".btnSecondary"])("%s:hover keeps the promotion", (name) => {
+    const rule = buttonRules.find((r) => r.selector === `${name}:hover`)
+      ?? { body: (/\.btnSecondary:hover \{([^}]*)\}/.exec(CSS)?.[1] ?? "") };
+    const hover = new RegExp(`\\${name}:hover \\{([^}]*)\\}`).exec(CSS)?.[1] ?? rule.body;
+    if (!/transform\s*:/.test(hover)) return; // no transform on hover, nothing to tear down
+    expect(
+      /translateZ\(0\)/.test(hover),
+      `${name}:hover sets a transform without translateZ, so the layer promoted at rest is ` +
+        `torn down and rebuilt on hover — the state the resting promotion exists to avoid`
+    ).toBe(true);
+  });
 });

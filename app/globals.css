@@ -779,9 +779,22 @@ a {
   text-shadow: none;
   filter: none;
   mix-blend-mode: normal;
+  /* THE THIRD GUARD, and the one that actually fixes the reported bug.
+     The .btnPrimary rule above names three things that fixed the identical
+     iPhone symptom on the button beside this one: the pinned fill colour, the
+     filter/blend resets, and "the up-front translateZ that promotes the layer
+     at rest". The first two landed here on 9 Sep and the label stayed blank.
+     Paul then reported the tell that identifies which one was missing: the text
+     appears ON HOVER. The only thing hover added was transform: translateY(-3px)
+     — i.e. a compositing layer. With no layer at rest the label did not paint;
+     the moment a transform created one, it did. So the layer is promoted here,
+     as it already is on .btnPrimary, rather than arriving with the hover. */
+  transform: translateZ(0);
 }
 .btnSecondary:hover {
-  transform: translateY(-3px);
+  /* Keeps the translateZ, so the layer is never torn down and rebuilt on hover
+     — the same reason .btnPrimary:hover carries it. */
+  transform: translateY(-3px) translateZ(0);
   border-color: var(--gold);
   color: var(--gold);
   -webkit-text-fill-color: var(--gold);
@@ -1839,6 +1852,9 @@ a[class*="__certRow"]:focus-visible,
      and no border, so a mis-tinted label leaves nothing on screen at all. */
   color: var(--gold);
   -webkit-text-fill-color: var(--gold);
+  /* Promoted for the same reason as its two siblings. This one has no fill and
+     no border, so a label that does not paint leaves nothing on screen at all. */
+  transform: translateZ(0);
   padding: 0 8px;
 }
 .btnGhost:hover {
