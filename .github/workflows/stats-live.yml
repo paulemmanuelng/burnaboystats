@@ -84,6 +84,17 @@ jobs:
       # page structure, which a data refresh cannot change; the 300-odd tests are
       # what actually validate the shape and internal consistency of this data.
       - name: Verify the regenerated data
+        # PUBLISH_GATE marks this as the publishing path, which skips the two
+        # DEADLINE ALARMS (tests/awardsPending.test.ts, tests/liveClaims.test.ts).
+        # Those are designed to go red on a date with nothing in the repo having
+        # changed — an award ceremony being held, a chart reading going stale.
+        # They are notifications for a human, and they still fail in ci.yml on
+        # every push and PR. Here they would instead stop the step below from
+        # running at all, so the half-hourly refresh would quietly stop
+        # publishing and look like a broken bot. Every other test still runs:
+        # this skips two alarms, not the verification.
+        env:
+          PUBLISH_GATE: "1"
         run: |
           set -euo pipefail
           npx tsc --noEmit

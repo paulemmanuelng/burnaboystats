@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
+import { join } from "node:path";
 import { performedCountries } from "../app/data/performedCountries";
 import { worldShapes } from "../app/data/worldShapes";
 
@@ -46,18 +47,69 @@ describe("the tour map draws every country it counts", () => {
     expect(markers.length).toBe(unshaped.length);
   });
 
-  it("the component's docstring states the marker count correctly", () => {
-    // The failure this replaces: the sentence said "ten island nations" over a
-    // set of eight, and named them all islands when one is landlocked.
+  const WORDS: Record<string, number> = {
+    four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12,
+  };
+
+  it("the marker count is right in the sentence a READER sees", () => {
+    /**
+     * This is the one that matters, and the first version of this file did not
+     * check it. It policed the JSDoc — the ` * ` in its own regex gave it away —
+     * so the comment was corrected, the comment was guarded, and the published
+     * footnote went on saying "Ten small island nations" to every phone visitor
+     * for another day. A guard that reads the explanation instead of the claim
+     * is worse than none: it certifies the wrong copy.
+     */
     const src = readFileSync(MOBILE, "utf8");
-    const m = /(\w+) territories have no usable\n \* shape at 110m/.exec(src);
-    expect(m, `${MOBILE}: no marker-count sentence found — was the docstring reworded?`).not.toBeNull();
-    const WORDS: Record<string, number> = {
-      four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12,
-    };
+    const rendered = src.slice(src.indexOf("<p className={styles.footNote}>"));
+    const m = /(\w+) territories have no usable shape at 110m/.exec(rendered);
+    expect(m, `${MOBILE}: no marker-count sentence in the rendered footnote — was it reworded?`).not.toBeNull();
     expect(
       WORDS[m![1].toLowerCase()],
-      `${MOBILE} says "${m![1]}" territories carry a marker; the data has ${markers.length}`
+      `the footnote says "${m![1]}" territories carry a marker; the data has ${markers.length}`
     ).toBe(markers.length);
+  });
+
+  it("and in the docstring that explains it", () => {
+    const src = readFileSync(MOBILE, "utf8");
+    const m = /(\w+) territories have no usable\n \* shape at 110m/.exec(src);
+    expect(m, `${MOBILE}: no marker-count sentence in the docstring`).not.toBeNull();
+    expect(WORDS[m![1].toLowerCase()]).toBe(markers.length);
+  });
+});
+
+/**
+ * Every test file a comment cites actually exists.
+ *
+ * Three citations in this repo named files that do not: og-lockup.tsx pointed
+ * at tests/ogFonts.test.ts (renamed to ogLockup), streamingTotals.ts at a .ts
+ * that is .tsx, africasBiggest.ts at hotHundredEntries rather than
+ * hotHundredEntryHomes. Each says "this is guarded" and sends the reader
+ * nowhere, which is worse than saying nothing — a comment that cites a phantom
+ * guard is how an unguarded figure gets treated as a guarded one.
+ */
+describe("comments cite guards that exist", () => {
+  const walk = (dir: string, out: string[] = []): string[] => {
+    for (const e of readdirSync(dir)) {
+      if (e === "node_modules" || e === ".next") continue;
+      const p = join(dir, e);
+      if (statSync(p).isDirectory()) walk(p, out);
+      else if (/\.(tsx?|mjs)$/.test(p)) out.push(p);
+    }
+    return out;
+  };
+
+  it("no source comment names a test file that is not there", () => {
+    const missing: string[] = [];
+    let cited = 0;
+    for (const f of [...walk("app"), ...walk("scripts")]) {
+      const src = readFileSync(f, "utf8");
+      for (const m of src.matchAll(/tests\/[A-Za-z0-9_-]+\.test\.tsx?/g)) {
+        cited++;
+        if (!existsSync(m[0])) missing.push(`${f.slice(process.cwd().length + 1)} cites ${m[0]}`);
+      }
+    }
+    expect(cited, "no test citations found at all — has the convention changed?").toBeGreaterThan(10);
+    expect(missing, "a comment claims a guard that does not exist").toEqual([]);
   });
 });

@@ -63,7 +63,7 @@ export const youtubeTotalViews = "4.0B";
  * refresh itself was the one a reader had no way to date, and the stamp built to
  * date it was dead code. /records/by-the-numbers prints it in that stat's
  * subtitle ("counted by hand on 3 September 2026"), and
- * tests/publishedFigureStamps.test.ts fails if that stops being true — because a
+ * tests/publishedFigureStamps.test.tsx fails if that stops being true — because a
  * stamp nothing renders is indistinguishable from no stamp at all.
  *
  * Bump it whenever you re-count the figure above, EVEN IF the rounded string

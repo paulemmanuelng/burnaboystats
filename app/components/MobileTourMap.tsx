@@ -86,7 +86,7 @@ export default function MobileTourMap({
 
       <p className={styles.footNote}>
         Regions and counts are derived from the same {countryCount}-country list the
-        desktop map shades. Ten small island nations have no usable shape at 110m
+        desktop map shades. Eight territories have no usable shape at 110m
         resolution and are plotted as markers rather than filled — the region list above
         is the accessible equivalent.
       </p>

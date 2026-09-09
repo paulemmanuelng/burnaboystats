@@ -86,17 +86,38 @@ describe("the CSP names every origin the code reaches for", () => {
     expect(missing, "a cover helper hands out an image host img-src does not allow").toEqual([]);
   });
 
-  it("every literal fetch target is in connect-src", () => {
+  it("every fetch target in the app is in connect-src", () => {
+    /**
+     * This guard used to match `fetch("https://…")` only, and its own comment
+     * claimed that covered "a concatenated first segment, which is how the
+     * contact form builds its endpoint". It did not. ContactForm.tsx:42-43 is:
+     *
+     *     const endpoint = "https://formsubmit.co/ajax/" + atob(ENCODED_TO);
+     *     const res = await fetch(endpoint, { … });
+     *
+     * The argument is a VARIABLE, so the pattern matched nothing, `targets` was
+     * empty, and `expect([]).toEqual([])` passed for the one origin in the app
+     * it exists to police. A guard whose subject is empty is not a guard, so it
+     * now collects every https origin that reaches a fetch — through a variable
+     * or directly — and refuses to run on an empty set.
+     */
     const connect = new Set(pol["connect-src"] ?? []);
     const targets = new Set<string>();
     for (const f of walk(join(ROOT, "app"))) {
       const src = readFileSync(f, "utf8");
-      // fetch("https://…") and fetch(`https://…`), including a concatenated
-      // first segment, which is how the contact form builds its endpoint.
-      for (const m of src.matchAll(/fetch\(\s*["'`](https:\/\/[a-z0-9.-]+)/gi)) {
-        targets.add(m[1].toLowerCase());
+      if (!/\bfetch\s*\(/.test(src)) continue;
+      // Every https origin in a file that fetches — the endpoint literal a few
+      // lines above the call included.
+      for (const m of src.matchAll(/["'`](https:\/\/[a-z0-9.-]+)/gi)) {
+        const origin = m[1].toLowerCase();
+        if (EXEMPT.has(origin)) continue;
+        targets.add(origin);
       }
     }
+    expect(
+      targets.size,
+      "no fetch origin found in app/ — the detector has stopped seeing the thing it polices"
+    ).toBeGreaterThan(0);
     const missing = [...targets].filter((t) => !connect.has(t));
     expect(missing, "the app fetches an origin connect-src does not allow").toEqual([]);
   });
