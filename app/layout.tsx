@@ -39,6 +39,39 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
+  /**
+   * Icons declared as plain paths, from public/, rather than left to the
+   * app/ file convention.
+   *
+   * The convention works — it served the right crown at every URL — but it
+   * routes the icons through Next's generated-asset pipeline, and on Vercel
+   * every generated asset URL picks up a `?dpl=<deployment id>` suffix. The
+   * emitted tag read:
+   *
+   *   /favicon.ico?favicon.1to0g6l9_8fy3.ico?dpl=dpl_E1tETnxhfgvEwvLhDuBZui6jMqDC
+   *
+   * Google's favicon rule is one line: "The favicon URL must be stable (don't
+   * change the URL frequently)." That URL changes on every deployment, and the
+   * stats bot deploys every thirty minutes — roughly fifty new favicon URLs a
+   * day, all serving identical bytes.
+   *
+   * Plain strings are not rewritten: `/manifest.webmanifest` and the og:image
+   * both ship clean today while all 127 `_next/static` references carry the
+   * suffix. So the paths below stay stable across deployments, which is the
+   * whole point of moving the three files into public/.
+   *
+   * ICO first and SVG second on purpose. Google's supported favicon formats are
+   * BMP, GIF, ICO, PNG, JPEG, PPM and TIFF — SVG is not among them — so the
+   * format Google can actually read is the one that leads. Browsers that prefer
+   * the SVG still take it; they read the whole list.
+   */
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   verification: {
     google: [
       "2XOJ-X5bZw0xz0FThjWumiTpcwV3GOVU37g7M_NpxbE",
@@ -95,7 +128,24 @@ const orgJsonLd = {
   "@type": "Organization",
   name: "Burna Boy Stats",
   url: siteUrl,
-  logo: `${siteUrl}/icon.svg`,
+  // A 512x512 PNG, not the SVG this used to name.
+  //
+  // Google's Logo structured-data rules are specific: the image "must be
+  // 112x112px, at minimum", "must be crawlable and indexable", and its format
+  // "must be supported by Google Images". An SVG satisfies none of those
+  // cleanly — it has no intrinsic pixel size to measure a minimum against, and
+  // SVG is absent from the format list Google publishes for favicons in search
+  // (BMP, GIF, ICO, PNG, JPEG, PPM, TIFF). icon-512.png is already built from
+  // the same crown geometry, already served at a stable path, and is
+  // unambiguous on every count. This is the node every Article on the site
+  // resolves its author/publisher to, so it is the logo rich results and AI
+  // engines pull for attribution — the one place the format needs to be dull.
+  logo: {
+    "@type": "ImageObject",
+    url: `${siteUrl}/icon-512.png`,
+    width: 512,
+    height: 512,
+  },
   description:
     "An independent, fan-run statistics site tracking Burna Boy's certifications, chart history, awards and tour records — every figure sourced and verified.",
   sameAs: ["https://x.com/paulemmanuelng"],
