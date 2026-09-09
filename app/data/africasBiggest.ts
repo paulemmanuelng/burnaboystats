@@ -103,7 +103,7 @@ export const BURNA_YT_AUDIENCE_WORDS = "929 million";
  *  releases this site tracks, and it carries three US singles entries. The 9
  *  is Billboard's career total for him, features and older entries included.
  *  Deriving it from the peak table would publish 3. Update it here when
- *  Billboard adds an entry; tests/hotHundredEntries.test.ts holds every
+ *  Billboard adds an entry; tests/hotHundredEntryHomes.test.ts holds every
  *  published mention to this constant. */
 export const BURNA_HOT_100_ENTRIES = 9;
 /** Capitalised, like `numberWord` — call `.toLowerCase()` mid-sentence. */

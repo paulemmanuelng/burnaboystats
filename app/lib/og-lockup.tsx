@@ -39,7 +39,7 @@ const fontFile = (name: string) => readFileSync(join(process.cwd(), "public/font
  * first, would silently reset all thirty-seven cards in the poster face.
  *
  * That is not a guess: rendering one card with `fonts` undefined and again with
- * this list produces a byte-identical PNG. tests/ogFonts.test.ts holds the
+ * this list produces a byte-identical PNG. tests/ogLockup.test.ts holds the
  * ordering; the copy of Geist is what makes it hold without reaching into
  * node_modules at render time.
  */

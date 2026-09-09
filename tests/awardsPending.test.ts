@@ -54,8 +54,29 @@ describe("the deadline rule", () => {
   });
 });
 
+/**
+ * The clock-driven half of this file.
+ *
+ * These assertions are ALARMS: they are supposed to start failing the morning
+ * after a ceremony, with nothing in the repo having changed. That is the whole
+ * design, and it is documented at the top of this file.
+ *
+ * They are skipped in ONE place — the stats bot's publishing gate. That gate
+ * (.github/workflows/stats-live.yml) runs `npm run test` in "Verify the
+ * regenerated data", and the step immediately after it is "Commit to main". So
+ * a red alarm there does not notify anybody; it silently stops the half-hourly
+ * live refresh from publishing, disguised as "the bot is broken", and takes
+ * every unrelated PR red with it. AFRIMMA on 12 Sep 2026 was four days from
+ * doing exactly that.
+ *
+ * Skipping it there is not silencing it. It still fails in ci.yml on every push
+ * and every pull request, which is where a human sees it and where failing
+ * costs nothing but attention — precisely what an alarm is for.
+ */
+const PUBLISHING_GATE = process.env.PUBLISH_GATE === "1";
+
 describe("pending ceremonies", () => {
-  it("none of them has already happened", () => {
+  it.skipIf(PUBLISHING_GATE)("none of them has already happened", () => {
     // When this fails, the ceremony has been held. Go to its own winners list,
     // flip any win in `ceremonies`, delete the row from `pendingResults`, and
     // expect handoffTotals.test.ts's win/nomination pins to need bumping.
