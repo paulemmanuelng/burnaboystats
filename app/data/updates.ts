@@ -40,6 +40,12 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-09-09",
+    category: "Charts",
+    text: "Greece brings its chart back and “Dai Dai” is still on top: IFPI Greece paused its Digital Singles Chart over the summer, returned with a single combined edition covering weeks 31-34, and has the song at No. 1 there and again in week 35 — six chart editions at No. 1 in all, on a chart that now reads twelve weeks. Longer runs elsewhere: fourteen weeks in Slovakia, where a No. 2 in week 36 closes its eight-week run at the top; thirteen in the Czech Republic, twelve in Italy and fourteen in the United Arab Emirates.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-09-09",
     category: "Streaming",
     text: "Back on top on YouTube: the “Dai Dai” video retakes No. 1 on the Global Daily Top Music Videos chart dated 7 September, up from No. 2, on its 108th day on the chart. Its first run there — 80 consecutive days from 9 June — closed at the end of August, and the video spent the charts dated 5 and 6 September at No. 2 behind LISA's “SaWaDiKa”. The 80 stays a closed count rather than growing: the day this new spell began has not been read, because charts.youtube.com renders only the latest chart.",
     href: "/dai-dai",
@@ -83,7 +89,7 @@ export const updates: Update[] = [
   {
     date: "2026-09-03",
     category: "Charts",
-    text: "“Dai Dai” goes to No. 1 on Billboard's Rhythmic Airplay chart dated 5 September 2026, climbing 3–1. It is Shakira's first-ever No. 1 on the format, twenty years after “Hips Don't Lie” peaked at No. 5 in 2006, and the song's fourth week in the format's top three. It holds at No. 26 on Pop Airplay. This is Billboard's own Rhythmic Airplay panel, not Mediabase's — the two share a monitoring feed but rank different panels over different weeks, and this site publishes the Billboard peak. (The date read 6 September here until 6 Sep 2026: Billboard issues fall on Saturdays, 5 September 2026 is the Saturday, and the German chart frame of 04.09–10.09 pins the same week independently.)",
+    text: "“Dai Dai” goes to No. 1 on Billboard's Rhythmic Airplay chart dated 5 September 2026, climbing 3–1. It is Shakira's first-ever No. 1 on the format, twenty years after “Hips Don't Lie” peaked at No. 5 in 2006, and the song's fourth week in the format's top three. It is No. 27 on Pop Airplay on the same 5 September chart, one off the No. 26 peak it set on the chart dated 15 August. (This entry read “holds at No. 26” until 9 Sep 2026: 26 is the peak, not the position — Billboard's own row for the 5 September chart reads rank 27, LW 27, PEAK 26.) This is Billboard's own Rhythmic Airplay panel, not Mediabase's — the two share a monitoring feed but rank different panels over different weeks, and this site publishes the Billboard peak. (The date read 6 September here until 6 Sep 2026: Billboard issues fall on Saturdays, 5 September 2026 is the Saturday, and the German chart frame of 04.09–10.09 pins the same week independently.)",
     href: "/dai-dai",
   },
   {
