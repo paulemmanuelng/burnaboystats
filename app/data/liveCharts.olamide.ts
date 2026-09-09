@@ -147,8 +147,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 112,
-            "movement": -27
+            "position": 113,
+            "movement": -28
           }
         ]
       }
@@ -252,8 +252,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
-            "movement": 159
+            "position": 48,
+            "movement": 150
           }
         ]
       }
@@ -334,8 +334,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 106,
-            "movement": 5
+            "position": 110,
+            "movement": 2
           }
         ]
       }
@@ -488,8 +488,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 100,
-            "movement": 4
+            "position": 104,
+            "movement": 1
           }
         ]
       }
@@ -507,8 +507,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 146,
-            "movement": 2
+            "position": 150,
+            "movement": -1
           }
         ]
       }

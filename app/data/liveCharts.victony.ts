@@ -448,37 +448,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 24,
-            "movement": -2
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 36,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 80,
-            "movement": -6
-          },
-          {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 195,
-            "movement": -165
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -506,6 +475,31 @@
             "name": "Côte d'Ivoire",
             "position": 51,
             "movement": 13
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 30,
+            "movement": -8
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 54,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 80,
+            "movement": -6
           }
         ]
       },
@@ -723,12 +717,6 @@
             "movement": -73
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 109,
-            "movement": 3
-          },
-          {
             "country": "QA",
             "name": "Qatar",
             "position": 124,
@@ -736,16 +724,22 @@
             "status": "new"
           },
           {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 142,
-            "movement": -33
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 125,
+            "movement": -9
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 143,
-            "movement": -30
+            "position": 137,
+            "movement": -16
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 142,
+            "movement": -33
           },
           {
             "country": "ML",

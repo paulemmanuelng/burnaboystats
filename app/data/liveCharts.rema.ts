@@ -45,110 +45,6 @@
     "title": "Secondhand",
     "platforms": [
       {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 30,
-            "movement": 2
-          },
-          {
-            "country": "SG",
-            "name": "Singapore",
-            "position": 47,
-            "movement": 16
-          },
-          {
-            "country": "VN",
-            "name": "Vietnam",
-            "position": 54,
-            "movement": 10
-          },
-          {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 60,
-            "movement": 18
-          },
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 66,
-            "movement": 9
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 92,
-            "movement": 25
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 95,
-            "movement": 20
-          },
-          {
-            "country": "EG",
-            "name": "Egypt",
-            "position": 96,
-            "movement": 14
-          },
-          {
-            "country": "GR",
-            "name": "Greece",
-            "position": 121,
-            "movement": 23
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 123,
-            "movement": 19
-          },
-          {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 148,
-            "movement": 28
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 148,
-            "movement": 24
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 159,
-            "movement": 36
-          },
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 171,
-            "movement": 20
-          },
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 191,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -246,6 +142,104 @@
         ]
       },
       {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 30,
+            "movement": 2
+          },
+          {
+            "country": "SG",
+            "name": "Singapore",
+            "position": 47,
+            "movement": 16
+          },
+          {
+            "country": "VN",
+            "name": "Vietnam",
+            "position": 54,
+            "movement": 10
+          },
+          {
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 60,
+            "movement": 18
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 66,
+            "movement": 9
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 95,
+            "movement": 20
+          },
+          {
+            "country": "EG",
+            "name": "Egypt",
+            "position": 96,
+            "movement": 14
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 121,
+            "movement": 23
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 123,
+            "movement": 19
+          },
+          {
+            "country": "HU",
+            "name": "Hungary",
+            "position": 148,
+            "movement": 28
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 148,
+            "movement": 24
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 159,
+            "movement": 36
+          },
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 171,
+            "movement": 20
+          },
+          {
+            "country": "MA",
+            "name": "Morocco",
+            "position": 191,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 199,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -290,9 +284,8 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 180,
-            "movement": null,
-            "status": "new"
+            "position": 110,
+            "movement": 47
           }
         ]
       }
@@ -1091,6 +1084,64 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Calm Down",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "QA",
+            "name": "Qatar",
+            "position": 112,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 134,
+            "movement": -48
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 159,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 28,
+            "movement": -1
+          },
+          {
+            "country": "KH",
+            "name": "Cambodia",
+            "position": 63,
+            "movement": -11
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 148,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Ginger Me",
     "platforms": [
       {
@@ -1180,7 +1231,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 90,
-            "movement": -29
+            "movement": -26
           }
         ]
       },
@@ -1199,57 +1250,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 112,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 134,
-            "movement": -48
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 159,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 31,
-            "movement": -4
-          },
-          {
-            "country": "KH",
-            "name": "Cambodia",
-            "position": 61,
-            "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FUN",
@@ -1389,16 +1389,15 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 55,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "TH",
             "name": "Thailand",
-            "position": 109,
+            "position": 86,
+            "movement": -32
+          },
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 178,
             "movement": null,
             "status": "new"
           }
@@ -1463,7 +1462,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 75,
-            "movement": -9
+            "movement": -7
           }
         ]
       }

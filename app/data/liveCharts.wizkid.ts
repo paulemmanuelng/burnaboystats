@@ -306,8 +306,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 177,
-            "movement": -8
+            "position": 174,
+            "movement": -12
           },
           {
             "country": "MU",
@@ -348,6 +348,19 @@
             "name": "Uzbekistan",
             "position": 200,
             "movement": -53
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 12,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -560,18 +573,6 @@
             "name": "Nigeria",
             "position": 35,
             "movement": -4
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 190,
-            "movement": -165
           }
         ]
       }
@@ -969,8 +970,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
-            "movement": -2
+            "position": 79,
+            "movement": -5
           },
           {
             "country": "KE",
@@ -1055,7 +1056,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 84,
-            "movement": -8
+            "movement": -6
           },
           {
             "country": "MW",
@@ -1181,8 +1182,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
-            "movement": -7
+            "position": 15,
+            "movement": -11
           }
         ]
       }
@@ -1281,7 +1282,7 @@
             "country": "BG",
             "name": "Bulgaria",
             "position": 62,
-            "movement": -7
+            "movement": -6
           }
         ]
       }
@@ -1383,8 +1384,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": -11
+            "position": 37,
+            "movement": -30
           }
         ]
       }
@@ -1765,7 +1766,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 5,
-            "movement": -4
+            "movement": -3
           },
           {
             "country": "NG",
@@ -1838,7 +1839,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 67,
-            "movement": -9
+            "movement": -7
           },
           {
             "country": "KE",
@@ -1864,6 +1865,18 @@
             "position": 195,
             "movement": null,
             "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 6,
+            "movement": 65
           }
         ]
       }
@@ -1936,14 +1949,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
+            "position": 67,
             "movement": null,
             "status": "new"
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 81,
+            "position": 82,
             "movement": null,
             "status": "new"
           }
@@ -2045,8 +2058,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 16,
-            "movement": -12
+            "position": 27,
+            "movement": -21
           }
         ]
       }
@@ -2088,8 +2101,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": 4
+            "position": 131,
+            "movement": 1
           }
         ]
       }
@@ -2150,8 +2163,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": 4
+            "position": 89,
+            "movement": 1
           },
           {
             "country": "GD",
@@ -2230,37 +2243,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Slow",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 84,
-            "movement": 1
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 200,
-            "movement": -159
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BIG TIME",
     "platforms": [
       {
@@ -2312,6 +2294,45 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7498fe9018c0f5133ccf398df5edaac2/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Slow",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 84,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "More",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 3,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b1eb19b96a5e2985053b8bef3138498f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "One Love",
     "platforms": [
       {
@@ -2321,8 +2342,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 24,
-            "movement": -11
+            "position": 26,
+            "movement": -12
           }
         ]
       }
@@ -2399,33 +2420,13 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 90,
-            "movement": -6
+            "movement": -4
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b5c2e2be723408f28befdd7a53e1c64a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Bad Girl",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 77,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BROWN SKIN GIRL",
@@ -2437,7 +2438,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 82,
+            "position": 83,
             "movement": null,
             "status": "new"
           }
@@ -2458,7 +2459,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 92,
-            "movement": -29
+            "movement": -26
           }
         ]
       }
@@ -2467,7 +2468,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Call Me Every Day",
+    "title": "Bad Girl",
     "platforms": [
       {
         "platform": "iTunes",
@@ -2476,7 +2477,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 93,
             "movement": null,
             "status": "new"
           }
@@ -2484,7 +2485,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cc269116fe4da8b1054a18ef7f1e39a8/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IDG",
@@ -2525,6 +2526,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e5bc56dd547bcc84a47089b865230cb/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Call Me Every Day",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 60,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cc269116fe4da8b1054a18ef7f1e39a8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Getting Paid ​(f​eat​. Asake, Wizkid, Skillibeng​)",
@@ -2595,8 +2616,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 162,
-            "movement": -26
+            "position": 163,
+            "movement": -25
           }
         ]
       }
