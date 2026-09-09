@@ -1,20 +1,26 @@
-/* Live band, full-width under the nav. Same treatment as the Today's Number
-   panel below it: not a gold fill — near-black lit from one corner, so the band
-   blends with the page and the headline is the gold in it. Both used to run two
-   radials plus an inset glow; stacked, the pair read as a single warm field
-   across the whole top of the page, which is the density Job 3 cuts. */
+/* Live band, full-width under the nav.
+   The gold went out of here in the September pass. It had already stopped being
+   a gold FILL — a radial replaced it — but even lit from one corner it was the
+   largest warm mass above the fold, and stacked with the gold panel below it the
+   two read as one field across the whole top of the page.
+   The region now runs on one rule: gold marks what is LIVE and what is the
+   ACTION, everything else is ink. So the band is a flat --bg-soft strip with a
+   hairline under it, and the only colour left in it is the green live dot. */
 .band {
   color: var(--text);
   border-bottom: 1px solid var(--line);
   overflow: hidden;
-  background-color: var(--bg-soft);
-  background-image: radial-gradient(110% 85% at 0% 0%, color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent), transparent 58%);
+  background: var(--bg-soft);
 }
 
 .inner {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 9px 40px;
+  /* 42px tall, per the design: chrome carrying a fact, not a section of its own.
+     Set as a min-height with symmetric padding so the row centres whatever the
+     headline's length, rather than growing with it. */
+  min-height: 42px;
+  padding: 0 40px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -46,14 +52,31 @@
   display: block;
 }
 
+/* The headline is a link now — it goes to wherever the fact is written up in
+   full. Underline on hover only: at Anton 15px a resting underline reads as a
+   rule across the band. */
+.headlineLink {
+  color: inherit;
+  text-decoration: none;
+  min-width: 0;
+}
+.headlineLink:hover .headline { text-decoration: underline; }
+
 .headline {
   color: var(--text);
   font-family: var(--font-anton), sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   /* Anton has no bold cut; weight stays 400 or the browser fakes it. */
   font-weight: 400;
+  /* The headline is derived from whatever was logged last, so its length is not
+     ours to control. One line, clipped — the band must not grow a second row
+     because someone wrote a long entry. */
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .sub {
@@ -78,6 +101,9 @@
   opacity: 1;
   text-decoration: underline;
 }
+/* The label is chrome, the number is the fact — so the number carries --text
+   and the words around it stay muted. */
+.streamsFigure { color: var(--text); }
 
 /* Below the desktop grid the sub-line and the streams figure are the first
    things to go — the headline is the reason the band exists. */

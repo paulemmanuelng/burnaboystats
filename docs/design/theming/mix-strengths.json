@@ -145,9 +145,6 @@
   "app/components/filterEmpty.module.css": [
     "--gold-wash-base 14%"
   ],
-  "app/components/liveBand.module.css": [
-    "--gold-wash-base 14%"
-  ],
   "app/components/mobileAbout.module.css": [
     "--glow-base 15%"
   ],

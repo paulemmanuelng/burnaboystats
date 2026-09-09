@@ -1,22 +1,32 @@
 import Link from "next/link";
 import styles from "./liveBand.module.css";
-import { liveHeadline } from "../lib/liveHeadline";
+import { bandFact } from "../lib/bandHeadline";
 import { spotifyTotalStreams } from "../data/streamingTotals";
 
 /**
- * The gold band that runs full-width under the nav.
+ * The band that runs full-width under the nav — the site's "what moved last".
  *
- * This is where the redesign puts the one fact that is only true today, and it
- * settles a question the old layout never answered well: the live figure was a
- * pill floating in the hero, competing with the wordmark for the same space.
- * Full width, above everything, is unambiguous — and being the only gold fill
- * above the fold, it reads as the site's pulse rather than as decoration.
+ * Two things changed here in the September design pass, and they are the same
+ * change seen from two sides.
  *
- * Every value is derived. The count comes from the live chart snapshot, so the
- * band rewrites itself as the data moves.
+ * IT NO LONGER REPEATS THE PANEL. The band used to read "“Dai Dai” — No. 1 in
+ * 31 countries on streaming charts" while the gold panel 300px to its right read
+ * "31 / countries at No. 1 on today's streaming charts" — one fact, two
+ * surfaces, in the most expensive space on the site. The streaming figure now
+ * lives only in the panel, where it has its figure, caption and provenance, and
+ * the band carries whatever moved last instead. See lib/bandHeadline.ts for why
+ * that comes from the updates feed rather than from certifications.ts.
+ *
+ * IT IS NO LONGER GOLD. As a full-width gold field it was the largest gold mass
+ * above the fold and it fought the hero for the eye. The region now follows one
+ * rule — gold marks what is LIVE and what is the ACTION, everything else is ink
+ * — so the band is --bg-soft with a hairline under it, and the only colour in it
+ * is the green live dot. Gold above the strip is now exactly four things: the
+ * "Boy" in the wordmark, the live figure, the primary button, and links.
  */
 export default function LiveBand() {
-  const live = liveHeadline();
+  const fact = bandFact();
+  if (!fact) return null;
 
   return (
     <div className={styles.band}>
@@ -26,18 +36,28 @@ export default function LiveBand() {
           LIVE
         </span>
 
-        <span className={styles.headline}>
-          {live.title
-            ? `“${live.title}” — No. 1 in ${live.countries} countries on streaming charts`
-            : live.lead}
+        <Link href={fact.href} className={styles.headlineLink}>
+          <span className={styles.headline}>{fact.headline}</span>
+        </Link>
+
+        <span className={styles.sub}>
+          {fact.kicker} · <time dateTime={fact.date}>{longDate(fact.date)}</time>
         </span>
 
-        <span className={styles.sub}>across Spotify, Apple Music, Deezer &amp; YouTube</span>
-
         <Link href="/music" className={styles.streams}>
-          career streams {spotifyTotalStreams}
+          career streams <span className={styles.streamsFigure}>{spotifyTotalStreams}</span>
         </Link>
       </div>
     </div>
   );
+}
+
+/** "9 September 2026" — the band's own spelling, derived from the entry's date. */
+function longDate(iso: string) {
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 }
