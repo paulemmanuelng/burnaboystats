@@ -137,3 +137,47 @@ describe("the CSP names every origin the code reaches for", () => {
     expect(pol["font-src"] ?? []).toEqual([]);
   });
 });
+
+/**
+ * The non-CSP security headers are still declared.
+ *
+ * Everything above polices the CSP's host lists, which is the part that drifts
+ * as the code reaches for new origins. It says nothing about the four headers
+ * beside it — and those are the ones actually enforced in production, while the
+ * CSP is still report-only. Deleting a line from `securityHeaders` would take
+ * clickjacking or MIME-sniffing protection off every response on the site and
+ * pass CI in silence, because nothing reads them.
+ *
+ * Checked as a pair: the header must be present AND carry the value that makes
+ * it do something. `X-Frame-Options: ALLOWALL` is a header, not a defence.
+ */
+describe("the enforced security headers survive an edit to next.config.mjs", () => {
+  const REQUIRED: [string, RegExp, string][] = [
+    ["X-Content-Type-Options", /nosniff/, "stops MIME-sniffing a text response into a script"],
+    ["X-Frame-Options", /SAMEORIGIN|DENY/, "the ENFORCED clickjacking defence — the CSP's frame-ancestors is only report-only"],
+    ["Referrer-Policy", /strict-origin-when-cross-origin|no-referrer/, "keeps full URLs off outbound referers"],
+    ["Permissions-Policy", /camera=\(\)/, "denies camera, microphone and geolocation by default"],
+  ];
+
+  it.each(REQUIRED)("%s is set and still restrictive", (key, value, why) => {
+    const entry = new RegExp(`key:\\s*["']${key}["'][^}]*?value:\\s*([\\s\\S]*?)[,}]`, "i").exec(CONFIG);
+    expect(entry, `${key} is gone from next.config.mjs — ${why}`).toBeTruthy();
+    expect(entry![1], `${key} is present but no longer restrictive — ${why}`).toMatch(value);
+  });
+
+  // The CSP is deliberately report-only (see the note in next.config.mjs), so
+  // this is not a demand that it be enforced. It is a check that the day it IS
+  // enforced, the switch is the only thing that changed: an enforcing policy
+  // must never ship still carrying script-src 'unsafe-inline', because that is
+  // the directive the whole exercise exists to remove.
+  it("does not enforce a CSP that still allows inline script", () => {
+    const enforcing = /key:\s*["']Content-Security-Policy["']/.test(CONFIG);
+    if (!enforcing) return;
+    const policy = /key:\s*["']Content-Security-Policy["'][\s\S]*?value:\s*\[([\s\S]*?)\]\.join/.exec(CONFIG);
+    expect(policy, "the CSP is enforcing but this check cannot read it").toBeTruthy();
+    expect(
+      /script-src[^"]*'unsafe-inline'/.test(policy![1]),
+      "the CSP was switched to enforcing while script-src still allows 'unsafe-inline' — add nonces first, that is the work enforcement was waiting on"
+    ).toBe(false);
+  });
+});
