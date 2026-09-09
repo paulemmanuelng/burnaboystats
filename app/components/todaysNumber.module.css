@@ -7,60 +7,27 @@
   position: relative;
   overflow: hidden;
   color: var(--text);
-  padding: 28px 32px;
+  /* 44px top matches the hero column's, so the panel kicker and the hero
+     eyebrow share a line across the section. */
+  padding: 44px 32px 26px;
   flex: 1;
-  /* Surface, hairline, ONE corner glow — the Job 3 rule: gold marks figures and
-     a single action, and surfaces stay near-black. This panel used to carry two
-     radial washes plus an inset gold glow, stacked directly under the live band
-     running the identical pair, which turned the whole top of the page into one
-     warm field. Now the numeral is the only bright thing in it. */
+  /* ONE wash, and nothing else. This panel used to carry two radials, an inset
+     gold glow, five floating music glyphs and two rings — the same smudge
+     problem as the scoreboard watermarks, one column to the right. Stacked
+     under a live band running its own gold pair, the two read as a single warm
+     field across the top of the page. The figure is now the only bright thing
+     in here, which is the point of a panel called "today's number". */
   background-color: var(--bg-soft);
-  background-image: radial-gradient(110% 85% at 0% 0%, color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent), transparent 58%);
-  /* No border. Job 3 asks for "border 1px var(--line)", but that rule is written
-     for the mobile card, which floats. Here the panel is a full-bleed cell of
-     the hero grid — it is already enclosed by the column's border-left, the
-     band's border-bottom above it and the status row's border-top below — so a
-     border of its own just drew a second line 1px inside the first. */
+  /* The design writes this wash as rgba(255,182,39,0.11). Kept as the repo's
+     token form instead, at the same strength and geometry: a literal gold
+     cannot respond to the theme or to --wash-strength, and cssColourTokens
+     rightly refuses one in a module. Same picture, still themeable. */
+  background-image: radial-gradient(90% 70% at 0% 0%, color-mix(in srgb, var(--gold-wash-base) calc(11% * var(--wash-strength)), transparent), transparent 60%);
+  /* No border: the panel is a full-bleed cell of the hero grid, already
+     enclosed by the column's border-left, the band's border-bottom above and
+     the official row's border-top below. */
 }
 
-/* Burnt glyphs, well under the text. Decorative only. */
-.glyphs {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  color: var(--gold);
-}
-.glyphs span {
-  position: absolute;
-  display: block;
-  opacity: 0.05;
-  font-size: 30px;
-  line-height: 1;
-}
-.g1 { top: 12%;  right: 14%; font-size: 38px; }
-.g2 { top: 44%;  right: 7%;  font-size: 26px; opacity: 0.06 !important; }
-.g3 { bottom: 24%; left: 8%; font-size: 32px; }
-.g4 { top: 26%;  left: 26%;  font-size: 22px; opacity: 0.055 !important; }
-.g5 { bottom: 12%; right: 27%; font-size: 20px; }
-.ring1,
-.ring2 {
-  border-radius: 50%;
-  opacity: 1 !important;
-}
-.ring1 {
-  top: -14%;
-  right: -8%;
-  width: 150px;
-  height: 150px;
-  border: 1px solid color-mix(in srgb, var(--burnt) 14%, transparent);
-}
-.ring2 {
-  bottom: -9%;
-  left: 60%;
-  width: 120px;
-  height: 120px;
-  background: color-mix(in srgb, var(--burnt) 5%, transparent);
-}
 
 .kicker {
   position: relative;
@@ -69,14 +36,38 @@
   gap: 10px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11.5px;
-  letter-spacing: 0.18em;
+  font-size: 11px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  /* Mono muted, not gold: the rule gives gold to figures and one action, and
-     this is a label sitting directly above the figure it names. */
-  color: var(--text-muted);
 }
-.kickerRule { width: 20px; height: 1px; background: var(--rule); display: block; flex: none; }
+.liveTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--green);
+  flex: none;
+}
+/* The panel's one green dot — it used to sit in the status row as well. 7px
+   with the site's existing live pulse. */
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  display: block;
+  animation: livePulse 2.4s var(--ease) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dot { animation: none; }
+}
+.kickerLabel { color: var(--text-muted); }
+/* Weight 400: it is a timestamp, not a label. */
+.stamp {
+  margin-left: auto;
+  font-weight: 400;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
 
 .row {
   position: relative;
@@ -90,7 +81,10 @@
   font-family: var(--font-anton), sans-serif;
   /* Anton is a 400-only face — size carries the weight, never font-weight. */
   font-weight: 400;
-  font-size: 142px;
+  /* 92px — the brief's ceiling of 0.85 x the 108px wordmark, taken literally.
+     At 142 the panel figure was physically larger than the site's own name, so
+     the eye landed right, tracked back left, then returned. */
+  font-size: 92px;
   line-height: 0.82;
   letter-spacing: 0.01em;
   font-variant-numeric: tabular-nums;
@@ -121,8 +115,10 @@
   display: block;
 }
 .cover img {
-  width: 146px;
-  height: 146px;
+  /* Scales with the figure it captions: at 146 beside a 92px numeral the cover
+     would have become the new focal point. */
+  width: 104px;
+  height: 104px;
   object-fit: cover;
   border-radius: var(--radius-md);
   box-shadow: 0 14px 34px color-mix(in srgb, var(--shadow-base) calc(45% * var(--shadow-strength)), transparent);
@@ -139,22 +135,29 @@
   color: var(--gold);
 }
 
+/* The figure and its unit read as one sentence rather than a number with a
+   label under it, so the caption sits directly beneath the numeral inside the
+   same column and the cover keeps the right edge. */
+.figureWrap {
+  min-width: 0;
+}
 .caption {
   position: relative;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 22px;
-  line-height: 1.15;
-  margin-top: 14px;
+  line-height: 1.1;
+  max-width: 15ch;
+  margin-top: 10px;
+  text-wrap: balance;
 }
 
 .note {
   position: relative;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
-  margin: 10px 0 0;
-  opacity: 0.85;
-  max-width: 46ch;
+  margin: 18px 0 0;
+  max-width: 44ch;
   color: var(--text-body);
 }
 @media (max-width: 900px) {
@@ -165,22 +168,44 @@
 
 /* The status row sits OUTSIDE the gold panel, on the page background, divided
    from it by the same hairline that divides the hero columns. */
+/* ROW 2 — official charts. Ink against the gold above it. */
+.official {
+  border-top: 1px solid var(--line);
+  background: var(--bg-soft);
+  padding: 16px 32px 18px;
+}
+.officialKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* Full --text, not --text-muted. This is the sentence that separates streaming
+   from official — the distinction the whole methodology rests on — and it spent
+   its life whispered in grey under a 142px number.
+   In light mode the panel above is a gold gradient and this row sits against
+   its light end (#ffd24a), where --text-muted fails 4.5:1. --ink-on-gold is
+   14.2:1 there. Do not swap it back. */
+.officialText {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  max-width: 46ch;
+}
+
+/* ROW 3 — status, on the page background, divided by the same hairline.
+   No dot: there is one live dot in the panel and it is up in row 1. */
 .status {
   border-top: 1px solid var(--line);
-  padding: 14px 32px;
+  min-height: 44px;
+  padding: 0 32px;
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 12px;
-}
-.statusDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green);
-  display: block;
-  flex: none;
-  box-shadow: 0 0 8px color-mix(in srgb, var(--green-dot) 70%, transparent);
+  font-size: 12.5px;
 }
 .statusText { color: var(--text-muted); }
 /* Same 24px target minimum — the status row has the room. */
