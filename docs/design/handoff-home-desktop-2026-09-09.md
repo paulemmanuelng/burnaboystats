@@ -5,9 +5,17 @@ in this file: the repo, the rules, each finding with its exact anchor, what
 "done" looks like, and which guard fires if you get it wrong. You should not
 need to ask a question before starting, and you should not need to guess.
 
-Scope is **one screen**: the desktop home page at ≥1240px — nav, live band,
-hero, scoreboard strip, history band. Nothing below the history band, and
-nothing on mobile unless a finding says so explicitly.
+Scope is the **UPPER PART of the desktop home page at ≥1240px, and nothing
+else**: the live band, the hero (copy column + "Today's number" panel), and the
+scoreboard strip. That is the region in the brief screenshot — everything from
+the top of the page down to the end of the five-number row.
+
+**Out of scope, explicitly:** the history band and everything below it, the nav
+bar, every other page, and mobile. Two findings that were in an earlier draft of
+this file have been moved to §9 for that reason. If you think something outside
+this box needs fixing, write it in §9 and raise it — do not fix it. The owner
+asked for the upper part; a PR that touches more than the upper part will be
+sent back.
 
 ---
 
@@ -37,8 +45,8 @@ against the dev server, not a manual `npm run dev` in a shell.
 These are not preferences. Each one is here because breaking it cost real work.
 
 1. **Never redesign beyond the brief.** Paul reverted a whole accordion
-   redesign once. Fix the seven things listed in §5 and stop. If you see an
-   eighth, write it down and raise it — do not fix it.
+   redesign once. Fix the five things listed in §5 and stop. If you see a
+   sixth, write it in §9 and raise it — do not fix it.
 2. **Desktop and mobile are separate components and separate designs.** Never
    cross-apply. `app/page.tsx` (inside `.desktopOnly`) is desktop;
    `app/components/MobileHome.tsx` is mobile. A change to one is NOT
@@ -118,7 +126,7 @@ through.
 
 ---
 
-## 5. The seven findings
+## 5. The five findings
 
 Ordered by leverage. Each is independent; ship them as separate commits.
 
@@ -164,30 +172,7 @@ are narrower and the glyph reads differently there. If desktop-only, leave
 nothing else. Confirm the mobile scoreboard is unchanged (or changed
 deliberately, with Paul's yes).
 
-### 5.3 — The nav carries ten items — MEDIUM
-
-`Home · Music · Certifications · Records · Live Charts · Afrobeats · Updates ·
-About · FAQ · Contact` — plus theme toggle, search, and the Stat card CTA. Ten
-items means none is emphasised, and Stat card — the most distinctive thing the
-site offers — has to shout over the crowd.
-
-- Source of truth: `app/lib/links.ts:4-14` (`navItems`)
-- Only consumer: `app/components/Nav.tsx:89`
-
-**Recommendation:** drop `About`, `FAQ`, `Contact` to seven items.
-
-⚠️ **Check this before you cut.** `FooterNav` renders the full sitemap **on the
-home page only**; other pages get a compact bar from `footerFor` /
-`DEFAULT_FOOTER`. If `/about`, `/faq` and `/contact` are not in that compact
-footer, removing them from the nav orphans three routes on every page but home
-— an SEO regression, not a tidy-up. Verify first; extend the compact footer if
-needed; only then cut the nav.
-
-**Done when:** seven nav items, all three removed routes still reachable from
-every page, and `/sitemap.xml` still lists 113 URLs (`npm run verify` checks
-114 pages).
-
-### 5.4 — The same sentence twice, 300px apart — MEDIUM
+### 5.3 — The same sentence twice, 300px apart — MEDIUM
 
 The live band reads *"DAI DAI — NO. 1 IN 31 COUNTRIES ON STREAMING CHARTS"*.
 The panel immediately right reads *"31 / countries at No. 1 on today's
@@ -203,7 +188,7 @@ valuable space on the site.
 are already derived: the newest chart No. 1, the most recent certification, the
 latest updates entry. **Keep it derived — never type a headline.**
 
-### 5.5 — Four link weights, no visible rule — MEDIUM
+### 5.4 — Four link weights, no visible rule — MEDIUM
 
 Within one viewport: a filled gold button, an outlined button, a bare text link
 with a `⌘K` badge, and small arrow links (`Live board ↗`, `Read the story ↗`).
@@ -211,7 +196,9 @@ Four weights doing two jobs.
 
 - `app/page.tsx:103-107` — the hero's three
 - `app/components/TodaysNumber.tsx:78-86` — `Live board ↗`
-- `app/page.tsx:149-151` — `Read the story ↗`
+
+(The history band's `Read the story ↗` is the fourth instance, but that band is
+out of scope — state the rule so it covers it, and leave the markup alone.)
 
 **Done when:** there is a stated rule — write it as a comment in
 `app/globals.css` above the `.btn` block — and the page follows it. A
@@ -219,23 +206,7 @@ reasonable rule: **filled = the one primary action per section; outlined =
 secondary; arrow link = navigation to a sibling page; bare text = utility.**
 Merging two of the four is the win; do not invent a fifth.
 
-### 5.6 — The history band is the weakest composition — MEDIUM
-
-Left headline / centre paragraph / right button, `1fr 2fr` with `align-items:
-center` and a 48px gap. Nothing shares a baseline and there is a lot of dead
-space. For a band titled "HISTORY MADE" it reads as a footer promo.
-
-- Markup: `app/page.tsx:138-155`
-- CSS: `app/page.module.css:280-341` — `.historyBand`, `.historyInner`
-  (`grid-template-columns: 1fr 2fr`), `.historyRow` (flex, gap 40px),
-  `.historyText` (15px, max-width 56ch), `.historyCta`
-
-**Done when:** the three parts read as one unit. Give the kicker/title and the
-paragraph a shared baseline, or drop to two columns with the CTA under the
-text. This is the one finding where you have real latitude — but stay inside
-the existing tokens and do not change the band's height by more than ~20%.
-
-### 5.7 — The smartest sentence is whispered — LOW but worth it
+### 5.5 — The smartest sentence is whispered — LOW but worth it
 
 *"On the official national charts, his career total is now 45 No. 1s across 30
 countries"* draws the streaming-vs-official distinction the whole methodology
@@ -293,7 +264,8 @@ encode rules this file only summarises:
 
 ## 8. Explicitly out of scope
 
-Do not touch these while doing the above:
+Do not touch these while doing the above. Two findings that ARE real but sit
+outside the upper-home-page box are parked in §9 with their anchors intact.
 
 - Anything below the history band on the home page.
 - `MobileHome.tsx`, except the one glyph decision in §5.2 — and only with a yes.
@@ -303,3 +275,36 @@ Do not touch these while doing the above:
 - The report-only CSP. It is deliberate and staged; switching it to enforcing
   needs nonce work first, and a guard already fails if you flip it early.
 - Any figure in `app/data/`, except the §4 decision once Paul has chosen.
+
+---
+
+## 9. Parked — real, but NOT for this pass
+
+Both of these are real and were in an earlier draft. They are out of scope
+because the brief is the upper part of the home page, and each one pulls work
+outside that box. Kept here so they are not lost; raise them with the owner
+rather than acting on them.
+
+### Parked A — the nav carries ten items
+
+`Home · Music · Certifications · Records · Live Charts · Afrobeats · Updates ·
+About · FAQ · Contact`, plus theme toggle, search and the Stat card CTA. Ten
+items means none is emphasised. Source of truth `app/lib/links.ts:4-14`; only
+consumer `app/components/Nav.tsx:89`.
+
+**Why it is parked, and not just "later":** cutting three items is a two-line
+edit, but `FooterNav` renders the full sitemap on the HOME PAGE ONLY — other
+pages get a compact bar from `footerFor` / `DEFAULT_FOOTER`. If `/about`,
+`/faq` and `/contact` are not in that compact footer, removing them from the
+nav orphans three routes on every page but home. That is an SEO regression
+dressed as a tidy-up, and it is a site-wide change, not an upper-home-page one.
+
+### Parked B — the history band composition
+
+Left headline / centre paragraph / right button, `1fr 2fr` with `align-items:
+center` and a 48px gap. Nothing shares a baseline and there is a lot of dead
+space; for a band titled "HISTORY MADE" it reads as a footer promo. Markup
+`app/page.tsx:138-155`; CSS `app/page.module.css:280-341`.
+
+Out of scope because the band sits below the scoreboard strip — outside the
+region this brief covers.
