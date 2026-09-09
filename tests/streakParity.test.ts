@@ -116,10 +116,16 @@ const STREAKS: Streak[] = [
   },
   {
     id: "YouTube most-viewed — days at No. 1",
-    // Reworded on 8 Sep 2026 when the run ended — the card now opens "at No. 1
-    // as the most-viewed…" and states the run as finished. The floor rule still
-    // applies to the 80 days it held.
-    page: `v: \`\\$\\{daiDaiYouTubeDaysAtNo1\\} days\`, l: "at No. 1 as the most-viewed music video on YouTube`,
+    // Reworded twice in two days: on 8 Sep when the run ended, and on 9 Sep when
+    // the video RETOOK No. 1 on the chart dated 7 September. The card now opens
+    // "N days straight at No. 1 as the most-viewed…", states the 80 as a closed
+    // count, and states the reclaim separately.
+    //
+    // Anchored on the phrase that survives both rewrites rather than on the
+    // clause describing the run's status — that clause has now changed twice and
+    // took this lookup down with it once already. The floor rule still applies
+    // to the 80 days the first run held.
+    page: `v: \`\\$\\{daiDaiYouTubeDaysAtNo1\\} days\`, l: "[^"]*most-viewed music video on YouTube`,
     derived: daiDaiYouTubeDaysAtNo1,
     feed: [
       `${ORD} day as YouTube${A}s most-viewed`,
