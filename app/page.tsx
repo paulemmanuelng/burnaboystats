@@ -6,7 +6,6 @@ import MobileHome from "./components/MobileHome";
 import CertLedger from "./components/CertLedger";
 import StatCardButton from "./components/StatCardButton";
 import GlobeTeaser from "./components/GlobeTeaser";
-import SearchTrigger from "./components/SearchTrigger";
 import { homeScoreboard } from "./lib/homeScoreboard";
 import StatGlyph from "./components/StatGlyph";
 import { spotifyImage, spotifyBgVars } from "./lib/spotifyImage";
@@ -100,15 +99,30 @@ export default function Home() {
                 Every certification, chart peak, award and tour record — one dataset,
                 sourced line by line, updated the day it changes.
               </p>
+              {/* Two controls, not three. The third was `Search the dataset ⌘K`,
+                  which duplicated the nav's own search — same action, same
+                  badge, sixty pixels above it. Deleting it is design finding
+                  5.4's merge: the "bare text utility" weight leaves the upper
+                  page entirely rather than being restyled, so the region shows
+                  three link weights doing three jobs. */}
               <div className={styles.heroButtons}>
                 <Link href="/certifications" className="btn btnPrimary">View certifications</Link>
                 <Link href="/music" className="btn btnSecondary">Explore the music</Link>
-                <SearchTrigger />
               </div>
-              <div className={styles.heroChips}>
-                <span className="tag tagNeutral">Sources: RIAA · BPI · SNEP · IFPI</span>
-                <span className="tag tagNeutral">Last verified {lastVerified}</span>
-                <Link href="/api" className="tag tagOutline">Open data API</Link>
+              {/* Provenance, as a caption rather than three pills. The pills
+                  read as decoration — three bordered objects competing with the
+                  two buttons directly above them — and this is the line that
+                  does the site's most important work above the fold: it says
+                  the numbers come from somewhere and when they were last
+                  checked. Set as a 44px row at the column's bottom edge so it
+                  and the panel's 44px Live-board row share the section's bottom
+                  rule and centre on the same line. */}
+              <div className={styles.provenance}>
+                <span>Sources RIAA · BPI · SNEP · IFPI</span>
+                <span className={styles.provSep} aria-hidden="true" />
+                <span>Verified {lastVerified}</span>
+                <span className={styles.provSep} aria-hidden="true" />
+                <Link href="/api" className={styles.provLink}>Open data API ↗</Link>
               </div>
             </div>
 
