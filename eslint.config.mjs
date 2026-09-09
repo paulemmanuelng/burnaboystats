@@ -18,6 +18,13 @@ const eslintConfig = defineConfig([
     // Both spellings are listed on purpose: the handoff has landed in
     // "design/" and in "design_handoff_burnaboystats/", and naming only the
     // first meant three prototype errors leaked into every lint run.
+    // Agent worktrees. `.claude/worktrees/` holds throwaway checkouts of this
+    // same repo, so ESLint walks a second (and third, and eighth) copy of every
+    // source file — and if an agent deletes a scratch file mid-lint, the run
+    // dies with ENOENT on a path that is not part of this checkout at all.
+    // That is not a hypothetical: it failed `npm run verify` here while eight
+    // parallel worktrees were running.
+    ".claude/**",
     "design/**",
     "design_handoff_burnaboystats/**",
   ]),

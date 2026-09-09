@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { cardinalWord, ordinalWord } from "../app/lib/plural";
 import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
 import { daiDaiCertCount } from "../app/data/certifications";
-import { daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_READ_ON_LONG, DAI_DAI_SPOTIFY_READ_ON_LONG_ES } from "../app/data/daiDai";
+import { daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF } from "../app/data/daiDai";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -75,12 +75,21 @@ const DERIVED: Record<string, number | string | null> = {
   daiDaiSpotifyDaysOnChart,
   daiDaiSpotifyStraightDays,
   daiDaiYouTubeDaysAtNo1,
-  // Not a figure but a date: the day the Spotify Global Daily run was last
-  // read, which both cards now name instead of calling the run live. One
-  // spelling per edition, both off the same anchor — so the digit comparison
-  // below sees the same 28 and 2026 on each side, as it should.
-  DAI_DAI_SPOTIFY_READ_ON_LONG,
-  DAI_DAI_SPOTIFY_READ_ON_LONG_ES,
+  // Not figures but dates: the charts the Spotify run was last read off, which
+  // both cards now name instead of calling the run live. TWO anchors since
+  // 9 Sep 2026 — the streak through 7 Sep, the days at No. 1 through 28 Aug —
+  // and one spelling per edition, so the digit comparison below sees the same
+  // 7, 28 and 2026 on each side, as it should.
+  DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG,
+  DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES,
+  DAI_DAI_SPOTIFY_NO1_READ_ON_LONG,
+  DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES,
+  DAI_DAI_SPOTIFY_TOP10_DAYS,
+  // The days-off count, which both editions now render as a WORD rather than
+  // typing it. It shipped as "every day but one" in English and "todos los días
+  // salvo uno" in Spanish and was wrong in both for four months; interpolating
+  // it means the next correction reaches both editions or neither.
+  DAI_DAI_SPOTIFY_DAYS_OFF,
 };
 // Two interpolation shapes appear in the cards: a bare `${weeksDE}`, and a
 // `${ordinalWord(weeksGLB, "es")}` where the Spanish edition needs the word

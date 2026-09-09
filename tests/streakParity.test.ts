@@ -65,6 +65,12 @@ const STREAKS: Streak[] = [
       `for a ${ORD} day in total`,
       `${ORD} day on top:`,
       `(\\d+) of them at No\\. 1`,
+      // The closing entry states the total flat rather than as an ordinal
+      // day — "37 days at No. 1, counted through the 28 August chart" — because
+      // the run has ended and there is no next day to count. Anchored on the
+      // trailing "at No. 1" so the streak and days-on-chart figures in the same
+      // sentence (109 and 110) cannot be picked up as days at the top.
+      `(\\d+) days at No\\. 1`,
     ],
     topic: `Global Daily Top Songs`,
   },

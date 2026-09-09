@@ -58,3 +58,6 @@ refresh-pr-body.md
 # to stay readable. It is reference, never imported, and 40 HTML prototypes do
 # not belong in the build.
 design_handoff_burnaboystats/
+
+# Throwaway agent worktrees — checkouts of this same repo.
+.claude/worktrees/
