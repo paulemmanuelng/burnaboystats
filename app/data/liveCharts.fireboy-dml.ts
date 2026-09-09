@@ -568,6 +568,7 @@
   },
   {
     "title": "CLAAT",
+    "kind": "song",
     "platforms": [
       {
         "platform": "Deezer",
@@ -582,11 +583,11 @@
         ]
       }
     ],
-    "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/29bf5b5ad5f962997dbb7c369a8320d9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jealous",
+    "kind": "song",
     "platforms": [
       {
         "platform": "Deezer",
@@ -602,8 +603,13 @@
         ]
       }
     ],
-    "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1f08dd48d80531f5b9f6081668a10ca1/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "What If I Say",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9b8ce8a62a6484f053bdd2cf80818a2d/500x500-000000-80-0-0.jpg"
   }
 ];
   

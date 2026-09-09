@@ -436,53 +436,53 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 7,
-            "movement": -5
-          },
-          {
             "country": "GD",
             "name": "Grenada",
-            "position": 9,
-            "movement": -3
+            "position": 12,
+            "movement": -6
           },
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 20,
-            "movement": 2
+            "country": "GH",
+            "name": "Ghana",
+            "position": 15,
+            "movement": -13
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 32,
-            "movement": -6
+            "movement": -4
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 33,
-            "movement": -21
+            "position": 37,
+            "movement": -23
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 40,
-            "movement": null,
-            "status": "new"
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 38,
+            "movement": -33
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 52,
-            "movement": -7
+            "position": 53,
+            "movement": -8
           },
           {
             "country": "BS",
             "name": "The Bahamas",
-            "position": 57,
-            "movement": -39
+            "position": 58,
+            "movement": -40
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 86,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -862,20 +862,14 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 118,
-            "movement": 0
+            "position": 116,
+            "movement": -4
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 118,
-            "movement": -10
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 134,
-            "movement": 23
+            "position": 117,
+            "movement": -13
           },
           {
             "country": "NE",
@@ -888,6 +882,12 @@
             "name": "Portugal",
             "position": 147,
             "movement": 2
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 149,
+            "movement": 24
           },
           {
             "country": "BE",
@@ -911,8 +911,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 170,
-            "movement": -9
+            "position": 174,
+            "movement": -8
           }
         ]
       },
@@ -923,8 +923,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 27,
-            "movement": -11
+            "position": 29,
+            "movement": -13
           }
         ]
       }
@@ -1254,8 +1254,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 39,
-            "movement": 12
+            "position": 40,
+            "movement": 11
           },
           {
             "country": "AG",
@@ -1267,14 +1267,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 87,
-            "movement": 3
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 175,
-            "movement": null,
-            "status": "new"
+            "movement": 4
           }
         ]
       },
@@ -1496,8 +1489,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 111,
-            "movement": 0
+            "position": 106,
+            "movement": 1
           },
           {
             "country": "CI",
@@ -1521,7 +1514,7 @@
             "country": "NE",
             "name": "Niger",
             "position": 51,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -1818,14 +1811,15 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 26,
-            "movement": -6
+            "position": 34,
+            "movement": -5
           },
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 65,
-            "movement": 78
+            "position": 169,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1967,8 +1961,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 71,
-            "movement": -22
+            "position": 75,
+            "movement": -24
           }
         ]
       }
@@ -2345,7 +2339,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 35,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "FM",
@@ -2376,6 +2370,43 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Treasure",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 72,
+            "movement": 27
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 111,
+            "movement": 61
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 160,
+            "movement": 26
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 199,
+            "movement": -53
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Commas",
@@ -2424,43 +2455,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Treasure",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 72,
-            "movement": 27
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 111,
-            "movement": 61
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 160,
-            "movement": 26
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 199,
-            "movement": -53
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "All The Love",
     "platforms": [
       {
@@ -2489,41 +2483,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 193,
-            "movement": -25
+            "position": 199,
+            "movement": -29
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d30dbeb4d445f5cc6f7f100b830731c4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Where Do We Go",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 45,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 91,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bloody Samaritan",
@@ -2608,6 +2575,33 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fee95162ec0b1b078345831eb47b8e99/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Where Do We Go",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 91,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Santa",
@@ -2698,8 +2692,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 129,
-            "movement": -104
+            "position": 174,
+            "movement": -137
           }
         ]
       }
@@ -2708,10 +2702,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "People",
+    "title": "Unknown Title",
+    "platforms": [],
+    "kind": "song"
+  },
+  {
+    "title": "Amazing",
     "platforms": [],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0dda3f7dc6c530814d51c9cb6eca57be/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Pressure",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Comforter",
+    "platforms": [],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e18f46f5169476d41ff6bf5f188e1127/500x500-000000-80-0-0.jpg"
   }
 ];
   

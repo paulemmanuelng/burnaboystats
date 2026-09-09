@@ -191,6 +191,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 23,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -468,8 +481,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
-            "movement": -78
+            "position": 162,
+            "movement": -80
           }
         ]
       }
@@ -524,8 +537,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 54,
-            "movement": -11
+            "position": 57,
+            "movement": -14
           }
         ]
       }
@@ -1077,7 +1090,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 118,
-            "movement": 0
+            "movement": -1
           }
         ]
       }

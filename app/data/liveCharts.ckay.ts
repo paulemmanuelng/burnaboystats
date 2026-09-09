@@ -70,8 +70,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 8,
-            "movement": -1
+            "position": 6,
+            "movement": 1
           },
           {
             "country": "BF",
@@ -176,7 +176,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 27,
+            "position": 6,
             "movement": null,
             "status": "new"
           }
@@ -207,26 +207,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8f2c610ad0f59119d6991e2d97a3f717/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "E CLEAR",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 84,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "La La",
     "platforms": [
       {
@@ -255,7 +235,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 24,
+            "position": 36,
             "movement": null,
             "status": "new"
           }
@@ -276,13 +256,33 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 57,
-            "movement": -2
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "E CLEAR",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 84,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   }
 ];
   

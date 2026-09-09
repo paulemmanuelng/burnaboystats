@@ -218,8 +218,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 22,
-            "movement": 45
+            "position": 34,
+            "movement": 39
           }
         ]
       }
@@ -332,8 +332,8 @@
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 22,
-            "movement": -12
+            "position": 38,
+            "movement": -25
           }
         ]
       }
@@ -408,20 +408,13 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 35,
-            "movement": -10
+            "position": 41,
+            "movement": -16
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 53,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 193,
+            "position": 89,
             "movement": null,
             "status": "new"
           }
@@ -631,14 +624,14 @@
           {
             "country": "KG",
             "name": "Kyrgyzstan",
-            "position": 33,
-            "movement": -21
+            "position": 34,
+            "movement": -20
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 37,
-            "movement": -6
+            "movement": -4
           }
         ]
       },
@@ -658,38 +651,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 175,
-            "movement": -39
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 197,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "When I'm With You",
@@ -786,6 +747,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 175,
+            "movement": -39
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   }
 ];
   
