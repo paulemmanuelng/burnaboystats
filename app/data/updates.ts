@@ -41,6 +41,12 @@ export const updates: Update[] = [
   {
     date: "2026-09-09",
     category: "Charts",
+    text: "Billboard's summer recaps put “Dai Dai” top of the world outside America: the Shakira and Burna Boy World Cup song finishes No. 1 on Billboard's Global Excl. U.S. top 10 songs of summer 2026, and No. 4 on the Global 200 equivalent, a list led by Ariana Grande's “Hate That I Made You Love Me” ahead of Ella Langley and Michael Jackson. These are season-ending recaps rather than charts of their own — Billboard ranked cumulative streaming and sales compiled by Luminate, worldwide for the Global 200 and from territories outside the United States for the Excl. U.S. list, across the weekly issues dated 6 June to 12 September, Memorial Day to Labor Day. The same article records the song as the first official World Cup anthem ever to lead the weekly Global Excl. U.S. chart, on a run of ten consecutive weeks from 4 July to 5 September.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-09-09",
+    category: "Charts",
     text: "Fifteen weeks on the French chart, and nine of them at No. 1: SNEP has carried “Dai Dai” in every weekly Top Singles issue since the semaine du 29 mai, when it entered at No. 95, and has kept it on top since the semaine du 10 juillet. SNEP publishes no weeks-on-chart column of its own, so the fifteen is counted from its consecutive weekly issues — the one longevity figure on this site that the chart body does not state itself, and it is labelled as such.",
     href: "/records/charts",
   },
