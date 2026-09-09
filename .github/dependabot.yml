@@ -1,0 +1,29 @@
+# Dependency updates, weekly.
+#
+# The repo went from May to September 2026 accumulating eleven advisories —
+# including a critical in next — with nobody notified, because alerts were off
+# and nothing here asked for updates. `npm audit` only speaks when someone runs
+# it, and the person who would run it is the person who forgot.
+#
+# Grouped so a quiet week is one PR rather than nine. devDependencies are
+# separated on purpose: a vulnerability in vitest or eslint is not a live-site
+# risk, and mixing the two makes the urgent ones easy to miss.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule: { interval: weekly, day: monday }
+    open-pull-requests-limit: 5
+    groups:
+      production:
+        dependency-type: production
+      development:
+        dependency-type: development
+        update-types: ["minor", "patch"]
+
+  # The four actions/* uses are pinned to floating major tags (v4). Nothing
+  # third-party is used, so the exposure is limited to GitHub itself — but a
+  # pinned digest is only useful if something bumps it.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule: { interval: monthly }
