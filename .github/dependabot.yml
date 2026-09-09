@@ -9,42 +9,42 @@
 # for actions/checkout and actions/setup-node going 4->7, on top of the two
 # grouped ones. None of the seven was a security fix.
 #
-# What the owner actually needs from Dependabot is to hear about
-# VULNERABILITIES, not about routine version churn. Those come from the repo's
-# "Dependabot security updates" toggle, NOT from this file — this file only
-# drives scheduled version updates. So this is now set as low as it goes while
-# still existing:
+# The fix is grouping, NOT ignoring. An earlier attempt at this file added an
+# `ignore` rule for every semver-major, which would have been worse than the
+# problem: ignore rules can suppress Dependabot SECURITY pull requests too, and
+# a vulnerability whose fix happens to be a major bump is exactly the one you
+# cannot afford to silence. So nothing is ignored here. Every update type is IN
+# a group instead, which is what actually collapses the PR count.
 #
-#   * monthly, not weekly
-#   * ONE group per ecosystem covering every update type, so a month's worth of
-#     bumps is a single PR rather than one per package
-#   * major versions ignored outright for devDependencies — a major bump to a
-#     test runner needs a human deciding to do it, not a PR arriving unbidden
+# Monthly, and at most two npm PRs plus one actions PR — a month of bumps
+# arrives as a handful of PRs rather than one per package.
 #
-# Worst case is now one npm PR and one actions PR a month. If even that is too
-# much, delete this file: security updates keep working without it.
+# Worth being explicit, because it is the part that misled me the first time:
+# this file only drives SCHEDULED VERSION UPDATES. Vulnerability PRs come from
+# the repo's "Dependabot security updates" toggle, which is a repo setting and
+# is still switched off. Deleting this file entirely would cost no security
+# coverage at all — it would only stop the routine version churn.
 version: 2
 updates:
   - package-ecosystem: npm
     directory: "/"
-    schedule: { interval: monthly }
+    schedule:
+      interval: monthly
     open-pull-requests-limit: 2
     groups:
+      # Both groups take every update type on purpose. A group that omits one
+      # does not skip those updates; it just un-groups them.
       production:
         dependency-type: production
         update-types: ["major", "minor", "patch"]
       development:
         dependency-type: development
-        update-types: ["minor", "patch"]
-    ignore:
-      # Majors on test/lint tooling: breaking by definition, and a PR that
-      # arrives on its own is the wrong way to find out.
-      - dependency-name: "*"
-        update-types: ["version-update:semver-major"]
+        update-types: ["major", "minor", "patch"]
 
   - package-ecosystem: github-actions
     directory: "/"
-    schedule: { interval: monthly }
+    schedule:
+      interval: monthly
     open-pull-requests-limit: 1
     groups:
       actions:
