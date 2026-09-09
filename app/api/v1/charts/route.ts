@@ -28,6 +28,15 @@ const releases = allChartItems.map((r) => ({
     // rather than publishing a null that reads like a measured zero.
     ...(e.weeksAtPeak !== undefined ? { weeksAtPeak: e.weeksAtPeak } : {}),
     ...(e.weeks !== undefined ? { weeks: e.weeks } : {}),
+    // The caveat travels with the figure it qualifies, or it may as well not
+    // exist. Several runs are not the simple thing a bare number implies: some
+    // are non-consecutive, Colombia's is a floor, Greece's counts published
+    // EDITIONS after one covered four calendar weeks, and France's is counted
+    // from consecutive SNEP issues because SNEP prints no weeks column at all.
+    // Held back, a consumer reads every one of those as a body-stated run —
+    // which is exactly what the description below used to promise for all of
+    // them, and no longer does.
+    ...(e.note ? { note: e.note } : {}),
   })),
 }));
 
@@ -35,7 +44,7 @@ export function GET() {
   return apiJson({
     endpoint: "/charts",
     description:
-      "Official chart entries by release. Peaks are read from each chart body's own run. Genre, component and airplay-only charts are excluded by design.",
+      "Official chart entries by release. Peaks are read from each chart body's own run. Longevity is too, except where a `note` on the entry says otherwise — read it before treating a `weeks` value as body-published. Genre, component and airplay-only charts are excluded by design.",
     // 278 chart entries across 38 releases — `countOf` names the unit, because
     // `count` alone read as "38 releases" to anyone who assumed it was the
     // length of `data.releases`. The release count is published below as

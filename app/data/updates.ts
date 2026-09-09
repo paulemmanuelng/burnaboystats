@@ -41,6 +41,12 @@ export const updates: Update[] = [
   {
     date: "2026-09-09",
     category: "Charts",
+    text: "Fifteen weeks on the French chart, and nine of them at No. 1: SNEP has carried “Dai Dai” in every weekly Top Singles issue since the semaine du 29 mai, when it entered at No. 95, and has kept it on top since the semaine du 10 juillet. SNEP publishes no weeks-on-chart column of its own, so the fifteen is counted from its consecutive weekly issues — the one longevity figure on this site that the chart body does not state itself, and it is labelled as such.",
+    href: "/records/charts",
+  },
+  {
+    date: "2026-09-09",
+    category: "Charts",
     text: "Greece brings its chart back and “Dai Dai” is still on top: IFPI Greece paused its Digital Singles Chart over the summer, returned with a single combined edition covering weeks 31-34, and has the song at No. 1 there and again in week 35 — six chart editions at No. 1 in all, on a chart that now reads twelve weeks. Longer runs elsewhere: fourteen weeks in Slovakia, where a No. 2 in week 36 closes its eight-week run at the top; thirteen in the Czech Republic, twelve in Italy and fourteen in the United Arab Emirates.",
     href: "/records/charts",
   },
