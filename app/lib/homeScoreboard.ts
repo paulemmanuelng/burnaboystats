@@ -1,5 +1,5 @@
 import { numberOnes } from "../data/charts";
-import { numberOneCountryCount } from "./analysis";
+import { numberOneCountryCount, countryNumberOnes } from "./analysis";
 import { totalAwards, countryCount as certCountryCount } from "../data/certifications";
 import { albums as studioAlbums } from "../data/albums";
 import { countryCount as playedCount, regionCount } from "../data/performedCountries";
@@ -39,16 +39,24 @@ export const homeScoreboard: ScoreboardStat[] = [
     href: "/certifications",
   },
   {
-    value: String(numberOnes),
-    label: "No. 1s worldwide",
+    // 45, not 47 — Paul's call on the design brief's §4, taken 9 Sep 2026.
+    //
+    // The tile said 47 while the panel four hundred pixels to its right said
+    // "45 No. 1s across 30 countries". Both derived, neither typed, from two
+    // different variables: `numberOnes` counts Billboard's Global 200 and
+    // Global 200 Excl. US alongside the country No. 1s, `countryNumberOnes`
+    // does not. So the tile paired a numerator counting two non-country charts
+    // with a denominator counting only countries — asserting 47 country No. 1s
+    // across 30 countries, which is not a thing that is true.
+    //
+    // The fix keeps the two global charts VISIBLE rather than folding them away:
+    // the label names the basis and the source line names what sits outside it.
+    // The panel and the tile now state the same 45 / 30, and a reader can still
+    // find the 47 by adding the line up.
+    value: String(countryNumberOnes),
+    label: "No. 1s · official charts",
     glyph: "no1s",
-    // NOT chartCountryCount. That is every territory he has CHARTED in, and
-    // pairing it with a No. 1s count claims he topped the chart in every one of
-    // them. charts.ts carries a comment forbidding exactly this, quoting the
-    // exact string this line used to render. analysis.numberOneCountryCount is
-    // the country-only No. 1 set; charts.numberOneCountryCount runs two higher
-    // because it counts Billboard's two Global charts, which are not countries.
-    source: `${numberOneCountryCount} countries`,
+    source: `${numberOneCountryCount} countries · +${numberOnes - countryNumberOnes} global charts`,
     href: "/records/charts",
   },
   {

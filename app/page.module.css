@@ -260,25 +260,19 @@
 /* The watermark: a faint pictogram of what the number IS, tucked to the cell's
    right edge behind the text. Decorative only — the label carries the meaning,
    so the glyph can stay whisper-quiet and colour-blind-safe. */
-.scoreGlyph {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 84px;
-  height: 84px;
-  color: var(--gold);
-  opacity: 0.07;
-  pointer-events: none;
-}
 /* The album disc carries the real cover in its label — a raster image can't be
    tinted by currentColor, so this glyph runs brighter overall and its own
    line-work is drawn lighter inside the SVG to land at the same visual weight. */
-.scoreGlyphAlbum { opacity: 0.35; }
-.scoreCell:hover .scoreGlyph { opacity: 0.12; }
-.scoreCell:hover .scoreGlyphAlbum { opacity: 0.5; }
 .scoreCell:first-child { border-left: none; }
+/* The tile turns gold on hover, and only then. Five 52px numerals in gold at
+   rest were a field, not an emphasis — gold above the strip is now exactly four
+   things: the "Boy" in the wordmark, the live figure, the primary button, and
+   links. */
 .scoreCell:hover { background: var(--color-accent-100); }
+.scoreCell:hover .scoreValue {
+  color: var(--gold);
+  -webkit-text-fill-color: var(--gold);
+}
 .scoreValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
@@ -286,19 +280,20 @@
   line-height: 0.9;
   letter-spacing: 0.01em;
   font-variant-numeric: tabular-nums;
-  /* The five figures carry the same gold ramp as the primary button rather than
-     one flat bright gold across the whole row. Bright to dim, no orange turn.
-     The dimmest stop is 6.8:1 on the page ground, so the bottom of every digit
-     still clears AA for body text, let alone the 3:1 this size needs. */
-  background-image: linear-gradient(180deg, var(--display-ramp-a) 0%, var(--display-ramp-b) 50%, var(--display-ramp-dim) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  /* Same paint-box pair as every other gradient word on the site — at
-     line-height 0.9 the ink overruns the line box and the ends of the digits
-     would go unpainted. */
-  padding: 0.2em 0;
-  margin: -0.2em 0;
+  /* INK at rest, gold on hover. These five carried the gold ramp, and five 52px
+     gold numerals in a row read as a field rather than an emphasis — the eye had
+     nowhere to land. Gold above the strip is now exactly four things: the "Boy"
+     in the wordmark, the live figure, the primary button, and links.
+     The gradient is gone rather than dimmed, so this is a plain colour now: the
+     background-clip paint-box pair that used to sit here (padding 0.2em with a
+     matching negative margin) went with it, since there is no clipped ink to
+     overrun the line box any more.
+     -webkit-text-fill-color is pinned beside `color` because WebKit resolves it
+     first and this element WAS a background-clip:text surface — leaving a stale
+     fill on it is how a label renders a colour no rule ever set. */
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  transition: color var(--dur) var(--ease), -webkit-text-fill-color var(--dur) var(--ease);
 }
 .scoreLabel {
   font-family: var(--font-mono), monospace;

@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { homeScoreboard } from "../app/lib/homeScoreboard";
 import { numberOnes, chartCountryCount } from "../app/data/charts";
-import { numberOneCountryCount } from "../app/lib/analysis";
+import { numberOneCountryCount, countryNumberOnes } from "../app/lib/analysis";
 
 // The homepage ships two layouts in the same DOM — the desktop scoreboard from
 // lib/homeScoreboard.ts and the mobile one built inline in MobileHome.tsx. They
@@ -21,21 +21,65 @@ import { numberOneCountryCount } from "../app/lib/analysis";
 
 const read = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
 
+/** The tile, however it is labelled — matched on its href, which is stable. */
+const no1Tile = () => homeScoreboard.find((s) => s.href === "/records/charts");
+
 describe("the homepage No. 1s tile", () => {
-  it("counts countries where a release actually reached No. 1", () => {
-    const tile = homeScoreboard.find((s) => s.label === "No. 1s worldwide");
+  it("counts No. 1s on the same basis as the countries beside them", () => {
+    const tile = no1Tile();
     expect(tile, "the No. 1s tile has been renamed or removed").toBeTruthy();
-    expect(tile!.value).toBe(String(numberOnes));
+    // 9 Sep 2026: the tile moved from `numberOnes` (47, which counts Billboard's
+    // Global 200 and Global 200 Excl. US) to `countryNumberOnes` (45), so the
+    // numerator and the denominator finally count the same kind of thing.
+    expect(tile!.value).toBe(String(countryNumberOnes));
     expect(
       tile!.source,
       "the figure beside a No. 1s count must describe those No. 1s, not every territory charted in",
-    ).toBe(`${numberOneCountryCount} countries`);
+    ).toContain(`${numberOneCountryCount} countries`);
+  });
+
+  // THE ONE THIS FILE EXISTS FOR NOW. The tile said 47 while the panel four
+  // hundred pixels to its right said "45 No. 1s across 30 countries" — both
+  // derived, neither typed, from two different variables. A test that pinned
+  // one and not the other is what let that ship, so this pins both.
+  it("the tile and the panel prose cannot disagree", () => {
+    const panel = read("app/components/TodaysNumber.tsx");
+    expect(
+      /countryNumberOnes/.test(panel),
+      "TodaysNumber.tsx no longer renders countryNumberOnes — if the panel's figure moved, the tile must move with it",
+    ).toBe(true);
+    // Only the VALUE is policed. The file still reads `numberOnes` on purpose —
+    // the source line derives the disclosure from it (numberOnes -
+    // countryNumberOnes) — so a blanket ban on the identifier would fail on the
+    // very code that fixes the bug.
+    expect(
+      /value:\s*String\(numberOnes\)/.test(read("app/lib/homeScoreboard.ts")),
+      "homeScoreboard.ts is back to `value: String(numberOnes)` — that is the 47 that contradicted the panel",
+    ).toBe(false);
+    expect(
+      /value:\s*String\(numberOnes\)/.test(read("app/components/MobileHome.tsx")),
+      "MobileHome.tsx is back to `value: String(numberOnes)` — desktop would say 45 and mobile 47",
+    ).toBe(false);
+    // And the numbers themselves, not just the identifiers.
+    expect(no1Tile()!.value).toBe(String(countryNumberOnes));
+    expect(countryNumberOnes).not.toBe(numberOnes); // else this proves nothing
+  });
+
+  // The two global charts are not hidden by the fix — they are named, so a
+  // reader can still reach 47 by adding the line up.
+  it("names the non-country charts rather than folding them away", () => {
+    const gap = numberOnes - countryNumberOnes;
+    expect(gap, "there is no longer a gap to disclose — check whether the tile should still say it").toBeGreaterThan(0);
+    expect(
+      no1Tile()!.source,
+      "the source line must disclose the No. 1s that are not country No. 1s",
+    ).toContain(`${gap} global charts`);
   });
 
   it("never pairs the No. 1s count with the charted-territory count", () => {
-    // The specific regression: chartCountryCount standing in for the No. 1
+    // The original regression: chartCountryCount standing in for the No. 1
     // country count. Guard the value, not just the identifier.
-    const tile = homeScoreboard.find((s) => s.label === "No. 1s worldwide")!;
+    const tile = no1Tile()!;
     expect(chartCountryCount).not.toBe(numberOneCountryCount); // else this test proves nothing
     expect(tile.source).not.toContain(String(chartCountryCount));
   });

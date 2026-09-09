@@ -7,7 +7,6 @@ import CertLedger from "./components/CertLedger";
 import StatCardButton from "./components/StatCardButton";
 import GlobeTeaser from "./components/GlobeTeaser";
 import { homeScoreboard } from "./lib/homeScoreboard";
-import StatGlyph from "./components/StatGlyph";
 import { spotifyImage, spotifyBgVars } from "./lib/spotifyImage";
 import { titleKey } from "./lib/titleKey";
 import {
@@ -133,12 +132,17 @@ export default function Home() {
         </section>
 
         {/* ── Scoreboard ─────────────────────────────────────────── */}
+        {/* Five numbers, five labels, five sources, and nothing else. The
+            watermark glyphs are gone from desktop: the labels already say
+            CERTIFICATIONS and STUDIO ALBUMS, so the pictograms carried no
+            meaning, and at 0.07 opacity they read as smudges behind the
+            numerals that ARE the content. StatGlyph.tsx stays — MobileHome
+            still renders it, and removing it there is Paul's separate yes. */}
         <section className={styles.scoreStrip}>
           <div className={styles.wide}>
             <div className={styles.scoreGrid}>
               {homeScoreboard.map((s) => (
                 <Link key={s.label} href={s.href} className={styles.scoreCell}>
-                  <StatGlyph kind={s.glyph} className={`${styles.scoreGlyph} ${s.glyph === "albums" ? styles.scoreGlyphAlbum : ""}`} />
                   <div className={styles.scoreValue}>{s.value}</div>
                   <div className={styles.scoreLabel}>{s.label}</div>
                   <div className={styles.scoreSource}>{s.source}</div>
