@@ -218,8 +218,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 3,
-            "movement": 2
+            "position": 5,
+            "movement": 1
           }
         ]
       }
@@ -332,7 +332,7 @@
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 17,
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -496,12 +496,12 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 34,
-            "movement": -10
+            "movement": -9
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 36,
+            "position": 53,
             "movement": null,
             "status": "new"
           }
@@ -609,6 +609,44 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KG",
+            "name": "Kyrgyzstan",
+            "position": 29,
+            "movement": -24
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 37,
+            "movement": -6
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NP",
+            "name": "Nepal",
+            "position": 131,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Water",
     "platforms": [
       {
@@ -618,19 +656,13 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 83,
-            "movement": -21
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 91,
-            "movement": -3
+            "position": 90,
+            "movement": -27
           },
           {
             "country": "FI",
             "name": "Finland",
-            "position": 127,
+            "position": 134,
             "movement": null,
             "status": "new"
           }
@@ -651,44 +683,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PUSH 2 START",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KG",
-            "name": "Kyrgyzstan",
-            "position": 22,
-            "movement": -18
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 37,
-            "movement": -8
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NP",
-            "name": "Nepal",
-            "position": 131,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Truth or Dare",
@@ -712,7 +706,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 151,
+            "position": 165,
             "movement": null,
             "status": "new"
           }
@@ -809,7 +803,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 179,
+            "position": 197,
             "movement": null,
             "status": "new"
           }

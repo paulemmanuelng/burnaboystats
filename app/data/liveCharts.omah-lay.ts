@@ -208,8 +208,8 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 76,
-            "movement": -7
+            "position": 100,
+            "movement": -29
           }
         ]
       }
@@ -512,7 +512,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 44,
-            "movement": 9
+            "movement": -2
           },
           {
             "country": "GH",
@@ -677,14 +677,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 5,
-            "movement": 19
+            "position": 6,
+            "movement": -4
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": -3
+            "position": 22,
+            "movement": 14
           }
         ]
       },
@@ -824,14 +824,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 95,
-            "movement": -15
+            "position": 97,
+            "movement": -12
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 108,
-            "movement": -29
+            "position": 118,
+            "movement": -27
           }
         ]
       },
@@ -992,8 +992,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 95,
-            "movement": -1
+            "position": 88,
+            "movement": 3
           }
         ]
       }
@@ -1350,8 +1350,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 69,
-            "movement": 3
+            "position": 68,
+            "movement": 0
           },
           {
             "country": "BE",
@@ -1624,7 +1624,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 61,
-            "movement": 8
+            "movement": -2
           }
         ]
       }

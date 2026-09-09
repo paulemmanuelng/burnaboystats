@@ -290,7 +290,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 153,
+            "position": 180,
             "movement": null,
             "status": "new"
           }
@@ -599,7 +599,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 52,
-            "movement": 9
+            "movement": -2
           },
           {
             "country": "UG",
@@ -759,7 +759,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 58,
-            "movement": 9
+            "movement": -2
           },
           {
             "country": "NG",
@@ -1173,14 +1173,14 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 5,
-            "movement": 0
+            "position": 7,
+            "movement": -2
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 79,
-            "movement": -30
+            "position": 90,
+            "movement": -29
           }
         ]
       },
@@ -1236,14 +1236,14 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 28,
-            "movement": -1
+            "position": 31,
+            "movement": -4
           },
           {
             "country": "KH",
             "name": "Cambodia",
             "position": 61,
-            "movement": -9
+            "movement": -10
           }
         ]
       }
@@ -1382,6 +1382,33 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Goals",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 55,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 109,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "RAVAGE - EP",
     "platforms": [
       {
@@ -1405,26 +1432,6 @@
       }
     ],
     "kind": "album"
-  },
-  {
-    "title": "Goals",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 91,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "KELEBU",
@@ -1455,8 +1462,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 72,
-            "movement": -19
+            "position": 75,
+            "movement": -9
           }
         ]
       }
@@ -1533,7 +1540,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 59,
-            "movement": -44
+            "movement": -2
           }
         ]
       }

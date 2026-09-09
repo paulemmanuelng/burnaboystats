@@ -395,19 +395,6 @@
             "movement": 1
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 158,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -482,7 +469,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 155,
-            "movement": -87
+            "movement": -75
           }
         ]
       }
@@ -538,7 +525,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 48,
-            "movement": -16
+            "movement": -7
           }
         ]
       }
@@ -1089,8 +1076,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 117,
-            "movement": 0
+            "position": 118,
+            "movement": -1
           }
         ]
       }

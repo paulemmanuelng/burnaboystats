@@ -208,14 +208,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": 83
+            "position": 21,
+            "movement": 11
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 125,
-            "movement": -29
+            "position": 135,
+            "movement": -26
           }
         ]
       },
@@ -576,7 +576,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 91,
+            "position": 87,
             "movement": -5
           },
           {
@@ -1119,14 +1119,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 5,
-            "movement": 19
+            "position": 6,
+            "movement": -4
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": -3
+            "position": 22,
+            "movement": 14
           }
         ]
       },
@@ -1368,9 +1368,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
-            "movement": null,
-            "status": "new"
+            "position": 195,
+            "movement": -161
           }
         ]
       }
@@ -1622,14 +1621,14 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 54,
-            "movement": -5
+            "position": 51,
+            "movement": -6
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 78,
-            "movement": 12
+            "position": 70,
+            "movement": 8
           }
         ]
       },
@@ -1777,7 +1776,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 176,
-            "movement": -6
+            "movement": 2
           }
         ]
       }
@@ -1944,8 +1943,8 @@
           {
             "country": "AI",
             "name": "Anguilla",
-            "position": 53,
-            "movement": 0
+            "position": 54,
+            "movement": -1
           }
         ]
       }
@@ -2077,20 +2076,20 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 55,
-            "movement": 8
+            "position": 44,
+            "movement": 11
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 57,
-            "movement": -5
+            "position": 54,
+            "movement": -6
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 83,
-            "movement": 2
+            "position": 89,
+            "movement": -6
           }
         ]
       }
@@ -2214,8 +2213,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 131,
-            "movement": -29
+            "position": 141,
+            "movement": -26
           }
         ]
       },
@@ -2519,6 +2518,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed05b8ce0b7f23d98282ed515664c286/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Animashaun",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SI",
+            "name": "Slovenia",
+            "position": 49,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Like",
     "platforms": [
       {
@@ -2536,6 +2555,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Flora My Flawa",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 58,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/dcec044d71034e401dfe6d1f768c18ff/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Zanzibar",
@@ -2728,25 +2767,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/329ae36eecf839ca2e82a46203a10cbc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ekuro",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 167,
-            "movement": -136
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/798485d74c5c9cd451070cd502092ea6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Son of Mercy - EP",

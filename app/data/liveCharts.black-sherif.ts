@@ -135,8 +135,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 100,
-            "movement": -27
+            "position": 94,
+            "movement": -17
           },
           {
             "country": "RS",
@@ -190,8 +190,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 177,
-            "movement": -9
+            "position": 176,
+            "movement": 19
           },
           {
             "country": "CG",
@@ -209,20 +209,13 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 2,
-            "movement": 0
+            "position": 3,
+            "movement": -1
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 113,
+            "position": 82,
             "movement": null,
             "status": "new"
           }
@@ -290,8 +283,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 9,
-            "movement": 0
+            "position": 10,
+            "movement": -1
           }
         ]
       }
@@ -347,8 +340,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 8,
-            "movement": 0
+            "position": 9,
+            "movement": -1
           }
         ]
       }
@@ -390,8 +383,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 47,
-            "movement": -29
+            "position": 58,
+            "movement": -30
           }
         ]
       },
@@ -489,8 +482,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
-            "movement": -23
+            "position": 42,
+            "movement": -31
           }
         ]
       },
@@ -761,7 +754,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 57,
+            "position": 68,
             "movement": -29
           }
         ]
@@ -818,9 +811,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 7,
-            "movement": null,
-            "status": "new"
+            "position": 11,
+            "movement": -8
           }
         ]
       }
@@ -881,8 +873,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 180,
-            "movement": -29
+            "position": 190,
+            "movement": -26
           }
         ]
       }
