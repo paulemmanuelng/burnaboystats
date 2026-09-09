@@ -145,9 +145,6 @@
   "app/components/filterEmpty.module.css": [
     "--gold-wash-base 14%"
   ],
-  "app/components/liveBand.module.css": [
-    "--gold-wash-base 14%"
-  ],
   "app/components/mobileAbout.module.css": [
     "--glow-base 15%"
   ],
@@ -277,10 +274,7 @@
     "--veil-base 82%"
   ],
   "app/components/todaysNumber.module.css": [
-    "--burnt 14%",
-    "--burnt 5%",
-    "--gold-wash-base 14%",
-    "--green-dot 70%",
+    "--gold-wash-base 11%",
     "--shadow-base 45%"
   ],
   "app/contact/contact.module.css": [

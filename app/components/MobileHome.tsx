@@ -22,7 +22,7 @@ import {
 } from "../data/charts";
 // The country-only No. 1 set. charts.ts exports a same-named constant that
 // also counts Billboard's two Global charts, which are not countries.
-import { numberOneCountryCount } from "../lib/analysis";
+import { numberOneCountryCount, countryNumberOnes } from "../lib/analysis";
 import { totalAwards, countryCount as certCountries } from "../data/certifications";
 import { albums as studioAlbums } from "../data/albums";
 import { tours } from "../data/tours";
@@ -125,7 +125,15 @@ const years = studioAlbums.map((a) => a.year);
 // behind it that shows the working.
 const stats = [
   { glyph: "certs" as const, value: String(totalAwards()), label: "Certifications", source: `${certCountries} countries`, href: "/certifications" },
-  { glyph: "no1s" as const, value: String(numberOnes), label: "No. 1s worldwide", source: `in ${numberOneCountryCount} countries`, href: "/records/charts" },
+  // 45, matching desktop. This is a CORRECTNESS fix, not the design pass — the
+  // desktop brief's scope box excludes mobile, and every design change in that
+  // pass stopped at the desktop file. This one could not: the tile was pairing
+  // `numberOnes` (which counts Billboard's two Global charts) with a
+  // country-only denominator, asserting 47 country No. 1s across 30 countries.
+  // Fixing desktop alone would have left the same wrong number live on phones
+  // and re-created, on a new axis, exactly the desktop/mobile split
+  // homeScoreboardParity exists to catch.
+  { glyph: "no1s" as const, value: String(countryNumberOnes), label: "No. 1s · official charts", source: `in ${numberOneCountryCount} countries · +${numberOnes - countryNumberOnes} global charts`, href: "/records/charts" },
   { glyph: "albums" as const, value: String(studioAlbums.length), label: "Studio albums", source: `${Math.min(...years)} — ${Math.max(...years)}`, href: "/music" },
   { glyph: "tour" as const, value: topTour?.gross ?? "—", label: "Top tour gross", source: "Boxscore", href: "/records/tours" },
 ];

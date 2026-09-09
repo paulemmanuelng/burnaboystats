@@ -669,6 +669,25 @@ a {
 /* -----------------------------------------------------------
    BUTTONS  (reusable across pages)
    ----------------------------------------------------------- */
+/* ── THE LINK RULE ────────────────────────────────────────────────────────
+   filled        = the ONE primary action in a section
+   outlined      = its secondary
+   arrow link ↗  = navigation to a sibling page
+   bare text     = utility
+
+   Written down because the upper home page had four weights doing two jobs: a
+   filled gold button, an outlined one, a bare text link carrying a ⌘K badge,
+   and small arrow links, all in one viewport with no rule separating them.
+   The fix was a deletion, not a restyle — the ⌘K control duplicated the nav's
+   own search sixty pixels above it, so the bare-text weight left the page
+   entirely and three weights now do three jobs.
+
+   One known violation, left alone deliberately: the history band's
+   `Read the story ↗` is filled AND carries an arrow. That band is out of scope
+   for this pass (§9 of docs/design/handoff-home-desktop-2026-09-09.md); fix it
+   when the band is in scope, either by making it the band's arrow link or by
+   dropping the arrow.
+   ────────────────────────────────────────────────────────────────────────── */
 .btn {
   display: inline-flex;
   align-items: center;

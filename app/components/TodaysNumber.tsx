@@ -11,6 +11,7 @@ import { changedSentence } from "../lib/recentNumberOnes";
 import { countryNumberOnes, numberOneCountryCount } from "../lib/analysis";
 import { recentArrivalSentence } from "../lib/recentNumberOnes";
 import { spotifyImage } from "../lib/spotifyImage";
+import { liveChartsUpdated } from "../data/liveCharts";
 
 // The Dai Dai cover, already used by the hero card and the OG image.
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
@@ -28,56 +29,68 @@ const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1d
  */
 export default function TodaysNumber() {
   const live = liveHeadline();
+  const title = live.title ?? "Dai Dai";
 
   return (
     <>
     <div className={styles.panel}>
-      <div className={styles.glyphs} aria-hidden="true">
-        <span className={styles.g1}>♪</span>
-        <span className={styles.g2}>♫</span>
-        <span className={styles.g3}>♬</span>
-        <span className={styles.g4}>♩</span>
-        <span className={styles.g5}>✦</span>
-        <span className={styles.ring1} />
-        <span className={styles.ring2} />
-      </div>
-
+      {/* ROW 1 — STREAMING. The live half, and the only gold in the panel.
+          Provenance sits at the top, where a sceptic looks first: what this
+          number is, and when it was last read. */}
       <div className={styles.kicker}>
-        <span className={styles.kickerRule} aria-hidden="true" />
-        Today&apos;s number
+        <span className={styles.liveTag}>
+          <span className={styles.dot} aria-hidden="true" />
+          Live
+        </span>
+        <span className={styles.kickerLabel}>Streaming charts</span>
+        {/* The mock asks for "Updated 2 h ago". The data cannot say that:
+            liveChartsUpdated is a DATE, so an hour count would be invented.
+            The date is what was read, so the date is what it says. */}
+        <span className={styles.stamp}>Updated {shortDate(liveChartsUpdated)}</span>
       </div>
 
       <div className={styles.row}>
-        <div className={styles.figure}>{live.countries}</div>
+        <div className={styles.figureWrap}>
+          <div className={styles.figure}>{live.countries}</div>
+          <div className={styles.caption}>
+            {live.countries === 1 ? "country" : "countries"} at No.&nbsp;1 with
+            &nbsp;&ldquo;{title}&rdquo; right now
+          </div>
+        </div>
         <Link href="/dai-dai" className={styles.cover}>
           {/* eslint-disable-next-line @next/next/no-img-element -- remote Spotify CDN art, as elsewhere on the site */}
           <img
             src={spotifyImage(DAI_DAI_COVER, 300)}
             alt=""
-            width={146}
-            height={146}
+            width={104}
+            height={104}
           />
-          <span className={styles.coverLabel}>{live.title ?? "Dai Dai"} ↗</span>
+          <span className={styles.coverLabel}>{title} ↗</span>
         </Link>
       </div>
 
-      <div className={styles.caption}>
-        {live.countries === 1
-          ? "country at No. 1 on today's streaming charts"
-          : "countries at No. 1 on today's streaming charts"}
-      </div>
+      <p className={styles.note}>{recentArrivalSentence(title)}</p>
+    </div>
 
-      <p className={styles.note}>
-        {recentArrivalSentence(live.title ?? "Dai Dai")}{" "}
-        On the official national charts, his career total is now{" "}
-        {countryNumberOnes} No.&nbsp;1s across {numberOneCountryCount} countries.
+    {/* ROW 2 — OFFICIAL. The distinction the whole methodology rests on, given
+        its own labelled row instead of being whispered as a muted tail on the
+        streaming note. Ink, not gold: the figure above is what is happening
+        today, this is what has been established.
+        No display numeral here on purpose — the scoreboard tile a hundred
+        pixels below already carries the 45 at 52px, and a second large 45 in
+        one viewport is the duplication finding 5.3 exists to remove. The
+        sentence carries the number; the tile carries the numeral. */}
+    <div className={styles.official}>
+      <div className={styles.officialKicker}>Official national charts</div>
+      <p className={styles.officialText}>
+        Career total: {countryNumberOnes} No.&nbsp;1s across {numberOneCountryCount}{" "}
+        countries, official bodies only — the figure the records pages are built on.
       </p>
     </div>
 
-    {/* Outside the gold: the design sets this status row on the page
-        background, divided from the panel by the same hairline. */}
+    {/* ROW 3 — the status line, on the page background, divided by the same
+        hairline. The green dot moved up to row 1; one live dot in the panel. */}
     <div className={styles.status}>
-      <span className={styles.statusDot} aria-hidden="true" />
       <span className={styles.statusText}>{changedSentence}</span>
       <Link href="/live-charts" className={styles.statusLink}>
         Live board ↗
@@ -85,4 +98,14 @@ export default function TodaysNumber() {
     </div>
     </>
   );
+}
+
+/** "9 Sep 2026" — the day the live snapshot was read, in the panel's own voice. */
+function shortDate(iso: string) {
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 }

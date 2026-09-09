@@ -97,8 +97,15 @@
   grid-template-columns: 1.5fr 1fr;
   align-items: stretch;
 }
+/* A flex column with NO bottom padding — that is what lets the provenance row
+   sit on the section's bottom edge and line up with the panel's Live-board row.
+   Top padding matches the panel's 44px so the eyebrow and the panel kicker
+   share a line. The 36px gap under the buttons belongs to the buttons, not to
+   this column; putting it here instead is what pushed the two rows apart. */
 .heroCopy {
-  padding: 56px 48px 44px 0;
+  display: flex;
+  flex-direction: column;
+  padding: 44px 48px 0 0;
 }
 .title {
   font-family: var(--font-anton), sans-serif;
@@ -112,7 +119,9 @@
 .tagline {
   font-size: 19px;
   line-height: 1.5;
-  max-width: 52ch;
+  /* 44ch, not 52: at 52 the lede ran wider than the buttons and the provenance
+     row beneath it, so the column had three different right edges. */
+  max-width: 44ch;
   margin: 20px 0 0;
   text-wrap: pretty;
 }
@@ -131,14 +140,47 @@
   display: flex;
   gap: 10px;
   margin-top: 26px;
+  /* The gap above the provenance row lives here, on the buttons. The row itself
+     must stay padding-free for the two columns to align — see .provenance. */
+  margin-bottom: 36px;
   flex-wrap: wrap;
 }
-.heroChips {
+
+/* The provenance caption. mono 700 at 11px is the site's label voice; the
+   separators are 1px hairlines rather than bullets so the three items read as
+   one line of chrome instead of three chips. `margin-top: auto` pins it to the
+   bottom of the flex column, and the 44px min-height matches the panel's
+   Live-board row exactly — the two share the section's bottom rule and their
+   text midlines land on the same line. No padding here, deliberately. */
+.provenance {
   display: flex;
-  gap: 8px;
-  margin-top: 30px;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
+  min-height: 44px;
+  padding: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
+.provSep {
+  width: 1px;
+  height: 12px;
+  background: var(--line);
+  flex: none;
+}
+/* An arrow link — navigation to a sibling page, per the link rule above .btn in
+   globals.css. Gold, because links are one of the four things gold marks here. */
+.provLink {
+  color: var(--gold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.provLink:hover { text-decoration: underline; }
 .heroPanel {
   border-left: 1px solid var(--line);
   display: flex;
@@ -218,25 +260,19 @@
 /* The watermark: a faint pictogram of what the number IS, tucked to the cell's
    right edge behind the text. Decorative only — the label carries the meaning,
    so the glyph can stay whisper-quiet and colour-blind-safe. */
-.scoreGlyph {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 84px;
-  height: 84px;
-  color: var(--gold);
-  opacity: 0.07;
-  pointer-events: none;
-}
 /* The album disc carries the real cover in its label — a raster image can't be
    tinted by currentColor, so this glyph runs brighter overall and its own
    line-work is drawn lighter inside the SVG to land at the same visual weight. */
-.scoreGlyphAlbum { opacity: 0.35; }
-.scoreCell:hover .scoreGlyph { opacity: 0.12; }
-.scoreCell:hover .scoreGlyphAlbum { opacity: 0.5; }
 .scoreCell:first-child { border-left: none; }
+/* The tile turns gold on hover, and only then. Five 52px numerals in gold at
+   rest were a field, not an emphasis — gold above the strip is now exactly four
+   things: the "Boy" in the wordmark, the live figure, the primary button, and
+   links. */
 .scoreCell:hover { background: var(--color-accent-100); }
+.scoreCell:hover .scoreValue {
+  color: var(--gold);
+  -webkit-text-fill-color: var(--gold);
+}
 .scoreValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
@@ -244,19 +280,20 @@
   line-height: 0.9;
   letter-spacing: 0.01em;
   font-variant-numeric: tabular-nums;
-  /* The five figures carry the same gold ramp as the primary button rather than
-     one flat bright gold across the whole row. Bright to dim, no orange turn.
-     The dimmest stop is 6.8:1 on the page ground, so the bottom of every digit
-     still clears AA for body text, let alone the 3:1 this size needs. */
-  background-image: linear-gradient(180deg, var(--display-ramp-a) 0%, var(--display-ramp-b) 50%, var(--display-ramp-dim) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  /* Same paint-box pair as every other gradient word on the site — at
-     line-height 0.9 the ink overruns the line box and the ends of the digits
-     would go unpainted. */
-  padding: 0.2em 0;
-  margin: -0.2em 0;
+  /* INK at rest, gold on hover. These five carried the gold ramp, and five 52px
+     gold numerals in a row read as a field rather than an emphasis — the eye had
+     nowhere to land. Gold above the strip is now exactly four things: the "Boy"
+     in the wordmark, the live figure, the primary button, and links.
+     The gradient is gone rather than dimmed, so this is a plain colour now: the
+     background-clip paint-box pair that used to sit here (padding 0.2em with a
+     matching negative margin) went with it, since there is no clipped ink to
+     overrun the line box any more.
+     -webkit-text-fill-color is pinned beside `color` because WebKit resolves it
+     first and this element WAS a background-clip:text surface — leaving a stale
+     fill on it is how a label renders a colour no rule ever set. */
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  transition: color var(--dur) var(--ease), -webkit-text-fill-color var(--dur) var(--ease);
 }
 .scoreLabel {
   font-family: var(--font-mono), monospace;
