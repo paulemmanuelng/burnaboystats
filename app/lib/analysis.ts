@@ -173,3 +173,21 @@ export const numberOneCountryCount = new Set(
 
 /** Releases that have charted anywhere at all. */
 export const chartingReleaseCount = allChartItems.length;
+
+/**
+ * How many of the two global charts a release has actually topped — a count of
+ * CHARTS, not of placements.
+ *
+ * The home tile's disclosure line read `numberOnes - countryNumberOnes` and
+ * called the result "global charts". That is a placement count: it is 2 today
+ * only because one release tops both. A second release topping the Global 200
+ * would have made the tile say "+3 global charts" when exactly two exist, which
+ * is the same numerator/denominator category error the 45-vs-47 fix removed one
+ * clause to its left. /records/charts already derives it the other way and
+ * pins 2, so the two surfaces disagreed about what the number meant.
+ */
+export const globalChartsTopped = new Set(
+  allChartItems.flatMap((r) =>
+    r.entries.filter((e) => e.peak === 1 && isGlobalChart(e.c)).map((e) => e.c)
+  )
+).size;

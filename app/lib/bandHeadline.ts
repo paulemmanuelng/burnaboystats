@@ -42,19 +42,68 @@ const MAX = 72;
  * outside America:". Taking it rather than writing a second copy is what keeps
  * the band and the feed from drifting apart.
  */
+/**
+ * Abbreviations whose full stop does NOT end a sentence.
+ *
+ * Two hand-written lookbehinds ("No", "U.S") shipped first and were not enough.
+ * "Excl." is the single most-repeated abbreviation in this feed — Billboard's
+ * Global Excl. U.S. chart — and seven entries already contain it; they survived
+ * only because a colon happened to come earlier in each. The next entry that
+ * opens with it would have published "A 10th week on Billboard's Global Excl."
+ * at the top of every page, which is the exact shape of the "Nine weeks at No"
+ * bug this function was written to fix.
+ */
+const ABBREV = ["No", "Vol", "St", "Mr", "Mrs", "Ms", "Dr", "Jr", "Sr", "Excl", "Feat", "ft", "Est", "Inc", "Ltd", "U\\.S", "U\\.K"];
+
+/**
+ * The shortest a headline may be before we conclude the cut was wrong.
+ *
+ * An entry opening with an initial — "J. Cole joins him on the remix: …" —
+ * cut to "J". So did a numbered lead ("1. The Shakira collaboration…"). One
+ * character is not a headline, and nothing in the suite could see it: the only
+ * length check asserts a maximum.
+ */
+const MIN = 12;
+
+/** Every candidate boundary, so a bad first one can be stepped over. */
+const CUT = new RegExp(`(?::\\s|\\s—\\s|(?<!\\b(?:${ABBREV.join("|")}))\\.\\s(?=[A-Z“]))`, "g");
+
 export function openingClause(text: string): string {
-  // The full stop is the awkward one. This feed says "No. 1" in almost every
-  // entry, so a naive /[:.]\s/ cuts "Nine weeks at No. 1 in France" down to
-  // "Nine weeks at No" — which is how the first version of this shipped and why
-  // the table below tests that exact string. A stop only ends the clause when it
-  // is not the one in "No." or "U.S.", AND the next thing is a new sentence.
-  const cut = /^(.+?)(?::\s|\s—\s|(?<!\bNo)(?<!\bU\.S)\.\s(?=[A-Z“]))/.exec(text);
-  const clause = (cut ? cut[1] : text).trim();
-  if (clause.length <= MAX) return clause;
+  // Take the FIRST boundary that leaves a real headline behind it. A cut that
+  // leaves almost nothing is a cut in the wrong place — an initial, an ordinal,
+  // an abbreviation the list does not know — so step over it and try the next
+  // rather than giving up and returning the whole entry.
+  let clause = text;
+  for (const m of text.matchAll(CUT)) {
+    if (m.index !== undefined && text.slice(0, m.index).trim().length >= MIN) {
+      clause = text.slice(0, m.index);
+      break;
+    }
+  }
+  clause = clause.trim();
+  if (clause.length <= MAX) return balanceQuotes(clause);
   // Trim on a word boundary rather than mid-word, and never leave a dangling
   // separator before the ellipsis.
   const slice = clause.slice(0, MAX);
-  return `${slice.slice(0, slice.lastIndexOf(" ")).replace(/[\s,;·—-]+$/, "")}…`;
+  const cutAt = slice.lastIndexOf(" ");
+  const trimmed = (cutAt > 0 ? slice.slice(0, cutAt) : slice).replace(/[\s,;·—-]+$/, "");
+  return `${balanceQuotes(trimmed)}…`;
+}
+
+/**
+ * Close a curly quote the cut left open.
+ *
+ * Both the clause cut and the length trim can land inside a “quoted song
+ * title”, and this feed puts one in almost every entry. An unclosed “ at the
+ * top of the page reads as a rendering fault rather than as an abbreviation.
+ */
+function balanceQuotes(s: string): string {
+  const opens = (s.match(/“/g) || []).length;
+  const closes = (s.match(/”/g) || []).length;
+  if (opens <= closes) return s;
+  // Drop the dangling opener and anything after it, rather than inventing a
+  // closing quote around a fragment of a title.
+  return s.slice(0, s.lastIndexOf("“")).replace(/[\s,;·—-]+$/, "");
 }
 
 export interface BandFact {

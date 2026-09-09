@@ -3,7 +3,8 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { homeScoreboard } from "../app/lib/homeScoreboard";
 import { numberOnes, chartCountryCount } from "../app/data/charts";
-import { numberOneCountryCount, countryNumberOnes } from "../app/lib/analysis";
+import { numberOneCountryCount, countryNumberOnes, globalChartsTopped, isGlobalChart } from "../app/lib/analysis";
+import { allChartItems } from "../app/data/charts";
 
 // The homepage ships two layouts in the same DOM — the desktop scoreboard from
 // lib/homeScoreboard.ts and the mobile one built inline in MobileHome.tsx. They
@@ -68,12 +69,27 @@ describe("the homepage No. 1s tile", () => {
   // The two global charts are not hidden by the fix — they are named, so a
   // reader can still reach 47 by adding the line up.
   it("names the non-country charts rather than folding them away", () => {
-    const gap = numberOnes - countryNumberOnes;
-    expect(gap, "there is no longer a gap to disclose — check whether the tile should still say it").toBeGreaterThan(0);
+    expect(globalChartsTopped, "no global chart is topped any more — check the tile should still disclose one").toBeGreaterThan(0);
     expect(
       no1Tile()!.source,
       "the source line must disclose the No. 1s that are not country No. 1s",
-    ).toContain(`${gap} global charts`);
+    ).toContain(`${globalChartsTopped} global charts`);
+  });
+
+  // The disclosure counts CHARTS. It used to be written `numberOnes -
+  // countryNumberOnes`, which is a count of PLACEMENTS — 2 today only because
+  // one release tops both global charts, and 3 the day a second release tops
+  // one. The old guard built its expectation from that same expression, so it
+  // balanced for any value: the constant sat on both sides, which is the
+  // failure mode a Spotify constant already shipped through this year.
+  // This anchors to the world instead: there are exactly two global charts, so
+  // the printed number can never exceed two.
+  it("cannot print more global charts than exist", () => {
+    const codes = new Set(allChartItems.flatMap((r) => r.entries.map((e) => e.c)).filter(isGlobalChart));
+    expect(globalChartsTopped).toBeLessThanOrEqual(codes.size);
+    const printed = Number(/\+(\d+) global charts/.exec(no1Tile()!.source)?.[1]);
+    expect(printed, "the tile prints a number of global charts that do not exist").toBeLessThanOrEqual(codes.size);
+    expect(printed).toBe(globalChartsTopped);
   });
 
   it("never pairs the No. 1s count with the charted-territory count", () => {

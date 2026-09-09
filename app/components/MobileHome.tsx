@@ -22,7 +22,7 @@ import {
 } from "../data/charts";
 // The country-only No. 1 set. charts.ts exports a same-named constant that
 // also counts Billboard's two Global charts, which are not countries.
-import { numberOneCountryCount, countryNumberOnes } from "../lib/analysis";
+import { numberOneCountryCount, countryNumberOnes, globalChartsTopped } from "../lib/analysis";
 import { totalAwards, countryCount as certCountries } from "../data/certifications";
 import { albums as studioAlbums } from "../data/albums";
 import { tours } from "../data/tours";
@@ -133,7 +133,7 @@ const stats = [
   // Fixing desktop alone would have left the same wrong number live on phones
   // and re-created, on a new axis, exactly the desktop/mobile split
   // homeScoreboardParity exists to catch.
-  { glyph: "no1s" as const, value: String(countryNumberOnes), label: "No. 1s · official charts", source: `in ${numberOneCountryCount} countries · +${numberOnes - countryNumberOnes} global charts`, href: "/records/charts" },
+  { glyph: "no1s" as const, value: String(countryNumberOnes), label: "No. 1s · official charts", source: `in ${numberOneCountryCount} countries · +${globalChartsTopped} global charts`, href: "/records/charts" },
   { glyph: "albums" as const, value: String(studioAlbums.length), label: "Studio albums", source: `${Math.min(...years)} — ${Math.max(...years)}`, href: "/music" },
   { glyph: "tour" as const, value: topTour?.gross ?? "—", label: "Top tour gross", source: "Boxscore", href: "/records/tours" },
 ];

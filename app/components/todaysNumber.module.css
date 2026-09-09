@@ -49,6 +49,22 @@
 }
 /* The panel's one green dot — it used to sit in the status row as well. 7px
    with the site's existing live pulse. */
+/* The keyframes MUST live in this file. CSS Modules rewrites animation-name
+   per module, so `animation: livePulse` here was resolving to
+   todaysNumber-module__…__livePulse — a name with no keyframes behind it, and
+   the dot simply never pulsed. Referencing the copy in page.module.css cannot
+   work for the same reason; a copy in globals.css would not be rewritten, but
+   this build renames the identifier at the USE site regardless, so the local
+   definition is the only thing that binds.
+   The stops use --green-glow-base rather than the rgba literals the original
+   carries, so cssColourTokens does not need an allowlist entry and the glow
+   follows the theme. */
+@keyframes livePulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--green) 50%, transparent); }
+  70% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--green) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--green) 0%, transparent); }
+}
+
 .dot {
   width: 7px;
   height: 7px;
@@ -140,6 +156,7 @@
    same column and the cover keeps the right edge. */
 .figureWrap {
   min-width: 0;
+  flex: 1;
 }
 .caption {
   position: relative;
@@ -147,7 +164,9 @@
   font-weight: 400;
   font-size: 22px;
   line-height: 1.1;
-  max-width: 15ch;
+  /* No 15ch clamp. It snapped the song title across a line while 126-180px of
+     the row sat empty beside it — the cover keeps its own right edge via
+     margin-left:auto, so the caption does not need a cap to stay clear of it. */
   margin-top: 10px;
   text-wrap: balance;
 }

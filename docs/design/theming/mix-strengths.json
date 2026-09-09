@@ -275,6 +275,9 @@
   ],
   "app/components/todaysNumber.module.css": [
     "--gold-wash-base 11%",
+    "--green 0%",
+    "--green 0%",
+    "--green 50%",
     "--shadow-base 45%"
   ],
   "app/contact/contact.module.css": [

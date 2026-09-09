@@ -63,6 +63,10 @@
 .headlineLink:hover .headline { text-decoration: underline; }
 
 .headline {
+  /* Take the slack before the other two do, so a long headline shortens the
+     gap rather than clipping itself. */
+  flex: 1 1 auto;
+  min-width: 0;
   color: var(--text);
   font-family: var(--font-anton), sans-serif;
   font-size: 15px;
@@ -110,7 +114,12 @@
 /* The subtitle holds through the whole tablet band — measured, the row needs
    687px of content in an 886px box at 901px, so there is nothing to gain by
    dropping it early. It goes with the rest of the desktop band below 900. */
-@media (max-width: 900px) {
+/* The headline was being starved between roughly 900 and 1000px: the sub-line
+   and the streams figure both held their width, the headline took the
+   remainder, and it clipped mid-sentence — at ~950px "…top of the world outside
+   AMERICA" lost its qualifier and the claim inverted. The sub-line is the least
+   load-bearing thing in the row, so it goes first and it goes earlier. */
+@media (max-width: 1000px) {
   .sub { display: none; }
 }
 @media (max-width: 720px) {
