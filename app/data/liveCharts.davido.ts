@@ -209,13 +209,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 5,
-            "movement": 2
+            "movement": 7
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 146,
-            "movement": -31
+            "position": 149,
+            "movement": -26
           }
         ]
       },
@@ -409,8 +409,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 100,
-            "movement": -11
+            "position": 101,
+            "movement": -10
           },
           {
             "country": "RS",
@@ -453,7 +453,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
+            "position": 47,
             "movement": null,
             "status": "new"
           }
@@ -780,8 +780,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": -100
+            "position": 119,
+            "movement": -106
           }
         ]
       },
@@ -1101,7 +1101,7 @@
           {
             "country": "IL",
             "name": "Israel",
-            "position": 6,
+            "position": 7,
             "movement": null,
             "status": "new"
           }
@@ -1720,7 +1720,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 58,
-            "movement": -13
+            "movement": -6
           },
           {
             "country": "BW",
@@ -1919,8 +1919,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 185,
-            "movement": -5
+            "position": 186,
+            "movement": -4
           }
         ]
       }
@@ -2007,7 +2007,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 61,
-            "movement": -13
+            "movement": -6
           },
           {
             "country": "BF",
@@ -2199,8 +2199,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 152,
-            "movement": -31
+            "position": 155,
+            "movement": -26
           }
         ]
       },
@@ -2532,26 +2532,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Animashaun",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SI",
-            "name": "Slovenia",
-            "position": 59,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "My Light",
     "platforms": [
       {
@@ -2570,6 +2550,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Animashaun",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SI",
+            "name": "Slovenia",
+            "position": 73,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Constantly",
@@ -2659,7 +2659,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
+            "position": 153,
             "movement": null,
             "status": "new"
           }
@@ -2706,26 +2706,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d5dfc880396e953e316456a394d7353/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Hayya Hayya",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "VN",
-            "name": "Vietnam",
-            "position": 190,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Son of Mercy - EP",

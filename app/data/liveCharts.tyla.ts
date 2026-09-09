@@ -185,13 +185,6 @@
             "status": "new"
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "GY",
             "name": "Guyana",
             "position": 195,
@@ -227,8 +220,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 76,
-            "movement": -74
+            "position": 93,
+            "movement": -90
           }
         ]
       }
@@ -341,15 +334,8 @@
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 45,
-            "movement": -30
-          },
-          {
-            "country": "GR",
-            "name": "Greece",
-            "position": 70,
-            "movement": null,
-            "status": "new"
+            "position": 50,
+            "movement": -33
           }
         ]
       }
@@ -510,12 +496,12 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 41,
-            "movement": -16
+            "movement": -9
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 134,
+            "position": 160,
             "movement": null,
             "status": "new"
           }
@@ -639,13 +625,13 @@
             "country": "UG",
             "name": "Uganda",
             "position": 40,
-            "movement": -6
+            "movement": -5
           },
           {
             "country": "KG",
             "name": "Kyrgyzstan",
-            "position": 41,
-            "movement": -27
+            "position": 43,
+            "movement": -22
           }
         ]
       }
@@ -663,7 +649,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 89,
+            "position": 105,
             "movement": null,
             "status": "new"
           }
@@ -772,7 +758,7 @@
           {
             "country": "SK",
             "name": "Slovakia",
-            "position": 58,
+            "position": 69,
             "movement": null,
             "status": "new"
           }

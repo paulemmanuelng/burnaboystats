@@ -463,30 +463,29 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "RO",
-            "name": "Romania",
-            "position": 29,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "MU",
             "name": "Mauritius",
-            "position": 35,
-            "movement": -13
+            "position": 36,
+            "movement": -14
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 43,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 83,
-            "movement": -7
+            "movement": -6
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": null,
-            "status": "new"
+            "position": 133,
+            "movement": -108
           }
         ]
       },
@@ -728,14 +727,14 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 136,
-            "movement": -26
+            "position": 141,
+            "movement": -24
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 150,
-            "movement": -25
+            "position": 148,
+            "movement": -14
           },
           {
             "country": "SZ",
