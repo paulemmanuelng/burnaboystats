@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-08";
+  export const liveChartsUpdated = "2026-09-09";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -395,19 +395,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 183,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -632,7 +619,7 @@
             "country": "NA",
             "name": "Namibia",
             "position": 83,
-            "movement": -23
+            "movement": -21
           },
           {
             "country": "GD",
@@ -643,7 +630,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 98,
+            "position": 127,
             "movement": null,
             "status": "new"
           }
@@ -676,7 +663,7 @@
             "country": "KG",
             "name": "Kyrgyzstan",
             "position": 22,
-            "movement": -20
+            "movement": -18
           },
           {
             "country": "UG",
@@ -725,7 +712,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 118,
+            "position": 151,
             "movement": null,
             "status": "new"
           }
@@ -822,7 +809,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 142,
+            "position": 179,
             "movement": null,
             "status": "new"
           }

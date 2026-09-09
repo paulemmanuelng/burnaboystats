@@ -21,6 +21,12 @@
     "release": "CHANEL",
     "platform": "Deezer",
     "position": 74
+  },
+  {
+    "date": "2026-09-09",
+    "release": "CHANEL",
+    "platform": "Deezer",
+    "position": 74
   }
 ];
   

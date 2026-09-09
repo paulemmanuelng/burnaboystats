@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-08";
+  export const liveChartsUpdated = "2026-09-09";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -304,16 +304,16 @@
             "status": "new"
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 180,
-            "movement": -1
-          },
-          {
             "country": "MU",
             "name": "Mauritius",
             "position": 186,
             "movement": -5
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 188,
+            "movement": -9
           },
           {
             "country": "FJ",
@@ -570,8 +570,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
-            "movement": -128
+            "position": 137,
+            "movement": -134
           }
         ]
       }
@@ -901,8 +901,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 65,
-            "movement": -57
+            "position": 66,
+            "movement": -58
           },
           {
             "country": "GM",
@@ -969,8 +969,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 78,
-            "movement": -3
+            "position": 74,
+            "movement": 1
           },
           {
             "country": "KE",
@@ -1042,8 +1042,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 78,
-            "movement": -14
+            "position": 82,
+            "movement": -18
           },
           {
             "country": "TZ",
@@ -1109,8 +1109,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 63,
-            "movement": -58
+            "position": 64,
+            "movement": -59
           },
           {
             "country": "BJ",
@@ -1181,8 +1181,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": -7
+            "position": 9,
+            "movement": -8
           }
         ]
       }
@@ -1764,8 +1764,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 8,
-            "movement": -7
+            "position": 13,
+            "movement": -12
           },
           {
             "country": "NG",
@@ -1829,16 +1829,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 60,
-            "movement": -16
-          },
-          {
             "country": "NE",
             "name": "Niger",
             "position": 60,
             "movement": 36
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 64,
+            "movement": -20
           },
           {
             "country": "KE",
@@ -1874,8 +1874,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
-            "movement": -127
+            "position": 156,
+            "movement": -133
           }
         ]
       }
@@ -2049,8 +2049,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 136,
-            "movement": -7
+            "position": 126,
+            "movement": 3
           }
         ]
       }
@@ -2146,16 +2146,16 @@
             "movement": 0
           },
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 84,
+            "movement": 2
+          },
+          {
             "country": "GD",
             "name": "Grenada",
             "position": 91,
             "movement": 0
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 94,
-            "movement": -8
           }
         ]
       }
@@ -2218,7 +2218,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
+            "position": 147,
             "movement": null,
             "status": "new"
           }
@@ -2300,7 +2300,7 @@
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 144,
+            "position": 175,
             "movement": null,
             "status": "new"
           }
@@ -2362,25 +2362,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ec91c9f741208370ed9ab6b9029e90cc/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Kana",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 100,
-            "movement": -8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Time",
     "platforms": [
       {
@@ -2440,25 +2421,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/77fc9f281aabc0cfb5c17649afe08c8c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Drogba",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 86,
-            "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b5c2e2be723408f28befdd7a53e1c64a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Stay For The Night",
     "platforms": [
       {
@@ -2476,6 +2438,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/27ab85a0fa9ffa1c5a337c8e8ce43194/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Drogba",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 89,
+            "movement": -13
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b5c2e2be723408f28befdd7a53e1c64a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Energy",
@@ -2663,8 +2644,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
-            "movement": -131
+            "position": 165,
+            "movement": -137
           }
         ]
       }
@@ -2682,8 +2663,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 186,
-            "movement": -149
+            "position": 193,
+            "movement": -156
           }
         ]
       }

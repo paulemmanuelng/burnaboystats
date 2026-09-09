@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-08";
+  export const liveChartsUpdated = "2026-09-09";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -290,7 +290,7 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 148,
+            "position": 153,
             "movement": null,
             "status": "new"
           }
@@ -598,8 +598,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 51,
-            "movement": 10
+            "position": 52,
+            "movement": 9
           },
           {
             "country": "UG",
@@ -758,8 +758,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 57,
-            "movement": 10
+            "position": 58,
+            "movement": 9
           },
           {
             "country": "NG",
@@ -1244,13 +1244,6 @@
             "name": "Cambodia",
             "position": 61,
             "movement": -9
-          },
-          {
-            "country": "MX",
-            "name": "Mexico",
-            "position": 188,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -1462,8 +1455,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 68,
-            "movement": -15
+            "position": 72,
+            "movement": -19
           }
         ]
       }
@@ -1539,8 +1532,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 58,
-            "movement": -43
+            "position": 59,
+            "movement": -44
           }
         ]
       }

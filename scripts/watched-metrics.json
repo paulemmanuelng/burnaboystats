@@ -68,7 +68,7 @@
       "field": "rank",
       "kind": "rank",
       "threshold": 1,
-      "baseline": 68,
+      "baseline": 70,
       "note": "Global rank by Spotify monthly listeners (lower is better) — the CURRENT rank, not his best. Auto-published hourly; displayed on /records/by-the-numbers, whose label used to read \"his highest position among all artists worldwide\" while this metric fed it a current figure. His best in the log is No. 36, so that label was wrong at any rank above it; it now describes where he currently sits.",
       "live": true,
       "sanity": {
@@ -86,9 +86,9 @@
           "describes": "global listeners rank"
         }
       ],
-      "lastChanged": "2026-09-08",
-      "lastSeenValue": 68,
-      "lastSeenAt": "2026-09-08",
+      "lastChanged": "2026-09-09",
+      "lastSeenValue": 70,
+      "lastSeenAt": "2026-09-09",
       "$comment": "sanity.maxJump was 10, but withinSanity reads maxJump as a FRACTION of the baseline — |live-46|/46 > 10 needs live > 506, and max:500 already rejected that, so the jump guard was unreachable and the rank published unguarded. It is now maxDelta: 10, an absolute bound of ten chart places, which is what the 10 meant."
     },
     {
@@ -161,8 +161,8 @@
         }
       ],
       "lastChanged": "2026-09-08",
-      "lastSeenValue": 1025662087,
-      "lastSeenAt": "2026-09-08",
+      "lastSeenValue": 1026279506,
+      "lastSeenAt": "2026-09-09",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
     },
@@ -193,8 +193,8 @@
         }
       ],
       "lastChanged": "2026-09-06",
-      "lastSeenValue": 362723858,
-      "lastSeenAt": "2026-09-08",
+      "lastSeenValue": 362732107,
+      "lastSeenAt": "2026-09-09",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
@@ -225,8 +225,8 @@
         }
       ],
       "lastChanged": "2026-09-05",
-      "lastSeenValue": 309705003,
-      "lastSeenAt": "2026-09-08",
+      "lastSeenValue": 309709998,
+      "lastSeenAt": "2026-09-09",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
@@ -257,8 +257,8 @@
         }
       ],
       "lastChanged": "2026-09-05",
-      "lastSeenValue": 481020898,
-      "lastSeenAt": "2026-09-08",
+      "lastSeenValue": 481031145,
+      "lastSeenAt": "2026-09-09",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
@@ -289,8 +289,8 @@
         }
       ],
       "lastChanged": "2026-08-25",
-      "lastSeenValue": 118168946,
-      "lastSeenAt": "2026-09-08",
+      "lastSeenValue": 118172632,
+      "lastSeenAt": "2026-09-09",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
     },
@@ -783,7 +783,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Tems",
       "kind": "accumulate",
-      "baseline": 1770563000,
+      "baseline": 1775399000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -801,10 +801,10 @@
           "describes": "Tems 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1770563000,
-      "lastSeenAt": "2026-09-08",
-      "lastChanged": "2026-09-08",
-      "lastAccumulatedAt": "2026-09-08"
+      "lastSeenValue": 1775399000,
+      "lastSeenAt": "2026-09-09",
+      "lastChanged": "2026-09-09",
+      "lastAccumulatedAt": "2026-09-09"
     },
     {
       "id": "streams-2026-wizkid",
@@ -814,7 +814,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Wizkid",
       "kind": "accumulate",
-      "baseline": 1759022000,
+      "baseline": 1765956000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -832,10 +832,10 @@
           "describes": "Wizkid 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1759022000,
-      "lastSeenAt": "2026-09-08",
-      "lastChanged": "2026-09-08",
-      "lastAccumulatedAt": "2026-09-08"
+      "lastSeenValue": 1765956000,
+      "lastSeenAt": "2026-09-09",
+      "lastChanged": "2026-09-09",
+      "lastAccumulatedAt": "2026-09-09"
     },
     {
       "id": "streams-2026-burna",
@@ -845,7 +845,7 @@
       "extractor": "kworbArtistDaily",
       "match": "Burna Boy",
       "kind": "accumulate",
-      "baseline": 1757231000,
+      "baseline": 1766045000,
       "live": true,
       "sanity": {
         "maxJump": 0.03,
@@ -863,10 +863,10 @@
           "describes": "Burna Boy 2026 running Spotify total on the Africa's Biggest board"
         }
       ],
-      "lastSeenValue": 1757231000,
-      "lastSeenAt": "2026-09-08",
-      "lastChanged": "2026-09-08",
-      "lastAccumulatedAt": "2026-09-08"
+      "lastSeenValue": 1766045000,
+      "lastSeenAt": "2026-09-09",
+      "lastChanged": "2026-09-09",
+      "lastAccumulatedAt": "2026-09-09"
     }
   ],
   "certWatches": [
