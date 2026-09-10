@@ -175,3 +175,45 @@ Gold is standardised: `--gold-fill` / `--gold-bright` / `--gold-dim` / `--ink-on
 one gradient ramp for every gold action on the site. Any gold pill MUST carry
 `-webkit-text-fill-color` and `transform: translateZ(0)` — without the layer promotion
 at rest the label does not paint on iPhone until hover. That bug shipped twice.
+
+## Entry points: every artist's certs page, not just Burna's (Paul, 10 Sep 2026)
+
+Cheaper than it sounds — **one dynamic route serves all fifteen board artists**
+(`app/afrobeats/[artist]/page.tsx`), and **`MobileCerts` is shared** by that route and
+by `/certifications`. So there are two components to touch, not sixteen pages.
+
+### Mobile — the action bar is currently OFF for the fifteen, and for a good reason
+
+`app/afrobeats/[artist]/page.tsx:196` passes **`showActionBar={false}`**. The bar's
+only content is `<Link href="/share">Make a stat card ↗</Link>`, and **`/share` builds a
+BURNA stat card** — meaningless on Wizkid's page. That is why the bar is suppressed
+there, not an oversight.
+
+So the fix is not "turn the bar on":
+
+| | primary | secondary | filter icon |
+|---|---|---|---|
+| **Burna** (`/certifications`) | **Compare ↗** | Make a stat card | keep |
+| **The 15** (`/afrobeats/[artist]`) | **Compare ↗** | *(none — no stat card exists for them)* | keep |
+
+The bar becomes worth showing on all sixteen for the first time, because Compare is
+the first action in it that is meaningful for every artist.
+
+### Desktop — nothing to replace, and a natural neighbour already exists
+
+- `/certifications` (`page.tsx:162-165`): two `btn btnSecondary` links — "Visualized",
+  "Methodology ↗". No stat-card button at all.
+- `/afrobeats/[artist]` (`page.tsx:473-487`): a row of `btn` links ending with
+  **`<Link href="/certifications">Burna Boy's ledger ↗</Link>`** — the page already
+  points at a rival ledger, so Compare belongs beside it.
+
+### Pre-select the artist from the page you came from
+
+`MobileCerts` already receives **`subject={a.name}`** and the artist route has
+`a.slug`. So the entry link should carry the artist — e.g. `/compare?a=wizkid` — and
+land with that side already filled and the other side waiting. From Burna's page it
+is `?a=burna-boy`. **A Compare button that opens two empty pickers wastes the one
+thing the context already knows.**
+
+Design consequence: the page has a **one-side-filled** state as its most common
+arrival, not the empty state. That should be the hero mock, not a blank comparison.
