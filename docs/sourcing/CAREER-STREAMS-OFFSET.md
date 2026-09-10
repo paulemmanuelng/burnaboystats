@@ -454,6 +454,12 @@ figure: **it is the only one of the three that was measured.**
 
 ### Do not close the 31M by typing it
 
+> **SUPERSEDED the same day — see "The decision" at the end of this file.**
+> The reasoning below still holds on its own terms; what changed is that the 31M
+> was closed by *re-anchoring the offset to a dated ChartMasters read*, which is
+> not the same as typing the figure, and a corroboration arrived that this
+> section did not have.
+
 - 31,391,289 is **0.287%**, and at kworb's 7,632,505/day it is **4.1 days**. The
   derived figure passes ChartMasters' number around **14 Sep 2026** on its own.
 - ChartMasters' implied offset over kworb is **111,997,901** against the 80,606,612
@@ -465,3 +471,70 @@ figure: **it is the only one of the three that was measured.**
   Spotify credits to him". ChartMasters attributes by their own CSPC rules — which
   is precisely why they removed the 309M that Spotify itself still counts. Two
   definitions agreeing to 0.3% is a good outcome, not a discrepancy to reconcile away.
+
+
+## The decision (10 Sep 2026): anchored to ChartMasters
+
+Paul's call, after reading the thread: **10,956,307,905 is the figure to publish.**
+Implemented as an offset move, not a typed string — the pipeline rewrites those
+fields daily, so typing them would have survived until the next bot run and no
+longer:
+
+```
+offset    80,606,612  ->  112,305,806
+baseline  10,924,608,711  ->  10,956,307,905
+published "10.92B" -> "10.96B" ; exact 10,924,608,711 -> 10,956,307,905
+```
+
+**112,305,806 is the same-date gap** — ChartMasters' 10,956,307,905 minus kworb's
+10,844,002,099, both read on 9 Sep. Not a hand-picked constant, and not arithmetic
+on the published figure.
+
+### A corroboration that arrived from the thread itself
+
+The thread's own board screenshot puts Burna's **2026 gain at 1.756B**. Take
+ChartMasters' career total and subtract the corrected 2025 close this site
+published on 21 August:
+
+```
+10,956,307,905 - 9,199,552,674 = 1,756,755,231
+```
+
+**It reproduces their board to about a million** — roughly a day of streaming.
+Two consequences, and the second is the sharper one:
+
+1. It is the only genuinely independent check any of the three figures has had.
+   It ties ChartMasters' total, ChartMasters' 2026 board, and *this site's own*
+   corrected close into one arithmetic that closes.
+2. **It refutes the thread's central accusation.** The claim is that ChartMasters
+   still computes 2026 gains off the pre-correction 9.58B, and so "they're getting
+   1.4B" — `10.956 - 9.58 = 1.376`. Their board does not say 1.4B. It says 1.756B,
+   which is the *corrected* close. The number the thread got right; the reasoning
+   attached to it is wrong, and its own screenshot is what shows that.
+
+The previously published figure would have given `10,924,608,711 - 9,199,552,674
+= 1,725,056,037` — 1.725B, which matches no published board.
+
+### What this offset now is, stated honestly
+
+- **80,606,612** — measured track by track on 10 Sep: 42 credited recordings on
+  Spotify absent from kworb's 291-row roster, joined by track id.
+- **31,699,194** — the amount by which ChartMasters' roster exceeds both kworb's
+  and our own hunt. Mechanism named (catalogue completeness, counted further),
+  **not enumerated.**
+
+That is a real improvement on what was here on 9 Sep — a constant carrying
+57,019,257 with no mechanism at all and a written rationale false in both
+mechanism and direction — but it is **not** the same thing as a fully measured
+offset, and this file should not be summarised as if it were.
+
+### The maintenance job, which is now a decay problem
+
+kworb's cumulative has been rising ~10.81M/day against actual streaming near
+7.6M/day: it is absorbing catalogue it previously missed, and **every unit of that
+closes this gap**. Left alone, `raw + 112,305,806` drifts *above* ChartMasters.
+
+**Re-read ChartMasters and re-subtract against kworb's raw on the same date**
+whenever the two are compared. Do not derive the offset from the published figure.
+Nothing automated will catch the drift: 31M on 10.9B is 0.3%, far under the
+metric's 3% threshold.

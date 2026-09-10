@@ -99,8 +99,8 @@
       "extractor": "kworbTotalStreams",
       "kind": "peak",
       "threshold": 0.03,
-      "baseline": 10924608711,
-      "note": "MEASURED 10 Sep 2026. The offset is the streams on tracks that EXIST ON SPOTIFY BUT ARE NOT IN KWORB'S ROSTER — 42 credited recordings, 80,606,612 streams, each one read at open.spotify.com/track/<id> and joined to kworb by track id. Every one of the 42 sits on another artist's release or a various-artists compilation, which is what Spotify's artist-page 'appears on' shelf (kworb's source) drops. THAT is the mechanism. THE PREVIOUS NOTE WAS FALSE IN BOTH DIRECTIONS and is recorded here so it is not reinstated: it claimed kworb 'undercounts featured credits' — kworb's total already contains 4,640,678,029 of featured streams, 43% of the figure, and its lead+feature reconciles to its own total to the unit — and it claimed the gap GROWS, when it shrinks as kworb absorbs catalogue. The old value was 146,757,255 against a measured 80,606,612, i.e. 57,019,257 with no mechanism behind it. A SECOND MECHANISM WAS MEASURED AND DELIBERATELY EXCLUDED: kworb's featured rows trail Spotify's displayed counters. All 101 featured rows were read — 56 ahead, 45 exact, 0 behind — totalling 1,702,137, which at kworb's 4,639,694 featured streams a day is under NINE HOURS of skew between two samples of the same data. It is freshness, not missing data; baking it in would permanently re-add streams kworb reports by tomorrow. Real, confirmed, negligible — do not add it. RE-MEASURE BY RE-RUNNING THE HUNT, not by arithmetic: the offset moves when kworb absorbs a missing track (down) or a new compilation credit appears (up). Evidence and method in docs/sourcing/CAREER-STREAMS-OFFSET.md.",
+      "baseline": 10956307905,
+      "note": "RE-ANCHORED 10 Sep 2026 to ChartMasters, by Paul's decision. offset = the SAME-DATE gap between ChartMasters and kworb on the 9 Sep reading: 10,956,307,905 - 10,844,002,099 = 112,305,806. Both sides of that subtraction are dated reads of the same day; see docs/sourcing/CAREER-STREAMS-OFFSET.md. WHAT IS AND IS NOT EVIDENCED. 80,606,612 of the 112,305,806 was measured track by track on 10 Sep - 42 credited recordings that exist on Spotify but are absent from kworb's 291-row roster, each read at open.spotify.com/track/<id> and joined by track id, every one of them on another artist's release or a various-artists compilation, which is what the artist-page 'appears on' shelf kworb reads simply drops. The remaining 31,699,194 is NOT separately attributed: it is the amount by which ChartMasters' roster exceeds both kworb's and our own catalogue hunt. The mechanism is named and plausible - catalogue completeness, the same mechanism, counted further - but it has not been enumerated. Do not describe the whole 112,305,806 as measured. TWO CLAIMS THE PREVIOUS NOTE MADE THAT ARE FALSE AT THE BODY, recorded so they are not reinstated: kworb does NOT 'undercount featured credits' - its total already contains 4,640,678,029 of them, 43% of the figure - and the gap does not GROW. IT DECAYS, AND THAT IS THE MAINTENANCE JOB. kworb's cumulative has been rising about 10.81M/day against actual streaming near 7.6M/day, which is a tracker absorbing catalogue it previously missed; every unit of that closes this gap. So this offset will drift the published figure ABOVE ChartMasters over time. Re-read ChartMasters and re-subtract against kworb's raw on the SAME date whenever the two are compared, and never do arithmetic on the published figure to derive it. The bot cannot self-correct this: 31M on 10.9B is 0.3%, far under the metric's 3% threshold.",
       "live": true,
       "siteTargets": [
         {
@@ -125,9 +125,9 @@
         "min": 5000000000,
         "max": 100000000000
       },
-      "lastChanged": "2026-09-08",
-      "offset": 80606612,
-      "lastSeenValue": 10924608711,
+      "lastChanged": "2026-09-10",
+      "offset": 112305806,
+      "lastSeenValue": 10956307905,
       "lastSeenAt": "2026-09-10",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B.",

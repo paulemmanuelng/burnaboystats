@@ -13,31 +13,51 @@
 // Every Burna Boy song on Spotify, lead and featured credits combined.
 //
 // Auto-published daily: the spotify-total-streams metric adds a pipeline offset
-// to kworb's raw sum before writing this string. On 10 Sep 2026 that offset was
-// MEASURED for the first time and fell from 146,757,255 to 80,606,612.
+// to kworb's raw sum before writing this string. Never hand-edit either string —
+// the next bot run overwrites it. To move the figure, move the offset.
 //
-// What the offset is: the streams on 42 credited recordings that exist on
-// Spotify but are absent from kworb's 291-row roster — every one of them on
-// another artist's release or a various-artists compilation, which is what the
-// artist-page "appears on" shelf that kworb reads simply drops. Each was read at
-// open.spotify.com/track/<id> and joined to kworb by track id.
+// RE-ANCHORED 10 Sep 2026 to ChartMasters, by Paul's decision, after their
+// figure was independently restated by a premium subscriber. The offset is the
+// SAME-DATE gap between the two trackers on the 9 Sep reading:
 //
-// What it is NOT, because the previous note here asserted both and both are
-// false at the body: kworb does not "undercount featured credits" — its total
+//     ChartMasters  10,956,307,905
+//     kworb raw     10,844,002,099
+//     offset           112,305,806
+//
+// Both sides are dated reads of the same day, which is what makes the
+// subtraction meaningful; an earlier version of this note compared reads a day
+// apart and the timing quietly flattered the result.
+//
+// WHAT IS EVIDENCED AND WHAT IS NOT. 80,606,612 of that was measured track by
+// track: 42 credited recordings that exist on Spotify but are absent from
+// kworb's 291-row roster, each read at open.spotify.com/track/<id> and joined by
+// track id, every one on another artist's release or a various-artists
+// compilation — which is exactly what the artist-page "appears on" shelf kworb
+// reads drops. The remaining 31,699,194 is the amount by which ChartMasters'
+// roster exceeds both kworb's and our own hunt. Its mechanism is named and
+// plausible — catalogue completeness, counted further — but it has NOT been
+// enumerated. Do not call the whole 112,305,806 measured.
+//
+// Neither figure is ground truth. Spotify publishes no career total anywhere —
+// not on the artist page, not in the Web API — so both trackers are estimates
+// and both are floors: any credited track a tracker has not found contributes
+// zero.
+//
+// TWO CLAIMS AN EARLIER NOTE MADE THAT ARE FALSE AT THE BODY, kept here so they
+// are not reinstated: kworb does not "undercount featured credits" — its total
 // already contains 4,640,678,029 of them, 43% of the figure — and the gap does
-// not GROW, it shrinks as kworb absorbs catalogue it had been missing.
+// not grow.
 //
-// A second, real mechanism was measured and deliberately left out: kworb's
-// featured rows trail Spotify's own counters by 1,702,137 across all 101 rows,
-// which is under nine hours of featured streaming. That is freshness between two
-// samples, not missing data, and baking it in would permanently re-add streams
-// kworb reports by tomorrow.
+// IT DECAYS, AND THAT IS THE MAINTENANCE JOB. kworb's cumulative has been rising
+// about 10.81M/day against actual streaming near 7.6M/day, which is a tracker
+// absorbing catalogue it previously missed, and every unit of that closes this
+// gap. Left alone, this offset will drift the published figure ABOVE
+// ChartMasters. Re-read ChartMasters and re-subtract against kworb's raw on the
+// SAME date; never derive it by arithmetic on the published figure. The bot
+// cannot catch the drift — 31M on 10.9B is 0.3%, far under its 3% threshold.
 //
-// Re-measure by re-running the catalogue hunt, never by arithmetic on the
-// published figure. Method and evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md.
-// Note the bot cannot self-correct this: 57M on 10.9B is 0.5%, under the
-// metric's 3% threshold.
-export const spotifyTotalStreams = "10.92B";
+// Method and full evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md.
+export const spotifyTotalStreams = "10.96B";
 
 // The same daily figure, unrounded.
 //
@@ -47,7 +67,7 @@ export const spotifyTotalStreams = "10.92B";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "10,924,608,711";
+export const spotifyTotalStreamsExact = "10,956,307,905";
 
 // Every Burna Boy video on YouTube, across his channel and others'. He leads
 // all Nigerian artists on this measure — 344 videos to 4.03 billion views,
