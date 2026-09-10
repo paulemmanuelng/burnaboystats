@@ -199,6 +199,14 @@ export interface CountryLine {
   releases: number;
   /** The single biggest plaque behind this line, for display. */
   top: { title: string; level: Tier; x: number } | null;
+  /** false = the plaque is real but its body publishes no usable threshold, so
+   *  it is LISTED and never summed. A row that vanishes reads as "no plaque",
+   *  which is a different and false statement. */
+  counted: boolean;
+  /** Why it cannot be counted — shown as footnote 1. */
+  reason?: string;
+  /** A rule this file had to assume because the body publishes none — footnote 2. */
+  caveat?: string;
 }
 
 export interface Exclusion {
@@ -215,8 +223,13 @@ export interface ArtistUnits {
   byCountry: CountryLine[];
   /** Nigeria, always computed so it can be shown even when excluded from `total`. */
   nigeria: { units: number; plaques: number };
+  /** Countries holding a real plaque that cannot be priced. Rendered as rows
+   *  with the tier chip and "not counted", never dropped. */
+  listed: CountryLine[];
   excluded: Exclusion[];
   excludedPlaques: number;
+  /** Bodies whose multiplier rule this file assumed — footnote 2. */
+  caveats: string[];
   /** Plaques that counted toward `total`. */
   pricedPlaques: number;
 }
@@ -249,8 +262,33 @@ export function priceArtist(
   }
 
   const lines = new Map<string, CountryLine & { topUnits: number }>();
+  const listedLines = new Map<string, CountryLine>();
   let nigeriaUnits = 0;
   let nigeriaPlaques = 0;
+
+  // Plaques that exist but cannot be priced still get a row. Sweden's Gold on
+  // "Gbona" is the live case: dropping it would tell the reader Burna holds no
+  // Swedish plaque, which is false.
+  for (const release of releases) {
+    for (const cert of release.certs) {
+      if (unitsForCert(cert, release.format).units !== null) continue;
+      if (cert.c === "NG" && !options.includeNigeria) continue;
+      const held = listedLines.get(cert.c);
+      if (held) {
+        held.releases += 1;
+        continue;
+      }
+      listedLines.set(cert.c, {
+        country: cert.c,
+        body: CERT_THRESHOLDS[cert.c]?.body ?? cert.c,
+        units: 0,
+        releases: 1,
+        top: { title: release.title, level: cert.level, x: cert.x ?? 1 },
+        counted: false,
+        reason: exclusionFor(cert.c, release.format, cert.body) ?? undefined,
+      });
+    }
+  }
 
   for (const { release, cert, units } of best.values()) {
     if (cert.c === "NG") {
@@ -274,6 +312,8 @@ export function priceArtist(
         releases: 1,
         top: { title: release.title, level: cert.level, x: cert.x ?? 1 },
         topUnits: units,
+        counted: true,
+        caveat: (cert.x ?? 1) > 1 ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
       });
     }
   }
@@ -284,10 +324,14 @@ export function priceArtist(
 
   const exclusions = [...excluded.values()].sort((a, b) => b.plaques - a.plaques);
 
+  const listed = [...listedLines.values()].sort((a, b) => a.country.localeCompare(b.country));
+
   return {
     artist,
     total: byCountry.reduce((n, l) => n + l.units, 0),
     byCountry,
+    listed,
+    caveats: [...new Set(byCountry.map((l) => l.caveat).filter(Boolean) as string[])],
     nigeria: { units: nigeriaUnits, plaques: nigeriaPlaques },
     excluded: exclusions,
     excludedPlaques: exclusions.reduce((n, e) => n + e.plaques, 0),
@@ -380,20 +424,47 @@ export interface ComparisonRow {
   body: string;
   a: CountryLine | null;
   b: CountryLine | null;
+  /** Both sides hold a plaque here. These are the rows a reader came for, and
+   *  they are NEVER folded away. */
+  contested: boolean;
+}
+
+/** One side's folded tail — never contested rows, only its own exclusives. */
+export interface CollapsedTail {
+  side: "a" | "b";
+  artist: string;
+  countries: number;
+  units: number;
+  rows: ComparisonRow[];
 }
 
 export interface Comparison {
   a: ArtistUnits;
   b: ArtistUnits;
-  /** Every country either side holds a plaque in, biggest combined first. */
+  /** What renders, in order: Nigeria first when included, then by the larger
+   *  side's figure. */
   rows: ComparisonRow[];
-  /** Countries where only one side is certified — the tail worth collapsing. */
+  /** Rows folded out of `rows`, behind "Show all". */
+  collapsed: CollapsedTail[];
   contested: ComparisonRow[];
   uncontested: ComparisonRow[];
   nigeria: NigeriaDefault;
   options: UnitsOptions;
+  /** Footnote 1 — bodies whose plaques could not be priced, with the reason. */
+  notCounted: { country: string; body: string; reason: string }[];
+  /** Footnote 2 — multiplier rules this file had to assume. */
+  caveats: string[];
 }
 
+/**
+ * Two artists, priced and laid out.
+ *
+ * THE COLLAPSE RULE, which is the one worth stating: a row where BOTH sides hold
+ * a plaque is never folded, however lopsided the pair. Only a side's own
+ * exclusive rows fold, only past its top three, and only when it has more than
+ * six of them. Burna vs Olamide is the case it was written for — eighteen rows
+ * of which Olamide competes in exactly one, and that one must stay on screen.
+ */
 export function compare(
   a: ComparableArtist,
   b: ComparableArtist,
@@ -407,27 +478,76 @@ export function compare(
   const pa = priceArtist(a, opts);
   const pb = priceArtist(b, opts);
 
-  const codes = [...new Set([...pa.byCountry, ...pb.byCountry].map((l) => l.country))];
-  const rows: ComparisonRow[] = codes
-    .map((country) => ({
-      country,
-      body: CERT_THRESHOLDS[country]?.body ?? country,
-      a: pa.byCountry.find((l) => l.country === country) ?? null,
-      b: pb.byCountry.find((l) => l.country === country) ?? null,
-    }))
+  const lineFor = (p: ArtistUnits, code: string) =>
+    p.byCountry.find((l) => l.country === code) ?? p.listed.find((l) => l.country === code) ?? null;
+
+  const codes = [
+    ...new Set(
+      [...pa.byCountry, ...pa.listed, ...pb.byCountry, ...pb.listed].map((l) => l.country),
+    ),
+  ];
+
+  const all: ComparisonRow[] = codes
+    .map((country) => {
+      const la = lineFor(pa, country);
+      const lb = lineFor(pb, country);
+      return {
+        country,
+        body: CERT_THRESHOLDS[country]?.body ?? country,
+        a: la,
+        b: lb,
+        contested: Boolean(la && lb),
+      };
+    })
+    // Rule 1: sort by the larger side. A listed-not-counted plaque scores 0 — it
+    // is shown, but it does not buy position.
     .sort(
       (x, y) =>
-        (y.a?.units ?? 0) + (y.b?.units ?? 0) - ((x.a?.units ?? 0) + (x.b?.units ?? 0)) ||
+        Math.max(y.a?.units ?? 0, y.b?.units ?? 0) - Math.max(x.a?.units ?? 0, x.b?.units ?? 0) ||
         x.country.localeCompare(y.country),
     );
+
+  // Rule 3: Nigeria pins to the top when it is in scope, so an included Nigeria
+  // reads as its own thing rather than merging into the middle of the table.
+  const ordered = opts.includeNigeria
+    ? [...all.filter((r) => r.country === "NG"), ...all.filter((r) => r.country !== "NG")]
+    : all;
+
+  // Rule 2.
+  const collapsed: CollapsedTail[] = [];
+  const folded = new Set<ComparisonRow>();
+  for (const side of ["a", "b"] as const) {
+    const mine = ordered.filter(
+      (r) => !r.contested && r.country !== "NG" && (side === "a" ? r.a : r.b),
+    );
+    if (mine.length <= 6) continue;
+    const tail = mine.slice(3);
+    tail.forEach((r) => folded.add(r));
+    collapsed.push({
+      side,
+      artist: (side === "a" ? pa : pb).artist.name,
+      countries: tail.length,
+      units: tail.reduce((n, r) => n + ((side === "a" ? r.a : r.b)?.units ?? 0), 0),
+      rows: tail,
+    });
+  }
+
+  const rows = ordered.filter((r) => !folded.has(r));
+
+  const notCounted = [...pa.listed, ...pb.listed]
+    .filter((l, i, xs) => xs.findIndex((y) => y.country === l.country) === i)
+    .map((l) => ({ country: l.country, body: l.body, reason: l.reason ?? "" }));
 
   return {
     a: pa,
     b: pb,
     rows,
-    contested: rows.filter((r) => r.a && r.b),
-    uncontested: rows.filter((r) => !r.a || !r.b),
+    collapsed,
+    contested: ordered.filter((r) => r.contested),
+    uncontested: ordered.filter((r) => !r.contested),
     nigeria: ng,
     options: opts,
+    notCounted,
+    caveats: [...new Set([...pa.caveats, ...pb.caveats])],
   };
 }

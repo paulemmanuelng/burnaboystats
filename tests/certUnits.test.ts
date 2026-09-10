@@ -260,6 +260,39 @@ describe("the features toggle", () => {
 });
 
 describe("the comparison", () => {
+  it("reproduces the design's fixture: 915,333 vs 6,340,000 over 10 rows", () => {
+    // The design file computed these from the published thresholds before the
+    // engine existed. They are the contract between the two.
+    const c = compare(bySlug("burna-boy"), bySlug("wizkid"), { includeNigeria: false });
+    const g = priceRelease(bySlug("burna-boy"), "Gbona", { includeNigeria: false, includeFeatures: true })!;
+    const e = priceRelease(bySlug("wizkid"), "Essence", { includeNigeria: false, includeFeatures: true })!;
+    expect(g.total).toBe(915_333);
+    expect(e.total).toBe(6_340_000);
+    // Union is 10 countries, not 9: Gbona's Swedish Gold is LISTED though it
+    // cannot be priced. Dropping it would state he holds no Swedish plaque.
+    const union = new Set([
+      ...g.byCountry.map((l) => l.country), ...g.listed.map((l) => l.country),
+      ...e.byCountry.map((l) => l.country), ...e.listed.map((l) => l.country),
+    ]);
+    expect(union.size).toBe(10);
+    expect(g.listed.map((l) => l.country)).toContain("SE");
+    expect(g.listed.find((l) => l.country === "SE")?.counted).toBe(false);
+    expect(g.listed.find((l) => l.country === "SE")?.reason).toMatch(/Sverige|stream/i);
+    expect(c.nigeria.on).toBe(false);
+  });
+
+  it("Nigeria included adds Essence's 200,000 and nothing else", () => {
+    const e = priceRelease(bySlug("wizkid"), "Essence", { includeNigeria: true, includeFeatures: true })!;
+    expect(e.total).toBe(6_540_000);
+    expect(e.nigeria.units).toBe(200_000);
+  });
+
+  it("pins Nigeria to the top of the table when it is included", () => {
+    const c = compare(bySlug("seyi-vibez"), bySlug("black-sherif"));
+    expect(c.options.includeNigeria).toBe(true);
+    expect(c.rows[0].country).toBe("NG");
+  });
+
   it("Gbona vs Essence produces a real, non-empty table", () => {
     const gbona = priceRelease(bySlug("burna-boy"), "Gbona", {
       includeNigeria: false,
@@ -278,10 +311,36 @@ describe("the comparison", () => {
     expect(essence!.nigeria.plaques).toBe(1);
   });
 
-  it("splits contested rows from one-sided ones", () => {
+  it("splits contested rows from one-sided ones, and folds only the tail", () => {
     const c = compare(bySlug("burna-boy"), bySlug("olamide"));
-    expect(c.rows.length).toBe(c.contested.length + c.uncontested.length);
+    const folded = c.collapsed.reduce((n, t) => n + t.rows.length, 0);
+    // `rows` is what RENDERS; contested + uncontested is everything.
+    expect(c.rows.length + folded).toBe(c.contested.length + c.uncontested.length);
     expect(c.uncontested.length).toBeGreaterThan(c.contested.length);
+    expect(folded).toBeGreaterThan(0);
+  });
+
+  it("never folds a row where both sides hold a plaque", () => {
+    // The rule the collapse exists to protect. Burna vs Olamide is eighteen rows
+    // in which Olamide competes in exactly one — and that one must survive.
+    for (const [x, y] of [
+      ["burna-boy", "olamide"], ["tyla", "olamide"], ["rema", "asake"], ["burna-boy", "victony"],
+    ] as const) {
+      const c = compare(bySlug(x), bySlug(y));
+      for (const tail of c.collapsed)
+        for (const r of tail.rows)
+          expect(r.contested, `${x} vs ${y} folded a contested row (${r.country})`).toBe(false);
+      for (const r of c.contested) expect(c.rows).toContain(r);
+    }
+  });
+
+  it("keeps a side's top three exclusives and folds only past six", () => {
+    const c = compare(bySlug("burna-boy"), bySlug("olamide"));
+    const tail = c.collapsed.find((t) => t.side === "a");
+    expect(tail).toBeTruthy();
+    const shownExclusive = c.rows.filter((r) => !r.contested && r.a && r.country !== "NG");
+    expect(shownExclusive.length).toBe(3);
+    expect(tail!.units).toBeGreaterThan(0);
   });
 
   it("is symmetric — neither side is the home team", () => {

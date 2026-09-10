@@ -90,11 +90,16 @@ export interface CountryThresholds {
   albumRaw?: Partial<Record<keyof TierUnits, number>>;
   /** How and why the conversion was done. */
   normalised?: string;
+  /** Set where the body does NOT publish a rule this file had to assume — shown
+   *  to the reader as a footnote rather than hidden. */
+  caveat?: string;
 }
 
 export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   AT: {
     code: "AT",
+    caveat:
+      "IFPI Austria’s Richtlinien set quantities for Gold and Platin only and give no formula for multiples, although its own database displays awards as “N-fach PLATIN”. An N× award is priced here as N × Platinum.",
     body: "IFPI Austria (Verband der Österreichischen Musikwirtschaft)",
     sourceUrl: "https://ifpi.at/website2018/wp-content/uploads/2018/12/gold-platin_richtlinien.pdf",
     single: { silver: null, gold: 15_000, platinum: 30_000, diamond: null },
@@ -163,6 +168,8 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   DE: {
     code: "DE",
+    caveat:
+      "BVMI’s ladder is NOT linear — it runs 1x Gold, 1x Platin, 3x Gold, 2x Platin, 5x Gold, skipping the even Gold multiples because they collide with Platinum. Multiples are priced here as N × that tier’s own threshold.",
     body: "BVMI (Bundesverband Musikindustrie e.V.)",
     sourceUrl: "https://www.musikindustrie.de/fileadmin/bvmi/upload/01_Der_BVMI/Dokumente-zum-Download/Richtlinien_BVMI_Gold_Platin_3_0_FINAL.pdf",
     single: { silver: null, gold: 300_000, platinum: 600_000, diamond: 1_500_000 },
@@ -238,6 +245,8 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   NL: {
     code: "NL",
+    caveat:
+      "NVPI abolished Meervoudig Platina on 1 January 2024 and replaced it with Diamant, so no multiplier rule is in force today. A pre-2024 N× Platina is priced here as N × Platinum.",
     body: "NVPI (Nederlandse Vereniging van Producenten en Importeurs van beeld- en geluidsdragers) — NVPI Muziek/Audio, which runs the official certification register at goudplatina.nl",
     sourceUrl: "https://www.goudplatina.nl/informatie",
     normalised:
@@ -249,6 +258,8 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   NO: {
     code: "NO",
+    caveat:
+      "IFPI Norge publishes no written multiplier rule, although its trophy register carries a Nivå column running 1x to 9x beside the Platina marker. An N× award is priced here as N × Platinum.",
     body: "IFPI Norge AS",
     sourceUrl: "https://ifpi.no/vilkar/",
     normalised:
@@ -259,6 +270,8 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   NZ: {
     code: "NZ",
+    caveat:
+      "RMNZ publishes no multiplier rule: its Chart Rules and About page define Gold and Platinum only, with one threshold each, and never use the words multi-platinum or 2x. An N× award is priced here as N × Platinum.",
     body: "Recorded Music NZ (RMNZ), which compiles and publishes the Official Aotearoa Music Charts",
     sourceUrl: "https://aotearoamusiccharts.co.nz/api/media/file/2025-09-30%20-%20Chart%20Rules%20-%20PDF%20version%20for%20website.pdf",
     single: { silver: null, gold: 15_000, platinum: 30_000, diamond: null },
