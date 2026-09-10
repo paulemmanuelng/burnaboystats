@@ -318,3 +318,42 @@ Silently including Nigeria is the bad version, because the whole reason it is
 separated is that TCSN's register is request-based and therefore not comparable
 between artists. A visible line — *"Nigeria included: Seyi Vibez has no international
 certifications"* — keeps the page honest and explains itself in one sentence.
+
+### DECIDED (Paul, 10 Sep 2026): fire on either clause
+
+```
+Nigeria opens ON when:
+    (ngShare(A) >= 0.5 AND ngShare(B) >= 0.5)     -- both are home-market artists
+ OR  intlCountries(A) == 0 OR intlCountries(B) == 0  -- either column would be blank
+```
+
+**57 of 120 pairs.** 28 fire on the first clause only, 12 on the second only, 17 on both.
+
+A third clause — "or the international union is under ~6 rows" — was tested and is
+**provably redundant: it changes 0 pairs.** Every non-home-market artist holds at
+least 14 international countries, so a thin union already implies both sides are
+home-market, which clause one catches. Two clauses, no magic number. Do not re-add it.
+
+Both clauses derive from the plaque arrays. Nothing is typed:
+```
+home-market (NG share >= 50%): Asake, Ayra Starr, BNXN, Black Sherif, Davido,
+                               Fireboy DML, Olamide, Omah Lay, Seyi Vibez, Victony
+zero-international:            Black Sherif, Seyi Vibez
+```
+
+**The 12 pairs clause two rescues** — all of them a blank column under the literal
+wording alone:
+```
+Burna Boy vs Black Sherif   25 v 0      Black Sherif vs Tyla    0 v 22
+Burna Boy vs Seyi Vibez     25 v 0      Black Sherif vs CKay    0 v 14
+Black Sherif vs Wizkid       0 v 20     Wizkid vs Seyi Vibez   20 v 0
+Black Sherif vs Rema         0 v 20     Rema vs Seyi Vibez     20 v 0
+Black Sherif vs Tems         0 v 18     Tems vs Seyi Vibez     18 v 0
+                                        Tyla vs Seyi Vibez     22 v 0
+                                        Seyi Vibez vs CKay      0 v 14
+```
+
+Note the asymmetry this creates and design for it: in those 12, one artist's entire
+figure comes from Nigeria and the other's barely moves. **The "why" line is doing real
+work there** — without it the page looks like it quietly changed the rules to make a
+matchup happen.
