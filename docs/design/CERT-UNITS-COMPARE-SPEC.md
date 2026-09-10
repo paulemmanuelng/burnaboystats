@@ -123,7 +123,53 @@ Black Sherif       24   24     0   24    22     2  0
 Seyi Vibez        102  102     0  102    76    26  0
 ```
 
-### The empty state is not an edge case — it is two of the sixteen
+### Three states, not two (corrected 10 Sep 2026 — Paul)
+
+**Nobody is cut. All sixteen stay selectable.** An artist with a few international
+plaques is thin, not empty, and the earlier note lumped four artists together when
+only two are actually the problem.
+
+```
+Black Sherif    0 intl countries
+Seyi Vibez      0
+Olamide         1   UK
+Asake           3   NZ UK US
+BNXN / Victony  5
+Fireboy DML     5
+...
+Tyla           22
+Burna Boy      25
+```
+
+1. **Normal** — ~10 rows. Gbona vs Essence. Design target.
+2. **Thin** — 1 to 5 rows. Olamide has exactly one country (UK). A one-row table
+   must not read as a rendering fault.
+3. **Zero** — Black Sherif and Seyi Vibez only. Needs a real empty state that points
+   at the Nigeria toggle, because that is the view where their data lives.
+
+### The hard case is LOPSIDED, not empty — and it is far more common
+
+```
+Burna vs Olamide       union 25 rows -> Olamide has a value in  1, blank in 24
+Burna vs Asake         union 25 rows -> Asake      has a value in  3, blank in 22
+Burna vs Victony       union 25 rows -> Victony    has a value in  5, blank in 20
+Burna vs Fireboy DML   union 25 rows -> Fireboy    has a value in  5, blank in 20
+```
+
+Any of Burna / Tyla / Rema / Wizkid against a thin artist produces a table that is
+mostly blank down one side. **This is the state to design hardest for** — it is more
+frequent than either the normal case or the empty one, and done badly it looks like
+the page failed to load rather than like a real difference in certified reach.
+
+Three things worth the designer's attention here:
+- A blank cell must read as **"no plaque"**, explicitly — never as empty space.
+- Row order matters when one side dominates. Sorting by the larger side buries the
+  handful of rows where the smaller artist actually competes.
+- Consider collapsing the tail: *"and 20 further countries where only Burna Boy is
+  certified"* — one summary row instead of twenty blank ones. That keeps the
+  contested rows visible, which is the part a reader came for.
+
+### The old note, kept for the counts
 
 Excluding Nigeria, **Seyi Vibez (102 plaques) and Black Sherif (24) have ZERO**.
 Olamide has 2 of 54, Asake 9 of 80, Victony 5 of 24. So "this artist has no
