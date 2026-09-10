@@ -241,6 +241,88 @@ across 10 tracks sits under his artist id with **no Burna credit at all** (Joe D
 File's `4 Kampe`, Shallipopi's `Laho`, and others), plus two 2009 "Hood" releases
 that are a **different, Dutch artist merged into this artist id**.
 
+## The hidden-catalogue hunt — MEASURED, 10 Sep 2026
+
+Workflow `wf_df6bb814-02a`. This one worked. Its screener rebuilt the ground truth
+rather than trusting the agents, re-verified all 46 candidates twice over (credit
+line from Spotify's own embed JSON, checking `spotify:artist:3wcj11K77LjEY1PkEazffa`
+is a *linked* artist rather than a name in a title string; count from each track's
+own page), and rejected a third of them.
+
+### THE 400+ CLAIM DOES NOT SURVIVE
+
+**"SoundDNA" does not exist as an artist-credits database.** Two real products carry
+the name: DMI Music's *soundDNA* (corporate sonic branding, sold to brands, tracks no
+artist credits) and Spotify's **SongDNA** (launched March 2026, Premium-only, a
+PER-TRACK collaborators/samples view built on the WhoSampled acquisition — no
+artist-level surface, no per-artist song total). **The 400+ figure has no verifiable
+provenance.**
+
+**And the real credits database knows FEWER titles than kworb, not more.**
+MusicBrainz (MBID 78a19169-ac75-4868-b504-7e2e073118e0) returns 382 *recordings* —
+which is close to "400+" and is probably where such a number comes from — but that
+counts every remix, radio edit, alternate mix and live take as its own row.
+Normalised to distinct titles it collapses to **261**. kworb's 291 rows collapse to
+**272 distinct titles**. The credits database knows **eleven fewer** distinct titles
+than kworb. The premise is inverted.
+
+### THE MEASUREMENT
+
+**42 tracks survive the credit screen. 80,606,612 streams, every one read
+first-hand — no holes.** That is **57.9% of the live offset of 139,328,006**
+(published 10,983,330,105 minus kworb's 9 Sep raw 10,844,002,099).
+
+**The mechanism is NOT "featured credits."** Every one of them sits on another
+artist's release or a Various-Artists compilation — which is exactly what Spotify's
+artist-page "appears on" shelf, kworb's source, drops. That is the real content of
+the offset, and it is nothing like what the config claims.
+
+### Three rejections that matter more than the total
+
+1. **`WE PRAY - Single Version`** (4ePie7AbHKyKdQtCte6SYC) — reads 251,495,693,
+   **byte-identical to kworb's existing `WE PRAY` row**. A duplicate URI of a
+   recording kworb already counts in full. Including it would have added 251M to a
+   139M offset — nearly doubling the error it was meant to fix, in the wrong
+   direction.
+2. **`Streets of Africa`** — an agent searched kworb for "streets", got nothing, and
+   called it missing. kworb carries it as **"Street of Africa"**, singular, at
+   4,153,487, exactly what the track page reads. A search false-negative, which is
+   the failure mode `feedback-search-case-insensitive` already names.
+3. **`Cono` and `Hood`** — counted as his on the strength of Spotify's artist link.
+   The lyrics are **Dutch**; the parent 2009 release's other track is credited to
+   DH / Sosaroekeloos / YK; 2009 predates his recording career. **A Dutch rapper's
+   single is merged into Burna Boy's Spotify artist id.**
+
+### The one track that answers Paul's question exactly
+
+**`12 Jewels (feat. RZA)`** — track 12 of 15 on his own *I Told Them…*, the only one
+of that album's tracks kworb omits, and it runs **0:27**. Below Spotify's 30-second
+streaming threshold, so it can **never register a play**. A song he has that
+contributes exactly zero to a stream total. Count it in a SONG COUNT; it can never
+move a STREAM total.
+
+Also worth noting: **`My Money, My Baby`** (Queen & Slim soundtrack) is a SOLO LEAD
+credit kworb misses entirely — not a feature.
+
+### A methodological correction, recorded so it is not re-litigated
+
+Two agents reported the counts as unreadable and left holes. **They are wrong.**
+`open.spotify.com/track/<id>` renders the count. Album pages do not when logged out;
+track pages do. That converted every hole into a real number.
+
+### What this means for the constant
+
+The offset's only legitimate content is **recordings on Spotify that kworb does not
+carry**. That is now measured at **80,606,612**, leaving ~58.7M of the live 139.3M
+unexplained. The remaining candidate is the *other* verified mechanism: **kworb's
+featured rows lag Spotify's displayed counters** (`Ginger` read +48,849 against
+kworb; six of seven lead spot-reads exact). Measuring that means reading every
+featured row at `open.spotify.com/track/{id}` and differencing — now known to be
+possible, since track pages do render counts.
+
+**Nothing has been written to `scripts/watched-metrics.json`.** 80,606,612 is a
+measured floor for one component, not the whole offset.
+
 ## Options, if the measurement cannot be completed
 
 1. **Re-anchor from a hand-measured Spotify total** — chosen, in flight.
