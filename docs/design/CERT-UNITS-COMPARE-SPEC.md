@@ -57,7 +57,9 @@ Measured 10 Sep 2026 from the live data, not assumed.
 | | |
 |---|---|
 | 15 board artists | **15/15** have `image` |
-| **Burna Boy** | **none** — he is deliberately NOT in `afrobeatsArtists` (the board is "Burna Boy's peers"). Needs an image in a comparable place. |
+| **Burna Boy** | **has one** — `BURNA` in `afrobeats.ts:2109` (he is not inside `afrobeatsArtists`, since the board is his peers, but the record exists and carries an image). |
+
+**All 16 artists have an image. The artist-totals display rule works as-is.**
 
 ### Cover art — THE GAP, and it runs the wrong way
 
