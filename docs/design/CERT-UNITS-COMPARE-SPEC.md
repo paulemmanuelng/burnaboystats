@@ -263,3 +263,58 @@ thing the context already knows.**
 
 Design consequence: the page has a **one-side-filled** state as its most common
 arrival, not the empty state. That should be the hero mock, not a blank comparison.
+
+## Nigeria default — Paul: "default Nigeria on when both are home market artists"
+
+Tested against all 120 possible pairs before implementing, because the rule has two
+readings that disagree on 34 of them.
+
+**NG share of plaques, which is what "home market" means as a measurable property:**
+```
+Black Sherif 100%   Seyi Vibez 100%   Olamide 96%   Asake 89%   BNXN 85%
+Victony 79%   Fireboy DML 78%   Omah Lay 69%   Davido 66%   Ayra Starr 56%
+--- 50% line ---
+Wizkid 46%   Rema 45%   CKay 36%   Burna Boy 27%   Tems 11%   Tyla 3%
+```
+
+**Rule A — both artists >=50% Nigerian** (Paul's literal wording): fires on **45 pairs**.
+**Rule B — the pair's own international view is unusable** (either side has zero, or
+the union is tiny): fires on **35 pairs**. They agree on only 23.
+
+### Where they diverge, and why neither is enough alone
+
+**Rule A alone MISSES 12 pairs that render an empty column** — every pairing of Black
+Sherif or Seyi Vibez against a big international catalogue:
+```
+Seyi Vibez vs Burna Boy   0 v 25 countries
+Seyi Vibez vs Tyla        0 v 22
+Black Sherif vs Wizkid    0 v 20
+```
+Rule A leaves these on the international view because Burna, Tyla and Wizkid are not
+home-market artists — so one column is blank top to bottom. That is exactly the
+failure the decision was made to prevent.
+
+**Rule B alone SKIPS 22 pairs Paul's wording would flip** — two majority-Nigerian
+artists who nonetheless have a perfectly usable international view:
+```
+Davido vs Ayra Starr      8 v 11 countries, union 12 rows
+Omah Lay vs Davido        8 v 8,  union 10
+Fireboy DML vs Omah Lay   5 v 8,  union 10
+```
+Rule B keeps these international. Whether that is right depends on what the rule is
+FOR: preventing an empty page (Rule B), or showing two Nigerian artists in the market
+where their careers actually happened (Rule A).
+
+### DO NOT hardcode a list of "home-market artists"
+
+Whatever rule is chosen, it must be **derived from the plaque data**, not typed. A
+literal list goes stale the day Asake takes a US plaque — and Asake sits at 89%, four
+plaques from moving. `NG share >= 0.5` and `intl countries == 0` are both one-line
+derivations off the existing arrays.
+
+### Whenever the default is flipped, SAY SO on screen
+
+Silently including Nigeria is the bad version, because the whole reason it is
+separated is that TCSN's register is request-based and therefore not comparable
+between artists. A visible line — *"Nigeria included: Seyi Vibez has no international
+certifications"* — keeps the page honest and explains itself in one sentence.
