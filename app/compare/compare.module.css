@@ -1,0 +1,450 @@
+/* Certified-units compare — /compare
+ *
+ * ONE RESPONSIVE TREE, DELIBERATELY, and this is the one place on the site where
+ * that is the right call. Everywhere else desktop and mobile are separate
+ * components because they are genuinely different screens, and the house rule
+ * exists because a change to one kept missing the other. Here the design's own
+ * mobile frames (M1–M3) are the desktop parts restacked with shorter labels —
+ * same mode control, same two slots, same headline, same strip, same table — so
+ * two components would be two copies of one design, which is the drift the rule
+ * is trying to prevent, not avoid. Where the frames differ, they differ by size
+ * and label, and that is what the media queries below carry.
+ */
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+}
+
+/* ── masthead ─────────────────────────────────────────────── */
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+}
+.h1 {
+  font-family: var(--font-anton), var(--font-display), sans-serif;
+  font-weight: 400;
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 0.94;
+  text-transform: uppercase;
+  text-wrap: balance;
+  margin: 0 0 18px;
+}
+.lede {
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
+  color: var(--text-muted);
+  max-width: 62ch;
+  margin: 0 0 30px;
+}
+
+/* ── mode ─────────────────────────────────────────────────── */
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 3px;
+  margin-bottom: 28px;
+}
+.segItem {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border-radius: 999px;
+  color: var(--text-muted);
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+.segItem:hover { background: var(--bg-raised); color: var(--text); }
+.segOn {
+  background: var(--text);
+  color: var(--bg);
+  -webkit-text-fill-color: var(--bg);
+}
+.segOn:hover { background: var(--text); color: var(--bg); }
+
+/* ── the two slots ────────────────────────────────────────── */
+.slots {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  align-items: stretch;
+  margin-bottom: 26px;
+}
+.slot {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 16px;
+  background: var(--bg-soft);
+  min-width: 0;
+}
+.slotEmpty {
+  border-style: dashed;
+  background: transparent;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+.vs {
+  align-self: center;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.art {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: var(--bg-raised);
+}
+.artRound { border-radius: 50%; }
+.slotBody { min-width: 0; }
+.slotTitle {
+  font-family: var(--font-anton), var(--font-display), sans-serif;
+  font-size: 24px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  overflow-wrap: anywhere;
+}
+.slotMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+.prompt {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 8px 13px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text);
+}
+.chip:hover { background: var(--bg-raised); }
+
+/* ── controls ─────────────────────────────────────────────── */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 26px;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
+  margin-bottom: 24px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.control { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }
+.controlName { color: var(--text-muted); font-weight: 700; }
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 7px 13px;
+  min-height: 36px;
+  color: var(--text);
+}
+.switch:hover { background: var(--bg-raised); }
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex: 0 0 8px;
+}
+.dotOn { background: var(--green-dot); }
+.howLink { margin-left: auto; color: var(--gold); }
+
+/* ── why-line ─────────────────────────────────────────────── */
+.why {
+  border-left: 3px solid var(--gold);
+  background: var(--gold-wash);
+  padding: 13px 18px;
+  margin: 0 0 26px;
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+}
+
+/* ── headline ─────────────────────────────────────────────── */
+.head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 8px;
+}
+.headCell { min-width: 0; }
+.headName {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 4px;
+}
+.figure {
+  font-family: var(--font-anton), var(--font-display), sans-serif;
+  font-size: clamp(34px, 6.4vw, 72px);
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+.figureLead { color: var(--text); }
+.figureBehind { color: var(--text-muted); }
+.headMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+.bar { height: 6px; background: var(--bg-raised); border-radius: 3px; overflow: hidden; }
+.barFill { height: 100%; background: var(--text); }
+.barFillBehind { background: var(--text-muted); }
+.diffRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  align-items: baseline;
+  padding: 16px 0 24px;
+  border-bottom: 1px solid var(--rule-soft);
+  margin-bottom: 24px;
+}
+.diff { font-size: var(--type-body); line-height: var(--type-body-lh); }
+.scope {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Nigeria strip ────────────────────────────────────────── */
+.ngStrip {
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 18px;
+  margin-bottom: 28px;
+  display: grid;
+  gap: 12px;
+}
+.ngHead {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  margin: 0;
+}
+.ngText { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 0; }
+.ngFigures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+.ngAction {
+  justify-self: start;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0 16px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ngAction:hover { background: var(--bg-raised); }
+
+/* ── table ────────────────────────────────────────────────── */
+.tableWrap { overflow-x: auto; margin-bottom: 20px; }
+.table { width: 100%; border-collapse: collapse; }
+.table th {
+  text-align: left;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+.table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+.thNum, .tdNum { text-align: right; }
+.country { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.flag { font-size: 17px; line-height: 1; }
+.countryName { font-size: var(--type-small); }
+.countryCode {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  color: var(--text-muted);
+}
+.cell { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.units {
+  font-family: var(--font-mono), monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--type-small);
+}
+.unitsLead { color: var(--text); }
+.unitsBehind { color: var(--text-muted); }
+.tierChip {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  padding: 2px 7px;
+  white-space: nowrap;
+}
+.tDiamond { color: var(--tier-diamond-ink); border-color: var(--tier-diamond-edge); }
+.tPlatinum { color: var(--tier-platinum-ink); border-color: var(--tier-platinum-edge); }
+.tGold { color: var(--tier-gold-ink); border-color: var(--tier-gold-edge); }
+.tSilver { color: var(--tier-silver-ink); border-color: var(--tier-silver-edge); }
+/* A blank cell is a rendering fault; the words are the value. */
+.noPlaque {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint, var(--text-muted));
+  opacity: 0.62;
+}
+.notCounted {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.ngRow { background: var(--gold-wash); }
+.collapseRow td { padding: 15px 14px; }
+.collapseText {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.showAll { color: var(--gold); margin-left: 10px; }
+
+/* ── footnotes + methodology ──────────────────────────────── */
+.notes {
+  display: grid;
+  gap: 8px;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+.method {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  padding-top: 26px;
+  border-top: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+.methodTitle {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  margin: 0 0 7px;
+}
+.methodBody { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 0; }
+
+/* ── exit ─────────────────────────────────────────────────── */
+.exit {
+  border-top: 1px solid var(--rule);
+  padding-top: 26px;
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+.exitKicker {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+.exitLead { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 0; max-width: 56ch; }
+
+/* ── responsive: the design's M1–M3 are these parts restacked ─ */
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px 88px; }
+  .slots { grid-template-columns: 1fr; gap: 12px; }
+  .vs { justify-self: start; }
+  .art { width: 48px; height: 48px; flex-basis: 48px; }
+  .slotTitle { font-size: 20px; }
+  .head { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .figure { font-size: clamp(28px, 9vw, 34px); }
+  .method { grid-template-columns: 1fr; gap: 18px; }
+  .howLink { margin-left: 0; }
+  .scope { margin-left: 0; }
+  .table td, .table th { padding: 11px 10px; }
+  .countryName { display: none; }
+}

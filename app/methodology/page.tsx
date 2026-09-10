@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CERT_THRESHOLDS } from "../data/certThresholds";
 import { unsourcedBodies, disputedCounts, correctionsMade } from "../data/rejectedClaims";
 import styles from "./methodology.module.css";
 import KeepExploring from "../components/KeepExploring";
@@ -165,6 +166,9 @@ const closingSections = [
     p: "A fan-made, portfolio project with no affiliation to Burna Boy or his team, no sponsorship and no advertising. There is no commercial incentive to inflate a number.",
   },
 ];
+
+const pricedSingles = Object.values(CERT_THRESHOLDS).filter((c) => c.single !== null).length;
+const streamBodies = Object.values(CERT_THRESHOLDS).filter((c) => c.singleRaw);
 
 export default function MethodologyPage() {
   const webPageJsonLd = {
@@ -370,6 +374,54 @@ export default function MethodologyPage() {
               </li>
             ))}
           </ul>
+        </section>
+
+        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="certified-units">
+          <div className={styles.eyebrow}>Certified units</div>
+          <h2 id="certified-units" className={styles.h2}>How /compare counts</h2>
+          <p className={styles.p}>
+            <Link href="/compare">The compare page</Link> does the one thing the section
+            above says a plaque count cannot: it puts two catalogues on a single scale.
+            It can only do that by pricing every plaque at <em>its own body&apos;s
+            published threshold</em> and being explicit about what that buys, so four
+            rules govern it.
+          </p>
+          <p className={styles.p}>
+            <strong>Every figure is a floor.</strong> 3× Platinum in Nigeria means at
+            least 300,000 units; it could be 590,000 and nobody would know until it
+            reached 6×. So the page says &ldquo;at least&rdquo;, and never says
+            &ldquo;sold&rdquo;. It is a floor for both sides under identical rules, which
+            is what keeps the comparison honest rather than precise.
+          </p>
+          <p className={styles.p}>
+            <strong>One plaque per release per country, at its current tier.</strong>
+            Gold → Platinum → 2× Platinum is the same sales recertified, not three
+            sales. A release&apos;s own upgrades are never added together.
+          </p>
+          <p className={styles.p}>
+            <strong>Units are not a common currency, so some plaques cannot be
+            priced.</strong> Of the {pricedSingles} bodies whose plaques appear here,{" "}
+            {pricedSingles - streamBodies.length} publish single thresholds in
+            sales-equivalent units and {streamBodies.length} publish them in streams
+            with their own download-equivalence, which is what this site converts with —
+            France at 150 streams to a download, Denmark and Norway at 100, the
+            Netherlands at 215. The rest publish something that cannot be converted at
+            all: Sweden counts capped streams and dropped downloads entirely in 2018,
+            Mexico gives no ratio, and Poland measures singles in złoty of revenue.
+            Greece, Belgium, Colombia, Czechia and Slovakia publish no thresholds. Those
+            plaques are <strong>listed and never summed</strong>, and the page names
+            them, because scoring them zero in silence would penalise whoever holds more
+            of them.
+          </p>
+          <p className={styles.p}>
+            <strong>Nigeria is separated by default.</strong> TCSN&apos;s register is
+            request-based — absence from it proves nothing about a record, only that
+            nobody applied — so a gap between two artists there can measure paperwork
+            rather than sales. It is counted on its own line, never deleted, and folded
+            in automatically when both artists hold most of their plaques there or when
+            one of them holds none anywhere else. Whenever that happens the page says
+            so, in a sentence, on screen.
+          </p>
         </section>
 
         <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="sources">

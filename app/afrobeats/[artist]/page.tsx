@@ -193,7 +193,8 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         subject={a.name}
         lede={`Every ${a.name} plaque, read in the issuing body's own register — ${total} across ${countries} ${countries === 1 ? "country" : "countries"}, from ${a.releases.length} certified releases.`}
         faqs={faqs}
-        showActionBar={false}
+        showActionBar
+        compareSlug={a.slug}
       />
 
       <div className={styles.desktopOnly}>
@@ -484,6 +485,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
             Live charts ↗
           </Link>
         )}
+        <Link href={`/compare?a=${a.slug}`} className="btn btnPrimary">Compare ↗</Link>
         <Link href="/certifications" className="btn btnSecondary">Burna Boy&apos;s ledger ↗</Link>
       </section>
 

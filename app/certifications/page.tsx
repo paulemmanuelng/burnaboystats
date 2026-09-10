@@ -159,6 +159,9 @@ export default function CertificationsPage() {
               artist in history.
             </p>
             <div className={styles.heroButtons}>
+              {/* There was no primary action in this head. Compare takes it —
+                  the two existing links stay secondary. */}
+              <Link href="/compare?a=burna-boy" className="btn btnPrimary">Compare ↗</Link>
               <Link href="/records/visualized#certifications" className="btn btnSecondary">
                 See certifications by country →
               </Link>

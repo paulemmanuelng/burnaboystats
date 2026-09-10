@@ -135,6 +135,7 @@ export const hasOwnBreadcrumb = (path: string) =>
 export const SEGMENT_LABELS: Record<string, string> = {
   music: "Music",
   certifications: "Certifications",
+  compare: "Compare",
   records: "Career Records",
   "by-the-numbers": "By the Numbers",
   visualized: "Visualized",
