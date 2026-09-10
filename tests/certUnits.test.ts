@@ -372,11 +372,13 @@ describe("the two board plaques confirmed as RIAA Latin", () => {
   });
 });
 
-describe("RIAA's ladder does not stop at Diamond — PENDING Paul's call", () => {
-  it("still holds both US plaques at Diamond, and that is a FLOOR either way", () => {
-    // RIAA prints "11X PLATINUM" for both, which is 1,000,000 more. Holding
-    // Diamond understates and stays true; taking 11x would erase the board's
-    // only two US Diamonds and falsify Wizkid's hook. See afrobeats.ts.
+describe("RIAA's ladder does not stop at Diamond — settled: they stay Diamond", () => {
+  it("holds both US plaques at Diamond, which is a FLOOR and therefore true", () => {
+    // Paul's decision, 10 Sep 2026, made with the trade in front of him. RIAA
+    // prints "11X PLATINUM" for both, 1,000,000 more — but taking that erases
+    // the board's only two US Diamonds, leaves Tems with none, and falsifies
+    // Wizkid's live hook. Guarded so a later "correction" fails here first and
+    // has to read afrobeats.ts before proceeding.
     for (const [slug, title] of [["wizkid", "One Dance"], ["tems", "Wait For U"]] as const) {
       const p = priceRelease(bySlug(slug), title, { includeNigeria: true, includeFeatures: true });
       expect(p, `${title} not found`).not.toBeNull();

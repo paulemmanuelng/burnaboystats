@@ -121,12 +121,15 @@ export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
  *  template, which says "Platinum" for BOTH programmes. The badge asset, the
  *  tab and the detail panel are what designate the programme. */
 /**
- * PENDING PAUL'S CALL: TWO US "DIAMOND" PLAQUES THAT RIAA PRINTS AS 11X PLATINUM.
+ * SETTLED (Paul, 10 Sep 2026): THESE STAY DIAMOND. Do not "correct" them to 11x
+ * Platinum on a later reading of RIAA's database — that is a decision already
+ * taken with the evidence in front of it, not an oversight.
  *
- * Applied on 10 Sep 2026 and REVERTED the same hour, because making the change
- * revealed a cost that was not visible before it: it erases the only two US
- * Diamonds on the whole board, and falsifies Wizkid's published hook, which
- * reads "“One Dance” is Diamond in five countries" — it would become four.
+ * RIAA prints "11X PLATINUM" for both. The change was applied on 10 Sep and
+ * reverted the same hour, because making it revealed a cost that was not visible
+ * beforehand: it erases the only two US Diamonds on the whole board, and
+ * falsifies Wizkid's published hook, which reads "“One Dance” is Diamond in five
+ * countries" — it would become four.
  *
  * THE TRADE. Gain: +1,000,000 units on each, both FEATURED appearances, so they
  * are invisible unless the reader turns features on — about 0.007% of the board.
@@ -141,8 +144,9 @@ export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
  * records those diverge. That is a modelling question, not a typo.
  *
  * Since everything the compare page publishes is a FLOOR, holding Diamond
- * understates by 1,000,000 and stays true. Resolving it properly means either
- * rewriting the hook or giving a cert a separate field for its current level.
+ * understates by 1,000,000 and stays true — which is why this is the safe side
+ * to sit on, and why it was chosen. If a future reader wants both facts at once,
+ * the answer is a separate current-level field on a cert, NOT overwriting `level`.
  *
  * WHY THE ORIGINAL NOTE IS KEPT BELOW: the RIAA reading is real and sourced, and
  * whoever picks this up should not have to re-derive it.
