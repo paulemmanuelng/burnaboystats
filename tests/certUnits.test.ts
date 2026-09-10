@@ -371,3 +371,21 @@ describe("the two board plaques confirmed as RIAA Latin", () => {
     expect(calm!.byCountry.find((l) => l.country === "US")?.units).toBe(5_000_000);
   });
 });
+
+describe("RIAA's ladder does not stop at Diamond — PENDING Paul's call", () => {
+  it("still holds both US plaques at Diamond, and that is a FLOOR either way", () => {
+    // RIAA prints "11X PLATINUM" for both, which is 1,000,000 more. Holding
+    // Diamond understates and stays true; taking 11x would erase the board's
+    // only two US Diamonds and falsify Wizkid's hook. See afrobeats.ts.
+    for (const [slug, title] of [["wizkid", "One Dance"], ["tems", "Wait For U"]] as const) {
+      const p = priceRelease(bySlug(slug), title, { includeNigeria: true, includeFeatures: true });
+      expect(p, `${title} not found`).not.toBeNull();
+      expect(p!.byCountry.find((l) => l.country === "US")?.units, title).toBe(10_000_000);
+    }
+  });
+
+  it("both are FEATURED appearances, so either choice is invisible by default", () => {
+    const wizLead = priceArtist(bySlug("wizkid"), { includeNigeria: false, includeFeatures: false });
+    expect(wizLead.byCountry.find((l) => l.country === "US")?.units).toBeLessThan(10_000_000);
+  });
+});

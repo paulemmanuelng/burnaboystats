@@ -109,6 +109,47 @@ export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
  *  both rows reads "earned RIAA 16x Platinum Award" — its generic English
  *  template, which says "Platinum" for BOTH programmes. The badge asset, the
  *  tab and the detail panel are what designate the programme. */
+/**
+ * PENDING PAUL'S CALL: TWO US "DIAMOND" PLAQUES THAT RIAA PRINTS AS 11X PLATINUM.
+ *
+ * Applied on 10 Sep 2026 and REVERTED the same hour, because making the change
+ * revealed a cost that was not visible before it: it erases the only two US
+ * Diamonds on the whole board, and falsifies Wizkid's published hook, which
+ * reads "“One Dance” is Diamond in five countries" — it would become four.
+ *
+ * THE TRADE. Gain: +1,000,000 units on each, both FEATURED appearances, so they
+ * are invisible unless the reader turns features on — about 0.007% of the board.
+ * Cost: two real Diamond awards disappear from every tier tally, Tems is left
+ * with none at all, and a live sentence on Wizkid's page has to be rewritten.
+ *
+ * AND THE FACT SURVIVES EITHER WAY. RIAA's ladder does not stop at Diamond: a
+ * record past 11,000,000 is printed "11X PLATINUM", but it has still passed
+ * 10,000,000 and RIAA still lists it among its Diamond Awards. So "Diamond in
+ * five countries" is TRUE, and so is "11x Platinum". `level` is being asked to
+ * carry both the current level and the award designation, and for US 10M+
+ * records those diverge. That is a modelling question, not a typo.
+ *
+ * Since everything the compare page publishes is a FLOOR, holding Diamond
+ * understates by 1,000,000 and stays true. Resolving it properly means either
+ * rewriting the hook or giving a cert a separate field for its current level.
+ *
+ * WHY THE ORIGINAL NOTE IS KEPT BELOW: the RIAA reading is real and sourced, and
+ * whoever picks this up should not have to re-derive it.
+ *
+ * WHAT RIAA ACTUALLY SAYS (10 Sep 2026).
+ *
+ * RIAA's ladder does not stop at Diamond. Diamond IS 10,000,000 units, and a
+ * record that passes eleven million is printed by RIAA as "11X PLATINUM" — the
+ * Diamond award was an earlier rung, not the current one. These arrays track
+ * CURRENT level, so both were raised after RIAA's own database was read:
+ *
+ *   Wizkid  "One Dance"  US — 11X PLATINUM  (was Diamond)
+ *   Tems    "Wait For U" US — 11X PLATINUM  (was Diamond)
+ *
+ * Only the US plaques were ever in question: the French, Canadian, German and
+ * Brazilian Diamonds on "One Dance" are separate bodies with their own Diamond
+ * thresholds and are unaffected either way.
+ */
 export interface AfroCert { c: string; level: Tier; x?: number; body?: string }
 export interface AfroPeak {
   c: string;
