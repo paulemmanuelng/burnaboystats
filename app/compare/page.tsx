@@ -148,6 +148,101 @@ function Slot({
         <p className={styles.slotTitle}>{title}</p>
         <p className={styles.slotMeta}>{meta}</p>
       </div>
+      {/* Clear the most specific thing first: a chosen song drops back to that
+          artist's picker, an artist drops back to the suggestions. Without this
+          the only way to change a side is editing the URL. */}
+      <Link
+        href={
+          isSong
+            ? href(sp, { [side === "a" ? "sa" : "sb"]: null })
+            : href(sp, {
+                [side]: null,
+                [side === "a" ? "sa" : "sb"]: null,
+                [side === "a" ? "qa" : "qb"]: null,
+              })
+        }
+        className={styles.slotClear}
+        aria-label={isSong ? `Choose a different release by ${artist.name}` : `Choose a different artist`}
+      >
+        {isSong ? "Change song ✕" : "Change ✕"}
+      </Link>
+    </div>
+  );
+}
+
+/**
+ * Pick a release, by search rather than by luck.
+ *
+ * Eight chips out of eighty-five is a shortlist, not a picker. This is a GET
+ * form rather than a client-side filter so it obeys the same rule as every other
+ * control here — the state is in the URL — which means a searched picker is
+ * shareable and still works with JavaScript off.
+ */
+function SongPicker({
+  artist, side, sp, query,
+}: {
+  artist: ComparableArtist;
+  side: "a" | "b";
+  sp: SP;
+  query: string;
+}) {
+  const q = query.trim().toLowerCase();
+  const all = artist.releases;
+  const matches = q
+    ? all.filter((r) => r.title.toLowerCase().includes(q) || (r.credit ?? "").toLowerCase().includes(q))
+    : all.slice(0, 8);
+  const field = side === "a" ? "qa" : "qb";
+  const target = side === "a" ? "sa" : "sb";
+
+  // Everything except this side's own query, so submitting replaces rather than
+  // stacks it.
+  const carried = Object.entries(sp)
+    .map(([k, v]) => [k, one(v)] as const)
+    .filter(([k, v]) => v && k !== field);
+
+  return (
+    <div className={styles.pickWrap}>
+      <div className={styles.pickHead}>
+        <span className={styles.pickLabel}>
+          {q
+            ? `${matches.length} of ${all.length} match “${query}”`
+            : `${artist.name} · ${all.length} certified releases`}
+        </span>
+        <Link
+          href={href(sp, { [side]: null, [target]: null, [field]: null })}
+          className={styles.pickChange}
+        >
+          Change artist ↺
+        </Link>
+        <form method="get" action="/compare" className={styles.search} role="search">
+          {carried.map(([k, v]) => (
+            <input key={k} type="hidden" name={k} value={v as string} />
+          ))}
+          <input
+            type="search"
+            name={field}
+            defaultValue={query}
+            className={styles.searchInput}
+            placeholder={`Search ${artist.name}'s releases`}
+            aria-label={`Search ${artist.name}'s certified releases`}
+          />
+          <button type="submit" className={styles.searchBtn}>Search</button>
+        </form>
+      </div>
+      {matches.length > 0 ? (
+        <div className={styles.chips}>
+          {matches.map((r) => (
+            <Link key={r.title} href={href(sp, { [target]: r.title, [field]: null })} className={styles.chip}>
+              {r.title}
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <p className={styles.pickNone}>
+          No certified release of {artist.name}&apos;s matches “{query}”. Only releases that hold at least
+          one plaque appear here — a song with no certification has nothing to price.
+        </p>
+      )}
     </div>
   );
 }
@@ -209,11 +304,18 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   const spa = songPriced(a, songA);
   const spb = songPriced(b, songB);
 
-  const useSongs = mode === "songs" && spa && spb;
-  const totalA = useSongs ? spa!.total : c?.a.total ?? soloPriced?.total ?? 0;
+  const useSongs = Boolean(mode === "songs" && spa && spb);
+  // "Filled" means different things in the two modes, and conflating them was a
+  // real bug: in song mode with no song picked yet, the page fell through to
+  // ARTIST totals and printed them under the artists' names, so a reader who had
+  // just chosen "Song vs song" was shown a figure for the whole catalogue. In
+  // song mode nothing renders until BOTH songs are chosen.
+  const ready = mode === "songs" ? useSongs : both;
+  const partial = mode === "songs" ? Boolean(spa || spb) : Boolean(a);
+  const totalA = useSongs ? spa!.total : mode === "songs" ? (spa?.total ?? 0) : c?.a.total ?? soloPriced?.total ?? 0;
   const totalB = useSongs ? spb!.total : c?.b.total ?? 0;
-  const nameA = useSongs ? songA!.title : a?.name ?? "";
-  const nameB = useSongs ? songB!.title : b?.name ?? "";
+  const nameA = mode === "songs" && songA ? songA.title : a?.name ?? "";
+  const nameB = mode === "songs" && songB ? songB.title : b?.name ?? "";
 
   const rows: ComparisonRow[] = useSongs
     ? (() => {
@@ -240,6 +342,12 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
             x.country.localeCompare(y.country))
         : c.rows
       : [];
+
+  // The side being described, whichever mode is on. Reading c.a/c.b regardless
+  // was a bug: with "Gbona" chosen the meta line printed Burna Boy's 95 counted
+  // plaques and the Nigeria strip printed his 52, under the song's name.
+  const sideA = useSongs ? spa : c?.a ?? soloPriced ?? null;
+  const sideB = useSongs ? spb : c?.b ?? null;
 
   const leadA = totalA >= totalB;
   const max = Math.max(totalA, totalB, 1);
@@ -287,18 +395,10 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
         </div>
 
         {mode === "songs" && a && !songA && (
-          <div className={styles.chips} style={{ marginBottom: 22 }}>
-            {a.releases.slice(0, 8).map((r) => (
-              <Link key={r.title} href={href(sp, { sa: r.title })} className={styles.chip}>{r.title}</Link>
-            ))}
-          </div>
+          <SongPicker artist={a} side="a" sp={sp} query={one(sp.qa) ?? ""} />
         )}
         {mode === "songs" && b && !songB && (
-          <div className={styles.chips} style={{ marginBottom: 22 }}>
-            {b.releases.slice(0, 8).map((r) => (
-              <Link key={r.title} href={href(sp, { sb: r.title })} className={styles.chip}>{r.title}</Link>
-            ))}
-          </div>
+          <SongPicker artist={b} side="b" sp={sp} query={one(sp.qb) ?? ""} />
         )}
 
         <div className={styles.controls}>
@@ -327,7 +427,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           </p>
         )}
 
-        {(both || a) && (
+        {(ready || partial) && (
           <>
             <div className={styles.head}>
               <div className={styles.headCell}>
@@ -335,19 +435,21 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
                 <p className={`${styles.figure} ${leadA ? styles.figureLead : styles.figureBehind}`}>{fmt(totalA)}</p>
                 <p className={styles.headMeta}>
                   certified units · {ngOn ? "Nigeria included" : "international"}
-                  {c ? ` · ${c.a.pricedPlaques} counted${c.a.excludedPlaques ? ` · ${c.a.excludedPlaques} not comparable` : ""}` : ""}
+                  {sideA ? ` · ${sideA.pricedPlaques} of ${sideA.pricedPlaques + sideA.excludedPlaques} plaques counted` : ""}
+                  {sideA?.excludedPlaques ? ` · ${sideA.excludedPlaques} not comparable` : ""}
                 </p>
                 <div className={styles.bar}>
                   <div className={`${styles.barFill} ${leadA ? "" : styles.barFillBehind}`} style={{ width: `${(totalA / max) * 100}%` }} />
                 </div>
               </div>
-              {both && (
+              {ready && (
                 <div className={styles.headCell}>
                   <p className={styles.headName}>{nameB} · at least</p>
                   <p className={`${styles.figure} ${leadA ? styles.figureBehind : styles.figureLead}`}>{fmt(totalB)}</p>
                   <p className={styles.headMeta}>
                     certified units · {ngOn ? "Nigeria included" : "international"}
-                    {c ? ` · ${c.b.pricedPlaques} counted${c.b.excludedPlaques ? ` · ${c.b.excludedPlaques} not comparable` : ""}` : ""}
+                    {sideB ? ` · ${sideB.pricedPlaques} of ${sideB.pricedPlaques + sideB.excludedPlaques} plaques counted` : ""}
+                    {sideB?.excludedPlaques ? ` · ${sideB.excludedPlaques} not comparable` : ""}
                   </p>
                   <div className={styles.bar}>
                     <div className={`${styles.barFill} ${leadA ? styles.barFillBehind : ""}`} style={{ width: `${(totalB / max) * 100}%` }} />
@@ -357,15 +459,16 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
             </div>
 
             <div className={styles.diffRow}>
-              {both ? (
+              {ready ? (
                 <p className={styles.diff}>
                   <strong>{leadA ? nameA : nameB}</strong> leads by at least {fmt(diff)} certified units
                   {ratio && ratio >= 1.05 ? ` — ${ratio.toFixed(1)}× the other's floor` : ""}.
                 </p>
               ) : (
                 <p className={styles.diff}>
-                  The country-by-country table appears when both sides are filled. Featured appearances are
-                  off until you turn them on.
+                  {mode === "songs"
+                    ? "Pick a release on each side — the country-by-country table appears once both are chosen."
+                    : "The country-by-country table appears when both sides are filled. Featured appearances are off until you turn them on."}
                 </p>
               )}
               <span className={styles.scope}>{scope}</span>
@@ -373,7 +476,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           </>
         )}
 
-        {c && (
+        {c && ready && (
           <section className={styles.ngStrip} aria-label="Nigeria">
             <p className={styles.ngHead}>🇳🇬 Nigeria — {ngOn ? "included" : "separated"}.</p>
             <p className={styles.ngText}>
@@ -382,8 +485,8 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
               than sales, which is why it is counted on its own line.
             </p>
             <div className={styles.ngFigures}>
-              <span>{c.a.artist.name} — {c.a.nigeria.plaques} plaque{c.a.nigeria.plaques === 1 ? "" : "s"} · at least {fmt(c.a.nigeria.units)}</span>
-              <span>{c.b.artist.name} — {c.b.nigeria.plaques} plaque{c.b.nigeria.plaques === 1 ? "" : "s"} · at least {fmt(c.b.nigeria.units)}</span>
+              <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least {fmt(sideA?.nigeria.units ?? 0)}</span>
+              <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least {fmt(sideB?.nigeria.units ?? 0)}</span>
             </div>
             <Link href={href(sp, { ng: ngOn ? "0" : "1" })} className={styles.ngAction}>
               {ngOn ? "Separate Nigeria" : "Include Nigeria"}
@@ -391,7 +494,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           </section>
         )}
 
-        {both && rows.length > 0 && (
+        {ready && rows.length > 0 && (
           <>
             <div className={styles.tableWrap}>
               <table className={styles.table}>
@@ -480,7 +583,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           </div>
         </div>
 
-        {both && (
+        {ready && (
           <section className={styles.exit} aria-label="Next">
             <p className={styles.exitKicker}>Next</p>
             <p className={styles.exitLead}>

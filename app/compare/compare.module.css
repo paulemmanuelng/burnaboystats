@@ -448,3 +448,90 @@
   .table td, .table th { padding: 11px 10px; }
   .countryName { display: none; }
 }
+
+/* ── song search ──────────────────────────────────────────────
+   A GET form, not a client filter: it keeps this page's one rule —
+   state lives in the URL — so a searched picker is shareable and
+   works with JavaScript off, like everything else here. */
+.pickWrap { margin-bottom: 22px; display: grid; gap: 10px; }
+.pickHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.pickLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.search { display: flex; gap: 8px; align-items: center; }
+.searchInput {
+  min-height: 44px;
+  min-width: 200px;
+  flex: 1 1 200px;
+  padding: 0 14px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--text);
+  font-family: var(--font-body, inherit);
+  font-size: var(--type-small);
+}
+.searchInput::placeholder { color: var(--text-muted); }
+.searchBtn {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--bg-raised);
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  transform: translateZ(0);
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.searchBtn:hover { background: var(--rule-soft); }
+.pickNone {
+  font-size: var(--type-small);
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ── clearing a slot ──────────────────────────────────────────
+   Without this the page is a one-way trip: pick a side and the only
+   way back is editing the URL. */
+.slotClear {
+  margin-left: auto;
+  align-self: flex-start;
+  flex: 0 0 auto;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 11px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.slotClear:hover { background: var(--bg-raised); color: var(--text); }
+.pickChange {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
