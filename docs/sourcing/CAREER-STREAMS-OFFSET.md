@@ -155,6 +155,59 @@ floor as well and has been absorbing catalogue. A value *larger* than the curren
   him instead. Note that if SoundDNA is the Spotify for Artists credits view, a
   listener login does not unlock it — that needs artist-account access.
 
+## The hand-measurement was ATTEMPTED and REFUSED — 10 Sep 2026
+
+Workflow `wf_bdd35c54-8c0` ran five slices and a reconciliation. The adversarial
+verifier **refused to let a constant be written**, and it was right. Do not
+resurrect its number (10,261,287,832 / offset +1,506,977).
+
+**Why it failed — three reasons, all verified:**
+
+1. **The sum was not a sum of things read.** 25.8% of it was kworb's own numbers
+   copied in: 75 rows had kworb's value substituted where no read matched, and
+   46 further rows were never opened. Worse, the matcher's join key was *exact
+   value equality* — `if val in byval and len(byval[val])==1` — so any row that
+   matched **could not register a delta by construction**. 9,450,448,644 of the
+   10,845,509,076 was kworb's number by one route or another.
+2. **The derived offset was a tautology.** Take kworb's roster as the spine,
+   substitute kworb where no read matched, fill holes with kworb, subtract
+   kworb's total. It can only ever return ~0. This is *precisely* the
+   constant-on-both-sides failure the repo already has a memo about, reproduced
+   inside the very exercise meant to escape it.
+3. **The holes were self-imposed.** "Alone" (214,453,993) was reported as the one
+   unmeasurable track big enough to matter; the verifier read it in a single page
+   load. The stated cause of 43 other holes — a 50-release cap on the logged-out
+   Appears On shelf — is not true.
+
+**A premise I gave the agents was wrong, and all five slices disproved it.** I
+told them a single and its album track are different URIs and both count.
+**Spotify serves ONE merged play counter per recording, mirrored across every
+linked URI** — tested on ~70 distinct-URI pairs with zero exceptions. `Killin Dem`
+reads 47,713,464 on both the 2019 single and the African Giant track; `Kilometre`
+78,232,842 on both; all 49 recordings shared between Twice As Tall's two releases
+match to the unit. A deluxe/explicit/regional alternate or a pre-release single is
+**the same plays displayed twice**. Naive slice-summing gave 15,080,387,944;
+raw per-URI summing gave 22,337,553,362. Both are nonsense.
+
+### The one real finding to keep
+
+**kworb's FEATURED rows lag Spotify's displayed counters; its LEAD rows do not.**
+Verified by direct reads on 10 Sep: `Alone` 214,453,993 exact, `On the Low`
+426,418,293 exact, Last Last / Location / Dai Dai / wgft all exact — but
+`Ginger (feat. Burna Boy)` read **137,629,170** against kworb's 137,580,321,
+**+48,849**. Six of seven identical, and the one that moved is a featured credit.
+
+That is a *mechanism* for a genuine offset, and it is the opposite of the config's
+stated one. It is not yet a measured value: it would need every featured row read
+directly at `open.spotify.com/track/{id}` and differenced against kworb — which is
+the honest version of what this run only pretended to do.
+
+**Also useful:** album pages show no play counts to a logged-out visitor; the only
+anonymous per-track counter surface is `open.spotify.com/track/{id}`. And ~304M
+across 10 tracks sits under his artist id with **no Burna credit at all** (Joe Dwet
+File's `4 Kampe`, Shallipopi's `Laho`, and others), plus two 2009 "Hood" releases
+that are a **different, Dutch artist merged into this artist id**.
+
 ## Options, if the measurement cannot be completed
 
 1. **Re-anchor from a hand-measured Spotify total** — chosen, in flight.
