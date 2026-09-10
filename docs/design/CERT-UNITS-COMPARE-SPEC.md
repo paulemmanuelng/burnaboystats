@@ -253,6 +253,26 @@ the first action in it that is meaningful for every artist.
   **`<Link href="/certifications">Burna Boy's ledger ↗</Link>`** — the page already
   points at a rival ledger, so Compare belongs beside it.
 
+### The compare page's OWN floating button is the Afrobeats Board (Paul, 10 Sep 2026)
+
+`"The Afrobeats Board ↗"` → `/afrobeats`. Not share, not reset — the Board.
+
+This closes a circuit rather than adding a control:
+
+```
+artist ledger  --[Compare]-->  compare page  --[The Board]-->  /afrobeats  --> another ledger
+```
+
+A reader who has just watched two artists priced against each other is one tap from
+the room where the other fourteen live, which is the next thing they actually want.
+
+**The treatment already exists — do not redraw it.**
+`app/afrobeats/[artist]/charts/page.tsx:243` ships it as
+`<Link href="/afrobeats" className="btn btnPrimary">The Afrobeats Board ↗</Link>`.
+On mobile it takes the `.actionPrimary` slot — the same gold pill the Compare button
+occupies on the certifications screens — and carries the same two iPhone guards
+(`-webkit-text-fill-color` and `transform: translateZ(0)`).
+
 ### Pre-select the artist from the page you came from
 
 `MobileCerts` already receives **`subject={a.name}`** and the artist route has
