@@ -402,3 +402,66 @@ higher, its featured 567,791,244 lower. "Dai Dai" (~430M) is the obvious case:
 kworb asterisks it as a *feature*, Spotify presents it as his own release. Anything
 on the site publishing a lead-only or featured figure sourced from kworb will
 disagree with a ChartMasters-sourced one. Not yet checked.
+
+## A third figure, and what it does and does not settle (10 Sep 2026)
+
+A ChartMasters **premium subscriber** (@WITTIEWIZ) posted their live dashboard
+figures on 10 Sep 2026. Paul brought them in as the most reliable account
+available, and they are worth writing down — but they are **ChartMasters
+restated, not an independent check on ChartMasters**. That distinction is the
+whole reason this section exists.
+
+### The un-merge half: the site was already ahead of it
+
+Most of the thread argues that ChartMasters is still computing Burna's 2026 gain
+off a 2025 close that includes ~309M streams which were later moved away. That is
+**the site's own analysis**, published 21 August 2026 at `/analysis/spotify-unmerge`
+— three weeks before the thread — and stated there in more digits:
+
+| | thread | this site |
+|---|---|---|
+| Reallocated in Feb 2026 | "309M" | **309,438,350** |
+| Corrected 2025 close | "9.19B" | **9,199,552,674** |
+| Pre-correction close | "9.58B" | **9,508,991,024** |
+
+The first two agree. **The third does not, and the disagreement is informative:**
+9.58B is ChartMasters' 2025 close; 9,508,991,024 is what Spotify's own counter
+read. The ~71,008,976 between them is ChartMasters carrying catalogue that the
+counter-derived figure does not — i.e. it is *their* version of this file's offset,
+at end-2025.
+
+Both remixes re-verified against kworb on 10 Sep 2026: "Enjoy Yourself — Remix"
+52,037,602 and "Finders Keepers — Remix" 3,382,240, against the 50,077,530 and
+3,075,692 recorded on the page. Grown slightly, consistent, still un-merged.
+
+### The half that touches the published total
+
+| | value |
+|---|---|
+| kworb raw, 10 Sep 2026 | 10,844,002,099 |
+| **published here** (raw + 80,606,612) | **10,924,608,711** |
+| ChartMasters, per the thread | ~10,956,000,000 |
+| what the OLD constant would publish today (raw + 146,757,255) | 10,990,759,354 |
+
+**ChartMasters does not adjudicate between the old constant and the new
+measurement. It lands almost exactly between them** — 31,391,289 above the new,
+34,759,354 below the old. Anyone reaching for it as evidence that the offset was
+cut too far should notice it is equally good evidence that the old value was too
+high, which is to say it is evidence for neither.
+
+The reason to prefer 80,606,612 is unchanged and has nothing to do with this
+figure: **it is the only one of the three that was measured.**
+
+### Do not close the 31M by typing it
+
+- 31,391,289 is **0.287%**, and at kworb's 7,632,505/day it is **4.1 days**. The
+  derived figure passes ChartMasters' number around **14 Sep 2026** on its own.
+- ChartMasters' implied offset over kworb is **111,997,901** against the 80,606,612
+  measured here. That difference is a *catalogue-completeness* difference — the
+  same mechanism, counted further — which suggests the hunt found most of the
+  missing catalogue and not all of it. The fix for that is **more catalogue hunting**,
+  not a larger constant.
+- The two totals are also scoped differently. This site publishes "every recording
+  Spotify credits to him". ChartMasters attributes by their own CSPC rules — which
+  is precisely why they removed the 309M that Spotify itself still counts. Two
+  definitions agreeing to 0.3% is a good outcome, not a discrepancy to reconcile away.
