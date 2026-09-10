@@ -1,5 +1,38 @@
 # The career-streams offset — open investigation
 
+> ## RESUME HERE
+>
+> **The site is publishing a wrong figure right now and it drifts further every run.**
+> `spotifyTotalStreams` = 10,983,330,105, about **30M too high**, and the next
+> pipeline run makes it worse (10,990,759,354). At 0.25% it is far under the
+> metric's 3% alert threshold, so **nothing automated will ever catch it**.
+>
+> **The hand-measurement was attempted and REFUSED** — see the section below.
+> Do not resurrect its number. Do not re-run it the same way.
+>
+> **Recommended next action, awaiting Paul:** option 2 — set `offset` in
+> `scripts/watched-metrics.json` to the measured same-date kworb↔ChartMasters gap
+> (~112,305,806), rewrite the note to say what the offset actually is, bump
+> `baseline`/`lastSeenValue`. Interim and honest; stops the drift.
+>
+> **The real measurement, if someone has the appetite:** read every FEATURED row
+> directly at `open.spotify.com/track/{id}` and difference against kworb. That is
+> the only leg with a verified mechanism behind it (kworb's featured rows lag,
+> its lead rows do not). Album pages show no counts when logged out; only
+> `/track/{id}` does.
+>
+> **Still in flight when this was written:** `wf_df6bb814-02a`, the hidden-catalogue
+> hunt (compilations, soundtracks, early/regional, and a Spotify-search-vs-kworb
+> diff). Its screener had not returned. Resume with
+> `Workflow({scriptPath, resumeFromRunId: "wf_df6bb814-02a"})`. Paul's constraint:
+> **only tracks carrying his name**.
+>
+> **Two of Paul's leads are unused:** SoundDNA's 400+ song claim (the decisive
+> question is how many of the extra are *on Spotify* — a credit that lives only on
+> Apple Music or YouTube contributes zero), and his Liked Songs (325 tracks, mostly
+> Burna Boy) as a candidate list — no play counts, and a biased sample.
+
+
 **Opened 10 September 2026.** The site publishes a career Spotify figure that is
 **not defensible as it stands**, and this file holds the evidence so the work is
 not lost. Nothing has been changed in `app/data/` or `scripts/` yet.
