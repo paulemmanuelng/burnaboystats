@@ -99,8 +99,8 @@
       "extractor": "kworbTotalStreams",
       "kind": "peak",
       "threshold": 0.03,
-      "baseline": 10983330105,
-      "note": "Auto-published daily. kworb's artist page undercounts featured credits, so a pipeline offset is added before the display string is written. RE-MEASURE THE OFFSET when the gap moves — it grows as featured songs accrue streams: +107,613,681 on 31 Jul 2026, +129,703,877 on 11 Aug 2026 (22,090,196 of drift in 11 days), +146,757,255 on 25 Aug 2026, each measured as tracked_total minus kworb's raw sum on the same day. Do NOT hand-edit the display instead; the offset is what keeps it tracking.",
+      "baseline": 10924608711,
+      "note": "MEASURED 10 Sep 2026. The offset is the streams on tracks that EXIST ON SPOTIFY BUT ARE NOT IN KWORB'S ROSTER — 42 credited recordings, 80,606,612 streams, each one read at open.spotify.com/track/<id> and joined to kworb by track id. Every one of the 42 sits on another artist's release or a various-artists compilation, which is what Spotify's artist-page 'appears on' shelf (kworb's source) drops. THAT is the mechanism. THE PREVIOUS NOTE WAS FALSE IN BOTH DIRECTIONS and is recorded here so it is not reinstated: it claimed kworb 'undercounts featured credits' — kworb's total already contains 4,640,678,029 of featured streams, 43% of the figure, and its lead+feature reconciles to its own total to the unit — and it claimed the gap GROWS, when it shrinks as kworb absorbs catalogue. The old value was 146,757,255 against a measured 80,606,612, i.e. 57,019,257 with no mechanism behind it. A SECOND MECHANISM WAS MEASURED AND DELIBERATELY EXCLUDED: kworb's featured rows trail Spotify's displayed counters. All 101 featured rows were read — 56 ahead, 45 exact, 0 behind — totalling 1,702,137, which at kworb's 4,639,694 featured streams a day is under NINE HOURS of skew between two samples of the same data. It is freshness, not missing data; baking it in would permanently re-add streams kworb reports by tomorrow. Real, confirmed, negligible — do not add it. RE-MEASURE BY RE-RUNNING THE HUNT, not by arithmetic: the offset moves when kworb absorbs a missing track (down) or a new compilation credit appears (up). Evidence and method in docs/sourcing/CAREER-STREAMS-OFFSET.md.",
       "live": true,
       "siteTargets": [
         {
@@ -126,12 +126,12 @@
         "max": 100000000000
       },
       "lastChanged": "2026-09-08",
-      "offset": 146757255,
-      "lastSeenValue": 10983330105,
-      "lastSeenAt": "2026-09-08",
+      "offset": 80606612,
+      "lastSeenValue": 10924608711,
+      "lastSeenAt": "2026-09-10",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B.",
-      "lastRawValue": 10836572850,
+      "lastRawValue": 10844002099,
       "rawJumpAlert": 12000000
     },
     {

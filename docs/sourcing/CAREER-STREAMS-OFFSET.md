@@ -1,6 +1,14 @@
 # The career-streams offset — open investigation
 
-> ## RESUME HERE
+> ## RESOLVED — 10 September 2026
+>
+> The offset was **measured** and set to **80,606,612** (was 146,757,255). The
+> published career figure moves 10,983,330,105 → **10,924,608,711** ("10.92B").
+> Both mechanisms were measured; one was included, one deliberately excluded.
+> The sections below are the working. Nothing here is open any more except the
+> lead/feature split audit noted at the end.
+>
+> ## The original problem (kept for context)
 >
 > **The site is publishing a wrong figure right now and it drifts further every run.**
 > `spotifyTotalStreams` = 10,983,330,105, about **30M too high**, and the next
@@ -332,3 +340,65 @@ measured floor for one component, not the whole offset.
 
 In every case **the note must be rewritten** — as written it is factually wrong
 and is what kept the constant from being questioned while it drifted.
+
+
+---
+
+## The featured-lag pass — MEASURED AND EXCLUDED, 10 Sep 2026
+
+Workflow `wf_98d20ea6-273`. All **101 of kworb's featured rows** read at
+`open.spotify.com/track/<id>` and joined **by track id** — not by value, which is
+what made the earlier attempt tautological. kworb publishes the Spotify track id
+on every row, so there was no matching to do.
+
+**Result: 101/101 read, ZERO unread. 56 ahead, 45 exact, ZERO behind.
+Total lag 1,702,137.**
+
+Both sides externally anchored: the transcribed kworb column sums to
+4,640,678,029, byte-identical to kworb's own published "As feature (\*)"
+aggregate. The verifier re-read the six largest exact-match rows itself (Location,
+Dai Dai, wgft, WE PRAY, My Oasis, Loved By You) — all reproduced to the unit, so
+the zero deltas are genuine agreement, not kworb's values copied in. It added
+three positive controls to prove the pipeline *can* register a difference (Own It
++445,852, Simmer +165,891, Praise Jah In The Moonlight Remix +10.4%). Nine for
+nine.
+
+**The lead/featured asymmetry is real and was tested, not assumed:** four of
+kworb's largest *lead* rows read exact (609,487,425 / 426,418,293 / 381,453,197 /
+287,966,434).
+
+**And it is negligible, which is why it is excluded.** kworb reports 4,639,694
+featured streams a day, so 1,702,137 is **under nine hours of skew** between two
+samples of the same underlying data — which is also why 45 rows sit at zero (kworb
+has already caught up on those). It is freshness, not missing data. Baking it into
+a constant would permanently re-add streams kworb itself reports by tomorrow. If
+it is to be reflected at all it belongs as a freshness note, never as an additive
+constant.
+
+### What was applied
+
+```
+offset    146,757,255  ->  80,606,612
+baseline  10,983,330,105  ->  10,924,608,711
+published "10.98B" -> "10.92B" ; exact 10,983,330,105 -> 10,924,608,711
+```
+
+**A caveat that must not be lost:** the offset is now the missing-catalogue
+component *alone*, because it is the only component with a verified mechanism
+behind it. The old value carried **57,019,257 with no mechanism at all**, and that
+is what was removed. If a future reader finds evidence for another real component,
+it should be measured and added — not restored by assumption.
+
+**Note on two numbers that both appear in this file and are both right:**
+146,757,255 is the CONFIGURED offset; 139,328,006 was the offset *implied* by the
+published string against kworb's 9 Sep raw, and the difference is only that the
+published string was a day stale. The configured value is the one that was changed.
+
+## Still open
+
+**The lead/feature split is unaudited.** kworb and ChartMasters put roughly half a
+billion streams on opposite sides of that line — ChartMasters' lead is 680,097,050
+higher, its featured 567,791,244 lower. "Dai Dai" (~430M) is the obvious case:
+kworb asterisks it as a *feature*, Spotify presents it as his own release. Anything
+on the site publishing a lead-only or featured figure sourced from kworb will
+disagree with a ChartMasters-sourced one. Not yet checked.
