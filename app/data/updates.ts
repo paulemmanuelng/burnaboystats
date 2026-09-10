@@ -39,6 +39,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-10",
+    category: "Streaming",
+    text: "The gap widens again at the top of the African all-time board: ChartMasters now has Burna Boy on 15,132,000 equivalent album sales to Wizkid's 14,848,000, read on 10 September with the board's streaming data stamped 8 September. Both men gained since the 30 August reading — Burna by 121,000, Wizkid by 90,000 — so the lead grows from about 253,000 to some 284,000, and both climb as the board expands from 688 names to 691. The scope is worth keeping beside the number: neither man has a completed CSPC study there, so both totals are streaming equivalents rather than full sales tallies, and they remain the only two artists from any African country on the whole board.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-09-09",
     category: "Charts",
     text: "Billboard's summer recaps put “Dai Dai” top of the world outside America: the Shakira and Burna Boy World Cup song finishes No. 1 on Billboard's Global Excl. U.S. top 10 songs of summer 2026, and No. 4 on the Global 200 equivalent, a list led by Ariana Grande's “Hate That I Made You Love Me” ahead of Ella Langley and Michael Jackson. These are season-ending recaps rather than charts of their own — Billboard ranked cumulative streaming and sales compiled by Luminate, worldwide for the Global 200 and from territories outside the United States for the Excl. U.S. list, across the weekly issues dated 6 June to 12 September, Memorial Day to Labor Day. The same article records the song as the first official World Cup anthem ever to lead the weekly Global Excl. U.S. chart, on a run of ten consecutive weeks from 4 July to 5 September.",
