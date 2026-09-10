@@ -300,7 +300,20 @@ export const singles: Release[] = [
   { title: "Giza", credit: "feat. Seyi Vibez", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 3 },
   ] },
-  { title: "Do I", year: 2023, certs: [
+  // NOT a Burna Boy lead, and it sat here as one until 10 Sep 2026. Confirmed
+  // at two sources, one of them the body that issued the plaque:
+  //   • TCSN's own register (turntablecharts.com/certification) files the row as
+  //     "Do I | Phyno & Burna Boy | Single | PLATINUM" — Phyno first-billed.
+  //   • Spotify's recording (7yKjDDd9w01nFEOD5adoHq) reads "Phyno, Burna Boy ·
+  //     Do I (Remix) · Song · 2023"; kworb asterisks it as a featured credit.
+  // The title stays "Do I" because that is how the register that awarded the
+  // plaque writes it — the site follows the certifying body on cert data.
+  //
+  // It KEEPS its place among the singles, on the same reasoning as "Dai Dai"
+  // above: an "A & B" joint billing is treated here as a co-lead, an "A ft. B"
+  // as a feature. Burna is second-billed on both. If that convention is ever
+  // revisited, it must move BOTH records, not one.
+  { title: "Do I", credit: "Phyno & Burna Boy", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/060b1718eafdeecf3642fb53b072d2e8/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
   { title: "Different Size", credit: "feat. Vict0ny", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [

@@ -419,6 +419,28 @@ describe("the RIAA Latin roster audit is complete", () => {
   });
 });
 
+describe("credits verified at the issuing body", () => {
+  it("files \"Do I\" as Phyno & Burna Boy, not a Burna lead", () => {
+    // It sat here with no credit at all, which read as a Burna Boy single. TCSN's
+    // own register — the body that issued the plaque — files it "Phyno & Burna
+    // Boy"; Spotify's recording says "Phyno, Burna Boy". Guarded because an
+    // uncredited row is invisible: nothing else on the site would have caught it.
+    const doI = bySlug("burna-boy").releases.find((r) => r.title === "Do I");
+    expect(doI?.credit).toBe("Phyno & Burna Boy");
+    expect(doI?.cover).toBeTruthy();
+  });
+
+  it("every second-billed joint release carries its credit", () => {
+    // The convention: "A & B" is a co-lead and stays among the singles, "A ft. B"
+    // is a feature. Either way the credit must be stated, or the page implies a
+    // solo record.
+    for (const t of ["Dai Dai", "Do I"]) {
+      const r = bySlug("burna-boy").releases.find((x) => x.title === t);
+      expect(r?.credit, t).toMatch(/&/);
+    }
+  });
+});
+
 describe("cover art", () => {
   it("covers all but four of Burna's certified releases", () => {
     const burna = bySlug("burna-boy");
@@ -428,8 +450,8 @@ describe("cover art", () => {
     // whose titles contain the real artists' names and so pass a naive
     // substring check — both were caught and rejected. Pinned so a later fill
     // cannot quietly swap a tribute sleeve in.
-    expect(without).toEqual(["B.D'or", "Be Honest", "Do I", "Tshwala Bam (Remix)"]);
-    expect(burna.releases.filter((r) => r.cover).length).toBe(81);
+    expect(without).toEqual(["B.D'or", "Be Honest", "Tshwala Bam (Remix)"]);
+    expect(burna.releases.filter((r) => r.cover).length).toBe(82);
   });
 
   it("serves one image size, so two sleeves never render at different scales", () => {

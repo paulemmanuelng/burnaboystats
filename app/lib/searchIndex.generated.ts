@@ -2064,8 +2064,11 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Do I",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "Phyno & Burna Boy — 1 certification.",
     "keywords": [
+      "phyno",
+      "burna",
+      "boy",
       "song",
       "release"
     ],
