@@ -91,7 +91,24 @@ export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
 /** A plaque. `body` names the AWARD PROGRAMME when it is not the country's
  *  default one — "RIAA Latin" is the live case, and its tiers are 1/16th the
  *  standard programme's, so a Spanish-language US award priced without it
- *  overstates by a factor of sixteen. See app/data/certThresholds.ts. */
+ *  overstates by a factor of sixteen. See app/data/certThresholds.ts.
+ *
+ *  TWO BOARD PLAQUES CARRY IT, both confirmed at riaa.com on 10 Sep 2026 under
+ *  the Premios de Oro y Platino tab (tab_active=platinum-latin) and absent from
+ *  the standard tab:
+ *    • Ayra Starr "Santa"  — award 439753, badge la_16_big.png "badge LA level
+ *      16", panel reads Genre LATIN / 16X PLATINO / 9 Jun 2025. 960,000 units,
+ *      not 16,000,000. A search for "Ayra Starr" on the STANDARD tab returns
+ *      RIAA's own "No matching results" — she holds no standard-programme award.
+ *    • Rema "Bubalu"       — RIAA credits it FEID, REMA (2 Feb 2024), badge
+ *      "LA level 2". 120,000 units, not 2,000,000. Note there is a SECOND,
+ *      unrelated "Bubalu" on RIAA at LA level 24 (DJ Luian x Mambo Kingz ft.
+ *      Anuel AA, Prince Royce, Becky G) — do not merge them.
+ *
+ *  TRAP, and it is what a scraper would fall into: RIAA's share attribute on
+ *  both rows reads "earned RIAA 16x Platinum Award" — its generic English
+ *  template, which says "Platinum" for BOTH programmes. The badge asset, the
+ *  tab and the detail panel are what designate the programme. */
 export interface AfroCert { c: string; level: Tier; x?: number; body?: string }
 export interface AfroPeak {
   c: string;
@@ -933,7 +950,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Charm", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "FR", level: "Platinum" }, { c: "UK", level: "Silver" }] },
       { title: "Dumebi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Soweto", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "UK", level: "Gold" }] },
-      { title: "Bubalu", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/56f2de197c8f55917c66611779ff876c/500x500-000000-80-0-0.jpg", certs: [{ c: "CO", level: "Diamond" }, { c: "US", level: "Platinum", x: 2 }, { c: "ES", level: "Platinum" }] },
+      { title: "Bubalu", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/56f2de197c8f55917c66611779ff876c/500x500-000000-80-0-0.jpg", certs: [{ c: "CO", level: "Diamond" }, { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" }, { c: "ES", level: "Platinum" }] },
       { title: "Ozeba", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Fun", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Benin Boys", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
@@ -1122,7 +1139,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     chartPublished: { entries: 82, territories: 30, no1s: 10 },
     releases: [
       { title: "Rush", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ES", level: "Gold" }, { c: "DK", level: "Gold" }] },
-      { title: "Santa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/965eeb50245f3178580ac5bda885e56b/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 16 }, { c: "ES", level: "Platinum", x: 5 }, { c: "MX", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "IT", level: "Gold" }] },
+      { title: "Santa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/965eeb50245f3178580ac5bda885e56b/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 16, body: "RIAA Latin" }, { c: "ES", level: "Platinum", x: 5 }, { c: "MX", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "IT", level: "Gold" }] },
       { title: "Bloody Samaritan", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6811d7a880826af2be69b81686f629f2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Silver" }] },
       { title: "Commas", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "CA", level: "Gold" }] },
       { title: "Bad Vibes", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },

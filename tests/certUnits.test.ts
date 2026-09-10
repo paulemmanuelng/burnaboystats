@@ -329,3 +329,45 @@ describe("rule 4 — an award PROGRAMME overrides the country's own scale", () =
     expect(thresholdFor("GR", "single", "Platinum", "RIAA Latin")).toBe(60_000);
   });
 });
+
+describe("the two board plaques confirmed as RIAA Latin", () => {
+  it("prices Ayra Starr's Santa at 960,000, not 16,000,000", () => {
+    // Confirmed at riaa.com 10 Sep 2026: award 439753, badge "LA level 16",
+    // detail panel Genre LATIN / 16X PLATINO. She holds NO standard-programme
+    // award at all — RIAA's standard tab returns "No matching results".
+    const santa = priceRelease(bySlug("ayra-starr"), "Santa", {
+      includeNigeria: true,
+      includeFeatures: true,
+    });
+    expect(santa).not.toBeNull();
+    expect(santa!.byCountry.find((l) => l.country === "US")?.units).toBe(960_000);
+  });
+
+  it("prices Rema's Bubalu at 120,000, not 2,000,000", () => {
+    const bubalu = priceRelease(bySlug("rema"), "Bubalu", {
+      includeNigeria: true,
+      includeFeatures: true,
+    });
+    expect(bubalu).not.toBeNull();
+    expect(bubalu!.byCountry.find((l) => l.country === "US")?.units).toBe(120_000);
+  });
+
+  it("no longer puts Ayra Starr top of the board", () => {
+    // Before the tag she led on 18,103,333, of which 16,000,000 was this one
+    // mispriced plaque. Pinned as a ranking, not a figure, so it survives the
+    // data moving.
+    const totals = comparableArtists
+      .map((a) => ({ name: a.name, t: priceArtist(a, { includeNigeria: false, includeFeatures: false }).total }))
+      .sort((x, y) => y.t - x.t);
+    expect(totals[0].name).not.toBe("Ayra Starr");
+  });
+
+  it("leaves the eight standard-programme awards alone", () => {
+    // Same sweep confirmed these are standard, so a stray Latin tag here would
+    // divide a real figure by sixteen.
+    const water = priceRelease(bySlug("tyla"), "Water", { includeNigeria: true, includeFeatures: true });
+    expect(water!.byCountry.find((l) => l.country === "US")?.units).toBe(4_000_000);
+    const calm = priceRelease(bySlug("rema"), "Calm Down", { includeNigeria: true, includeFeatures: true });
+    expect(calm!.byCountry.find((l) => l.country === "US")?.units).toBe(5_000_000);
+  });
+});
