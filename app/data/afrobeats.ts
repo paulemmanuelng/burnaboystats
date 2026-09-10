@@ -88,7 +88,11 @@ import { CHART_COUNTRIES } from "./charts";
 
 export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
 
-export interface AfroCert { c: string; level: Tier; x?: number }
+/** A plaque. `body` names the AWARD PROGRAMME when it is not the country's
+ *  default one — "RIAA Latin" is the live case, and its tiers are 1/16th the
+ *  standard programme's, so a Spanish-language US award priced without it
+ *  overstates by a factor of sixteen. See app/data/certThresholds.ts. */
+export interface AfroCert { c: string; level: Tier; x?: number; body?: string }
 export interface AfroPeak {
   c: string;
   peak: number;
