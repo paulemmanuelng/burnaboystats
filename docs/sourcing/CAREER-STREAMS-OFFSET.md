@@ -1,6 +1,14 @@
 # The career-streams offset — open investigation
 
-> ## RESUME HERE
+> ## RESOLVED — 10 September 2026
+>
+> The offset was **measured** and set to **80,606,612** (was 146,757,255). The
+> published career figure moves 10,983,330,105 → **10,924,608,711** ("10.92B").
+> Both mechanisms were measured; one was included, one deliberately excluded.
+> The sections below are the working. Nothing here is open any more except the
+> lead/feature split audit noted at the end.
+>
+> ## The original problem (kept for context)
 >
 > **The site is publishing a wrong figure right now and it drifts further every run.**
 > `spotifyTotalStreams` = 10,983,330,105, about **30M too high**, and the next
@@ -332,3 +340,201 @@ measured floor for one component, not the whole offset.
 
 In every case **the note must be rewritten** — as written it is factually wrong
 and is what kept the constant from being questioned while it drifted.
+
+
+---
+
+## The featured-lag pass — MEASURED AND EXCLUDED, 10 Sep 2026
+
+Workflow `wf_98d20ea6-273`. All **101 of kworb's featured rows** read at
+`open.spotify.com/track/<id>` and joined **by track id** — not by value, which is
+what made the earlier attempt tautological. kworb publishes the Spotify track id
+on every row, so there was no matching to do.
+
+**Result: 101/101 read, ZERO unread. 56 ahead, 45 exact, ZERO behind.
+Total lag 1,702,137.**
+
+Both sides externally anchored: the transcribed kworb column sums to
+4,640,678,029, byte-identical to kworb's own published "As feature (\*)"
+aggregate. The verifier re-read the six largest exact-match rows itself (Location,
+Dai Dai, wgft, WE PRAY, My Oasis, Loved By You) — all reproduced to the unit, so
+the zero deltas are genuine agreement, not kworb's values copied in. It added
+three positive controls to prove the pipeline *can* register a difference (Own It
++445,852, Simmer +165,891, Praise Jah In The Moonlight Remix +10.4%). Nine for
+nine.
+
+**The lead/featured asymmetry is real and was tested, not assumed:** four of
+kworb's largest *lead* rows read exact (609,487,425 / 426,418,293 / 381,453,197 /
+287,966,434).
+
+**And it is negligible, which is why it is excluded.** kworb reports 4,639,694
+featured streams a day, so 1,702,137 is **under nine hours of skew** between two
+samples of the same underlying data — which is also why 45 rows sit at zero (kworb
+has already caught up on those). It is freshness, not missing data. Baking it into
+a constant would permanently re-add streams kworb itself reports by tomorrow. If
+it is to be reflected at all it belongs as a freshness note, never as an additive
+constant.
+
+### What was applied
+
+```
+offset    146,757,255  ->  80,606,612
+baseline  10,983,330,105  ->  10,924,608,711
+published "10.98B" -> "10.92B" ; exact 10,983,330,105 -> 10,924,608,711
+```
+
+**A caveat that must not be lost:** the offset is now the missing-catalogue
+component *alone*, because it is the only component with a verified mechanism
+behind it. The old value carried **57,019,257 with no mechanism at all**, and that
+is what was removed. If a future reader finds evidence for another real component,
+it should be measured and added — not restored by assumption.
+
+**Note on two numbers that both appear in this file and are both right:**
+146,757,255 is the CONFIGURED offset; 139,328,006 was the offset *implied* by the
+published string against kworb's 9 Sep raw, and the difference is only that the
+published string was a day stale. The configured value is the one that was changed.
+
+## Still open
+
+**The lead/feature split is unaudited.** kworb and ChartMasters put roughly half a
+billion streams on opposite sides of that line — ChartMasters' lead is 680,097,050
+higher, its featured 567,791,244 lower. "Dai Dai" (~430M) is the obvious case:
+kworb asterisks it as a *feature*, Spotify presents it as his own release. Anything
+on the site publishing a lead-only or featured figure sourced from kworb will
+disagree with a ChartMasters-sourced one. Not yet checked.
+
+## A third figure, and what it does and does not settle (10 Sep 2026)
+
+A ChartMasters **premium subscriber** (@WITTIEWIZ) posted their live dashboard
+figures on 10 Sep 2026. Paul brought them in as the most reliable account
+available, and they are worth writing down — but they are **ChartMasters
+restated, not an independent check on ChartMasters**. That distinction is the
+whole reason this section exists.
+
+### The un-merge half: the site was already ahead of it
+
+Most of the thread argues that ChartMasters is still computing Burna's 2026 gain
+off a 2025 close that includes ~309M streams which were later moved away. That is
+**the site's own analysis**, published 21 August 2026 at `/analysis/spotify-unmerge`
+— three weeks before the thread — and stated there in more digits:
+
+| | thread | this site |
+|---|---|---|
+| Reallocated in Feb 2026 | "309M" | **309,438,350** |
+| Corrected 2025 close | "9.19B" | **9,199,552,674** |
+| Pre-correction close | "9.58B" | **9,508,991,024** |
+
+The first two agree. **The third does not, and the disagreement is informative:**
+9.58B is ChartMasters' 2025 close; 9,508,991,024 is what Spotify's own counter
+read. The ~71,008,976 between them is ChartMasters carrying catalogue that the
+counter-derived figure does not — i.e. it is *their* version of this file's offset,
+at end-2025.
+
+Both remixes re-verified against kworb on 10 Sep 2026: "Enjoy Yourself — Remix"
+52,037,602 and "Finders Keepers — Remix" 3,382,240, against the 50,077,530 and
+3,075,692 recorded on the page. Grown slightly, consistent, still un-merged.
+
+### The half that touches the published total
+
+| | value |
+|---|---|
+| kworb raw, 10 Sep 2026 | 10,844,002,099 |
+| **published here** (raw + 80,606,612) | **10,924,608,711** |
+| ChartMasters, per the thread | ~10,956,000,000 |
+| what the OLD constant would publish today (raw + 146,757,255) | 10,990,759,354 |
+
+**ChartMasters does not adjudicate between the old constant and the new
+measurement. It lands almost exactly between them** — 31,391,289 above the new,
+34,759,354 below the old. Anyone reaching for it as evidence that the offset was
+cut too far should notice it is equally good evidence that the old value was too
+high, which is to say it is evidence for neither.
+
+The reason to prefer 80,606,612 is unchanged and has nothing to do with this
+figure: **it is the only one of the three that was measured.**
+
+### Do not close the 31M by typing it
+
+> **SUPERSEDED the same day — see "The decision" at the end of this file.**
+> The reasoning below still holds on its own terms; what changed is that the 31M
+> was closed by *re-anchoring the offset to a dated ChartMasters read*, which is
+> not the same as typing the figure, and a corroboration arrived that this
+> section did not have.
+
+- 31,391,289 is **0.287%**, and at kworb's 7,632,505/day it is **4.1 days**. The
+  derived figure passes ChartMasters' number around **14 Sep 2026** on its own.
+- ChartMasters' implied offset over kworb is **111,997,901** against the 80,606,612
+  measured here. That difference is a *catalogue-completeness* difference — the
+  same mechanism, counted further — which suggests the hunt found most of the
+  missing catalogue and not all of it. The fix for that is **more catalogue hunting**,
+  not a larger constant.
+- The two totals are also scoped differently. This site publishes "every recording
+  Spotify credits to him". ChartMasters attributes by their own CSPC rules — which
+  is precisely why they removed the 309M that Spotify itself still counts. Two
+  definitions agreeing to 0.3% is a good outcome, not a discrepancy to reconcile away.
+
+
+## The decision (10 Sep 2026): anchored to ChartMasters
+
+Paul's call, after reading the thread: **10,956,307,905 is the figure to publish.**
+Implemented as an offset move, not a typed string — the pipeline rewrites those
+fields daily, so typing them would have survived until the next bot run and no
+longer:
+
+```
+offset    80,606,612  ->  112,305,806
+baseline  10,924,608,711  ->  10,956,307,905
+published "10.92B" -> "10.96B" ; exact 10,924,608,711 -> 10,956,307,905
+```
+
+**112,305,806 is the same-date gap** — ChartMasters' 10,956,307,905 minus kworb's
+10,844,002,099, both read on 9 Sep. Not a hand-picked constant, and not arithmetic
+on the published figure.
+
+### A corroboration that arrived from the thread itself
+
+The thread's own board screenshot puts Burna's **2026 gain at 1.756B**. Take
+ChartMasters' career total and subtract the corrected 2025 close this site
+published on 21 August:
+
+```
+10,956,307,905 - 9,199,552,674 = 1,756,755,231
+```
+
+**It reproduces their board to about a million** — roughly a day of streaming.
+Two consequences, and the second is the sharper one:
+
+1. It is the only genuinely independent check any of the three figures has had.
+   It ties ChartMasters' total, ChartMasters' 2026 board, and *this site's own*
+   corrected close into one arithmetic that closes.
+2. **It refutes the thread's central accusation.** The claim is that ChartMasters
+   still computes 2026 gains off the pre-correction 9.58B, and so "they're getting
+   1.4B" — `10.956 - 9.58 = 1.376`. Their board does not say 1.4B. It says 1.756B,
+   which is the *corrected* close. The number the thread got right; the reasoning
+   attached to it is wrong, and its own screenshot is what shows that.
+
+The previously published figure would have given `10,924,608,711 - 9,199,552,674
+= 1,725,056,037` — 1.725B, which matches no published board.
+
+### What this offset now is, stated honestly
+
+- **80,606,612** — measured track by track on 10 Sep: 42 credited recordings on
+  Spotify absent from kworb's 291-row roster, joined by track id.
+- **31,699,194** — the amount by which ChartMasters' roster exceeds both kworb's
+  and our own hunt. Mechanism named (catalogue completeness, counted further),
+  **not enumerated.**
+
+That is a real improvement on what was here on 9 Sep — a constant carrying
+57,019,257 with no mechanism at all and a written rationale false in both
+mechanism and direction — but it is **not** the same thing as a fully measured
+offset, and this file should not be summarised as if it were.
+
+### The maintenance job, which is now a decay problem
+
+kworb's cumulative has been rising ~10.81M/day against actual streaming near
+7.6M/day: it is absorbing catalogue it previously missed, and **every unit of that
+closes this gap**. Left alone, `raw + 112,305,806` drifts *above* ChartMasters.
+
+**Re-read ChartMasters and re-subtract against kworb's raw on the same date**
+whenever the two are compared. Do not derive the offset from the published figure.
+Nothing automated will catch the drift: 31M on 10.9B is 0.3%, far under the
+metric's 3% threshold.
