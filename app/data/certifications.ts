@@ -34,6 +34,19 @@ export interface Release {
   title: string;
   credit?: string;
   year?: number;
+  /** Sleeve art, hotlinked from Deezer's CDN — the same source and the same
+   *  500x500 rendition the board's 656 covers use, so the compare page does not
+   *  serve two different image sizes side by side.
+   *
+   *  Matched by artist AND title, never title alone, and every match required
+   *  Burna Boy to be a credited contributor on the Deezer record. Four releases
+   *  are deliberately WITHOUT art because Deezer carries no legitimate copy:
+   *  "Be Honest" and "Tshwala Bam (Remix)" return only 8-Bit Arcade chiptune and
+   *  karaoke re-recordings, whose titles contain the real artists' names and
+   *  therefore sail through a substring check; "B.D'or" is absent entirely; and
+   *  "Do I" returns only Phyno's remix, not a Burna lead. Undefined is the
+   *  correct answer there — a tribute sleeve would be a visible lie. */
+  cover?: string;
   certs: Cert[];
 }
 
@@ -101,7 +114,7 @@ export const albums: Release[] = [
     { c: "FR", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "DK", level: "Platinum" },
     { c: "NZ", level: "Platinum" }, { c: "NG", level: "Platinum", x: 5 },
   ] },
-  { title: "I Told Them...", year: 2023, certs: [
+  { title: "I Told Them...", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "NG", level: "Platinum" },
   ] },
   { title: "Twice as Tall", year: 2020, certs: [
@@ -161,7 +174,7 @@ export const singles: Release[] = [
   // units, NOT 2,000,000, which is why `body` overrides it to "RIAA Latin" and
   // the explorer paints a program marker beside the tier. Never total it against
   // standard-programme plaques as if the tiers meant the same thing.
-  { title: "Dai Dai", credit: "Shakira & Burna Boy", year: 2026, certs: [
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", year: 2026, cover: "https://cdn-images.dzcdn.net/images/cover/a7f9bae0243c512059298a68d09f45a1/500x500-000000-80-0-0.jpg", certs: [
     { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" },
     // Colombia ran no national certifier for years — ASINCOL closed around 2008 —
     // so Colombian "disco de oro" announcements were label-issued, and this one is.
@@ -221,7 +234,7 @@ export const singles: Release[] = [
     { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "FR", level: "Platinum" },
     { c: "CH", level: "Platinum" }, { c: "NG", level: "Silver" },
   ] },
-  { title: "For My Hand", credit: "feat. Ed Sheeran", year: 2022, certs: [
+  { title: "For My Hand", credit: "feat. Ed Sheeran", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" },
     { c: "SE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" },
     { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "CH", level: "Gold" },
@@ -230,11 +243,11 @@ export const singles: Release[] = [
     { c: "NG", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum" }, { c: "FR", level: "Platinum" },
     { c: "UK", level: "Gold" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" },
   ] },
-  { title: "Gbona", year: 2018, certs: [
+  { title: "Gbona", year: 2018, cover: "https://cdn-images.dzcdn.net/images/cover/f270e126a51295c0042411f529b2f9d6/500x500-000000-80-0-0.jpg", certs: [
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "CH", level: "Platinum" },
     { c: "SE", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Gold" },
   ] },
-  { title: "It's Plenty", year: 2022, certs: [
+  { title: "It's Plenty", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" },
     { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
@@ -242,40 +255,40 @@ export const singles: Release[] = [
     { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "NZ", level: "Gold" },
     { c: "FR", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
-  { title: "Anybody", year: 2019, certs: [
+  { title: "Anybody", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/b4efa5d273887ff67773697206c618bc/500x500-000000-80-0-0.jpg", certs: [
     { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
-  { title: "Sittin' on Top of the World", credit: "feat. 21 Savage", year: 2023, certs: [
+  { title: "Sittin' on Top of the World", credit: "feat. 21 Savage", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/5f6dd9dc9d90dd4eb6001f5413aec4b8/500x500-000000-80-0-0.jpg", certs: [
     { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
-  { title: "Real Life", credit: "feat. Stormzy", year: 2020, certs: [
+  { title: "Real Life", credit: "feat. Stormzy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
-  { title: "Gum Body", credit: "feat. Jorja Smith", year: 2019, certs: [
+  { title: "Gum Body", credit: "feat. Jorja Smith", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/3cfb4e9b823e7c1c610382ee27cb7575/500x500-000000-80-0-0.jpg", certs: [
     { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
-  { title: "Tested, Approved & Trusted", year: 2023, certs: [
+  { title: "Tested, Approved & Trusted", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" },
   ] },
-  { title: "Kilometre", year: 2021, certs: [
+  { title: "Kilometre", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/ec97a71561e02e3ce53effc898eb5786/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" },
   ] },
-  { title: "Higher", year: 2024, certs: [
+  { title: "Higher", year: 2024, cover: "https://cdn-images.dzcdn.net/images/cover/a01a6cc7f3c7d316f597492e03caa8fe/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 4 },
   ] },
-  { title: "Common Person", year: 2022, certs: [
+  { title: "Common Person", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 3 },
   ] },
   { title: "TaTaTa", credit: "feat. Travis Scott", year: 2025, certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "Update", year: 2025, certs: [
+  { title: "Update", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/ff3c52d12ace7d1e6d256b73e163edcb/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "Love", year: 2025, certs: [
+  { title: "Love", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/9dda72a8a76755ea87382bf0a6f8eab7/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 3 },
   ] },
-  { title: "Dem Dey", year: 2025, certs: [
+  { title: "Dem Dey", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/af66f2a3785c256727e0a2b234a3b90a/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
   // Year and credit were copied from the neighbours this row arrived with: the
@@ -284,122 +297,122 @@ export const singles: Release[] = [
   // track — albums.ts dates that album 2023 — and the credit was already on the
   // chart row and on this file's own certHistory entry below. 2026 is the AWARD
   // year and belongs there, not here; this field is the release year.
-  { title: "Giza", credit: "feat. Seyi Vibez", year: 2023, certs: [
+  { title: "Giza", credit: "feat. Seyi Vibez", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 3 },
   ] },
   { title: "Do I", year: 2023, certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "Different Size", credit: "feat. Vict0ny", year: 2022, certs: [
+  { title: "Different Size", credit: "feat. Vict0ny", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "Big 7", year: 2023, certs: [
+  { title: "Big 7", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/f5f99a13558a35bbec024b3587357300/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "Way Too Big", year: 2020, certs: [
+  { title: "Way Too Big", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
   { title: "23", year: 2022, certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "Dey Play", certs: [
+  { title: "Dey Play", cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "On Form", certs: [
+  { title: "On Form", cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "Bundle by Bundle", year: 2024, certs: [
+  { title: "Bundle by Bundle", year: 2024, cover: "https://cdn-images.dzcdn.net/images/cover/210cc4c59e508f189c0f69ae6d01ba14/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "Question", credit: "feat. Don Jazzy", year: 2021, certs: [
+  { title: "Question", credit: "feat. Don Jazzy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/f1ded2f2f5b80c9b054ee9f742cce6fd/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Want It All", credit: "feat. Polo G", year: 2021, certs: [
+  { title: "Want It All", credit: "feat. Polo G", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/65652c3850bfa36fcf7fe016ffe792f3/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Cloak & Dagger", credit: "feat. J Hus", year: 2022, certs: [
+  { title: "Cloak & Dagger", credit: "feat. J Hus", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Normal", year: 2023, certs: [
+  { title: "Normal", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Science", certs: [
+  { title: "Science", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Vanilla", certs: [
+  { title: "Vanilla", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Jagele", certs: [
+  { title: "Jagele", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "I Told Them", year: 2023, certs: [
+  { title: "I Told Them", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Rollercoaster", credit: "feat. J Balvin", year: 2022, certs: [
+  { title: "Rollercoaster", credit: "feat. J Balvin", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/7048ff78d00d6c89e075a75b37cd6380/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Cheat on Me", credit: "feat. Dave", year: 2023, certs: [
+  { title: "Cheat on Me", credit: "feat. Dave", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
-  { title: "Wild Dreams", credit: "feat. Khalid", year: 2022, certs: [
+  { title: "Wild Dreams", credit: "feat. Khalid", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Glory", credit: "feat. Ladysmith Black Mambazo", certs: [
+  { title: "Glory", credit: "feat. Ladysmith Black Mambazo", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Solid", credit: "feat. Kehlani & Justin Bieber", certs: [
+  { title: "Solid", credit: "feat. Kehlani & Justin Bieber", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Dirty Secrets", year: 2022, certs: [
+  { title: "Dirty Secrets", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Whiskey", year: 2020, certs: [
+  { title: "Whiskey", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Bank On It", year: 2020, certs: [
+  { title: "Bank On It", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "If I'm Lying", certs: [
+  { title: "If I'm Lying", cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "No Fit Vex", certs: [
+  { title: "No Fit Vex", cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Thanks", year: 2020, certs: [
+  { title: "Thanks", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Onyeka (Baby)", year: 2019, certs: [
+  { title: "Onyeka (Baby)", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "How Bad Could It Be", certs: [
+  { title: "How Bad Could It Be", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Level Up", certs: [
+  { title: "Level Up", cover: "https://cdn-images.dzcdn.net/images/cover/fd271b2967aa9a67f7cb23f956c58b10/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Wonderful", year: 2020, certs: [
+  { title: "Wonderful", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/2fff7aefcfa8eaed5d2843521c2b0d55/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Virgil", certs: [
+  { title: "Virgil", cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Collateral Damage", year: 2019, certs: [
+  { title: "Collateral Damage", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/3cfb4e9b823e7c1c610382ee27cb7575/500x500-000000-80-0-0.jpg", certs: [
     { c: "FR", level: "Gold" },
   ] },
-  { title: "Secret", credit: "feat. Jeremih & Serani", year: 2019, certs: [
+  { title: "Secret", credit: "feat. Jeremih & Serani", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/3cfb4e9b823e7c1c610382ee27cb7575/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Silver" },
   ] },
 ];
 
 // Songs where Burna Boy is a featured/guest artist.
 export const features: Release[] = [
-  { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, certs: [
+  { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/ad058398e5f4643b846532fe27cfd2f1/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 2 },
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "NL", level: "Platinum" },
     { c: "DK", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "PT", level: "Gold" },
     { c: "DE", level: "Gold" }, { c: "NG", level: "Platinum" }, { c: "SE", level: "Platinum" },
   ] },
-  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", year: 2024, certs: [
+  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", year: 2024, cover: "https://cdn-images.dzcdn.net/images/cover/8f63a01593c329798544895109f36f8c/500x500-000000-80-0-0.jpg", certs: [
     { c: "FR", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "UK", level: "Gold" },
     { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "PT", level: "Gold" },
   ] },
@@ -407,7 +420,7 @@ export const features: Release[] = [
     { c: "FR", level: "Diamond" }, { c: "AU", level: "Platinum" }, { c: "UK", level: "Platinum" },
     { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "DK", level: "Gold" },
   ] },
-  { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", year: 2019, certs: [
+  { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/0a54050a9f976757a64095e18885b099/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum" }, { c: "DK", level: "Platinum" },
     { c: "AU", level: "Gold" }, { c: "BR", level: "Gold" }, { c: "PT", level: "Gold" },
   ] },
@@ -415,29 +428,29 @@ export const features: Release[] = [
     { c: "FR", level: "Diamond" }, { c: "IT", level: "Platinum", x: 4 }, { c: "BE", level: "Platinum", x: 2 },
     { c: "DE", level: "Platinum" }, { c: "PT", level: "Platinum", x: 2 }, { c: "AT", level: "Gold" },
   ] },
-  { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, certs: [
+  { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [
     { c: "ZA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" },
     { c: "CA", level: "Gold" }, { c: "CH", level: "Platinum" }, { c: "UK", level: "Silver" },
   ] },
-  { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, certs: [
+  { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/b34fa153a6137126a0c37972033c79fc/500x500-000000-80-0-0.jpg", certs: [
     { c: "BR", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Gold" },
   ] },
-  { title: "Donne-moi l'accord", credit: "Dadju ft. Burna Boy", year: 2019, certs: [
+  { title: "Donne-moi l'accord", credit: "Dadju ft. Burna Boy", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/046cf3983b563fea65147732eeb653c2/500x500-000000-80-0-0.jpg", certs: [
     { c: "FR", level: "Platinum" },
   ] },
-  { title: "Play Play", credit: "J Hus ft. Burna Boy", year: 2020, certs: [
+  { title: "Play Play", credit: "J Hus ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/fd4f0303fd35a1ecdfaa76ea1a4e29a4/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Platinum" },
   ] },
-  { title: "Sungba (Remix)", credit: "Asake ft. Burna Boy", year: 2022, certs: [
+  { title: "Sungba (Remix)", credit: "Asake ft. Burna Boy", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/671d8a1ee4c2d4ca3e7c32877bbfee6a/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 4 }, { c: "UK", level: "Silver" },
   ] },
   { title: "Tshwala Bam (Remix)", credit: "TitoM & Yuppe ft. S.N.E & Burna Boy", year: 2024, certs: [
     { c: "NG", level: "Platinum", x: 4 },
   ] },
-  { title: "Second Sermon (Remix)", credit: "Black Sherif ft. Burna Boy", year: 2021, certs: [
+  { title: "Second Sermon (Remix)", credit: "Black Sherif ft. Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "Simmer", credit: "Mahalia ft. Burna Boy", year: 2019, certs: [
+  { title: "Simmer", credit: "Mahalia ft. Burna Boy", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/eceac2149053e31a54687b05e125c93d/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" },
   ] },
   { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2025, certs: [
@@ -454,34 +467,34 @@ export const features: Release[] = [
     // sits here and not in the dated log.
     { c: "NG", level: "Platinum" },
   ] },
-  { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", year: 2025, certs: [
+  { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/9817ac9ada270ea7c1f56753c0cabf33/500x500-000000-80-0-0.jpg", certs: [
     { c: "FR", level: "Gold" },
   ] },
-  { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, certs: [
+  { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/87468622c8e7ac9dce7b541be136aa4c/500x500-000000-80-0-0.jpg", certs: [
     { c: "AU", level: "Gold" }, { c: "BR", level: "Gold" },
   ] },
-  { title: "Enjoy Yourself (Remix)", credit: "Pop Smoke ft. Burna Boy", year: 2020, certs: [
+  { title: "Enjoy Yourself (Remix)", credit: "Pop Smoke ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/337e152ccbf267774a30a08fbceae106/500x500-000000-80-0-0.jpg", certs: [
     { c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" },
   ] },
-  { title: "Yaba Buluku (Remix)", credit: "DJ Tarico & Burna Boy", year: 2021, certs: [
+  { title: "Yaba Buluku (Remix)", credit: "DJ Tarico & Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/838ae1b6384d70287eb799afdb50512c/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Gold" },
   ] },
-  { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, certs: [
+  { title: "Toni-Ann Singh", credit: "feat. Popcaan", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "CA", level: "Gold" }, { c: "NG", level: "Silver" },
   ] },
-  { title: "Talibans II", credit: "with Byron Messia", year: 2023, certs: [
+  { title: "Talibans II", credit: "with Byron Messia", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/249b9a8dd169969947e57d554945f48b/500x500-000000-80-0-0.jpg", certs: [
     { c: "CA", level: "Gold" }, { c: "NG", level: "Platinum" },
   ] },
-  { title: "Rollin'", credit: "Mist ft. Burna Boy", year: 2021, certs: [
+  { title: "Rollin'", credit: "Mist ft. Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/123c9286e946a0ad60a4126acbee6f60/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Silver" },
   ] },
-  { title: "Lenu (Remix)", certs: [
+  { title: "Lenu (Remix)", cover: "https://cdn-images.dzcdn.net/images/cover/aef7ccf16f0481793eea256ab167aa88/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Silver" },
   ] },
-  { title: "Baddest", credit: "AKA ft. Burna Boy, Khuli Chana & Yanga Chief", year: 2019, certs: [
+  { title: "Baddest", credit: "AKA ft. Burna Boy, Khuli Chana & Yanga Chief", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/b86f99833d3100ad7eb753ec6966e3aa/500x500-000000-80-0-0.jpg", certs: [
     { c: "ZA", level: "Gold" },
   ] },
-  { title: "All Eyes on Me", credit: "AKA ft. Burna Boy, Da L.E.S & JR", year: 2014, certs: [
+  { title: "All Eyes on Me", credit: "AKA ft. Burna Boy, Da L.E.S & JR", year: 2014, cover: "https://cdn-images.dzcdn.net/images/cover/51a425dcf87f37e33159744d5685471d/500x500-000000-80-0-0.jpg", certs: [
     { c: "ZA", level: "Platinum", x: 19 },
   ] },
   { title: "B.D'or", credit: "Bramsito ft. Burna Boy", year: 2019, certs: [

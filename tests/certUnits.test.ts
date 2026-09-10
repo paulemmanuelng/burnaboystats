@@ -418,3 +418,29 @@ describe("the RIAA Latin roster audit is complete", () => {
           expect(c.c, `${a.name} — ${r.title}`).toBe("US");
   });
 });
+
+describe("cover art", () => {
+  it("covers all but four of Burna's certified releases", () => {
+    const burna = bySlug("burna-boy");
+    const without = burna.releases.filter((r) => !r.cover).map((r) => r.title).sort();
+    // Deliberately uncovered: Deezer carries no legitimate copy of these. The
+    // first two return only 8-Bit Arcade chiptune and karaoke re-recordings,
+    // whose titles contain the real artists' names and so pass a naive
+    // substring check — both were caught and rejected. Pinned so a later fill
+    // cannot quietly swap a tribute sleeve in.
+    expect(without).toEqual(["B.D'or", "Be Honest", "Do I", "Tshwala Bam (Remix)"]);
+    expect(burna.releases.filter((r) => r.cover).length).toBe(81);
+  });
+
+  it("serves one image size, so two sleeves never render at different scales", () => {
+    for (const a of comparableArtists)
+      for (const r of a.releases)
+        if (r.cover?.includes("dzcdn.net"))
+          expect(r.cover, `${a.name} — ${r.title}`).toContain("500x500");
+  });
+
+  it("Gbona and Essence both have art — the case that started this", () => {
+    expect(bySlug("burna-boy").releases.find((r) => r.title === "Gbona")?.cover).toBeTruthy();
+    expect(bySlug("wizkid").releases.find((r) => r.title === "Essence")?.cover).toBeTruthy();
+  });
+});

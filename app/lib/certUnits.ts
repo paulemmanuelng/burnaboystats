@@ -87,10 +87,14 @@ export interface ComparableArtist {
 // board carries it as `kind` on each release.
 // ---------------------------------------------------------------------------
 
-/** Cover art for Burna's releases, which `certifications.ts` does not carry.
- *  Only 12 of his 85 certified releases have art anywhere on the site today —
- *  see docs/design/CERT-UNITS-COMPARE-SPEC.md. Undefined is expected, not a bug. */
-const burnaCover = (title: string): string | undefined => {
+/** Cover art for one of Burna's releases.
+ *
+ *  `certifications.ts` now carries its own `cover` for 81 of his 85 certified
+ *  releases; albums.ts and songs.ts remain as a fallback for the handful that
+ *  already had Spotify art before the Deezer fill. Four releases have none on
+ *  purpose — see the `cover` field's own note. Undefined is expected there. */
+const burnaCover = (title: string, own?: string): string | undefined => {
+  if (own) return own;
   const key = title.toLowerCase();
   const a = (albumArt as { title: string; cover?: string }[]).find(
     (x) => x.title.toLowerCase() === key,
@@ -116,7 +120,7 @@ const burna: ComparableArtist = {
     credit: r.credit,
     format: r.format,
     isFeature: r.isFeature,
-    cover: burnaCover(r.title),
+    cover: burnaCover(r.title, (r as { cover?: string }).cover),
     certs: r.certs,
   })),
 };
