@@ -105,6 +105,17 @@ export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
  *      unrelated "Bubalu" on RIAA at LA level 24 (DJ Luian x Mambo Kingz ft.
  *      Anuel AA, Prince Royce, Becky G) — do not merge them.
  *
+ *  THE ROSTER IS AUDITED AND COMPLETE. On 10 Sep 2026 all sixteen artists were
+ *  searched on RIAA's Latin tab, including under legal names, alternate
+ *  spellings and collaborator credit strings (RIAA files an award under the
+ *  credit on the release, so a featured act can sit inside someone else's
+ *  string). EXACTLY THREE Latin awards exist across the whole board and all
+ *  three are tagged: Burna Boy "Dai Dai" (2x Platino, 9 Jul 2026, in
+ *  certifications.ts), Rema "Bubalu", Ayra Starr "Santa". The other thirteen
+ *  artists returned RIAA's literal "No matching results" — each with a negative
+ *  control proving the query works, since the same search on the STANDARD tab
+ *  returns their rows. Nothing is missing; do not re-run this speculatively.
+ *
  *  TRAP, and it is what a scraper would fall into: RIAA's share attribute on
  *  both rows reads "earned RIAA 16x Platinum Award" — its generic English
  *  template, which says "Platinum" for BOTH programmes. The badge asset, the

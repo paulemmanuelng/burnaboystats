@@ -389,3 +389,30 @@ describe("RIAA's ladder does not stop at Diamond — PENDING Paul's call", () =>
     expect(wizLead.byCountry.find((l) => l.country === "US")?.units).toBeLessThan(10_000_000);
   });
 });
+
+describe("the RIAA Latin roster audit is complete", () => {
+  it("exactly three plaques on the whole roster are Latin-programme", () => {
+    // All sixteen artists searched on RIAA's Latin tab 10 Sep 2026, including
+    // under legal names, spellings and collaborator credit strings. Thirteen
+    // returned "No matching results", each with a negative control. Pinned so a
+    // fourth tag has to be deliberate — and so a lost tag fails loudly, since an
+    // untagged Latin plaque is priced SIXTEEN times too high.
+    const tagged = comparableArtists.flatMap((a) =>
+      a.releases.flatMap((r) =>
+        r.certs.filter((c) => c.body === "RIAA Latin").map((c) => `${a.name} — ${r.title}`),
+      ),
+    );
+    expect(tagged.sort()).toEqual([
+      "Ayra Starr — Santa",
+      "Burna Boy — Dai Dai",
+      "Rema — Bubalu",
+    ]);
+  });
+
+  it("every Latin tag sits on a US plaque — it is a US programme", () => {
+    for (const a of comparableArtists)
+      for (const r of a.releases)
+        for (const c of r.certs.filter((x) => x.body === "RIAA Latin"))
+          expect(c.c, `${a.name} — ${r.title}`).toBe("US");
+  });
+});
