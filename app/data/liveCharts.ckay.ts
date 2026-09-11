@@ -49,6 +49,12 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 67,
+            "movement": 104
+          },
+          {
             "country": "GM",
             "name": "Gambia",
             "position": 100,
@@ -61,12 +67,6 @@
             "position": 161,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 171,
-            "movement": -52
           },
           {
             "country": "NE",
@@ -103,18 +103,18 @@
             "country": "RU",
             "name": "Russia",
             "position": 5,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 91,
-            "movement": 2
+            "movement": 3
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 152,
+            "position": 169,
             "movement": null,
             "status": "new"
           }
@@ -240,26 +240,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Beggie Beggie",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 166,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "La La",
     "platforms": [
       {
@@ -269,8 +249,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 161,
-            "movement": 3
+            "position": 175,
+            "movement": -14
           }
         ]
       }
@@ -288,8 +268,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 174,
-            "movement": -166
+            "position": 200,
+            "movement": -196
           }
         ]
       }

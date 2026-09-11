@@ -229,16 +229,9 @@
             "movement": -98
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 191,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "BR",
             "name": "Brazil",
-            "position": 200,
+            "position": 187,
             "movement": null,
             "status": "new"
           }
@@ -331,9 +324,15 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 108,
+            "position": 126,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 173,
+            "movement": -23
           }
         ]
       }
@@ -349,12 +348,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 62,
-            "movement": -8
-          },
-          {
             "country": "NA",
             "name": "Namibia",
             "position": 64,
@@ -369,8 +362,21 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 88,
-            "movement": 20
+            "position": 109,
+            "movement": -21
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 115,
+            "movement": -53
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 195,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -468,8 +474,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 51,
-            "movement": -5
+            "position": 54,
+            "movement": -8
           }
         ]
       }
@@ -531,8 +537,8 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 98,
-            "movement": -31
+            "position": 117,
+            "movement": -19
           },
           {
             "country": "ZA",
@@ -565,6 +571,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 105,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Talk to Me",
     "platforms": [
       {
@@ -593,52 +619,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 55,
-            "movement": -9
+            "position": 56,
+            "movement": -8
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "When I'm With You",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LA",
-            "name": "Laos",
-            "position": 105,
-            "movement": -29
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "FAIRYTALE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 169,
-            "movement": -76
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   }
 ];
   
