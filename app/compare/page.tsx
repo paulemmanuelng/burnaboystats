@@ -5,7 +5,7 @@ import KeepExploring from "../components/KeepExploring";
 import { pageMetadata } from "../lib/seo";
 import { siteUrl } from "../site";
 import { countryMeta } from "../data/afrobeats";
-import { HEAD_TO_HEAD } from "../lib/headToHead";
+import { pickerArtists, pickerReleases } from "../lib/comparePicker";
 import {
   artistBySlug,
   comparableArtists,
@@ -88,21 +88,6 @@ function href(sp: SP, patch: Record<string, string | null>) {
   return s ? `/compare?${s}` : "/compare";
 }
 
-/** The board's own curated pairings, reused as suggestions — they are better
- *  than anything a cold picker would offer, and two of them are Paul's. */
-function suggestionsFor(slug: string | undefined, exclude: string | undefined) {
-  const partner = slug ? HEAD_TO_HEAD[slug] : undefined;
-  const ordered = [
-    ...(partner ? [partner] : []),
-    "burna-boy", "wizkid", "rema", "tems", "tyla", "davido", "asake", "ayra-starr",
-  ];
-  return [...new Set(ordered)]
-    .filter((s) => s !== slug && s !== exclude)
-    .map((s) => artistBySlug(s))
-    .filter((a): a is ComparableArtist => Boolean(a))
-    .slice(0, 6);
-}
-
 function Slot({
   artist, release, priced, sp, side, mode,
 }: {
@@ -114,10 +99,13 @@ function Slot({
   mode: "songs" | "artists";
 }) {
   if (!artist) {
-    const others = suggestionsFor(one(sp[side === "a" ? "b" : "a"]), undefined);
+    // EVERY artist on the board, minus whoever is already on the other side —
+    // never a shortlist. The board's curated partner for the other side leads.
+    const otherSlug = one(sp[side === "a" ? "b" : "a"]);
+    const others = pickerArtists(otherSlug, otherSlug);
     return (
       <div className={`${styles.slot} ${styles.slotEmpty}`}>
-        <p className={styles.prompt}>Choose who to compare against</p>
+        <p className={styles.prompt}>{otherSlug ? "Choose who to compare against" : "Choose an artist"}</p>
         <div className={styles.chips}>
           {others.map((o) => (
             <Link key={o.slug} href={href(sp, { [side]: o.slug })} className={styles.chip}>
@@ -198,11 +186,12 @@ function SongPicker({
   sp: SP;
   query: string;
 }) {
-  const q = query.trim().toLowerCase();
+  const q = query.trim();
   const all = artist.releases;
-  const matches = q
-    ? all.filter((r) => r.title.toLowerCase().includes(q) || (r.credit ?? "").toLowerCase().includes(q))
-    : all.slice(0, 8);
+  // EVERY certified release, always — search narrows, it never hides. The first
+  // version showed eight of eighty-five and the rest were reachable only by
+  // typing the exact title.
+  const matches = pickerReleases(artist, q);
   const field = side === "a" ? "qa" : "qb";
   const target = side === "a" ? "sa" : "sb";
 
@@ -218,7 +207,7 @@ function SongPicker({
         <span className={styles.pickLabel}>
           {q
             ? `${matches.length} of ${all.length} match “${query}”`
-            : `${artist.name} · ${all.length} certified releases`}
+            : `${artist.name} · all ${all.length} certified releases`}
         </span>
         <Link
           href={href(sp, { [side]: null, [target]: null, [field]: null })}
@@ -235,7 +224,7 @@ function SongPicker({
             name={field}
             defaultValue={query}
             className={styles.searchInput}
-            placeholder={`Search ${artist.name}'s releases`}
+            placeholder={`Narrow ${artist.name}'s releases`}
             aria-label={`Search ${artist.name}'s certified releases`}
           />
           <button type="submit" className={styles.searchBtn}>Search</button>
@@ -327,8 +316,11 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
     mode === "songs" && songA && songB && a && b && a.slug !== b.slug &&
     songA.title.toLowerCase() === songB.title.toLowerCase() &&
     (songA.isFeature || songB.isFeature);
+  // An artist against themselves is not a comparison either. The picker no
+  // longer offers it, but a URL can still say so.
+  const sameArtist = Boolean(a && b && a.slug === b.slug);
 
-  const c = both && !sameRecording
+  const c = both && !sameRecording && !sameArtist
     ? compare(a!, b!, {
         ...(ngParam ? { includeNigeria: ngParam === "1" } : {}),
         includeFeatures,
@@ -347,12 +339,12 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   const spa = songPriced(a, songA, ngForSongs);
   const spb = songPriced(b, songB, ngForSongs);
 
-  const useSongs = Boolean(mode === "songs" && spa && spb && !sameRecording);
+  const useSongs = Boolean(mode === "songs" && spa && spb && !sameRecording && !sameArtist);
   // "Filled" means different things in the two modes, and conflating them was a
   // real bug: in song mode with no song picked yet, the page fell through to
   // ARTIST totals and printed them under the artists' names. In song mode
   // nothing renders until BOTH songs are chosen.
-  const ready = mode === "songs" ? useSongs : both && !sameRecording;
+  const ready = mode === "songs" ? useSongs : both && !sameRecording && !sameArtist;
   const partial = mode === "songs" ? Boolean(spa || spb) : Boolean(a);
 
   // The side being described, whichever mode is on — and in song mode with one
@@ -497,6 +489,12 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           </span>
           <Link href="/methodology#certified-units" className={styles.howLink}>How this is counted ↗</Link>
         </div>
+
+        {sameArtist && (
+          <p className={styles.why}>
+            <strong>That is {a!.name} on both sides.</strong> Pick a different artist for one of them.
+          </p>
+        )}
 
         {sameRecording && (
           <p className={styles.why}>
