@@ -16,7 +16,7 @@ import {
 } from "../../data/charts";
 import { liveCharts } from "../../data/liveCharts";
 import { daiDaiCertCount } from "../../data/certifications";
-import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
+import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { daiDaiEsOgId } from "./ogId";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../../lib/artistImages";
@@ -186,7 +186,7 @@ export default function DaiDaiPageES() {
     { v: "19 jul", l: "Shakira y Burna Boy interpretaron “Dai Dai” en vivo en el primer show de medio tiempo de una Final del Mundial de la FIFA" },
   ];
 
-  const numberGroups = [
+  const numberGroups: { label: string; intro: string; items: { v: string; l: string }[]}[] = [
     {
       label: "Las rachas en streaming",
       intro: `Las rachas diarias y semanales, según la última lectura de cada lista — la racha en Spotify hasta la lista del ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES}; los días en el número 1, hasta la del ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES}.`,
@@ -238,7 +238,7 @@ export default function DaiDaiPageES() {
       label: "El video",
       intro: "El video de “Dai Dai”, con carrera propia.",
       items: [
-        { v: DAI_DAI_VIDEO_VIEWS, l: "visualizaciones en YouTube — 600 millones en 67 días, el video musical más rápido de la carrera de ambos artistas hasta esa cifra y el único de 2026 en alcanzarla. Superó los 500 millones en 59,4 días (el 12.º más rápido de la historia) y los 700 millones en 74,8 días — el 8.º video musical más rápido en la historia de YouTube" },
+        { v: DAI_DAI_VIDEO_VIEWS, l: `visualizaciones en YouTube — mil millones en ${DAI_DAI_1B_DAYS} días, el ${DAI_DAI_1B_RANK_ES} más rápido de la historia de YouTube y el primer video de 2026 en alcanzarlos. Antes: 500 millones en 59,4 días, 600 millones en 67 días (el más rápido de la carrera de ambos artistas hasta esa cifra) y 700 millones en 74,8 días` },
         { v: `${daiDaiYouTubeDaysAtNo1} días`, l: "seguidos en el número 1 como el video musical más visto del mundo en YouTube, del 9 de junio a la lista del 27 de agosto. Esa racha se cortó —el video quedó en el número 2 en las listas del 5 y el 6 de septiembre— y desde entonces ha recuperado la cima: número 1 otra vez en la lista del 7 de septiembre de 2026, en su día 108 en la lista. Los 80 son un total cerrado, no una racha en curso; el nuevo tramo empezó un día que nadie ha leído. Ya supera los 6,1 millones de “me gusta”" },
       ],
     },

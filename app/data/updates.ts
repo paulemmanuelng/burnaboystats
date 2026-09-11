@@ -39,6 +39,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-11",
+    category: "Streaming",
+    text: "The “Dai Dai” video reached a billion YouTube views in 105 days — joint fifth-fastest music video in YouTube history, level with “APT.” by ROSÉ & Bruno Mars, behind only “Hello” (88 days), “Shape of You” and “Despacito” (97) and “Mi Gente” (103). Africa's Biggest now carries that leaderboard — the top five, ties included, the one world board on the page where the record is a song's rather than an artist's; the days are counted from each video's premiere, as published by Chart Data and Pop Core.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-09-12",
     category: "Certifications",
     text: "A new page: certified units, compared. Pick any two of the sixteen artists on this site — or any two of their certified records — and every plaque is priced at the level its own certifying body publishes today, then added up country by country under identical rules. Every figure is a floor: a Platinum single in the UK means at least 600,000 and could be 1,190,000, so the page says “at least” and never “sold”. One plaque per release per country, at its current tier; streams-based bodies converted with their own published download-equivalence; plaques from bodies that publish no comparable threshold — Sweden, Mexico and Poland among them — listed and named, never summed; Nigeria on its own line, folded in when both artists hold most of their plaques there. The full threshold table for all 27 bodies, and which of them raised their levels since 2015, lives on the methodology page.",

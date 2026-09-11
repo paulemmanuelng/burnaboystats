@@ -167,8 +167,10 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
     if (Number.isNaN(n)) return null;
     return n * ({ K: 1e3, M: 1e6, B: 1e9 }[m[2] ?? ""] ?? 1);
   };
+  // "N days" is a placing too — fewer is better on the fastest-to-a-billion
+  // board — so it is judged ascending like a rank.
   const rank = (v: string): number | null => {
-    const m = /^(?:No\.\s*|#)(\d+)$/.exec(v.trim());
+    const m = /^(?:No\.\s*|#)(\d+)$/.exec(v.trim()) ?? /^(\d+) days$/.exec(v.trim());
     return m ? Number(m[1]) : null;
   };
 
@@ -248,7 +250,8 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
     // list has gone quiet again rather than gone right. 16, not 15 boards:
     // most-streamed contributes its 2026 and 2025 rows separately, and the
     // three earlier years print no totals.
-    expect(judged, "ranked lists actually judged").toBe(16);
+    // 17 since 11 Sep 2026: the fastest-to-a-billion board, judged as days.
+    expect(judged, "ranked lists actually judged").toBe(17);
   });
 });
 

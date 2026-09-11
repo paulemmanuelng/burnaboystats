@@ -1,3 +1,4 @@
+import { statBoxes, HIGHLIGHT, rankOf } from "./africasBiggest";
 // "Dai Dai"'s two live figures, in one place.
 //
 // These used to be declared inside app/dai-dai/page.tsx, which was fine while
@@ -16,6 +17,23 @@ export const DAI_DAI_VIDEO_VIEWS = "1.04B";
 
 // Total Spotify streams for "Dai Dai" — same live pipeline as the video count.
 export const DAI_DAI_SPOTIFY_STREAMS = "433M";
+
+// ---------------------------------------------------------------------------
+// The billion-views milestone, read from the leaderboard that ranks it — the
+// "fastest to a billion" board on /records/africas-biggest — so the Dai Dai
+// page's card and that board can never disagree. Ranks are competition
+// ranks (a tie shares one); "joint 5th" / "5.º (empatado)" are spelled per
+// edition here, derived, so both cards move the day the board does.
+const billionBoard = statBoxes.find((b) => b.id === "fastest-to-a-billion-youtube");
+const billionEntries = billionBoard?.entries ?? [];
+const ownIndex = billionEntries.findIndex((e) => e.name === HIGHLIGHT);
+export const DAI_DAI_1B_DAYS = parseInt(billionEntries[ownIndex]?.value ?? "0", 10);
+export const daiDaiBillionRank = ownIndex < 0 ? 0 : rankOf(billionEntries, ownIndex);
+export const daiDaiBillionTied =
+  billionEntries.filter((e) => parseInt(e.value ?? "", 10) === DAI_DAI_1B_DAYS).length > 1;
+const ordinalEn = (n: number) => `${n}${["th", "st", "nd", "rd"][(n % 100 > 10 && n % 100 < 14) || n % 10 > 3 ? 0 : n % 10]}`;
+export const DAI_DAI_1B_RANK_EN = `${daiDaiBillionTied ? "joint " : ""}${ordinalEn(daiDaiBillionRank)}`;
+export const DAI_DAI_1B_RANK_ES = `${daiDaiBillionRank}.º${daiDaiBillionTied ? " (empatado)" : ""}`;
 
 // ---------------------------------------------------------------------------
 // The Spotify Global Daily Top Songs run.

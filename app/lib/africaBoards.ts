@@ -1,4 +1,4 @@
-import { statBoxes, HIGHLIGHT, type LeaderboardBox } from "../data/africasBiggest";
+import { statBoxes, HIGHLIGHT, rankOf, type LeaderboardBox } from "../data/africasBiggest";
 
 /**
  * The fourteen boards, shaped for mobile screen 16.
@@ -92,13 +92,13 @@ function listBoard(box: LeaderboardBox): Board {
     meta: box.meta,
     note: box.note,
     rows: entries.map((e, i) => ({
-      rank: String(i + 1).padStart(2, "0"),
+      rank: String(rankOf(entries, i)).padStart(2, "0"),
       name: e.name,
       sub: e.sub ?? "",
       value: e.value ?? "",
       his: e.name === HIGHLIGHT,
     })),
-    badge: leads ? "Leads" : pos < 0 ? "—" : `No. ${pos + 1}`,
+    badge: leads ? "Leads" : pos < 0 ? "—" : `No. ${rankOf(entries, pos)}`,
     leads,
   };
 }

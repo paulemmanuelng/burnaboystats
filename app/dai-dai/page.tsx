@@ -11,7 +11,7 @@ import { cardinalWord } from "../lib/plural";
 import { daiDaiNumberOnes, daiDaiChartEntryCount, allChartItems, CHART_COUNTRIES, weeksAtPeak, weeksOnChart } from "../data/charts";
 import { liveCharts } from "../data/liveCharts";
 import { daiDaiCertCount } from "../data/certifications";
-import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../data/daiDai";
+import { DAI_DAI_VIDEO_VIEWS, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_SPOTIFY_STREAMS, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF, daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1 } from "../data/daiDai";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../lib/artistImages";
 import { daiDaiOgId } from "./ogId";
@@ -209,7 +209,7 @@ export default function DaiDaiPage() {
     { v: "19 Jul", l: "Shakira & Burna Boy performed “Dai Dai” live at the first-ever FIFA World Cup Final halftime show" },
   ];
 
-  const numberGroups: { label: string; intro: string; items: { v: string; l: string }[] }[] = [
+  const numberGroups: { label: string; intro: string; items: { v: string; l: string }[]}[] = [
     {
       label: "The streaming streaks",
       intro: `The daily and weekly runs, as last read off each chart — the Spotify streak through ${DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG}, the days at No. 1 through ${DAI_DAI_SPOTIFY_NO1_READ_ON_LONG}.`,
@@ -264,7 +264,7 @@ export default function DaiDaiPage() {
       label: "The video",
       intro: "The “Dai Dai” video, on a tear of its own.",
       items: [
-        { v: DAI_DAI_VIDEO_VIEWS, l: "YouTube views for the “Dai Dai” video — 600 million in 67 days, the fastest music video of either artist's career to the mark and the first and only 2026 video to reach it. It passed 500 million in 59.4 days (12th fastest ever) and 700 million in 74.8 days — the 8th fastest music video in YouTube history" },
+        { v: DAI_DAI_VIDEO_VIEWS, l: `YouTube views for the “Dai Dai” video — one billion in ${DAI_DAI_1B_DAYS} days, ${DAI_DAI_1B_RANK_EN} fastest in YouTube history and the first 2026 video to reach it. Before that: 500 million in 59.4 days, 600 million in 67 days (the fastest of either artist's career to the mark) and 700 million in 74.8 days` },
         { v: `${daiDaiYouTubeDaysAtNo1} days`, l: "straight at No. 1 as the most-viewed music video on YouTube worldwide, from 9 June through the chart of 27 August. That run then broke — the video sat at No. 2 on the charts dated 5 and 6 September — and it has since retaken the top: No. 1 again on the chart dated 7 September 2026, on its 108th day on the chart. The 80 is a closed count, not a running one; the new spell began on a day nobody has read. Now past 6.1 million likes" },
       ],
     },
