@@ -159,6 +159,37 @@ p.206 of the Global Music Report Premium Edition (£19,950), so it is not.
 Burna's not-comparable plaques: **13 → 10**. Remaining: Sweden 6, Poland 2,
 Colombia 1, Greece 1.
 
+## 11 Sep 2026 (evening) — the Greek and Polish "thresholds" came back, via a fan DM
+
+A contact sent Paul two AI-formatted tables: Greece "Digital Singles
+(Streaming-Based), since 2021: Gold 1,000,000 / Platinum 2,000,000 / Diamond
+10,000,000 streams", and Poland "Singles: Gold 125,000 PLN / Platinum 250,000
+PLN", read as "Gold single = 125k units … total 375k". Re-checked at both bodies
+before answering:
+
+- **Greece — still nothing at the body.** All 25 pages of ifpi.gr re-fetched
+  (Greek + English, plus the Digital Singles chart with its `Award` column of
+  G/P codes). The only "gold"/"platinum" strings on the whole site are album
+  titles (*ABBA Gold*, *Solid Gold Hits*) and history trivia. No criteria page,
+  no "since 2021", no stream levels, no ratio. Wikipedia's Greece singles row
+  reads **3,000 / 6,000 shipments**, cited to IFPI's *International
+  Certification Award levels* (June 2013) and a 2012 ifpi.gr page — the last
+  figure IFPI ever published for Greek singles, physical-era. The 1M/2M/10M
+  table is the same grade-D claim as the private-email screenshot above, now
+  wearing an AI table. **Not applied.** Greece stays listed, not priced.
+- **Poland — the screenshot confirms the exclusion.** Its own heading is
+  "Gross Revenue Thresholds" and its own text says singles are "measured purely
+  by overall generated revenue" — 125,000 / 250,000 **PLN**, matching ZPAV's
+  regulamin. Treating złoty as units ("125k units") is a currency-to-units
+  substitution; there is no per-unit price to divide by. **Not applied.**
+  Poland singles stay listed, not priced; Polish albums are units and ARE priced.
+- Stream ≠ unit anywhere on this site. Where a body publishes stream levels
+  and no ratio (Sweden, Mexico) the page converts at 100 streams per unit and
+  marks it §; a body that publishes no levels at all cannot even get that.
+
+Burna's four listed-not-priced plaques are unchanged: We Pray PL Platinum, Dai
+Dai PL Gold, Dai Dai GR Gold, Dai Dai CO Gold (Sony Music Colombia).
+
 ## 12 Sep 2026 — every plaque counts (Paul: "no cert should go unseen")
 
 Two changes to the page's defaults and one to its rules, all Paul's call after
