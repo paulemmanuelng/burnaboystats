@@ -180,8 +180,31 @@ describe("rule 3 — what cannot be priced is counted and named", () => {
   });
 
   it("excluded plaques never contribute units", () => {
-    expect(unitsForCert({ c: "SE", level: "Platinum" }, "single").units).toBeNull();
+    // Poland measures singles in złoty of revenue; its albums are units.
+    expect(unitsForCert({ c: "PL", level: "Platinum" }, "single").units).toBeNull();
+    expect(unitsForCert({ c: "PL", level: "Platinum" }, "album").units).toBe(30_000);
+  });
+
+  it("Sweden and Mexico are priced at the stated 100-streams-to-a-unit ratio, and say so", () => {
+    // Paul, 12 Sep 2026: "no cert should go unseen". Both bodies publish song
+    // levels in streams and no download-equivalence (ifpi.se; AMPROFON's
+    // criteria PDF), so the page converts at the ratio Denmark and Norway
+    // publish and marks every such line with § — see `assumed`.
+    expect(unitsForCert({ c: "SE", level: "Gold" }, "single").units).toBe(60_000);
+    expect(unitsForCert({ c: "SE", level: "Platinum", x: 7 }, "single").units).toBe(840_000);
     expect(unitsForCert({ c: "SE", level: "Platinum" }, "album").units).toBe(30_000);
+    expect(unitsForCert({ c: "MX", level: "Gold" }, "single").units).toBe(220_000);
+    expect(unitsForCert({ c: "MX", level: "Diamond" }, "single").units).toBe(2_200_000);
+    expect(CERT_THRESHOLDS.SE.assumed).toMatch(/100 streams to a unit/);
+    expect(CERT_THRESHOLDS.MX.assumed).toMatch(/100 streams to a unit/);
+    expect(CERT_THRESHOLDS.SE.singleRaw?.gold).toBe(6_000_000);
+    expect(CERT_THRESHOLDS.MX.singleRaw?.gold).toBe(22_000_000);
+    const p = priceArtist(bySlug("burna-boy"), { includeNigeria: false, includeFeatures: true });
+    const se = p.byCountry.find((l) => l.country === "SE");
+    expect(se?.counted).toBe(true);
+    expect(se?.assumed).toMatch(/Ifpi Sverige/);
+    expect(se?.notCounted).toBeUndefined();
+    expect(p.assumptions.some((a) => /Ifpi Sverige/.test(a))).toBe(true);
   });
 });
 
@@ -288,7 +311,7 @@ describe("the features toggle", () => {
 });
 
 describe("the comparison", () => {
-  it("reproduces the design's fixture: 915,333 vs 6,180,000 over 10 rows", () => {
+  it("reproduces the design's fixture — 975,333 vs 6,180,000 since Sweden is priced — over 10 rows", () => {
     // The design file computed 915,333 vs 6,340,000 from today's thresholds
     // before the engine existed. One correction the design could not have
     // known about: its 6,340,000 carried Essence at 7x Platinum in South
@@ -299,18 +322,18 @@ describe("the comparison", () => {
     const c = compare(bySlug("burna-boy"), bySlug("wizkid"), { includeNigeria: false });
     const g = priceRelease(bySlug("burna-boy"), "Gbona", { includeNigeria: false, includeFeatures: true })!;
     const e = priceRelease(bySlug("wizkid"), "Essence", { includeNigeria: false, includeFeatures: true })!;
-    expect(g.total).toBe(915_333);
+    // 915,333 in the design; +60,000 since 12 Sep 2026, when Gbona's Swedish
+    // Gold was priced at 100 streams to a unit (§) instead of listed unsummed.
+    expect(g.total).toBe(975_333);
     expect(e.total).toBe(6_180_000);
-    // Union is 10 countries, not 9: Gbona's Swedish Gold is LISTED though it
-    // cannot be priced. Dropping it would state he holds no Swedish plaque.
     const union = new Set([
       ...g.byCountry.map((l) => l.country), ...g.listed.map((l) => l.country),
       ...e.byCountry.map((l) => l.country), ...e.listed.map((l) => l.country),
     ]);
     expect(union.size).toBe(10);
-    expect(g.listed.map((l) => l.country)).toContain("SE");
-    expect(g.listed.find((l) => l.country === "SE")?.counted).toBe(false);
-    expect(g.listed.find((l) => l.country === "SE")?.reason).toMatch(/Sverige|stream/i);
+    expect(g.byCountry.find((l) => l.country === "SE")?.counted).toBe(true);
+    expect(g.byCountry.find((l) => l.country === "SE")?.assumed).toMatch(/Sverige|stream/i);
+    expect(g.listed).toHaveLength(0);
     expect(c.nigeria.on).toBe(false);
   });
 
@@ -367,12 +390,18 @@ describe("the comparison", () => {
     }
   });
 
-  it("keeps a side's top three exclusives and folds only past six", () => {
+  it("keeps a side's top three priced exclusives and folds only past six; unpriced rows stay", () => {
     const c = compare(bySlug("burna-boy"), bySlug("olamide"));
     const tail = c.collapsed.find((t) => t.side === "a");
     expect(tail).toBeTruthy();
-    const shownExclusive = c.rows.filter((r) => !r.contested && r.a && r.country !== "NG");
-    expect(shownExclusive.length).toBe(3);
+    const unpriced = (r: (typeof c.rows)[number]) => (r.a && !r.a.counted) || (r.b && !r.b.counted) || r.a?.notCounted || r.b?.notCounted;
+    const shownPricedExclusive = c.rows.filter((r) => !r.contested && r.a && r.country !== "NG" && !unpriced(r));
+    expect(shownPricedExclusive.length).toBe(3);
+    // Burna's Polish, Greek and Colombian plaques are his alone and unpriced:
+    // on screen, never in the tail.
+    const shownUnpriced = c.rows.filter((r) => !r.contested && r.a && r.country !== "NG" && unpriced(r));
+    expect(shownUnpriced.map((r) => r.country).sort()).toEqual(["CO", "GR", "PL"]);
+    expect(tail!.rows.some(unpriced)).toBe(false);
     expect(tail!.units).toBeGreaterThan(0);
   });
 
@@ -571,13 +600,23 @@ describe("audit fixes, 11 Sep 2026 — each one had a live counter-example", () 
   });
 
   it("a country holding both priced and unpriced plaques shows both, never drops one", () => {
-    // Burna's Swedish album Gold prices; his five Swedish single plaques do not.
-    // The line must carry the five, or the table says he holds one Swedish plaque.
-    const p = priceArtist(bySlug("burna-boy"), { includeNigeria: false, includeFeatures: false });
-    const se = p.byCountry.find((l) => l.country === "SE");
-    expect(se?.counted).toBe(true);
-    expect(se?.notCounted?.plaques).toBe(5);
-    expect(se?.notCounted?.reason).toMatch(/Sverige|stream/i);
+    // Rema's Polish album Platinum prices (ZPAV's albums are units); his
+    // "Calm Down" Polish Diamond does not (singles are złoty of revenue). The
+    // line must carry both, or the table says he holds one Polish plaque.
+    const p = priceArtist(bySlug("rema"), { includeNigeria: false, includeFeatures: true });
+    const pl = p.byCountry.find((l) => l.country === "PL");
+    expect(pl?.counted).toBe(true);
+    expect(pl?.notCounted?.plaques).toBe(1);
+    expect(pl?.notCounted?.reason).toMatch(/ZPAV|revenue/i);
+  });
+
+  it("a row carrying an unpriced plaque never folds into the collapsed tail", () => {
+    // "Not counted" has to be visible, or the plaque is unseen as well as
+    // unsummed. Burna Boy vs Wizkid: Colombia is Burna's alone and unpriced.
+    const c = compare(bySlug("burna-boy"), bySlug("wizkid"), { includeNigeria: false, includeFeatures: true });
+    const folded = c.collapsed.flatMap((t) => t.rows);
+    expect(folded.some((r) => (r.a && !r.a.counted) || (r.b && !r.b.counted) || r.a?.notCounted || r.b?.notCounted)).toBe(false);
+    expect(c.rows.some((r) => r.country === "CO")).toBe(true);
   });
 
   it("a listed-not-counted chip is the HIGHEST plaque held, not the first enumerated", () => {
@@ -682,12 +721,13 @@ describe("today's thresholds, with the floor kept beside them", () => {
 
   it("a body that changed WHAT it measures cannot have singles priced from the old regime", () => {
     // ZPAV certified singles in units only until Feb 2017 and in PLN revenue
-    // since; AMPROFON in units until Oct 2020 and in raw streams since. Every
-    // Polish and Mexican single on this roster is from the later regime.
+    // since; every Polish single on this roster is from the revenue regime,
+    // and revenue converts to units at no ratio. (Mexico moved to streams and
+    // is priced at the stated 100:1 since 12 Sep 2026 — see the § test.)
     expect(thresholdFor("PL", "single", "Gold")).toBeNull();
-    expect(thresholdFor("MX", "single", "Gold")).toBeNull();
     expect(exclusionFor("PL", "single")).toMatch(/revenue/i);
-    expect(exclusionFor("MX", "single")).toMatch(/stream/i);
+    expect(thresholdFor("MX", "single", "Gold")).toBe(220_000);
+    expect(exclusionFor("MX", "single")).toBeNull();
   });
 
   it("every German single on the roster falls in BVMI's post-2014 band", () => {
