@@ -177,3 +177,48 @@ promise is "at least". Options: (a) keep current + ‡ disclosure (live now for 
 (b) price at the lowest threshold the body has applied since 2018 — every figure a
 true floor, recent plaques understated; (c) era-correct where dated, lowest where
 not. The `vintage` field and ‡ footnote are the plumbing for whichever is chosen.
+
+## The floor rule — APPLIED (11 Sep 2026)
+
+Paul delegated the choice; the floor rule won because it is the only one under
+which "at least" is never false for anyone. **Every tier is now priced at the
+LOWEST level the body applied at any point from 1 Jan 2015 to a record on this
+roster.** Today's value sits beside it in `current` where it differs, and every
+such line carries ‡.
+
+Established by three passes over the eleven bodies that moved:
+1. **Extract** — one agent per body, from the body's own dated rules (grade A on
+   ten, B on Mexico). 22 agents, 3.2M tokens.
+2. **Verify** — independent re-derivation. Three "disputes", all enrichments: the
+   extractors had missed **FR single Diamond 233,333** and **DE single Diamond
+   1,000,000**, both of which the site prices.
+3. **Red team, maximum effort** — one agent per body told to *break* the claim.
+   2.5M tokens. Eight floors survived every attack. Three broke:
+
+| | what broke | resolution |
+|---|---|---|
+| **Mexico** | the 30,000-unit single "floor" is from before Nov 2020; singles have been raw streams since, and every Mexican single here is from that regime | singles **stay excluded** — a unit floor from a different measure is not a floor |
+| **Poland** | same, and worse than the research said: ZPAV went revenue-only on **1 Mar 2017**, not 2025 | singles **stay excluded** |
+| **Germany** | a lower 150,000/300,000 single band existed for records first released 2003–May 2014 | **not applied** — BVMI keys to release date and every German single here was released 2016+; 200,000/400,000 is the band that ever applied to them |
+
+The Mexican and Polish breaks are the trap I pointed the red team at in advance;
+the German one is the refinement they found unprompted.
+
+**The floors as applied** (pricing value → today's):
+
+```
+ZA  single 10,000/20,000        → 20,000/40,000       album 15,000/30,000 → 25,000/50,000
+ES  single 20,000/40,000        → 50,000/100,000
+FR  single 66,666/133,333/233,333 → 100,000/200,000/333,333   (10M/20M/35M streams ÷ 150, same-period ratio)
+HU  single 1,500/3,000          → 5,000/10,000        album 1,000/2,000 → 2,000/4,000
+IT  single 15,000/30,000/300,000 → 100,000/200,000/2,000,000
+MX  album  30,000/60,000/300,000 → 70,000/140,000/700,000     (singles excluded)
+NL  single 15,000/30,000        → 46,511/93,023       (Diamant 232,558 unchanged — no lower level existed)
+PL  album  10,000/20,000/100,000 → 15,000/30,000/150,000      (singles excluded)
+PT  single 5,000/10,000/100,000 → 12,000/25,000/250,000
+DE  single Diamond 1,000,000    → 1,500,000           (Gold/Platinum 200,000/400,000: the band that applied)
+SE  unchanged
+```
+
+**Effect on the design fixture:** Gbona 915,333 → **808,333**; Essence 6,180,000 →
+**6,086,666**. Both recorded in the tests with the arithmetic.

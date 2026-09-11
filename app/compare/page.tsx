@@ -645,7 +645,8 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
                 <p><strong>† Multiplier assumed</strong> — {noteSource.caveats.join(" ")}</p>
               )}
               {visibleVintage && noteSource.vintages.length > 0 && (
-                <p><strong>‡ Thresholds moved</strong> — {noteSource.vintages.join(" ")}</p>
+                <p><strong>‡ Priced at the body&apos;s lowest level since 2015</strong> — so the figure is a floor
+                  whatever the award date; today&apos;s threshold is higher. {noteSource.vintages.join(" ")}</p>
               )}
             </div>
           </>

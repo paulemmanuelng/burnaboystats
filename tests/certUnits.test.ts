@@ -51,9 +51,10 @@ describe("thresholds are sourced, never invented", () => {
     const cases: [string, CertFormat, keyof typeof CERT_THRESHOLDS.FR.single, number][] = [
       ["FR", "single", "gold", 150],
       ["FR", "single", "platinum", 150],
+      ["FR", "single", "diamond", 150],
       ["DK", "single", "gold", 100],
       ["NO", "single", "platinum", 100],
-      ["NL", "single", "gold", 215],
+      ["NL", "single", "diamond", 215],   // NL Gold/Platinum are now unit floors, not stream conversions
       ["NL", "album", "platinum", 2150],
     ];
     for (const [code, fmt, tier, divisor] of cases) {
@@ -66,11 +67,13 @@ describe("thresholds are sourced, never invented", () => {
     }
   });
 
-  it("France's Gold single is 100,000 units, not 15,000,000", () => {
-    // The whole point of the normalisation pass, pinned to a literal so a
-    // regression to the printed stream count fails loudly.
-    expect(thresholdFor("FR", "single", "Gold")).toBe(100_000);
-    expect(CERT_THRESHOLDS.FR.singleRaw?.gold).toBe(15_000_000);
+  it("France's Gold single is 66,666 units — the 2016–18 floor — not 10,000,000 streams", () => {
+    // Pinned to a literal so a regression to the printed stream count fails
+    // loudly. 66,666 is SNEP's 2016–April 2018 level (10,000,000 équivalent
+    // streams at the 150:1 ratio of the same period); today's is 100,000.
+    expect(thresholdFor("FR", "single", "Gold")).toBe(66_666);
+    expect(CERT_THRESHOLDS.FR.singleRaw?.gold).toBe(10_000_000);
+    expect(CERT_THRESHOLDS.FR.current?.single?.gold).toBe(100_000);
   });
 
   it("refuses to price what no body publishes", () => {
@@ -82,9 +85,10 @@ describe("thresholds are sourced, never invented", () => {
       expect(thresholdFor(code, "single", "Platinum")).toBeNull();
       expect(thresholdFor(code, "album", "Platinum")).toBeNull();
     }
-    // Poland is the split case: singles are PLN revenue, albums are units.
+    // Poland is the split case: singles are PLN revenue, albums are units —
+    // priced at the pre-2025 floor of 20,000 (today's is 30,000).
     expect(thresholdFor("PL", "single", "Platinum")).toBeNull();
-    expect(thresholdFor("PL", "album", "Platinum")).toBe(30_000);
+    expect(thresholdFor("PL", "album", "Platinum")).toBe(20_000);
   });
 
   it("a tier the body does not award stays null", () => {
@@ -285,18 +289,22 @@ describe("the features toggle", () => {
 });
 
 describe("the comparison", () => {
-  it("reproduces the design's fixture: 915,333 vs 6,180,000 over 10 rows", () => {
-    // The design file computed these from the published thresholds before the
-    // engine existed. They are the contract between the two — with one
-    // correction the design could not have known about: its 6,340,000 carried
-    // Essence at 7x Platinum in South Africa, an upgrade RiSA's register does
-    // not confirm (its badge is Multi-Platinum, at least 3x). 6,340,000 −
-    // 160,000 = 6,180,000, and every other cell is unchanged.
+  it("reproduces the design's fixture under the floor rule: 808,333 vs 6,086,666 over 10 rows", () => {
+    // The design file computed 915,333 vs 6,340,000 from TODAY'S thresholds
+    // before the engine existed. Two things moved it since, both deliberate:
+    //  • Essence was carried at 7x Platinum in South Africa, an upgrade RiSA's
+    //    register does not confirm (its badge is Multi-Platinum, at least 3x).
+    //  • Paul's floor rule (11 Sep 2026): every tier is priced at the lowest
+    //    level the body applied since 2015. Gbona's French Diamond is 233,333
+    //    not 333,333 and its Portuguese Gold 5,000 not 12,000 (−107,000);
+    //    Essence's South African 3x is 60,000 not 120,000 and its French Gold
+    //    66,666 not 100,000 (−93,334).
+    // Every other cell is unchanged, and the union is still ten rows.
     const c = compare(bySlug("burna-boy"), bySlug("wizkid"), { includeNigeria: false });
     const g = priceRelease(bySlug("burna-boy"), "Gbona", { includeNigeria: false, includeFeatures: true })!;
     const e = priceRelease(bySlug("wizkid"), "Essence", { includeNigeria: false, includeFeatures: true })!;
-    expect(g.total).toBe(915_333);
-    expect(e.total).toBe(6_180_000);
+    expect(g.total).toBe(808_333);
+    expect(e.total).toBe(6_086_666);
     // Union is 10 countries, not 9: Gbona's Swedish Gold is LISTED though it
     // cannot be priced. Dropping it would state he holds no Swedish plaque.
     const union = new Set([
@@ -312,7 +320,7 @@ describe("the comparison", () => {
 
   it("Nigeria included adds Essence's 200,000 and nothing else", () => {
     const e = priceRelease(bySlug("wizkid"), "Essence", { includeNigeria: true, includeFeatures: true })!;
-    expect(e.total).toBe(6_380_000);
+    expect(e.total).toBe(6_286_666);
     expect(e.nigeria.units).toBe(200_000);
   });
 
@@ -593,9 +601,9 @@ describe("audit fixes, 11 Sep 2026 — each one had a live counter-example", () 
     expect(p.caveats.some((c) => /RMNZ/.test(c))).toBe(true);
   });
 
-  it("marks every South African line with the 2024 threshold change", () => {
+  it("marks every South African line with the floor note", () => {
     const p = priceArtist(bySlug("wizkid"), { includeNigeria: false, includeFeatures: false });
-    expect(p.byCountry.find((l) => l.country === "ZA")?.vintage).toMatch(/2024/);
+    expect(p.byCountry.find((l) => l.country === "ZA")?.vintage).toMatch(/pre-2024|floor/i);
     expect(p.vintages.length).toBeGreaterThan(0);
   });
 
@@ -630,8 +638,8 @@ describe("audit fixes, 11 Sep 2026 — each one had a live counter-example", () 
   });
 
   it("never rounds a normalised floor upward", () => {
-    expect(thresholdFor("NL", "single", "Gold")).toBe(46_511);   // 10,000,000 / 215 = 46,511.6
-    expect(thresholdFor("NL", "album", "Gold")).toBe(18_604);    // 40,000,000 / 2150 = 18,604.65
+    expect(CERT_THRESHOLDS.NL.current?.single?.gold).toBe(46_511); // 10,000,000 / 215 = 46,511.6
+    expect(thresholdFor("NL", "album", "Gold")).toBe(18_604);       // 40,000,000 / 2150 = 18,604.65
   });
 
   it("prices Czechia and Slovakia off ČNS IFPI's own download equivalence", () => {
@@ -646,5 +654,61 @@ describe("audit fixes, 11 Sep 2026 — each one had a live counter-example", () 
     const dd = priceRelease(bySlug("burna-boy"), "Dai Dai", { includeNigeria: true, includeFeatures: true })!;
     expect(dd.byCountry.find((l) => l.country === "CZ")?.units).toBe(11_261);
     expect(dd.byCountry.find((l) => l.country === "SK")?.units).toBe(7_834);
+  });
+});
+
+
+describe("the floor rule — lowest threshold the body applied since 2015", () => {
+  it("prices every changed body at its in-window minimum, never today's higher level", () => {
+    // Each pair was established from the body's own dated rules, verified, and
+    // then attacked at maximum effort by an agent told to find a lower value.
+    const floors: [string, CertFormat, "Gold" | "Platinum" | "Diamond", number, number][] = [
+      ["ZA", "single", "Platinum", 20_000, 40_000],
+      ["ZA", "album", "Gold", 15_000, 25_000],
+      ["ES", "single", "Platinum", 40_000, 100_000],
+      ["IT", "single", "Platinum", 30_000, 200_000],
+      ["PT", "single", "Platinum", 10_000, 25_000],
+      ["NL", "single", "Gold", 15_000, 46_511],
+      ["HU", "single", "Gold", 1_500, 5_000],
+      ["DE", "single", "Diamond", 1_000_000, 1_500_000],
+      ["FR", "single", "Diamond", 233_333, 333_333],
+      ["MX", "album", "Gold", 30_000, 70_000],
+      ["PL", "album", "Gold", 10_000, 15_000],
+    ];
+    for (const [code, fmt, tier, floor, today] of floors) {
+      expect(thresholdFor(code, fmt, tier), `${code} ${fmt} ${tier}`).toBe(floor);
+      expect(CERT_THRESHOLDS[code].current?.[fmt]?.[tier.toLowerCase() as "gold" | "platinum" | "diamond"], `${code} current`).toBe(today);
+      expect(floor).toBeLessThan(today);
+    }
+  });
+
+  it("a minimum from a regime that measured something else is NOT a floor", () => {
+    // ZPAV certified singles in units only until Feb 2017 and in PLN revenue
+    // since; AMPROFON in units until Oct 2020 and in raw streams since. Every
+    // Polish and Mexican single on this roster is from the later regime, so the
+    // old unit levels do not reach them and they stay excluded. The red team
+    // caught the first pass carrying both as floors.
+    expect(thresholdFor("PL", "single", "Gold")).toBeNull();
+    expect(thresholdFor("MX", "single", "Gold")).toBeNull();
+    expect(exclusionFor("PL", "single")).toMatch(/revenue/i);
+    expect(exclusionFor("MX", "single")).toMatch(/stream/i);
+  });
+
+  it("uses the release-date band every German single on the roster actually fell in", () => {
+    // BVMI kept a lower 150,000 / 300,000 band for singles first released
+    // 2003–May 2014. No German-certified single here predates 2016, so the
+    // 200,000 / 400,000 band is the only one that ever applied to them.
+    expect(thresholdFor("DE", "single", "Gold")).toBe(200_000);
+    for (const a of comparableArtists)
+      for (const r of a.releases)
+        if (r.format === "single" && r.certs.some((c) => c.c === "DE")) {
+          const year = (r as { year?: number }).year;
+          if (year) expect(year, `${a.name} — ${r.title}`).toBeGreaterThanOrEqual(2016);
+        }
+  });
+
+  it("every changed body carries the ‡ note so the page says what the figure is", () => {
+    for (const code of ["ZA", "ES", "FR", "HU", "IT", "MX", "NL", "PL", "PT", "DE"])
+      expect(CERT_THRESHOLDS[code].vintage, code).toMatch(/floor|lowest|pre-/i);
   });
 });
