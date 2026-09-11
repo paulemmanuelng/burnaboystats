@@ -135,3 +135,45 @@ One trap found that is worth recording so nobody "corrects" this figure downward
 - **UK** — Silver: yes. Diamond: There is NO Diamond tier at the BPI. The published tier list is Silver, Gold, Platinum, Multi-Platinum only, a. Multiplier: Literally N times the Platinum threshold. The table row reads "Multi-Platinum — Multiples of 600k" (singles) a
 - **US** — Silver: no. Diamond: Diamond is a named, distinct tier but its value is numerically 10x Platinum: "Diamond® 10,000,000 units", date. Multiplier: Literally N times the Platinum threshold: 1,000,000 units per Platinum step. RIAA's Certification Levels table
 - **ZA** — Silver: no. Diamond: No Diamond tier at all. The word "Diamond" does not appear anywhere in RiSA's Certification Levels document; t. Multiplier: Literally N times Platinum, expressed as a fixed increment per step. Albums (post-2024): Platinum 50,000 and "
+
+## The deep hunt (10–11 Sep 2026) — seven unpriceable bodies, searched beyond their own sites
+
+Paul: find them somewhere. Every figure returned graded A (body's own site) / B
+(its own archive) / C (IFPI's published list) / D (secondary only); **only A–C is
+publishable here.** Each was independently re-derived before being applied.
+
+| body | result | grade | applied? |
+|---|---|---|---|
+| **Belgium** | BRMA sets the thresholds; Ultratop, its awards operator, publishes them — singles 10k/20k/100k for Belgian or Dutch/French-sung records, **20k/40k/200k for all other repertoire**; albums 10k/20k/100k | **B** | ✅ other-repertoire tier |
+| **Czechia** | 9 Mar 2026 rules: single 2.5M / 5M, album 5M / 10M **subscription streams**, with the body's own `1 download = 222` | **A** | ✅ normalised ÷222 |
+| **Slovakia** | same rulebook: single 850k / 1.7M, album 1.75M / 3.5M, `1 download = 217` | **B** | ✅ normalised ÷217 |
+| Sweden | thresholds confirmed; the *absence* of any sale-equivalence is explicit and deliberate at the body | A | ✗ still unconvertible |
+| Poland | singles 125,000 zł / 250,000 zł; no revenue→units conversion exists | A | ✗ still unconvertible |
+| Greece | current levels are "stream points" from an unauthenticable screenshot of a private email; historic 2013 album levels are grade C but physical-era and marked historic | **D** | ✗ |
+| Colombia | album levels only, from IFPI's June 2013 list; **no singles threshold has ever existed at any grade**; ASINCOL is defunct | C (albums) | ✗ no board plaque is a Colombian album |
+
+**IFPI's consolidated "International Certification Award Levels" list exists and
+the June 2013 edition is retrievable on Wayback.** Its current edition lives at
+p.206 of the Global Music Report Premium Edition (£19,950), so it is not.
+
+Burna's not-comparable plaques: **13 → 10**. Remaining: Sweden 6, Poland 2,
+Colombia 1, Greece 1.
+
+## Corrections landed from the compare-page audit (11 Sep 2026)
+
+- **Brazil: Internacional table, not Nacional.** The research had said so in
+  capitals; the file carried the Nacional integers and priced 15 plaques at double.
+- **Spain** gains a multiplier caveat (same situation as AT, NO).
+- **South Africa** gains a *vintage* note: RiSA doubled its thresholds for sales
+  after 1 Jan 2024 and prints both regimes. See the rule question below.
+- **Netherlands**: two cells rounded a floor upward; floor division now.
+
+## OPEN — a rule question for Paul
+
+**Eleven bodies changed thresholds inside the 2018–2026 window** (ZA, ES, FR, HU,
+IT, MX, NL, PL, PT, SE, DE). The decided rule — current thresholds for everyone —
+overstates any plaque awarded before a body *raised* its levels, on a page whose
+promise is "at least". Options: (a) keep current + ‡ disclosure (live now for ZA);
+(b) price at the lowest threshold the body has applied since 2018 — every figure a
+true floor, recent plaques understated; (c) era-correct where dated, lowest where
+not. The `vintage` field and ‡ footnote are the plumbing for whichever is chosen.
