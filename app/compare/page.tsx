@@ -645,8 +645,8 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
                 <p><strong>† Multiplier assumed</strong> — {noteSource.caveats.join(" ")}</p>
               )}
               {visibleVintage && noteSource.vintages.length > 0 && (
-                <p><strong>‡ Priced at the body&apos;s lowest level since 2015</strong> — so the figure is a floor
-                  whatever the award date; today&apos;s threshold is higher. {noteSource.vintages.join(" ")}</p>
+                <p><strong>‡ This body raised its thresholds since 2015</strong> — the figure is today&apos;s level, and a
+                  plaque awarded before the rise may have cleared a lower bar. {noteSource.vintages.join(" ")}</p>
               )}
             </div>
           </>

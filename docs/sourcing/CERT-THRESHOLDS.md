@@ -178,13 +178,15 @@ promise is "at least". Options: (a) keep current + ‡ disclosure (live now for 
 true floor, recent plaques understated; (c) era-correct where dated, lowest where
 not. The `vintage` field and ‡ footnote are the plumbing for whichever is chosen.
 
-## The floor rule — APPLIED (11 Sep 2026)
+## The floor rule — established, then set aside for today's thresholds (11 Sep 2026)
 
-Paul delegated the choice; the floor rule won because it is the only one under
-which "at least" is never false for anyone. **Every tier is now priced at the
-LOWEST level the body applied at any point from 1 Jan 2015 to a record on this
-roster.** Today's value sits beside it in `current` where it differs, and every
-such line carries ‡.
+Paul first delegated the choice and the floor rule was applied; on seeing the
+full table — Italy's single Platinum at 30,000 against a published 200,000 — he
+chose **today's thresholds for every body**: "it only makes sense that way."
+So the PRICING values are today's published levels, the floors established below
+are kept in a `floor` field for the record, and every body that raised its
+levels carries ‡ on screen saying a plaque awarded before the rise may have
+cleared a lower bar. The three passes below are what established the floors.
 
 Established by three passes over the eleven bodies that moved:
 1. **Extract** — one agent per body, from the body's own dated rules (grade A on
@@ -220,5 +222,7 @@ DE  single Diamond 1,000,000    → 1,500,000           (Gold/Platinum 200,000/4
 SE  unchanged
 ```
 
-**Effect on the design fixture:** Gbona 915,333 → **808,333**; Essence 6,180,000 →
-**6,086,666**. Both recorded in the tests with the arithmetic.
+**Design fixture under today's thresholds:** Gbona **915,333**, Essence **6,180,000**
+(the latter down from the design's 6,340,000 only by the Essence 7× → 3× correction).
+Under the floor rule they would have read 808,333 / 6,086,666 — recorded in the
+tests for the trail.

@@ -35,28 +35,27 @@
 // exists elsewhere. A null with a reason is the correct answer; a plausible
 // invented number is the worst outcome this file can produce.
 //
-// THE FLOOR RULE (Paul, 11 Sep 2026). Eleven bodies changed their thresholds
-// inside the window the plaques span, and wherever one RAISED them, a plaque
-// awarded earlier and priced at today's level sits above its own floor — which
-// makes "at least" false. So the PRICING value for every tier is the LOWEST
-// level the body applied at any point from 1 Jan 2015 to today, and today's
-// value sits beside it in `current` where it differs. Established for the
-// eleven by one agent per body reading the body's own dated rules, verified by
-// a second, then attacked at maximum effort by a third whose job was to find a
-// lower value; three attacks landed and are folded in.
+// TODAY'S THRESHOLDS, FOR EVERY BODY (Paul, 11 Sep 2026). Twelve of the 27
+// bodies changed their levels inside the window the plaques span, and eleven
+// of them RAISED them. Two rules were weighed:
+//   • price every plaque at the body's LOWEST level since 2015, so "at least"
+//     is never false whatever the award date — at the cost of understating
+//     every plaque earned after a rise (Tyla's 2024 South African plaques at
+//     half what she cleared);
+//   • price every plaque at TODAY'S level, which is what the bodies publish
+//     and what a reader will check against — at the cost that a plaque awarded
+//     before a rise may have cleared a lower bar than the figure implies.
+// Paul chose today's. So the pricing values below are the current published
+// levels, and every body that raised its levels carries a ‡ note saying so on
+// screen. The floor values sit beside them in `floor`, because establishing
+// them cost three agent passes and the trail is worth keeping.
 //
-// Two refinements the attacks produced, both load-bearing:
-//   • A minimum only counts if the body measured the SAME QUANTITY when the
-//     plaque was awarded. ZPAV certified singles in units until 28 Feb 2017 and
-//     in PLN revenue since; AMPROFON in units until 31 Oct 2020 and in raw
-//     streams since. An old 10,000-unit level says nothing about 125,000 zł.
-//     Every Polish and Mexican single on this roster was awarded under the
-//     later regime, so those stay excluded — the unit floors do not reach them.
-//   • For a body that keys thresholds to RELEASE date (BVMI, AMPROFON), the
-//     floor is the band the record's release actually fell in. BVMI kept a
-//     150,000 / 300,000 single band for records first released 2003–May 2014;
-//     every German single on this roster was released 2016 or later, so the
-//     200,000 / 400,000 band is the one that ever applied to them.
+// Two facts from that work still shape the table under either rule:
+//   • A body that changed WHAT IT MEASURES — ZPAV to PLN revenue in Mar 2017,
+//     AMPROFON to raw streams in Nov 2020 — cannot have its singles priced from
+//     the old unit regime. Those stay excluded.
+//   • BVMI keys single bands to RELEASE date; every German single here was
+//     released 2016 or later, so its band is the one that ever applied.
 // ============================================================================
 
 export type CertFormat = "single" | "album";
@@ -117,15 +116,16 @@ export interface CountryThresholds {
   /** Set where the body does NOT publish a rule this file had to assume — shown
    *  to the reader as a footnote rather than hidden. */
   caveat?: string;
-  /** TODAY'S thresholds, kept for reference where they differ from the PRICING
-   *  values above. The pricing values are the FLOOR — the lowest level the body
-   *  has applied at any point since 1 Jan 2015 to a record on this roster — so
-   *  that "at least N" is true whatever the award date. See the header. */
-  current?: { single?: TierUnits; album?: TierUnits };
-  /** Set where the body changed its thresholds inside the window. Attached to
+  /** The LOWEST level the body applied at any point since 1 Jan 2015 to a record
+   *  on this roster, kept for the record where it differs from today's. The
+   *  pricing values above are TODAY'S (Paul, 11 Sep 2026) — see the header for
+   *  the rule and what it costs. Established by three agent passes, the last an
+   *  adversarial one; docs/sourcing/CERT-THRESHOLDS.md has the trail. */
+  floor?: { single?: TierUnits; album?: TierUnits };
+  /** Set where the body RAISED its thresholds inside the window. Attached to
    *  every line for the country, not only multiplied ones, and rendered as the
-   *  ‡ footnote: it says the figure is a floor priced at the body's lowest
-   *  in-window level and that today's level is higher. */
+   *  ‡ footnote: it says the figure is today's level and that a plaque awarded
+   *  before the rise may have cleared a lower bar. */
   vintage?: string;
 }
 
@@ -196,16 +196,13 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     caveat:
       "ČNS IFPI states no multiplier rule; an N× award is priced here as N × Platinum.",
     vintage:
-      "Priced at the July 2025 conversion, 1 download = 225 subscription streams, which ČNS IFPI lowered to 222 on 9 March 2026. The stream thresholds did not move, so the lower unit figure is the earlier one; a plaque priced on today's ratio is slightly higher. Before July 2025 Czech certification ran on CZK revenue — a different measure, not a floor for anything here.",
+      "ČNS IFPI's stream thresholds have not moved, but its download equivalence fell from 225 to 222 subscription streams on 9 March 2026, so the same threshold is worth slightly more units today than in 2025. Priced at today's ratio. Before July 2025 Czech certification ran on CZK revenue — a different measure.",
     body: "ČNS IFPI — Česká národní skupina IFPI",
     sourceUrl: "https://ifpicr.cz/files/page/c3/7a/c37a8df18b916ffe6a7a40db48f8000f/Pravidla-pro-udelovani-oceneni-od-9.3.2026-CR-2084.pdf",
-    single: { silver: null, gold: 11_111, platinum: 22_222, diamond: null },
+    single: { silver: null, gold: 11_261, platinum: 22_522, diamond: null },
     singleRaw: { gold: 2_500_000, platinum: 5_000_000 },
-    album: { silver: null, gold: 22_222, platinum: 44_444, diamond: null },
-    current: {
-      single: { silver: null, gold: 11_261, platinum: 22_522, diamond: null },
-      album: { silver: null, gold: 22_522, platinum: 45_045, diamond: null },
-    },
+    album: { silver: null, gold: 22_522, platinum: 45_045, diamond: null },
+    floor: { single: { silver: null, gold: 11_111, platinum: 22_222, diamond: null }, album: { silver: null, gold: 22_222, platinum: 44_444, diamond: null } },
     albumRaw: { gold: 5_000_000, platinum: 10_000_000 },
   },
   DE: {
@@ -215,9 +212,9 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     body: "BVMI (Bundesverband Musikindustrie e.V.)",
     sourceUrl: "https://www.musikindustrie.de/fileadmin/bvmi/upload/01_Der_BVMI/Dokumente-zum-Download/Richtlinien_BVMI_Gold_Platin_3_0_FINAL.pdf",
     vintage:
-      "Singles priced at BVMI's 2014–June 2023 band for records first released from 1 June 2014 — 200,000 / 400,000 / 1,000,000 — which the body raised to 300,000 / 600,000 / 1,500,000 on 30 June 2023. BVMI keys bands to release date, and every German single on this roster was released 2016 or later, so this is the band that ever applied to them. Albums did not move. A floor whatever the award date.",
-    single: { silver: null, gold: 200_000, platinum: 400_000, diamond: 1_000_000 },
-    current: { single: { silver: null, gold: 300_000, platinum: 600_000, diamond: 1_500_000 } },
+      "BVMI raised its single levels on 30 June 2023 from 200,000 / 400,000 / 1,000,000 to 300,000 / 600,000 / 1,500,000. Albums did not move. Priced at today's level; a plaque awarded before then may have cleared the lower bar. BVMI keys bands to release date and every German single here was released 2016 or later.",
+    single: { silver: null, gold: 300_000, platinum: 600_000, diamond: 1_500_000 },
+    floor: { single: { silver: null, gold: 200_000, platinum: 400_000, diamond: 1_000_000 } },
     album: { silver: null, gold: 75_000, platinum: 150_000, diamond: 750_000 },
   },
   DK: {
@@ -237,9 +234,9 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     body: "Promusicae (Productores de Música de España), publishing through its own portal El Portal de Música (EPDM)",
     sourceUrl: "https://www.elportaldemusica.es/awards/index",
     vintage:
-      "Priced at Promusicae's pre-April-2025 song levels, 20,000 / 40,000, which stood from 2015 until the body raised them to 50,000 / 100,000. A floor whatever the award date; a plaque earned since April 2025 passed two and a half times this.",
-    single: { silver: null, gold: 20_000, platinum: 40_000, diamond: null },
-    current: { single: { silver: null, gold: 50_000, platinum: 100_000, diamond: null } },
+      "Promusicae raised its song thresholds in April 2025 from 20,000 / 40,000 to 50,000 / 100,000. Priced at today's level; a plaque awarded before then may have cleared the lower bar.",
+    single: { silver: null, gold: 50_000, platinum: 100_000, diamond: null },
+    floor: { single: { silver: null, gold: 20_000, platinum: 40_000, diamond: null } },
     album: { silver: null, gold: 20_000, platinum: 40_000, diamond: null },
   },
   FR: {
@@ -247,12 +244,12 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     body: "SNEP — Syndicat National de l'Édition Phonographique",
     sourceUrl: "https://snepmusique.com/les-certifications/a-propos-des-certifications/",
     vintage:
-      "Priced at SNEP's 2016–April 2018 single levels — 10, 20 and 35 million équivalent streams, at the 150-streams-per-download ratio SNEP printed in the same period, so 66,666 / 133,333 / 233,333 units — which the body then raised to 15, 30 and 50 million. A floor whatever the award date.",
+      "SNEP raised its single levels on 27 April 2018 from 10, 20 and 35 million équivalent streams to 15, 30 and 50 million — 66,666 / 133,333 / 233,333 units to 100,000 / 200,000 / 333,333 at its 150:1 ratio. Priced at today's level; a plaque awarded before then may have cleared the lower bar.",
     normalised:
       "SINGLES normalised: SNEP publishes them in streams (Gold 15,000,000). Divided by the body's own «1 téléchargement = 150 streams». Albums were already units.",
-    single: { silver: null, gold: 66_666, platinum: 133_333, diamond: 233_333 },
-    current: { single: { silver: null, gold: 100_000, platinum: 200_000, diamond: 333_333 } },
-    singleRaw: { gold: 10_000_000, platinum: 20_000_000, diamond: 35_000_000 },
+    single: { silver: null, gold: 100_000, platinum: 200_000, diamond: 333_333 },
+    floor: { single: { silver: null, gold: 66_666, platinum: 133_333, diamond: 233_333 } },
+    singleRaw: { gold: 15_000_000, platinum: 30_000_000, diamond: 50_000_000 },
     album: { silver: null, gold: 50_000, platinum: 100_000, diamond: 500_000 },
   },
   GR: {
@@ -271,22 +268,19 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     body: "MAHASZ — Magyar Hangfelvétel-kiadók Szövetsége (the Hungarian group of IFPI)",
     sourceUrl: "https://slagerlistak.hu/arany-es-platinalemezek/mi-szamit-arany-es-platinalemeznek",
     vintage:
-      "Priced at MAHASZ's lowest in-window levels — singles 1,500 / 3,000 from the pre-2018 rules, international albums 1,000 / 2,000 — confirmed on the body's own contemporaneous pages. MAHASZ has raised both since, and keys changes to release date. A floor whatever the award date.",
-    single: { silver: null, gold: 1_500, platinum: 3_000, diamond: null },
-    album: { silver: null, gold: 1_000, platinum: 2_000, diamond: null },
-    current: {
-      single: { silver: null, gold: 5_000, platinum: 10_000, diamond: null },
-      album: { silver: null, gold: 2_000, platinum: 4_000, diamond: null },
-    },
+      "MAHASZ raised singles from 1,500 / 3,000 to 5,000 / 10,000 and international albums from 1,000 / 2,000 to 2,000 / 4,000 inside the window, keying the changes to release date. Priced at today's level; a plaque on an earlier release may have cleared the lower bar.",
+    single: { silver: null, gold: 5_000, platinum: 10_000, diamond: null },
+    album: { silver: null, gold: 2_000, platinum: 4_000, diamond: null },
+    floor: { single: { silver: null, gold: 1_500, platinum: 3_000, diamond: null }, album: { silver: null, gold: 1_000, platinum: 2_000, diamond: null } },
   },
   IT: {
     code: "IT",
     body: "FIMI (Federazione Industria Musicale Italiana), with sales measurement by NIQ (formerly GfK) — 'Dal gennaio 2009 FIMI in collaborazione con NIQ … ufficializza le certificazioni di vendita di ogni singola registrazione musicale pubblicata e venduta in Italia.'",
     sourceUrl: "https://www.fimi.it/top-of-the-music/certificazioni/",
     vintage:
-      "Priced at FIMI's 2015–2019 single levels, 15,000 / 30,000 / 300,000, which the body then raised three times (from week 01/2020) to today's 100,000 / 200,000 / 2,000,000. Albums never moved. A floor whatever the award date; a recent Italian single plaque passed several times this.",
-    single: { silver: null, gold: 15_000, platinum: 30_000, diamond: 300_000 },
-    current: { single: { silver: null, gold: 100_000, platinum: 200_000, diamond: 2_000_000 } },
+      "FIMI raised its single levels three times from week 01/2020 — 15,000 / 30,000 / 300,000 to today's 100,000 / 200,000 / 2,000,000. Albums never moved. Priced at today's level; a plaque awarded before 2020 may have cleared a bar as low as a seventh of this.",
+    single: { silver: null, gold: 100_000, platinum: 200_000, diamond: 2_000_000 },
+    floor: { single: { silver: null, gold: 15_000, platinum: 30_000, diamond: 300_000 } },
     album: { silver: null, gold: 25_000, platinum: 50_000, diamond: 500_000 },
   },
   MX: {
@@ -294,12 +288,12 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     body: "AMPROFON — Asociación Mexicana de Productores de Fonogramas y Videogramas",
     sourceUrl: "https://amprofon.com.mx/es/media/documentos/antecedentes_criterios_certificaciones.pdf",
     vintage:
-      "Albums priced at AMPROFON's pre-November-2020 levels, 30,000 / 60,000 / 300,000, which the body then raised to 70,000 / 140,000 / 700,000 for releases from 1 Nov 2020. A floor whatever the award date. Singles are NOT priced: AMPROFON measured them in units until 31 Oct 2020 and in raw audio streams since, with no ratio, and every Mexican single on this roster was awarded under the later regime.",
+      "AMPROFON raised album levels from 30,000 / 60,000 / 300,000 to 70,000 / 140,000 / 700,000 for releases from 1 November 2020. Priced at today's level; a plaque on an earlier release may have cleared the lower bar. Singles are not priced: measured in units until Oct 2020 and in raw audio streams since, with no ratio, and every Mexican single here is from the later regime.",
     single: null,
     singleExcluded:
       "AMPROFON states single levels are 'medidos en audio streams' and publishes no stream-to-unit ratio.",
-    album: { silver: null, gold: 30_000, platinum: 60_000, diamond: 300_000 },
-    current: { album: { silver: null, gold: 70_000, platinum: 140_000, diamond: 700_000 } },
+    album: { silver: null, gold: 70_000, platinum: 140_000, diamond: 700_000 },
+    floor: { album: { silver: null, gold: 30_000, platinum: 60_000, diamond: 300_000 } },
   },
   NG: {
     code: "NG",
@@ -315,12 +309,12 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     body: "NVPI (Nederlandse Vereniging van Producenten en Importeurs van beeld- en geluidsdragers) — NVPI Muziek/Audio, which runs the official certification register at goudplatina.nl",
     sourceUrl: "https://www.goudplatina.nl/informatie",
     vintage:
-      "Singles priced at NVPI's 2014–mid-2016 unit levels, 15,000 / 30,000, which every later regime — each a sales-plus-streams unit with a same-period published equivalence — has exceeded. Diamant is priced at today's 50,000,000 streams ÷ 215 because no lower Diamant level has existed. A floor whatever the award date.",
+      "NVPI's singles were 15,000 / 30,000 units before mid-2016 and are 10, 20 and 50 million streams at 215 streams per sale today — 46,511 / 93,023 / 232,558 units. Priced at today's level; a plaque awarded under an earlier regime may have cleared a lower bar.",
     normalised:
       "BOTH normalised: NVPI is the reverse of everyone else — it converts sales INTO streams and states thresholds in streams. Divided by its own «1 singleverkoop = 215 streams» and «1 albumverkoop = 2150 streams».",
-    single: { silver: null, gold: 15_000, platinum: 30_000, diamond: 232_558 },
-    current: { single: { silver: null, gold: 46_511, platinum: 93_023, diamond: 232_558 } },
-    singleRaw: { diamond: 50_000_000 },
+    single: { silver: null, gold: 46_511, platinum: 93_023, diamond: 232_558 },
+    floor: { single: { silver: null, gold: 15_000, platinum: 30_000, diamond: 232_558 } },
+    singleRaw: { gold: 10_000_000, platinum: 20_000_000, diamond: 50_000_000 },
     album: { silver: null, gold: 18_604, platinum: 37_209, diamond: 93_023 },
     albumRaw: { gold: 40_000_000, platinum: 80_000_000, diamond: 200_000_000 },
   },
@@ -350,21 +344,21 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     body: "ZPAV (Związek Producentów Audio-Video)",
     sourceUrl: "https://www.olis.pl/terms_oliw",
     vintage:
-      "Albums priced at ZPAV's pre-2025 levels, 10,000 / 20,000 / 100,000, raised to 15,000 / 30,000 / 150,000 from 1 Jan 2025. A floor whatever the award date. Singles are NOT priced: ZPAV measured them in units only from Aug 2015 to Feb 2017 and in PLN wholesale revenue since 1 Mar 2017, and every Polish single on this roster was awarded under the revenue regime, which no unit floor reaches.",
+      "ZPAV raised album levels from 10,000 / 20,000 / 100,000 to 15,000 / 30,000 / 150,000 on 1 January 2025. Priced at today's level; a plaque awarded before then may have cleared the lower bar. Singles are not priced: measured in units only Aug 2015–Feb 2017 and in PLN wholesale revenue since 1 March 2017, and every Polish single here is from the revenue regime.",
     single: null,
     singleExcluded:
       "ZPAV measures singles in PLN REVENUE, not units. Albums are units and ARE priced.",
-    album: { silver: null, gold: 10_000, platinum: 20_000, diamond: 100_000 },
-    current: { album: { silver: null, gold: 15_000, platinum: 30_000, diamond: 150_000 } },
+    album: { silver: null, gold: 15_000, platinum: 30_000, diamond: 150_000 },
+    floor: { album: { silver: null, gold: 10_000, platinum: 20_000, diamond: 100_000 } },
   },
   PT: {
     code: "PT",
     body: "Audiogest (issuer of the galardões under the AFP/Audiogest TOP regime; AFP – Associação Fonográfica Portuguesa has no live website)",
     sourceUrl: "https://audiogest.pt/documents/files/Regulamento%20_%20TOP%20e%20Galard%C3%A3o_novas%20altera%C3%A7%C3%B5es%20_%202025%281%29.pdf",
     vintage:
-      "Singles priced at Audiogest's pre-2024 levels, 5,000 / 10,000 / 100,000, which the body raised to 12,000 / 25,000 / 250,000 from 1 Jan 2024. Albums did not move. A floor whatever the award date; a Portuguese single plaque earned since 2024 passed roughly two and a half times this.",
-    single: { silver: null, gold: 5_000, platinum: 10_000, diamond: 100_000 },
-    current: { single: { silver: null, gold: 12_000, platinum: 25_000, diamond: 250_000 } },
+      "Audiogest raised its single levels from 5,000 / 10,000 / 100,000 to 12,000 / 25,000 / 250,000 on 1 January 2024. Albums did not move. Priced at today's level; a plaque awarded before 2024 may have cleared the lower bar.",
+    single: { silver: null, gold: 12_000, platinum: 25_000, diamond: 250_000 },
+    floor: { single: { silver: null, gold: 5_000, platinum: 10_000, diamond: 100_000 } },
     album: { silver: null, gold: 3_500, platinum: 7_000, diamond: 70_000 },
   },
   SE: {
@@ -383,16 +377,13 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     caveat:
       "ČNS IFPI's Slovak rules state no multiplier rule; an N× award is priced here as N × Platinum.",
     vintage:
-      "Priced at the July 2025 conversion, 1 download = 240 subscription streams, which ČNS IFPI lowered to 217 on 9 March 2026 with further revisions on 20 October 2025 and 1 January 2026 whose ratios are not archived. The stream thresholds did not move, so the lowest evidenced unit figure is the July 2025 one. Until 2022 the Slovak awards ran on euro revenue — a different measure, not a floor for anything here.",
+      "ČNS IFPI's Slovak stream thresholds have not moved, but its download equivalence fell from 240 to 217 subscription streams on 9 March 2026, with two unarchived revisions between, so the same threshold is worth more units today than in 2025. Priced at today's ratio. Until 2022 the Slovak awards ran on euro revenue — a different measure.",
     body: "ČNS IFPI — Česká národní skupina IFPI (which administers the Slovak awards; SNS IFPI / ifpi.sk is the Slovak national group)",
     sourceUrl: "https://web.archive.org/web/20260521153213id_/https://ifpicr.cz/files/page/4b/9c/4b9c16f09271779fffe0975269b85eed/Pravidla-pre-udelovanie-ocenenia-od-9.3.2026-SR.pdf",
-    single: { silver: null, gold: 3_541, platinum: 7_083, diamond: null },
+    single: { silver: null, gold: 3_917, platinum: 7_834, diamond: null },
     singleRaw: { gold: 850_000, platinum: 1_700_000 },
-    album: { silver: null, gold: 7_291, platinum: 14_583, diamond: null },
-    current: {
-      single: { silver: null, gold: 3_917, platinum: 7_834, diamond: null },
-      album: { silver: null, gold: 8_064, platinum: 16_129, diamond: null },
-    },
+    album: { silver: null, gold: 8_064, platinum: 16_129, diamond: null },
+    floor: { single: { silver: null, gold: 3_541, platinum: 7_083, diamond: null }, album: { silver: null, gold: 7_291, platinum: 14_583, diamond: null } },
     albumRaw: { gold: 1_750_000, platinum: 3_500_000 },
   },
   UK: {
@@ -414,13 +405,10 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     body: "RiSA (Recording Industry of South Africa)",
     sourceUrl: "https://risa.org.za/certification-levels/",
     vintage:
-      "Priced at RiSA's pre-2024 levels — singles 10,000 / 20,000, albums 15,000 / 30,000 — which its own tables print beside today's doubled levels under 'Sales Prior to 31st December 2023'. Every South African figure here is therefore a floor whatever the award date; a plaque earned after 1 Jan 2024 passed twice this.",
-    single: { silver: null, gold: 10_000, platinum: 20_000, diamond: null },
-    album: { silver: null, gold: 15_000, platinum: 30_000, diamond: null },
-    current: {
-      single: { silver: null, gold: 20_000, platinum: 40_000, diamond: null },
-      album: { silver: null, gold: 25_000, platinum: 50_000, diamond: null },
-    },
+      "RiSA roughly doubled its thresholds for sales after 1 January 2024 — singles Gold 10,000 → 20,000, Platinum 20,000 → 40,000; albums Gold 15,000 → 25,000, Platinum 30,000 → 50,000 — and prints both regimes side by side. Priced at today's level; a plaque awarded before 2024 may have cleared the lower bar.",
+    single: { silver: null, gold: 20_000, platinum: 40_000, diamond: null },
+    album: { silver: null, gold: 25_000, platinum: 50_000, diamond: null },
+    floor: { single: { silver: null, gold: 10_000, platinum: 20_000, diamond: null }, album: { silver: null, gold: 15_000, platinum: 30_000, diamond: null } },
   },
 };
 

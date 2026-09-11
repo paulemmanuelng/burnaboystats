@@ -168,7 +168,7 @@ const closingSections = [
 ];
 
 const allBodies = Object.keys(CERT_THRESHOLDS).length;
-const movedBodies = Object.values(CERT_THRESHOLDS).filter((c) => c.current).length;
+const movedBodies = Object.values(CERT_THRESHOLDS).filter((c) => c.floor).length;
 const pricedSingles = Object.values(CERT_THRESHOLDS).filter((c) => c.single !== null).length;
 const streamBodies = Object.values(CERT_THRESHOLDS).filter((c) => c.singleRaw);
 
@@ -396,22 +396,23 @@ export default function MethodologyPage() {
             is what keeps the comparison honest rather than precise.
           </p>
           <p className={styles.p}>
-            <strong>Where a body has moved its thresholds, the lowest one since 2015
-            is used.</strong> {movedBodies} of the {allBodies} bodies changed their levels
-            inside the window these plaques span, and wherever one raised them, a
-            plaque awarded earlier and priced at today&apos;s level would sit above its
-            own floor — which would make &ldquo;at least&rdquo; false. So every tier is
-            priced at the lowest level the body has applied to a record on this site at
-            any point from 1 January 2015, and the page marks those figures with a
-            &ldquo;‡&rdquo;. A South African Platinum single is priced at 20,000 units,
-            RiSA&apos;s level until the end of 2023, not the 40,000 it has been since; a
-            plaque earned in 2025 passed twice that, and the page understates it rather
-            than risk overstating one earned in 2022. Two refinements apply: a minimum
-            only counts if the body measured the same quantity when the plaque was
-            awarded — Poland certified singles in units until 2017 and in złoty of
-            revenue since, so its old unit level reaches none of the Polish singles here
-            — and for a body that keys thresholds to release date, the floor is the band
-            the record actually fell in.
+            <strong>Today&apos;s threshold, at every body.</strong> {movedBodies} of the{" "}
+            {allBodies} bodies changed their levels inside the window these plaques span,
+            and most raised them. Every plaque is priced at the level the body publishes
+            today — the figure a reader can check against the body&apos;s own page — and
+            wherever that body raised its levels, the page marks the figure with a
+            &ldquo;‡&rdquo; and says so: a plaque awarded before the rise may have cleared
+            a lower bar than today&apos;s figure implies. A South African Platinum single
+            is priced at RiSA&apos;s current 40,000 units; one earned in 2022 needed
+            20,000. The alternative — pricing at the lowest level each body has applied
+            since 2015 — was established for every body and is kept in the data, but it
+            would understate every plaque earned after a rise by as much as it protects
+            the earlier ones, and it prices against numbers no body publishes any more.
+            Two refinements hold either way: a body that changed <em>what it measures</em>
+            — Poland to złoty of revenue, Mexico to raw streams — cannot have its singles
+            priced from the old unit regime, so those stay listed and unsummed; and for a
+            body that keys thresholds to release date, the band a record actually fell in
+            is the one that applies.
           </p>
           <p className={styles.p}>
             <strong>One plaque per release per country, at its current tier.</strong>
