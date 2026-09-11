@@ -1,4 +1,3 @@
-import { HEAD_TO_HEAD } from "./headToHead";
 import { comparableArtists, type ComparableArtist, type ComparableRelease } from "./certUnits";
 
 /**
@@ -10,26 +9,35 @@ import { comparableArtists, type ComparableArtist, type ComparableRelease } from
  * of sixteen artists and most of Burna's catalogue could only be reached by
  * editing the URL. A picker that hides the thing you came for is a bug.
  *
+ * ORDER is by plaques held, most first (Paul, 11 Sep 2026): the artist with the
+ * most certifications leads the artist list, the song with the most leads the
+ * song list. Ties fall back to the name. The page shows the first PICKER_FOLD
+ * of either list and folds the rest behind a native disclosure — folded, never
+ * dropped, so the coverage tests below still hold on the full list.
+ *
  * Kept out of the page so it can be tested for coverage directly.
  */
 
-/** Every artist except the one already on the other side, with the board's own
- *  curated head-to-head partner first, then the rest by name. */
-export function pickerArtists(excludeSlug?: string, forSlug?: string): ComparableArtist[] {
-  const partner = forSlug ? HEAD_TO_HEAD[forSlug] : undefined;
-  const rest = comparableArtists
+/** How many chips show before the rest fold. */
+export const PICKER_FOLD = 8;
+
+/** Every plaque the artist holds, features included — the board's own count. */
+export const plaqueCount = (a: ComparableArtist): number => a.releases.reduce((n, r) => n + r.certs.length, 0);
+
+/** Every artist except the one already on the other side, most plaques first. */
+export function pickerArtists(excludeSlug?: string): ComparableArtist[] {
+  return comparableArtists
     .filter((a) => a.slug !== excludeSlug)
-    .sort((x, y) => x.name.localeCompare(y.name));
-  const lead = partner && partner !== excludeSlug ? rest.find((a) => a.slug === partner) : undefined;
-  return lead ? [lead, ...rest.filter((a) => a.slug !== lead.slug)] : rest;
+    .sort((x, y) => plaqueCount(y) - plaqueCount(x) || x.name.localeCompare(y.name));
 }
 
-/** Every certified release of one artist, filtered by a search query if given.
- *  Matches title OR credit, case- and accent-insensitively, so "Kampe" finds
- *  "4 Kampé II" and "dave" finds "Location". */
+/** Every certified release of one artist, most plaques first, filtered by a
+ *  search query if given. Matches title OR credit, case- and
+ *  accent-insensitively, so "Kampe" finds "4 Kampé II" and "dave" finds
+ *  "Location". */
 export function pickerReleases(artist: ComparableArtist, query = ""): ComparableRelease[] {
   const q = fold(query);
-  const all = [...artist.releases].sort((x, y) => x.title.localeCompare(y.title));
+  const all = [...artist.releases].sort((x, y) => y.certs.length - x.certs.length || x.title.localeCompare(y.title));
   if (!q) return all;
   return all.filter((r) => fold(r.title).includes(q) || fold(r.credit ?? "").includes(q));
 }

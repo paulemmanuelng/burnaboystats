@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { comparableArtists } from "../app/lib/certUnits";
-import { fold, pickerArtists, pickerReleases } from "../app/lib/comparePicker";
-import { HEAD_TO_HEAD } from "../app/lib/headToHead";
+import { PICKER_FOLD, fold, pickerArtists, pickerReleases, plaqueCount } from "../app/lib/comparePicker";
 
 describe("the compare picker misses nothing", () => {
   it("offers every artist on the board", () => {
@@ -12,7 +11,7 @@ describe("the compare picker misses nothing", () => {
 
   it("from any chosen side, offers every OTHER artist and never the same one", () => {
     for (const chosen of comparableArtists) {
-      const offered = pickerArtists(chosen.slug, chosen.slug).map((a) => a.slug);
+      const offered = pickerArtists(chosen.slug).map((a) => a.slug);
       expect(offered, `${chosen.name} offered themselves`).not.toContain(chosen.slug);
       expect(offered, `${chosen.name} is missing someone`).toHaveLength(15);
       for (const other of comparableArtists)
@@ -20,11 +19,34 @@ describe("the compare picker misses nothing", () => {
     }
   });
 
-  it("leads with the board's own curated partner", () => {
-    for (const [slug, partner] of Object.entries(HEAD_TO_HEAD)) {
-      const first = pickerArtists(slug, slug)[0]?.slug;
-      expect(first, `${slug}'s partner should lead`).toBe(partner);
+  it("lists artists by plaques held, most first, and the fold is eight", () => {
+    const offered = pickerArtists();
+    for (let i = 1; i < offered.length; i++) {
+      const [prev, cur] = [offered[i - 1], offered[i]];
+      expect(plaqueCount(prev), `${cur.name} (${plaqueCount(cur)}) outranks ${prev.name} (${plaqueCount(prev)})`)
+        .toBeGreaterThanOrEqual(plaqueCount(cur));
+      if (plaqueCount(prev) === plaqueCount(cur)) expect(prev.name.localeCompare(cur.name)).toBeLessThan(0);
     }
+    // The count is the board's own: every plaque on every release, features in.
+    const burna = comparableArtists.find((a) => a.slug === "burna-boy")!;
+    expect(plaqueCount(burna)).toBe(burna.releases.flatMap((r) => r.certs).length);
+    expect(offered[0].slug).toBe("burna-boy");
+    expect(PICKER_FOLD).toBe(8);
+  });
+
+  it("lists releases by plaques held, most first — with or without a query", () => {
+    for (const a of comparableArtists)
+      for (const q of ["", "a", "the"]) {
+        const offered = pickerReleases(a, q);
+        for (let i = 1; i < offered.length; i++) {
+          const [prev, cur] = [offered[i - 1], offered[i]];
+          expect(prev.certs.length, `${a.name} “${q}”: ${cur.title} outranks ${prev.title}`).toBeGreaterThanOrEqual(cur.certs.length);
+          if (prev.certs.length === cur.certs.length) expect(prev.title.localeCompare(cur.title)).toBeLessThan(0);
+        }
+      }
+    const burna = comparableArtists.find((a) => a.slug === "burna-boy")!;
+    const top = Math.max(...burna.releases.map((r) => r.certs.length));
+    expect(pickerReleases(burna)[0].certs.length).toBe(top);
   });
 
   it("offers every certified release of every artist, with no query", () => {

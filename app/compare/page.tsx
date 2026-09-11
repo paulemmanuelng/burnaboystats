@@ -5,7 +5,7 @@ import KeepExploring from "../components/KeepExploring";
 import { pageMetadata } from "../lib/seo";
 import { siteUrl } from "../site";
 import { countryMeta } from "../data/afrobeats";
-import { pickerArtists, pickerReleases } from "../lib/comparePicker";
+import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
 import {
   artistBySlug,
   comparableArtists,
@@ -88,8 +88,30 @@ function href(sp: SP, patch: Record<string, string | null>) {
   return s ? `/compare?${s}` : "/compare";
 }
 
+/** A chip list that shows the first PICKER_FOLD and folds the rest behind a
+ *  native disclosure — no script, no navigation, nothing dropped. The whole
+ *  list is in the served markup; the fold is presentation. */
+function FoldedChips({ chips, label }: { chips: React.ReactNode[]; label: string }) {
+  const shown = chips.slice(0, PICKER_FOLD);
+  const rest = chips.slice(PICKER_FOLD);
+  return (
+    <>
+      <div className={styles.chips}>{shown}</div>
+      {rest.length > 0 && (
+        <details className={styles.more}>
+          <summary className={styles.moreToggle} aria-label={`Show ${rest.length} more ${label}`}>
+            <span className={styles.whenClosed}>+ {rest.length} more ↓</span>
+            <span className={styles.whenOpen}>Show fewer ↑</span>
+          </summary>
+          <div className={styles.chips}>{rest}</div>
+        </details>
+      )}
+    </>
+  );
+}
+
 function Slot({
-  artist, release, priced, sp, side, mode,
+  artist, release, priced, sp, side, mode, refused = false,
 }: {
   artist: ComparableArtist | null;
   release: ComparableRelease | null;
@@ -97,22 +119,28 @@ function Slot({
   sp: SP;
   side: "a" | "b";
   mode: "songs" | "artists";
+  /** The same artist is on both sides: the clear control drops the whole side,
+   *  so the artist picker the refusal points at is actually reachable. "Change
+   *  song" on its own kept a=b. (The same-record refusal keeps "Change song" —
+   *  there the fix IS a different release.) */
+  refused?: boolean;
 }) {
   if (!artist) {
     // EVERY artist on the board, minus whoever is already on the other side —
-    // never a shortlist. The board's curated partner for the other side leads.
+    // never a shortlist. Most plaques first; the first eight show, the rest fold.
     const otherSlug = one(sp[side === "a" ? "b" : "a"]);
-    const others = pickerArtists(otherSlug, otherSlug);
+    const others = pickerArtists(otherSlug);
     return (
       <div className={`${styles.slot} ${styles.slotEmpty}`}>
         <p className={styles.prompt}>{otherSlug ? "Choose who to compare against" : "Choose an artist"}</p>
-        <div className={styles.chips}>
-          {others.map((o) => (
+        <FoldedChips
+          label="artists"
+          chips={others.map((o) => (
             <Link key={o.slug} href={href(sp, { [side]: o.slug })} className={styles.chip}>
               {o.name}
             </Link>
           ))}
-        </div>
+        />
       </div>
     );
   }
@@ -120,14 +148,22 @@ function Slot({
   const isSong = mode === "songs" && release;
   const img = isSong ? release.cover : artist.image;
   const title = isSong ? release.title : artist.name;
+  // The plaque count is split so it agrees with the header beneath it, whose
+  // denominator is the international plaques: "20 plaques" over "17 of 19
+  // counted" read as a contradiction until the Nigerian one was named.
+  const ngCount = isSong ? release.certs.filter((c) => c.c === "NG").length : 0;
   const meta = isSong
     ? [artist.name, release.isFeature ? "featured" : release.format === "album" ? "album" : "lead single",
-       release.credit, `${release.certs.length} plaque${release.certs.length === 1 ? "" : "s"}`]
+       release.credit,
+       ngCount
+         ? `${release.certs.length - ngCount} international plaque${release.certs.length - ngCount === 1 ? "" : "s"} + ${ngCount} Nigerian`
+         : `${release.certs.length} plaque${release.certs.length === 1 ? "" : "s"}`]
         .filter(Boolean).join(" · ")
-    : (() => {
-        const n = priced ? priced.byCountry.length : 0;
-        return `artist totals · ${priced ? `${priced.pricedPlaques} counted` : ""} · ${n} ${n === 1 ? "country" : "countries"}`;
-      })();
+    : [
+        "artist totals",
+        priced ? `${priced.pricedPlaques} counted` : null,
+        priced ? `${priced.byCountry.length} ${priced.byCountry.length === 1 ? "country" : "countries"}` : null,
+      ].filter(Boolean).join(" · ");
 
   return (
     <div className={styles.slot}>
@@ -153,7 +189,7 @@ function Slot({
           the only way to change a side is editing the URL. */}
       <Link
         href={
-          isSong
+          isSong && !refused
             ? href(sp, { [side === "a" ? "sa" : "sb"]: null })
             : href(sp, {
                 [side]: null,
@@ -162,9 +198,9 @@ function Slot({
               })
         }
         className={styles.slotClear}
-        aria-label={isSong ? `Choose a different release by ${artist.name}` : `Choose a different artist`}
+        aria-label={isSong && !refused ? `Choose a different release by ${artist.name}` : `Choose a different artist`}
       >
-        {isSong ? "Change song ✕" : "Change ✕"}
+        {isSong && !refused ? "Change song ✕" : "Change ✕"}
       </Link>
     </div>
   );
@@ -186,11 +222,14 @@ function SongPicker({
   sp: SP;
   query: string;
 }) {
-  const q = query.trim();
+  // Folded, so a punctuation-only query ("&", ".") is empty for the label just
+  // as it is for the filter — it was reporting "85 of 85 match “&”".
+  const q = fold(query);
   const all = artist.releases;
   // EVERY certified release, always — search narrows, it never hides. The first
   // version showed eight of eighty-five and the rest were reachable only by
-  // typing the exact title.
+  // typing the exact title. Now the first eight show and the rest FOLD, which
+  // is a different thing: every chip is in the markup, one tap away.
   const matches = pickerReleases(artist, q);
   const field = side === "a" ? "qa" : "qb";
   const target = side === "a" ? "sa" : "sb";
@@ -231,13 +270,14 @@ function SongPicker({
         </form>
       </div>
       {matches.length > 0 ? (
-        <div className={styles.chips}>
-          {matches.map((r) => (
+        <FoldedChips
+          label="releases"
+          chips={matches.map((r) => (
             <Link key={r.title} href={href(sp, { [target]: r.title, [field]: null })} className={styles.chip}>
               {r.title}
             </Link>
           ))}
-        </div>
+        />
       ) : (
         <p className={styles.pickNone}>
           No certified release of {artist.name}&apos;s matches “{query}”. Only releases that hold at least
@@ -331,7 +371,10 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   // hardcode Nigeria off, so the switch it rendered was inert and Seyi Vibez
   // landed on "at least 0" with no way to see his 7,750,000.
   const soloNg = ngParam === "1";
-  const soloPriced = a && !both ? priceArtist(a, { includeNigeria: soloNg, includeFeatures }) : null;
+  // Solo pricing also backs the slots on a REFUSED pairing (same artist twice),
+  // so they never print "· · 0 countries" for an artist with a real catalogue.
+  const soloPriced = a && (!both || sameArtist) ? priceArtist(a, { includeNigeria: soloNg, includeFeatures }) : null;
+  const refused = Boolean(sameArtist || sameRecording);
 
   const songPriced = (art: ComparableArtist | null, rel: ComparableRelease | null, ngIn: boolean) =>
     art && rel ? priceRelease(art, rel.title, { includeNigeria: ngIn, includeFeatures: true }) : null;
@@ -344,8 +387,11 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   // real bug: in song mode with no song picked yet, the page fell through to
   // ARTIST totals and printed them under the artists' names. In song mode
   // nothing renders until BOTH songs are chosen.
-  const ready = mode === "songs" ? useSongs : both && !sameRecording && !sameArtist;
-  const partial = mode === "songs" ? Boolean(spa || spb) : Boolean(a);
+  const ready = mode === "songs" ? useSongs : both && !refused;
+  // A refused pairing renders its refusal and nothing else — no card, no hint.
+  // It was printing "at least 0 certified units" beneath "That is Burna Boy on
+  // both sides", which is a number the page never established.
+  const partial = refused ? false : mode === "songs" ? Boolean(spa || spb) : Boolean(a);
 
   // The side being described, whichever mode is on — and in song mode with one
   // song chosen, that side is the SONG, never the artist. The header card was
@@ -412,9 +458,13 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   const visibleNotCounted = rows.some((r) => (r.a && !r.a.counted) || (r.b && !r.b.counted) || r.a?.notCounted || r.b?.notCounted);
   const visibleCaveat = rows.some((r) => r.a?.caveat || r.b?.caveat);
   const visibleVintage = rows.some((r) => r.a?.vintage || r.b?.vintage);
-  const foldedNotCounted = c && !showAll
-    ? c.collapsed.reduce((n, t) => n + t.rows.filter((r) => (r.a && !r.a.counted) || (r.b && !r.b.counted)).length, 0)
-    : 0;
+  // The collapse row counts PLAQUES it hides, not rows: a listed-only line is
+  // every plaque on it, a priced line hides the unpriced half riding on it. It
+  // was counting rows, so it said 3 beneath a header that said 8. Counted per
+  // group, because each side's fold is its own row.
+  const unpricedIn = (l: CountryLine | null) => (!l ? 0 : !l.counted ? l.releases : l.notCounted?.plaques ?? 0);
+  const foldedIn = (rowsIn: ComparisonRow[]) => rowsIn.reduce((m, r) => m + unpricedIn(r.a) + unpricedIn(r.b), 0);
+  const foldedNotCounted = c && !showAll ? c.collapsed.reduce((n, t) => n + foldedIn(t.rows), 0) : 0;
 
   const tie = ready && totalA === totalB;
   const leadA = totalA >= totalB;
@@ -449,18 +499,26 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
         </p>
 
         <nav className={styles.seg} aria-label="Comparison mode">
-          <Link href={href(sp, { mode: "songs" })} className={`${styles.segItem} ${mode === "songs" ? styles.segOn : ""}`}>
-            Song vs song
-          </Link>
-          <Link href={href(sp, { mode: "artists", sa: null, sb: null })} className={`${styles.segItem} ${mode === "artists" ? styles.segOn : ""}`}>
-            Artist totals
-          </Link>
+          {/* The selected segment is not a link: a self-link that also dropped
+              `all` collapsed the table when you clicked the mode you were in. */}
+          {mode === "songs" ? (
+            <span className={`${styles.segItem} ${styles.segOn}`} aria-current="page">Song vs song</span>
+          ) : (
+            <Link href={href(sp, { mode: "songs" })} className={styles.segItem}>Song vs song</Link>
+          )}
+          {mode === "artists" ? (
+            <span className={`${styles.segItem} ${styles.segOn}`} aria-current="page">Artist totals</span>
+          ) : (
+            <Link href={href(sp, { mode: "artists", sa: null, sb: null, qa: null, qb: null })} className={styles.segItem}>
+              Artist totals
+            </Link>
+          )}
         </nav>
 
         <div className={styles.slots}>
-          <Slot artist={a} release={songA} priced={c?.a ?? soloPriced ?? null} sp={sp} side="a" mode={mode} />
+          <Slot artist={a} release={songA} priced={c?.a ?? soloPriced ?? null} sp={sp} side="a" mode={mode} refused={sameArtist} />
           <span className={styles.vs}>vs</span>
-          <Slot artist={b} release={songB} priced={c?.b ?? null} sp={sp} side="b" mode={mode} />
+          <Slot artist={b} release={songB} priced={c?.b ?? (sameArtist ? soloPriced : null) ?? null} sp={sp} side="b" mode={mode} refused={sameArtist} />
         </div>
 
         {mode === "songs" && a && !songA && (
@@ -557,7 +615,9 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
                 <p className={styles.diff}>
                   {mode === "songs"
                     ? "Pick a release on each side — the country-by-country table appears once both are chosen."
-                    : "The country-by-country table appears when both sides are filled. Featured appearances are off until you turn them on."}
+                    : includeFeatures
+                      ? "The country-by-country table appears when both sides are filled. Featured appearances are on."
+                      : "The country-by-country table appears when both sides are filled. Featured appearances are off until you turn them on."}
                 </p>
               )}
               <span className={styles.scope}>{scope}</span>
@@ -632,7 +692,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
                       <td colSpan={3}>
                         <span className={styles.collapseText}>
                           + {t.countries} further countries where only {t.artist} is certified · at least {fmt(t.units)}
-                          {foldedNotCounted > 0 ? ` · ${foldedNotCounted} not counted ¹` : ""}
+                          {foldedIn(t.rows) > 0 ? ` · ${foldedIn(t.rows)} plaque${foldedIn(t.rows) === 1 ? "" : "s"} not counted ¹` : ""}
                         </span>
                         <Link href={href(sp, { all: "1" })} className={styles.showAll}>Show all ↓</Link>
                       </td>

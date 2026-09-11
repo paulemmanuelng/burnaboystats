@@ -545,3 +545,29 @@
   text-transform: uppercase;
   color: var(--gold);
 }
+
+/* ── folded chips ──────────────────────────────────────────
+   The first eight chips of a list show; the rest sit behind a native
+   <details>. The toggle is styled as a chip in the action colour so it reads
+   as part of the row it extends. No script: the whole list is served. */
+.more { margin-top: 8px; }
+.moreToggle {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 13px;
+  border: 1px dashed var(--rule);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  user-select: none;
+}
+.moreToggle::-webkit-details-marker { display: none; }
+.moreToggle:hover { background: var(--bg-raised); }
+.moreToggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.more[open] > .moreToggle { margin-bottom: 8px; }
+.more[open] .whenClosed, .more:not([open]) .whenOpen { display: none; }
