@@ -1,4 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -183,5 +185,19 @@ describe("the pickers fold after eight, and drop nothing", () => {
     const pick = h.split("pickWrap")[1];
     expect(chipsIn(pick).length).toBeLessThanOrEqual(PICKER_FOLD);
     expect(pick).not.toContain("<details");
+  });
+});
+
+describe("the page never widens past the phone", () => {
+  it("<main> is an explicit full-width flex item — fit-content let the table set the page width", () => {
+    // body is a column flexbox and .wrap carries auto side margins, so without
+    // an explicit width the item is fit-content: the country table's
+    // min-content (372px) pushed the document to 404px on a 375px phone and
+    // clipped the right edge of every row. Measured with headless Chrome,
+    // 11 Sep 2026; this pins the rule that fixed it.
+    const css = readFileSync(join(process.cwd(), "app/compare/compare.module.css"), "utf8");
+    const wrap = css.match(/\.wrap\s*\{([^}]*)\}/)?.[1] ?? "";
+    expect(wrap).toMatch(/width:\s*100%/);
+    expect(wrap).toMatch(/margin:\s*0 auto/);
   });
 });

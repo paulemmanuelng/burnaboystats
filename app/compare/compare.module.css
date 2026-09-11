@@ -12,6 +12,12 @@
  */
 
 .wrap {
+  /* <main> is a flex item of body (column flex). With auto side margins it is
+     NOT stretched — it is fit-content — so the table's min-content width
+     pushed the whole page to 404px on a 375px phone and clipped the right
+     edge. An explicit width makes the max-width/auto-margin pair centre a
+     full-width box instead of a content-sized one. */
+  width: 100%;
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 24px 96px;
