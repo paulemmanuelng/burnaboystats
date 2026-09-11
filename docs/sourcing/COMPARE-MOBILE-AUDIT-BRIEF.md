@@ -37,8 +37,16 @@ S16 /compare?mode=songs&a=asake&b=olamide&sa=Peace%20Be%20Unto%20You%20(PBUY)&sb
 S17 /compare?mode=songs&a=ckay&b=burna-boy&sa=love%20nwantiti%20(ah%20ah%20ah)&sb=Ye       long lower-case title
 Widths to cover: 320, 360, 375, 390, 414, 430 (height 812). Themes: dark AND light (--theme light).
 
-## Already fixed today (do not re-report)
-- `<main>` was fit-content inside body's column flexbox, so the table's min-content pushed the document to 404px at 375 (`.wrap { width: 100% }` now). Verify it stays at 375 in your states; report only if you find a DIFFERENT overflow.
+## Already fixed today (do not re-report; DO report if any of it regressed)
+- Page width: `<main>` was fit-content inside body's column flexbox; `.wrap { width: 100% }` now. Document scrollWidth is 375 at 375.
+- The country table on a phone is the design's row grid (`.table tr { display:grid; grid-template-columns: 78px minmax(0,1fr) minmax(0,1fr) }` under 760px; 64px column under 360px); tier chips 11px, wrap allowed, `<wbr>` before the programme marker. Explicit ARIA table roles.
+- Sticky "The Afrobeats Board ↗" bar above the five-tab bar when both sides are filled (`.boardBar`, global hook class `compareBoardBar`), `.barSpacer` after the page; html `scroll-padding-bottom` covers both bars.
+- Head cell on the phone: name / figure / bar; `.headMeta` is visually hidden (still in the AX tree). Slot title/meta wrap; clear control is a 44px circle with the word in the accessible name.
+- Switches are a 30×16 track + knob with the label beside; they and Include Nigeria / Show all / Show fewer carry `scroll={false}` (tapping them keeps the scroll position).
+- Search: form fills the row, input 16px on a phone, appearance:none, iOS keyboard hints; focus rings keep the pill radius. `.pickHead { min-width: 0 }`.
+- `<main id="content">`; h2s for Nigeria / Country by country / How this is counted / Next; arrows aria-hidden; disclosure name follows its state; country names off-screen not display:none; type floor 11px everywhere on the page; 'No plaque' undimmed.
+- "Keep exploring" is gone from /compare (Paul). The ‡ footnote is one line + a link to /methodology#threshold-history (the record lives there now).
+- KNOWN HARNESS ARTEFACT at --width 320: the SITE HEADER (globals.css .navInner, not compare's files) is 355px wide, so headless Chrome's layout viewport becomes 355 and document.scrollWidth reads 355 at 320 on every page of the site. Do not report that as a compare overflow; measure compare's own elements against html.clientWidth (320) instead.
 
 ## What a finding must contain
 title; severity (blocker = broken/unusable/clipped/wrong; major = clearly worse than the site's other mobile screens or off the design; minor; nit); state id(s) + width(s) + theme; the exact harness command that shows it; the measured evidence (numbers, or a screenshot path); what you believe the cause is (file:line if you found it); a concrete suggested fix. No speculation without a measurement or a screenshot. Do NOT edit any repo file — this is read-only.
