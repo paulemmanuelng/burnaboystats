@@ -121,6 +121,16 @@ export interface RankEntry {
   name: string;
   sub?: string; // optional secondary label, e.g. an album title ("list" boxes)
   value?: string; // e.g. "46.58M" (only used in "list" boxes)
+  /** Shares the rank of the entry above it — "Despacito" at 97 days beside
+   *  "Shape of You" at 97. Both renderers and the badge read rankOf(). */
+  tie?: true;
+}
+
+/** Competition ranking: a run of ties takes the rank of its first member. */
+export function rankOf(entries: RankEntry[], i: number): number {
+  let j = i;
+  while (j > 0 && entries[j].tie) j--;
+  return j + 1;
 }
 
 export interface RankRow {
@@ -404,6 +414,27 @@ export const statBoxes: LeaderboardBox[] = [
     note: `Not an African leaderboard — a world one. At ${BURNA_YT_AUDIENCE_WORDS}, Burna Boy has the sixth-biggest YouTube monthly audience ever recorded, and the only one belonging to an African artist — now ahead of Lady Gaga (862M) and Michael Jackson (741M), heights no African act had reached before.`,
     source:
       "Highest monthly audience peaks on YouTube for any artist worldwide (YouTube for Artists), from chart-tracking accounts. As of August 2026 — live figures, so the order can change as they climb.",
+  },
+  {
+    id: "fastest-to-a-billion-youtube",
+    title: "Fastest music video to a billion YouTube views",
+    meta: "YouTube · all artists · days from premiere to 1,000,000,000 views",
+    layout: "list",
+    // The top five, ties included — six rows. Lower is better, so this is the
+    // one list on the page whose values rise down the board; the ordering test
+    // reads "N days" as a placing. Read from Chart Data's and Pop Core's
+    // published lists on 11 Sep 2026, which agree row for row.
+    entries: [
+      { name: "Adele", sub: "🇬🇧 “Hello”", value: "88 days" },
+      { name: "Ed Sheeran", sub: "🇬🇧 “Shape of You”", value: "97 days" },
+      { name: "Luis Fonsi", sub: "🇵🇷 “Despacito” (feat. Daddy Yankee)", value: "97 days", tie: true },
+      { name: "J Balvin", sub: "🇨🇴 “Mi Gente” (with Willy William)", value: "103 days" },
+      { name: "ROSÉ", sub: "🇰🇷 “APT.” (with Bruno Mars)", value: "105 days" },
+      { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "105 days", tie: true },
+    ],
+    note: "A world board, not an African one: the “Dai Dai” video reached a billion views in 105 days — joint fifth-fastest music video in YouTube history, level with “APT.”, the first 2026 video to a billion, and the only African record on the list.",
+    source:
+      "Days from each video's premiere to its billionth view, as published by Chart Data and Pop Core, read 11 September 2026. A tie shares its rank.",
   },
   {
     id: "apple-music-global-no1",

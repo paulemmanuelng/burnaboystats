@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { cardinalWord, ordinalWord } from "../app/lib/plural";
 import { weeksAtPeak, weeksOnChart, daiDaiChartEntryCount, daiDaiNumberOnes } from "../app/data/charts";
 import { daiDaiCertCount } from "../app/data/certifications";
-import { daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF } from "../app/data/daiDai";
+import { daiDaiSpotifyDaysOnChart, daiDaiSpotifyStraightDays, daiDaiYouTubeDaysAtNo1, DAI_DAI_1B_DAYS, DAI_DAI_1B_RANK_EN, DAI_DAI_1B_RANK_ES, DAI_DAI_SPOTIFY_CONFIRMED_THROUGH, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG, DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG, DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES, DAI_DAI_SPOTIFY_TOP10_DAYS, DAI_DAI_SPOTIFY_DAYS_OFF } from "../app/data/daiDai";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -90,6 +90,11 @@ const DERIVED: Record<string, number | string | null> = {
   // salvo uno" in Spanish and was wrong in both for four months; interpolating
   // it means the next correction reaches both editions or neither.
   DAI_DAI_SPOTIFY_DAYS_OFF,
+  // The billion-views milestone: the days, and the rank as each edition
+  // spells it ("joint 5th" / "5.º (empatado)"), all derived from one list.
+  DAI_DAI_1B_DAYS,
+  DAI_DAI_1B_RANK_EN,
+  DAI_DAI_1B_RANK_ES,
 };
 // Two interpolation shapes appear in the cards: a bare `${weeksDE}`, and a
 // `${ordinalWord(weeksGLB, "es")}` where the Spanish edition needs the word

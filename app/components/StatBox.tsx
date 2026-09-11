@@ -1,5 +1,5 @@
 import styles from "../records/africas-biggest/africas-biggest.module.css";
-import { HIGHLIGHT, type LeaderboardBox } from "../data/africasBiggest";
+import { HIGHLIGHT, rankOf, type LeaderboardBox } from "../data/africasBiggest";
 
 /**
  * A leaderboard "stat box". Two layouts:
@@ -49,7 +49,7 @@ export default function StatBox({
                 className={`${styles.entryRow} ${him ? styles.entryHim : ""}`}
               >
                 <span className={`${styles.entryRank} ${him ? styles.rankHim : ""}`}>
-                  {i + 1}
+                  {rankOf(entries, i)}
                 </span>
                 <span>
                   <span className={`${styles.entryName} ${him ? styles.nameHim : ""}`}>
