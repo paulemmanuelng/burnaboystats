@@ -163,14 +163,18 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   CZ: {
     code: "CZ",
+    normalised:
+      "Found 10 Sep 2026; the body's site had been unreachable from every earlier route. ČNS IFPI's rules effective 9 March 2026 state every threshold in SUBSCRIPTION STREAMS — Zlatý singl 2,500,000, Platinový singl 5,000,000, Zlaté album 5,000,000, Platinové album 10,000,000 — and publish the equivalence «1 download = 222 subscription streamů», which is what these are divided by. Both formats normalised. The body awards Zlatý and Platinový only: no Silver, no Diamond, no multiplier rule. Eligible releases: from 1 January 2022 onward.",
+    caveat:
+      "ČNS IFPI states no multiplier rule; an N× award is priced here as N × Platinum.",
+    vintage:
+      "ČNS IFPI's conversion ratios moved on 9 March 2026 — 1 download was 225 subscription streams under the 1 July 2025 rules and is 222 now — and before mid-2025 Czech certification ran on CZK revenue rather than streams. Plaques here are priced on the 9 March 2026 rules whatever their award date.",
     body: "ČNS IFPI — Česká národní skupina IFPI",
-    sourceUrl: "https://ifpicr.cz/limity-pro-udelovani-oceneni",
-    single: null,
-    singleExcluded:
-      "ČNS IFPI's site is network-unreachable from every route tried. Czech certification is also reported to have run on CZK REVENUE rather than units for part of 2016-2025, so a unit threshold may be the wrong shape of answer entirely — confirm at the body before pricing.",
-    album: null,
-    albumExcluded:
-      "ČNS IFPI's site is network-unreachable from every route tried. Czech certification is also reported to have run on CZK REVENUE rather than units for part of 2016-2025, so a unit threshold may be the wrong shape of answer entirely — confirm at the body before pricing.",
+    sourceUrl: "https://ifpicr.cz/files/page/c3/7a/c37a8df18b916ffe6a7a40db48f8000f/Pravidla-pro-udelovani-oceneni-od-9.3.2026-CR-2084.pdf",
+    single: { silver: null, gold: 11_261, platinum: 22_522, diamond: null },
+    singleRaw: { gold: 2_500_000, platinum: 5_000_000 },
+    album: { silver: null, gold: 22_522, platinum: 45_045, diamond: null },
+    albumRaw: { gold: 5_000_000, platinum: 10_000_000 },
   },
   DE: {
     code: "DE",
@@ -312,14 +316,18 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   SK: {
     code: "SK",
+    normalised:
+      "Found 10 Sep 2026 in a 21 May 2026 archive of the body's own PDF, confirmed current by ČNS IFPI's awards page as captured 1 September 2026. The Slovak rules effective 9 March 2026 state every threshold in SUBSCRIPTION STREAMS — Zlatý singel 850,000, Platinový singel 1,700,000, Zlatý album 1,750,000, Platinový album 3,500,000 — and publish «1 download = 217 subscription streamov», which is what these are divided by. Both formats normalised. Zlatý and Platinový only: no Silver, no Diamond, no multiplier rule.",
+    caveat:
+      "ČNS IFPI's Slovak rules state no multiplier rule; an N× award is priced here as N × Platinum.",
+    vintage:
+      "The Slovak conversion ratios moved on 9 March 2026 — 1 download was 240 subscription streams under the mid-2025 rules and is 217 now, with further revisions on 20 October 2025 and 1 January 2026 in between — and until 2022 the awards ran on euro revenue (Platinový singel: obrat 4,000 €). Plaques here are priced on the 9 March 2026 rules whatever their award date.",
     body: "ČNS IFPI — Česká národní skupina IFPI (which administers the Slovak awards; SNS IFPI / ifpi.sk is the Slovak national group)",
-    sourceUrl: "https://ifpicr.cz/limity-pro-udelovani-oceneni",
-    single: null,
-    singleExcluded:
-      "ČNS IFPI's Slovak site is network-unreachable from every route tried. As with Czechia, certification is reported to have run on REVENUE rather than units for part of 2016-2025, so a unit threshold may be the wrong shape of answer — confirm at the body before pricing.",
-    album: null,
-    albumExcluded:
-      "ČNS IFPI's Slovak site is network-unreachable from every route tried. As with Czechia, certification is reported to have run on REVENUE rather than units for part of 2016-2025, so a unit threshold may be the wrong shape of answer — confirm at the body before pricing.",
+    sourceUrl: "https://web.archive.org/web/20260521153213id_/https://ifpicr.cz/files/page/4b/9c/4b9c16f09271779fffe0975269b85eed/Pravidla-pre-udelovanie-ocenenia-od-9.3.2026-SR.pdf",
+    single: { silver: null, gold: 3_917, platinum: 7_834, diamond: null },
+    singleRaw: { gold: 850_000, platinum: 1_700_000 },
+    album: { silver: null, gold: 8_064, platinum: 16_129, diamond: null },
+    albumRaw: { gold: 1_750_000, platinum: 3_500_000 },
   },
   UK: {
     code: "UK",

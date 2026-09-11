@@ -74,10 +74,11 @@ describe("thresholds are sourced, never invented", () => {
   });
 
   it("refuses to price what no body publishes", () => {
-    // Belgium left this list on 10 Sep 2026: BRMA's thresholds are published by
-    // Ultratop, its awards operator. Czechia and Slovakia leave it below once
-    // their verifier passes.
-    for (const code of ["GR", "CO", "CZ", "SK"]) {
+    // Belgium, Czechia and Slovakia all left this list on 10-11 Sep 2026 once
+    // their thresholds were found and independently verified — Belgium via
+    // Ultratop, BRMA's awards operator; the other two in ČNS IFPI's own rules,
+    // which publish a download equivalence the way France's do.
+    for (const code of ["GR", "CO"]) {
       expect(thresholdFor(code, "single", "Platinum")).toBeNull();
       expect(thresholdFor(code, "album", "Platinum")).toBeNull();
     }
@@ -631,5 +632,19 @@ describe("audit fixes, 11 Sep 2026 — each one had a live counter-example", () 
   it("never rounds a normalised floor upward", () => {
     expect(thresholdFor("NL", "single", "Gold")).toBe(46_511);   // 10,000,000 / 215 = 46,511.6
     expect(thresholdFor("NL", "album", "Gold")).toBe(18_604);    // 40,000,000 / 2150 = 18,604.65
+  });
+
+  it("prices Czechia and Slovakia off ČNS IFPI's own download equivalence", () => {
+    // Both state thresholds in subscription streams and publish the ratio —
+    // 1 download = 222 (CZ) and 217 (SK) — the same pattern as France.
+    expect(thresholdFor("CZ", "single", "Gold")).toBe(11_261);      // 2,500,000 / 222
+    expect(thresholdFor("CZ", "album", "Platinum")).toBe(45_045);   // 10,000,000 / 222
+    expect(thresholdFor("SK", "single", "Platinum")).toBe(7_834);   // 1,700,000 / 217
+    expect(thresholdFor("SK", "album", "Gold")).toBe(8_064);        // 1,750,000 / 217
+    expect(CERT_THRESHOLDS.CZ.singleRaw?.gold).toBe(2_500_000);
+    // Dai Dai's Czech Gold and Slovak Platinum now price.
+    const dd = priceRelease(bySlug("burna-boy"), "Dai Dai", { includeNigeria: true, includeFeatures: true })!;
+    expect(dd.byCountry.find((l) => l.country === "CZ")?.units).toBe(11_261);
+    expect(dd.byCountry.find((l) => l.country === "SK")?.units).toBe(7_834);
   });
 });
