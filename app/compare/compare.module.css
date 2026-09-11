@@ -218,7 +218,7 @@
 .dotOn { background: var(--gold); }
 .dotOn::after { left: 16px; background: var(--ink-on-gold); }
 .switch:hover .dotOn { background: var(--gold); }
-.howLink { margin-left: auto; color: var(--gold); }
+.howLink { margin-left: auto; color: var(--gold); display: inline-flex; align-items: center; min-height: 44px; }
 
 /* ── why-line ─────────────────────────────────────────────── */
 .why {
@@ -370,7 +370,7 @@
 .unitsBehind { color: var(--text-muted); }
 .tierChip {
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -385,9 +385,11 @@
   margin-left: 4px;
   padding-left: 5px;
   border-left: 1px solid currentColor;
-  font-size: 0.82em;
+  /* Sized in px, not em: 0.82em of a phone chip was 7.8px, and at 0.85
+     opacity the gold marker was 3.75:1 on paper. It carries the reason a
+     16× Platino is worth 960,000 beside a 5× Platinum worth 5,000,000. */
+  font-size: var(--type-label);
   letter-spacing: 0.08em;
-  opacity: 0.85;
 }
 .tDiamond { color: var(--tier-diamond-ink); border-color: var(--tier-diamond-edge); }
 .tPlatinum { color: var(--tier-platinum-ink); border-color: var(--tier-platinum-edge); }
@@ -396,16 +398,17 @@
 /* A blank cell is a rendering fault; the words are the value. */
 .noPlaque {
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-faint, var(--text-muted));
-  opacity: 0.62;
+  /* The muted token, undimmed: at 0.62 alpha this was 3.36:1 dark and
+     2.77:1 light — under AA for small text. */
+  color: var(--text-muted);
 }
 .notCounted {
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: var(--type-label);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -490,7 +493,10 @@
   .slotTitle { font-size: 20px; line-height: 1.05; }
   /* The design's clear control on the phone: a ✕ in a 36px circle, the word
      in the accessible name. The pill's text took the meta's room. */
-  .slotClear { width: 36px; min-height: 36px; padding: 0; justify-content: center; border-radius: 50%; font-size: 13px; }
+  /* The design's phone frame draws this at 44×44. Scoped under .slot so it
+     outranks the base .slotClear rule that follows later in the file — an
+     unscoped copy here lost on order and rendered a 36×32 oval. */
+  .slot .slotClear { width: 44px; height: 44px; min-height: 44px; padding: 0; justify-content: center; border-radius: 50%; font-size: 13px; }
   .slotClearText { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   /* Head: name / figure / bar. The meta line is desktop-only on the design's
@@ -499,7 +505,8 @@
   .head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 12px; }
   .headName { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .figure { font-size: clamp(26px, 8.4vw, 34px); overflow-wrap: normal; }
-  .headMeta { display: none; }
+  /* Kept for assistive tech (the figure's qualifier), off the screen. */
+  .headMeta { position: absolute; left: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
   .bar { height: 4px; margin-top: 10px; }
   .method { grid-template-columns: 1fr; gap: 18px; }
   .howLink { margin-left: 0; }
@@ -523,7 +530,7 @@
   }
   .table thead tr { min-height: 0; padding: 0 0 8px; border-bottom: 2px solid var(--rule); }
   .table th, .table td { display: block; padding: 0; border-bottom: 0; min-width: 0; }
-  .table th { white-space: normal; font-size: 10px; letter-spacing: 0.1em; }
+  .table th { white-space: normal; letter-spacing: 0.1em; }
   /* "COUNTRY ·" / "11" broke mid-label in a 78px column; stack it on purpose. */
   .thSep { display: none; }
   .thCount { display: block; }
@@ -531,9 +538,11 @@
   .cell { align-items: flex-start; gap: 4px; }
   .country { gap: 6px; }
   .flag { font-size: 16px; }
-  .countryName { display: none; }
+  /* Off-screen, not display:none: a screen reader still hears "Switzerland",
+     not "C-H", and can match the row to the footnote that names it. */
+  .countryName { position: absolute; left: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .countryCode { font-size: 11px; letter-spacing: 0.06em; color: var(--text); }
-  .tierChip { font-size: 9.5px; letter-spacing: 0.08em; padding: 3px 7px; border-radius: 999px; white-space: normal; }
+  .tierChip { letter-spacing: 0.03em; padding: 3px 6px; border-radius: 999px; white-space: normal; }
   .units { font-size: 12px; }
   .ngRow { padding-left: 8px; padding-right: 8px; margin: 0 -8px; }
   /* Specificity: ".table tr" above is 0,1,1 — a bare ".collapseRow" lost, and
@@ -541,6 +550,14 @@
   .table .collapseRow { display: block; padding: 12px; background: var(--bg-soft); }
   .table .collapseRow td { display: flex; flex-direction: column; gap: 6px; }
   .collapseText { text-transform: none; letter-spacing: 0; font-family: inherit; font-size: var(--type-small); line-height: var(--type-small-lh); }
+  /* The search row takes the full width: a shrink-to-fit form left 52–106px
+     empty beside a 200px field whose placeholder was cut off, and at 320 the
+     row ran past the page padding. 16px stops iOS Safari zooming in on focus. */
+  .search { flex: 1 1 100%; min-width: 0; }
+  /* Scoped under .search: the base .searchInput rule sits later in the file
+     and would otherwise win on order. */
+  .search .searchInput { min-width: 0; flex-basis: 0; font-size: 16px; }
+  .howLink { display: flex; width: 100%; justify-content: space-between; }
   .showAll { margin-left: 0; min-height: 44px; display: inline-flex; align-items: center; font-family: var(--font-mono), monospace; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
 
   /* The desktop foot strip yields to the sticky bar (below). */
@@ -608,6 +625,9 @@
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
+  /* A grid item: without this its min-content (the search field's 200px
+     basis + the button) widened it past the page at 320px. */
+  min-width: 0;
 }
 .pickLabel {
   font-family: var(--font-mono), monospace;
@@ -619,6 +639,8 @@
 }
 .search { display: flex; gap: 8px; align-items: center; }
 .searchInput {
+  -webkit-appearance: none;
+  appearance: none;
   min-height: 44px;
   min-width: 200px;
   flex: 1 1 200px;
@@ -631,6 +653,12 @@
   font-size: var(--type-small);
 }
 .searchInput::placeholder { color: var(--text-muted); }
+/* The site's focus rule sets border-radius: 3px on the element itself, which
+   squared every pill here the moment it was tapped (on iOS a text field
+   always matches :focus-visible). The rings keep the pills' own radius. */
+.searchInput:focus-visible, .searchBtn:focus-visible, .chip:focus-visible, .segItem:focus-visible,
+.switch:focus-visible, .showAll:focus-visible, .ngAction:focus-visible, .boardBtn:focus-visible { border-radius: 999px; }
+.slotClear:focus-visible { border-radius: 50%; }
 .searchBtn {
   min-height: 44px;
   padding: 0 18px;
@@ -669,7 +697,7 @@
   border: 1px solid var(--rule);
   border-radius: 999px;
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -678,6 +706,9 @@
 }
 .slotClear:hover { background: var(--bg-raised); color: var(--text); }
 .pickChange {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: var(--font-mono), monospace;
   font-size: var(--type-label);
   letter-spacing: 0.06em;
@@ -707,6 +738,6 @@
 }
 .moreToggle::-webkit-details-marker { display: none; }
 .moreToggle:hover { background: var(--bg-raised); }
-.moreToggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.moreToggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 999px; }
 .more[open] > .moreToggle { margin-bottom: 8px; }
 .more[open] .whenClosed, .more:not([open]) .whenOpen { display: none; }

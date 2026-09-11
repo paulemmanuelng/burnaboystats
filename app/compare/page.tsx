@@ -98,9 +98,13 @@ function FoldedChips({ chips, label }: { chips: React.ReactNode[]; label: string
       <div className={styles.chips}>{shown}</div>
       {rest.length > 0 && (
         <details className={styles.more}>
-          <summary className={styles.moreToggle} aria-label={`Show ${rest.length} more ${label}`}>
-            <span className={styles.whenClosed}>+ {rest.length} more ↓</span>
-            <span className={styles.whenOpen}>Show fewer ↑</span>
+          {/* No aria-label: the two spans swap with the open state, so the
+              accessible name follows what the reader sees ("+ 77 more
+              releases" / "Show fewer releases"). A static label kept saying
+              "Show 77 more" on an open fold. */}
+          <summary className={styles.moreToggle}>
+            <span className={styles.whenClosed}>+ {rest.length} more<span className="visuallyHidden"> {label}</span> <span aria-hidden="true">↓</span></span>
+            <span className={styles.whenOpen}>Show fewer<span className="visuallyHidden"> {label}</span> <span aria-hidden="true">↑</span></span>
           </summary>
           <div className={styles.chips}>{rest}</div>
         </details>
@@ -252,7 +256,7 @@ function SongPicker({
           href={href(sp, { [side]: null, [target]: null, [field]: null })}
           className={styles.pickChange}
         >
-          Change artist ↺
+          Change artist <span aria-hidden="true">↺</span>
         </Link>
         <form method="get" action="/compare" className={styles.search} role="search">
           {carried.map(([k, v]) => (
@@ -265,6 +269,11 @@ function SongPicker({
             className={styles.searchInput}
             placeholder={`Narrow ${artist.name}'s releases`}
             aria-label={`Search ${artist.name}'s certified releases`}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="none"
+            spellCheck={false}
+            enterKeyHint="search"
           />
           <button type="submit" className={styles.searchBtn}>Search</button>
         </form>
@@ -298,7 +307,7 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
       <div className={styles.cell}>
         <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
           {plaque(line.top)}
-          {prog && <span className={styles.chipProgram}>{prog}</span>}
+          {prog && <><wbr /><span className={styles.chipProgram}>{prog}</span></>}
           {line.releases > 1 ? ` +${line.releases - 1}` : ""}
         </span>
         <span className={styles.notCounted}>not counted ¹</span>
@@ -309,7 +318,9 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
     <div className={styles.cell}>
       <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
         {plaque(line.top)}
-        {prog && <span className={styles.chipProgram}>{prog}</span>}
+        {/* <wbr>: the marker abuts the tier word with no space, so a 104px
+            phone cell could not break "Platinum│Latin" and the chip overflowed. */}
+        {prog && <><wbr /><span className={styles.chipProgram}>{prog}</span></>}
         {marks}
       </span>
       <span className={`${styles.units} ${lead ? styles.unitsLead : styles.unitsBehind}`}>
@@ -489,7 +500,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <BreadcrumbBar path="/compare" />
-      <main className={styles.wrap}>
+      <main id="content" className={styles.wrap}>
         <p className={styles.kicker}>Certifications › Compare</p>
         <h1 className={styles.h1}>Certified units, compared</h1>
         <p className={styles.lede}>
@@ -532,20 +543,26 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           {mode === "artists" && (
             <span className={styles.control}>
               <span className={styles.controlName}>Featured appearances</span>
-              <Link href={href(sp, { feat: featParam === "1" ? "0" : "1" })} className={`${styles.switch} ${featParam === "1" ? styles.switchOn : ""}`}>
+              <Link
+                href={href(sp, { feat: featParam === "1" ? "0" : "1" })}
+                scroll={false}
+                className={`${styles.switch} ${featParam === "1" ? styles.switchOn : ""}`}
+              >
                 <span className={`${styles.dot} ${featParam === "1" ? styles.dotOn : ""}`} />
+                <span className="visuallyHidden">Featured appearances: </span>
                 {featParam === "1" ? "on · lead + featured" : "off · lead credits only"}
               </Link>
             </span>
           )}
           <span className={styles.control}>
             <span className={styles.controlName}>Nigeria</span>
-            <Link href={href(sp, { ng: ngOn ? "0" : "1" })} className={`${styles.switch} ${ngOn ? styles.switchOn : ""}`}>
+            <Link href={href(sp, { ng: ngOn ? "0" : "1" })} scroll={false} className={`${styles.switch} ${ngOn ? styles.switchOn : ""}`}>
               <span className={`${styles.dot} ${ngOn ? styles.dotOn : ""}`} />
+              <span className="visuallyHidden">Nigeria: </span>
               {ngOn ? (ngParam ? "included" : "included · by default") : "separated"}
             </Link>
           </span>
-          <Link href="/methodology#certified-units" className={styles.howLink}>How this is counted ↗</Link>
+          <Link href="/methodology#certified-units" className={styles.howLink}>How this is counted <span aria-hidden="true">↗</span></Link>
         </div>
 
         {sameArtist && (
@@ -627,7 +644,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
 
         {c && ready && (
           <section className={styles.ngStrip} aria-label="Nigeria">
-            <p className={styles.ngHead}>🇳🇬 Nigeria — {ngOn ? "included" : "separated"}.</p>
+            <h2 className={styles.ngHead}><span aria-hidden="true">🇳🇬</span> Nigeria — {ngOn ? "included" : "separated"}.</h2>
             <p className={styles.ngText}>
               TCSN&apos;s register is request-based, so a title missing from it proves nothing about what it
               sold — only that nobody applied. A gap between two artists there can measure paperwork rather
@@ -637,7 +654,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
               <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least {fmt(sideA?.nigeria.units ?? 0)}</span>
               <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least {fmt(sideB?.nigeria.units ?? 0)}</span>
             </div>
-            <Link href={href(sp, { ng: ngOn ? "0" : "1" })} className={styles.ngAction}>
+            <Link href={href(sp, { ng: ngOn ? "0" : "1" })} scroll={false} className={styles.ngAction}>
               {ngOn ? "Separate Nigeria" : "Include Nigeria"}
             </Link>
           </section>
@@ -652,49 +669,57 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
 
         {ready && rows.length > 0 && (
           <>
+            <h2 className="visuallyHidden">Country by country</h2>
             <div className={styles.tableWrap}>
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th scope="col">Country<span className={styles.thSep}> · </span><span className={styles.thCount}>{rows.length}</span></th>
-                    <th scope="col" className={styles.thNum}>{nameA}</th>
-                    <th scope="col" className={styles.thNum}>{nameB}</th>
+              {/* Explicit roles: under 760px the table is displayed as a grid,
+                  and WebKit can drop table semantics from a <table> whose
+                  display is not table-*. No-ops where the heuristics hold. */}
+              <table className={styles.table} role="table">
+                <thead role="rowgroup">
+                  <tr role="row">
+                    <th scope="col" role="columnheader">Country<span className={styles.thSep}> · </span><span className={styles.thCount}>{rows.length}</span></th>
+                    <th scope="col" role="columnheader" className={styles.thNum}>{nameA}</th>
+                    <th scope="col" role="columnheader" className={styles.thNum}>{nameB}</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody role="rowgroup">
                   {rows.map((r) => {
                     const m = countryMeta(r.country);
                     const av = r.a?.units ?? 0;
                     const bv = r.b?.units ?? 0;
                     return (
-                      <tr key={r.country} className={r.country === "NG" && ngOn ? styles.ngRow : undefined}>
-                        <td>
+                      <tr key={r.country} role="row" className={r.country === "NG" && ngOn ? styles.ngRow : undefined}>
+                        <td role="cell">
                           <span className={styles.country}>
                             <span className={styles.flag} aria-hidden="true">{m.flag}</span>
                             <span className={styles.countryName}>{m.name}</span>
                             <span className={styles.countryCode}>{r.country}</span>
                           </span>
                         </td>
-                        <td className={styles.tdNum}><Cell line={r.a} lead={av >= bv} artistMode={!useSongs} /></td>
-                        <td className={styles.tdNum}><Cell line={r.b} lead={bv >= av} artistMode={!useSongs} /></td>
+                        <td role="cell" className={styles.tdNum}><Cell line={r.a} lead={av >= bv} artistMode={!useSongs} /></td>
+                        <td role="cell" className={styles.tdNum}><Cell line={r.b} lead={bv >= av} artistMode={!useSongs} /></td>
                       </tr>
                     );
                   })}
                   {!useSongs && showAll && c && c.collapsed.length > 0 && (
-                    <tr className={styles.collapseRow}>
-                      <td colSpan={3}>
-                        <Link href={href(sp, { all: null })} className={styles.showAll}>Show fewer ↑</Link>
+                    <tr role="row" className={styles.collapseRow}>
+                      <td role="cell" colSpan={3}>
+                        <Link href={href(sp, { all: null })} scroll={false} className={styles.showAll}>Show fewer <span aria-hidden="true">↑</span></Link>
                       </td>
                     </tr>
                   )}
                   {!useSongs && !showAll && c?.collapsed.map((t) => (
-                    <tr key={t.side} className={styles.collapseRow}>
-                      <td colSpan={3}>
+                    <tr key={t.side} role="row" className={styles.collapseRow}>
+                      <td role="cell" colSpan={3}>
                         <span className={styles.collapseText}>
                           + {t.countries} further countries where only {t.artist} is certified · at least {fmt(t.units)}
                           {foldedIn(t.rows) > 0 ? ` · ${foldedIn(t.rows)} plaque${foldedIn(t.rows) === 1 ? "" : "s"} not counted ¹` : ""}
                         </span>
-                        <Link href={href(sp, { all: "1" })} className={styles.showAll}>Show all ↓</Link>
+                        {/* scroll={false}: this sits at the foot of the table, and the
+                            default navigation put the reader back at the top of
+                            the page (scrollY 1600 → 43), losing the rows they
+                            had just asked for. */}
+                        <Link href={href(sp, { all: "1" })} scroll={false} className={styles.showAll}>Show all <span aria-hidden="true">↓</span></Link>
                       </td>
                     </tr>
                   ))}
@@ -729,6 +754,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           </>
         )}
 
+        <h2 className="visuallyHidden">How this is counted</h2>
         <div className={styles.method}>
           <div>
             <p className={styles.methodTitle}>One plaque per release per country</p>
@@ -755,19 +781,19 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
 
         {ready && (
           <section className={styles.exit} aria-label="Next">
-            <p className={styles.exitKicker}>Next</p>
+            <h2 className={styles.exitKicker}>Next</h2>
             <p className={styles.exitLead}>
               Two artists priced against each other — the other fourteen are one tap away, each with a ledger
               you can bring back here.
             </p>
-            <Link href="/afrobeats" className="btn btnPrimary">The Afrobeats Board ↗</Link>
+            <Link href="/afrobeats" className="btn btnPrimary">The Afrobeats Board <span aria-hidden="true">↗</span></Link>
           </section>
         )}
       </main>
       {/* Phone only: the design's sticky bar above the five-tab bar, once both
           sides are filled. The desktop foot strip above hides under 760px. */}
       {ready && (
-        <div className={styles.boardBar}>
+        <div className={`${styles.boardBar} compareBoardBar`}>
           <Link href="/afrobeats" className={styles.boardBtn}>
             <span>The Afrobeats Board</span>
             <span aria-hidden="true">↗</span>

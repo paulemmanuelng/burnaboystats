@@ -1813,6 +1813,15 @@ a[class*="__certRow"]:focus-visible,
   body:has(.mobileTabBarPresent) {
     padding-bottom: calc(64px + max(30px, env(safe-area-inset-bottom, 0px)));
   }
+  /* Focus and fragment scrolling clear the fixed bars (WCAG 2.4.11): a
+     keyboard user tabbing to a chip near the fold was landing under the tab
+     bar with nothing focused on screen. /compare stacks a second bar. */
+  html:has(.mobileTabBarPresent) {
+    scroll-padding-bottom: calc(64px + max(30px, env(safe-area-inset-bottom, 0px)));
+  }
+  html:has(.compareBoardBar) {
+    scroll-padding-bottom: calc(64px + 69px + max(30px, env(safe-area-inset-bottom, 0px)));
+  }
   /* The three app-level states hide the five-tab bar: a failed page shouldn't
      offer lateral navigation before it offers recovery. The tab bar keys off
      the pathname, which on a 404 is the URL that missed — so this is decided

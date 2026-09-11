@@ -162,8 +162,11 @@ describe("the pickers fold after eight, and drop nothing", () => {
     expect(shown).toEqual(expected.slice(0, PICKER_FOLD));
     expect(folded).toEqual(expected.slice(PICKER_FOLD));
     expect(shown.length + folded.length).toBe(16);
-    expect(first).toContain(`+ ${16 - PICKER_FOLD} more ↓`);
-    expect(first).toContain("Show fewer ↑");
+    // The noun rides inside the toggle so its accessible name follows the
+    // open state ("+ 8 more artists" / "Show fewer artists").
+    expect(text(first)).toContain(`+ ${16 - PICKER_FOLD} more artists ↓`);
+    expect(text(first)).toContain("Show fewer artists ↑");
+    expect(first).not.toContain("aria-label=\"Show");
   });
 
   it("song list: first eight by plaques, the rest behind one disclosure — search included", async () => {
@@ -176,7 +179,7 @@ describe("the pickers fold after eight, and drop nothing", () => {
       const folded = chipsIn(insideDetails(pick)).map((c) => c.text.replace(/&#x27;/g, "'").replace(/&amp;/g, "&"));
       expect(shown, `query “${qa}”`).toEqual(expected.slice(0, PICKER_FOLD));
       expect(folded, `query “${qa}”`).toEqual(expected.slice(PICKER_FOLD));
-      expect(pick).toContain(`+ ${expected.length - PICKER_FOLD} more ↓`);
+      expect(text(pick)).toContain(`+ ${expected.length - PICKER_FOLD} more releases ↓`);
     }
   });
 
@@ -199,5 +202,70 @@ describe("the page never widens past the phone", () => {
     const wrap = css.match(/\.wrap\s*\{([^}]*)\}/)?.[1] ?? "";
     expect(wrap).toMatch(/width:\s*100%/);
     expect(wrap).toMatch(/margin:\s*0 auto/);
+  });
+});
+
+describe("the phone audit's fixes stay fixed", () => {
+  const css = () => readFileSync(join(process.cwd(), "app/compare/compare.module.css"), "utf8");
+  const phoneBlock = () => {
+    const c = css();
+    const i = c.indexOf("@media (max-width: 760px)");
+    return c.slice(i, c.indexOf("\n}\n", i));
+  };
+
+  it("the skip link has somewhere to go", async () => {
+    expect(await html({ a: "burna-boy", b: "wizkid" })).toContain('<main id="content"');
+  });
+
+  it("state controls keep the reader's place — they carry scroll={false}", () => {
+    // Rendered Links lose the prop, so this reads the source: every in-place
+    // control (switches, Nigeria action, Show all/fewer) must opt out of the
+    // scroll-to-top a navigation does by default. Tapping "Show all ↓" at the
+    // foot of the table put the reader back at the top (scrollY 1600 → 43).
+    const src = readFileSync(join(process.cwd(), "app/compare/page.tsx"), "utf8");
+    for (const marker of ["{ feat: featParam", "{ ng: ngOn", "{ all: null }", "{ all: \"1\" }"]) {
+      const i = src.indexOf(`href={href(sp, ${marker}`);
+      expect(i, marker).toBeGreaterThan(-1);
+      expect(src.slice(i, i + 220), `${marker} should keep scroll position`).toContain("scroll={false}");
+    }
+  });
+
+  it("the search field cannot make iOS zoom, and fills its row on a phone", () => {
+    const block = phoneBlock();
+    expect(block).toMatch(/\.search \.searchInput \{[^}]*font-size: 16px/);
+    expect(block).toMatch(/\.search \{[^}]*flex: 1 1 100%/);
+    expect(css()).toMatch(/\.searchInput \{[^}]*appearance: none/);
+  });
+
+  it("nothing meaningful is display:none on a phone — country names and the head meta stay in the tree", () => {
+    const block = phoneBlock();
+    expect(block).not.toMatch(/\.countryName \{[^}]*display: none/);
+    expect(block).not.toMatch(/\.headMeta \{[^}]*display: none/);
+    expect(block).toMatch(/\.countryName \{[^}]*clip: rect/);
+  });
+
+  it("no text on the page is set under the 11px floor, and nothing dims text with opacity", () => {
+    const c = css();
+    const sizes = [...c.matchAll(/font-size:\s*(\d+(?:\.\d+)?)px/g)].map((m) => Number(m[1]));
+    expect(sizes.filter((n) => n < 11)).toEqual([]);
+    expect(c).not.toMatch(/\.noPlaque \{[^}]*opacity\s*:/);
+    expect(c).not.toMatch(/\.chipProgram \{[^}]*opacity\s*:/);
+  });
+
+  it("the switches name their control and the glyphs are decorative", async () => {
+    const h = await html({ a: "burna-boy", b: "wizkid" });
+    expect(h).toContain('<span class="visuallyHidden">Nigeria: </span>');
+    expect(h).toContain('<span class="visuallyHidden">Featured appearances: </span>');
+    expect(h).toContain('How this is counted <span aria-hidden="true">↗</span>');
+    expect(h).toContain('<span aria-hidden="true">🇳🇬</span> Nigeria —');
+    expect(h).toMatch(/<h2 class="[^"]*">.*Nigeria — separated\./);
+    expect(h).toContain('<table class="_table_');
+    expect(h).toContain('role="table"');
+  });
+
+  it("the phone table's rows are the design's grid, and the clear control is 44px", () => {
+    const block = phoneBlock();
+    expect(block).toMatch(/\.table tr \{[^}]*grid-template-columns: 78px minmax\(0, 1fr\) minmax\(0, 1fr\)/);
+    expect(block).toMatch(/\.slot \.slotClear \{[^}]*height: 44px/);
   });
 });
