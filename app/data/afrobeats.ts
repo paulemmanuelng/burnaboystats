@@ -2191,7 +2191,17 @@ export const topAward = (a: AfroArtist) => {
 };
 
 /** Plaque label in the site's own wording — "5× Platinum", "Silver". */
-export const plaqueLabel = (c: AfroCert) => `${c.x && c.x > 1 ? `${c.x}× ` : ""}${c.level}`;
+/** "16× Platinum", or "16× Platinum · Latin" when the plaque is from a separate
+ *  award programme — derived the way every other surface derives it: whatever
+ *  the override adds beyond the country's default body. Used on the hub tiles
+ *  and the share cards, where a Latin plaque printed as plain Platinum would
+ *  overstate it sixteen-fold with nothing on screen to say so. */
+export const plaqueLabel = (c: AfroCert) => {
+  const base = `${c.x && c.x > 1 ? `${c.x}× ` : ""}${c.level}`;
+  const own = countryMeta(c.c).body;
+  if (!c.body || c.body === own) return base;
+  return `${base} · ${c.body.replace(own, "").trim() || c.body}`;
+};
 
 export const artistBySlug = (slug: string) => afrobeatsArtists.find((a) => a.slug === slug);
 export const afrobeatsSlugs = afrobeatsArtists.map((a) => a.slug);

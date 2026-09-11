@@ -59,6 +59,15 @@ const tierClass = (level: string) =>
   : styles.tSilver;
 const plaque = (top: { level: string; x: number } | null) =>
   top ? `${top.x > 1 ? `${top.x}× ` : ""}${top.level}` : "";
+/** The programme marker, derived exactly as Burna's explorer derives it:
+ *  whatever the override adds beyond the country's default body. "RIAA Latin"
+ *  against RIAA reads "Latin". Without it a 16× Platino worth 960,000 sat
+ *  beside a 5× Platinum worth 5,000,000 with nothing to say why. */
+const program = (top: { body?: string } | null, country: string) => {
+  const own = countryMeta(country).body;
+  if (!top?.body || top.body === own) return null;
+  return top.body.replace(own, "").trim() || top.body;
+};
 
 /** Rebuild the URL with one thing changed. Every control on this page is a link,
  *  so this is the only state setter there is. */
@@ -254,11 +263,13 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
   // A blank cell reads as a rendering fault, so the words are the value.
   if (!line) return <span className={styles.noPlaque}>No plaque</span>;
   const marks = `${line.caveat ? " †" : ""}${line.vintage ? " ‡" : ""}`;
+  const prog = program(line.top, line.country);
   if (!line.counted) {
     return (
       <div className={styles.cell}>
         <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
           {plaque(line.top)}
+          {prog && <span className={styles.chipProgram}>{prog}</span>}
           {line.releases > 1 ? ` +${line.releases - 1}` : ""}
         </span>
         <span className={styles.notCounted}>not counted ¹</span>
@@ -269,6 +280,7 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
     <div className={styles.cell}>
       <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
         {plaque(line.top)}
+        {prog && <span className={styles.chipProgram}>{prog}</span>}
         {marks}
       </span>
       <span className={`${styles.units} ${lead ? styles.unitsLead : styles.unitsBehind}`}>

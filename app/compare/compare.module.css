@@ -355,6 +355,16 @@
   padding: 2px 7px;
   white-space: nowrap;
 }
+/* Programme marker — the same treatment Burna's explorer and the board give
+   "Latin", so it reads identically on every surface. */
+.chipProgram {
+  margin-left: 4px;
+  padding-left: 5px;
+  border-left: 1px solid currentColor;
+  font-size: 0.82em;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
 .tDiamond { color: var(--tier-diamond-ink); border-color: var(--tier-diamond-edge); }
 .tPlatinum { color: var(--tier-platinum-ink); border-color: var(--tier-platinum-edge); }
 .tGold { color: var(--tier-gold-ink); border-color: var(--tier-gold-edge); }

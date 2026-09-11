@@ -197,8 +197,10 @@ export interface CountryLine {
   units: number;
   /** How many releases contributed — not how many awards, see rule 1. */
   releases: number;
-  /** The single biggest plaque behind this line, for display. */
-  top: { title: string; level: Tier; x: number } | null;
+  /** The single biggest plaque behind this line, for display. `body` names the
+   *  award PROGRAMME when it is not the country's default — RIAA Latin — so the
+   *  chip can be marked the way Burna's own page marks "Dai Dai". */
+  top: { title: string; level: Tier; x: number; body?: string } | null;
   /** false = the plaque is real but its body publishes no usable threshold, so
    *  it is LISTED and never summed. A row that vanishes reads as "no plaque",
    *  which is a different and false statement. */
@@ -211,7 +213,7 @@ export interface CountryLine {
    *  also holds priced ones. Sweden is the live case: Burna's album Gold prices
    *  and his five single plaques do not, and the row has to say both — the
    *  first version of this file silently dropped the five. */
-  notCounted?: { plaques: number; top: { title: string; level: Tier; x: number }; reason: string };
+  notCounted?: { plaques: number; top: { title: string; level: Tier; x: number; body?: string }; reason: string };
   /** The body changed its thresholds inside the window and this line is priced
    *  at today's level regardless — footnote 3, on every line for the country. */
   vintage?: string;
@@ -308,7 +310,7 @@ export function priceArtist(
       line.releases += 1;
       if (units > line.topUnits) {
         line.topUnits = units;
-        line.top = { title: release.title, level: cert.level, x: cert.x ?? 1 };
+        line.top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body };
       }
       if (multiplied && !line.caveat) line.caveat = CERT_THRESHOLDS[cert.c]?.caveat;
     } else {
@@ -317,7 +319,7 @@ export function priceArtist(
         body: CERT_THRESHOLDS[cert.c]?.body ?? cert.c,
         units,
         releases: 1,
-        top: { title: release.title, level: cert.level, x: cert.x ?? 1 },
+        top: { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body },
         topUnits: units,
         counted: true,
         caveat: multiplied ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
@@ -332,7 +334,7 @@ export function priceArtist(
   // plaques, the unpriced ones attach to that line rather than vanishing.
   for (const { release, cert, why } of unpriced.values()) {
     if (cert.c === "NG" && !options.includeNigeria) continue;
-    const top = { title: release.title, level: cert.level, x: cert.x ?? 1 };
+    const top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body };
     const priced = lines.get(cert.c);
     if (priced) {
       const nc = priced.notCounted;

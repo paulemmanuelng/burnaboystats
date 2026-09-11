@@ -708,3 +708,20 @@ describe("today's thresholds, with the floor kept beside them", () => {
       expect(CERT_THRESHOLDS[code].vintage, code).toMatch(/today|raised|fell/i);
   });
 });
+
+describe("the RIAA Latin marker is visible on every surface", () => {
+  it("the board's label function carries the programme", async () => {
+    const { plaqueLabel } = await import("../app/data/afrobeats");
+    expect(plaqueLabel({ c: "US", level: "Platinum", x: 16, body: "RIAA Latin" })).toBe("16× Platinum · Latin");
+    expect(plaqueLabel({ c: "US", level: "Platinum", x: 5 })).toBe("5× Platinum");
+    // A body that IS the country's default adds nothing.
+    expect(plaqueLabel({ c: "US", level: "Gold", body: "RIAA" })).toBe("Gold");
+  });
+
+  it("the compare engine exposes the programme on the line it prices", () => {
+    const santa = priceRelease(bySlug("ayra-starr"), "Santa", { includeNigeria: true, includeFeatures: true })!;
+    expect(santa.byCountry.find((l) => l.country === "US")?.top?.body).toBe("RIAA Latin");
+    const bubalu = priceRelease(bySlug("rema"), "Bubalu", { includeNigeria: true, includeFeatures: true })!;
+    expect(bubalu.byCountry.find((l) => l.country === "US")?.top?.body).toBe("RIAA Latin");
+  });
+});
