@@ -645,15 +645,18 @@ describe("audit fixes, 11 Sep 2026 — each one had a live counter-example", () 
   it("prices Czechia and Slovakia off ČNS IFPI's own download equivalence", () => {
     // Both state thresholds in subscription streams and publish the ratio —
     // 1 download = 222 (CZ) and 217 (SK) — the same pattern as France.
-    expect(thresholdFor("CZ", "single", "Gold")).toBe(11_261);      // 2,500,000 / 222
-    expect(thresholdFor("CZ", "album", "Platinum")).toBe(45_045);   // 10,000,000 / 222
-    expect(thresholdFor("SK", "single", "Platinum")).toBe(7_834);   // 1,700,000 / 217
-    expect(thresholdFor("SK", "album", "Gold")).toBe(8_064);        // 1,750,000 / 217
+    // Floored on the July 2025 ratios (225 and 240), which give lower unit
+    // figures than the March 2026 ones (222 and 217); today's are in `current`.
+    expect(thresholdFor("CZ", "single", "Gold")).toBe(11_111);      // 2,500,000 / 225
+    expect(thresholdFor("CZ", "album", "Platinum")).toBe(44_444);   // 10,000,000 / 225
+    expect(thresholdFor("SK", "single", "Platinum")).toBe(7_083);   // 1,700,000 / 240
+    expect(thresholdFor("SK", "album", "Gold")).toBe(7_291);        // 1,750,000 / 240
+    expect(CERT_THRESHOLDS.CZ.current?.single?.gold).toBe(11_261);  // 2,500,000 / 222
     expect(CERT_THRESHOLDS.CZ.singleRaw?.gold).toBe(2_500_000);
     // Dai Dai's Czech Gold and Slovak Platinum now price.
     const dd = priceRelease(bySlug("burna-boy"), "Dai Dai", { includeNigeria: true, includeFeatures: true })!;
-    expect(dd.byCountry.find((l) => l.country === "CZ")?.units).toBe(11_261);
-    expect(dd.byCountry.find((l) => l.country === "SK")?.units).toBe(7_834);
+    expect(dd.byCountry.find((l) => l.country === "CZ")?.units).toBe(11_111);
+    expect(dd.byCountry.find((l) => l.country === "SK")?.units).toBe(7_083);
   });
 });
 
@@ -708,7 +711,7 @@ describe("the floor rule — lowest threshold the body applied since 2015", () =
   });
 
   it("every changed body carries the ‡ note so the page says what the figure is", () => {
-    for (const code of ["ZA", "ES", "FR", "HU", "IT", "MX", "NL", "PL", "PT", "DE"])
+    for (const code of ["ZA", "ES", "FR", "HU", "IT", "MX", "NL", "PL", "PT", "DE", "CZ", "SK"])
       expect(CERT_THRESHOLDS[code].vintage, code).toMatch(/floor|lowest|pre-/i);
   });
 });

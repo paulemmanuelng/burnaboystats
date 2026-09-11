@@ -196,12 +196,16 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     caveat:
       "ČNS IFPI states no multiplier rule; an N× award is priced here as N × Platinum.",
     vintage:
-      "ČNS IFPI's conversion ratios moved on 9 March 2026 — 1 download was 225 subscription streams under the 1 July 2025 rules and is 222 now — and before mid-2025 Czech certification ran on CZK revenue rather than streams. Plaques here are priced on the 9 March 2026 rules whatever their award date.",
+      "Priced at the July 2025 conversion, 1 download = 225 subscription streams, which ČNS IFPI lowered to 222 on 9 March 2026. The stream thresholds did not move, so the lower unit figure is the earlier one; a plaque priced on today's ratio is slightly higher. Before July 2025 Czech certification ran on CZK revenue — a different measure, not a floor for anything here.",
     body: "ČNS IFPI — Česká národní skupina IFPI",
     sourceUrl: "https://ifpicr.cz/files/page/c3/7a/c37a8df18b916ffe6a7a40db48f8000f/Pravidla-pro-udelovani-oceneni-od-9.3.2026-CR-2084.pdf",
-    single: { silver: null, gold: 11_261, platinum: 22_522, diamond: null },
+    single: { silver: null, gold: 11_111, platinum: 22_222, diamond: null },
     singleRaw: { gold: 2_500_000, platinum: 5_000_000 },
-    album: { silver: null, gold: 22_522, platinum: 45_045, diamond: null },
+    album: { silver: null, gold: 22_222, platinum: 44_444, diamond: null },
+    current: {
+      single: { silver: null, gold: 11_261, platinum: 22_522, diamond: null },
+      album: { silver: null, gold: 22_522, platinum: 45_045, diamond: null },
+    },
     albumRaw: { gold: 5_000_000, platinum: 10_000_000 },
   },
   DE: {
@@ -379,12 +383,16 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     caveat:
       "ČNS IFPI's Slovak rules state no multiplier rule; an N× award is priced here as N × Platinum.",
     vintage:
-      "The Slovak conversion ratios moved on 9 March 2026 — 1 download was 240 subscription streams under the mid-2025 rules and is 217 now, with further revisions on 20 October 2025 and 1 January 2026 in between — and until 2022 the awards ran on euro revenue (Platinový singel: obrat 4,000 €). Plaques here are priced on the 9 March 2026 rules whatever their award date.",
+      "Priced at the July 2025 conversion, 1 download = 240 subscription streams, which ČNS IFPI lowered to 217 on 9 March 2026 with further revisions on 20 October 2025 and 1 January 2026 whose ratios are not archived. The stream thresholds did not move, so the lowest evidenced unit figure is the July 2025 one. Until 2022 the Slovak awards ran on euro revenue — a different measure, not a floor for anything here.",
     body: "ČNS IFPI — Česká národní skupina IFPI (which administers the Slovak awards; SNS IFPI / ifpi.sk is the Slovak national group)",
     sourceUrl: "https://web.archive.org/web/20260521153213id_/https://ifpicr.cz/files/page/4b/9c/4b9c16f09271779fffe0975269b85eed/Pravidla-pre-udelovanie-ocenenia-od-9.3.2026-SR.pdf",
-    single: { silver: null, gold: 3_917, platinum: 7_834, diamond: null },
+    single: { silver: null, gold: 3_541, platinum: 7_083, diamond: null },
     singleRaw: { gold: 850_000, platinum: 1_700_000 },
-    album: { silver: null, gold: 8_064, platinum: 16_129, diamond: null },
+    album: { silver: null, gold: 7_291, platinum: 14_583, diamond: null },
+    current: {
+      single: { silver: null, gold: 3_917, platinum: 7_834, diamond: null },
+      album: { silver: null, gold: 8_064, platinum: 16_129, diamond: null },
+    },
     albumRaw: { gold: 1_750_000, platinum: 3_500_000 },
   },
   UK: {
