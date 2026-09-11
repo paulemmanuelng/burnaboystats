@@ -878,6 +878,159 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "BNXN vs Olamide",
+    "path": "/compare/bnxn-vs-olamide",
+    "section": "Compare",
+    "description": "BNXN against Olamide by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "bnxn",
+      "olamide",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Black Sherif",
+    "path": "/compare/burna-boy-vs-black-sherif",
+    "section": "Compare",
+    "description": "Burna Boy against Black Sherif by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "black sherif",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Tyla",
+    "path": "/compare/burna-boy-vs-tyla",
+    "section": "Compare",
+    "description": "Burna Boy against Tyla by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "tyla",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Burna Boy vs Wizkid",
+    "path": "/compare/burna-boy-vs-wizkid",
+    "section": "Compare",
+    "description": "Burna Boy against Wizkid by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "burna boy",
+      "wizkid",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "CKay vs Victony",
+    "path": "/compare/ckay-vs-victony",
+    "section": "Compare",
+    "description": "CKay against Victony by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "ckay",
+      "victony",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Davido vs Ayra Starr",
+    "path": "/compare/davido-vs-ayra-starr",
+    "section": "Compare",
+    "description": "Davido against Ayra Starr by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "davido",
+      "ayra starr",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Omah Lay vs Fireboy DML",
+    "path": "/compare/omah-lay-vs-fireboy-dml",
+    "section": "Compare",
+    "description": "Omah Lay against Fireboy DML by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "omah lay",
+      "fireboy dml",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Rema vs Tems",
+    "path": "/compare/rema-vs-tems",
+    "section": "Compare",
+    "description": "Rema against Tems by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "rema",
+      "tems",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Seyi Vibez vs Asake",
+    "path": "/compare/seyi-vibez-vs-asake",
+    "section": "Compare",
+    "description": "Seyi Vibez against Asake by certified units — every plaque priced at its own body's threshold, country by country.",
+    "keywords": [
+      "seyi vibez",
+      "asake",
+      "vs",
+      "versus",
+      "compare",
+      "certified units",
+      "head to head",
+      "who has more"
+    ],
+    "generated": true
+  },
+  {
     "title": "Argentina",
     "path": "/records/charts",
     "section": "Country",
@@ -2064,8 +2217,11 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Do I",
     "path": "/certifications",
     "section": "Release",
-    "description": "1 certification.",
+    "description": "Phyno & Burna Boy — 1 certification.",
     "keywords": [
+      "phyno",
+      "burna",
+      "boy",
       "song",
       "release"
     ],

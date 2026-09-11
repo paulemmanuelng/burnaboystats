@@ -1,0 +1,842 @@
+/* Certified-units compare — /compare
+ *
+ * ONE RESPONSIVE TREE, DELIBERATELY, and this is the one place on the site where
+ * that is the right call. Everywhere else desktop and mobile are separate
+ * components because they are genuinely different screens, and the house rule
+ * exists because a change to one kept missing the other. Here the design's own
+ * mobile frames (M1–M3) are the desktop parts restacked with shorter labels —
+ * same mode control, same two slots, same headline, same strip, same table — so
+ * two components would be two copies of one design, which is the drift the rule
+ * is trying to prevent, not avoid. Where the frames differ, they differ by size
+ * and label, and that is what the media queries below carry.
+ */
+
+.wrap {
+  /* <main> is a flex item of body (column flex). With auto side margins it is
+     NOT stretched — it is fit-content — so the table's min-content width
+     pushed the whole page to 404px on a 375px phone and clipped the right
+     edge. An explicit width makes the max-width/auto-margin pair centre a
+     full-width box instead of a content-sized one. */
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+}
+
+/* ── masthead ─────────────────────────────────────────────── */
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+}
+.h1 {
+  font-family: var(--font-anton), var(--font-display), sans-serif;
+  font-weight: 400;
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 0.94;
+  text-transform: uppercase;
+  text-wrap: balance;
+  margin: 0 0 18px;
+}
+.lede {
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
+  color: var(--text-muted);
+  max-width: 62ch;
+  margin: 0 0 30px;
+}
+
+/* ── mode ─────────────────────────────────────────────────── */
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 3px;
+  margin-bottom: 28px;
+}
+.segItem {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border-radius: 999px;
+  color: var(--text-muted);
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+.segItem:hover { background: var(--bg-raised); color: var(--text); }
+.segShort { display: none; }
+.segOn {
+  background: var(--text);
+  color: var(--bg);
+  -webkit-text-fill-color: var(--bg);
+}
+.segOn:hover { background: var(--text); color: var(--bg); }
+
+/* ── the two slots ────────────────────────────────────────── */
+.slots {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  align-items: stretch;
+  margin-bottom: 26px;
+}
+.slot {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 16px;
+  background: var(--bg-soft);
+  min-width: 0;
+}
+.slotEmpty {
+  border-style: dashed;
+  background: transparent;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+.vs {
+  align-self: center;
+  font-family: var(--font-anton), var(--font-display), sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.art {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: var(--bg-raised);
+}
+.artRound { border-radius: 50%; }
+.slotBody { min-width: 0; }
+.slotTitle {
+  font-family: var(--font-anton), var(--font-display), sans-serif;
+  font-size: 24px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  overflow-wrap: anywhere;
+}
+.slotMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+.prompt {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 8px 13px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text);
+}
+.chip:hover { background: var(--bg-raised); }
+
+/* ── controls ─────────────────────────────────────────────── */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 26px;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
+  margin-bottom: 24px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.control { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 10px; min-height: 44px; }
+.controlName { color: var(--text-muted); font-weight: 700; }
+/* The design's switch, on both frames: a 30×16 track with a knob, the state
+   label beside it. It replaced a bordered pill with a green dot — green is
+   the site's LIVE colour, and the pill wrapped to two lines on a phone. */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 4px 0 0;
+  border-radius: 999px;
+  color: var(--text-muted);
+}
+.switch:hover .dot { background: var(--rule); }
+.switchOn { color: var(--text); }
+.dot {
+  position: relative;
+  width: 30px;
+  height: 16px;
+  flex: 0 0 30px;
+  border-radius: 999px;
+  background: var(--rule-soft);
+  transition: background var(--dur) var(--ease);
+}
+.dot::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: left var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.dotOn { background: var(--gold); }
+.dotOn::after { left: 16px; background: var(--ink-on-gold); }
+.switch:hover .dotOn { background: var(--gold); }
+.howLink { margin-left: auto; color: var(--gold); display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+/* Desktop shows the link in the controls row; the phone shows the design's
+   full-width row at the foot instead (see the 760 block). */
+.howLinkFoot { display: none; }
+.nameShort { display: none; }
+/* Footnote marks share one face. Space Mono has no ‡ (the browser fell back to
+   a larger, heavier glyph for that one mark) and its † lives in a latin-ext
+   subset the site never preloads — 27KB and two requests on this route alone. */
+.mark { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-weight: 600; font-size: 1em; line-height: 1; }
+.nowrap { white-space: nowrap; }
+.metaSeg { white-space: normal; }
+.progShort { display: none; }
+.tierWord { white-space: nowrap; }
+.tNeutral { color: var(--text-muted); border-color: var(--rule); }
+.collapseUnits { font-family: var(--font-mono), monospace; font-variant-numeric: tabular-nums; color: var(--text); white-space: nowrap; }
+
+/* ── head to head (arrival) ───────────────────────────────── */
+.featured { margin: 0 0 26px; }
+.featuredTitle {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+.featuredList { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.featuredLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 8px 13px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.featuredLink:hover { background: var(--bg-raised); }
+.featuredLink:focus-visible { border-radius: 999px; }
+.featuredVs { color: var(--text-muted); font-size: var(--type-label); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ── why-line ─────────────────────────────────────────────── */
+.why {
+  border-left: 3px solid var(--gold);
+  background: var(--gold-wash);
+  padding: 13px 18px;
+  margin: 0 0 26px;
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+}
+
+/* ── headline ─────────────────────────────────────────────── */
+.head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 8px;
+}
+.headCell { min-width: 0; }
+.headName {
+  display: flex;
+  min-width: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 4px;
+}
+/* The NAME ellipsises; "· at least" never does — it is the figure's qualifier,
+   and on a phone "BLACK SHERIF · AT L…" was losing exactly the words the page
+   exists to say. */
+.headNameName { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.headNameQual { flex: none; white-space: nowrap; }
+.figure {
+  font-family: var(--font-anton), var(--font-display), sans-serif;
+  font-size: clamp(34px, 6.4vw, 72px);
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+.figureLead { color: var(--text); }
+.figureBehind { color: var(--text-muted); }
+.headMeta {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+.bar { height: 6px; background: var(--bg-raised); border-radius: 3px; overflow: hidden; }
+.barFill { height: 100%; background: var(--text); }
+.barFillBehind { background: var(--text-muted); }
+.diffRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  align-items: baseline;
+  padding: 16px 0 24px;
+  border-bottom: 1px solid var(--rule-soft);
+  margin-bottom: 24px;
+}
+.diff { font-size: var(--type-body); line-height: var(--type-body-lh); }
+.scope {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Nigeria strip ────────────────────────────────────────── */
+.ngStrip {
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 18px;
+  margin-bottom: 28px;
+  display: grid;
+  gap: 12px;
+}
+.ngHead {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  margin: 0;
+}
+.ngText { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 0; }
+.ngFigures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+.ngAction {
+  justify-self: start;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0 16px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ngAction:hover { background: var(--bg-raised); }
+
+/* ── table ────────────────────────────────────────────────── */
+.tableWrap { overflow-x: auto; margin-bottom: 20px; }
+.table { width: 100%; border-collapse: collapse; }
+.table th {
+  text-align: left;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+.table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+/* ".table th" above is 0,1,1 and set the headers left while the numbers sat
+   right; the header needs the element in its selector to win. */
+.table th.thNum, .tdNum { text-align: right; }
+.country { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.flag { font-size: 17px; line-height: 1; }
+.countryName { font-size: var(--type-small); }
+.countryCode {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  color: var(--text-muted);
+}
+.cell { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.units {
+  font-family: var(--font-mono), monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--type-small);
+}
+.unitsLead { color: var(--text); }
+.unitsBehind { color: var(--text-muted); }
+.tierChip {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  padding: 2px 7px;
+  white-space: nowrap;
+}
+/* Programme marker — the same treatment Burna's explorer and the board give
+   "Latin", so it reads identically on every surface. */
+.chipProgram {
+  margin-left: 4px;
+  padding-left: 5px;
+  border-left: 1px solid currentColor;
+  /* Sized in px, not em: 0.82em of a phone chip was 7.8px, and at 0.85
+     opacity the gold marker was 3.75:1 on paper. It carries the reason a
+     16× Platino is worth 960,000 beside a 5× Platinum worth 5,000,000. */
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+}
+.tDiamond { color: var(--tier-diamond-ink); border-color: var(--tier-diamond-edge); }
+.tPlatinum { color: var(--tier-platinum-ink); border-color: var(--tier-platinum-edge); }
+.tGold { color: var(--tier-gold-ink); border-color: var(--tier-gold-edge); }
+.tSilver { color: var(--tier-silver-ink); border-color: var(--tier-silver-edge); }
+/* A blank cell is a rendering fault; the words are the value. */
+.noPlaque {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  /* The muted token, undimmed: at 0.62 alpha this was 3.36:1 dark and
+     2.77:1 light — under AA for small text. */
+  color: var(--text-muted);
+}
+.notCounted {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.ngRow { background: var(--gold-wash); }
+/* On the wash the tier inks were tuned for --bg, not --gold-wash: Gold 4.35:1
+   and Silver 4.22:1 in light mode. A solid ground under the chip restores it. */
+.ngRow .tierChip { background: var(--bg-soft); }
+.collapseRow td { padding: 15px 14px; }
+.collapseText {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.showAll { color: var(--gold); margin-left: 10px; }
+
+/* ── footnotes + methodology ──────────────────────────────── */
+.notes {
+  display: grid;
+  gap: 8px;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+.notes p { margin: 0; }
+.noteLink { color: var(--gold); white-space: nowrap; }
+.method {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  padding-top: 26px;
+  border-top: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+.methodTitle {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  margin: 0 0 7px;
+}
+.methodBody { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 0; }
+
+/* ── exit ─────────────────────────────────────────────────── */
+.exit {
+  border-top: 1px solid var(--rule);
+  padding-top: 26px;
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+.exitKicker {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+.exitLead { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 0; max-width: 56ch; }
+
+/* ── responsive: the design's M1–M3 are these parts restacked ─ */
+@media (max-width: 760px) {
+  /* The foot room comes from body's tab-bar padding and Keep exploring's own
+     margin; 88px here stacked on both and read as a hole in the page. */
+  .wrap { padding: 0 16px 28px; }
+
+  /* Mode: one full-width pill, equal thirds (design: height 44). Three long
+     labels do not fit 343px, so the phone shows the short ones. */
+  .seg { display: flex; width: 100%; }
+  .segItem { flex: 1; justify-content: center; min-height: 44px; padding: 9px 6px; }
+  .segLong { display: none; }
+  .segShort { display: inline; }
+
+  /* Slots stack; title and meta are one line each, ellipsised (design). */
+  .slots { grid-template-columns: 1fr; gap: 8px; }
+  .vs { justify-self: center; }
+  .art { width: 48px; height: 48px; flex-basis: 48px; }
+  .slot { padding: 12px 14px; }
+  /* The design ellipsises the title and the meta to one line each. Here they
+     wrap instead: with the head meta gone on the phone, the slot meta is the
+     only place the plaque count lives, and "ARTIST TOTALS · 9…" hid it. */
+  .slotTitle { font-size: 20px; line-height: 1.05; }
+  /* The design's clear control on the phone: a ✕ in a 36px circle, the word
+     in the accessible name. The pill's text took the meta's room. */
+  /* The design's phone frame draws this at 44×44. Scoped under .slot so it
+     outranks the base .slotClear rule that follows later in the file — an
+     unscoped copy here lost on order and rendered a 36×32 oval. */
+  .slot .slotClear { width: 44px; height: 44px; min-height: 44px; padding: 0; justify-content: center; border-radius: 50%; font-size: 13px; }
+  .slotClearText { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Head: name / figure / bar. The meta line is desktop-only on the design's
+     phone frame — five wrapped lines of it put the two bars at different
+     heights. The plaque counts stay in the slot meta and the footnotes. */
+  .head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 12px; }
+  .headName { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .figure { font-size: clamp(26px, 8.4vw, 34px); overflow-wrap: normal; }
+  /* Kept for assistive tech (the figure's qualifier), off the screen. */
+  .headMeta { position: absolute; left: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
+  .bar { height: 4px; margin-top: 10px; }
+  .method { grid-template-columns: 1fr; gap: 18px; }
+  .howLink { margin-left: 0; }
+  .scope { margin-left: 0; }
+
+  /* The country table on a phone is the design's row grid, not a table:
+     78px country column, two equal sides, left-aligned, 56px rows. A real
+     table's min-content (372px) overflowed a 343px screen and cut the
+     right-hand column to "620,0" / "NO PLAC". The markup stays a table —
+     one tree, headers and scopes intact — and only the display changes. */
+  .tableWrap { overflow: visible; }
+  .table, .table thead, .table tbody { display: block; }
+  .table tr {
+    display: grid;
+    grid-template-columns: 78px minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    min-height: 56px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .table thead tr { min-height: 0; padding: 0 0 8px; border-bottom: 2px solid var(--rule); }
+  .table th, .table td { display: block; padding: 0; border-bottom: 0; min-width: 0; }
+  .table th { white-space: normal; letter-spacing: 0.1em; }
+  /* "COUNTRY ·" / "11" broke mid-label in a 78px column; stack it on purpose. */
+  .thSep { display: none; }
+  .thCount { display: block; }
+  .table th.thNum, .tdNum { text-align: left; }
+  .cell { align-items: flex-start; gap: 4px; }
+  .country { gap: 6px; }
+  .flag { font-size: 16px; }
+  /* Off-screen, not display:none: a screen reader still hears "Switzerland",
+     not "C-H", and can match the row to the footnote that names it. */
+  .countryName { position: absolute; left: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .countryCode { font-size: 11px; letter-spacing: 0.06em; color: var(--text); }
+  .tierChip { letter-spacing: 0.03em; padding: 3px 6px; border-radius: 999px; white-space: normal; }
+  .units { font-size: 12px; }
+  /* Specificity: ".table tr" above is 0,1,1 — a bare ".collapseRow" lost, and
+     the fold sat in the 78px country column as a nine-line sliver. */
+  .table .collapseRow { display: block; padding: 12px; background: var(--bg-soft); }
+  .table .collapseRow td { display: flex; flex-direction: column; gap: 6px; }
+  .collapseText { text-transform: none; letter-spacing: 0; font-family: inherit; font-size: var(--type-small); line-height: var(--type-small-lh); }
+  /* The search row takes the full width: a shrink-to-fit form left 52–106px
+     empty beside a 200px field whose placeholder was cut off, and at 320 the
+     row ran past the page padding. 16px stops iOS Safari zooming in on focus. */
+  .search { flex: 1 1 100%; min-width: 0; }
+  /* Scoped under .search: the base .searchInput rule sits later in the file
+     and would otherwise win on order. */
+  .search .searchInput { min-width: 0; flex-basis: 0; font-size: 16px; }
+  .howLink { display: flex; width: 100%; justify-content: space-between; }
+  /* The controls' copy hides; the design's foot row shows, full width. */
+  .howLinkTop { display: none; }
+  .howLinkFoot { display: flex; width: 100%; justify-content: space-between; margin: 0 0 8px; }
+  .nameLong { display: none; }
+  .nameShort { display: inline; }
+  /* One-side state (M3): a single full-width block, 40px figure, the meta
+     line visible, no bar, no scope. */
+  .headSolo { grid-template-columns: 1fr; }
+  .headSolo .figure { font-size: 40px; }
+  .headSolo .headMeta { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; margin: 0 0 10px; }
+  .headSolo .bar { display: none; }
+  .diffRowSolo { border-bottom: 0; }
+  .diffRowSolo .scope { display: none; }
+  /* The design's headline pair: a rule above and below, a hairline between. */
+  .head:not(.headSolo) { gap: 0 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 14px; }
+  .head:not(.headSolo) .headCell { background: var(--bg); padding: 14px 12px 14px 0; }
+  .head:not(.headSolo) .headCell + .headCell { padding: 14px 0 14px 12px; }
+  .headName { letter-spacing: 0.08em; }
+  /* Mode pill: 44px, segments flush, a hairline between (design). */
+  .seg { padding: 0; gap: 0; overflow: hidden; }
+  .segItem { border-radius: 0; }
+  .segItem + .segItem { border-left: 1px solid var(--rule); }
+  .vs { font-size: 16px; }
+  /* Nigeria strip as the design's soft box, the action as gold text. */
+  .ngStrip { padding: 12px 14px; background: var(--bg-soft); border-color: var(--line); border-radius: 0; }
+  .ngAction { border: 0; padding: 0; color: var(--gold); background: transparent; }
+  /* The programme marker is its own small pill inside the chip: as a divided
+     run it wrapped with its left bar orphaned at the start of line two. */
+  .tierChip { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 3px 5px; }
+  .chipProgram { margin: 0; padding: 1px 6px; border: 1px solid currentColor; border-radius: 999px; white-space: nowrap; }
+  .progLong { display: none; }
+  .progShort { display: inline; }
+  .table tr { border-bottom-color: var(--line); }
+  .table thead tr { align-items: end; }
+  .table .ngRow { padding-left: 8px; padding-right: 8px; margin: 0 -8px; }
+  .showAll { margin-left: 0; min-height: 44px; display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono), monospace; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+}
+/* The desktop foot strip yields to the sticky bar wherever the tab bar exists
+   (the site's chrome switches at 900, this page's layout at 760; between the
+   two, both exits were showing). */
+@media (max-width: 900px) { .exit { display: none; } }
+@media (max-width: 360px) {
+  /* The flag + code need 41px; the value cells were starved to 104px. */
+  .table tr { grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+  .tierChip { letter-spacing: 0; padding: 3px 5px; }
+}
+
+/* ── sticky board bar (phone) ─────────────────────────────────
+   The design's M1/M2: when both sides are filled, "The Afrobeats Board ↗"
+   sits in its own bar directly ABOVE the five-tab bar. Not on arrival.
+   Same gold ramp and both iPhone guards as .actionPrimary on /certifications.
+   Bottom offset = the tab bar's height (8 + 48 + foot + 1px border). */
+.boardBar, .barSpacer { display: none; }
+@media (max-width: 900px) {
+  .barSpacer { display: block; }
+  .boardBar {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: calc(57px + max(30px, env(safe-area-inset-bottom, 0px)));
+    z-index: 59;
+    padding: 10px 12px;
+    padding-left: calc(12px + env(safe-area-inset-left, 0px));
+    padding-right: calc(12px + env(safe-area-inset-right, 0px));
+    background: var(--scrim);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+  }
+  .boardBtn {
+    flex: 1;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-radius: 999px;
+    background-color: var(--gold-fill);
+    background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
+    color: var(--ink-on-gold);
+    -webkit-text-fill-color: var(--ink-on-gold);
+    transform: translateZ(0);
+    font-family: var(--font-mono), monospace;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 24%, transparent);
+  }
+  /* Room for the bar above the tab bar (the design's 172px spacer vs 96px).
+     On the page's LAST element, after Keep exploring — on <main> it opened
+     200px of dead air between the method notes and the next section. */
+  .barSpacer { height: 84px; }
+}
+
+/* ── song search ──────────────────────────────────────────────
+   A GET form, not a client filter: it keeps this page's one rule —
+   state lives in the URL — so a searched picker is shareable and
+   works with JavaScript off, like everything else here. */
+.pickWrap { margin-bottom: 22px; display: grid; gap: 10px; }
+.pickHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  /* A grid item: without this its min-content (the search field's 200px
+     basis + the button) widened it past the page at 320px. */
+  min-width: 0;
+}
+.pickLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.search { display: flex; gap: 8px; align-items: center; }
+.searchInput {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 44px;
+  min-width: 200px;
+  flex: 1 1 200px;
+  padding: 0 14px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--text);
+  font-family: var(--font-body, inherit);
+  font-size: var(--type-small);
+}
+.searchInput::placeholder { color: var(--text-muted); }
+.searchInput { text-overflow: ellipsis; }
+/* The site's focus rule sets border-radius: 3px on the element itself, which
+   squared every pill here the moment it was tapped (on iOS a text field
+   always matches :focus-visible). The rings keep the pills' own radius. */
+.searchInput:focus-visible, .searchBtn:focus-visible, .chip:focus-visible, .segItem:focus-visible,
+.switch:focus-visible, .showAll:focus-visible, .ngAction:focus-visible, .boardBtn:focus-visible { border-radius: 999px; }
+.slotClear:focus-visible { border-radius: 50%; }
+.searchBtn {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--bg-raised);
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  transform: translateZ(0);
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.searchBtn:hover { background: var(--rule-soft); }
+.pickNone {
+  font-size: var(--type-small);
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ── clearing a slot ──────────────────────────────────────────
+   Without this the page is a one-way trip: pick a side and the only
+   way back is editing the URL. */
+.slotClear {
+  margin-left: auto;
+  align-self: flex-start;
+  flex: 0 0 auto;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 11px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.slotClear:hover { background: var(--bg-raised); color: var(--text); }
+.pickChange {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── folded chips ──────────────────────────────────────────
+   The first eight chips of a list show; the rest sit behind a native
+   <details>. The toggle is styled as a chip in the action colour so it reads
+   as part of the row it extends. No script: the whole list is served. */
+.more { margin-top: 8px; }
+.moreToggle {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 13px;
+  border: 1px dashed var(--rule);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  user-select: none;
+}
+.moreToggle::-webkit-details-marker { display: none; }
+.moreToggle:hover { background: var(--bg-soft); }
+.moreToggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 999px; }
+.more[open] > .moreToggle { margin-bottom: 8px; }
+.more[open] .whenClosed, .more:not([open]) .whenOpen { display: none; }

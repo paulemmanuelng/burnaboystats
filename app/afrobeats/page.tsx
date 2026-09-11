@@ -15,6 +15,7 @@ import {
   certCount,
   countryCount,
   topAward,
+  plaqueLabel,
   chartEntries,
   BURNA,
 } from "../data/afrobeats";
@@ -108,10 +109,11 @@ const liveRail: Rail[] = [
   })),
 ].sort((x, y) => y.value - x.value);
 
+// plaqueLabel, not a local template: it carries the award-programme marker
+// ("· Latin"), so a tile never shows a Latin plaque as plain Platinum.
 const badge = (a: (typeof sweptArtists)[number]) => {
   const t = topAward(a);
-  if (!t) return null;
-  return `${t.x && t.x > 1 ? `${t.x}× ` : ""}${t.level}`;
+  return t ? plaqueLabel(t) : null;
 };
 
 const jsonLd = {

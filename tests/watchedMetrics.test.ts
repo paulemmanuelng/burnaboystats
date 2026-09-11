@@ -268,3 +268,27 @@ describe("the monthly-listeners leaderboard", () => {
     expect(values).toEqual([...values].sort((a, b) => b - a));
   });
 });
+
+describe("the bot keeps ranked live rows in the order their numbers say", () => {
+  it("sorts a run of marked rows by value and leaves everything else alone", async () => {
+    // @ts-expect-error — plain .mjs helper shared with the stats bot
+    const { reorderLiveRows } = await import("../scripts/apply-stat-updates.mjs");
+    const before = [
+      "        entries: [",
+      '          /* live:streams-2026-tems */ { name: "Tems", value: "1.781B" },',
+      '          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.772B" },',
+      '          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.774B" },',
+      '          { name: "Asake", value: "1.335B" },',
+      "        ],",
+    ].join("\n");
+    const after = reorderLiveRows(before).split("\n");
+    expect(after[1]).toContain("Tems");
+    expect(after[2]).toContain("Burna Boy");
+    expect(after[3]).toContain("Wizkid");
+    expect(after[4]).toContain("Asake");
+    expect(after.every((l: string, i: number) => l.endsWith(",") === before.split("\n")[i].endsWith(","))).toBe(true);
+    // Already in order: untouched, byte for byte.
+    expect(reorderLiveRows(reorderLiveRows(before))).toBe(reorderLiveRows(before));
+    expect(reorderLiveRows("nothing marked here\n")).toBe("nothing marked here\n");
+  });
+});

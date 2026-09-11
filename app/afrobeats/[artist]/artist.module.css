@@ -193,6 +193,18 @@
   text-transform: uppercase;
 }
 .certCountry { color: var(--muted); font-weight: 400; letter-spacing: 0.04em; }
+/* Programme marker — same treatment as certifications.module.css and
+   mobileCerts.module.css .badgeProgram, so "Latin" reads identically on all
+   three surfaces. */
+.badgeProgram {
+  margin-left: 4px;
+  padding-left: 5px;
+  border-left: 1px solid currentColor;
+  font-size: 0.82em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
 .flag { font-size: 13px; }
 .diamond { color: var(--tier-diamond-ink); border-color: var(--tier-diamond-edge, var(--line)); }
 .platinum { color: var(--tier-platinum-ink); border-color: var(--tier-platinum-edge, var(--line)); }

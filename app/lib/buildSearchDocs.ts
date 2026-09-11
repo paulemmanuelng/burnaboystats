@@ -24,6 +24,7 @@ import { songs } from "../data/songs";
 import { albumPages } from "../data/albumPages";
 import { garage } from "../data/cars";
 import { titleKey } from "./titleKey";
+import { featuredPairs, pairSlug } from "./comparePairs";
 import type { SearchDoc } from "./searchIndex";
 
 export function buildSearchDocs(): SearchDoc[] {
@@ -147,6 +148,18 @@ export function buildSearchDocs(): SearchDoc[] {
       section: "Country",
       description: `Chart peaks in ${meta.name} on ${meta.body}.`,
       keywords: [code.toLowerCase(), "country", "chart", "peak", meta.body.toLowerCase()],
+    });
+  }
+
+  // ── Head to head ────────────────────────────────────────────────────────
+  // The board's curated pairings, each a page of its own under /compare.
+  for (const [x, y] of featuredPairs()) {
+    add({
+      title: `${x.name} vs ${y.name}`,
+      path: `/compare/${pairSlug(x, y)}`,
+      section: "Compare",
+      description: `${x.name} against ${y.name} by certified units — every plaque priced at its own body's threshold, country by country.`,
+      keywords: [x.name.toLowerCase(), y.name.toLowerCase(), "vs", "versus", "compare", "certified units", "head to head", "who has more"],
     });
   }
 

@@ -93,13 +93,18 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
 
   // Every country this artist holds a plaque in, best tier first — the strip
   // under the headline, and the thing the tables are hard to read at a glance.
-  const byCountry = new Map<string, { level: Tier; x?: number }>();
+  // `body` rides along so a plaque from a separate award PROGRAMME can be
+  // marked. Ayra Starr's "Santa" and Rema's "Bubalu" are RIAA LATIN — a
+  // different register with thresholds a sixteenth of the main programme's —
+  // and this strip rendered them as plain US Platinum until 11 Sep 2026. Same
+  // marker Burna's explorer paints beside "Dai Dai".
+  const byCountry = new Map<string, { level: Tier; x?: number; body?: string }>();
   const rank: Record<Tier, number> = { Diamond: 0, Platinum: 1, Gold: 2, Silver: 3 };
   for (const r of a.releases)
     for (const c of r.certs) {
       const cur = byCountry.get(c.c);
       if (!cur || rank[c.level] < rank[cur.level] || (c.level === cur.level && (c.x ?? 1) > (cur.x ?? 1)))
-        byCountry.set(c.c, { level: c.level, x: c.x });
+        byCountry.set(c.c, { level: c.level, x: c.x, body: c.body });
     }
   const countryStrip = [...byCountry.entries()].sort(
     (p, q) => rank[p[1].level] - rank[q[1].level] || (q[1].x ?? 1) - (p[1].x ?? 1)
@@ -126,7 +131,10 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   // site's own Release shape, so the board's rows are mapped onto it.
   const mobileReleases: Release[] = a.releases.map((r) => ({
     title: r.title,
-    certs: r.certs.map((c) => ({ c: c.c, level: c.level, ...(c.x ? { x: c.x } : {}) })),
+    // `body` must survive this mapping: MobileCerts paints the programme marker
+    // off it, and dropping it here is why the board's two RIAA Latin plaques
+    // showed no label on a phone.
+    certs: r.certs.map((c) => ({ c: c.c, level: c.level, ...(c.x ? { x: c.x } : {}), ...(c.body ? { body: c.body } : {}) })),
   }));
   const mobileAlbums = mobileReleases.filter((r) =>
     a.releases.some((x) => x.title === r.title && x.kind === "Albums")
@@ -193,7 +201,8 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         subject={a.name}
         lede={`Every ${a.name} plaque, read in the issuing body's own register — ${total} across ${countries} ${countries === 1 ? "country" : "countries"}, from ${a.releases.length} certified releases.`}
         faqs={faqs}
-        showActionBar={false}
+        showActionBar
+        compareSlug={a.slug}
       />
 
       <div className={styles.desktopOnly}>
@@ -332,10 +341,18 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
           {countryStrip.map(([code, t]) => {
             const c = countryMeta(code);
             return (
-              <span key={code} className={`${styles.cert} ${styles[tierOf(t.level)]}`} title={c.body}>
+              <span key={code} className={`${styles.cert} ${styles[tierOf(t.level)]}`} title={`${c.name} — ${t.body ?? c.body}`}>
                 <span className={styles.flag} aria-hidden="true">{c.flag}</span>
                 {t.x && t.x > 1 ? `${t.x}× ` : ""}
                 {t.level}
+                {/* A separate programme is a different award — derived, as on
+                    Burna's page: whatever the override adds beyond the country's
+                    default body. Reads "Latin" for RIAA Latin. */}
+                {t.body && t.body !== c.body && (
+                  <span className={styles.badgeProgram}>
+                    {t.body.replace(c.body, "").trim() || t.body}
+                  </span>
+                )}
                 <span className={styles.certCountry}>{c.name}</span>
               </span>
             );
@@ -484,6 +501,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
             Live charts ↗
           </Link>
         )}
+        <Link href={`/compare?a=${a.slug}`} className="btn btnPrimary">Compare ↗</Link>
         <Link href="/certifications" className="btn btnSecondary">Burna Boy&apos;s ledger ↗</Link>
       </section>
 

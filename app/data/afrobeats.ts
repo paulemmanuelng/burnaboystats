@@ -88,7 +88,99 @@ import { CHART_COUNTRIES } from "./charts";
 
 export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
 
-export interface AfroCert { c: string; level: Tier; x?: number }
+/** A plaque. `body` names the AWARD PROGRAMME when it is not the country's
+ *  default one — "RIAA Latin" is the live case, and its tiers are 1/16th the
+ *  standard programme's, so a Spanish-language US award priced without it
+ *  overstates by a factor of sixteen. See app/data/certThresholds.ts.
+ *
+ *  TWO BOARD PLAQUES CARRY IT, both confirmed at riaa.com on 10 Sep 2026 under
+ *  the Premios de Oro y Platino tab (tab_active=platinum-latin) and absent from
+ *  the standard tab:
+ *    • Ayra Starr "Santa"  — award 439753, badge la_16_big.png "badge LA level
+ *      16", panel reads Genre LATIN / 16X PLATINO / 9 Jun 2025. 960,000 units,
+ *      not 16,000,000. A search for "Ayra Starr" on the STANDARD tab returns
+ *      RIAA's own "No matching results" — she holds no standard-programme award.
+ *    • Rema "Bubalu"       — RIAA credits it FEID, REMA (2 Feb 2024), badge
+ *      "LA level 2". 120,000 units, not 2,000,000. Note there is a SECOND,
+ *      unrelated "Bubalu" on RIAA at LA level 24 (DJ Luian x Mambo Kingz ft.
+ *      Anuel AA, Prince Royce, Becky G) — do not merge them.
+ *
+ *  THE ROSTER IS AUDITED AND COMPLETE. On 10 Sep 2026 all sixteen artists were
+ *  searched on RIAA's Latin tab, including under legal names, alternate
+ *  spellings and collaborator credit strings (RIAA files an award under the
+ *  credit on the release, so a featured act can sit inside someone else's
+ *  string). EXACTLY THREE Latin awards exist across the whole board and all
+ *  three are tagged: Burna Boy "Dai Dai" (2x Platino, 9 Jul 2026, in
+ *  certifications.ts), Rema "Bubalu", Ayra Starr "Santa". The other thirteen
+ *  artists returned RIAA's literal "No matching results" — each with a negative
+ *  control proving the query works, since the same search on the STANDARD tab
+ *  returns their rows. Nothing is missing; do not re-run this speculatively.
+ *
+ *  TRAP, and it is what a scraper would fall into: RIAA's share attribute on
+ *  both rows reads "earned RIAA 16x Platinum Award" — its generic English
+ *  template, which says "Platinum" for BOTH programmes. The badge asset, the
+ *  tab and the detail panel are what designate the programme. */
+/**
+ * SETTLED (Paul, 10 Sep 2026): THESE STAY DIAMOND. Do not "correct" them to 11x
+ * Platinum on a later reading of RIAA's database — that is a decision already
+ * taken with the evidence in front of it, not an oversight.
+ *
+ * RIAA prints "11X PLATINUM" for both. The change was applied on 10 Sep and
+ * reverted the same hour, because making it revealed a cost that was not visible
+ * beforehand: it erases the only two US Diamonds on the whole board, and
+ * falsifies Wizkid's published hook, which reads "“One Dance” is Diamond in five
+ * countries" — it would become four.
+ *
+ * THE TRADE. Gain: +1,000,000 units on each, both FEATURED appearances, so they
+ * are invisible unless the reader turns features on — about 0.007% of the board.
+ * Cost: two real Diamond awards disappear from every tier tally, Tems is left
+ * with none at all, and a live sentence on Wizkid's page has to be rewritten.
+ *
+ * AND THE FACT SURVIVES EITHER WAY. RIAA's ladder does not stop at Diamond: a
+ * record past 11,000,000 is printed "11X PLATINUM", but it has still passed
+ * 10,000,000 and RIAA still lists it among its Diamond Awards. So "Diamond in
+ * five countries" is TRUE, and so is "11x Platinum". `level` is being asked to
+ * carry both the current level and the award designation, and for US 10M+
+ * records those diverge. That is a modelling question, not a typo.
+ *
+ * Since everything the compare page publishes is a FLOOR, holding Diamond
+ * understates by 1,000,000 and stays true — which is why this is the safe side
+ * to sit on, and why it was chosen. If a future reader wants both facts at once,
+ * the answer is a separate current-level field on a cert, NOT overwriting `level`.
+ *
+ * WHY THE ORIGINAL NOTE IS KEPT BELOW: the RIAA reading is real and sourced, and
+ * whoever picks this up should not have to re-derive it.
+ *
+ * WHAT RIAA ACTUALLY SAYS (10 Sep 2026).
+ *
+ * RIAA's ladder does not stop at Diamond. Diamond IS 10,000,000 units, and a
+ * record that passes eleven million is printed by RIAA as "11X PLATINUM" — the
+ * Diamond award was an earlier rung, not the current one. These arrays track
+ * CURRENT level, so both were raised after RIAA's own database was read:
+ *
+ *   Wizkid  "One Dance"  US — 11X PLATINUM  (was Diamond)
+ *   Tems    "Wait For U" US — 11X PLATINUM  (was Diamond)
+ *
+ * Only the US plaques were ever in question: the French, Canadian, German and
+ * Brazilian Diamonds on "One Dance" are separate bodies with their own Diamond
+ * thresholds and are unaffected either way.
+ */
+/**
+ * "ESSENCE" IN SOUTH AFRICA IS 3x PLATINUM ON BOTH ARTISTS' ROWS (10 Sep 2026).
+ *
+ * It was 7x on Wizkid's and 1x on Tems' — the same recording priced two ways,
+ * which the compare page surfaced by printing a winner between a record and
+ * itself. Neither was right. RiSA's own register, read at its origin host
+ * (risa-prod.trafficmanager.net/website/certification/certifications/), files
+ * the row "Wizkid feat. Tems | Essence | 31 Aug, 2023 | Single" with the badge
+ * RISA-MULTI-PLATINUM.jpg. RiSA's ladder has exactly four rungs — Gold,
+ * Platinum, Double-Platinum, Multi-Platinum — so Multi means ABOVE Double: at
+ * least 3x. The 7x was an unconfirmed upgrade the 26 Aug refresh explicitly
+ * declined to publish; the 1x was the pre-upgrade reading never revisited.
+ * 3x is the floor the badge establishes, and it is what both rows now carry.
+ * If RiSA ever prints a multiple, raise both together.
+ */
+export interface AfroCert { c: string; level: Tier; x?: number; body?: string }
 export interface AfroPeak {
   c: string;
   peak: number;
@@ -609,7 +701,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     chartPublished: { entries: 154, territories: 32, no1s: 24 },
     releases: [
       { title: "Made in Lagos", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "NG", level: "Gold" }] },
-      { title: "Essence", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b0/09/8e/b0098ed0-ef53-f2b5-386a-c8e6181f3c8a/886448775256.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 7 }, { c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
+      { title: "Essence", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b0/09/8e/b0098ed0-ef53-f2b5-386a-c8e6181f3c8a/886448775256.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 }, { c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
       { title: "Come Closer", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e2/dc/1c/e2dc1cb5-d0cf-04e0-0864-98b8f3e7affd/886446561912.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" }, { c: "US", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "NG", level: "Silver" }] },
       { title: "Ginger", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/8b/e1/708be1f6-4054-ff1a-e946-887ecfbdea81/859712433503_cover.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Joro", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/20/05/17/200517ab-c3a3-b833-74b3-9bb3399c780c/886447834886.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" }] },
@@ -929,7 +1021,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Charm", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "FR", level: "Platinum" }, { c: "UK", level: "Silver" }] },
       { title: "Dumebi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Soweto", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "UK", level: "Gold" }] },
-      { title: "Bubalu", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/56f2de197c8f55917c66611779ff876c/500x500-000000-80-0-0.jpg", certs: [{ c: "CO", level: "Diamond" }, { c: "US", level: "Platinum", x: 2 }, { c: "ES", level: "Platinum" }] },
+      { title: "Bubalu", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/56f2de197c8f55917c66611779ff876c/500x500-000000-80-0-0.jpg", certs: [{ c: "CO", level: "Diamond" }, { c: "US", level: "Platinum", x: 2, body: "RIAA Latin" }, { c: "ES", level: "Platinum" }] },
       { title: "Ozeba", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Fun", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Benin Boys", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
@@ -1027,7 +1119,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Get It Right (ft. Asake)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Raindance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 3 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "IT", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PL", level: "Gold" }] },
       { title: "Wait For U", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 2 }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "PL", level: "Gold" }] },
-      { title: "Essence", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
+      { title: "Essence", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
       { title: "Fountains", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Move", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/c3e2a951678a28a3f541a69c866583d4/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Platinum" }, { c: "US", level: "Gold" }] },
     ],
@@ -1118,7 +1210,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     chartPublished: { entries: 82, territories: 30, no1s: 10 },
     releases: [
       { title: "Rush", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ES", level: "Gold" }, { c: "DK", level: "Gold" }] },
-      { title: "Santa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/965eeb50245f3178580ac5bda885e56b/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 16 }, { c: "ES", level: "Platinum", x: 5 }, { c: "MX", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "IT", level: "Gold" }] },
+      { title: "Santa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/965eeb50245f3178580ac5bda885e56b/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 16, body: "RIAA Latin" }, { c: "ES", level: "Platinum", x: 5 }, { c: "MX", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "IT", level: "Gold" }] },
       { title: "Bloody Samaritan", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6811d7a880826af2be69b81686f629f2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Silver" }] },
       { title: "Commas", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "CA", level: "Gold" }] },
       { title: "Bad Vibes", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
@@ -2099,7 +2191,17 @@ export const topAward = (a: AfroArtist) => {
 };
 
 /** Plaque label in the site's own wording — "5× Platinum", "Silver". */
-export const plaqueLabel = (c: AfroCert) => `${c.x && c.x > 1 ? `${c.x}× ` : ""}${c.level}`;
+/** "16× Platinum", or "16× Platinum · Latin" when the plaque is from a separate
+ *  award programme — derived the way every other surface derives it: whatever
+ *  the override adds beyond the country's default body. Used on the hub tiles
+ *  and the share cards, where a Latin plaque printed as plain Platinum would
+ *  overstate it sixteen-fold with nothing on screen to say so. */
+export const plaqueLabel = (c: AfroCert) => {
+  const base = `${c.x && c.x > 1 ? `${c.x}× ` : ""}${c.level}`;
+  const own = countryMeta(c.c).body;
+  if (!c.body || c.body === own) return base;
+  return `${base} · ${c.body.replace(own, "").trim() || c.body}`;
+};
 
 export const artistBySlug = (slug: string) => afrobeatsArtists.find((a) => a.slug === slug);
 export const afrobeatsSlugs = afrobeatsArtists.map((a) => a.slug);

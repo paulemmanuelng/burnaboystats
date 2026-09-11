@@ -650,3 +650,25 @@
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
 }
+
+/* The stat card, demoted. Outlined rather than filled so one gold action leads
+   the bar — two golds on a phone read as two primary choices. */
+.actionSecondary {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  /* Same layer promotion as .actionPrimary — see its note. */
+  transform: translateZ(0);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}

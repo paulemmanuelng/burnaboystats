@@ -90,6 +90,7 @@ export default function MobileCerts({
   lede,
   faqs,
   showActionBar = true,
+  compareSlug = "burna-boy",
 }: {
   releases: Release[];
   albums: Release[];
@@ -138,6 +139,8 @@ export default function MobileCerts({
   faqs?: Faq[];
   /** The board's screens end in the five-tab bar instead of an action bar. */
   showActionBar?: boolean;
+  /** Which artist the Compare button pre-fills side A with. */
+  compareSlug?: string;
 }) {
   const art = (title: string) => (covers ? covers[title] : coverFor(title));
   // The list runs albums, singles and features together, so an album needs
@@ -562,9 +565,18 @@ export default function MobileCerts({
       {/* Action bar — replaces the tab bar on a deep screen */}
       {showActionBar && (
       <div className={styles.actionBar}>
-        <Link href="/share" className={styles.actionPrimary}>
-          Make a stat card ↗
+        {/* Compare is the first action this bar has ever held that means
+            something for all sixteen artists — "/share" builds a BURNA stat
+            card, which is why the bar was suppressed on the board pages. So the
+            stat card is demoted rather than removed, and only where it exists. */}
+        <Link href={`/compare?a=${compareSlug}`} className={styles.actionPrimary}>
+          {compareSlug === "burna-boy" ? "Compare ↗" : `Compare ${subject} ↗`}
         </Link>
+        {compareSlug === "burna-boy" && (
+          <Link href="/share" className={styles.actionSecondary}>
+            Stat card
+          </Link>
+        )}
         <button
           type="button"
           aria-label="Filter by tier"

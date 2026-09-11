@@ -124,6 +124,36 @@ async function liveValue(metric, pageCache) {
   return corrected(htmlExtractors[metric.extractor]?.(page, metric) ?? NaN);
 }
 
+/**
+ * Any run of consecutive `/* live:<prefix>-<name> *\/ { name: …, value: "N.NNNB" }`
+ * lines is sorted by that value, descending, in place. Only runs of the same
+ * prefix are touched (the three streams-2026-* rows); a run whose values do
+ * not all parse is left alone.
+ */
+export function reorderLiveRows(text) {
+  const lines = text.split("\n");
+  const row = /^(\s*)\/\* live:([a-z0-9-]+?)-[a-z0-9]+ \*\/ \{ name: "[^"]+", value: "([\d.]+)B" \},?$/;
+  let i = 0;
+  while (i < lines.length) {
+    const m = lines[i].match(row);
+    if (!m) { i++; continue; }
+    let j = i;
+    while (j < lines.length) {
+      const n = lines[j].match(row);
+      if (!n || n[2] !== m[2]) break;
+      j++;
+    }
+    if (j - i >= 2) {
+      const run = lines.slice(i, j);
+      const sorted = [...run].sort((x, y) => Number(y.match(row)[3]) - Number(x.match(row)[3]));
+      // Keep the trailing comma pattern exactly as it was, line by line.
+      lines.splice(i, run.length, ...sorted.map((l, k) => l.replace(/,?$/, run[k].endsWith(",") ? "," : "")));
+    }
+    i = j;
+  }
+  return lines.join("\n");
+}
+
 async function applyTargets(metric, files) {
   const edits = [];
   const failures = [];
@@ -300,6 +330,16 @@ async function main() {
     }
     files.set(configPath, JSON.stringify(config, null, 2) + "\n");
   }
+
+  // Ranked live rows follow their numbers. The three 2026 running totals on
+  // the Africa's Biggest board are written into rows whose ORDER is source
+  // order, and tests/watchedMetrics.test.ts refuses a board that lists a
+  // smaller total above a larger one — so the day Burna Boy's total passed
+  // Wizkid's (11 Sep 2026), every hourly run wrote the right numbers into the
+  // wrong order, failed its own gate, and nothing was committed for two days:
+  // no totals, and no lastSeenAt stamps, which set off the staleness alarm on
+  // fourteen healthy song figures. Sort the marked rows by value after writing.
+  for (const [abs, text] of files) files.set(abs, reorderLiveRows(text));
 
   if (!DRY) for (const [abs, text] of files) await writeFile(abs, text);
 

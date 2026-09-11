@@ -126,6 +126,12 @@ const OWN_BREADCRUMB = [
   /^\/records\/awards$/,
   // A car page's leaf is "Bugatti Chiron", which the slug cannot spell.
   /^\/records\/cars\/[^/]+$/,
+  // /compare writes Home › Certifications › Compare (it belongs under the
+  // certifications, not at the root the URL suggests) and was ALSO getting
+  // the generated Home › Compare — two trails on one page. A pair page's
+  // leaf is "Burna Boy vs Wizkid", which the slug cannot spell.
+  /^\/compare$/,
+  /^\/compare\/[^/]+$/,
 ];
 
 /** True where the page emits its own trail and the site-wide one must not. */
@@ -135,6 +141,7 @@ export const hasOwnBreadcrumb = (path: string) =>
 export const SEGMENT_LABELS: Record<string, string> = {
   music: "Music",
   certifications: "Certifications",
+  compare: "Compare",
   records: "Career Records",
   "by-the-numbers": "By the Numbers",
   visualized: "Visualized",

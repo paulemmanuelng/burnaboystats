@@ -56,8 +56,12 @@ describe("handoff checklist — data integrity", () => {
     // anything BEYOND 7 — the design file that once showed 7 carried a typo,
     // and this is a different route to the same number.
     expect(byLevel("Diamond")).toBe(7);
-    expect(byLevel("Platinum")).toBe(101); // + Dai Dai AT
-    expect(byLevel("Gold")).toBe(96); // + "Dai Dai" in Poland (ZPAV)
+    // 101 -> 100 and 96 -> 97 on 11 Sep 2026: "Ginger" in Switzerland was
+    // carried as Platinum and IFPI Schweiz's register prints Gold, so one plaque
+    // moved down a tier. The total is unchanged. Caught because the compare page
+    // priced the same recording two ways on Burna's row and Wizkid's.
+    expect(byLevel("Platinum")).toBe(100); // + Dai Dai AT, − Ginger CH
+    expect(byLevel("Gold")).toBe(97); // + "Dai Dai" in Poland (ZPAV), + Ginger CH
     expect(byLevel("Silver")).toBe(30); // On the Low NG left this tier for Gold
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
