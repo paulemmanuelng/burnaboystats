@@ -46,9 +46,12 @@ const evaluate = async (expression) => { const r = await send("Runtime.evaluate"
 const waitLoad = async () => { for (let i = 0; i < 100; i++) { if (events.some((e) => e.method === "Page.loadEventFired")) return; await sleep(100); } };
 
 await send("Page.enable");
-await send("Emulation.setDeviceMetricsOverride", { width, height, deviceScaleFactor: dpr, mobile: true, screenWidth: width, screenHeight: height });
-await send("Emulation.setTouchEmulationEnabled", { enabled: true, maxTouchPoints: 5 });
-await send("Emulation.setUserAgentOverride", { userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1" });
+const desktop = flag("desktop");
+await send("Emulation.setDeviceMetricsOverride", { width, height, deviceScaleFactor: dpr, mobile: !desktop, screenWidth: width, screenHeight: height });
+if (!desktop) {
+  await send("Emulation.setTouchEmulationEnabled", { enabled: true, maxTouchPoints: 5 });
+  await send("Emulation.setUserAgentOverride", { userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1" });
+}
 await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-color-scheme", value: theme }] });
 await send("Page.navigate", { url });
 await waitLoad();
@@ -70,7 +73,7 @@ if (out) {
     // Full page: grow the emulated viewport to the document height and take a
     // plain capture. captureBeyondViewport + clip hung headless=new for 90 s.
     const h = Math.min(metrics.scrollHeight, 16000);
-    await send("Emulation.setDeviceMetricsOverride", { width, height: h, deviceScaleFactor: dpr, mobile: true, screenWidth: width, screenHeight: h });
+    await send("Emulation.setDeviceMetricsOverride", { width, height: h, deviceScaleFactor: dpr, mobile: !desktop, screenWidth: width, screenHeight: h });
     await sleep(300);
   }
   const shot = await send("Page.captureScreenshot", { format: "png" }, 90000);

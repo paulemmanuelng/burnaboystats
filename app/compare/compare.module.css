@@ -351,7 +351,9 @@
   border-bottom: 1px solid var(--rule-soft);
   vertical-align: middle;
 }
-.thNum, .tdNum { text-align: right; }
+/* ".table th" above is 0,1,1 and set the headers left while the numbers sat
+   right; the header needs the element in its selector to win. */
+.table th.thNum, .tdNum { text-align: right; }
 .country { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
 .flag { font-size: 17px; line-height: 1; }
 .countryName { font-size: var(--type-small); }
@@ -534,7 +536,7 @@
   /* "COUNTRY ·" / "11" broke mid-label in a 78px column; stack it on purpose. */
   .thSep { display: none; }
   .thCount { display: block; }
-  .thNum, .tdNum { text-align: left; }
+  .table th.thNum, .tdNum { text-align: left; }
   .cell { align-items: flex-start; gap: 4px; }
   .country { gap: 6px; }
   .flag { font-size: 16px; }
@@ -560,9 +562,11 @@
   .howLink { display: flex; width: 100%; justify-content: space-between; }
   .showAll { margin-left: 0; min-height: 44px; display: inline-flex; align-items: center; font-family: var(--font-mono), monospace; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
 
-  /* The desktop foot strip yields to the sticky bar (below). */
-  .exit { display: none; }
 }
+/* The desktop foot strip yields to the sticky bar wherever the tab bar exists
+   (the site's chrome switches at 900, this page's layout at 760; between the
+   two, both exits were showing). */
+@media (max-width: 900px) { .exit { display: none; } }
 @media (max-width: 360px) {
   .table tr { grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
 }
