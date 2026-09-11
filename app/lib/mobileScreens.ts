@@ -100,6 +100,17 @@ const isSongPage = (pathname: string) => pathname.startsWith("/music/");
 const isBoardPage = (pathname: string) => pathname.startsWith("/afrobeats/");
 
 /**
+ * A board ARTIST page — /afrobeats/<slug>, not the hub, a chart board or a
+ * live board — carries the Compare action bar since the compare page shipped
+ * (MobileCerts `showActionBar`, 11 Sep 2026). Two pinned bars stacked at the
+ * foot, the gold button half-hidden under the tab row (Paul, 12 Sep 2026:
+ * "should only show the compare button in the bottom"). So the tab bar
+ * stands down here, the way it does on /certifications, which has carried the
+ * same bar all along. The chart and live boards keep the five tabs.
+ */
+const isBoardArtistPage = (pathname: string) => /^\/afrobeats\/[^/]+$/.test(pathname);
+
+/**
  * A car page — /records/cars/<slug>. Its own back bar (back to the garage),
  * and the five-tab bar at its foot like the index above it.
  */
@@ -122,4 +133,4 @@ const withoutLocale = (pathname: string) => {
 export const hasOwnMobileChrome = (pathname: string) =>
   BACK_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname) || isBoardPage(pathname) || isCarPage(pathname);
 export const hasOwnActionBar = (pathname: string) =>
-  ACTION_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname);
+  ACTION_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname) || isBoardArtistPage(pathname);
