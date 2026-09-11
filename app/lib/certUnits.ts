@@ -153,14 +153,17 @@ export interface UnitsOptions {
   /** Nigeria is separated by default — TCSN's register is REQUEST-based, so a
    *  gap between two artists there can measure paperwork rather than sales. */
   includeNigeria: boolean;
-  /** Featured appearances are off by default: a feature's units are not the
-   *  artist's own release. */
+  /** Featured appearances count by default (Paul, 12 Sep 2026): a plaque the
+   *  artist holds is a plaque, and the certifications pages count them —
+   *  "All Eyes on Me", 19× Platinum in South Africa, is his even though the
+   *  record is AKA's. The switch drops to lead credits only for a reader who
+   *  wants each artist's own releases. */
   includeFeatures: boolean;
 }
 
 export const DEFAULT_OPTIONS: UnitsOptions = {
   includeNigeria: false,
-  includeFeatures: false,
+  includeFeatures: true,
 };
 
 /** Units behind one plaque, or null with the reason it cannot be priced. */

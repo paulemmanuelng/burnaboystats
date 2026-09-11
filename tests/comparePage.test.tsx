@@ -74,12 +74,15 @@ describe("the same recording on both sides", () => {
 });
 
 describe("the one-side hint follows the featured switch", () => {
-  it("says 'off until you turn them on' only while they are off", async () => {
-    const off = text(await html({ a: "burna-boy" }));
-    const on = text(await html({ a: "burna-boy", feat: "1" }));
-    expect(off).toContain("Featured appearances are off until you turn them on.");
-    expect(on).not.toContain("off until you turn them on");
-    expect(on).toContain("Featured appearances are on.");
+  it("counts every plaque by default, and says so; feat=0 is lead credits only", async () => {
+    const on = text(await html({ a: "burna-boy" }));
+    const off = text(await html({ a: "burna-boy", feat: "0" }));
+    expect(on).toContain("Every plaque the artist holds counts, featured appearances included.");
+    expect(on).toContain("on · every plaque held");
+    expect(off).toContain("Featured appearances are off — lead credits only.");
+    expect(off).toContain("off · lead credits only");
+    // The 19× Platinum on "All Eyes on Me" (a feature) is in the default view.
+    expect(on).toContain("161 counted");
   });
 });
 
@@ -115,7 +118,7 @@ describe("the mode segments", () => {
 describe("the collapse row counts plaques, per fold", () => {
   it("matches the engine's own tally of unpriced plaques in each folded tail", async () => {
     const [a, b] = [comparableArtists.find((x) => x.slug === "burna-boy")!, comparableArtists.find((x) => x.slug === "olamide")!];
-    const c = compare(a, b, { includeFeatures: false });
+    const c = compare(a, b, { includeFeatures: true });
     expect(c.collapsed.length).toBeGreaterThan(0);
     const t = text(await html({ a: "burna-boy", b: "olamide" }));
     const unpriced = (l: { counted: boolean; releases: number; notCounted?: { plaques: number } } | null) =>
@@ -223,7 +226,7 @@ describe("the phone audit's fixes stay fixed", () => {
     // scroll-to-top a navigation does by default. Tapping "Show all ↓" at the
     // foot of the table put the reader back at the top (scrollY 1600 → 43).
     const src = readFileSync(join(process.cwd(), "app/compare/page.tsx"), "utf8");
-    for (const marker of ["{ feat: featParam", "{ ng: ngOn", "{ all: \"1\" }"]) {
+    for (const marker of ["{ feat: includeFeatures", "{ ng: ngOn", "{ all: \"1\" }"]) {
       const i = src.indexOf(`href={href(sp, ${marker}`);
       expect(i, marker).toBeGreaterThan(-1);
       expect(src.slice(i, i + 220), `${marker} should keep scroll position`).toContain("scroll={false}");

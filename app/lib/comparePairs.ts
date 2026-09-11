@@ -67,11 +67,11 @@ export function featuredPairs(): [ComparableArtist, ComparableArtist][] {
 const fmt = (n: number) => n.toLocaleString("en-US");
 
 /** Title, description and share-card copy for one pair, from the live floors
- *  (default view: lead credits, Nigeria by the page's own rule). Lengths sit
+ *  (default view: every plaque held, Nigeria by the page's own rule). Lengths sit
  *  inside Google's display limits for every name on the board — the post-build
  *  gate (scripts/check-seo.mjs) reads them off the rendered HTML. */
 export function pairCopy(a: ComparableArtist, b: ComparableArtist) {
-  const c = compare(a, b, { includeFeatures: false });
+  const c = compare(a, b, { includeFeatures: true });
   const scope = c.options.includeNigeria ? "Nigeria included" : "international";
   const lead = c.a.total >= c.b.total ? c.a : c.b;
   const trail = lead === c.a ? c.b : c.a;
