@@ -159,6 +159,42 @@ p.206 of the Global Music Report Premium Edition (£19,950), so it is not.
 Burna's not-comparable plaques: **13 → 10**. Remaining: Sweden 6, Poland 2,
 Colombia 1, Greece 1.
 
+## 12 Sep 2026 — every plaque counts (Paul: "no cert should go unseen")
+
+Two changes to the page's defaults and one to its rules, all Paul's call after
+seeing "All Eyes on Me" (AKA ft. Burna Boy, 19× Platinum in South Africa)
+absent from his total:
+
+1. **Featured appearances count by default.** A plaque the artist holds is a
+   plaque; the certifications pages count them. The switch drops to lead
+   credits only.
+2. **Sweden and Mexico are priced.** Both publish their song levels in streams
+   and no download-equivalence, so they were listed and never summed. They are
+   now converted at **100 streams to a unit — the ratio IFPI Danmark and IFPI
+   Norge publish for the same measure** — and every such line carries a § with
+   a footnote saying exactly that. It is the one place the page applies a ratio
+   a body did not set. Sources, both grade A:
+   - **Ifpi Sverige**, ifpi.se/musikbolag/guld-och-platina (read 12 Sep 2026):
+     «Låt (enbart streams) 6 000 000 / 12 000 000» since 1 Jan 2024; the body's
+     own page archived 2018-09, 2020-12 and 2023-03 reads 4 / 8 million from
+     1 Jan 2018 (recorded as the floor); archived 2017-12 it was units,
+     «Singel 20 000 / 40 000», downloads and streams included. Its
+     Guld och Platina-guide states songs count *capped* streams only — so the
+     figure is a floor twice over. Multi-platinum applications exist (its own
+     «Ansökan om multiplatina» form), so N× Platina is body-defined.
+   - **AMPROFON**, antecedentes_criterios_certificaciones.pdf (read 12 Sep 2026):
+     «Niveles medidos en audio streams — Oro 22,000,000 / Platino 44,000,000 /
+     Diamante 220,000,000» for releases from 1 Nov 2020; 9.3 / 18.6 / 93
+     million before (recorded as the floor). No multiplier rule in the PDF; its
+     register stacks levels, so N× carries the existing caveat.
+   A screenshot Paul sent (an AI summary) had Sweden at 5 / 10 million streams
+   pre-2024 and a «1 download = 100 streams» rule — the body's own pages say
+   4 / 8 million, and the ratio is Denmark's and Norway's, not Sweden's. The
+   body was read; the summary was not used.
+3. **Unpriced rows never fold.** Poland (złoty of revenue), Greece and Colombia
+   (no thresholds) still cannot be summed — 17 plaques across the board, Burna
+   4 — but a row carrying one is always on screen, never in the collapsed tail.
+
 ## Corrections landed from the compare-page audit (11 Sep 2026)
 
 - **Brazil: Internacional table, not Nacional.** The research had said so in

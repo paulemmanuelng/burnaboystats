@@ -39,6 +39,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-12",
+    category: "Certifications",
+    text: "The compare page now counts every plaque an artist holds. Featured appearances are in by default — “All Eyes on Me”, AKA's record with Burna Boy featured, is 19× Platinum in South Africa and had sat behind a switch — and Sweden and Mexico, whose bodies publish their song levels in streams and no download-equivalence, are priced at 100 streams to a unit, the ratio Denmark and Norway publish, with every such line marked and explained. Burna Boy's international floor reads at least 30,215,157 certified units across 167 of his 171 plaques; the four that still cannot be priced — Poland measures singles in revenue, Greece and Colombia publish no threshold — are listed on the page and never hidden.",
+    href: "/compare/burna-boy-vs-wizkid",
+  },
+  {
     date: "2026-09-11",
     category: "Streaming",
     text: "The “Dai Dai” video reached a billion YouTube views in 105 days — joint fifth-fastest music video in YouTube history, level with “APT.” by ROSÉ & Bruno Mars, behind only “Hello” (88 days), “Shape of You” and “Despacito” (97) and “Mi Gente” (103). Africa's Biggest now carries that leaderboard — the top five, ties included, the one world board on the page where the record is a song's rather than an artist's; the days are counted from each video's premiere, as published by Chart Data and Pop Core.",

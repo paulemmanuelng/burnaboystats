@@ -81,8 +81,9 @@ describe("the one-side hint follows the featured switch", () => {
     expect(on).toContain("on · every plaque held");
     expect(off).toContain("Featured appearances are off — lead credits only.");
     expect(off).toContain("off · lead credits only");
-    // The 19× Platinum on "All Eyes on Me" (a feature) is in the default view.
-    expect(on).toContain("161 counted");
+    // The 19× Platinum on "All Eyes on Me" (a feature) is in the default view,
+    // and so are the six Swedish plaques since Sweden is priced (§).
+    expect(on).toContain("167 counted");
   });
 });
 

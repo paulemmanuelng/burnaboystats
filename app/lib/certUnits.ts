@@ -220,6 +220,9 @@ export interface CountryLine {
   /** The body changed its thresholds inside the window and this line is priced
    *  at today's level regardless — footnote 3, on every line for the country. */
   vintage?: string;
+  /** This line is priced at a stream-to-unit ratio the body does not publish
+   *  (Sweden, Mexico) — footnote 4, on every line for the country. */
+  assumed?: string;
 }
 
 export interface Exclusion {
@@ -245,6 +248,8 @@ export interface ArtistUnits {
   caveats: string[];
   /** Bodies whose thresholds moved inside the window — footnote 3. */
   vintages: string[];
+  /** Bodies priced at a stream ratio they do not publish — footnote 4. */
+  assumptions: string[];
   /** Plaques that counted toward `total`. */
   pricedPlaques: number;
 }
@@ -327,6 +332,7 @@ export function priceArtist(
         counted: true,
         caveat: multiplied ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
         vintage: CERT_THRESHOLDS[cert.c]?.vintage,
+        assumed: CERT_THRESHOLDS[cert.c]?.assumed,
       });
     }
   }
@@ -386,6 +392,7 @@ export function priceArtist(
     listed,
     caveats: [...new Set(byCountry.map((l) => l.caveat).filter(Boolean) as string[])],
     vintages: [...new Set(byCountry.map((l) => l.vintage).filter(Boolean) as string[])],
+    assumptions: [...new Set(byCountry.map((l) => l.assumed).filter(Boolean) as string[])],
     nigeria: { units: nigeriaUnits, plaques: nigeriaPlaques },
     excluded: exclusions,
     excludedPlaques: exclusions.reduce((n, e) => n + e.plaques, 0),
@@ -523,6 +530,8 @@ export interface Comparison {
   caveats: string[];
   /** Footnote 3 — bodies that changed their thresholds inside the window. */
   vintages: string[];
+  /** Footnote 4 — bodies priced at a stream ratio they do not publish. */
+  assumptions: string[];
 }
 
 /**
@@ -587,8 +596,11 @@ export function compare(
   const collapsed: CollapsedTail[] = [];
   const folded = new Set<ComparisonRow>();
   for (const side of ["a", "b"] as const) {
+    // A row carrying an unpriced plaque never folds: "not counted" must be
+    // visible, or the plaque is unseen as well as unsummed (Paul, 12 Sep 2026).
+    const unpriced = (l: CountryLine | null) => Boolean(l && (!l.counted || l.notCounted));
     const mine = ordered.filter(
-      (r) => !r.contested && r.country !== "NG" && (side === "a" ? r.a : r.b),
+      (r) => !r.contested && r.country !== "NG" && (side === "a" ? r.a : r.b) && !unpriced(r.a) && !unpriced(r.b),
     );
     if (mine.length <= 6) continue;
     const tail = mine.slice(3);
@@ -625,5 +637,6 @@ export function compare(
     notCounted,
     caveats: [...new Set([...pa.caveats, ...pb.caveats])],
     vintages: [...new Set([...pa.vintages, ...pb.vintages])],
+    assumptions: [...new Set([...pa.assumptions, ...pb.assumptions])],
   };
 }

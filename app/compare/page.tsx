@@ -429,7 +429,7 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
   // No-break spaces: a mark on its own line inside a 104px phone chip read
   // as a stray glyph. The marks share one face (.mark) — Space Mono has no ‡,
   // and its † pulled a latin-ext subset the site never preloads.
-  const markList = [line.caveat ? "†" : null, line.vintage ? "‡" : null].filter(Boolean);
+  const markList = [line.caveat ? "†" : null, line.vintage ? "‡" : null, line.assumed ? "§" : null].filter(Boolean);
   const marks = markList.length ? <>{"\u00a0"}<span className={styles.mark}>{markList.join("\u00a0")}</span></> : null;
   const prog = program(line.top, line.country);
   if (!line.counted) {
@@ -626,16 +626,18 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
           .map((l) => ({ country: l.country, body: l.body, reason: l.reason ?? l.notCounted?.reason ?? "" })),
         caveats: [...new Set([...spa!.caveats, ...spb!.caveats])],
         vintages: [...new Set([...spa!.vintages, ...spb!.vintages])],
+        assumptions: [...new Set([...spa!.assumptions, ...spb!.assumptions])],
       }
     : c
-      ? { notCounted: c.notCounted, caveats: c.caveats, vintages: c.vintages }
-      : { notCounted: [], caveats: [], vintages: [] };
+      ? { notCounted: c.notCounted, caveats: c.caveats, vintages: c.vintages, assumptions: c.assumptions }
+      : { notCounted: [], caveats: [], vintages: [], assumptions: [] };
   // ...and only the markers that are actually visible earn their footnote. With
   // every not-counted row folded into the tail, footnote 1 was naming six
   // countries under a four-row table that carried no marker anywhere.
   const visibleNotCounted = rows.some((r) => (r.a && !r.a.counted) || (r.b && !r.b.counted) || r.a?.notCounted || r.b?.notCounted);
   const visibleCaveat = rows.some((r) => r.a?.caveat || r.b?.caveat);
   const visibleVintage = rows.some((r) => r.a?.vintage || r.b?.vintage);
+  const visibleAssumed = rows.some((r) => r.a?.assumed || r.b?.assumed);
   // The collapse row counts PLAQUES it hides, not rows: a listed-only line is
   // every plaque on it, a priced line hides the unpriced half riding on it. It
   // was counting rows, so it said 3 beneath a header that said 8. Counted per
@@ -981,6 +983,13 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                   </Link>
                 </p>
               )}
+              {visibleAssumed && noteSource.assumptions.length > 0 && (
+                <p>
+                  <strong><span className={styles.mark}>§</span> Ratio assumed</strong> — the body publishes its levels in
+                  streams and no download-equivalence, so this page converts at 100 streams to a unit, the ratio
+                  Denmark and Norway publish for the same measure. {noteSource.assumptions.join(" ")}
+                </p>
+              )}
             </div>
           </>
         )}
@@ -1002,10 +1011,12 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
             </p>
           </div>
           <div>
-            <p className={styles.methodTitle}>Not everything can be counted</p>
+            <p className={styles.methodTitle}>Not quite everything can be priced</p>
             <p className={styles.methodBody}>
-              Sweden, Mexico and Poland publish no comparable single threshold; Greece, Belgium, Colombia,
-              Czechia and Slovakia publish none at all. Those plaques are listed, not summed.
+              Sweden and Mexico publish their song levels in streams and no download-equivalence — those
+              plaques are converted at 100 streams to a unit, the ratio Denmark and Norway publish, and marked §.
+              Poland measures singles in złoty of revenue and Greece and Colombia publish no thresholds: those
+              plaques are listed, never summed, and never hidden.
             </p>
           </div>
         </div>

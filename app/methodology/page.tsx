@@ -181,6 +181,7 @@ const thresholdRows = Object.values(CERT_THRESHOLDS)
 const movedBodies = Object.values(CERT_THRESHOLDS).filter((c) => c.floor).length;
 const pricedSingles = Object.values(CERT_THRESHOLDS).filter((c) => c.single !== null).length;
 const streamBodies = Object.values(CERT_THRESHOLDS).filter((c) => c.singleRaw);
+const assumedBodies = streamBodies.filter((c) => c.assumed);
 
 export default function MethodologyPage() {
   const webPageJsonLd = {
@@ -534,10 +535,10 @@ export default function MethodologyPage() {
             would understate every plaque earned after a rise by as much as it protects
             the earlier ones, and it prices against numbers no body publishes any more.
             Two refinements hold either way: a body that changed <em>what it measures</em>
-            — Poland to złoty of revenue, Mexico to raw streams — cannot have its singles
-            priced from the old unit regime, so those stay listed and unsummed; and for a
-            body that keys thresholds to release date, the band a record actually fell in
-            is the one that applies.
+            — Poland to złoty of revenue — cannot have its singles priced from the old
+            unit regime, so those stay listed and unsummed; and for a body that keys
+            thresholds to release date, the band a record actually fell in is the one
+            that applies.
           </p>
           <p className={styles.p}>
             <strong>One plaque per release per country, at its current tier.</strong>
@@ -549,16 +550,22 @@ export default function MethodologyPage() {
             priced.</strong> Of the {allBodies} bodies whose plaques appear here,{" "}
             {pricedSingles} can price a single: {pricedSingles - streamBodies.length}{" "}
             publish the threshold in sales-equivalent units and {streamBodies.length}{" "}
-            publish it in streams with their own download-equivalence, which is what
-            this site converts with —
-            France at 150 streams to a download, Denmark and Norway at 100, the
-            Netherlands at 215. The rest publish something that cannot be converted at
-            all: Sweden counts capped streams and dropped downloads entirely in 2018,
-            Mexico gives no ratio, and Poland measures singles in złoty of revenue.
-            Greece, Belgium, Colombia, Czechia and Slovakia publish no thresholds. Those
-            plaques are <strong>listed and never summed</strong>, and the page names
-            them, because scoring them zero in silence would penalise whoever holds more
-            of them.
+            publish it in streams. {streamBodies.length - assumedBodies.length} of those
+            publish their own download-equivalence, which is what this site converts with
+            — France at 150 streams to a download, Denmark and Norway at 100, the
+            Netherlands at 215, Czechia at 222, Slovakia at 217. {assumedBodies.length === 2 ? "Two" : String(assumedBodies.length)}{" "}
+            — Sweden and Mexico — publish their levels in streams and no ratio at all;
+            their plaques are converted at 100 streams to a unit, the ratio Denmark and
+            Norway publish for the same measure, and every such line carries a
+            &ldquo;§&rdquo; that says so. It is the one place the page applies a ratio a
+            body did not set, and it is there because a plaque that cannot be summed is
+            a plaque that goes unseen. Sweden counts capped streams, so its figure is a
+            floor twice over. What remains cannot be converted at any ratio: Poland
+            measures singles in złoty of revenue, and Greece, Belgium, Colombia and the
+            rest of the unpriced bodies publish no threshold. Those plaques are{" "}
+            <strong>listed and never summed</strong> — and never folded out of sight —
+            because scoring them zero in silence would penalise whoever holds more of
+            them.
           </p>
           <p className={styles.p}>
             <strong>Nigeria is separated by default.</strong> TCSN&apos;s register is
