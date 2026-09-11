@@ -186,14 +186,15 @@ describe("rule 3 — what cannot be priced is counted and named", () => {
 });
 
 describe("the Nigeria default", () => {
-  it("fires on 63 of the 120 pairs on the default view, 57 with features on", () => {
+  it("fires on 57 of the 120 pairs on the default view (every plaque), 63 with lead credits only", () => {
     // Both counts were measured from the plaque arrays by a separate script
     // before being pinned here, so a change to either clause has to be
     // deliberate. The two differ because the zero-international clause looks
     // at the SAME plaques the view will show: BNXN holds international plaques
-    // only as features, so with features off (the default) he is a blank
-    // column and the six pairs against non-home-market artists fire on him.
-    // The first version counted 57 in both states and rendered him "at least 0".
+    // only as features, so with features off he is a blank column and the six
+    // pairs against non-home-market artists fire on him. The first version
+    // counted 57 in both states and rendered him "at least 0". Since 12 Sep
+    // 2026 every plaque counts by default, so 57 is the default view's count.
     const all = comparableArtists;
     const count = (includeFeatures: boolean) => {
       let n = 0;

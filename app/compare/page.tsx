@@ -521,8 +521,11 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
   // something. Any other value (ng=yes, ng=on) used to force Nigeria OFF and
   // suppress the why-line, which is the worst possible reading of a typo.
   const ngParam = one(sp.ng) === "1" ? "1" : one(sp.ng) === "0" ? "0" : undefined;
+  // Every plaque counts unless the reader turns features OFF (feat=0). The
+  // first version defaulted to lead credits only and read as an undercount:
+  // Burna Boy's 19× Platinum in South Africa sat behind the switch.
   const featParam = one(sp.feat);
-  const includeFeatures = featParam === "1";
+  const includeFeatures = featParam !== "0";
 
   // A record compared with ITSELF is not a comparison, and with two artists
   // holding slightly different copies of one recording it printed a winner.
@@ -762,13 +765,13 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                 <span className={styles.nameShort} aria-hidden="true">Features</span>
               </span>
               <Link
-                href={href(sp, { feat: featParam === "1" ? null : "1" })}
+                href={href(sp, { feat: includeFeatures ? "0" : null })}
                 scroll={false}
-                className={`${styles.switch} ${featParam === "1" ? styles.switchOn : ""}`}
+                className={`${styles.switch} ${includeFeatures ? styles.switchOn : ""}`}
               >
-                <span className={`${styles.dot} ${featParam === "1" ? styles.dotOn : ""}`} />
+                <span className={`${styles.dot} ${includeFeatures ? styles.dotOn : ""}`} />
                 <span className="visuallyHidden">Featured appearances: </span>
-                {featParam === "1" ? "on · lead + featured" : "off · lead credits only"}
+                {includeFeatures ? "on · every plaque held" : "off · lead credits only"}
               </Link>
             </span>
           )}
@@ -857,8 +860,8 @@ export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; le
                   {record
                     ? `Pick ${mode === "albums" ? "an album" : "a song"} on each side — the country-by-country table appears once both are chosen.`
                     : includeFeatures
-                      ? "The country-by-country table appears when both sides are filled. Featured appearances are on."
-                      : "The country-by-country table appears when both sides are filled. Featured appearances are off until you turn them on."}
+                      ? "The country-by-country table appears when both sides are filled. Every plaque the artist holds counts, featured appearances included."
+                      : "The country-by-country table appears when both sides are filled. Featured appearances are off — lead credits only."}
                 </p>
               )}
               <span className={styles.scope}>{scope}</span>

@@ -8,7 +8,7 @@ song vs song ("Gbona" vs "Essence"), or artist total vs artist total.
 | | |
 |---|---|
 | **Framing** | **Certified units, never "units sold."** A plaque is a FLOOR: 3× Platinum in Nigeria means *at least* 300,000 and could be 590,000. The sum of thresholds is a minimum. This is the page's edge, not its weakness — a floor for both artists under identical rules. |
-| **Features** | Toggle, **default OFF**. Lead credits only until the reader flips it. |
+| **Features** | Toggle, **default ON** (Paul, 12 Sep 2026 — was OFF until then). Every plaque the artist holds counts; the reader flips it to lead credits only. |
 | **Stat card button** | Compare takes the primary slot on the certifications page; **stat card moves to secondary, it is not removed.** Both layouts — desktop and mobile are separate components. |
 | **Threshold scope** | **All 27 countries before anything ships.** No partial launch. |
 | **Song/album selected** | Cover art + release name + **artist names**. |
