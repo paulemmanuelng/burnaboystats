@@ -207,20 +207,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": -1
+            "position": 3,
+            "movement": -2
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 60,
-            "movement": 42
+            "position": 71,
+            "movement": 31
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 178,
-            "movement": -14
+            "position": 181,
+            "movement": -17
           }
         ]
       },
@@ -467,7 +467,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
+            "position": 30,
             "movement": null,
             "status": "new"
           }
@@ -607,6 +607,12 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 97,
+            "movement": -11
+          },
+          {
             "country": "DM",
             "name": "Dominica",
             "position": 98,
@@ -624,12 +630,6 @@
             "name": "Ireland",
             "position": 108,
             "movement": 25
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 111,
-            "movement": -25
           },
           {
             "country": "ML",
@@ -664,8 +664,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": -14
+            "position": 69,
+            "movement": -16
           }
         ]
       }
@@ -949,8 +949,8 @@
           {
             "country": "IL",
             "name": "Israel",
-            "position": 56,
-            "movement": -37
+            "position": 58,
+            "movement": -39
           }
         ]
       }
@@ -1030,21 +1030,21 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 8,
-            "movement": -5
+            "position": 10,
+            "movement": -7
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
+            "position": 19,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 18,
-            "movement": -8
+            "position": 22,
+            "movement": -20
           }
         ]
       },
@@ -1213,8 +1213,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
-            "movement": -6
+            "position": 10,
+            "movement": -7
           }
         ]
       },
@@ -1618,8 +1618,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 63,
-            "movement": -5
+            "position": 65,
+            "movement": -7
           }
         ]
       },
@@ -1965,8 +1965,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 194,
-            "movement": -11
+            "position": 195,
+            "movement": -12
           }
         ]
       }
@@ -2098,13 +2098,13 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 66,
-            "movement": -5
+            "position": 68,
+            "movement": -7
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 87,
+            "position": 88,
             "movement": 3
           }
         ]
@@ -2253,8 +2253,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 184,
-            "movement": -14
+            "position": 187,
+            "movement": -17
           }
         ]
       }
@@ -2386,7 +2386,7 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 16,
+            "position": 22,
             "movement": null,
             "status": "new"
           }

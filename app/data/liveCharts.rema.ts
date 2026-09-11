@@ -170,6 +170,13 @@
             "movement": 28
           },
           {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 153,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "CA",
             "name": "Canada",
             "position": 159,
@@ -180,13 +187,6 @@
             "name": "Portugal",
             "position": 171,
             "movement": 20
-          },
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 199,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -205,6 +205,19 @@
             "name": "United Arab Emirates",
             "position": 153,
             "movement": 25
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 199,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -362,7 +375,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
+            "position": 26,
             "movement": null,
             "status": "new"
           },
@@ -407,128 +420,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6ad6ca24531d374241de87ca5e3211ca/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 45,
-            "movement": 38
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 53,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 54,
-            "movement": 33
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 56,
-            "movement": 40
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 58,
-            "movement": 6
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 70,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 73,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 84,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 91,
-            "movement": 5
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 28,
-            "movement": 3
-          },
-          {
-            "country": "KH",
-            "name": "Cambodia",
-            "position": 86,
-            "movement": -7
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 88,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ES",
-            "name": "Spain",
-            "position": 134,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 23,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MV",
-            "name": "Maldives",
-            "position": 142,
-            "movement": -16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Oh No",
@@ -637,7 +528,14 @@
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 48,
+            "position": 71,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 153,
             "movement": null,
             "status": "new"
           }
@@ -646,6 +544,128 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Calm Down",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 45,
+            "movement": 38
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 53,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 54,
+            "movement": 33
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 56,
+            "movement": 40
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 58,
+            "movement": 6
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 70,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 73,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 84,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 91,
+            "movement": 5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 25,
+            "movement": 6
+          },
+          {
+            "country": "KH",
+            "name": "Cambodia",
+            "position": 87,
+            "movement": -8
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 96,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ES",
+            "name": "Spain",
+            "position": 157,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 23,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MV",
+            "name": "Maldives",
+            "position": 142,
+            "movement": -16
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rave & Roses",
@@ -1250,16 +1270,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 35,
-            "movement": -20
-          },
-          {
             "country": "BW",
             "name": "Botswana",
             "position": 39,
             "movement": -9
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 39,
+            "movement": -24
           },
           {
             "country": "GM",
@@ -1708,8 +1728,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 89,
-            "movement": 0
+            "position": 90,
+            "movement": -1
           }
         ]
       }

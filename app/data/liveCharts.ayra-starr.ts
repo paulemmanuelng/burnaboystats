@@ -370,8 +370,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 25,
-            "movement": 132
+            "position": 22,
+            "movement": 95
           },
           {
             "country": "AE",
@@ -431,8 +431,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": -1
+            "position": 9,
+            "movement": -3
           },
           {
             "country": "GD",
@@ -830,8 +830,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 138,
-            "movement": -11
+            "position": 132,
+            "movement": -5
           },
           {
             "country": "IE",
@@ -866,16 +866,16 @@
             "status": "new"
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 174,
-            "movement": -50
-          },
-          {
             "country": "BS",
             "name": "The Bahamas",
             "position": 178,
             "movement": 2
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 179,
+            "movement": -55
           },
           {
             "country": "LU",
@@ -884,24 +884,24 @@
             "movement": -132
           },
           {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 194,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NL",
             "name": "Netherlands",
-            "position": 196,
+            "position": 185,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 199,
-            "movement": -21
+            "position": 193,
+            "movement": -15
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 194,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -912,8 +912,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
-            "movement": -17
+            "position": 57,
+            "movement": -19
           }
         ]
       }
@@ -1678,6 +1678,80 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "No love",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 30,
+            "movement": 10
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 69,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 71,
+            "movement": 31
+          },
+          {
+            "country": "CG",
+            "name": "Republic of the Congo",
+            "position": 76,
+            "movement": 30
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 114,
+            "movement": 1
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 115,
+            "movement": -35
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 133,
+            "movement": 0
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 136,
+            "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 55,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7b49d51e89ff07824c8c62043775a2ab/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Wo, man",
     "platforms": [
       {
@@ -1731,19 +1805,12 @@
             "country": "IT",
             "name": "Italy",
             "position": 29,
-            "movement": 26
+            "movement": 35
           },
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 79,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 195,
+            "position": 95,
             "movement": null,
             "status": "new"
           }
@@ -1752,80 +1819,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "No love",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 30,
-            "movement": 10
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 71,
-            "movement": 31
-          },
-          {
-            "country": "CG",
-            "name": "Republic of the Congo",
-            "position": 76,
-            "movement": 30
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 109,
-            "movement": 5
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 115,
-            "movement": -35
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 133,
-            "movement": 0
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 136,
-            "movement": 3
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 55,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7b49d51e89ff07824c8c62043775a2ab/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Last Heartbreak Song",
@@ -2570,8 +2563,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 33,
-            "movement": -29
+            "position": 38,
+            "movement": -34
           }
         ]
       }

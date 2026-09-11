@@ -406,7 +406,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
+            "position": 25,
             "movement": null,
             "status": "new"
           }
@@ -485,8 +485,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
-            "movement": -17
+            "position": 85,
+            "movement": -19
           }
         ]
       }
@@ -957,8 +957,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
-            "movement": 0
+            "position": 118,
+            "movement": 1
           }
         ]
       }
@@ -1091,7 +1091,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
+            "position": 109,
             "movement": null,
             "status": "new"
           }

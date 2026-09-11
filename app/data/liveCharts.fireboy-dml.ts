@@ -520,8 +520,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 68,
-            "movement": -25
+            "position": 76,
+            "movement": -32
           }
         ]
       }

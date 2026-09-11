@@ -277,7 +277,7 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 12,
+            "position": 13,
             "movement": -6
           },
           {
@@ -331,8 +331,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 51,
-            "movement": -2
+            "position": 67,
+            "movement": -33
           },
           {
             "country": "CA",
@@ -495,7 +495,7 @@
             "country": "MU",
             "name": "Mauritius",
             "position": 73,
-            "movement": -18
+            "movement": -13
           }
         ]
       }
@@ -688,22 +688,22 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 179,
+            "movement": -8
+          },
+          {
             "country": "CA",
             "name": "Canada",
-            "position": 185,
-            "movement": -24
+            "position": 182,
+            "movement": -21
           },
           {
             "country": "CV",
             "name": "Cape Verde",
             "position": 192,
             "movement": -93
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 193,
-            "movement": -22
           }
         ]
       }
@@ -1317,7 +1317,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
+            "position": 109,
             "movement": null,
             "status": "new"
           }

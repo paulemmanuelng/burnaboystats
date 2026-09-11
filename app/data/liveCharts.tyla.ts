@@ -216,6 +216,20 @@
             "movement": -23
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 161,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 176,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "TD",
             "name": "Chad",
             "position": 177,
@@ -227,13 +241,6 @@
             "name": "Cambodia",
             "position": 186,
             "movement": -98
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 187,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -244,7 +251,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
+            "position": 7,
             "movement": null,
             "status": "new"
           }
@@ -324,15 +331,9 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 126,
+            "position": 147,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 173,
-            "movement": -23
           }
         ]
       }
@@ -474,8 +475,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 54,
-            "movement": -8
+            "position": 56,
+            "movement": -10
           }
         ]
       }
@@ -580,7 +581,7 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 105,
+            "position": 123,
             "movement": null,
             "status": "new"
           }
@@ -619,8 +620,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 56,
-            "movement": -8
+            "position": 55,
+            "movement": -7
           }
         ]
       }
