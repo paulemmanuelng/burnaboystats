@@ -181,25 +181,43 @@
 }
 .control { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }
 .controlName { color: var(--text-muted); font-weight: 700; }
+/* The design's switch, on both frames: a 30×16 track with a knob, the state
+   label beside it. It replaced a bordered pill with a green dot — green is
+   the site's LIVE colour, and the pill wrapped to two lines on a phone. */
 .switch {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  border: 1px solid var(--rule);
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 4px 0 0;
   border-radius: 999px;
-  padding: 7px 13px;
-  min-height: 36px;
-  color: var(--text);
+  color: var(--text-muted);
 }
-.switch:hover { background: var(--bg-raised); }
+.switch:hover .dot { background: var(--rule); }
+.switchOn { color: var(--text); }
 .dot {
-  width: 8px;
-  height: 8px;
+  position: relative;
+  width: 30px;
+  height: 16px;
+  flex: 0 0 30px;
+  border-radius: 999px;
+  background: var(--rule-soft);
+  transition: background var(--dur) var(--ease);
+}
+.dot::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--text-muted);
-  flex: 0 0 8px;
+  transition: left var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.dotOn { background: var(--green-dot); }
+.dotOn { background: var(--gold); }
+.dotOn::after { left: 16px; background: var(--ink-on-gold); }
+.switch:hover .dotOn { background: var(--gold); }
 .howLink { margin-left: auto; color: var(--gold); }
 
 /* ── why-line ─────────────────────────────────────────────── */
@@ -412,6 +430,15 @@
   color: var(--text-muted);
   margin-bottom: 40px;
 }
+.notes p { margin: 0; }
+.noteList {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 5px;
+}
+.noteList li { padding-left: 12px; border-left: 1px solid var(--rule-soft); }
 .method {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -451,18 +478,131 @@
 
 /* ── responsive: the design's M1–M3 are these parts restacked ─ */
 @media (max-width: 760px) {
-  .wrap { padding: 0 16px 88px; }
-  .slots { grid-template-columns: 1fr; gap: 12px; }
-  .vs { justify-self: start; }
+  /* The foot room comes from body's tab-bar padding and Keep exploring's own
+     margin; 88px here stacked on both and read as a hole in the page. */
+  .wrap { padding: 0 16px 28px; }
+
+  /* Mode: one full-width pill, two equal halves (design: height 44). */
+  .seg { display: flex; width: 100%; }
+  .segItem { flex: 1; justify-content: center; min-height: 44px; }
+
+  /* Slots stack; title and meta are one line each, ellipsised (design). */
+  .slots { grid-template-columns: 1fr; gap: 8px; }
+  .vs { justify-self: center; }
   .art { width: 48px; height: 48px; flex-basis: 48px; }
-  .slotTitle { font-size: 20px; }
-  .head { grid-template-columns: 1fr 1fr; gap: 16px; }
-  .figure { font-size: clamp(28px, 9vw, 34px); }
+  .slot { padding: 12px 14px; }
+  /* The design ellipsises the title and the meta to one line each. Here they
+     wrap instead: with the head meta gone on the phone, the slot meta is the
+     only place the plaque count lives, and "ARTIST TOTALS · 9…" hid it. */
+  .slotTitle { font-size: 20px; line-height: 1.05; }
+  /* The design's clear control on the phone: a ✕ in a 36px circle, the word
+     in the accessible name. The pill's text took the meta's room. */
+  .slotClear { width: 36px; min-height: 36px; padding: 0; justify-content: center; border-radius: 50%; font-size: 13px; }
+  .slotClearText { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Head: name / figure / bar. The meta line is desktop-only on the design's
+     phone frame — five wrapped lines of it put the two bars at different
+     heights. The plaque counts stay in the slot meta and the footnotes. */
+  .head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 12px; }
+  .headName { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .figure { font-size: clamp(26px, 8.4vw, 34px); overflow-wrap: normal; }
+  .headMeta { display: none; }
+  .bar { height: 4px; margin-top: 10px; }
   .method { grid-template-columns: 1fr; gap: 18px; }
   .howLink { margin-left: 0; }
   .scope { margin-left: 0; }
-  .table td, .table th { padding: 11px 10px; }
+
+  /* The country table on a phone is the design's row grid, not a table:
+     78px country column, two equal sides, left-aligned, 56px rows. A real
+     table's min-content (372px) overflowed a 343px screen and cut the
+     right-hand column to "620,0" / "NO PLAC". The markup stays a table —
+     one tree, headers and scopes intact — and only the display changes. */
+  .tableWrap { overflow: visible; }
+  .table, .table thead, .table tbody { display: block; }
+  .table tr {
+    display: grid;
+    grid-template-columns: 78px minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    min-height: 56px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .table thead tr { min-height: 0; padding: 0 0 8px; border-bottom: 2px solid var(--rule); }
+  .table th, .table td { display: block; padding: 0; border-bottom: 0; min-width: 0; }
+  .table th { white-space: normal; font-size: 10px; letter-spacing: 0.1em; }
+  /* "COUNTRY ·" / "11" broke mid-label in a 78px column; stack it on purpose. */
+  .thSep { display: none; }
+  .thCount { display: block; }
+  .thNum, .tdNum { text-align: left; }
+  .cell { align-items: flex-start; gap: 4px; }
+  .country { gap: 6px; }
+  .flag { font-size: 16px; }
   .countryName { display: none; }
+  .countryCode { font-size: 11px; letter-spacing: 0.06em; color: var(--text); }
+  .tierChip { font-size: 9.5px; letter-spacing: 0.08em; padding: 3px 7px; border-radius: 999px; white-space: normal; }
+  .units { font-size: 12px; }
+  .ngRow { padding-left: 8px; padding-right: 8px; margin: 0 -8px; }
+  /* Specificity: ".table tr" above is 0,1,1 — a bare ".collapseRow" lost, and
+     the fold sat in the 78px country column as a nine-line sliver. */
+  .table .collapseRow { display: block; padding: 12px; background: var(--bg-soft); }
+  .table .collapseRow td { display: flex; flex-direction: column; gap: 6px; }
+  .collapseText { text-transform: none; letter-spacing: 0; font-family: inherit; font-size: var(--type-small); line-height: var(--type-small-lh); }
+  .showAll { margin-left: 0; min-height: 44px; display: inline-flex; align-items: center; font-family: var(--font-mono), monospace; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* The desktop foot strip yields to the sticky bar (below). */
+  .exit { display: none; }
+}
+@media (max-width: 360px) {
+  .table tr { grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+}
+
+/* ── sticky board bar (phone) ─────────────────────────────────
+   The design's M1/M2: when both sides are filled, "The Afrobeats Board ↗"
+   sits in its own bar directly ABOVE the five-tab bar. Not on arrival.
+   Same gold ramp and both iPhone guards as .actionPrimary on /certifications.
+   Bottom offset = the tab bar's height (8 + 48 + foot + 1px border). */
+.boardBar, .barSpacer { display: none; }
+@media (max-width: 900px) {
+  .barSpacer { display: block; }
+  .boardBar {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: calc(57px + max(30px, env(safe-area-inset-bottom, 0px)));
+    z-index: 59;
+    padding: 10px 12px;
+    padding-left: calc(12px + env(safe-area-inset-left, 0px));
+    padding-right: calc(12px + env(safe-area-inset-right, 0px));
+    background: var(--scrim);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+  }
+  .boardBtn {
+    flex: 1;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-radius: 999px;
+    background-color: var(--gold-fill);
+    background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
+    color: var(--ink-on-gold);
+    -webkit-text-fill-color: var(--ink-on-gold);
+    transform: translateZ(0);
+    font-family: var(--font-mono), monospace;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 24%, transparent);
+  }
+  /* Room for the bar above the tab bar (the design's 172px spacer vs 96px).
+     On the page's LAST element, after Keep exploring — on <main> it opened
+     200px of dead air between the method notes and the next section. */
+  .barSpacer { height: 84px; }
 }
 
 /* ── song search ──────────────────────────────────────────────

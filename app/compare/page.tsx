@@ -200,7 +200,8 @@ function Slot({
         className={styles.slotClear}
         aria-label={isSong && !refused ? `Choose a different release by ${artist.name}` : `Choose a different artist`}
       >
-        {isSong && !refused ? "Change song ✕" : "Change ✕"}
+        <span className={styles.slotClearText}>{isSong && !refused ? "Change song" : "Change"}</span>
+        <span aria-hidden="true">✕</span>
       </Link>
     </div>
   );
@@ -532,7 +533,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           {mode === "artists" && (
             <span className={styles.control}>
               <span className={styles.controlName}>Featured appearances</span>
-              <Link href={href(sp, { feat: featParam === "1" ? "0" : "1" })} className={styles.switch}>
+              <Link href={href(sp, { feat: featParam === "1" ? "0" : "1" })} className={`${styles.switch} ${featParam === "1" ? styles.switchOn : ""}`}>
                 <span className={`${styles.dot} ${featParam === "1" ? styles.dotOn : ""}`} />
                 {featParam === "1" ? "on · lead + featured" : "off · lead credits only"}
               </Link>
@@ -540,7 +541,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           )}
           <span className={styles.control}>
             <span className={styles.controlName}>Nigeria</span>
-            <Link href={href(sp, { ng: ngOn ? "0" : "1" })} className={styles.switch}>
+            <Link href={href(sp, { ng: ngOn ? "0" : "1" })} className={`${styles.switch} ${ngOn ? styles.switchOn : ""}`}>
               <span className={`${styles.dot} ${ngOn ? styles.dotOn : ""}`} />
               {ngOn ? (ngParam ? "included" : "included · by default") : "separated"}
             </Link>
@@ -656,7 +657,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
               <table className={styles.table}>
                 <thead>
                   <tr>
-                    <th scope="col">Country · {rows.length}</th>
+                    <th scope="col">Country<span className={styles.thSep}> · </span><span className={styles.thCount}>{rows.length}</span></th>
                     <th scope="col" className={styles.thNum}>{nameA}</th>
                     <th scope="col" className={styles.thNum}>{nameB}</th>
                   </tr>
@@ -715,8 +716,15 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
                 <p><strong>† Multiplier assumed</strong> — {noteSource.caveats.join(" ")}</p>
               )}
               {visibleVintage && noteSource.vintages.length > 0 && (
-                <p><strong>‡ This body raised its thresholds since 2015</strong> — the figure is today&apos;s level, and a
-                  plaque awarded before the rise may have cleared a lower bar. {noteSource.vintages.join(" ")}</p>
+                <div>
+                  <p><strong>‡ This body raised its thresholds since 2015</strong> — the figure is today&apos;s level, and a
+                    plaque awarded before the rise may have cleared a lower bar.</p>
+                  {/* One body per line. Joined into a paragraph, twelve of these
+                      were a 40-line wall on a phone. */}
+                  <ul className={styles.noteList}>
+                    {noteSource.vintages.map((v) => <li key={v}>{v}</li>)}
+                  </ul>
+                </div>
               )}
             </div>
           </>
@@ -757,7 +765,18 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           </section>
         )}
       </main>
+      {/* Phone only: the design's sticky bar above the five-tab bar, once both
+          sides are filled. The desktop foot strip above hides under 760px. */}
+      {ready && (
+        <div className={styles.boardBar}>
+          <Link href="/afrobeats" className={styles.boardBtn}>
+            <span>The Afrobeats Board</span>
+            <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+      )}
       <KeepExploring current="/compare" />
+      {ready && <div className={styles.barSpacer} aria-hidden="true" />}
     </>
   );
 }
