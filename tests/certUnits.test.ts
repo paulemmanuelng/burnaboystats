@@ -60,7 +60,9 @@ describe("thresholds are sourced, never invented", () => {
       const raw = CERT_THRESHOLDS[code][`${fmt}Raw` as "singleRaw" | "albumRaw"]?.[tier];
       const got = CERT_THRESHOLDS[code][fmt]?.[tier];
       expect(raw, `${code} ${fmt} ${String(tier)} lost its printed figure`).toBeTruthy();
-      expect(got).toBe(Math.round((raw as number) / divisor));
+      // FLOOR, not nearest. A figure the page calls a floor must never round
+      // upward; two Dutch cells had.
+      expect(got).toBe(Math.floor((raw as number) / divisor));
     }
   });
 
@@ -72,7 +74,10 @@ describe("thresholds are sourced, never invented", () => {
   });
 
   it("refuses to price what no body publishes", () => {
-    for (const code of ["GR", "BE", "CO", "CZ", "SK"]) {
+    // Belgium left this list on 10 Sep 2026: BRMA's thresholds are published by
+    // Ultratop, its awards operator. Czechia and Slovakia leave it below once
+    // their verifier passes.
+    for (const code of ["GR", "CO", "CZ", "SK"]) {
       expect(thresholdFor(code, "single", "Platinum")).toBeNull();
       expect(thresholdFor(code, "album", "Platinum")).toBeNull();
     }
@@ -139,15 +144,17 @@ describe("rule 1 — a release's own awards are never summed", () => {
 describe("rule 2 — a multiplier rides whatever tier it sits on", () => {
   it("prices Tyla's 2x Diamond in Brazil off the DIAMOND threshold", () => {
     // The single live case in 1,212 plaques, and the reason this is not written
-    // as a Platinum shortcut.
-    expect(thresholdFor("BR", "single", "Diamond")).toBe(300_000);
-    expect(unitsForCert({ c: "BR", level: "Diamond", x: 2 }, "single").units).toBe(600_000);
+    // as a Platinum shortcut. 160,000 is the INTERNACIONAL Diamante — every
+    // plaque here is international repertoire, and the Nacional 300,000 that
+    // shipped first priced all fifteen Brazilian plaques at double.
+    expect(thresholdFor("BR", "single", "Diamond")).toBe(160_000);
+    expect(unitsForCert({ c: "BR", level: "Diamond", x: 2 }, "single").units).toBe(320_000);
     const water = priceRelease(bySlug("tyla"), "Water", {
       includeNigeria: true,
       includeFeatures: true,
     });
     expect(water).not.toBeNull();
-    expect(water!.byCountry.find((l) => l.country === "BR")?.units).toBe(600_000);
+    expect(water!.byCountry.find((l) => l.country === "BR")?.units).toBe(320_000);
   });
 
   it("an absent multiplier is 1, not 0", () => {
@@ -176,16 +183,33 @@ describe("rule 3 — what cannot be priced is counted and named", () => {
 });
 
 describe("the Nigeria default", () => {
-  it("fires on exactly 57 of the 120 pairs", () => {
-    // 57 was measured before the rule was written, from the plaque arrays and a
-    // separate script. It is pinned as a literal here so a change to either
-    // clause has to be deliberate.
+  it("fires on 63 of the 120 pairs on the default view, 57 with features on", () => {
+    // Both counts were measured from the plaque arrays by a separate script
+    // before being pinned here, so a change to either clause has to be
+    // deliberate. The two differ because the zero-international clause looks
+    // at the SAME plaques the view will show: BNXN holds international plaques
+    // only as features, so with features off (the default) he is a blank
+    // column and the six pairs against non-home-market artists fire on him.
+    // The first version counted 57 in both states and rendered him "at least 0".
     const all = comparableArtists;
-    let fired = 0;
-    for (let i = 0; i < all.length; i++)
-      for (let j = i + 1; j < all.length; j++) if (nigeriaDefault(all[i], all[j]).on) fired++;
+    const count = (includeFeatures: boolean) => {
+      let n = 0;
+      for (let i = 0; i < all.length; i++)
+        for (let j = i + 1; j < all.length; j++)
+          if (nigeriaDefault(all[i], all[j], includeFeatures).on) n++;
+      return n;
+    };
     expect(all).toHaveLength(16);
-    expect(fired).toBe(57);
+    expect(count(false)).toBe(63);
+    expect(count(true)).toBe(57);
+  });
+
+  it("rescues BNXN on the default view, where all his international plaques are features", () => {
+    const d = nigeriaDefault(bySlug("burna-boy"), bySlug("bnxn"), false);
+    expect(d.on).toBe(true);
+    expect(d.reason).toContain("BNXN");
+    // With features on he is no longer blank, so the clause correctly stands down.
+    expect(nigeriaDefault(bySlug("burna-boy"), bySlug("bnxn"), true).on).toBe(false);
   });
 
   it("rescues the blank-column pairs the home-market clause alone would miss", () => {
@@ -260,14 +284,18 @@ describe("the features toggle", () => {
 });
 
 describe("the comparison", () => {
-  it("reproduces the design's fixture: 915,333 vs 6,340,000 over 10 rows", () => {
+  it("reproduces the design's fixture: 915,333 vs 6,180,000 over 10 rows", () => {
     // The design file computed these from the published thresholds before the
-    // engine existed. They are the contract between the two.
+    // engine existed. They are the contract between the two — with one
+    // correction the design could not have known about: its 6,340,000 carried
+    // Essence at 7x Platinum in South Africa, an upgrade RiSA's register does
+    // not confirm (its badge is Multi-Platinum, at least 3x). 6,340,000 −
+    // 160,000 = 6,180,000, and every other cell is unchanged.
     const c = compare(bySlug("burna-boy"), bySlug("wizkid"), { includeNigeria: false });
     const g = priceRelease(bySlug("burna-boy"), "Gbona", { includeNigeria: false, includeFeatures: true })!;
     const e = priceRelease(bySlug("wizkid"), "Essence", { includeNigeria: false, includeFeatures: true })!;
     expect(g.total).toBe(915_333);
-    expect(e.total).toBe(6_340_000);
+    expect(e.total).toBe(6_180_000);
     // Union is 10 countries, not 9: Gbona's Swedish Gold is LISTED though it
     // cannot be priced. Dropping it would state he holds no Swedish plaque.
     const union = new Set([
@@ -283,7 +311,7 @@ describe("the comparison", () => {
 
   it("Nigeria included adds Essence's 200,000 and nothing else", () => {
     const e = priceRelease(bySlug("wizkid"), "Essence", { includeNigeria: true, includeFeatures: true })!;
-    expect(e.total).toBe(6_540_000);
+    expect(e.total).toBe(6_380_000);
     expect(e.nigeria.units).toBe(200_000);
   });
 
@@ -523,5 +551,85 @@ describe("cover art", () => {
   it("Gbona and Essence both have art — the case that started this", () => {
     expect(bySlug("burna-boy").releases.find((r) => r.title === "Gbona")?.cover).toBeTruthy();
     expect(bySlug("wizkid").releases.find((r) => r.title === "Essence")?.cover).toBeTruthy();
+  });
+});
+
+describe("audit fixes, 11 Sep 2026 — each one had a live counter-example", () => {
+  it("prices a shared recording identically under both artists", () => {
+    // Essence was 7x Platinum in South Africa on Wizkid's row and 1x on Tems',
+    // and the page printed a winner between a record and itself. RiSA's badge
+    // is Multi-Platinum, above Double on a four-rung ladder: at least 3x.
+    const w = priceRelease(bySlug("wizkid"), "Essence", { includeNigeria: true, includeFeatures: true })!;
+    const t = priceRelease(bySlug("tems"), "Essence", { includeNigeria: true, includeFeatures: true })!;
+    expect(w.byCountry.find((l) => l.country === "ZA")?.units).toBe(t.byCountry.find((l) => l.country === "ZA")?.units);
+    expect(w.byCountry.find((l) => l.country === "ZA")?.top?.x).toBe(3);
+  });
+
+  it("a country holding both priced and unpriced plaques shows both, never drops one", () => {
+    // Burna's Swedish album Gold prices; his five Swedish single plaques do not.
+    // The line must carry the five, or the table says he holds one Swedish plaque.
+    const p = priceArtist(bySlug("burna-boy"), { includeNigeria: false, includeFeatures: false });
+    const se = p.byCountry.find((l) => l.country === "SE");
+    expect(se?.counted).toBe(true);
+    expect(se?.notCounted?.plaques).toBe(5);
+    expect(se?.notCounted?.reason).toMatch(/Sverige|stream/i);
+  });
+
+  it("a listed-not-counted chip is the HIGHEST plaque held, not the first enumerated", () => {
+    // Poland: Burna holds a Gold (Dai Dai) and a Platinum (We Pray), both unpriceable.
+    const p = priceArtist(bySlug("burna-boy"), { includeNigeria: false, includeFeatures: true });
+    const pl = p.listed.find((l) => l.country === "PL");
+    expect(pl?.top?.level).toBe("Platinum");
+    expect(pl?.releases).toBe(2);
+  });
+
+  it("attaches the multiplier caveat whenever ANY multiplied plaque contributes", () => {
+    // Burna's New Zealand line opens on an unmultiplied plaque; his 3x Platinum
+    // on "Last Last" contributes later and shipped with no dagger.
+    const p = priceArtist(bySlug("burna-boy"), { includeNigeria: false, includeFeatures: false });
+    const nz = p.byCountry.find((l) => l.country === "NZ");
+    expect(nz?.caveat).toMatch(/RMNZ/);
+    expect(p.caveats.some((c) => /RMNZ/.test(c))).toBe(true);
+  });
+
+  it("marks every South African line with the 2024 threshold change", () => {
+    const p = priceArtist(bySlug("wizkid"), { includeNigeria: false, includeFeatures: false });
+    expect(p.byCountry.find((l) => l.country === "ZA")?.vintage).toMatch(/2024/);
+    expect(p.vintages.length).toBeGreaterThan(0);
+  });
+
+  it("prices Brazil on the INTERNACIONAL table", () => {
+    expect(thresholdFor("BR", "single", "Gold")).toBe(20_000);
+    expect(thresholdFor("BR", "album", "Platinum")).toBe(40_000);
+  });
+
+  it("prices Belgium now, on the other-repertoire tier", () => {
+    // BRMA's thresholds, published by Ultratop. Every artist here records in
+    // English or a Nigerian/Ghanaian/South African language, so "other repertoire".
+    expect(thresholdFor("BE", "single", "Platinum")).toBe(40_000);
+    expect(thresholdFor("BE", "album", "Gold")).toBe(10_000);
+    expect(exclusionFor("BE", "single")).toBeNull();
+    // Burna's 2x Platinum on the Jerusalema remix now prices.
+    const j = priceRelease(bySlug("burna-boy"), "Jerusalema (Remix)", { includeNigeria: true, includeFeatures: true })!;
+    expect(j.byCountry.find((l) => l.country === "BE")?.units).toBe(80_000);
+  });
+
+  it("does not fold two different releases that share a title", () => {
+    const twin: ComparableArtist = {
+      slug: "t", name: "T", image: "", href: "/",
+      releases: [
+        { title: "Twice as Tall", format: "album", isFeature: false, certs: [{ c: "UK", level: "Gold" }] },
+        { title: "Twice as Tall", format: "single", isFeature: false, certs: [{ c: "UK", level: "Gold" }] },
+      ],
+    };
+    const p = priceArtist(twin, { includeNigeria: false, includeFeatures: false });
+    // album Gold 100,000 + single Gold 400,000 — two releases, not one collapsed
+    expect(p.total).toBe(500_000);
+    expect(p.byCountry[0].releases).toBe(2);
+  });
+
+  it("never rounds a normalised floor upward", () => {
+    expect(thresholdFor("NL", "single", "Gold")).toBe(46_511);   // 10,000,000 / 215 = 46,511.6
+    expect(thresholdFor("NL", "album", "Gold")).toBe(18_604);    // 40,000,000 / 2150 = 18,604.65
   });
 });

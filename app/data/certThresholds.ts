@@ -23,8 +23,9 @@
 //
 // null MEANS TWO DIFFERENT THINGS AND THE DIFFERENCE MATTERS:
 //   • a null TIER inside a present object = that body does not award that tier.
-//     There is no Diamond at the BPI, no Silver anywhere but Nigeria and the UK.
-//     Nothing is missing; no plaque can ever land there.
+//     There is no Diamond at the BPI, and Silver exists at only three bodies —
+//     TCSN, the BPI, and ARIA for albums. Nothing is missing; no plaque can
+//     ever land in a null tier.
 //   • a null FORMAT (with an `Excluded` reason beside it) = real plaques exist
 //     and CANNOT be priced. Those must be surfaced to the reader, per artist,
 //     because silently scoring them zero penalises whoever holds more of them.
@@ -93,6 +94,11 @@ export interface CountryThresholds {
   /** Set where the body does NOT publish a rule this file had to assume — shown
    *  to the reader as a footnote rather than hidden. */
   caveat?: string;
+  /** Set where the body CHANGED its thresholds inside the 2018–2026 window the
+   *  plaques span and this file prices at today's level regardless of award
+   *  date. Attached to every line for the country, not only multiplied ones,
+   *  because it bears on all of them. */
+  vintage?: string;
 }
 
 export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
@@ -114,21 +120,21 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   BE: {
     code: "BE",
+    normalised:
+      "Found on 10 Sep 2026 after the body's own site proved empty: BRMA sets the thresholds and Ultratop, its chart-and-awards operator, publishes them — «De drempels voor Goud/Platina worden vastgesteld door BRMA» — read in the 21 Feb 2026 archive of ultratop.be/nl/info_goud_platina.asp, identical since 2022. Two tiers by REPERTOIRE LANGUAGE: singles 10,000 / 20,000 / 100,000 for Belgian or Dutch/French-sung records and 20,000 / 40,000 / 200,000 for all other repertoire; albums 10,000 / 20,000 / 100,000 regardless. Every plaque on this board is 'other repertoire' and is priced on that tier; a French- or Dutch-sung record would take the lower one.",
     body: "BRMA — Belgian Recorded Music Association (renamed from BEA in 2022); the gold/platinum roster is published by Ultratop on BRMA's behalf",
     sourceUrl: "https://www.ultratop.be/nl/info_goud_platina.asp",
-    single: null,
-    singleExcluded:
-      "Belgium's certifying body (BRMA) publishes no criteria page at all — its entire sitemap is a home page, a contact page and news posts — and Ultratop, which hosts the awarded roster, publishes thresholds nowhere either.",
-    album: null,
-    albumExcluded:
-      "Belgium's certifying body (BRMA) publishes no criteria page at all — its entire sitemap is a home page, a contact page and news posts — and Ultratop, which hosts the awarded roster, publishes thresholds nowhere either.",
+    single: { silver: null, gold: 20_000, platinum: 40_000, diamond: 200_000 },
+    album: { silver: null, gold: 10_000, platinum: 20_000, diamond: 100_000 },
   },
   BR: {
     code: "BR",
+    normalised:
+      "INTERNACIONAL table, not NACIONAL. Pro-Música Brasil publishes two tables side by side and certifies non-Brazilian repertoire on the international one at exactly half: Ouro 20,000 / Platina 40,000 / Diamante 160,000 for both singles and albums. Every plaque on this site is international repertoire. The first version of this file carried the Nacional figures (40,000 / 80,000 / 300,000) and priced all 15 Brazilian plaques at double.",
     body: "Pro-Música Brasil (Pró-Música Brasil Produtores Fonográficos Associados)",
     sourceUrl: "https://pro-musicabr.org.br/home-2/certificados/tabela-de-niveis-de-certificacao-pro-musica/",
-    single: { silver: null, gold: 40_000, platinum: 80_000, diamond: 300_000 },
-    album: { silver: null, gold: 40_000, platinum: 80_000, diamond: 300_000 },
+    single: { silver: null, gold: 20_000, platinum: 40_000, diamond: 160_000 },
+    album: { silver: null, gold: 20_000, platinum: 40_000, diamond: 160_000 },
   },
   CA: {
     code: "CA",
@@ -187,6 +193,8 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   ES: {
     code: "ES",
+    caveat:
+      "Promusicae publishes Oro and Platino thresholds only and never states the arithmetic for a multiple. An N× award is priced here as N × Platinum.",
     body: "Promusicae (Productores de Música de España), publishing through its own portal El Portal de Música (EPDM)",
     sourceUrl: "https://www.elportaldemusica.es/awards/index",
     single: { silver: null, gold: 50_000, platinum: 100_000, diamond: null },
@@ -251,9 +259,9 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     sourceUrl: "https://www.goudplatina.nl/informatie",
     normalised:
       "BOTH normalised: NVPI is the reverse of everyone else — it converts sales INTO streams and states thresholds in streams. Divided by its own «1 singleverkoop = 215 streams» and «1 albumverkoop = 2150 streams».",
-    single: { silver: null, gold: 46_512, platinum: 93_023, diamond: 232_558 },
+    single: { silver: null, gold: 46_511, platinum: 93_023, diamond: 232_558 },
     singleRaw: { gold: 10_000_000, platinum: 20_000_000, diamond: 50_000_000 },
-    album: { silver: null, gold: 18_605, platinum: 37_209, diamond: 93_023 },
+    album: { silver: null, gold: 18_604, platinum: 37_209, diamond: 93_023 },
     albumRaw: { gold: 40_000_000, platinum: 80_000_000, diamond: 200_000_000 },
   },
   NO: {
@@ -329,6 +337,8 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   },
   ZA: {
     code: "ZA",
+    vintage:
+      "RiSA roughly doubled its thresholds for sales after 1 January 2024 and prints both regimes side by side — singles Gold 10,000 → 20,000, Platinum 20,000 → 40,000; albums Gold 15,000 → 25,000, Platinum 30,000 → 50,000. Plaques here are priced at today's level whatever their award date, so one awarded before 2024 may be priced above its own floor.",
     body: "RiSA (Recording Industry of South Africa)",
     sourceUrl: "https://risa.org.za/certification-levels/",
     single: { silver: null, gold: 20_000, platinum: 40_000, diamond: null },

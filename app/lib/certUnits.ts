@@ -207,6 +207,14 @@ export interface CountryLine {
   reason?: string;
   /** A rule this file had to assume because the body publishes none — footnote 2. */
   caveat?: string;
+  /** Plaques in this country that could NOT be priced, when the same country
+   *  also holds priced ones. Sweden is the live case: Burna's album Gold prices
+   *  and his five single plaques do not, and the row has to say both — the
+   *  first version of this file silently dropped the five. */
+  notCounted?: { plaques: number; top: { title: string; level: Tier; x: number }; reason: string };
+  /** The body changed its thresholds inside the window and this line is priced
+   *  at today's level regardless — footnote 3, on every line for the country. */
+  vintage?: string;
 }
 
 export interface Exclusion {
@@ -230,6 +238,8 @@ export interface ArtistUnits {
   excludedPlaques: number;
   /** Bodies whose multiplier rule this file assumed — footnote 2. */
   caveats: string[];
+  /** Bodies whose thresholds moved inside the window — footnote 3. */
+  vintages: string[];
   /** Plaques that counted toward `total`. */
   pricedPlaques: number;
 }
@@ -240,55 +250,46 @@ export function priceArtist(
 ): ArtistUnits {
   const releases = artist.releases.filter((r) => options.includeFeatures || !r.isFeature);
 
+  const TIER_RANK: Record<Tier, number> = { Silver: 0, Gold: 1, Platinum: 2, Diamond: 3 };
+  const rank = (c: ComparableCert) => TIER_RANK[c.level] * 100 + (c.x ?? 1);
+
   // Rule 1: collapse to the highest award this release holds in this country
-  // BEFORE anything is summed.
+  // BEFORE anything is summed. Keyed on title AND format: two different
+  // releases sharing a name — an album and its title-track single — are two
+  // releases, and keying on the title alone silently folded them into one.
   const best = new Map<string, { release: ComparableRelease; cert: ComparableCert; units: number }>();
+  // Unpriceable plaques, also collapsed per release per country and ranked by
+  // tier, so the chip shown is the HIGHEST one held there rather than the first
+  // one enumerated. Poland was showing Burna's Gold on "Dai Dai" while his
+  // Platinum on "We Pray" sat behind it.
+  const unpriced = new Map<string, { release: ComparableRelease; cert: ComparableCert; why: string }>();
   const excluded = new Map<string, Exclusion>();
 
   for (const release of releases) {
     for (const cert of release.certs) {
       const { units, why } = unitsForCert(cert, release.format);
+      const key = `${release.title}|${release.format}|${cert.c}`;
       if (units === null) {
-        const key = `${cert.c}|${release.format}`;
-        const row = excluded.get(key);
+        const ek = `${cert.c}|${release.format}`;
+        const row = excluded.get(ek);
         if (row) row.plaques += 1;
-        else excluded.set(key, { country: cert.c, format: release.format, plaques: 1, why: why ?? "" });
+        else excluded.set(ek, { country: cert.c, format: release.format, plaques: 1, why: why ?? "" });
+        const held = unpriced.get(key);
+        // Keep the reason unitsForCert produced — for a tier the body does not
+        // award it is the only reason there is, and re-deriving it from
+        // exclusionFor returned null on that path.
+        if (!held || rank(cert) > rank(held.cert)) unpriced.set(key, { release, cert, why: why ?? "" });
         continue;
       }
-      const key = `${release.title}|${cert.c}`;
       const held = best.get(key);
       if (!held || units > held.units) best.set(key, { release, cert, units });
     }
   }
 
   const lines = new Map<string, CountryLine & { topUnits: number }>();
-  const listedLines = new Map<string, CountryLine>();
+  const listedLines = new Map<string, CountryLine & { topRank: number }>();
   let nigeriaUnits = 0;
   let nigeriaPlaques = 0;
-
-  // Plaques that exist but cannot be priced still get a row. Sweden's Gold on
-  // "Gbona" is the live case: dropping it would tell the reader Burna holds no
-  // Swedish plaque, which is false.
-  for (const release of releases) {
-    for (const cert of release.certs) {
-      if (unitsForCert(cert, release.format).units !== null) continue;
-      if (cert.c === "NG" && !options.includeNigeria) continue;
-      const held = listedLines.get(cert.c);
-      if (held) {
-        held.releases += 1;
-        continue;
-      }
-      listedLines.set(cert.c, {
-        country: cert.c,
-        body: CERT_THRESHOLDS[cert.c]?.body ?? cert.c,
-        units: 0,
-        releases: 1,
-        top: { title: release.title, level: cert.level, x: cert.x ?? 1 },
-        counted: false,
-        reason: exclusionFor(cert.c, release.format, cert.body) ?? undefined,
-      });
-    }
-  }
 
   for (const { release, cert, units } of best.values()) {
     if (cert.c === "NG") {
@@ -296,6 +297,11 @@ export function priceArtist(
       nigeriaPlaques += 1;
       if (!options.includeNigeria) continue;
     }
+    // The caveat is a property of the LINE: it applies whenever any multiplied
+    // plaque contributes, not only when the multiplied one happened to be
+    // enumerated first. Burna's New Zealand line opened on an unmultiplied
+    // plaque and his 3x Platinum on "Last Last" then shipped with no dagger.
+    const multiplied = (cert.x ?? 1) > 1;
     const line = lines.get(cert.c);
     if (line) {
       line.units += units;
@@ -304,6 +310,7 @@ export function priceArtist(
         line.topUnits = units;
         line.top = { title: release.title, level: cert.level, x: cert.x ?? 1 };
       }
+      if (multiplied && !line.caveat) line.caveat = CERT_THRESHOLDS[cert.c]?.caveat;
     } else {
       lines.set(cert.c, {
         country: cert.c,
@@ -313,9 +320,48 @@ export function priceArtist(
         top: { title: release.title, level: cert.level, x: cert.x ?? 1 },
         topUnits: units,
         counted: true,
-        caveat: (cert.x ?? 1) > 1 ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
+        caveat: multiplied ? CERT_THRESHOLDS[cert.c]?.caveat : undefined,
+        vintage: CERT_THRESHOLDS[cert.c]?.vintage,
       });
     }
+  }
+
+  // Plaques that exist but cannot be priced still get a row. Sweden's Gold on
+  // "Gbona" is the live case: dropping it would tell the reader Burna holds no
+  // Swedish plaque, which is false. Where the same country ALSO holds priced
+  // plaques, the unpriced ones attach to that line rather than vanishing.
+  for (const { release, cert, why } of unpriced.values()) {
+    if (cert.c === "NG" && !options.includeNigeria) continue;
+    const top = { title: release.title, level: cert.level, x: cert.x ?? 1 };
+    const priced = lines.get(cert.c);
+    if (priced) {
+      const nc = priced.notCounted;
+      if (!nc) priced.notCounted = { plaques: 1, top, reason: why };
+      else {
+        nc.plaques += 1;
+        if (rank(cert) > TIER_RANK[nc.top.level] * 100 + nc.top.x) nc.top = top;
+      }
+      continue;
+    }
+    const held = listedLines.get(cert.c);
+    if (held) {
+      held.releases += 1;
+      if (rank(cert) > held.topRank) {
+        held.top = top;
+        held.topRank = rank(cert);
+      }
+      continue;
+    }
+    listedLines.set(cert.c, {
+      country: cert.c,
+      body: CERT_THRESHOLDS[cert.c]?.body ?? cert.c,
+      units: 0,
+      releases: 1,
+      top,
+      topRank: rank(cert),
+      counted: false,
+      reason: why,
+    });
   }
 
   const byCountry = [...lines.values()]
@@ -324,7 +370,9 @@ export function priceArtist(
 
   const exclusions = [...excluded.values()].sort((a, b) => b.plaques - a.plaques);
 
-  const listed = [...listedLines.values()].sort((a, b) => a.country.localeCompare(b.country));
+  const listed = [...listedLines.values()]
+    .map(({ topRank: _drop, ...line }) => line)
+    .sort((a, b) => a.country.localeCompare(b.country));
 
   return {
     artist,
@@ -332,6 +380,7 @@ export function priceArtist(
     byCountry,
     listed,
     caveats: [...new Set(byCountry.map((l) => l.caveat).filter(Boolean) as string[])],
+    vintages: [...new Set(byCountry.map((l) => l.vintage).filter(Boolean) as string[])],
     nigeria: { units: nigeriaUnits, plaques: nigeriaPlaques },
     excluded: exclusions,
     excludedPlaques: exclusions.reduce((n, e) => n + e.plaques, 0),
@@ -397,8 +446,21 @@ export interface NigeriaDefault {
  * 14 international countries, so a thin union already implies both sides are
  * home-market. It is redundant, not a safety net. Do not re-add it.
  */
-export function nigeriaDefault(a: ComparableArtist, b: ComparableArtist): NigeriaDefault {
-  const empty = [a, b].filter((x) => internationalCountryCount(x) === 0);
+export function nigeriaDefault(
+  a: ComparableArtist,
+  b: ComparableArtist,
+  /** The features setting the VIEW will use. The zero-international clause
+   *  exists to prevent a blank column, so it has to look at the same plaques
+   *  the column will show: BNXN holds international plaques only as features,
+   *  and with features off — the default — he rendered "at least 0" with no
+   *  rescue because this was counting plaques the view had already excluded. */
+  includeFeatures = DEFAULT_OPTIONS.includeFeatures,
+): NigeriaDefault {
+  const scoped = (x: ComparableArtist): ComparableArtist => ({
+    ...x,
+    releases: x.releases.filter((r) => includeFeatures || !r.isFeature),
+  });
+  const empty = [a, b].filter((x) => internationalCountryCount(scoped(x)) === 0);
   if (empty.length) {
     const names = empty.map((x) => x.name).join(" and ");
     return {
@@ -454,6 +516,8 @@ export interface Comparison {
   notCounted: { country: string; body: string; reason: string }[];
   /** Footnote 2 — multiplier rules this file had to assume. */
   caveats: string[];
+  /** Footnote 3 — bodies that changed their thresholds inside the window. */
+  vintages: string[];
 }
 
 /**
@@ -470,10 +534,11 @@ export function compare(
   b: ComparableArtist,
   options?: Partial<UnitsOptions>,
 ): Comparison {
-  const ng = nigeriaDefault(a, b);
+  const includeFeatures = options?.includeFeatures ?? DEFAULT_OPTIONS.includeFeatures;
+  const ng = nigeriaDefault(a, b, includeFeatures);
   const opts: UnitsOptions = {
     includeNigeria: options?.includeNigeria ?? ng.on,
-    includeFeatures: options?.includeFeatures ?? DEFAULT_OPTIONS.includeFeatures,
+    includeFeatures,
   };
   const pa = priceArtist(a, opts);
   const pb = priceArtist(b, opts);
@@ -534,9 +599,14 @@ export function compare(
 
   const rows = ordered.filter((r) => !folded.has(r));
 
-  const notCounted = [...pa.listed, ...pb.listed]
+  const notCounted = [
+    ...pa.listed,
+    ...pb.listed,
+    ...pa.byCountry.filter((l) => l.notCounted),
+    ...pb.byCountry.filter((l) => l.notCounted),
+  ]
     .filter((l, i, xs) => xs.findIndex((y) => y.country === l.country) === i)
-    .map((l) => ({ country: l.country, body: l.body, reason: l.reason ?? "" }));
+    .map((l) => ({ country: l.country, body: l.body, reason: l.reason ?? l.notCounted?.reason ?? "" }));
 
   return {
     a: pa,
@@ -549,5 +619,6 @@ export function compare(
     options: opts,
     notCounted,
     caveats: [...new Set([...pa.caveats, ...pb.caveats])],
+    vintages: [...new Set([...pa.vintages, ...pb.vintages])],
   };
 }

@@ -167,6 +167,7 @@ const closingSections = [
   },
 ];
 
+const allBodies = Object.keys(CERT_THRESHOLDS).length;
 const pricedSingles = Object.values(CERT_THRESHOLDS).filter((c) => c.single !== null).length;
 const streamBodies = Object.values(CERT_THRESHOLDS).filter((c) => c.singleRaw);
 
@@ -387,9 +388,9 @@ export default function MethodologyPage() {
             rules govern it.
           </p>
           <p className={styles.p}>
-            <strong>Every figure is a floor.</strong> 3× Platinum in Nigeria means at
-            least 300,000 units; it could be 590,000 and nobody would know until it
-            reached 6×. So the page says &ldquo;at least&rdquo;, and never says
+            <strong>Every figure is a floor.</strong> A Platinum single in the UK means
+            at least 600,000 units; it could be 1,190,000 and nobody would know until it
+            reached 2×. So the page says &ldquo;at least&rdquo;, and never says
             &ldquo;sold&rdquo;. It is a floor for both sides under identical rules, which
             is what keeps the comparison honest rather than precise.
           </p>
@@ -400,10 +401,11 @@ export default function MethodologyPage() {
           </p>
           <p className={styles.p}>
             <strong>Units are not a common currency, so some plaques cannot be
-            priced.</strong> Of the {pricedSingles} bodies whose plaques appear here,{" "}
-            {pricedSingles - streamBodies.length} publish single thresholds in
-            sales-equivalent units and {streamBodies.length} publish them in streams
-            with their own download-equivalence, which is what this site converts with —
+            priced.</strong> Of the {allBodies} bodies whose plaques appear here,{" "}
+            {pricedSingles} can price a single: {pricedSingles - streamBodies.length}{" "}
+            publish the threshold in sales-equivalent units and {streamBodies.length}{" "}
+            publish it in streams with their own download-equivalence, which is what
+            this site converts with —
             France at 150 streams to a download, Denmark and Norway at 100, the
             Netherlands at 215. The rest publish something that cannot be converted at
             all: Sweden counts capped streams and dropped downloads entirely in 2018,

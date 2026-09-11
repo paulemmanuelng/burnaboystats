@@ -64,6 +64,9 @@ const plaque = (top: { level: string; x: number } | null) =>
  *  so this is the only state setter there is. */
 function href(sp: SP, patch: Record<string, string | null>) {
   const q = new URLSearchParams();
+  // An expanded table is a property of one pair. Changing either side, the
+  // mode, or a song drops it, so "Show all" does not follow the reader around.
+  if (["a", "b", "sa", "sb", "mode"].some((k) => k in patch)) patch = { all: null, ...patch };
   for (const [k, v] of Object.entries(sp)) {
     const s = one(v);
     if (s) q.set(k, s);
@@ -247,14 +250,16 @@ function SongPicker({
   );
 }
 
-function Cell({ line, lead }: { line: CountryLine | null; lead: boolean }) {
+function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: boolean; artistMode: boolean }) {
   // A blank cell reads as a rendering fault, so the words are the value.
   if (!line) return <span className={styles.noPlaque}>No plaque</span>;
+  const marks = `${line.caveat ? " †" : ""}${line.vintage ? " ‡" : ""}`;
   if (!line.counted) {
     return (
       <div className={styles.cell}>
         <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
           {plaque(line.top)}
+          {line.releases > 1 ? ` +${line.releases - 1}` : ""}
         </span>
         <span className={styles.notCounted}>not counted ¹</span>
       </div>
@@ -264,11 +269,22 @@ function Cell({ line, lead }: { line: CountryLine | null; lead: boolean }) {
     <div className={styles.cell}>
       <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
         {plaque(line.top)}
-        {line.caveat ? " †" : ""}
+        {marks}
       </span>
       <span className={`${styles.units} ${lead ? styles.unitsLead : styles.unitsBehind}`}>
         {fmt(line.units)}
       </span>
+      {/* In artist mode one chip sits beside a sum of several releases, and the
+          count is what makes "Silver 400,000" beside "Silver 960,000" legible. */}
+      {artistMode && line.releases > 1 && (
+        <span className={styles.notCounted}>{line.releases} releases</span>
+      )}
+      {/* The same country's unpriced plaques, which used to vanish here. */}
+      {line.notCounted && (
+        <span className={styles.notCounted}>
+          +{line.notCounted.plaques} {plaque(line.notCounted.top)} not counted ¹
+        </span>
+      )}
     </div>
   );
 }
@@ -285,37 +301,67 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
 
   const both = Boolean(a && b);
   // The engine decides Nigeria unless the reader has said otherwise; `ng` in the
-  // URL is the override, never the default.
-  const ngParam = one(sp.ng);
+  // URL is the override, never the default — and only "1"/"0" count as saying
+  // something. Any other value (ng=yes, ng=on) used to force Nigeria OFF and
+  // suppress the why-line, which is the worst possible reading of a typo.
+  const ngParam = one(sp.ng) === "1" ? "1" : one(sp.ng) === "0" ? "0" : undefined;
   const featParam = one(sp.feat);
-  const c = both
+  const includeFeatures = featParam === "1";
+
+  // A record compared with ITSELF is not a comparison, and with two artists
+  // holding slightly different copies of one recording it printed a winner.
+  // Same title, both credits naming the same lead: refuse and say so.
+  const sameRecording =
+    mode === "songs" && songA && songB && a && b && a.slug !== b.slug &&
+    songA.title.toLowerCase() === songB.title.toLowerCase() &&
+    (songA.isFeature || songB.isFeature);
+
+  const c = both && !sameRecording
     ? compare(a!, b!, {
         ...(ngParam ? { includeNigeria: ngParam === "1" } : {}),
-        includeFeatures: featParam === "1",
+        includeFeatures,
       })
     : null;
 
-  const soloPriced = a && !both ? priceArtist(a, { includeNigeria: false, includeFeatures: featParam === "1" }) : null;
+  // One side filled: the solo figure honours the Nigeria switch too. It used to
+  // hardcode Nigeria off, so the switch it rendered was inert and Seyi Vibez
+  // landed on "at least 0" with no way to see his 7,750,000.
+  const soloNg = ngParam === "1";
+  const soloPriced = a && !both ? priceArtist(a, { includeNigeria: soloNg, includeFeatures }) : null;
 
-  const songPriced = (art: ComparableArtist | null, rel: ComparableRelease | null) =>
-    art && rel && c
-      ? priceRelease(art, rel.title, { includeNigeria: c.options.includeNigeria, includeFeatures: true })
-      : null;
-  const spa = songPriced(a, songA);
-  const spb = songPriced(b, songB);
+  const songPriced = (art: ComparableArtist | null, rel: ComparableRelease | null, ngIn: boolean) =>
+    art && rel ? priceRelease(art, rel.title, { includeNigeria: ngIn, includeFeatures: true }) : null;
+  const ngForSongs = c?.options.includeNigeria ?? soloNg;
+  const spa = songPriced(a, songA, ngForSongs);
+  const spb = songPriced(b, songB, ngForSongs);
 
-  const useSongs = Boolean(mode === "songs" && spa && spb);
+  const useSongs = Boolean(mode === "songs" && spa && spb && !sameRecording);
   // "Filled" means different things in the two modes, and conflating them was a
   // real bug: in song mode with no song picked yet, the page fell through to
-  // ARTIST totals and printed them under the artists' names, so a reader who had
-  // just chosen "Song vs song" was shown a figure for the whole catalogue. In
-  // song mode nothing renders until BOTH songs are chosen.
-  const ready = mode === "songs" ? useSongs : both;
+  // ARTIST totals and printed them under the artists' names. In song mode
+  // nothing renders until BOTH songs are chosen.
+  const ready = mode === "songs" ? useSongs : both && !sameRecording;
   const partial = mode === "songs" ? Boolean(spa || spb) : Boolean(a);
-  const totalA = useSongs ? spa!.total : mode === "songs" ? (spa?.total ?? 0) : c?.a.total ?? soloPriced?.total ?? 0;
-  const totalB = useSongs ? spb!.total : c?.b.total ?? 0;
+
+  // The side being described, whichever mode is on — and in song mode with one
+  // song chosen, that side is the SONG, never the artist. The header card was
+  // printing "Essence · 6,340,000 · 47 of 47 plaques counted": the song's figure
+  // beside the artist's plaque count.
+  const sideA: ArtistUnits | null = mode === "songs" ? spa : c?.a ?? soloPriced ?? null;
+  const sideB: ArtistUnits | null = mode === "songs" ? spb : c?.b ?? null;
+  const totalA = sideA?.total ?? 0;
+  const totalB = sideB?.total ?? 0;
   const nameA = mode === "songs" && songA ? songA.title : a?.name ?? "";
   const nameB = mode === "songs" && songB ? songB.title : b?.name ?? "";
+
+  const byMax = (x: ComparisonRow, y: ComparisonRow) =>
+    Math.max(y.a?.units ?? 0, y.b?.units ?? 0) - Math.max(x.a?.units ?? 0, x.b?.units ?? 0) ||
+    x.country.localeCompare(y.country);
+  // Nigeria pins first whenever it is in scope — the engine does this for the
+  // default rows, and "Show all" re-sorted the merged set without it, dropping
+  // the highlighted row into the middle of the table.
+  const pinNg = (rs: ComparisonRow[], on: boolean) =>
+    on ? [...rs.filter((r) => r.country === "NG"), ...rs.filter((r) => r.country !== "NG")] : rs;
 
   const rows: ComparisonRow[] = useSongs
     ? (() => {
@@ -325,36 +371,55 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
         ])];
         const find = (p: typeof spa, code: string) =>
           p!.byCountry.find((l) => l.country === code) ?? p!.listed.find((l) => l.country === code) ?? null;
-        return codes
-          .map((country) => {
-            const la = find(spa, country);
-            const lb = find(spb, country);
-            return { country, body: countryMeta(country).body, a: la, b: lb, contested: Boolean(la && lb) };
-          })
-          .sort((x, y) =>
-            Math.max(y.a?.units ?? 0, y.b?.units ?? 0) - Math.max(x.a?.units ?? 0, x.b?.units ?? 0) ||
-            x.country.localeCompare(y.country));
+        return pinNg(
+          codes
+            .map((country) => {
+              const la = find(spa, country);
+              const lb = find(spb, country);
+              return { country, body: countryMeta(country).body, a: la, b: lb, contested: Boolean(la && lb) };
+            })
+            .sort(byMax),
+          ngForSongs,
+        );
       })()
     : c
       ? showAll
-        ? [...c.rows, ...c.collapsed.flatMap((t) => t.rows)].sort((x, y) =>
-            Math.max(y.a?.units ?? 0, y.b?.units ?? 0) - Math.max(x.a?.units ?? 0, x.b?.units ?? 0) ||
-            x.country.localeCompare(y.country))
+        ? pinNg([...c.rows, ...c.collapsed.flatMap((t) => t.rows)].sort(byMax), c.options.includeNigeria)
         : c.rows
       : [];
 
-  // The side being described, whichever mode is on. Reading c.a/c.b regardless
-  // was a bug: with "Gbona" chosen the meta line printed Burna Boy's 95 counted
-  // plaques and the Nigeria strip printed his 52, under the song's name.
-  const sideA = useSongs ? spa : c?.a ?? soloPriced ?? null;
-  const sideB = useSongs ? spb : c?.b ?? null;
+  // Footnotes describe what is ON SCREEN. In song mode they were being read off
+  // the artist comparison, so footnote 1 named six bodies absent from a ten-row
+  // table and the dagger had no footnote at all.
+  const noteSource = useSongs
+    ? {
+        notCounted: [...spa!.listed, ...spb!.listed, ...spa!.byCountry.filter((l) => l.notCounted), ...spb!.byCountry.filter((l) => l.notCounted)]
+          .filter((l, i, xs) => xs.findIndex((y) => y.country === l.country) === i)
+          .map((l) => ({ country: l.country, body: l.body, reason: l.reason ?? l.notCounted?.reason ?? "" })),
+        caveats: [...new Set([...spa!.caveats, ...spb!.caveats])],
+        vintages: [...new Set([...spa!.vintages, ...spb!.vintages])],
+      }
+    : c
+      ? { notCounted: c.notCounted, caveats: c.caveats, vintages: c.vintages }
+      : { notCounted: [], caveats: [], vintages: [] };
+  // ...and only the markers that are actually visible earn their footnote. With
+  // every not-counted row folded into the tail, footnote 1 was naming six
+  // countries under a four-row table that carried no marker anywhere.
+  const visibleNotCounted = rows.some((r) => (r.a && !r.a.counted) || (r.b && !r.b.counted) || r.a?.notCounted || r.b?.notCounted);
+  const visibleCaveat = rows.some((r) => r.a?.caveat || r.b?.caveat);
+  const visibleVintage = rows.some((r) => r.a?.vintage || r.b?.vintage);
+  const foldedNotCounted = c && !showAll
+    ? c.collapsed.reduce((n, t) => n + t.rows.filter((r) => (r.a && !r.a.counted) || (r.b && !r.b.counted)).length, 0)
+    : 0;
 
+  const tie = ready && totalA === totalB;
   const leadA = totalA >= totalB;
   const max = Math.max(totalA, totalB, 1);
   const diff = Math.abs(totalA - totalB);
   const ratio = Math.min(totalA, totalB) > 0 ? Math.max(totalA, totalB) / Math.min(totalA, totalB) : null;
-  const ngOn = c?.options.includeNigeria ?? false;
+  const ngOn = c?.options.includeNigeria ?? soloNg;
   const scope = ngOn ? "27 countries · Nigeria included" : "26 countries · international";
+  const trailing = (n: string) => (n.endsWith("s") ? `${n}'` : `${n}'s`);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -374,8 +439,8 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
         <p className={styles.kicker}>Certifications › Compare</p>
         <h1 className={styles.h1}>Certified units, compared</h1>
         <p className={styles.lede}>
-          Every plaque is a floor — 3× Platinum in Nigeria means <em>at least</em> 300,000, and could be
-          590,000. This page adds those floors up for two records or two artists, at each certifying
+          Every plaque is a floor — a Platinum single in the UK means <em>at least</em> 600,000, and could
+          be 1,190,000. This page adds those floors up for two records or two artists, at each certifying
           body&apos;s own published threshold, under identical rules.
         </p>
 
@@ -421,6 +486,13 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           <Link href="/methodology#certified-units" className={styles.howLink}>How this is counted ↗</Link>
         </div>
 
+        {sameRecording && (
+          <p className={styles.why}>
+            <strong>That is the same recording on both sides.</strong> “{songA!.title}” is one record with
+            one set of plaques; pick a different release for one of them.
+          </p>
+        )}
+
         {c && c.nigeria.on && !ngParam && c.nigeria.reason && (
           <p className={styles.why}>
             <strong>Nigeria included by default</strong> — {c.nigeria.reason.replace(/^Nigeria included: /, "")}
@@ -459,10 +531,17 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
             </div>
 
             <div className={styles.diffRow}>
-              {ready ? (
+              {ready && tie ? (
+                <p className={styles.diff}>
+                  <strong>Level</strong> — both at least {fmt(totalA)} certified units
+                  {totalA === 0 && !ngOn ? ". Neither holds a certification outside Nigeria; include it to compare them." : "."}
+                </p>
+              ) : ready ? (
                 <p className={styles.diff}>
                   <strong>{leadA ? nameA : nameB}</strong> leads by at least {fmt(diff)} certified units
-                  {ratio && ratio >= 1.05 ? ` — ${ratio.toFixed(1)}× the other's floor` : ""}.
+                  {ratio && ratio >= 1.05
+                    ? ` — a floor ${ratio.toFixed(1)}× the size of ${trailing(leadA ? nameB : nameA)}`
+                    : ""}.
                 </p>
               ) : (
                 <p className={styles.diff}>
@@ -494,6 +573,13 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           </section>
         )}
 
+        {ready && rows.length === 0 && (
+          <p className={styles.why}>
+            Neither {nameA} nor {nameB} holds a certification {ngOn ? "anywhere on the board" : "outside Nigeria"}
+            {!ngOn ? " — include Nigeria to compare them" : ""}.
+          </p>
+        )}
+
         {ready && rows.length > 0 && (
           <>
             <div className={styles.tableWrap}>
@@ -519,16 +605,24 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
                             <span className={styles.countryCode}>{r.country}</span>
                           </span>
                         </td>
-                        <td className={styles.tdNum}><Cell line={r.a} lead={av >= bv} /></td>
-                        <td className={styles.tdNum}><Cell line={r.b} lead={bv >= av} /></td>
+                        <td className={styles.tdNum}><Cell line={r.a} lead={av >= bv} artistMode={!useSongs} /></td>
+                        <td className={styles.tdNum}><Cell line={r.b} lead={bv >= av} artistMode={!useSongs} /></td>
                       </tr>
                     );
                   })}
+                  {!useSongs && showAll && c && c.collapsed.length > 0 && (
+                    <tr className={styles.collapseRow}>
+                      <td colSpan={3}>
+                        <Link href={href(sp, { all: null })} className={styles.showAll}>Show fewer ↑</Link>
+                      </td>
+                    </tr>
+                  )}
                   {!useSongs && !showAll && c?.collapsed.map((t) => (
                     <tr key={t.side} className={styles.collapseRow}>
                       <td colSpan={3}>
                         <span className={styles.collapseText}>
                           + {t.countries} further countries where only {t.artist} is certified · at least {fmt(t.units)}
+                          {foldedNotCounted > 0 ? ` · ${foldedNotCounted} not counted ¹` : ""}
                         </span>
                         <Link href={href(sp, { all: "1" })} className={styles.showAll}>Show all ↓</Link>
                       </td>
@@ -539,21 +633,19 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
             </div>
 
             <div className={styles.notes}>
-              {c && c.notCounted.length > 0 && (
+              {(visibleNotCounted || foldedNotCounted > 0) && noteSource.notCounted.length > 0 && (
                 <p>
                   <strong>¹ Not counted</strong> —{" "}
-                  {/* countryMeta, not the threshold record's `body`: that field
-                      holds the research description — "PRO MÚSICA (Pro Música
-                      Colombia) — IFPI-affiliated body covering Colombia, Ecuador
-                      and Peru" — which is right in the sourcing file and unreadable
-                      in a footnote. */}
-                  {c.notCounted.map((n) => `${countryMeta(n.country).name} (${countryMeta(n.country).body})`).join(" · ")}. Listed,
-                  never summed: these bodies publish no threshold this page can put on the same scale as the
-                  rest.
+                  {noteSource.notCounted.map((n) => `${countryMeta(n.country).name} (${countryMeta(n.country).body})`).join(" · ")}.
+                  Listed, never summed: these bodies publish no threshold this page can put on the same scale
+                  as the rest.
                 </p>
               )}
-              {c && c.caveats.length > 0 && (
-                <p><strong>† Multiplier assumed</strong> — {c.caveats.join(" ")}</p>
+              {visibleCaveat && noteSource.caveats.length > 0 && (
+                <p><strong>† Multiplier assumed</strong> — {noteSource.caveats.join(" ")}</p>
+              )}
+              {visibleVintage && noteSource.vintages.length > 0 && (
+                <p><strong>‡ Thresholds moved</strong> — {noteSource.vintages.join(" ")}</p>
               )}
             </div>
           </>

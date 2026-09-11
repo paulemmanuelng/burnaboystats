@@ -1,6 +1,6 @@
 import { ogImage, ogVersions, size, contentType } from "../lib/og-image";
 import { comparableArtists } from "../lib/certUnits";
-import { countryCount } from "../data/certifications";
+import { CERT_THRESHOLDS } from "../data/certThresholds";
 
 export { size, contentType };
 export const alt = "Certified units, compared — two Afrobeats artists at each body's own threshold";
@@ -11,10 +11,16 @@ const plaques = comparableArtists.reduce(
   0,
 );
 
+// 27, from the threshold table the page prices against — not Burna's own
+// country map, which is 26 and was what this card said. And "plaques across"
+// rather than "priced across": some of the 1,212 cannot be priced, and the
+// page says so; the card must not claim otherwise.
+const bodies = Object.keys(CERT_THRESHOLDS).length;
+
 const card = {
   kicker: "Certified units",
   title: "Compared",
-  sub: `${comparableArtists.length} artists · ${plaques.toLocaleString("en-US")} plaques · priced at each body's own threshold across ${countryCount} countries`,
+  sub: `${comparableArtists.length} artists · ${plaques.toLocaleString("en-US")} plaques across ${bodies} countries · each priced at its own body's threshold`,
 };
 
 export const generateImageMetadata = () => ogVersions(card, alt);
