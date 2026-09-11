@@ -273,3 +273,63 @@
 @media (max-width: 640px) {
   .rejectRow { grid-template-columns: 1fr; gap: 4px; }
 }
+
+/* ── Shared chapter: "How /compare counts" ─────────────────────────────────
+   Rendered once, outside both layout trees, so its anchors resolve on a phone
+   and on a desktop. Desktop measure and rhythm by default; the phone rules
+   below match mobileMethodology's section grammar. */
+.shared { max-width: 1180px; margin: 0 auto; padding: 52px 40px 0; }
+.h3 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 40px 0 0;
+}
+.historyList {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  max-width: var(--measure);
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+  color: var(--text-body);
+}
+.historyList li { padding-left: 14px; border-left: 2px solid var(--rule-soft); }
+.tableScroll { overflow-x: auto; margin-top: 16px; -webkit-overflow-scrolling: touch; }
+.thresholdTable {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 720px;
+  font-size: var(--type-small);
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+}
+.thresholdTable th, .thresholdTable td { padding: 9px 10px; text-align: right; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+.thresholdTable thead th {
+  text-align: left;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--rule);
+}
+.thresholdTable tbody th { text-align: left; font-weight: 600; white-space: nowrap; }
+.thresholdCountry { display: block; font-weight: 400; font-size: var(--type-caption); color: var(--text-muted); }
+.thresholdListed { text-align: left; color: var(--text-muted); font-size: var(--type-caption); white-space: normal; min-width: 220px; }
+.mobileFoot { display: none; }
+@media (max-width: 900px) {
+  .shared { padding: 18px 18px 0; border-top: 1px solid var(--line); }
+  .shared .h2 { font-size: 22px; }
+  .shared .h3 { font-size: 18px; margin-top: 28px; }
+  .shared .p { font-size: var(--type-small); line-height: var(--type-small-lh); margin-top: 12px; }
+  .thresholdTable { min-width: 640px; }
+  /* The phone screen's action bar is fixed; this is the room it needs. */
+  .mobileFoot { display: block; height: 104px; }
+}

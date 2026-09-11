@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styles from "./compare.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
-import KeepExploring from "../components/KeepExploring";
 import { pageMetadata } from "../lib/seo";
 import { siteUrl } from "../site";
 import { countryMeta } from "../data/afrobeats";
@@ -716,15 +715,15 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
                 <p><strong>† Multiplier assumed</strong> — {noteSource.caveats.join(" ")}</p>
               )}
               {visibleVintage && noteSource.vintages.length > 0 && (
-                <div>
-                  <p><strong>‡ This body raised its thresholds since 2015</strong> — the figure is today&apos;s level, and a
-                    plaque awarded before the rise may have cleared a lower bar.</p>
-                  {/* One body per line. Joined into a paragraph, twelve of these
-                      were a 40-line wall on a phone. */}
-                  <ul className={styles.noteList}>
-                    {noteSource.vintages.map((v) => <li key={v}>{v}</li>)}
-                  </ul>
-                </div>
+                <p>
+                  <strong>‡ This body raised its thresholds since 2015</strong> — the figure is today&apos;s level, and a
+                  plaque awarded before the rise may have cleared a lower bar.{" "}
+                  {/* The body-by-body record lives on the methodology page (Paul, 11
+                      Sep): twelve of them here were a 40-line wall on a phone. */}
+                  <Link href="/methodology#threshold-history" className={styles.noteLink}>
+                    Which bodies, and when ↗
+                  </Link>
+                </p>
               )}
             </div>
           </>
@@ -775,7 +774,8 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           </Link>
         </div>
       )}
-      <KeepExploring current="/compare" />
+      {/* No "Keep exploring" here (Paul, 11 Sep): the Afrobeats Board action
+          is the one way onward this page offers. */}
       {ready && <div className={styles.barSpacer} aria-hidden="true" />}
     </>
   );

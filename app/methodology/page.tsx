@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CERT_THRESHOLDS } from "../data/certThresholds";
+import { CERT_THRESHOLDS, CERT_PROGRAMS } from "../data/certThresholds";
 import { unsourcedBodies, disputedCounts, correctionsMade } from "../data/rejectedClaims";
 import styles from "./methodology.module.css";
 import KeepExploring from "../components/KeepExploring";
@@ -168,6 +168,16 @@ const closingSections = [
 ];
 
 const allBodies = Object.keys(CERT_THRESHOLDS).length;
+const TIERS = ["silver", "gold", "platinum", "diamond"] as const;
+const fmtUnits = (n: number | null | undefined) => (n == null ? "—" : n.toLocaleString("en-GB"));
+/** "IFPI Austria (Verband …)" → "IFPI Austria"; "BRMA — Belgian …" → "BRMA". */
+const shortBody = (b: string) => b.split(" (")[0].split(" — ")[0];
+const raisedBodies = Object.values(CERT_THRESHOLDS)
+  .filter((c) => c.vintage)
+  .sort((x, y) => countryMeta(x.code).name.localeCompare(countryMeta(y.code).name));
+const thresholdRows = Object.values(CERT_THRESHOLDS)
+  .slice()
+  .sort((x, y) => countryMeta(x.code).name.localeCompare(countryMeta(y.code).name));
 const movedBodies = Object.values(CERT_THRESHOLDS).filter((c) => c.floor).length;
 const pricedSingles = Object.values(CERT_THRESHOLDS).filter((c) => c.single !== null).length;
 const streamBodies = Object.values(CERT_THRESHOLDS).filter((c) => c.singleRaw);
@@ -204,6 +214,7 @@ export default function MethodologyPage() {
         principles={principles}
         sources={sources}
         sections={closingSections}
+        spacer={false}
       />
 
       <div className={styles.desktopOnly}>
@@ -378,74 +389,6 @@ export default function MethodologyPage() {
           </ul>
         </section>
 
-        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="certified-units">
-          <div className={styles.eyebrow}>Certified units</div>
-          <h2 id="certified-units" className={styles.h2}>How /compare counts</h2>
-          <p className={styles.p}>
-            <Link href="/compare">The compare page</Link> does the one thing the section
-            above says a plaque count cannot: it puts two catalogues on a single scale.
-            It can only do that by pricing every plaque at <em>its own body&apos;s
-            published threshold</em> and being explicit about what that buys, so four
-            rules govern it.
-          </p>
-          <p className={styles.p}>
-            <strong>Every figure is a floor.</strong> A Platinum single in the UK means
-            at least 600,000 units; it could be 1,190,000 and nobody would know until it
-            reached 2×. So the page says &ldquo;at least&rdquo;, and never says
-            &ldquo;sold&rdquo;. It is a floor for both sides under identical rules, which
-            is what keeps the comparison honest rather than precise.
-          </p>
-          <p className={styles.p}>
-            <strong>Today&apos;s threshold, at every body.</strong> {movedBodies} of the{" "}
-            {allBodies} bodies changed their levels inside the window these plaques span,
-            and most raised them. Every plaque is priced at the level the body publishes
-            today — the figure a reader can check against the body&apos;s own page — and
-            wherever that body raised its levels, the page marks the figure with a
-            &ldquo;‡&rdquo; and says so: a plaque awarded before the rise may have cleared
-            a lower bar than today&apos;s figure implies. A South African Platinum single
-            is priced at RiSA&apos;s current 40,000 units; one earned in 2022 needed
-            20,000. The alternative — pricing at the lowest level each body has applied
-            since 2015 — was established for every body and is kept in the data, but it
-            would understate every plaque earned after a rise by as much as it protects
-            the earlier ones, and it prices against numbers no body publishes any more.
-            Two refinements hold either way: a body that changed <em>what it measures</em>
-            — Poland to złoty of revenue, Mexico to raw streams — cannot have its singles
-            priced from the old unit regime, so those stay listed and unsummed; and for a
-            body that keys thresholds to release date, the band a record actually fell in
-            is the one that applies.
-          </p>
-          <p className={styles.p}>
-            <strong>One plaque per release per country, at its current tier.</strong>
-            Gold → Platinum → 2× Platinum is the same sales recertified, not three
-            sales. A release&apos;s own upgrades are never added together.
-          </p>
-          <p className={styles.p}>
-            <strong>Units are not a common currency, so some plaques cannot be
-            priced.</strong> Of the {allBodies} bodies whose plaques appear here,{" "}
-            {pricedSingles} can price a single: {pricedSingles - streamBodies.length}{" "}
-            publish the threshold in sales-equivalent units and {streamBodies.length}{" "}
-            publish it in streams with their own download-equivalence, which is what
-            this site converts with —
-            France at 150 streams to a download, Denmark and Norway at 100, the
-            Netherlands at 215. The rest publish something that cannot be converted at
-            all: Sweden counts capped streams and dropped downloads entirely in 2018,
-            Mexico gives no ratio, and Poland measures singles in złoty of revenue.
-            Greece, Belgium, Colombia, Czechia and Slovakia publish no thresholds. Those
-            plaques are <strong>listed and never summed</strong>, and the page names
-            them, because scoring them zero in silence would penalise whoever holds more
-            of them.
-          </p>
-          <p className={styles.p}>
-            <strong>Nigeria is separated by default.</strong> TCSN&apos;s register is
-            request-based — absence from it proves nothing about a record, only that
-            nobody applied — so a gap between two artists there can measure paperwork
-            rather than sales. It is counted on its own line, never deleted, and folded
-            in automatically when both artists hold most of their plaques there or when
-            one of them holds none anywhere else. Whenever that happens the page says
-            so, in a sentence, on screen.
-          </p>
-        </section>
-
         <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="sources">
           <div className={styles.eyebrow}>Primary sources</div>
           <h2 id="sources" className={styles.h2}>Where the numbers come from</h2>
@@ -553,9 +496,147 @@ export default function MethodologyPage() {
           <Link href="/analysis" className="btn btnPrimary">What the numbers say ↗</Link>
           <Link href="/api" className="btn btnSecondary">Open data API ↗</Link>
         </section>
+      </div>
 
+        {/* ONE copy, outside both layout wrappers, so its anchors resolve on a
+            phone and on a desktop alike. Each layout hides the other's tree, and
+            a fragment that lands on a display:none element scrolls nowhere —
+            "How this is counted ↗" on /compare used to reach nothing on a
+            phone, because this section lived in the desktop tree only. */}
+        <section className={styles.shared} aria-labelledby="certified-units">
+          <div className={styles.eyebrow}>Certified units</div>
+          <h2 id="certified-units" className={styles.h2}>How /compare counts</h2>
+          <p className={styles.p}>
+            <Link href="/compare">The compare page</Link> does the one thing the section
+            above says a plaque count cannot: it puts two catalogues on a single scale.
+            It can only do that by pricing every plaque at <em>its own body&apos;s
+            published threshold</em> and being explicit about what that buys, so four
+            rules govern it.
+          </p>
+          <p className={styles.p}>
+            <strong>Every figure is a floor.</strong> A Platinum single in the UK means
+            at least 600,000 units; it could be 1,190,000 and nobody would know until it
+            reached 2×. So the page says &ldquo;at least&rdquo;, and never says
+            &ldquo;sold&rdquo;. It is a floor for both sides under identical rules, which
+            is what keeps the comparison honest rather than precise.
+          </p>
+          <p className={styles.p}>
+            <strong>Today&apos;s threshold, at every body.</strong> {movedBodies} of the{" "}
+            {allBodies} bodies changed their levels inside the window these plaques span,
+            and most raised them. Every plaque is priced at the level the body publishes
+            today — the figure a reader can check against the body&apos;s own page — and
+            wherever that body raised its levels, the page marks the figure with a
+            &ldquo;‡&rdquo; and says so: a plaque awarded before the rise may have cleared
+            a lower bar than today&apos;s figure implies. A South African Platinum single
+            is priced at RiSA&apos;s current 40,000 units; one earned in 2022 needed
+            20,000. The alternative — pricing at the lowest level each body has applied
+            since 2015 — was established for every body and is kept in the data, but it
+            would understate every plaque earned after a rise by as much as it protects
+            the earlier ones, and it prices against numbers no body publishes any more.
+            Two refinements hold either way: a body that changed <em>what it measures</em>
+            — Poland to złoty of revenue, Mexico to raw streams — cannot have its singles
+            priced from the old unit regime, so those stay listed and unsummed; and for a
+            body that keys thresholds to release date, the band a record actually fell in
+            is the one that applies.
+          </p>
+          <p className={styles.p}>
+            <strong>One plaque per release per country, at its current tier.</strong>
+            Gold → Platinum → 2× Platinum is the same sales recertified, not three
+            sales. A release&apos;s own upgrades are never added together.
+          </p>
+          <p className={styles.p}>
+            <strong>Units are not a common currency, so some plaques cannot be
+            priced.</strong> Of the {allBodies} bodies whose plaques appear here,{" "}
+            {pricedSingles} can price a single: {pricedSingles - streamBodies.length}{" "}
+            publish the threshold in sales-equivalent units and {streamBodies.length}{" "}
+            publish it in streams with their own download-equivalence, which is what
+            this site converts with —
+            France at 150 streams to a download, Denmark and Norway at 100, the
+            Netherlands at 215. The rest publish something that cannot be converted at
+            all: Sweden counts capped streams and dropped downloads entirely in 2018,
+            Mexico gives no ratio, and Poland measures singles in złoty of revenue.
+            Greece, Belgium, Colombia, Czechia and Slovakia publish no thresholds. Those
+            plaques are <strong>listed and never summed</strong>, and the page names
+            them, because scoring them zero in silence would penalise whoever holds more
+            of them.
+          </p>
+          <p className={styles.p}>
+            <strong>Nigeria is separated by default.</strong> TCSN&apos;s register is
+            request-based — absence from it proves nothing about a record, only that
+            nobody applied — so a gap between two artists there can measure paperwork
+            rather than sales. It is counted on its own line, never deleted, and folded
+            in automatically when both artists hold most of their plaques there or when
+            one of them holds none anywhere else. Whenever that happens the page says
+            so, in a sentence, on screen.
+          </p>
+
+          <h3 id="threshold-history" className={styles.h3}>Which bodies raised their thresholds, and when</h3>
+          <p className={styles.p}>
+            Wherever a figure on the compare page carries a &ldquo;‡&rdquo;, the body behind it
+            raised its levels since 2015. This is the record, body by body; the lower
+            levels each body applied are kept in the data.
+          </p>
+          <ul className={styles.historyList}>
+            {raisedBodies.map((c) => (
+              <li key={c.code}>
+                <strong>{countryMeta(c.code).flag} {shortBody(c.body)}</strong> — {c.vintage}
+              </li>
+            ))}
+          </ul>
+
+          <h3 id="thresholds" className={styles.h3}>Every threshold the compare page uses</h3>
+          <p className={styles.p}>
+            Today&apos;s published level at each of the {allBodies} bodies, in units. A dash
+            means the body does not award that tier; a row that says <em>listed</em> is a
+            body whose plaques appear on the page but are never priced, for the reason
+            given.
+          </p>
+          <div className={styles.tableScroll}>
+            <table className={styles.thresholdTable}>
+              <thead>
+                <tr>
+                  <th scope="col">Body</th>
+                  <th scope="col" colSpan={4}>Single · Silver / Gold / Platinum / Diamond</th>
+                  <th scope="col" colSpan={4}>Album · Silver / Gold / Platinum / Diamond</th>
+                </tr>
+              </thead>
+              <tbody>
+                {thresholdRows.map((r) => (
+                  <tr key={r.code}>
+                    <th scope="row">
+                      <span aria-hidden="true">{countryMeta(r.code).flag}</span> {shortBody(r.body)}
+                      <span className={styles.thresholdCountry}>{countryMeta(r.code).name}</span>
+                    </th>
+                    {r.single ? (
+                      TIERS.map((t) => <td key={t}>{fmtUnits(r.single![t])}</td>)
+                    ) : (
+                      <td colSpan={4} className={styles.thresholdListed}>listed — {r.singleExcluded ?? "not priced"}</td>
+                    )}
+                    {r.album ? (
+                      TIERS.map((t) => <td key={t}>{fmtUnits(r.album![t])}</td>)
+                    ) : (
+                      <td colSpan={4} className={styles.thresholdListed}>listed — {r.albumExcluded ?? "not priced"}</td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className={styles.p}>
+            The RIAA&apos;s Latin programme certifies at a sixteenth of the standard scale —
+            Oro {fmtUnits(CERT_PROGRAMS["RIAA Latin"].single.gold)}, Platino{" "}
+            {fmtUnits(CERT_PROGRAMS["RIAA Latin"].single.platinum)}, Diamante{" "}
+            {fmtUnits(CERT_PROGRAMS["RIAA Latin"].single.diamond)} — and the three Latin
+            plaques on the board are priced on it and marked.
+          </p>
+        </section>
+
+      <div className={styles.desktopOnly}>
         <KeepExploring current="/methodology" />
       </div>
+      {/* The phone screen's own action bar is fixed; this keeps the shared
+          section's last line above it (the screen's spacer moved here). */}
+      <div className={styles.mobileFoot} aria-hidden="true" />
     </main>
   );
 }

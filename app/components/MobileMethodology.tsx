@@ -22,6 +22,7 @@ export default function MobileMethodology({
   principles,
   sources,
   sections,
+  spacer = true,
 }: {
   lede: string;
   reviewedLabel: string;
@@ -35,6 +36,9 @@ export default function MobileMethodology({
    *  reader somewhere, and a "here is how to check it yourself" section with no
    *  tappable link is half a section on the layout most readers are on. */
   sections: { h: string; p: string; href?: string; linkLabel?: string }[];
+  /** false when the page renders shared content after this screen and
+   *  supplies the action-bar clearance itself. */
+  spacer?: boolean;
 }) {
   return (
     <div className={styles.screen}>
@@ -98,7 +102,7 @@ export default function MobileMethodology({
         </div>
       ))}
 
-      <div className={styles.spacer} />
+      {spacer && <div className={styles.spacer} />}
       <div className={styles.actionBar}>
         <Link href="/contact" className={styles.actionPrimary}>
           Report a correction
