@@ -232,7 +232,6 @@
 .metaSeg { white-space: normal; }
 .progShort { display: none; }
 .tierWord { white-space: nowrap; }
-.tNeutral { color: var(--text-muted); border-color: var(--rule); }
 .collapseUnits { font-family: var(--font-mono), monospace; font-variant-numeric: tabular-nums; color: var(--text); white-space: nowrap; }
 
 /* ── head to head (arrival) ───────────────────────────────── */

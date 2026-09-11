@@ -451,36 +451,35 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
       </div>
     );
   }
-  // In artist mode the cell is a SUM of several releases, and the design's
-  // chip says how many rather than naming one release's tier — "2× Platinum"
-  // beside a sum of 19 records misread as the tier of the sum. Song mode
-  // keeps the tier chip: there the cell IS one plaque.
+  // The chip is the BIGGEST plaque behind the line, with its exact multiplier
+  // — "19× Platinum" — and in artist mode a count line says how many plaques
+  // the sum holds. A "5 plaques" chip (the design's artist-mode cell) read as
+  // "5× Platinum" to the site's own owner, which is the one thing a chip on a
+  // certifications page must never do.
   return (
     <div className={styles.cell}>
-      {artistMode ? (
-        <span className={`${styles.tierChip} ${styles.tNeutral}`}>
-          <span className={styles.tierWord}>
-            {line.releases} plaque{line.releases === 1 ? "" : "s"}
-            {marks}
-          </span>
+      <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
+        <span className={styles.tierWord}>
+          {plaque(line.top)}
+          {marks}
         </span>
-      ) : (
-        <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
-          <span className={styles.tierWord}>
-            {plaque(line.top)}
-            {marks}
+        {prog && (
+          <span className={styles.chipProgram} title={prog}>
+            <span className={styles.progLong}>{prog}</span>
+            <span className={styles.progShort} aria-hidden="true">{shortProgram(prog)}</span>
           </span>
-          {prog && (
-            <span className={styles.chipProgram} title={prog}>
-              <span className={styles.progLong}>{prog}</span>
-              <span className={styles.progShort} aria-hidden="true">{shortProgram(prog)}</span>
-            </span>
-          )}
-        </span>
-      )}
+        )}
+      </span>
       <span className={`${styles.units} ${lead ? styles.unitsLead : styles.unitsBehind}`}>
         {fmt(line.units)}
       </span>
+      {/* In artist mode one chip stands for a sum of several plaques: say how
+          many, and that the chip is the top one. */}
+      {artistMode && line.releases > 1 && (
+        <span className={styles.notCounted}>
+          {line.releases} plaques · top shown
+        </span>
+      )}
       {/* The same country's unpriced plaques, which used to vanish here. */}
       {line.notCounted && (
         <span className={styles.notCounted}>
