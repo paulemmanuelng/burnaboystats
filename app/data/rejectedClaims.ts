@@ -67,6 +67,11 @@ export const disputedCounts: RejectedClaim[] = [
 /** Checks that changed the site's own figures — the list cuts both ways. */
 export const correctionsMade: RejectedClaim[] = [
   {
+    claim: "“Ginger” — Swiss Platinum",
+    reason:
+      "Gold. IFPI Schweiz's register prints one row for the record, Gold in 2023, and no Platinum in any year; the tier had been carried a rung too high since 2023. Caught because Wizkid's board row read Gold and the compare page priced the same recording two ways.",
+  },
+  {
     claim: "IRAWMA 2023 — logged as a loss",
     reason:
       "He won Best Afrobeats Entertainer at the 40th IRAWMA. Confirmed on the ceremony's own winners list and flipped to a win.",

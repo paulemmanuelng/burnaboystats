@@ -441,9 +441,17 @@ export const features: Release[] = [
     { c: "FR", level: "Diamond" }, { c: "IT", level: "Platinum", x: 4 }, { c: "BE", level: "Platinum", x: 2 },
     { c: "DE", level: "Platinum" }, { c: "PT", level: "Platinum", x: 2 }, { c: "AT", level: "Gold" },
   ] },
+  // Switzerland is GOLD, not Platinum — corrected 11 Sep 2026 after the compare
+  // page surfaced that this row and Wizkid's board row priced the same recording
+  // differently. Three independent reads of IFPI Schweiz's register (the
+  // Edelmetall lists on hitparade.ch / swisscharts.com, 2020–2026, and Wayback
+  // captures from Feb 2024 and Jan 2026) all print one row: "Wizkid feat. Burna
+  // Boy | Ginger | Single | Sony | Gold | 2023", badge award_gold.svg. No
+  // Platinum row exists in any year. Wizkid's row was right; this one was not.
+  // Every OTHER Swiss plaque here was checked against the same lists and matches.
   { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [
     { c: "ZA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" },
-    { c: "CA", level: "Gold" }, { c: "CH", level: "Platinum" }, { c: "UK", level: "Silver" },
+    { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
   { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/b34fa153a6137126a0c37972033c79fc/500x500-000000-80-0-0.jpg", certs: [
     { c: "BR", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Gold" },
@@ -690,7 +698,7 @@ export const certHistory: CertEvent[] = [
   { title: "African Giant", album: true, country: "DK", level: "Gold", year: 2023 },
   { title: "Love, Damini", album: true, country: "SE", level: "Gold", year: 2023 },
   { title: "Love, Damini", album: true, country: "FR", level: "Gold", year: 2023 },
-  { title: "Ginger", credit: "Wizkid ft. Burna Boy", country: "CH", level: "Platinum", year: 2023 },
+  { title: "Ginger", credit: "Wizkid ft. Burna Boy", country: "CH", level: "Gold", year: 2023 }, // was logged Platinum; the register prints Gold — see the release row
   { title: "Last Last", country: "AU", level: "Platinum", year: 2023 },
   { title: "On the Low", country: "AU", level: "Gold", year: 2023 },
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "AU", level: "Gold", year: 2023 },

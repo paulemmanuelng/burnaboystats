@@ -39,6 +39,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-09-11",
+    category: "Certifications",
+    text: "A correction: “Ginger” with Wizkid is Gold in Switzerland, not Platinum. It had sat here as Platinum since 2023 while Wizkid's own page on this site read Gold — the same recording, two tiers — and building the certified-units comparison is what made the disagreement visible. IFPI Schweiz's register, read three ways and in archived copies from 2024 and 2026, prints a single row for the song: Gold, 2023. No Platinum was ever awarded. Every other Swiss plaque here was checked against the same lists at the same time and stands. The catalogue is still 234 awards; one of them is a tier lower than it was.",
+    href: "/certifications",
+  },
+  {
     date: "2026-09-10",
     category: "Streaming",
     text: "The gap widens again at the top of the African all-time board: ChartMasters now has Burna Boy on 15,132,000 equivalent album sales to Wizkid's 14,848,000, read on 10 September with the board's streaming data stamped 8 September. Both men gained since the 30 August reading — Burna by 121,000, Wizkid by 90,000 — so the lead grows from about 253,000 to some 284,000, and both climb as the board expands from 688 names to 691. The scope is worth keeping beside the number: neither man has a completed CSPC study there, so both totals are streaming equivalents rather than full sales tallies, and they remain the only two artists from any African country on the whole board.",
