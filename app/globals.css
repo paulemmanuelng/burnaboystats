@@ -980,6 +980,22 @@ a {
   .navLinks { gap: 7px; margin-left: 12px; }
   .navLinks a { letter-spacing: 0.07em; }
 }
+/* Phones. AFTER the base .brand and the 1500 band above, for the same reason
+   the 1500 band sits after .navLinks: equal specificity, so order decides.
+   The design's phone header runs 18px from the edge, not the desktop 24 —
+   at 375 the wordmark (191) plus the three controls (140) needed 331 of a
+   327px content box, and the theme flip sat flush against "STATS". */
+@media (max-width: 640px) {
+  .navInner { padding-inline: 18px; }
+}
+/* The narrowest phones (iPhone SE 1st gen, 320): the bar was 355px wide, so
+   the hamburger sat off the right edge with body overflow-x: clip — the menu
+   could not be reached at all. The wordmark scales down and the controls
+   close up. Measured 12 Sep 2026. */
+@media (max-width: 360px) {
+  .brand { font-size: 1.1rem; gap: 8px; }
+  .navRight { gap: 6px; }
+}
 
 /* Hamburger toggle — hidden on desktop, shown on mobile */
 .navToggle {
