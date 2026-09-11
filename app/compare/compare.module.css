@@ -73,6 +73,7 @@
   align-items: center;
 }
 .segItem:hover { background: var(--bg-raised); color: var(--text); }
+.segShort { display: none; }
 .segOn {
   background: var(--text);
   color: var(--bg);
@@ -480,9 +481,12 @@
      margin; 88px here stacked on both and read as a hole in the page. */
   .wrap { padding: 0 16px 28px; }
 
-  /* Mode: one full-width pill, two equal halves (design: height 44). */
+  /* Mode: one full-width pill, equal thirds (design: height 44). Three long
+     labels do not fit 343px, so the phone shows the short ones. */
   .seg { display: flex; width: 100%; }
-  .segItem { flex: 1; justify-content: center; min-height: 44px; }
+  .segItem { flex: 1; justify-content: center; min-height: 44px; padding: 9px 6px; }
+  .segLong { display: none; }
+  .segShort { display: inline; }
 
   /* Slots stack; title and meta are one line each, ellipsised (design). */
   .slots { grid-template-columns: 1fr; gap: 8px; }

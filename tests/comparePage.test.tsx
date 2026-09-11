@@ -67,7 +67,7 @@ describe("the same recording on both sides", () => {
     const h = await html({ mode: "songs", a: "wizkid", b: "tems", sa: "Essence", sb: "Essence" });
     const t = text(h);
     expect(t).toContain("That is the same recording on both sides.");
-    expect(t).not.toContain("Pick a release on each side");
+    expect(t).not.toContain("Pick a song on each side");
     expect(t).not.toContain("· at least");
     expect(t).toContain("Change song");
   });
@@ -87,7 +87,7 @@ describe("the song picker's count line", () => {
   it("treats a punctuation-only query as no query", async () => {
     const t = text(await html({ mode: "songs", a: "burna-boy", qa: "&" }));
     expect(t).not.toContain("match “&”");
-    expect(t).toMatch(/Burna Boy · all \d+ certified releases/);
+    expect(t).toMatch(/Burna Boy · all \d+ certified songs/);
   });
 
   it("still reports a real query", async () => {
@@ -99,7 +99,7 @@ describe("the song picker's count line", () => {
 describe("the mode segments", () => {
   it("do not link the mode you are already in", async () => {
     const h = await html({ a: "burna-boy", b: "wizkid", all: "1" });
-    expect(h).toMatch(/aria-current="page"[^>]*>Artist totals</);
+    expect(h).toMatch(/aria-current="page"[^>]*><span class="[^"]*">Artist totals</);
     // No self-link to artists mode that would drop all=1.
     expect(hrefs(h).some((x) => /mode=artists/.test(x))).toBe(false);
   });
@@ -173,13 +173,13 @@ describe("the pickers fold after eight, and drop nothing", () => {
     const burna = comparableArtists.find((a) => a.slug === "burna-boy")!;
     for (const qa of ["", "a"]) {
       const h = await html({ mode: "songs", a: "burna-boy", ...(qa ? { qa } : {}) });
-      const expected = pickerReleases(burna, qa).map((r) => r.title);
+      const expected = pickerReleases(burna, qa, "single").map((r) => r.title);
       const pick = h.split("pickWrap")[1];
       const shown = chipsIn(beforeDetails(pick)).map((c) => c.text.replace(/&#x27;/g, "'").replace(/&amp;/g, "&"));
       const folded = chipsIn(insideDetails(pick)).map((c) => c.text.replace(/&#x27;/g, "'").replace(/&amp;/g, "&"));
       expect(shown, `query “${qa}”`).toEqual(expected.slice(0, PICKER_FOLD));
       expect(folded, `query “${qa}”`).toEqual(expected.slice(PICKER_FOLD));
-      expect(text(pick)).toContain(`+ ${expected.length - PICKER_FOLD} more releases ↓`);
+      expect(text(pick)).toContain(`+ ${expected.length - PICKER_FOLD} more songs ↓`);
     }
   });
 
@@ -267,5 +267,63 @@ describe("the phone audit's fixes stay fixed", () => {
     const block = phoneBlock();
     expect(block).toMatch(/\.table tr \{[^}]*grid-template-columns: 78px minmax\(0, 1fr\) minmax\(0, 1fr\)/);
     expect(block).toMatch(/\.slot \.slotClear \{[^}]*height: 44px/);
+  });
+});
+
+describe("album vs album", () => {
+  const chipsIn = (h: string) => [...h.matchAll(/<a href="([^"]+)" class="_chip_[^"]*">([^<]*)<\/a>/g)].map((m) => m[2].replace(/&#x27;/g, "'").replace(/&amp;/g, "&"));
+  const burna = comparableArtists.find((x) => x.slug === "burna-boy")!;
+  const wizkid = comparableArtists.find((x) => x.slug === "wizkid")!;
+
+  it("offers three modes, and switching drops the chosen titles", async () => {
+    const h = await html({ mode: "songs", a: "burna-boy", b: "wizkid", sa: "Ye", qb: "ess" });
+    const t = text(h);
+    for (const label of ["Song vs song", "Album vs album", "Artist totals"]) expect(t).toContain(label);
+    const toAlbums = hrefs(h).find((x) => /mode=albums/.test(x));
+    expect(toAlbums).toBeDefined();
+    expect(toAlbums).not.toMatch(/[?&](sa|sb|qa|qb)=/);
+    expect(toAlbums).toMatch(/a=burna-boy/);
+  });
+
+  it("the album picker lists every certified album and no single; the song picker the reverse", async () => {
+    const albums = burna.releases.filter((r) => r.format === "album").map((r) => r.title).sort();
+    const singles = burna.releases.filter((r) => r.format !== "album").map((r) => r.title).sort();
+    expect(albums.length).toBeGreaterThan(0);
+    const ha = await html({ mode: "albums", a: "burna-boy" });
+    const pa = ha.split("pickWrap")[1];
+    expect(chipsIn(pa).sort()).toEqual(albums);
+    expect(text(pa)).toContain(`Burna Boy · all ${albums.length} certified albums`);
+    const hs = await html({ mode: "songs", a: "burna-boy" });
+    const ps = hs.split("pickWrap")[1];
+    expect(chipsIn(ps).sort()).toEqual(singles);
+    expect(text(ps)).toContain(`Burna Boy · all ${singles.length} certified songs`);
+    // The slot says what the picker holds, not the artist totals.
+    expect(text(ha)).toContain(`${albums.length} certified albums`);
+    expect(text(ha)).not.toContain("artist totals");
+  });
+
+  it("an artist with no certified album says so and offers the song mode", async () => {
+    const t = text(await html({ mode: "albums", a: "olamide" }));
+    expect(t).toContain("Olamide holds no certified album on this site");
+    expect(t).toContain("Compare songs instead");
+    expect(t).not.toContain("matches “”");
+  });
+
+  it("a single named in album mode is not chosen", async () => {
+    const t = text(await html({ mode: "albums", a: "burna-boy", sa: "Ye" }));
+    expect(t).not.toContain("Ye · at least");
+    expect(t).toContain("Burna Boy · all");
+  });
+
+  it("prices two albums against each other", async () => {
+    const a = burna.releases.find((r) => r.format === "album")!;
+    const b = wizkid.releases.find((r) => r.format === "album")!;
+    const pa = priceRelease(burna, a.title, { includeNigeria: false, includeFeatures: true })!;
+    const pb = priceRelease(wizkid, b.title, { includeNigeria: false, includeFeatures: true })!;
+    const t = text(await html({ mode: "albums", a: "burna-boy", b: "wizkid", sa: a.title, sb: b.title }));
+    expect(t).toContain(`${a.title} · at least ${pa.total.toLocaleString("en-US")}`);
+    expect(t).toContain(`${b.title} · at least ${pb.total.toLocaleString("en-US")}`);
+    expect(t).toContain("Change album");
+    expect(t).not.toContain("Change song");
   });
 });

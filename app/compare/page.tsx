@@ -40,7 +40,7 @@ import {
 export const metadata = pageMetadata({
   title: "Compare Certified Units — Burna Boy vs Wizkid & More",
   description:
-    "Compare two Afrobeats artists or two songs by the units behind their certifications — every plaque priced at its own body's published threshold, under identical rules.",
+    "Compare two Afrobeats artists, two songs or two albums by the units behind their certifications — every plaque priced at its own body's published threshold, under identical rules.",
   path: "/compare",
   shareTitle: "Certified units, compared",
   shareDescription:
@@ -49,6 +49,16 @@ export const metadata = pageMetadata({
 
 type SP = Record<string, string | string[] | undefined>;
 const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
+
+/** Three modes: two record modes (a single against a single, an album against
+ *  an album) and artist totals. The record modes share every mechanism and
+ *  differ only in which format the pickers list and the chosen title must be. */
+type Mode = "songs" | "albums" | "artists";
+const readMode = (v: string | undefined): Mode => (v === "songs" ? "songs" : v === "albums" ? "albums" : "artists");
+const isRecordMode = (m: Mode) => m !== "artists";
+const formatOf = (m: Mode) => (m === "albums" ? "album" : "single") as "album" | "single";
+/** Words for the record mode: "song"/"songs" or "album"/"albums". */
+const noun = (m: Mode, plural = false) => (m === "albums" ? (plural ? "albums" : "album") : plural ? "songs" : "song");
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 const tierClass = (level: string) =>
@@ -121,7 +131,7 @@ function Slot({
   priced: ArtistUnits | null;
   sp: SP;
   side: "a" | "b";
-  mode: "songs" | "artists";
+  mode: Mode;
   /** The same artist is on both sides: the clear control drops the whole side,
    *  so the artist picker the refusal points at is actually reachable. "Change
    *  song" on its own kept a=b. (The same-record refusal keeps "Change song" —
@@ -148,7 +158,7 @@ function Slot({
     );
   }
 
-  const isSong = mode === "songs" && release;
+  const isSong = isRecordMode(mode) && release;
   const img = isSong ? release.cover : artist.image;
   const title = isSong ? release.title : artist.name;
   // The plaque count is split so it agrees with the header beneath it, whose
@@ -162,11 +172,18 @@ function Slot({
          ? `${release.certs.length - ngCount} international plaque${release.certs.length - ngCount === 1 ? "" : "s"} + ${ngCount} Nigerian`
          : `${release.certs.length} plaque${release.certs.length === 1 ? "" : "s"}`]
         .filter(Boolean).join(" · ")
-    : [
-        "artist totals",
-        priced ? `${priced.pricedPlaques} counted` : null,
-        priced ? `${priced.byCountry.length} ${priced.byCountry.length === 1 ? "country" : "countries"}` : null,
-      ].filter(Boolean).join(" · ");
+    : isRecordMode(mode)
+      ? (() => {
+          // A record mode with nothing chosen yet: say what the picker holds,
+          // not the artist totals the page is not in the business of showing.
+          const n = artist.releases.filter((r) => r.format === formatOf(mode)).length;
+          return `${n} certified ${n === 1 ? noun(mode) : noun(mode, true)}`;
+        })()
+      : [
+          "artist totals",
+          priced ? `${priced.pricedPlaques} counted` : null,
+          priced ? `${priced.byCountry.length} ${priced.byCountry.length === 1 ? "country" : "countries"}` : null,
+        ].filter(Boolean).join(" · ");
 
   return (
     <div className={styles.slot}>
@@ -201,9 +218,9 @@ function Slot({
               })
         }
         className={styles.slotClear}
-        aria-label={isSong && !refused ? `Choose a different release by ${artist.name}` : `Choose a different artist`}
+        aria-label={isSong && !refused ? `Choose a different ${noun(mode)} by ${artist.name}` : `Choose a different artist`}
       >
-        <span className={styles.slotClearText}>{isSong && !refused ? "Change song" : "Change"}</span>
+        <span className={styles.slotClearText}>{isSong && !refused ? `Change ${noun(mode)}` : "Change"}</span>
         <span aria-hidden="true">✕</span>
       </Link>
     </div>
@@ -219,24 +236,47 @@ function Slot({
  * shareable and still works with JavaScript off.
  */
 function SongPicker({
-  artist, side, sp, query,
+  artist, side, sp, query, mode,
 }: {
   artist: ComparableArtist;
   side: "a" | "b";
   sp: SP;
   query: string;
+  mode: Mode;
 }) {
+  const format = formatOf(mode);
+  const field = side === "a" ? "qa" : "qb";
+  const target = side === "a" ? "sa" : "sb";
   // Folded, so a punctuation-only query ("&", ".") is empty for the label just
   // as it is for the filter — it was reporting "85 of 85 match “&”".
   const q = fold(query);
-  const all = artist.releases;
+  const all = artist.releases.filter((r) => r.format === format);
+  // Eight of the sixteen hold no certified album at all. Say so, and offer
+  // the mode that has something to price, rather than an empty picker.
+  if (all.length === 0) {
+    const other = mode === "albums" ? "songs" : "albums";
+    return (
+      <div className={styles.pickWrap}>
+        <p className={styles.pickNone}>
+          <strong>{artist.name} holds no certified {noun(mode)} on this site</strong> — every one of{" "}
+          {artist.releases.reduce((n, r) => n + r.certs.length, 0).toLocaleString("en-US")} plaques here is on a{" "}
+          {noun(other)}.{" "}
+          <Link href={href(sp, { mode: other, sa: null, sb: null, qa: null, qb: null })} className={styles.pickChange}>
+            Compare {noun(other, true)} instead <span aria-hidden="true">↗</span>
+          </Link>{" "}
+          or{" "}
+          <Link href={href(sp, { [side]: null, [target]: null, [field]: null })} className={styles.pickChange}>
+            change artist <span aria-hidden="true">↺</span>
+          </Link>
+        </p>
+      </div>
+    );
+  }
   // EVERY certified release, always — search narrows, it never hides. The first
   // version showed eight of eighty-five and the rest were reachable only by
   // typing the exact title. Now the first eight show and the rest FOLD, which
   // is a different thing: every chip is in the markup, one tap away.
-  const matches = pickerReleases(artist, q);
-  const field = side === "a" ? "qa" : "qb";
-  const target = side === "a" ? "sa" : "sb";
+  const matches = pickerReleases(artist, q, format);
 
   // Everything except this side's own query, so submitting replaces rather than
   // stacks it.
@@ -250,7 +290,7 @@ function SongPicker({
         <span className={styles.pickLabel}>
           {q
             ? `${matches.length} of ${all.length} match “${query}”`
-            : `${artist.name} · all ${all.length} certified releases`}
+            : `${artist.name} · all ${all.length} certified ${all.length === 1 ? noun(mode) : noun(mode, true)}`}
         </span>
         <Link
           href={href(sp, { [side]: null, [target]: null, [field]: null })}
@@ -267,8 +307,8 @@ function SongPicker({
             name={field}
             defaultValue={query}
             className={styles.searchInput}
-            placeholder={`Narrow ${artist.name}'s releases`}
-            aria-label={`Search ${artist.name}'s certified releases`}
+            placeholder={`Narrow ${artist.name}'s ${noun(mode, true)}`}
+            aria-label={`Search ${artist.name}'s certified ${noun(mode, true)}`}
             autoComplete="off"
             autoCorrect="off"
             autoCapitalize="none"
@@ -280,7 +320,7 @@ function SongPicker({
       </div>
       {matches.length > 0 ? (
         <FoldedChips
-          label="releases"
+          label={noun(mode, true)}
           chips={matches.map((r) => (
             <Link key={r.title} href={href(sp, { [target]: r.title, [field]: null })} className={styles.chip}>
               {r.title}
@@ -289,8 +329,8 @@ function SongPicker({
         />
       ) : (
         <p className={styles.pickNone}>
-          No certified release of {artist.name}&apos;s matches “{query}”. Only releases that hold at least
-          one plaque appear here — a song with no certification has nothing to price.
+          No certified {noun(mode)} of {artist.name}&apos;s matches “{query}”. Only {noun(mode, true)} that hold at
+          least one plaque appear here — a {noun(mode)} with no certification has nothing to price.
         </p>
       )}
     </div>
@@ -343,13 +383,17 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
 
 export default async function ComparePage({ searchParams }: { searchParams: Promise<SP> }) {
   const sp = await searchParams;
-  const mode = one(sp.mode) === "songs" ? "songs" : "artists";
+  const mode = readMode(one(sp.mode));
+  const record = isRecordMode(mode);
+  const format = formatOf(mode);
   const a = artistBySlug(one(sp.a) ?? "") ?? null;
   const b = artistBySlug(one(sp.b) ?? "") ?? null;
   const showAll = one(sp.all) === "1";
 
-  const songA = mode === "songs" && a ? a.releases.find((r) => r.title === one(sp.sa)) ?? null : null;
-  const songB = mode === "songs" && b ? b.releases.find((r) => r.title === one(sp.sb)) ?? null : null;
+  // The chosen title must be of the mode's format: a single named in album
+  // mode (a hand-edited URL, or a mode switch that kept it) is not chosen.
+  const songA = record && a ? a.releases.find((r) => r.title === one(sp.sa) && r.format === format) ?? null : null;
+  const songB = record && b ? b.releases.find((r) => r.title === one(sp.sb) && r.format === format) ?? null : null;
 
   const both = Boolean(a && b);
   // The engine decides Nigeria unless the reader has said otherwise; `ng` in the
@@ -364,7 +408,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   // holding slightly different copies of one recording it printed a winner.
   // Same title, both credits naming the same lead: refuse and say so.
   const sameRecording =
-    mode === "songs" && songA && songB && a && b && a.slug !== b.slug &&
+    record && songA && songB && a && b && a.slug !== b.slug &&
     songA.title.toLowerCase() === songB.title.toLowerCase() &&
     (songA.isFeature || songB.isFeature);
   // An artist against themselves is not a comparison either. The picker no
@@ -393,27 +437,27 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   const spa = songPriced(a, songA, ngForSongs);
   const spb = songPriced(b, songB, ngForSongs);
 
-  const useSongs = Boolean(mode === "songs" && spa && spb && !sameRecording && !sameArtist);
+  const useSongs = Boolean(record && spa && spb && !sameRecording && !sameArtist);
   // "Filled" means different things in the two modes, and conflating them was a
   // real bug: in song mode with no song picked yet, the page fell through to
   // ARTIST totals and printed them under the artists' names. In song mode
   // nothing renders until BOTH songs are chosen.
-  const ready = mode === "songs" ? useSongs : both && !refused;
+  const ready = record ? useSongs : both && !refused;
   // A refused pairing renders its refusal and nothing else — no card, no hint.
   // It was printing "at least 0 certified units" beneath "That is Burna Boy on
   // both sides", which is a number the page never established.
-  const partial = refused ? false : mode === "songs" ? Boolean(spa || spb) : Boolean(a);
+  const partial = refused ? false : record ? Boolean(spa || spb) : Boolean(a);
 
   // The side being described, whichever mode is on — and in song mode with one
   // song chosen, that side is the SONG, never the artist. The header card was
   // printing "Essence · 6,340,000 · 47 of 47 plaques counted": the song's figure
   // beside the artist's plaque count.
-  const sideA: ArtistUnits | null = mode === "songs" ? spa : c?.a ?? soloPriced ?? null;
-  const sideB: ArtistUnits | null = mode === "songs" ? spb : c?.b ?? null;
+  const sideA: ArtistUnits | null = record ? spa : c?.a ?? soloPriced ?? null;
+  const sideB: ArtistUnits | null = record ? spb : c?.b ?? null;
   const totalA = sideA?.total ?? 0;
   const totalB = sideB?.total ?? 0;
-  const nameA = mode === "songs" && songA ? songA.title : a?.name ?? "";
-  const nameB = mode === "songs" && songB ? songB.title : b?.name ?? "";
+  const nameA = record && songA ? songA.title : a?.name ?? "";
+  const nameB = record && songB ? songB.title : b?.name ?? "";
 
   const byMax = (x: ComparisonRow, y: ComparisonRow) =>
     Math.max(y.a?.units ?? 0, y.b?.units ?? 0) - Math.max(x.a?.units ?? 0, x.b?.units ?? 0) ||
@@ -511,18 +555,31 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
 
         <nav className={styles.seg} aria-label="Comparison mode">
           {/* The selected segment is not a link: a self-link that also dropped
-              `all` collapsed the table when you clicked the mode you were in. */}
-          {mode === "songs" ? (
-            <span className={`${styles.segItem} ${styles.segOn}`} aria-current="page">Song vs song</span>
-          ) : (
-            <Link href={href(sp, { mode: "songs" })} className={styles.segItem}>Song vs song</Link>
-          )}
-          {mode === "artists" ? (
-            <span className={`${styles.segItem} ${styles.segOn}`} aria-current="page">Artist totals</span>
-          ) : (
-            <Link href={href(sp, { mode: "artists", sa: null, sb: null, qa: null, qb: null })} className={styles.segItem}>
-              Artist totals
-            </Link>
+              `all` collapsed the table when you clicked the mode you were in.
+              Switching between the two record modes drops the chosen titles
+              and queries — a single is not an album. */}
+          {(
+            [
+              { key: "songs", long: "Song vs song", short: "Songs" },
+              { key: "albums", long: "Album vs album", short: "Albums" },
+              { key: "artists", long: "Artist totals", short: "Artists" },
+            ] as const
+          ).map((m) =>
+            mode === m.key ? (
+              <span key={m.key} className={`${styles.segItem} ${styles.segOn}`} aria-current="page">
+                <span className={styles.segLong}>{m.long}</span>
+                <span className={styles.segShort} aria-hidden="true">{m.short}</span>
+              </span>
+            ) : (
+              <Link
+                key={m.key}
+                href={href(sp, { mode: m.key, sa: null, sb: null, qa: null, qb: null })}
+                className={styles.segItem}
+              >
+                <span className={styles.segLong}>{m.long}</span>
+                <span className={styles.segShort} aria-hidden="true">{m.short}</span>
+              </Link>
+            ),
           )}
         </nav>
 
@@ -532,11 +589,11 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           <Slot artist={b} release={songB} priced={c?.b ?? (sameArtist ? soloPriced : null) ?? null} sp={sp} side="b" mode={mode} refused={sameArtist} />
         </div>
 
-        {mode === "songs" && a && !songA && (
-          <SongPicker artist={a} side="a" sp={sp} query={one(sp.qa) ?? ""} />
+        {record && a && !songA && (
+          <SongPicker artist={a} side="a" sp={sp} query={one(sp.qa) ?? ""} mode={mode} />
         )}
-        {mode === "songs" && b && !songB && (
-          <SongPicker artist={b} side="b" sp={sp} query={one(sp.qb) ?? ""} />
+        {record && b && !songB && (
+          <SongPicker artist={b} side="b" sp={sp} query={one(sp.qb) ?? ""} mode={mode} />
         )}
 
         <div className={styles.controls}>
@@ -574,7 +631,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
         {sameRecording && (
           <p className={styles.why}>
             <strong>That is the same recording on both sides.</strong> “{songA!.title}” is one record with
-            one set of plaques; pick a different release for one of them.
+            one set of plaques; pick a different {noun(mode)} for one of them.
           </p>
         )}
 
@@ -630,8 +687,8 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
                 </p>
               ) : (
                 <p className={styles.diff}>
-                  {mode === "songs"
-                    ? "Pick a release on each side — the country-by-country table appears once both are chosen."
+                  {record
+                    ? `Pick ${mode === "albums" ? "an album" : "a song"} on each side — the country-by-country table appears once both are chosen.`
                     : includeFeatures
                       ? "The country-by-country table appears when both sides are filled. Featured appearances are on."
                       : "The country-by-country table appears when both sides are filled. Featured appearances are off until you turn them on."}

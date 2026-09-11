@@ -82,6 +82,21 @@ describe("the compare picker misses nothing", () => {
     for (const r of some) expect(fold(r.title) + " " + fold(r.credit ?? "")).toContain("last");
   });
 
+  it("filters by format on request, and the two formats together are the whole catalogue", () => {
+    for (const a of comparableArtists) {
+      const singles = pickerReleases(a, "", "single");
+      const albums = pickerReleases(a, "", "album");
+      expect(singles.every((r) => r.format === "single"), a.name).toBe(true);
+      expect(albums.every((r) => r.format === "album"), a.name).toBe(true);
+      expect([...singles, ...albums].map((r) => r.title).sort(), a.name).toEqual(a.releases.map((r) => r.title).sort());
+    }
+    // Eight of the sixteen hold no certified album; the page says so rather
+    // than showing an empty picker (tests/comparePage.test.tsx).
+    const without = comparableArtists.filter((a) => pickerReleases(a, "", "album").length === 0);
+    expect(without.length).toBeGreaterThan(0);
+    expect(without.length).toBeLessThan(comparableArtists.length);
+  });
+
   it("no release title is empty or duplicated within an artist", () => {
     for (const a of comparableArtists) {
       const titles = a.releases.map((r) => r.title);

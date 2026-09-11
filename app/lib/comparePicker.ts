@@ -32,12 +32,20 @@ export function pickerArtists(excludeSlug?: string): ComparableArtist[] {
 }
 
 /** Every certified release of one artist, most plaques first, filtered by a
- *  search query if given. Matches title OR credit, case- and
- *  accent-insensitively, so "Kampe" finds "4 Kampé II" and "dave" finds
- *  "Location". */
-export function pickerReleases(artist: ComparableArtist, query = ""): ComparableRelease[] {
+ *  search query if given and — when the page is in a record mode — by format,
+ *  so "Song vs song" lists singles and "Album vs album" lists albums (Paul,
+ *  12 Sep 2026: the first version had no album mode and albums sat among the
+ *  songs). Matches title OR credit, case- and accent-insensitively, so
+ *  "Kampe" finds "4 Kampé II" and "dave" finds "Location". */
+export function pickerReleases(
+  artist: ComparableArtist,
+  query = "",
+  format?: ComparableRelease["format"],
+): ComparableRelease[] {
   const q = fold(query);
-  const all = [...artist.releases].sort((x, y) => y.certs.length - x.certs.length || x.title.localeCompare(y.title));
+  const all = [...artist.releases]
+    .filter((r) => !format || r.format === format)
+    .sort((x, y) => y.certs.length - x.certs.length || x.title.localeCompare(y.title));
   if (!q) return all;
   return all.filter((r) => fold(r.title).includes(q) || fold(r.credit ?? "").includes(q));
 }
