@@ -1,3 +1,5 @@
+import comparePairRedirects from "./app/data/comparePairRedirects.json" with { type: "json" };
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Baseline security headers applied to every response.
@@ -131,6 +133,10 @@ const nextConfig = {
       // back to a meta-refresh served with 200 — which left /tour looking like
       // a live page carrying the *homepage's* canonical.
       { source: "/tour", destination: "/records/tours", permanent: true },
+      // /compare/<a>-vs-<b> has one canonical order per pair; the other order
+      // redirects here, for the same reason as /tour. Generated from the data
+      // by scripts/build-compare-redirects.mjs.
+      ...comparePairRedirects,
     ];
   },
 };

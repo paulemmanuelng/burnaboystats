@@ -148,7 +148,7 @@ describe("the song slot's plaque count", () => {
 
 describe("the pickers fold after eight, and drop nothing", () => {
   // CSS-module classes are hashed here ("_chip_b2b4d1"); match the stem.
-  const chipsIn = (h: string) => [...h.matchAll(/<a href="([^"]+)" class="_chip_[^"]*">([^<]*)<\/a>/g)].map((m) => ({ href: m[1].replace(/&amp;/g, "&"), text: m[2] }));
+  const chipsIn = (h: string) => [...h.matchAll(/<a href="([^"]+)" class="_chip_[^"]*">(.*?)<\/a>/g)].map((m) => ({ href: m[1].replace(/&amp;/g, "&"), text: m[2].replace(/<[^>]+>/g, "") }));
   const beforeDetails = (h: string) => h.split("<details")[0];
   const insideDetails = (h: string) => h.split("<details")[1]?.split("</details>")[0] ?? "";
 
@@ -223,11 +223,15 @@ describe("the phone audit's fixes stay fixed", () => {
     // scroll-to-top a navigation does by default. Tapping "Show all ↓" at the
     // foot of the table put the reader back at the top (scrollY 1600 → 43).
     const src = readFileSync(join(process.cwd(), "app/compare/page.tsx"), "utf8");
-    for (const marker of ["{ feat: featParam", "{ ng: ngOn", "{ all: null }", "{ all: \"1\" }"]) {
+    for (const marker of ["{ feat: featParam", "{ ng: ngOn", "{ all: \"1\" }"]) {
       const i = src.indexOf(`href={href(sp, ${marker}`);
       expect(i, marker).toBeGreaterThan(-1);
       expect(src.slice(i, i + 220), `${marker} should keep scroll position`).toContain("scroll={false}");
     }
+    // "Show fewer" is the exception: collapsing the table above the reader
+    // clamped the page under the header, so it lands on the folded table.
+    const j = src.indexOf("href={`${href(sp, { all: null })}#country-table`}");
+    expect(j).toBeGreaterThan(-1);
   });
 
   it("the search field cannot make iOS zoom, and fills its row on a phone", () => {
@@ -271,7 +275,7 @@ describe("the phone audit's fixes stay fixed", () => {
 });
 
 describe("album vs album", () => {
-  const chipsIn = (h: string) => [...h.matchAll(/<a href="([^"]+)" class="_chip_[^"]*">([^<]*)<\/a>/g)].map((m) => m[2].replace(/&#x27;/g, "'").replace(/&amp;/g, "&"));
+  const chipsIn = (h: string) => [...h.matchAll(/<a href="([^"]+)" class="_chip_[^"]*">(.*?)<\/a>/g)].map((m) => m[2].replace(/<[^>]+>/g, "").replace(/&#x27;/g, "'").replace(/&amp;/g, "&"));
   const burna = comparableArtists.find((x) => x.slug === "burna-boy")!;
   const wizkid = comparableArtists.find((x) => x.slug === "wizkid")!;
 
@@ -325,5 +329,59 @@ describe("album vs album", () => {
     expect(t).toContain(`${b.title} · at least ${pb.total.toLocaleString("en-US")}`);
     expect(t).toContain("Change album");
     expect(t).not.toContain("Change song");
+  });
+});
+
+describe("the pair pages", () => {
+  it("one canonical order per pair, the reverse parses to the same pair, unknowns are null", async () => {
+    const { allPairs, canonicalPair, pairSlug, parsePair, featuredPairs } = await import("../app/lib/comparePairs");
+    const pairs = allPairs();
+    expect(pairs).toHaveLength((16 * 15) / 2);
+    const slugs = pairs.map(([a, b]) => pairSlug(a, b));
+    expect(new Set(slugs).size).toBe(120);
+    for (const [a, b] of pairs) {
+      const slug = pairSlug(a, b);
+      const parsed = parsePair(slug)!;
+      expect(parsed.map((x) => x.slug)).toEqual([a.slug, b.slug]);
+      // The reverse order names the same pair and canonicalises to this slug.
+      const rev = parsePair(`${b.slug}-vs-${a.slug}`)!;
+      expect(pairSlug(rev[0], rev[1])).toBe(slug);
+      expect(canonicalPair(b, a).map((x) => x.slug)).toEqual([a.slug, b.slug]);
+    }
+    expect(parsePair("burna-boy-vs-burna-boy")).toBeNull();
+    expect(parsePair("nobody-vs-wizkid")).toBeNull();
+    expect(parsePair("burna-boy")).toBeNull();
+    expect(featuredPairs().length).toBeGreaterThan(5);
+  });
+
+  it("the checked-in reverse-order redirects match the data", async () => {
+    const { allPairs } = await import("../app/lib/comparePairs");
+    const rows = JSON.parse(readFileSync(join(process.cwd(), "app/data/comparePairRedirects.json"), "utf8")) as { source: string; destination: string; permanent: boolean }[];
+    const expected = allPairs().map(([a, b]) => ({ source: `/compare/${b.slug}-vs-${a.slug}`, destination: `/compare/${a.slug}-vs-${b.slug}`, permanent: true }));
+    expect(rows, "run: npx tsx scripts/build-compare-redirects.mjs").toEqual(expected);
+  });
+
+  it("title and description fit Google's display limits for every pair", async () => {
+    const { allPairs, pairCopy } = await import("../app/lib/comparePairs");
+    for (const [a, b] of allPairs()) {
+      const c = pairCopy(a, b);
+      expect(c.title.length, c.title).toBeLessThanOrEqual(60);
+      expect(c.description.length, c.description).toBeLessThanOrEqual(160);
+      expect(c.description).toContain("at least");
+      expect(c.description).not.toMatch(/\bsold\b/);
+    }
+  });
+
+  it("the arrival state links the head-to-heads, and a pair page carries its own trail and dataset", async () => {
+    const { featuredPairs, pairSlug } = await import("../app/lib/comparePairs");
+    const h = await html({});
+    for (const [a, b] of featuredPairs()) expect(h).toContain(`href="/compare/${pairSlug(a, b)}"`);
+    const { CompareView } = await import("../app/compare/page");
+    const tree = await CompareView({ sp: { a: "burna-boy", b: "wizkid" }, path: "/compare/burna-boy-vs-wizkid", leaf: "Burna Boy vs Wizkid" });
+    const ph = renderToStaticMarkup(tree);
+    expect((ph.match(/"@type":"BreadcrumbList"/g) ?? []).length).toBe(1);
+    expect(ph).toContain('"name":"Burna Boy vs Wizkid","item":"https://burnaboystats.com/compare/burna-boy-vs-wizkid"');
+    expect(ph).toContain('"@type":"Dataset"');
+    expect(text(ph)).toContain("Burna Boy vs Wizkid");
   });
 });

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { allPairs, pairSlug } from "./lib/comparePairs";
 import { siteUrl } from "./site";
 import { updates } from "./data/updates";
 import { songs } from "./data/songs";
@@ -163,6 +164,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/live-charts", priority: 0.9, changeFrequency: "daily" },
     { path: "/certifications", priority: 0.8, changeFrequency: "weekly" },
     { path: "/compare", priority: 0.7, changeFrequency: "weekly" },
+    // One page per pair of the sixteen artists, canonical order only.
+    ...allPairs().map(([a, b]) => ({ path: `/compare/${pairSlug(a, b)}`, priority: 0.6, changeFrequency: "weekly" as const })),
     { path: "/music", priority: 0.8, changeFrequency: "weekly" },
     ...songs.map((sg) => ({ path: `/music/${sg.slug}`, priority: 0.8, changeFrequency: "weekly" as const })),
     ...albumPages.map((al) => ({ path: `/music/albums/${al.slug}`, priority: 0.8, changeFrequency: "weekly" as const })),

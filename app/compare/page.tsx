@@ -1,14 +1,18 @@
 import Link from "next/link";
 import styles from "./compare.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
-import { pageMetadata } from "../lib/seo";
+import { pageMetadata, datasetJsonLd } from "../lib/seo";
 import { siteUrl } from "../site";
 import { countryMeta } from "../data/afrobeats";
+import type { Metadata } from "next";
 import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
+import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
+import { artAt, artSrcSet } from "../lib/artAt";
 import {
   artistBySlug,
   comparableArtists,
   compare,
+  nigeriaDefault,
   priceArtist,
   priceRelease,
   type ArtistUnits,
@@ -37,7 +41,7 @@ import {
  * fetch, and it buys shareability outright.
  */
 
-export const metadata = pageMetadata({
+const BASE_METADATA = pageMetadata({
   title: "Compare Certified Units — Burna Boy vs Wizkid & More",
   description:
     "Compare two Afrobeats artists, two songs or two albums by the units behind their certifications — every plaque priced at its own body's published threshold, under identical rules.",
@@ -46,6 +50,45 @@ export const metadata = pageMetadata({
   shareDescription:
     "Two records, or two catalogues, priced at each certifying body's own threshold. A floor for both sides under identical rules.",
 });
+
+/**
+ * Metadata follows the query. Two artists in artist mode is the comparison
+ * that has a page of its own (/compare/<a>-vs-<b>), so that state canonicals
+ * THERE — every toggle of it (features, Nigeria, show all) is a variant of
+ * one comparison, and the pretty URL is the one to index. Everything else —
+ * arrival, one side, a song or album pairing — is the tool, canonical to
+ * /compare. Titles stay derived from the data; nothing here is typed.
+ */
+export async function generateMetadata({ searchParams }: { searchParams: Promise<SP> }): Promise<Metadata> {
+  const sp = await searchParams;
+  const mode = readMode(one(sp.mode));
+  const a = artistBySlug(one(sp.a) ?? "") ?? null;
+  const b = artistBySlug(one(sp.b) ?? "") ?? null;
+  if (mode === "artists" && a && b && a.slug !== b.slug) {
+    const copy = pairCopy(a, b);
+    return {
+      ...BASE_METADATA,
+      title: copy.title,
+      description: copy.description,
+      alternates: { canonical: `/compare/${pairSlug(a, b)}` },
+      openGraph: { ...BASE_METADATA.openGraph, title: copy.title, description: copy.sub, url: `/compare/${pairSlug(a, b)}` },
+      twitter: { ...BASE_METADATA.twitter, title: copy.title, description: copy.sub },
+    };
+  }
+  if (isRecordMode(mode) && a && b) {
+    const ra = a.releases.find((r) => r.title === one(sp.sa) && r.format === formatOf(mode));
+    const rb = b.releases.find((r) => r.title === one(sp.sb) && r.format === formatOf(mode));
+    if (ra && rb && !(ra.title === rb.title && a.slug === b.slug)) {
+      const title = `${ra.title} vs ${rb.title}: Certified Units Compared`;
+      return {
+        ...BASE_METADATA,
+        title: title.length <= 60 ? title : `${ra.title} vs ${rb.title}`,
+        description: `${ra.title} (${a.name}) against ${rb.title} (${b.name}) by the units behind their plaques — priced at each body's own threshold.`.slice(0, 160),
+      };
+    }
+  }
+  return BASE_METADATA;
+}
 
 type SP = Record<string, string | string[] | undefined>;
 const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
@@ -66,12 +109,22 @@ const tierClass = (level: string) =>
   : level === "Platinum" ? styles.tPlatinum
   : level === "Gold" ? styles.tGold
   : styles.tSilver;
+/** A title's trailing "(…)" stays on one line — "love nwantiti (ah ah / ah)"
+ *  split its own parenthetical at 375. */
+const keepParens = (title: string) => {
+  const m = title.match(/^(.*?)(\s*\([^()]*\))$/);
+  return m ? <>{m[1]}<span className={styles.nowrap}>{m[2]}</span></> : title;
+};
 const plaque = (top: { level: string; x: number } | null) =>
   top ? `${top.x > 1 ? `${top.x}× ` : ""}${top.level}` : "";
 /** The programme marker, derived exactly as Burna's explorer derives it:
  *  whatever the override adds beyond the country's default body. "RIAA Latin"
  *  against RIAA reads "Latin". Without it a 16× Platino worth 960,000 sat
  *  beside a 5× Platinum worth 5,000,000 with nothing to say why. */
+/** The marker's short form for a phone chip: "Latin" stays; a whole other
+ *  issuer ("Sony Music Colombia") becomes its first word, the full name in
+ *  the chip's title and in the desktop run. */
+const shortProgram = (p: string) => (p.length > 12 ? p.split(" ")[0] : p);
 const program = (top: { body?: string } | null, country: string) => {
   const own = countryMeta(country).body;
   if (!top?.body || top.body === own) return null;
@@ -144,12 +197,20 @@ function Slot({
     const otherSlug = one(sp[side === "a" ? "b" : "a"]);
     const others = pickerArtists(otherSlug);
     return (
-      <div className={`${styles.slot} ${styles.slotEmpty}`}>
+      <div className={`${styles.slot} ${styles.slotEmpty}`} id={`slot-${side}`}>
         <p className={styles.prompt}>{otherSlug ? "Choose who to compare against" : "Choose an artist"}</p>
         <FoldedChips
           label="artists"
           chips={others.map((o) => (
-            <Link key={o.slug} href={href(sp, { [side]: o.slug })} className={styles.chip}>
+            // The tap's result is what the page should land on: the figures
+            // when this completes a pair, the other side's slot when it does
+            // not. A plain navigation put the reader back at the title with
+            // the answer a screen below the fold.
+            <Link
+              key={o.slug}
+              href={`${href(sp, { [side]: o.slug })}#${otherSlug ? "result" : `slot-${side === "a" ? "b" : "a"}`}`}
+              className={styles.chip}
+            >
               {o.name}
             </Link>
           ))}
@@ -165,44 +226,59 @@ function Slot({
   // denominator is the international plaques: "20 plaques" over "17 of 19
   // counted" read as a contradiction until the Nigerian one was named.
   const ngCount = isSong ? release.certs.filter((c) => c.c === "NG").length : 0;
-  const meta = isSong
+  // Segments, not one string: each is rendered nowrap and the line breaks
+  // only at a separator, so a phone never opens a line with "·" or splits
+  // "+ 1 Nigerian" across two.
+  const meta: string[] = isSong
     ? [artist.name, release.isFeature ? "featured" : release.format === "album" ? "album" : "lead single",
-       release.credit,
+       release.credit ?? "",
        ngCount
          ? `${release.certs.length - ngCount} international plaque${release.certs.length - ngCount === 1 ? "" : "s"} + ${ngCount} Nigerian`
          : `${release.certs.length} plaque${release.certs.length === 1 ? "" : "s"}`]
-        .filter(Boolean).join(" · ")
+        .filter(Boolean)
     : isRecordMode(mode)
       ? (() => {
           // A record mode with nothing chosen yet: say what the picker holds,
           // not the artist totals the page is not in the business of showing.
           const n = artist.releases.filter((r) => r.format === formatOf(mode)).length;
-          return `${n} certified ${n === 1 ? noun(mode) : noun(mode, true)}`;
+          return [`${n} certified ${n === 1 ? noun(mode) : noun(mode, true)}`];
         })()
       : [
           "artist totals",
-          priced ? `${priced.pricedPlaques} counted` : null,
-          priced ? `${priced.byCountry.length} ${priced.byCountry.length === 1 ? "country" : "countries"}` : null,
-        ].filter(Boolean).join(" · ");
+          priced ? `${priced.pricedPlaques} counted` : "",
+          priced ? `${priced.byCountry.length} ${priced.byCountry.length === 1 ? "country" : "countries"}` : "",
+        ].filter(Boolean);
 
   return (
-    <div className={styles.slot}>
+    <div className={styles.slot} id={`slot-${side}`}>
       {img ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={img}
+          src={artAt(img, 112)}
+          srcSet={artSrcSet(img, 56)}
+          sizes="56px"
           alt=""
           className={`${styles.art} ${isSong ? "" : styles.artRound}`}
           width={56}
           height={56}
-          loading="lazy"
+          decoding="async"
         />
       ) : (
         <div className={`${styles.art} ${isSong ? "" : styles.artRound}`} aria-hidden="true" />
       )}
       <div className={styles.slotBody}>
-        <p className={styles.slotTitle}>{title}</p>
-        <p className={styles.slotMeta}>{meta}</p>
+        <p className={styles.slotTitle}>{keepParens(title)}</p>
+        <p className={styles.slotMeta}>
+          {/* A line may break only at the space before a separator: short
+              segments are glued with no-break spaces, the "·" rides with the
+              segment it introduces. Long segments still wrap inside. */}
+          {meta.map((m, i) => (
+            <span key={i}>
+              {i > 0 ? " " : ""}
+              <span className={styles.metaSeg}>{i > 0 ? "·\u00a0" : ""}{m.length <= 22 ? m.replace(/ /g, "\u00a0") : m}</span>
+            </span>
+          ))}
+        </p>
       </div>
       {/* Clear the most specific thing first: a chosen song drops back to that
           artist's picker, an artist drops back to the suggestions. Without this
@@ -210,7 +286,7 @@ function Slot({
       <Link
         href={
           isSong && !refused
-            ? href(sp, { [side === "a" ? "sa" : "sb"]: null })
+            ? `${href(sp, { [side === "a" ? "sa" : "sb"]: null })}#pick-${side}`
             : href(sp, {
                 [side]: null,
                 [side === "a" ? "sa" : "sb"]: null,
@@ -236,13 +312,16 @@ function Slot({
  * shareable and still works with JavaScript off.
  */
 function SongPicker({
-  artist, side, sp, query, mode,
+  artist, side, sp, query, mode, landing,
 }: {
   artist: ComparableArtist;
   side: "a" | "b";
   sp: SP;
   query: string;
   mode: Mode;
+  /** Where a pick lands: "result" when it completes the pair, otherwise the
+   *  other side's picker or, if no artist is chosen there yet, its slot. */
+  landing: "result" | "pick-a" | "pick-b" | "slot-a" | "slot-b";
 }) {
   const format = formatOf(mode);
   const field = side === "a" ? "qa" : "qb";
@@ -256,7 +335,7 @@ function SongPicker({
   if (all.length === 0) {
     const other = mode === "albums" ? "songs" : "albums";
     return (
-      <div className={styles.pickWrap}>
+      <div className={styles.pickWrap} id={`pick-${side}`}>
         <p className={styles.pickNone}>
           <strong>{artist.name} holds no certified {noun(mode)} on this site</strong> — every one of{" "}
           {artist.releases.reduce((n, r) => n + r.certs.length, 0).toLocaleString("en-US")} plaques here is on a{" "}
@@ -285,12 +364,12 @@ function SongPicker({
     .filter(([k, v]) => v && k !== field);
 
   return (
-    <div className={styles.pickWrap}>
+    <div className={styles.pickWrap} id={`pick-${side}`}>
       <div className={styles.pickHead}>
         <span className={styles.pickLabel}>
           {q
             ? `${matches.length} of ${all.length} match “${query}”`
-            : `${artist.name} · all ${all.length} certified ${all.length === 1 ? noun(mode) : noun(mode, true)}`}
+            : `${artist.name} · all ${all.length} certified\u00a0${all.length === 1 ? noun(mode) : noun(mode, true)}`}
         </span>
         <Link
           href={href(sp, { [side]: null, [target]: null, [field]: null })}
@@ -298,7 +377,10 @@ function SongPicker({
         >
           Change artist <span aria-hidden="true">↺</span>
         </Link>
-        <form method="get" action="/compare" className={styles.search} role="search">
+        {/* The action carries the picker's fragment: a GET form keeps it when
+            it builds the query, so the reload lands on the results, not the
+            title. */}
+        <form method="get" action={`/compare#pick-${side}`} className={styles.search} role="search">
           {carried.map(([k, v]) => (
             <input key={k} type="hidden" name={k} value={v as string} />
           ))}
@@ -307,7 +389,7 @@ function SongPicker({
             name={field}
             defaultValue={query}
             className={styles.searchInput}
-            placeholder={`Narrow ${artist.name}'s ${noun(mode, true)}`}
+            placeholder={`Search ${all.length} ${noun(mode, true)}`}
             aria-label={`Search ${artist.name}'s certified ${noun(mode, true)}`}
             autoComplete="off"
             autoCorrect="off"
@@ -322,8 +404,12 @@ function SongPicker({
         <FoldedChips
           label={noun(mode, true)}
           chips={matches.map((r) => (
-            <Link key={r.title} href={href(sp, { [target]: r.title, [field]: null })} className={styles.chip}>
-              {r.title}
+            <Link
+              key={r.title}
+              href={`${href(sp, { [target]: r.title, [field]: null })}#${landing}`}
+              className={styles.chip}
+            >
+              {keepParens(r.title)}
             </Link>
           ))}
         />
@@ -340,41 +426,65 @@ function SongPicker({
 function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: boolean; artistMode: boolean }) {
   // A blank cell reads as a rendering fault, so the words are the value.
   if (!line) return <span className={styles.noPlaque}>No plaque</span>;
-  const marks = `${line.caveat ? " †" : ""}${line.vintage ? " ‡" : ""}`;
+  // No-break spaces: a mark on its own line inside a 104px phone chip read
+  // as a stray glyph. The marks share one face (.mark) — Space Mono has no ‡,
+  // and its † pulled a latin-ext subset the site never preloads.
+  const markList = [line.caveat ? "†" : null, line.vintage ? "‡" : null].filter(Boolean);
+  const marks = markList.length ? <>{"\u00a0"}<span className={styles.mark}>{markList.join("\u00a0")}</span></> : null;
   const prog = program(line.top, line.country);
   if (!line.counted) {
     return (
       <div className={styles.cell}>
         <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
-          {plaque(line.top)}
-          {prog && <><wbr /><span className={styles.chipProgram}>{prog}</span></>}
-          {line.releases > 1 ? ` +${line.releases - 1}` : ""}
+          <span className={styles.tierWord}>
+            {plaque(line.top)}
+            {line.releases > 1 ? `\u00a0+${line.releases - 1}` : ""}
+          </span>
+          {prog && (
+            <span className={styles.chipProgram} title={prog}>
+              <span className={styles.progLong}>{prog}</span>
+              <span className={styles.progShort} aria-hidden="true">{shortProgram(prog)}</span>
+            </span>
+          )}
         </span>
-        <span className={styles.notCounted}>not counted ¹</span>
+        <span className={styles.notCounted}>not counted{"\u00a0"}<span className={styles.mark}>¹</span></span>
       </div>
     );
   }
+  // In artist mode the cell is a SUM of several releases, and the design's
+  // chip says how many rather than naming one release's tier — "2× Platinum"
+  // beside a sum of 19 records misread as the tier of the sum. Song mode
+  // keeps the tier chip: there the cell IS one plaque.
   return (
     <div className={styles.cell}>
-      <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
-        {plaque(line.top)}
-        {/* <wbr>: the marker abuts the tier word with no space, so a 104px
-            phone cell could not break "Platinum│Latin" and the chip overflowed. */}
-        {prog && <><wbr /><span className={styles.chipProgram}>{prog}</span></>}
-        {marks}
-      </span>
+      {artistMode ? (
+        <span className={`${styles.tierChip} ${styles.tNeutral}`}>
+          <span className={styles.tierWord}>
+            {line.releases} plaque{line.releases === 1 ? "" : "s"}
+            {marks}
+          </span>
+        </span>
+      ) : (
+        <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
+          <span className={styles.tierWord}>
+            {plaque(line.top)}
+            {marks}
+          </span>
+          {prog && (
+            <span className={styles.chipProgram} title={prog}>
+              <span className={styles.progLong}>{prog}</span>
+              <span className={styles.progShort} aria-hidden="true">{shortProgram(prog)}</span>
+            </span>
+          )}
+        </span>
+      )}
       <span className={`${styles.units} ${lead ? styles.unitsLead : styles.unitsBehind}`}>
         {fmt(line.units)}
       </span>
-      {/* In artist mode one chip sits beside a sum of several releases, and the
-          count is what makes "Silver 400,000" beside "Silver 960,000" legible. */}
-      {artistMode && line.releases > 1 && (
-        <span className={styles.notCounted}>{line.releases} releases</span>
-      )}
       {/* The same country's unpriced plaques, which used to vanish here. */}
       {line.notCounted && (
         <span className={styles.notCounted}>
-          +{line.notCounted.plaques} {plaque(line.notCounted.top)} not counted ¹
+          +{line.notCounted.plaques} {plaque(line.notCounted.top)} not counted{"\u00a0"}<span className={styles.mark}>¹</span>
         </span>
       )}
     </div>
@@ -382,7 +492,17 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
 }
 
 export default async function ComparePage({ searchParams }: { searchParams: Promise<SP> }) {
-  const sp = await searchParams;
+  // Called, not rendered as an element: the awaited tree is plain markup,
+  // which is what the tests (renderToStaticMarkup) and Next both want.
+  return CompareView({ sp: await searchParams, path: "/compare" });
+}
+
+/**
+ * The page itself, shared with /compare/<a>-vs-<b>: the same tree with both
+ * sides filled, a path of its own for the breadcrumb and a leaf label the
+ * slug cannot spell ("Burna Boy vs Wizkid").
+ */
+export async function CompareView({ sp, path, leaf }: { sp: SP; path: string; leaf?: string }) {
   const mode = readMode(one(sp.mode));
   const record = isRecordMode(mode);
   const format = formatOf(mode);
@@ -527,9 +647,16 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   const diff = Math.abs(totalA - totalB);
   const ratio = Math.min(totalA, totalB) > 0 ? Math.max(totalA, totalB) / Math.min(totalA, totalB) : null;
   const ngOn = c?.options.includeNigeria ?? soloNg;
+  // What the switch returns to when turned back: the pair's own default. It
+  // used to write ng=0 / feat=0 into every shared URL, and on a default-included
+  // pair the round trip left ng=1, hiding the "by default" label and the why-line.
+  const ngDefault = a && b && !refused && !record ? nigeriaDefault(a, b, includeFeatures).on : false;
   const scope = ngOn ? "27 countries · Nigeria included" : "26 countries · international";
   const trailing = (n: string) => (n.endsWith("s") ? `${n}'` : `${n}'s`);
 
+  // The ONE breadcrumb trail this page emits (the site-wide one stands down
+  // for /compare — see OWN_BREADCRUMB): Home › Certifications › Compare, and
+  // on a pair page the pair itself as the leaf.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -537,13 +664,27 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
       { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
       { "@type": "ListItem", position: 2, name: "Certifications", item: `${siteUrl}/certifications` },
       { "@type": "ListItem", position: 3, name: "Compare", item: `${siteUrl}/compare` },
+      ...(leaf ? [{ "@type": "ListItem", position: 4, name: leaf, item: `${siteUrl}${path}` }] : []),
     ],
   };
+  // A comparison of two artists is a dataset in its own right: two floors
+  // and a country-by-country table, priced at published thresholds.
+  const dataset = ready && !record && a && b
+    ? datasetJsonLd({
+        name: `${a.name} vs ${b.name} — certified units`,
+        description: pairCopy(a, b).description,
+        path,
+        keywords: [a.name, b.name, "certified units", "certifications", "Afrobeats", "head to head"],
+        variableMeasured: ["Certified units (floor) per country", "Highest certification per release per country", "Plaques counted and not counted"],
+        about: { name: `${a.name} and ${b.name}` },
+      })
+    : null;
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <BreadcrumbBar path="/compare" />
+      {dataset && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />}
+      <BreadcrumbBar path={path} leaf={leaf} />
       <main id="content" className={styles.wrap}>
         <p className={styles.kicker}>Certifications › Compare</p>
         <h1 className={styles.h1}>Certified units, compared</h1>
@@ -590,18 +731,38 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
         </div>
 
         {record && a && !songA && (
-          <SongPicker artist={a} side="a" sp={sp} query={one(sp.qa) ?? ""} mode={mode} />
+          <SongPicker artist={a} side="a" sp={sp} query={one(sp.qa) ?? ""} mode={mode} landing={songB ? "result" : b ? "pick-b" : "slot-b"} />
         )}
         {record && b && !songB && (
-          <SongPicker artist={b} side="b" sp={sp} query={one(sp.qb) ?? ""} mode={mode} />
+          <SongPicker artist={b} side="b" sp={sp} query={one(sp.qb) ?? ""} mode={mode} landing={songA ? "result" : a ? "pick-a" : "slot-a"} />
         )}
 
+        {/* Refusals come first: on a phone they were explaining themselves
+            below the fold, under controls that had nothing to switch. */}
+        {sameArtist && (
+          <p className={styles.why}>
+            <strong>That is {a!.name} on both sides.</strong> Pick a different artist for one of them.
+          </p>
+        )}
+        {sameRecording && (
+          <p className={styles.why}>
+            <strong>That is the same recording on both sides.</strong> “{songA!.title}” is one record with
+            one set of plaques; pick a different {noun(mode)} for one of them.
+          </p>
+        )}
+
+        {!refused && (
         <div className={styles.controls}>
           {mode === "artists" && (
             <span className={styles.control}>
-              <span className={styles.controlName}>Featured appearances</span>
+              {/* "Features" on the phone (the design's label); the full name
+                  stays for desktop and for assistive tech. */}
+              <span className={styles.controlName}>
+                <span className={styles.nameLong}>Featured appearances</span>
+                <span className={styles.nameShort} aria-hidden="true">Features</span>
+              </span>
               <Link
-                href={href(sp, { feat: featParam === "1" ? "0" : "1" })}
+                href={href(sp, { feat: featParam === "1" ? null : "1" })}
                 scroll={false}
                 className={`${styles.switch} ${featParam === "1" ? styles.switchOn : ""}`}
               >
@@ -613,26 +774,32 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           )}
           <span className={styles.control}>
             <span className={styles.controlName}>Nigeria</span>
-            <Link href={href(sp, { ng: ngOn ? "0" : "1" })} scroll={false} className={`${styles.switch} ${ngOn ? styles.switchOn : ""}`}>
+            <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} className={`${styles.switch} ${ngOn ? styles.switchOn : ""}`}>
               <span className={`${styles.dot} ${ngOn ? styles.dotOn : ""}`} />
               <span className="visuallyHidden">Nigeria: </span>
               {ngOn ? (ngParam ? "included" : "included · by default") : "separated"}
             </Link>
           </span>
-          <Link href="/methodology#certified-units" className={styles.howLink}>How this is counted <span aria-hidden="true">↗</span></Link>
+          <Link href="/methodology#certified-units" className={`${styles.howLink} ${styles.howLinkTop}`}>How this is counted <span aria-hidden="true">↗</span></Link>
         </div>
-
-        {sameArtist && (
-          <p className={styles.why}>
-            <strong>That is {a!.name} on both sides.</strong> Pick a different artist for one of them.
-          </p>
         )}
 
-        {sameRecording && (
-          <p className={styles.why}>
-            <strong>That is the same recording on both sides.</strong> “{songA!.title}” is one record with
-            one set of plaques; pick a different {noun(mode)} for one of them.
-          </p>
+        {/* Arrival, artist mode: the board's own head-to-heads, one tap each.
+            These are the pretty routes — the crawl path to the 120 pair pages
+            runs through here and the sitemap. */}
+        {mode === "artists" && !a && !b && (
+          <section className={styles.featured} aria-labelledby="featured-pairs">
+            <h2 id="featured-pairs" className={styles.featuredTitle}>Head to head</h2>
+            <ul className={styles.featuredList}>
+              {featuredPairs().map(([x, y]) => (
+                <li key={pairSlug(x, y)}>
+                  <Link href={`/compare/${pairSlug(x, y)}`} className={styles.featuredLink}>
+                    {x.name} <span className={styles.featuredVs}>vs</span> {y.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
         )}
 
         {c && c.nigeria.on && !ngParam && c.nigeria.reason && (
@@ -643,9 +810,9 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
 
         {(ready || partial) && (
           <>
-            <div className={styles.head}>
+            <div className={`${styles.head} ${ready ? "" : styles.headSolo}`} id="result">
               <div className={styles.headCell}>
-                <p className={styles.headName}>{nameA || a?.name} · at least</p>
+                <p className={styles.headName}><span className={styles.headNameName}>{nameA || a?.name}</span><span className={styles.headNameQual}>{"\u00a0·\u00a0at least"}</span></p>
                 <p className={`${styles.figure} ${leadA ? styles.figureLead : styles.figureBehind}`}>{fmt(totalA)}</p>
                 <p className={styles.headMeta}>
                   certified units · {ngOn ? "Nigeria included" : "international"}
@@ -658,7 +825,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
               </div>
               {ready && (
                 <div className={styles.headCell}>
-                  <p className={styles.headName}>{nameB} · at least</p>
+                  <p className={styles.headName}><span className={styles.headNameName}>{nameB}</span><span className={styles.headNameQual}>{"\u00a0·\u00a0at least"}</span></p>
                   <p className={`${styles.figure} ${leadA ? styles.figureBehind : styles.figureLead}`}>{fmt(totalB)}</p>
                   <p className={styles.headMeta}>
                     certified units · {ngOn ? "Nigeria included" : "international"}
@@ -672,7 +839,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
               )}
             </div>
 
-            <div className={styles.diffRow}>
+            <div className={`${styles.diffRow} ${ready ? "" : styles.diffRowSolo}`}>
               {ready && tie ? (
                 <p className={styles.diff}>
                   <strong>Level</strong> — both at least {fmt(totalA)} certified units
@@ -680,9 +847,9 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
                 </p>
               ) : ready ? (
                 <p className={styles.diff}>
-                  <strong>{leadA ? nameA : nameB}</strong> leads by at least {fmt(diff)} certified units
+                  <strong>{leadA ? nameA : nameB}</strong> leads by at least{"\u00a0"}{fmt(diff)} certified units
                   {ratio && ratio >= 1.05
-                    ? ` — a floor ${ratio.toFixed(1)}× the size of ${trailing(leadA ? nameB : nameA)}`
+                    ? `\u00a0— a floor ${ratio.toFixed(1)}× the size of ${trailing(leadA ? nameB : nameA)}`
                     : ""}.
                 </p>
               ) : (
@@ -708,10 +875,10 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
               than sales, which is why it is counted on its own line.
             </p>
             <div className={styles.ngFigures}>
-              <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least {fmt(sideA?.nigeria.units ?? 0)}</span>
-              <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least {fmt(sideB?.nigeria.units ?? 0)}</span>
+              <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least{"\u00a0"}{fmt(sideA?.nigeria.units ?? 0)}</span>
+              <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least{"\u00a0"}{fmt(sideB?.nigeria.units ?? 0)}</span>
             </div>
-            <Link href={href(sp, { ng: ngOn ? "0" : "1" })} scroll={false} className={styles.ngAction}>
+            <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} className={styles.ngAction}>
               {ngOn ? "Separate Nigeria" : "Include Nigeria"}
             </Link>
           </section>
@@ -726,7 +893,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
 
         {ready && rows.length > 0 && (
           <>
-            <h2 className="visuallyHidden">Country by country</h2>
+            <h2 className="visuallyHidden" id="country-table">Country by country</h2>
             <div className={styles.tableWrap}>
               {/* Explicit roles: under 760px the table is displayed as a grid,
                   and WebKit can drop table semantics from a <table> whose
@@ -761,7 +928,10 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
                   {!useSongs && showAll && c && c.collapsed.length > 0 && (
                     <tr role="row" className={styles.collapseRow}>
                       <td role="cell" colSpan={3}>
-                        <Link href={href(sp, { all: null })} scroll={false} className={styles.showAll}>Show fewer <span aria-hidden="true">↑</span></Link>
+                        {/* Not scroll={false}: collapsing the table above the reader
+                            clamped the page to its new bottom with this link under the
+                            header. The fragment lands them at the top of the folded table. */}
+                        <Link href={`${href(sp, { all: null })}#country-table`} className={styles.showAll}>Show fewer <span aria-hidden="true">↑</span></Link>
                       </td>
                     </tr>
                   )}
@@ -769,8 +939,9 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
                     <tr key={t.side} role="row" className={styles.collapseRow}>
                       <td role="cell" colSpan={3}>
                         <span className={styles.collapseText}>
-                          + {t.countries} further countries where only {t.artist} is certified · at least {fmt(t.units)}
-                          {foldedIn(t.rows) > 0 ? ` · ${foldedIn(t.rows)} plaque${foldedIn(t.rows) === 1 ? "" : "s"} not counted ¹` : ""}
+                          + {t.countries} further countries where only {t.artist} is certified ·{" "}
+                          <span className={styles.collapseUnits}>at least{"\u00a0"}{fmt(t.units)}</span>
+                          {foldedIn(t.rows) > 0 ? <> · {foldedIn(t.rows)} plaque{foldedIn(t.rows) === 1 ? "" : "s"} not counted{"\u00a0"}<span className={styles.mark}>¹</span></> : null}
                         </span>
                         {/* scroll={false}: this sits at the foot of the table, and the
                             default navigation put the reader back at the top of
@@ -787,18 +958,18 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
             <div className={styles.notes}>
               {(visibleNotCounted || foldedNotCounted > 0) && noteSource.notCounted.length > 0 && (
                 <p>
-                  <strong>¹ Not counted</strong> —{" "}
+                  <strong><span className={styles.mark}>¹</span> Not counted</strong> —{" "}
                   {noteSource.notCounted.map((n) => `${countryMeta(n.country).name} (${countryMeta(n.country).body})`).join(" · ")}.
                   Listed, never summed: these bodies publish no threshold this page can put on the same scale
                   as the rest.
                 </p>
               )}
               {visibleCaveat && noteSource.caveats.length > 0 && (
-                <p><strong>† Multiplier assumed</strong> — {noteSource.caveats.join(" ")}</p>
+                <p><strong><span className={styles.mark}>†</span> Multiplier assumed</strong> — {noteSource.caveats.join(" ")}</p>
               )}
               {visibleVintage && noteSource.vintages.length > 0 && (
                 <p>
-                  <strong>‡ This body raised its thresholds since 2015</strong> — the figure is today&apos;s level, and a
+                  <strong><span className={styles.mark}>‡</span> This body raised its thresholds since 2015</strong> — the figure is today&apos;s level, and a
                   plaque awarded before the rise may have cleared a lower bar.{" "}
                   {/* The body-by-body record lives on the methodology page (Paul, 11
                       Sep): twelve of them here were a 40-line wall on a phone. */}
@@ -835,6 +1006,14 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
             </p>
           </div>
         </div>
+
+        {/* The design's phone frame ends on this row; the controls-row copy
+            above hides under 760px. */}
+        {!refused && (
+          <Link href="/methodology#certified-units" className={`${styles.howLink} ${styles.howLinkFoot}`}>
+            How this is counted <span aria-hidden="true">↗</span>
+          </Link>
+        )}
 
         {ready && (
           <section className={styles.exit} aria-label="Next">

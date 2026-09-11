@@ -9,7 +9,7 @@ import { SEGMENT_LABELS } from "../lib/seo";
  * the JSON-LD twin in the root layout stays where it is. Labels come from the
  * same map the structured data uses, so the two can never disagree.
  */
-export default function BreadcrumbBar({ path }: { path: string }) {
+export default function BreadcrumbBar({ path, leaf }: { path: string; leaf?: string }) {
   const segments = path.split("/").filter(Boolean);
   if (segments.length === 0) return null;
 
@@ -20,6 +20,9 @@ export default function BreadcrumbBar({ path }: { path: string }) {
     crumbs.push({ label: SEGMENT_LABELS[seg] ?? seg, href: acc });
   }
   const last = crumbs.pop()!;
+  // A leaf the slug cannot spell ("Burna Boy vs Wizkid"); the page that knows
+  // it passes it in, and its JSON-LD twin says the same.
+  if (leaf) last.label = leaf;
 
   return (
     <nav aria-label="Breadcrumb" className={styles.bar}>

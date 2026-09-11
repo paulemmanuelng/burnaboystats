@@ -1,0 +1,602 @@
+[
+  {
+    "source": "/compare/wizkid-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-wizkid",
+    "permanent": true
+  },
+  {
+    "source": "/compare/seyi-vibez-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-seyi-vibez",
+    "permanent": true
+  },
+  {
+    "source": "/compare/davido-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-davido",
+    "permanent": true
+  },
+  {
+    "source": "/compare/rema-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-rema",
+    "permanent": true
+  },
+  {
+    "source": "/compare/asake-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-asake",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tems-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-tems",
+    "permanent": true
+  },
+  {
+    "source": "/compare/bnxn-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-bnxn",
+    "permanent": true
+  },
+  {
+    "source": "/compare/omah-lay-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-omah-lay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tyla-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-tyla",
+    "permanent": true
+  },
+  {
+    "source": "/compare/olamide-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-olamide",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-burna-boy",
+    "destination": "/compare/burna-boy-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/seyi-vibez-vs-wizkid",
+    "destination": "/compare/wizkid-vs-seyi-vibez",
+    "permanent": true
+  },
+  {
+    "source": "/compare/davido-vs-wizkid",
+    "destination": "/compare/wizkid-vs-davido",
+    "permanent": true
+  },
+  {
+    "source": "/compare/rema-vs-wizkid",
+    "destination": "/compare/wizkid-vs-rema",
+    "permanent": true
+  },
+  {
+    "source": "/compare/asake-vs-wizkid",
+    "destination": "/compare/wizkid-vs-asake",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tems-vs-wizkid",
+    "destination": "/compare/wizkid-vs-tems",
+    "permanent": true
+  },
+  {
+    "source": "/compare/bnxn-vs-wizkid",
+    "destination": "/compare/wizkid-vs-bnxn",
+    "permanent": true
+  },
+  {
+    "source": "/compare/omah-lay-vs-wizkid",
+    "destination": "/compare/wizkid-vs-omah-lay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tyla-vs-wizkid",
+    "destination": "/compare/wizkid-vs-tyla",
+    "permanent": true
+  },
+  {
+    "source": "/compare/olamide-vs-wizkid",
+    "destination": "/compare/wizkid-vs-olamide",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-wizkid",
+    "destination": "/compare/wizkid-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-wizkid",
+    "destination": "/compare/wizkid-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-wizkid",
+    "destination": "/compare/wizkid-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-wizkid",
+    "destination": "/compare/wizkid-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-wizkid",
+    "destination": "/compare/wizkid-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/davido-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-davido",
+    "permanent": true
+  },
+  {
+    "source": "/compare/rema-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-rema",
+    "permanent": true
+  },
+  {
+    "source": "/compare/asake-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-asake",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tems-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-tems",
+    "permanent": true
+  },
+  {
+    "source": "/compare/bnxn-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-bnxn",
+    "permanent": true
+  },
+  {
+    "source": "/compare/omah-lay-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-omah-lay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tyla-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-tyla",
+    "permanent": true
+  },
+  {
+    "source": "/compare/olamide-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-olamide",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-seyi-vibez",
+    "destination": "/compare/seyi-vibez-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/rema-vs-davido",
+    "destination": "/compare/davido-vs-rema",
+    "permanent": true
+  },
+  {
+    "source": "/compare/asake-vs-davido",
+    "destination": "/compare/davido-vs-asake",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tems-vs-davido",
+    "destination": "/compare/davido-vs-tems",
+    "permanent": true
+  },
+  {
+    "source": "/compare/bnxn-vs-davido",
+    "destination": "/compare/davido-vs-bnxn",
+    "permanent": true
+  },
+  {
+    "source": "/compare/omah-lay-vs-davido",
+    "destination": "/compare/davido-vs-omah-lay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tyla-vs-davido",
+    "destination": "/compare/davido-vs-tyla",
+    "permanent": true
+  },
+  {
+    "source": "/compare/olamide-vs-davido",
+    "destination": "/compare/davido-vs-olamide",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-davido",
+    "destination": "/compare/davido-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-davido",
+    "destination": "/compare/davido-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-davido",
+    "destination": "/compare/davido-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-davido",
+    "destination": "/compare/davido-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-davido",
+    "destination": "/compare/davido-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/asake-vs-rema",
+    "destination": "/compare/rema-vs-asake",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tems-vs-rema",
+    "destination": "/compare/rema-vs-tems",
+    "permanent": true
+  },
+  {
+    "source": "/compare/bnxn-vs-rema",
+    "destination": "/compare/rema-vs-bnxn",
+    "permanent": true
+  },
+  {
+    "source": "/compare/omah-lay-vs-rema",
+    "destination": "/compare/rema-vs-omah-lay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tyla-vs-rema",
+    "destination": "/compare/rema-vs-tyla",
+    "permanent": true
+  },
+  {
+    "source": "/compare/olamide-vs-rema",
+    "destination": "/compare/rema-vs-olamide",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-rema",
+    "destination": "/compare/rema-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-rema",
+    "destination": "/compare/rema-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-rema",
+    "destination": "/compare/rema-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-rema",
+    "destination": "/compare/rema-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-rema",
+    "destination": "/compare/rema-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tems-vs-asake",
+    "destination": "/compare/asake-vs-tems",
+    "permanent": true
+  },
+  {
+    "source": "/compare/bnxn-vs-asake",
+    "destination": "/compare/asake-vs-bnxn",
+    "permanent": true
+  },
+  {
+    "source": "/compare/omah-lay-vs-asake",
+    "destination": "/compare/asake-vs-omah-lay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tyla-vs-asake",
+    "destination": "/compare/asake-vs-tyla",
+    "permanent": true
+  },
+  {
+    "source": "/compare/olamide-vs-asake",
+    "destination": "/compare/asake-vs-olamide",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-asake",
+    "destination": "/compare/asake-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-asake",
+    "destination": "/compare/asake-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-asake",
+    "destination": "/compare/asake-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-asake",
+    "destination": "/compare/asake-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-asake",
+    "destination": "/compare/asake-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/bnxn-vs-tems",
+    "destination": "/compare/tems-vs-bnxn",
+    "permanent": true
+  },
+  {
+    "source": "/compare/omah-lay-vs-tems",
+    "destination": "/compare/tems-vs-omah-lay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tyla-vs-tems",
+    "destination": "/compare/tems-vs-tyla",
+    "permanent": true
+  },
+  {
+    "source": "/compare/olamide-vs-tems",
+    "destination": "/compare/tems-vs-olamide",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-tems",
+    "destination": "/compare/tems-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-tems",
+    "destination": "/compare/tems-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-tems",
+    "destination": "/compare/tems-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-tems",
+    "destination": "/compare/tems-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-tems",
+    "destination": "/compare/tems-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/omah-lay-vs-bnxn",
+    "destination": "/compare/bnxn-vs-omah-lay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tyla-vs-bnxn",
+    "destination": "/compare/bnxn-vs-tyla",
+    "permanent": true
+  },
+  {
+    "source": "/compare/olamide-vs-bnxn",
+    "destination": "/compare/bnxn-vs-olamide",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-bnxn",
+    "destination": "/compare/bnxn-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-bnxn",
+    "destination": "/compare/bnxn-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-bnxn",
+    "destination": "/compare/bnxn-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-bnxn",
+    "destination": "/compare/bnxn-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-bnxn",
+    "destination": "/compare/bnxn-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/tyla-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-tyla",
+    "permanent": true
+  },
+  {
+    "source": "/compare/olamide-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-olamide",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-omah-lay",
+    "destination": "/compare/omah-lay-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/olamide-vs-tyla",
+    "destination": "/compare/tyla-vs-olamide",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-tyla",
+    "destination": "/compare/tyla-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-tyla",
+    "destination": "/compare/tyla-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-tyla",
+    "destination": "/compare/tyla-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-tyla",
+    "destination": "/compare/tyla-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-tyla",
+    "destination": "/compare/tyla-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ayra-starr-vs-olamide",
+    "destination": "/compare/olamide-vs-ayra-starr",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-olamide",
+    "destination": "/compare/olamide-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-olamide",
+    "destination": "/compare/olamide-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-olamide",
+    "destination": "/compare/olamide-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-olamide",
+    "destination": "/compare/olamide-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/fireboy-dml-vs-ayra-starr",
+    "destination": "/compare/ayra-starr-vs-fireboy-dml",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-ayra-starr",
+    "destination": "/compare/ayra-starr-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-ayra-starr",
+    "destination": "/compare/ayra-starr-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-ayra-starr",
+    "destination": "/compare/ayra-starr-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/ckay-vs-fireboy-dml",
+    "destination": "/compare/fireboy-dml-vs-ckay",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-fireboy-dml",
+    "destination": "/compare/fireboy-dml-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-fireboy-dml",
+    "destination": "/compare/fireboy-dml-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/black-sherif-vs-ckay",
+    "destination": "/compare/ckay-vs-black-sherif",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-ckay",
+    "destination": "/compare/ckay-vs-victony",
+    "permanent": true
+  },
+  {
+    "source": "/compare/victony-vs-black-sherif",
+    "destination": "/compare/black-sherif-vs-victony",
+    "permanent": true
+  }
+]
