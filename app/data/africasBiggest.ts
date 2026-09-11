@@ -192,14 +192,18 @@ export const statBoxes: LeaderboardBox[] = [
         // write into the 2025 historical row. Keep a marker on every row the bot
         // writes, and keep them unique. tests/watchedMetrics.test.ts enforces it.
         entries: [
-          /* live:streams-2026-tems */ { name: "Tems", value: "1.775B" },
-          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.766B" },
-          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.766B" },
+          /* live:streams-2026-tems */ { name: "Tems", value: "1.781B" },
+          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.774B" },
+          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.772B" },
           { name: "Asake", value: "1.335B" },
           { name: "Tyla", value: "1.138B" },
         ],
         inProgress: true,
-        note: "Five African artists have passed a billion Spotify streams in 2026 so far — and three are past a billion and a half, with Burna Boy third behind Tems and Wizkid, the three of them separated by about {{spread2026}} million. All five totals are read together so the gaps stay comparable; the top three move most days.",
+        // {{order2026}} and {{spread2026}} are filled from the rows below at
+        // load, so the sentence follows the numbers when the order changes —
+        // "Burna Boy third behind Tems and Wizkid" was typed, and stayed typed
+        // the day he passed Wizkid.
+        note: "Five African artists have passed a billion Spotify streams in 2026 so far — and three are past a billion and a half, {{order2026}}, the three of them separated by about {{spread2026}} million. All five totals are read together so the gaps stay comparable; the top three move most days.",
       },
       {
         label: "2025",
@@ -456,9 +460,17 @@ export const statBoxes: LeaderboardBox[] = [
  */
 for (const box of statBoxes) {
   for (const row of box.rows ?? []) {
-    if (!row.note || !row.note.includes("{{spread2026}}")) continue;
+    if (!row.note || !/\{\{(spread|order)2026\}\}/.test(row.note)) continue;
     const m = row.entries.map((e) => parseFloat(e.value ?? "")).filter((n) => !Number.isNaN(n));
     const spread = Math.round((Math.max(...m.slice(0, 3)) - Math.min(...m.slice(0, 3))) * 1000);
     row.note = row.note.replace("{{spread2026}}", String(spread));
+    // The order sentence follows the rows, which the bot keeps sorted by value.
+    const [first, second, third] = row.entries.slice(0, 3).map((e) => e.name);
+    const order = third === "Burna Boy"
+      ? `with Burna Boy third behind ${first} and ${second}`
+      : second === "Burna Boy"
+        ? `with Burna Boy second behind ${first} and ahead of ${third}`
+        : `with Burna Boy ahead of ${second} and ${third}`;
+    row.note = row.note.replace("{{order2026}}", order);
   }
 }
