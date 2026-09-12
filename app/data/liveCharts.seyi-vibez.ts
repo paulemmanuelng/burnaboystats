@@ -380,8 +380,8 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 21,
-            "movement": 16
+            "position": 34,
+            "movement": -13
           },
           {
             "country": "GH",
@@ -485,8 +485,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
-            "movement": 154
+            "position": 6,
+            "movement": 170
           }
         ]
       }
@@ -516,8 +516,8 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 40,
-            "movement": -9
+            "position": 43,
+            "movement": -3
           },
           {
             "country": "NE",
@@ -555,8 +555,8 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 88,
-            "movement": -30
+            "position": 87,
+            "movement": 1
           },
           {
             "country": "SR",
@@ -793,7 +793,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 79,
+            "position": 115,
             "movement": null,
             "status": "new"
           }
@@ -850,8 +850,8 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 78,
-            "movement": 73
+            "position": 64,
+            "movement": 14
           }
         ]
       }
@@ -875,8 +875,8 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 92,
-            "movement": -15
+            "position": 111,
+            "movement": -19
           }
         ]
       }
@@ -900,39 +900,14 @@
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 54,
-            "movement": 12
+            "position": 40,
+            "movement": 14
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4f0e7e1508278c9c558f8e0a6ea0de3b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Nahamciaga - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 119,
-            "movement": -5
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 200,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album"
   },
   {
     "title": "Doha",
@@ -1049,26 +1024,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/aa8d9ee07662959c9f52b4e9282a0f54/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Gang",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 82,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Lagos",
     "platforms": [
       {
@@ -1107,6 +1062,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Gang",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 118,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "NSNV",
     "platforms": [
       {
@@ -1135,7 +1110,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 170,
+            "position": 171,
             "movement": -74
           }
         ]
@@ -1143,6 +1118,24 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Nahamciaga - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 119,
+            "movement": -5
+          }
+        ]
+      }
+    ],
+    "kind": "album"
   },
   {
     "title": "Vibez Incorporation Mixtape, Vol. 1",

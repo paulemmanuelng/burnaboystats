@@ -520,8 +520,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 92,
-            "movement": -34
+            "position": 98,
+            "movement": -40
           }
         ]
       }
@@ -637,8 +637,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 69,
-            "movement": -26
+            "position": 72,
+            "movement": -29
           }
         ]
       }
