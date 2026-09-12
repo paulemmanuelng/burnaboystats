@@ -20,7 +20,7 @@ import {
   extractKworbYouTubeVideo,
   extractKworbYouTubeTotal,
   extractKworbSongStreams,
-  extractKworbArtistDaily,
+  extractKworbArtistPage,
   evaluateMetric,
   isActionable,
   certWatchStatus,
@@ -57,7 +57,10 @@ const extractors = {
   kworbYouTubeVideo: (html, metric) => extractKworbYouTubeVideo(html, metric.match),
   kworbYouTubeTotal: (html) => extractKworbYouTubeTotal(html),
   kworbSongStreams: (html, metric) => extractKworbSongStreams(html, metric.match),
-  kworbArtistDaily: (html, metric) => extractKworbArtistDaily(html, metric.match),
+  // The cumulative total on an artist's own page. A `group` metric reads it
+  // dated (extractKworbArtistPage) and is aligned with its peers; registered
+  // here too so every extractor a metric can name is implemented in one list.
+  kworbArtistPage: (html) => extractKworbArtistPage(html)?.total ?? NaN,
 };
 
 async function fetchText(url) {

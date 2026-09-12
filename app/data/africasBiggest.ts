@@ -137,6 +137,9 @@ export interface RankRow {
   label?: string; // usually a year ("year" layout)
   entries: RankEntry[];
   inProgress?: boolean;
+  /** ISO date the row's live figures are read at — the source's own stamp,
+   *  written by the stats bot beside the values it belongs to. */
+  asOf?: string;
   note?: string;
 }
 
@@ -201,19 +204,29 @@ export const statBoxes: LeaderboardBox[] = [
         // the other boards' styling would have silently redirected the daily
         // write into the 2025 historical row. Keep a marker on every row the bot
         // writes, and keep them unique. tests/watchedMetrics.test.ts enforces it.
+        //
+        // All five are live, and all five are one reading: a chart tracker's
+        // published count carried forward with kworb's per-artist dailies under
+        // the date each page is stamped with, through the day in `asOf` — the
+        // newest day every one of the five ledgers covers. Until 12 Sep 2026 the
+        // top three were summed once per calendar day of the bot's own clock,
+        // which counted three days twice and missed three; the bottom two were
+        // typed and never moved. The bot keeps the rows sorted.
         entries: [
-          /* live:streams-2026-tems */ { name: "Tems", value: "1.781B" },
-          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.774B" },
-          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.772B" },
-          { name: "Asake", value: "1.335B" },
-          { name: "Tyla", value: "1.138B" },
+          /* live:streams-2026-tems */ { name: "Tems", value: "1.770B" },
+          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.764B" },
+          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.756B" },
+          /* live:streams-2026-asake */ { name: "Asake", value: "1.420B" },
+          /* live:streams-2026-tyla */ { name: "Tyla", value: "1.185B" },
         ],
+        /* live:streams-2026-asof */ asOf: "2026-09-09",
         inProgress: true,
-        // {{order2026}} and {{spread2026}} are filled from the rows below at
-        // load, so the sentence follows the numbers when the order changes —
-        // "Burna Boy third behind Tems and Wizkid" was typed, and stayed typed
-        // the day he passed Wizkid.
-        note: "Five African artists have passed a billion Spotify streams in 2026 so far — and three are past a billion and a half, {{order2026}}, the three of them separated by about {{spread2026}} million. All five totals are read together so the gaps stay comparable; the top three move most days.",
+        // {{order2026}}, {{spread2026}} and {{asOf2026}} are filled from the row
+        // itself at load, so the sentence follows the numbers when the order
+        // changes — "Burna Boy third behind Tems and Wizkid" was typed, and
+        // stayed typed the day the board (wrongly, as it turned out) had him
+        // pass Wizkid.
+        note: "Five African artists have passed a billion Spotify streams in 2026 so far — and three are past a billion and a half, {{order2026}}, the three of them separated by about {{spread2026}} million. All five totals are read together, as of {{asOf2026}}, so the gaps stay comparable; they move together, never one without the others.",
       },
       {
         label: "2025",
@@ -258,7 +271,7 @@ export const statBoxes: LeaderboardBox[] = [
       },
     ],
     source:
-      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. Totals are shown for 2025, and for 2026 auto-accumulated daily for the top three (each day's streams added to a running total, checkpointed against a chart tracker's cumulative count) — not an official Spotify report and not projected forward from a daily average. 2026 is still running, so both the totals and the order will change.",
+      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. The 2026 row is the five artists' running totals as read together on one day, stated in the note: a chart tracker's published count, carried forward day by day from kworb's per-artist daily streams under the date each page is stamped with — not an official Spotify report and not projected forward from a daily average. 2026 is still running, so both the totals and the order will change.",
   },
   {
     // Verified against kworb's PkListeners column, which agrees to the digit on
@@ -489,9 +502,17 @@ export const statBoxes: LeaderboardBox[] = [
  * silently redirect the daily write into the 2025 historical row. The note
  * carries a token instead, and nothing about the array shape changes.
  */
+const asOfLabel = (iso: string): string => {
+  const [y, m, d] = iso.split("-").map(Number);
+  return `${d} ${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][m - 1]} ${y}`;
+};
+
 for (const box of statBoxes) {
   for (const row of box.rows ?? []) {
-    if (!row.note || !/\{\{(spread|order)2026\}\}/.test(row.note)) continue;
+    if (!row.note || !/\{\{(spread|order|asOf)2026\}\}/.test(row.note)) continue;
+    // The date the bot last wrote beside the values; the note never carries a
+    // typed one, because a typed date is stale the morning after it is typed.
+    row.note = row.note.replace("{{asOf2026}}", row.asOf ? asOfLabel(row.asOf) : "the latest reading");
     const m = row.entries.map((e) => parseFloat(e.value ?? "")).filter((n) => !Number.isNaN(n));
     const spread = Math.round((Math.max(...m.slice(0, 3)) - Math.min(...m.slice(0, 3))) * 1000);
     row.note = row.note.replace("{{spread2026}}", String(spread));

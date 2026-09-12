@@ -200,59 +200,114 @@ describe("appendTrendPoint", () => {
   });
 });
 
-// ── The 2026 running-totals accumulator (streams-2026-*) ──────────────────────
-// kworb's all-artists table publishes values in MILLIONS with decimals, and
-// the artist link is wrapped in a div — both bit the first extractor draft.
- 
+// ── The 2026 running totals (streams-2026-*) ──────────────────────────────
+// A ledger: a checkpoint plus each later day's streams under the date kworb's
+// page is stamped with, published on the newest day every member of the group
+// covers — never the change in the cumulative total, never a daily keyed by
+// the bot's own clock. The fixture is the literal shape of Burna Boy's page on
+// 12 Sep 2026, stamp and totals table included.
+
 // @ts-expect-error — plain ESM helper module
-import { extractKworbArtistDaily } from "../scripts/stats-lib.mjs";
+import { extractKworbArtistPage, coveredThrough, ledgerGaps, ledgerValue, alignLedgers, rollLedger, nextDay } from "../scripts/stats-lib.mjs";
 
-const KWORB_ARTISTS_ROW = `<tr>
-<td class="text"><div><a href="/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html">Burna Boy</a></div></td>
-<td>10,596.5</td>
-<td>9.267</td>
-<td class="smaller">6,097.6</td></tr>`;
+const KWORB_ARTIST_PAGE = `</span><br><br>Last updated: 2026/09/11<br><br>
+<table style="width: 580px;">
+<thead><tr>
+<th class="text"></th>
+<th>Total</th>
+<th>As lead</th>
+<th>Solo</th>
+<th>As feature (*)</th>
+</tr></thead><tbody>
+<tr><td class="text">Streams</td><td>10,859,476,411</td><td class="smaller">6,209,425,624</td><td class="smaller">4,530,756,464</td><td class="smaller">4,650,050,787</td></tr>
+<tr><td class="text">Daily</td><td>7,828,573</td><td class="smaller">3,106,719</td><td class="smaller">2,371,565</td><td class="smaller">4,721,854</td></tr>
+<tr><td class="text">Tracks</td><td>291</td><td class="smaller">120</td></tr>`;
 
-describe("extractKworbArtistDaily", () => {
-  it("reads the daily column and converts from millions", () => {
-    expect(extractKworbArtistDaily(KWORB_ARTISTS_ROW, "Burna Boy")).toBe(9267000);
+describe("extractKworbArtistPage", () => {
+  it("reads the page's stamp, its total and the day's streams together", () => {
+    expect(extractKworbArtistPage(KWORB_ARTIST_PAGE)).toEqual({
+      date: "2026-09-11",
+      total: 10_859_476_411,
+      daily: 7_828_573,
+    });
   });
-  it("returns NaN for an artist not in the table", () => {
-    expect(Number.isNaN(extractKworbArtistDaily(KWORB_ARTISTS_ROW, "Wizkid"))).toBe(true);
+  it("takes the Daily row's total column, not a lead/solo/feature split", () => {
+    expect(extractKworbArtistPage(KWORB_ARTIST_PAGE)!.daily).not.toBe(4_721_854);
+  });
+  it("is null without a stamp — a daily without its date is not a reading", () => {
+    expect(extractKworbArtistPage(KWORB_ARTIST_PAGE.replace(/Last updated: [^<]+/, ""))).toBeNull();
   });
 });
 
-describe("accumulate metrics", () => {
-  const base = { id: "x", kind: "accumulate", baseline: 1_517_360_000 };
-  it("adds the daily to the running total on a new day", () => {
-    const r = evaluateMetric({ ...base, lastSeenAt: "2026-08-12" }, 9_267_000);
-    expect(r.status).toBe("accumulate");
-    expect(r.live).toBe(1_526_627_000);
-    expect(isActionable(r.status)).toBe(true);
+describe("a ledger is a checkpoint plus dated dailies, and a hole is a hole", () => {
+  const checkpoint = { date: "2026-09-09", value: 1_756_000_000 };
+  it("covers forward from the checkpoint only while every day is present", () => {
+    expect(coveredThrough(checkpoint, { "2026-09-10": 7_714_000, "2026-09-11": 7_828_573 })).toBe("2026-09-11");
+    expect(coveredThrough(checkpoint, { "2026-09-11": 7_828_573 }), "09/10 missing: cannot pass it").toBe("2026-09-09");
+    expect(coveredThrough(checkpoint, {})).toBe("2026-09-09");
   });
-  it("adds only once per day — the live workflow runs hourly", () => {
-    const today = new Date().toISOString().slice(0, 10);
-    const r = evaluateMetric({ ...base, lastAccumulatedAt: today }, 9_267_000);
-    expect(r.status).toBe("ok");
-    expect(r.live).toBe(base.baseline); // unchanged
+  it("names the missing days below the newest reading", () => {
+    expect(ledgerGaps(checkpoint, { "2026-09-10": 1, "2026-09-13": 1 })).toEqual(["2026-09-11", "2026-09-12"]);
+    expect(ledgerGaps(checkpoint, { "2026-09-10": 1, "2026-09-11": 1 })).toEqual([]);
   });
-  it("retries a day the source was SEEN on but the increment never landed", () => {
-    // This test previously passed `lastSeenAt: today` and expected the day to
-    // be skipped — encoding the bug rather than the requirement. lastSeenAt is
-    // stamped on every run that merely READ a moved value, including runs where
-    // sanity rejected the increment or the anchored edit failed and the
-    // baseline was never bumped. Keying the guard off it marked such a day as
-    // already counted, so a day's streams vanished from a running total for
-    // good. Only lastAccumulatedAt, written beside the baseline bump, may close
-    // a day.
-    const today = new Date().toISOString().slice(0, 10);
-    const r = evaluateMetric({ ...base, lastSeenAt: today }, 9_267_000);
-    expect(r.status, "a seen-but-unapplied day must stay retryable").toBe("accumulate");
-    expect(r.live).toBe(base.baseline + 9_267_000);
+  it("sums the dailies through a covered day and refuses one it does not cover", () => {
+    const readings = { "2026-09-10": 7_714_000, "2026-09-11": 7_828_573 };
+    expect(ledgerValue(checkpoint, readings, "2026-09-09")).toBe(1_756_000_000);
+    expect(ledgerValue(checkpoint, readings, "2026-09-10")).toBe(1_763_714_000);
+    expect(ledgerValue(checkpoint, readings, "2026-09-11")).toBe(1_771_542_573);
+    expect(ledgerValue(checkpoint, readings, "2026-09-12")).toBeNull();
+    expect(ledgerValue(checkpoint, readings, "2026-09-08")).toBeNull();
+  });
+  it("reading the same page twice is the same day once — a date is a key, not an increment", () => {
+    // The whole reason the run-date design went: 27 Aug, 29 Aug and 2 Sep
+    // 2026 were each added twice. Recording under the page's date cannot.
+    const readings: Record<string, number> = {};
+    for (const _ of [1, 2, 3]) readings["2026-09-10"] ??= 7_714_000;
+    expect(ledgerValue(checkpoint, readings, "2026-09-10")).toBe(1_763_714_000);
+  });
+  it("rolls forward: the published day becomes the checkpoint and its dailies are dropped", () => {
+    const rolled = rollLedger(checkpoint, { "2026-09-10": 7_714_000, "2026-09-11": 7_828_573 }, "2026-09-10", 1_763_714_000);
+    expect(rolled).toEqual({ checkpoint: { date: "2026-09-10", value: 1_763_714_000 }, readings: { "2026-09-11": 7_828_573 } });
+    expect(ledgerValue(rolled.checkpoint, rolled.readings, "2026-09-11")).toBe(1_771_542_573);
+  });
+  it("nextDay walks calendar days, month ends included", () => {
+    expect(nextDay("2026-09-30")).toBe("2026-10-01");
+    expect(nextDay("2026-12-31")).toBe("2027-01-01");
+  });
+});
+
+describe("alignLedgers — a group publishes on the newest day every member covers", () => {
+  // 12 Sep 2026 as read: four pages stamped 09/11, Tems' still 09/10. The
+  // group holds at 09/10 for everyone rather than compare her yesterday with
+  // their today.
+  const members = [
+    { id: "burna", checkpoint: { date: "2026-09-09", value: 1_756_000_000 }, readings: { "2026-09-10": 7_714_000, "2026-09-11": 7_828_573 } },
+    { id: "wizkid", checkpoint: { date: "2026-09-09", value: 1_764_000_000 }, readings: { "2026-09-10": 6_046_000, "2026-09-11": 6_229_175 } },
+    { id: "tems", checkpoint: { date: "2026-09-09", value: 1_770_000_000 }, readings: { "2026-09-10": 5_357_158 } },
+  ];
+  it("holds the whole group on the lagging member's day", () => {
+    expect(alignLedgers(members)).toEqual({
+      date: "2026-09-10",
+      values: { burna: 1_763_714_000, wizkid: 1_770_046_000, tems: 1_775_357_158 },
+    });
+  });
+  it("advances the moment the lagging page catches up", () => {
+    const caughtUp = members.map((m) =>
+      m.id === "tems" ? { ...m, readings: { ...m.readings, "2026-09-11": 5_300_000 } } : m,
+    );
+    expect(alignLedgers(caughtUp)!.date).toBe("2026-09-11");
+  });
+  it("a member with a hole holds the group at the day before it, however far the others have read", () => {
+    const holed = members.map((m) => (m.id === "tems" ? { ...m, readings: { "2026-09-11": 5_300_000 } } : m));
+    expect(alignLedgers(holed)!.date).toBe("2026-09-09");
+  });
+  it("is null when a member re-checkpointed past the day the others reach", () => {
+    const ahead = members.map((m) => (m.id === "tems" ? { ...m, checkpoint: { date: "2026-09-12", value: 1_786_000_000 }, readings: {} } : m));
+    expect(alignLedgers(ahead)).toBeNull();
   });
   it("formats the total the way the 2026 board displays it", () => {
-    expect(formatStat(1_526_627_000, "B3")).toBe("1.527B");
-    expect(formatStat(1_620_560_000, "B3")).toBe("1.621B");
+    expect(formatStat(1_763_714_000, "B3")).toBe("1.764B");
+    expect(formatStat(1_775_357_158, "B3")).toBe("1.775B");
   });
 });
 

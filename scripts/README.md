@@ -86,10 +86,35 @@ metric config are kept in the code, ready to re-enable if that access returns.
 - `rank` — flags when a chart/leaderboard rank moves by ≥ `threshold` places
   (e.g. global monthly-listeners rank moved 5+ spots). Lower is better.
 
+Two modifiers sit on top of a kind:
+
+- `offset` — added to whatever the source reports, for a source that counts a
+  known, measured amount less (or more) than the published figure. The
+  baseline, the sanity gate and the written display all live in corrected
+  space, so an offset can only change together with its baseline. The raw
+  value is watched separately (`lastRawValue`, `rawJumpAlert`): a cumulative
+  that FALLS, or jumps far beyond a day's growth, means the source's counted
+  set changed and the offset is wrong by that much until re-measured.
+- `group` — a set of LEDGERS published together. Each member holds a
+  `checkpoint` (its total through a date) and `readings` (each later day's
+  streams under the date its source page is stamped with, read by
+  `extractor: kworbArtistPage`); its total through a later day is the
+  checkpoint plus every daily to that day, and exists only where no day is
+  missing. The group publishes on the newest day every member covers, writes
+  that day beside the values (`field: "asOf"`), rolls each checkpoint forward,
+  and writes all of its rows or none (`hold` keeps recording without
+  publishing). This is the 2026 running-streams board. A running total is
+  never summed by the bot's own clock — that counted three days twice and
+  missed three — and never taken as the change in a cumulative, which absorbs
+  catalogue the source had not tracked. A missing day is reported, never
+  skipped over; only a hand can fill it or move the checkpoint past it.
+
 ## What's watched today
 
 Spotify monthly listeners, peak monthly listeners, global monthly-listeners
-rank, and total cumulative streams — all from kworb.
+rank, total cumulative streams, per-song Spotify and YouTube counts, and the
+five 2026 running totals on the Africa's Biggest board — all from kworb and
+YouTube.
 
 ## Run it locally
 

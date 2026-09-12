@@ -1,56 +1,98 @@
 import { describe, it, expect } from "vitest";
 // @ts-expect-error — plain .mjs helper, no types
-import { withinSanity, evaluateMetric } from "../scripts/stats-lib.mjs";
+import { withinSanity, evaluateMetric, alignLedgers, ledgerValue } from "../scripts/stats-lib.mjs";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const CONFIG = JSON.parse(readFileSync(join(process.cwd(), "scripts", "watched-metrics.json"), "utf8"));
 const today = new Date().toISOString().slice(0, 10);
 
-describe("accumulate metrics only mark a day counted once it has LANDED", () => {
-  // The running 2026 stream totals are built by adding each day's figure to a
-  // baseline, once per day. The guard used to key off `lastSeenAt`, which is
-  // stamped on every run that merely READ a moved value — including runs where
-  // sanity rejected the increment or the anchored edit failed and the baseline
-  // was never bumped. Those days were marked counted and dropped for good.
-  const metric = { id: "t", kind: "accumulate", baseline: 1_000_000_000 };
+describe("a running-year total is a ledger of dated dailies, never a run-date sum and never a cumulative", () => {
+  // The 2026 stream totals were built by adding kworb's daily column to a
+  // baseline once per calendar day OF THE BOT'S CLOCK. That gate could not
+  // tell "the same page read twice" from "a new day": 27 Aug, 29 Aug and
+  // 2 Sep 2026 were each added twice and three days were never added. And a
+  // cumulative is no substitute — kworb absorbs catalogue it had not tracked
+  // (Tems' total rose 138M in a fortnight her days summed to 74M). The design
+  // is gone, not patched: each 2026 row is a checkpoint plus each later day's
+  // streams under the date kworb's page is stamped with.
+  const group = CONFIG.metrics.filter((m: { id: string }) => m.id.startsWith("streams-2026-"));
 
-  it("adds the day's figure when the day has not been accumulated", () => {
-    const r = evaluateMetric({ ...metric }, 9_200_000);
-    expect(r.status).toBe("accumulate");
-    expect(r.live).toBe(1_009_200_000);
-    expect(r.added).toBe(9_200_000);
-  });
-
-  it("does NOT re-add once the increment actually landed today", () => {
-    const r = evaluateMetric({ ...metric, lastAccumulatedAt: today }, 9_200_000);
-    expect(r.status).toBe("ok");
-    expect(r.live).toBe(metric.baseline);
-  });
-
-  it("still retries a day the source was merely SEEN but never applied", () => {
-    // The regression: lastSeenAt is today, but nothing was written. The day
-    // must stay open, or the increment is lost.
-    const r = evaluateMetric({ ...metric, lastSeenAt: today }, 9_200_000);
-    expect(r.status, "a seen-but-unapplied day must remain retryable").toBe("accumulate");
-    expect(r.live).toBe(1_009_200_000);
-  });
-
-  it("the shipped guard reads lastAccumulatedAt and nothing else", () => {
-    // A source-level check, because the failure mode is a one-word regression:
-    // swapping this field back to lastSeenAt reintroduces silent day-loss and
-    // every value-level test above would still pass on the mocked metrics.
+  it("no metric is of the retired accumulate kind, and the code has no such branch", () => {
+    for (const m of CONFIG.metrics) expect(m.kind, m.id).not.toBe("accumulate");
     const lib = readFileSync(join(process.cwd(), "scripts", "stats-lib.mjs"), "utf8");
-    const guard = lib.match(/if \(metric\.(\w+) === today\)/);
-    expect(guard, "the once-per-day guard was renamed or removed").not.toBeNull();
-    expect(guard![1]).toBe("lastAccumulatedAt");
+    expect(lib.includes('kind === "accumulate"'), "the accumulate branch is back").toBe(false);
+    expect(lib.includes("lastAccumulatedAt"), "a once-per-day gate is back").toBe(false);
+  });
 
-    // And only a real write may stamp it.
+  it("every 2026 row is one group of ledgers — all five, each from its own dated page", () => {
+    expect(group.map((m: { id: string }) => m.id).sort()).toEqual([
+      "streams-2026-asake", "streams-2026-burna", "streams-2026-tems", "streams-2026-tyla", "streams-2026-wizkid",
+    ]);
+    for (const m of group) {
+      expect(m.group, m.id).toBe("streams-2026");
+      expect(m.extractor, m.id).toBe("kworbArtistPage");
+      expect(m.sourceUrl, `${m.id} must read the artist's own page, whose stamp dates the daily`).toMatch(
+        /^https:\/\/kworb\.net\/spotify\/artist\/[A-Za-z0-9]+_songs\.html$/,
+      );
+      expect(m.kind, `${m.id}: a year-to-date total only moves up`).toBe("peak");
+      expect(m.checkpoint?.date, m.id).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(typeof m.checkpoint?.value, m.id).toBe("number");
+      expect(m.anchor?.source, `${m.id}: the checkpoint chain starts at a named tracker post`).toMatch(/WITTIEWIZ/);
+      expect(typeof m.dailyMax, `${m.id}: a daily is gated before it can enter the ledger`).toBe("number");
+      expect(m.offset, `${m.id}: a ledger carries no offset — it is not a cumulative`).toBeUndefined();
+      expect(m.live, m.id).toBe(true);
+    }
+  });
+
+  it("the anchor is the tracker's 10 Sep 2026 post, and the ledger only ever moves forward from it", () => {
+    const tracker: Record<string, number> = {
+      "streams-2026-tems": 1_770_000_000,
+      "streams-2026-wizkid": 1_764_000_000,
+      "streams-2026-burna": 1_756_000_000,
+      "streams-2026-asake": 1_420_000_000,
+      "streams-2026-tyla": 1_185_000_000,
+    };
+    for (const m of group) {
+      expect(m.anchor, m.id).toMatchObject({ date: "2026-09-09", value: tracker[m.id] });
+      expect(m.checkpoint.date >= m.anchor.date, `${m.id}: the checkpoint cannot precede the anchor`).toBe(true);
+      expect(m.checkpoint.value >= m.anchor.value, m.id).toBe(true);
+      for (const d of Object.keys(m.readings ?? {})) expect(d > m.checkpoint.date, `${m.id}: a daily on or before the checkpoint is already inside it`).toBe(true);
+      expect(m.baseline, `${m.id}: the published figure is the checkpoint or a day beyond it`).toBeGreaterThanOrEqual(m.anchor.value);
+    }
+  });
+
+  it("each row writes its value AND the group's common day, so the board says which day it is read through", () => {
+    for (const m of group) {
+      const anchors = m.siteTargets.map((t: { anchor: string }) => t.anchor);
+      expect(anchors, m.id).toContain(`/* live:${m.id} */`);
+      expect(anchors, m.id).toContain("/* live:streams-2026-asof */");
+      const asOf = m.siteTargets.find((t: { field?: string }) => t.field === "asOf");
+      expect(asOf.pattern).toBe("\\d{4}-\\d{2}-\\d{2}");
+    }
+  });
+
+  it("the board is never ahead of the ledgers", () => {
+    const board = readFileSync(join(process.cwd(), "app", "data", "africasBiggest.ts"), "utf8");
+    const asOf = board.match(/\/\* live:streams-2026-asof \*\/ asOf: "(\d{4}-\d{2}-\d{2})"/)![1];
+    const aligned = alignLedgers(group);
+    expect(asOf >= "2026-09-09").toBe(true);
+    if (aligned) expect(asOf <= aligned.date, "the board prints a day the group has not reached").toBe(true);
+    // And each printed figure is the ledger's figure for the printed day.
+    for (const m of group) {
+      const printed = board.match(new RegExp(`/\\* live:${m.id} \\*/ \\{ name: "[^"]+", value: "([\\d.]+)B"`))![1];
+      const v = ledgerValue(m.checkpoint, m.readings, asOf);
+      expect(v, `${m.id}: the ledger does not cover the board's day ${asOf}`).not.toBeNull();
+      expect(printed, m.id).toBe((v! / 1e9).toFixed(3));
+    }
+  });
+
+  it("group publication is all-or-nothing in the bot", () => {
     const apply = readFileSync(join(process.cwd(), "scripts", "apply-stat-updates.mjs"), "utf8");
-    expect(
-      /if \(applied\.length\)[\s\S]*lastAccumulatedAt/.test(apply),
-      "lastAccumulatedAt must be stamped inside the applied block, next to the baseline bump",
-    ).toBe(true);
+    expect(apply.includes("const trial = new Map(files)"), "a group's edits go through a trial copy").toBe(true);
+    expect(/heldGroups|outcomes\.every\(\(o\) => o\.ok\)/.test(apply), "one member failing must hold the group").toBe(true);
+    // And main() does not run on import — the test suite imports this module.
+    expect(/if \(invokedDirectly\) main\(\)/.test(apply), "main() must be guarded against import").toBe(true);
   });
 });
 
