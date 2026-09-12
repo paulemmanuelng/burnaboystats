@@ -103,11 +103,16 @@ Two modifiers sit on top of a kind:
   missing. The group publishes on the newest day every member covers, writes
   that day beside the values (`field: "asOf"`), rolls each checkpoint forward,
   and writes all of its rows or none (`hold` keeps recording without
-  publishing). This is the 2026 running-streams board. A running total is
+  publishing). Rows within `tieWithin` of the row above are written
+  `tie: true` — shown level, because the count cannot resolve a smaller gap —
+  and a stamp that skips a day has the skipped day derived from the page's
+  own totals (`fillSkippedDays`, gated to look like a day; a catalogue jump
+  stays a hole). This is the 2026 running-streams board. A running total is
   never summed by the bot's own clock — that counted three days twice and
   missed three — and never taken as the change in a cumulative, which absorbs
-  catalogue the source had not tracked. A missing day is reported, never
-  skipped over; only a hand can fill it or move the checkpoint past it.
+  catalogue the source had not tracked. A hole that cannot be derived is
+  reported, never skipped over; only a hand can fill it or move the
+  checkpoint past it.
 
 ## What's watched today
 

@@ -166,6 +166,41 @@ export function recordReading(checkpoint, readings, reading, dailyMax = Infinity
   return { readings: kept, recorded: true };
 }
 
+// A day kworb skipped for an artist, filled from the page's own arithmetic.
+//
+// kworb regenerates some artists' pages irregularly: Tems' went from a
+// 2026/09/08 stamp straight to 2026/09/10, and the 09/10 page's Daily was one
+// day's streams while its total had moved two days' worth. A daily-sum ledger
+// would hold a hole at 09/09 for ever — and hold the whole group with it.
+// The page carries the missing figure: between two stamps the total moved by
+// every day in between, so the skipped days' streams are the movement minus
+// the stamped day's own Daily. It is derived, not read, and is only accepted
+// when it looks like a day: each skipped day must land within 0.5–1.5× the
+// two stamped dailies around it, so a catalogue jump inside the gap (kworb
+// absorbing a title it had not tracked) leaves the hole for a hand instead.
+//
+// `prev` and `next` are stamps: { date, total, daily }. Returns the readings
+// to keep and the dates filled, or a reason when nothing could be.
+export function fillSkippedDays(checkpoint, readings, prev, next, dailyMax = Infinity) {
+  const kept = { ...(readings ?? {}) };
+  if (!prev || !next || !(next.date > prev.date)) return { readings: kept, filled: [] };
+  const missing = [];
+  for (let d = nextDay(prev.date); d < next.date; d = nextDay(d)) {
+    if (d > checkpoint.date && !isDaily(kept[d])) missing.push(d);
+  }
+  if (!missing.length) return { readings: kept, filled: [] };
+  if (!(next.total > prev.total) || !isDaily(next.daily)) return { readings: kept, filled: [], reason: "no usable totals on the two stamps" };
+  const gap = next.total - prev.total - next.daily;
+  const per = gap / missing.length;
+  const around = [prev.daily, next.daily].filter((v) => isDaily(v));
+  const ref = around.reduce((s, v) => s + v, 0) / around.length;
+  if (!isDaily(per, dailyMax) || per < 0.5 * ref || per > 1.5 * ref) {
+    return { readings: kept, filled: [], reason: `the total moved ${Math.round(gap).toLocaleString("en-US")} over ${missing.length} skipped day(s), not a day's streams beside ${Math.round(ref).toLocaleString("en-US")} — left as a hole` };
+  }
+  for (const d of missing) kept[d] = Math.round(per);
+  return { readings: kept, filled: missing };
+}
+
 // The total through `date`, or null if the ledger does not cover it — a
 // covered day whose daily is not a positive number is a hole, not a zero.
 export function ledgerValue(checkpoint, readings, date) {
@@ -195,6 +230,22 @@ export function alignLedgers(members) {
     values[m.id] = v;
   }
   return { date, values };
+}
+
+// Which rows of a ranked list are level with the row above them: a gap of
+// less than `within` is inside the method's resolution — a count anchored to
+// a tracker's post carries about a day's streams of uncertainty at each end
+// of its window — so the board shows them joint rather than call a lead it
+// cannot support. Ties chain: three rows each within `within` of the next are
+// one level group, and the note prints the whole spread beside them.
+// `rows` is [{ id, value }] in descending order; returns the ids to mark.
+export function tiedRows(rows, within) {
+  const tied = new Set();
+  if (!(within > 0)) return tied;
+  for (let i = 1; i < rows.length; i++) {
+    if (rows[i - 1].value - rows[i].value < within) tied.add(rows[i].id);
+  }
+  return tied;
 }
 
 // Roll a ledger forward once its total through `date` has been published:
