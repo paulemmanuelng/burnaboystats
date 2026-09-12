@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-11";
+  export const liveChartsUpdated = "2026-09-12";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -177,6 +177,12 @@
             "status": "new"
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 133,
+            "movement": 46
+          },
+          {
             "country": "SA",
             "name": "Saudi Arabia",
             "position": 133,
@@ -223,24 +229,16 @@
             "status": "new"
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 185,
+            "movement": -1
+          },
+          {
             "country": "KH",
             "name": "Cambodia",
             "position": 186,
             "movement": -98
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 191,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 200,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -251,7 +249,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
+            "position": 7,
             "movement": null,
             "status": "new"
           }
@@ -269,69 +267,77 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IT",
-            "name": "Italy",
-            "position": 75,
-            "movement": -49
-          },
-          {
             "country": "NO",
             "name": "Norway",
-            "position": 83,
-            "movement": -39
+            "position": 36,
+            "movement": 47
           },
           {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 87,
-            "movement": -32
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 92,
-            "movement": -34
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 92,
-            "movement": -49
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 94,
-            "movement": -31
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 96,
-            "movement": -55
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 99,
-            "movement": -46
+            "country": "IT",
+            "name": "Italy",
+            "position": 42,
+            "movement": 33
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 100,
-            "movement": -43
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
+            "position": 44,
+            "movement": 56
+          },
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 108,
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 45,
+            "movement": 47
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 57,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 58,
+            "movement": 29
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 64,
+            "movement": 32
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 65,
+            "movement": 34
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 70,
+            "movement": 22
+          },
+          {
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 76,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 80,
+            "movement": 14
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 98,
             "movement": null,
             "status": "new"
           }
@@ -349,12 +355,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 62,
-            "movement": -8
-          },
-          {
             "country": "NA",
             "name": "Namibia",
             "position": 64,
@@ -369,8 +369,21 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 88,
-            "movement": 20
+            "position": 109,
+            "movement": -21
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 115,
+            "movement": -53
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 195,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -399,19 +412,6 @@
         ]
       },
       {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 32,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -420,56 +420,6 @@
             "name": "South Africa",
             "position": 90,
             "movement": -8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "SHE DID IT AGAIN",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 48,
-            "movement": 0
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 158,
-            "movement": -57
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 168,
-            "movement": -24
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 51,
-            "movement": -5
           }
         ]
       }
@@ -522,6 +472,89 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "SHE DID IT AGAIN",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 48,
+            "movement": 0
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 158,
+            "movement": -57
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 168,
+            "movement": -24
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 78,
+            "movement": -29
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 72,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 94,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 134,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "IS IT LOVE",
     "platforms": [
       {
@@ -531,32 +564,14 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 98,
-            "movement": -31
+            "position": 117,
+            "movement": -19
           },
           {
             "country": "ZA",
             "name": "South Africa",
             "position": 200,
             "movement": -44
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 11,
-            "movement": 5
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 79,
-            "movement": 17
           }
         ]
       }
@@ -567,6 +582,19 @@
   {
     "title": "Talk to Me",
     "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 39,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
       {
         "platform": "Shazam",
         "numberOnes": 0,
@@ -593,52 +621,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 55,
-            "movement": -9
+            "position": 57,
+            "movement": -5
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "When I'm With You",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LA",
-            "name": "Laos",
-            "position": 105,
-            "movement": -29
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "FAIRYTALE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 169,
-            "movement": -76
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   }
 ];
   
