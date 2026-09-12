@@ -59,6 +59,12 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
       expect(m.checkpoint.value >= m.anchor.value, m.id).toBe(true);
       for (const d of Object.keys(m.readings ?? {})) expect(d > m.checkpoint.date, `${m.id}: a daily on or before the checkpoint is already inside it`).toBe(true);
       expect(m.baseline, `${m.id}: the published figure is the checkpoint or a day beyond it`).toBeGreaterThanOrEqual(m.anchor.value);
+      // The baseline IS the checkpoint's value: both are set together on
+      // publish (rollLedger beside the baseline bump) and must be moved
+      // together on a re-anchor. A baseline above its checkpoint would leave
+      // the row at status "ok" while its peers advance.
+      expect(m.baseline, `${m.id}: baseline and checkpoint moved apart`).toBe(m.checkpoint.value);
+      expect(m.sanity.maxJump, `${m.id}: no relative jump guard on a ledger — dailyMax gates each day`).toBeUndefined();
     }
   });
 
@@ -90,7 +96,9 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
   it("group publication is all-or-nothing in the bot", () => {
     const apply = readFileSync(join(process.cwd(), "scripts", "apply-stat-updates.mjs"), "utf8");
     expect(apply.includes("const trial = new Map(files)"), "a group's edits go through a trial copy").toBe(true);
-    expect(/heldGroups|outcomes\.every\(\(o\) => o\.ok\)/.test(apply), "one member failing must hold the group").toBe(true);
+    expect(/outcomes\.every\(\(o\) => o\.ok\)/.test(apply), "one member failing must hold the group").toBe(true);
+    expect(/const hold = members\.find\(\(m\) => m\.hold\)/.test(apply), "a hold on any member must hold the group").toBe(true);
+    expect(/maxJump: Infinity/.test(apply), "the relative jump guard must not apply to a ledger").toBe(true);
     // And main() does not run on import — the test suite imports this module.
     expect(/if \(invokedDirectly\) main\(\)/.test(apply), "main() must be guarded against import").toBe(true);
   });

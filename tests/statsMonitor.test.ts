@@ -208,7 +208,8 @@ describe("appendTrendPoint", () => {
 // 12 Sep 2026, stamp and totals table included.
 
 // @ts-expect-error — plain ESM helper module
-import { extractKworbArtistPage, coveredThrough, ledgerGaps, ledgerValue, alignLedgers, rollLedger, nextDay } from "../scripts/stats-lib.mjs";
+import { extractKworbArtistPage, coveredThrough, ledgerGaps, ledgerValue, alignLedgers, rollLedger, nextDay, recordReading } from "../scripts/stats-lib.mjs";
+import { readFileSync } from "node:fs";
 
 const KWORB_ARTIST_PAGE = `</span><br><br>Last updated: 2026/09/11<br><br>
 <table style="width: 580px;">
@@ -258,12 +259,59 @@ describe("a ledger is a checkpoint plus dated dailies, and a hole is a hole", ()
     expect(ledgerValue(checkpoint, readings, "2026-09-12")).toBeNull();
     expect(ledgerValue(checkpoint, readings, "2026-09-08")).toBeNull();
   });
-  it("reading the same page twice is the same day once — a date is a key, not an increment", () => {
-    // The whole reason the run-date design went: 27 Aug, 29 Aug and 2 Sep
-    // 2026 were each added twice. Recording under the page's date cannot.
-    const readings: Record<string, number> = {};
-    for (const _ of [1, 2, 3]) readings["2026-09-10"] ??= 7_714_000;
+  it("a zero or a null is a hole, not a day", () => {
+    expect(coveredThrough(checkpoint, { "2026-09-10": 0, "2026-09-11": 7_828_573 })).toBe("2026-09-09");
+    expect(ledgerValue({ date: "2026-09-29", value: 100 }, { "2026-09-30": null }, "2026-09-30")).toBeNull();
+    expect(ledgerValue(checkpoint, { "2026-09-10": 0 }, "2026-09-10")).toBeNull();
+  });
+});
+
+describe("recordReading — the page's date is the key, and only a real day gets in", () => {
+  // The whole reason the run-date design went: the bot's own clock said
+  // "new day" and 27 Aug, 29 Aug and 2 Sep 2026 were each added twice. A
+  // reading is recorded under the date the page carries, once.
+  const checkpoint = { date: "2026-09-09", value: 1_756_000_000 };
+  const page = { date: "2026-09-10", total: 10_851_429_147, daily: 7_714_000 };
+
+  it("records a day after the checkpoint under the page's own date", () => {
+    expect(recordReading(checkpoint, {}, page, 25_000_000)).toEqual({ readings: { "2026-09-10": 7_714_000 }, recorded: true });
+  });
+  it("reading the same page three times records one day once", () => {
+    let readings = {};
+    const outcomes = [1, 2, 3].map(() => {
+      const r = recordReading(checkpoint, readings, page, 25_000_000);
+      readings = r.readings;
+      return r.recorded;
+    });
+    expect(outcomes).toEqual([true, false, false]);
     expect(ledgerValue(checkpoint, readings, "2026-09-10")).toBe(1_763_714_000);
+  });
+  it("a day on or before the checkpoint is already inside it", () => {
+    expect(recordReading(checkpoint, {}, { ...page, date: "2026-09-09" }).recorded).toBe(false);
+    expect(recordReading(checkpoint, {}, { ...page, date: "2026-09-08" }).recorded).toBe(false);
+  });
+  it("refuses a daily that is not a positive number within the gate, and says so", () => {
+    for (const daily of [0, -1, NaN, null, 25_000_001]) {
+      const r = recordReading(checkpoint, {}, { ...page, daily }, 25_000_000);
+      expect(r.recorded, String(daily)).toBe(false);
+      expect(r.reason, String(daily)).toMatch(/implausible/);
+      expect(r.readings).toEqual({});
+    }
+  });
+  it("first read wins — a re-read cannot rewrite a recorded day", () => {
+    const r = recordReading(checkpoint, { "2026-09-10": 7_714_000 }, { ...page, daily: 9_999_999 }, 25_000_000);
+    expect(r.recorded).toBe(false);
+    expect(r.readings["2026-09-10"]).toBe(7_714_000);
+  });
+  it("the bot records through recordReading with the page's own date — never the run date, never a total difference", () => {
+    // A source-level guard, because the regression is one expression:
+    // `m.readings[today] = reading.daily` (the run-date sum) or
+    // `reading.total - lastTotal` (a cumulative difference) would pass every
+    // value-level test above.
+    const apply = readFileSync("scripts/apply-stat-updates.mjs", "utf8");
+    expect(apply).toMatch(/recordReading\(m\.checkpoint, m\.readings, reading, m\.dailyMax\)/);
+    expect(apply).not.toMatch(/readings\[today\]/);
+    expect(apply).not.toMatch(/reading\.total\s*-/);
   });
   it("rolls forward: the published day becomes the checkpoint and its dailies are dropped", () => {
     const rolled = rollLedger(checkpoint, { "2026-09-10": 7_714_000, "2026-09-11": 7_828_573 }, "2026-09-10", 1_763_714_000);
