@@ -394,19 +394,19 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 7,
-            "movement": -2
+            "position": 10,
+            "movement": -4
           },
           {
             "country": "MZ",
             "name": "Mozambique",
             "position": 12,
-            "movement": -8
+            "movement": -7
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
+            "position": 80,
             "movement": null,
             "status": "new"
           }
@@ -779,8 +779,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 175,
-            "movement": -19
+            "position": 178,
+            "movement": -25
           }
         ]
       }
@@ -841,9 +841,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "RO",
-            "name": "Romania",
-            "position": 140,
+            "country": "ES",
+            "name": "Spain",
+            "position": 188,
             "movement": null,
             "status": "new"
           }
@@ -912,8 +912,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 92,
-            "movement": 1
+            "position": 96,
+            "movement": -1
           }
         ]
       }
@@ -1253,8 +1253,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 72,
-            "movement": -2
+            "position": 71,
+            "movement": 1
           },
           {
             "country": "BE",
@@ -1442,26 +1442,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "You",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6622ab10c58f3ac69db8ff4a1da0fad1/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Damn",
     "platforms": [
       {
@@ -1518,6 +1498,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "You",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 99,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6622ab10c58f3ac69db8ff4a1da0fad1/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ye Ye Ye",

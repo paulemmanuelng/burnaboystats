@@ -405,8 +405,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
-            "movement": 4
+            "position": 6,
+            "movement": 7
           }
         ]
       }
@@ -476,8 +476,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 89,
-            "movement": -11
+            "position": 91,
+            "movement": -13
           }
         ]
       }
@@ -961,8 +961,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 120,
-            "movement": -2
+            "position": 119,
+            "movement": 0
           }
         ]
       }
@@ -1084,25 +1084,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d91495fa367186de1d1e217b5b1bdaaf/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Come Slide",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 179,
-            "movement": -132
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/619f3ae2799a29a214cc68f04974a15d/500x500-000000-80-0-0.jpg"
   }
 ];
   

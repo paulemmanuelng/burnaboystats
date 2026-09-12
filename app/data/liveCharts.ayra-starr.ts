@@ -418,20 +418,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 5,
-            "movement": 70
+            "position": 6,
+            "movement": 76
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 10,
-            "movement": 36
-          },
-          {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 22,
-            "movement": -20
+            "position": 13,
+            "movement": 34
           },
           {
             "country": "GD",
@@ -440,17 +434,22 @@
             "movement": -16
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 39,
-            "movement": 62
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 36,
+            "movement": -30
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 52,
-            "movement": null,
-            "status": "new"
+            "position": 56,
+            "movement": 33
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 70,
+            "movement": 87
           }
         ]
       },
@@ -844,7 +843,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 119,
-            "movement": -12
+            "movement": -5
           },
           {
             "country": "GY",
@@ -907,7 +906,7 @@
             "country": "FR",
             "name": "France",
             "position": 197,
-            "movement": -66
+            "movement": -42
           }
         ]
       },
@@ -918,8 +917,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 58,
-            "movement": -8
+            "position": 60,
+            "movement": -10
           }
         ]
       }
@@ -1412,8 +1411,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 91,
-            "movement": 1
+            "position": 95,
+            "movement": -1
           }
         ]
       },
@@ -1718,8 +1717,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 112,
-            "movement": -4
+            "position": 110,
+            "movement": 3
           },
           {
             "country": "ML",
@@ -1756,68 +1755,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7b49d51e89ff07824c8c62043775a2ab/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Wo, man",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 5,
-            "movement": 4
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 7,
-            "movement": 2
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 25,
-            "movement": 6
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 80,
-            "movement": -32
-          },
-          {
-            "country": "GR",
-            "name": "Greece",
-            "position": 195,
-            "movement": 5
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 46,
-            "movement": -18
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Last Heartbreak Song",
@@ -2058,6 +1995,62 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Wo, man",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 5,
+            "movement": 4
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 7,
+            "movement": 2
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 25,
+            "movement": 6
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 195,
+            "movement": 5
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 31,
+            "movement": 3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c4c1696f82feac0a7fa1e26379b9f7e2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Misunderstood",
@@ -2549,8 +2542,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 44,
-            "movement": -22
+            "position": 45,
+            "movement": -16
           }
         ]
       }

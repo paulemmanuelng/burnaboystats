@@ -494,8 +494,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 75,
-            "movement": -13
+            "position": 78,
+            "movement": -14
           }
         ]
       }
@@ -677,7 +677,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 156,
-            "movement": -12
+            "movement": -3
           },
           {
             "country": "TT",
@@ -697,7 +697,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 169,
-            "movement": -4
+            "movement": 15
           },
           {
             "country": "CV",
@@ -856,6 +856,19 @@
             "name": "Nigeria",
             "position": 51,
             "movement": -3
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 34,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1306,25 +1319,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Come Slide",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 179,
-            "movement": -132
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/619f3ae2799a29a214cc68f04974a15d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Stubborn",

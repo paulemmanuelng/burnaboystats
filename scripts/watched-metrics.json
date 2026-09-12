@@ -161,7 +161,7 @@
         }
       ],
       "lastChanged": "2026-09-11",
-      "lastSeenValue": 1050413450,
+      "lastSeenValue": 1051435335,
       "lastSeenAt": "2026-09-12",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
@@ -193,7 +193,7 @@
         }
       ],
       "lastChanged": "2026-09-06",
-      "lastSeenValue": 363067038,
+      "lastSeenValue": 363081573,
       "lastSeenAt": "2026-09-12",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -225,7 +225,7 @@
         }
       ],
       "lastChanged": "2026-09-05",
-      "lastSeenValue": 309898400,
+      "lastSeenValue": 309906449,
       "lastSeenAt": "2026-09-12",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -257,7 +257,7 @@
         }
       ],
       "lastChanged": "2026-09-12",
-      "lastSeenValue": 481544269,
+      "lastSeenValue": 481569423,
       "lastSeenAt": "2026-09-12",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -289,7 +289,7 @@
         }
       ],
       "lastChanged": "2026-08-25",
-      "lastSeenValue": 118322916,
+      "lastSeenValue": 118329444,
       "lastSeenAt": "2026-09-12",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -822,7 +822,7 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1770000000,
+      "lastSeenValue": 1775357158,
       "lastSeenAt": "2026-09-12",
       "lastChanged": "2026-09-12",
       "hold": "12 Sep 2026: dailies are recorded, the board stays on the tracker's 09/09 figures until Paul decides how the row should move between tracker posts (see docs/sourcing/STREAMS-2026-ANCHOR.md)"
@@ -875,7 +875,7 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1764000000,
+      "lastSeenValue": 1770046000,
       "lastSeenAt": "2026-09-12",
       "lastChanged": "2026-09-12",
       "hold": "12 Sep 2026: dailies are recorded, the board stays on the tracker's 09/09 figures until Paul decides how the row should move between tracker posts (see docs/sourcing/STREAMS-2026-ANCHOR.md)"
@@ -928,7 +928,7 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1756000000,
+      "lastSeenValue": 1763714000,
       "lastSeenAt": "2026-09-12",
       "lastChanged": "2026-09-12",
       "hold": "12 Sep 2026: dailies are recorded, the board stays on the tracker's 09/09 figures until Paul decides how the row should move between tracker posts (see docs/sourcing/STREAMS-2026-ANCHOR.md)"
@@ -981,7 +981,7 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1420000000,
+      "lastSeenValue": 1425727000,
       "lastSeenAt": "2026-09-12",
       "lastChanged": "2026-09-12",
       "hold": "12 Sep 2026: dailies are recorded, the board stays on the tracker's 09/09 figures until Paul decides how the row should move between tracker posts (see docs/sourcing/STREAMS-2026-ANCHOR.md)"
@@ -1034,7 +1034,7 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1185000000,
+      "lastSeenValue": 1188413000,
       "lastSeenAt": "2026-09-12",
       "lastChanged": "2026-09-12",
       "hold": "12 Sep 2026: dailies are recorded, the board stays on the tracker's 09/09 figures until Paul decides how the row should move between tracker posts (see docs/sourcing/STREAMS-2026-ANCHOR.md)"
