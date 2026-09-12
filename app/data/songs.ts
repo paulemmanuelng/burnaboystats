@@ -80,7 +80,7 @@ export const songs: Song[] = [
     slug: "ye",
     title: "Ye",
     year: 2018,
-    spotifyStreams: "335M",
+    spotifyStreams: "336M",
     album: "Outside",
     cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
     spotify: "https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD",
@@ -119,7 +119,7 @@ export const songs: Song[] = [
     album: "African Giant",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     spotify: "https://open.spotify.com/track/1zIk8RJEKGvoH4FioFnGyJ",
-    ytViews: "481M",
+    ytViews: "482M",
     tagline: "The smooth love song that went Diamond in France",
     blurb:
       "A silky Afro-fusion love song from African Giant (2019), “On the Low” became one of Burna Boy's biggest records in Europe. It was certified Diamond in France — among the highest honours any African song has earned there — and picked up ten certifications worldwide.",

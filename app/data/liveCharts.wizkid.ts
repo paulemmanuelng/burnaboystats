@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-11";
+  export const liveChartsUpdated = "2026-09-12";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -258,8 +258,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 189,
-            "movement": 11
+            "position": 190,
+            "movement": 10
           },
           {
             "country": "CH",
@@ -275,23 +275,23 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 149,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "CH",
             "name": "Switzerland",
-            "position": 123,
+            "position": 152,
             "movement": null,
             "status": "new"
           },
           {
             "country": "PL",
             "name": "Poland",
-            "position": 127,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 133,
+            "position": 163,
             "movement": null,
             "status": "new"
           }
@@ -1004,18 +1004,6 @@
             "movement": -112
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 98,
-            "movement": -23
-          }
-        ]
       }
     ],
     "kind": "album",
@@ -1195,8 +1183,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 53,
-            "movement": 1
+            "position": 51,
+            "movement": 3
           },
           {
             "country": "GH",
@@ -1214,7 +1202,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 88,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
@@ -1306,7 +1294,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 45,
-            "movement": -19
+            "movement": -18
           }
         ]
       }
@@ -1470,7 +1458,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 4,
-            "movement": 40
+            "movement": 41
           },
           {
             "country": "KE",
@@ -1615,7 +1603,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 56,
-            "movement": -15
+            "movement": -14
           },
           {
             "country": "NG",
@@ -1764,7 +1752,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 85,
-            "movement": -36
+            "movement": -33
           }
         ]
       }
@@ -1894,13 +1882,51 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 148,
-            "movement": -12
+            "movement": -11
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6ddb34c26029baeb2bd73c71bb8d839f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Made In Lagos",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 49,
+            "movement": 1
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 90,
+            "movement": 1
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 108,
+            "movement": -11
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Essence",
@@ -2058,37 +2084,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Made In Lagos",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 49,
-            "movement": 1
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 90,
-            "movement": 1
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 108,
-            "movement": -12
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Slow",
     "platforms": [
       {
@@ -2181,7 +2176,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 61,
-            "movement": -8
+            "movement": -7
           }
         ]
       }
@@ -2257,8 +2252,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 47,
-            "movement": -9
+            "position": 48,
+            "movement": -10
           }
         ]
       }
@@ -2297,7 +2292,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 54,
-            "movement": -36
+            "movement": -33
           }
         ]
       }
@@ -2364,25 +2359,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e5bc56dd547bcc84a47089b865230cb/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Energy",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 138,
-            "movement": -17
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Call Me Every Day",
     "platforms": [
       {
@@ -2421,6 +2397,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Energy",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 142,
+            "movement": -21
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bella",

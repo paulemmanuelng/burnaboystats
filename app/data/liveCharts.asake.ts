@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-11";
+  export const liveChartsUpdated = "2026-09-12";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -220,7 +220,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 45,
-            "movement": -9
+            "movement": -8
           },
           {
             "country": "QA",
@@ -262,7 +262,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 73,
-            "movement": -8
+            "movement": -6
           },
           {
             "country": "TT",
@@ -336,7 +336,7 @@
             "country": "FR",
             "name": "France",
             "position": 192,
-            "movement": 6
+            "movement": 0
           }
         ]
       },
@@ -355,7 +355,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 64,
-            "movement": -19
+            "movement": -18
           }
         ]
       }
@@ -944,7 +944,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 30,
-            "movement": -20
+            "movement": -19
           }
         ]
       }
@@ -2084,7 +2084,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 33,
-            "movement": -19
+            "movement": -18
           }
         ]
       }
@@ -2198,8 +2198,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 159,
-            "movement": -17
+            "position": 163,
+            "movement": -21
           }
         ]
       }
@@ -2559,8 +2559,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 91,
-            "movement": -18
+            "position": 99,
+            "movement": -26
           }
         ]
       }
@@ -3187,7 +3187,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 45,
-            "movement": -19
+            "movement": -18
           }
         ]
       }
@@ -3642,7 +3642,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 56,
-            "movement": -15
+            "movement": -14
           },
           {
             "country": "NG",
@@ -4569,26 +4569,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f70fc3aeb97c91d07c50ba62d8fa0f57/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Active",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FI",
-            "name": "Finland",
-            "position": 186,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/678e2eec76ee9bd39c394da63d24b4b9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Gratitude - Live in London",

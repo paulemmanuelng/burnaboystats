@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-11";
+  export const liveChartsUpdated = "2026-09-12";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","iTunes"];
@@ -147,8 +147,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 159,
-            "movement": -17
+            "position": 163,
+            "movement": -21
           }
         ]
       }
@@ -334,7 +334,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 166,
-            "movement": -11
+            "movement": -10
           }
         ]
       }
@@ -365,7 +365,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 130,
-            "movement": -12
+            "movement": -11
           }
         ]
       }
@@ -384,7 +384,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 61,
-            "movement": -8
+            "movement": -7
           }
         ]
       }
@@ -557,7 +557,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 124,
-            "movement": -12
+            "movement": -11
           }
         ]
       }

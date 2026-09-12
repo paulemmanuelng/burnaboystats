@@ -57,7 +57,7 @@
 // cannot catch the drift — 31M on 10.9B is 0.3%, far under its 3% threshold.
 //
 // Method and full evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md.
-export const spotifyTotalStreams = "10.96B";
+export const spotifyTotalStreams = "10.97B";
 
 // The same daily figure, unrounded.
 //
@@ -67,7 +67,7 @@ export const spotifyTotalStreams = "10.96B";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "10,963,734,953";
+export const spotifyTotalStreamsExact = "10,971,782,217";
 
 // Every Burna Boy video on YouTube, across his channel and others'. He leads
 // all Nigerian artists on this measure — 344 videos to 4.03 billion views,

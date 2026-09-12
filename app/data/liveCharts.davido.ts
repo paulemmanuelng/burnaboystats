@@ -35,7 +35,7 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-09-11";
+  export const liveChartsUpdated = "2026-09-12";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","YouTube","iTunes"];
@@ -213,14 +213,14 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 71,
-            "movement": 31
+            "position": 92,
+            "movement": 27
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 181,
-            "movement": -17
+            "position": 185,
+            "movement": -21
           }
         ]
       },
@@ -610,7 +610,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 97,
-            "movement": -11
+            "movement": -8
           },
           {
             "country": "DM",
@@ -664,8 +664,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
-            "movement": -16
+            "position": 73,
+            "movement": -15
           }
         ]
       }
@@ -950,7 +950,7 @@
             "country": "IL",
             "name": "Israel",
             "position": 58,
-            "movement": -39
+            "movement": -34
           }
         ]
       }
@@ -1025,8 +1025,14 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 1,
+            "movement": 1
+          },
           {
             "country": "MZ",
             "name": "Mozambique",
@@ -1039,12 +1045,6 @@
             "position": 19,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 22,
-            "movement": -20
           }
         ]
       },
@@ -1214,7 +1214,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 10,
-            "movement": -7
+            "movement": -6
           }
         ]
       },
@@ -1966,7 +1966,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 195,
-            "movement": -12
+            "movement": -11
           }
         ]
       }
@@ -2092,20 +2092,20 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 34,
-            "movement": 0
+            "position": 33,
+            "movement": 1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 59,
+            "movement": 32
           },
           {
             "country": "MZ",
             "name": "Mozambique",
             "position": 68,
             "movement": -7
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 88,
-            "movement": 3
           }
         ]
       },
@@ -2253,8 +2253,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 187,
-            "movement": -17
+            "position": 191,
+            "movement": -21
           }
         ]
       }
@@ -2519,25 +2519,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/49e60bcc245747acb829b0a96723c176/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Lover Boy",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 43,
-            "movement": -9
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "On The Road",
     "platforms": [
       {
@@ -2558,6 +2539,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Lover Boy",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 45,
+            "movement": -11
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Like",
     "platforms": [
       {
@@ -2567,8 +2567,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 58,
-            "movement": 0
+            "position": 57,
+            "movement": 1
           }
         ]
       }
@@ -2586,8 +2586,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 62,
-            "movement": -9
+            "position": 64,
+            "movement": -11
           }
         ]
       }
