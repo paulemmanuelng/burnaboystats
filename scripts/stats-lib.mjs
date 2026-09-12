@@ -86,7 +86,8 @@ export function extractKworbYouTubeVideo(html, matchTitle) {
 // Not dailies keyed by the bot's run date either: kworb regenerates each
 // artist's page on its own schedule (the same moment on 12 Sep 2026 showed
 // Burna Boy stamped 2026/09/11 and Tems 2026/09/10), so a run-date gate added
-// the same day twice on 27 Aug, 29 Aug and 2 Sep and missed 10 Sep outright.
+// Burna Boy's 27 Aug, 29 Aug and 2 Sep twice and never added 28 Aug, 31 Aug
+// or 9 Sep — and did worse to the artists whose pages move less regularly.
 // The stamp is the key: one date, one daily, however many times it is read.
 //
 // Page shape (verified 12 Sep 2026):
@@ -128,7 +129,7 @@ export function nextDay(iso) {
 // The last date a ledger covers without a hole, starting at its checkpoint.
 export function coveredThrough(checkpoint, readings) {
   let last = checkpoint.date;
-  for (let d = nextDay(last); d in (readings ?? {}); d = nextDay(d)) last = d;
+  for (let d = nextDay(last); isDaily((readings ?? {})[d]); d = nextDay(d)) last = d;
   return last;
 }
 
@@ -143,11 +144,37 @@ export function ledgerGaps(checkpoint, readings) {
   return gaps;
 }
 
-// The total through `date`, or null if the ledger does not cover it.
+// A day's streams is a positive number or it is not a reading. Zero is not a
+// day these artists have, and a null typed by hand would sum as zero — a hole
+// dressed as a day, which is the one thing a ledger must never contain.
+const isDaily = (v, max = Infinity) => typeof v === "number" && Number.isFinite(v) && v > 0 && v <= max;
+
+// Record one dated daily on a ledger. Returns the readings to keep and whether
+// anything was recorded — and why not, when not. The page's own date is the
+// key: a day on or before the checkpoint is already inside it; a day already
+// recorded stays as first read; a daily that fails the gate is refused, so a
+// mis-parse cannot enter a running total for the year.
+export function recordReading(checkpoint, readings, reading, dailyMax = Infinity) {
+  const kept = { ...(readings ?? {}) };
+  if (!reading || !/^\d{4}-\d{2}-\d{2}$/.test(String(reading.date))) return { readings: kept, recorded: false, reason: "no dated reading" };
+  if (reading.date <= checkpoint.date) return { readings: kept, recorded: false, reason: `the ${reading.date} page is inside the checkpoint` };
+  if (reading.date in kept) return { readings: kept, recorded: false, reason: `${reading.date} already recorded` };
+  if (!isDaily(reading.daily, dailyMax)) {
+    return { readings: kept, recorded: false, reason: `implausible daily ${String(reading.daily)} on the ${reading.date} page — not recorded` };
+  }
+  kept[reading.date] = reading.daily;
+  return { readings: kept, recorded: true };
+}
+
+// The total through `date`, or null if the ledger does not cover it — a
+// covered day whose daily is not a positive number is a hole, not a zero.
 export function ledgerValue(checkpoint, readings, date) {
   if (date < checkpoint.date || date > coveredThrough(checkpoint, readings)) return null;
   let sum = checkpoint.value;
-  for (let d = nextDay(checkpoint.date); d <= date; d = nextDay(d)) sum += readings[d];
+  for (let d = nextDay(checkpoint.date); d <= date; d = nextDay(d)) {
+    if (!isDaily(readings[d])) return null;
+    sum += readings[d];
+  }
   return sum;
 }
 

@@ -30,6 +30,7 @@ import {
   alignLedgers,
   ledgerGaps,
   rollLedger,
+  recordReading,
   extractSpotifyFollowers,
   evaluateMetric,
   isActionable,
@@ -59,10 +60,11 @@ const htmlExtractors = {
   kworbYouTubeVideo: (html, metric) => extractKworbYouTubeVideo(html, metric.match),
   kworbYouTubeTotal: (html) => extractKworbYouTubeTotal(html),
   kworbSongStreams: (html, metric) => extractKworbSongStreams(html, metric.match),
-  // The cumulative total on an artist's own page. A `group` metric reads it
-  // dated (extractKworbArtistPage) and is aligned with its peers; registered
-  // here too so every extractor a metric can name is implemented in one list.
-  kworbArtistPage: (html) => extractKworbArtistPage(html)?.total ?? NaN,
+  // A ledger (`group`) metric has no single live value: it is read dated
+  // (datedReading → extractKworbArtistPage) and aligned with its peers.
+  // Registered so every extractor a metric can name is implemented in one
+  // list; off the ledger path it reads as unavailable, never as a total.
+  kworbArtistPage: () => NaN,
 };
 
 async function fetchText(url) {
@@ -249,18 +251,17 @@ async function main() {
       try {
         const reading = await datedReading(metric, pageCache);
         const m = config.metrics.find((x) => x.id === metric.id);
-        m.readings ??= {};
-        if (reading.date > m.checkpoint.date && !(reading.date in m.readings)) {
-          // A daily is gated on its own plausibility before it can enter the
-          // ledger: a mis-parse must not poison a running total for the year.
-          if (!(reading.daily >= 0 && reading.daily <= (m.dailyMax ?? Infinity))) {
-            throw new Error(`implausible daily ${fmt(reading.daily)} on the ${reading.date} page — not recorded`);
-          }
-          m.readings[reading.date] = reading.daily;
+        // Keyed by the PAGE's date — recordReading is the whole of that rule,
+        // and tests/statsMonitor.test.ts holds it to it.
+        const rec = recordReading(m.checkpoint, m.readings, reading, m.dailyMax);
+        if (rec.recorded) {
+          m.readings = rec.readings;
           // The source moved, whether or not the group can publish yet — a
           // member waiting on a lagging peer is not a stale source.
           m.lastSeenAt = today;
           readingsMoved = true;
+        } else if (/implausible/.test(rec.reason)) {
+          throw new Error(rec.reason);
         }
         if (!groups.has(metric.group)) groups.set(metric.group, []);
         groups.get(metric.group).push(metric);
@@ -300,13 +301,16 @@ async function main() {
     // page was fetched this run: a member's total through the common day does
     // not depend on today's fetch, and leaving a member out would let the
     // other four advance the shared as-of date past a row that never moved.
+    // A hold on any member holds the group: the rows share one as-of date,
+    // so four of them cannot move while the fifth stands still.
+    const hold = members.find((m) => m.hold)?.hold;
     for (const m of members) {
       if (!aligned) {
         results.push({ ...m, live: null, status: "unaligned", reason: "no day every member of the group covers" });
         continue;
       }
-      if (m.hold) {
-        results.push({ ...m, live: aligned.values[m.id], status: "held", reason: m.hold, asOf: aligned.date });
+      if (hold) {
+        results.push({ ...m, live: aligned.values[m.id], status: "held", reason: hold, asOf: aligned.date });
         continue;
       }
       const r = evaluateMetric(m, aligned.values[m.id]);
@@ -365,7 +369,12 @@ async function main() {
     byGroup.get(r.group).push(r);
   }
   for (const [group, rs] of byGroup) {
-    if (LIVE && rs.some((r) => !withinSanity(r.baseline, r.live, r.sanity))) {
+    // A ledger's move since its last publish is the sum of dailies each
+    // already gated by dailyMax on the way in — after a hold or a lagging
+    // page it can legitimately be a week's worth, which a relative jump
+    // guard would refuse forever (the baseline never advances on a refusal).
+    // Only the absolute bounds apply here.
+    if (LIVE && rs.some((r) => !withinSanity(r.baseline, r.live, { ...r.sanity, maxJump: Infinity }))) {
       rejected.push(...rs);
       continue;
     }
@@ -453,11 +462,12 @@ async function main() {
   // the Africa's Biggest board are written into rows whose ORDER is source
   // order, and tests/watchedMetrics.test.ts refuses a board that lists a
   // smaller total above a larger one — so the day the summed total for Burna
-  // Boy passed Wizkid's (11 Sep 2026 — a pass the doubled days had invented),
-  // every hourly run wrote the right numbers into the wrong order, failed its
-  // own gate, and nothing was committed for two days: no totals, and no
-  // lastSeenAt stamps, which set off the staleness alarm on fourteen healthy
-  // song figures. Sort the marked rows by value after writing.
+  // Boy passed Wizkid's (11 Sep 2026 — a pass the tracker the row follows
+  // did not see; see docs/sourcing/STREAMS-2026-ANCHOR.md), every run wrote
+  // the right numbers into the wrong order, failed its own gate, and nothing
+  // was committed for two days: no totals, and no lastSeenAt stamps, which set
+  // off the staleness alarm on fourteen healthy song figures. Sort the marked
+  // rows by value after writing.
   for (const [abs, text] of files) files.set(abs, reorderLiveRows(text));
 
   if (!DRY) for (const [abs, text] of files) await writeFile(abs, text);
