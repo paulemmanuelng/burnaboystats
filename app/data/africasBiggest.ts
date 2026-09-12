@@ -216,13 +216,13 @@ export const statBoxes: LeaderboardBox[] = [
         // resolution of a count anchored to a tracker's post — so the board
         // shows a level pair as joint rather than call a lead it cannot support.
         entries: [
-          /* live:streams-2026-tems */ { name: "Tems", value: "1.770B" },
-          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.764B", tie: true },
-          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.756B", tie: true },
-          /* live:streams-2026-asake */ { name: "Asake", value: "1.420B" },
-          /* live:streams-2026-tyla */ { name: "Tyla", value: "1.185B" },
+          /* live:streams-2026-tems */ { name: "Tems", value: "1.775B" },
+          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.770B", tie: true },
+          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.764B", tie: true },
+          /* live:streams-2026-asake */ { name: "Asake", value: "1.426B" },
+          /* live:streams-2026-tyla */ { name: "Tyla", value: "1.188B" },
         ],
-        /* live:streams-2026-asof */ asOf: "2026-09-09",
+        /* live:streams-2026-asof */ asOf: "2026-09-10",
         inProgress: true,
         // {{order2026}}, {{spread2026}} and {{asOf2026}} are filled from the row
         // itself at load, so the sentence follows the numbers when the order

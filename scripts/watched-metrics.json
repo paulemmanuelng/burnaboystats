@@ -161,7 +161,7 @@
         }
       ],
       "lastChanged": "2026-09-11",
-      "lastSeenValue": 1051435335,
+      "lastSeenValue": 1051689785,
       "lastSeenAt": "2026-09-12",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
@@ -193,7 +193,7 @@
         }
       ],
       "lastChanged": "2026-09-06",
-      "lastSeenValue": 363081573,
+      "lastSeenValue": 363085143,
       "lastSeenAt": "2026-09-12",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -225,7 +225,7 @@
         }
       ],
       "lastChanged": "2026-09-05",
-      "lastSeenValue": 309906449,
+      "lastSeenValue": 309908355,
       "lastSeenAt": "2026-09-12",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -257,7 +257,7 @@
         }
       ],
       "lastChanged": "2026-09-12",
-      "lastSeenValue": 481569423,
+      "lastSeenValue": 481574542,
       "lastSeenAt": "2026-09-12",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -289,7 +289,7 @@
         }
       ],
       "lastChanged": "2026-08-25",
-      "lastSeenValue": 118329444,
+      "lastSeenValue": 118331058,
       "lastSeenAt": "2026-09-12",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -783,19 +783,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1770000000,
+      "baseline": 1775357158,
       "anchor": {
         "date": "2026-09-09",
         "value": 1770000000,
         "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
       },
       "checkpoint": {
-        "date": "2026-09-09",
-        "value": 1770000000
+        "date": "2026-09-10",
+        "value": 1775357158
       },
-      "readings": {
-        "2026-09-10": 5357158
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -841,18 +839,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1764000000,
+      "baseline": 1770046000,
       "anchor": {
         "date": "2026-09-09",
         "value": 1764000000,
         "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
       },
       "checkpoint": {
-        "date": "2026-09-09",
-        "value": 1764000000
+        "date": "2026-09-10",
+        "value": 1770046000
       },
       "readings": {
-        "2026-09-10": 6046000,
         "2026-09-11": 6229175
       },
       "dailyMax": 25000000,
@@ -900,18 +897,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1756000000,
+      "baseline": 1763714000,
       "anchor": {
         "date": "2026-09-09",
         "value": 1756000000,
         "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
       },
       "checkpoint": {
-        "date": "2026-09-09",
-        "value": 1756000000
+        "date": "2026-09-10",
+        "value": 1763714000
       },
       "readings": {
-        "2026-09-10": 7714000,
         "2026-09-11": 7828573
       },
       "dailyMax": 25000000,
@@ -959,18 +955,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1420000000,
+      "baseline": 1425727000,
       "anchor": {
         "date": "2026-09-09",
         "value": 1420000000,
         "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
       },
       "checkpoint": {
-        "date": "2026-09-09",
-        "value": 1420000000
+        "date": "2026-09-10",
+        "value": 1425727000
       },
       "readings": {
-        "2026-09-10": 5727000,
         "2026-09-11": 5918975
       },
       "dailyMax": 25000000,
@@ -1018,18 +1013,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1185000000,
+      "baseline": 1188413000,
       "anchor": {
         "date": "2026-09-09",
         "value": 1185000000,
         "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
       },
       "checkpoint": {
-        "date": "2026-09-09",
-        "value": 1185000000
+        "date": "2026-09-10",
+        "value": 1188413000
       },
       "readings": {
-        "2026-09-10": 3413000,
         "2026-09-11": 3546051
       },
       "dailyMax": 25000000,

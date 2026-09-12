@@ -1136,7 +1136,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 170,
-            "movement": -78
+            "movement": -74
           }
         ]
       }

@@ -180,7 +180,7 @@
             "country": "BR",
             "name": "Brazil",
             "position": 132,
-            "movement": 44
+            "movement": 66
           },
           {
             "country": "SA",
@@ -525,7 +525,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 131,
+            "position": 132,
             "movement": null,
             "status": "new"
           }

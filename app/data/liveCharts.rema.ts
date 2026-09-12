@@ -556,7 +556,7 @@
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 40,
+            "position": 55,
             "movement": null,
             "status": "new"
           }
@@ -955,7 +955,7 @@
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 11,
+            "position": 14,
             "movement": null,
             "status": "new"
           },
@@ -968,7 +968,7 @@
           {
             "country": "ES",
             "name": "Spain",
-            "position": 48,
+            "position": 59,
             "movement": null,
             "status": "new"
           },
@@ -981,7 +981,7 @@
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 94,
+            "position": 111,
             "movement": null,
             "status": "new"
           }
@@ -1269,8 +1269,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 55,
-            "movement": -31
+            "position": 56,
+            "movement": -29
           },
           {
             "country": "BW",

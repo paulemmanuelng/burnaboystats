@@ -677,7 +677,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 156,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "TT",

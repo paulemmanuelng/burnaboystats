@@ -227,8 +227,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 195,
-            "movement": -26
+            "position": 196,
+            "movement": -24
           }
         ]
       },
@@ -604,7 +604,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 84,
-            "movement": 15
+            "movement": 24
           },
           {
             "country": "DM",
@@ -658,8 +658,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
-            "movement": -1
+            "position": 78,
+            "movement": -6
           }
         ]
       }
@@ -1037,8 +1037,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 10,
-            "movement": -4
+            "position": 11,
+            "movement": -2
           },
           {
             "country": "MZ",
@@ -1353,7 +1353,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 147,
+            "position": 186,
             "movement": null,
             "status": "new"
           }
@@ -1462,19 +1462,6 @@
             "name": "Nigeria",
             "position": 66,
             "movement": 2
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 180,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -1967,7 +1954,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 192,
-            "movement": -4
+            "movement": 0
           }
         ]
       }
@@ -2349,7 +2336,7 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 38,
+            "position": 39,
             "movement": null,
             "status": "new"
           }
@@ -2434,7 +2421,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 28,
-            "movement": -2
+            "movement": 1
           }
         ]
       }
