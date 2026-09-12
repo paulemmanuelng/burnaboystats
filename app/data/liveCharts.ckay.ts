@@ -69,8 +69,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
-            "movement": -2
+            "position": 99,
+            "movement": -7
           }
         ]
       }
@@ -106,8 +106,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 168,
-            "movement": -11
+            "position": 170,
+            "movement": -2
           }
         ]
       }
@@ -196,8 +196,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 120,
-            "movement": 57
+            "position": 121,
+            "movement": 79
           }
         ]
       }

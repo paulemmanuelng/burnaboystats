@@ -188,8 +188,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 142,
-            "movement": 58
+            "position": 138,
+            "movement": 49
           },
           {
             "country": "PT",
@@ -218,7 +218,7 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 198,
+            "position": 170,
             "movement": null,
             "status": "new"
           },
@@ -237,7 +237,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
+            "position": 12,
             "movement": -6
           }
         ]
@@ -380,21 +380,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 150,
-            "movement": -30
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 189,
-            "movement": null,
-            "status": "new"
+            "position": 196,
+            "movement": -46
           }
         ]
       },
@@ -458,17 +445,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 55,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "MZ",
             "name": "Mozambique",
             "position": 78,
-            "movement": -27
+            "movement": -24
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 101,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -551,7 +538,7 @@
           {
             "country": "IL",
             "name": "Israel",
-            "position": 82,
+            "position": 96,
             "movement": null,
             "status": "new"
           }
@@ -609,8 +596,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 63,
-            "movement": -8
+            "position": 68,
+            "movement": -12
           }
         ]
       }

@@ -166,7 +166,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 12,
-            "movement": 2
+            "movement": 0
           }
         ]
       },
@@ -281,8 +281,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
-            "movement": 1
+            "position": 27,
+            "movement": -3
           }
         ]
       },
@@ -397,8 +397,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 64,
-            "movement": 2
+            "position": 70,
+            "movement": -6
           }
         ]
       },
@@ -409,8 +409,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
-            "movement": 6
+            "position": 11,
+            "movement": 10
           }
         ]
       }
@@ -511,8 +511,7 @@
             "country": "PG",
             "name": "Papua New Guinea",
             "position": 87,
-            "movement": null,
-            "status": "new"
+            "movement": 113
           },
           {
             "country": "BJ",
@@ -535,7 +534,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
+            "position": 93,
             "movement": -9
           }
         ]
@@ -637,8 +636,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
-            "movement": 9
+            "position": 39,
+            "movement": -2
           }
         ]
       }
@@ -727,8 +726,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
-            "movement": -10
+            "position": 83,
+            "movement": -11
           }
         ]
       }
@@ -841,59 +840,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 139,
-            "movement": 5
+            "position": 136,
+            "movement": 3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Outside",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 76,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 47,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "For Days",
@@ -936,8 +890,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 106,
-            "movement": 4
+            "position": 128,
+            "movement": -22
           }
         ]
       },
@@ -958,6 +912,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0ce9ce5b82ac7a394e54078a804577ac/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Outside",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 76,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 47,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Already",
     "platforms": [
       {
@@ -967,8 +953,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
-            "movement": 6
+            "position": 76,
+            "movement": -7
           }
         ]
       },
@@ -1048,8 +1034,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
-            "movement": 7
+            "position": 111,
+            "movement": -12
           }
         ]
       }
@@ -1067,7 +1053,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 12,
+            "position": 13,
             "movement": null,
             "status": "new"
           }
@@ -1106,8 +1092,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 162,
-            "movement": 27
+            "position": 177,
+            "movement": -15
           }
         ]
       }
@@ -1165,8 +1151,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
-            "movement": 0
+            "position": 120,
+            "movement": -1
           }
         ]
       }

@@ -185,8 +185,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
-            "movement": -6
+            "position": 65,
+            "movement": -5
           }
         ]
       }
@@ -273,20 +273,19 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 12,
-            "movement": -7
+            "movement": -4
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 16,
-            "movement": -2
+            "position": 17,
+            "movement": 1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 127,
-            "movement": null,
-            "status": "new"
+            "position": 147,
+            "movement": -132
           }
         ]
       },
@@ -341,8 +340,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 101,
-            "movement": -5
+            "position": 104,
+            "movement": -3
           }
         ]
       }
@@ -781,41 +780,49 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Forever",
+    "title": "soso",
     "platforms": [
       {
-        "platform": "Shazam",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 98,
-            "movement": 2
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 105,
-            "movement": -2
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 153,
-            "movement": 25
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 161,
-            "movement": -18
+            "country": "OM",
+            "name": "Oman",
+            "position": 100,
+            "movement": 20
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -28
+            "position": 107,
+            "movement": 54
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 126,
+            "movement": 63
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 145,
+            "movement": -13
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 164,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 180,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -826,27 +833,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 193,
+            "position": 182,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 99,
-            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "As We Get High",
@@ -886,7 +881,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 26,
-            "movement": 9
+            "movement": 0
           }
         ]
       },
@@ -909,8 +904,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 184,
-            "movement": -24
+            "position": 185,
+            "movement": -23
           }
         ]
       }
@@ -965,8 +960,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": 13
+            "position": 134,
+            "movement": -8
           }
         ]
       }
@@ -975,55 +970,59 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ff869559b2b6b876cc2b7811bb7e4436/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "soso",
+    "title": "Forever",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "OM",
-            "name": "Oman",
-            "position": 100,
-            "movement": 20
+            "country": "SN",
+            "name": "Senegal",
+            "position": 98,
+            "movement": 2
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 107,
-            "movement": 54
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 105,
+            "movement": -2
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 153,
+            "movement": 25
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 126,
-            "movement": 63
+            "position": 161,
+            "movement": -18
           },
           {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 145,
-            "movement": -13
-          },
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 165,
+            "movement": -28
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 164,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 180,
-            "movement": null,
-            "status": "new"
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 197,
+            "movement": -4
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Infinity",
@@ -1151,8 +1150,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 73,
-            "movement": -6
+            "position": 77,
+            "movement": -4
           }
         ]
       },
@@ -1184,7 +1183,7 @@
             "country": "FR",
             "name": "France",
             "position": 76,
-            "movement": -4
+            "movement": -2
           },
           {
             "country": "BE",
@@ -1266,7 +1265,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 146,
+            "position": 166,
             "movement": null,
             "status": "new"
           }
@@ -1398,25 +1397,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Isaka II",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 112,
-            "movement": -13
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Damn",
     "platforms": [
       {
@@ -1435,6 +1415,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Isaka II",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 113,
+            "movement": -1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "10 Toes",

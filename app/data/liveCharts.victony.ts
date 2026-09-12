@@ -473,8 +473,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": 0
+            "position": 18,
+            "movement": -2
           }
         ]
       },
@@ -485,8 +485,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 79,
-            "movement": -12
+            "position": 80,
+            "movement": -7
           }
         ]
       }
@@ -693,14 +693,14 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 155,
-            "movement": 14
+            "position": 162,
+            "movement": 23
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 180,
-            "movement": 2
+            "position": 181,
+            "movement": 12
           },
           {
             "country": "IE",
@@ -830,8 +830,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
-            "movement": -3
+            "position": 57,
+            "movement": -6
           }
         ]
       },
@@ -842,7 +842,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
+            "position": 63,
             "movement": null,
             "status": "new"
           }
@@ -954,8 +954,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": -7
+            "position": 45,
+            "movement": -4
           }
         ]
       },
@@ -1023,8 +1023,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
-            "movement": -10
+            "position": 83,
+            "movement": -11
           }
         ]
       },
@@ -1054,8 +1054,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": -8
+            "position": 132,
+            "movement": -24
           }
         ]
       },
@@ -1192,14 +1192,33 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 116,
-            "movement": 1
+            "position": 130,
+            "movement": -14
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b7f8a994a2879ad8100aab10404627a4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PITY THIS BOY",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 93,
+            "movement": 3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jailer",
@@ -1221,25 +1240,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/06fec5c27867700f0bdd8938b5ac4abd/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "PITY THIS BOY",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 96,
-            "movement": 2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Hello",
     "platforms": [
       {
@@ -1249,8 +1249,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": 16
+            "position": 122,
+            "movement": -17
           }
         ]
       }
