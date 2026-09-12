@@ -11,7 +11,7 @@ describe("mobile nav sheet", () => {
     expect(navGroups.map((g) => g.name)).toEqual(["Browse", "Deep data", "The site"]);
   });
 
-  it("lists 27 routes — 7 browse, 8 record books, 12 site", () => {
+  it("lists 28 routes — 8 browse, 8 record books, 12 site", () => {
     // 8 Aug 2026: +2 site routes — /curator and /press.
     // 11 Aug 2026: +/dai-dai/es. The Spanish edition had one inbound link in
     // the whole site; the sheet now carries it on every page.
@@ -19,8 +19,10 @@ describe("mobile nav sheet", () => {
     // top-level section of its own, and Paul put it in the desktop nav too.
     // 16 Aug 2026: +/timeline. Search Console showed it with 2 inbound links
     // against 50 for every established page — the sheet fixes that site-wide.
-    expect(navGroups.map((g) => g.items.length)).toEqual([7, 8, 12]);
-    expect(navRoutes).toHaveLength(27);
+    // 12 Sep 2026: +/compare, Browse — Paul asked for the compare page in the
+    // mobile nav; it is a top-level tool, not a record book.
+    expect(navGroups.map((g) => g.items.length)).toEqual([8, 8, 12]);
+    expect(navRoutes).toHaveLength(28);
   });
 
   it("links every route exactly once", () => {

@@ -258,8 +258,12 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
               <h1 className={styles.title}>{a.name}</h1>
               <p className={styles.fullName}>{a.fullName}</p>
               <p className={styles.hook}>{a.hook}</p>
-              {/* The two things this page is for, reachable from the hero
-                  rather than only from the panels further down. */}
+              {/* The three things this page is for, reachable from the hero
+                  rather than only from the panels further down. The two boards
+                  are named with their own figures, so each says what is behind
+                  it; Compare is an action, worded as it is everywhere else on
+                  the site, and short enough that the row stays one line at
+                  desktop widths (a figure on it pushed it to a second line). */}
               <div className={styles.heroActions}>
                 {a.charts.length > 0 && (
                   <Link href={`/afrobeats/${a.slug}/charts`} className="btn btnPrimary">
@@ -272,6 +276,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
                     Live charts — {live.placements} placements today
                   </Link>
                 )}
+                <Link href={`/compare?a=${a.slug}`} className="btn btnSecondary">
+                  Compare ↗
+                </Link>
               </div>
             </div>
           </div>

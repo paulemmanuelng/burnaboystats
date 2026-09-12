@@ -26,6 +26,7 @@ import { carCount } from "../data/cars";
 import { updates } from "../data/updates";
 import { albums, eps, compilations } from "../data/albums";
 import { liveNumberOnes } from "../data/liveCharts";
+import { comparableArtists } from "./certUnits";
 import { africaBoards } from "./africaBoards";
 import { findings } from "./analysisFindings";
 import { API_VERSION, lastUpdated } from "./api";
@@ -71,6 +72,9 @@ export const navGroups: NavGroup[] = [
       { label: "Records", href: "/records", meta: `${deepData.length} books` },
       { label: "Live charts", href: "/live-charts", meta: `${liveNumberOnes} No. 1s` },
       { label: "The Afrobeats Board", href: "/afrobeats", meta: String(afrobeatsArtists.length) },
+      // 12 Sep 2026: +/compare. Paul asked for it in the mobile nav; the row
+      // advertises the artists it can set against each other, derived.
+      { label: "Compare", href: "/compare", meta: `${comparableArtists.length} artists` },
       { label: "Updates", href: "/updates", meta: String(updates.length) },
     ],
   },
