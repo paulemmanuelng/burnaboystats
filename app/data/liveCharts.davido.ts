@@ -205,9 +205,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 2,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
+            "position": 3,
             "movement": -1
           },
           {
@@ -220,8 +227,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 192,
-            "movement": -20
+            "position": 195,
+            "movement": -26
           }
         ]
       },
@@ -468,9 +475,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
-            "movement": null,
-            "status": "new"
+            "position": 91,
+            "movement": -75
           }
         ]
       }
@@ -598,7 +604,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 84,
-            "movement": 7
+            "movement": 15
           },
           {
             "country": "DM",
@@ -652,8 +658,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
-            "movement": -7
+            "position": 70,
+            "movement": -1
           }
         ]
       }
@@ -791,7 +797,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 58,
+            "position": 88,
             "movement": null,
             "status": "new"
           }
@@ -950,8 +956,8 @@
           {
             "country": "IL",
             "name": "Israel",
-            "position": 64,
-            "movement": -34
+            "position": 68,
+            "movement": -33
           }
         ]
       }
@@ -1031,19 +1037,19 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 7,
-            "movement": -2
+            "position": 10,
+            "movement": -4
           },
           {
             "country": "MZ",
             "name": "Mozambique",
             "position": 12,
-            "movement": -8
+            "movement": -7
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
+            "position": 80,
             "movement": null,
             "status": "new"
           }
@@ -1214,8 +1220,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
-            "movement": 63
+            "position": 71,
+            "movement": -66
           }
         ]
       },
@@ -1339,6 +1345,19 @@
             "movement": 23
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 147,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -1443,6 +1462,19 @@
             "name": "Nigeria",
             "position": 66,
             "movement": 2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 180,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1867,7 +1899,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 63,
-            "movement": -5
+            "movement": -3
           }
         ]
       }
@@ -1934,8 +1966,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 190,
-            "movement": -2
+            "position": 192,
+            "movement": -4
           }
         ]
       }
@@ -2068,13 +2100,13 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 59,
-            "movement": 28
+            "movement": 29
           },
           {
             "country": "MZ",
             "name": "Mozambique",
             "position": 66,
-            "movement": -5
+            "movement": -3
           }
         ]
       },
@@ -2130,50 +2162,6 @@
             "name": "Ghana",
             "position": 99,
             "movement": -8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Yaya",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 57,
-            "movement": -5
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 155,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 166,
-            "movement": -23
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 198,
-            "movement": -20
           }
         ]
       }
@@ -2242,6 +2230,38 @@
             "name": "Nigeria",
             "position": 100,
             "movement": -9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Yaya",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 57,
+            "movement": -5
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 155,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 166,
+            "movement": -23
           }
         ]
       }
@@ -2329,7 +2349,7 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 33,
+            "position": 38,
             "movement": null,
             "status": "new"
           }
@@ -2462,25 +2482,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/49e60bcc245747acb829b0a96723c176/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Lover Boy",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 47,
-            "movement": -12
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Like",
     "platforms": [
       {
@@ -2500,7 +2501,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Titanium",
+    "title": "Lover Boy",
     "platforms": [
       {
         "platform": "iTunes",
@@ -2509,8 +2510,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 66,
-            "movement": -12
+            "position": 63,
+            "movement": -26
           }
         ]
       }
@@ -2537,6 +2538,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Titanium",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 82,
+            "movement": -26
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "All of You",

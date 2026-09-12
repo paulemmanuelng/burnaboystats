@@ -243,17 +243,17 @@
             "status": "new"
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 169,
+            "movement": 22
+          },
+          {
             "country": "TC",
             "name": "Turks and Caicos",
             "position": 173,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 174,
-            "movement": 7
           },
           {
             "country": "MU",
@@ -275,9 +275,15 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "PL",
+            "name": "Poland",
+            "position": 20,
+            "movement": 43
+          },
+          {
             "country": "CL",
             "name": "Chile",
-            "position": 25,
+            "position": 28,
             "movement": null,
             "status": "new"
           }
@@ -644,7 +650,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
+            "position": 13,
             "movement": null,
             "status": "new"
           }
@@ -792,7 +798,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 59,
+            "position": 89,
             "movement": null,
             "status": "new"
           }
@@ -1221,14 +1227,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 75,
-            "movement": 3
+            "position": 78,
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 76,
-            "movement": 5
+            "position": 78,
+            "movement": 3
           }
         ]
       }
@@ -1319,8 +1325,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 46,
-            "movement": -8
+            "position": 48,
+            "movement": -10
           }
         ]
       }
@@ -1777,8 +1783,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 91,
-            "movement": -22
+            "position": 92,
+            "movement": -16
           }
         ]
       }
@@ -1907,8 +1913,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 135,
-            "movement": 6
+            "position": 137,
+            "movement": 4
           }
         ]
       }
@@ -1938,13 +1944,13 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
-            "movement": 7
+            "position": 96,
+            "movement": 5
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 99,
+            "position": 98,
             "movement": null,
             "status": "new"
           }
@@ -2064,6 +2070,32 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Kese",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 20,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 29,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b83e12a893bcd9bca6f6e84283dbedaa/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Slow",
@@ -2198,25 +2230,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Kese",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 25,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b83e12a893bcd9bca6f6e84283dbedaa/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Time",
     "platforms": [
       {
@@ -2303,8 +2316,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 60,
-            "movement": -22
+            "position": 61,
+            "movement": -16
           }
         ]
       }
@@ -2401,8 +2414,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 148,
-            "movement": -19
+            "position": 151,
+            "movement": -25
           }
         ]
       }
@@ -2428,26 +2441,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "STATE OF MIND",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 178,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/75dc9da91f469baa06a74cb6966396b6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Alive",
@@ -2478,7 +2471,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 130,
+            "position": 159,
             "movement": null,
             "status": "new"
           }
