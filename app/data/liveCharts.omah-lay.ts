@@ -273,7 +273,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 12,
-            "movement": -4
+            "movement": -2
           },
           {
             "country": "GH",
@@ -284,8 +284,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": -132
+            "position": 157,
+            "movement": -138
           }
         ]
       },
@@ -1182,7 +1182,7 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 76,
+            "position": 78,
             "movement": -2
           },
           {
@@ -1265,7 +1265,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
+            "position": 176,
             "movement": null,
             "status": "new"
           }

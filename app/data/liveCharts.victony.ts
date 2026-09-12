@@ -467,6 +467,25 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "HU",
+            "name": "Hungary",
+            "position": 46,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 80,
+            "movement": -7
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -475,18 +494,6 @@
             "name": "Nigeria",
             "position": 18,
             "movement": -2
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 80,
-            "movement": -7
           }
         ]
       }
@@ -693,14 +700,14 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 162,
-            "movement": 23
+            "position": 172,
+            "movement": 13
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 181,
-            "movement": 12
+            "position": 173,
+            "movement": 20
           },
           {
             "country": "IE",
