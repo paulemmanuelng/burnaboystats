@@ -76,21 +76,133 @@ export function extractKworbYouTubeVideo(html, matchTitle) {
 // Total Spotify streams for ONE song on kworb's per-artist songs page. Rows are
 // "<title></td><td>total</td><td>daily</td>"; we match the title cell exactly so
 // "Ye" can't match "Ye [Official Audio]"-style variants or a longer title.
-// kworb's all-artists table (kworb.net/spotify/artists.html): one row per
-// artist with Total and Daily stream columns. Returns the DAILY figure for the
-// named artist — the increment an accumulate metric adds once per day.
-export function extractKworbArtistDaily(html, artistName) {
-  // Row shape (verified 13 Aug 2026):
-  //   <td class="text"><div><a href="/spotify/artist/…">Burna Boy</a></div></td>
-  //   <td>10,596.5</td>  <- career total, MILLIONS
-  //   <td>9.267</td>     <- daily streams, MILLIONS
-  // Values are in millions with a decimal point, so the daily converts ×1e6.
-  const esc = artistName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const rowRe = new RegExp(`>${esc}</a>(?:</div>)?</td>\\s*((?:<td[^>]*>[\\d,.]+</td>\\s*){2})`, "i");
-  const m = html.match(rowRe);
-  if (!m) return NaN;
-  const cells = [...m[1].matchAll(/<td[^>]*>([\d,.]+)<\/td>/g)].map((c) => parseNum(c[1]));
-  return cells.length >= 2 ? Math.round(cells[1] * 1e6) : NaN;
+// One artist's own kworb page (kworb.net/spotify/artist/<id>_songs.html): the
+// page's date stamp, the catalogue total and the day's streams, read together.
+//
+// A running-year total is the SUM OF DAILIES keyed by the page's own date. Not
+// the change in the cumulative total: kworb absorbs catalogue it had not been
+// tracking (between the 27 Aug and 9 Sep 2026 archived tables Tems' total rose
+// 138M while her days summed to 74M), and a cumulative counts that as streamed.
+// Not dailies keyed by the bot's run date either: kworb regenerates each
+// artist's page on its own schedule (the same moment on 12 Sep 2026 showed
+// Burna Boy stamped 2026/09/11 and Tems 2026/09/10), so a run-date gate added
+// Burna Boy's 27 Aug, 29 Aug and 2 Sep twice and never added 28 Aug, 31 Aug
+// or 9 Sep — and did worse to the artists whose pages move less regularly.
+// The stamp is the key: one date, one daily, however many times it is read.
+//
+// Page shape (verified 12 Sep 2026):
+//   Last updated: 2026/09/11<br>
+//   <tr><td class="text">Streams</td><td>10,859,476,411</td>…
+//   <tr><td class="text">Daily</td><td>7,828,573</td>…
+// Returns { date: "2026-09-11", total, daily } or null when the stamp or the
+// daily is missing — a figure without its date is not a reading.
+export function extractKworbArtistPage(html) {
+  const stamp = String(html).match(/Last updated:\s*(\d{4})\/(\d{2})\/(\d{2})/);
+  const daily = String(html).match(/<td class="text">Daily<\/td><td>([\d,]+)<\/td>/);
+  if (!stamp || !daily) return null;
+  const streams = String(html).match(/<td class="text">Streams<\/td><td>([\d,]+)<\/td>/);
+  return {
+    date: `${stamp[1]}-${stamp[2]}-${stamp[3]}`,
+    total: streams ? parseNum(streams[1]) : NaN,
+    daily: parseNum(daily[1]),
+  };
+}
+
+// ---------------------------------------------------------------------------
+// LEDGER METRICS — a running total kept as a checkpoint plus dated dailies.
+//
+//   checkpoint: { date, value }   the total through `date`
+//   readings:   { "YYYY-MM-DD": daily, … }   days after the checkpoint
+//
+// The total through a later date is the checkpoint plus every daily from the
+// day after it, and it exists only where no day is missing in between: a hole
+// is a hole, never a zero. A group of ledgers publishes together, on the newest
+// date every member covers, so a board that says its figures are read together
+// stays true on the day one page lags.
+
+export function nextDay(iso) {
+  const t = new Date(`${iso}T00:00:00Z`);
+  t.setUTCDate(t.getUTCDate() + 1);
+  return t.toISOString().slice(0, 10);
+}
+
+// The last date a ledger covers without a hole, starting at its checkpoint.
+export function coveredThrough(checkpoint, readings) {
+  let last = checkpoint.date;
+  for (let d = nextDay(last); isDaily((readings ?? {})[d]); d = nextDay(d)) last = d;
+  return last;
+}
+
+// Days after the checkpoint that are missing below the newest reading — the
+// holes that stop a ledger advancing. Reported, never skipped over.
+export function ledgerGaps(checkpoint, readings) {
+  const dates = Object.keys(readings ?? {}).filter((d) => d > checkpoint.date).sort();
+  if (!dates.length) return [];
+  const newest = dates[dates.length - 1];
+  const gaps = [];
+  for (let d = nextDay(checkpoint.date); d < newest; d = nextDay(d)) if (!(d in readings)) gaps.push(d);
+  return gaps;
+}
+
+// A day's streams is a positive number or it is not a reading. Zero is not a
+// day these artists have, and a null typed by hand would sum as zero — a hole
+// dressed as a day, which is the one thing a ledger must never contain.
+const isDaily = (v, max = Infinity) => typeof v === "number" && Number.isFinite(v) && v > 0 && v <= max;
+
+// Record one dated daily on a ledger. Returns the readings to keep and whether
+// anything was recorded — and why not, when not. The page's own date is the
+// key: a day on or before the checkpoint is already inside it; a day already
+// recorded stays as first read; a daily that fails the gate is refused, so a
+// mis-parse cannot enter a running total for the year.
+export function recordReading(checkpoint, readings, reading, dailyMax = Infinity) {
+  const kept = { ...(readings ?? {}) };
+  if (!reading || !/^\d{4}-\d{2}-\d{2}$/.test(String(reading.date))) return { readings: kept, recorded: false, reason: "no dated reading" };
+  if (reading.date <= checkpoint.date) return { readings: kept, recorded: false, reason: `the ${reading.date} page is inside the checkpoint` };
+  if (reading.date in kept) return { readings: kept, recorded: false, reason: `${reading.date} already recorded` };
+  if (!isDaily(reading.daily, dailyMax)) {
+    return { readings: kept, recorded: false, reason: `implausible daily ${String(reading.daily)} on the ${reading.date} page — not recorded` };
+  }
+  kept[reading.date] = reading.daily;
+  return { readings: kept, recorded: true };
+}
+
+// The total through `date`, or null if the ledger does not cover it — a
+// covered day whose daily is not a positive number is a hole, not a zero.
+export function ledgerValue(checkpoint, readings, date) {
+  if (date < checkpoint.date || date > coveredThrough(checkpoint, readings)) return null;
+  let sum = checkpoint.value;
+  for (let d = nextDay(checkpoint.date); d <= date; d = nextDay(d)) {
+    if (!isDaily(readings[d])) return null;
+    sum += readings[d];
+  }
+  return sum;
+}
+
+// The newest date every member of a group covers, and each member's total on
+// it. `members` is [{ id, checkpoint, readings }]. Null while any member cannot
+// reach a common date — the group then publishes nothing new.
+export function alignLedgers(members) {
+  if (!members.length) return null;
+  let date = null;
+  for (const m of members) {
+    const t = coveredThrough(m.checkpoint, m.readings);
+    date = date == null || t < date ? t : date;
+  }
+  const values = {};
+  for (const m of members) {
+    const v = ledgerValue(m.checkpoint, m.readings, date);
+    if (v == null) return null; // a member re-checkpointed past the others
+    values[m.id] = v;
+  }
+  return { date, values };
+}
+
+// Roll a ledger forward once its total through `date` has been published:
+// the checkpoint moves to that date and the dailies it absorbed are dropped.
+// The day-by-day record stays in git; the file stays small.
+export function rollLedger(checkpoint, readings, date, value) {
+  const kept = Object.fromEntries(Object.entries(readings ?? {}).filter(([d]) => d > date));
+  return { checkpoint: { date, value }, readings: kept };
 }
 
 export function extractKworbSongStreams(html, title) {
@@ -195,24 +307,6 @@ export function evaluateMetric(metric, liveValue) {
       status: delta >= (metric.threshold ?? 5) ? "rank-change" : "ok",
     };
   }
-  if (metric.kind === "accumulate") {
-    // A running total the source only publishes as a DAILY increment. The
-    // baseline IS the total; each new kworb day adds the daily figure to it —
-    // once, gated on the date, because the live workflow runs hourly and the
-    // source refreshes daily. liveValue here is the DAY'S streams, not a total.
-    const today = new Date().toISOString().slice(0, 10);
-    // Gate on lastAccumulatedAt, NOT lastSeenAt. lastSeenAt means "the source
-    // moved", and it is stamped on every run that merely READ a new value —
-    // including runs where sanity rejected the increment or the anchored edit
-    // failed and the baseline was never bumped. Keying the guard off it marked
-    // such a day as already counted, so the day's streams were dropped from a
-    // running total for good, silently. lastAccumulatedAt is written only next
-    // to the baseline bump, so it means what this guard needs it to mean.
-    if (metric.lastAccumulatedAt === today) {
-      return { ...metric, live: metric.baseline, status: "ok" };
-    }
-    return { ...metric, live: metric.baseline + liveValue, added: liveValue, status: "accumulate" };
-  }
   const drift = relativeDrift(metric.baseline, liveValue);
   return {
     ...metric,
@@ -224,7 +318,7 @@ export function evaluateMetric(metric, liveValue) {
 
 // True when a result is worth alerting a human about.
 export function isActionable(status) {
-  return status === "drift" || status === "new-peak" || status === "rank-change" || status === "accumulate";
+  return status === "drift" || status === "new-peak" || status === "rank-change";
 }
 
 // Watch the RAW source value behind an offset metric.

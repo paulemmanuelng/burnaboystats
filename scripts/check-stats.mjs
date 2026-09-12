@@ -20,7 +20,6 @@ import {
   extractKworbYouTubeVideo,
   extractKworbYouTubeTotal,
   extractKworbSongStreams,
-  extractKworbArtistDaily,
   evaluateMetric,
   isActionable,
   certWatchStatus,
@@ -57,7 +56,11 @@ const extractors = {
   kworbYouTubeVideo: (html, metric) => extractKworbYouTubeVideo(html, metric.match),
   kworbYouTubeTotal: (html) => extractKworbYouTubeTotal(html),
   kworbSongStreams: (html, metric) => extractKworbSongStreams(html, metric.match),
-  kworbArtistDaily: (html, metric) => extractKworbArtistDaily(html, metric.match),
+  // A ledger (`group`) metric has no single live value — the live bot reads
+  // it dated and aligned with its peers. Registered so every extractor a
+  // metric can name is implemented in one list; here it reads as unavailable,
+  // never as the page's cumulative total against a year-to-date baseline.
+  kworbArtistPage: () => NaN,
 };
 
 async function fetchText(url) {
@@ -124,7 +127,9 @@ async function main() {
 
   // Live metrics (followers, peak listeners) are auto-published hourly by the
   // stats-live workflow — the weekly tripwire only covers the review-gated rest.
-  const metrics = config.metrics.filter((m) => !m.live);
+  // Ledger (`group`) metrics have no meaning off the live path — see
+  // apply-stat-updates.mjs — so they are never reported here.
+  const metrics = config.metrics.filter((m) => !m.live && !m.group);
 
   // A metric naming an extractor this runner does not have is a CONFIG fault,
   // and it will never fix itself. It used to be indistinguishable from a source

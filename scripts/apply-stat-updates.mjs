@@ -17,7 +17,7 @@
 // from what the page shows.
 
 import { readFile, writeFile, appendFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import path from "node:path";
 import {
   extractKworbListeners,
@@ -26,7 +26,11 @@ import {
   extractKworbYouTubeVideo,
   extractKworbYouTubeTotal,
   extractKworbSongStreams,
-  extractKworbArtistDaily,
+  extractKworbArtistPage,
+  alignLedgers,
+  ledgerGaps,
+  rollLedger,
+  recordReading,
   extractSpotifyFollowers,
   evaluateMetric,
   isActionable,
@@ -56,7 +60,11 @@ const htmlExtractors = {
   kworbYouTubeVideo: (html, metric) => extractKworbYouTubeVideo(html, metric.match),
   kworbYouTubeTotal: (html) => extractKworbYouTubeTotal(html),
   kworbSongStreams: (html, metric) => extractKworbSongStreams(html, metric.match),
-  kworbArtistDaily: (html, metric) => extractKworbArtistDaily(html, metric.match),
+  // A ledger (`group`) metric has no single live value: it is read dated
+  // (datedReading → extractKworbArtistPage) and aligned with its peers.
+  // Registered so every extractor a metric can name is implemented in one
+  // list; off the ledger path it reads as unavailable, never as a total.
+  kworbArtistPage: () => NaN,
 };
 
 async function fetchText(url) {
@@ -124,10 +132,28 @@ async function liveValue(metric, pageCache) {
   return corrected(htmlExtractors[metric.extractor]?.(page, metric) ?? NaN);
 }
 
+// A DATED reading for a ledger (`group`) metric — the artist's own kworb page:
+// its stamp, its total and the day's streams. Ledger metrics are not evaluated
+// one by one: each day's daily is kept under the page's date on the metric,
+// and the group publishes on the newest date every member covers without a
+// hole (alignLedgers), each member's checkpoint plus its dailies to that date.
+// No once-per-day gate exists any more, because none is needed: the page's
+// date is the key, so the same page read twice records one day once.
+async function datedReading(metric, pageCache) {
+  if (!pageCache.has(metric.sourceUrl)) {
+    pageCache.set(metric.sourceUrl, fetchText(metric.sourceUrl).catch((e) => ({ error: e.message })));
+  }
+  const page = await pageCache.get(metric.sourceUrl);
+  if (page && page.error) throw new Error(page.error);
+  const reading = extractKworbArtistPage(page);
+  if (!reading) throw new Error("no dated daily on the page");
+  return reading;
+}
+
 /**
  * Any run of consecutive `/* live:<prefix>-<name> *\/ { name: …, value: "N.NNNB" }`
  * lines is sorted by that value, descending, in place. Only runs of the same
- * prefix are touched (the three streams-2026-* rows); a run whose values do
+ * prefix are touched (the five streams-2026-* rows); a run whose values do
  * not all parse is left alone.
  */
 export function reorderLiveRows(text) {
@@ -161,7 +187,9 @@ async function applyTargets(metric, files) {
   for (const t of metric.siteTargets) {
     const abs = path.join(repoRoot, t.file);
     if (!files.has(abs)) files.set(abs, await readFile(abs, "utf8"));
-    const formatted = formatStat(metric.live, t.format);
+    // `field: "asOf"` writes the group's common date instead of the value, so
+    // the board can say which day its totals are read at.
+    const formatted = t.field === "asOf" ? (metric.asOf ?? null) : formatStat(metric.live, t.format);
     if (formatted == null) {
       failures.push({ file: t.file, reason: `bad format "${t.format}"` });
       continue;
@@ -212,7 +240,36 @@ async function main() {
 
   const pageCache = new Map();
   const results = [];
+  const today = new Date().toISOString().slice(0, 10);
+  let readingsMoved = false;
+  const groups = new Map(); // group → members read this run
+  const ledgerNotes = []; // per-member coverage, for the summary
   for (const metric of metrics) {
+    if (metric.group) {
+      // Record the day's daily under the page's date on the config metric;
+      // evaluation waits for the whole group below.
+      try {
+        const reading = await datedReading(metric, pageCache);
+        const m = config.metrics.find((x) => x.id === metric.id);
+        // Keyed by the PAGE's date — recordReading is the whole of that rule,
+        // and tests/statsMonitor.test.ts holds it to it.
+        const rec = recordReading(m.checkpoint, m.readings, reading, m.dailyMax);
+        if (rec.recorded) {
+          m.readings = rec.readings;
+          // The source moved, whether or not the group can publish yet — a
+          // member waiting on a lagging peer is not a stale source.
+          m.lastSeenAt = today;
+          readingsMoved = true;
+        } else if (/implausible/.test(rec.reason)) {
+          throw new Error(rec.reason);
+        }
+        if (!groups.has(metric.group)) groups.set(metric.group, []);
+        groups.get(metric.group).push(metric);
+      } catch (err) {
+        results.push({ ...metric, live: null, status: "unavailable", reason: err.message });
+      }
+      continue;
+    }
     let live = NaN;
     try {
       live = await liveValue(metric, pageCache);
@@ -225,6 +282,41 @@ async function main() {
     // counts the same set of things, and corrected space cannot show that.
     r.drift = offsetDrift(metric, live);
     results.push(r);
+  }
+  for (const [group, read] of groups) {
+    // Alignment is over EVERY member in the config, not just those read this
+    // run: a member whose fetch failed still has its earlier dailies, and a
+    // member missing a day holds the whole group at the last day it covers.
+    const members = config.metrics.filter((m) => m.group === group);
+    const aligned = alignLedgers(members);
+    for (const m of members) {
+      const gaps = ledgerGaps(m.checkpoint, m.readings);
+      const dates = Object.keys(m.readings ?? {}).sort();
+      ledgerNotes.push({
+        group, id: m.id, label: m.label, checkpoint: m.checkpoint.date,
+        newest: dates[dates.length - 1] ?? null, gaps, common: aligned?.date ?? null, hold: m.hold ?? null,
+      });
+    }
+    // Every member is evaluated from its STORED dailies, not only those whose
+    // page was fetched this run: a member's total through the common day does
+    // not depend on today's fetch, and leaving a member out would let the
+    // other four advance the shared as-of date past a row that never moved.
+    // A hold on any member holds the group: the rows share one as-of date,
+    // so four of them cannot move while the fifth stands still.
+    const hold = members.find((m) => m.hold)?.hold;
+    for (const m of members) {
+      if (!aligned) {
+        results.push({ ...m, live: null, status: "unaligned", reason: "no day every member of the group covers" });
+        continue;
+      }
+      if (hold) {
+        results.push({ ...m, live: aligned.values[m.id], status: "held", reason: hold, asOf: aligned.date });
+        continue;
+      }
+      const r = evaluateMetric(m, aligned.values[m.id]);
+      r.asOf = aligned.date;
+      results.push(r);
+    }
   }
 
   // Diagnostic: every metric's fetch outcome, so the Actions log always shows
@@ -262,7 +354,43 @@ async function main() {
     return formatStat(r.live, fmt) !== formatStat(r.baseline, fmt);
   };
 
-  for (const r of results.filter((x) => isActionable(x.status) || displayWouldChange(x))) {
+  const actionable = results.filter((x) => x.status !== "held" && (isActionable(x.status) || displayWouldChange(x)));
+
+  // A group writes all of its rows or none of them. The five 2026 totals
+  // share one as-of date, so four rows published beside one held back would
+  // print a day the fifth never reached, and re-sort a stale figure among
+  // fresh ones. One member failing the sanity gate, or one anchored edit
+  // failing, holds the whole group: its edits are made on a trial copy of the
+  // files and merged only when every member's went through.
+  const byGroup = new Map();
+  for (const r of actionable) {
+    if (!r.group) continue;
+    if (!byGroup.has(r.group)) byGroup.set(r.group, []);
+    byGroup.get(r.group).push(r);
+  }
+  for (const [group, rs] of byGroup) {
+    // A ledger's move since its last publish is the sum of dailies each
+    // already gated by dailyMax on the way in — after a hold or a lagging
+    // page it can legitimately be a week's worth, which a relative jump
+    // guard would refuse forever (the baseline never advances on a refusal).
+    // Only the absolute bounds apply here.
+    if (LIVE && rs.some((r) => !withinSanity(r.baseline, r.live, { ...r.sanity, maxJump: Infinity }))) {
+      rejected.push(...rs);
+      continue;
+    }
+    const trial = new Map(files);
+    const outcomes = [];
+    for (const r of rs) outcomes.push({ r, ...(await applyTargets(r, trial)) });
+    if (outcomes.every((o) => o.ok)) {
+      for (const [abs, text] of trial) files.set(abs, text);
+      for (const o of outcomes) if (o.edits.some((e) => !e.noop)) applied.push({ r: o.r, edits: o.edits });
+    } else {
+      console.error(`  ⚠ group ${group}: an anchored edit failed — none of its rows were written`);
+      for (const o of outcomes) manual.push({ r: o.r, failures: o.ok ? [{ reason: `held with the group` }] : o.failures });
+    }
+  }
+
+  for (const r of actionable.filter((x) => !x.group)) {
     // In live mode, gate every value before it can touch a file.
     if (LIVE && !withinSanity(r.baseline, r.live, r.sanity)) {
       rejected.push(r);
@@ -302,7 +430,7 @@ async function main() {
       }
     }
   }
-  if (sourcesMoved) files.set(configPath, JSON.stringify(config, null, 2) + "\n");
+  if (sourcesMoved || readingsMoved) files.set(configPath, JSON.stringify(config, null, 2) + "\n");
 
   if (applied.length) {
     for (const { r } of applied) {
@@ -321,24 +449,25 @@ async function main() {
         // which would have fired the staleness alarm on healthy sources.
         m.lastSeenValue = Math.round(r.live);
         m.lastSeenAt = m.lastChanged;
-        // Only an accumulate metric that actually LANDED may mark the day as
-        // counted. evaluateMetric reads this, and nothing else writes it — a
-        // rejected or failed increment must leave the day open so the next run
-        // can retry it, or the day's figure is lost from the running total.
-        if (r.kind === "accumulate") m.lastAccumulatedAt = m.lastChanged;
+        // A published ledger rolls forward: its checkpoint becomes the day
+        // just written and the dailies that day absorbed are dropped. The
+        // record of each day stays in this file's git history.
+        if (r.asOf && m.checkpoint) Object.assign(m, rollLedger(m.checkpoint, m.readings, r.asOf, Math.round(r.live)));
       }
     }
     files.set(configPath, JSON.stringify(config, null, 2) + "\n");
   }
 
-  // Ranked live rows follow their numbers. The three 2026 running totals on
+  // Ranked live rows follow their numbers. The five 2026 running totals on
   // the Africa's Biggest board are written into rows whose ORDER is source
   // order, and tests/watchedMetrics.test.ts refuses a board that lists a
-  // smaller total above a larger one — so the day Burna Boy's total passed
-  // Wizkid's (11 Sep 2026), every hourly run wrote the right numbers into the
-  // wrong order, failed its own gate, and nothing was committed for two days:
-  // no totals, and no lastSeenAt stamps, which set off the staleness alarm on
-  // fourteen healthy song figures. Sort the marked rows by value after writing.
+  // smaller total above a larger one — so the day the summed total for Burna
+  // Boy passed Wizkid's (11 Sep 2026 — a pass the tracker the row follows
+  // did not see; see docs/sourcing/STREAMS-2026-ANCHOR.md), every run wrote
+  // the right numbers into the wrong order, failed its own gate, and nothing
+  // was committed for two days: no totals, and no lastSeenAt stamps, which set
+  // off the staleness alarm on fourteen healthy song figures. Sort the marked
+  // rows by value after writing.
   for (const [abs, text] of files) files.set(abs, reorderLiveRows(text));
 
   if (!DRY) for (const [abs, text] of files) await writeFile(abs, text);
@@ -350,7 +479,9 @@ async function main() {
     for (const { r, edits } of applied) {
       lines.push(`### ${r.label}`);
       lines.push(`Source shows **${fmt(r.live)}** (was ${fmt(r.baseline)}). _${r.sourceName}_`);
-      for (const e of edits) lines.push(`- \`${e.file}\`: ${e.from} → **${e.to}**`);
+      // A target another member of the same group already wrote this run is
+      // reported once, by whoever wrote it.
+      for (const e of edits) if (!e.noop) lines.push(`- \`${e.file}\`: ${e.from} → **${e.to}**`);
       lines.push(`- \`scripts/watched-metrics.json\`: baseline → ${fmt(r.live)}`);
       if (!LIVE && r.manualAfter?.length) {
         lines.push(`\n  Still needs your hand (prose/judgement):`);
@@ -358,6 +489,18 @@ async function main() {
       }
       lines.push("");
     }
+  }
+  if (ledgerNotes.length) {
+    // Where each running total stands: the day the group is published at,
+    // and — loudly — any day a member is missing, because a hole holds the
+    // whole group and only a hand can fill it (from the tracker's own daily
+    // post) or move the checkpoint past it.
+    const gapped = ledgerNotes.filter((n) => n.gaps.length);
+    lines.push(`### 📒 Running totals${gapped.length ? " — ⚠️ gaps need a hand" : ""}\n`);
+    for (const n of ledgerNotes) {
+      lines.push(`- **${n.label}**: ${n.hold ? `HELD (${n.hold}) — would publish through` : "published through"} ${n.common ?? "— (no common day)"}, checkpoint ${n.checkpoint}, newest daily ${n.newest ?? "none"}${n.gaps.length ? `, **missing ${n.gaps.join(", ")}**` : ""}`);
+    }
+    lines.push("");
   }
   if (rejected.length) {
     lines.push(`### ⛔ Rejected by the sanity gate (not published)\n`);
@@ -418,7 +561,11 @@ async function main() {
   }
 }
 
-main().catch((err) => {
+// Run only as a script. tests/watchedMetrics.test.ts imports reorderLiveRows
+// from this module, and an import that ran main() fetched every live source
+// inside the test suite and could write scripts/watched-metrics.json.
+const invokedDirectly = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (invokedDirectly) main().catch((err) => {
   console.error("Stat refresh error:", err);
   // Exit 1, not 0. An UNREACHABLE SOURCE is already handled per-metric above
   // (status: "unavailable"), and that path is the one scripts/README documents

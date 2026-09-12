@@ -136,10 +136,11 @@ describe("watched-metrics site targets", () => {
 
 describe("every leaderboard is ordered by the numbers it prints", () => {
   // Ordering was checked on 1 of 15 boards — and not on the one the stats bot
-  // writes three live values into. `streams-2026-{burna,wizkid,tems}` all
-  // rewrite the most-streamed board every run, and the three totals sit within
-  // ~53M of each other and move most days. On the ordinary day one passes
-  // another, the board would render a ranked list contradicting its own numbers.
+  // writes live values into. `streams-2026-{tems,wizkid,burna,asake,tyla}`
+  // (three of them when this was written) rewrite the most-streamed board, and
+  // the top three sit within ~15M of each other and move together. On the
+  // ordinary day one passes another, the board would render a ranked list
+  // contradicting its own numbers.
   //
   // The test written to close that hole did not, and read green for it. Two
   // faults, both silent:
@@ -276,19 +277,25 @@ describe("the bot keeps ranked live rows in the order their numbers say", () => 
   it("sorts a run of marked rows by value and leaves everything else alone", async () => {
     // @ts-expect-error — plain .mjs helper shared with the stats bot
     const { reorderLiveRows } = await import("../scripts/apply-stat-updates.mjs");
+    // The shipped shape: five marked rows, then the as-of line the bot also
+    // writes, which must neither be sorted into the run nor break it.
     const before = [
       "        entries: [",
-      '          /* live:streams-2026-tems */ { name: "Tems", value: "1.781B" },',
-      '          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.772B" },',
-      '          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.774B" },',
-      '          { name: "Asake", value: "1.335B" },',
+      '          /* live:streams-2026-tems */ { name: "Tems", value: "1.775B" },',
+      '          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.764B" },',
+      '          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.770B" },',
+      '          /* live:streams-2026-asake */ { name: "Asake", value: "1.426B" },',
+      '          /* live:streams-2026-tyla */ { name: "Tyla", value: "1.188B" },',
       "        ],",
+      '        /* live:streams-2026-asof */ asOf: "2026-09-10",',
     ].join("\n");
     const after = reorderLiveRows(before).split("\n");
     expect(after[1]).toContain("Tems");
     expect(after[2]).toContain("Burna Boy");
     expect(after[3]).toContain("Wizkid");
     expect(after[4]).toContain("Asake");
+    expect(after[5]).toContain("Tyla");
+    expect(after[7]).toBe('        /* live:streams-2026-asof */ asOf: "2026-09-10",');
     expect(after.every((l: string, i: number) => l.endsWith(",") === before.split("\n")[i].endsWith(","))).toBe(true);
     // Already in order: untouched, byte for byte.
     expect(reorderLiveRows(reorderLiveRows(before))).toBe(reorderLiveRows(before));

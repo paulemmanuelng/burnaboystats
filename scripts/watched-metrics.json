@@ -778,19 +778,32 @@
     {
       "id": "streams-2026-tems",
       "label": "Tems — 2026 Spotify streams (running total)",
-      "sourceName": "kworb — all-artists daily table",
-      "sourceUrl": "https://kworb.net/spotify/artists.html",
-      "extractor": "kworbArtistDaily",
-      "match": "Tems",
-      "kind": "accumulate",
-      "baseline": 1786113000,
+      "sourceName": "kworb.net — Spotify artist page (dated daily)",
+      "sourceUrl": "https://kworb.net/spotify/artist/687cZJR45JO7jhk1LHIbgq_songs.html",
+      "extractor": "kworbArtistPage",
+      "group": "streams-2026",
+      "kind": "peak",
+      "baseline": 1770000000,
+      "anchor": {
+        "date": "2026-09-09",
+        "value": 1770000000,
+        "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
+      },
+      "checkpoint": {
+        "date": "2026-09-09",
+        "value": 1770000000
+      },
+      "readings": {
+        "2026-09-10": 5357158
+      },
+      "dailyMax": 25000000,
       "live": true,
       "sanity": {
-        "maxJump": 0.03,
         "min": 1000000000,
         "max": 6000000000
       },
-      "note": "Year-to-date total, auto-accumulated: kworb publishes only a per-day figure, so each new kworb day ADDS the daily to this baseline (gated once per date — the live workflow is hourly, the source daily). Checkpointed to the fan tracker's cumulative count through 11 Aug 2026; re-checkpoint against the tracker if the two drift by more than a day's streams. Rows in the board are ordered by hand — if the order changes, reorder africasBiggest.ts manually.",
+      "stalenessDays": 3,
+      "note": "Year-to-date Spotify streams, kept as a LEDGER: a checkpoint (the total through a date) plus each later day's streams under the date kworb's page is stamped with. Published = checkpoint + every daily to the group's common day — the newest day all five ledgers cover without a hole — and the checkpoint rolls forward on each write; all five rows or none; a hold on any member holds all. Never the change in kworb's cumulative total (kworb absorbs catalogue it had not tracked: Tems' total rose 138M between 27 Aug and 9 Sep 2026 while her days summed to 74M), and never dailies keyed by the bot's run date (that added Burna Boy's 27 Aug, 29 Aug and 2 Sep twice and never added 28 Aug, 31 Aug or 9 Sep; net small — the board's false Burna-over-Wizkid reading of 11 Sep was several small things adding up, see docs/sourcing/STREAMS-2026-ANCHOR.md). No relative jump guard: dailyMax gates each day on the way in, and after a hold a week's worth is a legitimate move. ANCHOR: the fan tracker @WITTIEWIZ's '2026 so far' post of 10 Sep 2026 11:31 UTC (x.com/WITTIEWIZ/status/2098011367378735458), through kworb's pages stamped 2026/09/09 (Tems: through her 09/08 page — kworb published no 09/09 page for her, and neither the tracker nor this ledger has that day). Summed once per kworb day, kworb's own dailies and the tracker's count agree within a few million over the fortnight before. Re-anchor from the tracker's next 'so far' post whenever the two drift by more than a day's streams, and whenever a gap is reported. The baseline is always the checkpoint's value; re-anchoring means moving both together. THIS ARTIST: 09/10 daily is the exact figure on her page (stamped 09/10 on 12 Sep).",
       "siteTargets": [
         {
           "file": "app/data/africasBiggest.ts",
@@ -799,29 +812,51 @@
           "template": "%s",
           "format": "B3",
           "describes": "Tems 2026 running Spotify total on the Africa's Biggest board"
+        },
+        {
+          "file": "app/data/africasBiggest.ts",
+          "anchor": "/* live:streams-2026-asof */",
+          "pattern": "\\d{4}-\\d{2}-\\d{2}",
+          "template": "%s",
+          "field": "asOf",
+          "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1786113000,
+      "lastSeenValue": 1770000000,
       "lastSeenAt": "2026-09-12",
       "lastChanged": "2026-09-12",
-      "lastAccumulatedAt": "2026-09-12"
+      "hold": "12 Sep 2026: dailies are recorded, the board stays on the tracker's 09/09 figures until Paul decides how the row should move between tracker posts (see docs/sourcing/STREAMS-2026-ANCHOR.md)"
     },
     {
       "id": "streams-2026-wizkid",
       "label": "Wizkid — 2026 Spotify streams (running total)",
-      "sourceName": "kworb — all-artists daily table",
-      "sourceUrl": "https://kworb.net/spotify/artists.html",
-      "extractor": "kworbArtistDaily",
-      "match": "Wizkid",
-      "kind": "accumulate",
-      "baseline": 1778048000,
+      "sourceName": "kworb.net — Spotify artist page (dated daily)",
+      "sourceUrl": "https://kworb.net/spotify/artist/3tVQdUvClmAT7URs9V3rsp_songs.html",
+      "extractor": "kworbArtistPage",
+      "group": "streams-2026",
+      "kind": "peak",
+      "baseline": 1764000000,
+      "anchor": {
+        "date": "2026-09-09",
+        "value": 1764000000,
+        "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
+      },
+      "checkpoint": {
+        "date": "2026-09-09",
+        "value": 1764000000
+      },
+      "readings": {
+        "2026-09-10": 6046000,
+        "2026-09-11": 6229175
+      },
+      "dailyMax": 25000000,
       "live": true,
       "sanity": {
-        "maxJump": 0.03,
         "min": 1000000000,
         "max": 6000000000
       },
-      "note": "Year-to-date total, auto-accumulated: kworb publishes only a per-day figure, so each new kworb day ADDS the daily to this baseline (gated once per date — the live workflow is hourly, the source daily). Checkpointed to the fan tracker's cumulative count through 11 Aug 2026; re-checkpoint against the tracker if the two drift by more than a day's streams. Rows in the board are ordered by hand — if the order changes, reorder africasBiggest.ts manually.",
+      "stalenessDays": 3,
+      "note": "Year-to-date Spotify streams, kept as a LEDGER: a checkpoint (the total through a date) plus each later day's streams under the date kworb's page is stamped with. Published = checkpoint + every daily to the group's common day — the newest day all five ledgers cover without a hole — and the checkpoint rolls forward on each write; all five rows or none; a hold on any member holds all. Never the change in kworb's cumulative total (kworb absorbs catalogue it had not tracked: Tems' total rose 138M between 27 Aug and 9 Sep 2026 while her days summed to 74M), and never dailies keyed by the bot's run date (that added Burna Boy's 27 Aug, 29 Aug and 2 Sep twice and never added 28 Aug, 31 Aug or 9 Sep; net small — the board's false Burna-over-Wizkid reading of 11 Sep was several small things adding up, see docs/sourcing/STREAMS-2026-ANCHOR.md). No relative jump guard: dailyMax gates each day on the way in, and after a hold a week's worth is a legitimate move. ANCHOR: the fan tracker @WITTIEWIZ's '2026 so far' post of 10 Sep 2026 11:31 UTC (x.com/WITTIEWIZ/status/2098011367378735458), through kworb's pages stamped 2026/09/09 (Tems: through her 09/08 page — kworb published no 09/09 page for her, and neither the tracker nor this ledger has that day). Summed once per kworb day, kworb's own dailies and the tracker's count agree within a few million over the fortnight before. Re-anchor from the tracker's next 'so far' post whenever the two drift by more than a day's streams, and whenever a gap is reported. The baseline is always the checkpoint's value; re-anchoring means moving both together. THIS ARTIST: 09/10 daily is the bot's table read of 11 Sep 13:46 UTC (3 decimals of a million, ±500); 09/11 exact from his page.",
       "siteTargets": [
         {
           "file": "app/data/africasBiggest.ts",
@@ -830,29 +865,51 @@
           "template": "%s",
           "format": "B3",
           "describes": "Wizkid 2026 running Spotify total on the Africa's Biggest board"
+        },
+        {
+          "file": "app/data/africasBiggest.ts",
+          "anchor": "/* live:streams-2026-asof */",
+          "pattern": "\\d{4}-\\d{2}-\\d{2}",
+          "template": "%s",
+          "field": "asOf",
+          "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1778048000,
+      "lastSeenValue": 1764000000,
       "lastSeenAt": "2026-09-12",
       "lastChanged": "2026-09-12",
-      "lastAccumulatedAt": "2026-09-12"
+      "hold": "12 Sep 2026: dailies are recorded, the board stays on the tracker's 09/09 figures until Paul decides how the row should move between tracker posts (see docs/sourcing/STREAMS-2026-ANCHOR.md)"
     },
     {
       "id": "streams-2026-burna",
       "label": "Burna Boy — 2026 Spotify streams (running total)",
-      "sourceName": "kworb — all-artists daily table",
-      "sourceUrl": "https://kworb.net/spotify/artists.html",
-      "extractor": "kworbArtistDaily",
-      "match": "Burna Boy",
-      "kind": "accumulate",
-      "baseline": 1781473000,
+      "sourceName": "kworb.net — Spotify artist page (dated daily)",
+      "sourceUrl": "https://kworb.net/spotify/artist/3wcj11K77LjEY1PkEazffa_songs.html",
+      "extractor": "kworbArtistPage",
+      "group": "streams-2026",
+      "kind": "peak",
+      "baseline": 1756000000,
+      "anchor": {
+        "date": "2026-09-09",
+        "value": 1756000000,
+        "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
+      },
+      "checkpoint": {
+        "date": "2026-09-09",
+        "value": 1756000000
+      },
+      "readings": {
+        "2026-09-10": 7714000,
+        "2026-09-11": 7828573
+      },
+      "dailyMax": 25000000,
       "live": true,
       "sanity": {
-        "maxJump": 0.03,
         "min": 1000000000,
         "max": 6000000000
       },
-      "note": "Year-to-date total, auto-accumulated: kworb publishes only a per-day figure, so each new kworb day ADDS the daily to this baseline (gated once per date — the live workflow is hourly, the source daily). Checkpointed to the fan tracker's cumulative count through 11 Aug 2026; re-checkpoint against the tracker if the two drift by more than a day's streams. Rows in the board are ordered by hand — if the order changes, reorder africasBiggest.ts manually.",
+      "stalenessDays": 3,
+      "note": "Year-to-date Spotify streams, kept as a LEDGER: a checkpoint (the total through a date) plus each later day's streams under the date kworb's page is stamped with. Published = checkpoint + every daily to the group's common day — the newest day all five ledgers cover without a hole — and the checkpoint rolls forward on each write; all five rows or none; a hold on any member holds all. Never the change in kworb's cumulative total (kworb absorbs catalogue it had not tracked: Tems' total rose 138M between 27 Aug and 9 Sep 2026 while her days summed to 74M), and never dailies keyed by the bot's run date (that added Burna Boy's 27 Aug, 29 Aug and 2 Sep twice and never added 28 Aug, 31 Aug or 9 Sep; net small — the board's false Burna-over-Wizkid reading of 11 Sep was several small things adding up, see docs/sourcing/STREAMS-2026-ANCHOR.md). No relative jump guard: dailyMax gates each day on the way in, and after a hold a week's worth is a legitimate move. ANCHOR: the fan tracker @WITTIEWIZ's '2026 so far' post of 10 Sep 2026 11:31 UTC (x.com/WITTIEWIZ/status/2098011367378735458), through kworb's pages stamped 2026/09/09 (Tems: through her 09/08 page — kworb published no 09/09 page for her, and neither the tracker nor this ledger has that day). Summed once per kworb day, kworb's own dailies and the tracker's count agree within a few million over the fortnight before. Re-anchor from the tracker's next 'so far' post whenever the two drift by more than a day's streams, and whenever a gap is reported. The baseline is always the checkpoint's value; re-anchoring means moving both together. THIS ARTIST: 09/10 daily is the bot's table read of 11 Sep 13:46 UTC (±500) — that page's stamp is proven 09/10 by its total, 10,851,429,147, one day above the exact 09/09 read of 10,844,002,099 in CAREER-STREAMS-OFFSET.md; 09/11 exact from his page.",
       "siteTargets": [
         {
           "file": "app/data/africasBiggest.ts",
@@ -861,12 +918,126 @@
           "template": "%s",
           "format": "B3",
           "describes": "Burna Boy 2026 running Spotify total on the Africa's Biggest board"
+        },
+        {
+          "file": "app/data/africasBiggest.ts",
+          "anchor": "/* live:streams-2026-asof */",
+          "pattern": "\\d{4}-\\d{2}-\\d{2}",
+          "template": "%s",
+          "field": "asOf",
+          "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1781473000,
+      "lastSeenValue": 1756000000,
       "lastSeenAt": "2026-09-12",
       "lastChanged": "2026-09-12",
-      "lastAccumulatedAt": "2026-09-12"
+      "hold": "12 Sep 2026: dailies are recorded, the board stays on the tracker's 09/09 figures until Paul decides how the row should move between tracker posts (see docs/sourcing/STREAMS-2026-ANCHOR.md)"
+    },
+    {
+      "id": "streams-2026-asake",
+      "label": "Asake — 2026 Spotify streams (running total)",
+      "sourceName": "kworb.net — Spotify artist page (dated daily)",
+      "sourceUrl": "https://kworb.net/spotify/artist/3a1tBryiczPAZpgoZN9Rzg_songs.html",
+      "extractor": "kworbArtistPage",
+      "group": "streams-2026",
+      "kind": "peak",
+      "baseline": 1420000000,
+      "anchor": {
+        "date": "2026-09-09",
+        "value": 1420000000,
+        "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
+      },
+      "checkpoint": {
+        "date": "2026-09-09",
+        "value": 1420000000
+      },
+      "readings": {
+        "2026-09-10": 5727000,
+        "2026-09-11": 5918975
+      },
+      "dailyMax": 25000000,
+      "live": true,
+      "sanity": {
+        "min": 1000000000,
+        "max": 6000000000
+      },
+      "stalenessDays": 3,
+      "note": "Year-to-date Spotify streams, kept as a LEDGER: a checkpoint (the total through a date) plus each later day's streams under the date kworb's page is stamped with. Published = checkpoint + every daily to the group's common day — the newest day all five ledgers cover without a hole — and the checkpoint rolls forward on each write; all five rows or none; a hold on any member holds all. Never the change in kworb's cumulative total (kworb absorbs catalogue it had not tracked: Tems' total rose 138M between 27 Aug and 9 Sep 2026 while her days summed to 74M), and never dailies keyed by the bot's run date (that added Burna Boy's 27 Aug, 29 Aug and 2 Sep twice and never added 28 Aug, 31 Aug or 9 Sep; net small — the board's false Burna-over-Wizkid reading of 11 Sep was several small things adding up, see docs/sourcing/STREAMS-2026-ANCHOR.md). No relative jump guard: dailyMax gates each day on the way in, and after a hold a week's worth is a legitimate move. ANCHOR: the fan tracker @WITTIEWIZ's '2026 so far' post of 10 Sep 2026 11:31 UTC (x.com/WITTIEWIZ/status/2098011367378735458), through kworb's pages stamped 2026/09/09 (Tems: through her 09/08 page — kworb published no 09/09 page for her, and neither the tracker nor this ledger has that day). Summed once per kworb day, kworb's own dailies and the tracker's count agree within a few million over the fortnight before. Re-anchor from the tracker's next 'so far' post whenever the two drift by more than a day's streams, and whenever a gap is reported. The baseline is always the checkpoint's value; re-anchoring means moving both together. THIS ARTIST: 09/10 daily ESTIMATED: no kworb read of that page exists; @WizStatz's 10 Sep reading 5.94M scaled by 0.9642, the mean kworb/WizStatz ratio on that day for the three artists kworb was read for (±0.15M). 09/11 exact from his page.",
+      "siteTargets": [
+        {
+          "file": "app/data/africasBiggest.ts",
+          "anchor": "/* live:streams-2026-asake */",
+          "pattern": "[\\d.]+B",
+          "template": "%s",
+          "format": "B3",
+          "describes": "Asake 2026 running Spotify total on the Africa's Biggest board"
+        },
+        {
+          "file": "app/data/africasBiggest.ts",
+          "anchor": "/* live:streams-2026-asof */",
+          "pattern": "\\d{4}-\\d{2}-\\d{2}",
+          "template": "%s",
+          "field": "asOf",
+          "describes": "the kworb day the five 2026 totals are read through"
+        }
+      ],
+      "lastSeenValue": 1420000000,
+      "lastSeenAt": "2026-09-12",
+      "lastChanged": "2026-09-12",
+      "hold": "12 Sep 2026: dailies are recorded, the board stays on the tracker's 09/09 figures until Paul decides how the row should move between tracker posts (see docs/sourcing/STREAMS-2026-ANCHOR.md)"
+    },
+    {
+      "id": "streams-2026-tyla",
+      "label": "Tyla — 2026 Spotify streams (running total)",
+      "sourceName": "kworb.net — Spotify artist page (dated daily)",
+      "sourceUrl": "https://kworb.net/spotify/artist/3SozjO3Lat463tQICI9LcE_songs.html",
+      "extractor": "kworbArtistPage",
+      "group": "streams-2026",
+      "kind": "peak",
+      "baseline": 1185000000,
+      "anchor": {
+        "date": "2026-09-09",
+        "value": 1185000000,
+        "source": "@WITTIEWIZ, 10 Sep 2026 11:31 UTC"
+      },
+      "checkpoint": {
+        "date": "2026-09-09",
+        "value": 1185000000
+      },
+      "readings": {
+        "2026-09-10": 3413000,
+        "2026-09-11": 3546051
+      },
+      "dailyMax": 25000000,
+      "live": true,
+      "sanity": {
+        "min": 1000000000,
+        "max": 6000000000
+      },
+      "stalenessDays": 3,
+      "note": "Year-to-date Spotify streams, kept as a LEDGER: a checkpoint (the total through a date) plus each later day's streams under the date kworb's page is stamped with. Published = checkpoint + every daily to the group's common day — the newest day all five ledgers cover without a hole — and the checkpoint rolls forward on each write; all five rows or none; a hold on any member holds all. Never the change in kworb's cumulative total (kworb absorbs catalogue it had not tracked: Tems' total rose 138M between 27 Aug and 9 Sep 2026 while her days summed to 74M), and never dailies keyed by the bot's run date (that added Burna Boy's 27 Aug, 29 Aug and 2 Sep twice and never added 28 Aug, 31 Aug or 9 Sep; net small — the board's false Burna-over-Wizkid reading of 11 Sep was several small things adding up, see docs/sourcing/STREAMS-2026-ANCHOR.md). No relative jump guard: dailyMax gates each day on the way in, and after a hold a week's worth is a legitimate move. ANCHOR: the fan tracker @WITTIEWIZ's '2026 so far' post of 10 Sep 2026 11:31 UTC (x.com/WITTIEWIZ/status/2098011367378735458), through kworb's pages stamped 2026/09/09 (Tems: through her 09/08 page — kworb published no 09/09 page for her, and neither the tracker nor this ledger has that day). Summed once per kworb day, kworb's own dailies and the tracker's count agree within a few million over the fortnight before. Re-anchor from the tracker's next 'so far' post whenever the two drift by more than a day's streams, and whenever a gap is reported. The baseline is always the checkpoint's value; re-anchoring means moving both together. THIS ARTIST: 09/10 daily ESTIMATED the same way from @WizStatz's 3.54M (±0.1M). 09/11 exact from her page.",
+      "siteTargets": [
+        {
+          "file": "app/data/africasBiggest.ts",
+          "anchor": "/* live:streams-2026-tyla */",
+          "pattern": "[\\d.]+B",
+          "template": "%s",
+          "format": "B3",
+          "describes": "Tyla 2026 running Spotify total on the Africa's Biggest board"
+        },
+        {
+          "file": "app/data/africasBiggest.ts",
+          "anchor": "/* live:streams-2026-asof */",
+          "pattern": "\\d{4}-\\d{2}-\\d{2}",
+          "template": "%s",
+          "field": "asOf",
+          "describes": "the kworb day the five 2026 totals are read through"
+        }
+      ],
+      "lastSeenValue": 1185000000,
+      "lastSeenAt": "2026-09-12",
+      "lastChanged": "2026-09-12",
+      "hold": "12 Sep 2026: dailies are recorded, the board stays on the tracker's 09/09 figures until Paul decides how the row should move between tracker posts (see docs/sourcing/STREAMS-2026-ANCHOR.md)"
     }
   ],
   "certWatches": [
