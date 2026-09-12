@@ -406,7 +406,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
+            "position": 33,
             "movement": null,
             "status": "new"
           }
@@ -468,13 +468,6 @@
             "name": "Sierra Leone",
             "position": 197,
             "movement": -47
-          },
-          {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 200,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -485,8 +478,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 85,
-            "movement": -18
+            "position": 89,
+            "movement": -12
           }
         ]
       }
@@ -1091,7 +1084,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
+            "position": 157,
             "movement": null,
             "status": "new"
           }

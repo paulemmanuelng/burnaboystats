@@ -514,13 +514,13 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 68,
-            "movement": -3
+            "position": 67,
+            "movement": -2
           },
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 76,
+            "position": 83,
             "movement": -32
           }
         ]
@@ -578,7 +578,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 51,
-            "movement": -11
+            "movement": -10
           }
         ]
       }

@@ -108,8 +108,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 91,
-            "movement": 3
+            "position": 67,
+            "movement": 24
           }
         ]
       },
@@ -223,8 +223,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 58,
-            "movement": 0
+            "position": 56,
+            "movement": 2
           }
         ]
       }
@@ -242,8 +242,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
-            "movement": -6
+            "position": 18,
+            "movement": -9
           }
         ]
       }

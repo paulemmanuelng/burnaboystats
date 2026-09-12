@@ -259,7 +259,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 190,
-            "movement": 10
+            "movement": 0
           },
           {
             "country": "CH",
@@ -277,21 +277,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 149,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 152,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 163,
+            "position": 180,
             "movement": null,
             "status": "new"
           }
@@ -882,7 +868,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
+            "position": 37,
             "movement": null,
             "status": "new"
           }
@@ -1184,25 +1170,25 @@
             "country": "UG",
             "name": "Uganda",
             "position": 51,
-            "movement": 3
+            "movement": 2
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 66,
-            "movement": 1
+            "position": 67,
+            "movement": -1
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 78,
-            "movement": 2
+            "position": 75,
+            "movement": 3
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 88,
-            "movement": -2
+            "position": 76,
+            "movement": 4
           }
         ]
       }
@@ -1232,8 +1218,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 65,
-            "movement": 0
+            "position": 66,
+            "movement": -1
           },
           {
             "country": "BJ",
@@ -1293,8 +1279,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 45,
-            "movement": -18
+            "position": 46,
+            "movement": -9
           }
         ]
       }
@@ -1457,8 +1443,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 4,
-            "movement": 41
+            "position": 3,
+            "movement": 42
           },
           {
             "country": "KE",
@@ -1602,8 +1588,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 56,
-            "movement": -14
+            "position": 58,
+            "movement": -16
           },
           {
             "country": "NG",
@@ -1751,8 +1737,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 85,
-            "movement": -33
+            "position": 87,
+            "movement": -27
           }
         ]
       }
@@ -1881,8 +1867,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 148,
-            "movement": -11
+            "position": 135,
+            "movement": 5
           }
         ]
       }
@@ -1900,27 +1886,27 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 49,
-            "movement": 1
+            "position": 50,
+            "movement": -1
           },
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 90,
+            "position": 89,
             "movement": 1
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 98,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": -11
+            "position": 94,
+            "movement": 6
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 99,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1938,7 +1924,7 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 13,
+            "position": 12,
             "movement": -2
           },
           {
@@ -2175,8 +2161,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 61,
-            "movement": -7
+            "position": 63,
+            "movement": -9
           }
         ]
       }
@@ -2215,7 +2201,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 25,
-            "movement": -8
+            "movement": -3
           }
         ]
       }
@@ -2252,8 +2238,8 @@
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 48,
-            "movement": -10
+            "position": 57,
+            "movement": -14
           }
         ]
       }
@@ -2282,25 +2268,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cbd8af17625915ac863ee340498d5d9f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "More",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 54,
-            "movement": -33
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b1eb19b96a5e2985053b8bef3138498f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Stay For The Night",
     "platforms": [
       {
@@ -2318,6 +2285,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/27ab85a0fa9ffa1c5a337c8e8ce43194/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "More",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 56,
+            "movement": -27
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b1eb19b96a5e2985053b8bef3138498f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dis Love",
@@ -2408,14 +2394,34 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 142,
-            "movement": -21
+            "position": 145,
+            "movement": -19
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "STATE OF MIND",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 156,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/75dc9da91f469baa06a74cb6966396b6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bella",
@@ -2435,6 +2441,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Baddest Boy",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 108,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/deed4e4e22a094b389c7dea5c36a109f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Alive",

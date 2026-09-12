@@ -204,6 +204,12 @@
             "status": "new"
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 148,
+            "movement": 33
+          },
+          {
             "country": "BS",
             "name": "The Bahamas",
             "position": 158,
@@ -216,18 +222,10 @@
             "movement": -23
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 161,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NL",
             "name": "Netherlands",
-            "position": 176,
-            "movement": null,
-            "status": "new"
+            "position": 172,
+            "movement": 17
           },
           {
             "country": "TD",
@@ -259,86 +257,6 @@
       }
     ],
     "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "CHANEL",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 75,
-            "movement": -49
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 83,
-            "movement": -39
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 87,
-            "movement": -32
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 92,
-            "movement": -34
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 92,
-            "movement": -49
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 94,
-            "movement": -31
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 96,
-            "movement": -55
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 99,
-            "movement": -46
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 100,
-            "movement": -43
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 177,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
@@ -435,48 +353,65 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "SHE DID IT AGAIN",
+    "title": "CHANEL",
     "platforms": [
       {
-        "platform": "Shazam",
+        "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "RO",
-            "name": "Romania",
-            "position": 48,
-            "movement": 0
+            "country": "IT",
+            "name": "Italy",
+            "position": 75,
+            "movement": -49
           },
           {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 158,
-            "movement": -57
+            "country": "NO",
+            "name": "Norway",
+            "position": 83,
+            "movement": -39
           },
           {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 168,
-            "movement": -24
+            "country": "DK",
+            "name": "Denmark",
+            "position": 87,
+            "movement": -32
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 92,
+            "movement": -34
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 92,
+            "movement": -49
           },
           {
             "country": "DE",
             "name": "Germany",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
+            "position": 94,
+            "movement": -31
+          },
           {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 56,
-            "movement": -10
+            "country": "AT",
+            "name": "Austria",
+            "position": 96,
+            "movement": -55
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 99,
+            "movement": -46
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 100,
+            "movement": -43
           }
         ]
       }
@@ -572,6 +507,49 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "SHE DID IT AGAIN",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 48,
+            "movement": 0
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 158,
+            "movement": -57
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 168,
+            "movement": -24
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 78,
+            "movement": -29
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Talk to Me",
     "platforms": [
       {
@@ -581,7 +559,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 33,
+            "position": 34,
             "movement": null,
             "status": "new"
           }
@@ -613,7 +591,7 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 150,
+            "position": 183,
             "movement": null,
             "status": "new"
           }
@@ -634,7 +612,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 55,
-            "movement": -8
+            "movement": -2
           }
         ]
       }

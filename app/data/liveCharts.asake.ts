@@ -211,16 +211,16 @@
             "movement": 82
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 41,
+            "movement": -6
+          },
+          {
             "country": "VG",
             "name": "British Virgin Islands",
             "position": 42,
             "movement": -27
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 45,
-            "movement": -8
           },
           {
             "country": "QA",
@@ -241,6 +241,12 @@
             "movement": -46
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 66,
+            "movement": 0
+          },
+          {
             "country": "PT",
             "name": "Portugal",
             "position": 66,
@@ -249,20 +255,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 67,
-            "movement": 0
+            "position": 68,
+            "movement": -1
           },
           {
             "country": "BB",
             "name": "Barbados",
             "position": 70,
             "movement": -12
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 73,
-            "movement": -6
           },
           {
             "country": "TT",
@@ -321,6 +321,12 @@
             "movement": 38
           },
           {
+            "country": "FR",
+            "name": "France",
+            "position": 179,
+            "movement": 5
+          },
+          {
             "country": "KY",
             "name": "Cayman Islands",
             "position": 182,
@@ -333,10 +339,11 @@
             "movement": -114
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 192,
-            "movement": 0
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 196,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -347,15 +354,15 @@
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 34,
+            "position": 30,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 64,
-            "movement": -18
+            "position": 65,
+            "movement": -9
           }
         ]
       }
@@ -737,18 +744,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 92,
-            "movement": -11
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -943,8 +938,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
-            "movement": -19
+            "position": 32,
+            "movement": -10
           }
         ]
       }
@@ -1233,8 +1228,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 71,
-            "movement": 0
+            "position": 72,
+            "movement": -1
           },
           {
             "country": "SN",
@@ -1385,8 +1380,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": 3
+            "position": 21,
+            "movement": 4
           }
         ]
       },
@@ -1690,8 +1685,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 75,
-            "movement": -19
+            "position": 79,
+            "movement": -13
           }
         ]
       }
@@ -1948,7 +1943,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 2,
-            "movement": -1
+            "movement": 0
           }
         ]
       },
@@ -2083,8 +2078,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
-            "movement": -18
+            "position": 34,
+            "movement": -9
           }
         ]
       }
@@ -2198,8 +2193,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 163,
-            "movement": -21
+            "position": 166,
+            "movement": -19
           }
         ]
       }
@@ -2319,7 +2314,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
+            "position": 37,
             "movement": null,
             "status": "new"
           }
@@ -2559,8 +2554,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 99,
-            "movement": -26
+            "position": 102,
+            "movement": -24
           }
         ]
       }
@@ -3125,8 +3120,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 65,
-            "movement": 0
+            "position": 66,
+            "movement": -1
           },
           {
             "country": "BJ",
@@ -3186,8 +3181,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 45,
-            "movement": -18
+            "position": 46,
+            "movement": -9
           }
         ]
       }
@@ -3641,8 +3636,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 56,
-            "movement": -14
+            "position": 58,
+            "movement": -16
           },
           {
             "country": "NG",
@@ -3772,8 +3767,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
-            "movement": 12
+            "position": 10,
+            "movement": -3
           }
         ]
       }
@@ -3995,50 +3990,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "2Factor",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 129,
-            "movement": 6
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 168,
-            "movement": -41
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 100,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Dupe",
     "platforms": [
       {
@@ -4151,6 +4102,37 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "2Factor",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 129,
+            "movement": 6
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 168,
+            "movement": -41
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Alaye",

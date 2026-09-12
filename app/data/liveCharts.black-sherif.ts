@@ -145,6 +145,12 @@
             "name": "Malta",
             "position": 177,
             "movement": -85
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 199,
+            "movement": -42
           }
         ]
       },
@@ -155,8 +161,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 3,
-            "movement": 0
+            "position": 4,
+            "movement": -1
           }
         ]
       }
@@ -242,8 +248,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 10,
-            "movement": 0
+            "position": 13,
+            "movement": -3
           }
         ]
       }
@@ -304,8 +310,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 9,
-            "movement": 0
+            "position": 11,
+            "movement": -2
           }
         ]
       }
@@ -347,8 +353,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 2,
-            "movement": 11
+            "position": 3,
+            "movement": 15
           }
         ]
       },
@@ -453,8 +459,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 111,
-            "movement": -23
+            "position": 114,
+            "movement": -21
           }
         ]
       },
@@ -709,7 +715,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 16,
+            "position": 18,
             "movement": null,
             "status": "new"
           }
@@ -741,8 +747,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 121,
-            "movement": -23
+            "position": 124,
+            "movement": -21
           }
         ]
       }
@@ -803,8 +809,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 67,
-            "movement": -24
+            "position": 70,
+            "movement": -22
           }
         ]
       }
@@ -1031,7 +1037,7 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 24,
+            "position": 23,
             "movement": -2
           }
         ]
@@ -1126,7 +1132,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 100,
+            "position": 103,
             "movement": null,
             "status": "new"
           }

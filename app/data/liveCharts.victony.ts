@@ -476,6 +476,25 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 74,
+            "movement": -12
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 139,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -484,18 +503,6 @@
             "name": "Nigeria",
             "position": 16,
             "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 74,
-            "movement": -14
           }
         ]
       }
@@ -681,6 +688,12 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 163,
+            "movement": -2
+          },
+          {
             "country": "OM",
             "name": "Oman",
             "position": 166,
@@ -688,16 +701,10 @@
             "status": "new"
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 179,
-            "movement": -20
-          },
-          {
             "country": "CA",
             "name": "Canada",
-            "position": 182,
-            "movement": -19
+            "position": 168,
+            "movement": -5
           },
           {
             "country": "CV",
@@ -1317,7 +1324,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
+            "position": 157,
             "movement": null,
             "status": "new"
           }
