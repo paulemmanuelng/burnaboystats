@@ -137,27 +137,39 @@ Asake 5.787M and Tyla 3.449M — inside the stated error either way.) Re-anchor 
 post, whenever a hole is reported, and whenever the two drift by more than a
 day's streams.
 
-## Where the board stands, and the question left open
+## The decision (12 Sep 2026): option (b)
 
-The board prints the anchor itself — the tracker's five figures, dated 9
-September — and the ledgers are **held**: dailies are recorded every half
-hour, the row does not move. By kworb's dailies Burna Boy closes on Wizkid at
-about 1.6M a day from 6.3M behind on 09/10, so a board that moved between
-tracker posts would put him past Wizkid around 14 Sep; the tracker's count is
-within a few million of kworb's, which is also the size of that gap — so the
-day of the crossover is inside the noise, and the tracker may not call it on
-the same day.
+Paul chose **(b)**: the row moves every day on kworb's dailies, re-anchored
+at each tracker post, and a row inside the method's resolution of the row
+above is shown **joint** rather than called a lead.
 
-The choice is Paul's:
+- `tieWithin` = 10,000,000. A tracker-anchored count carries about a day's
+  streams of uncertainty at each end of its window (5–8M for these artists),
+  so a gap under ten million is not a lead the board can support. Ties chain:
+  three rows each within ten million of the next are one level group, and the
+  note prints the spread beside them ("joint first, the three of them
+  separated by about 14 million"). The mark comes off the day a gap opens past
+  ten million — on a kworb date, not a run time.
+- The bot writes the mark with the value (`1.770B", tie: true`), the board's
+  own `tie`/`rankOf` idiom from the YouTube days board, and
+  tests/streams2026Ties.test.ts holds the shipped file to the rule.
+- **Skipped stamps.** kworb regenerates Tems' page irregularly (09/08 → 09/10,
+  and 09/11 had not appeared by 14:43 UTC on 12 Sep). A daily-sum ledger
+  would hold a hole at the skipped day, and the whole group with it, most
+  weeks. The page carries the missing figure: between two stamps the total
+  moved by every day in between, so the skipped day's streams are the total's
+  movement minus the stamped day's own Daily. `fillSkippedDays` derives it,
+  accepts it only if it lands within 0.5–1.5× the two stamped dailies around
+  it (a catalogue jump inside the gap fails that and stays a hole for a
+  hand), and the run summary names every derived day. "A hole is a hole,
+  never a zero" still holds: a derived day is a figure with a stated
+  provenance, not a zero.
+- The other two options, for the record: (a) move daily and call every lead
+  — exact within its method, but the Burna–Wizkid gap is the size of the
+  method's noise, so it would name crossovers the tracker may not, which is
+  the situation Paul caught; (c) hold at the tracker's figures and move only
+  on its posts — never disagrees with the reference, but a row labelled in
+  progress that sits still for a fortnight reads as broken.
 
-- **(a) Move daily on kworb's dailies**, re-anchoring at each tracker post.
-  Live, and internally exact; may call a lead a day or two before or after
-  the tracker does.
-- **(b) Move daily, but mark rows within the measure's noise as joint** — a
-  tie inside ~10M shows "joint 2nd", the note says "level within N million".
-  Honest about resolution; a little more mechanism (the bot writes `tie`).
-- **(c) Hold at the tracker's figures, dated**, and move only when it posts.
-  Never disagrees with the reference; the row moves every couple of weeks.
-
-Lifting the hold is one field per metric (`hold`) in
-scripts/watched-metrics.json.
+Rolling the checkpoint forward drops the derived dates it absorbed; re-anchor
+from the tracker's next "so far" post as before.

@@ -282,8 +282,8 @@ describe("the bot keeps ranked live rows in the order their numbers say", () => 
     const before = [
       "        entries: [",
       '          /* live:streams-2026-tems */ { name: "Tems", value: "1.775B" },',
-      '          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.764B" },',
-      '          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.770B" },',
+      '          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.764B", tie: true },',
+      '          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.770B", tie: true },',
       '          /* live:streams-2026-asake */ { name: "Asake", value: "1.426B" },',
       '          /* live:streams-2026-tyla */ { name: "Tyla", value: "1.188B" },',
       "        ],",
@@ -292,6 +292,7 @@ describe("the bot keeps ranked live rows in the order their numbers say", () => 
     const after = reorderLiveRows(before).split("\n");
     expect(after[1]).toContain("Tems");
     expect(after[2]).toContain("Burna Boy");
+    expect(after[2]).toContain("tie: true");
     expect(after[3]).toContain("Wizkid");
     expect(after[4]).toContain("Asake");
     expect(after[5]).toContain("Tyla");

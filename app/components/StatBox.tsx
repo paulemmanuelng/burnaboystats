@@ -94,7 +94,7 @@ export default function StatBox({
                       key={`${e.name}-${i}`}
                       className={`${styles.chip} ${him ? styles.chipHim : ""}`}
                     >
-                      <span className={styles.chipRank}>{i + 1}</span>
+                      <span className={styles.chipRank}>{rankOf(r.entries, i)}</span>
                       {e.name}
                       {e.value && <span className={styles.chipValue}>{e.value}</span>}
                     </span>

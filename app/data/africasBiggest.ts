@@ -211,11 +211,14 @@ export const statBoxes: LeaderboardBox[] = [
         // newest day every one of the five ledgers covers. Until 12 Sep 2026 the
         // top three were summed once per calendar day of the bot's own clock,
         // which counted three days twice and missed three; the bottom two were
-        // typed and never moved. The bot keeps the rows sorted.
+        // typed and never moved. The bot keeps the rows sorted, and marks a row
+        // `tie: true` when it sits within ten million of the row above — the
+        // resolution of a count anchored to a tracker's post — so the board
+        // shows a level pair as joint rather than call a lead it cannot support.
         entries: [
           /* live:streams-2026-tems */ { name: "Tems", value: "1.770B" },
-          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.764B" },
-          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.756B" },
+          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.764B", tie: true },
+          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.756B", tie: true },
           /* live:streams-2026-asake */ { name: "Asake", value: "1.420B" },
           /* live:streams-2026-tyla */ { name: "Tyla", value: "1.185B" },
         ],
@@ -271,7 +274,7 @@ export const statBoxes: LeaderboardBox[] = [
       },
     ],
     source:
-      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. The 2026 row is the five artists' running totals as read together on one day, stated in the note: a chart tracker's published count, carried forward day by day from kworb's per-artist daily streams under the date each page is stamped with — not an official Spotify report and not projected forward from a daily average. 2026 is still running, so both the totals and the order will change.",
+      "Ranked by total Spotify streams each year (2022–2026), sourced from streaming trackers. The 2026 row is the five artists' running totals as read together on one day, stated in the note: a chart tracker's published count, carried forward day by day from kworb's per-artist daily streams under the date each page is stamped with — not an official Spotify report and not projected forward from a daily average. Artists within ten million of the row above are shown level (joint), the resolution of a count carried this way. 2026 is still running, so both the totals and the order will change.",
   },
   {
     // Verified against kworb's PkListeners column, which agrees to the digit on
@@ -516,13 +519,24 @@ for (const box of statBoxes) {
     const m = row.entries.map((e) => parseFloat(e.value ?? "")).filter((n) => !Number.isNaN(n));
     const spread = Math.round((Math.max(...m.slice(0, 3)) - Math.min(...m.slice(0, 3))) * 1000);
     row.note = row.note.replace("{{spread2026}}", String(spread));
-    // The order sentence follows the rows, which the bot keeps sorted by value.
-    const [first, second, third] = row.entries.slice(0, 3).map((e) => e.name);
-    const order = third === "Burna Boy"
-      ? `with Burna Boy third behind ${first} and ${second}`
-      : second === "Burna Boy"
-        ? `with Burna Boy second behind ${first} and ahead of ${third}`
-        : `with Burna Boy ahead of ${second} and ${third}`;
+    // The order sentence follows the rows, which the bot keeps sorted by value
+    // and marks joint where a gap is inside the method's resolution — a joint
+    // row is never called a lead, in either direction.
+    const top = row.entries.slice(0, 3);
+    const [first, second, third] = top.map((e) => e.name);
+    const t1 = Boolean(top[1]?.tie);
+    const t2 = Boolean(top[2]?.tie);
+    const order = t1 && t2
+      ? `with ${first}, ${second} and ${third} joint first`
+      : t1
+        ? `with ${first} and ${second} joint first and ${third} third`
+        : t2
+          ? `with ${first} first and ${second} and ${third} joint second`
+          : third === "Burna Boy"
+            ? `with Burna Boy third behind ${first} and ${second}`
+            : second === "Burna Boy"
+              ? `with Burna Boy second behind ${first} and ahead of ${third}`
+              : `with Burna Boy ahead of ${second} and ${third}`;
     row.note = row.note.replace("{{order2026}}", order);
   }
 }

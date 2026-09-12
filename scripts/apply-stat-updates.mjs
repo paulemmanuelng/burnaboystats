@@ -31,6 +31,8 @@ import {
   ledgerGaps,
   rollLedger,
   recordReading,
+  tiedRows,
+  fillSkippedDays,
   extractSpotifyFollowers,
   evaluateMetric,
   isActionable,
@@ -158,7 +160,7 @@ async function datedReading(metric, pageCache) {
  */
 export function reorderLiveRows(text) {
   const lines = text.split("\n");
-  const row = /^(\s*)\/\* live:([a-z0-9-]+?)-[a-z0-9]+ \*\/ \{ name: "[^"]+", value: "([\d.]+)B" \},?$/;
+  const row = /^(\s*)\/\* live:([a-z0-9-]+?)-[a-z0-9]+ \*\/ \{ name: "[^"]+", value: "([\d.]+)B"(?:, tie: true)? \},?$/;
   let i = 0;
   while (i < lines.length) {
     const m = lines[i].match(row);
@@ -188,8 +190,14 @@ async function applyTargets(metric, files) {
     const abs = path.join(repoRoot, t.file);
     if (!files.has(abs)) files.set(abs, await readFile(abs, "utf8"));
     // `field: "asOf"` writes the group's common date instead of the value, so
-    // the board can say which day its totals are read at.
-    const formatted = t.field === "asOf" ? (metric.asOf ?? null) : formatStat(metric.live, t.format);
+    // the board can say which day its totals are read at. `field: "valueTie"`
+    // writes the value AND the row's joint mark in one edit — the pattern
+    // spans `1.770B"` and any `, tie: true` after it, so a mark is added or
+    // removed with the number it belongs to.
+    const formatted =
+      t.field === "asOf" ? (metric.asOf ?? null)
+      : t.field === "valueTie" ? (formatStat(metric.live, t.format) == null ? null : `${formatStat(metric.live, t.format)}"${metric.tie ? ", tie: true" : ""}`)
+      : formatStat(metric.live, t.format);
     if (formatted == null) {
       failures.push({ file: t.file, reason: `bad format "${t.format}"` });
       continue;
@@ -256,6 +264,20 @@ async function main() {
         const rec = recordReading(m.checkpoint, m.readings, reading, m.dailyMax);
         if (rec.recorded) {
           m.readings = rec.readings;
+          // A stamp that skips a day: fill the skipped day from the page's own
+          // totals (fillSkippedDays), or report the hole.
+          const prev = m.lastStamp;
+          if (prev && reading.date > prev.date) {
+            const fill = fillSkippedDays(m.checkpoint, m.readings, prev, reading, m.dailyMax);
+            if (fill.filled.length) {
+              m.readings = fill.readings;
+              m.derived = [...new Set([...(m.derived ?? []), ...fill.filled])].filter((d) => d > m.checkpoint.date).sort();
+              console.error(`  • ${m.label}: ${fill.filled.join(", ")} derived from the page's totals (${fill.filled.map((d) => fmt(m.readings[d])).join(", ")})`);
+            } else if (fill.reason) {
+              console.error(`  • ${m.label}: ${fill.reason}`);
+            }
+          }
+          m.lastStamp = { date: reading.date, total: reading.total, daily: reading.daily };
           // The source moved, whether or not the group can publish yet — a
           // member waiting on a lagging peer is not a stale source.
           m.lastSeenAt = today;
@@ -295,6 +317,7 @@ async function main() {
       ledgerNotes.push({
         group, id: m.id, label: m.label, checkpoint: m.checkpoint.date,
         newest: dates[dates.length - 1] ?? null, gaps, common: aligned?.date ?? null, hold: m.hold ?? null,
+        derived: (m.derived ?? []).filter((d) => d > m.checkpoint.date),
       });
     }
     // Every member is evaluated from its STORED dailies, not only those whose
@@ -316,6 +339,15 @@ async function main() {
       const r = evaluateMetric(m, aligned.values[m.id]);
       r.asOf = aligned.date;
       results.push(r);
+    }
+    // Rows inside the method's resolution of the row above are written as
+    // joint (`tie: true`), and rows that have pulled clear lose the mark —
+    // decided here, on the whole group's values, not per row.
+    if (aligned && !hold) {
+      const within = members.find((m) => m.tieWithin != null)?.tieWithin;
+      const ranked = members.map((m) => ({ id: m.id, value: aligned.values[m.id] })).sort((x, y) => y.value - x.value);
+      const tied = tiedRows(ranked, within);
+      for (const r of results) if (r.group === group) r.tie = tied.has(r.id);
     }
   }
 
@@ -452,7 +484,10 @@ async function main() {
         // A published ledger rolls forward: its checkpoint becomes the day
         // just written and the dailies that day absorbed are dropped. The
         // record of each day stays in this file's git history.
-        if (r.asOf && m.checkpoint) Object.assign(m, rollLedger(m.checkpoint, m.readings, r.asOf, Math.round(r.live)));
+        if (r.asOf && m.checkpoint) {
+          Object.assign(m, rollLedger(m.checkpoint, m.readings, r.asOf, Math.round(r.live)));
+          if (m.derived) m.derived = m.derived.filter((d) => d > r.asOf);
+        }
       }
     }
     files.set(configPath, JSON.stringify(config, null, 2) + "\n");
@@ -498,7 +533,7 @@ async function main() {
     const gapped = ledgerNotes.filter((n) => n.gaps.length);
     lines.push(`### 📒 Running totals${gapped.length ? " — ⚠️ gaps need a hand" : ""}\n`);
     for (const n of ledgerNotes) {
-      lines.push(`- **${n.label}**: ${n.hold ? `HELD (${n.hold}) — would publish through` : "published through"} ${n.common ?? "— (no common day)"}, checkpoint ${n.checkpoint}, newest daily ${n.newest ?? "none"}${n.gaps.length ? `, **missing ${n.gaps.join(", ")}**` : ""}`);
+      lines.push(`- **${n.label}**: ${n.hold ? `HELD (${n.hold}) — would publish through` : "published through"} ${n.common ?? "— (no common day)"}, checkpoint ${n.checkpoint}, newest daily ${n.newest ?? "none"}${n.derived.length ? `, ${n.derived.join(", ")} derived from the page's totals` : ""}${n.gaps.length ? `, **missing ${n.gaps.join(", ")}**` : ""}`);
     }
     lines.push("");
   }
