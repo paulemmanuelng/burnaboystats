@@ -188,8 +188,8 @@
           {
             "country": "BR",
             "name": "Brazil",
-            "position": 137,
-            "movement": 24
+            "position": 140,
+            "movement": 8
           },
           {
             "country": "PT",
@@ -218,8 +218,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 176,
-            "movement": 0
+            "position": 171,
+            "movement": 1
           },
           {
             "country": "BS",
@@ -236,8 +236,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": -6
+            "position": 19,
+            "movement": -12
           }
         ]
       }
@@ -373,6 +373,26 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 75,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 172,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -381,19 +401,6 @@
             "name": "South Africa",
             "position": 196,
             "movement": -46
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 48,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -418,56 +425,6 @@
             "name": "South Africa",
             "position": 90,
             "movement": -8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "SHE DID IT AGAIN",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 48,
-            "movement": 0
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 158,
-            "movement": -57
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 179,
-            "movement": -12
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 78,
-            "movement": -22
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 120,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -510,10 +467,67 @@
             "status": "new"
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 83,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "SHE DID IT AGAIN",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 55,
+            "movement": -14
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 158,
+            "movement": -57
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 179,
+            "movement": -12
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 147,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT LOVE",
@@ -595,8 +609,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 69,
-            "movement": -14
+            "position": 70,
+            "movement": -15
           }
         ]
       }

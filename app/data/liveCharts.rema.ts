@@ -231,15 +231,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 14,
-            "movement": 141
-          },
-          {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 19,
+            "position": 22,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 25,
             "movement": null,
             "status": "new"
           }
@@ -399,14 +400,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 73,
-            "movement": -23
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 172,
-            "movement": -146
+            "position": 74,
+            "movement": -22
           }
         ]
       },
@@ -609,7 +604,7 @@
           {
             "country": "VN",
             "name": "Vietnam",
-            "position": 126,
+            "position": 137,
             "movement": null,
             "status": "new"
           }
@@ -1244,23 +1239,24 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 27,
+            "movement": -2
+          },
+          {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 21,
+            "position": 28,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 25,
-            "movement": 0
-          },
-          {
-            "country": "ES",
-            "name": "Spain",
-            "position": 151,
-            "movement": 47
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 58,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1385,21 +1381,21 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
+            "position": 29,
             "movement": null,
             "status": "new"
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 62,
-            "movement": -23
+            "position": 63,
+            "movement": -22
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 65,
-            "movement": -26
+            "position": 74,
+            "movement": -28
           }
         ]
       },
@@ -1695,33 +1691,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Goals",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 129,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 175,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "DND",
     "platforms": [
       {
@@ -1772,6 +1741,26 @@
     "kind": "album"
   },
   {
+    "title": "Goals",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 131,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "KELEBU",
     "platforms": [
       {
@@ -1781,8 +1770,8 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 5,
-            "movement": -1
+            "position": 9,
+            "movement": -4
           }
         ]
       }
@@ -1800,7 +1789,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 15,
+            "position": 19,
             "movement": null,
             "status": "new"
           }

@@ -240,6 +240,13 @@
             "name": "Dominican Republic",
             "position": 156,
             "movement": -16
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 199,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -473,14 +480,14 @@
           {
             "country": "HU",
             "name": "Hungary",
-            "position": 51,
+            "position": 63,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 81,
+            "position": 82,
             "movement": -8
           }
         ]
@@ -698,16 +705,16 @@
             "movement": -101
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 172,
-            "movement": 10
-          },
-          {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 173,
+            "position": 157,
             "movement": 6
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 160,
+            "movement": 8
           },
           {
             "country": "IE",
@@ -849,7 +856,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
+            "position": 111,
             "movement": null,
             "status": "new"
           }

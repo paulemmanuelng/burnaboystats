@@ -425,38 +425,39 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
-            "movement": 0
+            "position": 14,
+            "movement": 2
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 16,
-            "movement": -15
+            "position": 19,
+            "movement": -18
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 23,
-            "movement": -20
+            "position": 32,
+            "movement": -27
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 45,
-            "movement": -27
+            "position": 52,
+            "movement": -32
           },
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 59,
-            "movement": -41
+            "position": 67,
+            "movement": -49
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 64,
-            "movement": 27
+            "position": 67,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -851,8 +852,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 129,
-            "movement": 3
+            "position": 126,
+            "movement": -2
           },
           {
             "country": "VG",
@@ -918,8 +919,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 66,
-            "movement": -9
+            "position": 68,
+            "movement": -10
           }
         ]
       }
@@ -1277,7 +1278,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
+            "position": 27,
             "movement": null,
             "status": "new"
           }
@@ -1377,7 +1378,7 @@
             "country": "FR",
             "name": "France",
             "position": 123,
-            "movement": -6
+            "movement": -10
           },
           {
             "country": "CI",
@@ -1402,13 +1403,105 @@
             "country": "NE",
             "name": "Niger",
             "position": 54,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7b49d51e89ff07824c8c62043775a2ab/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Rush",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 88,
+            "movement": 86
+          },
+          {
+            "country": "MG",
+            "name": "Madagascar",
+            "position": 126,
+            "movement": -27
+          },
+          {
+            "country": "TC",
+            "name": "Turks and Caicos",
+            "position": 142,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 157,
+            "movement": 36
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 163,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 20,
+            "movement": -4
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 21,
+            "movement": 1
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 21,
+            "movement": 1
+          },
+          {
+            "country": "AG",
+            "name": "Antigua and Barbuda",
+            "position": 44,
+            "movement": 0
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 96,
+            "movement": -7
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 159,
+            "movement": -23
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Who's Dat Girl",
@@ -1488,92 +1581,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Rush",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 88,
-            "movement": 86
-          },
-          {
-            "country": "MG",
-            "name": "Madagascar",
-            "position": 126,
-            "movement": -27
-          },
-          {
-            "country": "TC",
-            "name": "Turks and Caicos",
-            "position": 142,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 157,
-            "movement": 36
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 163,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 16,
-            "movement": -1
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 22,
-            "movement": 0
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 22,
-            "movement": 0
-          },
-          {
-            "country": "AG",
-            "name": "Antigua and Barbuda",
-            "position": 44,
-            "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 159,
-            "movement": -23
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Year I Turned 21",
@@ -1809,6 +1816,81 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Ms. Paper",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 100,
+            "movement": 45
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 141,
+            "movement": -47
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 173,
+            "movement": -15
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 39,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 142,
+            "movement": -26
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 85,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Commas",
     "platforms": [
       {
@@ -1888,9 +1970,8 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 195,
-            "movement": null,
-            "status": "new"
+            "position": 37,
+            "movement": 156
           }
         ]
       },
@@ -1901,8 +1982,8 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 26,
-            "movement": 8
+            "position": 30,
+            "movement": 6
           }
         ]
       }
@@ -2059,68 +2140,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ms. Paper",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 100,
-            "movement": 45
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 141,
-            "movement": -47
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 173,
-            "movement": -15
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 142,
-            "movement": -26
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 85,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/64f822132d39a3677d59f745a248a2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dangerous",
@@ -2334,8 +2353,8 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 30,
-            "movement": 0
+            "position": 31,
+            "movement": -1
           }
         ]
       }
@@ -2417,7 +2436,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 89,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "FM",
@@ -2520,8 +2539,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 55,
-            "movement": -17
+            "position": 57,
+            "movement": -18
           }
         ]
       }

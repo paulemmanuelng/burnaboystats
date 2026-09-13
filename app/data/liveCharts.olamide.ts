@@ -147,8 +147,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 182,
-            "movement": -23
+            "position": 191,
+            "movement": -25
           }
         ]
       }
@@ -239,8 +239,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": -4
+            "position": 18,
+            "movement": -8
           }
         ]
       },
@@ -392,8 +392,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": 20
+            "position": 112,
+            "movement": 4
           }
         ]
       }
@@ -424,8 +424,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
-            "movement": 20
+            "position": 106,
+            "movement": 4
           }
         ]
       }
@@ -455,8 +455,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 155,
-            "movement": 11
+            "position": 157,
+            "movement": 0
           }
         ]
       }
@@ -475,7 +475,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 64,
-            "movement": -3
+            "movement": -1
           }
         ]
       }
@@ -502,6 +502,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/75b1090ea3e3c3521e8d82009a8b1b7d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Double Double",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d049bb9cc7d7517536ca3183e8af832b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dope Money",

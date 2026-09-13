@@ -143,7 +143,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 5,
-            "movement": -2
+            "movement": -1
           }
         ]
       }
@@ -222,8 +222,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 14,
-            "movement": -4
+            "position": 51,
+            "movement": -38
           }
         ]
       }
@@ -285,8 +285,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 12,
-            "movement": -3
+            "position": 40,
+            "movement": -29
           }
         ]
       }
@@ -329,8 +329,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 21,
-            "movement": -20
+            "position": 30,
+            "movement": -27
           }
         ]
       },
@@ -386,8 +386,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 132,
-            "movement": -25
+            "position": 141,
+            "movement": -27
           }
         ]
       },
@@ -430,6 +430,19 @@
             "country": "SR",
             "name": "Suriname",
             "position": 68,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 3,
             "movement": null,
             "status": "new"
           }
@@ -498,44 +511,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "So it Goes",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 53,
-            "movement": 4
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 69,
-            "movement": 39
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 18,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Run Around",
     "platforms": [
       {
@@ -560,6 +535,44 @@
             "name": "Liberia",
             "position": 153,
             "movement": -91
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Frontline",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 14,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 88,
+            "movement": -62
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 20,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -638,6 +651,44 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "So it Goes",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 53,
+            "movement": 4
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 69,
+            "movement": 39
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 18,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Love Again",
     "platforms": [
       {
@@ -655,31 +706,6 @@
             "name": "Liberia",
             "position": 65,
             "movement": -45
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Frontline",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 14,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 88,
-            "movement": -62
           }
         ]
       }
@@ -735,9 +761,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 37,
-            "movement": null,
-            "status": "new"
+            "position": 46,
+            "movement": -28
           }
         ]
       }
@@ -767,8 +792,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 141,
-            "movement": -24
+            "position": 150,
+            "movement": -26
           }
         ]
       }
@@ -855,8 +880,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 89,
-            "movement": -26
+            "position": 98,
+            "movement": -28
           }
         ]
       }
@@ -1065,7 +1090,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 24,
-            "movement": 0
+            "movement": -1
           }
         ]
       }
